@@ -153,7 +153,7 @@ export type JobStatus =
   | "STOP_REQUESTED"
   | "STOPPED"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export type AnyLengthString = string;
 export type S3Bucket = string;
@@ -177,7 +177,7 @@ export const OutputDataConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "OutputDataConfig",
 }) as any as S.Schema<OutputDataConfig>;
 export type LanguageCode = "en" | (string & {});
-export const LanguageCode = /*@__PURE__*/ S.String;
+export const LanguageCode = S.String;
 
 export type IamRoleArn = string;
 export type ManifestFilePath = string;
@@ -341,7 +341,7 @@ export type EntityType =
   | "TIME_EXPRESSION"
   | "BEHAVIORAL_ENVIRONMENTAL_SOCIAL"
   | (string & {});
-export const EntityType = /*@__PURE__*/ S.String;
+export const EntityType = S.String;
 
 export type EntitySubType =
   | "NAME"
@@ -390,7 +390,7 @@ export type EntitySubType =
   | "ALCOHOL_CONSUMPTION"
   | "REC_DRUG_USE"
   | (string & {});
-export const EntitySubType = /*@__PURE__*/ S.String;
+export const EntitySubType = S.String;
 
 export type AttributeName =
   | "SIGN"
@@ -403,7 +403,7 @@ export type AttributeName =
   | "PAST_HISTORY"
   | "FUTURE"
   | (string & {});
-export const AttributeName = /*@__PURE__*/ S.String;
+export const AttributeName = S.String;
 
 export interface Trait {
   Name?: AttributeName;
@@ -438,7 +438,7 @@ export type RelationshipType =
   | "USAGE"
   | "QUALITY"
   | (string & {});
-export const RelationshipType = /*@__PURE__*/ S.String;
+export const RelationshipType = S.String;
 
 export interface Attribute {
   Type?: EntitySubType;
@@ -583,10 +583,10 @@ export const InferICD10CMRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InferICD10CMRequest",
 }) as any as S.Schema<InferICD10CMRequest>;
 export type ICD10CMEntityCategory = "MEDICAL_CONDITION" | (string & {});
-export const ICD10CMEntityCategory = /*@__PURE__*/ S.String;
+export const ICD10CMEntityCategory = S.String;
 
 export type ICD10CMEntityType = "DX_NAME" | "TIME_EXPRESSION" | (string & {});
-export const ICD10CMEntityType = /*@__PURE__*/ S.String;
+export const ICD10CMEntityType = S.String;
 
 export type ICD10CMAttributeType =
   | "ACUITY"
@@ -597,7 +597,7 @@ export type ICD10CMAttributeType =
   | "TIME_TO_DX_NAME"
   | "TIME_EXPRESSION"
   | (string & {});
-export const ICD10CMAttributeType = /*@__PURE__*/ S.String;
+export const ICD10CMAttributeType = S.String;
 
 export type ICD10CMTraitName =
   | "NEGATION"
@@ -608,7 +608,7 @@ export type ICD10CMTraitName =
   | "HYPOTHETICAL"
   | "LOW_CONFIDENCE"
   | (string & {});
-export const ICD10CMTraitName = /*@__PURE__*/ S.String;
+export const ICD10CMTraitName = S.String;
 
 export interface ICD10CMTrait {
   Name?: ICD10CMTraitName;
@@ -624,7 +624,7 @@ export type ICD10CMRelationshipType =
   | "SYSTEM_ORGAN_SITE"
   | "QUALITY"
   | (string & {});
-export const ICD10CMRelationshipType = /*@__PURE__*/ S.String;
+export const ICD10CMRelationshipType = S.String;
 
 export interface ICD10CMAttribute {
   Type?: ICD10CMAttributeType;
@@ -723,10 +723,10 @@ export const InferRxNormRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InferRxNormRequest",
 }) as any as S.Schema<InferRxNormRequest>;
 export type RxNormEntityCategory = "MEDICATION" | (string & {});
-export const RxNormEntityCategory = /*@__PURE__*/ S.String;
+export const RxNormEntityCategory = S.String;
 
 export type RxNormEntityType = "BRAND_NAME" | "GENERIC_NAME" | (string & {});
-export const RxNormEntityType = /*@__PURE__*/ S.String;
+export const RxNormEntityType = S.String;
 
 export type RxNormAttributeType =
   | "DOSAGE"
@@ -737,10 +737,10 @@ export type RxNormAttributeType =
   | "ROUTE_OR_MODE"
   | "STRENGTH"
   | (string & {});
-export const RxNormAttributeType = /*@__PURE__*/ S.String;
+export const RxNormAttributeType = S.String;
 
 export type RxNormTraitName = "NEGATION" | "PAST_HISTORY" | (string & {});
-export const RxNormTraitName = /*@__PURE__*/ S.String;
+export const RxNormTraitName = S.String;
 
 export interface RxNormTrait {
   Name?: RxNormTraitName;
@@ -848,7 +848,7 @@ export type SNOMEDCTEntityCategory =
   | "ANATOMY"
   | "TEST_TREATMENT_PROCEDURE"
   | (string & {});
-export const SNOMEDCTEntityCategory = /*@__PURE__*/ S.String;
+export const SNOMEDCTEntityCategory = S.String;
 
 export type SNOMEDCTEntityType =
   | "DX_NAME"
@@ -856,7 +856,7 @@ export type SNOMEDCTEntityType =
   | "PROCEDURE_NAME"
   | "TREATMENT_NAME"
   | (string & {});
-export const SNOMEDCTEntityType = /*@__PURE__*/ S.String;
+export const SNOMEDCTEntityType = S.String;
 
 export type SNOMEDCTAttributeType =
   | "ACUITY"
@@ -866,7 +866,7 @@ export type SNOMEDCTAttributeType =
   | "TEST_VALUE"
   | "TEST_UNIT"
   | (string & {});
-export const SNOMEDCTAttributeType = /*@__PURE__*/ S.String;
+export const SNOMEDCTAttributeType = S.String;
 
 export type SNOMEDCTRelationshipType =
   | "ACUITY"
@@ -877,7 +877,7 @@ export type SNOMEDCTRelationshipType =
   | "SYSTEM_ORGAN_SITE"
   | "TEST_UNIT"
   | (string & {});
-export const SNOMEDCTRelationshipType = /*@__PURE__*/ S.String;
+export const SNOMEDCTRelationshipType = S.String;
 
 export type SNOMEDCTTraitName =
   | "NEGATION"
@@ -890,7 +890,7 @@ export type SNOMEDCTTraitName =
   | "PAST_HISTORY"
   | "FUTURE"
   | (string & {});
-export const SNOMEDCTTraitName = /*@__PURE__*/ S.String;
+export const SNOMEDCTTraitName = S.String;
 
 export interface SNOMEDCTTrait {
   Name?: SNOMEDCTTraitName;

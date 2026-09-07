@@ -575,7 +575,7 @@ export type HandshakePartyType =
   | "ORGANIZATION"
   | "EMAIL"
   | (string & {});
-export const HandshakePartyType = /*@__PURE__*/ S.String;
+export const HandshakePartyType = S.String;
 
 export interface HandshakeParty {
   Id: string | redacted.Redacted<string>;
@@ -594,7 +594,7 @@ export type HandshakeState =
   | "DECLINED"
   | "EXPIRED"
   | (string & {});
-export const HandshakeState = /*@__PURE__*/ S.String;
+export const HandshakeState = S.String;
 
 export type ActionType =
   | "INVITE"
@@ -603,7 +603,7 @@ export type ActionType =
   | "ADD_ORGANIZATIONS_SERVICE_LINKED_ROLE"
   | "TRANSFER_RESPONSIBILITY"
   | (string & {});
-export const ActionType = /*@__PURE__*/ S.String;
+export const ActionType = S.String;
 
 export type HandshakeResourceValue = string | redacted.Redacted<string>;
 export type HandshakeResourceType =
@@ -622,7 +622,7 @@ export type HandshakeResourceType =
   | "MANAGEMENT_EMAIL"
   | "MANAGEMENT_NAME"
   | (string & {});
-export const HandshakeResourceType = /*@__PURE__*/ S.String;
+export const HandshakeResourceType = S.String;
 
 export interface HandshakeResource {
   Value?: string | redacted.Redacted<string>;
@@ -764,7 +764,7 @@ export type Email = string | redacted.Redacted<string>;
 export type CreateAccountName = string | redacted.Redacted<string>;
 export type RoleName = string;
 export type IAMUserAccessToBilling = "ALLOW" | "DENY" | (string & {});
-export const IAMUserAccessToBilling = /*@__PURE__*/ S.String;
+export const IAMUserAccessToBilling = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -811,7 +811,7 @@ export type CreateAccountState =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const CreateAccountState = /*@__PURE__*/ S.String;
+export const CreateAccountState = S.String;
 
 export type CreateAccountFailureReason =
   | "ACCOUNT_LIMIT_EXCEEDED"
@@ -830,7 +830,7 @@ export type CreateAccountFailureReason =
   | "INVALID_PAYMENT_INSTRUMENT"
   | "UPDATE_EXISTING_RESOURCE_POLICY_WITH_TAGS_NOT_SUPPORTED"
   | (string & {});
-export const CreateAccountFailureReason = /*@__PURE__*/ S.String;
+export const CreateAccountFailureReason = S.String;
 
 export interface CreateAccountStatus {
   Id?: string;
@@ -908,7 +908,7 @@ export type OrganizationFeatureSet =
   | "ALL"
   | "CONSOLIDATED_BILLING"
   | (string & {});
-export const OrganizationFeatureSet = /*@__PURE__*/ S.String;
+export const OrganizationFeatureSet = S.String;
 
 export interface CreateOrganizationRequest {
   FeatureSet?: OrganizationFeatureSet;
@@ -946,14 +946,14 @@ export type PolicyType =
   | "S3_POLICY"
   | "NETWORK_SECURITY_DIRECTOR_POLICY"
   | (string & {});
-export const PolicyType = /*@__PURE__*/ S.String;
+export const PolicyType = S.String;
 
 export type PolicyTypeStatus =
   | "ENABLED"
   | "PENDING_ENABLE"
   | "PENDING_DISABLE"
   | (string & {});
-export const PolicyTypeStatus = /*@__PURE__*/ S.String;
+export const PolicyTypeStatus = S.String;
 
 export interface PolicyTypeSummary {
   Type?: PolicyType;
@@ -1284,7 +1284,7 @@ export type AccountStatus =
   | "SUSPENDED"
   | "PENDING_CLOSURE"
   | (string & {});
-export const AccountStatus = /*@__PURE__*/ S.String;
+export const AccountStatus = S.String;
 
 export type AccountState =
   | "PENDING_ACTIVATION"
@@ -1293,12 +1293,12 @@ export type AccountState =
   | "PENDING_CLOSURE"
   | "CLOSED"
   | (string & {});
-export const AccountState = /*@__PURE__*/ S.String;
+export const AccountState = S.String;
 
 export type Paths = string[];
 export const Paths = /*@__PURE__*/ S.Array(S.String);
 export type AccountJoinedMethod = "INVITED" | "CREATED" | (string & {});
-export const AccountJoinedMethod = /*@__PURE__*/ S.String;
+export const AccountJoinedMethod = S.String;
 
 export interface Account {
   Id?: string;
@@ -1373,7 +1373,7 @@ export type EffectivePolicyType =
   | "S3_POLICY"
   | "NETWORK_SECURITY_DIRECTOR_POLICY"
   | (string & {});
-export const EffectivePolicyType = /*@__PURE__*/ S.String;
+export const EffectivePolicyType = S.String;
 
 export interface DescribeEffectivePolicyRequest {
   PolicyType: EffectivePolicyType;
@@ -1594,7 +1594,7 @@ export const DescribeResponsibilityTransferRequest = /*@__PURE__*/ S.suspend(
 export type ResponsibilityTransferArn = string;
 export type ResponsibilityTransferName = string | redacted.Redacted<string>;
 export type ResponsibilityTransferType = "BILLING" | (string & {});
-export const ResponsibilityTransferType = /*@__PURE__*/ S.String;
+export const ResponsibilityTransferType = S.String;
 
 export type ResponsibilityTransferStatus =
   | "REQUESTED"
@@ -1604,7 +1604,7 @@ export type ResponsibilityTransferStatus =
   | "ACCEPTED"
   | "WITHDRAWN"
   | (string & {});
-export const ResponsibilityTransferStatus = /*@__PURE__*/ S.String;
+export const ResponsibilityTransferStatus = S.String;
 
 export interface TransferParticipant {
   ManagementAccountId?: string;
@@ -2087,7 +2087,7 @@ export const ListAWSServiceAccessForOrganizationResponse =
     identifier: "ListAWSServiceAccessForOrganizationResponse",
   }) as any as S.Schema<ListAWSServiceAccessForOrganizationResponse>;
 export type ChildType = "ACCOUNT" | "ORGANIZATIONAL_UNIT" | (string & {});
-export const ChildType = /*@__PURE__*/ S.String;
+export const ChildType = S.String;
 
 export interface ListChildrenRequest {
   ParentId: string;
@@ -2613,7 +2613,7 @@ export const ListParentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListParentsRequest",
 }) as any as S.Schema<ListParentsRequest>;
 export type ParentType = "ROOT" | "ORGANIZATIONAL_UNIT" | (string & {});
-export const ParentType = /*@__PURE__*/ S.String;
+export const ParentType = S.String;
 
 export interface Parent {
   Id?: string;
@@ -2809,7 +2809,7 @@ export type TargetType =
   | "ORGANIZATIONAL_UNIT"
   | "ROOT"
   | (string & {});
-export const TargetType = /*@__PURE__*/ S.String;
+export const TargetType = S.String;
 
 export interface PolicyTargetSummary {
   TargetId?: string;
@@ -3130,7 +3130,7 @@ export type ExceptionMessage = string;
 export type AccessDeniedForDependencyExceptionReason =
   | "ACCESS_DENIED_DURING_CREATE_SERVICE_LINKED_ROLE"
   | (string & {});
-export const AccessDeniedForDependencyExceptionReason = /*@__PURE__*/ S.String;
+export const AccessDeniedForDependencyExceptionReason = S.String;
 
 export type ConstraintViolationExceptionReason =
   | "ACCOUNT_NUMBER_LIMIT_EXCEEDED"
@@ -3182,7 +3182,7 @@ export type ConstraintViolationExceptionReason =
   | "ACCOUNT_NOT_ACTIVE_FOR_TRANSFER_RESPONSIBILITY"
   | "TRANSFER_RESPONSIBILITY_UPDATE_NOT_ALLOWED"
   | (string & {});
-export const ConstraintViolationExceptionReason = /*@__PURE__*/ S.String;
+export const ConstraintViolationExceptionReason = S.String;
 
 export type HandshakeConstraintViolationExceptionReason =
   | "ACCOUNT_NUMBER_LIMIT_EXCEEDED"
@@ -3202,8 +3202,7 @@ export type HandshakeConstraintViolationExceptionReason =
   | "PAST_DUE_INVOICE"
   | "TARGET_ACCOUNT_VALIDATION_FAILURE"
   | (string & {});
-export const HandshakeConstraintViolationExceptionReason =
-  /*@__PURE__*/ S.String;
+export const HandshakeConstraintViolationExceptionReason = S.String;
 
 export type InvalidInputExceptionReason =
   | "INVALID_PARTY_TYPE_TARGET"
@@ -3248,7 +3247,7 @@ export type InvalidInputExceptionReason =
   | "END_DATE_TOO_LATE"
   | "INVALID_END_DATE"
   | (string & {});
-export const InvalidInputExceptionReason = /*@__PURE__*/ S.String;
+export const InvalidInputExceptionReason = S.String;
 
 export type ExceptionType = string;
 export type AcceptHandshakeError =

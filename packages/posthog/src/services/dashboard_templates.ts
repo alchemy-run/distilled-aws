@@ -50,16 +50,16 @@ export type DashboardTemplateScopeEnum =
   | "organization"
   | "global"
   | "feature_flag";
-export const DashboardTemplateScopeEnum = /*@__PURE__*/ S.String;
+export const DashboardTemplateScopeEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type CreateDashboardTemplateRequestScope =
   | DashboardTemplateScopeEnum
   | BlankEnum;
 export const CreateDashboardTemplateRequestScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDashboardTemplateRequestScope>;
+  S.Unknown as any as S.Schema<CreateDashboardTemplateRequestScope>;
 
 export type CreateDashboardTemplateRequestAvailabilityContextsList =
   Array<string>;
@@ -133,11 +133,11 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -166,7 +166,7 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 
 export type DashboardTemplateScope = DashboardTemplateScopeEnum | BlankEnum;
 export const DashboardTemplateScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DashboardTemplateScope>;
+  S.Unknown as any as S.Schema<DashboardTemplateScope>;
 
 export type DashboardTemplateAvailabilityContextsList = Array<string>;
 export const DashboardTemplateAvailabilityContextsList = /*@__PURE__*/ S.Array(
@@ -318,14 +318,14 @@ export type ListDashboardTemplatesRequestOrdering =
   | "-template_name"
   | "created_at"
   | "template_name";
-export const ListDashboardTemplatesRequestOrdering = /*@__PURE__*/ S.String;
+export const ListDashboardTemplatesRequestOrdering = S.String;
 
 export type ListDashboardTemplatesRequestScope =
   | "feature_flag"
   | "global"
   | "organization"
   | "team";
-export const ListDashboardTemplatesRequestScope = /*@__PURE__*/ S.String;
+export const ListDashboardTemplatesRequestScope = S.String;
 
 export interface ListDashboardTemplatesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -395,7 +395,7 @@ export type UpdateDashboardTemplateRequestScope =
   | DashboardTemplateScopeEnum
   | BlankEnum;
 export const UpdateDashboardTemplateRequestScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardTemplateRequestScope>;
+  S.Unknown as any as S.Schema<UpdateDashboardTemplateRequestScope>;
 
 export type UpdateDashboardTemplateRequestAvailabilityContextsList =
   Array<string>;
@@ -460,7 +460,7 @@ export type UpdateDashboardTemplatesPartialRequestScope =
   | DashboardTemplateScopeEnum
   | BlankEnum;
 export const UpdateDashboardTemplatesPartialRequestScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardTemplatesPartialRequestScope>;
+  S.Unknown as any as S.Schema<UpdateDashboardTemplatesPartialRequestScope>;
 
 export type UpdateDashboardTemplatesPartialRequestAvailabilityContextsList =
   Array<string>;

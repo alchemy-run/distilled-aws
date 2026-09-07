@@ -82,14 +82,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -123,13 +123,13 @@ export type PropertyTypeEnum =
   | "Numeric"
   | "Boolean"
   | "Duration";
-export const PropertyTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyTypeEnum = S.String;
 
 export type EnterprisePropertyDefinitionPropertyType =
   | PropertyTypeEnum
   | BlankEnum;
 export const EnterprisePropertyDefinitionPropertyType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnterprisePropertyDefinitionPropertyType>;
+  S.Unknown as any as S.Schema<EnterprisePropertyDefinitionPropertyType>;
 
 /** Serializer mixin that handles tags for objects. */
 export interface EnterprisePropertyDefinition {
@@ -202,7 +202,7 @@ export type ListPropertyDefinitionsRequestType =
   | "person"
   | "group"
   | "session";
-export const ListPropertyDefinitionsRequestType = /*@__PURE__*/ S.String;
+export const ListPropertyDefinitionsRequestType = S.String;
 
 export interface ListPropertyDefinitionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -302,7 +302,7 @@ export const PropertyDefinitionsBulkUpdateTagsCreateRequestIdsList =
 
 /** * `add` - add * `remove` - remove * `set` - set */
 export type BulkUpdateTagsActionEnum = "add" | "remove" | "set";
-export const BulkUpdateTagsActionEnum = /*@__PURE__*/ S.String;
+export const BulkUpdateTagsActionEnum = S.String;
 
 /** Tag names to add, remove, or set. */
 export type PropertyDefinitionsBulkUpdateTagsCreateRequestTagsList =
@@ -431,7 +431,7 @@ export type UpdatePropertyDefinitionRequestPropertyType =
   | PropertyTypeEnum
   | BlankEnum;
 export const UpdatePropertyDefinitionRequestPropertyType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdatePropertyDefinitionRequestPropertyType>;
+  S.Unknown as any as S.Schema<UpdatePropertyDefinitionRequestPropertyType>;
 
 export interface UpdatePropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -476,7 +476,7 @@ export type UpdatePropertyDefinitionsPartialRequestPropertyType =
   | PropertyTypeEnum
   | BlankEnum;
 export const UpdatePropertyDefinitionsPartialRequestPropertyType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdatePropertyDefinitionsPartialRequestPropertyType>;
+  S.Unknown as any as S.Schema<UpdatePropertyDefinitionsPartialRequestPropertyType>;
 
 export interface UpdatePropertyDefinitionsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

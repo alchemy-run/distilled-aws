@@ -268,7 +268,7 @@ export type Capability =
   | "CAPABILITY_AUTO_EXPAND"
   | "CAPABILITY_RESOURCE_POLICY"
   | (string & {});
-export const Capability = /*@__PURE__*/ S.String;
+export const Capability = S.String;
 
 export type __listOfCapability = Capability[];
 export const __listOfCapability = /*@__PURE__*/ S.Array(Capability);
@@ -618,7 +618,7 @@ export const CreateCloudFormationTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCloudFormationTemplateRequest",
 }) as any as S.Schema<CreateCloudFormationTemplateRequest>;
 export type Status = "PREPARING" | "ACTIVE" | "EXPIRED" | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface CreateCloudFormationTemplateResponse {
   ApplicationId?: string;

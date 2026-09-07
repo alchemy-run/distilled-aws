@@ -120,7 +120,7 @@ export type CreateCompanyTokenTransactionRequestBody =
   | CreateCompanyTokenTransactionRequestBodyCase1
   | CreateCompanyTokenTransactionRequestBodyCase1;
 export const CreateCompanyTokenTransactionRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCompanyTokenTransactionRequestBody>;
+  S.Unknown as any as S.Schema<CreateCompanyTokenTransactionRequestBody>;
 
 export interface CreateCompanyTokenTransactionRequest {
   body: CreateCompanyTokenTransactionRequestBody;
@@ -170,7 +170,7 @@ export const CompanyTokenTransactionMember = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of token transaction */
 export type CompanyTokenTransactionTypes = "add" | "subtract" | "transfer";
-export const CompanyTokenTransactionTypes = /*@__PURE__*/ S.String;
+export const CompanyTokenTransactionTypes = S.String;
 
 /** The user whose token balance was affected by this transaction. */
 export interface CompanyTokenTransactionUser {

@@ -287,7 +287,7 @@ export const SetPhotoResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Either `auto` or `away` */
 export type SetPresenceRequestPresence = "auto" | "away";
-export const SetPresenceRequestPresence = /*@__PURE__*/ S.String;
+export const SetPresenceRequestPresence = S.String;
 
 export interface SetPresenceRequest {
   /** Either `auto` or `away` */

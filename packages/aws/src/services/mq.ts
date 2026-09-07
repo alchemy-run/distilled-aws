@@ -171,7 +171,7 @@ export type AuthenticationStrategy =
   | "LDAP"
   | "CONFIG_MANAGED"
   | (string & {});
-export const AuthenticationStrategy = /*@__PURE__*/ S.String;
+export const AuthenticationStrategy = S.String;
 
 export interface ConfigurationId {
   Id?: string;
@@ -189,7 +189,7 @@ export type DeploymentMode =
   | "ACTIVE_STANDBY_MULTI_AZ"
   | "CLUSTER_MULTI_AZ"
   | (string & {});
-export const DeploymentMode = /*@__PURE__*/ S.String;
+export const DeploymentMode = S.String;
 
 export interface EncryptionOptions {
   KmsKeyId?: string;
@@ -206,7 +206,7 @@ export const EncryptionOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "EncryptionOptions",
 }) as any as S.Schema<EncryptionOptions>;
 export type EngineType = "ACTIVEMQ" | "RABBITMQ" | (string & {});
-export const EngineType = /*@__PURE__*/ S.String;
+export const EngineType = S.String;
 
 export type __listOf__string = string[];
 export const __listOf__string = /*@__PURE__*/ S.Array(S.String);
@@ -273,7 +273,7 @@ export type DayOfWeek =
   | "SATURDAY"
   | "SUNDAY"
   | (string & {});
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 export interface WeeklyStartTime {
   DayOfWeek?: DayOfWeek;
@@ -296,7 +296,7 @@ export const WeeklyStartTime = /*@__PURE__*/ S.suspend(() =>
   identifier: "WeeklyStartTime",
 }) as any as S.Schema<WeeklyStartTime>;
 export type BrokerStorageType = "EBS" | "EFS" | (string & {});
-export const BrokerStorageType = /*@__PURE__*/ S.String;
+export const BrokerStorageType = S.String;
 
 export type __mapOf__string = { [key: string]: string | undefined };
 export const __mapOf__string = /*@__PURE__*/ S.Record(
@@ -330,7 +330,7 @@ export const User = /*@__PURE__*/ S.suspend(() =>
 export type __listOfUser = User[];
 export const __listOfUser = /*@__PURE__*/ S.Array(User);
 export type DataReplicationMode = "NONE" | "CRDR" | (string & {});
-export const DataReplicationMode = /*@__PURE__*/ S.String;
+export const DataReplicationMode = S.String;
 
 export interface CreateBrokerRequest {
   AuthenticationStrategy?: AuthenticationStrategy;
@@ -774,7 +774,7 @@ export type BrokerState =
   | "CRITICAL_ACTION_REQUIRED"
   | "REPLICA"
   | (string & {});
-export const BrokerState = /*@__PURE__*/ S.String;
+export const BrokerState = S.String;
 
 export type __listOfConfigurationId = ConfigurationId[];
 export const __listOfConfigurationId = /*@__PURE__*/ S.Array(ConfigurationId);
@@ -872,7 +872,7 @@ export const LogsSummary = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "LogsSummary" }) as any as S.Schema<LogsSummary>;
 export type ChangeType = "CREATE" | "UPDATE" | "DELETE" | (string & {});
-export const ChangeType = /*@__PURE__*/ S.String;
+export const ChangeType = S.String;
 
 export interface UserSummary {
   PendingChange?: ChangeType;
@@ -1381,7 +1381,7 @@ export type SharedResourceErrorCode =
   | "AZ_MISMATCH"
   | "RESOURCE_CONFIGURATION_NOT_FOUND"
   | (string & {});
-export const SharedResourceErrorCode = /*@__PURE__*/ S.String;
+export const SharedResourceErrorCode = S.String;
 
 export interface SharedResourceError {
   Code?: SharedResourceErrorCode;
@@ -1403,10 +1403,10 @@ export type SharedResourceStatus =
   | "PENDING_DELETE"
   | "ERROR"
   | (string & {});
-export const SharedResourceStatus = /*@__PURE__*/ S.String;
+export const SharedResourceStatus = S.String;
 
 export type SharedResourceType = "RESOURCE_SHARE" | "RESOURCE" | (string & {});
-export const SharedResourceType = /*@__PURE__*/ S.String;
+export const SharedResourceType = S.String;
 
 export interface SharedResource {
   DnsNames?: string[];
@@ -1833,7 +1833,7 @@ export const ListUsersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUsersResponse",
 }) as any as S.Schema<ListUsersResponse>;
 export type PromoteMode = "SWITCHOVER" | "FAILOVER" | (string & {});
-export const PromoteMode = /*@__PURE__*/ S.String;
+export const PromoteMode = S.String;
 
 export interface PromoteRequest {
   BrokerId: string;
@@ -2060,7 +2060,7 @@ export type SanitizationWarningReason =
   | "DISALLOWED_ATTRIBUTE_REMOVED"
   | "INVALID_ATTRIBUTE_VALUE_REMOVED"
   | (string & {});
-export const SanitizationWarningReason = /*@__PURE__*/ S.String;
+export const SanitizationWarningReason = S.String;
 
 export interface SanitizationWarning {
   AttributeName?: string;

@@ -97,7 +97,7 @@ export type HttpRequestHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const HttpRequestHttpMethodEnum = /*@__PURE__*/ S.String;
+export const HttpRequestHttpMethodEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -168,7 +168,7 @@ export type AppEngineHttpRequestHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const AppEngineHttpRequestHttpMethodEnum = /*@__PURE__*/ S.String;
+export const AppEngineHttpRequestHttpMethodEnum = S.String;
 
 /** App Engine Routing. Defines routing characteristics specific to App Engine - service, version, and instance. For more information about services, versions, and instances see [An Overview of App Engine](https://cloud.google.com/appengine/docs/python/an-overview-of-app-engine), [Microservices Architecture on Google App Engine](https://cloud.google.com/appengine/docs/python/microservices-on-app-engine), [App Engine Standard request routing](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed), and [App Engine Flex request routing](https://cloud.google.com/appengine/docs/flexible/python/how-requests-are-routed). */
 export interface AppEngineRouting {
@@ -280,7 +280,7 @@ export const PullMessage = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PullMessage" }) as any as S.Schema<PullMessage>;
 
 export type TaskViewEnum = "VIEW_UNSPECIFIED" | "BASIC" | "FULL";
-export const TaskViewEnum = /*@__PURE__*/ S.String;
+export const TaskViewEnum = S.String;
 
 /** A unit of scheduled work. */
 export interface Task {
@@ -333,7 +333,7 @@ export type CreateTaskRequestResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const CreateTaskRequestResponseViewEnum = /*@__PURE__*/ S.String;
+export const CreateTaskRequestResponseViewEnum = S.String;
 
 /** Request message for CreateTask. */
 export interface CreateTaskRequest {
@@ -536,7 +536,7 @@ export type QueueStateEnum =
   | "RUNNING"
   | "PAUSED"
   | "DISABLED";
-export const QueueStateEnum = /*@__PURE__*/ S.String;
+export const QueueStateEnum = S.String;
 
 /** Statistics for a queue. */
 export interface QueueStats {
@@ -565,10 +565,10 @@ export type UriOverrideUriOverrideEnforceModeEnum =
   | "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED"
   | "IF_NOT_EXISTS"
   | "ALWAYS";
-export const UriOverrideUriOverrideEnforceModeEnum = /*@__PURE__*/ S.String;
+export const UriOverrideUriOverrideEnforceModeEnum = S.String;
 
 export type UriOverrideSchemeEnum = "SCHEME_UNSPECIFIED" | "HTTP" | "HTTPS";
-export const UriOverrideSchemeEnum = /*@__PURE__*/ S.String;
+export const UriOverrideSchemeEnum = S.String;
 
 /** PathOverride. Path message defines path override for HTTP targets. */
 export interface PathOverride {
@@ -659,7 +659,7 @@ export type HttpTargetHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const HttpTargetHttpMethodEnum = /*@__PURE__*/ S.String;
+export const HttpTargetHttpMethodEnum = S.String;
 
 /** HTTP target. When specified as a Queue, all the tasks with [HttpRequest] will be overridden according to the target. */
 export interface HttpTarget {
@@ -728,7 +728,7 @@ export const RateLimits = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "RateLimits" }) as any as S.Schema<RateLimits>;
 
 export type QueueTypeEnum = "TYPE_UNSPECIFIED" | "PULL" | "PUSH";
-export const QueueTypeEnum = /*@__PURE__*/ S.String;
+export const QueueTypeEnum = S.String;
 
 /** A queue is a container of related tasks. Queues are configured to manage how those tasks are dispatched. Configurable properties include rate limits, retry options, queue types, and others. */
 export interface Queue {
@@ -1087,8 +1087,7 @@ export type GetProjectsLocationsQueuesTasksResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsQueuesTasksResponseViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsQueuesTasksResponseViewEnum = S.String;
 
 export interface GetProjectsLocationsQueuesTasksRequest {
   /** Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID` */
@@ -1222,8 +1221,7 @@ export type ListProjectsLocationsQueuesTasksResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsQueuesTasksResponseViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsQueuesTasksResponseViewEnum = S.String;
 
 export interface ListProjectsLocationsQueuesTasksRequest {
   /** The response_view specifies which subset of the Task will be returned. By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains. Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource. */
@@ -1386,7 +1384,7 @@ export type RunTaskRequestResponseViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const RunTaskRequestResponseViewEnum = /*@__PURE__*/ S.String;
+export const RunTaskRequestResponseViewEnum = S.String;
 
 /** Request message for forcing a task to run now using RunTask. */
 export interface RunTaskRequest {

@@ -69,7 +69,7 @@ export type AddGalleryImageRequestExt =
   | "svg"
   | "svgz"
   | "rgb";
-export const AddGalleryImageRequestExt = /*@__PURE__*/ S.String;
+export const AddGalleryImageRequestExt = S.String;
 
 export interface AddGalleryImageRequest {
   /** The ID or slug of the project */
@@ -138,7 +138,7 @@ export type ChangeProjectIconRequestExt =
   | "svg"
   | "svgz"
   | "rgb";
-export const ChangeProjectIconRequestExt = /*@__PURE__*/ S.String;
+export const ChangeProjectIconRequestExt = S.String;
 
 export interface ChangeProjectIconRequest {
   /** The ID or slug of the project */
@@ -234,7 +234,7 @@ export type CreatableProjectStatus =
   | "scheduled"
   | "private"
   | "unknown";
-export const CreatableProjectStatus = /*@__PURE__*/ S.String;
+export const CreatableProjectStatus = S.String;
 
 /** The requested status when submitting for review or scheduling the project for release. Approved status refers to "Public" visibility. */
 export type CreatableProjectRequestedStatus =
@@ -243,7 +243,7 @@ export type CreatableProjectRequestedStatus =
   | "unlisted"
   | "private"
   | "draft";
-export const CreatableProjectRequestedStatus = /*@__PURE__*/ S.String;
+export const CreatableProjectRequestedStatus = S.String;
 
 export interface ProjectDonationURL {
   /** The ID of the donation platform */
@@ -274,18 +274,18 @@ export type CreatableProjectClientSide =
   | "required"
   | "optional"
   | "unsupported";
-export const CreatableProjectClientSide = /*@__PURE__*/ S.String;
+export const CreatableProjectClientSide = S.String;
 
 /** Deprecated - use `environment` instead. */
 export type CreatableProjectServerSide =
   | "required"
   | "optional"
   | "unsupported";
-export const CreatableProjectServerSide = /*@__PURE__*/ S.String;
+export const CreatableProjectServerSide = S.String;
 
 /** The project type of the project */
 export type CreatableProjectProjectType = "mod" | "modpack";
-export const CreatableProjectProjectType = /*@__PURE__*/ S.String;
+export const CreatableProjectProjectType = S.String;
 
 /** The type of dependency that this version has */
 export type VersionDependencyDependencyType =
@@ -293,7 +293,7 @@ export type VersionDependencyDependencyType =
   | "optional"
   | "incompatible"
   | "embedded";
-export const VersionDependencyDependencyType = /*@__PURE__*/ S.String;
+export const VersionDependencyDependencyType = S.String;
 
 export interface VersionDependency {
   /** The ID of the version that this version depends on */
@@ -330,7 +330,7 @@ export const EditableVersionGameVersionsList = /*@__PURE__*/ S.Array(
 
 /** The release channel for this version */
 export type EditableVersionVersionType = "release" | "beta" | "alpha";
-export const EditableVersionVersionType = /*@__PURE__*/ S.String;
+export const EditableVersionVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type EditableVersionLoadersList = Array<string>;
@@ -345,14 +345,14 @@ export type EditableVersionStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const EditableVersionStatus = /*@__PURE__*/ S.String;
+export const EditableVersionStatus = S.String;
 
 export type EditableVersionRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const EditableVersionRequestedStatus = /*@__PURE__*/ S.String;
+export const EditableVersionRequestedStatus = S.String;
 
 /** The hash format and the hash of the new primary file */
 export type EditableVersionPrimaryFileList = Array<string>;
@@ -546,7 +546,7 @@ export type CreateProjectRequestIcon =
   | "*.svg"
   | "*.svgz"
   | "*.rgb";
-export const CreateProjectRequestIcon = /*@__PURE__*/ S.String;
+export const CreateProjectRequestIcon = S.String;
 
 export interface CreateProjectRequest {
   data: CreatableProject;
@@ -581,11 +581,11 @@ export type ProjectStatus =
   | "scheduled"
   | "private"
   | "unknown";
-export const ProjectStatus = /*@__PURE__*/ S.String;
+export const ProjectStatus = S.String;
 
 /** The project type of the project */
 export type ProjectProjectType = "mod" | "modpack" | "resourcepack" | "shader";
-export const ProjectProjectType = /*@__PURE__*/ S.String;
+export const ProjectProjectType = S.String;
 
 /** A list of the featured categories that the project has. */
 export type ProjectCategoriesList = Array<string>;
@@ -611,7 +611,7 @@ export type EnvironmentEnum =
   | "client_or_server"
   | "client_or_server_prefers_both"
   | "unknown";
-export const EnvironmentEnum = /*@__PURE__*/ S.String;
+export const EnvironmentEnum = S.String;
 
 /** All the environments that versions of this project support. Not in any particular order, we recommend using the environment information on a version instead. For an explanation of each environment, see the blog post here: https://modrinth.com/news/article/new-environments/#new-system */
 export type ProjectEnvironmentList = Array<EnvironmentEnum>;
@@ -689,7 +689,7 @@ export type ProjectMonetizationStatus =
   | "monetized"
   | "demonetized"
   | "force-demonetized";
-export const ProjectMonetizationStatus = /*@__PURE__*/ S.String;
+export const ProjectMonetizationStatus = S.String;
 
 /** The requested status when submitting for review or scheduling the project for release. Approved status refers to "Public" visibility. */
 export type ProjectRequestedStatus =
@@ -698,7 +698,7 @@ export type ProjectRequestedStatus =
   | "unlisted"
   | "private"
   | "draft";
-export const ProjectRequestedStatus = /*@__PURE__*/ S.String;
+export const ProjectRequestedStatus = S.String;
 
 /** A list of donation links for the project */
 export type ProjectDonationUrlsList = Array<ProjectDonationURL>;
@@ -712,7 +712,7 @@ export type ProjectClientSide =
   | "optional"
   | "unsupported"
   | "unknown";
-export const ProjectClientSide = /*@__PURE__*/ S.String;
+export const ProjectClientSide = S.String;
 
 /** Deprecated - use `environment` instead. */
 export type ProjectServerSide =
@@ -720,7 +720,7 @@ export type ProjectServerSide =
   | "optional"
   | "unsupported"
   | "unknown";
-export const ProjectServerSide = /*@__PURE__*/ S.String;
+export const ProjectServerSide = S.String;
 
 /** Deprecated - A message that a moderator sent regarding the project */
 export interface ModeratorMessage {
@@ -870,7 +870,7 @@ export const CreatableVersionGameVersionsList = /*@__PURE__*/ S.Array(
 
 /** The release channel for this version */
 export type CreatableVersionVersionType = "release" | "beta" | "alpha";
-export const CreatableVersionVersionType = /*@__PURE__*/ S.String;
+export const CreatableVersionVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type CreatableVersionLoadersList = Array<string>;
@@ -885,14 +885,14 @@ export type CreatableVersionStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const CreatableVersionStatus = /*@__PURE__*/ S.String;
+export const CreatableVersionStatus = S.String;
 
 export type CreatableVersionRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const CreatableVersionRequestedStatus = /*@__PURE__*/ S.String;
+export const CreatableVersionRequestedStatus = S.String;
 
 /** An array of the multipart field names of each file that goes with this version */
 export type CreatableVersionFilePartsList = Array<string>;
@@ -911,7 +911,7 @@ export type EnvironmentInputEnum =
   | "dedicated_server_only"
   | "client_or_server"
   | "client_or_server_prefers_both";
-export const EnvironmentInputEnum = /*@__PURE__*/ S.String;
+export const EnvironmentInputEnum = S.String;
 
 export type FileTypeEnum =
   | "required-resource-pack"
@@ -921,7 +921,7 @@ export type FileTypeEnum =
   | "javadoc-jar"
   | "unknown"
   | "signature";
-export const FileTypeEnum = /*@__PURE__*/ S.String;
+export const FileTypeEnum = S.String;
 
 /** A map of file parts to their associated file type, a file type is used for additional files such as sources jars. */
 export type CreatableVersionFileTypesMap = {
@@ -1015,7 +1015,7 @@ export const CreateVersionResponseGameVersionsList = /*@__PURE__*/ S.Array(
 
 /** The release channel for this version */
 export type CreateVersionResponseVersionType = "release" | "beta" | "alpha";
-export const CreateVersionResponseVersionType = /*@__PURE__*/ S.String;
+export const CreateVersionResponseVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type CreateVersionResponseLoadersList = Array<string>;
@@ -1030,14 +1030,14 @@ export type CreateVersionResponseStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const CreateVersionResponseStatus = /*@__PURE__*/ S.String;
+export const CreateVersionResponseStatus = S.String;
 
 export type CreateVersionResponseRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const CreateVersionResponseRequestedStatus = /*@__PURE__*/ S.String;
+export const CreateVersionResponseRequestedStatus = S.String;
 
 /** A map of hashes of the file. The key is the hashing algorithm and the value is the string version of the hash. */
 export interface VersionFileHashes {
@@ -1144,7 +1144,7 @@ export const CreateVersionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateVersionResponse>;
 
 export type DeleteFileFromHashRequestAlgorithm = "sha1" | "sha512";
-export const DeleteFileFromHashRequestAlgorithm = /*@__PURE__*/ S.String;
+export const DeleteFileFromHashRequestAlgorithm = S.String;
 
 export interface DeleteFileFromHashRequest {
   /** The hash of the file, considering its byte content, and encoded in hexadecimal */
@@ -1382,7 +1382,7 @@ export const FollowProjectResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FollowProjectResponse>;
 
 export type ForgeUpdatesRequestNeoforge = "only" | "include";
-export const ForgeUpdatesRequestNeoforge = /*@__PURE__*/ S.String;
+export const ForgeUpdatesRequestNeoforge = S.String;
 
 export interface ForgeUpdatesRequest {
   /** The ID or slug of the project */
@@ -1474,7 +1474,7 @@ export const VersionGameVersionsList = /*@__PURE__*/ S.Array(
 
 /** The release channel for this version */
 export type VersionVersionType = "release" | "beta" | "alpha";
-export const VersionVersionType = /*@__PURE__*/ S.String;
+export const VersionVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type VersionLoadersList = Array<string>;
@@ -1489,14 +1489,14 @@ export type VersionStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const VersionStatus = /*@__PURE__*/ S.String;
+export const VersionStatus = S.String;
 
 export type VersionRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const VersionRequestedStatus = /*@__PURE__*/ S.String;
+export const VersionRequestedStatus = S.String;
 
 /** A list of files available for download for this version */
 export type VersionFilesList = Array<VersionFile>;
@@ -1609,7 +1609,7 @@ export const GetFollowedProjectsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFollowedProjectsResponse>;
 
 export type GetLatestVersionFromHashRequestAlgorithm = "sha1" | "sha512";
-export const GetLatestVersionFromHashRequestAlgorithm = /*@__PURE__*/ S.String;
+export const GetLatestVersionFromHashRequestAlgorithm = S.String;
 
 export type GetLatestVersionFromHashRequestLoadersList = Array<string>;
 export const GetLatestVersionFromHashRequestLoadersList = /*@__PURE__*/ S.Array(
@@ -1626,8 +1626,7 @@ export type GetLatestVersionFromHashRequestVersionTypes =
   | "release"
   | "alpha"
   | "beta";
-export const GetLatestVersionFromHashRequestVersionTypes =
-  /*@__PURE__*/ S.String;
+export const GetLatestVersionFromHashRequestVersionTypes = S.String;
 
 export interface GetLatestVersionFromHashRequest {
   /** The hash of the file, considering its byte content, and encoded in hexadecimal */
@@ -1672,8 +1671,7 @@ export type GetLatestVersionFromHashResponseVersionType =
   | "release"
   | "beta"
   | "alpha";
-export const GetLatestVersionFromHashResponseVersionType =
-  /*@__PURE__*/ S.String;
+export const GetLatestVersionFromHashResponseVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type GetLatestVersionFromHashResponseLoadersList = Array<string>;
@@ -1689,15 +1687,14 @@ export type GetLatestVersionFromHashResponseStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const GetLatestVersionFromHashResponseStatus = /*@__PURE__*/ S.String;
+export const GetLatestVersionFromHashResponseStatus = S.String;
 
 export type GetLatestVersionFromHashResponseRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const GetLatestVersionFromHashResponseRequestedStatus =
-  /*@__PURE__*/ S.String;
+export const GetLatestVersionFromHashResponseRequestedStatus = S.String;
 
 /** A list of files available for download for this version */
 export type GetLatestVersionFromHashResponseFilesList = Array<VersionFile>;
@@ -1773,8 +1770,7 @@ export const GetLatestVersionsFromHashesRequestHashesList =
   ) as any as S.Schema<GetLatestVersionsFromHashesRequestHashesList>;
 
 export type GetLatestVersionsFromHashesRequestAlgorithm = "sha1" | "sha512";
-export const GetLatestVersionsFromHashesRequestAlgorithm =
-  /*@__PURE__*/ S.String;
+export const GetLatestVersionsFromHashesRequestAlgorithm = S.String;
 
 export type GetLatestVersionsFromHashesRequestLoadersList = Array<string>;
 export const GetLatestVersionsFromHashesRequestLoadersList =
@@ -1792,8 +1788,7 @@ export type GetLatestVersionsFromHashesRequestVersionTypes =
   | "release"
   | "alpha"
   | "beta";
-export const GetLatestVersionsFromHashesRequestVersionTypes =
-  /*@__PURE__*/ S.String;
+export const GetLatestVersionsFromHashesRequestVersionTypes = S.String;
 
 export interface GetLatestVersionsFromHashesRequest {
   hashes: GetLatestVersionsFromHashesRequestHashesList;
@@ -1848,7 +1843,7 @@ export type NotificationType =
   | "team_invite"
   | "status_change"
   | "moderator_message";
-export const NotificationType = /*@__PURE__*/ S.String;
+export const NotificationType = S.String;
 
 /** The HTTP code and path to request in order to perform this action. */
 export type NotificationActionActionRouteList = Array<string>;
@@ -1949,7 +1944,7 @@ export const GetOpenReportsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the item being reported */
 export type ReportItemType = "project" | "user" | "version";
-export const ReportItemType = /*@__PURE__*/ S.String;
+export const ReportItemType = S.String;
 
 export interface Report {
   /** The type of the report being sent */
@@ -2105,11 +2100,11 @@ export const GetProjectTeamMembersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The wallet that the user has selected */
 export type UserPayoutDataPayoutWallet = "paypal" | "venmo";
-export const UserPayoutDataPayoutWallet = /*@__PURE__*/ S.String;
+export const UserPayoutDataPayoutWallet = S.String;
 
 /** The type of the user's wallet */
 export type UserPayoutDataPayoutWalletType = "email" | "phone" | "user_handle";
-export const UserPayoutDataPayoutWalletType = /*@__PURE__*/ S.String;
+export const UserPayoutDataPayoutWalletType = S.String;
 
 /** Various data relating to the user's payouts status (you can only see your own) */
 export interface UserPayoutData {
@@ -2133,7 +2128,7 @@ export const UserPayoutData = /*@__PURE__*/ S.suspend(() =>
 
 /** The user's role */
 export type UserRole = "admin" | "moderator" | "developer";
-export const UserRole = /*@__PURE__*/ S.String;
+export const UserRole = S.String;
 
 /** A list of authentication providers you have signed up for (only displayed if requesting your own account) */
 export type UserAuthProvidersList = Array<string>;
@@ -2285,7 +2280,7 @@ export const GetReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the item being reported */
 export type GetReportResponseItemType = "project" | "user" | "version";
-export const GetReportResponseItemType = /*@__PURE__*/ S.String;
+export const GetReportResponseItemType = S.String;
 
 export interface GetReportResponse {
   /** The type of the report being sent */
@@ -2414,7 +2409,7 @@ export const GetThreadRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetThreadRequest>;
 
 export type ThreadType = "project" | "report" | "direct_message";
-export const ThreadType = /*@__PURE__*/ S.String;
+export const ThreadType = S.String;
 
 /** The type of message */
 export type ThreadMessageBodyType =
@@ -2422,7 +2417,7 @@ export type ThreadMessageBodyType =
   | "text"
   | "thread_closure"
   | "deleted";
-export const ThreadMessageBodyType = /*@__PURE__*/ S.String;
+export const ThreadMessageBodyType = S.String;
 
 /** The old status of the project. **Only present for `status_change` message type** */
 export type ThreadMessageBodyOldStatus =
@@ -2436,7 +2431,7 @@ export type ThreadMessageBodyOldStatus =
   | "scheduled"
   | "private"
   | "unknown";
-export const ThreadMessageBodyOldStatus = /*@__PURE__*/ S.String;
+export const ThreadMessageBodyOldStatus = S.String;
 
 /** The new status of the project. **Only present for `status_change` message type** */
 export type ThreadMessageBodyNewStatus =
@@ -2450,7 +2445,7 @@ export type ThreadMessageBodyNewStatus =
   | "scheduled"
   | "private"
   | "unknown";
-export const ThreadMessageBodyNewStatus = /*@__PURE__*/ S.String;
+export const ThreadMessageBodyNewStatus = S.String;
 
 /** The contents of the message. **Fields will vary depending on message type.** */
 export interface ThreadMessageBody {
@@ -2566,7 +2561,7 @@ export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The user's role */
 export type GetUserResponseRole = "admin" | "moderator" | "developer";
-export const GetUserResponseRole = /*@__PURE__*/ S.String;
+export const GetUserResponseRole = S.String;
 
 /** A list of authentication providers you have signed up for (only displayed if requesting your own account) */
 export type GetUserResponseAuthProvidersList = Array<string>;
@@ -2636,7 +2631,7 @@ export const GetUserFromAuthRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The user's role */
 export type GetUserFromAuthResponseRole = "admin" | "moderator" | "developer";
-export const GetUserFromAuthResponseRole = /*@__PURE__*/ S.String;
+export const GetUserFromAuthResponseRole = S.String;
 
 /** A list of authentication providers you have signed up for (only displayed if requesting your own account) */
 export type GetUserFromAuthResponseAuthProvidersList = Array<string>;
@@ -2805,7 +2800,7 @@ export const GetVersionResponseGameVersionsList = /*@__PURE__*/ S.Array(
 
 /** The release channel for this version */
 export type GetVersionResponseVersionType = "release" | "beta" | "alpha";
-export const GetVersionResponseVersionType = /*@__PURE__*/ S.String;
+export const GetVersionResponseVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type GetVersionResponseLoadersList = Array<string>;
@@ -2820,14 +2815,14 @@ export type GetVersionResponseStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const GetVersionResponseStatus = /*@__PURE__*/ S.String;
+export const GetVersionResponseStatus = S.String;
 
 export type GetVersionResponseRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const GetVersionResponseRequestedStatus = /*@__PURE__*/ S.String;
+export const GetVersionResponseRequestedStatus = S.String;
 
 /** A list of files available for download for this version */
 export type GetVersionResponseFilesList = Array<VersionFile>;
@@ -2935,8 +2930,7 @@ export type GetVersionFromIdOrNumberResponseVersionType =
   | "release"
   | "beta"
   | "alpha";
-export const GetVersionFromIdOrNumberResponseVersionType =
-  /*@__PURE__*/ S.String;
+export const GetVersionFromIdOrNumberResponseVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type GetVersionFromIdOrNumberResponseLoadersList = Array<string>;
@@ -2952,15 +2946,14 @@ export type GetVersionFromIdOrNumberResponseStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const GetVersionFromIdOrNumberResponseStatus = /*@__PURE__*/ S.String;
+export const GetVersionFromIdOrNumberResponseStatus = S.String;
 
 export type GetVersionFromIdOrNumberResponseRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const GetVersionFromIdOrNumberResponseRequestedStatus =
-  /*@__PURE__*/ S.String;
+export const GetVersionFromIdOrNumberResponseRequestedStatus = S.String;
 
 /** A list of files available for download for this version */
 export type GetVersionFromIdOrNumberResponseFilesList = Array<VersionFile>;
@@ -3289,7 +3282,7 @@ export type GameVersionTagVersionType =
   | "snapshot"
   | "alpha"
   | "beta";
-export const GameVersionTagVersionType = /*@__PURE__*/ S.String;
+export const GameVersionTagVersionType = S.String;
 
 export interface GameVersionTag {
   /** The name/number of the game version */
@@ -3383,7 +3376,7 @@ export type ModifyProjectRequestStatus =
   | "scheduled"
   | "private"
   | "unknown";
-export const ModifyProjectRequestStatus = /*@__PURE__*/ S.String;
+export const ModifyProjectRequestStatus = S.String;
 
 /** The requested status when submitting for review or scheduling the project for release. Approved status refers to "Public" visibility. */
 export type ModifyProjectRequestRequestedStatus =
@@ -3392,7 +3385,7 @@ export type ModifyProjectRequestRequestedStatus =
   | "unlisted"
   | "private"
   | "draft";
-export const ModifyProjectRequestRequestedStatus = /*@__PURE__*/ S.String;
+export const ModifyProjectRequestRequestedStatus = S.String;
 
 /** A list of donation links for the project */
 export type ModifyProjectRequestDonationUrlsList = Array<ProjectDonationURL>;
@@ -3405,14 +3398,14 @@ export type ModifyProjectRequestClientSide =
   | "required"
   | "optional"
   | "unsupported";
-export const ModifyProjectRequestClientSide = /*@__PURE__*/ S.String;
+export const ModifyProjectRequestClientSide = S.String;
 
 /** Deprecated - use `environment` instead. */
 export type ModifyProjectRequestServerSide =
   | "required"
   | "optional"
   | "unsupported";
-export const ModifyProjectRequestServerSide = /*@__PURE__*/ S.String;
+export const ModifyProjectRequestServerSide = S.String;
 
 export interface ModifyProjectRequest {
   /** The ID or slug of the project */
@@ -3603,7 +3596,7 @@ export const ModifyVersionRequestGameVersionsList = /*@__PURE__*/ S.Array(
 
 /** The release channel for this version */
 export type ModifyVersionRequestVersionType = "release" | "beta" | "alpha";
-export const ModifyVersionRequestVersionType = /*@__PURE__*/ S.String;
+export const ModifyVersionRequestVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type ModifyVersionRequestLoadersList = Array<string>;
@@ -3618,14 +3611,14 @@ export type ModifyVersionRequestStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const ModifyVersionRequestStatus = /*@__PURE__*/ S.String;
+export const ModifyVersionRequestStatus = S.String;
 
 export type ModifyVersionRequestRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const ModifyVersionRequestRequestedStatus = /*@__PURE__*/ S.String;
+export const ModifyVersionRequestRequestedStatus = S.String;
 
 /** The hash format and the hash of the new primary file */
 export type ModifyVersionRequestPrimaryFileList = Array<string>;
@@ -3761,7 +3754,7 @@ export type ScheduleProjectRequestRequestedStatus =
   | "unlisted"
   | "private"
   | "draft";
-export const ScheduleProjectRequestRequestedStatus = /*@__PURE__*/ S.String;
+export const ScheduleProjectRequestRequestedStatus = S.String;
 
 export interface ScheduleProjectRequest {
   /** The ID or slug of the project */
@@ -3796,7 +3789,7 @@ export type ScheduleVersionRequestRequestedStatus =
   | "unlisted"
   | "private"
   | "draft";
-export const ScheduleVersionRequestRequestedStatus = /*@__PURE__*/ S.String;
+export const ScheduleVersionRequestRequestedStatus = S.String;
 
 export interface ScheduleVersionRequest {
   /** The ID of the version */
@@ -3828,7 +3821,7 @@ export type SearchProjectsRequestIndex =
   | "follows"
   | "newest"
   | "updated";
-export const SearchProjectsRequestIndex = /*@__PURE__*/ S.String;
+export const SearchProjectsRequestIndex = S.String;
 
 export interface SearchProjectsRequest {
   /** The query to search for */
@@ -3860,7 +3853,7 @@ export type ProjectResultProjectType =
   | "modpack"
   | "resourcepack"
   | "shader";
-export const ProjectResultProjectType = /*@__PURE__*/ S.String;
+export const ProjectResultProjectType = S.String;
 
 export type ProjectResultAllProjectTypesItem =
   | "mod"
@@ -3869,7 +3862,7 @@ export type ProjectResultAllProjectTypesItem =
   | "shader"
   | "modpack"
   | "plugin";
-export const ProjectResultAllProjectTypesItem = /*@__PURE__*/ S.String;
+export const ProjectResultAllProjectTypesItem = S.String;
 
 /** All project types across every version of the project, unlike `project_type` which only reflects a version-specific type */
 export type ProjectResultAllProjectTypesList =
@@ -3918,7 +3911,7 @@ export type DisclosureTypeEnum =
   | "derivative_work"
   | "paid_features"
   | "archived";
-export const DisclosureTypeEnum = /*@__PURE__*/ S.String;
+export const DisclosureTypeEnum = S.String;
 
 /** Disclosures listed on the project. */
 export type ProjectResultDisclosureTypesList = Array<DisclosureTypeEnum>;
@@ -3938,7 +3931,7 @@ export type ProjectResultClientSide =
   | "optional"
   | "unsupported"
   | "unknown";
-export const ProjectResultClientSide = /*@__PURE__*/ S.String;
+export const ProjectResultClientSide = S.String;
 
 /** Deprecated - use `environment` instead. The server side support of the project */
 export type ProjectResultServerSide =
@@ -3946,7 +3939,7 @@ export type ProjectResultServerSide =
   | "optional"
   | "unsupported"
   | "unknown";
-export const ProjectResultServerSide = /*@__PURE__*/ S.String;
+export const ProjectResultServerSide = S.String;
 
 export interface ProjectResult {
   /** The ID of the project, encoded as a base62 string */
@@ -4067,7 +4060,7 @@ export type SendThreadMessageRequestType =
   | "text"
   | "thread_closure"
   | "deleted";
-export const SendThreadMessageRequestType = /*@__PURE__*/ S.String;
+export const SendThreadMessageRequestType = S.String;
 
 /** The old status of the project. **Only present for `status_change` message type** */
 export type SendThreadMessageRequestOldStatus =
@@ -4081,7 +4074,7 @@ export type SendThreadMessageRequestOldStatus =
   | "scheduled"
   | "private"
   | "unknown";
-export const SendThreadMessageRequestOldStatus = /*@__PURE__*/ S.String;
+export const SendThreadMessageRequestOldStatus = S.String;
 
 /** The new status of the project. **Only present for `status_change` message type** */
 export type SendThreadMessageRequestNewStatus =
@@ -4095,7 +4088,7 @@ export type SendThreadMessageRequestNewStatus =
   | "scheduled"
   | "private"
   | "unknown";
-export const SendThreadMessageRequestNewStatus = /*@__PURE__*/ S.String;
+export const SendThreadMessageRequestNewStatus = S.String;
 
 export interface SendThreadMessageRequest {
   /** The ID of the thread */
@@ -4155,7 +4148,7 @@ export const Statistics = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the item being reported */
 export type SubmitReportRequestItemType = "project" | "user" | "version";
-export const SubmitReportRequestItemType = /*@__PURE__*/ S.String;
+export const SubmitReportRequestItemType = S.String;
 
 export interface SubmitReportRequest {
   /** The type of the report being sent */
@@ -4180,7 +4173,7 @@ export const SubmitReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the item being reported */
 export type SubmitReportResponseItemType = "project" | "user" | "version";
-export const SubmitReportResponseItemType = /*@__PURE__*/ S.String;
+export const SubmitReportResponseItemType = S.String;
 
 export interface SubmitReportResponse {
   /** The type of the report being sent */
@@ -4387,7 +4380,7 @@ export const UpdateProjectsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProjectsResponse>;
 
 export type VersionFromHashRequestAlgorithm = "sha1" | "sha512";
-export const VersionFromHashRequestAlgorithm = /*@__PURE__*/ S.String;
+export const VersionFromHashRequestAlgorithm = S.String;
 
 export interface VersionFromHashRequest {
   /** The hash of the file, considering its byte content, and encoded in hexadecimal */
@@ -4421,7 +4414,7 @@ export const VersionFromHashResponseGameVersionsList = /*@__PURE__*/ S.Array(
 
 /** The release channel for this version */
 export type VersionFromHashResponseVersionType = "release" | "beta" | "alpha";
-export const VersionFromHashResponseVersionType = /*@__PURE__*/ S.String;
+export const VersionFromHashResponseVersionType = S.String;
 
 /** The mod loaders that this version supports. In case of resource packs, use "minecraft" */
 export type VersionFromHashResponseLoadersList = Array<string>;
@@ -4436,14 +4429,14 @@ export type VersionFromHashResponseStatus =
   | "unlisted"
   | "scheduled"
   | "unknown";
-export const VersionFromHashResponseStatus = /*@__PURE__*/ S.String;
+export const VersionFromHashResponseStatus = S.String;
 
 export type VersionFromHashResponseRequestedStatus =
   | "listed"
   | "archived"
   | "draft"
   | "unlisted";
-export const VersionFromHashResponseRequestedStatus = /*@__PURE__*/ S.String;
+export const VersionFromHashResponseRequestedStatus = S.String;
 
 /** A list of files available for download for this version */
 export type VersionFromHashResponseFilesList = Array<VersionFile>;
@@ -4518,7 +4511,7 @@ export const VersionsFromHashesRequestHashesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<VersionsFromHashesRequestHashesList>;
 
 export type VersionsFromHashesRequestAlgorithm = "sha1" | "sha512";
-export const VersionsFromHashesRequestAlgorithm = /*@__PURE__*/ S.String;
+export const VersionsFromHashesRequestAlgorithm = S.String;
 
 export interface VersionsFromHashesRequest {
   hashes: VersionsFromHashesRequestHashesList;

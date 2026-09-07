@@ -61,7 +61,7 @@ export class ListNotFound
   ) {}
 
 export type ListsCreateRequestKind = "ip" | "redirect" | "hostname" | "asn";
-export const ListsCreateRequestKind = /*@__PURE__*/ S.String;
+export const ListsCreateRequestKind = S.String;
 
 export interface CreateListRequest {
   /** The Account ID for this resource. */
@@ -93,7 +93,7 @@ export const CreateListRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateListRequest>;
 
 export type ListsCreateResponseKind = "ip" | "redirect" | "hostname" | "asn";
-export const ListsCreateResponseKind = /*@__PURE__*/ S.String;
+export const ListsCreateResponseKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateListResponse {
@@ -151,7 +151,7 @@ export type ListsItemsCreateRequestBodyItemListsListItemRedirectCommentRedirectS
   | 307
   | 308;
 export const ListsItemsCreateRequestBodyItemListsListItemRedirectCommentRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface ListsItemsCreateRequestBodyItemListsListItemRedirectCommentRedirect {
   sourceUrl: string;
@@ -430,7 +430,7 @@ export const GetListRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetListRequest" }) as any as S.Schema<GetListRequest>;
 
 export type ListsGetResponseKind = "ip" | "redirect" | "hostname" | "asn";
-export const ListsGetResponseKind = /*@__PURE__*/ S.String;
+export const ListsGetResponseKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetListResponse {
@@ -493,7 +493,7 @@ export type ListsBulkOperationsGetResultListsBulkOperationPendingOrRunningStatus
   | "pending"
   | "running";
 export const ListsBulkOperationsGetResultListsBulkOperationPendingOrRunningStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListsBulkOperationsGetResultListsBulkOperationPendingOrRunning {
   /** The unique operation ID of the asynchronous action. */
@@ -516,7 +516,7 @@ export const ListsBulkOperationsGetResultListsBulkOperationPendingOrRunning =
 export type ListsBulkOperationsGetResultListsBulkOperationCompletedStatus =
   "completed";
 export const ListsBulkOperationsGetResultListsBulkOperationCompletedStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListsBulkOperationsGetResultListsBulkOperationCompleted {
   /** The unique operation ID of the asynchronous action. */
@@ -540,7 +540,7 @@ export const ListsBulkOperationsGetResultListsBulkOperationCompleted =
 export type ListsBulkOperationsGetResultListsBulkOperationFailedStatus =
   "failed";
 export const ListsBulkOperationsGetResultListsBulkOperationFailedStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListsBulkOperationsGetResultListsBulkOperationFailed {
   /** The unique operation ID of the asynchronous action. */
@@ -685,7 +685,7 @@ export type ListsItemsGetResultListsListItemRedirectFullRedirectStatusCode =
   | 307
   | 308;
 export const ListsItemsGetResultListsListItemRedirectFullRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface ListsItemsGetResultListsListItemRedirectFullRedirect {
   sourceUrl: string;
@@ -850,7 +850,7 @@ export type ListsItemsListResultItemListsListItemRedirectFullRedirectStatusCode 
   | 307
   | 308;
 export const ListsItemsListResultItemListsListItemRedirectFullRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface ListsItemsListResultItemListsListItemRedirectFullRedirect {
   sourceUrl: string;
@@ -973,7 +973,7 @@ export const ListListsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListListsRequest>;
 
 export type ListsListResultItemKind = "ip" | "redirect" | "hostname" | "asn";
-export const ListsListResultItemKind = /*@__PURE__*/ S.String;
+export const ListsListResultItemKind = S.String;
 
 export interface ListsListResultItem {
   /** The unique ID of the list. */
@@ -1055,7 +1055,7 @@ export const UpdateListRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateListRequest>;
 
 export type ListsUpdateResponseKind = "ip" | "redirect" | "hostname" | "asn";
-export const ListsUpdateResponseKind = /*@__PURE__*/ S.String;
+export const ListsUpdateResponseKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateListResponse {
@@ -1102,7 +1102,7 @@ export type ListsItemsUpdateRequestBodyItemListsListItemRedirectCommentRedirectS
   | 307
   | 308;
 export const ListsItemsUpdateRequestBodyItemListsListItemRedirectCommentRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface ListsItemsUpdateRequestBodyItemListsListItemRedirectCommentRedirect {
   sourceUrl: string;

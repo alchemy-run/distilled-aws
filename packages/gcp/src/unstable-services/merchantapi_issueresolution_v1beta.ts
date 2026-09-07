@@ -114,21 +114,20 @@ export type AggregateProductStatusReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const AggregateProductStatusReportingContextEnum =
-  /*@__PURE__*/ S.String;
+export const AggregateProductStatusReportingContextEnum = S.String;
 
 export type ItemLevelIssueResolutionEnum =
   | "RESOLUTION_UNSPECIFIED"
   | "MERCHANT_ACTION"
   | "PENDING_PROCESSING";
-export const ItemLevelIssueResolutionEnum = /*@__PURE__*/ S.String;
+export const ItemLevelIssueResolutionEnum = S.String;
 
 export type ItemLevelIssueSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
   | "NOT_IMPACTED"
   | "DEMOTED"
   | "DISAPPROVED";
-export const ItemLevelIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const ItemLevelIssueSeverityEnum = S.String;
 
 /** The ItemLevelIssue of the product status. */
 export interface ItemLevelIssue {
@@ -237,15 +236,13 @@ export const ListAggregateProductStatusesResponse = /*@__PURE__*/ S.suspend(
 export type RenderIssuesRequestPayloadContentOptionEnum =
   | "CONTENT_OPTION_UNSPECIFIED"
   | "PRE_RENDERED_HTML";
-export const RenderIssuesRequestPayloadContentOptionEnum =
-  /*@__PURE__*/ S.String;
+export const RenderIssuesRequestPayloadContentOptionEnum = S.String;
 
 export type RenderIssuesRequestPayloadUserInputActionOptionEnum =
   | "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED"
   | "REDIRECT_TO_MERCHANT_CENTER"
   | "BUILT_IN_USER_INPUT_ACTIONS";
-export const RenderIssuesRequestPayloadUserInputActionOptionEnum =
-  /*@__PURE__*/ S.String;
+export const RenderIssuesRequestPayloadUserInputActionOptionEnum = S.String;
 
 /** The payload for configuring how the content should be rendered. */
 export interface RenderIssuesRequestPayload {
@@ -321,7 +318,7 @@ export type TextWithTooltipTooltipIconStyleEnum =
   | "TOOLTIP_ICON_STYLE_UNSPECIFIED"
   | "INFO"
   | "QUESTION";
-export const TextWithTooltipTooltipIconStyleEnum = /*@__PURE__*/ S.String;
+export const TextWithTooltipTooltipIconStyleEnum = S.String;
 
 /** Block of text that may contain a tooltip with more information. */
 export interface TextWithTooltip {
@@ -347,7 +344,7 @@ export type CalloutStyleHintEnum =
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const CalloutStyleHintEnum = /*@__PURE__*/ S.String;
+export const CalloutStyleHintEnum = S.String;
 
 /** An important message that should be highlighted. Usually displayed as a banner. */
 export interface Callout {
@@ -408,7 +405,7 @@ export type TextInputTypeEnum =
   | "TEXT_INPUT_TYPE_UNSPECIFIED"
   | "GENERIC_SHORT_TEXT"
   | "GENERIC_LONG_TEXT";
-export const TextInputTypeEnum = /*@__PURE__*/ S.String;
+export const TextInputTypeEnum = S.String;
 
 /** Text input allows the business to provide a text value. */
 export interface TextInput {
@@ -518,7 +515,7 @@ export type ExternalActionTypeEnum =
   | "LEGAL_APPEAL_IN_HELP_CENTER"
   | "VERIFY_IDENTITY_IN_MERCHANT_CENTER"
   | "VERIFY_BUSINESS_VIDEO_IN_MERCHANT_CENTER";
-export const ExternalActionTypeEnum = /*@__PURE__*/ S.String;
+export const ExternalActionTypeEnum = S.String;
 
 /** Action that is implemented and performed outside of the third-party application. It should redirect the business to the provided URL of an external system where they can perform the action. For example to request a review in the Merchant Center. */
 export interface ExternalAction {
@@ -545,7 +542,7 @@ export type BuiltInSimpleActionTypeEnum =
   | "EDIT_ITEM_ATTRIBUTE"
   | "FIX_ACCOUNT_ISSUE"
   | "SHOW_ADDITIONAL_CONTENT";
-export const BuiltInSimpleActionTypeEnum = /*@__PURE__*/ S.String;
+export const BuiltInSimpleActionTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -661,7 +658,7 @@ export type ImpactSeverityEnum =
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const ImpactSeverityEnum = /*@__PURE__*/ S.String;
+export const ImpactSeverityEnum = S.String;
 
 /** Overall impact of the issue. */
 export interface Impact {

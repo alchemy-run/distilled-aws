@@ -202,8 +202,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Enterprise" }) as any as S.Schema<Enterprise>;
 
 export type IntegrationOwner = SimpleUser | Enterprise;
-export const IntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationOwner>;
+export const IntegrationOwner = S.Unknown as any as S.Schema<IntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface IntegrationPermissions {
@@ -322,8 +321,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -382,7 +380,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -397,7 +395,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -414,8 +412,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -432,7 +429,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -448,8 +445,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -467,7 +463,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -486,8 +482,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -505,7 +500,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -524,8 +519,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -546,14 +540,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -861,7 +855,7 @@ export type RepositoryInvitationPermissions =
   | "admin"
   | "triage"
   | "maintain";
-export const RepositoryInvitationPermissions = /*@__PURE__*/ S.String;
+export const RepositoryInvitationPermissions = S.String;
 
 /** Repository invitations let you manage who you collaborate with. */
 export interface RepositoryInvitation {
@@ -927,7 +921,7 @@ export type AddStatusCheckContextsRequestBody =
   | AddStatusCheckContextsRequestBodyCase0
   | AddStatusCheckContextsRequestBodyCase1List;
 export const AddStatusCheckContextsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddStatusCheckContextsRequestBody>;
+  S.Unknown as any as S.Schema<AddStatusCheckContextsRequestBody>;
 
 export interface AddStatusCheckContextsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -999,7 +993,7 @@ export type AddTeamAccessRestrictionsRequestBody =
   | AddTeamAccessRestrictionsRequestBodyCase0
   | AddTeamAccessRestrictionsRequestBodyCase1List;
 export const AddTeamAccessRestrictionsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddTeamAccessRestrictionsRequestBody>;
+  S.Unknown as any as S.Schema<AddTeamAccessRestrictionsRequestBody>;
 
 export interface AddTeamAccessRestrictionsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1048,15 +1042,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -1586,12 +1580,10 @@ export const CommitCommit = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "CommitCommit" }) as any as S.Schema<CommitCommit>;
 
 export type CommitAuthor = SimpleUser | unknown;
-export const CommitAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CommitAuthor>;
+export const CommitAuthor = S.Unknown as any as S.Schema<CommitAuthor>;
 
 export type CommitCommitter = SimpleUser | unknown;
-export const CommitCommitter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CommitCommitter>;
+export const CommitCommitter = S.Unknown as any as S.Schema<CommitCommitter>;
 
 export interface CommitParentsItem {
   sha: string;
@@ -1634,7 +1626,7 @@ export type DiffEntryStatus =
   | "copied"
   | "changed"
   | "unchanged";
-export const DiffEntryStatus = /*@__PURE__*/ S.String;
+export const DiffEntryStatus = S.String;
 
 /** Diff Entry */
 export interface DiffEntry {
@@ -1706,7 +1698,7 @@ export type CommitComparisonStatus =
   | "ahead"
   | "behind"
   | "identical";
-export const CommitComparisonStatus = /*@__PURE__*/ S.String;
+export const CommitComparisonStatus = S.String;
 
 export type CommitComparisonCommitsList = Array<Commit>;
 export const CommitComparisonCommitsList = /*@__PURE__*/ S.Array(
@@ -1923,7 +1915,7 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 export interface ReactionRollup {
   url: string;
@@ -2033,7 +2025,7 @@ export type CreateCommitStatusRequestState =
   | "failure"
   | "pending"
   | "success";
-export const CreateCommitStatusRequestState = /*@__PURE__*/ S.String;
+export const CreateCommitStatusRequestState = S.String;
 
 export interface CreateCommitStatusRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2173,7 +2165,7 @@ export type CreateDeploymentRequestPayload =
   | CreateDeploymentRequestPayloadCase0Map
   | string;
 export const CreateDeploymentRequestPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentRequestPayload>;
+  S.Unknown as any as S.Schema<CreateDeploymentRequestPayload>;
 
 export interface CreateDeploymentRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2230,11 +2222,11 @@ export const DeploymentPayloadCase0Map = /*@__PURE__*/ S.Record(
 
 export type DeploymentPayload = DeploymentPayloadCase0Map | string;
 export const DeploymentPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeploymentPayload>;
+  S.Unknown as any as S.Schema<DeploymentPayload>;
 
 export type NullableIntegrationOwner = SimpleUser | Enterprise;
 export const NullableIntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIntegrationOwner>;
+  S.Unknown as any as S.Schema<NullableIntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export type NullableIntegrationPermissions = IntegrationPermissions;
@@ -2342,7 +2334,7 @@ export const Deployment = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether this rule targets a branch or tag */
 export type CreateDeploymentBranchPolicyRequestType = "branch" | "tag";
-export const CreateDeploymentBranchPolicyRequestType = /*@__PURE__*/ S.String;
+export const CreateDeploymentBranchPolicyRequestType = S.String;
 
 export interface CreateDeploymentBranchPolicyRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2376,7 +2368,7 @@ export const CreateDeploymentBranchPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether this rule targets a branch or tag. */
 export type DeploymentBranchPolicyType = "branch" | "tag";
-export const DeploymentBranchPolicyType = /*@__PURE__*/ S.String;
+export const DeploymentBranchPolicyType = S.String;
 
 /** Details of a deployment branch or tag policy. */
 export interface DeploymentBranchPolicy {
@@ -2479,7 +2471,7 @@ export type CreateDeploymentStatusRequestState =
   | "queued"
   | "pending"
   | "success";
-export const CreateDeploymentStatusRequestState = /*@__PURE__*/ S.String;
+export const CreateDeploymentStatusRequestState = S.String;
 
 export interface CreateDeploymentStatusRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2535,7 +2527,7 @@ export type DeploymentStatusState =
   | "success"
   | "queued"
   | "in_progress";
-export const DeploymentStatusState = /*@__PURE__*/ S.String;
+export const DeploymentStatusState = S.String;
 
 /** The status of a deployment. */
 export interface DeploymentStatus {
@@ -2631,8 +2623,7 @@ export const CreateDispatchEventResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateForAuthenticatedUserRequestSquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const CreateForAuthenticatedUserRequestSquashMergeCommitTitle =
-  /*@__PURE__*/ S.String;
+export const CreateForAuthenticatedUserRequestSquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type CreateForAuthenticatedUserRequestSquashMergeCommitMessage =
@@ -2640,22 +2631,20 @@ export type CreateForAuthenticatedUserRequestSquashMergeCommitMessage =
   | "COMMIT_MESSAGES"
   | "BLANK";
 export const CreateForAuthenticatedUserRequestSquashMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Required when using `merge_commit_message`. The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type CreateForAuthenticatedUserRequestMergeCommitTitle =
   | "PR_TITLE"
   | "MERGE_MESSAGE";
-export const CreateForAuthenticatedUserRequestMergeCommitTitle =
-  /*@__PURE__*/ S.String;
+export const CreateForAuthenticatedUserRequestMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type CreateForAuthenticatedUserRequestMergeCommitMessage =
   | "PR_BODY"
   | "PR_TITLE"
   | "BLANK";
-export const CreateForAuthenticatedUserRequestMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+export const CreateForAuthenticatedUserRequestMergeCommitMessage = S.String;
 
 export interface CreateForAuthenticatedUserRequest {
   /** The name of the repository. */
@@ -2760,7 +2749,7 @@ export const FullRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type FullRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const FullRepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const FullRepositoryPullRequestCreationPolicy = S.String;
 
 export interface FullRepositoryPermissions {
   admin: boolean;
@@ -2831,33 +2820,31 @@ export const NullableRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type NullableRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const NullableRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const NullableRepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type NullableRepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const NullableRepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const NullableRepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type NullableRepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const NullableRepositorySquashMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+export const NullableRepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type NullableRepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const NullableRepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const NullableRepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type NullableRepositoryMergeCommitMessage =
   | "PR_BODY"
   | "PR_TITLE"
   | "BLANK";
-export const NullableRepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const NullableRepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface NullableRepositoryCodeSearchIndexStatus {
@@ -3123,22 +3110,22 @@ export const NullableRepository = /*@__PURE__*/ S.suspend(() =>
 export type FullRepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const FullRepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const FullRepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type FullRepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const FullRepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const FullRepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type FullRepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const FullRepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const FullRepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type FullRepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const FullRepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const FullRepositoryMergeCommitMessage = S.String;
 
 export type RepositoryPermissions = NullableRepositoryPermissions;
 export const RepositoryPermissions = NullableRepositoryPermissions;
@@ -3150,28 +3137,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export type RepositoryCodeSearchIndexStatus =
@@ -3712,32 +3699,31 @@ export const CreateForkResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The visibility of the repository. */
 export type CreateInOrgRequestVisibility = "public" | "private";
-export const CreateInOrgRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateInOrgRequestVisibility = S.String;
 
 /** Required when using `squash_merge_commit_message`. The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type CreateInOrgRequestSquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const CreateInOrgRequestSquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const CreateInOrgRequestSquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type CreateInOrgRequestSquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const CreateInOrgRequestSquashMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+export const CreateInOrgRequestSquashMergeCommitMessage = S.String;
 
 /** Required when using `merge_commit_message`. The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type CreateInOrgRequestMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const CreateInOrgRequestMergeCommitTitle = /*@__PURE__*/ S.String;
+export const CreateInOrgRequestMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type CreateInOrgRequestMergeCommitMessage =
   | "PR_BODY"
   | "PR_TITLE"
   | "BLANK";
-export const CreateInOrgRequestMergeCommitMessage = /*@__PURE__*/ S.String;
+export const CreateInOrgRequestMergeCommitMessage = S.String;
 
 /** The custom properties for the new repository. The keys are the custom property names, and the values are the corresponding custom property values. */
 export type CreateInOrgRequestCustomPropertiesMap = {
@@ -3849,11 +3835,11 @@ export type CreateOrgRulesetRequestTarget =
   | "tag"
   | "push"
   | "repository";
-export const CreateOrgRulesetRequestTarget = /*@__PURE__*/ S.String;
+export const CreateOrgRulesetRequestTarget = S.String;
 
 /** The enforcement level of the ruleset. `evaluate` allows admins to test rules before enforcing them. Admins can view insights on the Rule Insights page (`evaluate` is only available with GitHub Enterprise). */
 export type RepositoryRuleEnforcement = "disabled" | "active" | "evaluate";
-export const RepositoryRuleEnforcement = /*@__PURE__*/ S.String;
+export const RepositoryRuleEnforcement = S.String;
 
 /** The type of actor that can bypass a ruleset. */
 export type RepositoryRulesetBypassActorActorType =
@@ -3863,14 +3849,14 @@ export type RepositoryRulesetBypassActorActorType =
   | "Team"
   | "DeployKey"
   | "User";
-export const RepositoryRulesetBypassActorActorType = /*@__PURE__*/ S.String;
+export const RepositoryRulesetBypassActorActorType = S.String;
 
 /** When the specified actor can bypass the ruleset. `pull_request` means that an actor can only bypass rules on pull requests. `pull_request` is not applicable for the `DeployKey` actor type. Also, `pull_request` is only applicable to branch rulesets. When `bypass_mode` is `exempt`, rules will not be run for that actor and a bypass audit entry will not be created. */
 export type RepositoryRulesetBypassActorBypassMode =
   | "always"
   | "pull_request"
   | "exempt";
-export const RepositoryRulesetBypassActorBypassMode = /*@__PURE__*/ S.String;
+export const RepositoryRulesetBypassActorBypassMode = S.String;
 
 /** An actor that can bypass rules in a ruleset */
 export interface RepositoryRulesetBypassActor {
@@ -4081,8 +4067,7 @@ export const RepositoryRulesetConditionsRepositoryPropertySpecPropertyValuesList
 export type RepositoryRulesetConditionsRepositoryPropertySpecSource =
   | "custom"
   | "system";
-export const RepositoryRulesetConditionsRepositoryPropertySpecSource =
-  /*@__PURE__*/ S.String;
+export const RepositoryRulesetConditionsRepositoryPropertySpecSource = S.String;
 
 /** Parameters for a targeting a repository property */
 export interface RepositoryRulesetConditionsRepositoryPropertySpec {
@@ -4165,10 +4150,10 @@ export type OrgRulesetConditions =
   | OrgRulesetConditionsCase1
   | OrgRulesetConditionsCase2;
 export const OrgRulesetConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrgRulesetConditions>;
+  S.Unknown as any as S.Schema<OrgRulesetConditions>;
 
 export type RepositoryRuleCreationType = "creation";
-export const RepositoryRuleCreationType = /*@__PURE__*/ S.String;
+export const RepositoryRuleCreationType = S.String;
 
 /** Only allow users with bypass permission to create matching refs. */
 export interface RepositoryRuleCreation {
@@ -4183,7 +4168,7 @@ export const RepositoryRuleCreation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleCreation>;
 
 export type RepositoryRuleUpdateType = "update";
-export const RepositoryRuleUpdateType = /*@__PURE__*/ S.String;
+export const RepositoryRuleUpdateType = S.String;
 
 export interface RepositoryRuleUpdateParameters {
   /** Branch can pull changes from its upstream repository */
@@ -4212,7 +4197,7 @@ export const RepositoryRuleUpdate = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleUpdate>;
 
 export type RepositoryRuleDeletionType = "deletion";
-export const RepositoryRuleDeletionType = /*@__PURE__*/ S.String;
+export const RepositoryRuleDeletionType = S.String;
 
 /** Only allow users with bypass permissions to delete matching refs. */
 export interface RepositoryRuleDeletion {
@@ -4227,7 +4212,7 @@ export const RepositoryRuleDeletion = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDeletion>;
 
 export type RepositoryRuleRequiredLinearHistoryType = "required_linear_history";
-export const RepositoryRuleRequiredLinearHistoryType = /*@__PURE__*/ S.String;
+export const RepositoryRuleRequiredLinearHistoryType = S.String;
 
 /** Prevent merge commits from being pushed to matching refs. */
 export interface RepositoryRuleRequiredLinearHistory {
@@ -4242,7 +4227,7 @@ export const RepositoryRuleRequiredLinearHistory = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleRequiredLinearHistory>;
 
 export type RepositoryRuleRequiredDeploymentsType = "required_deployments";
-export const RepositoryRuleRequiredDeploymentsType = /*@__PURE__*/ S.String;
+export const RepositoryRuleRequiredDeploymentsType = S.String;
 
 /** The environments that must be successfully deployed to before branches can be merged. */
 export type RepositoryRuleRequiredDeploymentsParametersRequiredDeploymentEnvironmentsList =
@@ -4281,7 +4266,7 @@ export const RepositoryRuleRequiredDeployments = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleRequiredDeployments>;
 
 export type RepositoryRuleRequiredSignaturesType = "required_signatures";
-export const RepositoryRuleRequiredSignaturesType = /*@__PURE__*/ S.String;
+export const RepositoryRuleRequiredSignaturesType = S.String;
 
 /** Commits pushed to matching refs must have verified signatures. */
 export interface RepositoryRuleRequiredSignatures {
@@ -4296,14 +4281,14 @@ export const RepositoryRuleRequiredSignatures = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleRequiredSignatures>;
 
 export type RepositoryRulePullRequestType = "pull_request";
-export const RepositoryRulePullRequestType = /*@__PURE__*/ S.String;
+export const RepositoryRulePullRequestType = S.String;
 
 export type RepositoryRulePullRequestParametersAllowedMergeMethodsItem =
   | "merge"
   | "squash"
   | "rebase";
 export const RepositoryRulePullRequestParametersAllowedMergeMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Array of allowed merge methods. Allowed values include `merge`, `squash`, and `rebase`. At least one option must be enabled. */
 export type RepositoryRulePullRequestParametersAllowedMergeMethodsList = Array<
@@ -4320,7 +4305,7 @@ export type RepositoryRuleParamsActorType =
   | "Team"
   | "IntegrationInstallation"
   | "RepositoryRole";
-export const RepositoryRuleParamsActorType = /*@__PURE__*/ S.String;
+export const RepositoryRuleParamsActorType = S.String;
 
 /** An actor allowed to dismiss pull request reviews */
 export interface RepositoryRuleParamsActor {
@@ -4375,7 +4360,7 @@ export const RepositoryRuleParamsRequiredReviewerConfigurationFilePatternsList =
 
 /** The type of the reviewer */
 export type RepositoryRuleParamsReviewerType = "Team";
-export const RepositoryRuleParamsReviewerType = /*@__PURE__*/ S.String;
+export const RepositoryRuleParamsReviewerType = S.String;
 
 /** A required reviewing team */
 export interface RepositoryRuleParamsReviewer {
@@ -4472,7 +4457,7 @@ export const RepositoryRulePullRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRulePullRequest>;
 
 export type RepositoryRuleRequiredStatusChecksType = "required_status_checks";
-export const RepositoryRuleRequiredStatusChecksType = /*@__PURE__*/ S.String;
+export const RepositoryRuleRequiredStatusChecksType = S.String;
 
 /** Required status check */
 export interface RepositoryRuleParamsStatusCheckConfiguration {
@@ -4534,7 +4519,7 @@ export const RepositoryRuleRequiredStatusChecks = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleRequiredStatusChecks>;
 
 export type RepositoryRuleNonFastForwardType = "non_fast_forward";
-export const RepositoryRuleNonFastForwardType = /*@__PURE__*/ S.String;
+export const RepositoryRuleNonFastForwardType = S.String;
 
 /** Prevent users with push access from force pushing to refs. */
 export interface RepositoryRuleNonFastForward {
@@ -4549,7 +4534,7 @@ export const RepositoryRuleNonFastForward = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleNonFastForward>;
 
 export type RepositoryRuleCommitMessagePatternType = "commit_message_pattern";
-export const RepositoryRuleCommitMessagePatternType = /*@__PURE__*/ S.String;
+export const RepositoryRuleCommitMessagePatternType = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleCommitMessagePatternParametersOperator =
@@ -4557,8 +4542,7 @@ export type RepositoryRuleCommitMessagePatternParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleCommitMessagePatternParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleCommitMessagePatternParametersOperator = S.String;
 
 export interface RepositoryRuleCommitMessagePatternParameters {
   /** How this rule appears when configuring it. */
@@ -4600,8 +4584,7 @@ export const RepositoryRuleCommitMessagePattern = /*@__PURE__*/ S.suspend(() =>
 
 export type RepositoryRuleCommitAuthorEmailPatternType =
   "commit_author_email_pattern";
-export const RepositoryRuleCommitAuthorEmailPatternType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleCommitAuthorEmailPatternType = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleCommitAuthorEmailPatternParametersOperator =
@@ -4610,7 +4593,7 @@ export type RepositoryRuleCommitAuthorEmailPatternParametersOperator =
   | "contains"
   | "regex";
 export const RepositoryRuleCommitAuthorEmailPatternParametersOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RepositoryRuleCommitAuthorEmailPatternParameters {
   /** How this rule appears when configuring it. */
@@ -4652,7 +4635,7 @@ export const RepositoryRuleCommitAuthorEmailPattern = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RepositoryRuleCommitAuthorEmailPattern>;
 
 export type RepositoryRuleCommitterEmailPatternType = "committer_email_pattern";
-export const RepositoryRuleCommitterEmailPatternType = /*@__PURE__*/ S.String;
+export const RepositoryRuleCommitterEmailPatternType = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleCommitterEmailPatternParametersOperator =
@@ -4660,8 +4643,7 @@ export type RepositoryRuleCommitterEmailPatternParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleCommitterEmailPatternParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleCommitterEmailPatternParametersOperator = S.String;
 
 export interface RepositoryRuleCommitterEmailPatternParameters {
   /** How this rule appears when configuring it. */
@@ -4702,7 +4684,7 @@ export const RepositoryRuleCommitterEmailPattern = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleCommitterEmailPattern>;
 
 export type RepositoryRuleBranchNamePatternType = "branch_name_pattern";
-export const RepositoryRuleBranchNamePatternType = /*@__PURE__*/ S.String;
+export const RepositoryRuleBranchNamePatternType = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleBranchNamePatternParametersOperator =
@@ -4710,8 +4692,7 @@ export type RepositoryRuleBranchNamePatternParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleBranchNamePatternParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleBranchNamePatternParametersOperator = S.String;
 
 export interface RepositoryRuleBranchNamePatternParameters {
   /** How this rule appears when configuring it. */
@@ -4750,7 +4731,7 @@ export const RepositoryRuleBranchNamePattern = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleBranchNamePattern>;
 
 export type RepositoryRuleTagNamePatternType = "tag_name_pattern";
-export const RepositoryRuleTagNamePatternType = /*@__PURE__*/ S.String;
+export const RepositoryRuleTagNamePatternType = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleTagNamePatternParametersOperator =
@@ -4758,8 +4739,7 @@ export type RepositoryRuleTagNamePatternParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleTagNamePatternParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleTagNamePatternParametersOperator = S.String;
 
 export interface RepositoryRuleTagNamePatternParameters {
   /** How this rule appears when configuring it. */
@@ -4798,7 +4778,7 @@ export const RepositoryRuleTagNamePattern = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleTagNamePattern>;
 
 export type RepositoryRuleFilePathRestrictionType = "file_path_restriction";
-export const RepositoryRuleFilePathRestrictionType = /*@__PURE__*/ S.String;
+export const RepositoryRuleFilePathRestrictionType = S.String;
 
 /** The file paths that are restricted from being pushed to the commit graph. */
 export type RepositoryRuleFilePathRestrictionParametersRestrictedFilePathsList =
@@ -4837,7 +4817,7 @@ export const RepositoryRuleFilePathRestriction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleFilePathRestriction>;
 
 export type RepositoryRuleMaxFilePathLengthType = "max_file_path_length";
-export const RepositoryRuleMaxFilePathLengthType = /*@__PURE__*/ S.String;
+export const RepositoryRuleMaxFilePathLengthType = S.String;
 
 export interface RepositoryRuleMaxFilePathLengthParameters {
   /** The maximum amount of characters allowed in file paths. */
@@ -4868,8 +4848,7 @@ export const RepositoryRuleMaxFilePathLength = /*@__PURE__*/ S.suspend(() =>
 
 export type RepositoryRuleFileExtensionRestrictionType =
   "file_extension_restriction";
-export const RepositoryRuleFileExtensionRestrictionType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleFileExtensionRestrictionType = S.String;
 
 /** The file extensions that are restricted from being pushed to the commit graph. */
 export type RepositoryRuleFileExtensionRestrictionParametersRestrictedFileExtensionsList =
@@ -4909,7 +4888,7 @@ export const RepositoryRuleFileExtensionRestriction = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RepositoryRuleFileExtensionRestriction>;
 
 export type RepositoryRuleMaxFileSizeType = "max_file_size";
-export const RepositoryRuleMaxFileSizeType = /*@__PURE__*/ S.String;
+export const RepositoryRuleMaxFileSizeType = S.String;
 
 export interface RepositoryRuleMaxFileSizeParameters {
   /** The maximum file size allowed in megabytes. This limit does not apply to Git Large File Storage (Git LFS). */
@@ -4938,7 +4917,7 @@ export const RepositoryRuleMaxFileSize = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleMaxFileSize>;
 
 export type RepositoryRuleWorkflowsType = "workflows";
-export const RepositoryRuleWorkflowsType = /*@__PURE__*/ S.String;
+export const RepositoryRuleWorkflowsType = S.String;
 
 /** A workflow that must run for this rule to pass */
 export interface RepositoryRuleParamsWorkflowFileReference {
@@ -5001,7 +4980,7 @@ export const RepositoryRuleWorkflows = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleWorkflows>;
 
 export type RepositoryRuleCodeScanningType = "code_scanning";
-export const RepositoryRuleCodeScanningType = /*@__PURE__*/ S.String;
+export const RepositoryRuleCodeScanningType = S.String;
 
 /** The severity level at which code scanning results that raise alerts block a reference update. For more information on alert severity levels, see "[About code scanning alerts](https://docs.github.com/code-security/code-scanning/managing-code-scanning-alerts/about-code-scanning-alerts#about-alert-severity-and-security-severity-levels)." */
 export type RepositoryRuleParamsCodeScanningToolAlertsThreshold =
@@ -5009,8 +4988,7 @@ export type RepositoryRuleParamsCodeScanningToolAlertsThreshold =
   | "errors"
   | "errors_and_warnings"
   | "all";
-export const RepositoryRuleParamsCodeScanningToolAlertsThreshold =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleParamsCodeScanningToolAlertsThreshold = S.String;
 
 /** The severity level at which code scanning results that raise security alerts block a reference update. For more information on security severity levels, see "[About code scanning alerts](https://docs.github.com/code-security/code-scanning/managing-code-scanning-alerts/about-code-scanning-alerts#about-alert-severity-and-security-severity-levels)." */
 export type RepositoryRuleParamsCodeScanningToolSecurityAlertsThreshold =
@@ -5020,7 +4998,7 @@ export type RepositoryRuleParamsCodeScanningToolSecurityAlertsThreshold =
   | "medium_or_higher"
   | "all";
 export const RepositoryRuleParamsCodeScanningToolSecurityAlertsThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A tool that must provide code scanning results for this rule to pass. */
 export interface RepositoryRuleParamsCodeScanningTool {
@@ -5084,7 +5062,7 @@ export const RepositoryRuleCodeScanning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleCodeScanning>;
 
 export type RepositoryRuleCopilotCodeReviewType = "copilot_code_review";
-export const RepositoryRuleCopilotCodeReviewType = /*@__PURE__*/ S.String;
+export const RepositoryRuleCopilotCodeReviewType = S.String;
 
 export interface RepositoryRuleCopilotCodeReviewParameters {
   /** Copilot automatically reviews draft pull requests before they are marked as ready for review. */
@@ -5139,7 +5117,7 @@ export type OrgRules =
   | RepositoryRuleWorkflows
   | RepositoryRuleCodeScanning
   | RepositoryRuleCopilotCodeReview;
-export const OrgRules = /*@__PURE__*/ S.Unknown as any as S.Schema<OrgRules>;
+export const OrgRules = S.Unknown as any as S.Schema<OrgRules>;
 
 /** An array of rules within the ruleset. */
 export type CreateOrgRulesetRequestRulesList = Array<OrgRules>;
@@ -5177,14 +5155,14 @@ export const CreateOrgRulesetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The target of the ruleset */
 export type RepositoryRulesetTarget = "branch" | "tag" | "push" | "repository";
-export const RepositoryRulesetTarget = /*@__PURE__*/ S.String;
+export const RepositoryRulesetTarget = S.String;
 
 /** The type of the source of the ruleset */
 export type RepositoryRulesetSourceType =
   | "Repository"
   | "Organization"
   | "Enterprise";
-export const RepositoryRulesetSourceType = /*@__PURE__*/ S.String;
+export const RepositoryRulesetSourceType = S.String;
 
 /** The actors that can bypass the rules in this ruleset */
 export type RepositoryRulesetBypassActorsList =
@@ -5199,7 +5177,7 @@ export type RepositoryRulesetCurrentUserCanBypass =
   | "pull_requests_only"
   | "never"
   | "exempt";
-export const RepositoryRulesetCurrentUserCanBypass = /*@__PURE__*/ S.String;
+export const RepositoryRulesetCurrentUserCanBypass = S.String;
 
 export interface RepositoryRulesetLinksSelf {
   /** The URL of the ruleset */
@@ -5283,25 +5261,23 @@ export type RepositoryRulesetConditions2 =
   | RepositoryRulesetConditions
   | OrgRulesetConditions;
 export const RepositoryRulesetConditions2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RepositoryRulesetConditions2>;
+  S.Unknown as any as S.Schema<RepositoryRulesetConditions2>;
 
 export type RepositoryRuleMergeQueueType = "merge_queue";
-export const RepositoryRuleMergeQueueType = /*@__PURE__*/ S.String;
+export const RepositoryRuleMergeQueueType = S.String;
 
 /** When set to ALLGREEN, the merge commit created by merge queue for each PR in the group must pass all required checks to merge. When set to HEADGREEN, only the commit at the head of the merge group, i.e. the commit containing changes from all of the PRs in the group, must pass its required checks to merge. */
 export type RepositoryRuleMergeQueueParametersGroupingStrategy =
   | "ALLGREEN"
   | "HEADGREEN";
-export const RepositoryRuleMergeQueueParametersGroupingStrategy =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleMergeQueueParametersGroupingStrategy = S.String;
 
 /** Method to use when merging changes from queued pull requests. */
 export type RepositoryRuleMergeQueueParametersMergeMethod =
   | "MERGE"
   | "SQUASH"
   | "REBASE";
-export const RepositoryRuleMergeQueueParametersMergeMethod =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleMergeQueueParametersMergeMethod = S.String;
 
 export interface RepositoryRuleMergeQueueParameters {
   /** Maximum time for a required status check to report a conclusion. After this much time has elapsed, checks that have not reported a conclusion will be assumed to have failed */
@@ -5351,8 +5327,7 @@ export const RepositoryRuleMergeQueue = /*@__PURE__*/ S.suspend(() =>
 
 export type RepositoryRuleLicenseComplianceScanningType =
   "license_compliance_scanning";
-export const RepositoryRuleLicenseComplianceScanningType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleLicenseComplianceScanningType = S.String;
 
 /** Enforce any added or changed dependencies to comply with the organization's license policy. */
 export interface RepositoryRuleLicenseComplianceScanning {
@@ -5392,8 +5367,7 @@ export type RepositoryRule =
   | RepositoryRuleMaxFilePathLength
   | RepositoryRuleFileExtensionRestriction
   | RepositoryRuleMaxFileSize;
-export const RepositoryRule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RepositoryRule>;
+export const RepositoryRule = S.Unknown as any as S.Schema<RepositoryRule>;
 
 export type RepositoryRulesetRulesList = Array<RepositoryRule>;
 export const RepositoryRulesetRulesList = /*@__PURE__*/ S.Array(
@@ -5447,7 +5421,7 @@ export const RepositoryRuleset = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of reviewer. */
 export type DeploymentReviewerType = "User" | "Team";
-export const DeploymentReviewerType = /*@__PURE__*/ S.String;
+export const DeploymentReviewerType = S.String;
 
 export interface CreateOrUpdateEnvironmentRequestReviewersItem {
   type?: DeploymentReviewerType | (string & {});
@@ -5546,7 +5520,7 @@ export type EnvironmentProtectionRulesItemCase1ReviewersItemReviewer =
   | SimpleUser
   | Team;
 export const EnvironmentProtectionRulesItemCase1ReviewersItemReviewer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentProtectionRulesItemCase1ReviewersItemReviewer>;
+  S.Unknown as any as S.Schema<EnvironmentProtectionRulesItemCase1ReviewersItemReviewer>;
 
 export interface EnvironmentProtectionRulesItemCase1ReviewersItem {
   type?: DeploymentReviewerType;
@@ -5613,7 +5587,7 @@ export type EnvironmentProtectionRulesItem =
   | EnvironmentProtectionRulesItemCase1
   | EnvironmentProtectionRulesItemCase2;
 export const EnvironmentProtectionRulesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentProtectionRulesItem>;
+  S.Unknown as any as S.Schema<EnvironmentProtectionRulesItem>;
 
 /** Built-in deployment protection rules for the environment. */
 export type EnvironmentProtectionRulesList =
@@ -5915,8 +5889,7 @@ export const CreatePagesDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The ID of the GitHub Pages deployment. This is the Git SHA of the deployed commit. */
 export type PageDeploymentId = number | string;
-export const PageDeploymentId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PageDeploymentId>;
+export const PageDeploymentId = S.Unknown as any as S.Schema<PageDeploymentId>;
 
 /** The GitHub Pages deployment status. */
 export interface PageDeployment {
@@ -5940,11 +5913,11 @@ export const PageDeployment = /*@__PURE__*/ S.suspend(() =>
 
 /** The process in which the Page will be built. Possible values are `"legacy"` and `"workflow"`. */
 export type CreatePagesSiteRequestBuildType = "legacy" | "workflow";
-export const CreatePagesSiteRequestBuildType = /*@__PURE__*/ S.String;
+export const CreatePagesSiteRequestBuildType = S.String;
 
 /** The repository directory that includes the source files for the Pages site. Allowed paths are `/` or `/docs`. Default: `/` */
 export type CreatePagesSiteRequestSourcePath = "/" | "/docs";
-export const CreatePagesSiteRequestSourcePath = /*@__PURE__*/ S.String;
+export const CreatePagesSiteRequestSourcePath = S.String;
 
 /** The source branch and directory used to publish your Pages site. */
 export interface CreatePagesSiteRequestSource {
@@ -5987,15 +5960,15 @@ export const CreatePagesSiteRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the most recent build of the Page. */
 export type PageStatus = "built" | "building" | "errored";
-export const PageStatus = /*@__PURE__*/ S.String;
+export const PageStatus = S.String;
 
 /** The state if the domain is verified */
 export type PageProtectedDomainState = "pending" | "verified" | "unverified";
-export const PageProtectedDomainState = /*@__PURE__*/ S.String;
+export const PageProtectedDomainState = S.String;
 
 /** The process in which the Page will be built. */
 export type PageBuildType = "legacy" | "workflow";
-export const PageBuildType = /*@__PURE__*/ S.String;
+export const PageBuildType = S.String;
 
 export interface PagesSourceHash {
   branch: string;
@@ -6023,7 +5996,7 @@ export type PagesHttpsCertificateState =
   | "bad_authz"
   | "destroy_pending"
   | "dns_changed";
-export const PagesHttpsCertificateState = /*@__PURE__*/ S.String;
+export const PagesHttpsCertificateState = S.String;
 
 /** Array of the domain set and its alternate name (if it is configured) */
 export type PagesHttpsCertificateDomainsList = Array<string>;
@@ -6093,7 +6066,7 @@ export const Page = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies whether this release should be set as the latest release for the repository. Drafts and prereleases cannot be set as latest. Defaults to `true` for newly published releases. `legacy` specifies that the latest release should be determined based on the release creation date and higher semantic version. */
 export type CreateReleaseRequestMakeLatest = "true" | "false" | "legacy";
-export const CreateReleaseRequestMakeLatest = /*@__PURE__*/ S.String;
+export const CreateReleaseRequestMakeLatest = S.String;
 
 export interface CreateReleaseRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -6145,7 +6118,7 @@ export const CreateReleaseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of the release asset. */
 export type ReleaseAssetState = "uploaded" | "open";
-export const ReleaseAssetState = /*@__PURE__*/ S.String;
+export const ReleaseAssetState = S.String;
 
 /** Data related to a release. */
 export interface ReleaseAsset {
@@ -6256,7 +6229,7 @@ export const Release = /*@__PURE__*/ S.suspend(() =>
 
 /** The target of the ruleset */
 export type CreateRepoRulesetRequestTarget = "branch" | "tag" | "push";
-export const CreateRepoRulesetRequestTarget = /*@__PURE__*/ S.String;
+export const CreateRepoRulesetRequestTarget = S.String;
 
 /** The actors that can bypass the rules in this ruleset */
 export type CreateRepoRulesetRequestBypassActorsList =
@@ -6346,7 +6319,7 @@ export const CreateUsingTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type WebhookConfigInsecureSsl = string | number;
 export const WebhookConfigInsecureSsl =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebhookConfigInsecureSsl>;
+  S.Unknown as any as S.Schema<WebhookConfigInsecureSsl>;
 
 /** Key/value pairs to provide settings for this webhook. */
 export interface CreateWebhookRequestConfig {
@@ -6484,7 +6457,7 @@ export type CustomPropertyValueValue =
   | string
   | CustomPropertyValueValueCase1List;
 export const CustomPropertyValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomPropertyValueValue>;
+  S.Unknown as any as S.Schema<CustomPropertyValueValue>;
 
 /** Custom property name and associated value */
 export interface CustomPropertyValue {
@@ -8513,14 +8486,13 @@ export const GetBranchRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBranchRulesRequest>;
 
 export type RepositoryRuleDetailedCase0Type = "creation";
-export const RepositoryRuleDetailedCase0Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase0Type = S.String;
 
 /** The type of source for the ruleset that includes this rule. */
 export type RepositoryRuleDetailedCase0RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase0RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase0RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase0 {
   type: RepositoryRuleDetailedCase0Type;
@@ -8545,7 +8517,7 @@ export const RepositoryRuleDetailedCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase0>;
 
 export type RepositoryRuleDetailedCase1Type = "update";
-export const RepositoryRuleDetailedCase1Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase1Type = S.String;
 
 export type RepositoryRuleDetailedCase1Parameters =
   RepositoryRuleUpdateParameters;
@@ -8556,8 +8528,7 @@ export const RepositoryRuleDetailedCase1Parameters =
 export type RepositoryRuleDetailedCase1RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase1RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase1RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase1 {
   type: RepositoryRuleDetailedCase1Type;
@@ -8584,14 +8555,13 @@ export const RepositoryRuleDetailedCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase1>;
 
 export type RepositoryRuleDetailedCase2Type = "deletion";
-export const RepositoryRuleDetailedCase2Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase2Type = S.String;
 
 /** The type of source for the ruleset that includes this rule. */
 export type RepositoryRuleDetailedCase2RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase2RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase2RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase2 {
   type: RepositoryRuleDetailedCase2Type;
@@ -8616,14 +8586,13 @@ export const RepositoryRuleDetailedCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase2>;
 
 export type RepositoryRuleDetailedCase3Type = "required_linear_history";
-export const RepositoryRuleDetailedCase3Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase3Type = S.String;
 
 /** The type of source for the ruleset that includes this rule. */
 export type RepositoryRuleDetailedCase3RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase3RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase3RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase3 {
   type: RepositoryRuleDetailedCase3Type;
@@ -8648,22 +8617,20 @@ export const RepositoryRuleDetailedCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase3>;
 
 export type RepositoryRuleDetailedCase4Type = "merge_queue";
-export const RepositoryRuleDetailedCase4Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase4Type = S.String;
 
 /** When set to ALLGREEN, the merge commit created by merge queue for each PR in the group must pass all required checks to merge. When set to HEADGREEN, only the commit at the head of the merge group, i.e. the commit containing changes from all of the PRs in the group, must pass its required checks to merge. */
 export type RepositoryRuleDetailedCase4ParametersGroupingStrategy =
   | "ALLGREEN"
   | "HEADGREEN";
-export const RepositoryRuleDetailedCase4ParametersGroupingStrategy =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase4ParametersGroupingStrategy = S.String;
 
 /** Method to use when merging changes from queued pull requests. */
 export type RepositoryRuleDetailedCase4ParametersMergeMethod =
   | "MERGE"
   | "SQUASH"
   | "REBASE";
-export const RepositoryRuleDetailedCase4ParametersMergeMethod =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase4ParametersMergeMethod = S.String;
 
 export interface RepositoryRuleDetailedCase4Parameters {
   /** Maximum time for a required status check to report a conclusion. After this much time has elapsed, checks that have not reported a conclusion will be assumed to have failed */
@@ -8700,8 +8667,7 @@ export const RepositoryRuleDetailedCase4Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase4RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase4RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase4RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase4 {
   type: RepositoryRuleDetailedCase4Type;
@@ -8728,7 +8694,7 @@ export const RepositoryRuleDetailedCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase4>;
 
 export type RepositoryRuleDetailedCase5Type = "required_deployments";
-export const RepositoryRuleDetailedCase5Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase5Type = S.String;
 
 /** The environments that must be successfully deployed to before branches can be merged. */
 export type RepositoryRuleDetailedCase5ParametersRequiredDeploymentEnvironmentsList =
@@ -8756,8 +8722,7 @@ export const RepositoryRuleDetailedCase5Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase5RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase5RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase5RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase5 {
   type: RepositoryRuleDetailedCase5Type;
@@ -8784,14 +8749,13 @@ export const RepositoryRuleDetailedCase5 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase5>;
 
 export type RepositoryRuleDetailedCase6Type = "required_signatures";
-export const RepositoryRuleDetailedCase6Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase6Type = S.String;
 
 /** The type of source for the ruleset that includes this rule. */
 export type RepositoryRuleDetailedCase6RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase6RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase6RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase6 {
   type: RepositoryRuleDetailedCase6Type;
@@ -8816,14 +8780,14 @@ export const RepositoryRuleDetailedCase6 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase6>;
 
 export type RepositoryRuleDetailedCase7Type = "pull_request";
-export const RepositoryRuleDetailedCase7Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase7Type = S.String;
 
 export type RepositoryRuleDetailedCase7ParametersAllowedMergeMethodsItem =
   | "merge"
   | "squash"
   | "rebase";
 export const RepositoryRuleDetailedCase7ParametersAllowedMergeMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Array of allowed merge methods. Allowed values include `merge`, `squash`, and `rebase`. At least one option must be enabled. */
 export type RepositoryRuleDetailedCase7ParametersAllowedMergeMethodsList =
@@ -8884,8 +8848,7 @@ export const RepositoryRuleDetailedCase7Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase7RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase7RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase7RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase7 {
   type: RepositoryRuleDetailedCase7Type;
@@ -8912,7 +8875,7 @@ export const RepositoryRuleDetailedCase7 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase7>;
 
 export type RepositoryRuleDetailedCase8Type = "required_status_checks";
-export const RepositoryRuleDetailedCase8Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase8Type = S.String;
 
 /** Status checks that are required. */
 export type RepositoryRuleDetailedCase8ParametersRequiredStatusChecksList =
@@ -8946,8 +8909,7 @@ export const RepositoryRuleDetailedCase8Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase8RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase8RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase8RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase8 {
   type: RepositoryRuleDetailedCase8Type;
@@ -8974,14 +8936,13 @@ export const RepositoryRuleDetailedCase8 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase8>;
 
 export type RepositoryRuleDetailedCase9Type = "non_fast_forward";
-export const RepositoryRuleDetailedCase9Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase9Type = S.String;
 
 /** The type of source for the ruleset that includes this rule. */
 export type RepositoryRuleDetailedCase9RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase9RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase9RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase9 {
   type: RepositoryRuleDetailedCase9Type;
@@ -9006,7 +8967,7 @@ export const RepositoryRuleDetailedCase9 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase9>;
 
 export type RepositoryRuleDetailedCase10Type = "commit_message_pattern";
-export const RepositoryRuleDetailedCase10Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase10Type = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleDetailedCase10ParametersOperator =
@@ -9014,8 +8975,7 @@ export type RepositoryRuleDetailedCase10ParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleDetailedCase10ParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase10ParametersOperator = S.String;
 
 export interface RepositoryRuleDetailedCase10Parameters {
   /** How this rule appears when configuring it. */
@@ -9043,8 +9003,7 @@ export const RepositoryRuleDetailedCase10Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase10RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase10RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase10RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase10 {
   type: RepositoryRuleDetailedCase10Type;
@@ -9071,7 +9030,7 @@ export const RepositoryRuleDetailedCase10 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase10>;
 
 export type RepositoryRuleDetailedCase11Type = "commit_author_email_pattern";
-export const RepositoryRuleDetailedCase11Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase11Type = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleDetailedCase11ParametersOperator =
@@ -9079,8 +9038,7 @@ export type RepositoryRuleDetailedCase11ParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleDetailedCase11ParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase11ParametersOperator = S.String;
 
 export interface RepositoryRuleDetailedCase11Parameters {
   /** How this rule appears when configuring it. */
@@ -9108,8 +9066,7 @@ export const RepositoryRuleDetailedCase11Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase11RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase11RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase11RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase11 {
   type: RepositoryRuleDetailedCase11Type;
@@ -9136,7 +9093,7 @@ export const RepositoryRuleDetailedCase11 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase11>;
 
 export type RepositoryRuleDetailedCase12Type = "committer_email_pattern";
-export const RepositoryRuleDetailedCase12Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase12Type = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleDetailedCase12ParametersOperator =
@@ -9144,8 +9101,7 @@ export type RepositoryRuleDetailedCase12ParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleDetailedCase12ParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase12ParametersOperator = S.String;
 
 export interface RepositoryRuleDetailedCase12Parameters {
   /** How this rule appears when configuring it. */
@@ -9173,8 +9129,7 @@ export const RepositoryRuleDetailedCase12Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase12RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase12RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase12RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase12 {
   type: RepositoryRuleDetailedCase12Type;
@@ -9201,7 +9156,7 @@ export const RepositoryRuleDetailedCase12 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase12>;
 
 export type RepositoryRuleDetailedCase13Type = "branch_name_pattern";
-export const RepositoryRuleDetailedCase13Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase13Type = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleDetailedCase13ParametersOperator =
@@ -9209,8 +9164,7 @@ export type RepositoryRuleDetailedCase13ParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleDetailedCase13ParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase13ParametersOperator = S.String;
 
 export interface RepositoryRuleDetailedCase13Parameters {
   /** How this rule appears when configuring it. */
@@ -9238,8 +9192,7 @@ export const RepositoryRuleDetailedCase13Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase13RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase13RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase13RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase13 {
   type: RepositoryRuleDetailedCase13Type;
@@ -9266,7 +9219,7 @@ export const RepositoryRuleDetailedCase13 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase13>;
 
 export type RepositoryRuleDetailedCase14Type = "tag_name_pattern";
-export const RepositoryRuleDetailedCase14Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase14Type = S.String;
 
 /** The operator to use for matching. */
 export type RepositoryRuleDetailedCase14ParametersOperator =
@@ -9274,8 +9227,7 @@ export type RepositoryRuleDetailedCase14ParametersOperator =
   | "ends_with"
   | "contains"
   | "regex";
-export const RepositoryRuleDetailedCase14ParametersOperator =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase14ParametersOperator = S.String;
 
 export interface RepositoryRuleDetailedCase14Parameters {
   /** How this rule appears when configuring it. */
@@ -9303,8 +9255,7 @@ export const RepositoryRuleDetailedCase14Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase14RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase14RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase14RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase14 {
   type: RepositoryRuleDetailedCase14Type;
@@ -9331,7 +9282,7 @@ export const RepositoryRuleDetailedCase14 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase14>;
 
 export type RepositoryRuleDetailedCase15Type = "workflows";
-export const RepositoryRuleDetailedCase15Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase15Type = S.String;
 
 /** Workflows that must pass for this rule to pass. */
 export type RepositoryRuleDetailedCase15ParametersWorkflowsList =
@@ -9361,8 +9312,7 @@ export const RepositoryRuleDetailedCase15Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase15RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase15RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase15RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase15 {
   type: RepositoryRuleDetailedCase15Type;
@@ -9389,7 +9339,7 @@ export const RepositoryRuleDetailedCase15 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase15>;
 
 export type RepositoryRuleDetailedCase16Type = "code_scanning";
-export const RepositoryRuleDetailedCase16Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase16Type = S.String;
 
 /** Tools that must provide code scanning results for this rule to pass. */
 export type RepositoryRuleDetailedCase16ParametersCodeScanningToolsList =
@@ -9417,8 +9367,7 @@ export const RepositoryRuleDetailedCase16Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase16RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase16RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase16RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase16 {
   type: RepositoryRuleDetailedCase16Type;
@@ -9445,7 +9394,7 @@ export const RepositoryRuleDetailedCase16 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase16>;
 
 export type RepositoryRuleDetailedCase17Type = "copilot_code_review";
-export const RepositoryRuleDetailedCase17Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase17Type = S.String;
 
 export type RepositoryRuleDetailedCase17Parameters =
   RepositoryRuleCopilotCodeReviewParameters;
@@ -9456,8 +9405,7 @@ export const RepositoryRuleDetailedCase17Parameters =
 export type RepositoryRuleDetailedCase17RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase17RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase17RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase17 {
   type: RepositoryRuleDetailedCase17Type;
@@ -9484,14 +9432,13 @@ export const RepositoryRuleDetailedCase17 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase17>;
 
 export type RepositoryRuleDetailedCase18Type = "license_compliance_scanning";
-export const RepositoryRuleDetailedCase18Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase18Type = S.String;
 
 /** The type of source for the ruleset that includes this rule. */
 export type RepositoryRuleDetailedCase18RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase18RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase18RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase18 {
   type: RepositoryRuleDetailedCase18Type;
@@ -9516,7 +9463,7 @@ export const RepositoryRuleDetailedCase18 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase18>;
 
 export type RepositoryRuleDetailedCase19Type = "file_path_restriction";
-export const RepositoryRuleDetailedCase19Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase19Type = S.String;
 
 /** The file paths that are restricted from being pushed to the commit graph. */
 export type RepositoryRuleDetailedCase19ParametersRestrictedFilePathsList =
@@ -9544,8 +9491,7 @@ export const RepositoryRuleDetailedCase19Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase19RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase19RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase19RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase19 {
   type: RepositoryRuleDetailedCase19Type;
@@ -9572,7 +9518,7 @@ export const RepositoryRuleDetailedCase19 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase19>;
 
 export type RepositoryRuleDetailedCase20Type = "max_file_path_length";
-export const RepositoryRuleDetailedCase20Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase20Type = S.String;
 
 export type RepositoryRuleDetailedCase20Parameters =
   RepositoryRuleMaxFilePathLengthParameters;
@@ -9583,8 +9529,7 @@ export const RepositoryRuleDetailedCase20Parameters =
 export type RepositoryRuleDetailedCase20RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase20RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase20RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase20 {
   type: RepositoryRuleDetailedCase20Type;
@@ -9611,7 +9556,7 @@ export const RepositoryRuleDetailedCase20 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase20>;
 
 export type RepositoryRuleDetailedCase21Type = "file_extension_restriction";
-export const RepositoryRuleDetailedCase21Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase21Type = S.String;
 
 /** The file extensions that are restricted from being pushed to the commit graph. */
 export type RepositoryRuleDetailedCase21ParametersRestrictedFileExtensionsList =
@@ -9639,8 +9584,7 @@ export const RepositoryRuleDetailedCase21Parameters = /*@__PURE__*/ S.suspend(
 export type RepositoryRuleDetailedCase21RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase21RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase21RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase21 {
   type: RepositoryRuleDetailedCase21Type;
@@ -9667,7 +9611,7 @@ export const RepositoryRuleDetailedCase21 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RepositoryRuleDetailedCase21>;
 
 export type RepositoryRuleDetailedCase22Type = "max_file_size";
-export const RepositoryRuleDetailedCase22Type = /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase22Type = S.String;
 
 export type RepositoryRuleDetailedCase22Parameters =
   RepositoryRuleMaxFileSizeParameters;
@@ -9678,8 +9622,7 @@ export const RepositoryRuleDetailedCase22Parameters =
 export type RepositoryRuleDetailedCase22RulesetSourceType =
   | "Repository"
   | "Organization";
-export const RepositoryRuleDetailedCase22RulesetSourceType =
-  /*@__PURE__*/ S.String;
+export const RepositoryRuleDetailedCase22RulesetSourceType = S.String;
 
 export interface RepositoryRuleDetailedCase22 {
   type: RepositoryRuleDetailedCase22Type;
@@ -9731,7 +9674,7 @@ export type RepositoryRuleDetailed =
   | RepositoryRuleDetailedCase21
   | RepositoryRuleDetailedCase22;
 export const RepositoryRuleDetailed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RepositoryRuleDetailed>;
+  S.Unknown as any as S.Schema<RepositoryRuleDetailed>;
 
 export type GetBranchRulesResponseBodyList = Array<RepositoryRuleDetailed>;
 export const GetBranchRulesResponseBodyList = /*@__PURE__*/ S.Array(
@@ -9746,7 +9689,7 @@ export const GetBranchRulesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBranchRulesResponse>;
 
 export type GetClonesRequestPer = "day" | "week";
-export const GetClonesRequestPer = /*@__PURE__*/ S.String;
+export const GetClonesRequestPer = S.String;
 
 export interface GetClonesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -10292,7 +10235,7 @@ export const GetContentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetContentRequest>;
 
 export type ContentDirectoryItemType = "dir" | "file" | "submodule" | "symlink";
-export const ContentDirectoryItemType = /*@__PURE__*/ S.String;
+export const ContentDirectoryItemType = S.String;
 
 export interface ContentDirectoryItemLinks {
   git: string | null;
@@ -10347,7 +10290,7 @@ export const ContentDirectory = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ContentDirectory>;
 
 export type ContentFileType = "file";
-export const ContentFileType = /*@__PURE__*/ S.String;
+export const ContentFileType = S.String;
 
 export type ContentFileLinks = ContentDirectoryItemLinks;
 export const ContentFileLinks = ContentDirectoryItemLinks;
@@ -10389,7 +10332,7 @@ export const ContentFile = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ContentFile" }) as any as S.Schema<ContentFile>;
 
 export type ContentSymlinkType = "symlink";
-export const ContentSymlinkType = /*@__PURE__*/ S.String;
+export const ContentSymlinkType = S.String;
 
 export type ContentSymlinkLinks = ContentDirectoryItemLinks;
 export const ContentSymlinkLinks = ContentDirectoryItemLinks;
@@ -10425,7 +10368,7 @@ export const ContentSymlink = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ContentSymlink" }) as any as S.Schema<ContentSymlink>;
 
 export type ContentSubmoduleType = "submodule";
-export const ContentSubmoduleType = /*@__PURE__*/ S.String;
+export const ContentSubmoduleType = S.String;
 
 export type ContentSubmoduleLinks = ContentDirectoryItemLinks;
 export const ContentSubmoduleLinks = ContentDirectoryItemLinks;
@@ -10468,7 +10411,7 @@ export type GetContentResponseBody =
   | ContentSymlink
   | ContentSubmodule;
 export const GetContentResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetContentResponseBody>;
+  S.Unknown as any as S.Schema<GetContentResponseBody>;
 
 export type GetContentResponse = GetContentResponseBody;
 export const GetContentResponse = /*@__PURE__*/ S.suspend(() =>
@@ -10724,7 +10667,7 @@ export const GetHashAlgorithmRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The Git hash algorithm used by this repository. */
 export type RepositoryHashAlgorithmHashAlgorithm = "sha1" | "sha256";
-export const RepositoryHashAlgorithmHashAlgorithm = /*@__PURE__*/ S.String;
+export const RepositoryHashAlgorithmHashAlgorithm = S.String;
 
 /** Repository hash algorithm */
 export interface RepositoryHashAlgorithm {
@@ -10891,11 +10834,11 @@ export const GetOrgRuleSuiteRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The result of the rule evaluations for rules with the `active` enforcement status. */
 export type RuleSuiteResult = "pass" | "fail" | "bypass";
-export const RuleSuiteResult = /*@__PURE__*/ S.String;
+export const RuleSuiteResult = S.String;
 
 /** The result of the rule evaluations for rules with the `active` and `evaluate` enforcement statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were `active`. Null if no rules with `evaluate` enforcement status were run. */
 export type RuleSuiteEvaluationResult = "pass" | "fail" | "bypass";
-export const RuleSuiteEvaluationResult = /*@__PURE__*/ S.String;
+export const RuleSuiteEvaluationResult = S.String;
 
 export interface RuleSuiteRuleEvaluationsItemRuleSource {
   /** The type of rule source. */
@@ -10921,11 +10864,11 @@ export type RuleSuiteRuleEvaluationsItemEnforcement =
   | "active"
   | "evaluate"
   | "deleted ruleset";
-export const RuleSuiteRuleEvaluationsItemEnforcement = /*@__PURE__*/ S.String;
+export const RuleSuiteRuleEvaluationsItemEnforcement = S.String;
 
 /** The result of the evaluation of the individual rule. */
 export type RuleSuiteRuleEvaluationsItemResult = "pass" | "fail";
-export const RuleSuiteRuleEvaluationsItemResult = /*@__PURE__*/ S.String;
+export const RuleSuiteRuleEvaluationsItemResult = S.String;
 
 export interface RuleSuiteRuleEvaluationsItem {
   rule_source?: RuleSuiteRuleEvaluationsItemRuleSource;
@@ -11004,20 +10947,20 @@ export type GetOrgRuleSuitesRequestTimePeriod =
   | "day"
   | "week"
   | "month";
-export const GetOrgRuleSuitesRequestTimePeriod = /*@__PURE__*/ S.String;
+export const GetOrgRuleSuitesRequestTimePeriod = S.String;
 
 export type GetOrgRuleSuitesRequestRuleSuiteResult =
   | "pass"
   | "fail"
   | "bypass"
   | "all";
-export const GetOrgRuleSuitesRequestRuleSuiteResult = /*@__PURE__*/ S.String;
+export const GetOrgRuleSuitesRequestRuleSuiteResult = S.String;
 
 export type GetOrgRuleSuitesRequestEvaluateStatus =
   | "all"
   | "active"
   | "evaluate";
-export const GetOrgRuleSuitesRequestEvaluateStatus = /*@__PURE__*/ S.String;
+export const GetOrgRuleSuitesRequestEvaluateStatus = S.String;
 
 export interface GetOrgRuleSuitesRequest {
   /** The organization name. The name is not case sensitive. */
@@ -11067,11 +11010,11 @@ export const GetOrgRuleSuitesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The result of the rule evaluations for rules with the `active` enforcement status. */
 export type RuleSuitesItemResult = "pass" | "fail" | "bypass";
-export const RuleSuitesItemResult = /*@__PURE__*/ S.String;
+export const RuleSuitesItemResult = S.String;
 
 /** The result of the rule evaluations for rules with the `active` and `evaluate` enforcement statuses, demonstrating whether rules would pass or fail if all rules in the rule suite were `active`. */
 export type RuleSuitesItemEvaluationResult = "pass" | "fail" | "bypass";
-export const RuleSuitesItemEvaluationResult = /*@__PURE__*/ S.String;
+export const RuleSuitesItemEvaluationResult = S.String;
 
 export interface RuleSuitesItem {
   /** The unique identifier of the rule insight. */
@@ -11202,7 +11145,7 @@ export type PagesDeploymentStatusStatus =
   | "deployment_attempt_error"
   | "deployment_lost"
   | "succeed";
-export const PagesDeploymentStatusStatus = /*@__PURE__*/ S.String;
+export const PagesDeploymentStatusStatus = S.String;
 
 export interface PagesDeploymentStatus {
   /** The current status of the deployment. */
@@ -11761,20 +11704,20 @@ export type GetRepoRuleSuitesRequestTimePeriod =
   | "day"
   | "week"
   | "month";
-export const GetRepoRuleSuitesRequestTimePeriod = /*@__PURE__*/ S.String;
+export const GetRepoRuleSuitesRequestTimePeriod = S.String;
 
 export type GetRepoRuleSuitesRequestRuleSuiteResult =
   | "pass"
   | "fail"
   | "bypass"
   | "all";
-export const GetRepoRuleSuitesRequestRuleSuiteResult = /*@__PURE__*/ S.String;
+export const GetRepoRuleSuitesRequestRuleSuiteResult = S.String;
 
 export type GetRepoRuleSuitesRequestEvaluateStatus =
   | "all"
   | "active"
   | "evaluate";
-export const GetRepoRuleSuitesRequestEvaluateStatus = /*@__PURE__*/ S.String;
+export const GetRepoRuleSuitesRequestEvaluateStatus = S.String;
 
 export interface GetRepoRuleSuitesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -12073,7 +12016,7 @@ export const GetUsersWithAccessToProtectedBranchResponse =
   }) as any as S.Schema<GetUsersWithAccessToProtectedBranchResponse>;
 
 export type GetViewsRequestPer = "day" | "week";
-export const GetViewsRequestPer = /*@__PURE__*/ S.String;
+export const GetViewsRequestPer = S.String;
 
 export interface GetViewsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -12310,7 +12253,7 @@ export const HookDelivery = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "HookDelivery" }) as any as S.Schema<HookDelivery>;
 
 export type ListActivitiesRequestDirection = "asc" | "desc";
-export const ListActivitiesRequestDirection = /*@__PURE__*/ S.String;
+export const ListActivitiesRequestDirection = S.String;
 
 export type ListActivitiesRequestTimePeriod =
   | "day"
@@ -12318,7 +12261,7 @@ export type ListActivitiesRequestTimePeriod =
   | "month"
   | "quarter"
   | "year";
-export const ListActivitiesRequestTimePeriod = /*@__PURE__*/ S.String;
+export const ListActivitiesRequestTimePeriod = S.String;
 
 export type ListActivitiesRequestActivityType =
   | "push"
@@ -12327,7 +12270,7 @@ export type ListActivitiesRequestActivityType =
   | "branch_deletion"
   | "pr_merge"
   | "merge_queue_merge";
-export const ListActivitiesRequestActivityType = /*@__PURE__*/ S.String;
+export const ListActivitiesRequestActivityType = S.String;
 
 export interface ListActivitiesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -12380,7 +12323,7 @@ export type ActivityActivityType =
   | "branch_creation"
   | "pr_merge"
   | "merge_queue_merge";
-export const ActivityActivityType = /*@__PURE__*/ S.String;
+export const ActivityActivityType = S.String;
 
 /** Activity */
 export interface Activity {
@@ -12680,7 +12623,7 @@ export const ListBranchesForHeadCommitResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListBranchesForHeadCommitResponse>;
 
 export type ListCollaboratorsRequestAffiliation = "outside" | "direct" | "all";
-export const ListCollaboratorsRequestAffiliation = /*@__PURE__*/ S.String;
+export const ListCollaboratorsRequestAffiliation = S.String;
 
 export type ListCollaboratorsRequestPermission =
   | "pull"
@@ -12688,7 +12631,7 @@ export type ListCollaboratorsRequestPermission =
   | "push"
   | "maintain"
   | "admin";
-export const ListCollaboratorsRequestPermission = /*@__PURE__*/ S.String;
+export const ListCollaboratorsRequestPermission = S.String;
 
 export interface ListCollaboratorsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -13253,7 +13196,7 @@ export type ListForAuthenticatedUserRequestVisibility =
   | "all"
   | "public"
   | "private";
-export const ListForAuthenticatedUserRequestVisibility = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestVisibility = S.String;
 
 export type ListForAuthenticatedUserRequestType =
   | "all"
@@ -13261,17 +13204,17 @@ export type ListForAuthenticatedUserRequestType =
   | "public"
   | "private"
   | "member";
-export const ListForAuthenticatedUserRequestType = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestType = S.String;
 
 export type ListForAuthenticatedUserRequestSort =
   | "created"
   | "updated"
   | "pushed"
   | "full_name";
-export const ListForAuthenticatedUserRequestSort = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestSort = S.String;
 
 export type ListForAuthenticatedUserRequestDirection = "asc" | "desc";
-export const ListForAuthenticatedUserRequestDirection = /*@__PURE__*/ S.String;
+export const ListForAuthenticatedUserRequestDirection = S.String;
 
 export interface ListForAuthenticatedUserRequest {
   /** Limit results to repositories with the specified visibility. */
@@ -13331,7 +13274,7 @@ export type ListForksRequestSort =
   | "oldest"
   | "stargazers"
   | "watchers";
-export const ListForksRequestSort = /*@__PURE__*/ S.String;
+export const ListForksRequestSort = S.String;
 
 export interface ListForksRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -13378,17 +13321,17 @@ export type ListForOrgRequestType =
   | "forks"
   | "sources"
   | "member";
-export const ListForOrgRequestType = /*@__PURE__*/ S.String;
+export const ListForOrgRequestType = S.String;
 
 export type ListForOrgRequestSort =
   | "created"
   | "updated"
   | "pushed"
   | "full_name";
-export const ListForOrgRequestSort = /*@__PURE__*/ S.String;
+export const ListForOrgRequestSort = S.String;
 
 export type ListForOrgRequestDirection = "asc" | "desc";
-export const ListForOrgRequestDirection = /*@__PURE__*/ S.String;
+export const ListForOrgRequestDirection = S.String;
 
 export interface ListForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -13430,17 +13373,17 @@ export const ListForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListForOrgResponse>;
 
 export type ListForUserRequestType = "all" | "owner" | "member";
-export const ListForUserRequestType = /*@__PURE__*/ S.String;
+export const ListForUserRequestType = S.String;
 
 export type ListForUserRequestSort =
   | "created"
   | "updated"
   | "pushed"
   | "full_name";
-export const ListForUserRequestSort = /*@__PURE__*/ S.String;
+export const ListForUserRequestSort = S.String;
 
 export type ListForUserRequestDirection = "asc" | "desc";
-export const ListForUserRequestDirection = /*@__PURE__*/ S.String;
+export const ListForUserRequestDirection = S.String;
 
 export interface ListForUserRequest {
   /** The handle for the GitHub user account. */
@@ -13587,7 +13530,7 @@ export type IssueTypeColor =
   | "red"
   | "pink"
   | "purple";
-export const IssueTypeColor = /*@__PURE__*/ S.String;
+export const IssueTypeColor = S.String;
 
 /** The type assigned to the issue. This is only present for issues in repositories where issue types are supported. */
 export interface IssueType {
@@ -13792,7 +13735,7 @@ export const PullRequestSimpleLabelsList = /*@__PURE__*/ S.Array(
 
 /** The state of the milestone. */
 export type NullableMilestoneState = "open" | "closed";
-export const NullableMilestoneState = /*@__PURE__*/ S.String;
+export const NullableMilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface NullableMilestone {
@@ -13913,7 +13856,7 @@ export const PullRequestSimpleLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The merge method to use. */
 export type AutoMergeMergeMethod = "merge" | "squash" | "rebase";
-export const AutoMergeMergeMethod = /*@__PURE__*/ S.String;
+export const AutoMergeMergeMethod = S.String;
 
 /** The status of auto merging a pull request. */
 export interface AutoMerge {
@@ -14245,7 +14188,7 @@ export const ListTeamsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTeamsResponse>;
 
 export type ListWebhookDeliveriesRequestStatus = "success" | "failure";
-export const ListWebhookDeliveriesRequestStatus = /*@__PURE__*/ S.String;
+export const ListWebhookDeliveriesRequestStatus = S.String;
 
 export interface ListWebhookDeliveriesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -14423,7 +14366,7 @@ export const MergeUpstreamRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MergeUpstreamRequest>;
 
 export type MergedUpstreamMergeType = "merge" | "fast-forward" | "none";
-export const MergedUpstreamMergeType = /*@__PURE__*/ S.String;
+export const MergedUpstreamMergeType = S.String;
 
 /** Results of a successful merge upstream request */
 export interface MergedUpstream {
@@ -14613,7 +14556,7 @@ export type RemoveStatusCheckContextsRequestBody =
   | RemoveStatusCheckContextsRequestBodyCase0
   | RemoveStatusCheckContextsRequestBodyCase1List;
 export const RemoveStatusCheckContextsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemoveStatusCheckContextsRequestBody>;
+  S.Unknown as any as S.Schema<RemoveStatusCheckContextsRequestBody>;
 
 export interface RemoveStatusCheckContextsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -14717,7 +14660,7 @@ export type RemoveTeamAccessRestrictionsRequestBody =
   | RemoveTeamAccessRestrictionsRequestBodyCase0
   | RemoveTeamAccessRestrictionsRequestBodyCase1List;
 export const RemoveTeamAccessRestrictionsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemoveTeamAccessRestrictionsRequestBody>;
+  S.Unknown as any as S.Schema<RemoveTeamAccessRestrictionsRequestBody>;
 
 export interface RemoveTeamAccessRestrictionsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -14997,7 +14940,7 @@ export type SetStatusCheckContextsRequestBody =
   | SetStatusCheckContextsRequestBodyCase0
   | SetStatusCheckContextsRequestBodyCase1List;
 export const SetStatusCheckContextsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SetStatusCheckContextsRequestBody>;
+  S.Unknown as any as S.Schema<SetStatusCheckContextsRequestBody>;
 
 export interface SetStatusCheckContextsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -15069,7 +15012,7 @@ export type SetTeamAccessRestrictionsRequestBody =
   | SetTeamAccessRestrictionsRequestBodyCase0
   | SetTeamAccessRestrictionsRequestBodyCase1List;
 export const SetTeamAccessRestrictionsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SetTeamAccessRestrictionsRequestBody>;
+  S.Unknown as any as S.Schema<SetTeamAccessRestrictionsRequestBody>;
 
 export interface SetTeamAccessRestrictionsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -15232,7 +15175,7 @@ export const TransferResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The visibility of the repository. */
 export type UpdateRequestVisibility = "public" | "private";
-export const UpdateRequestVisibility = /*@__PURE__*/ S.String;
+export const UpdateRequestVisibility = S.String;
 
 /** Use the `status` property to enable or disable GitHub Advanced Security for this repository. For more information, see "[About GitHub Advanced Security](/github/getting-started-with-github/learning-about-github/about-github-advanced-security)." For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface UpdateRequestSecurityAndAnalysisAdvancedSecurity {
@@ -15295,14 +15238,14 @@ export type UpdateRequestSecurityAndAnalysisSecretScanningDelegatedBypassOptions
   | "TEAM"
   | "ROLE";
 export const UpdateRequestSecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type UpdateRequestSecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const UpdateRequestSecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestSecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -15413,28 +15356,28 @@ export const UpdateRequestSecurityAndAnalysis = /*@__PURE__*/ S.suspend(() =>
 export type UpdateRequestPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const UpdateRequestPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const UpdateRequestPullRequestCreationPolicy = S.String;
 
 /** Required when using `squash_merge_commit_message`. The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type UpdateRequestSquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const UpdateRequestSquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const UpdateRequestSquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type UpdateRequestSquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const UpdateRequestSquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const UpdateRequestSquashMergeCommitMessage = S.String;
 
 /** Required when using `merge_commit_message`. The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type UpdateRequestMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const UpdateRequestMergeCommitTitle = /*@__PURE__*/ S.String;
+export const UpdateRequestMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type UpdateRequestMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const UpdateRequestMergeCommitMessage = /*@__PURE__*/ S.String;
+export const UpdateRequestMergeCommitMessage = S.String;
 
 export interface UpdateRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -16105,23 +16048,20 @@ export const UpdateDeploymentBranchPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateInformationAboutPagesSiteRequestBuildType =
   | "legacy"
   | "workflow";
-export const UpdateInformationAboutPagesSiteRequestBuildType =
-  /*@__PURE__*/ S.String;
+export const UpdateInformationAboutPagesSiteRequestBuildType = S.String;
 
 /** Update the source for the repository. Must include the branch name, and may optionally specify the subdirectory `/docs`. Possible values are `"gh-pages"`, `"master"`, and `"master /docs"`. */
 export type UpdateInformationAboutPagesSiteRequestSourceCase0 =
   | "gh-pages"
   | "master"
   | "master /docs";
-export const UpdateInformationAboutPagesSiteRequestSourceCase0 =
-  /*@__PURE__*/ S.String;
+export const UpdateInformationAboutPagesSiteRequestSourceCase0 = S.String;
 
 /** The repository directory that includes the source files for the Pages site. Allowed paths are `/` or `/docs`. */
 export type UpdateInformationAboutPagesSiteRequestSourceCase1Path =
   | "/"
   | "/docs";
-export const UpdateInformationAboutPagesSiteRequestSourceCase1Path =
-  /*@__PURE__*/ S.String;
+export const UpdateInformationAboutPagesSiteRequestSourceCase1Path = S.String;
 
 /** Update the source for the repository. Must include the branch name and path. */
 export interface UpdateInformationAboutPagesSiteRequestSourceCase1 {
@@ -16144,7 +16084,7 @@ export type UpdateInformationAboutPagesSiteRequestSource =
   | UpdateInformationAboutPagesSiteRequestSourceCase0
   | UpdateInformationAboutPagesSiteRequestSourceCase1;
 export const UpdateInformationAboutPagesSiteRequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateInformationAboutPagesSiteRequestSource>;
+  S.Unknown as any as S.Schema<UpdateInformationAboutPagesSiteRequestSource>;
 
 export interface UpdateInformationAboutPagesSiteRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -16189,7 +16129,7 @@ export type UpdateInvitationRequestPermissions =
   | "maintain"
   | "triage"
   | "admin";
-export const UpdateInvitationRequestPermissions = /*@__PURE__*/ S.String;
+export const UpdateInvitationRequestPermissions = S.String;
 
 export interface UpdateInvitationRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -16224,7 +16164,7 @@ export type UpdateOrgRulesetRequestTarget =
   | "tag"
   | "push"
   | "repository";
-export const UpdateOrgRulesetRequestTarget = /*@__PURE__*/ S.String;
+export const UpdateOrgRulesetRequestTarget = S.String;
 
 /** The actors that can bypass the rules in this ruleset */
 export type UpdateOrgRulesetRequestBypassActorsList =
@@ -16426,7 +16366,7 @@ export const UpdatePullRequestReviewProtectionRequest = /*@__PURE__*/ S.suspend(
 
 /** Specifies whether this release should be set as the latest release for the repository. Drafts and prereleases cannot be set as latest. Defaults to `true` for newly published releases. `legacy` specifies that the latest release should be determined based on the release creation date and higher semantic version. */
 export type UpdateReleaseRequestMakeLatest = "true" | "false" | "legacy";
-export const UpdateReleaseRequestMakeLatest = /*@__PURE__*/ S.String;
+export const UpdateReleaseRequestMakeLatest = S.String;
 
 export interface UpdateReleaseRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -16510,7 +16450,7 @@ export const UpdateReleaseAssetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The target of the ruleset */
 export type UpdateRepoRulesetRequestTarget = "branch" | "tag" | "push";
-export const UpdateRepoRulesetRequestTarget = /*@__PURE__*/ S.String;
+export const UpdateRepoRulesetRequestTarget = S.String;
 
 /** The actors that can bypass the rules in this ruleset */
 export type UpdateRepoRulesetRequestBypassActorsList =

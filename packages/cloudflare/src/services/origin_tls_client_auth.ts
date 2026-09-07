@@ -230,7 +230,7 @@ export type HostnameCertificatesCreateResponseStatus =
   | "deleted"
   | "deployment_timed_out"
   | "deletion_timed_out";
-export const HostnameCertificatesCreateResponseStatus = /*@__PURE__*/ S.String;
+export const HostnameCertificatesCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateHostnameCertificateResponse {
@@ -403,7 +403,7 @@ export type HostnameCertificatesDeleteResponseStatus =
   | "deleted"
   | "deployment_timed_out"
   | "deletion_timed_out";
-export const HostnameCertificatesDeleteResponseStatus = /*@__PURE__*/ S.String;
+export const HostnameCertificatesDeleteResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteHostnameCertificateResponse {
@@ -560,7 +560,7 @@ export type HostnamesGetResponseCertStatus =
   | "deleted"
   | "deployment_timed_out"
   | "deletion_timed_out";
-export const HostnamesGetResponseCertStatus = /*@__PURE__*/ S.String;
+export const HostnamesGetResponseCertStatus = S.String;
 
 export type HostnamesGetResponseStatus =
   | "initializing"
@@ -570,7 +570,7 @@ export type HostnamesGetResponseStatus =
   | "deleted"
   | "deployment_timed_out"
   | "deletion_timed_out";
-export const HostnamesGetResponseStatus = /*@__PURE__*/ S.String;
+export const HostnamesGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetHostnameResponse {
@@ -661,7 +661,7 @@ export type HostnameCertificatesGetResponseStatus =
   | "deleted"
   | "deployment_timed_out"
   | "deletion_timed_out";
-export const HostnameCertificatesGetResponseStatus = /*@__PURE__*/ S.String;
+export const HostnameCertificatesGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetHostnameCertificateResponse {
@@ -858,7 +858,7 @@ export type HostnameCertificatesListResultItemStatus =
   | "deleted"
   | "deployment_timed_out"
   | "deletion_timed_out";
-export const HostnameCertificatesListResultItemStatus = /*@__PURE__*/ S.String;
+export const HostnameCertificatesListResultItemStatus = S.String;
 
 export interface HostnameCertificatesListResultItem {
   /** Identifier. */

@@ -49,7 +49,7 @@ export type DeploymentNamespace =
   | "DEPLOYMENT_NAMESPACE_UNSPECIFIED"
   | "DEPLOYMENT_NAMESPACE_WORKSPACE"
   | "DEPLOYMENT_NAMESPACE_GLOBAL";
-export const DeploymentNamespace = /*@__PURE__*/ S.String;
+export const DeploymentNamespace = S.String;
 
 export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_UNSPECIFIED"
@@ -58,7 +58,7 @@ export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
   | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
   | "OBJECT_CREATION_TYPE_EPHEMERAL";
-export const ObjectCreationType = /*@__PURE__*/ S.String;
+export const ObjectCreationType = S.String;
 
 export interface MountFile {
   filename?: string;

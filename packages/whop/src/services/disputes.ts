@@ -123,7 +123,7 @@ export type DisputeEvidenceDocumentContentType =
   | "image/jpeg"
   | "image/png"
   | "image/webp";
-export const DisputeEvidenceDocumentContentType = /*@__PURE__*/ S.String;
+export const DisputeEvidenceDocumentContentType = S.String;
 
 /** What kind of evidence the document is. */
 export type DisputeEvidenceDocumentDocumentType =
@@ -136,7 +136,7 @@ export type DisputeEvidenceDocumentDocumentType =
   | "customer_session"
   | "digital_fulfillment"
   | "subscription";
-export const DisputeEvidenceDocumentDocumentType = /*@__PURE__*/ S.String;
+export const DisputeEvidenceDocumentDocumentType = S.String;
 
 export interface FileMultipartUrl {
   /** The 1-based index of this part within the multipart upload. */
@@ -166,11 +166,11 @@ export type DisputeEvidenceDocumentUploadStatus =
   | "processing"
   | "ready"
   | "failed";
-export const DisputeEvidenceDocumentUploadStatus = /*@__PURE__*/ S.String;
+export const DisputeEvidenceDocumentUploadStatus = S.String;
 
 /** `public` files are served via an unsigned CDN URL; `private` files via a signed, expiring URL. */
 export type DisputeEvidenceDocumentVisibility = "public" | "private";
-export const DisputeEvidenceDocumentVisibility = /*@__PURE__*/ S.String;
+export const DisputeEvidenceDocumentVisibility = S.String;
 
 export interface DisputeEvidenceDocument {
   /** The uploaded file's MIME type. Uploads are restricted to the types the processor accepts. */
@@ -290,7 +290,7 @@ export type DisputeEvidenceLockedReason =
   | "submitted"
   | "response_window_closed"
   | "not_contestable";
-export const DisputeEvidenceLockedReason = /*@__PURE__*/ S.String;
+export const DisputeEvidenceLockedReason = S.String;
 
 export interface DisputeIssuerComment {
   /** When the comment was received, as an ISO 8601 timestamp. */
@@ -450,7 +450,7 @@ export type DisputeReason =
   | "documentation_request"
   | "bank_cannot_process"
   | "other";
-export const DisputeReason = /*@__PURE__*/ S.String;
+export const DisputeReason = S.String;
 
 /** Where the dispute stands. `needs_response` is awaiting evidence, `under_review` is with the processor, `won` returned the funds to the seller, `lost` returned them to the customer, and `closed` ended without a ruling. A dispute past its `evidence_due_at` reports `under_review` — the window to respond has closed. */
 export type DisputeStatus =
@@ -459,7 +459,7 @@ export type DisputeStatus =
   | "won"
   | "lost"
   | "closed";
-export const DisputeStatus = /*@__PURE__*/ S.String;
+export const DisputeStatus = S.String;
 
 export interface Dispute {
   /** The account the dispute was filed against, prefixed `biz_`. */
@@ -534,7 +534,7 @@ export const Dispute = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Dispute" }) as any as S.Schema<Dispute>;
 
 export type GetDisputeSummaryRequestGroupsItem = "status" | "currency";
-export const GetDisputeSummaryRequestGroupsItem = /*@__PURE__*/ S.String;
+export const GetDisputeSummaryRequestGroupsItem = S.String;
 
 export type GetDisputeSummaryRequestGroupsList = Array<
   GetDisputeSummaryRequestGroupsItem | (string & {})
@@ -549,7 +549,7 @@ export type GetDisputeSummaryRequestStatusItem =
   | "won"
   | "lost"
   | "closed";
-export const GetDisputeSummaryRequestStatusItem = /*@__PURE__*/ S.String;
+export const GetDisputeSummaryRequestStatusItem = S.String;
 
 export type GetDisputeSummaryRequestStatusList = Array<
   GetDisputeSummaryRequestStatusItem | (string & {})
@@ -651,10 +651,10 @@ export type ListDisputesRequestOrder =
   | "created_at"
   | "amount"
   | "evidence_due_at";
-export const ListDisputesRequestOrder = /*@__PURE__*/ S.String;
+export const ListDisputesRequestOrder = S.String;
 
 export type ListDisputesRequestDirection = "asc" | "desc";
-export const ListDisputesRequestDirection = /*@__PURE__*/ S.String;
+export const ListDisputesRequestDirection = S.String;
 
 export type ListDisputesRequestStatusItem =
   | "needs_response"
@@ -662,7 +662,7 @@ export type ListDisputesRequestStatusItem =
   | "won"
   | "lost"
   | "closed";
-export const ListDisputesRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListDisputesRequestStatusItem = S.String;
 
 export type ListDisputesRequestStatusList = Array<
   ListDisputesRequestStatusItem | (string & {})
@@ -912,7 +912,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** Evidence of customer communication or product usage, uploaded as a dispute attachment. Null if not provided. */
 export type LegacyDisputeCustomerCommunicationAttachment =
@@ -928,7 +928,7 @@ export type BillingReasons =
   | "one_time"
   | "manual"
   | "subscription";
-export const BillingReasons = /*@__PURE__*/ S.String;
+export const BillingReasons = S.String;
 
 /** Possible card brands that a payment token can have */
 export type CardBrands =
@@ -978,7 +978,7 @@ export type CardBrands =
   | "pulse"
   | "star"
   | "unknown";
-export const CardBrands = /*@__PURE__*/ S.String;
+export const CardBrands = S.String;
 
 /** The member attached to this payment. */
 export interface LegacyDisputePaymentMember {
@@ -1007,7 +1007,7 @@ export type MembershipStatus =
   | "unresolved"
   | "drafted"
   | "canceling";
-export const MembershipStatus = /*@__PURE__*/ S.String;
+export const MembershipStatus = S.String;
 
 /** The membership attached to this payment. */
 export interface LegacyDisputePaymentMembership {
@@ -1218,7 +1218,7 @@ export type PaymentMethodTypes =
   | "zip"
   | "coinflow"
   | "unknown";
-export const PaymentMethodTypes = /*@__PURE__*/ S.String;
+export const PaymentMethodTypes = S.String;
 
 /** The user that made this payment. */
 export interface LegacyDisputePaymentUser {
@@ -1346,7 +1346,7 @@ export type DisputeStatuses =
   | "lost"
   | "closed"
   | "other";
-export const DisputeStatuses = /*@__PURE__*/ S.String;
+export const DisputeStatuses = S.String;
 
 /** An additional attachment that does not fit into the standard evidence categories. Null if not provided. */
 export type LegacyDisputeUncategorizedAttachment =
@@ -1675,8 +1675,7 @@ export type UploadDisputeEvidenceRequestDocumentsItemDocumentType =
   | "customer_session"
   | "digital_fulfillment"
   | "subscription";
-export const UploadDisputeEvidenceRequestDocumentsItemDocumentType =
-  /*@__PURE__*/ S.String;
+export const UploadDisputeEvidenceRequestDocumentsItemDocumentType = S.String;
 
 export interface UploadDisputeEvidenceRequestDocumentsItem {
   /** The ID returned by a direct upload. */

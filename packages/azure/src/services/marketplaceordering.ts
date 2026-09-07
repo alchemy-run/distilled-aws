@@ -42,7 +42,7 @@ export const CancelMarketplaceAgreementRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the agreement is active or cancelled */
 export type OldAgreementPropertiesState = "Active" | "Canceled";
-export const OldAgreementPropertiesState = /*@__PURE__*/ S.String;
+export const OldAgreementPropertiesState = S.String;
 
 /** Old Agreement Terms definition */
 export interface OldAgreementProperties {
@@ -94,8 +94,7 @@ export const CancelMarketplaceAgreementResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CancelMarketplaceAgreementResponse>;
 
 export type CreateMarketplaceAgreementRequestOfferType = "virtualmachine";
-export const CreateMarketplaceAgreementRequestOfferType =
-  /*@__PURE__*/ S.String;
+export const CreateMarketplaceAgreementRequestOfferType = S.String;
 
 /** Agreement Terms definition */
 export interface AgreementProperties {
@@ -175,7 +174,7 @@ export type CreateMarketplaceAgreementResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreateMarketplaceAgreementResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateMarketplaceAgreementResponseSystemDataLastModifiedByType =
@@ -184,7 +183,7 @@ export type CreateMarketplaceAgreementResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreateMarketplaceAgreementResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateMarketplaceAgreementResponseSystemData {
@@ -244,7 +243,7 @@ export const CreateMarketplaceAgreementResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateMarketplaceAgreementResponse>;
 
 export type GetMarketplaceAgreementRequestOfferType = "virtualmachine";
-export const GetMarketplaceAgreementRequestOfferType = /*@__PURE__*/ S.String;
+export const GetMarketplaceAgreementRequestOfferType = S.String;
 
 export interface GetMarketplaceAgreementRequest {
   /** The subscription ID that identifies an Azure subscription. */
@@ -283,8 +282,7 @@ export type GetMarketplaceAgreementResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetMarketplaceAgreementResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetMarketplaceAgreementResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetMarketplaceAgreementResponseSystemDataLastModifiedByType =
@@ -293,7 +291,7 @@ export type GetMarketplaceAgreementResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetMarketplaceAgreementResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetMarketplaceAgreementResponseSystemData {

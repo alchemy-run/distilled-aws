@@ -77,7 +77,7 @@ export type GoogleCloudVideointelligenceV1_AnnotateVideoRequestFeaturesItemEnum 
   | "LOGO_RECOGNITION"
   | "PERSON_DETECTION";
 export const GoogleCloudVideointelligenceV1_AnnotateVideoRequestFeaturesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudVideointelligenceV1_AnnotateVideoRequestFeaturesItemEnumList =
   Array<
@@ -278,7 +278,7 @@ export type GoogleCloudVideointelligenceV1_LabelDetectionConfigLabelDetectionMod
   | "FRAME_MODE"
   | "SHOT_AND_FRAME_MODE";
 export const GoogleCloudVideointelligenceV1_LabelDetectionConfigLabelDetectionModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config for LABEL_DETECTION. */
 export interface GoogleCloudVideointelligenceV1_LabelDetectionConfig {

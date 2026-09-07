@@ -545,10 +545,10 @@ export const GetEncryptionConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEncryptionConfigRequest",
 }) as any as S.Schema<GetEncryptionConfigRequest>;
 export type EncryptionStatus = "UPDATING" | "ACTIVE" | (string & {});
-export const EncryptionStatus = /*@__PURE__*/ S.String;
+export const EncryptionStatus = S.String;
 
 export type EncryptionType = "NONE" | "KMS" | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export interface EncryptionConfig {
   KeyId?: string;
@@ -739,12 +739,12 @@ export const ServiceId = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ServiceId" }) as any as S.Schema<ServiceId>;
 export type InsightCategory = "FAULT" | (string & {});
-export const InsightCategory = /*@__PURE__*/ S.String;
+export const InsightCategory = S.String;
 
 export type InsightCategoryList = InsightCategory[];
 export const InsightCategoryList = /*@__PURE__*/ S.Array(InsightCategory);
 export type InsightState = "ACTIVE" | "CLOSED" | (string & {});
-export const InsightState = /*@__PURE__*/ S.String;
+export const InsightState = S.String;
 
 export type InsightSummaryText = string;
 export interface RequestImpactStatistics {
@@ -1064,7 +1064,7 @@ export type RetrievalStatus =
   | "CANCELLED"
   | "TIMEOUT"
   | (string & {});
-export const RetrievalStatus = /*@__PURE__*/ S.String;
+export const RetrievalStatus = S.String;
 
 export interface ErrorStatistics {
   ThrottleCount?: number;
@@ -1657,13 +1657,13 @@ export const GetTraceSegmentDestinationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTraceSegmentDestinationRequest",
 }) as any as S.Schema<GetTraceSegmentDestinationRequest>;
 export type TraceSegmentDestination = "XRay" | "CloudWatchLogs" | (string & {});
-export const TraceSegmentDestination = /*@__PURE__*/ S.String;
+export const TraceSegmentDestination = S.String;
 
 export type TraceSegmentDestinationStatus =
   | "PENDING"
   | "ACTIVE"
   | (string & {});
-export const TraceSegmentDestinationStatus = /*@__PURE__*/ S.String;
+export const TraceSegmentDestinationStatus = S.String;
 
 export interface GetTraceSegmentDestinationResult {
   Destination?: TraceSegmentDestination;
@@ -1678,10 +1678,10 @@ export const GetTraceSegmentDestinationResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTraceSegmentDestinationResult",
 }) as any as S.Schema<GetTraceSegmentDestinationResult>;
 export type TimeRangeType = "TraceId" | "Event" | "Service" | (string & {});
-export const TimeRangeType = /*@__PURE__*/ S.String;
+export const TimeRangeType = S.String;
 
 export type SamplingStrategyName = "PartialScan" | "FixedRate" | (string & {});
-export const SamplingStrategyName = /*@__PURE__*/ S.String;
+export const SamplingStrategyName = S.String;
 
 export interface SamplingStrategy {
   Name?: SamplingStrategyName;
@@ -2112,7 +2112,7 @@ export const ListResourcePoliciesResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListResourcePoliciesResult",
 }) as any as S.Schema<ListResourcePoliciesResult>;
 export type TraceFormatType = "XRAY" | "OTEL" | (string & {});
-export const TraceFormatType = /*@__PURE__*/ S.String;
+export const TraceFormatType = S.String;
 
 export interface ListRetrievedTracesRequest {
   RetrievalToken: string;

@@ -90,7 +90,7 @@ export type TraceSpanKindEnum =
   | "SPAN_KIND_UNSPECIFIED"
   | "RPC_SERVER"
   | "RPC_CLIENT";
-export const TraceSpanKindEnum = /*@__PURE__*/ S.String;
+export const TraceSpanKindEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -154,7 +154,7 @@ export type ListProjectsTracesViewEnum =
   | "MINIMAL"
   | "ROOTSPAN"
   | "COMPLETE";
-export const ListProjectsTracesViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsTracesViewEnum = S.String;
 
 export interface ListProjectsTracesRequest {
   /** Required. Start of the time interval (inclusive) during which the trace data was collected from the application. */

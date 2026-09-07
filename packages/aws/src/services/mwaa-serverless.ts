@@ -168,7 +168,7 @@ export type EncryptionType =
   | "AWS_MANAGED_KEY"
   | "CUSTOMER_MANAGED_KEY"
   | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export interface EncryptionConfiguration {
   Type: EncryptionType;
@@ -188,7 +188,7 @@ export const LoggingConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "LoggingConfiguration",
 }) as any as S.Schema<LoggingConfiguration>;
 export type EngineVersion = 1 | (number & {});
-export const EngineVersion = /*@__PURE__*/ S.Number;
+export const EngineVersion = S.Number;
 export type SecurityGroupString = string;
 export type SecurityGroupIds = string[];
 export const SecurityGroupIds = /*@__PURE__*/ S.Array(S.String);
@@ -255,7 +255,7 @@ export const CreateWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 export type WorkflowArn = string;
 export type TimestampValue = Date;
 export type WorkflowStatus = "READY" | "DELETING" | (string & {});
-export const WorkflowStatus = /*@__PURE__*/ S.String;
+export const WorkflowStatus = S.String;
 
 export type WorkflowVersion = string;
 export type IsLatestVersion = boolean;
@@ -359,7 +359,7 @@ export type TaskInstanceStatus =
   | "CANCELLED"
   | "TIMEOUT"
   | (string & {});
-export const TaskInstanceStatus = /*@__PURE__*/ S.String;
+export const TaskInstanceStatus = S.String;
 
 export type GenericMap = { [key: string]: string | undefined };
 export const GenericMap = /*@__PURE__*/ S.Record(
@@ -509,7 +509,7 @@ export const GetWorkflowRunRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkflowRunRequest",
 }) as any as S.Schema<GetWorkflowRunRequest>;
 export type RunType = "ON_DEMAND" | "SCHEDULED" | (string & {});
-export const RunType = /*@__PURE__*/ S.String;
+export const RunType = S.String;
 
 export type ObjectMap = { [key: string]: any | undefined };
 export const ObjectMap = /*@__PURE__*/ S.Record(
@@ -528,7 +528,7 @@ export type WorkflowRunStatus =
   | "STOPPING"
   | "STOPPED"
   | (string & {});
-export const WorkflowRunStatus = /*@__PURE__*/ S.String;
+export const WorkflowRunStatus = S.String;
 
 export interface WorkflowRunDetail {
   WorkflowArn?: string;
@@ -1081,7 +1081,7 @@ export type ValidationExceptionReason =
   | "fieldValidationFailed"
   | "other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

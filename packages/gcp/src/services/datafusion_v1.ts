@@ -105,7 +105,7 @@ export type InstanceDisabledReasonItemEnum =
   | "DISABLED_REASON_UNSPECIFIED"
   | "KMS_KEY_ISSUE"
   | "PROJECT_STATE_OFF";
-export const InstanceDisabledReasonItemEnum = /*@__PURE__*/ S.String;
+export const InstanceDisabledReasonItemEnum = S.String;
 
 export type InstanceDisabledReasonItemEnumList = Array<
   InstanceDisabledReasonItemEnum | (string & {})
@@ -118,7 +118,7 @@ export type NetworkConfigConnectionTypeEnum =
   | "CONNECTION_TYPE_UNSPECIFIED"
   | "VPC_PEERING"
   | "PRIVATE_SERVICE_CONNECT_INTERFACES";
-export const NetworkConfigConnectionTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigConnectionTypeEnum = S.String;
 
 /** Configuration for using Private Service Connect to establish connectivity between the Data Fusion consumer project and the corresponding tenant project. */
 export interface PrivateServiceConnectConfig {
@@ -170,7 +170,7 @@ export type VersionTypeEnum =
   | "TYPE_PREVIEW"
   | "TYPE_GENERAL_AVAILABILITY"
   | "TYPE_DEPRECATED";
-export const VersionTypeEnum = /*@__PURE__*/ S.String;
+export const VersionTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -221,7 +221,7 @@ export type AcceleratorStateEnum =
   | "ENABLED"
   | "DISABLED"
   | "UNKNOWN";
-export const AcceleratorStateEnum = /*@__PURE__*/ S.String;
+export const AcceleratorStateEnum = S.String;
 
 export type AcceleratorAcceleratorTypeEnum =
   | "ACCELERATOR_TYPE_UNSPECIFIED"
@@ -229,7 +229,7 @@ export type AcceleratorAcceleratorTypeEnum =
   | "HEALTHCARE"
   | "CCAI_INSIGHTS"
   | "CLOUDSEARCH";
-export const AcceleratorAcceleratorTypeEnum = /*@__PURE__*/ S.String;
+export const AcceleratorAcceleratorTypeEnum = S.String;
 
 /** Identifies Data Fusion accelerators for an instance. */
 export interface Accelerator {
@@ -314,14 +314,14 @@ export type InstanceTypeEnum =
   | "BASIC"
   | "ENTERPRISE"
   | "DEVELOPER";
-export const InstanceTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceTypeEnum = S.String;
 
 export type MaintenanceEventStateEnum =
   | "STATE_UNSPECIFIED"
   | "SCHEDULED"
   | "STARTED"
   | "COMPLETED";
-export const MaintenanceEventStateEnum = /*@__PURE__*/ S.String;
+export const MaintenanceEventStateEnum = S.String;
 
 /** Represents a maintenance event. */
 export interface MaintenanceEvent {
@@ -376,7 +376,7 @@ export type InstanceStateEnum =
   | "AUTO_UPGRADING"
   | "DISABLED"
   | "ENABLING";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** Monitoring configuration for a Data Fusion instance. */
 export interface MonitoringConfig {
@@ -743,7 +743,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

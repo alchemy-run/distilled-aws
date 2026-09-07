@@ -1141,7 +1141,7 @@ export const RequestSharedInviteDenyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of action to be taken: upgrade or downgrade */
 export type SetExternalInvitePermissionsRequestAction = "upgrade" | "downgrade";
-export const SetExternalInvitePermissionsRequestAction = /*@__PURE__*/ S.String;
+export const SetExternalInvitePermissionsRequestAction = S.String;
 
 export interface SetExternalInvitePermissionsRequest {
   /** The channel ID to change external invite permissions for */

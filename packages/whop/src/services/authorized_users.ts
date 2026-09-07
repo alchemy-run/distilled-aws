@@ -88,7 +88,7 @@ export type GrantableAuthorizedUserRoles =
   | "sales_manager"
   | "moderator"
   | "advertiser";
-export const GrantableAuthorizedUserRoles = /*@__PURE__*/ S.String;
+export const GrantableAuthorizedUserRoles = S.String;
 
 export interface CreateAuthorizedUserRequest {
   /** The ID of the company to add the authorized user to. */
@@ -142,7 +142,7 @@ export type AuthorizedUserRoles =
   | "manager"
   | "workforce"
   | "custom";
-export const AuthorizedUserRoles = /*@__PURE__*/ S.String;
+export const AuthorizedUserRoles = S.String;
 
 /** The user account linked to this authorized user record. */
 export interface AuthorizedUserUser {

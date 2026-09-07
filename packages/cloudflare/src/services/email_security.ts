@@ -214,7 +214,7 @@ export type InvestigateMoveBulkRequestDestination =
   | "DeletedItems"
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
-export const InvestigateMoveBulkRequestDestination = /*@__PURE__*/ S.String;
+export const InvestigateMoveBulkRequestDestination = S.String;
 
 export type InvestigateMoveBulkRequestExpectedDisposition =
   | "MALICIOUS"
@@ -227,8 +227,7 @@ export type InvestigateMoveBulkRequestExpectedDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateMoveBulkRequestExpectedDisposition =
-  /*@__PURE__*/ S.String;
+export const InvestigateMoveBulkRequestExpectedDisposition = S.String;
 
 export type InvestigateMoveBulkRequestIdsList = Array<string>;
 export const InvestigateMoveBulkRequestIdsList = /*@__PURE__*/ S.Array(
@@ -428,7 +427,7 @@ export const BulkInvestigateReleaseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BulkInvestigateReleaseResponse>;
 
 export type InvestigateBulkCreateRequestAction = "MOVE" | "RELEASE";
-export const InvestigateBulkCreateRequestAction = /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateRequestAction = S.String;
 
 export type InvestigateBulkCreateRequestSearchParamsDeliveryStatus =
   | "delivered"
@@ -438,8 +437,7 @@ export type InvestigateBulkCreateRequestSearchParamsDeliveryStatus =
   | "deferred"
   | "bounced"
   | "queued";
-export const InvestigateBulkCreateRequestSearchParamsDeliveryStatus =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateRequestSearchParamsDeliveryStatus = S.String;
 
 export type InvestigateBulkCreateRequestSearchParamsFinalDisposition =
   | "MALICIOUS"
@@ -453,14 +451,13 @@ export type InvestigateBulkCreateRequestSearchParamsFinalDisposition =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkCreateRequestSearchParamsFinalDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkCreateRequestSearchParamsMessageAction =
   | "PREVIEW"
   | "QUARANTINE_RELEASED"
   | "MOVED";
-export const InvestigateBulkCreateRequestSearchParamsMessageAction =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateRequestSearchParamsMessageAction = S.String;
 
 export interface InvestigateBulkCreateRequestSearchParams {
   /** Deprecated, use `GET /investigate/{investigate_id}/action_log` instead. End of life: November 1, 2026. */
@@ -534,7 +531,7 @@ export type InvestigateBulkCreateRequestDestination =
   | "DeletedItems"
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
-export const InvestigateBulkCreateRequestDestination = /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateRequestDestination = S.String;
 
 export type InvestigateBulkCreateRequestExpectedDisposition =
   | "MALICIOUS"
@@ -547,8 +544,7 @@ export type InvestigateBulkCreateRequestExpectedDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateBulkCreateRequestExpectedDisposition =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateRequestExpectedDisposition = S.String;
 
 export interface CreateInvestigateBulkRequest {
   /** Identifier. */
@@ -595,11 +591,10 @@ export type InvestigateBulkCreateResponseActionParamsMoveDestination =
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
 export const InvestigateBulkCreateResponseActionParamsMoveDestination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkCreateResponseActionParamsMoveType = "MOVE";
-export const InvestigateBulkCreateResponseActionParamsMoveType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateResponseActionParamsMoveType = S.String;
 
 export type InvestigateBulkCreateResponseActionParamsMoveExpectedDisposition =
   | "MALICIOUS"
@@ -613,7 +608,7 @@ export type InvestigateBulkCreateResponseActionParamsMoveExpectedDisposition =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkCreateResponseActionParamsMoveExpectedDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkCreateResponseActionParamsMove {
   destination: InvestigateBulkCreateResponseActionParamsMoveDestination;
@@ -636,8 +631,7 @@ export const InvestigateBulkCreateResponseActionParamsMove =
   }) as any as S.Schema<InvestigateBulkCreateResponseActionParamsMove>;
 
 export type InvestigateBulkCreateResponseActionParamsReleaseType = "RELEASE";
-export const InvestigateBulkCreateResponseActionParamsReleaseType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateResponseActionParamsReleaseType = S.String;
 
 export interface InvestigateBulkCreateResponseActionParamsRelease {
   type: InvestigateBulkCreateResponseActionParamsReleaseType;
@@ -660,7 +654,7 @@ export const InvestigateBulkCreateResponseActionParams =
   );
 
 export type InvestigateBulkCreateResponseActionType = "MOVE" | "RELEASE";
-export const InvestigateBulkCreateResponseActionType = /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateResponseActionType = S.String;
 
 export type InvestigateBulkCreateResponseSearchParamsDeliveryStatus =
   | "delivered"
@@ -670,8 +664,7 @@ export type InvestigateBulkCreateResponseSearchParamsDeliveryStatus =
   | "deferred"
   | "bounced"
   | "queued";
-export const InvestigateBulkCreateResponseSearchParamsDeliveryStatus =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateResponseSearchParamsDeliveryStatus = S.String;
 
 export type InvestigateBulkCreateResponseSearchParamsFinalDisposition =
   | "MALICIOUS"
@@ -685,14 +678,13 @@ export type InvestigateBulkCreateResponseSearchParamsFinalDisposition =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkCreateResponseSearchParamsFinalDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkCreateResponseSearchParamsMessageAction =
   | "PREVIEW"
   | "QUARANTINE_RELEASED"
   | "MOVED";
-export const InvestigateBulkCreateResponseSearchParamsMessageAction =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateResponseSearchParamsMessageAction = S.String;
 
 export interface InvestigateBulkCreateResponseSearchParams {
   /** Deprecated, use `GET /investigate/{investigate_id}/action_log` instead. End of life: November 1, 2026. */
@@ -766,7 +758,7 @@ export type InvestigateBulkCreateResponseStatus =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const InvestigateBulkCreateResponseStatus = /*@__PURE__*/ S.String;
+export const InvestigateBulkCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateInvestigateBulkResponse {
@@ -843,11 +835,10 @@ export type InvestigateBulkCancelCreateResponseActionParamsMoveDestination =
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
 export const InvestigateBulkCancelCreateResponseActionParamsMoveDestination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkCancelCreateResponseActionParamsMoveType = "MOVE";
-export const InvestigateBulkCancelCreateResponseActionParamsMoveType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCancelCreateResponseActionParamsMoveType = S.String;
 
 export type InvestigateBulkCancelCreateResponseActionParamsMoveExpectedDisposition =
   | "MALICIOUS"
@@ -861,7 +852,7 @@ export type InvestigateBulkCancelCreateResponseActionParamsMoveExpectedDispositi
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkCancelCreateResponseActionParamsMoveExpectedDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkCancelCreateResponseActionParamsMove {
   destination: InvestigateBulkCancelCreateResponseActionParamsMoveDestination;
@@ -887,7 +878,7 @@ export const InvestigateBulkCancelCreateResponseActionParamsMove =
 export type InvestigateBulkCancelCreateResponseActionParamsReleaseType =
   "RELEASE";
 export const InvestigateBulkCancelCreateResponseActionParamsReleaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkCancelCreateResponseActionParamsRelease {
   type: InvestigateBulkCancelCreateResponseActionParamsReleaseType;
@@ -910,8 +901,7 @@ export const InvestigateBulkCancelCreateResponseActionParams =
   );
 
 export type InvestigateBulkCancelCreateResponseActionType = "MOVE" | "RELEASE";
-export const InvestigateBulkCancelCreateResponseActionType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkCancelCreateResponseActionType = S.String;
 
 export type InvestigateBulkCancelCreateResponseSearchParamsDeliveryStatus =
   | "delivered"
@@ -922,7 +912,7 @@ export type InvestigateBulkCancelCreateResponseSearchParamsDeliveryStatus =
   | "bounced"
   | "queued";
 export const InvestigateBulkCancelCreateResponseSearchParamsDeliveryStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkCancelCreateResponseSearchParamsFinalDisposition =
   | "MALICIOUS"
@@ -936,14 +926,14 @@ export type InvestigateBulkCancelCreateResponseSearchParamsFinalDisposition =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkCancelCreateResponseSearchParamsFinalDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkCancelCreateResponseSearchParamsMessageAction =
   | "PREVIEW"
   | "QUARANTINE_RELEASED"
   | "MOVED";
 export const InvestigateBulkCancelCreateResponseSearchParamsMessageAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkCancelCreateResponseSearchParams {
   /** Deprecated, use `GET /investigate/{investigate_id}/action_log` instead. End of life: November 1, 2026. */
@@ -1017,7 +1007,7 @@ export type InvestigateBulkCancelCreateResponseStatus =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const InvestigateBulkCancelCreateResponseStatus = /*@__PURE__*/ S.String;
+export const InvestigateBulkCancelCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateInvestigateBulkCancelResponse {
@@ -1071,7 +1061,7 @@ export type InvestigateMoveCreateRequestDestination =
   | "DeletedItems"
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
-export const InvestigateMoveCreateRequestDestination = /*@__PURE__*/ S.String;
+export const InvestigateMoveCreateRequestDestination = S.String;
 
 export type InvestigateMoveCreateRequestExpectedDisposition =
   | "MALICIOUS"
@@ -1084,8 +1074,7 @@ export type InvestigateMoveCreateRequestExpectedDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateMoveCreateRequestExpectedDisposition =
-  /*@__PURE__*/ S.String;
+export const InvestigateMoveCreateRequestExpectedDisposition = S.String;
 
 export interface CreateInvestigateMoveRequest {
   /** Identifier. */
@@ -1187,8 +1176,7 @@ export type InvestigateReclassifyCreateRequestExpectedDisposition =
   | "SPAM"
   | "SPOOF"
   | "SUSPICIOUS";
-export const InvestigateReclassifyCreateRequestExpectedDisposition =
-  /*@__PURE__*/ S.String;
+export const InvestigateReclassifyCreateRequestExpectedDisposition = S.String;
 
 export interface CreateInvestigateReclassifyRequest {
   /** Identifier. */
@@ -1239,8 +1227,7 @@ export type SettingsAllowPoliciesCreateRequestPatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsAllowPoliciesCreateRequestPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesCreateRequestPatternType = S.String;
 
 export interface CreateSettingAllowPolicyRequest {
   /** Identifier. */
@@ -1299,8 +1286,7 @@ export type SettingsAllowPoliciesCreateResponsePatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsAllowPoliciesCreateResponsePatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesCreateResponsePatternType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateSettingAllowPolicyResponse {
@@ -1367,8 +1353,7 @@ export type SettingsBlockSendersCreateRequestPatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsBlockSendersCreateRequestPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsBlockSendersCreateRequestPatternType = S.String;
 
 export interface CreateSettingBlockSenderRequest {
   /** Identifier. */
@@ -1406,8 +1391,7 @@ export type SettingsBlockSendersCreateResponsePatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsBlockSendersCreateResponsePatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsBlockSendersCreateResponsePatternType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateSettingBlockSenderResponse {
@@ -1447,8 +1431,7 @@ export type SettingsImpersonationRegistryCreateRequestProvenance =
   | "SNOOPY-CASB_OFFICE_365"
   | "SNOOPY-OFFICE_365"
   | "SNOOPY-GOOGLE_DIRECTORY";
-export const SettingsImpersonationRegistryCreateRequestProvenance =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryCreateRequestProvenance = S.String;
 
 export interface CreateSettingImpersonationRegistryRequest {
   /** Identifier. */
@@ -1498,8 +1481,7 @@ export type SettingsImpersonationRegistryCreateResponseProvenance =
   | "SNOOPY-CASB_OFFICE_365"
   | "SNOOPY-OFFICE_365"
   | "SNOOPY-GOOGLE_DIRECTORY";
-export const SettingsImpersonationRegistryCreateResponseProvenance =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryCreateResponseProvenance = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateSettingImpersonationRegistryResponse {
@@ -2073,8 +2055,7 @@ export type InvestigateGetResponseActionLogItemOperation =
   | "SUBMISSION"
   | "QUARANTINE_RELEASE"
   | "PREVIEW";
-export const InvestigateGetResponseActionLogItemOperation =
-  /*@__PURE__*/ S.String;
+export const InvestigateGetResponseActionLogItemOperation = S.String;
 
 export interface InvestigateGetResponseActionLogItemProperties {
   /** Target folder for move operations */
@@ -2145,8 +2126,7 @@ export type InvestigateGetResponsePropertiesAllowlistedPatternType =
   | "domain_recency"
   | "managed_acceptable_sender"
   | "outbound_ndr";
-export const InvestigateGetResponsePropertiesAllowlistedPatternType =
-  /*@__PURE__*/ S.String;
+export const InvestigateGetResponsePropertiesAllowlistedPatternType = S.String;
 
 export type InvestigateGetResponsePropertiesWhitelistedPatternType =
   | "quarantine_release"
@@ -2157,8 +2137,7 @@ export type InvestigateGetResponsePropertiesWhitelistedPatternType =
   | "domain_recency"
   | "managed_acceptable_sender"
   | "outbound_ndr";
-export const InvestigateGetResponsePropertiesWhitelistedPatternType =
-  /*@__PURE__*/ S.String;
+export const InvestigateGetResponsePropertiesWhitelistedPatternType = S.String;
 
 export interface InvestigateGetResponseProperties {
   /** Pattern that allowlisted this message */
@@ -2210,7 +2189,7 @@ export type InvestigateGetResponseDeliveryMode =
   | "SIMULATION_SUBMISSION"
   | "API"
   | "RETRO_SCAN";
-export const InvestigateGetResponseDeliveryMode = /*@__PURE__*/ S.String;
+export const InvestigateGetResponseDeliveryMode = S.String;
 
 export type InvestigateGetResponseDeliveryStatusItem =
   | "delivered"
@@ -2220,7 +2199,7 @@ export type InvestigateGetResponseDeliveryStatusItem =
   | "deferred"
   | "bounced"
   | "queued";
-export const InvestigateGetResponseDeliveryStatusItem = /*@__PURE__*/ S.String;
+export const InvestigateGetResponseDeliveryStatusItem = S.String;
 
 export type InvestigateGetResponseDeliveryStatusList =
   Array<InvestigateGetResponseDeliveryStatusItem>;
@@ -2244,7 +2223,7 @@ export type InvestigateGetResponseFinalDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateGetResponseFinalDisposition = /*@__PURE__*/ S.String;
+export const InvestigateGetResponseFinalDisposition = S.String;
 
 export type InvestigateGetResponseFindingsItemDetection =
   | "MALICIOUS"
@@ -2257,8 +2236,7 @@ export type InvestigateGetResponseFindingsItemDetection =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateGetResponseFindingsItemDetection =
-  /*@__PURE__*/ S.String;
+export const InvestigateGetResponseFindingsItemDetection = S.String;
 
 export interface InvestigateGetResponseFindingsItem {
   attachment?: string | null;
@@ -2300,8 +2278,7 @@ export type InvestigateGetResponsePostDeliveryOperationsItem =
   | "QUARANTINE_RELEASE"
   | "SUBMISSION"
   | "MOVE";
-export const InvestigateGetResponsePostDeliveryOperationsItem =
-  /*@__PURE__*/ S.String;
+export const InvestigateGetResponsePostDeliveryOperationsItem = S.String;
 
 export type InvestigateGetResponsePostDeliveryOperationsList =
   Array<InvestigateGetResponsePostDeliveryOperationsItem>;
@@ -2331,7 +2308,7 @@ export type InvestigateGetResponseValidationDkim =
   | "fail"
   | "error"
   | "none";
-export const InvestigateGetResponseValidationDkim = /*@__PURE__*/ S.String;
+export const InvestigateGetResponseValidationDkim = S.String;
 
 export type InvestigateGetResponseValidationDmarc =
   | "pass"
@@ -2339,7 +2316,7 @@ export type InvestigateGetResponseValidationDmarc =
   | "fail"
   | "error"
   | "none";
-export const InvestigateGetResponseValidationDmarc = /*@__PURE__*/ S.String;
+export const InvestigateGetResponseValidationDmarc = S.String;
 
 export type InvestigateGetResponseValidationSpf =
   | "pass"
@@ -2347,7 +2324,7 @@ export type InvestigateGetResponseValidationSpf =
   | "fail"
   | "error"
   | "none";
-export const InvestigateGetResponseValidationSpf = /*@__PURE__*/ S.String;
+export const InvestigateGetResponseValidationSpf = S.String;
 
 export interface InvestigateGetResponseValidation {
   comment?: string | null;
@@ -2523,12 +2500,10 @@ export type InvestigateBulkGetResponseActionParamsMoveDestination =
   | "DeletedItems"
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
-export const InvestigateBulkGetResponseActionParamsMoveDestination =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseActionParamsMoveDestination = S.String;
 
 export type InvestigateBulkGetResponseActionParamsMoveType = "MOVE";
-export const InvestigateBulkGetResponseActionParamsMoveType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseActionParamsMoveType = S.String;
 
 export type InvestigateBulkGetResponseActionParamsMoveExpectedDisposition =
   | "MALICIOUS"
@@ -2542,7 +2517,7 @@ export type InvestigateBulkGetResponseActionParamsMoveExpectedDisposition =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkGetResponseActionParamsMoveExpectedDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkGetResponseActionParamsMove {
   destination: InvestigateBulkGetResponseActionParamsMoveDestination;
@@ -2565,8 +2540,7 @@ export const InvestigateBulkGetResponseActionParamsMove =
   }) as any as S.Schema<InvestigateBulkGetResponseActionParamsMove>;
 
 export type InvestigateBulkGetResponseActionParamsReleaseType = "RELEASE";
-export const InvestigateBulkGetResponseActionParamsReleaseType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseActionParamsReleaseType = S.String;
 
 export interface InvestigateBulkGetResponseActionParamsRelease {
   type: InvestigateBulkGetResponseActionParamsReleaseType;
@@ -2589,7 +2563,7 @@ export const InvestigateBulkGetResponseActionParams =
   );
 
 export type InvestigateBulkGetResponseActionType = "MOVE" | "RELEASE";
-export const InvestigateBulkGetResponseActionType = /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseActionType = S.String;
 
 export type InvestigateBulkGetResponseSearchParamsDeliveryStatus =
   | "delivered"
@@ -2599,8 +2573,7 @@ export type InvestigateBulkGetResponseSearchParamsDeliveryStatus =
   | "deferred"
   | "bounced"
   | "queued";
-export const InvestigateBulkGetResponseSearchParamsDeliveryStatus =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseSearchParamsDeliveryStatus = S.String;
 
 export type InvestigateBulkGetResponseSearchParamsFinalDisposition =
   | "MALICIOUS"
@@ -2613,15 +2586,13 @@ export type InvestigateBulkGetResponseSearchParamsFinalDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateBulkGetResponseSearchParamsFinalDisposition =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseSearchParamsFinalDisposition = S.String;
 
 export type InvestigateBulkGetResponseSearchParamsMessageAction =
   | "PREVIEW"
   | "QUARANTINE_RELEASED"
   | "MOVED";
-export const InvestigateBulkGetResponseSearchParamsMessageAction =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseSearchParamsMessageAction = S.String;
 
 export interface InvestigateBulkGetResponseSearchParams {
   /** Deprecated, use `GET /investigate/{investigate_id}/action_log` instead. End of life: November 1, 2026. */
@@ -2695,7 +2666,7 @@ export type InvestigateBulkGetResponseStatus =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const InvestigateBulkGetResponseStatus = /*@__PURE__*/ S.String;
+export const InvestigateBulkGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetInvestigateBulkResponse {
@@ -2778,7 +2749,7 @@ export type InvestigateDetectionsGetResponseAttachmentsItemDetection =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateDetectionsGetResponseAttachmentsItemDetection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateDetectionsGetResponseAttachmentsItem {
   /** Size of the attachment in bytes */
@@ -2837,8 +2808,7 @@ export type InvestigateDetectionsGetResponseFindingsItemDetection =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateDetectionsGetResponseFindingsItemDetection =
-  /*@__PURE__*/ S.String;
+export const InvestigateDetectionsGetResponseFindingsItemDetection = S.String;
 
 export interface InvestigateDetectionsGetResponseFindingsItem {
   attachment?: string | null;
@@ -2969,8 +2939,7 @@ export type InvestigateDetectionsGetResponseValidationDkim =
   | "fail"
   | "error"
   | "none";
-export const InvestigateDetectionsGetResponseValidationDkim =
-  /*@__PURE__*/ S.String;
+export const InvestigateDetectionsGetResponseValidationDkim = S.String;
 
 export type InvestigateDetectionsGetResponseValidationDmarc =
   | "pass"
@@ -2978,8 +2947,7 @@ export type InvestigateDetectionsGetResponseValidationDmarc =
   | "fail"
   | "error"
   | "none";
-export const InvestigateDetectionsGetResponseValidationDmarc =
-  /*@__PURE__*/ S.String;
+export const InvestigateDetectionsGetResponseValidationDmarc = S.String;
 
 export type InvestigateDetectionsGetResponseValidationSpf =
   | "pass"
@@ -2987,8 +2955,7 @@ export type InvestigateDetectionsGetResponseValidationSpf =
   | "fail"
   | "error"
   | "none";
-export const InvestigateDetectionsGetResponseValidationSpf =
-  /*@__PURE__*/ S.String;
+export const InvestigateDetectionsGetResponseValidationSpf = S.String;
 
 export interface InvestigateDetectionsGetResponseValidation {
   comment?: string | null;
@@ -3023,8 +2990,7 @@ export type InvestigateDetectionsGetResponseFinalDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateDetectionsGetResponseFinalDisposition =
-  /*@__PURE__*/ S.String;
+export const InvestigateDetectionsGetResponseFinalDisposition = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetInvestigateDetectionResponse {
@@ -3264,8 +3230,7 @@ export type SettingsAllowPoliciesGetResponsePatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsAllowPoliciesGetResponsePatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesGetResponsePatternType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSettingAllowPolicyResponse {
@@ -3355,8 +3320,7 @@ export type SettingsBlockSendersGetResponsePatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsBlockSendersGetResponsePatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsBlockSendersGetResponsePatternType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSettingBlockSenderResponse {
@@ -3420,8 +3384,7 @@ export type SettingsDomainsGetResponseAllowedDeliveryModesItem =
   | "JOURNAL"
   | "API"
   | "RETRO_SCAN";
-export const SettingsDomainsGetResponseAllowedDeliveryModesItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseAllowedDeliveryModesItem = S.String;
 
 export type SettingsDomainsGetResponseAllowedDeliveryModesList =
   Array<SettingsDomainsGetResponseAllowedDeliveryModesItem>;
@@ -3449,7 +3412,7 @@ export const SettingsDomainsGetResponseAuthorization = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SettingsDomainsGetResponseAuthorization>;
 
 export type SettingsDomainsGetResponseDmarcStatus = "none" | "good" | "invalid";
-export const SettingsDomainsGetResponseDmarcStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseDmarcStatus = S.String;
 
 export type SettingsDomainsGetResponseDropDispositionsItem =
   | "MALICIOUS"
@@ -3462,8 +3425,7 @@ export type SettingsDomainsGetResponseDropDispositionsItem =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const SettingsDomainsGetResponseDropDispositionsItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseDropDispositionsItem = S.String;
 
 export type SettingsDomainsGetResponseDropDispositionsList =
   Array<SettingsDomainsGetResponseDropDispositionsItem>;
@@ -3491,10 +3453,10 @@ export const SettingsDomainsGetResponseEmailsProcessed =
   }) as any as S.Schema<SettingsDomainsGetResponseEmailsProcessed>;
 
 export type SettingsDomainsGetResponseFolder = "AllItems" | "Inbox";
-export const SettingsDomainsGetResponseFolder = /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseFolder = S.String;
 
 export type SettingsDomainsGetResponseInboxProvider = "Microsoft" | "Google";
-export const SettingsDomainsGetResponseInboxProvider = /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseInboxProvider = S.String;
 
 export type SettingsDomainsGetResponseIpRestrictionsList = Array<string>;
 export const SettingsDomainsGetResponseIpRestrictionsList =
@@ -3508,7 +3470,7 @@ export type SettingsDomainsGetResponseRegionsItem =
   | "DE"
   | "IN"
   | "US";
-export const SettingsDomainsGetResponseRegionsItem = /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseRegionsItem = S.String;
 
 export type SettingsDomainsGetResponseRegionsList =
   Array<SettingsDomainsGetResponseRegionsItem>;
@@ -3522,14 +3484,14 @@ export type SettingsDomainsGetResponseSpfStatus =
   | "neutral"
   | "open"
   | "invalid";
-export const SettingsDomainsGetResponseSpfStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseSpfStatus = S.String;
 
 export type SettingsDomainsGetResponseStatus =
   | "pending"
   | "active"
   | "failed"
   | "timeout";
-export const SettingsDomainsGetResponseStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSettingDomainResponse {
@@ -3652,8 +3614,7 @@ export type SettingsImpersonationRegistryGetResponseProvenance =
   | "SNOOPY-CASB_OFFICE_365"
   | "SNOOPY-OFFICE_365"
   | "SNOOPY-GOOGLE_DIRECTORY";
-export const SettingsImpersonationRegistryGetResponseProvenance =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryGetResponseProvenance = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetSettingImpersonationRegistryResponse {
@@ -3880,7 +3841,7 @@ export type InvestigateBulkMessagesListRequestStatus =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const InvestigateBulkMessagesListRequestStatus = /*@__PURE__*/ S.String;
+export const InvestigateBulkMessagesListRequestStatus = S.String;
 
 export interface ListInvestigateBulkMessagesRequest {
   /** Identifier. */
@@ -3921,11 +3882,11 @@ export type InvestigateBulkMessagesListResultItemActionParamsMoveDestination =
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
 export const InvestigateBulkMessagesListResultItemActionParamsMoveDestination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkMessagesListResultItemActionParamsMoveType = "MOVE";
 export const InvestigateBulkMessagesListResultItemActionParamsMoveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkMessagesListResultItemActionParamsMoveExpectedDisposition =
   | "MALICIOUS"
@@ -3939,7 +3900,7 @@ export type InvestigateBulkMessagesListResultItemActionParamsMoveExpectedDisposi
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkMessagesListResultItemActionParamsMoveExpectedDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkMessagesListResultItemActionParamsMove {
   clientRecipient: string;
@@ -3967,7 +3928,7 @@ export const InvestigateBulkMessagesListResultItemActionParamsMove =
 export type InvestigateBulkMessagesListResultItemActionParamsReleaseType =
   "RELEASE";
 export const InvestigateBulkMessagesListResultItemActionParamsReleaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkMessagesListResultItemActionParamsRelease {
   clientRecipient: string;
@@ -3997,8 +3958,7 @@ export const InvestigateBulkMessagesListResultItemActionParams =
 export type InvestigateBulkMessagesListResultItemActionType =
   | "MOVE"
   | "RELEASE";
-export const InvestigateBulkMessagesListResultItemActionType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkMessagesListResultItemActionType = S.String;
 
 export type InvestigateBulkMessagesListResultItemStatus =
   | "PENDING"
@@ -4008,8 +3968,7 @@ export type InvestigateBulkMessagesListResultItemStatus =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const InvestigateBulkMessagesListResultItemStatus =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkMessagesListResultItemStatus = S.String;
 
 export interface InvestigateBulkMessagesListResultItem {
   actionParams: InvestigateBulkMessagesListResultItemActionParams;
@@ -4076,7 +4035,7 @@ export const ListInvestigateBulkMessagesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListInvestigateBulkMessagesResponse>;
 
 export type InvestigateBulkListRequestActionType = "MOVE" | "RELEASE";
-export const InvestigateBulkListRequestActionType = /*@__PURE__*/ S.String;
+export const InvestigateBulkListRequestActionType = S.String;
 
 export type InvestigateBulkListRequestStatus =
   | "PENDING"
@@ -4086,7 +4045,7 @@ export type InvestigateBulkListRequestStatus =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const InvestigateBulkListRequestStatus = /*@__PURE__*/ S.String;
+export const InvestigateBulkListRequestStatus = S.String;
 
 export interface ListInvestigateBulksRequest {
   /** Identifier. */
@@ -4127,11 +4086,10 @@ export type InvestigateBulkListResultItemActionParamsMoveDestination =
   | "RecoverableItemsDeletions"
   | "RecoverableItemsPurges";
 export const InvestigateBulkListResultItemActionParamsMoveDestination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkListResultItemActionParamsMoveType = "MOVE";
-export const InvestigateBulkListResultItemActionParamsMoveType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkListResultItemActionParamsMoveType = S.String;
 
 export type InvestigateBulkListResultItemActionParamsMoveExpectedDisposition =
   | "MALICIOUS"
@@ -4145,7 +4103,7 @@ export type InvestigateBulkListResultItemActionParamsMoveExpectedDisposition =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkListResultItemActionParamsMoveExpectedDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateBulkListResultItemActionParamsMove {
   destination: InvestigateBulkListResultItemActionParamsMoveDestination;
@@ -4168,8 +4126,7 @@ export const InvestigateBulkListResultItemActionParamsMove =
   }) as any as S.Schema<InvestigateBulkListResultItemActionParamsMove>;
 
 export type InvestigateBulkListResultItemActionParamsReleaseType = "RELEASE";
-export const InvestigateBulkListResultItemActionParamsReleaseType =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkListResultItemActionParamsReleaseType = S.String;
 
 export interface InvestigateBulkListResultItemActionParamsRelease {
   type: InvestigateBulkListResultItemActionParamsReleaseType;
@@ -4192,7 +4149,7 @@ export const InvestigateBulkListResultItemActionParams =
   );
 
 export type InvestigateBulkListResultItemActionType = "MOVE" | "RELEASE";
-export const InvestigateBulkListResultItemActionType = /*@__PURE__*/ S.String;
+export const InvestigateBulkListResultItemActionType = S.String;
 
 export type InvestigateBulkListResultItemSearchParamsDeliveryStatus =
   | "delivered"
@@ -4202,8 +4159,7 @@ export type InvestigateBulkListResultItemSearchParamsDeliveryStatus =
   | "deferred"
   | "bounced"
   | "queued";
-export const InvestigateBulkListResultItemSearchParamsDeliveryStatus =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkListResultItemSearchParamsDeliveryStatus = S.String;
 
 export type InvestigateBulkListResultItemSearchParamsFinalDisposition =
   | "MALICIOUS"
@@ -4217,14 +4173,13 @@ export type InvestigateBulkListResultItemSearchParamsFinalDisposition =
   | "UNKNOWN"
   | "NONE";
 export const InvestigateBulkListResultItemSearchParamsFinalDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateBulkListResultItemSearchParamsMessageAction =
   | "PREVIEW"
   | "QUARANTINE_RELEASED"
   | "MOVED";
-export const InvestigateBulkListResultItemSearchParamsMessageAction =
-  /*@__PURE__*/ S.String;
+export const InvestigateBulkListResultItemSearchParamsMessageAction = S.String;
 
 export interface InvestigateBulkListResultItemSearchParams {
   /** Deprecated, use `GET /investigate/{investigate_id}/action_log` instead. End of life: November 1, 2026. */
@@ -4298,7 +4253,7 @@ export type InvestigateBulkListResultItemStatus =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const InvestigateBulkListResultItemStatus = /*@__PURE__*/ S.String;
+export const InvestigateBulkListResultItemStatus = S.String;
 
 export interface InvestigateBulkListResultItem {
   actionParams: InvestigateBulkListResultItemActionParams;
@@ -4374,7 +4329,7 @@ export type InvestigateListRequestDeliveryStatus =
   | "deferred"
   | "bounced"
   | "queued";
-export const InvestigateListRequestDeliveryStatus = /*@__PURE__*/ S.String;
+export const InvestigateListRequestDeliveryStatus = S.String;
 
 export type InvestigateListRequestFinalDisposition =
   | "MALICIOUS"
@@ -4383,13 +4338,13 @@ export type InvestigateListRequestFinalDisposition =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const InvestigateListRequestFinalDisposition = /*@__PURE__*/ S.String;
+export const InvestigateListRequestFinalDisposition = S.String;
 
 export type InvestigateListRequestMessageAction =
   | "PREVIEW"
   | "QUARANTINE_RELEASED"
   | "MOVED";
-export const InvestigateListRequestMessageAction = /*@__PURE__*/ S.String;
+export const InvestigateListRequestMessageAction = S.String;
 
 export interface ListInvestigatesRequest {
   /** Identifier. */
@@ -4468,8 +4423,7 @@ export type InvestigateListResultItemActionLogItemOperation =
   | "SUBMISSION"
   | "QUARANTINE_RELEASE"
   | "PREVIEW";
-export const InvestigateListResultItemActionLogItemOperation =
-  /*@__PURE__*/ S.String;
+export const InvestigateListResultItemActionLogItemOperation = S.String;
 
 export type InvestigateListResultItemActionLogItemProperties =
   InvestigateGetResponseActionLogItemProperties;
@@ -4533,7 +4487,7 @@ export type InvestigateListResultItemPropertiesAllowlistedPatternType =
   | "managed_acceptable_sender"
   | "outbound_ndr";
 export const InvestigateListResultItemPropertiesAllowlistedPatternType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InvestigateListResultItemPropertiesWhitelistedPatternType =
   | "quarantine_release"
@@ -4545,7 +4499,7 @@ export type InvestigateListResultItemPropertiesWhitelistedPatternType =
   | "managed_acceptable_sender"
   | "outbound_ndr";
 export const InvestigateListResultItemPropertiesWhitelistedPatternType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InvestigateListResultItemProperties {
   /** Pattern that allowlisted this message */
@@ -4597,7 +4551,7 @@ export type InvestigateListResultItemDeliveryMode =
   | "SIMULATION_SUBMISSION"
   | "API"
   | "RETRO_SCAN";
-export const InvestigateListResultItemDeliveryMode = /*@__PURE__*/ S.String;
+export const InvestigateListResultItemDeliveryMode = S.String;
 
 export type InvestigateListResultItemDeliveryStatusItem =
   | "delivered"
@@ -4607,8 +4561,7 @@ export type InvestigateListResultItemDeliveryStatusItem =
   | "deferred"
   | "bounced"
   | "queued";
-export const InvestigateListResultItemDeliveryStatusItem =
-  /*@__PURE__*/ S.String;
+export const InvestigateListResultItemDeliveryStatusItem = S.String;
 
 export type InvestigateListResultItemDeliveryStatusList =
   Array<InvestigateListResultItemDeliveryStatusItem>;
@@ -4633,7 +4586,7 @@ export type InvestigateListResultItemFinalDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateListResultItemFinalDisposition = /*@__PURE__*/ S.String;
+export const InvestigateListResultItemFinalDisposition = S.String;
 
 export type InvestigateListResultItemFindingsItemDetection =
   | "MALICIOUS"
@@ -4646,8 +4599,7 @@ export type InvestigateListResultItemFindingsItemDetection =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const InvestigateListResultItemFindingsItemDetection =
-  /*@__PURE__*/ S.String;
+export const InvestigateListResultItemFindingsItemDetection = S.String;
 
 export interface InvestigateListResultItemFindingsItem {
   attachment?: string | null;
@@ -4690,8 +4642,7 @@ export type InvestigateListResultItemPostDeliveryOperationsItem =
   | "QUARANTINE_RELEASE"
   | "SUBMISSION"
   | "MOVE";
-export const InvestigateListResultItemPostDeliveryOperationsItem =
-  /*@__PURE__*/ S.String;
+export const InvestigateListResultItemPostDeliveryOperationsItem = S.String;
 
 export type InvestigateListResultItemPostDeliveryOperationsList =
   Array<InvestigateListResultItemPostDeliveryOperationsItem>;
@@ -4722,7 +4673,7 @@ export type InvestigateListResultItemValidationDkim =
   | "fail"
   | "error"
   | "none";
-export const InvestigateListResultItemValidationDkim = /*@__PURE__*/ S.String;
+export const InvestigateListResultItemValidationDkim = S.String;
 
 export type InvestigateListResultItemValidationDmarc =
   | "pass"
@@ -4730,7 +4681,7 @@ export type InvestigateListResultItemValidationDmarc =
   | "fail"
   | "error"
   | "none";
-export const InvestigateListResultItemValidationDmarc = /*@__PURE__*/ S.String;
+export const InvestigateListResultItemValidationDmarc = S.String;
 
 export type InvestigateListResultItemValidationSpf =
   | "pass"
@@ -4738,7 +4689,7 @@ export type InvestigateListResultItemValidationSpf =
   | "fail"
   | "error"
   | "none";
-export const InvestigateListResultItemValidationSpf = /*@__PURE__*/ S.String;
+export const InvestigateListResultItemValidationSpf = S.String;
 
 export interface InvestigateListResultItemValidation {
   comment?: string | null;
@@ -4950,8 +4901,7 @@ export type PhishguardReportsListResultItemDisposition =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const PhishguardReportsListResultItemDisposition =
-  /*@__PURE__*/ S.String;
+export const PhishguardReportsListResultItemDisposition = S.String;
 
 export type PhishguardReportsListResultItemFieldsToList = Array<string>;
 export const PhishguardReportsListResultItemFieldsToList =
@@ -5052,18 +5002,17 @@ export const ListPhishguardReportsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPhishguardReportsResponse>;
 
 export type SettingsAllowPoliciesListRequestDirection = "asc" | "desc";
-export const SettingsAllowPoliciesListRequestDirection = /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesListRequestDirection = S.String;
 
 export type SettingsAllowPoliciesListRequestOrder = "pattern" | "created_at";
-export const SettingsAllowPoliciesListRequestOrder = /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesListRequestOrder = S.String;
 
 export type SettingsAllowPoliciesListRequestPatternType =
   | "EMAIL"
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsAllowPoliciesListRequestPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesListRequestPatternType = S.String;
 
 export interface ListSettingAllowPoliciesRequest {
   /** Identifier. */
@@ -5130,8 +5079,7 @@ export type SettingsAllowPoliciesListResultItemPatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsAllowPoliciesListResultItemPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesListResultItemPatternType = S.String;
 
 export interface SettingsAllowPoliciesListResultItem {
   /** Allow policy identifier */
@@ -5214,18 +5162,17 @@ export const ListSettingAllowPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSettingAllowPoliciesResponse>;
 
 export type SettingsBlockSendersListRequestDirection = "asc" | "desc";
-export const SettingsBlockSendersListRequestDirection = /*@__PURE__*/ S.String;
+export const SettingsBlockSendersListRequestDirection = S.String;
 
 export type SettingsBlockSendersListRequestOrder = "pattern" | "created_at";
-export const SettingsBlockSendersListRequestOrder = /*@__PURE__*/ S.String;
+export const SettingsBlockSendersListRequestOrder = S.String;
 
 export type SettingsBlockSendersListRequestPatternType =
   | "EMAIL"
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsBlockSendersListRequestPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsBlockSendersListRequestPatternType = S.String;
 
 export interface ListSettingBlockSendersRequest {
   /** Identifier. */
@@ -5277,8 +5224,7 @@ export type SettingsBlockSendersListResultItemPatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsBlockSendersListResultItemPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsBlockSendersListResultItemPatternType = S.String;
 
 export interface SettingsBlockSendersListResultItem {
   /** Blocked sender pattern identifier */
@@ -5339,8 +5285,7 @@ export type SettingsDomainsListRequestActiveDeliveryMode =
   | "JOURNAL"
   | "API"
   | "RETRO_SCAN";
-export const SettingsDomainsListRequestActiveDeliveryMode =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsListRequestActiveDeliveryMode = S.String;
 
 export type SettingsDomainsListRequestAllowedDeliveryMode =
   | "DIRECT"
@@ -5348,11 +5293,10 @@ export type SettingsDomainsListRequestAllowedDeliveryMode =
   | "JOURNAL"
   | "API"
   | "RETRO_SCAN";
-export const SettingsDomainsListRequestAllowedDeliveryMode =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsListRequestAllowedDeliveryMode = S.String;
 
 export type SettingsDomainsListRequestDirection = "asc" | "desc";
-export const SettingsDomainsListRequestDirection = /*@__PURE__*/ S.String;
+export const SettingsDomainsListRequestDirection = S.String;
 
 export type SettingsDomainsListRequestDomainList = Array<string>;
 export const SettingsDomainsListRequestDomainList = /*@__PURE__*/ S.Array(
@@ -5360,14 +5304,14 @@ export const SettingsDomainsListRequestDomainList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SettingsDomainsListRequestDomainList>;
 
 export type SettingsDomainsListRequestOrder = "domain" | "created_at";
-export const SettingsDomainsListRequestOrder = /*@__PURE__*/ S.String;
+export const SettingsDomainsListRequestOrder = S.String;
 
 export type SettingsDomainsListRequestStatus =
   | "pending"
   | "active"
   | "failed"
   | "timeout";
-export const SettingsDomainsListRequestStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsListRequestStatus = S.String;
 
 export interface ListSettingDomainsRequest {
   /** Identifier. */
@@ -5437,8 +5381,7 @@ export type SettingsDomainsListResultItemAllowedDeliveryModesItem =
   | "JOURNAL"
   | "API"
   | "RETRO_SCAN";
-export const SettingsDomainsListResultItemAllowedDeliveryModesItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemAllowedDeliveryModesItem = S.String;
 
 export type SettingsDomainsListResultItemAllowedDeliveryModesList =
   Array<SettingsDomainsListResultItemAllowedDeliveryModesItem>;
@@ -5456,7 +5399,7 @@ export type SettingsDomainsListResultItemDmarcStatus =
   | "none"
   | "good"
   | "invalid";
-export const SettingsDomainsListResultItemDmarcStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemDmarcStatus = S.String;
 
 export type SettingsDomainsListResultItemDropDispositionsItem =
   | "MALICIOUS"
@@ -5469,8 +5412,7 @@ export type SettingsDomainsListResultItemDropDispositionsItem =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const SettingsDomainsListResultItemDropDispositionsItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemDropDispositionsItem = S.String;
 
 export type SettingsDomainsListResultItemDropDispositionsList =
   Array<SettingsDomainsListResultItemDropDispositionsItem>;
@@ -5485,11 +5427,10 @@ export const SettingsDomainsListResultItemEmailsProcessed =
   SettingsDomainsGetResponseEmailsProcessed;
 
 export type SettingsDomainsListResultItemFolder = "AllItems" | "Inbox";
-export const SettingsDomainsListResultItemFolder = /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemFolder = S.String;
 
 export type SettingsDomainsListResultItemInboxProvider = "Microsoft" | "Google";
-export const SettingsDomainsListResultItemInboxProvider =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemInboxProvider = S.String;
 
 export type SettingsDomainsListResultItemIpRestrictionsList = Array<string>;
 export const SettingsDomainsListResultItemIpRestrictionsList =
@@ -5503,7 +5444,7 @@ export type SettingsDomainsListResultItemRegionsItem =
   | "DE"
   | "IN"
   | "US";
-export const SettingsDomainsListResultItemRegionsItem = /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemRegionsItem = S.String;
 
 export type SettingsDomainsListResultItemRegionsList =
   Array<SettingsDomainsListResultItemRegionsItem>;
@@ -5517,14 +5458,14 @@ export type SettingsDomainsListResultItemSpfStatus =
   | "neutral"
   | "open"
   | "invalid";
-export const SettingsDomainsListResultItemSpfStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemSpfStatus = S.String;
 
 export type SettingsDomainsListResultItemStatus =
   | "pending"
   | "active"
   | "failed"
   | "timeout";
-export const SettingsDomainsListResultItemStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsListResultItemStatus = S.String;
 
 export interface SettingsDomainsListResultItem {
   /** Domain identifier */
@@ -5639,23 +5580,20 @@ export const ListSettingDomainsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSettingDomainsResponse>;
 
 export type SettingsImpersonationRegistryListRequestDirection = "asc" | "desc";
-export const SettingsImpersonationRegistryListRequestDirection =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryListRequestDirection = S.String;
 
 export type SettingsImpersonationRegistryListRequestOrder =
   | "name"
   | "email"
   | "created_at";
-export const SettingsImpersonationRegistryListRequestOrder =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryListRequestOrder = S.String;
 
 export type SettingsImpersonationRegistryListRequestProvenance =
   | "A1S_INTERNAL"
   | "SNOOPY-CASB_OFFICE_365"
   | "SNOOPY-OFFICE_365"
   | "SNOOPY-GOOGLE_DIRECTORY";
-export const SettingsImpersonationRegistryListRequestProvenance =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryListRequestProvenance = S.String;
 
 export interface ListSettingImpersonationRegistriesRequest {
   /** Identifier. */
@@ -5708,8 +5646,7 @@ export type SettingsImpersonationRegistryListResultItemProvenance =
   | "SNOOPY-CASB_OFFICE_365"
   | "SNOOPY-OFFICE_365"
   | "SNOOPY-GOOGLE_DIRECTORY";
-export const SettingsImpersonationRegistryListResultItemProvenance =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryListResultItemProvenance = S.String;
 
 export interface SettingsImpersonationRegistryListResultItem {
   /** Impersonation registry entry identifier */
@@ -5785,14 +5722,12 @@ export const ListSettingImpersonationRegistriesResponse =
 export type SettingsSendingDomainRestrictionsListRequestDirection =
   | "asc"
   | "desc";
-export const SettingsSendingDomainRestrictionsListRequestDirection =
-  /*@__PURE__*/ S.String;
+export const SettingsSendingDomainRestrictionsListRequestDirection = S.String;
 
 export type SettingsSendingDomainRestrictionsListRequestOrder =
   | "domain"
   | "created_at";
-export const SettingsSendingDomainRestrictionsListRequestOrder =
-  /*@__PURE__*/ S.String;
+export const SettingsSendingDomainRestrictionsListRequestOrder = S.String;
 
 export interface ListSettingSendingDomainRestrictionsRequest {
   /** Identifier. */
@@ -5901,11 +5836,10 @@ export const ListSettingSendingDomainRestrictionsResponse =
   }) as any as S.Schema<ListSettingSendingDomainRestrictionsResponse>;
 
 export type SettingsTrustedDomainsListRequestDirection = "asc" | "desc";
-export const SettingsTrustedDomainsListRequestDirection =
-  /*@__PURE__*/ S.String;
+export const SettingsTrustedDomainsListRequestDirection = S.String;
 
 export type SettingsTrustedDomainsListRequestOrder = "pattern" | "created_at";
-export const SettingsTrustedDomainsListRequestOrder = /*@__PURE__*/ S.String;
+export const SettingsTrustedDomainsListRequestOrder = S.String;
 
 export interface ListSettingTrustedDomainsRequest {
   /** Identifier. */
@@ -6092,7 +6026,7 @@ export type SubmissionsListRequestOriginalDisposition =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const SubmissionsListRequestOriginalDisposition = /*@__PURE__*/ S.String;
+export const SubmissionsListRequestOriginalDisposition = S.String;
 
 export type SubmissionsListRequestOutcomeDisposition =
   | "MALICIOUS"
@@ -6101,7 +6035,7 @@ export type SubmissionsListRequestOutcomeDisposition =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const SubmissionsListRequestOutcomeDisposition = /*@__PURE__*/ S.String;
+export const SubmissionsListRequestOutcomeDisposition = S.String;
 
 export type SubmissionsListRequestRequestedDisposition =
   | "MALICIOUS"
@@ -6110,11 +6044,10 @@ export type SubmissionsListRequestRequestedDisposition =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const SubmissionsListRequestRequestedDisposition =
-  /*@__PURE__*/ S.String;
+export const SubmissionsListRequestRequestedDisposition = S.String;
 
 export type SubmissionsListRequestType = "TEAM" | "USER";
-export const SubmissionsListRequestType = /*@__PURE__*/ S.String;
+export const SubmissionsListRequestType = S.String;
 
 export interface ListSubmissionsRequest {
   /** Identifier. */
@@ -6187,7 +6120,7 @@ export type SubmissionsListResultItemCustomerStatus =
   | "escalated"
   | "reviewed"
   | "unreviewed";
-export const SubmissionsListResultItemCustomerStatus = /*@__PURE__*/ S.String;
+export const SubmissionsListResultItemCustomerStatus = S.String;
 
 export type SubmissionsListResultItemEscalatedAs =
   | "MALICIOUS"
@@ -6196,7 +6129,7 @@ export type SubmissionsListResultItemEscalatedAs =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const SubmissionsListResultItemEscalatedAs = /*@__PURE__*/ S.String;
+export const SubmissionsListResultItemEscalatedAs = S.String;
 
 export type SubmissionsListResultItemOriginalDisposition =
   | "MALICIOUS"
@@ -6205,8 +6138,7 @@ export type SubmissionsListResultItemOriginalDisposition =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const SubmissionsListResultItemOriginalDisposition =
-  /*@__PURE__*/ S.String;
+export const SubmissionsListResultItemOriginalDisposition = S.String;
 
 export type SubmissionsListResultItemOutcomeDisposition =
   | "MALICIOUS"
@@ -6215,8 +6147,7 @@ export type SubmissionsListResultItemOutcomeDisposition =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const SubmissionsListResultItemOutcomeDisposition =
-  /*@__PURE__*/ S.String;
+export const SubmissionsListResultItemOutcomeDisposition = S.String;
 
 export type SubmissionsListResultItemRequestedDisposition =
   | "MALICIOUS"
@@ -6225,11 +6156,10 @@ export type SubmissionsListResultItemRequestedDisposition =
   | "SPAM"
   | "BULK"
   | "NONE";
-export const SubmissionsListResultItemRequestedDisposition =
-  /*@__PURE__*/ S.String;
+export const SubmissionsListResultItemRequestedDisposition = S.String;
 
 export type SubmissionsListResultItemType = "Team" | "User";
-export const SubmissionsListResultItemType = /*@__PURE__*/ S.String;
+export const SubmissionsListResultItemType = S.String;
 
 export interface SubmissionsListResultItem {
   /** When the submission was requested (UTC). */
@@ -6331,8 +6261,7 @@ export type SettingsAllowPoliciesEditRequestPatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsAllowPoliciesEditRequestPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesEditRequestPatternType = S.String;
 
 export interface PatchSettingAllowPolicyRequest {
   /** Identifier. */
@@ -6398,8 +6327,7 @@ export type SettingsAllowPoliciesEditResponsePatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsAllowPoliciesEditResponsePatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsAllowPoliciesEditResponsePatternType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchSettingAllowPolicyResponse {
@@ -6466,8 +6394,7 @@ export type SettingsBlockSendersEditRequestPatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsBlockSendersEditRequestPatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsBlockSendersEditRequestPatternType = S.String;
 
 export interface PatchSettingBlockSenderRequest {
   /** Identifier. */
@@ -6508,8 +6435,7 @@ export type SettingsBlockSendersEditResponsePatternType =
   | "DOMAIN"
   | "IP"
   | "UNKNOWN";
-export const SettingsBlockSendersEditResponsePatternType =
-  /*@__PURE__*/ S.String;
+export const SettingsBlockSendersEditResponsePatternType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchSettingBlockSenderResponse {
@@ -6550,8 +6476,7 @@ export type SettingsDomainsEditRequestAllowedDeliveryModesItem =
   | "JOURNAL"
   | "API"
   | "RETRO_SCAN";
-export const SettingsDomainsEditRequestAllowedDeliveryModesItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsEditRequestAllowedDeliveryModesItem = S.String;
 
 export type SettingsDomainsEditRequestAllowedDeliveryModesList = Array<
   SettingsDomainsEditRequestAllowedDeliveryModesItem | (string & {})
@@ -6572,8 +6497,7 @@ export type SettingsDomainsEditRequestDropDispositionsItem =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const SettingsDomainsEditRequestDropDispositionsItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsEditRequestDropDispositionsItem = S.String;
 
 export type SettingsDomainsEditRequestDropDispositionsList = Array<
   SettingsDomainsEditRequestDropDispositionsItem | (string & {})
@@ -6584,7 +6508,7 @@ export const SettingsDomainsEditRequestDropDispositionsList =
   ) as any as S.Schema<SettingsDomainsEditRequestDropDispositionsList>;
 
 export type SettingsDomainsEditRequestFolder = "AllItems" | "Inbox";
-export const SettingsDomainsEditRequestFolder = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditRequestFolder = S.String;
 
 export type SettingsDomainsEditRequestIpRestrictionsList = Array<string>;
 export const SettingsDomainsEditRequestIpRestrictionsList =
@@ -6598,7 +6522,7 @@ export type SettingsDomainsEditRequestRegionsItem =
   | "DE"
   | "IN"
   | "US";
-export const SettingsDomainsEditRequestRegionsItem = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditRequestRegionsItem = S.String;
 
 export type SettingsDomainsEditRequestRegionsList = Array<
   SettingsDomainsEditRequestRegionsItem | (string & {})
@@ -6674,8 +6598,7 @@ export type SettingsDomainsEditResponseAllowedDeliveryModesItem =
   | "JOURNAL"
   | "API"
   | "RETRO_SCAN";
-export const SettingsDomainsEditResponseAllowedDeliveryModesItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseAllowedDeliveryModesItem = S.String;
 
 export type SettingsDomainsEditResponseAllowedDeliveryModesList =
   Array<SettingsDomainsEditResponseAllowedDeliveryModesItem>;
@@ -6693,7 +6616,7 @@ export type SettingsDomainsEditResponseDmarcStatus =
   | "none"
   | "good"
   | "invalid";
-export const SettingsDomainsEditResponseDmarcStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseDmarcStatus = S.String;
 
 export type SettingsDomainsEditResponseDropDispositionsItem =
   | "MALICIOUS"
@@ -6706,8 +6629,7 @@ export type SettingsDomainsEditResponseDropDispositionsItem =
   | "EXTERNAL"
   | "UNKNOWN"
   | "NONE";
-export const SettingsDomainsEditResponseDropDispositionsItem =
-  /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseDropDispositionsItem = S.String;
 
 export type SettingsDomainsEditResponseDropDispositionsList =
   Array<SettingsDomainsEditResponseDropDispositionsItem>;
@@ -6722,10 +6644,10 @@ export const SettingsDomainsEditResponseEmailsProcessed =
   SettingsDomainsGetResponseEmailsProcessed;
 
 export type SettingsDomainsEditResponseFolder = "AllItems" | "Inbox";
-export const SettingsDomainsEditResponseFolder = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseFolder = S.String;
 
 export type SettingsDomainsEditResponseInboxProvider = "Microsoft" | "Google";
-export const SettingsDomainsEditResponseInboxProvider = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseInboxProvider = S.String;
 
 export type SettingsDomainsEditResponseIpRestrictionsList = Array<string>;
 export const SettingsDomainsEditResponseIpRestrictionsList =
@@ -6739,7 +6661,7 @@ export type SettingsDomainsEditResponseRegionsItem =
   | "DE"
   | "IN"
   | "US";
-export const SettingsDomainsEditResponseRegionsItem = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseRegionsItem = S.String;
 
 export type SettingsDomainsEditResponseRegionsList =
   Array<SettingsDomainsEditResponseRegionsItem>;
@@ -6753,14 +6675,14 @@ export type SettingsDomainsEditResponseSpfStatus =
   | "neutral"
   | "open"
   | "invalid";
-export const SettingsDomainsEditResponseSpfStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseSpfStatus = S.String;
 
 export type SettingsDomainsEditResponseStatus =
   | "pending"
   | "active"
   | "failed"
   | "timeout";
-export const SettingsDomainsEditResponseStatus = /*@__PURE__*/ S.String;
+export const SettingsDomainsEditResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchSettingDomainResponse {
@@ -6857,8 +6779,7 @@ export type SettingsImpersonationRegistryEditRequestProvenance =
   | "SNOOPY-CASB_OFFICE_365"
   | "SNOOPY-OFFICE_365"
   | "SNOOPY-GOOGLE_DIRECTORY";
-export const SettingsImpersonationRegistryEditRequestProvenance =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryEditRequestProvenance = S.String;
 
 export interface PatchSettingImpersonationRegistryRequest {
   /** Identifier. */
@@ -6913,8 +6834,7 @@ export type SettingsImpersonationRegistryEditResponseProvenance =
   | "SNOOPY-CASB_OFFICE_365"
   | "SNOOPY-OFFICE_365"
   | "SNOOPY-GOOGLE_DIRECTORY";
-export const SettingsImpersonationRegistryEditResponseProvenance =
-  /*@__PURE__*/ S.String;
+export const SettingsImpersonationRegistryEditResponseProvenance = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchSettingImpersonationRegistryResponse {

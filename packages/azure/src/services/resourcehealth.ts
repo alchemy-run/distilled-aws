@@ -42,7 +42,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -50,7 +50,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -87,7 +87,7 @@ export type EventTypeValues =
   | "EmergingIssues"
   | "SecurityAdvisory"
   | "Billing";
-export const EventTypeValues = /*@__PURE__*/ S.String;
+export const EventTypeValues = S.String;
 
 /** Sub-type of event. */
 export type EventSubTypeValues =
@@ -99,19 +99,19 @@ export type EventSubTypeValues =
   | "TaxChanges"
   | "MeterIDChanges"
   | "UnauthorizedPartyAbuse";
-export const EventSubTypeValues = /*@__PURE__*/ S.String;
+export const EventSubTypeValues = S.String;
 
 /** Source of event. */
 export type EventSourceValues = "ResourceHealth" | "ServiceHealth";
-export const EventSourceValues = /*@__PURE__*/ S.String;
+export const EventSourceValues = S.String;
 
 /** Current status of event. */
 export type EventStatusValues = "Active" | "Resolved";
-export const EventStatusValues = /*@__PURE__*/ S.String;
+export const EventStatusValues = S.String;
 
 /** Level of insight. */
 export type LevelValues = "Critical" | "Warning";
-export const LevelValues = /*@__PURE__*/ S.String;
+export const LevelValues = S.String;
 
 /** Level of event. */
 export type EventLevelValues =
@@ -119,7 +119,7 @@ export type EventLevelValues =
   | "Error"
   | "Warning"
   | "Informational";
-export const EventLevelValues = /*@__PURE__*/ S.String;
+export const EventLevelValues = S.String;
 
 /** Article of event. */
 export interface EventPropertiesArticle {
@@ -142,7 +142,7 @@ export const EventPropertiesArticle = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of link. */
 export type LinkTypeValues = "Button" | "Hyperlink";
-export const LinkTypeValues = /*@__PURE__*/ S.String;
+export const LinkTypeValues = S.String;
 
 /** Display text of link. */
 export interface LinkDisplayText {
@@ -748,11 +748,11 @@ export type AvailabilityStateValues =
   | "Unavailable"
   | "Degraded"
   | "Unknown";
-export const AvailabilityStateValues = /*@__PURE__*/ S.String;
+export const AvailabilityStateValues = S.String;
 
 /** Chronicity of the availability transition. */
 export type ReasonChronicityTypes = "Transient" | "Persistent";
-export const ReasonChronicityTypes = /*@__PURE__*/ S.String;
+export const ReasonChronicityTypes = S.String;
 
 /** An annotation describing a change in the availabilityState to Available from Unavailable with a reasonType of type Unplanned */
 export interface AvailabilityStatusPropertiesRecentlyResolved {
@@ -1022,7 +1022,7 @@ export const GetChildAvailabilityStatusByResourceResponse =
   }) as any as S.Schema<GetChildAvailabilityStatusByResourceResponse>;
 
 export type GetEmergingIssueRequestIssueName = "default";
-export const GetEmergingIssueRequestIssueName = /*@__PURE__*/ S.String;
+export const GetEmergingIssueRequestIssueName = S.String;
 
 export interface GetEmergingIssueRequest {
   /** The name of the emerging issue. */
@@ -1071,11 +1071,11 @@ export const EmergingIssueStatusBannersList = /*@__PURE__*/ S.Array(
 
 /** The severity level of this active event. */
 export type SeverityValues = "Information" | "Warning" | "Error";
-export const SeverityValues = /*@__PURE__*/ S.String;
+export const SeverityValues = S.String;
 
 /** The stage of this active event. */
 export type StageValues = "Active" | "Resolve" | "Archived";
-export const StageValues = /*@__PURE__*/ S.String;
+export const StageValues = S.String;
 
 /** Object of impacted region. */
 export interface ImpactedRegion {
@@ -1374,7 +1374,7 @@ export const MetadataEntityPropertiesDependsOnList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MetadataEntityPropertiesDependsOnList>;
 
 export type Scenario = "Alerts";
-export const Scenario = /*@__PURE__*/ S.String;
+export const Scenario = S.String;
 
 /** The list of scenarios applicable to this metadata entity. */
 export type MetadataEntityPropertiesApplicableScenariosList = Array<Scenario>;

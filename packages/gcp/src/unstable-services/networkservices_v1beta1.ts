@@ -112,21 +112,19 @@ export type AgentConnectivityTemplateAgentComputeEnum =
   | "GKE"
   | "CLOUD_RUN"
   | "BORG";
-export const AgentConnectivityTemplateAgentComputeEnum = /*@__PURE__*/ S.String;
+export const AgentConnectivityTemplateAgentComputeEnum = S.String;
 
 export type AgentConnectivityTemplateDeploymentModelEnum =
   | "DEPLOYMENT_MODEL_UNSPECIFIED"
   | "CENTRALIZED"
   | "AMBIENT";
-export const AgentConnectivityTemplateDeploymentModelEnum =
-  /*@__PURE__*/ S.String;
+export const AgentConnectivityTemplateDeploymentModelEnum = S.String;
 
 export type AgentConnectivityTemplateAccessTypesItemEnum =
   | "ACCESS_TYPE_UNSPECIFIED"
   | "PUBLIC"
   | "PRIVATE";
-export const AgentConnectivityTemplateAccessTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const AgentConnectivityTemplateAccessTypesItemEnum = S.String;
 
 export type AgentConnectivityTemplateAccessTypesItemEnumList = Array<
   AgentConnectivityTemplateAccessTypesItemEnum | (string & {})
@@ -140,7 +138,7 @@ export type AgentConnectivityTemplateAccessPathEnum =
   | "ACCESS_PATH_UNSPECIFIED"
   | "CLIENT_TO_AGENT"
   | "AGENT_TO_ANYWHERE";
-export const AgentConnectivityTemplateAccessPathEnum = /*@__PURE__*/ S.String;
+export const AgentConnectivityTemplateAccessPathEnum = S.String;
 
 /** DNS Peering configuration. */
 export interface DnsPeeringConfig {
@@ -162,7 +160,7 @@ export type EgressNetworkConfigVpcEgressEnum =
   | "VPC_EGRESS_UNSPECIFIED"
   | "ALL_TRAFFIC"
   | "PRIVATE_RANGES_ONLY";
-export const EgressNetworkConfigVpcEgressEnum = /*@__PURE__*/ S.String;
+export const EgressNetworkConfigVpcEgressEnum = S.String;
 
 export interface EgressNetworkConfig {
   /** Optional. The network attachment resource name. Format: projects/{project}/regions/{region}/networkAttachments/{network_attachment_id} */
@@ -310,8 +308,7 @@ export type AgentGatewayGoogleManagedGovernedAccessPathEnum =
   | "GOVERNED_ACCESS_PATH_UNSPECIFIED"
   | "AGENT_TO_ANYWHERE"
   | "CLIENT_TO_AGENT";
-export const AgentGatewayGoogleManagedGovernedAccessPathEnum =
-  /*@__PURE__*/ S.String;
+export const AgentGatewayGoogleManagedGovernedAccessPathEnum = S.String;
 
 /** Configuration for Google Managed deployment mode. Proxy is orchestrated and managed by GoogleCloud in a tenant project. */
 export interface AgentGatewayGoogleManaged {
@@ -352,7 +349,7 @@ export const AgentGatewaySelfManaged = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AgentGatewaySelfManaged>;
 
 export type AgentGatewayProtocolsItemEnum = "PROTOCOL_UNSPECIFIED" | "MCP";
-export const AgentGatewayProtocolsItemEnum = /*@__PURE__*/ S.String;
+export const AgentGatewayProtocolsItemEnum = S.String;
 
 export type AgentGatewayProtocolsItemEnumList = Array<
   AgentGatewayProtocolsItemEnum | (string & {})
@@ -505,13 +502,13 @@ export type AuthzExtensionLoadBalancingSchemeEnum =
   | "LOAD_BALANCING_SCHEME_UNSPECIFIED"
   | "INTERNAL_MANAGED"
   | "EXTERNAL_MANAGED";
-export const AuthzExtensionLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const AuthzExtensionLoadBalancingSchemeEnum = S.String;
 
 export type AuthzExtensionWireFormatEnum =
   | "WIRE_FORMAT_UNSPECIFIED"
   | "EXT_PROC_GRPC"
   | "EXT_AUTHZ_GRPC";
-export const AuthzExtensionWireFormatEnum = /*@__PURE__*/ S.String;
+export const AuthzExtensionWireFormatEnum = S.String;
 
 /** `AuthzExtension` is a resource that allows traffic forwarding to a callout backend service to make an authorization decision. */
 export interface AuthzExtension {
@@ -595,14 +592,13 @@ export type EndpointPolicyTypeEnum =
   | "ENDPOINT_POLICY_TYPE_UNSPECIFIED"
   | "SIDECAR_PROXY"
   | "GRPC_SERVER";
-export const EndpointPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const EndpointPolicyTypeEnum = S.String;
 
 export type MetadataLabelMatcherMetadataLabelMatchCriteriaEnum =
   | "METADATA_LABEL_MATCH_CRITERIA_UNSPECIFIED"
   | "MATCH_ANY"
   | "MATCH_ALL";
-export const MetadataLabelMatcherMetadataLabelMatchCriteriaEnum =
-  /*@__PURE__*/ S.String;
+export const MetadataLabelMatcherMetadataLabelMatchCriteriaEnum = S.String;
 
 /** Defines a name-pair value for a single label. */
 export interface MetadataLabels {
@@ -742,8 +738,7 @@ export type ExtensionBindingTargetScopeResourceTypesItemEnum =
   | "RESOURCE_TYPE_UNSPECIFIED"
   | "AI_APPLICATION"
   | "AGENT_GATEWAY";
-export const ExtensionBindingTargetScopeResourceTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const ExtensionBindingTargetScopeResourceTypesItemEnum = S.String;
 
 export type ExtensionBindingTargetScopeResourceTypesItemEnumList = Array<
   ExtensionBindingTargetScopeResourceTypesItemEnum | (string & {})
@@ -993,7 +988,7 @@ export type GatewayTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "OPEN_MESH"
   | "SECURE_WEB_GATEWAY";
-export const GatewayTypeEnum = /*@__PURE__*/ S.String;
+export const GatewayTypeEnum = S.String;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -1001,18 +996,18 @@ export const IntegerList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IntegerList>;
 
 export type GatewayIpVersionEnum = "IP_VERSION_UNSPECIFIED" | "IPV4" | "IPV6";
-export const GatewayIpVersionEnum = /*@__PURE__*/ S.String;
+export const GatewayIpVersionEnum = S.String;
 
 export type GatewayEnvoyHeadersEnum =
   | "ENVOY_HEADERS_UNSPECIFIED"
   | "NONE"
   | "DEBUG_HEADERS";
-export const GatewayEnvoyHeadersEnum = /*@__PURE__*/ S.String;
+export const GatewayEnvoyHeadersEnum = S.String;
 
 export type GatewayRoutingModeEnum =
   | "EXPLICIT_ROUTING_MODE"
   | "NEXT_HOP_ROUTING_MODE";
-export const GatewayRoutingModeEnum = /*@__PURE__*/ S.String;
+export const GatewayRoutingModeEnum = S.String;
 
 /** Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway. */
 export interface Gateway {
@@ -1111,7 +1106,7 @@ export type GrpcRouteMethodMatchTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "EXACT"
   | "REGULAR_EXPRESSION";
-export const GrpcRouteMethodMatchTypeEnum = /*@__PURE__*/ S.String;
+export const GrpcRouteMethodMatchTypeEnum = S.String;
 
 /** Specifies a match against a method. */
 export interface GrpcRouteMethodMatch {
@@ -1139,7 +1134,7 @@ export type GrpcRouteHeaderMatchTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "EXACT"
   | "REGULAR_EXPRESSION";
-export const GrpcRouteHeaderMatchTypeEnum = /*@__PURE__*/ S.String;
+export const GrpcRouteHeaderMatchTypeEnum = S.String;
 
 /** A match against a collection of headers. */
 export interface GrpcRouteHeaderMatch {
@@ -1566,7 +1561,7 @@ export type HttpRouteRedirectResponseCodeEnum =
   | "SEE_OTHER"
   | "TEMPORARY_REDIRECT"
   | "PERMANENT_REDIRECT";
-export const HttpRouteRedirectResponseCodeEnum = /*@__PURE__*/ S.String;
+export const HttpRouteRedirectResponseCodeEnum = S.String;
 
 /** The specification for redirecting traffic. */
 export interface HttpRouteRedirect {
@@ -1882,8 +1877,7 @@ export type ExtensionChainExtensionSupportedEventsItemEnum =
   | "RESPONSE_BODY"
   | "REQUEST_TRAILERS"
   | "RESPONSE_TRAILERS";
-export const ExtensionChainExtensionSupportedEventsItemEnum =
-  /*@__PURE__*/ S.String;
+export const ExtensionChainExtensionSupportedEventsItemEnum = S.String;
 
 export type ExtensionChainExtensionSupportedEventsItemEnumList = Array<
   ExtensionChainExtensionSupportedEventsItemEnum | (string & {})
@@ -1897,15 +1891,13 @@ export type ExtensionChainExtensionRequestBodySendModeEnum =
   | "BODY_SEND_MODE_UNSPECIFIED"
   | "BODY_SEND_MODE_STREAMED"
   | "BODY_SEND_MODE_FULL_DUPLEX_STREAMED";
-export const ExtensionChainExtensionRequestBodySendModeEnum =
-  /*@__PURE__*/ S.String;
+export const ExtensionChainExtensionRequestBodySendModeEnum = S.String;
 
 export type ExtensionChainExtensionResponseBodySendModeEnum =
   | "BODY_SEND_MODE_UNSPECIFIED"
   | "BODY_SEND_MODE_STREAMED"
   | "BODY_SEND_MODE_FULL_DUPLEX_STREAMED";
-export const ExtensionChainExtensionResponseBodySendModeEnum =
-  /*@__PURE__*/ S.String;
+export const ExtensionChainExtensionResponseBodySendModeEnum = S.String;
 
 /** A single extension in the chain to execute for the matching request. */
 export interface ExtensionChainExtension {
@@ -1997,7 +1989,7 @@ export type LbEdgeExtensionLoadBalancingSchemeEnum =
   | "LOAD_BALANCING_SCHEME_UNSPECIFIED"
   | "INTERNAL_MANAGED"
   | "EXTERNAL_MANAGED";
-export const LbEdgeExtensionLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const LbEdgeExtensionLoadBalancingSchemeEnum = S.String;
 
 /** `LbEdgeExtension` is a resource that lets the extension service influence the selection of backend services and Cloud CDN cache keys by modifying request headers. */
 export interface LbEdgeExtension {
@@ -2065,7 +2057,7 @@ export type LbRouteExtensionLoadBalancingSchemeEnum =
   | "LOAD_BALANCING_SCHEME_UNSPECIFIED"
   | "INTERNAL_MANAGED"
   | "EXTERNAL_MANAGED";
-export const LbRouteExtensionLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const LbRouteExtensionLoadBalancingSchemeEnum = S.String;
 
 /** `LbRouteExtension` is a resource that lets you control where traffic is routed to for a given request. */
 export interface LbRouteExtension {
@@ -2136,7 +2128,7 @@ export type LbTcpExtensionLoadBalancingSchemeEnum =
   | "LOAD_BALANCING_SCHEME_UNSPECIFIED"
   | "INTERNAL_MANAGED"
   | "EXTERNAL_MANAGED";
-export const LbTcpExtensionLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const LbTcpExtensionLoadBalancingSchemeEnum = S.String;
 
 /** `LbTcpExtension` is a resource that allows traffic forwarding to different backend services to make allow/deny decisions on TCP connections for all L7 Load Balancers within a network. Currently only internal load-balancers are supported. */
 export interface LbTcpExtension {
@@ -2202,7 +2194,7 @@ export type LbTrafficExtensionLoadBalancingSchemeEnum =
   | "LOAD_BALANCING_SCHEME_UNSPECIFIED"
   | "INTERNAL_MANAGED"
   | "EXTERNAL_MANAGED";
-export const LbTrafficExtensionLoadBalancingSchemeEnum = /*@__PURE__*/ S.String;
+export const LbTrafficExtensionLoadBalancingSchemeEnum = S.String;
 
 /** `LbTrafficExtension` is a resource that lets the extension service modify the headers and payloads of both requests and responses without impacting the choice of backend services or any other security policies associated with the backend service. */
 export interface LbTrafficExtension {
@@ -2275,7 +2267,7 @@ export type MeshEnvoyHeadersEnum =
   | "ENVOY_HEADERS_UNSPECIFIED"
   | "NONE"
   | "DEBUG_HEADERS";
-export const MeshEnvoyHeadersEnum = /*@__PURE__*/ S.String;
+export const MeshEnvoyHeadersEnum = S.String;
 
 /** Mesh represents a logical configuration grouping for workload to workload communication within a service mesh. Routes that point to mesh dictate how requests are routed within this logical mesh boundary. */
 export interface Mesh {
@@ -2338,7 +2330,7 @@ export type ProducerExtensionPhaseEnum =
   | "PHASE_UNSPECIFIED"
   | "TRAFFIC"
   | "AUTHZ";
-export const ProducerExtensionPhaseEnum = /*@__PURE__*/ S.String;
+export const ProducerExtensionPhaseEnum = S.String;
 
 export type ProducerExtensionExtensionSettingsSupportedEventsItemEnum =
   | "EVENT_TYPE_UNSPECIFIED"
@@ -2349,7 +2341,7 @@ export type ProducerExtensionExtensionSettingsSupportedEventsItemEnum =
   | "REQUEST_TRAILERS"
   | "RESPONSE_TRAILERS";
 export const ProducerExtensionExtensionSettingsSupportedEventsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProducerExtensionExtensionSettingsSupportedEventsItemEnumList =
   Array<
@@ -2503,7 +2495,7 @@ export type ServiceLbPolicyLoadBalancingAlgorithmEnum =
   | "SPRAY_TO_REGION"
   | "WATERFALL_BY_REGION"
   | "WATERFALL_BY_ZONE";
-export const ServiceLbPolicyLoadBalancingAlgorithmEnum = /*@__PURE__*/ S.String;
+export const ServiceLbPolicyLoadBalancingAlgorithmEnum = S.String;
 
 /** Option to specify if an unhealthy IG/NEG should be considered for global load balancing and traffic routing. */
 export interface ServiceLbPolicyAutoCapacityDrain {
@@ -2534,15 +2526,13 @@ export const ServiceLbPolicyFailoverConfig = /*@__PURE__*/ S.suspend(() =>
 export type ServiceLbPolicyIsolationConfigIsolationGranularityEnum =
   | "ISOLATION_GRANULARITY_UNSPECIFIED"
   | "REGION";
-export const ServiceLbPolicyIsolationConfigIsolationGranularityEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceLbPolicyIsolationConfigIsolationGranularityEnum = S.String;
 
 export type ServiceLbPolicyIsolationConfigIsolationModeEnum =
   | "ISOLATION_MODE_UNSPECIFIED"
   | "NEAREST"
   | "STRICT";
-export const ServiceLbPolicyIsolationConfigIsolationModeEnum =
-  /*@__PURE__*/ S.String;
+export const ServiceLbPolicyIsolationConfigIsolationModeEnum = S.String;
 
 /** Configuration to provide isolation support for the associated Backend Service. */
 export interface ServiceLbPolicyIsolationConfig {
@@ -2924,7 +2914,7 @@ export type WasmPluginLogConfigMinLogLevelEnum =
   | "WARN"
   | "ERROR"
   | "CRITICAL";
-export const WasmPluginLogConfigMinLogLevelEnum = /*@__PURE__*/ S.String;
+export const WasmPluginLogConfigMinLogLevelEnum = S.String;
 
 /** Specifies the logging options for the activity performed by this plugin. If logging is enabled, plugin logs are exported to Cloud Logging. */
 export interface WasmPluginLogConfig {
@@ -4055,7 +4045,7 @@ export type GetProjectsLocationsWasmPluginsViewEnum =
   | "WASM_PLUGIN_VIEW_UNSPECIFIED"
   | "WASM_PLUGIN_VIEW_BASIC"
   | "WASM_PLUGIN_VIEW_FULL";
-export const GetProjectsLocationsWasmPluginsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsWasmPluginsViewEnum = S.String;
 
 export interface GetProjectsLocationsWasmPluginsRequest {
   /** Required. A name of the `WasmPlugin` resource to get. Must be in the format `projects/{project}/locations/global/wasmPlugins/{wasm_plugin}`. */

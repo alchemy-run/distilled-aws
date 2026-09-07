@@ -217,7 +217,7 @@ export const InsertPersonRequest = /*@__PURE__*/ S.suspend(() =>
 export type CreateFooterRequestTypeEnum =
   | "HEADER_FOOTER_TYPE_UNSPECIFIED"
   | "DEFAULT";
-export const CreateFooterRequestTypeEnum = /*@__PURE__*/ S.String;
+export const CreateFooterRequestTypeEnum = S.String;
 
 /** Creates a Footer. The new footer is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a footer of the specified type already exists, a 400 bad request error is returned. */
 export interface CreateFooterRequest {
@@ -238,7 +238,7 @@ export const CreateFooterRequest = /*@__PURE__*/ S.suspend(() =>
 export type ReplaceImageRequestImageReplaceMethodEnum =
   | "IMAGE_REPLACE_METHOD_UNSPECIFIED"
   | "CENTER_CROP";
-export const ReplaceImageRequestImageReplaceMethodEnum = /*@__PURE__*/ S.String;
+export const ReplaceImageRequestImageReplaceMethodEnum = S.String;
 
 /** Replaces an existing image with a new image. Replacing an image removes some image effects from the existing image in order to mirror the behavior of the Docs editor. */
 export interface ReplaceImageRequest {
@@ -310,10 +310,10 @@ export type SectionStyleColumnSeparatorStyleEnum =
   | "COLUMN_SEPARATOR_STYLE_UNSPECIFIED"
   | "NONE"
   | "BETWEEN_EACH_COLUMN";
-export const SectionStyleColumnSeparatorStyleEnum = /*@__PURE__*/ S.String;
+export const SectionStyleColumnSeparatorStyleEnum = S.String;
 
 export type DimensionUnitEnum = "UNIT_UNSPECIFIED" | "PT";
-export const DimensionUnitEnum = /*@__PURE__*/ S.String;
+export const DimensionUnitEnum = S.String;
 
 /** A magnitude in a single direction in the specified units. */
 export interface Dimension {
@@ -354,13 +354,13 @@ export type SectionStyleContentDirectionEnum =
   | "CONTENT_DIRECTION_UNSPECIFIED"
   | "LEFT_TO_RIGHT"
   | "RIGHT_TO_LEFT";
-export const SectionStyleContentDirectionEnum = /*@__PURE__*/ S.String;
+export const SectionStyleContentDirectionEnum = S.String;
 
 export type SectionStyleSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "CONTINUOUS"
   | "NEXT_PAGE";
-export const SectionStyleSectionTypeEnum = /*@__PURE__*/ S.String;
+export const SectionStyleSectionTypeEnum = S.String;
 
 /** The styling that applies to a section. */
 export interface SectionStyle {
@@ -560,7 +560,7 @@ export type TextStyleBaselineOffsetEnum =
   | "NONE"
   | "SUPERSCRIPT"
   | "SUBSCRIPT";
-export const TextStyleBaselineOffsetEnum = /*@__PURE__*/ S.String;
+export const TextStyleBaselineOffsetEnum = S.String;
 
 /** Represents the styling that can be applied to text. Inherited text styles are represented as unset fields in this message. A text style's parent depends on where the text style is defined: * The TextStyle of text in a Paragraph inherits from the paragraph's corresponding named style type. * The TextStyle on a named style inherits from the normal text named style. * The TextStyle of the normal text named style inherits from the default text style in the Docs editor. * The TextStyle on a Paragraph element that's contained in a table may inherit its text style from the table style. If the text style does not inherit from a parent, unsetting fields will revert the style to a value matching the defaults in the Docs editor. */
 export interface TextStyle {
@@ -670,7 +670,7 @@ export const CreateFootnoteRequest = /*@__PURE__*/ S.suspend(() =>
 export type CreateHeaderRequestTypeEnum =
   | "HEADER_FOOTER_TYPE_UNSPECIFIED"
   | "DEFAULT";
-export const CreateHeaderRequestTypeEnum = /*@__PURE__*/ S.String;
+export const CreateHeaderRequestTypeEnum = S.String;
 
 /** Creates a Header. The new header is applied to the SectionStyle at the location of the SectionBreak if specified, otherwise it is applied to the DocumentStyle. If a header of the specified type already exists, a 400 bad request error is returned. */
 export interface CreateHeaderRequest {
@@ -705,8 +705,7 @@ export type CreateParagraphBulletsRequestBulletPresetEnum =
   | "NUMBERED_UPPERALPHA_ALPHA_ROMAN"
   | "NUMBERED_UPPERROMAN_UPPERALPHA_DECIMAL"
   | "NUMBERED_ZERODECIMAL_ALPHA_ROMAN";
-export const CreateParagraphBulletsRequestBulletPresetEnum =
-  /*@__PURE__*/ S.String;
+export const CreateParagraphBulletsRequestBulletPresetEnum = S.String;
 
 /** Creates bullets for all of the paragraphs that overlap with the given range. The nesting level of each paragraph will be determined by counting leading tabs in front of each paragraph. To avoid excess space between the bullet and the corresponding paragraph, these leading tabs are removed by this request. This may change the indices of parts of the text. If the paragraph immediately before paragraphs being updated is in a list with a matching preset, the paragraphs being updated are added to that preceding list. */
 export interface CreateParagraphBulletsRequest {
@@ -728,7 +727,7 @@ export type TableColumnPropertiesWidthTypeEnum =
   | "WIDTH_TYPE_UNSPECIFIED"
   | "EVENLY_DISTRIBUTED"
   | "FIXED_WIDTH";
-export const TableColumnPropertiesWidthTypeEnum = /*@__PURE__*/ S.String;
+export const TableColumnPropertiesWidthTypeEnum = S.String;
 
 /** The properties of a column in a table. */
 export interface TableColumnProperties {
@@ -791,7 +790,7 @@ export type ParagraphBorderDashStyleEnum =
   | "SOLID"
   | "DOT"
   | "DASH";
-export const ParagraphBorderDashStyleEnum = /*@__PURE__*/ S.String;
+export const ParagraphBorderDashStyleEnum = S.String;
 
 /** A border around a paragraph. */
 export interface ParagraphBorder {
@@ -819,7 +818,7 @@ export type ParagraphStyleSpacingModeEnum =
   | "SPACING_MODE_UNSPECIFIED"
   | "NEVER_COLLAPSE"
   | "COLLAPSE_LISTS";
-export const ParagraphStyleSpacingModeEnum = /*@__PURE__*/ S.String;
+export const ParagraphStyleSpacingModeEnum = S.String;
 
 export type ParagraphStyleAlignmentEnum =
   | "ALIGNMENT_UNSPECIFIED"
@@ -827,13 +826,13 @@ export type ParagraphStyleAlignmentEnum =
   | "CENTER"
   | "END"
   | "JUSTIFIED";
-export const ParagraphStyleAlignmentEnum = /*@__PURE__*/ S.String;
+export const ParagraphStyleAlignmentEnum = S.String;
 
 export type ParagraphStyleDirectionEnum =
   | "CONTENT_DIRECTION_UNSPECIFIED"
   | "LEFT_TO_RIGHT"
   | "RIGHT_TO_LEFT";
-export const ParagraphStyleDirectionEnum = /*@__PURE__*/ S.String;
+export const ParagraphStyleDirectionEnum = S.String;
 
 export type ParagraphStyleNamedStyleTypeEnum =
   | "NAMED_STYLE_TYPE_UNSPECIFIED"
@@ -846,7 +845,7 @@ export type ParagraphStyleNamedStyleTypeEnum =
   | "HEADING_4"
   | "HEADING_5"
   | "HEADING_6";
-export const ParagraphStyleNamedStyleTypeEnum = /*@__PURE__*/ S.String;
+export const ParagraphStyleNamedStyleTypeEnum = S.String;
 
 /** The shading of a paragraph. */
 export interface Shading {
@@ -864,7 +863,7 @@ export type TabStopAlignmentEnum =
   | "START"
   | "CENTER"
   | "END";
-export const TabStopAlignmentEnum = /*@__PURE__*/ S.String;
+export const TabStopAlignmentEnum = S.String;
 
 /** A tab stop within a paragraph. */
 export interface TabStop {
@@ -1016,14 +1015,14 @@ export type TableCellStyleContentAlignmentEnum =
   | "TOP"
   | "MIDDLE"
   | "BOTTOM";
-export const TableCellStyleContentAlignmentEnum = /*@__PURE__*/ S.String;
+export const TableCellStyleContentAlignmentEnum = S.String;
 
 export type TableCellBorderDashStyleEnum =
   | "DASH_STYLE_UNSPECIFIED"
   | "SOLID"
   | "DOT"
   | "DASH";
-export const TableCellBorderDashStyleEnum = /*@__PURE__*/ S.String;
+export const TableCellBorderDashStyleEnum = S.String;
 
 /** A border around a table cell. Table cell borders cannot be transparent. To hide a table cell border, make its width 0. */
 export interface TableCellBorder {
@@ -1186,7 +1185,7 @@ export type DateElementPropertiesTimeFormatEnum =
   | "TIME_FORMAT_DISABLED"
   | "TIME_FORMAT_HOUR_MINUTE"
   | "TIME_FORMAT_HOUR_MINUTE_TIMEZONE";
-export const DateElementPropertiesTimeFormatEnum = /*@__PURE__*/ S.String;
+export const DateElementPropertiesTimeFormatEnum = S.String;
 
 export type DateElementPropertiesDateFormatEnum =
   | "DATE_FORMAT_UNSPECIFIED"
@@ -1195,7 +1194,7 @@ export type DateElementPropertiesDateFormatEnum =
   | "DATE_FORMAT_MONTH_DAY_FULL"
   | "DATE_FORMAT_MONTH_DAY_YEAR_ABBREVIATED"
   | "DATE_FORMAT_ISO8601";
-export const DateElementPropertiesDateFormatEnum = /*@__PURE__*/ S.String;
+export const DateElementPropertiesDateFormatEnum = S.String;
 
 /** Properties of a DateElement. */
 export interface DateElementProperties {
@@ -1248,7 +1247,7 @@ export type InsertSectionBreakRequestSectionTypeEnum =
   | "SECTION_TYPE_UNSPECIFIED"
   | "CONTINUOUS"
   | "NEXT_PAGE";
-export const InsertSectionBreakRequestSectionTypeEnum = /*@__PURE__*/ S.String;
+export const InsertSectionBreakRequestSectionTypeEnum = S.String;
 
 /** Inserts a section break at the given location. A newline character will be inserted before the section break. */
 export interface InsertSectionBreakRequest {
@@ -1355,7 +1354,7 @@ export type DocumentFormatDocumentModeEnum =
   | "DOCUMENT_MODE_UNSPECIFIED"
   | "PAGES"
   | "PAGELESS";
-export const DocumentFormatDocumentModeEnum = /*@__PURE__*/ S.String;
+export const DocumentFormatDocumentModeEnum = S.String;
 
 /** Represents document-level format settings. */
 export interface DocumentFormat {
@@ -1631,7 +1630,7 @@ export type NamedStyleNamedStyleTypeEnum =
   | "HEADING_4"
   | "HEADING_5"
   | "HEADING_6";
-export const NamedStyleNamedStyleTypeEnum = /*@__PURE__*/ S.String;
+export const NamedStyleNamedStyleTypeEnum = S.String;
 
 /** A named style. Paragraphs in the document can inherit their TextStyle and ParagraphStyle from this named style when they have the same named style type. */
 export interface NamedStyle {
@@ -2142,8 +2141,7 @@ export type NamedStyleSuggestionStateNamedStyleTypeEnum =
   | "HEADING_4"
   | "HEADING_5"
   | "HEADING_6";
-export const NamedStyleSuggestionStateNamedStyleTypeEnum =
-  /*@__PURE__*/ S.String;
+export const NamedStyleSuggestionStateNamedStyleTypeEnum = S.String;
 
 /** A mask that indicates which of the fields on the base Shading have been changed in this suggested change. For any field set to true, there's a new suggested value. */
 export interface ShadingSuggestionState {
@@ -2367,10 +2365,10 @@ export type EmbeddedObjectBorderDashStyleEnum =
   | "SOLID"
   | "DOT"
   | "DASH";
-export const EmbeddedObjectBorderDashStyleEnum = /*@__PURE__*/ S.String;
+export const EmbeddedObjectBorderDashStyleEnum = S.String;
 
 export type EmbeddedObjectBorderPropertyStateEnum = "RENDERED" | "NOT_RENDERED";
-export const EmbeddedObjectBorderPropertyStateEnum = /*@__PURE__*/ S.String;
+export const EmbeddedObjectBorderPropertyStateEnum = S.String;
 
 /** A border around an EmbeddedObject. */
 export interface EmbeddedObjectBorder {
@@ -2746,14 +2744,14 @@ export type NestingLevelGlyphTypeEnum =
   | "ALPHA"
   | "UPPER_ROMAN"
   | "ROMAN";
-export const NestingLevelGlyphTypeEnum = /*@__PURE__*/ S.String;
+export const NestingLevelGlyphTypeEnum = S.String;
 
 export type NestingLevelBulletAlignmentEnum =
   | "BULLET_ALIGNMENT_UNSPECIFIED"
   | "START"
   | "CENTER"
   | "END";
-export const NestingLevelBulletAlignmentEnum = /*@__PURE__*/ S.String;
+export const NestingLevelBulletAlignmentEnum = S.String;
 
 /** Contains properties describing the look and feel of a list bullet at a given level of nesting. */
 export interface NestingLevel {
@@ -3244,7 +3242,7 @@ export type AutoTextTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "PAGE_NUMBER"
   | "PAGE_COUNT";
-export const AutoTextTypeEnum = /*@__PURE__*/ S.String;
+export const AutoTextTypeEnum = S.String;
 
 /** A ParagraphElement representing a spot in the text that's dynamically replaced with content that can change over time, like a page number. */
 export interface AutoText {
@@ -3802,7 +3800,7 @@ export type PositionedObjectPositioningLayoutEnum =
   | "BREAK_LEFT_RIGHT"
   | "IN_FRONT_OF_TEXT"
   | "BEHIND_TEXT";
-export const PositionedObjectPositioningLayoutEnum = /*@__PURE__*/ S.String;
+export const PositionedObjectPositioningLayoutEnum = S.String;
 
 /** The positioning of a PositionedObject. The positioned object is positioned relative to the beginning of the Paragraph it's tethered to. */
 export interface PositionedObjectPositioning {
@@ -4152,7 +4150,7 @@ export type DocumentSuggestionsViewModeEnum =
   | "SUGGESTIONS_INLINE"
   | "PREVIEW_SUGGESTIONS_ACCEPTED"
   | "PREVIEW_WITHOUT_SUGGESTIONS";
-export const DocumentSuggestionsViewModeEnum = /*@__PURE__*/ S.String;
+export const DocumentSuggestionsViewModeEnum = S.String;
 
 /** A Google Docs document. */
 export interface Document {
@@ -4236,7 +4234,7 @@ export type GetDocumentsSuggestionsViewModeEnum =
   | "SUGGESTIONS_INLINE"
   | "PREVIEW_SUGGESTIONS_ACCEPTED"
   | "PREVIEW_WITHOUT_SUGGESTIONS";
-export const GetDocumentsSuggestionsViewModeEnum = /*@__PURE__*/ S.String;
+export const GetDocumentsSuggestionsViewModeEnum = S.String;
 
 export interface GetDocumentsRequest {
   /** The suggestions view mode to apply to the document. This allows viewing the document with all suggestions inline, accepted or rejected. If one is not specified, DEFAULT_FOR_CURRENT_ACCESS is used. */

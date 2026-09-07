@@ -492,7 +492,7 @@ export type CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthChec
   | "mid"
   | "high";
 export const CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget {
   /** The effective health check target. If 'saved' is empty, then this field will be populated with the calculated default value on GET requests. Ignored in POST, PUT, and PATCH requests. */
@@ -521,7 +521,7 @@ export type CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthChec
   | "reply"
   | "request";
 export const CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheck {
   /** Determines whether to run healthchecks for a tunnel. */
@@ -714,7 +714,7 @@ export type GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemBgpStatusState =
   | "BGP_UP"
   | "BGP_ESTABLISHING";
 export const GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemBgpStatusState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemBgpStatus {
   state: GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemBgpStatusState;
@@ -752,14 +752,14 @@ export type GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheckDirecti
   | "unidirectional"
   | "bidirectional";
 export const GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheckRate =
   | "low"
   | "mid"
   | "high";
 export const GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -776,7 +776,7 @@ export type GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheckType =
   | "reply"
   | "request";
 export const GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GreTunnelsBulkUpdateResponseModifiedGreTunnelsItemHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -979,7 +979,7 @@ export type IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemBgpStatusState
   | "BGP_UP"
   | "BGP_ESTABLISHING";
 export const IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemBgpStatusState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemBgpStatus {
   state: IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemBgpStatusState;
@@ -1033,14 +1033,14 @@ export type IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheckDir
   | "unidirectional"
   | "bidirectional";
 export const IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheckRate =
   | "low"
   | "mid"
   | "high";
 export const IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -1057,7 +1057,7 @@ export type IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheckTyp
   | "reply"
   | "request";
 export const IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IpsecTunnelsBulkUpdateResponseModifiedIpsecTunnelsItemHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -1665,7 +1665,7 @@ export type Cf1SitesRampsCreateRequestBodyItemType =
   | "mpls_interconnect"
   | "mconn"
   | "ipsec";
-export const Cf1SitesRampsCreateRequestBodyItemType = /*@__PURE__*/ S.String;
+export const Cf1SitesRampsCreateRequestBodyItemType = S.String;
 
 export interface Cf1SitesRampsCreateRequestBodyItem {
   /** Identifier of the source network resource to associate as a ramp. */
@@ -1719,7 +1719,7 @@ export type Cf1SitesRampsCreateResultItemType =
   | "mpls_interconnect"
   | "mconn"
   | "ipsec";
-export const Cf1SitesRampsCreateResultItemType = /*@__PURE__*/ S.String;
+export const Cf1SitesRampsCreateResultItemType = S.String;
 
 export interface Cf1SitesRampsCreateResultItemGre {
   /** URL reference to the source network resource that this ramp is managed by. */
@@ -1841,8 +1841,7 @@ export type ConnectorsCreateRequestInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsCreateRequestInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsCreateRequestInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsCreateRequestInterruptWindowDaysOfWeekList = Array<
   ConnectorsCreateRequestInterruptWindowDaysOfWeekItem | (string & {})
@@ -1922,8 +1921,7 @@ export type ConnectorsCreateResponseInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsCreateResponseInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsCreateResponseInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsCreateResponseInterruptWindowDaysOfWeekList =
   Array<ConnectorsCreateResponseInterruptWindowDaysOfWeekItem>;
@@ -1940,7 +1938,7 @@ export const ConnectorsCreateResponseInterruptWindowEmbargoDatesList =
   ) as any as S.Schema<ConnectorsCreateResponseInterruptWindowEmbargoDatesList>;
 
 export type ConnectorsCreateResponseDeviceType = "MANAGED" | "LICENSED";
-export const ConnectorsCreateResponseDeviceType = /*@__PURE__*/ S.String;
+export const ConnectorsCreateResponseDeviceType = S.String;
 
 export interface ConnectorsCreateResponseDevice {
   id: string;
@@ -2050,11 +2048,10 @@ export const GreTunnelsCreateRequestBgp = /*@__PURE__*/ S.suspend(() =>
 export type GreTunnelsCreateRequestHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const GreTunnelsCreateRequestHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsCreateRequestHealthCheckDirection = S.String;
 
 export type GreTunnelsCreateRequestHealthCheckRate = "low" | "mid" | "high";
-export const GreTunnelsCreateRequestHealthCheckRate = /*@__PURE__*/ S.String;
+export const GreTunnelsCreateRequestHealthCheckRate = S.String;
 
 export interface GreTunnelsCreateRequestHealthCheckTargetMagicHealthCheckTarget {
   /** The effective health check target. If 'saved' is empty, then this field will be populated with the calculated default value on GET requests. Ignored in POST, PUT, and PATCH requests. */
@@ -2080,7 +2077,7 @@ export const GreTunnelsCreateRequestHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type GreTunnelsCreateRequestHealthCheckType = "reply" | "request";
-export const GreTunnelsCreateRequestHealthCheckType = /*@__PURE__*/ S.String;
+export const GreTunnelsCreateRequestHealthCheckType = S.String;
 
 export interface GreTunnelsCreateRequestHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -2207,7 +2204,7 @@ export type GreTunnelsCreateResponseBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const GreTunnelsCreateResponseBgpStatusState = /*@__PURE__*/ S.String;
+export const GreTunnelsCreateResponseBgpStatusState = S.String;
 
 export interface GreTunnelsCreateResponseBgpStatus {
   state: GreTunnelsCreateResponseBgpStatusState;
@@ -2243,11 +2240,10 @@ export const GreTunnelsCreateResponseBgpStatus = /*@__PURE__*/ S.suspend(() =>
 export type GreTunnelsCreateResponseHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const GreTunnelsCreateResponseHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsCreateResponseHealthCheckDirection = S.String;
 
 export type GreTunnelsCreateResponseHealthCheckRate = "low" | "mid" | "high";
-export const GreTunnelsCreateResponseHealthCheckRate = /*@__PURE__*/ S.String;
+export const GreTunnelsCreateResponseHealthCheckRate = S.String;
 
 export type GreTunnelsCreateResponseHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -2261,7 +2257,7 @@ export const GreTunnelsCreateResponseHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type GreTunnelsCreateResponseHealthCheckType = "reply" | "request";
-export const GreTunnelsCreateResponseHealthCheckType = /*@__PURE__*/ S.String;
+export const GreTunnelsCreateResponseHealthCheckType = S.String;
 
 export interface GreTunnelsCreateResponseHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -2401,11 +2397,10 @@ export const IpsecTunnelsCreateRequestCustomRemoteIdentities =
 export type IpsecTunnelsCreateRequestHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const IpsecTunnelsCreateRequestHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsCreateRequestHealthCheckDirection = S.String;
 
 export type IpsecTunnelsCreateRequestHealthCheckRate = "low" | "mid" | "high";
-export const IpsecTunnelsCreateRequestHealthCheckRate = /*@__PURE__*/ S.String;
+export const IpsecTunnelsCreateRequestHealthCheckRate = S.String;
 
 export type IpsecTunnelsCreateRequestHealthCheckTargetMagicHealthCheckTarget =
   GreTunnelsCreateRequestHealthCheckTargetMagicHealthCheckTarget;
@@ -2419,7 +2414,7 @@ export const IpsecTunnelsCreateRequestHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type IpsecTunnelsCreateRequestHealthCheckType = "reply" | "request";
-export const IpsecTunnelsCreateRequestHealthCheckType = /*@__PURE__*/ S.String;
+export const IpsecTunnelsCreateRequestHealthCheckType = S.String;
 
 export interface IpsecTunnelsCreateRequestHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -2553,7 +2548,7 @@ export type IpsecTunnelsCreateResponseBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const IpsecTunnelsCreateResponseBgpStatusState = /*@__PURE__*/ S.String;
+export const IpsecTunnelsCreateResponseBgpStatusState = S.String;
 
 export interface IpsecTunnelsCreateResponseBgpStatus {
   state: IpsecTunnelsCreateResponseBgpStatusState;
@@ -2594,11 +2589,10 @@ export const IpsecTunnelsCreateResponseCustomRemoteIdentities =
 export type IpsecTunnelsCreateResponseHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const IpsecTunnelsCreateResponseHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsCreateResponseHealthCheckDirection = S.String;
 
 export type IpsecTunnelsCreateResponseHealthCheckRate = "low" | "mid" | "high";
-export const IpsecTunnelsCreateResponseHealthCheckRate = /*@__PURE__*/ S.String;
+export const IpsecTunnelsCreateResponseHealthCheckRate = S.String;
 
 export type IpsecTunnelsCreateResponseHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -2612,7 +2606,7 @@ export const IpsecTunnelsCreateResponseHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type IpsecTunnelsCreateResponseHealthCheckType = "reply" | "request";
-export const IpsecTunnelsCreateResponseHealthCheckType = /*@__PURE__*/ S.String;
+export const IpsecTunnelsCreateResponseHealthCheckType = S.String;
 
 export interface IpsecTunnelsCreateResponseHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -2728,10 +2722,10 @@ export const CreateIpsecTunnelResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIpsecTunnelResponse>;
 
 export type PcapsCreateRequestSystem = "magic-transit";
-export const PcapsCreateRequestSystem = /*@__PURE__*/ S.String;
+export const PcapsCreateRequestSystem = S.String;
 
 export type PcapsCreateRequestType = "simple" | "full";
-export const PcapsCreateRequestType = /*@__PURE__*/ S.String;
+export const PcapsCreateRequestType = S.String;
 
 export interface PcapsCreateRequestFilterV1MagicVisibilityPCAPsPCAPsRequestSimple {
   /** The destination IP address of the packet. */
@@ -2851,13 +2845,13 @@ export type PcapsCreateResultPCAPStatus =
   | "conversion_running"
   | "complete"
   | "failed";
-export const PcapsCreateResultPCAPStatus = /*@__PURE__*/ S.String;
+export const PcapsCreateResultPCAPStatus = S.String;
 
 export type PcapsCreateResultPCAPSystem = "magic-transit";
-export const PcapsCreateResultPCAPSystem = /*@__PURE__*/ S.String;
+export const PcapsCreateResultPCAPSystem = S.String;
 
 export type PcapsCreateResultPCAPType = "simple" | "full";
-export const PcapsCreateResultPCAPType = /*@__PURE__*/ S.String;
+export const PcapsCreateResultPCAPType = S.String;
 
 export interface PcapsCreateResultPCAP {
   /** The ID for the packet capture. */
@@ -2904,18 +2898,18 @@ export type PcapsCreateResultMagicVisibilityPCAPsPCAPsResponseFullStatus =
   | "complete"
   | "failed";
 export const PcapsCreateResultMagicVisibilityPCAPsPCAPsResponseFullStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PcapsCreateResultMagicVisibilityPCAPsPCAPsResponseFullSystem =
   "magic-transit";
 export const PcapsCreateResultMagicVisibilityPCAPsPCAPsResponseFullSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PcapsCreateResultMagicVisibilityPCAPsPCAPsResponseFullType =
   | "simple"
   | "full";
 export const PcapsCreateResultMagicVisibilityPCAPsPCAPsResponseFullType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PcapsCreateResultMagicVisibilityPCAPsPCAPsResponseFull {
   /** The ID for the packet capture. */
@@ -3052,7 +3046,7 @@ export type PcapsOwnershipCreateResponseStatus =
   | "pending"
   | "success"
   | "failed";
-export const PcapsOwnershipCreateResponseStatus = /*@__PURE__*/ S.String;
+export const PcapsOwnershipCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreatePcapOwnershipResponse {
@@ -3362,7 +3356,7 @@ export const SitesAclsCreateRequestLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsCreateRequestLan1>;
 
 export type SitesAclsCreateRequestProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsCreateRequestProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsCreateRequestProtocolsItem = S.String;
 
 export type SitesAclsCreateRequestProtocolsList = Array<
   SitesAclsCreateRequestProtocolsItem | (string & {})
@@ -3456,7 +3450,7 @@ export const SitesAclsCreateResponseLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsCreateResponseLan1>;
 
 export type SitesAclsCreateResponseProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsCreateResponseProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsCreateResponseProtocolsItem = S.String;
 
 export type SitesAclsCreateResponseProtocolsList =
   Array<SitesAclsCreateResponseProtocolsItem>;
@@ -3565,7 +3559,7 @@ export type SitesLansCreateRequestStaticAddressingDhcpServerDhcpOptionsItemType 
   | "short"
   | "integer";
 export const SitesLansCreateRequestStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansCreateRequestStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -3800,7 +3794,7 @@ export type SitesLansCreateResultItemStaticAddressingDhcpServerDhcpOptionsItemTy
   | "short"
   | "integer";
 export const SitesLansCreateResultItemStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansCreateResultItemStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -4194,7 +4188,7 @@ export const CreateSiteWanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSiteWanRequest>;
 
 export type SitesWansCreateResultItemHealthCheckRate = "low" | "mid" | "high";
-export const SitesWansCreateResultItemHealthCheckRate = /*@__PURE__*/ S.String;
+export const SitesWansCreateResultItemHealthCheckRate = S.String;
 
 export interface SitesWansCreateResultItemStaticAddressing {
   /** A valid CIDR notation representing an IP range. */
@@ -4431,7 +4425,7 @@ export type Cf1SitesRampsDeleteResponseType =
   | "mpls_interconnect"
   | "mconn"
   | "ipsec";
-export const Cf1SitesRampsDeleteResponseType = /*@__PURE__*/ S.String;
+export const Cf1SitesRampsDeleteResponseType = S.String;
 
 export type Cf1SitesRampsDeleteResponseGre = Cf1SitesRampsCreateResultItemGre;
 export const Cf1SitesRampsDeleteResponseGre = Cf1SitesRampsCreateResultItemGre;
@@ -4528,8 +4522,7 @@ export type ConnectorsDeleteResponseInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsDeleteResponseInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsDeleteResponseInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsDeleteResponseInterruptWindowDaysOfWeekList =
   Array<ConnectorsDeleteResponseInterruptWindowDaysOfWeekItem>;
@@ -4546,7 +4539,7 @@ export const ConnectorsDeleteResponseInterruptWindowEmbargoDatesList =
   ) as any as S.Schema<ConnectorsDeleteResponseInterruptWindowEmbargoDatesList>;
 
 export type ConnectorsDeleteResponseDeviceType = "MANAGED" | "LICENSED";
-export const ConnectorsDeleteResponseDeviceType = /*@__PURE__*/ S.String;
+export const ConnectorsDeleteResponseDeviceType = S.String;
 
 export interface ConnectorsDeleteResponseDevice {
   id: string;
@@ -4690,8 +4683,7 @@ export type GreTunnelsDeleteResponseDeletedGreTunnelBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const GreTunnelsDeleteResponseDeletedGreTunnelBgpStatusState =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsDeleteResponseDeletedGreTunnelBgpStatusState = S.String;
 
 export interface GreTunnelsDeleteResponseDeletedGreTunnelBgpStatus {
   state: GreTunnelsDeleteResponseDeletedGreTunnelBgpStatusState;
@@ -4729,14 +4721,13 @@ export type GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
 export const GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckRate =
   | "low"
   | "mid"
   | "high";
-export const GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckRate =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckRate = S.String;
 
 export type GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -4752,8 +4743,7 @@ export const GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckTarget =
 export type GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckType =
   | "reply"
   | "request";
-export const GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckType =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsDeleteResponseDeletedGreTunnelHealthCheckType = S.String;
 
 export interface GreTunnelsDeleteResponseDeletedGreTunnelHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -4942,7 +4932,7 @@ export type IpsecTunnelsDeleteResponseDeletedIpsecTunnelBgpStatusState =
   | "BGP_UP"
   | "BGP_ESTABLISHING";
 export const IpsecTunnelsDeleteResponseDeletedIpsecTunnelBgpStatusState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IpsecTunnelsDeleteResponseDeletedIpsecTunnelBgpStatus {
   state: IpsecTunnelsDeleteResponseDeletedIpsecTunnelBgpStatusState;
@@ -4985,14 +4975,14 @@ export type IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
 export const IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheckRate =
   | "low"
   | "mid"
   | "high";
 export const IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -5009,7 +4999,7 @@ export type IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheckType =
   | "reply"
   | "request";
 export const IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IpsecTunnelsDeleteResponseDeletedIpsecTunnelHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -5424,7 +5414,7 @@ export const SitesAclsDeleteResponseLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsDeleteResponseLan1>;
 
 export type SitesAclsDeleteResponseProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsDeleteResponseProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsDeleteResponseProtocolsItem = S.String;
 
 export type SitesAclsDeleteResponseProtocolsList =
   Array<SitesAclsDeleteResponseProtocolsItem>;
@@ -5537,7 +5527,7 @@ export type SitesLansDeleteResponseStaticAddressingDhcpServerDhcpOptionsItemType
   | "short"
   | "integer";
 export const SitesLansDeleteResponseStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansDeleteResponseStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -5861,7 +5851,7 @@ export const DeleteSiteWanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteSiteWanRequest>;
 
 export type SitesWansDeleteResponseHealthCheckRate = "low" | "mid" | "high";
-export const SitesWansDeleteResponseHealthCheckRate = /*@__PURE__*/ S.String;
+export const SitesWansDeleteResponseHealthCheckRate = S.String;
 
 export type SitesWansDeleteResponseStaticAddressing =
   SitesWansCreateResultItemStaticAddressing;
@@ -6259,7 +6249,7 @@ export type Cf1SitesRampsGetResponseType =
   | "mpls_interconnect"
   | "mconn"
   | "ipsec";
-export const Cf1SitesRampsGetResponseType = /*@__PURE__*/ S.String;
+export const Cf1SitesRampsGetResponseType = S.String;
 
 export type Cf1SitesRampsGetResponseGre = Cf1SitesRampsCreateResultItemGre;
 export const Cf1SitesRampsGetResponseGre = Cf1SitesRampsCreateResultItemGre;
@@ -6360,8 +6350,7 @@ export type CfInterconnectsGetResponseInterconnectHealthCheckRate =
   | "low"
   | "mid"
   | "high";
-export const CfInterconnectsGetResponseInterconnectHealthCheckRate =
-  /*@__PURE__*/ S.String;
+export const CfInterconnectsGetResponseInterconnectHealthCheckRate = S.String;
 
 export type CfInterconnectsGetResponseInterconnectHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -6377,8 +6366,7 @@ export const CfInterconnectsGetResponseInterconnectHealthCheckTarget =
 export type CfInterconnectsGetResponseInterconnectHealthCheckType =
   | "reply"
   | "request";
-export const CfInterconnectsGetResponseInterconnectHealthCheckType =
-  /*@__PURE__*/ S.String;
+export const CfInterconnectsGetResponseInterconnectHealthCheckType = S.String;
 
 export interface CfInterconnectsGetResponseInterconnectHealthCheck {
   /** Determines whether to run healthchecks for a tunnel. */
@@ -6512,8 +6500,7 @@ export type ConnectorsGetResponseInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsGetResponseInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsGetResponseInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsGetResponseInterruptWindowDaysOfWeekList =
   Array<ConnectorsGetResponseInterruptWindowDaysOfWeekItem>;
@@ -6530,7 +6517,7 @@ export const ConnectorsGetResponseInterruptWindowEmbargoDatesList =
   ) as any as S.Schema<ConnectorsGetResponseInterruptWindowEmbargoDatesList>;
 
 export type ConnectorsGetResponseDeviceType = "MANAGED" | "LICENSED";
-export const ConnectorsGetResponseDeviceType = /*@__PURE__*/ S.String;
+export const ConnectorsGetResponseDeviceType = S.String;
 
 export interface ConnectorsGetResponseDevice {
   id: string;
@@ -6630,7 +6617,7 @@ export const GetConnectorEventRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConnectorEventRequest>;
 
 export type ConnectorsEventsGetResponseEInitK = "Init";
-export const ConnectorsEventsGetResponseEInitK = /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEInitK = S.String;
 
 export interface ConnectorsEventsGetResponseEInit {
   /** Initialized process */
@@ -6645,7 +6632,7 @@ export const ConnectorsEventsGetResponseEInit = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectorsEventsGetResponseEInit>;
 
 export type ConnectorsEventsGetResponseELeaveK = "Leave";
-export const ConnectorsEventsGetResponseELeaveK = /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseELeaveK = S.String;
 
 export interface ConnectorsEventsGetResponseELeave {
   /** Stopped process */
@@ -6660,8 +6647,7 @@ export const ConnectorsEventsGetResponseELeave = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectorsEventsGetResponseELeave>;
 
 export type ConnectorsEventsGetResponseEStartAttestationK = "StartAttestation";
-export const ConnectorsEventsGetResponseEStartAttestationK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEStartAttestationK = S.String;
 
 export interface ConnectorsEventsGetResponseEStartAttestation {
   /** Started attestation */
@@ -6678,8 +6664,7 @@ export const ConnectorsEventsGetResponseEStartAttestation =
 
 export type ConnectorsEventsGetResponseEFinishAttestationSuccessK =
   "FinishAttestationSuccess";
-export const ConnectorsEventsGetResponseEFinishAttestationSuccessK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEFinishAttestationSuccessK = S.String;
 
 export interface ConnectorsEventsGetResponseEFinishAttestationSuccess {
   /** Finished attestation */
@@ -6696,8 +6681,7 @@ export const ConnectorsEventsGetResponseEFinishAttestationSuccess =
 
 export type ConnectorsEventsGetResponseEFinishAttestationFailureK =
   "FinishAttestationFailure";
-export const ConnectorsEventsGetResponseEFinishAttestationFailureK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEFinishAttestationFailureK = S.String;
 
 export interface ConnectorsEventsGetResponseEFinishAttestationFailure {
   /** Failed attestation */
@@ -6714,8 +6698,7 @@ export const ConnectorsEventsGetResponseEFinishAttestationFailure =
 
 export type ConnectorsEventsGetResponseEStartRotateCryptKeyK =
   "StartRotateCryptKey";
-export const ConnectorsEventsGetResponseEStartRotateCryptKeyK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEStartRotateCryptKeyK = S.String;
 
 export interface ConnectorsEventsGetResponseEStartRotateCryptKey {
   /** Started crypt key rotation */
@@ -6733,7 +6716,7 @@ export const ConnectorsEventsGetResponseEStartRotateCryptKey =
 export type ConnectorsEventsGetResponseEFinishRotateCryptKeySuccessK =
   "FinishRotateCryptKeySuccess";
 export const ConnectorsEventsGetResponseEFinishRotateCryptKeySuccessK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsGetResponseEFinishRotateCryptKeySuccess {
   /** Finished crypt key rotation */
@@ -6751,7 +6734,7 @@ export const ConnectorsEventsGetResponseEFinishRotateCryptKeySuccess =
 export type ConnectorsEventsGetResponseEFinishRotateCryptKeyFailureK =
   "FinishRotateCryptKeyFailure";
 export const ConnectorsEventsGetResponseEFinishRotateCryptKeyFailureK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsGetResponseEFinishRotateCryptKeyFailure {
   /** Failed crypt key rotation */
@@ -6767,8 +6750,7 @@ export const ConnectorsEventsGetResponseEFinishRotateCryptKeyFailure =
   }) as any as S.Schema<ConnectorsEventsGetResponseEFinishRotateCryptKeyFailure>;
 
 export type ConnectorsEventsGetResponseEStartRotatePkiK = "StartRotatePki";
-export const ConnectorsEventsGetResponseEStartRotatePkiK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEStartRotatePkiK = S.String;
 
 export interface ConnectorsEventsGetResponseEStartRotatePki {
   /** Started PKI rotation */
@@ -6785,8 +6767,7 @@ export const ConnectorsEventsGetResponseEStartRotatePki =
 
 export type ConnectorsEventsGetResponseEFinishRotatePkiSuccessK =
   "FinishRotatePkiSuccess";
-export const ConnectorsEventsGetResponseEFinishRotatePkiSuccessK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEFinishRotatePkiSuccessK = S.String;
 
 export interface ConnectorsEventsGetResponseEFinishRotatePkiSuccess {
   /** Finished PKI rotation */
@@ -6803,8 +6784,7 @@ export const ConnectorsEventsGetResponseEFinishRotatePkiSuccess =
 
 export type ConnectorsEventsGetResponseEFinishRotatePkiFailureK =
   "FinishRotatePkiFailure";
-export const ConnectorsEventsGetResponseEFinishRotatePkiFailureK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEFinishRotatePkiFailureK = S.String;
 
 export interface ConnectorsEventsGetResponseEFinishRotatePkiFailure {
   /** Failed PKI rotation */
@@ -6820,7 +6800,7 @@ export const ConnectorsEventsGetResponseEFinishRotatePkiFailure =
   }) as any as S.Schema<ConnectorsEventsGetResponseEFinishRotatePkiFailure>;
 
 export type ConnectorsEventsGetResponseEStartUpgradeK = "StartUpgrade";
-export const ConnectorsEventsGetResponseEStartUpgradeK = /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEStartUpgradeK = S.String;
 
 export interface ConnectorsEventsGetResponseEStartUpgrade {
   /** Started upgrade */
@@ -6840,8 +6820,7 @@ export const ConnectorsEventsGetResponseEStartUpgrade = /*@__PURE__*/ S.suspend(
 
 export type ConnectorsEventsGetResponseEFinishUpgradeSuccessK =
   "FinishUpgradeSuccess";
-export const ConnectorsEventsGetResponseEFinishUpgradeSuccessK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEFinishUpgradeSuccessK = S.String;
 
 export interface ConnectorsEventsGetResponseEFinishUpgradeSuccess {
   /** Finished upgrade */
@@ -6858,8 +6837,7 @@ export const ConnectorsEventsGetResponseEFinishUpgradeSuccess =
 
 export type ConnectorsEventsGetResponseEFinishUpgradeFailureK =
   "FinishUpgradeFailure";
-export const ConnectorsEventsGetResponseEFinishUpgradeFailureK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEFinishUpgradeFailureK = S.String;
 
 export interface ConnectorsEventsGetResponseEFinishUpgradeFailure {
   /** Failed upgrade */
@@ -6875,7 +6853,7 @@ export const ConnectorsEventsGetResponseEFinishUpgradeFailure =
   }) as any as S.Schema<ConnectorsEventsGetResponseEFinishUpgradeFailure>;
 
 export type ConnectorsEventsGetResponseEReconcileK = "Reconcile";
-export const ConnectorsEventsGetResponseEReconcileK = /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEReconcileK = S.String;
 
 export interface ConnectorsEventsGetResponseEReconcile {
   /** Reconciled */
@@ -6892,8 +6870,7 @@ export const ConnectorsEventsGetResponseEReconcile = /*@__PURE__*/ S.suspend(
 
 export type ConnectorsEventsGetResponseEConfigureCloudflaredTunnelK =
   "ConfigureCloudflaredTunnel";
-export const ConnectorsEventsGetResponseEConfigureCloudflaredTunnelK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseEConfigureCloudflaredTunnelK = S.String;
 
 export interface ConnectorsEventsGetResponseEConfigureCloudflaredTunnel {
   /** Configured Cloudflared tunnel */
@@ -6909,8 +6886,7 @@ export const ConnectorsEventsGetResponseEConfigureCloudflaredTunnel =
   }) as any as S.Schema<ConnectorsEventsGetResponseEConfigureCloudflaredTunnel>;
 
 export type ConnectorsEventsGetResponseERekeyInstallBothK = "RekeyInstallBoth";
-export const ConnectorsEventsGetResponseERekeyInstallBothK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseERekeyInstallBothK = S.String;
 
 export interface ConnectorsEventsGetResponseERekeyInstallBoth {
   /** Installed initial inbound and outbound keys */
@@ -6929,7 +6905,7 @@ export const ConnectorsEventsGetResponseERekeyInstallBoth =
   }) as any as S.Schema<ConnectorsEventsGetResponseERekeyInstallBoth>;
 
 export type ConnectorsEventsGetResponseERekeyStartK = "RekeyStart";
-export const ConnectorsEventsGetResponseERekeyStartK = /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseERekeyStartK = S.String;
 
 export interface ConnectorsEventsGetResponseERekeyStart {
   /** Installed new inbound key, kept old outbound */
@@ -6948,7 +6924,7 @@ export const ConnectorsEventsGetResponseERekeyStart = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ConnectorsEventsGetResponseERekeyStart>;
 
 export type ConnectorsEventsGetResponseERekeyAdvanceK = "RekeyAdvance";
-export const ConnectorsEventsGetResponseERekeyAdvanceK = /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseERekeyAdvanceK = S.String;
 
 export interface ConnectorsEventsGetResponseERekeyAdvance {
   /** Confirmed traffic on new inbound key, swapped outbound to new */
@@ -6967,8 +6943,7 @@ export const ConnectorsEventsGetResponseERekeyAdvance = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ConnectorsEventsGetResponseERekeyAdvance>;
 
 export type ConnectorsEventsGetResponseERekeyCompleteK = "RekeyComplete";
-export const ConnectorsEventsGetResponseERekeyCompleteK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseERekeyCompleteK = S.String;
 
 export interface ConnectorsEventsGetResponseERekeyComplete {
   /** Deleted old keys */
@@ -6987,7 +6962,7 @@ export const ConnectorsEventsGetResponseERekeyComplete =
   }) as any as S.Schema<ConnectorsEventsGetResponseERekeyComplete>;
 
 export type ConnectorsEventsGetResponseERekeyResetK = "RekeyReset";
-export const ConnectorsEventsGetResponseERekeyResetK = /*@__PURE__*/ S.String;
+export const ConnectorsEventsGetResponseERekeyResetK = S.String;
 
 export interface ConnectorsEventsGetResponseERekeyReset {
   /** Deleted all keys after receiving an unexpected key */
@@ -8355,8 +8330,7 @@ export type GreTunnelsGetResponseGreTunnelBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const GreTunnelsGetResponseGreTunnelBgpStatusState =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsGetResponseGreTunnelBgpStatusState = S.String;
 
 export interface GreTunnelsGetResponseGreTunnelBgpStatus {
   state: GreTunnelsGetResponseGreTunnelBgpStatusState;
@@ -8393,15 +8367,13 @@ export const GreTunnelsGetResponseGreTunnelBgpStatus = /*@__PURE__*/ S.suspend(
 export type GreTunnelsGetResponseGreTunnelHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const GreTunnelsGetResponseGreTunnelHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsGetResponseGreTunnelHealthCheckDirection = S.String;
 
 export type GreTunnelsGetResponseGreTunnelHealthCheckRate =
   | "low"
   | "mid"
   | "high";
-export const GreTunnelsGetResponseGreTunnelHealthCheckRate =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsGetResponseGreTunnelHealthCheckRate = S.String;
 
 export type GreTunnelsGetResponseGreTunnelHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -8415,8 +8387,7 @@ export const GreTunnelsGetResponseGreTunnelHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type GreTunnelsGetResponseGreTunnelHealthCheckType = "reply" | "request";
-export const GreTunnelsGetResponseGreTunnelHealthCheckType =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsGetResponseGreTunnelHealthCheckType = S.String;
 
 export interface GreTunnelsGetResponseGreTunnelHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -8595,8 +8566,7 @@ export type IpsecTunnelsGetResponseIpsecTunnelBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const IpsecTunnelsGetResponseIpsecTunnelBgpStatusState =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsGetResponseIpsecTunnelBgpStatusState = S.String;
 
 export interface IpsecTunnelsGetResponseIpsecTunnelBgpStatus {
   state: IpsecTunnelsGetResponseIpsecTunnelBgpStatusState;
@@ -8638,15 +8608,13 @@ export const IpsecTunnelsGetResponseIpsecTunnelCustomRemoteIdentities =
 export type IpsecTunnelsGetResponseIpsecTunnelHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const IpsecTunnelsGetResponseIpsecTunnelHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsGetResponseIpsecTunnelHealthCheckDirection = S.String;
 
 export type IpsecTunnelsGetResponseIpsecTunnelHealthCheckRate =
   | "low"
   | "mid"
   | "high";
-export const IpsecTunnelsGetResponseIpsecTunnelHealthCheckRate =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsGetResponseIpsecTunnelHealthCheckRate = S.String;
 
 export type IpsecTunnelsGetResponseIpsecTunnelHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -8662,8 +8630,7 @@ export const IpsecTunnelsGetResponseIpsecTunnelHealthCheckTarget =
 export type IpsecTunnelsGetResponseIpsecTunnelHealthCheckType =
   | "reply"
   | "request";
-export const IpsecTunnelsGetResponseIpsecTunnelHealthCheckType =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsGetResponseIpsecTunnelHealthCheckType = S.String;
 
 export interface IpsecTunnelsGetResponseIpsecTunnelHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -8832,13 +8799,13 @@ export type PcapsGetResultPCAPStatus =
   | "conversion_running"
   | "complete"
   | "failed";
-export const PcapsGetResultPCAPStatus = /*@__PURE__*/ S.String;
+export const PcapsGetResultPCAPStatus = S.String;
 
 export type PcapsGetResultPCAPSystem = "magic-transit";
-export const PcapsGetResultPCAPSystem = /*@__PURE__*/ S.String;
+export const PcapsGetResultPCAPSystem = S.String;
 
 export type PcapsGetResultPCAPType = "simple" | "full";
-export const PcapsGetResultPCAPType = /*@__PURE__*/ S.String;
+export const PcapsGetResultPCAPType = S.String;
 
 export interface PcapsGetResultPCAP {
   /** The ID for the packet capture. */
@@ -8885,18 +8852,17 @@ export type PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFullStatus =
   | "complete"
   | "failed";
 export const PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFullStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFullSystem =
   "magic-transit";
 export const PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFullSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFullType =
   | "simple"
   | "full";
-export const PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFullType =
-  /*@__PURE__*/ S.String;
+export const PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFullType = S.String;
 
 export interface PcapsGetResultMagicVisibilityPCAPsPCAPsResponseFull {
   /** The ID for the packet capture. */
@@ -9057,7 +9023,7 @@ export type PcapsOwnershipGetResultItemStatus =
   | "pending"
   | "success"
   | "failed";
-export const PcapsOwnershipGetResultItemStatus = /*@__PURE__*/ S.String;
+export const PcapsOwnershipGetResultItemStatus = S.String;
 
 export interface PcapsOwnershipGetResultItem {
   /** The bucket ID associated with the packet captures API. */
@@ -9340,7 +9306,7 @@ export const SitesAclsGetResponseLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsGetResponseLan1>;
 
 export type SitesAclsGetResponseProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsGetResponseProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsGetResponseProtocolsItem = S.String;
 
 export type SitesAclsGetResponseProtocolsList =
   Array<SitesAclsGetResponseProtocolsItem>;
@@ -9453,7 +9419,7 @@ export type SitesLansGetResponseStaticAddressingDhcpServerDhcpOptionsItemType =
   | "short"
   | "integer";
 export const SitesLansGetResponseStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansGetResponseStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -9649,7 +9615,7 @@ export const GetSiteWanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSiteWanRequest>;
 
 export type SitesWansGetResponseHealthCheckRate = "low" | "mid" | "high";
-export const SitesWansGetResponseHealthCheckRate = /*@__PURE__*/ S.String;
+export const SitesWansGetResponseHealthCheckRate = S.String;
 
 export type SitesWansGetResponseStaticAddressing =
   SitesWansCreateResultItemStaticAddressing;
@@ -9885,7 +9851,7 @@ export type Cf1SitesRampsListResultItemType =
   | "mpls_interconnect"
   | "mconn"
   | "ipsec";
-export const Cf1SitesRampsListResultItemType = /*@__PURE__*/ S.String;
+export const Cf1SitesRampsListResultItemType = S.String;
 
 export type Cf1SitesRampsListResultItemGre = Cf1SitesRampsCreateResultItemGre;
 export const Cf1SitesRampsListResultItemGre = Cf1SitesRampsCreateResultItemGre;
@@ -10051,7 +10017,7 @@ export type CfInterconnectsListResponseInterconnectsItemHealthCheckRate =
   | "mid"
   | "high";
 export const CfInterconnectsListResponseInterconnectsItemHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CfInterconnectsListResponseInterconnectsItemHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -10068,7 +10034,7 @@ export type CfInterconnectsListResponseInterconnectsItemHealthCheckType =
   | "reply"
   | "request";
 export const CfInterconnectsListResponseInterconnectsItemHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CfInterconnectsListResponseInterconnectsItemHealthCheck {
   /** Determines whether to run healthchecks for a tunnel. */
@@ -10204,8 +10170,7 @@ export const ListConnectorEventLatestsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListConnectorEventLatestsRequest>;
 
 export type ConnectorsEventsLatestListResponseItemsItemEInitK = "Init";
-export const ConnectorsEventsLatestListResponseItemsItemEInitK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsLatestListResponseItemsItemEInitK = S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEInit {
   /** Initialized process */
@@ -10221,8 +10186,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEInit =
   }) as any as S.Schema<ConnectorsEventsLatestListResponseItemsItemEInit>;
 
 export type ConnectorsEventsLatestListResponseItemsItemELeaveK = "Leave";
-export const ConnectorsEventsLatestListResponseItemsItemELeaveK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsLatestListResponseItemsItemELeaveK = S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemELeave {
   /** Stopped process */
@@ -10240,7 +10204,7 @@ export const ConnectorsEventsLatestListResponseItemsItemELeave =
 export type ConnectorsEventsLatestListResponseItemsItemEStartAttestationK =
   "StartAttestation";
 export const ConnectorsEventsLatestListResponseItemsItemEStartAttestationK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEStartAttestation {
   /** Started attestation */
@@ -10258,7 +10222,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEStartAttestation =
 export type ConnectorsEventsLatestListResponseItemsItemEFinishAttestationSuccessK =
   "FinishAttestationSuccess";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishAttestationSuccessK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishAttestationSuccess {
   /** Finished attestation */
@@ -10277,7 +10241,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishAttestationSucces
 export type ConnectorsEventsLatestListResponseItemsItemEFinishAttestationFailureK =
   "FinishAttestationFailure";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishAttestationFailureK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishAttestationFailure {
   /** Failed attestation */
@@ -10296,7 +10260,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishAttestationFailur
 export type ConnectorsEventsLatestListResponseItemsItemEStartRotateCryptKeyK =
   "StartRotateCryptKey";
 export const ConnectorsEventsLatestListResponseItemsItemEStartRotateCryptKeyK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEStartRotateCryptKey {
   /** Started crypt key rotation */
@@ -10315,7 +10279,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEStartRotateCryptKey =
 export type ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeySuccessK =
   "FinishRotateCryptKeySuccess";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeySuccessK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeySuccess {
   /** Finished crypt key rotation */
@@ -10334,7 +10298,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeySuc
 export type ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeyFailureK =
   "FinishRotateCryptKeyFailure";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeyFailureK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeyFailure {
   /** Failed crypt key rotation */
@@ -10353,7 +10317,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishRotateCryptKeyFai
 export type ConnectorsEventsLatestListResponseItemsItemEStartRotatePkiK =
   "StartRotatePki";
 export const ConnectorsEventsLatestListResponseItemsItemEStartRotatePkiK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEStartRotatePki {
   /** Started PKI rotation */
@@ -10371,7 +10335,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEStartRotatePki =
 export type ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiSuccessK =
   "FinishRotatePkiSuccess";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiSuccessK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiSuccess {
   /** Finished PKI rotation */
@@ -10390,7 +10354,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiSuccess 
 export type ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiFailureK =
   "FinishRotatePkiFailure";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiFailureK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiFailure {
   /** Failed PKI rotation */
@@ -10409,7 +10373,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishRotatePkiFailure 
 export type ConnectorsEventsLatestListResponseItemsItemEStartUpgradeK =
   "StartUpgrade";
 export const ConnectorsEventsLatestListResponseItemsItemEStartUpgradeK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEStartUpgrade {
   /** Started upgrade */
@@ -10430,7 +10394,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEStartUpgrade =
 export type ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeSuccessK =
   "FinishUpgradeSuccess";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeSuccessK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeSuccess {
   /** Finished upgrade */
@@ -10449,7 +10413,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeSuccess =
 export type ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeFailureK =
   "FinishUpgradeFailure";
 export const ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeFailureK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeFailure {
   /** Failed upgrade */
@@ -10467,8 +10431,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEFinishUpgradeFailure =
 
 export type ConnectorsEventsLatestListResponseItemsItemEReconcileK =
   "Reconcile";
-export const ConnectorsEventsLatestListResponseItemsItemEReconcileK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsLatestListResponseItemsItemEReconcileK = S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEReconcile {
   /** Reconciled */
@@ -10486,7 +10449,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEReconcile =
 export type ConnectorsEventsLatestListResponseItemsItemEConfigureCloudflaredTunnelK =
   "ConfigureCloudflaredTunnel";
 export const ConnectorsEventsLatestListResponseItemsItemEConfigureCloudflaredTunnelK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemEConfigureCloudflaredTunnel {
   /** Configured Cloudflared tunnel */
@@ -10505,7 +10468,7 @@ export const ConnectorsEventsLatestListResponseItemsItemEConfigureCloudflaredTun
 export type ConnectorsEventsLatestListResponseItemsItemERekeyInstallBothK =
   "RekeyInstallBoth";
 export const ConnectorsEventsLatestListResponseItemsItemERekeyInstallBothK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemERekeyInstallBoth {
   /** Installed initial inbound and outbound keys */
@@ -10525,8 +10488,7 @@ export const ConnectorsEventsLatestListResponseItemsItemERekeyInstallBoth =
 
 export type ConnectorsEventsLatestListResponseItemsItemERekeyStartK =
   "RekeyStart";
-export const ConnectorsEventsLatestListResponseItemsItemERekeyStartK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsLatestListResponseItemsItemERekeyStartK = S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemERekeyStart {
   /** Installed new inbound key, kept old outbound */
@@ -10547,7 +10509,7 @@ export const ConnectorsEventsLatestListResponseItemsItemERekeyStart =
 export type ConnectorsEventsLatestListResponseItemsItemERekeyAdvanceK =
   "RekeyAdvance";
 export const ConnectorsEventsLatestListResponseItemsItemERekeyAdvanceK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemERekeyAdvance {
   /** Confirmed traffic on new inbound key, swapped outbound to new */
@@ -10568,7 +10530,7 @@ export const ConnectorsEventsLatestListResponseItemsItemERekeyAdvance =
 export type ConnectorsEventsLatestListResponseItemsItemERekeyCompleteK =
   "RekeyComplete";
 export const ConnectorsEventsLatestListResponseItemsItemERekeyCompleteK =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemERekeyComplete {
   /** Deleted old keys */
@@ -10588,8 +10550,7 @@ export const ConnectorsEventsLatestListResponseItemsItemERekeyComplete =
 
 export type ConnectorsEventsLatestListResponseItemsItemERekeyResetK =
   "RekeyReset";
-export const ConnectorsEventsLatestListResponseItemsItemERekeyResetK =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEventsLatestListResponseItemsItemERekeyResetK = S.String;
 
 export interface ConnectorsEventsLatestListResponseItemsItemERekeyReset {
   /** Deleted all keys after receiving an unexpected key */
@@ -10776,7 +10737,7 @@ export const ListConnectorEventsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListConnectorEventsResponse>;
 
 export type ConnectorsListRequestDeviceType = "MANAGED" | "LICENSED";
-export const ConnectorsListRequestDeviceType = /*@__PURE__*/ S.String;
+export const ConnectorsListRequestDeviceType = S.String;
 
 export interface ListConnectorsRequest {
   /** Account identifier */
@@ -10811,8 +10772,7 @@ export type ConnectorsListResultItemInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsListResultItemInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsListResultItemInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsListResultItemInterruptWindowDaysOfWeekList =
   Array<ConnectorsListResultItemInterruptWindowDaysOfWeekItem>;
@@ -10829,7 +10789,7 @@ export const ConnectorsListResultItemInterruptWindowEmbargoDatesList =
   ) as any as S.Schema<ConnectorsListResultItemInterruptWindowEmbargoDatesList>;
 
 export type ConnectorsListResultItemDeviceType = "MANAGED" | "LICENSED";
-export const ConnectorsListResultItemDeviceType = /*@__PURE__*/ S.String;
+export const ConnectorsListResultItemDeviceType = S.String;
 
 export interface ConnectorsListResultItemDevice {
   id: string;
@@ -12034,8 +11994,7 @@ export type GreTunnelsListResponseGreTunnelsItemBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const GreTunnelsListResponseGreTunnelsItemBgpStatusState =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsListResponseGreTunnelsItemBgpStatusState = S.String;
 
 export interface GreTunnelsListResponseGreTunnelsItemBgpStatus {
   state: GreTunnelsListResponseGreTunnelsItemBgpStatusState;
@@ -12073,14 +12032,13 @@ export type GreTunnelsListResponseGreTunnelsItemHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
 export const GreTunnelsListResponseGreTunnelsItemHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GreTunnelsListResponseGreTunnelsItemHealthCheckRate =
   | "low"
   | "mid"
   | "high";
-export const GreTunnelsListResponseGreTunnelsItemHealthCheckRate =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsListResponseGreTunnelsItemHealthCheckRate = S.String;
 
 export type GreTunnelsListResponseGreTunnelsItemHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -12096,8 +12054,7 @@ export const GreTunnelsListResponseGreTunnelsItemHealthCheckTarget =
 export type GreTunnelsListResponseGreTunnelsItemHealthCheckType =
   | "reply"
   | "request";
-export const GreTunnelsListResponseGreTunnelsItemHealthCheckType =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsListResponseGreTunnelsItemHealthCheckType = S.String;
 
 export interface GreTunnelsListResponseGreTunnelsItemHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -12286,8 +12243,7 @@ export type IpsecTunnelsListResponseIpsecTunnelsItemBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const IpsecTunnelsListResponseIpsecTunnelsItemBgpStatusState =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsListResponseIpsecTunnelsItemBgpStatusState = S.String;
 
 export interface IpsecTunnelsListResponseIpsecTunnelsItemBgpStatus {
   state: IpsecTunnelsListResponseIpsecTunnelsItemBgpStatusState;
@@ -12330,14 +12286,13 @@ export type IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
 export const IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckRate =
   | "low"
   | "mid"
   | "high";
-export const IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckRate =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckRate = S.String;
 
 export type IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -12353,8 +12308,7 @@ export const IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckTarget =
 export type IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckType =
   | "reply"
   | "request";
-export const IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckType =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsListResponseIpsecTunnelsItemHealthCheckType = S.String;
 
 export interface IpsecTunnelsListResponseIpsecTunnelsItemHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -12527,13 +12481,13 @@ export type PcapsListResultItemPCAPStatus =
   | "conversion_running"
   | "complete"
   | "failed";
-export const PcapsListResultItemPCAPStatus = /*@__PURE__*/ S.String;
+export const PcapsListResultItemPCAPStatus = S.String;
 
 export type PcapsListResultItemPCAPSystem = "magic-transit";
-export const PcapsListResultItemPCAPSystem = /*@__PURE__*/ S.String;
+export const PcapsListResultItemPCAPSystem = S.String;
 
 export type PcapsListResultItemPCAPType = "simple" | "full";
-export const PcapsListResultItemPCAPType = /*@__PURE__*/ S.String;
+export const PcapsListResultItemPCAPType = S.String;
 
 export interface PcapsListResultItemPCAP {
   /** The ID for the packet capture. */
@@ -12580,18 +12534,18 @@ export type PcapsListResultItemMagicVisibilityPCAPsPCAPsResponseFullStatus =
   | "complete"
   | "failed";
 export const PcapsListResultItemMagicVisibilityPCAPsPCAPsResponseFullStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PcapsListResultItemMagicVisibilityPCAPsPCAPsResponseFullSystem =
   "magic-transit";
 export const PcapsListResultItemMagicVisibilityPCAPsPCAPsResponseFullSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PcapsListResultItemMagicVisibilityPCAPsPCAPsResponseFullType =
   | "simple"
   | "full";
 export const PcapsListResultItemMagicVisibilityPCAPsPCAPsResponseFullType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PcapsListResultItemMagicVisibilityPCAPsPCAPsResponseFull {
   /** The ID for the packet capture. */
@@ -12890,7 +12844,7 @@ export const SitesAclsListResultItemLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsListResultItemLan1>;
 
 export type SitesAclsListResultItemProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsListResultItemProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsListResultItemProtocolsItem = S.String;
 
 export type SitesAclsListResultItemProtocolsList =
   Array<SitesAclsListResultItemProtocolsItem>;
@@ -13019,7 +12973,7 @@ export type SitesLansListResultItemStaticAddressingDhcpServerDhcpOptionsItemType
   | "short"
   | "integer";
 export const SitesLansListResultItemStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansListResultItemStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -13439,7 +13393,7 @@ export const ListSiteWansRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSiteWansRequest>;
 
 export type SitesWansListResultItemHealthCheckRate = "low" | "mid" | "high";
-export const SitesWansListResultItemHealthCheckRate = /*@__PURE__*/ S.String;
+export const SitesWansListResultItemHealthCheckRate = S.String;
 
 export type SitesWansListResultItemStaticAddressing =
   SitesWansCreateResultItemStaticAddressing;
@@ -13683,8 +13637,7 @@ export type ConnectorsEditRequestInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsEditRequestInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEditRequestInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsEditRequestInterruptWindowDaysOfWeekList = Array<
   ConnectorsEditRequestInterruptWindowDaysOfWeekItem | (string & {})
@@ -13766,8 +13719,7 @@ export type ConnectorsEditResponseInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsEditResponseInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsEditResponseInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsEditResponseInterruptWindowDaysOfWeekList =
   Array<ConnectorsEditResponseInterruptWindowDaysOfWeekItem>;
@@ -13784,7 +13736,7 @@ export const ConnectorsEditResponseInterruptWindowEmbargoDatesList =
   ) as any as S.Schema<ConnectorsEditResponseInterruptWindowEmbargoDatesList>;
 
 export type ConnectorsEditResponseDeviceType = "MANAGED" | "LICENSED";
-export const ConnectorsEditResponseDeviceType = /*@__PURE__*/ S.String;
+export const ConnectorsEditResponseDeviceType = S.String;
 
 export interface ConnectorsEditResponseDevice {
   id: string;
@@ -13976,7 +13928,7 @@ export const SitesAclsEditRequestLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsEditRequestLan1>;
 
 export type SitesAclsEditRequestProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsEditRequestProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsEditRequestProtocolsItem = S.String;
 
 export type SitesAclsEditRequestProtocolsList = Array<
   SitesAclsEditRequestProtocolsItem | (string & {})
@@ -14073,7 +14025,7 @@ export const SitesAclsEditResponseLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsEditResponseLan1>;
 
 export type SitesAclsEditResponseProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsEditResponseProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsEditResponseProtocolsItem = S.String;
 
 export type SitesAclsEditResponseProtocolsList =
   Array<SitesAclsEditResponseProtocolsItem>;
@@ -14160,7 +14112,7 @@ export type SitesLansEditRequestStaticAddressingDhcpServerDhcpOptionsItemType =
   | "short"
   | "integer";
 export const SitesLansEditRequestStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansEditRequestStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -14372,7 +14324,7 @@ export type SitesLansEditResponseStaticAddressingDhcpServerDhcpOptionsItemType =
   | "short"
   | "integer";
 export const SitesLansEditResponseStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansEditResponseStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -14590,7 +14542,7 @@ export const PatchSiteWanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchSiteWanRequest>;
 
 export type SitesWansEditResponseHealthCheckRate = "low" | "mid" | "high";
-export const SitesWansEditResponseHealthCheckRate = /*@__PURE__*/ S.String;
+export const SitesWansEditResponseHealthCheckRate = S.String;
 
 export type SitesWansEditResponseStaticAddressing =
   SitesWansCreateResultItemStaticAddressing;
@@ -14829,8 +14781,7 @@ export type CfInterconnectsUpdateRequestHealthCheckRate =
   | "low"
   | "mid"
   | "high";
-export const CfInterconnectsUpdateRequestHealthCheckRate =
-  /*@__PURE__*/ S.String;
+export const CfInterconnectsUpdateRequestHealthCheckRate = S.String;
 
 export type CfInterconnectsUpdateRequestHealthCheckTargetMagicHealthCheckTarget =
   GreTunnelsCreateRequestHealthCheckTargetMagicHealthCheckTarget;
@@ -14844,8 +14795,7 @@ export const CfInterconnectsUpdateRequestHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type CfInterconnectsUpdateRequestHealthCheckType = "reply" | "request";
-export const CfInterconnectsUpdateRequestHealthCheckType =
-  /*@__PURE__*/ S.String;
+export const CfInterconnectsUpdateRequestHealthCheckType = S.String;
 
 export interface CfInterconnectsUpdateRequestHealthCheck {
   /** Determines whether to run healthchecks for a tunnel. */
@@ -14933,7 +14883,7 @@ export type CfInterconnectsUpdateResponseModifiedInterconnectHealthCheckRate =
   | "mid"
   | "high";
 export const CfInterconnectsUpdateResponseModifiedInterconnectHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CfInterconnectsUpdateResponseModifiedInterconnectHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -14950,7 +14900,7 @@ export type CfInterconnectsUpdateResponseModifiedInterconnectHealthCheckType =
   | "reply"
   | "request";
 export const CfInterconnectsUpdateResponseModifiedInterconnectHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CfInterconnectsUpdateResponseModifiedInterconnectHealthCheck {
   /** Determines whether to run healthchecks for a tunnel. */
@@ -15210,8 +15160,7 @@ export type ConnectorsUpdateRequestInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsUpdateRequestInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsUpdateRequestInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsUpdateRequestInterruptWindowDaysOfWeekList = Array<
   ConnectorsUpdateRequestInterruptWindowDaysOfWeekItem | (string & {})
@@ -15293,8 +15242,7 @@ export type ConnectorsUpdateResponseInterruptWindowDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ConnectorsUpdateResponseInterruptWindowDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ConnectorsUpdateResponseInterruptWindowDaysOfWeekItem = S.String;
 
 export type ConnectorsUpdateResponseInterruptWindowDaysOfWeekList =
   Array<ConnectorsUpdateResponseInterruptWindowDaysOfWeekItem>;
@@ -15311,7 +15259,7 @@ export const ConnectorsUpdateResponseInterruptWindowEmbargoDatesList =
   ) as any as S.Schema<ConnectorsUpdateResponseInterruptWindowEmbargoDatesList>;
 
 export type ConnectorsUpdateResponseDeviceType = "MANAGED" | "LICENSED";
-export const ConnectorsUpdateResponseDeviceType = /*@__PURE__*/ S.String;
+export const ConnectorsUpdateResponseDeviceType = S.String;
 
 export interface ConnectorsUpdateResponseDevice {
   id: string;
@@ -15387,11 +15335,10 @@ export const UpdateConnectorResponse = /*@__PURE__*/ S.suspend(() =>
 export type GreTunnelsUpdateRequestHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const GreTunnelsUpdateRequestHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsUpdateRequestHealthCheckDirection = S.String;
 
 export type GreTunnelsUpdateRequestHealthCheckRate = "low" | "mid" | "high";
-export const GreTunnelsUpdateRequestHealthCheckRate = /*@__PURE__*/ S.String;
+export const GreTunnelsUpdateRequestHealthCheckRate = S.String;
 
 export type GreTunnelsUpdateRequestHealthCheckTargetMagicHealthCheckTarget =
   GreTunnelsCreateRequestHealthCheckTargetMagicHealthCheckTarget;
@@ -15405,7 +15352,7 @@ export const GreTunnelsUpdateRequestHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type GreTunnelsUpdateRequestHealthCheckType = "reply" | "request";
-export const GreTunnelsUpdateRequestHealthCheckType = /*@__PURE__*/ S.String;
+export const GreTunnelsUpdateRequestHealthCheckType = S.String;
 
 export interface GreTunnelsUpdateRequestHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -15535,8 +15482,7 @@ export type GreTunnelsUpdateResponseModifiedGreTunnelBgpStatusState =
   | "BGP_DOWN"
   | "BGP_UP"
   | "BGP_ESTABLISHING";
-export const GreTunnelsUpdateResponseModifiedGreTunnelBgpStatusState =
-  /*@__PURE__*/ S.String;
+export const GreTunnelsUpdateResponseModifiedGreTunnelBgpStatusState = S.String;
 
 export interface GreTunnelsUpdateResponseModifiedGreTunnelBgpStatus {
   state: GreTunnelsUpdateResponseModifiedGreTunnelBgpStatusState;
@@ -15574,14 +15520,14 @@ export type GreTunnelsUpdateResponseModifiedGreTunnelHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
 export const GreTunnelsUpdateResponseModifiedGreTunnelHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GreTunnelsUpdateResponseModifiedGreTunnelHealthCheckRate =
   | "low"
   | "mid"
   | "high";
 export const GreTunnelsUpdateResponseModifiedGreTunnelHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GreTunnelsUpdateResponseModifiedGreTunnelHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -15598,7 +15544,7 @@ export type GreTunnelsUpdateResponseModifiedGreTunnelHealthCheckType =
   | "reply"
   | "request";
 export const GreTunnelsUpdateResponseModifiedGreTunnelHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GreTunnelsUpdateResponseModifiedGreTunnelHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -15757,11 +15703,10 @@ export const IpsecTunnelsUpdateRequestCustomRemoteIdentities =
 export type IpsecTunnelsUpdateRequestHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
-export const IpsecTunnelsUpdateRequestHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+export const IpsecTunnelsUpdateRequestHealthCheckDirection = S.String;
 
 export type IpsecTunnelsUpdateRequestHealthCheckRate = "low" | "mid" | "high";
-export const IpsecTunnelsUpdateRequestHealthCheckRate = /*@__PURE__*/ S.String;
+export const IpsecTunnelsUpdateRequestHealthCheckRate = S.String;
 
 export type IpsecTunnelsUpdateRequestHealthCheckTargetMagicHealthCheckTarget =
   GreTunnelsCreateRequestHealthCheckTargetMagicHealthCheckTarget;
@@ -15775,7 +15720,7 @@ export const IpsecTunnelsUpdateRequestHealthCheckTarget =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], ["effective", "saved"]]));
 
 export type IpsecTunnelsUpdateRequestHealthCheckType = "reply" | "request";
-export const IpsecTunnelsUpdateRequestHealthCheckType = /*@__PURE__*/ S.String;
+export const IpsecTunnelsUpdateRequestHealthCheckType = S.String;
 
 export interface IpsecTunnelsUpdateRequestHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -15915,7 +15860,7 @@ export type IpsecTunnelsUpdateResponseModifiedIpsecTunnelBgpStatusState =
   | "BGP_UP"
   | "BGP_ESTABLISHING";
 export const IpsecTunnelsUpdateResponseModifiedIpsecTunnelBgpStatusState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IpsecTunnelsUpdateResponseModifiedIpsecTunnelBgpStatus {
   state: IpsecTunnelsUpdateResponseModifiedIpsecTunnelBgpStatusState;
@@ -15958,14 +15903,14 @@ export type IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheckDirection =
   | "unidirectional"
   | "bidirectional";
 export const IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheckDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheckRate =
   | "low"
   | "mid"
   | "high";
 export const IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheckRate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheckTargetMagicHealthCheckTarget =
   CfInterconnectsBulkUpdateResponseModifiedInterconnectsItemHealthCheckTargetMagicHealthCheckTarget;
@@ -15982,7 +15927,7 @@ export type IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheckType =
   | "reply"
   | "request";
 export const IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheckType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IpsecTunnelsUpdateResponseModifiedIpsecTunnelHealthCheck {
   /** The direction of the flow of the healthcheck. Either unidirectional, where the probe comes to you via the tunnel and the result comes back to Cloudflare via the open Internet, or bidirectional where both the probe and result come and go via the tunnel. */
@@ -16409,7 +16354,7 @@ export const SitesAclsUpdateRequestLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsUpdateRequestLan1>;
 
 export type SitesAclsUpdateRequestProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsUpdateRequestProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsUpdateRequestProtocolsItem = S.String;
 
 export type SitesAclsUpdateRequestProtocolsList = Array<
   SitesAclsUpdateRequestProtocolsItem | (string & {})
@@ -16506,7 +16451,7 @@ export const SitesAclsUpdateResponseLan1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SitesAclsUpdateResponseLan1>;
 
 export type SitesAclsUpdateResponseProtocolsItem = "tcp" | "udp" | "icmp";
-export const SitesAclsUpdateResponseProtocolsItem = /*@__PURE__*/ S.String;
+export const SitesAclsUpdateResponseProtocolsItem = S.String;
 
 export type SitesAclsUpdateResponseProtocolsList =
   Array<SitesAclsUpdateResponseProtocolsItem>;
@@ -16593,7 +16538,7 @@ export type SitesLansUpdateRequestStaticAddressingDhcpServerDhcpOptionsItemType 
   | "short"
   | "integer";
 export const SitesLansUpdateRequestStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansUpdateRequestStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -16806,7 +16751,7 @@ export type SitesLansUpdateResponseStaticAddressingDhcpServerDhcpOptionsItemType
   | "short"
   | "integer";
 export const SitesLansUpdateResponseStaticAddressingDhcpServerDhcpOptionsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SitesLansUpdateResponseStaticAddressingDhcpServerDhcpOptionsItem {
   /** DHCP option number (1-254). Options 0 and 255 are reserved by RFC 2132. Options 3, 6, and 51 are not allowed because they conflict with connector-managed configuration. */
@@ -17174,7 +17119,7 @@ export const UpdateSiteWanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSiteWanRequest>;
 
 export type SitesWansUpdateResponseHealthCheckRate = "low" | "mid" | "high";
-export const SitesWansUpdateResponseHealthCheckRate = /*@__PURE__*/ S.String;
+export const SitesWansUpdateResponseHealthCheckRate = S.String;
 
 export type SitesWansUpdateResponseStaticAddressing =
   SitesWansCreateResultItemStaticAddressing;
@@ -17251,7 +17196,7 @@ export type PcapsOwnershipValidateResponseStatus =
   | "pending"
   | "success"
   | "failed";
-export const PcapsOwnershipValidateResponseStatus = /*@__PURE__*/ S.String;
+export const PcapsOwnershipValidateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface ValidatePcapOwnershipResponse {

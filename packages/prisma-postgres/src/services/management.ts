@@ -188,7 +188,7 @@ export const CreateBucketResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Access role for the key: "read" or "read_write". */
 export type CreateBucketKeyRequestRole = "read" | "read_write";
-export const CreateBucketKeyRequestRole = /*@__PURE__*/ S.String;
+export const CreateBucketKeyRequestRole = S.String;
 
 export interface CreateBucketKeyRequest {
   bucketId: string;
@@ -210,7 +210,7 @@ export const CreateBucketKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBucketKeyRequest>;
 
 export type CreateBucketKeyResponseDataRole = "read" | "read_write";
-export const CreateBucketKeyResponseDataRole = /*@__PURE__*/ S.String;
+export const CreateBucketKeyResponseDataRole = S.String;
 
 export interface CreateBucketKeyResponseData {
   id: string;
@@ -254,7 +254,7 @@ export const CreateBucketKeyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** `ci` for a build reported from a CI run, `cli` for a deploy run directly by a human or agent. */
 export type CreateBuildRequestSource = "ci" | "cli";
-export const CreateBuildRequestSource = /*@__PURE__*/ S.String;
+export const CreateBuildRequestSource = S.String;
 
 /** Identifies the CI run. Supplying it makes creation idempotent — a repeat call for the same run returns the build that already exists. Omit it for builds with no run to name, such as a deploy from a laptop, where every call creates a new build. */
 export interface CreateBuildRequestRunIdentity {
@@ -316,7 +316,7 @@ export type CreateBuildResponseDataSource =
   | "manual"
   | "ci"
   | "cli";
-export const CreateBuildResponseDataSource = /*@__PURE__*/ S.String;
+export const CreateBuildResponseDataSource = S.String;
 
 export type CreateBuildResponseDataState =
   | "pending"
@@ -324,11 +324,11 @@ export type CreateBuildResponseDataState =
   | "succeeded"
   | "failed"
   | "cancelled";
-export const CreateBuildResponseDataState = /*@__PURE__*/ S.String;
+export const CreateBuildResponseDataState = S.String;
 
 /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
 export type CreateBuildResponseDataPhase = "queued" | "build" | "deploy";
-export const CreateBuildResponseDataPhase = /*@__PURE__*/ S.String;
+export const CreateBuildResponseDataPhase = S.String;
 
 export interface CreateBuildResponseData {
   id: string;
@@ -400,7 +400,7 @@ export const CreateConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateConnectionRequest>;
 
 export type CreateConnectionResponseDataKind = "postgres" | "accelerate";
-export const CreateConnectionResponseDataKind = /*@__PURE__*/ S.String;
+export const CreateConnectionResponseDataKind = S.String;
 
 export interface CreateConnectionResponseDataEndpointsDirect {
   host: string;
@@ -533,7 +533,7 @@ export const CreateConnectionRotateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateConnectionRotateRequest>;
 
 export type CreateConnectionRotateResponseDataKind = "postgres" | "accelerate";
-export const CreateConnectionRotateResponseDataKind = /*@__PURE__*/ S.String;
+export const CreateConnectionRotateResponseDataKind = S.String;
 
 export type CreateConnectionRotateResponseDataEndpointsDirect =
   CreateConnectionResponseDataEndpointsDirect;
@@ -628,7 +628,7 @@ export type CreateDatabaseRequestRegion =
   | "ap-northeast-1"
   | "ap-southeast-1"
   | "inherit";
-export const CreateDatabaseRequestRegion = /*@__PURE__*/ S.String;
+export const CreateDatabaseRequestRegion = S.String;
 
 export interface CreateDatabaseRequestSourceCase0 {
   type: string;
@@ -720,13 +720,12 @@ export type CreateDatabaseResponseDataStatus =
   | "provisioning"
   | "ready"
   | "recovering";
-export const CreateDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
+export const CreateDatabaseResponseDataStatus = S.String;
 
 export type CreateDatabaseResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const CreateDatabaseResponseDataConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const CreateDatabaseResponseDataConnectionsItemKind = S.String;
 
 export interface CreateDatabaseResponseDataConnectionsItemEndpointsDirect {
   host: string;
@@ -957,7 +956,7 @@ export const CreateDatabaseConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 export type CreateDatabaseConnectionResponseDataKind =
   | "postgres"
   | "accelerate";
-export const CreateDatabaseConnectionResponseDataKind = /*@__PURE__*/ S.String;
+export const CreateDatabaseConnectionResponseDataKind = S.String;
 
 export type CreateDatabaseConnectionResponseDataEndpointsDirect =
   CreateConnectionResponseDataEndpointsDirect;
@@ -1073,13 +1072,12 @@ export type CreateDatabaseRestoreResponseDataStatus =
   | "provisioning"
   | "ready"
   | "recovering";
-export const CreateDatabaseRestoreResponseDataStatus = /*@__PURE__*/ S.String;
+export const CreateDatabaseRestoreResponseDataStatus = S.String;
 
 export type CreateDatabaseRestoreResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const CreateDatabaseRestoreResponseDataConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const CreateDatabaseRestoreResponseDataConnectionsItemKind = S.String;
 
 export interface CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect {
   host: string;
@@ -1333,15 +1331,14 @@ export type CreateDomainRetryResponseDataStatus =
   | "active"
   | "failed"
   | "removing";
-export const CreateDomainRetryResponseDataStatus = /*@__PURE__*/ S.String;
+export const CreateDomainRetryResponseDataStatus = S.String;
 
 export type CreateDomainRetryResponseDataFailureCategory =
   | "dns"
   | "acme"
   | "storage"
   | "unknown";
-export const CreateDomainRetryResponseDataFailureCategory =
-  /*@__PURE__*/ S.String;
+export const CreateDomainRetryResponseDataFailureCategory = S.String;
 
 export interface CreateDomainRetryResponseDataDnsRecordsItem {
   type: string;
@@ -1418,7 +1415,7 @@ export const CreateDomainRetryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDomainRetryResponse>;
 
 export type CreateEnvironmentVariableRequestClass = "production" | "preview";
-export const CreateEnvironmentVariableRequestClass = /*@__PURE__*/ S.String;
+export const CreateEnvironmentVariableRequestClass = S.String;
 
 export interface CreateEnvironmentVariableRequest {
   projectId: string;
@@ -1444,8 +1441,7 @@ export const CreateEnvironmentVariableRequest = /*@__PURE__*/ S.suspend(() =>
 export type CreateEnvironmentVariableResponseDataClass =
   | "production"
   | "preview";
-export const CreateEnvironmentVariableResponseDataClass =
-  /*@__PURE__*/ S.String;
+export const CreateEnvironmentVariableResponseDataClass = S.String;
 
 export interface CreateEnvironmentVariableResponseData {
   id: string;
@@ -1497,7 +1493,7 @@ export type CreateProjectRequestRegion =
   | "eu-central-1"
   | "ap-northeast-1"
   | "ap-southeast-1";
-export const CreateProjectRequestRegion = /*@__PURE__*/ S.String;
+export const CreateProjectRequestRegion = S.String;
 
 export interface CreateProjectRequest {
   createDatabase?: boolean;
@@ -1522,13 +1518,12 @@ export const CreateProjectResponseDataWorkspace =
   CreateBucketResponseDataProject;
 
 export type CreateProjectResponseDataDatabaseStatus = "provisioning" | "ready";
-export const CreateProjectResponseDataDatabaseStatus = /*@__PURE__*/ S.String;
+export const CreateProjectResponseDataDatabaseStatus = S.String;
 
 export type CreateProjectResponseDataDatabaseConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const CreateProjectResponseDataDatabaseConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const CreateProjectResponseDataDatabaseConnectionsItemKind = S.String;
 
 export type CreateProjectResponseDataDatabaseConnectionsItemEndpointsDirect =
   CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
@@ -1635,8 +1630,7 @@ export const CreateProjectResponseDataDatabaseSource = /*@__PURE__*/ S.suspend(
 export type CreateProjectResponseDataDatabaseApiKeysItemKind =
   | "postgres"
   | "accelerate";
-export const CreateProjectResponseDataDatabaseApiKeysItemKind =
-  /*@__PURE__*/ S.String;
+export const CreateProjectResponseDataDatabaseApiKeysItemKind = S.String;
 
 export type CreateProjectResponseDataDatabaseApiKeysItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -1812,7 +1806,7 @@ export const CreateProjectBranchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateProjectBranchRequest>;
 
 export type CreateProjectBranchResponseDataRole = "production" | "preview";
-export const CreateProjectBranchResponseDataRole = /*@__PURE__*/ S.String;
+export const CreateProjectBranchResponseDataRole = S.String;
 
 /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
 export type CreateProjectBranchResponseDataProject =
@@ -1927,7 +1921,7 @@ export type CreateProjectDatabaseRequestRegion =
   | "ap-northeast-1"
   | "ap-southeast-1"
   | "inherit";
-export const CreateProjectDatabaseRequestRegion = /*@__PURE__*/ S.String;
+export const CreateProjectDatabaseRequestRegion = S.String;
 
 /** Deprecated: use `source` instead. */
 export interface CreateProjectDatabaseRequestFromDatabase {
@@ -2000,13 +1994,12 @@ export const CreateProjectDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateProjectDatabaseRequest>;
 
 export type CreateProjectDatabaseResponseDataStatus = "provisioning" | "ready";
-export const CreateProjectDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
+export const CreateProjectDatabaseResponseDataStatus = S.String;
 
 export type CreateProjectDatabaseResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const CreateProjectDatabaseResponseDataConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const CreateProjectDatabaseResponseDataConnectionsItemKind = S.String;
 
 export type CreateProjectDatabaseResponseDataConnectionsItemEndpointsDirect =
   CreateDatabaseResponseDataConnectionsItemEndpointsDirect;
@@ -2118,8 +2111,7 @@ export const CreateProjectDatabaseResponseDataSource = /*@__PURE__*/ S.suspend(
 export type CreateProjectDatabaseResponseDataApiKeysItemKind =
   | "postgres"
   | "accelerate";
-export const CreateProjectDatabaseResponseDataApiKeysItemKind =
-  /*@__PURE__*/ S.String;
+export const CreateProjectDatabaseResponseDataApiKeysItemKind = S.String;
 
 export type CreateProjectDatabaseResponseDataApiKeysItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -2271,8 +2263,7 @@ export const CreateProjectTransferResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateProjectTransferResponse>;
 
 export type CreateScmInstallationsInstallIntentRequestProvider = "github";
-export const CreateScmInstallationsInstallIntentRequestProvider =
-  /*@__PURE__*/ S.String;
+export const CreateScmInstallationsInstallIntentRequestProvider = S.String;
 
 export interface CreateScmInstallationsInstallIntentRequest {
   provider: CreateScmInstallationsInstallIntentRequestProvider | (string & {});
@@ -2295,8 +2286,7 @@ export const CreateScmInstallationsInstallIntentRequest =
   }) as any as S.Schema<CreateScmInstallationsInstallIntentRequest>;
 
 export type CreateScmInstallationsInstallIntentResponseDataProvider = "github";
-export const CreateScmInstallationsInstallIntentResponseDataProvider =
-  /*@__PURE__*/ S.String;
+export const CreateScmInstallationsInstallIntentResponseDataProvider = S.String;
 
 export interface CreateScmInstallationsInstallIntentResponseData {
   type: string;
@@ -2335,7 +2325,7 @@ export type CreateServiceRequestRegionId =
   | "eu-central-1"
   | "ap-northeast-1"
   | "ap-southeast-1";
-export const CreateServiceRequestRegionId = /*@__PURE__*/ S.String;
+export const CreateServiceRequestRegionId = S.String;
 
 export interface CreateServiceRequest {
   displayName: string;
@@ -2489,15 +2479,14 @@ export type CreateServiceDomainResponseDataStatus =
   | "active"
   | "failed"
   | "removing";
-export const CreateServiceDomainResponseDataStatus = /*@__PURE__*/ S.String;
+export const CreateServiceDomainResponseDataStatus = S.String;
 
 export type CreateServiceDomainResponseDataFailureCategory =
   | "dns"
   | "acme"
   | "storage"
   | "unknown";
-export const CreateServiceDomainResponseDataFailureCategory =
-  /*@__PURE__*/ S.String;
+export const CreateServiceDomainResponseDataFailureCategory = S.String;
 
 export type CreateServiceDomainResponseDataDnsRecordsItem =
   CreateDomainRetryResponseDataDnsRecordsItem;
@@ -2665,11 +2654,10 @@ export const CreateSourceRepositoryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSourceRepositoryRequest>;
 
 export type CreateSourceRepositoryResponseDataProvider = "github";
-export const CreateSourceRepositoryResponseDataProvider =
-  /*@__PURE__*/ S.String;
+export const CreateSourceRepositoryResponseDataProvider = S.String;
 
 export type CreateSourceRepositoryResponseDataStatus = "active" | "archived";
-export const CreateSourceRepositoryResponseDataStatus = /*@__PURE__*/ S.String;
+export const CreateSourceRepositoryResponseDataStatus = S.String;
 
 export interface CreateSourceRepositoryResponseData {
   id: string;
@@ -3179,7 +3167,7 @@ export const GetBranchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBranchRequest>;
 
 export type GetBranchResponseDataRole = "production" | "preview";
-export const GetBranchResponseDataRole = /*@__PURE__*/ S.String;
+export const GetBranchResponseDataRole = S.String;
 
 /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
 export type GetBranchResponseDataProject = CreateBucketResponseDataProject;
@@ -3270,7 +3258,7 @@ export const GetBucketKeysRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBucketKeysRequest>;
 
 export type GetBucketKeysResponseDataItemRole = "read" | "read_write";
-export const GetBucketKeysResponseDataItemRole = /*@__PURE__*/ S.String;
+export const GetBucketKeysResponseDataItemRole = S.String;
 
 export interface GetBucketKeysResponseDataItem {
   id: string;
@@ -3391,7 +3379,7 @@ export type GetBuildResponseDataSource =
   | "manual"
   | "ci"
   | "cli";
-export const GetBuildResponseDataSource = /*@__PURE__*/ S.String;
+export const GetBuildResponseDataSource = S.String;
 
 export type GetBuildResponseDataState =
   | "pending"
@@ -3399,11 +3387,11 @@ export type GetBuildResponseDataState =
   | "succeeded"
   | "failed"
   | "cancelled";
-export const GetBuildResponseDataState = /*@__PURE__*/ S.String;
+export const GetBuildResponseDataState = S.String;
 
 /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
 export type GetBuildResponseDataPhase = "queued" | "build" | "deploy";
-export const GetBuildResponseDataPhase = /*@__PURE__*/ S.String;
+export const GetBuildResponseDataPhase = S.String;
 
 export type GetBuildResponseDataResourcesItemResourceType =
   | "project"
@@ -3414,14 +3402,13 @@ export type GetBuildResponseDataResourcesItemResourceType =
   | "bucket"
   | "service_key"
   | "config_variable";
-export const GetBuildResponseDataResourcesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const GetBuildResponseDataResourcesItemResourceType = S.String;
 
 export type GetBuildResponseDataResourcesItemAction =
   | "created"
   | "acted_on"
   | "deleted";
-export const GetBuildResponseDataResourcesItemAction = /*@__PURE__*/ S.String;
+export const GetBuildResponseDataResourcesItemAction = S.String;
 
 export interface GetBuildResponseDataResourcesItem {
   resourceType: GetBuildResponseDataResourcesItemResourceType;
@@ -3506,7 +3493,7 @@ export const GetBuildResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBuildResponse>;
 
 export type GetBuildLogsRequestFollow = "true" | "false";
-export const GetBuildLogsRequestFollow = /*@__PURE__*/ S.String;
+export const GetBuildLogsRequestFollow = S.String;
 
 export interface GetBuildLogsRequest {
   buildId: string;
@@ -3538,7 +3525,7 @@ export type GetBuildsRequestState =
   | "succeeded"
   | "failed"
   | "cancelled";
-export const GetBuildsRequestState = /*@__PURE__*/ S.String;
+export const GetBuildsRequestState = S.String;
 
 export interface GetBuildsRequest {
   cursor?: string;
@@ -3565,7 +3552,7 @@ export type GetBuildsResponseDataItemSource =
   | "manual"
   | "ci"
   | "cli";
-export const GetBuildsResponseDataItemSource = /*@__PURE__*/ S.String;
+export const GetBuildsResponseDataItemSource = S.String;
 
 export type GetBuildsResponseDataItemState =
   | "pending"
@@ -3573,11 +3560,11 @@ export type GetBuildsResponseDataItemState =
   | "succeeded"
   | "failed"
   | "cancelled";
-export const GetBuildsResponseDataItemState = /*@__PURE__*/ S.String;
+export const GetBuildsResponseDataItemState = S.String;
 
 /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
 export type GetBuildsResponseDataItemPhase = "queued" | "build" | "deploy";
-export const GetBuildsResponseDataItemPhase = /*@__PURE__*/ S.String;
+export const GetBuildsResponseDataItemPhase = S.String;
 
 export interface GetBuildsResponseDataItem {
   id: string;
@@ -3657,7 +3644,7 @@ export const GetConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConnectionRequest>;
 
 export type GetConnectionResponseDataKind = "postgres" | "accelerate";
-export const GetConnectionResponseDataKind = /*@__PURE__*/ S.String;
+export const GetConnectionResponseDataKind = S.String;
 
 export type GetConnectionResponseDataEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -3746,7 +3733,7 @@ export const GetConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConnectionsRequest>;
 
 export type GetConnectionsResponseDataItemKind = "postgres" | "accelerate";
-export const GetConnectionsResponseDataItemKind = /*@__PURE__*/ S.String;
+export const GetConnectionsResponseDataItemKind = S.String;
 
 export type GetConnectionsResponseDataItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -3849,13 +3836,12 @@ export type GetDatabaseResponseDataStatus =
   | "provisioning"
   | "ready"
   | "recovering";
-export const GetDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
+export const GetDatabaseResponseDataStatus = S.String;
 
 export type GetDatabaseResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const GetDatabaseResponseDataConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const GetDatabaseResponseDataConnectionsItemKind = S.String;
 
 export type GetDatabaseResponseDataConnectionsItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -4027,15 +4013,14 @@ export type GetDatabaseBackupsResponseDataItemBackupType =
   | "full"
   | "incremental"
   | "differential";
-export const GetDatabaseBackupsResponseDataItemBackupType =
-  /*@__PURE__*/ S.String;
+export const GetDatabaseBackupsResponseDataItemBackupType = S.String;
 
 export type GetDatabaseBackupsResponseDataItemStatus =
   | "running"
   | "completed"
   | "failed"
   | "unknown";
-export const GetDatabaseBackupsResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const GetDatabaseBackupsResponseDataItemStatus = S.String;
 
 export interface GetDatabaseBackupsResponseDataItem {
   id: string;
@@ -4128,8 +4113,7 @@ export const GetDatabaseConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetDatabaseConnectionsResponseDataItemKind =
   | "postgres"
   | "accelerate";
-export const GetDatabaseConnectionsResponseDataItemKind =
-  /*@__PURE__*/ S.String;
+export const GetDatabaseConnectionsResponseDataItemKind = S.String;
 
 export type GetDatabaseConnectionsResponseDataItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -4241,13 +4225,12 @@ export type GetDatabasesResponseDataItemStatus =
   | "provisioning"
   | "ready"
   | "recovering";
-export const GetDatabasesResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const GetDatabasesResponseDataItemStatus = S.String;
 
 export type GetDatabasesResponseDataItemConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const GetDatabasesResponseDataItemConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const GetDatabasesResponseDataItemConnectionsItemKind = S.String;
 
 export type GetDatabasesResponseDataItemConnectionsItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -4568,7 +4551,7 @@ export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeploymentResponse>;
 
 export type GetDeploymentLogsRequestFromStart = "true" | "false";
-export const GetDeploymentLogsRequestFromStart = /*@__PURE__*/ S.String;
+export const GetDeploymentLogsRequestFromStart = S.String;
 
 export interface GetDeploymentLogsRequest {
   deploymentId: string;
@@ -4619,14 +4602,14 @@ export type GetDomainResponseDataStatus =
   | "active"
   | "failed"
   | "removing";
-export const GetDomainResponseDataStatus = /*@__PURE__*/ S.String;
+export const GetDomainResponseDataStatus = S.String;
 
 export type GetDomainResponseDataFailureCategory =
   | "dns"
   | "acme"
   | "storage"
   | "unknown";
-export const GetDomainResponseDataFailureCategory = /*@__PURE__*/ S.String;
+export const GetDomainResponseDataFailureCategory = S.String;
 
 export type GetDomainResponseDataDnsRecordsItem =
   CreateDomainRetryResponseDataDnsRecordsItem;
@@ -4706,7 +4689,7 @@ export const GetEnvironmentVariableRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEnvironmentVariableRequest>;
 
 export type GetEnvironmentVariableResponseDataClass = "production" | "preview";
-export const GetEnvironmentVariableResponseDataClass = /*@__PURE__*/ S.String;
+export const GetEnvironmentVariableResponseDataClass = S.String;
 
 export interface GetEnvironmentVariableResponseData {
   id: string;
@@ -4751,7 +4734,7 @@ export const GetEnvironmentVariableResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEnvironmentVariableResponse>;
 
 export type GetEnvironmentVariablesRequestClass = "production" | "preview";
-export const GetEnvironmentVariablesRequestClass = /*@__PURE__*/ S.String;
+export const GetEnvironmentVariablesRequestClass = S.String;
 
 export interface GetEnvironmentVariablesRequest {
   cursor?: string;
@@ -4779,8 +4762,7 @@ export const GetEnvironmentVariablesRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetEnvironmentVariablesResponseDataItemClass =
   | "production"
   | "preview";
-export const GetEnvironmentVariablesResponseDataItemClass =
-  /*@__PURE__*/ S.String;
+export const GetEnvironmentVariablesResponseDataItemClass = S.String;
 
 export interface GetEnvironmentVariablesResponseDataItem {
   id: string;
@@ -5018,7 +5000,7 @@ export type GetMeResponseDataCredentialType =
   | "oauth"
   | "service_token"
   | "management_token";
-export const GetMeResponseDataCredentialType = /*@__PURE__*/ S.String;
+export const GetMeResponseDataCredentialType = S.String;
 
 export interface GetMeResponseDataCredential {
   type: GetMeResponseDataCredentialType;
@@ -5393,7 +5375,7 @@ export type GetProjectBranchApplicationTopologyResponseDataNodesItemKind =
   | "service"
   | "resource";
 export const GetProjectBranchApplicationTopologyResponseDataNodesItemKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectBranchApplicationTopologyResponseDataNodesItem {
   logicalId: string;
@@ -5424,7 +5406,7 @@ export type GetProjectBranchApplicationTopologyResponseDataPortsItemDirection =
   | "in"
   | "out";
 export const GetProjectBranchApplicationTopologyResponseDataPortsItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectBranchApplicationTopologyResponseDataPortsItem {
   logicalId: string;
@@ -5458,7 +5440,7 @@ export type GetProjectBranchApplicationTopologyResponseDataEdgesItemFromDirectio
   | "in"
   | "out";
 export const GetProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom {
   logicalId: string;
@@ -5481,7 +5463,7 @@ export type GetProjectBranchApplicationTopologyResponseDataEdgesItemToDirection 
   | "in"
   | "out";
 export const GetProjectBranchApplicationTopologyResponseDataEdgesItemToDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectBranchApplicationTopologyResponseDataEdgesItemTo {
   logicalId: string;
@@ -5504,7 +5486,7 @@ export type GetProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
   | "communication"
   | "data";
 export const GetProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectBranchApplicationTopologyResponseDataEdgesItem {
   from: GetProjectBranchApplicationTopologyResponseDataEdgesItemFrom;
@@ -5589,7 +5571,7 @@ export const GetProjectBranchesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectBranchesRequest>;
 
 export type GetProjectBranchesResponseDataItemRole = "production" | "preview";
-export const GetProjectBranchesResponseDataItemRole = /*@__PURE__*/ S.String;
+export const GetProjectBranchesResponseDataItemRole = S.String;
 
 /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
 export type GetProjectBranchesResponseDataItemProject =
@@ -5684,13 +5666,12 @@ export type GetProjectDatabasesResponseDataItemStatus =
   | "provisioning"
   | "ready"
   | "recovering";
-export const GetProjectDatabasesResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const GetProjectDatabasesResponseDataItemStatus = S.String;
 
 export type GetProjectDatabasesResponseDataItemConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const GetProjectDatabasesResponseDataItemConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const GetProjectDatabasesResponseDataItemConnectionsItemKind = S.String;
 
 export type GetProjectDatabasesResponseDataItemConnectionsItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -5903,7 +5884,7 @@ export const GetProjectsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectsResponse>;
 
 export type GetRegionsRequestProduct = "postgres" | "accelerate";
-export const GetRegionsRequestProduct = /*@__PURE__*/ S.String;
+export const GetRegionsRequestProduct = S.String;
 
 export interface GetRegionsRequest {
   product?: GetRegionsRequestProduct | (string & {});
@@ -5917,10 +5898,10 @@ export const GetRegionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRegionsRequest>;
 
 export type GetRegionsResponseDataItemProduct = "postgres" | "accelerate";
-export const GetRegionsResponseDataItemProduct = /*@__PURE__*/ S.String;
+export const GetRegionsResponseDataItemProduct = S.String;
 
 export type GetRegionsResponseDataItemStatus = "available" | "unavailable";
-export const GetRegionsResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const GetRegionsResponseDataItemStatus = S.String;
 
 export interface GetRegionsResponseDataItem {
   id: string;
@@ -6011,7 +5992,7 @@ export const GetRegionsPostgresRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetRegionsPostgresResponseDataItemStatus =
   | "available"
   | "unavailable";
-export const GetRegionsPostgresResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const GetRegionsPostgresResponseDataItemStatus = S.String;
 
 export interface GetRegionsPostgresResponseDataItem {
   id: string;
@@ -6133,14 +6114,12 @@ export const GetScmInstallationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetScmInstallationsRequest>;
 
 export type GetScmInstallationsResponseDataItemProvider = "github";
-export const GetScmInstallationsResponseDataItemProvider =
-  /*@__PURE__*/ S.String;
+export const GetScmInstallationsResponseDataItemProvider = S.String;
 
 export type GetScmInstallationsResponseDataItemAccountType =
   | "user"
   | "organization";
-export const GetScmInstallationsResponseDataItemAccountType =
-  /*@__PURE__*/ S.String;
+export const GetScmInstallationsResponseDataItemAccountType = S.String;
 
 export interface GetScmInstallationsResponseDataItem {
   id: string;
@@ -6321,15 +6300,14 @@ export type GetServiceDomainsResponseDataItemStatus =
   | "active"
   | "failed"
   | "removing";
-export const GetServiceDomainsResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const GetServiceDomainsResponseDataItemStatus = S.String;
 
 export type GetServiceDomainsResponseDataItemFailureCategory =
   | "dns"
   | "acme"
   | "storage"
   | "unknown";
-export const GetServiceDomainsResponseDataItemFailureCategory =
-  /*@__PURE__*/ S.String;
+export const GetServiceDomainsResponseDataItemFailureCategory = S.String;
 
 export type GetServiceDomainsResponseDataItemDnsRecordsItem =
   CreateDomainRetryResponseDataDnsRecordsItem;
@@ -6477,12 +6455,10 @@ export const GetSourceRepositoriesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSourceRepositoriesRequest>;
 
 export type GetSourceRepositoriesResponseDataItemProvider = "github";
-export const GetSourceRepositoriesResponseDataItemProvider =
-  /*@__PURE__*/ S.String;
+export const GetSourceRepositoriesResponseDataItemProvider = S.String;
 
 export type GetSourceRepositoriesResponseDataItemStatus = "active" | "archived";
-export const GetSourceRepositoriesResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetSourceRepositoriesResponseDataItemStatus = S.String;
 
 export interface GetSourceRepositoriesResponseDataItem {
   id: string;
@@ -6558,10 +6534,10 @@ export const GetSourceRepositoryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSourceRepositoryRequest>;
 
 export type GetSourceRepositoryResponseDataProvider = "github";
-export const GetSourceRepositoryResponseDataProvider = /*@__PURE__*/ S.String;
+export const GetSourceRepositoryResponseDataProvider = S.String;
 
 export type GetSourceRepositoryResponseDataStatus = "active" | "archived";
-export const GetSourceRepositoryResponseDataStatus = /*@__PURE__*/ S.String;
+export const GetSourceRepositoryResponseDataStatus = S.String;
 
 export interface GetSourceRepositoryResponseData {
   id: string;
@@ -6890,11 +6866,11 @@ export type PutBuildResourceRequestResourceType =
   | "bucket"
   | "service_key"
   | "config_variable";
-export const PutBuildResourceRequestResourceType = /*@__PURE__*/ S.String;
+export const PutBuildResourceRequestResourceType = S.String;
 
 /** The strongest effect the build had on the resource. Re-reporting is safe: a weaker action never overwrites a stronger one, so `created` survives a later `acted_on`. */
 export type PutBuildResourceRequestAction = "created" | "acted_on" | "deleted";
-export const PutBuildResourceRequestAction = /*@__PURE__*/ S.String;
+export const PutBuildResourceRequestAction = S.String;
 
 export interface PutBuildResourceRequest {
   buildId: string;
@@ -6994,8 +6970,7 @@ export type PutProjectBranchApplicationTopologyRequestNodesItemKind =
   | "module"
   | "service"
   | "resource";
-export const PutProjectBranchApplicationTopologyRequestNodesItemKind =
-  /*@__PURE__*/ S.String;
+export const PutProjectBranchApplicationTopologyRequestNodesItemKind = S.String;
 
 export interface PutProjectBranchApplicationTopologyRequestNodesItem {
   logicalId: string;
@@ -7026,7 +7001,7 @@ export type PutProjectBranchApplicationTopologyRequestPortsItemDirection =
   | "in"
   | "out";
 export const PutProjectBranchApplicationTopologyRequestPortsItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyRequestPortsItem {
   logicalId: string;
@@ -7061,7 +7036,7 @@ export type PutProjectBranchApplicationTopologyRequestEdgesItemFromDirection =
   | "in"
   | "out";
 export const PutProjectBranchApplicationTopologyRequestEdgesItemFromDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyRequestEdgesItemFrom {
   logicalId: string;
@@ -7086,7 +7061,7 @@ export type PutProjectBranchApplicationTopologyRequestEdgesItemToDirection =
   | "in"
   | "out";
 export const PutProjectBranchApplicationTopologyRequestEdgesItemToDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyRequestEdgesItemTo {
   logicalId: string;
@@ -7110,7 +7085,7 @@ export type PutProjectBranchApplicationTopologyRequestEdgesItemFamily =
   | "communication"
   | "data";
 export const PutProjectBranchApplicationTopologyRequestEdgesItemFamily =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyRequestEdgesItem {
   from: PutProjectBranchApplicationTopologyRequestEdgesItemFrom;
@@ -7172,7 +7147,7 @@ export type PutProjectBranchApplicationTopologyResponseDataNodesItemKind =
   | "service"
   | "resource";
 export const PutProjectBranchApplicationTopologyResponseDataNodesItemKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyResponseDataNodesItem {
   logicalId: string;
@@ -7203,7 +7178,7 @@ export type PutProjectBranchApplicationTopologyResponseDataPortsItemDirection =
   | "in"
   | "out";
 export const PutProjectBranchApplicationTopologyResponseDataPortsItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyResponseDataPortsItem {
   logicalId: string;
@@ -7237,7 +7212,7 @@ export type PutProjectBranchApplicationTopologyResponseDataEdgesItemFromDirectio
   | "in"
   | "out";
 export const PutProjectBranchApplicationTopologyResponseDataEdgesItemFromDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom {
   logicalId: string;
@@ -7260,7 +7235,7 @@ export type PutProjectBranchApplicationTopologyResponseDataEdgesItemToDirection 
   | "in"
   | "out";
 export const PutProjectBranchApplicationTopologyResponseDataEdgesItemToDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyResponseDataEdgesItemTo {
   logicalId: string;
@@ -7283,7 +7258,7 @@ export type PutProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
   | "communication"
   | "data";
 export const PutProjectBranchApplicationTopologyResponseDataEdgesItemFamily =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutProjectBranchApplicationTopologyResponseDataEdgesItem {
   from: PutProjectBranchApplicationTopologyResponseDataEdgesItemFrom;
@@ -7358,7 +7333,7 @@ export const UpdateBranchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBranchRequest>;
 
 export type UpdateBranchResponseDataRole = "production" | "preview";
-export const UpdateBranchResponseDataRole = /*@__PURE__*/ S.String;
+export const UpdateBranchResponseDataRole = S.String;
 
 /** Thin reference to the parent Project. Member resources are intentionally NOT inlined — list /v1/databases?branchId=<br_xxx> or /v1/apps?branchId=<br_xxx> instead (see API design principles "Flat and Hierarchical Coexistence"). */
 export type UpdateBranchResponseDataProject = CreateBucketResponseDataProject;
@@ -7405,7 +7380,7 @@ export const UpdateBranchResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** How far the run has got. */
 export type UpdateBuildRequestPhase = "queued" | "build" | "deploy";
-export const UpdateBuildRequestPhase = /*@__PURE__*/ S.String;
+export const UpdateBuildRequestPhase = S.String;
 
 export type UpdateBuildRequestState =
   | "pending"
@@ -7413,7 +7388,7 @@ export type UpdateBuildRequestState =
   | "succeeded"
   | "failed"
   | "cancelled";
-export const UpdateBuildRequestState = /*@__PURE__*/ S.String;
+export const UpdateBuildRequestState = S.String;
 
 export interface UpdateBuildRequest {
   buildId: string;
@@ -7456,7 +7431,7 @@ export type UpdateBuildResponseDataSource =
   | "manual"
   | "ci"
   | "cli";
-export const UpdateBuildResponseDataSource = /*@__PURE__*/ S.String;
+export const UpdateBuildResponseDataSource = S.String;
 
 export type UpdateBuildResponseDataState =
   | "pending"
@@ -7464,11 +7439,11 @@ export type UpdateBuildResponseDataState =
   | "succeeded"
   | "failed"
   | "cancelled";
-export const UpdateBuildResponseDataState = /*@__PURE__*/ S.String;
+export const UpdateBuildResponseDataState = S.String;
 
 /** Null when nothing reported a phase; the platform never invents an observation it did not receive. */
 export type UpdateBuildResponseDataPhase = "queued" | "build" | "deploy";
-export const UpdateBuildResponseDataPhase = /*@__PURE__*/ S.String;
+export const UpdateBuildResponseDataPhase = S.String;
 
 export interface UpdateBuildResponseData {
   id: string;
@@ -7553,13 +7528,12 @@ export type UpdateDatabaseResponseDataStatus =
   | "provisioning"
   | "ready"
   | "recovering";
-export const UpdateDatabaseResponseDataStatus = /*@__PURE__*/ S.String;
+export const UpdateDatabaseResponseDataStatus = S.String;
 
 export type UpdateDatabaseResponseDataConnectionsItemKind =
   | "postgres"
   | "accelerate";
-export const UpdateDatabaseResponseDataConnectionsItemKind =
-  /*@__PURE__*/ S.String;
+export const UpdateDatabaseResponseDataConnectionsItemKind = S.String;
 
 export type UpdateDatabaseResponseDataConnectionsItemEndpointsDirect =
   CreateDatabaseRestoreResponseDataConnectionsItemEndpointsDirect;
@@ -7732,8 +7706,7 @@ export const UpdateEnvironmentVariableRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateEnvironmentVariableResponseDataClass =
   | "production"
   | "preview";
-export const UpdateEnvironmentVariableResponseDataClass =
-  /*@__PURE__*/ S.String;
+export const UpdateEnvironmentVariableResponseDataClass = S.String;
 
 export interface UpdateEnvironmentVariableResponseData {
   id: string;

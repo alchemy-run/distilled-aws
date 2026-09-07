@@ -17,7 +17,7 @@ export type AddUsersRequestUsersItemCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const AddUsersRequestUsersItemCase0Role = /*@__PURE__*/ S.String;
+export const AddUsersRequestUsersItemCase0Role = S.String;
 
 export interface AddUsersRequestUsersItemCase0 {
   name: string;
@@ -38,7 +38,7 @@ export type AddUsersRequestUsersItemCase1Role =
   | "contributor"
   | "read"
   | "no_access";
-export const AddUsersRequestUsersItemCase1Role = /*@__PURE__*/ S.String;
+export const AddUsersRequestUsersItemCase1Role = S.String;
 
 export interface AddUsersRequestUsersItemCase1 {
   user: string;
@@ -57,7 +57,7 @@ export type AddUsersRequestUsersItem =
   | AddUsersRequestUsersItemCase0
   | AddUsersRequestUsersItemCase1;
 export const AddUsersRequestUsersItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddUsersRequestUsersItem>;
+  S.Unknown as any as S.Schema<AddUsersRequestUsersItem>;
 
 export type AddUsersRequestUsersList = Array<AddUsersRequestUsersItem>;
 export const AddUsersRequestUsersList = /*@__PURE__*/ S.Array(
@@ -91,10 +91,10 @@ export type AddUsersResponseAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const AddUsersResponseAutoJoinCase0Role = /*@__PURE__*/ S.String;
+export const AddUsersResponseAutoJoinCase0Role = S.String;
 
 export type AddUsersResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const AddUsersResponseAutoJoinCase0Scope = /*@__PURE__*/ S.String;
+export const AddUsersResponseAutoJoinCase0Scope = S.String;
 
 export interface AddUsersResponseAutoJoinCase0 {
   enabled: unknown;
@@ -126,7 +126,7 @@ export type AddUsersResponseAutoJoin =
   | AddUsersResponseAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const AddUsersResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddUsersResponseAutoJoin>;
+  S.Unknown as any as S.Schema<AddUsersResponseAutoJoin>;
 
 export interface AddUsersResponseSpendLimits {
   total?: number;
@@ -153,7 +153,7 @@ export type AddUsersResponseUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const AddUsersResponseUsersItemRole = /*@__PURE__*/ S.String;
+export const AddUsersResponseUsersItemRole = S.String;
 
 export interface AddUsersResponseUsersItem {
   type: unknown;
@@ -189,7 +189,7 @@ export type AddUsersResponseResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const AddUsersResponseResourcesItemCase0Type = /*@__PURE__*/ S.String;
+export const AddUsersResponseResourcesItemCase0Type = S.String;
 
 export interface AddUsersResponseResourcesItemCase0 {
   type: AddUsersResponseResourcesItemCase0Type;
@@ -263,7 +263,7 @@ export type AddUsersResponseResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const AddUsersResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddUsersResponseResourcesItem>;
+  S.Unknown as any as S.Schema<AddUsersResponseResourcesItem>;
 
 export type AddUsersResponseResourcesList =
   Array<AddUsersResponseResourcesItem>;
@@ -300,7 +300,7 @@ export type ChangeUserRoleRequestRole =
   | "contributor"
   | "read"
   | "no_access";
-export const ChangeUserRoleRequestRole = /*@__PURE__*/ S.String;
+export const ChangeUserRoleRequestRole = S.String;
 
 export interface ChangeUserRoleRequest {
   name: string;
@@ -331,10 +331,10 @@ export type ChangeUserRoleResponseAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const ChangeUserRoleResponseAutoJoinCase0Role = /*@__PURE__*/ S.String;
+export const ChangeUserRoleResponseAutoJoinCase0Role = S.String;
 
 export type ChangeUserRoleResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const ChangeUserRoleResponseAutoJoinCase0Scope = /*@__PURE__*/ S.String;
+export const ChangeUserRoleResponseAutoJoinCase0Scope = S.String;
 
 export interface ChangeUserRoleResponseAutoJoinCase0 {
   enabled: unknown;
@@ -359,7 +359,7 @@ export type ChangeUserRoleResponseAutoJoin =
   | ChangeUserRoleResponseAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const ChangeUserRoleResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChangeUserRoleResponseAutoJoin>;
+  S.Unknown as any as S.Schema<ChangeUserRoleResponseAutoJoin>;
 
 export type ChangeUserRoleResponseSpendLimits = AddUsersResponseSpendLimits;
 export const ChangeUserRoleResponseSpendLimits = AddUsersResponseSpendLimits;
@@ -370,7 +370,7 @@ export type ChangeUserRoleResponseUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const ChangeUserRoleResponseUsersItemRole = /*@__PURE__*/ S.String;
+export const ChangeUserRoleResponseUsersItemRole = S.String;
 
 export interface ChangeUserRoleResponseUsersItem {
   type: unknown;
@@ -407,8 +407,7 @@ export type ChangeUserRoleResponseResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const ChangeUserRoleResponseResourcesItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const ChangeUserRoleResponseResourcesItemCase0Type = S.String;
 
 export interface ChangeUserRoleResponseResourcesItemCase0 {
   type: ChangeUserRoleResponseResourcesItemCase0Type;
@@ -455,7 +454,7 @@ export type ChangeUserRoleResponseResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const ChangeUserRoleResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ChangeUserRoleResponseResourcesItem>;
+  S.Unknown as any as S.Schema<ChangeUserRoleResponseResourcesItem>;
 
 export type ChangeUserRoleResponseResourcesList =
   Array<ChangeUserRoleResponseResourcesItem>;
@@ -492,7 +491,7 @@ export type CreateResourceGroupRequestUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const CreateResourceGroupRequestUsersItemRole = /*@__PURE__*/ S.String;
+export const CreateResourceGroupRequestUsersItemRole = S.String;
 
 export interface CreateResourceGroupRequestUsersItem {
   user: string;
@@ -514,7 +513,7 @@ export const CreateResourceGroupRequestUsersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateResourceGroupRequestUsersList>;
 
 export type RepoIdType = "dataset" | "model" | "space" | "bucket" | "kernel";
-export const RepoIdType = /*@__PURE__*/ S.String;
+export const RepoIdType = S.String;
 
 export interface RepoId {
   name: string;
@@ -538,12 +537,10 @@ export type CreateResourceGroupRequestAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const CreateResourceGroupRequestAutoJoinCase0Role =
-  /*@__PURE__*/ S.String;
+export const CreateResourceGroupRequestAutoJoinCase0Role = S.String;
 
 export type CreateResourceGroupRequestAutoJoinCase0Scope = "all" | "read_plus";
-export const CreateResourceGroupRequestAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
+export const CreateResourceGroupRequestAutoJoinCase0Scope = S.String;
 
 export interface CreateResourceGroupRequestAutoJoinCase0 {
   enabled: unknown;
@@ -570,7 +567,7 @@ export type CreateResourceGroupRequestAutoJoin =
   | CreateResourceGroupRequestAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const CreateResourceGroupRequestAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateResourceGroupRequestAutoJoin>;
+  S.Unknown as any as S.Schema<CreateResourceGroupRequestAutoJoin>;
 
 export interface CreateResourceGroupRequest {
   name: string;
@@ -603,12 +600,10 @@ export type CreateResourceGroupResponseAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const CreateResourceGroupResponseAutoJoinCase0Role =
-  /*@__PURE__*/ S.String;
+export const CreateResourceGroupResponseAutoJoinCase0Role = S.String;
 
 export type CreateResourceGroupResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const CreateResourceGroupResponseAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
+export const CreateResourceGroupResponseAutoJoinCase0Scope = S.String;
 
 export interface CreateResourceGroupResponseAutoJoinCase0 {
   enabled: unknown;
@@ -635,7 +630,7 @@ export type CreateResourceGroupResponseAutoJoin =
   | CreateResourceGroupResponseAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const CreateResourceGroupResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateResourceGroupResponseAutoJoin>;
+  S.Unknown as any as S.Schema<CreateResourceGroupResponseAutoJoin>;
 
 export type CreateResourceGroupResponseSpendLimits =
   AddUsersResponseSpendLimits;
@@ -648,7 +643,7 @@ export type CreateResourceGroupResponseUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const CreateResourceGroupResponseUsersItemRole = /*@__PURE__*/ S.String;
+export const CreateResourceGroupResponseUsersItemRole = S.String;
 
 export interface CreateResourceGroupResponseUsersItem {
   type: unknown;
@@ -686,8 +681,7 @@ export type CreateResourceGroupResponseResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const CreateResourceGroupResponseResourcesItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const CreateResourceGroupResponseResourcesItemCase0Type = S.String;
 
 export interface CreateResourceGroupResponseResourcesItemCase0 {
   type: CreateResourceGroupResponseResourcesItemCase0Type;
@@ -734,7 +728,7 @@ export type CreateResourceGroupResponseResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const CreateResourceGroupResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateResourceGroupResponseResourcesItem>;
+  S.Unknown as any as S.Schema<CreateResourceGroupResponseResourcesItem>;
 
 export type CreateResourceGroupResponseResourcesList =
   Array<CreateResourceGroupResponseResourcesItem>;
@@ -820,11 +814,10 @@ export type GetResourceGroupResponseAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const GetResourceGroupResponseAutoJoinCase0Role = /*@__PURE__*/ S.String;
+export const GetResourceGroupResponseAutoJoinCase0Role = S.String;
 
 export type GetResourceGroupResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const GetResourceGroupResponseAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
+export const GetResourceGroupResponseAutoJoinCase0Scope = S.String;
 
 export interface GetResourceGroupResponseAutoJoinCase0 {
   enabled: unknown;
@@ -851,7 +844,7 @@ export type GetResourceGroupResponseAutoJoin =
   | GetResourceGroupResponseAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const GetResourceGroupResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetResourceGroupResponseAutoJoin>;
+  S.Unknown as any as S.Schema<GetResourceGroupResponseAutoJoin>;
 
 export type GetResourceGroupResponseSpendLimits = AddUsersResponseSpendLimits;
 export const GetResourceGroupResponseSpendLimits = AddUsersResponseSpendLimits;
@@ -862,7 +855,7 @@ export type GetResourceGroupResponseUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetResourceGroupResponseUsersItemRole = /*@__PURE__*/ S.String;
+export const GetResourceGroupResponseUsersItemRole = S.String;
 
 export interface GetResourceGroupResponseUsersItem {
   type: unknown;
@@ -899,8 +892,7 @@ export type GetResourceGroupResponseResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const GetResourceGroupResponseResourcesItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetResourceGroupResponseResourcesItemCase0Type = S.String;
 
 export interface GetResourceGroupResponseResourcesItemCase0 {
   type: GetResourceGroupResponseResourcesItemCase0Type;
@@ -947,7 +939,7 @@ export type GetResourceGroupResponseResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const GetResourceGroupResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetResourceGroupResponseResourcesItem>;
+  S.Unknown as any as S.Schema<GetResourceGroupResponseResourcesItem>;
 
 export type GetResourceGroupResponseResourcesList =
   Array<GetResourceGroupResponseResourcesItem>;
@@ -1001,14 +993,12 @@ export type GetResourceGroupsResponseBodyItemAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const GetResourceGroupsResponseBodyItemAutoJoinCase0Role =
-  /*@__PURE__*/ S.String;
+export const GetResourceGroupsResponseBodyItemAutoJoinCase0Role = S.String;
 
 export type GetResourceGroupsResponseBodyItemAutoJoinCase0Scope =
   | "all"
   | "read_plus";
-export const GetResourceGroupsResponseBodyItemAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
+export const GetResourceGroupsResponseBodyItemAutoJoinCase0Scope = S.String;
 
 export interface GetResourceGroupsResponseBodyItemAutoJoinCase0 {
   enabled: unknown;
@@ -1035,7 +1025,7 @@ export type GetResourceGroupsResponseBodyItemAutoJoin =
   | GetResourceGroupsResponseBodyItemAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const GetResourceGroupsResponseBodyItemAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetResourceGroupsResponseBodyItemAutoJoin>;
+  S.Unknown as any as S.Schema<GetResourceGroupsResponseBodyItemAutoJoin>;
 
 export type GetResourceGroupsResponseBodyItemSpendLimits =
   AddUsersResponseSpendLimits;
@@ -1048,8 +1038,7 @@ export type GetResourceGroupsResponseBodyItemUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetResourceGroupsResponseBodyItemUsersItemRole =
-  /*@__PURE__*/ S.String;
+export const GetResourceGroupsResponseBodyItemUsersItemRole = S.String;
 
 export interface GetResourceGroupsResponseBodyItemUsersItem {
   type: unknown;
@@ -1087,8 +1076,7 @@ export type GetResourceGroupsResponseBodyItemResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const GetResourceGroupsResponseBodyItemResourcesItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetResourceGroupsResponseBodyItemResourcesItemCase0Type = S.String;
 
 export interface GetResourceGroupsResponseBodyItemResourcesItemCase0 {
   type: GetResourceGroupsResponseBodyItemResourcesItemCase0Type;
@@ -1135,7 +1123,7 @@ export type GetResourceGroupsResponseBodyItemResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const GetResourceGroupsResponseBodyItemResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetResourceGroupsResponseBodyItemResourcesItem>;
+  S.Unknown as any as S.Schema<GetResourceGroupsResponseBodyItemResourcesItem>;
 
 export type GetResourceGroupsResponseBodyItemResourcesList =
   Array<GetResourceGroupsResponseBodyItemResourcesItem>;
@@ -1186,11 +1174,10 @@ export type JoinConfigureAutoRequestAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const JoinConfigureAutoRequestAutoJoinCase0Role = /*@__PURE__*/ S.String;
+export const JoinConfigureAutoRequestAutoJoinCase0Role = S.String;
 
 export type JoinConfigureAutoRequestAutoJoinCase0Scope = "all" | "read_plus";
-export const JoinConfigureAutoRequestAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
+export const JoinConfigureAutoRequestAutoJoinCase0Scope = S.String;
 
 export interface JoinConfigureAutoRequestAutoJoinCase0 {
   enabled: unknown;
@@ -1217,7 +1204,7 @@ export type JoinConfigureAutoRequestAutoJoin =
   | JoinConfigureAutoRequestAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const JoinConfigureAutoRequestAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JoinConfigureAutoRequestAutoJoin>;
+  S.Unknown as any as S.Schema<JoinConfigureAutoRequestAutoJoin>;
 
 export interface JoinConfigureAutoRequest {
   name: string;
@@ -1246,12 +1233,10 @@ export type JoinConfigureAutoResponseAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const JoinConfigureAutoResponseAutoJoinCase0Role =
-  /*@__PURE__*/ S.String;
+export const JoinConfigureAutoResponseAutoJoinCase0Role = S.String;
 
 export type JoinConfigureAutoResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const JoinConfigureAutoResponseAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
+export const JoinConfigureAutoResponseAutoJoinCase0Scope = S.String;
 
 export interface JoinConfigureAutoResponseAutoJoinCase0 {
   enabled: unknown;
@@ -1278,7 +1263,7 @@ export type JoinConfigureAutoResponseAutoJoin =
   | JoinConfigureAutoResponseAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const JoinConfigureAutoResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JoinConfigureAutoResponseAutoJoin>;
+  S.Unknown as any as S.Schema<JoinConfigureAutoResponseAutoJoin>;
 
 export type JoinConfigureAutoResponseSpendLimits = AddUsersResponseSpendLimits;
 export const JoinConfigureAutoResponseSpendLimits = AddUsersResponseSpendLimits;
@@ -1289,7 +1274,7 @@ export type JoinConfigureAutoResponseUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const JoinConfigureAutoResponseUsersItemRole = /*@__PURE__*/ S.String;
+export const JoinConfigureAutoResponseUsersItemRole = S.String;
 
 export interface JoinConfigureAutoResponseUsersItem {
   type: unknown;
@@ -1326,8 +1311,7 @@ export type JoinConfigureAutoResponseResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const JoinConfigureAutoResponseResourcesItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const JoinConfigureAutoResponseResourcesItemCase0Type = S.String;
 
 export interface JoinConfigureAutoResponseResourcesItemCase0 {
   type: JoinConfigureAutoResponseResourcesItemCase0Type;
@@ -1374,7 +1358,7 @@ export type JoinConfigureAutoResponseResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const JoinConfigureAutoResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JoinConfigureAutoResponseResourcesItem>;
+  S.Unknown as any as S.Schema<JoinConfigureAutoResponseResourcesItem>;
 
 export type JoinConfigureAutoResponseResourcesList =
   Array<JoinConfigureAutoResponseResourcesItem>;
@@ -1432,10 +1416,10 @@ export type RemoveUserResponseAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const RemoveUserResponseAutoJoinCase0Role = /*@__PURE__*/ S.String;
+export const RemoveUserResponseAutoJoinCase0Role = S.String;
 
 export type RemoveUserResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const RemoveUserResponseAutoJoinCase0Scope = /*@__PURE__*/ S.String;
+export const RemoveUserResponseAutoJoinCase0Scope = S.String;
 
 export interface RemoveUserResponseAutoJoinCase0 {
   enabled: unknown;
@@ -1459,7 +1443,7 @@ export type RemoveUserResponseAutoJoin =
   | RemoveUserResponseAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const RemoveUserResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemoveUserResponseAutoJoin>;
+  S.Unknown as any as S.Schema<RemoveUserResponseAutoJoin>;
 
 export type RemoveUserResponseSpendLimits = AddUsersResponseSpendLimits;
 export const RemoveUserResponseSpendLimits = AddUsersResponseSpendLimits;
@@ -1470,7 +1454,7 @@ export type RemoveUserResponseUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const RemoveUserResponseUsersItemRole = /*@__PURE__*/ S.String;
+export const RemoveUserResponseUsersItemRole = S.String;
 
 export interface RemoveUserResponseUsersItem {
   type: unknown;
@@ -1506,7 +1490,7 @@ export type RemoveUserResponseResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const RemoveUserResponseResourcesItemCase0Type = /*@__PURE__*/ S.String;
+export const RemoveUserResponseResourcesItemCase0Type = S.String;
 
 export interface RemoveUserResponseResourcesItemCase0 {
   type: RemoveUserResponseResourcesItemCase0Type;
@@ -1553,7 +1537,7 @@ export type RemoveUserResponseResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const RemoveUserResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemoveUserResponseResourcesItem>;
+  S.Unknown as any as S.Schema<RemoveUserResponseResourcesItem>;
 
 export type RemoveUserResponseResourcesList =
   Array<RemoveUserResponseResourcesItem>;
@@ -1633,12 +1617,10 @@ export type UpdateResourceGroupResponseAutoJoinCase0Role =
   | "contributor"
   | "read"
   | "no_access";
-export const UpdateResourceGroupResponseAutoJoinCase0Role =
-  /*@__PURE__*/ S.String;
+export const UpdateResourceGroupResponseAutoJoinCase0Role = S.String;
 
 export type UpdateResourceGroupResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const UpdateResourceGroupResponseAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
+export const UpdateResourceGroupResponseAutoJoinCase0Scope = S.String;
 
 export interface UpdateResourceGroupResponseAutoJoinCase0 {
   enabled: unknown;
@@ -1665,7 +1647,7 @@ export type UpdateResourceGroupResponseAutoJoin =
   | UpdateResourceGroupResponseAutoJoinCase0
   | AddUsersResponseAutoJoinCase1;
 export const UpdateResourceGroupResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResourceGroupResponseAutoJoin>;
+  S.Unknown as any as S.Schema<UpdateResourceGroupResponseAutoJoin>;
 
 export type UpdateResourceGroupResponseSpendLimits =
   AddUsersResponseSpendLimits;
@@ -1678,7 +1660,7 @@ export type UpdateResourceGroupResponseUsersItemRole =
   | "contributor"
   | "read"
   | "no_access";
-export const UpdateResourceGroupResponseUsersItemRole = /*@__PURE__*/ S.String;
+export const UpdateResourceGroupResponseUsersItemRole = S.String;
 
 export interface UpdateResourceGroupResponseUsersItem {
   type: unknown;
@@ -1716,8 +1698,7 @@ export type UpdateResourceGroupResponseResourcesItemCase0Type =
   | "space"
   | "bucket"
   | "kernel";
-export const UpdateResourceGroupResponseResourcesItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateResourceGroupResponseResourcesItemCase0Type = S.String;
 
 export interface UpdateResourceGroupResponseResourcesItemCase0 {
   type: UpdateResourceGroupResponseResourcesItemCase0Type;
@@ -1764,7 +1745,7 @@ export type UpdateResourceGroupResponseResourcesItem =
   | AddUsersResponseResourcesItemCase3
   | AddUsersResponseResourcesItemCase3;
 export const UpdateResourceGroupResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResourceGroupResponseResourcesItem>;
+  S.Unknown as any as S.Schema<UpdateResourceGroupResponseResourcesItem>;
 
 export type UpdateResourceGroupResponseResourcesList =
   Array<UpdateResourceGroupResponseResourcesItem>;

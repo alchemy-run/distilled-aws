@@ -55,11 +55,11 @@ export const CreateCustomPropertySourceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `tracked` - tracked * `ignored` - ignored */
 export type SyncSegmentEnum = "tracked" | "ignored";
-export const SyncSegmentEnum = /*@__PURE__*/ S.String;
+export const SyncSegmentEnum = S.String;
 
 /** * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
 export type SyncPhaseEnum = "staging" | "dispatching" | "syncing" | "completed";
-export const SyncPhaseEnum = /*@__PURE__*/ S.String;
+export const SyncPhaseEnum = S.String;
 
 /** One warehouse-backed custom property sync run. */
 export interface CustomPropertySyncRun {

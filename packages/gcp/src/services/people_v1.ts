@@ -73,14 +73,14 @@ export type SourceTypeEnum =
   | "CONTACT"
   | "OTHER_CONTACT"
   | "DOMAIN_CONTACT";
-export const SourceTypeEnum = /*@__PURE__*/ S.String;
+export const SourceTypeEnum = S.String;
 
 export type ProfileMetadataUserTypesItemEnum =
   | "USER_TYPE_UNKNOWN"
   | "GOOGLE_USER"
   | "GPLUS_USER"
   | "GOOGLE_APPS_USER";
-export const ProfileMetadataUserTypesItemEnum = /*@__PURE__*/ S.String;
+export const ProfileMetadataUserTypesItemEnum = S.String;
 
 export type ProfileMetadataUserTypesItemEnumList = Array<
   ProfileMetadataUserTypesItemEnum | (string & {})
@@ -93,7 +93,7 @@ export type ProfileMetadataObjectTypeEnum =
   | "OBJECT_TYPE_UNSPECIFIED"
   | "PERSON"
   | "PAGE";
-export const ProfileMetadataObjectTypeEnum = /*@__PURE__*/ S.String;
+export const ProfileMetadataObjectTypeEnum = S.String;
 
 /** The metadata about a profile. */
 export interface ProfileMetadata {
@@ -280,7 +280,7 @@ export type AgeRangeTypeAgeRangeEnum =
   | "LESS_THAN_EIGHTEEN"
   | "EIGHTEEN_TO_TWENTY"
   | "TWENTY_ONE_OR_OLDER";
-export const AgeRangeTypeAgeRangeEnum = /*@__PURE__*/ S.String;
+export const AgeRangeTypeAgeRangeEnum = S.String;
 
 /** A person's age range. */
 export interface AgeRangeType {
@@ -306,7 +306,7 @@ export type PersonAgeRangeEnum =
   | "LESS_THAN_EIGHTEEN"
   | "EIGHTEEN_TO_TWENTY"
   | "TWENTY_ONE_OR_OLDER";
-export const PersonAgeRangeEnum = /*@__PURE__*/ S.String;
+export const PersonAgeRangeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -317,7 +317,7 @@ export type PersonMetadataObjectTypeEnum =
   | "OBJECT_TYPE_UNSPECIFIED"
   | "PERSON"
   | "PAGE";
-export const PersonMetadataObjectTypeEnum = /*@__PURE__*/ S.String;
+export const PersonMetadataObjectTypeEnum = S.String;
 
 export type SourceList = Array<Source>;
 export const SourceList = /*@__PURE__*/ S.Array(
@@ -596,7 +596,7 @@ export type MiscKeywordTypeEnum =
   | "HOME"
   | "WORK"
   | "OTHER";
-export const MiscKeywordTypeEnum = /*@__PURE__*/ S.String;
+export const MiscKeywordTypeEnum = S.String;
 
 /** A person's miscellaneous keyword. */
 export interface MiscKeyword {
@@ -674,7 +674,7 @@ export type BiographyContentTypeEnum =
   | "CONTENT_TYPE_UNSPECIFIED"
   | "TEXT_PLAIN"
   | "TEXT_HTML";
-export const BiographyContentTypeEnum = /*@__PURE__*/ S.String;
+export const BiographyContentTypeEnum = S.String;
 
 /** A person's short biography. */
 export interface Biography {
@@ -925,7 +925,7 @@ export type NicknameTypeEnum =
   | "OTHER_NAME"
   | "ALTERNATE_NAME"
   | "SHORT_NAME";
-export const NicknameTypeEnum = /*@__PURE__*/ S.String;
+export const NicknameTypeEnum = S.String;
 
 /** A person's nickname. */
 export interface Nickname {
@@ -1318,7 +1318,7 @@ export type BatchCreateContactsRequestSourcesItemEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const BatchCreateContactsRequestSourcesItemEnum = /*@__PURE__*/ S.String;
+export const BatchCreateContactsRequestSourcesItemEnum = S.String;
 
 export type BatchCreateContactsRequestSourcesItemEnumList = Array<
   BatchCreateContactsRequestSourcesItemEnum | (string & {})
@@ -1496,7 +1496,7 @@ export type ContactGroupGroupTypeEnum =
   | "GROUP_TYPE_UNSPECIFIED"
   | "USER_CONTACT_GROUP"
   | "SYSTEM_CONTACT_GROUP";
-export const ContactGroupGroupTypeEnum = /*@__PURE__*/ S.String;
+export const ContactGroupGroupTypeEnum = S.String;
 
 /** Arbitrary client data that is populated by clients. Duplicate keys and values are allowed. */
 export interface GroupClientData {
@@ -1619,7 +1619,7 @@ export type BatchUpdateContactsRequestSourcesItemEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const BatchUpdateContactsRequestSourcesItemEnum = /*@__PURE__*/ S.String;
+export const BatchUpdateContactsRequestSourcesItemEnum = S.String;
 
 export type BatchUpdateContactsRequestSourcesItemEnumList = Array<
   BatchUpdateContactsRequestSourcesItemEnum | (string & {})
@@ -1694,8 +1694,7 @@ export type CopyOtherContactToMyContactsGroupRequestSourcesItemEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const CopyOtherContactToMyContactsGroupRequestSourcesItemEnum =
-  /*@__PURE__*/ S.String;
+export const CopyOtherContactToMyContactsGroupRequestSourcesItemEnum = S.String;
 
 export type CopyOtherContactToMyContactsGroupRequestSourcesItemEnumList = Array<
   CopyOtherContactToMyContactsGroupRequestSourcesItemEnum | (string & {})
@@ -1791,7 +1790,7 @@ export type CreateContactPeopleSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const CreateContactPeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const CreateContactPeopleSourcesEnum = S.String;
 
 export type CreateContactPeopleSourcesEnumList = Array<
   CreateContactPeopleSourcesEnum | (string & {})
@@ -1869,7 +1868,7 @@ export type DeleteContactPhotoPeopleSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const DeleteContactPhotoPeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const DeleteContactPhotoPeopleSourcesEnum = S.String;
 
 export type DeleteContactPhotoPeopleSourcesEnumList = Array<
   DeleteContactPhotoPeopleSourcesEnum | (string & {})
@@ -1923,7 +1922,7 @@ export type GetBatchGetPeopleSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const GetBatchGetPeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const GetBatchGetPeopleSourcesEnum = S.String;
 
 export type GetBatchGetPeopleSourcesEnumList = Array<
   GetBatchGetPeopleSourcesEnum | (string & {})
@@ -2002,7 +2001,7 @@ export type GetPeopleSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const GetPeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const GetPeopleSourcesEnum = S.String;
 
 export type GetPeopleSourcesEnumList = Array<
   GetPeopleSourcesEnum | (string & {})
@@ -2096,7 +2095,7 @@ export type ListDirectoryPeoplePeopleSourcesEnum =
   | "DIRECTORY_SOURCE_TYPE_UNSPECIFIED"
   | "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT"
   | "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE";
-export const ListDirectoryPeoplePeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const ListDirectoryPeoplePeopleSourcesEnum = S.String;
 
 export type ListDirectoryPeoplePeopleSourcesEnumList = Array<
   ListDirectoryPeoplePeopleSourcesEnum | (string & {})
@@ -2108,7 +2107,7 @@ export const ListDirectoryPeoplePeopleSourcesEnumList = /*@__PURE__*/ S.Array(
 export type ListDirectoryPeoplePeopleMergeSourcesEnum =
   | "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED"
   | "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT";
-export const ListDirectoryPeoplePeopleMergeSourcesEnum = /*@__PURE__*/ S.String;
+export const ListDirectoryPeoplePeopleMergeSourcesEnum = S.String;
 
 export type ListDirectoryPeoplePeopleMergeSourcesEnumList = Array<
   ListDirectoryPeoplePeopleMergeSourcesEnum | (string & {})
@@ -2188,7 +2187,7 @@ export type ListOtherContactsSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const ListOtherContactsSourcesEnum = /*@__PURE__*/ S.String;
+export const ListOtherContactsSourcesEnum = S.String;
 
 export type ListOtherContactsSourcesEnumList = Array<
   ListOtherContactsSourcesEnum | (string & {})
@@ -2257,7 +2256,7 @@ export type ListPeopleConnectionsSortOrderEnum =
   | "LAST_MODIFIED_DESCENDING"
   | "FIRST_NAME_ASCENDING"
   | "LAST_NAME_ASCENDING";
-export const ListPeopleConnectionsSortOrderEnum = /*@__PURE__*/ S.String;
+export const ListPeopleConnectionsSortOrderEnum = S.String;
 
 export type ListPeopleConnectionsSourcesEnum =
   | "READ_SOURCE_TYPE_UNSPECIFIED"
@@ -2265,7 +2264,7 @@ export type ListPeopleConnectionsSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const ListPeopleConnectionsSourcesEnum = /*@__PURE__*/ S.String;
+export const ListPeopleConnectionsSourcesEnum = S.String;
 
 export type ListPeopleConnectionsSourcesEnumList = Array<
   ListPeopleConnectionsSourcesEnum | (string & {})
@@ -2400,7 +2399,7 @@ export type SearchContactsPeopleSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const SearchContactsPeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const SearchContactsPeopleSourcesEnum = S.String;
 
 export type SearchContactsPeopleSourcesEnumList = Array<
   SearchContactsPeopleSourcesEnum | (string & {})
@@ -2467,7 +2466,7 @@ export type SearchDirectoryPeoplePeopleSourcesEnum =
   | "DIRECTORY_SOURCE_TYPE_UNSPECIFIED"
   | "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT"
   | "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE";
-export const SearchDirectoryPeoplePeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const SearchDirectoryPeoplePeopleSourcesEnum = S.String;
 
 export type SearchDirectoryPeoplePeopleSourcesEnumList = Array<
   SearchDirectoryPeoplePeopleSourcesEnum | (string & {})
@@ -2479,8 +2478,7 @@ export const SearchDirectoryPeoplePeopleSourcesEnumList = /*@__PURE__*/ S.Array(
 export type SearchDirectoryPeoplePeopleMergeSourcesEnum =
   | "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED"
   | "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT";
-export const SearchDirectoryPeoplePeopleMergeSourcesEnum =
-  /*@__PURE__*/ S.String;
+export const SearchDirectoryPeoplePeopleMergeSourcesEnum = S.String;
 
 export type SearchDirectoryPeoplePeopleMergeSourcesEnumList = Array<
   SearchDirectoryPeoplePeopleMergeSourcesEnum | (string & {})
@@ -2616,7 +2614,7 @@ export type UpdateContactPeopleSourcesEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const UpdateContactPeopleSourcesEnum = /*@__PURE__*/ S.String;
+export const UpdateContactPeopleSourcesEnum = S.String;
 
 export type UpdateContactPeopleSourcesEnumList = Array<
   UpdateContactPeopleSourcesEnum | (string & {})
@@ -2661,7 +2659,7 @@ export type UpdateContactPhotoRequestSourcesItemEnum =
   | "READ_SOURCE_TYPE_CONTACT"
   | "READ_SOURCE_TYPE_DOMAIN_CONTACT"
   | "READ_SOURCE_TYPE_OTHER_CONTACT";
-export const UpdateContactPhotoRequestSourcesItemEnum = /*@__PURE__*/ S.String;
+export const UpdateContactPhotoRequestSourcesItemEnum = S.String;
 
 export type UpdateContactPhotoRequestSourcesItemEnumList = Array<
   UpdateContactPhotoRequestSourcesItemEnum | (string & {})

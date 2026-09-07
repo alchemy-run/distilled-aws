@@ -148,7 +148,7 @@ export type GoogleCloudRecommendationengineV1beta1ProductCatalogItemStockStateEn
   | "PREORDER"
   | "BACKORDER";
 export const GoogleCloudRecommendationengineV1beta1ProductCatalogItemStockStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DoubleMap = { [key: string]: number | undefined };
 export const DoubleMap = /*@__PURE__*/ S.Record(
@@ -739,7 +739,7 @@ export type GoogleCloudRecommendationengineV1beta1UserEventEventSourceEnum =
   | "ECOMMERCE"
   | "BATCH_UPLOAD";
 export const GoogleCloudRecommendationengineV1beta1UserEventEventSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecommendationengineV1beta1ProductDetailStockStateEnum =
   | "STOCK_STATE_UNSPECIFIED"
@@ -748,7 +748,7 @@ export type GoogleCloudRecommendationengineV1beta1ProductDetailStockStateEnum =
   | "PREORDER"
   | "BACKORDER";
 export const GoogleCloudRecommendationengineV1beta1ProductDetailStockStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Detailed product information associated with a user event. */
 export interface GoogleCloudRecommendationengineV1beta1ProductDetail {
@@ -1108,14 +1108,14 @@ export type GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfigEventIte
   | "VARIANT"
   | "MASTER";
 export const GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfigEventItemLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfigPredictItemLevelEnum =
   | "CATALOG_ITEM_LEVEL_UNSPECIFIED"
   | "VARIANT"
   | "MASTER";
 export const GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfigPredictItemLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configures the catalog level that users send events to, and the level at which predictions are made. */
 export interface GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfig {
@@ -1645,7 +1645,7 @@ export type GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequestUserEve
   | "JOINED_EVENTS"
   | "UNJOINED_EVENTS";
 export const GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequestUserEventRejoinScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for CatalogRejoin method. */
 export interface GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest {

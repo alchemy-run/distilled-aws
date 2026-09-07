@@ -74,11 +74,11 @@ export type XdslMonitoringNotificationsFrequencyEnum =
   | "5m"
   | "6h"
   | "once";
-export const XdslMonitoringNotificationsFrequencyEnum = /*@__PURE__*/ S.String;
+export const XdslMonitoringNotificationsFrequencyEnum = S.String;
 
 /** Type of notification. */
 export type XdslMonitoringNotificationsTypeEnum = "mail" | "sms";
-export const XdslMonitoringNotificationsTypeEnum = /*@__PURE__*/ S.String;
+export const XdslMonitoringNotificationsTypeEnum = S.String;
 
 export interface AddMonitoringNotificationRequest {
   /** Service name */
@@ -156,7 +156,7 @@ export const XdslMonitoringNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of protocol for the Port Mapping */
 export type XdslXdslModemConfigProtocolTypeEnum = "TCP" | "UDP";
-export const XdslXdslModemConfigProtocolTypeEnum = /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigProtocolTypeEnum = S.String;
 
 export interface AddPortMappingRequest {
   /** Service name */
@@ -275,7 +275,7 @@ export type XdslTaskStatusEnum =
   | "error"
   | "problem"
   | "todo";
-export const XdslTaskStatusEnum = /*@__PURE__*/ S.String;
+export const XdslTaskStatusEnum = S.String;
 
 /** Describes the current status of a task */
 export interface XdslTask {
@@ -478,7 +478,7 @@ export type XdslEmailProTaskStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const XdslEmailProTaskStatusEnum = /*@__PURE__*/ S.String;
+export const XdslEmailProTaskStatusEnum = S.String;
 
 /** Task Struct */
 export interface XdslEmailProTask {
@@ -589,7 +589,7 @@ export const XdslTemplateModemDHCPList = /*@__PURE__*/ S.Array(
 
 /** How the modem gets its LAN IP Address */
 export type XdslXdslModemConfigAddressingTypeEnum = "DHCP" | "Static";
-export const XdslXdslModemConfigAddressingTypeEnum = /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigAddressingTypeEnum = S.String;
 
 /** LAN Configuration for Modem Template */
 export interface XdslTemplateModemLAN {
@@ -621,11 +621,11 @@ export const XdslTemplateModemLANList = /*@__PURE__*/ S.Array(
 
 /** How the WiFi channel is selected */
 export type XdslXdslModemConfigChannelModeEnum = "Auto" | "Manual";
-export const XdslXdslModemConfigChannelModeEnum = /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigChannelModeEnum = S.String;
 
 /** Modem frequency */
 export type XdslXdslModemConfigFrequencyEnum = "2.4GHz" | "5GHz";
-export const XdslXdslModemConfigFrequencyEnum = /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigFrequencyEnum = S.String;
 
 /** Type of WLAN security protection */
 export type XdslTemplateModemSecurityTypeEnum =
@@ -635,7 +635,7 @@ export type XdslTemplateModemSecurityTypeEnum =
   | "WPA2andWPA3"
   | "WPA3"
   | "WPAandWPA2";
-export const XdslTemplateModemSecurityTypeEnum = /*@__PURE__*/ S.String;
+export const XdslTemplateModemSecurityTypeEnum = S.String;
 
 /** WLAN Configuration for Modem Template */
 export interface XdslTemplateModemWLAN {
@@ -688,7 +688,7 @@ export const XdslTemplateModemWLANList = /*@__PURE__*/ S.Array(
 
 /** Size of the Maximum Transmission Unit on the modem's interfaces */
 export type XdslXdslModemConfigMTUSizeEnum = 1432 | 1456 | 1492;
-export const XdslXdslModemConfigMTUSizeEnum = /*@__PURE__*/ S.Number;
+export const XdslXdslModemConfigMTUSizeEnum = S.Number;
 
 /** WLAN names list to ignore. Ignore only listed WLAN */
 export type XdslTemplateModemParametersToIgnoreWLANListList = Array<string>;
@@ -1098,7 +1098,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with its currency and textual representation */
 export interface OrderPrice {
@@ -1162,7 +1162,7 @@ export const GetBlocIPStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the service */
 export type XdslServiceStatusEnum = "disabled" | "enabled";
-export const XdslServiceStatusEnum = /*@__PURE__*/ S.String;
+export const XdslServiceStatusEnum = S.String;
 
 export type GetBlocIPStatusResponse = XdslServiceStatusEnum;
 export const GetBlocIPStatusResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1598,7 +1598,7 @@ export const GetXdslRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible DSL technologies */
 export type XdslDslTypeEnum = "adsl" | "ftte" | "ftth" | "sdsl" | "vdsl";
-export const XdslDslTypeEnum = /*@__PURE__*/ S.String;
+export const XdslDslTypeEnum = S.String;
 
 /** All components of an address */
 export interface XdslAddressDetail {
@@ -1694,7 +1694,7 @@ export type XdslMailSendingAccessStatusEnum =
   | "blockedForSpam"
   | "disabled"
   | "enabled";
-export const XdslMailSendingAccessStatusEnum = /*@__PURE__*/ S.String;
+export const XdslMailSendingAccessStatusEnum = S.String;
 
 /** The providers */
 export type XdslProviderEnum =
@@ -1706,11 +1706,11 @@ export type XdslProviderEnum =
   | "koscDeg"
   | "ovh"
   | "sfr";
-export const XdslProviderEnum = /*@__PURE__*/ S.String;
+export const XdslProviderEnum = S.String;
 
 /** Available access roles */
 export type XdslAccessRoleEnum = "backup" | "main";
-export const XdslAccessRoleEnum = /*@__PURE__*/ S.String;
+export const XdslAccessRoleEnum = S.String;
 
 /** Status of the access */
 export type XdslAccessStatusEnum =
@@ -1723,7 +1723,7 @@ export type XdslAccessStatusEnum =
   | "slamming"
   | "terminated"
   | "upgradeOffer";
-export const XdslAccessStatusEnum = /*@__PURE__*/ S.String;
+export const XdslAccessStatusEnum = S.String;
 
 /** XDSL Access */
 export interface XdslAccessWithIAM {
@@ -1842,7 +1842,7 @@ export type XdslAntiSpamAntiSpamStatusEnum =
   | "new"
   | "unblock"
   | "warn";
-export const XdslAntiSpamAntiSpamStatusEnum = /*@__PURE__*/ S.String;
+export const XdslAntiSpamAntiSpamStatusEnum = S.String;
 
 /** Spams detected from xdsl access */
 export interface XdslAntiSpam {
@@ -1934,7 +1934,7 @@ export type XdslLineTestEnum =
   | "error"
   | "noProblem"
   | "ovhSideProblem";
-export const XdslLineTestEnum = /*@__PURE__*/ S.String;
+export const XdslLineTestEnum = S.String;
 
 /** Detailed line tests */
 export interface XdslLineDiagnostic {
@@ -2038,7 +2038,7 @@ export type EmailProObjectStateEnum =
   | "suspended"
   | "suspending"
   | "unknown";
-export const EmailProObjectStateEnum = /*@__PURE__*/ S.String;
+export const EmailProObjectStateEnum = S.String;
 
 /** XDSL Email Pro */
 export interface XdslXdslEmailProWithIAM {
@@ -2184,7 +2184,7 @@ export type XdslGtrEnum =
   | "5m_4ho"
   | "dplus1"
   | "none";
-export const XdslGtrEnum = /*@__PURE__*/ S.String;
+export const XdslGtrEnum = S.String;
 
 /** Available GRTs */
 export type XdslFiberEligibilityGrtsList = Array<XdslGtrEnum>;
@@ -2226,7 +2226,7 @@ export type XdslFiberEligibilityStatusEnum =
   | "no_building"
   | "not_eligible"
   | "not_yet_eligible";
-export const XdslFiberEligibilityStatusEnum = /*@__PURE__*/ S.String;
+export const XdslFiberEligibilityStatusEnum = S.String;
 
 /** Fiber eligibility */
 export interface XdslFiberEligibility {
@@ -2302,7 +2302,7 @@ export const XdslIncidentNraList = /*@__PURE__*/ S.Array(
 
 /** Operators */
 export type XdslOperatorTypeEnum = "collect" | "kosc" | "ovh";
-export const XdslOperatorTypeEnum = /*@__PURE__*/ S.String;
+export const XdslOperatorTypeEnum = S.String;
 
 /** Operator */
 export type XdslIncidentOperatorsList = Array<XdslOperatorTypeEnum>;
@@ -2381,11 +2381,11 @@ export const XdslIPDnsListList = /*@__PURE__*/ S.Array(
 
 /** Status of an IP. */
 export type XdslIpStatusEnum = "active" | "close" | "toDelete";
-export const XdslIpStatusEnum = /*@__PURE__*/ S.String;
+export const XdslIpStatusEnum = S.String;
 
 /** Ip versions */
 export type CoreTypesIpVersionEnum = "v4" | "v6";
-export const CoreTypesIpVersionEnum = /*@__PURE__*/ S.String;
+export const CoreTypesIpVersionEnum = S.String;
 
 /** Informations about an IP address */
 export interface XdslIP {
@@ -2454,7 +2454,7 @@ export type XdslDeconsolidationEnum =
   | "creationNeighbour"
   | "partial"
   | "total";
-export const XdslDeconsolidationEnum = /*@__PURE__*/ S.String;
+export const XdslDeconsolidationEnum = S.String;
 
 /** Maximum time needed to repair a landline */
 export type XdslFaultRepairTimeEnum =
@@ -2463,7 +2463,7 @@ export type XdslFaultRepairTimeEnum =
   | "4HO"
   | "DPLUS1"
   | "NORMAL";
-export const XdslFaultRepairTimeEnum = /*@__PURE__*/ S.String;
+export const XdslFaultRepairTimeEnum = S.String;
 
 /** xdsl.LineSectionLength */
 export interface XdslLineSectionLength {
@@ -2568,7 +2568,7 @@ export const XdslDslamLineProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Different states of a DSLAM port */
 export type XdslDslamPortStatusEnum = "activated" | "deactivated" | "outofsync";
-export const XdslDslamPortStatusEnum = /*@__PURE__*/ S.String;
+export const XdslDslamPortStatusEnum = S.String;
 
 /** Information about the port on the DSLAM */
 export interface XdslDslamPort {
@@ -2604,7 +2604,7 @@ export const GetXdslModemRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** ACS backend used by the modem */
 export type XdslXdslModemConfigACSBackendEnum = "beta" | "dev" | "stable";
-export const XdslXdslModemConfigACSBackendEnum = /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigACSBackendEnum = S.String;
 
 /** Describe the capabilities of the Modem */
 export interface XdslModemCapabilities {
@@ -2659,7 +2659,7 @@ export type XdslXdslModemConfigEasyFirewallLevelEnum =
   | "BlockAll"
   | "Disabled"
   | "Normal";
-export const XdslXdslModemConfigEasyFirewallLevelEnum = /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigEasyFirewallLevelEnum = S.String;
 
 /** Modem */
 export interface XdslModem {
@@ -2734,8 +2734,7 @@ export type XdslXdslModemConfigConnectedDeviceAddressSourceEnum =
   | "DHCP"
   | "Static"
   | "Unknown";
-export const XdslXdslModemConfigConnectedDeviceAddressSourceEnum =
-  /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigConnectedDeviceAddressSourceEnum = S.String;
 
 /** Connected Device */
 export interface XdslConnectedDevice {
@@ -2902,7 +2901,7 @@ export const XdslModemInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** AsyncTask status */
 export type XdslAsyncTaskStatusEnum = "error" | "ok" | "pending";
-export const XdslAsyncTaskStatusEnum = /*@__PURE__*/ S.String;
+export const XdslAsyncTaskStatusEnum = S.String;
 
 /** xdsl.AsyncTask_xdsl.ModemInfo */
 export interface XdslAsyncTaskXdslModemInfo {
@@ -3061,7 +3060,7 @@ export type XdslXdslModemConfigSecurityTypeEnum =
   | "WPA2andWPA3"
   | "WPA3"
   | "WPAandWPA2";
-export const XdslXdslModemConfigSecurityTypeEnum = /*@__PURE__*/ S.String;
+export const XdslXdslModemConfigSecurityTypeEnum = S.String;
 
 /** WLAN Configuration of the Modem */
 export interface XdslWLAN {
@@ -3347,7 +3346,7 @@ export type XdslResiliationReasonEnum =
   | "goToCompetitor"
   | "other"
   | "technicalProblems";
-export const XdslResiliationReasonEnum = /*@__PURE__*/ S.String;
+export const XdslResiliationReasonEnum = S.String;
 
 /** List of available resiliation reasons */
 export type XdslResiliationTermsResiliationReasonsList =
@@ -3400,14 +3399,14 @@ export const GetXdslRmaRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Return merchandise authorisation offer type */
 export type TelephonyRmaOfferTypeEnum = "deposit" | "loan" | "purchase";
-export const TelephonyRmaOfferTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaOfferTypeEnum = S.String;
 
 /** Return merchandise authorisation type */
 export type TelephonyRmaReplaceTypeEnum =
   | "changePhone"
   | "phoneRestitution"
   | "undefined";
-export const TelephonyRmaReplaceTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaReplaceTypeEnum = S.String;
 
 /** ISO country codes */
 export type CoreTypesCountryEnum =
@@ -3671,7 +3670,7 @@ export type CoreTypesCountryEnum =
   | "za"
   | "zm"
   | "zw";
-export const CoreTypesCountryEnum = /*@__PURE__*/ S.String;
+export const CoreTypesCountryEnum = S.String;
 
 /** Contact information structure */
 export interface TelephonyContact {
@@ -3711,7 +3710,7 @@ export const TelephonyContact = /*@__PURE__*/ S.suspend(() =>
 
 /** Return merchandise authorisation step */
 export type TelephonyRmaStatusEnum = "closed" | "open" | "received";
-export const TelephonyRmaStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaStatusEnum = S.String;
 
 /** RMA step names */
 export type TelephonyRmaStepNameEnum =
@@ -3722,11 +3721,11 @@ export type TelephonyRmaStepNameEnum =
   | "parcelReception"
   | "parcelValidation"
   | "validation";
-export const TelephonyRmaStepNameEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaStepNameEnum = S.String;
 
 /** Status of the RMA step */
 export type TelephonyRmaStepStatusEnum = "done" | "todo";
-export const TelephonyRmaStepStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaStepStatusEnum = S.String;
 
 /** Informations related to the current RMA step status */
 export interface TelephonyRmaStep {
@@ -3772,7 +3771,7 @@ export type TelephonyRmaTypeEnum =
   | "specific return merchandise authorisation"
   | "termination"
   | "unknown";
-export const TelephonyRmaTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaTypeEnum = S.String;
 
 /** Current Return Merchandise Authorisation */
 export interface TelephonyRma {
@@ -3882,7 +3881,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -3892,7 +3891,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -4157,7 +4156,7 @@ export const XdslAntiSpamEvidencesInfoResultList = /*@__PURE__*/ S.Array(
 
 /** Evidences AsyncTask status */
 export type XdslAntiSpamEvidencesInfoStatusEnum = "error" | "ok" | "pending";
-export const XdslAntiSpamEvidencesInfoStatusEnum = /*@__PURE__*/ S.String;
+export const XdslAntiSpamEvidencesInfoStatusEnum = S.String;
 
 /** List of evidences */
 export interface XdslAntiSpamEvidencesInfo {
@@ -4456,7 +4455,7 @@ export type XdslStatisticsPeriodEnum =
   | "preview"
   | "weekly"
   | "yearly";
-export const XdslStatisticsPeriodEnum = /*@__PURE__*/ S.String;
+export const XdslStatisticsPeriodEnum = S.String;
 
 /** Various types of statisctics available for the line. */
 export type XdslLineStatisticsTypeEnum =
@@ -4469,7 +4468,7 @@ export type XdslLineStatisticsTypeEnum =
   | "snr:upload"
   | "synchronization:download"
   | "synchronization:upload";
-export const XdslLineStatisticsTypeEnum = /*@__PURE__*/ S.String;
+export const XdslLineStatisticsTypeEnum = S.String;
 
 export interface ListXdslLineStatisticsRequest {
   /** Service name */
@@ -4570,7 +4569,7 @@ export const ListXdslModemAvailableACSBackendResponse = /*@__PURE__*/ S.suspend(
 
 /** Frequency of WLAN */
 export type XdslWLANFrequencyEnum = "2.4GHz" | "5GHz";
-export const XdslWLANFrequencyEnum = /*@__PURE__*/ S.String;
+export const XdslWLANFrequencyEnum = S.String;
 
 export interface ListXdslModemAvailableWLANChannelRequest {
   /** Service name */
@@ -4817,7 +4816,7 @@ export const XdslOrderFollowupStepCommentsList = /*@__PURE__*/ S.Array(
 
 /** The duration units */
 export type XdslOrderFollowupDurationUnitEnum = "day" | "hour" | "minute";
-export const XdslOrderFollowupDurationUnitEnum = /*@__PURE__*/ S.String;
+export const XdslOrderFollowupDurationUnitEnum = S.String;
 
 /** The status of an order step */
 export type XdslOrderFollowupStepNameEnum =
@@ -4832,7 +4831,7 @@ export type XdslOrderFollowupStepNameEnum =
   | "setupCustomerPremisesEquipment"
   | "waitingForProviderInstallReport"
   | "waitingForWithdrawalPeriodToBeOver";
-export const XdslOrderFollowupStepNameEnum = /*@__PURE__*/ S.String;
+export const XdslOrderFollowupStepNameEnum = S.String;
 
 /** The status of an order step */
 export type XdslOrderFollowupStepStatusEnum =
@@ -4841,7 +4840,7 @@ export type XdslOrderFollowupStepStatusEnum =
   | "error"
   | "todo"
   | "waitingCustomer";
-export const XdslOrderFollowupStepStatusEnum = /*@__PURE__*/ S.String;
+export const XdslOrderFollowupStepStatusEnum = S.String;
 
 /** A step of the order process */
 export interface XdslOrderFollowupStep {
@@ -5057,7 +5056,7 @@ export type XdslAccessStatisticsTypeEnum =
   | "ping"
   | "traffic:download"
   | "traffic:upload";
-export const XdslAccessStatisticsTypeEnum = /*@__PURE__*/ S.String;
+export const XdslAccessStatisticsTypeEnum = S.String;
 
 export interface ListXdslStatisticsRequest {
   /** Service name */
@@ -5682,18 +5681,18 @@ export type OrderOrderDetailTypeEnum =
   | "SWITCH"
   | "TRANSFER"
   | "VOUCHER";
-export const OrderOrderDetailTypeEnum = /*@__PURE__*/ S.String;
+export const OrderOrderDetailTypeEnum = S.String;
 
 /** Context of the reduction */
 export type OrderReductionContextEnum = "promotion" | "voucher";
-export const OrderReductionContextEnum = /*@__PURE__*/ S.String;
+export const OrderReductionContextEnum = S.String;
 
 /** Type of reduction */
 export type OrderReductionTypeEnum =
   | "fixed_amount"
   | "forced_amount"
   | "percentage";
-export const OrderReductionTypeEnum = /*@__PURE__*/ S.String;
+export const OrderReductionTypeEnum = S.String;
 
 /** Order detail reduction */
 export interface OrderReduction {
@@ -6279,7 +6278,7 @@ export type XdslLineDiagnosticCustomerActionsEnum =
   | "resetModem"
   | "unplugEveryModems"
   | "unplugModem";
-export const XdslLineDiagnosticCustomerActionsEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticCustomerActionsEnum = S.String;
 
 /** Customer possible actions */
 export type UpdateLineDiagnosticRequestActionsDoneList = Array<
@@ -6299,7 +6298,7 @@ export type XdslLineDiagnosticFaultTypeEnum =
   | "noSync"
   | "syncLossOrLowBandwidth"
   | "unknown";
-export const XdslLineDiagnosticFaultTypeEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticFaultTypeEnum = S.String;
 
 export interface UpdateLineDiagnosticRequest {
   /** Service name */
@@ -6366,11 +6365,11 @@ export const XdslLineDiagnosticDiagnosticDataActionsToDoList =
 
 /** bandwidth unit for proof.ovh.net test values */
 export type XdslLineDiagnosticBandwidthTestUnitEnum = "Kbps" | "Mbps";
-export const XdslLineDiagnosticBandwidthTestUnitEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticBandwidthTestUnitEnum = S.String;
 
 /** Possible customer questions */
 export type XdslLineDiagnosticProblemTypeEnum = "lowBandwidth" | "syncLoss";
-export const XdslLineDiagnosticProblemTypeEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticProblemTypeEnum = S.String;
 
 /** Customer answers for line diagnostic */
 export interface XdslLineDiagnosticAnswers {
@@ -6630,11 +6629,11 @@ export type XdslLineDiagnosticRobotActionsEnum =
   | "requestOperatorIntervention"
   | "requestOvhIntervention"
   | "seltTest";
-export const XdslLineDiagnosticRobotActionsEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticRobotActionsEnum = S.String;
 
 /** Possible SELT test prelocalizations */
 export type XdslLineDiagnosticSeltPrelocEnum = "CUST" | "DSLAM" | "LINE" | "RE";
-export const XdslLineDiagnosticSeltPrelocEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticSeltPrelocEnum = S.String;
 
 /** Possible SELT test states */
 export type XdslLineDiagnosticSeltStateEnum =
@@ -6642,11 +6641,11 @@ export type XdslLineDiagnosticSeltStateEnum =
   | "short"
   | "synced"
   | "unknown";
-export const XdslLineDiagnosticSeltStateEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticSeltStateEnum = S.String;
 
 /** Possible SELT test status */
 export type XdslLineDiagnosticSeltStatusEnum = "failed" | "notAvailable" | "ok";
-export const XdslLineDiagnosticSeltStatusEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticSeltStatusEnum = S.String;
 
 /** Customer answers for line diagnostic */
 export interface XdslLineDiagnosticSeltResult {
@@ -6708,7 +6707,7 @@ export type XdslLineDiagnosticQuestionsEnum =
   | "startAfternoonHours"
   | "startMorningHours"
   | "uploadBandwidthTest";
-export const XdslLineDiagnosticQuestionsEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticQuestionsEnum = S.String;
 
 /** possible value for specific answer */
 export interface XdslLineDiagnosticPossibleValue {
@@ -6845,7 +6844,7 @@ export type XdslLineDiagnosticDiagnosticStatusEnum =
   | "waitingHuman"
   | "waitingRobot"
   | "waitingValidation";
-export const XdslLineDiagnosticDiagnosticStatusEnum = /*@__PURE__*/ S.String;
+export const XdslLineDiagnosticDiagnosticStatusEnum = S.String;
 
 /** Diagnostic status and information */
 export interface XdslLineDiagnosticDiagnostic {
@@ -6871,7 +6870,7 @@ export const XdslLineDiagnosticDiagnostic = /*@__PURE__*/ S.suspend(() =>
 
 /** Status allowed for mail sending */
 export type XdslMailSendingStatusEnum = "disabled" | "enabled";
-export const XdslMailSendingStatusEnum = /*@__PURE__*/ S.String;
+export const XdslMailSendingStatusEnum = S.String;
 
 export interface UpdateMailSendingRequest {
   /** Service name */
@@ -7072,7 +7071,7 @@ export const UpdateRIOResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Types of return merchandise authorisation you can change to */
 export type TelephonyRmaChangeTypeEnum = "resiliate" | "toSip";
-export const TelephonyRmaChangeTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaChangeTypeEnum = S.String;
 
 export interface UpdateRMATypeRequest {
   /** Service name */

@@ -650,7 +650,7 @@ export type LayerAvailability =
   | "UNAVAILABLE"
   | "ARCHIVED"
   | (string & {});
-export const LayerAvailability = /*@__PURE__*/ S.String;
+export const LayerAvailability = S.String;
 
 export type LayerSizeInBytes = number;
 export type MediaType = string;
@@ -674,7 +674,7 @@ export type LayerFailureCode =
   | "InvalidLayerDigest"
   | "MissingLayerDigest"
   | (string & {});
-export const LayerFailureCode = /*@__PURE__*/ S.String;
+export const LayerFailureCode = S.String;
 
 export type LayerFailureReason = string;
 export interface LayerFailure {
@@ -756,7 +756,7 @@ export type ImageFailureCode =
   | "UpstreamUnavailable"
   | "ImageInaccessible"
   | (string & {});
-export const ImageFailureCode = /*@__PURE__*/ S.String;
+export const ImageFailureCode = S.String;
 
 export type ImageFailureReason = string;
 export interface ImageFailure {
@@ -874,11 +874,11 @@ export type ScanFrequency =
   | "CONTINUOUS_SCAN"
   | "MANUAL"
   | (string & {});
-export const ScanFrequency = /*@__PURE__*/ S.String;
+export const ScanFrequency = S.String;
 
 export type ScanningRepositoryFilterValue = string;
 export type ScanningRepositoryFilterType = "WILDCARD" | (string & {});
-export const ScanningRepositoryFilterType = /*@__PURE__*/ S.String;
+export const ScanningRepositoryFilterType = S.String;
 
 export interface ScanningRepositoryFilter {
   filter: string;
@@ -919,7 +919,7 @@ export const RepositoryScanningConfigurationList = /*@__PURE__*/ S.Array(
 export type ScanningConfigurationFailureCode =
   | "REPOSITORY_NOT_FOUND"
   | (string & {});
-export const ScanningConfigurationFailureCode = /*@__PURE__*/ S.String;
+export const ScanningConfigurationFailureCode = S.String;
 
 export type ScanningConfigurationFailureReason = string;
 export interface RepositoryScanningConfigurationFailure {
@@ -1013,7 +1013,7 @@ export type UpstreamRegistry =
   | "gitlab-container-registry"
   | "chainguard"
   | (string & {});
-export const UpstreamRegistry = /*@__PURE__*/ S.String;
+export const UpstreamRegistry = S.String;
 
 export type CredentialArn = string;
 export type CustomRoleArn = string;
@@ -1091,10 +1091,10 @@ export type ImageTagMutability =
   | "IMMUTABLE_WITH_EXCLUSION"
   | "MUTABLE_WITH_EXCLUSION"
   | (string & {});
-export const ImageTagMutability = /*@__PURE__*/ S.String;
+export const ImageTagMutability = S.String;
 
 export type ImageTagMutabilityExclusionFilterType = "WILDCARD" | (string & {});
-export const ImageTagMutabilityExclusionFilterType = /*@__PURE__*/ S.String;
+export const ImageTagMutabilityExclusionFilterType = S.String;
 
 export type ImageTagMutabilityExclusionFilterValue = string;
 export interface ImageTagMutabilityExclusionFilter {
@@ -1123,7 +1123,7 @@ export const ImageScanningConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageScanningConfiguration",
 }) as any as S.Schema<ImageScanningConfiguration>;
 export type EncryptionType = "AES256" | "KMS" | "KMS_DSSE" | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export type KmsKey = string;
 export interface EncryptionConfiguration {
@@ -1223,7 +1223,7 @@ export type RCTAppliedFor =
   | "PULL_THROUGH_CACHE"
   | "CREATE_ON_PUSH"
   | (string & {});
-export const RCTAppliedFor = /*@__PURE__*/ S.String;
+export const RCTAppliedFor = S.String;
 
 export type RCTAppliedForList = RCTAppliedFor[];
 export const RCTAppliedForList = /*@__PURE__*/ S.Array(RCTAppliedFor);
@@ -1548,7 +1548,7 @@ export const DeleteSigningConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 export type SigningProfileArn = string;
 export type SigningRepositoryFilterValue = string;
 export type SigningRepositoryFilterType = "WILDCARD_MATCH" | (string & {});
-export const SigningRepositoryFilterType = /*@__PURE__*/ S.String;
+export const SigningRepositoryFilterType = S.String;
 
 export interface SigningRepositoryFilter {
   filter: string;
@@ -1655,7 +1655,7 @@ export type ReplicationStatus =
   | "COMPLETE"
   | "FAILED"
   | (string & {});
-export const ReplicationStatus = /*@__PURE__*/ S.String;
+export const ReplicationStatus = S.String;
 
 export type ReplicationError = string;
 export interface ImageReplicationStatus {
@@ -1696,7 +1696,7 @@ export const DescribeImageReplicationStatusResponse = /*@__PURE__*/ S.suspend(
 export type NextToken = string;
 export type MaxResults = number;
 export type TagStatus = "TAGGED" | "UNTAGGED" | "ANY" | (string & {});
-export const TagStatus = /*@__PURE__*/ S.String;
+export const TagStatus = S.String;
 
 export type ImageStatusFilter =
   | "ACTIVE"
@@ -1704,7 +1704,7 @@ export type ImageStatusFilter =
   | "ACTIVATING"
   | "ANY"
   | (string & {});
-export const ImageStatusFilter = /*@__PURE__*/ S.String;
+export const ImageStatusFilter = S.String;
 
 export interface DescribeImagesFilter {
   tagStatus?: TagStatus;
@@ -1764,7 +1764,7 @@ export type ScanStatus =
   | "LIMIT_EXCEEDED"
   | "IMAGE_ARCHIVED"
   | (string & {});
-export const ScanStatus = /*@__PURE__*/ S.String;
+export const ScanStatus = S.String;
 
 export type ScanStatusDescription = string;
 export interface ImageScanStatus {
@@ -1789,7 +1789,7 @@ export type FindingSeverity =
   | "CRITICAL"
   | "UNDEFINED"
   | (string & {});
-export const FindingSeverity = /*@__PURE__*/ S.String;
+export const FindingSeverity = S.String;
 
 export type SeverityCount = number;
 export type FindingSeverityCounts = { [key in FindingSeverity]?: number };
@@ -1817,7 +1817,7 @@ export const ImageScanFindingsSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImageScanFindingsSummary>;
 export type RecordedPullTimestamp = Date;
 export type ImageStatus = "ACTIVE" | "ARCHIVED" | "ACTIVATING" | (string & {});
-export const ImageStatus = /*@__PURE__*/ S.String;
+export const ImageStatus = S.String;
 
 export type LastArchivedAtTimestamp = Date;
 export type LastActivatedAtTimestamp = Date;
@@ -2271,7 +2271,7 @@ export type SigningStatus =
   | "COMPLETE"
   | "FAILED"
   | (string & {});
-export const SigningStatus = /*@__PURE__*/ S.String;
+export const SigningStatus = S.String;
 
 export interface ImageSigningStatus {
   signingProfileArn?: string;
@@ -2414,7 +2414,7 @@ export const ReplicationDestinationList = /*@__PURE__*/ S.Array(
 );
 export type RepositoryFilterValue = string;
 export type RepositoryFilterType = "PREFIX_MATCH" | (string & {});
-export const RepositoryFilterType = /*@__PURE__*/ S.String;
+export const RepositoryFilterType = S.String;
 
 export interface RepositoryFilter {
   filter: string;
@@ -2748,13 +2748,13 @@ export type LifecyclePolicyPreviewStatus =
   | "EXPIRED"
   | "FAILED"
   | (string & {});
-export const LifecyclePolicyPreviewStatus = /*@__PURE__*/ S.String;
+export const LifecyclePolicyPreviewStatus = S.String;
 
 export type ImageActionType = "EXPIRE" | "TRANSITION" | (string & {});
-export const ImageActionType = /*@__PURE__*/ S.String;
+export const ImageActionType = S.String;
 
 export type LifecyclePolicyTargetStorageClass = "ARCHIVE" | (string & {});
-export const LifecyclePolicyTargetStorageClass = /*@__PURE__*/ S.String;
+export const LifecyclePolicyTargetStorageClass = S.String;
 
 export interface LifecyclePolicyRuleAction {
   type?: ImageActionType;
@@ -2773,7 +2773,7 @@ export type LifecyclePolicyStorageClass =
   | "ARCHIVE"
   | "STANDARD"
   | (string & {});
-export const LifecyclePolicyStorageClass = /*@__PURE__*/ S.String;
+export const LifecyclePolicyStorageClass = S.String;
 
 export interface LifecyclePolicyPreviewResult {
   imageTags?: string[];
@@ -2896,7 +2896,7 @@ export const GetRegistryScanningConfigurationRequest = /*@__PURE__*/ S.suspend(
   identifier: "GetRegistryScanningConfigurationRequest",
 }) as any as S.Schema<GetRegistryScanningConfigurationRequest>;
 export type ScanType = "BASIC" | "ENHANCED" | (string & {});
-export const ScanType = /*@__PURE__*/ S.String;
+export const ScanType = S.String;
 
 export interface RegistryScanningRule {
   scanFrequency: ScanFrequency;
@@ -3048,7 +3048,7 @@ export type ArtifactStatusFilter =
   | "ACTIVATING"
   | "ANY"
   | (string & {});
-export const ArtifactStatusFilter = /*@__PURE__*/ S.String;
+export const ArtifactStatusFilter = S.String;
 
 export interface ListImageReferrersFilter {
   artifactTypes?: string[];
@@ -3103,7 +3103,7 @@ export type ArtifactStatus =
   | "ARCHIVED"
   | "ACTIVATING"
   | (string & {});
-export const ArtifactStatus = /*@__PURE__*/ S.String;
+export const ArtifactStatus = S.String;
 
 export interface ImageReferrer {
   digest: string;
@@ -3768,7 +3768,7 @@ export const UntagResourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UntagResourceResponse",
 }) as any as S.Schema<UntagResourceResponse>;
 export type TargetStorageClass = "STANDARD" | "ARCHIVE" | (string & {});
-export const TargetStorageClass = /*@__PURE__*/ S.String;
+export const TargetStorageClass = S.String;
 
 export interface UpdateImageStorageClassRequest {
   registryId?: string;

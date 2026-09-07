@@ -181,7 +181,7 @@ export type GooglePlayDeveloperReportingV1beta1FreshnessInfoFreshnessAggregation
   | "DAILY"
   | "FULL_RANGE";
 export const GooglePlayDeveloperReportingV1beta1FreshnessInfoFreshnessAggregationPeriodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). */
 export interface GoogleTypeTimeZone {
@@ -667,7 +667,7 @@ export type GooglePlayDeveloperReportingV1beta1TimelineSpecAggregationPeriodEnum
   | "DAILY"
   | "FULL_RANGE";
 export const GooglePlayDeveloperReportingV1beta1TimelineSpecAggregationPeriodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification of the time-related aggregation parameters of a timeline. Timelines have an aggregation period (`DAILY`, `HOURLY`, etc) which defines how events are aggregated in metrics. The points in a timeline are defined by the starting DateTime of the aggregation period. The duration is implicit in the AggregationPeriod. Hourly aggregation periods, when supported by a metric set, are always specified in UTC to avoid ambiguities around daylight saving time transitions, where an hour is skipped when adopting DST, and repeated when abandoning DST. For example, the timestamp '2021-11-07 01:00:00 America/Los_Angeles' is ambiguous since it can correspond to '2021-11-07 08:00:00 UTC' or '2021-11-07 09:00:00 UTC'. Daily aggregation periods require specifying a timezone which will determine the precise instants of the start and the end of the day. Not all metric sets support all timezones, so make sure to check which timezones are supported by the metric set you want to query. */
 export interface GooglePlayDeveloperReportingV1beta1TimelineSpec {
@@ -833,7 +833,7 @@ export type GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMet
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QueryAnonRssAndSwapMemoryUsageMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetRequest {
@@ -904,7 +904,7 @@ export type GooglePlayDeveloperReportingV1beta1MetricsRowAggregationPeriodEnum =
   | "DAILY"
   | "FULL_RANGE";
 export const GooglePlayDeveloperReportingV1beta1MetricsRowAggregationPeriodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GooglePlayDeveloperReportingV1beta1MetricValueList =
   Array<GooglePlayDeveloperReportingV1beta1MetricValue>;
@@ -971,7 +971,7 @@ export type GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequestUserC
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QueryAnrRateMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest {
@@ -1059,7 +1059,7 @@ export type GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetRe
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QueryBitmapMemoryUsageMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetRequest {
@@ -1147,7 +1147,7 @@ export type GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequestUse
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QueryCrashRateMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest {
@@ -1308,7 +1308,7 @@ export type GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSet
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QueryExcessiveWakeupRateMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequest {
@@ -1397,7 +1397,7 @@ export type GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequestUserC
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QueryLmkRateMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequest {
@@ -1485,7 +1485,7 @@ export type GooglePlayDeveloperReportingV1beta1QuerySlowRenderingRateMetricSetRe
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QuerySlowRenderingRateMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QuerySlowRenderingRateMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QuerySlowRenderingRateMetricSetRequest {
@@ -1573,7 +1573,7 @@ export type GooglePlayDeveloperReportingV1beta1QuerySlowStartRateMetricSetReques
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QuerySlowStartRateMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QuerySlowStartRateMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QuerySlowStartRateMetricSetRequest {
@@ -1661,7 +1661,7 @@ export type GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateM
   | "OS_BETA"
   | "APP_TESTERS";
 export const GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetRequestUserCohortEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for QueryStuckBackgroundWakelockRateMetricSet. */
 export interface GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetRequest {
@@ -1948,8 +1948,7 @@ export type GooglePlayDeveloperReportingV1beta1ErrorIssueTypeEnum =
   | "APPLICATION_NOT_RESPONDING"
   | "CRASH"
   | "NON_FATAL";
-export const GooglePlayDeveloperReportingV1beta1ErrorIssueTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GooglePlayDeveloperReportingV1beta1ErrorIssueTypeEnum = S.String;
 
 /** Representations of an app version. */
 export interface GooglePlayDeveloperReportingV1beta1AppVersion {
@@ -2143,8 +2142,7 @@ export type GooglePlayDeveloperReportingV1beta1ErrorReportTypeEnum =
   | "APPLICATION_NOT_RESPONDING"
   | "CRASH"
   | "NON_FATAL";
-export const GooglePlayDeveloperReportingV1beta1ErrorReportTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GooglePlayDeveloperReportingV1beta1ErrorReportTypeEnum = S.String;
 
 /** Identifier of a device. */
 export interface GooglePlayDeveloperReportingV1beta1DeviceId {

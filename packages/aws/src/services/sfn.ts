@@ -304,7 +304,7 @@ export type EncryptionType =
   | "AWS_OWNED_KEY"
   | "CUSTOMER_MANAGED_KMS_KEY"
   | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export interface EncryptionConfiguration {
   kmsKeyId?: string;
@@ -359,10 +359,10 @@ export const CreateActivityOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateActivityOutput>;
 export type Definition = string | redacted.Redacted<string>;
 export type StateMachineType = "STANDARD" | "EXPRESS" | (string & {});
-export const StateMachineType = /*@__PURE__*/ S.String;
+export const StateMachineType = S.String;
 
 export type LogLevel = "ALL" | "ERROR" | "FATAL" | "OFF" | (string & {});
-export const LogLevel = /*@__PURE__*/ S.String;
+export const LogLevel = S.String;
 
 export type IncludeExecutionData = boolean;
 export interface CloudWatchLogsLogGroup {
@@ -642,7 +642,7 @@ export const DescribeActivityOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeActivityOutput",
 }) as any as S.Schema<DescribeActivityOutput>;
 export type IncludedData = "ALL_DATA" | "METADATA_ONLY" | (string & {});
-export const IncludedData = /*@__PURE__*/ S.String;
+export const IncludedData = S.String;
 
 export interface DescribeExecutionInput {
   executionArn: string;
@@ -674,7 +674,7 @@ export type ExecutionStatus =
   | "ABORTED"
   | "PENDING_REDRIVE"
   | (string & {});
-export const ExecutionStatus = /*@__PURE__*/ S.String;
+export const ExecutionStatus = S.String;
 
 export type SensitiveData = string | redacted.Redacted<string>;
 export type IncludedDetails = boolean;
@@ -695,7 +695,7 @@ export type ExecutionRedriveStatus =
   | "NOT_REDRIVABLE"
   | "REDRIVABLE_BY_MAP_RUN"
   | (string & {});
-export const ExecutionRedriveStatus = /*@__PURE__*/ S.String;
+export const ExecutionRedriveStatus = S.String;
 
 export interface DescribeExecutionOutput {
   executionArn: string;
@@ -769,7 +769,7 @@ export type MapRunStatus =
   | "FAILED"
   | "ABORTED"
   | (string & {});
-export const MapRunStatus = /*@__PURE__*/ S.String;
+export const MapRunStatus = S.String;
 
 export type MaxConcurrency = number;
 export type ToleratedFailurePercentage = number;
@@ -887,7 +887,7 @@ export const DescribeStateMachineInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeStateMachineInput",
 }) as any as S.Schema<DescribeStateMachineInput>;
 export type StateMachineStatus = "ACTIVE" | "DELETING" | (string & {});
-export const StateMachineStatus = /*@__PURE__*/ S.String;
+export const StateMachineStatus = S.String;
 
 export type MapRunLabel = string;
 export type RevisionId = string;
@@ -1165,7 +1165,7 @@ export type HistoryEventType =
   | "MapRunRedriven"
   | "EvaluationFailed"
   | (string & {});
-export const HistoryEventType = /*@__PURE__*/ S.String;
+export const HistoryEventType = S.String;
 
 export type EventId = number;
 export interface ActivityFailedEventDetails {
@@ -1829,7 +1829,7 @@ export type ExecutionRedriveFilter =
   | "REDRIVEN"
   | "NOT_REDRIVEN"
   | (string & {});
-export const ExecutionRedriveFilter = /*@__PURE__*/ S.String;
+export const ExecutionRedriveFilter = S.String;
 
 export interface ListExecutionsInput {
   stateMachineArn?: string;
@@ -2358,7 +2358,7 @@ export type SyncExecutionStatus =
   | "FAILED"
   | "TIMED_OUT"
   | (string & {});
-export const SyncExecutionStatus = /*@__PURE__*/ S.String;
+export const SyncExecutionStatus = S.String;
 
 export type BilledMemoryUsed = number;
 export type BilledDuration = number;
@@ -2468,7 +2468,7 @@ export const TagResourceOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "TagResourceOutput",
 }) as any as S.Schema<TagResourceOutput>;
 export type InspectionLevel = "INFO" | "DEBUG" | "TRACE" | (string & {});
-export const InspectionLevel = /*@__PURE__*/ S.String;
+export const InspectionLevel = S.String;
 
 export type RevealSecrets = boolean;
 export type TestStateStateName = string | redacted.Redacted<string>;
@@ -2489,7 +2489,7 @@ export type MockResponseValidationMode =
   | "PRESENT"
   | "NONE"
   | (string & {});
-export const MockResponseValidationMode = /*@__PURE__*/ S.String;
+export const MockResponseValidationMode = S.String;
 
 export interface MockInput {
   result?: string | redacted.Redacted<string>;
@@ -2667,7 +2667,7 @@ export type TestExecutionStatus =
   | "RETRIABLE"
   | "CAUGHT_ERROR"
   | (string & {});
-export const TestExecutionStatus = /*@__PURE__*/ S.String;
+export const TestExecutionStatus = S.String;
 
 export interface TestStateOutput {
   output?: string | redacted.Redacted<string>;
@@ -2834,7 +2834,7 @@ export type ValidateStateMachineDefinitionSeverity =
   | "ERROR"
   | "WARNING"
   | (string & {});
-export const ValidateStateMachineDefinitionSeverity = /*@__PURE__*/ S.String;
+export const ValidateStateMachineDefinitionSeverity = S.String;
 
 export type ValidateStateMachineDefinitionMaxResult = number;
 export interface ValidateStateMachineDefinitionInput {
@@ -2867,7 +2867,7 @@ export type ValidateStateMachineDefinitionResultCode =
   | "OK"
   | "FAIL"
   | (string & {});
-export const ValidateStateMachineDefinitionResultCode = /*@__PURE__*/ S.String;
+export const ValidateStateMachineDefinitionResultCode = S.String;
 
 export type ValidateStateMachineDefinitionCode =
   | string
@@ -2922,7 +2922,7 @@ export type ValidationExceptionReason =
   | "CANNOT_UPDATE_COMPLETED_MAP_RUN"
   | "INVALID_ROUTING_CONFIGURATION"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type KmsKeyState =
   | "DISABLED"
@@ -2931,7 +2931,7 @@ export type KmsKeyState =
   | "UNAVAILABLE"
   | "CREATING"
   | (string & {});
-export const KmsKeyState = /*@__PURE__*/ S.String;
+export const KmsKeyState = S.String;
 
 export type CreateActivityError =
   | ActivityAlreadyExists

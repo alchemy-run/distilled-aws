@@ -30,7 +30,7 @@ export type ConnectionStateStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const ConnectionStateStatus = /*@__PURE__*/ S.String;
+export const ConnectionStateStatus = S.String;
 
 /** ConnectionState information. */
 export interface ConnectionState {
@@ -59,8 +59,7 @@ export type PrivateEndpointConnectionPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const PrivateEndpointConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionPropertiesProvisioningState = S.String;
 
 export interface PrivateEndpointConnectionProperties {
   /** Specifies the private endpoint. */
@@ -170,7 +169,7 @@ export type TenantResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TenantResourceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const TenantResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type TenantResourceSystemDataLastModifiedByType =
@@ -178,8 +177,7 @@ export type TenantResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TenantResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const TenantResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface TenantResourceSystemData {
@@ -215,8 +213,7 @@ export type PrivateEndpointConnectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionSystemDataLastModifiedByType =
@@ -224,8 +221,7 @@ export type PrivateEndpointConnectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionSystemData {
@@ -734,11 +730,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

@@ -99,7 +99,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -107,7 +107,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -155,7 +155,7 @@ export type ProvisioningState =
   | "Deleting"
   | "Accepted"
   | "Created";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Defines the resource properties. */
 export interface AvailabilitySetProperties {
@@ -433,7 +433,7 @@ export const HttpProxyConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Guest agent provisioning action. */
 export type ProvisioningAction = "install" | "uninstall" | "repair";
-export const ProvisioningAction = /*@__PURE__*/ S.String;
+export const ProvisioningAction = S.String;
 
 /** Defines the resource properties. */
 export interface GuestAgentPropertiesInput {
@@ -543,7 +543,7 @@ export type InventoryType =
   | "VirtualNetwork"
   | "VirtualMachine"
   | "VirtualMachineTemplate";
-export const InventoryType = /*@__PURE__*/ S.String;
+export const InventoryType = S.String;
 
 /** Defines the resource properties. */
 export interface InventoryItemPropertiesInput {
@@ -677,7 +677,7 @@ export const CreateVirtualMachineInstanceCheckpointResponse =
   }) as any as S.Schema<CreateVirtualMachineInstanceCheckpointResponse>;
 
 export type DeleteAvailabilitySetRequestForce = "true" | "false";
-export const DeleteAvailabilitySetRequestForce = /*@__PURE__*/ S.String;
+export const DeleteAvailabilitySetRequestForce = S.String;
 
 export interface DeleteAvailabilitySetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -715,7 +715,7 @@ export const DeleteAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteAvailabilitySetResponse>;
 
 export type DeleteCloudRequestForce = "true" | "false";
-export const DeleteCloudRequestForce = /*@__PURE__*/ S.String;
+export const DeleteCloudRequestForce = S.String;
 
 export interface DeleteCloudRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -814,13 +814,12 @@ export const DeleteInventoryItemResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteInventoryItemResponse>;
 
 export type DeleteVirtualMachineInstanceRequestForce = "true" | "false";
-export const DeleteVirtualMachineInstanceRequestForce = /*@__PURE__*/ S.String;
+export const DeleteVirtualMachineInstanceRequestForce = S.String;
 
 export type DeleteVirtualMachineInstanceRequestDeleteFromHost =
   | "true"
   | "false";
-export const DeleteVirtualMachineInstanceRequestDeleteFromHost =
-  /*@__PURE__*/ S.String;
+export const DeleteVirtualMachineInstanceRequestDeleteFromHost = S.String;
 
 export interface DeleteVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -888,7 +887,7 @@ export const DeleteVirtualMachineInstanceCheckpointResponse =
   }) as any as S.Schema<DeleteVirtualMachineInstanceCheckpointResponse>;
 
 export type DeleteVirtualMachineTemplateRequestForce = "true" | "false";
-export const DeleteVirtualMachineTemplateRequestForce = /*@__PURE__*/ S.String;
+export const DeleteVirtualMachineTemplateRequestForce = S.String;
 
 export interface DeleteVirtualMachineTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -926,7 +925,7 @@ export const DeleteVirtualMachineTemplateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteVirtualMachineTemplateResponse>;
 
 export type DeleteVirtualNetworkRequestForce = "true" | "false";
-export const DeleteVirtualNetworkRequestForce = /*@__PURE__*/ S.String;
+export const DeleteVirtualNetworkRequestForce = S.String;
 
 export interface DeleteVirtualNetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -964,7 +963,7 @@ export const DeleteVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteVirtualNetworkResponse>;
 
 export type DeleteVmmServerRequestForce = "true" | "false";
-export const DeleteVmmServerRequestForce = /*@__PURE__*/ S.String;
+export const DeleteVmmServerRequestForce = S.String;
 
 export interface DeleteVmmServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1276,7 +1275,7 @@ export const VirtualMachineInstancePropertiesAvailabilitySetsList =
 
 /** Virtual machine operating system type. */
 export type OsType = "Windows" | "Linux" | "Other";
-export const OsType = /*@__PURE__*/ S.String;
+export const OsType = S.String;
 
 /** Defines the resource properties. */
 export interface OsProfileForVmInstance {
@@ -1329,15 +1328,15 @@ export const OsProfileForVmInstance = /*@__PURE__*/ S.suspend(() =>
 
 /** Limit CPU for migration. */
 export type LimitCpuForMigration = "true" | "false";
-export const LimitCpuForMigration = /*@__PURE__*/ S.String;
+export const LimitCpuForMigration = S.String;
 
 /** Dynamic memory enabled. */
 export type DynamicMemoryEnabled = "true" | "false";
-export const DynamicMemoryEnabled = /*@__PURE__*/ S.String;
+export const DynamicMemoryEnabled = S.String;
 
 /** Highly available. */
 export type IsHighlyAvailable = "true" | "false";
-export const IsHighlyAvailable = /*@__PURE__*/ S.String;
+export const IsHighlyAvailable = S.String;
 
 /** Defines the resource properties. */
 export interface HardwareProfile {
@@ -1384,7 +1383,7 @@ export const NetworkInterfaceIpv6AddressesList = /*@__PURE__*/ S.Array(
 
 /** Network address allocation method. */
 export type AllocationMethod = "Dynamic" | "Static";
-export const AllocationMethod = /*@__PURE__*/ S.String;
+export const AllocationMethod = S.String;
 
 /** Network Interface model */
 export interface NetworkInterface {
@@ -1464,7 +1463,7 @@ export const StorageQosPolicyDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Create diff disk. */
 export type CreateDiffDisk = "true" | "false";
-export const CreateDiffDisk = /*@__PURE__*/ S.String;
+export const CreateDiffDisk = S.String;
 
 /** Virtual disk model */
 export interface VirtualDisk {
@@ -1701,7 +1700,7 @@ export const GetVirtualMachineTemplateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Customizable. */
 export type IsCustomizable = "true" | "false";
-export const IsCustomizable = /*@__PURE__*/ S.String;
+export const IsCustomizable = S.String;
 
 /** Gets the network interfaces of the template. */
 export type VirtualMachineTemplatePropertiesNetworkInterfacesList =
@@ -2470,11 +2469,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -3060,8 +3059,7 @@ export const StartVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or sets a value indicating whether to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Defaults to false. */
 export type StopVirtualMachineInstanceRequestSkipShutdown = "true" | "false";
-export const StopVirtualMachineInstanceRequestSkipShutdown =
-  /*@__PURE__*/ S.String;
+export const StopVirtualMachineInstanceRequestSkipShutdown = S.String;
 
 export interface StopVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */

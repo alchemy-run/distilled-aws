@@ -61,7 +61,7 @@ export const PendingInput = /*@__PURE__*/ S.suspend(() =>
 
 /** * `idle` - IDLE * `running` - RUNNING * `completed` - COMPLETED * `error` - ERROR */
 export type RunPhaseEnum = "idle" | "running" | "completed" | "error";
-export const RunPhaseEnum = /*@__PURE__*/ S.String;
+export const RunPhaseEnum = S.String;
 
 /** * `pending` - PENDING * `in_progress` - IN_PROGRESS * `completed` - COMPLETED * `failed` - FAILED * `canceled` - CANCELED */
 export type WizardTaskDTOStatusEnum =
@@ -70,7 +70,7 @@ export type WizardTaskDTOStatusEnum =
   | "completed"
   | "failed"
   | "canceled";
-export const WizardTaskDTOStatusEnum = /*@__PURE__*/ S.String;
+export const WizardTaskDTOStatusEnum = S.String;
 
 export interface WizardTaskDTO {
   id: string;

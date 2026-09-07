@@ -248,7 +248,7 @@ export type Comparator =
   | "In"
   | "NotIn"
   | (string & {});
-export const Comparator = /*@__PURE__*/ S.String;
+export const Comparator = S.String;
 
 export type IntegerList = number[];
 export const IntegerList = /*@__PURE__*/ S.Array(S.Number);
@@ -267,7 +267,7 @@ export type HITAccessActions =
   | "PreviewAndAccept"
   | "DiscoverPreviewAndAccept"
   | (string & {});
-export const HITAccessActions = /*@__PURE__*/ S.String;
+export const HITAccessActions = S.String;
 
 export interface QualificationRequirement {
   QualificationTypeId: string;
@@ -400,7 +400,7 @@ export type HITStatus =
   | "Reviewing"
   | "Disposed"
   | (string & {});
-export const HITStatus = /*@__PURE__*/ S.String;
+export const HITStatus = S.String;
 
 export type HITReviewStatus =
   | "NotReviewed"
@@ -408,7 +408,7 @@ export type HITReviewStatus =
   | "ReviewedAppropriate"
   | "ReviewedInappropriate"
   | (string & {});
-export const HITReviewStatus = /*@__PURE__*/ S.String;
+export const HITReviewStatus = S.String;
 
 export interface HIT {
   HITId?: string;
@@ -553,7 +553,7 @@ export const CreateHITWithHITTypeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateHITWithHITTypeResponse",
 }) as any as S.Schema<CreateHITWithHITTypeResponse>;
 export type QualificationTypeStatus = "Active" | "Inactive" | (string & {});
-export const QualificationTypeStatus = /*@__PURE__*/ S.String;
+export const QualificationTypeStatus = S.String;
 
 export interface CreateQualificationTypeRequest {
   Name: string;
@@ -814,7 +814,7 @@ export type AssignmentStatus =
   | "Approved"
   | "Rejected"
   | (string & {});
-export const AssignmentStatus = /*@__PURE__*/ S.String;
+export const AssignmentStatus = S.String;
 
 export interface Assignment {
   AssignmentId?: string;
@@ -928,7 +928,7 @@ export const GetQualificationScoreRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetQualificationScoreRequest",
 }) as any as S.Schema<GetQualificationScoreRequest>;
 export type QualificationStatus = "Granted" | "Revoked" | (string & {});
-export const QualificationStatus = /*@__PURE__*/ S.String;
+export const QualificationStatus = S.String;
 
 export interface Qualification {
   QualificationTypeId?: string;
@@ -1269,7 +1269,7 @@ export const ListQualificationTypesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListQualificationTypesResponse",
 }) as any as S.Schema<ListQualificationTypesResponse>;
 export type ReviewableHITStatus = "Reviewable" | "Reviewing" | (string & {});
-export const ReviewableHITStatus = /*@__PURE__*/ S.String;
+export const ReviewableHITStatus = S.String;
 
 export interface ListReviewableHITsRequest {
   HITTypeId?: string;
@@ -1312,7 +1312,7 @@ export const ListReviewableHITsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListReviewableHITsResponse",
 }) as any as S.Schema<ListReviewableHITsResponse>;
 export type ReviewPolicyLevel = "Assignment" | "HIT" | (string & {});
-export const ReviewPolicyLevel = /*@__PURE__*/ S.String;
+export const ReviewPolicyLevel = S.String;
 
 export type ReviewPolicyLevelList = ReviewPolicyLevel[];
 export const ReviewPolicyLevelList = /*@__PURE__*/ S.Array(ReviewPolicyLevel);
@@ -1375,7 +1375,7 @@ export type ReviewActionStatus =
   | "Failed"
   | "Cancelled"
   | (string & {});
-export const ReviewActionStatus = /*@__PURE__*/ S.String;
+export const ReviewActionStatus = S.String;
 
 export interface ReviewActionDetail {
   ActionId?: string;
@@ -1553,7 +1553,7 @@ export type NotifyWorkersFailureCode =
   | "SoftFailure"
   | "HardFailure"
   | (string & {});
-export const NotifyWorkersFailureCode = /*@__PURE__*/ S.String;
+export const NotifyWorkersFailureCode = S.String;
 
 export interface NotifyWorkersFailureStatus {
   NotifyWorkersFailureCode?: NotifyWorkersFailureCode;
@@ -1671,7 +1671,7 @@ export const SendBonusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SendBonusResponse",
 }) as any as S.Schema<SendBonusResponse>;
 export type NotificationTransport = "Email" | "SQS" | "SNS" | (string & {});
-export const NotificationTransport = /*@__PURE__*/ S.String;
+export const NotificationTransport = S.String;
 
 export type EventType =
   | "AssignmentAccepted"
@@ -1687,7 +1687,7 @@ export type EventType =
   | "HITDisposed"
   | "Ping"
   | (string & {});
-export const EventType = /*@__PURE__*/ S.String;
+export const EventType = S.String;
 
 export type EventTypeList = EventType[];
 export const EventTypeList = /*@__PURE__*/ S.Array(EventType);

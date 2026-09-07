@@ -95,7 +95,7 @@ export type MediaPropertiesAlignmentEnum =
   | "LEFT"
   | "RIGHT"
   | "CENTER";
-export const MediaPropertiesAlignmentEnum = /*@__PURE__*/ S.String;
+export const MediaPropertiesAlignmentEnum = S.String;
 
 /** Properties of the media. */
 export interface MediaProperties {
@@ -194,7 +194,7 @@ export type RatingQuestionIconTypeEnum =
   | "STAR"
   | "HEART"
   | "THUMB_UP";
-export const RatingQuestionIconTypeEnum = /*@__PURE__*/ S.String;
+export const RatingQuestionIconTypeEnum = S.String;
 
 /** A rating question. The user has a range of icons to choose from. */
 export interface RatingQuestion {
@@ -221,7 +221,7 @@ export type FileUploadQuestionTypesItemEnum =
   | "IMAGE"
   | "VIDEO"
   | "AUDIO";
-export const FileUploadQuestionTypesItemEnum = /*@__PURE__*/ S.String;
+export const FileUploadQuestionTypesItemEnum = S.String;
 
 export type FileUploadQuestionTypesItemEnumList = Array<
   FileUploadQuestionTypesItemEnum | (string & {})
@@ -390,7 +390,7 @@ export type OptionGoToActionEnum =
   | "NEXT_SECTION"
   | "RESTART_FORM"
   | "SUBMIT_FORM";
-export const OptionGoToActionEnum = /*@__PURE__*/ S.String;
+export const OptionGoToActionEnum = S.String;
 
 /** An option for a Choice question. */
 export interface Option {
@@ -425,7 +425,7 @@ export type ChoiceQuestionTypeEnum =
   | "RADIO"
   | "CHECKBOX"
   | "DROP_DOWN";
-export const ChoiceQuestionTypeEnum = /*@__PURE__*/ S.String;
+export const ChoiceQuestionTypeEnum = S.String;
 
 /** A radio/checkbox/dropdown question. */
 export interface ChoiceQuestion {
@@ -655,7 +655,7 @@ export type FormSettingsEmailCollectionTypeEnum =
   | "DO_NOT_COLLECT"
   | "VERIFIED"
   | "RESPONDER_INPUT";
-export const FormSettingsEmailCollectionTypeEnum = /*@__PURE__*/ S.String;
+export const FormSettingsEmailCollectionTypeEnum = S.String;
 
 /** A form's settings. */
 export interface FormSettings {
@@ -996,16 +996,16 @@ export type WatchErrorTypeEnum =
   | "PROJECT_NOT_AUTHORIZED"
   | "NO_USER_ACCESS"
   | "OTHER_ERRORS";
-export const WatchErrorTypeEnum = /*@__PURE__*/ S.String;
+export const WatchErrorTypeEnum = S.String;
 
 export type WatchStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "SUSPENDED";
-export const WatchStateEnum = /*@__PURE__*/ S.String;
+export const WatchStateEnum = S.String;
 
 export type WatchEventTypeEnum =
   | "EVENT_TYPE_UNSPECIFIED"
   | "SCHEMA"
   | "RESPONSES";
-export const WatchEventTypeEnum = /*@__PURE__*/ S.String;
+export const WatchEventTypeEnum = S.String;
 
 /** A watch for events for a form. When the designated event happens, a notification will be published to the specified target. The notification's attributes will include a `formId` key that has the ID of the watched form and an `eventType` key that has the string of the type. Messages are sent with at-least-once delivery and are only dropped in extraordinary circumstances. Typically all notifications should be reliably delivered within a few seconds; however, in some situations notifications may be delayed. A watch expires seven days after it is created unless it is renewed with watches.renew */
 export interface Watch {

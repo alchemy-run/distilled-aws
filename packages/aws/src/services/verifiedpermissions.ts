@@ -190,7 +190,7 @@ export const BatchGetPolicyInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchGetPolicyInput",
 }) as any as S.Schema<BatchGetPolicyInput>;
 export type PolicyType = "STATIC" | "TEMPLATE_LINKED" | (string & {});
-export const PolicyType = /*@__PURE__*/ S.String;
+export const PolicyType = S.String;
 
 export type StaticPolicyDescription = string | redacted.Redacted<string>;
 export type PolicyStatement = string | redacted.Redacted<string>;
@@ -273,7 +273,7 @@ export type BatchGetPolicyErrorCode =
   | "POLICY_NOT_FOUND"
   | "POLICY_STORE_ALIAS_NOT_FOUND"
   | (string & {});
-export const BatchGetPolicyErrorCode = /*@__PURE__*/ S.String;
+export const BatchGetPolicyErrorCode = S.String;
 
 export interface BatchGetPolicyErrorItem {
   code: BatchGetPolicyErrorCode;
@@ -723,7 +723,7 @@ export const BatchIsAuthorizedInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchIsAuthorizedInput",
 }) as any as S.Schema<BatchIsAuthorizedInput>;
 export type Decision = "ALLOW" | "DENY" | (string & {});
-export const Decision = /*@__PURE__*/ S.String;
+export const Decision = S.String;
 
 export interface DeterminingPolicyItem {
   policyId: string;
@@ -1050,7 +1050,7 @@ export const CreatePolicyInput = /*@__PURE__*/ S.suspend(() =>
 export type ActionIdentifierList = ActionIdentifier[];
 export const ActionIdentifierList = /*@__PURE__*/ S.Array(ActionIdentifier);
 export type PolicyEffect = "Permit" | "Forbid" | (string & {});
-export const PolicyEffect = /*@__PURE__*/ S.String;
+export const PolicyEffect = S.String;
 
 export interface CreatePolicyOutput {
   policyStoreId: string;
@@ -1079,7 +1079,7 @@ export const CreatePolicyOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreatePolicyOutput",
 }) as any as S.Schema<CreatePolicyOutput>;
 export type ValidationMode = "OFF" | "STRICT" | (string & {});
-export const ValidationMode = /*@__PURE__*/ S.String;
+export const ValidationMode = S.String;
 
 export interface ValidationSettings {
   mode: ValidationMode;
@@ -1091,7 +1091,7 @@ export const ValidationSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ValidationSettings>;
 export type PolicyStoreDescription = string | redacted.Redacted<string>;
 export type DeletionProtection = "ENABLED" | "DISABLED" | (string & {});
-export const DeletionProtection = /*@__PURE__*/ S.String;
+export const DeletionProtection = S.String;
 
 export type KmsKey = string;
 export type EncryptionContextKey = string;
@@ -1280,7 +1280,7 @@ export const DeletePolicyStoreOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePolicyStoreOutput",
 }) as any as S.Schema<DeletePolicyStoreOutput>;
 export type DeletionMode = "SoftDelete" | "HardDelete" | (string & {});
-export const DeletionMode = /*@__PURE__*/ S.String;
+export const DeletionMode = S.String;
 
 export interface DeletePolicyStoreAliasInput {
   aliasName: string;
@@ -1332,7 +1332,7 @@ export const GetIdentitySourceInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIdentitySourceInput>;
 export type DiscoveryUrl = string;
 export type OpenIdIssuer = "COGNITO" | (string & {});
-export const OpenIdIssuer = /*@__PURE__*/ S.String;
+export const OpenIdIssuer = S.String;
 
 export interface IdentitySourceDetails {
   clientIds?: (string | redacted.Redacted<string>)[];
@@ -1545,7 +1545,7 @@ export const EncryptionState = /*@__PURE__*/ S.Union([
   S.Struct({ default: S.Struct({}) }),
 ]);
 export type CedarVersion = "CEDAR_2" | "CEDAR_4" | (string & {});
-export const CedarVersion = /*@__PURE__*/ S.String;
+export const CedarVersion = S.String;
 
 export interface GetPolicyStoreOutput {
   policyStoreId: string;
@@ -1586,7 +1586,7 @@ export const GetPolicyStoreAliasInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPolicyStoreAliasInput",
 }) as any as S.Schema<GetPolicyStoreAliasInput>;
 export type AliasState = "Active" | "PendingDeletion" | (string & {});
-export const AliasState = /*@__PURE__*/ S.String;
+export const AliasState = S.String;
 
 export interface GetPolicyStoreAliasOutput {
   aliasName: string;
@@ -2550,7 +2550,7 @@ export type ResourceType =
   | "SCHEMA"
   | "POLICY_STORE_ALIAS"
   | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export interface ResourceConflict {
   resourceId: string;

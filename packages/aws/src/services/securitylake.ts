@@ -158,7 +158,7 @@ export type AwsLogSourceName =
   | "EKS_AUDIT"
   | "WAF"
   | (string & {});
-export const AwsLogSourceName = /*@__PURE__*/ S.String;
+export const AwsLogSourceName = S.String;
 
 export type AwsLogSourceVersion = string;
 export interface AwsLogSourceConfiguration {
@@ -427,7 +427,7 @@ export type DataLakeStatus =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const DataLakeStatus = /*@__PURE__*/ S.String;
+export const DataLakeStatus = S.String;
 
 export interface DataLakeUpdateException {
   reason?: string;
@@ -587,7 +587,7 @@ export const LogSourceResource = /*@__PURE__*/ S.Union([
 export type LogSourceResourceList = LogSourceResource[];
 export const LogSourceResourceList = /*@__PURE__*/ S.Array(LogSourceResource);
 export type AccessType = "LAKEFORMATION" | "S3" | (string & {});
-export const AccessType = /*@__PURE__*/ S.String;
+export const AccessType = S.String;
 
 export type AccessTypeList = AccessType[];
 export const AccessTypeList = /*@__PURE__*/ S.Array(AccessType);
@@ -627,7 +627,7 @@ export type SubscriberStatus =
   | "PENDING"
   | "READY"
   | (string & {});
-export const SubscriberStatus = /*@__PURE__*/ S.String;
+export const SubscriberStatus = S.String;
 
 export type ResourceShareArn = string;
 export type ResourceShareName = string;
@@ -688,7 +688,7 @@ export const SqsNotificationConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqsNotificationConfiguration",
 }) as any as S.Schema<SqsNotificationConfiguration>;
 export type HttpMethod = "POST" | "PUT" | (string & {});
-export const HttpMethod = /*@__PURE__*/ S.String;
+export const HttpMethod = S.String;
 
 export interface HttpsNotificationConfiguration {
   endpoint: string;
@@ -1048,7 +1048,7 @@ export type SourceCollectionStatus =
   | "MISCONFIGURED"
   | "NOT_COLLECTING"
   | (string & {});
-export const SourceCollectionStatus = /*@__PURE__*/ S.String;
+export const SourceCollectionStatus = S.String;
 
 export interface DataLakeSourceStatus {
   resource?: string;

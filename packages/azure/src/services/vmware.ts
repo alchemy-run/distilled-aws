@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Addon type */
 export type AddonType = "SRM" | "VR" | "HCX" | "Arc";
-export const AddonType = /*@__PURE__*/ S.String;
+export const AddonType = S.String;
 
 /** The properties of an addon */
 export interface AddonPropertiesInput {
@@ -67,7 +67,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -75,7 +75,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -112,7 +112,7 @@ export type AddonProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const AddonProvisioningState = /*@__PURE__*/ S.String;
+export const AddonProvisioningState = S.String;
 
 /** The properties of an addon */
 export interface AddonProperties {
@@ -205,8 +205,7 @@ export type ExpressRouteAuthorizationProvisioningState =
   | "Failed"
   | "Canceled"
   | "Updating";
-export const ExpressRouteAuthorizationProvisioningState =
-  /*@__PURE__*/ S.String;
+export const ExpressRouteAuthorizationProvisioningState = S.String;
 
 /** The properties of an ExpressRoute Circuit Authorization resource */
 export interface ExpressRouteAuthorizationProperties {
@@ -287,7 +286,7 @@ export const QuotaHostsRemainingMap = /*@__PURE__*/ S.Record(
 
 /** quota enabled */
 export type QuotaEnabled = "Enabled" | "Disabled";
-export const QuotaEnabled = /*@__PURE__*/ S.String;
+export const QuotaEnabled = S.String;
 
 /** Subscription quotas */
 export interface Quota {
@@ -305,7 +304,7 @@ export const Quota = /*@__PURE__*/ S.suspend(() =>
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 export interface CheckLocationTrialAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -346,7 +345,7 @@ export const CheckLocationTrialAvailabilityRequest = /*@__PURE__*/ S.suspend(
 
 /** trial status */
 export type TrialStatus = "TrialAvailable" | "TrialUsed" | "TrialDisabled";
-export const TrialStatus = /*@__PURE__*/ S.String;
+export const TrialStatus = S.String;
 
 /** Subscription trial availability */
 export interface Trial {
@@ -440,7 +439,7 @@ export const CloudLinksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** cloud link provisioning state */
 export type CloudLinkProvisioningState = "Succeeded" | "Failed" | "Canceled";
-export const CloudLinkProvisioningState = /*@__PURE__*/ S.String;
+export const CloudLinkProvisioningState = S.String;
 
 /** Cloud Link status */
 export type CloudLinkStatus =
@@ -449,7 +448,7 @@ export type CloudLinkStatus =
   | "Deleting"
   | "Failed"
   | "Disconnected";
-export const CloudLinkStatus = /*@__PURE__*/ S.String;
+export const CloudLinkStatus = S.String;
 
 /** The properties of a cloud link. */
 export interface CloudLinkProperties {
@@ -585,7 +584,7 @@ export type ClusterProvisioningState =
   | "Cancelled"
   | "Deleting"
   | "Updating";
-export const ClusterProvisioningState = /*@__PURE__*/ S.String;
+export const ClusterProvisioningState = S.String;
 
 /** The hosts */
 export type ClusterPropertiesHostsList = Array<string>;
@@ -671,7 +670,7 @@ export const ClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of DHCP: SERVER or RELAY. */
 export type DhcpTypeEnum = "SERVER" | "RELAY";
-export const DhcpTypeEnum = /*@__PURE__*/ S.String;
+export const DhcpTypeEnum = S.String;
 
 /** Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from */
 export interface WorkloadNetworkDhcpEntityInput {
@@ -737,7 +736,7 @@ export type WorkloadNetworkDhcpProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkDhcpProvisioningState = /*@__PURE__*/ S.String;
+export const WorkloadNetworkDhcpProvisioningState = S.String;
 
 /** Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from */
 export interface WorkloadNetworkDhcpEntity {
@@ -803,7 +802,7 @@ export type DnsServiceLogLevelEnum =
   | "WARNING"
   | "ERROR"
   | "FATAL";
-export const DnsServiceLogLevelEnum = /*@__PURE__*/ S.String;
+export const DnsServiceLogLevelEnum = S.String;
 
 /** NSX DNS Service Properties */
 export interface WorkloadNetworkDnsServicePropertiesInput {
@@ -877,7 +876,7 @@ export const WorkloadNetworkDnsServicePropertiesFqdnZonesList =
 
 /** DNS service status */
 export type DnsServiceStatusEnum = "SUCCESS" | "FAILURE";
-export const DnsServiceStatusEnum = /*@__PURE__*/ S.String;
+export const DnsServiceStatusEnum = S.String;
 
 /** Workload Network DNS Service provisioning state */
 export type WorkloadNetworkDnsServiceProvisioningState =
@@ -887,8 +886,7 @@ export type WorkloadNetworkDnsServiceProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkDnsServiceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const WorkloadNetworkDnsServiceProvisioningState = S.String;
 
 /** NSX DNS Service Properties */
 export interface WorkloadNetworkDnsServiceProperties {
@@ -1047,7 +1045,7 @@ export type WorkloadNetworkDnsZoneProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkDnsZoneProvisioningState = /*@__PURE__*/ S.String;
+export const WorkloadNetworkDnsZoneProvisioningState = S.String;
 
 /** NSX DNS Zone Properties */
 export interface WorkloadNetworkDnsZoneProperties {
@@ -1107,7 +1105,7 @@ export const CreateWorkloadNetworkDnsZoneResponse = /*@__PURE__*/ S.suspend(
 
 /** Port Mirroring Direction */
 export type PortMirroringDirectionEnum = "INGRESS" | "EGRESS" | "BIDIRECTIONAL";
-export const PortMirroringDirectionEnum = /*@__PURE__*/ S.String;
+export const PortMirroringDirectionEnum = S.String;
 
 /** NSX Port Mirroring Properties */
 export interface WorkloadNetworkPortMirroringPropertiesInput {
@@ -1169,7 +1167,7 @@ export const CreateWorkloadNetworkPortMirroringRequest =
 
 /** Port Mirroring status */
 export type PortMirroringStatusEnum = "SUCCESS" | "FAILURE";
-export const PortMirroringStatusEnum = /*@__PURE__*/ S.String;
+export const PortMirroringStatusEnum = S.String;
 
 /** Workload Network Port Mirroring provisioning state */
 export type WorkloadNetworkPortMirroringProvisioningState =
@@ -1179,8 +1177,7 @@ export type WorkloadNetworkPortMirroringProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkPortMirroringProvisioningState =
-  /*@__PURE__*/ S.String;
+export const WorkloadNetworkPortMirroringProvisioningState = S.String;
 
 /** NSX Port Mirroring Properties */
 export interface WorkloadNetworkPortMirroringProperties {
@@ -1298,7 +1295,7 @@ export type WorkloadNetworkPublicIPProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkPublicIPProvisioningState = /*@__PURE__*/ S.String;
+export const WorkloadNetworkPublicIPProvisioningState = S.String;
 
 /** NSX Public IP Block Properties */
 export interface WorkloadNetworkPublicIPProperties {
@@ -1447,7 +1444,7 @@ export const WorkloadNetworkSegmentPropertiesPortVifList =
 
 /** Segment status */
 export type SegmentStatusEnum = "SUCCESS" | "FAILURE";
-export const SegmentStatusEnum = /*@__PURE__*/ S.String;
+export const SegmentStatusEnum = S.String;
 
 /** Workload Network Segment provisioning state */
 export type WorkloadNetworkSegmentProvisioningState =
@@ -1457,7 +1454,7 @@ export type WorkloadNetworkSegmentProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkSegmentProvisioningState = /*@__PURE__*/ S.String;
+export const WorkloadNetworkSegmentProvisioningState = S.String;
 
 /** NSX Segment Properties */
 export interface WorkloadNetworkSegmentProperties {
@@ -1582,7 +1579,7 @@ export const WorkloadNetworkVMGroupPropertiesMembersList =
 
 /** VM group status */
 export type VMGroupStatusEnum = "SUCCESS" | "FAILURE";
-export const VMGroupStatusEnum = /*@__PURE__*/ S.String;
+export const VMGroupStatusEnum = S.String;
 
 /** Workload Network VM Group provisioning state */
 export type WorkloadNetworkVMGroupProvisioningState =
@@ -1592,7 +1589,7 @@ export type WorkloadNetworkVMGroupProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkVMGroupProvisioningState = /*@__PURE__*/ S.String;
+export const WorkloadNetworkVMGroupProvisioningState = S.String;
 
 /** NSX VM Group Properties */
 export interface WorkloadNetworkVMGroupProperties {
@@ -1657,7 +1654,7 @@ export const NetAppVolume = /*@__PURE__*/ S.suspend(() =>
 
 /** Mode that describes whether the LUN has to be mounted as a datastore or attached as a LUN */
 export type DiskPoolVolumeInputMountOption = "MOUNT" | "ATTACH";
-export const DiskPoolVolumeInputMountOption = /*@__PURE__*/ S.String;
+export const DiskPoolVolumeInputMountOption = S.String;
 
 /** An iSCSI volume from Microsoft.StoragePool provider */
 export interface DiskPoolVolumeInput {
@@ -1773,11 +1770,11 @@ export type DatastoreProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const DatastoreProvisioningState = /*@__PURE__*/ S.String;
+export const DatastoreProvisioningState = S.String;
 
 /** Mode that describes whether the LUN has to be mounted as a datastore or attached as a LUN */
 export type DiskPoolVolumeMountOption = "MOUNT" | "ATTACH";
-export const DiskPoolVolumeMountOption = /*@__PURE__*/ S.String;
+export const DiskPoolVolumeMountOption = S.String;
 
 /** An iSCSI volume from Microsoft.StoragePool provider */
 export interface DiskPoolVolume {
@@ -1808,7 +1805,7 @@ export type DatastoreStatus =
   | "Detached"
   | "LostCommunication"
   | "DeadOrError";
-export const DatastoreStatus = /*@__PURE__*/ S.String;
+export const DatastoreStatus = S.String;
 
 /** The properties of a datastore */
 export interface DatastoreProperties {
@@ -2143,7 +2140,7 @@ export const DeleteIscsiPathResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteIscsiPathResponse>;
 
 export type DeleteLicenseRequestLicenseName = "VmwareFirewall";
-export const DeleteLicenseRequestLicenseName = /*@__PURE__*/ S.String;
+export const DeleteLicenseRequestLicenseName = S.String;
 
 export interface DeleteLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2871,14 +2868,14 @@ export type GlobalReachConnectionProvisioningState =
   | "Failed"
   | "Canceled"
   | "Updating";
-export const GlobalReachConnectionProvisioningState = /*@__PURE__*/ S.String;
+export const GlobalReachConnectionProvisioningState = S.String;
 
 /** Global Reach Connection status */
 export type GlobalReachConnectionStatus =
   | "Connected"
   | "Connecting"
   | "Disconnected";
-export const GlobalReachConnectionStatus = /*@__PURE__*/ S.String;
+export const GlobalReachConnectionStatus = S.String;
 
 /** The properties of a global reach connection */
 export interface GlobalReachConnectionProperties {
@@ -2965,7 +2962,7 @@ export type HcxEnterpriseSiteProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const HcxEnterpriseSiteProvisioningState = /*@__PURE__*/ S.String;
+export const HcxEnterpriseSiteProvisioningState = S.String;
 
 /** HCX Enterprise Site status */
 export type HcxEnterpriseSiteStatus =
@@ -2973,7 +2970,7 @@ export type HcxEnterpriseSiteStatus =
   | "Consumed"
   | "Deactivated"
   | "Deleted";
-export const HcxEnterpriseSiteStatus = /*@__PURE__*/ S.String;
+export const HcxEnterpriseSiteStatus = S.String;
 
 /** The properties of an HCX Enterprise Site */
 export interface HcxEnterpriseSiteProperties {
@@ -3049,19 +3046,19 @@ export const GetHostRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of host. */
 export type HostKind = "General" | "Specialized";
-export const HostKind = /*@__PURE__*/ S.String;
+export const HostKind = S.String;
 
 /** provisioning state of the host */
 export type HostProvisioningState = "Succeeded" | "Failed" | "Canceled";
-export const HostProvisioningState = /*@__PURE__*/ S.String;
+export const HostProvisioningState = S.String;
 
 /** The reason for host maintenance. */
 export type HostMaintenance = "Replacement" | "Upgrade";
-export const HostMaintenance = /*@__PURE__*/ S.String;
+export const HostMaintenance = S.String;
 
 /** The kind of host license. */
 export type HostLicenseKind = "WindowsServer";
-export const HostLicenseKind = /*@__PURE__*/ S.String;
+export const HostLicenseKind = S.String;
 
 /** A license assigned to a host. */
 export interface HostLicense {
@@ -3185,7 +3182,7 @@ export type IscsiPathProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const IscsiPathProvisioningState = /*@__PURE__*/ S.String;
+export const IscsiPathProvisioningState = S.String;
 
 /** The properties of an iSCSI path resource */
 export interface IscsiPathProperties {
@@ -3228,7 +3225,7 @@ export const GetIscsiPathResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIscsiPathResponse>;
 
 export type GetLicenseRequestLicenseName = "VmwareFirewall";
-export const GetLicenseRequestLicenseName = /*@__PURE__*/ S.String;
+export const GetLicenseRequestLicenseName = S.String;
 
 export interface GetLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3260,11 +3257,11 @@ export const GetLicenseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of license. */
 export type LicenseKind = "VmwareFirewall";
-export const LicenseKind = /*@__PURE__*/ S.String;
+export const LicenseKind = S.String;
 
 /** provisioning state of the license */
 export type LicenseProvisioningState = "Succeeded" | "Failed" | "Canceled";
-export const LicenseProvisioningState = /*@__PURE__*/ S.String;
+export const LicenseProvisioningState = S.String;
 
 /** The properties of a license */
 export interface LicenseProperties {
@@ -3307,7 +3304,7 @@ export const GetLicenseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLicenseResponse>;
 
 export type GetLicensePropertiesRequestLicenseName = "VmwareFirewall";
-export const GetLicensePropertiesRequestLicenseName = /*@__PURE__*/ S.String;
+export const GetLicensePropertiesRequestLicenseName = S.String;
 
 export interface GetLicensePropertiesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3367,7 +3364,7 @@ export const GetMaintenanceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** type of the maintenance */
 export type MaintenanceType = "VCSA" | "ESXI" | "NSXT";
-export const MaintenanceType = /*@__PURE__*/ S.String;
+export const MaintenanceType = S.String;
 
 /** Defines the type of maintenance activity */
 export type MaintenanceActivityKind =
@@ -3375,7 +3372,7 @@ export type MaintenanceActivityKind =
   | "Downgrade"
   | "CertificateRotation"
   | "Backup";
-export const MaintenanceActivityKind = /*@__PURE__*/ S.String;
+export const MaintenanceActivityKind = S.String;
 
 /** Represents a maintenance activity performed as part of an operation */
 export interface MaintenanceActivity {
@@ -3410,7 +3407,7 @@ export const MaintenancePropertiesActivitiesList = /*@__PURE__*/ S.Array(
 
 /** Defines the kind of group */
 export type MaintenanceGroupKind = "Logical" | "Consolidation";
-export const MaintenanceGroupKind = /*@__PURE__*/ S.String;
+export const MaintenanceGroupKind = S.String;
 
 /** Represents a maintenance group */
 export interface MaintenanceGroup {
@@ -3467,7 +3464,7 @@ export type MaintenanceStateName =
   | "Success"
   | "Failed"
   | "Canceled";
-export const MaintenanceStateName = /*@__PURE__*/ S.String;
+export const MaintenanceStateName = S.String;
 
 /** state of the maintenance */
 export interface MaintenanceState {
@@ -3497,14 +3494,14 @@ export type MaintenanceProvisioningState =
   | "Failed"
   | "Canceled"
   | "Updating";
-export const MaintenanceProvisioningState = /*@__PURE__*/ S.String;
+export const MaintenanceProvisioningState = S.String;
 
 /** Defines the type of operation */
 export type MaintenanceManagementOperationKind =
   | "Schedule"
   | "Reschedule"
   | "MaintenanceReadinessRefresh";
-export const MaintenanceManagementOperationKind = /*@__PURE__*/ S.String;
+export const MaintenanceManagementOperationKind = S.String;
 
 /** Defines operations that can be performed on maintenance */
 export interface MaintenanceManagementOperation {
@@ -3528,7 +3525,7 @@ export const MaintenancePropertiesOperationsList = /*@__PURE__*/ S.Array(
 
 /** Defines the type of maintenance readiness check */
 export type MaintenanceCheckType = "Precheck" | "Preflight";
-export const MaintenanceCheckType = /*@__PURE__*/ S.String;
+export const MaintenanceCheckType = S.String;
 
 /** Defines the readiness status of maintenance */
 export type MaintenanceReadinessStatus =
@@ -3536,7 +3533,7 @@ export type MaintenanceReadinessStatus =
   | "NotReady"
   | "DataNotAvailable"
   | "NotApplicable";
-export const MaintenanceReadinessStatus = /*@__PURE__*/ S.String;
+export const MaintenanceReadinessStatus = S.String;
 
 /** Steps to resolve the error */
 export type ImpactedMaintenanceResourceErrorResolutionStepsList = Array<string>;
@@ -3763,11 +3760,11 @@ export const GetPlacementPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Placement Policy type */
 export type PlacementPolicyType = "VmVm" | "VmHost";
-export const PlacementPolicyType = /*@__PURE__*/ S.String;
+export const PlacementPolicyType = S.String;
 
 /** Placement Policy state */
 export type PlacementPolicyState = "Enabled" | "Disabled";
-export const PlacementPolicyState = /*@__PURE__*/ S.String;
+export const PlacementPolicyState = S.String;
 
 /** Placement Policy provisioning state */
 export type PlacementPolicyProvisioningState =
@@ -3777,7 +3774,7 @@ export type PlacementPolicyProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const PlacementPolicyProvisioningState = /*@__PURE__*/ S.String;
+export const PlacementPolicyProvisioningState = S.String;
 
 /** Abstract placement policy properties */
 export interface PlacementPolicyProperties {
@@ -3892,11 +3889,11 @@ export const ManagementCluster = /*@__PURE__*/ S.suspend(() =>
 
 /** Connectivity to internet is enabled or disabled */
 export type PrivateCloudPropertiesInternet = "Enabled" | "Disabled";
-export const PrivateCloudPropertiesInternet = /*@__PURE__*/ S.String;
+export const PrivateCloudPropertiesInternet = S.String;
 
 /** Whether SSL is enabled or disabled */
 export type SslEnum = "Enabled" | "Disabled";
-export const SslEnum = /*@__PURE__*/ S.String;
+export const SslEnum = S.String;
 
 /** vCenter Single Sign On Identity Source */
 export interface IdentitySource {
@@ -3944,7 +3941,7 @@ export const PrivateCloudPropertiesIdentitySourcesList = /*@__PURE__*/ S.Array(
 
 /** Whether the private clouds is available in a single zone or two zones */
 export type AvailabilityStrategy = "SingleZone" | "DualZone";
-export const AvailabilityStrategy = /*@__PURE__*/ S.String;
+export const AvailabilityStrategy = S.String;
 
 /** The properties describing private cloud availability zone distribution */
 export interface AvailabilityProperties {
@@ -3967,15 +3964,15 @@ export const AvailabilityProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether encryption is enabled or disabled */
 export type EncryptionState = "Enabled" | "Disabled";
-export const EncryptionState = /*@__PURE__*/ S.String;
+export const EncryptionState = S.String;
 
 /** Whether the the encryption key is connected or access denied */
 export type EncryptionKeyStatus = "Connected" | "AccessDenied";
-export const EncryptionKeyStatus = /*@__PURE__*/ S.String;
+export const EncryptionKeyStatus = S.String;
 
 /** Whether the encryption version is fixed or auto-detected */
 export type EncryptionVersionType = "Fixed" | "AutoDetected";
-export const EncryptionVersionType = /*@__PURE__*/ S.String;
+export const EncryptionVersionType = S.String;
 
 /** An Encryption Key */
 export interface EncryptionKeyVaultProperties {
@@ -4036,7 +4033,7 @@ export type PrivateCloudProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const PrivateCloudProvisioningState = /*@__PURE__*/ S.String;
+export const PrivateCloudProvisioningState = S.String;
 
 /** An ExpressRoute Circuit */
 export interface Circuit {
@@ -4093,15 +4090,15 @@ export const PrivateCloudPropertiesExternalCloudLinksList =
 
 /** NSX public IP quota raised */
 export type NsxPublicIpQuotaRaisedEnum = "Enabled" | "Disabled";
-export const NsxPublicIpQuotaRaisedEnum = /*@__PURE__*/ S.String;
+export const NsxPublicIpQuotaRaisedEnum = S.String;
 
 /** The type of DNS zone. */
 export type DnsZoneType = "Public" | "Private";
-export const DnsZoneType = /*@__PURE__*/ S.String;
+export const DnsZoneType = S.String;
 
 /** The kind of license. */
 export type VcfLicenseKind = "vcf5";
-export const VcfLicenseKind = /*@__PURE__*/ S.String;
+export const VcfLicenseKind = S.String;
 
 /** A VMware Cloud Foundation license */
 export interface VcfLicense {
@@ -4206,7 +4203,7 @@ export const GetPrivateCloudResponseSku = ClustersCreateOrUpdateResponseSku;
 
 /** Type of managed service identity (either system assigned, or none). */
 export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
-export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
+export const SystemAssignedServiceIdentityType = S.String;
 
 /** Managed service identity (either system assigned, or none) */
 export interface GetPrivateCloudResponseIdentity {
@@ -4329,7 +4326,7 @@ export type ProvisionedNetworkProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ProvisionedNetworkProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisionedNetworkProvisioningState = S.String;
 
 /** The type of network provisioned. */
 export type ProvisionedNetworkTypes =
@@ -4340,7 +4337,7 @@ export type ProvisionedNetworkTypes =
   | "vcenterManagement"
   | "vmotion"
   | "vsan";
-export const ProvisionedNetworkTypes = /*@__PURE__*/ S.String;
+export const ProvisionedNetworkTypes = S.String;
 
 /** The properties of a provisioned network. */
 export interface ProvisionedNetworkProperties {
@@ -4420,7 +4417,7 @@ export type PureStoragePolicyProvisioningState =
   | "Canceled"
   | "Deleting"
   | "Updating";
-export const PureStoragePolicyProvisioningState = /*@__PURE__*/ S.String;
+export const PureStoragePolicyProvisioningState = S.String;
 
 /** Properties of a Pure Storage Policy Based Management policy */
 export interface PureStoragePolicyProperties {
@@ -4498,11 +4495,11 @@ export const GetScriptCmdletRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A script cmdlet provisioning state */
 export type ScriptCmdletProvisioningState = "Succeeded" | "Failed" | "Canceled";
-export const ScriptCmdletProvisioningState = /*@__PURE__*/ S.String;
+export const ScriptCmdletProvisioningState = S.String;
 
 /** Specifies whether a script cmdlet is intended to be invoked only through automation or visible to customers */
 export type ScriptCmdletAudience = "Automation" | "Any";
-export const ScriptCmdletAudience = /*@__PURE__*/ S.String;
+export const ScriptCmdletAudience = S.String;
 
 /** Script Parameter types */
 export type ScriptParameterTypes =
@@ -4512,15 +4509,15 @@ export type ScriptParameterTypes =
   | "Int"
   | "Bool"
   | "Float";
-export const ScriptParameterTypes = /*@__PURE__*/ S.String;
+export const ScriptParameterTypes = S.String;
 
 /** Visibility Parameter */
 export type VisibilityParameterEnum = "Visible" | "Hidden";
-export const VisibilityParameterEnum = /*@__PURE__*/ S.String;
+export const VisibilityParameterEnum = S.String;
 
 /** Optional Param */
 export type OptionalParamEnum = "Optional" | "Required";
-export const OptionalParamEnum = /*@__PURE__*/ S.String;
+export const OptionalParamEnum = S.String;
 
 /** An parameter that the script will accept */
 export interface ScriptParameter {
@@ -4635,7 +4632,7 @@ export type ScriptExecutionParameterType =
   | "Value"
   | "SecureValue"
   | "Credential";
-export const ScriptExecutionParameterType = /*@__PURE__*/ S.String;
+export const ScriptExecutionParameterType = S.String;
 
 /** The arguments passed in to the execution */
 export interface ScriptExecutionParameter {
@@ -4678,7 +4675,7 @@ export type ScriptExecutionProvisioningState =
   | "Cancelling"
   | "Cancelled"
   | "Deleting";
-export const ScriptExecutionProvisioningState = /*@__PURE__*/ S.String;
+export const ScriptExecutionProvisioningState = S.String;
 
 /** Standard output stream from the powershell execution */
 export type ScriptExecutionPropertiesOutputList = Array<string>;
@@ -4798,7 +4795,7 @@ export type ScriptOutputStreamType =
   | "Warning"
   | "Output"
   | "Error";
-export const ScriptOutputStreamType = /*@__PURE__*/ S.String;
+export const ScriptOutputStreamType = S.String;
 
 export type GetScriptExecutionExecutionLogsRequestBodyList = Array<
   ScriptOutputStreamType | (string & {})
@@ -4899,7 +4896,7 @@ export type ScriptPackageProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ScriptPackageProvisioningState = /*@__PURE__*/ S.String;
+export const ScriptPackageProvisioningState = S.String;
 
 /** Properties of a Script Package subresource */
 export interface ScriptPackageProperties {
@@ -4986,11 +4983,11 @@ export type VirtualMachineProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const VirtualMachineProvisioningState = /*@__PURE__*/ S.String;
+export const VirtualMachineProvisioningState = S.String;
 
 /** Virtual Machine Restrict Movement state */
 export type VirtualMachineRestrictMovementState = "Enabled" | "Disabled";
-export const VirtualMachineRestrictMovementState = /*@__PURE__*/ S.String;
+export const VirtualMachineRestrictMovementState = S.String;
 
 /** Virtual Machine Properties */
 export interface VirtualMachineProperties {
@@ -5074,7 +5071,7 @@ export type WorkloadNetworkProvisioningState =
   | "Building"
   | "Deleting"
   | "Updating";
-export const WorkloadNetworkProvisioningState = /*@__PURE__*/ S.String;
+export const WorkloadNetworkProvisioningState = S.String;
 
 /** The properties of a workload network */
 export interface WorkloadNetworkProperties {
@@ -5530,7 +5527,7 @@ export const GetWorkloadNetworkVirtualMachineRequest = /*@__PURE__*/ S.suspend(
 
 /** VM type */
 export type VMTypeEnum = "REGULAR" | "EDGE" | "SERVICE";
-export const VMTypeEnum = /*@__PURE__*/ S.String;
+export const VMTypeEnum = S.String;
 
 /** NSX Virtual Machine Properties */
 export interface WorkloadNetworkVirtualMachineProperties {
@@ -5837,7 +5834,7 @@ export const IscsiPathsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IscsiPathsCreateOrUpdateResponse>;
 
 export type LicensesCreateOrUpdateRequestLicenseName = "VmwareFirewall";
-export const LicensesCreateOrUpdateRequestLicenseName = /*@__PURE__*/ S.String;
+export const LicensesCreateOrUpdateRequestLicenseName = S.String;
 
 /** The properties of a license */
 export interface LicensePropertiesInput {
@@ -6707,10 +6704,10 @@ export type ListMaintenancesRequestStateName =
   | "Success"
   | "Failed"
   | "Canceled";
-export const ListMaintenancesRequestStateName = /*@__PURE__*/ S.String;
+export const ListMaintenancesRequestStateName = S.String;
 
 export type ListMaintenancesRequestStatus = "Active" | "Inactive";
-export const ListMaintenancesRequestStatus = /*@__PURE__*/ S.String;
+export const ListMaintenancesRequestStatus = S.String;
 
 export interface ListMaintenancesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6832,11 +6829,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -7510,7 +7507,7 @@ export const ListSkusRequest = /*@__PURE__*/ S.suspend(() =>
 export type ResourceSkuResourceType =
   | "privateClouds"
   | "privateClouds/clusters";
-export const ResourceSkuResourceType = /*@__PURE__*/ S.String;
+export const ResourceSkuResourceType = S.String;
 
 /** The set of locations that the SKU is available. */
 export type ResourceSkuLocationsList = Array<string>;
@@ -7609,7 +7606,7 @@ export const ResourceSkuCapabilitiesList = /*@__PURE__*/ S.Array(
 
 /** Describes the kind of SKU restrictions that can exist */
 export type ResourceSkuRestrictionsType = "Location" | "Zone";
-export const ResourceSkuRestrictionsType = /*@__PURE__*/ S.String;
+export const ResourceSkuRestrictionsType = S.String;
 
 /** The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted. */
 export type ResourceSkuRestrictionsValuesList = Array<string>;
@@ -7649,7 +7646,7 @@ export const ResourceSkuRestrictionInfo = /*@__PURE__*/ S.suspend(() =>
 export type ResourceSkuRestrictionsReasonCode =
   | "QuotaId"
   | "NotAvailableForSubscription";
-export const ResourceSkuRestrictionsReasonCode = /*@__PURE__*/ S.String;
+export const ResourceSkuRestrictionsReasonCode = S.String;
 
 /** The restrictions of the SKU. */
 export interface ResourceSkuRestrictions {
@@ -8823,7 +8820,7 @@ export const ManagementClusterInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Connectivity to internet is enabled or disabled */
 export type PrivateCloudPropertiesInputInternet = "Enabled" | "Disabled";
-export const PrivateCloudPropertiesInputInternet = /*@__PURE__*/ S.String;
+export const PrivateCloudPropertiesInputInternet = S.String;
 
 /** vCenter Single Sign On Identity Sources */
 export type PrivateCloudPropertiesInputIdentitySourcesList =
@@ -9547,11 +9544,11 @@ export const PlacementPolicyUpdatePropertiesHostMembersList =
 
 /** Affinity Strength */
 export type AffinityStrength = "Should" | "Must";
-export const AffinityStrength = /*@__PURE__*/ S.String;
+export const AffinityStrength = S.String;
 
 /** Azure Hybrid Benefit type */
 export type AzureHybridBenefitType = "SqlHost" | "None";
-export const AzureHybridBenefitType = /*@__PURE__*/ S.String;
+export const AzureHybridBenefitType = S.String;
 
 /** The properties of a placement policy resource that may be updated */
 export interface PlacementPolicyUpdateProperties {
@@ -9657,7 +9654,7 @@ export const UpdatePrivateCloudRequestIdentity =
 
 /** Whether internet is enabled or disabled */
 export type InternetEnum = "Enabled" | "Disabled";
-export const InternetEnum = /*@__PURE__*/ S.String;
+export const InternetEnum = S.String;
 
 /** vCenter Single Sign On Identity Sources */
 export type PrivateCloudUpdatePropertiesInputIdentitySourcesList =

@@ -74,7 +74,7 @@ export type RepositoryFormatEnum =
   | "YUM"
   | "GOOGET"
   | "PYTHON";
-export const RepositoryFormatEnum = /*@__PURE__*/ S.String;
+export const RepositoryFormatEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -509,7 +509,7 @@ export type HashTypeEnum =
   | "SHA256"
   | "MD5"
   | "DIRSUM_SHA256";
-export const HashTypeEnum = /*@__PURE__*/ S.String;
+export const HashTypeEnum = S.String;
 
 /** A hash of file content. */
 export interface Hash {
@@ -619,7 +619,7 @@ export type GetProjectsLocationsRepositoriesPackagesVersionsViewEnum =
   | "BASIC"
   | "FULL";
 export const GetProjectsLocationsRepositoriesPackagesVersionsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsRepositoriesPackagesVersionsRequest {
   /** The name of the version to retrieve. */
@@ -922,7 +922,7 @@ export type ListProjectsLocationsRepositoriesPackagesVersionsViewEnum =
   | "BASIC"
   | "FULL";
 export const ListProjectsLocationsRepositoriesPackagesVersionsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsRepositoriesPackagesVersionsRequest {
   /** Optional. The field to order the results by. */

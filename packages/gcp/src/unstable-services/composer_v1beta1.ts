@@ -215,7 +215,7 @@ export type EnvironmentConfigEnvironmentSizeEnum =
   | "ENVIRONMENT_SIZE_MEDIUM"
   | "ENVIRONMENT_SIZE_LARGE"
   | "ENVIRONMENT_SIZE_EXTRA_LARGE";
-export const EnvironmentConfigEnvironmentSizeEnum = /*@__PURE__*/ S.String;
+export const EnvironmentConfigEnvironmentSizeEnum = S.String;
 
 /** The configuration settings for Cloud Composer maintenance window. The following example: ``` { "startTime":"2019-08-01T01:00:00Z" "endTime":"2019-08-01T07:00:00Z" "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE" } ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday. */
 export interface MaintenanceWindow {
@@ -240,7 +240,7 @@ export type NetworkingConfigConnectionTypeEnum =
   | "CONNECTION_TYPE_UNSPECIFIED"
   | "VPC_PEERING"
   | "PRIVATE_SERVICE_CONNECT";
-export const NetworkingConfigConnectionTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkingConfigConnectionTypeEnum = S.String;
 
 /** Configuration options for networking connections in the Composer 2 environment. */
 export interface NetworkingConfig {
@@ -278,8 +278,7 @@ export type PrivateEnvironmentConfigNetworkingTypeEnum =
   | "NETWORKING_TYPE_UNSPECIFIED"
   | "PRIVATE"
   | "PUBLIC";
-export const PrivateEnvironmentConfigNetworkingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PrivateEnvironmentConfigNetworkingTypeEnum = S.String;
 
 /** The configuration information for configuring a Private IP Cloud Composer environment. */
 export interface PrivateEnvironmentConfig {
@@ -364,7 +363,7 @@ export type TaskLogsRetentionConfigStorageModeEnum =
   | "TASK_LOGS_STORAGE_MODE_UNSPECIFIED"
   | "CLOUD_LOGGING_AND_CLOUD_STORAGE"
   | "CLOUD_LOGGING_ONLY";
-export const TaskLogsRetentionConfigStorageModeEnum = /*@__PURE__*/ S.String;
+export const TaskLogsRetentionConfigStorageModeEnum = S.String;
 
 /** The configuration setting for Task Logs. */
 export interface TaskLogsRetentionConfig {
@@ -383,8 +382,7 @@ export type AirflowMetadataRetentionPolicyConfigRetentionModeEnum =
   | "RETENTION_MODE_UNSPECIFIED"
   | "RETENTION_MODE_ENABLED"
   | "RETENTION_MODE_DISABLED";
-export const AirflowMetadataRetentionPolicyConfigRetentionModeEnum =
-  /*@__PURE__*/ S.String;
+export const AirflowMetadataRetentionPolicyConfigRetentionModeEnum = S.String;
 
 /** The policy for airflow metadata database retention. */
 export interface AirflowMetadataRetentionPolicyConfig {
@@ -437,8 +435,7 @@ export type TrafficRoutingConfigCloudRunFunctionsRoutingEnum =
   | "ROUTING_MODE_UNSPECIFIED"
   | "DIRECT"
   | "VIA_NETWORK_ATTACHMENT";
-export const TrafficRoutingConfigCloudRunFunctionsRoutingEnum =
-  /*@__PURE__*/ S.String;
+export const TrafficRoutingConfigCloudRunFunctionsRoutingEnum = S.String;
 
 /** Configuration for network traffic routing from the Cloud Composer environment to other services. */
 export interface TrafficRoutingConfig {
@@ -535,7 +532,7 @@ export const NodeConfig = /*@__PURE__*/ S.suspend(() =>
 export type EnvironmentConfigResilienceModeEnum =
   | "RESILIENCE_MODE_UNSPECIFIED"
   | "HIGH_RESILIENCE";
-export const EnvironmentConfigResilienceModeEnum = /*@__PURE__*/ S.String;
+export const EnvironmentConfigResilienceModeEnum = S.String;
 
 /** Configuration for resources used by Airflow schedulers. */
 export interface SchedulerResource {
@@ -690,14 +687,13 @@ export type SoftwareConfigWebServerPluginsModeEnum =
   | "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED"
   | "PLUGINS_DISABLED"
   | "PLUGINS_ENABLED";
-export const SoftwareConfigWebServerPluginsModeEnum = /*@__PURE__*/ S.String;
+export const SoftwareConfigWebServerPluginsModeEnum = S.String;
 
 export type SoftwareConfigAuditLogsReplicationModeEnum =
   | "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED"
   | "AUDIT_LOGS_REPLICATION_DISABLED"
   | "AUDIT_LOGS_REPLICATION_ENABLED";
-export const SoftwareConfigAuditLogsReplicationModeEnum =
-  /*@__PURE__*/ S.String;
+export const SoftwareConfigAuditLogsReplicationModeEnum = S.String;
 
 /** Specifies the selection and configuration of software inside the environment. */
 export interface SoftwareConfig {
@@ -872,7 +868,7 @@ export type EnvironmentStateEnum =
   | "UPDATING"
   | "DELETING"
   | "ERROR";
-export const EnvironmentStateEnum = /*@__PURE__*/ S.String;
+export const EnvironmentStateEnum = S.String;
 
 /** An environment for running orchestration tasks. */
 export interface Environment {
@@ -1482,7 +1478,7 @@ export type ComposerWorkloadStatusStateEnum =
   | "ERROR"
   | "SUCCEEDED"
   | "FAILED";
-export const ComposerWorkloadStatusStateEnum = /*@__PURE__*/ S.String;
+export const ComposerWorkloadStatusStateEnum = S.String;
 
 /** Workload status. */
 export interface ComposerWorkloadStatus {
@@ -1513,7 +1509,7 @@ export type ComposerWorkloadTypeEnum =
   | "TRIGGERER"
   | "WEB_SERVER"
   | "REDIS";
-export const ComposerWorkloadTypeEnum = /*@__PURE__*/ S.String;
+export const ComposerWorkloadTypeEnum = S.String;
 
 /** Information about a single workload. */
 export interface ComposerWorkload {

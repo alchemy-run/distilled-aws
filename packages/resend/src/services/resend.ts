@@ -95,7 +95,7 @@ export const Email = /*@__PURE__*/ S.suspend(() =>
 
 /** The API key can have full access to Resend’s API or be only restricted to send emails. * full_access - Can create, delete, get, and update any resource. * sending_access - Can only send emails. */
 export type CreateApiKeyRequestPermission = "full_access" | "sending_access";
-export const CreateApiKeyRequestPermission = /*@__PURE__*/ S.String;
+export const CreateApiKeyRequestPermission = S.String;
 
 export interface CreateApiKeyRequest {
   /** The API key name. */
@@ -132,7 +132,7 @@ export const CreateApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The initial status of the automation. Defaults to `disabled`. */
 export type CreateAutomationRequestStatus = "enabled" | "disabled";
-export const CreateAutomationRequestStatus = /*@__PURE__*/ S.String;
+export const CreateAutomationRequestStatus = S.String;
 
 /** The type of automation step. */
 export type AutomationStepType =
@@ -144,7 +144,7 @@ export type AutomationStepType =
   | "contact_update"
   | "contact_delete"
   | "add_to_segment";
-export const AutomationStepType = /*@__PURE__*/ S.String;
+export const AutomationStepType = S.String;
 
 /** A step in an automation workflow. The `config` object varies based on the step `type`. */
 export interface AutomationStep {
@@ -176,7 +176,7 @@ export type AutomationConnectionType =
   | "condition_not_met"
   | "timeout"
   | "event_received";
-export const AutomationConnectionType = /*@__PURE__*/ S.String;
+export const AutomationConnectionType = S.String;
 
 /** A connection between two steps in the automation graph. */
 export interface AutomationConnection {
@@ -323,8 +323,7 @@ export const CreateContactRequestSegmentsList = /*@__PURE__*/ S.Array(
 
 /** The subscription status for this topic. */
 export type CreateContactRequestTopicsItemSubscription = "opt_in" | "opt_out";
-export const CreateContactRequestTopicsItemSubscription =
-  /*@__PURE__*/ S.String;
+export const CreateContactRequestTopicsItemSubscription = S.String;
 
 export interface CreateContactRequestTopicsItem {
   /** The topic ID. */
@@ -398,12 +397,12 @@ export const CreateContactResponseSuccess = /*@__PURE__*/ S.suspend(() =>
 
 /** The property type. */
 export type CreateContactPropertyRequestType = "string" | "number";
-export const CreateContactPropertyRequestType = /*@__PURE__*/ S.String;
+export const CreateContactPropertyRequestType = S.String;
 
 /** The default value to use when the property is not set for a contact. Must match the type specified in the type field. */
 export type CreateContactPropertyRequestFallbackValue = string | number;
 export const CreateContactPropertyRequestFallbackValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateContactPropertyRequestFallbackValue>;
+  S.Unknown as any as S.Schema<CreateContactPropertyRequestFallbackValue>;
 
 export interface CreateContactPropertyRequest {
   /** The property key. Max length is 50 characters. Only alphanumeric characters and underscores are allowed. */
@@ -445,19 +444,19 @@ export type CreateDomainRequestRegion =
   | "eu-west-1"
   | "sa-east-1"
   | "ap-northeast-1";
-export const CreateDomainRequestRegion = /*@__PURE__*/ S.String;
+export const CreateDomainRequestRegion = S.String;
 
 /** TLS mode. Opportunistic attempts secure connection but falls back to unencrypted. Enforced requires TLS or email won't be sent. */
 export type CreateDomainRequestTls = "opportunistic" | "enforced";
-export const CreateDomainRequestTls = /*@__PURE__*/ S.String;
+export const CreateDomainRequestTls = S.String;
 
 /** Enable or disable sending emails from this domain. */
 export type DomainCapabilitiesSending = "enabled" | "disabled";
-export const DomainCapabilitiesSending = /*@__PURE__*/ S.String;
+export const DomainCapabilitiesSending = S.String;
 
 /** Enable or disable receiving emails to this domain. */
 export type DomainCapabilitiesReceiving = "enabled" | "disabled";
-export const DomainCapabilitiesReceiving = /*@__PURE__*/ S.String;
+export const DomainCapabilitiesReceiving = S.String;
 
 /** Configure the domain capabilities for sending and receiving emails. At least one capability must be enabled. */
 export interface DomainCapabilities {
@@ -509,11 +508,11 @@ export const CreateDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of record (SPF for sending, DKIM for sending, Receiving for inbound emails, Tracking for click and open tracking). */
 export type DomainRecordRecord = "SPF" | "DKIM" | "Receiving" | "Tracking";
-export const DomainRecordRecord = /*@__PURE__*/ S.String;
+export const DomainRecordRecord = S.String;
 
 /** The DNS record type. */
 export type DomainRecordType = "MX" | "TXT" | "CNAME";
-export const DomainRecordType = /*@__PURE__*/ S.String;
+export const DomainRecordType = S.String;
 
 /** The status of the record. */
 export type DomainRecordStatus =
@@ -522,7 +521,7 @@ export type DomainRecordStatus =
   | "failed"
   | "temporary_failure"
   | "not_started";
-export const DomainRecordStatus = /*@__PURE__*/ S.String;
+export const DomainRecordStatus = S.String;
 
 export interface DomainRecord {
   /** The type of record (SPF for sending, DKIM for sending, Receiving for inbound emails, Tracking for click and open tracking). */
@@ -602,7 +601,7 @@ export const CreateEmailRequestToCase1List = /*@__PURE__*/ S.Array(
 /** Recipient email address. For multiple addresses, send as an array of strings. Max 50. */
 export type CreateEmailRequestTo = string | CreateEmailRequestToCase1List;
 export const CreateEmailRequestTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmailRequestTo>;
+  S.Unknown as any as S.Schema<CreateEmailRequestTo>;
 
 export type CreateEmailRequestBccCase1List = Array<string>;
 export const CreateEmailRequestBccCase1List = /*@__PURE__*/ S.Array(
@@ -612,7 +611,7 @@ export const CreateEmailRequestBccCase1List = /*@__PURE__*/ S.Array(
 /** Bcc recipient email address. For multiple addresses, send as an array of strings. */
 export type CreateEmailRequestBcc = string | CreateEmailRequestBccCase1List;
 export const CreateEmailRequestBcc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmailRequestBcc>;
+  S.Unknown as any as S.Schema<CreateEmailRequestBcc>;
 
 export type CreateEmailRequestCcCase1List = Array<string>;
 export const CreateEmailRequestCcCase1List = /*@__PURE__*/ S.Array(
@@ -622,7 +621,7 @@ export const CreateEmailRequestCcCase1List = /*@__PURE__*/ S.Array(
 /** Cc recipient email address. For multiple addresses, send as an array of strings. */
 export type CreateEmailRequestCc = string | CreateEmailRequestCcCase1List;
 export const CreateEmailRequestCc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmailRequestCc>;
+  S.Unknown as any as S.Schema<CreateEmailRequestCc>;
 
 export type CreateEmailRequestReplyToCase1List = Array<string>;
 export const CreateEmailRequestReplyToCase1List = /*@__PURE__*/ S.Array(
@@ -634,11 +633,11 @@ export type CreateEmailRequestReplyTo =
   | string
   | CreateEmailRequestReplyToCase1List;
 export const CreateEmailRequestReplyTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmailRequestReplyTo>;
+  S.Unknown as any as S.Schema<CreateEmailRequestReplyTo>;
 
 export type CreateEmailRequestTemplateVariablesValue = string | number;
 export const CreateEmailRequestTemplateVariablesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmailRequestTemplateVariablesValue>;
+  S.Unknown as any as S.Schema<CreateEmailRequestTemplateVariablesValue>;
 
 /** Template variables object with key/value pairs. */
 export type CreateEmailRequestTemplateVariablesMap = {
@@ -777,7 +776,7 @@ export const SendEmailRequestToCase1List = /*@__PURE__*/ S.Array(
 /** Recipient email address. For multiple addresses, send as an array of strings. Max 50. */
 export type SendEmailRequestTo = string | SendEmailRequestToCase1List;
 export const SendEmailRequestTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendEmailRequestTo>;
+  S.Unknown as any as S.Schema<SendEmailRequestTo>;
 
 export type SendEmailRequestBccCase1List = Array<string>;
 export const SendEmailRequestBccCase1List = /*@__PURE__*/ S.Array(
@@ -787,7 +786,7 @@ export const SendEmailRequestBccCase1List = /*@__PURE__*/ S.Array(
 /** Bcc recipient email address. For multiple addresses, send as an array of strings. */
 export type SendEmailRequestBcc = string | SendEmailRequestBccCase1List;
 export const SendEmailRequestBcc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendEmailRequestBcc>;
+  S.Unknown as any as S.Schema<SendEmailRequestBcc>;
 
 export type SendEmailRequestCcCase1List = Array<string>;
 export const SendEmailRequestCcCase1List = /*@__PURE__*/ S.Array(
@@ -797,7 +796,7 @@ export const SendEmailRequestCcCase1List = /*@__PURE__*/ S.Array(
 /** Cc recipient email address. For multiple addresses, send as an array of strings. */
 export type SendEmailRequestCc = string | SendEmailRequestCcCase1List;
 export const SendEmailRequestCc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendEmailRequestCc>;
+  S.Unknown as any as S.Schema<SendEmailRequestCc>;
 
 export type SendEmailRequestReplyToCase1List = Array<string>;
 export const SendEmailRequestReplyToCase1List = /*@__PURE__*/ S.Array(
@@ -807,11 +806,11 @@ export const SendEmailRequestReplyToCase1List = /*@__PURE__*/ S.Array(
 /** Reply-to email address. For multiple addresses, send as an array of strings. */
 export type SendEmailRequestReplyTo = string | SendEmailRequestReplyToCase1List;
 export const SendEmailRequestReplyTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendEmailRequestReplyTo>;
+  S.Unknown as any as S.Schema<SendEmailRequestReplyTo>;
 
 export type SendEmailRequestTemplateVariablesValue = string | number;
 export const SendEmailRequestTemplateVariablesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SendEmailRequestTemplateVariablesValue>;
+  S.Unknown as any as S.Schema<SendEmailRequestTemplateVariablesValue>;
 
 /** Template variables object with key/value pairs. */
 export type SendEmailRequestTemplateVariablesMap = {
@@ -1016,7 +1015,7 @@ export type TemplateVariableInputType =
   | "boolean"
   | "object"
   | "list";
-export const TemplateVariableInputType = /*@__PURE__*/ S.String;
+export const TemplateVariableInputType = S.String;
 
 export type TemplateVariableInputFallbackValueCase4List = Array<unknown>;
 export const TemplateVariableInputFallbackValueCase4List =
@@ -1032,7 +1031,7 @@ export type TemplateVariableInputFallbackValue =
   | unknown
   | TemplateVariableInputFallbackValueCase4List;
 export const TemplateVariableInputFallbackValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TemplateVariableInputFallbackValue>;
+  S.Unknown as any as S.Schema<TemplateVariableInputFallbackValue>;
 
 export interface TemplateVariableInput {
   /** The key of the variable. */
@@ -1106,11 +1105,11 @@ export const CreateTemplateResponseSuccess = /*@__PURE__*/ S.suspend(() =>
 
 /** The default subscription status for the topic. Cannot be changed after creation. */
 export type CreateTopicRequestDefaultSubscription = "opt_in" | "opt_out";
-export const CreateTopicRequestDefaultSubscription = /*@__PURE__*/ S.String;
+export const CreateTopicRequestDefaultSubscription = S.String;
 
 /** The visibility of the topic. Public topics are visible to all contacts on the unsubscribe page. Private topics are only visible to opted-in contacts. */
 export type CreateTopicRequestVisibility = "public" | "private";
-export const CreateTopicRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateTopicRequestVisibility = S.String;
 
 export interface CreateTopicRequest {
   /** The name of the topic. Max 50 characters. */
@@ -1618,7 +1617,7 @@ export const GetAutomationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the automation. */
 export type AutomationStatus = "enabled" | "disabled";
-export const AutomationStatus = /*@__PURE__*/ S.String;
+export const AutomationStatus = S.String;
 
 /** The type of automation step. */
 export type AutomationStepResponseType =
@@ -1630,7 +1629,7 @@ export type AutomationStepResponseType =
   | "contact_update"
   | "contact_delete"
   | "add_to_segment";
-export const AutomationStepResponseType = /*@__PURE__*/ S.String;
+export const AutomationStepResponseType = S.String;
 
 /** A step as returned when retrieving an automation. */
 export interface AutomationStepResponse {
@@ -1721,7 +1720,7 @@ export type AutomationRunStatus =
   | "completed"
   | "failed"
   | "cancelled";
-export const AutomationRunStatus = /*@__PURE__*/ S.String;
+export const AutomationRunStatus = S.String;
 
 /** The type of automation step. */
 export type AutomationRunStepType =
@@ -1733,7 +1732,7 @@ export type AutomationRunStepType =
   | "contact_update"
   | "contact_delete"
   | "add_to_segment";
-export const AutomationRunStepType = /*@__PURE__*/ S.String;
+export const AutomationRunStepType = S.String;
 
 /** A step execution within an automation run. */
 export interface AutomationRunStep {
@@ -1946,7 +1945,7 @@ export const GetContactPropertyRequest = /*@__PURE__*/ S.suspend(() =>
 /** The default value when the property is not set for a contact. */
 export type GetContactPropertyResponseSuccessFallbackValue = string | number;
 export const GetContactPropertyResponseSuccessFallbackValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetContactPropertyResponseSuccessFallbackValue>;
+  S.Unknown as any as S.Schema<GetContactPropertyResponseSuccessFallbackValue>;
 
 export interface GetContactPropertyResponseSuccess {
   /** The object type. */
@@ -2065,7 +2064,7 @@ export const GetEmailAttachmentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** How the attachment should be displayed. */
 export type RetrievedAttachmentContentDisposition = "inline" | "attachment";
-export const RetrievedAttachmentContentDisposition = /*@__PURE__*/ S.String;
+export const RetrievedAttachmentContentDisposition = S.String;
 
 export interface RetrievedAttachment {
   /** The type of object. */
@@ -2146,7 +2145,7 @@ export type GetReceivedEmailResponseAttachmentsItemContentDisposition =
   | "inline"
   | "attachment";
 export const GetReceivedEmailResponseAttachmentsItemContentDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetReceivedEmailResponseAttachmentsItem {
   /** The ID of the attachment. */
@@ -2306,7 +2305,7 @@ export const GetLogRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The HTTP method used. */
 export type LogMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS";
-export const LogMethod = /*@__PURE__*/ S.String;
+export const LogMethod = S.String;
 
 export interface Log {
   /** Type of the response object. */
@@ -2406,7 +2405,7 @@ export type TemplateVariableType =
   | "boolean"
   | "object"
   | "list";
-export const TemplateVariableType = /*@__PURE__*/ S.String;
+export const TemplateVariableType = S.String;
 
 export type TemplateVariableFallbackValueCase4List = Array<unknown>;
 export const TemplateVariableFallbackValueCase4List = /*@__PURE__*/ S.Array(
@@ -2421,7 +2420,7 @@ export type TemplateVariableFallbackValue =
   | unknown
   | TemplateVariableFallbackValueCase4List;
 export const TemplateVariableFallbackValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TemplateVariableFallbackValue>;
+  S.Unknown as any as S.Schema<TemplateVariableFallbackValue>;
 
 export interface TemplateVariable {
   /** The ID of the template variable. */
@@ -2457,7 +2456,7 @@ export const TemplateVariablesList = /*@__PURE__*/ S.Array(
 
 /** The publication status of the template. */
 export type TemplateStatus = "draft" | "published";
-export const TemplateStatus = /*@__PURE__*/ S.String;
+export const TemplateStatus = S.String;
 
 export interface Template {
   /** The type of object. */
@@ -2527,12 +2526,11 @@ export const GetTopicRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The default subscription status for the topic. */
 export type GetTopicResponseSuccessDefaultSubscription = "opt_in" | "opt_out";
-export const GetTopicResponseSuccessDefaultSubscription =
-  /*@__PURE__*/ S.String;
+export const GetTopicResponseSuccessDefaultSubscription = S.String;
 
 /** The visibility of the topic. */
 export type GetTopicResponseSuccessVisibility = "public" | "private";
-export const GetTopicResponseSuccessVisibility = /*@__PURE__*/ S.String;
+export const GetTopicResponseSuccessVisibility = S.String;
 
 export interface GetTopicResponseSuccess {
   /** The ID of the topic. */
@@ -2709,7 +2707,7 @@ export type AutomationRunListItemStatus =
   | "completed"
   | "failed"
   | "cancelled";
-export const AutomationRunListItemStatus = /*@__PURE__*/ S.String;
+export const AutomationRunListItemStatus = S.String;
 
 export interface AutomationRunListItem {
   /** The ID of the automation run. */
@@ -2760,7 +2758,7 @@ export const ListAutomationRunsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAutomationRunsResponse>;
 
 export type ListAutomationsRequestStatus = "enabled" | "disabled";
-export const ListAutomationsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAutomationsRequestStatus = S.String;
 
 export interface ListAutomationsRequest {
   /** Filter automations by status. */
@@ -2785,7 +2783,7 @@ export const ListAutomationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current status of the automation. */
 export type AutomationListItemStatus = "enabled" | "disabled";
-export const AutomationListItemStatus = /*@__PURE__*/ S.String;
+export const AutomationListItemStatus = S.String;
 
 export interface AutomationListItem {
   /** The ID of the automation. */
@@ -2938,7 +2936,7 @@ export type ListContactPropertiesResponseSuccessDataItemFallbackValue =
   | string
   | number;
 export const ListContactPropertiesResponseSuccessDataItemFallbackValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListContactPropertiesResponseSuccessDataItemFallbackValue>;
+  S.Unknown as any as S.Schema<ListContactPropertiesResponseSuccessDataItemFallbackValue>;
 
 export interface ListContactPropertiesResponseSuccessDataItem {
   /** Unique identifier for the contact property. */
@@ -3162,8 +3160,7 @@ export const ListContactTopicsRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetContactTopicsResponseSuccessDataItemSubscription =
   | "opt_in"
   | "opt_out";
-export const GetContactTopicsResponseSuccessDataItemSubscription =
-  /*@__PURE__*/ S.String;
+export const GetContactTopicsResponseSuccessDataItemSubscription = S.String;
 
 export interface GetContactTopicsResponseSuccessDataItem {
   /** Unique identifier for the topic. */
@@ -3307,8 +3304,7 @@ export const ListEmailAttachmentsRequest = /*@__PURE__*/ S.suspend(() =>
 export type ListAttachmentsResponseDataItemContentDisposition =
   | "inline"
   | "attachment";
-export const ListAttachmentsResponseDataItemContentDisposition =
-  /*@__PURE__*/ S.String;
+export const ListAttachmentsResponseDataItemContentDisposition = S.String;
 
 export interface ListAttachmentsResponseDataItem {
   /** The ID of the attachment. */
@@ -3418,7 +3414,7 @@ export type ListReceivedEmailsResponseDataItemAttachmentsItemContentDisposition 
   | "inline"
   | "attachment";
 export const ListReceivedEmailsResponseDataItemAttachmentsItemContentDisposition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListReceivedEmailsResponseDataItemAttachmentsItem {
   /** The ID of the attachment. */
@@ -3684,7 +3680,7 @@ export type LogSummaryMethod =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const LogSummaryMethod = /*@__PURE__*/ S.String;
+export const LogSummaryMethod = S.String;
 
 export interface LogSummary {
   /** The log ID. */
@@ -3819,7 +3815,7 @@ export const ListTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The publication status of the template. */
 export type TemplateListItemStatus = "draft" | "published";
-export const TemplateListItemStatus = /*@__PURE__*/ S.String;
+export const TemplateListItemStatus = S.String;
 
 export interface TemplateListItem {
   /** The ID of the template. */
@@ -3897,13 +3893,11 @@ export const ListTopicsRequest = /*@__PURE__*/ S.suspend(() =>
 export type ListTopicsResponseSuccessDataItemDefaultSubscription =
   | "opt_in"
   | "opt_out";
-export const ListTopicsResponseSuccessDataItemDefaultSubscription =
-  /*@__PURE__*/ S.String;
+export const ListTopicsResponseSuccessDataItemDefaultSubscription = S.String;
 
 /** The visibility of the topic. */
 export type ListTopicsResponseSuccessDataItemVisibility = "public" | "private";
-export const ListTopicsResponseSuccessDataItemVisibility =
-  /*@__PURE__*/ S.String;
+export const ListTopicsResponseSuccessDataItemVisibility = S.String;
 
 export interface ListTopicsResponseSuccessDataItem {
   /** Unique identifier for the topic. */
@@ -4160,7 +4154,7 @@ export const StopAutomationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the automation. */
 export type UpdateAutomationRequestStatus = "enabled" | "disabled";
-export const UpdateAutomationRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateAutomationRequestStatus = S.String;
 
 /** The steps that compose the automation workflow. Must be provided together with `connections`. */
 export type UpdateAutomationRequestStepsList = Array<AutomationStep>;
@@ -4333,7 +4327,7 @@ export const UpdateContactResponseSuccess = /*@__PURE__*/ S.suspend(() =>
 /** The default value to use when the property is not set for a contact. Must match the type of the property. */
 export type UpdateContactPropertyRequestFallbackValue = string | number;
 export const UpdateContactPropertyRequestFallbackValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateContactPropertyRequestFallbackValue>;
+  S.Unknown as any as S.Schema<UpdateContactPropertyRequestFallbackValue>;
 
 export interface UpdateContactPropertyRequest {
   /** The Contact Property ID. */
@@ -4411,8 +4405,7 @@ export const AddContactToSegmentResponseSuccess = /*@__PURE__*/ S.suspend(() =>
 export type UpdateContactTopicsRequestTopicsItemSubscription =
   | "opt_in"
   | "opt_out";
-export const UpdateContactTopicsRequestTopicsItemSubscription =
-  /*@__PURE__*/ S.String;
+export const UpdateContactTopicsRequestTopicsItemSubscription = S.String;
 
 export interface UpdateContactTopicsRequestTopicsItem {
   /** The ID of the topic. */
@@ -4465,7 +4458,7 @@ export type UpdateContactTopicsResponseSuccessTopicsItemSubscription =
   | "opt_in"
   | "opt_out";
 export const UpdateContactTopicsResponseSuccessTopicsItemSubscription =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateContactTopicsResponseSuccessTopicsItem {
   /** The ID of the topic. */
@@ -4669,7 +4662,7 @@ export const UpdateTemplateResponseSuccess = /*@__PURE__*/ S.suspend(() =>
 
 /** The visibility of the topic. */
 export type UpdateTopicRequestVisibility = "public" | "private";
-export const UpdateTopicRequestVisibility = /*@__PURE__*/ S.String;
+export const UpdateTopicRequestVisibility = S.String;
 
 export interface UpdateTopicRequest {
   /** The Topic ID. */
@@ -4715,7 +4708,7 @@ export const UpdateWebhookRequestEventsList = /*@__PURE__*/ S.Array(
 
 /** The status of the webhook. */
 export type UpdateWebhookRequestStatus = "enabled" | "disabled";
-export const UpdateWebhookRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestStatus = S.String;
 
 export interface UpdateWebhookRequest {
   /** The Webhook ID. */

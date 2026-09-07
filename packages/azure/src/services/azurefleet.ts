@@ -56,14 +56,14 @@ export const FleetsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Different kind of eviction policies */
 export type EvictionPolicy = "Delete" | "Deallocate";
-export const EvictionPolicy = /*@__PURE__*/ S.String;
+export const EvictionPolicy = S.String;
 
 /** Spot allocation strategy types for Compute Fleet */
 export type SpotAllocationStrategy =
   | "PriceCapacityOptimized"
   | "LowestPrice"
   | "CapacityOptimized";
-export const SpotAllocationStrategy = /*@__PURE__*/ S.String;
+export const SpotAllocationStrategy = S.String;
 
 /** Configuration Options for Spot instances in Compute Fleet. */
 export interface SpotPriorityProfile {
@@ -95,7 +95,7 @@ export const SpotPriorityProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Regular VM Allocation strategy types for Compute Fleet */
 export type RegularPriorityAllocationStrategy = "LowestPrice" | "Prioritized";
-export const RegularPriorityAllocationStrategy = /*@__PURE__*/ S.String;
+export const RegularPriorityAllocationStrategy = S.String;
 
 /** Configuration Options for Regular instances in Compute Fleet. */
 export interface RegularPriorityProfile {
@@ -170,11 +170,11 @@ export const VMAttributeMinMaxDouble = /*@__PURE__*/ S.suspend(() =>
 
 /** VMSizes supported by Azure VMs. Included is a union of Excluded and Required. */
 export type VMAttributeSupport = "Excluded" | "Included" | "Required";
-export const VMAttributeSupport = /*@__PURE__*/ S.String;
+export const VMAttributeSupport = S.String;
 
 /** Different kind of Local storage disk types supported by Azure VMs. */
 export type LocalStorageDiskType = "HDD" | "SSD";
-export const LocalStorageDiskType = /*@__PURE__*/ S.String;
+export const LocalStorageDiskType = S.String;
 
 /** The local storage disk types specified as a list. LocalStorageSupport should be set to "Included" or "Required" to use this VMAttribute. If localStorageSupport is "Excluded", this VMAttribute can not be used. */
 export type VMAttributesLocalStorageDiskTypesList = Array<
@@ -186,7 +186,7 @@ export const VMAttributesLocalStorageDiskTypesList = /*@__PURE__*/ S.Array(
 
 /** Accelerator manufacturers supported by Azure VMs. */
 export type AcceleratorManufacturer = "AMD" | "Nvidia" | "Xilinx";
-export const AcceleratorManufacturer = /*@__PURE__*/ S.String;
+export const AcceleratorManufacturer = S.String;
 
 /** The accelerator manufacturers specified as a list. acceleratorSupport should be set to "Included" or "Required" to use this VMAttribute. If acceleratorSupport is "Excluded", this VMAttribute can not be used. */
 export type VMAttributesAcceleratorManufacturersList = Array<
@@ -198,7 +198,7 @@ export const VMAttributesAcceleratorManufacturersList = /*@__PURE__*/ S.Array(
 
 /** Accelerator types supported by Azure VMs. */
 export type AcceleratorType = "GPU" | "FPGA";
-export const AcceleratorType = /*@__PURE__*/ S.String;
+export const AcceleratorType = S.String;
 
 /** The accelerator types specified as a list. acceleratorSupport should be set to "Included" or "Required" to use this VMAttribute. If acceleratorSupport is "Excluded", this VMAttribute can not be used. */
 export type VMAttributesAcceleratorTypesList = Array<
@@ -217,7 +217,7 @@ export type VMCategory =
   | "GpuAccelerated"
   | "FpgaAccelerated"
   | "HighPerformanceCompute";
-export const VMCategory = /*@__PURE__*/ S.String;
+export const VMCategory = S.String;
 
 /** The VM category specified as a list. Optional parameter. */
 export type VMAttributesVmCategoriesList = Array<VMCategory | (string & {})>;
@@ -227,7 +227,7 @@ export const VMAttributesVmCategoriesList = /*@__PURE__*/ S.Array(
 
 /** Architecture types supported by Azure VMs. */
 export type ArchitectureType = "ARM64" | "X64";
-export const ArchitectureType = /*@__PURE__*/ S.String;
+export const ArchitectureType = S.String;
 
 /** The VM architecture types specified as a list. Optional parameter. */
 export type VMAttributesArchitectureTypesList = Array<
@@ -239,7 +239,7 @@ export const VMAttributesArchitectureTypesList = /*@__PURE__*/ S.Array(
 
 /** Cpu Manufacturers supported by Azure VMs. */
 export type CpuManufacturer = "Intel" | "AMD" | "Microsoft" | "Ampere";
-export const CpuManufacturer = /*@__PURE__*/ S.String;
+export const CpuManufacturer = S.String;
 
 /** The VM CPU manufacturers specified as a list. Optional parameter. */
 export type VMAttributesCpuManufacturersList = Array<
@@ -327,16 +327,16 @@ export const VMAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The pass name. Currently, the only allowable value is OobeSystem. */
 export type AdditionalUnattendContentPassName = "OobeSystem";
-export const AdditionalUnattendContentPassName = /*@__PURE__*/ S.String;
+export const AdditionalUnattendContentPassName = S.String;
 
 /** The component name. Currently, the only allowable value is Microsoft-Windows-Shell-Setup. */
 export type AdditionalUnattendContentComponentName =
   "Microsoft-Windows-Shell-Setup";
-export const AdditionalUnattendContentComponentName = /*@__PURE__*/ S.String;
+export const AdditionalUnattendContentComponentName = S.String;
 
 /** Specifies the name of the setting to which the content applies. Possible values are: FirstLogonCommands and AutoLogon. */
 export type SettingNames = "AutoLogon" | "FirstLogonCommands";
-export const SettingNames = /*@__PURE__*/ S.String;
+export const SettingNames = S.String;
 
 /** Specifies additional XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. Contents are defined by setting name, component name, and the pass in which the content is applied. */
 export interface AdditionalUnattendContent {
@@ -373,11 +373,11 @@ export type WindowsVMGuestPatchMode =
   | "Manual"
   | "AutomaticByOS"
   | "AutomaticByPlatform";
-export const WindowsVMGuestPatchMode = /*@__PURE__*/ S.String;
+export const WindowsVMGuestPatchMode = S.String;
 
 /** Specifies the mode of VM Guest patch assessment for the IaaS virtual machine. */
 export type WindowsPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
-export const WindowsPatchAssessmentMode = /*@__PURE__*/ S.String;
+export const WindowsPatchAssessmentMode = S.String;
 
 /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
 export type WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
@@ -385,8 +385,7 @@ export type WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
   | "IfRequired"
   | "Never"
   | "Always";
-export const WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
-  /*@__PURE__*/ S.String;
+export const WindowsVMGuestPatchAutomaticByPlatformRebootSetting = S.String;
 
 /** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Windows patch settings. */
 export interface WindowsVMGuestPatchAutomaticByPlatformSettings {
@@ -433,7 +432,7 @@ export const PatchSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the protocol of WinRM listener. Possible values are: **http,** **https.** */
 export type ProtocolTypes = "Http" | "Https";
-export const ProtocolTypes = /*@__PURE__*/ S.String;
+export const ProtocolTypes = S.String;
 
 /** Describes Protocol and thumbprint of Windows Remote Management listener */
 export interface WinRMListener {
@@ -536,11 +535,11 @@ export const SshConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible. */
 export type LinuxVMGuestPatchMode = "ImageDefault" | "AutomaticByPlatform";
-export const LinuxVMGuestPatchMode = /*@__PURE__*/ S.String;
+export const LinuxVMGuestPatchMode = S.String;
 
 /** Specifies the mode of VM Guest Patch Assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine. <br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
 export type LinuxPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
-export const LinuxPatchAssessmentMode = /*@__PURE__*/ S.String;
+export const LinuxPatchAssessmentMode = S.String;
 
 /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
 export type LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
@@ -548,8 +547,7 @@ export type LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
   | "IfRequired"
   | "Never"
   | "Always";
-export const LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
-  /*@__PURE__*/ S.String;
+export const LinuxVMGuestPatchAutomaticByPlatformRebootSetting = S.String;
 
 /** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Linux patch settings. */
 export interface LinuxVMGuestPatchAutomaticByPlatformSettings {
@@ -744,7 +742,7 @@ export const ImageReferenceInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the caching requirements. */
 export type CachingTypes = "None" | "ReadOnly" | "ReadWrite";
-export const CachingTypes = /*@__PURE__*/ S.String;
+export const CachingTypes = S.String;
 
 /** Specifies how the virtual machine should be created. */
 export type DiskCreateOptionTypes =
@@ -753,15 +751,15 @@ export type DiskCreateOptionTypes =
   | "Attach"
   | "Copy"
   | "Restore";
-export const DiskCreateOptionTypes = /*@__PURE__*/ S.String;
+export const DiskCreateOptionTypes = S.String;
 
 /** Specifies the ephemeral disk option for operating system disk. */
 export type DiffDiskOptions = "Local";
-export const DiffDiskOptions = /*@__PURE__*/ S.String;
+export const DiffDiskOptions = S.String;
 
 /** Specifies the ephemeral disk placement for operating system disk. This property can be used by user in the request to choose the location i.e, cache disk or resource disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer Ephemeral OS disk size requirements for Windows VM at https://learn.microsoft.com/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VM at https://learn.microsoft.com/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements Minimum api-version for NvmeDisk: 2024-03-01. */
 export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk" | "NvmeDisk";
-export const DiffDiskPlacement = /*@__PURE__*/ S.String;
+export const DiffDiskPlacement = S.String;
 
 /** Describes the parameters of ephemeral disk settings that can be specified for operating system disk. **Note:** The ephemeral disk settings can only be specified for managed disk. */
 export interface DiffDiskSettings {
@@ -781,7 +779,7 @@ export const DiffDiskSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** This property allows you to specify the type of the OS that is included in the disk if creating a VM from user-image or a specialized VHD. Possible values are: **Windows,** **Linux.** */
 export type OperatingSystemTypes = "Windows" | "Linux";
-export const OperatingSystemTypes = /*@__PURE__*/ S.String;
+export const OperatingSystemTypes = S.String;
 
 /** Describes the uri of a disk. */
 export interface VirtualHardDisk {
@@ -812,7 +810,7 @@ export type StorageAccountTypes =
   | "Premium_ZRS"
   | "StandardSSD_ZRS"
   | "PremiumV2_LRS";
-export const StorageAccountTypes = /*@__PURE__*/ S.String;
+export const StorageAccountTypes = S.String;
 
 /** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. **Note:** The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
 export type DiskEncryptionSetParameters = SubResource;
@@ -823,7 +821,7 @@ export type SecurityEncryptionTypes =
   | "VMGuestStateOnly"
   | "DiskWithVMGuestState"
   | "NonPersistedTPM";
-export const SecurityEncryptionTypes = /*@__PURE__*/ S.String;
+export const SecurityEncryptionTypes = S.String;
 
 /** Specifies the security profile settings for the managed disk. **Note:** It can only be set for Confidential VMs. */
 export interface VMDiskSecurityProfile {
@@ -863,7 +861,7 @@ export const VirtualMachineScaleSetManagedDiskParameters =
 
 /** Specifies the behavior of the managed disk when the VM gets deleted, for example whether the managed disk is deleted or detached. Supported values are: **Delete.** If this value is used, the managed disk is deleted when VM gets deleted. **Detach.** If this value is used, the managed disk is retained after VM gets deleted. Minimum api-version: 2021-03-01. */
 export type DiskDeleteOptionTypes = "Delete" | "Detach";
-export const DiskDeleteOptionTypes = /*@__PURE__*/ S.String;
+export const DiskDeleteOptionTypes = S.String;
 
 /** Describes a virtual machine scale set operating system disk. */
 export interface VirtualMachineScaleSetOSDisk {
@@ -958,7 +956,7 @@ export const VirtualMachineScaleSetStorageProfileInputDataDisksList =
 
 /** Specifies the disk controller type configured for the VM and VirtualMachineScaleSet. This property is only supported for virtual machines whose operating system disk and VM sku supports Generation 2 (https://learn.microsoft.com/en-us/azure/virtual-machines/generation-2), please check the HyperVGenerations capability returned as part of VM sku capabilities in the response of Microsoft.Compute SKUs api for the region contains V2 (https://learn.microsoft.com/rest/api/compute/resourceskus/list). For more information about Disk Controller Types supported please refer to https://aka.ms/azure-diskcontrollertypes. */
 export type DiskControllerTypes = "SCSI" | "NVMe";
-export const DiskControllerTypes = /*@__PURE__*/ S.String;
+export const DiskControllerTypes = S.String;
 
 /** Describes a virtual machine scale set storage profile. */
 export interface VirtualMachineScaleSetStorageProfileInput {
@@ -1028,7 +1026,7 @@ export type DomainNameLabelScopeTypes =
   | "SubscriptionReuse"
   | "ResourceGroupReuse"
   | "NoReuse";
-export const DomainNameLabelScopeTypes = /*@__PURE__*/ S.String;
+export const DomainNameLabelScopeTypes = S.String;
 
 /** Describes a virtual machines scale sets network configuration's DNS settings. */
 export interface VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings {
@@ -1073,11 +1071,11 @@ export const VirtualMachineScaleSetPublicIPAddressConfigurationPropertiesIpTagsL
 
 /** Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4. Possible values are: 'IPv4' and 'IPv6'. */
 export type IPVersion = "IPv4" | "IPv6";
-export const IPVersion = /*@__PURE__*/ S.String;
+export const IPVersion = S.String;
 
 /** Specify what happens to the network interface when the VM is deleted */
 export type DeleteOptions = "Delete" | "Detach";
-export const DeleteOptions = /*@__PURE__*/ S.String;
+export const DeleteOptions = S.String;
 
 /** Describes a virtual machines scale set IP Configuration's PublicIPAddress configuration */
 export interface VirtualMachineScaleSetPublicIPAddressConfigurationProperties {
@@ -1114,11 +1112,11 @@ export const VirtualMachineScaleSetPublicIPAddressConfigurationProperties =
 
 /** Specify public IP sku name. */
 export type PublicIPAddressSkuName = "Basic" | "Standard";
-export const PublicIPAddressSkuName = /*@__PURE__*/ S.String;
+export const PublicIPAddressSkuName = S.String;
 
 /** Specify public IP sku tier */
 export type PublicIPAddressSkuTier = "Regional" | "Global";
-export const PublicIPAddressSkuTier = /*@__PURE__*/ S.String;
+export const PublicIPAddressSkuTier = S.String;
 
 /** Describes the public IP Sku. It can only be set with OrchestrationMode as Flexible. */
 export interface PublicIPAddressSku {
@@ -1265,11 +1263,11 @@ export type NetworkInterfaceAuxiliaryMode =
   | "None"
   | "AcceleratedConnections"
   | "Floating";
-export const NetworkInterfaceAuxiliaryMode = /*@__PURE__*/ S.String;
+export const NetworkInterfaceAuxiliaryMode = S.String;
 
 /** Specifies whether the Auxiliary sku is enabled for the Network Interface resource. */
 export type NetworkInterfaceAuxiliarySku = "None" | "A1" | "A2" | "A4" | "A8";
-export const NetworkInterfaceAuxiliarySku = /*@__PURE__*/ S.String;
+export const NetworkInterfaceAuxiliarySku = S.String;
 
 /** Describes a virtual machine scale set network profile's IP configuration. */
 export interface VirtualMachineScaleSetNetworkConfigurationProperties {
@@ -1347,7 +1345,7 @@ export const VirtualMachineScaleSetNetworkProfileNetworkInterfaceConfigurationsL
 
 /** specifies the Microsoft.Network API version used when creating networking resources in the Network Interface Configurations for Virtual Machine Scale Set with orchestration mode 'Flexible' */
 export type NetworkApiVersion = "2020-11-01";
-export const NetworkApiVersion = /*@__PURE__*/ S.String;
+export const NetworkApiVersion = S.String;
 
 /** Describes a virtual machine scale set network profile. */
 export interface VirtualMachineScaleSetNetworkProfile {
@@ -1387,7 +1385,7 @@ export const UefiSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the SecurityType of the virtual machine. It has to be set to any specified value to enable UefiSettings. The default behavior is: UefiSettings will not be enabled unless this property is set. */
 export type SecurityTypes = "TrustedLaunch" | "ConfidentialVM";
-export const SecurityTypes = /*@__PURE__*/ S.String;
+export const SecurityTypes = S.String;
 
 /** Specifies the Managed Identity used by ADE to get access token for keyvault operations. */
 export interface EncryptionIdentity {
@@ -1404,7 +1402,7 @@ export const EncryptionIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the mode that ProxyAgent will execute on if the feature is enabled. ProxyAgent will start to audit or monitor but not enforce access control over requests to host endpoints in Audit mode, while in Enforce mode it will enforce access control. The default value is Enforce mode. */
 export type Mode = "Audit" | "Enforce";
-export const Mode = /*@__PURE__*/ S.String;
+export const Mode = S.String;
 
 /** Specifies ProxyAgent settings while creating the virtual machine. Minimum api-version: 2023-09-01. */
 export interface ProxyAgentSettings {
@@ -1963,7 +1961,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -2070,7 +2068,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -2078,7 +2076,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -2124,7 +2122,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Migrating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** List of VM sizes supported for Compute Fleet */
 export type FleetPropertiesVmSizesProfileList = Array<VmSizeProfile>;
@@ -2948,11 +2946,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -3011,7 +3009,7 @@ export type ManagedServiceIdentityUpdateInputType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityUpdateInputType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityUpdateInputType = S.String;
 
 /** User assigned identity properties */
 export type ManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue =

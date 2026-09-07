@@ -141,7 +141,7 @@ export type CreateTeamDsyncRoleRequestRolesValueCase0 =
   | "VIEWER"
   | "VIEWER_FOR_PLUS"
   | "CONTRIBUTOR";
-export const CreateTeamDsyncRoleRequestRolesValueCase0 = /*@__PURE__*/ S.String;
+export const CreateTeamDsyncRoleRequestRolesValueCase0 = S.String;
 
 export interface CreateTeamDsyncRoleRequestRolesValueCase1 {
   accessGroupId: string;
@@ -159,7 +159,7 @@ export type CreateTeamDsyncRoleRequestRolesValue =
   | CreateTeamDsyncRoleRequestRolesValueCase0
   | CreateTeamDsyncRoleRequestRolesValueCase1;
 export const CreateTeamDsyncRoleRequestRolesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateTeamDsyncRoleRequestRolesValue>;
+  S.Unknown as any as S.Schema<CreateTeamDsyncRoleRequestRolesValue>;
 
 /** Directory groups to role or access group mappings. */
 export type CreateTeamDsyncRoleRequestRolesMap = {
@@ -350,7 +350,7 @@ export const TeamConnect = /*@__PURE__*/ S.suspend(() =>
 
 /** Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility. */
 export type TeamSamlConnectionSyncState = "ACTIVE" | "SETUP";
-export const TeamSamlConnectionSyncState = /*@__PURE__*/ S.String;
+export const TeamSamlConnectionSyncState = S.String;
 
 /** Information for the SAML Single Sign-On configuration. */
 export interface TeamSamlConnection {
@@ -384,7 +384,7 @@ export const TeamSamlConnection = /*@__PURE__*/ S.suspend(() =>
 
 /** Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility. */
 export type TeamSamlDirectorySyncState = "ACTIVE" | "SETUP";
-export const TeamSamlDirectorySyncState = /*@__PURE__*/ S.String;
+export const TeamSamlDirectorySyncState = S.String;
 
 /** Information for the Directory Sync configuration. */
 export interface TeamSamlDirectory {
@@ -416,7 +416,7 @@ export const TeamSamlDirectory = /*@__PURE__*/ S.suspend(() =>
 
 /** The default redirect URI to use after successful SAML authentication. */
 export type TeamSamlDefaultRedirectUri = "v0.app" | "v0.dev" | "vercel.com";
-export const TeamSamlDefaultRedirectUri = /*@__PURE__*/ S.String;
+export const TeamSamlDefaultRedirectUri = S.String;
 
 /** When "Directory Sync" is configured, this object contains a mapping of which Directory Group (by ID) should be assigned to which Vercel Team "role". */
 export type TeamSamlRolesValueCase0 = CreateTeamDsyncRoleRequestRolesValueCase1;
@@ -432,13 +432,13 @@ export type TeamSamlRolesValueCase1 =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const TeamSamlRolesValueCase1 = /*@__PURE__*/ S.String;
+export const TeamSamlRolesValueCase1 = S.String;
 
 export type TeamSamlRolesValue =
   | CreateTeamDsyncRoleRequestRolesValueCase1
   | TeamSamlRolesValueCase1;
 export const TeamSamlRolesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamSamlRolesValue>;
+  S.Unknown as any as S.Schema<TeamSamlRolesValue>;
 
 /** When "Directory Sync" is configured, this object contains a mapping of which Directory Group (by ID) should be assigned to which Vercel Team "role". */
 export type TeamSamlRolesMap = {
@@ -473,7 +473,7 @@ export const TeamSaml = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TeamSaml" }) as any as S.Schema<TeamSaml>;
 
 export type TeamBillingPlan = "enterprise" | "hobby" | "pro";
-export const TeamBillingPlan = /*@__PURE__*/ S.String;
+export const TeamBillingPlan = S.String;
 
 /** The team's billing plan. */
 export interface TeamBilling {
@@ -494,7 +494,7 @@ export type TeamDefaultRolesTeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const TeamDefaultRolesTeamRolesItem = /*@__PURE__*/ S.String;
+export const TeamDefaultRolesTeamRolesItem = S.String;
 
 export type TeamDefaultRolesTeamRolesList =
   Array<TeamDefaultRolesTeamRolesItem>;
@@ -522,7 +522,7 @@ export type TeamDefaultRolesTeamPermissionsItem =
   | "V0Chatter"
   | "V0Viewer"
   | "WorkflowDecryptor";
-export const TeamDefaultRolesTeamPermissionsItem = /*@__PURE__*/ S.String;
+export const TeamDefaultRolesTeamPermissionsItem = S.String;
 
 export type TeamDefaultRolesTeamPermissionsList =
   Array<TeamDefaultRolesTeamPermissionsItem>;
@@ -562,7 +562,7 @@ export type TeamResourceConfigBuildMachineDefault =
   | "enhanced"
   | "standard"
   | "turbo";
-export const TeamResourceConfigBuildMachineDefault = /*@__PURE__*/ S.String;
+export const TeamResourceConfigBuildMachineDefault = S.String;
 
 /** Build machine configuration */
 export interface TeamResourceConfigBuildMachine {
@@ -620,7 +620,7 @@ export const TeamResourceConfig = /*@__PURE__*/ S.suspend(() =>
 
 export type TeamDisableHardAutoBlocks = number | boolean;
 export const TeamDisableHardAutoBlocks =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamDisableHardAutoBlocks>;
+  S.Unknown as any as S.Schema<TeamDisableHardAutoBlocks>;
 
 /** Is remote caching enabled for this team */
 export type TeamRemoteCaching = TeamConnect;
@@ -667,7 +667,7 @@ export type TeamDefaultPassportDeploymentType =
   | "all_except_custom_domains"
   | "preview"
   | "prod_deployment_urls_and_all_previews";
-export const TeamDefaultPassportDeploymentType = /*@__PURE__*/ S.String;
+export const TeamDefaultPassportDeploymentType = S.String;
 
 /** Default Passport configuration for new projects in this team. */
 export interface TeamDefaultPassport {
@@ -798,7 +798,7 @@ export type TeamEnablePreviewFeedback =
   | "off-force"
   | "on"
   | "on-force";
-export const TeamEnablePreviewFeedback = /*@__PURE__*/ S.String;
+export const TeamEnablePreviewFeedback = S.String;
 
 /** Whether toolbar is enabled on production deployments */
 export type TeamEnableProductionFeedback =
@@ -808,19 +808,19 @@ export type TeamEnableProductionFeedback =
   | "off-force"
   | "on"
   | "on-force";
-export const TeamEnableProductionFeedback = /*@__PURE__*/ S.String;
+export const TeamEnableProductionFeedback = S.String;
 
 /** Sensitive environment variable policy for this team */
 export type TeamSensitiveEnvironmentVariablePolicy = "default" | "off" | "on";
-export const TeamSensitiveEnvironmentVariablePolicy = /*@__PURE__*/ S.String;
+export const TeamSensitiveEnvironmentVariablePolicy = S.String;
 
 /** Require production secrets to use a different value than preview or development. */
 export type TeamDisjunctiveProductionSecretPolicy = "default" | "off" | "on";
-export const TeamDisjunctiveProductionSecretPolicy = /*@__PURE__*/ S.String;
+export const TeamDisjunctiveProductionSecretPolicy = S.String;
 
 /** Controls who can request access to protected deployments. */
 export type TeamDpAccessRequestsMode = "all" | "email-domain" | "none";
-export const TeamDpAccessRequestsMode = /*@__PURE__*/ S.String;
+export const TeamDpAccessRequestsMode = S.String;
 
 export interface TeamIpBucketsItem {
   bucket: string;
@@ -875,7 +875,7 @@ export type TeamNsnbConfigPreference =
   | "auto-approval"
   | "block"
   | "manual-approval";
-export const TeamNsnbConfigPreference = /*@__PURE__*/ S.String;
+export const TeamNsnbConfigPreference = S.String;
 
 /** NSNB configuration for the team. */
 export interface TeamNsnbConfig {
@@ -891,7 +891,7 @@ export type TeamDeploymentPolicyGitSourcesItemSourcesItemCase0Provider =
   | "bitbucket"
   | "github";
 export const TeamDeploymentPolicyGitSourcesItemSourcesItemCase0Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allowlist entry for GitHub and Bitbucket, whose repos are identified by a flat `org`/`repo` (Bitbucket's workspace/owner maps to `org`, its repo slug to `repo`). Omit `repo` to match any repo in the org. Org is matched case-insensitively. */
 export interface TeamDeploymentPolicyGitSourcesItemSourcesItemCase0 {
@@ -913,7 +913,7 @@ export const TeamDeploymentPolicyGitSourcesItemSourcesItemCase0 =
 export type TeamDeploymentPolicyGitSourcesItemSourcesItemCase1Provider =
   "gitlab";
 export const TeamDeploymentPolicyGitSourcesItemSourcesItemCase1Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allowlist entry for GitLab, which uses nested groups rather than a flat org/repo. `namespace` is the full group path (e.g. `group` or `group/subgroup`); `project` is the leaf project name. Omit `project` to match any project under the namespace. Namespace is matched case-insensitively. */
 export interface TeamDeploymentPolicyGitSourcesItemSourcesItemCase1 {
@@ -936,7 +936,7 @@ export type TeamDeploymentPolicyGitSourcesItemSourcesItem =
   | TeamDeploymentPolicyGitSourcesItemSourcesItemCase0
   | TeamDeploymentPolicyGitSourcesItemSourcesItemCase1;
 export const TeamDeploymentPolicyGitSourcesItemSourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamDeploymentPolicyGitSourcesItemSourcesItem>;
+  S.Unknown as any as S.Schema<TeamDeploymentPolicyGitSourcesItemSourcesItem>;
 
 export type TeamDeploymentPolicyGitSourcesItemSourcesList =
   Array<TeamDeploymentPolicyGitSourcesItemSourcesItem>;
@@ -948,13 +948,13 @@ export const TeamDeploymentPolicyGitSourcesItemSourcesList =
 export type TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Type =
   "system";
 export const TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Target =
   | "preview"
   | "production";
 export const TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0 {
   type: TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Type;
@@ -973,7 +973,7 @@ export const TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0 =
 export type TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase1Type =
   "custom";
 export const TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase1 {
   type: TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase1Type;
@@ -993,7 +993,7 @@ export type TeamDeploymentPolicyGitSourcesItemEnvironmentsItem =
   | TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase0
   | TeamDeploymentPolicyGitSourcesItemEnvironmentsItemCase1;
 export const TeamDeploymentPolicyGitSourcesItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamDeploymentPolicyGitSourcesItemEnvironmentsItem>;
+  S.Unknown as any as S.Schema<TeamDeploymentPolicyGitSourcesItemEnvironmentsItem>;
 
 export type TeamDeploymentPolicyGitSourcesItemEnvironmentsList =
   Array<TeamDeploymentPolicyGitSourcesItemEnvironmentsItem>;
@@ -1032,8 +1032,7 @@ export type TeamDeploymentPolicyDeploymentSourcesItemSourcesItem =
   | "integration"
   | "rest-api"
   | "v0";
-export const TeamDeploymentPolicyDeploymentSourcesItemSourcesItem =
-  /*@__PURE__*/ S.String;
+export const TeamDeploymentPolicyDeploymentSourcesItemSourcesItem = S.String;
 
 export type TeamDeploymentPolicyDeploymentSourcesItemSourcesList =
   Array<TeamDeploymentPolicyDeploymentSourcesItemSourcesItem>;
@@ -1045,13 +1044,13 @@ export const TeamDeploymentPolicyDeploymentSourcesItemSourcesList =
 export type TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Type =
   "system";
 export const TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Target =
   | "preview"
   | "production";
 export const TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0 {
   type: TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Type;
@@ -1072,7 +1071,7 @@ export const TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0 =
 export type TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1Type =
   "custom";
 export const TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1 {
   type: TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1Type;
@@ -1093,7 +1092,7 @@ export type TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItem =
   | TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0
   | TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1;
 export const TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItem>;
+  S.Unknown as any as S.Schema<TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItem>;
 
 export type TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsList =
   Array<TeamDeploymentPolicyDeploymentSourcesItemEnvironmentsItem>;
@@ -1165,7 +1164,7 @@ export type TeamMembershipRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const TeamMembershipRole = /*@__PURE__*/ S.String;
+export const TeamMembershipRole = S.String;
 
 export type TeamMembershipTeamRolesItem =
   | "BILLING"
@@ -1176,7 +1175,7 @@ export type TeamMembershipTeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const TeamMembershipTeamRolesItem = /*@__PURE__*/ S.String;
+export const TeamMembershipTeamRolesItem = S.String;
 
 export type TeamMembershipTeamRolesList = Array<TeamMembershipTeamRolesItem>;
 export const TeamMembershipTeamRolesList = /*@__PURE__*/ S.Array(
@@ -1203,7 +1202,7 @@ export type TeamMembershipTeamPermissionsItem =
   | "V0Chatter"
   | "V0Viewer"
   | "WorkflowDecryptor";
-export const TeamMembershipTeamPermissionsItem = /*@__PURE__*/ S.String;
+export const TeamMembershipTeamPermissionsItem = S.String;
 
 export type TeamMembershipTeamPermissionsList =
   Array<TeamMembershipTeamPermissionsItem>;
@@ -1231,11 +1230,11 @@ export type TeamMembershipJoinedFromOrigin =
   | "organization-teams"
   | "saml"
   | "teams";
-export const TeamMembershipJoinedFromOrigin = /*@__PURE__*/ S.String;
+export const TeamMembershipJoinedFromOrigin = S.String;
 
 export type TeamMembershipJoinedFromGitUserId = string | number;
 export const TeamMembershipJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamMembershipJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<TeamMembershipJoinedFromGitUserId>;
 
 export interface TeamMembershipJoinedFrom {
   origin: TeamMembershipJoinedFromOrigin;
@@ -1492,12 +1491,11 @@ export type GetTeamAccessRequestResponseJoinedFromOrigin =
   | "organization-teams"
   | "saml"
   | "teams";
-export const GetTeamAccessRequestResponseJoinedFromOrigin =
-  /*@__PURE__*/ S.String;
+export const GetTeamAccessRequestResponseJoinedFromOrigin = S.String;
 
 export type GetTeamAccessRequestResponseJoinedFromGitUserId = string | number;
 export const GetTeamAccessRequestResponseJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTeamAccessRequestResponseJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<GetTeamAccessRequestResponseJoinedFromGitUserId>;
 
 /** A map that describes the origin from where the user joined. */
 export interface GetTeamAccessRequestResponseJoinedFrom {
@@ -1599,7 +1597,7 @@ export type GetTeamMembersRequestRole =
   | "VIEWER"
   | "VIEWER_FOR_PLUS"
   | "CONTRIBUTOR";
-export const GetTeamMembersRequestRole = /*@__PURE__*/ S.String;
+export const GetTeamMembersRequestRole = S.String;
 
 export interface GetTeamMembersRequest {
   /** The Team identifier to perform the request on behalf of. */
@@ -1667,7 +1665,7 @@ export type GetTeamMembersResponseMembersItemRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const GetTeamMembersResponseMembersItemRole = /*@__PURE__*/ S.String;
+export const GetTeamMembersResponseMembersItemRole = S.String;
 
 export type GetTeamMembersResponseMembersItemJoinedFromOrigin =
   | "account-update"
@@ -1689,14 +1687,13 @@ export type GetTeamMembersResponseMembersItemJoinedFromOrigin =
   | "organization-teams"
   | "saml"
   | "teams";
-export const GetTeamMembersResponseMembersItemJoinedFromOrigin =
-  /*@__PURE__*/ S.String;
+export const GetTeamMembersResponseMembersItemJoinedFromOrigin = S.String;
 
 export type GetTeamMembersResponseMembersItemJoinedFromGitUserId =
   | string
   | number;
 export const GetTeamMembersResponseMembersItemJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTeamMembersResponseMembersItemJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<GetTeamMembersResponseMembersItemJoinedFromGitUserId>;
 
 /** Map with information about the members origin if they joined by requesting access. */
 export interface GetTeamMembersResponseMembersItemJoinedFrom {
@@ -1738,8 +1735,7 @@ export type GetTeamMembersResponseMembersItemProjectsItemRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const GetTeamMembersResponseMembersItemProjectsItemRole =
-  /*@__PURE__*/ S.String;
+export const GetTeamMembersResponseMembersItemProjectsItemRole = S.String;
 
 /** Array of project memberships */
 export interface GetTeamMembersResponseMembersItemProjectsItem {
@@ -1842,8 +1838,7 @@ export type GetTeamMembersResponseEmailInviteCodesItemRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const GetTeamMembersResponseEmailInviteCodesItemRole =
-  /*@__PURE__*/ S.String;
+export const GetTeamMembersResponseEmailInviteCodesItemRole = S.String;
 
 export type GetTeamMembersResponseEmailInviteCodesItemTeamRolesItem =
   | "BILLING"
@@ -1854,8 +1849,7 @@ export type GetTeamMembersResponseEmailInviteCodesItemTeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const GetTeamMembersResponseEmailInviteCodesItemTeamRolesItem =
-  /*@__PURE__*/ S.String;
+export const GetTeamMembersResponseEmailInviteCodesItemTeamRolesItem = S.String;
 
 export type GetTeamMembersResponseEmailInviteCodesItemTeamRolesList =
   Array<GetTeamMembersResponseEmailInviteCodesItemTeamRolesItem>;
@@ -1885,7 +1879,7 @@ export type GetTeamMembersResponseEmailInviteCodesItemTeamPermissionsItem =
   | "V0Viewer"
   | "WorkflowDecryptor";
 export const GetTeamMembersResponseEmailInviteCodesItemTeamPermissionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTeamMembersResponseEmailInviteCodesItemTeamPermissionsList =
   Array<GetTeamMembersResponseEmailInviteCodesItemTeamPermissionsItem>;
@@ -1899,8 +1893,7 @@ export type GetTeamMembersResponseEmailInviteCodesItemProjectsValue =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const GetTeamMembersResponseEmailInviteCodesItemProjectsValue =
-  /*@__PURE__*/ S.String;
+export const GetTeamMembersResponseEmailInviteCodesItemProjectsValue = S.String;
 
 export type GetTeamMembersResponseEmailInviteCodesItemProjectsMap = {
   [key: string]:
@@ -2022,7 +2015,7 @@ export const GetTeamsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTeamsRequest>;
 
 export type TeamLimitedLimitedByItem = "invalidated" | "mfa" | "scope";
-export const TeamLimitedLimitedByItem = /*@__PURE__*/ S.String;
+export const TeamLimitedLimitedByItem = S.String;
 
 export type TeamLimitedLimitedByList = Array<TeamLimitedLimitedByItem>;
 export const TeamLimitedLimitedByList = /*@__PURE__*/ S.Array(
@@ -2031,7 +2024,7 @@ export const TeamLimitedLimitedByList = /*@__PURE__*/ S.Array(
 
 /** Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility. */
 export type TeamLimitedSamlConnectionSyncState = "ACTIVE" | "SETUP";
-export const TeamLimitedSamlConnectionSyncState = /*@__PURE__*/ S.String;
+export const TeamLimitedSamlConnectionSyncState = S.String;
 
 /** Information for the SAML Single Sign-On configuration. */
 export interface TeamLimitedSamlConnection {
@@ -2065,7 +2058,7 @@ export const TeamLimitedSamlConnection = /*@__PURE__*/ S.suspend(() =>
 
 /** Controls whether directory sync events are processed. - 'SETUP': Directory connected but role mappings not yet configured. Events are acknowledged but not processed. - 'ACTIVE': Fully configured. Events are processed normally. - undefined: Legacy directory (pre-feature), treat as 'ACTIVE' for backwards compatibility. */
 export type TeamLimitedSamlDirectorySyncState = "ACTIVE" | "SETUP";
-export const TeamLimitedSamlDirectorySyncState = /*@__PURE__*/ S.String;
+export const TeamLimitedSamlDirectorySyncState = S.String;
 
 /** Information for the Directory Sync configuration. */
 export interface TeamLimitedSamlDirectory {
@@ -2134,7 +2127,7 @@ export type TeamLimitedMembershipRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const TeamLimitedMembershipRole = /*@__PURE__*/ S.String;
+export const TeamLimitedMembershipRole = S.String;
 
 export type TeamLimitedMembershipTeamRolesItem =
   | "BILLING"
@@ -2145,7 +2138,7 @@ export type TeamLimitedMembershipTeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const TeamLimitedMembershipTeamRolesItem = /*@__PURE__*/ S.String;
+export const TeamLimitedMembershipTeamRolesItem = S.String;
 
 export type TeamLimitedMembershipTeamRolesList =
   Array<TeamLimitedMembershipTeamRolesItem>;
@@ -2173,7 +2166,7 @@ export type TeamLimitedMembershipTeamPermissionsItem =
   | "V0Chatter"
   | "V0Viewer"
   | "WorkflowDecryptor";
-export const TeamLimitedMembershipTeamPermissionsItem = /*@__PURE__*/ S.String;
+export const TeamLimitedMembershipTeamPermissionsItem = S.String;
 
 export type TeamLimitedMembershipTeamPermissionsList =
   Array<TeamLimitedMembershipTeamPermissionsItem>;
@@ -2201,11 +2194,11 @@ export type TeamLimitedMembershipJoinedFromOrigin =
   | "organization-teams"
   | "saml"
   | "teams";
-export const TeamLimitedMembershipJoinedFromOrigin = /*@__PURE__*/ S.String;
+export const TeamLimitedMembershipJoinedFromOrigin = S.String;
 
 export type TeamLimitedMembershipJoinedFromGitUserId = string | number;
 export const TeamLimitedMembershipJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamLimitedMembershipJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<TeamLimitedMembershipJoinedFromGitUserId>;
 
 export interface TeamLimitedMembershipJoinedFrom {
   origin: TeamLimitedMembershipJoinedFromOrigin;
@@ -2312,7 +2305,7 @@ export const TeamLimited = /*@__PURE__*/ S.suspend(() =>
 
 export type GetTeamsResponseTeamsItem = Team | TeamLimited;
 export const GetTeamsResponseTeamsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTeamsResponseTeamsItem>;
+  S.Unknown as any as S.Schema<GetTeamsResponseTeamsItem>;
 
 export type GetTeamsResponseTeamsList = Array<GetTeamsResponseTeamsItem>;
 export const GetTeamsResponseTeamsList = /*@__PURE__*/ S.Array(
@@ -2359,7 +2352,7 @@ export type InviteUserToTeamRequestBodyItemRole =
   | "VIEWER"
   | "VIEWER_FOR_PLUS"
   | "CONTRIBUTOR";
-export const InviteUserToTeamRequestBodyItemRole = /*@__PURE__*/ S.String;
+export const InviteUserToTeamRequestBodyItemRole = S.String;
 
 /** Sets the project roles for the invited user */
 export type InviteUserToTeamRequestBodyItemProjectsItemRole =
@@ -2367,8 +2360,7 @@ export type InviteUserToTeamRequestBodyItemProjectsItemRole =
   | "PROJECT_VIEWER"
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST";
-export const InviteUserToTeamRequestBodyItemProjectsItemRole =
-  /*@__PURE__*/ S.String;
+export const InviteUserToTeamRequestBodyItemProjectsItemRole = S.String;
 
 export interface InviteUserToTeamRequestBodyItemProjectsItem {
   /** The ID of the project. */
@@ -2445,7 +2437,7 @@ export type InvitedTeamMemberRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const InvitedTeamMemberRole = /*@__PURE__*/ S.String;
+export const InvitedTeamMemberRole = S.String;
 
 /** The team roles of the user */
 export type InvitedTeamMemberTeamRolesItem =
@@ -2457,7 +2449,7 @@ export type InvitedTeamMemberTeamRolesItem =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const InvitedTeamMemberTeamRolesItem = /*@__PURE__*/ S.String;
+export const InvitedTeamMemberTeamRolesItem = S.String;
 
 /** The team roles of the user */
 export type InvitedTeamMemberTeamRolesList =
@@ -2487,7 +2479,7 @@ export type InvitedTeamMemberTeamPermissionsItem =
   | "V0Chatter"
   | "V0Viewer"
   | "WorkflowDecryptor";
-export const InvitedTeamMemberTeamPermissionsItem = /*@__PURE__*/ S.String;
+export const InvitedTeamMemberTeamPermissionsItem = S.String;
 
 /** The team permissions of the user */
 export type InvitedTeamMemberTeamPermissionsList =
@@ -2609,13 +2601,12 @@ export type RequestAccessToTeamRequestJoinedFromOrigin =
   | "bitbucket"
   | "feedback"
   | "organization-teams";
-export const RequestAccessToTeamRequestJoinedFromOrigin =
-  /*@__PURE__*/ S.String;
+export const RequestAccessToTeamRequestJoinedFromOrigin = S.String;
 
 /** The ID of the Git account of the user who requests access. */
 export type RequestAccessToTeamRequestJoinedFromGitUserId = string | number;
 export const RequestAccessToTeamRequestJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RequestAccessToTeamRequestJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<RequestAccessToTeamRequestJoinedFromGitUserId>;
 
 export interface RequestAccessToTeamRequestJoinedFrom {
   /** The origin of the request. */
@@ -2680,12 +2671,11 @@ export type RequestAccessToTeamResponseJoinedFromOrigin =
   | "organization-teams"
   | "saml"
   | "teams";
-export const RequestAccessToTeamResponseJoinedFromOrigin =
-  /*@__PURE__*/ S.String;
+export const RequestAccessToTeamResponseJoinedFromOrigin = S.String;
 
 export type RequestAccessToTeamResponseJoinedFromGitUserId = string | number;
 export const RequestAccessToTeamResponseJoinedFromGitUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RequestAccessToTeamResponseJoinedFromGitUserId>;
+  S.Unknown as any as S.Schema<RequestAccessToTeamResponseJoinedFromGitUserId>;
 
 export interface RequestAccessToTeamResponseJoinedFrom {
   origin: RequestAccessToTeamResponseJoinedFromOrigin;
@@ -2832,7 +2822,7 @@ export type UpdateTeamRequestSamlRolesValueCase0 =
   | "VIEWER"
   | "VIEWER_FOR_PLUS"
   | "CONTRIBUTOR";
-export const UpdateTeamRequestSamlRolesValueCase0 = /*@__PURE__*/ S.String;
+export const UpdateTeamRequestSamlRolesValueCase0 = S.String;
 
 export type UpdateTeamRequestSamlRolesValueCase1 =
   CreateTeamDsyncRoleRequestRolesValueCase1;
@@ -2843,7 +2833,7 @@ export type UpdateTeamRequestSamlRolesValue =
   | UpdateTeamRequestSamlRolesValueCase0
   | CreateTeamDsyncRoleRequestRolesValueCase1;
 export const UpdateTeamRequestSamlRolesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestSamlRolesValue>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestSamlRolesValue>;
 
 /** Directory groups to role or access group mappings. */
 export type UpdateTeamRequestSamlRolesMap = {
@@ -2887,7 +2877,7 @@ export type UpdateTeamRequestDpAccessRequestsMode =
   | "all"
   | "none"
   | "email-domain";
-export const UpdateTeamRequestDpAccessRequestsMode = /*@__PURE__*/ S.String;
+export const UpdateTeamRequestDpAccessRequestsMode = S.String;
 
 /** Specify if the password will apply to every Deployment Target or just Preview */
 export type UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType =
@@ -2896,7 +2886,7 @@ export type UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploy
   | "prod_deployment_urls_and_all_previews"
   | "all_except_custom_domains";
 export const UpdateTeamRequestDefaultDeploymentProtectionPasswordProtectionDeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allows to protect project deployments with a password */
 export interface UpdateTeamRequestDefaultDeploymentProtectionPasswordProtection {
@@ -2926,7 +2916,7 @@ export type UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentT
   | "prod_deployment_urls_and_all_previews"
   | "all_except_custom_domains";
 export const UpdateTeamRequestDefaultDeploymentProtectionSsoProtectionDeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Ensures visitors to your Preview Deployments are logged into Vercel and have a minimum of Viewer access on your team */
 export interface UpdateTeamRequestDefaultDeploymentProtectionSsoProtection {
@@ -2973,8 +2963,7 @@ export type UpdateTeamRequestDefaultPassportDeploymentType =
   | "preview"
   | "prod_deployment_urls_and_all_previews"
   | "all_except_custom_domains";
-export const UpdateTeamRequestDefaultPassportDeploymentType =
-  /*@__PURE__*/ S.String;
+export const UpdateTeamRequestDefaultPassportDeploymentType = S.String;
 
 /** Default Passport configuration for new projects. */
 export interface UpdateTeamRequestDefaultPassport {
@@ -3005,8 +2994,7 @@ export type UpdateTeamRequestDefaultExpirationSettingsExpiration =
   | "1w"
   | "1d"
   | "unlimited";
-export const UpdateTeamRequestDefaultExpirationSettingsExpiration =
-  /*@__PURE__*/ S.String;
+export const UpdateTeamRequestDefaultExpirationSettingsExpiration = S.String;
 
 /** The time period to keep production deployments for */
 export type UpdateTeamRequestDefaultExpirationSettingsExpirationProduction =
@@ -3022,7 +3010,7 @@ export type UpdateTeamRequestDefaultExpirationSettingsExpirationProduction =
   | "1d"
   | "unlimited";
 export const UpdateTeamRequestDefaultExpirationSettingsExpirationProduction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The time period to keep canceled deployments for */
 export type UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled =
@@ -3036,7 +3024,7 @@ export type UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled =
   | "1d"
   | "unlimited";
 export const UpdateTeamRequestDefaultExpirationSettingsExpirationCanceled =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The time period to keep errored deployments for */
 export type UpdateTeamRequestDefaultExpirationSettingsExpirationErrored =
@@ -3050,7 +3038,7 @@ export type UpdateTeamRequestDefaultExpirationSettingsExpirationErrored =
   | "1d"
   | "unlimited";
 export const UpdateTeamRequestDefaultExpirationSettingsExpirationErrored =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTeamRequestDefaultExpirationSettings {
   /** The time period to keep non-production deployments for */
@@ -3093,13 +3081,13 @@ export const UpdateTeamRequestDefaultExpirationSettings =
 export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type =
   "system";
 export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target =
   | "production"
   | "preview";
 export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0 {
   type: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0Type;
@@ -3122,7 +3110,7 @@ export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmen
 export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type =
   "custom";
 export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1 {
   type: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1Type;
@@ -3143,7 +3131,7 @@ export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironment
   | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase0
   | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItemCase1;
 export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem>;
 
 export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsList =
   Array<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemEnvironmentsItem>;
@@ -3156,7 +3144,7 @@ export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem
   | "github"
   | "bitbucket";
 export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0 {
   provider:
@@ -3181,7 +3169,7 @@ export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesIte
 export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider =
   "gitlab";
 export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1 {
   provider: UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1Provider;
@@ -3205,7 +3193,7 @@ export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem
   | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase0
   | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItemCase1;
 export const UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem>;
 
 export type UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesList =
   Array<UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0ItemSourcesItem>;
@@ -3243,18 +3231,18 @@ export type UpdateTeamRequestDeploymentPolicyCase0GitSources =
   | UpdateTeamRequestDeploymentPolicyCase0GitSourcesCase0List
   | string;
 export const UpdateTeamRequestDeploymentPolicyCase0GitSources =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSources>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0GitSources>;
 
 export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type =
   "system";
 export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target =
   | "production"
   | "preview";
 export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0 {
   type: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0Type;
@@ -3277,7 +3265,7 @@ export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnv
 export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type =
   "custom";
 export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1 {
   type: UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1Type;
@@ -3298,7 +3286,7 @@ export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvi
   | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase0
   | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItemCase1;
 export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem>;
 
 export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsList =
   Array<UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemEnvironmentsItem>;
@@ -3315,7 +3303,7 @@ export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSour
   | "integration"
   | "v0";
 export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0ItemSourcesList =
   Array<
@@ -3357,7 +3345,7 @@ export type UpdateTeamRequestDeploymentPolicyCase0DeploymentSources =
   | UpdateTeamRequestDeploymentPolicyCase0DeploymentSourcesCase0List
   | string;
 export const UpdateTeamRequestDeploymentPolicyCase0DeploymentSources =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSources>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicyCase0DeploymentSources>;
 
 /** Composable deployment-time policy. Each rule type holds a list of rules, one per environment scope. */
 export interface UpdateTeamRequestDeploymentPolicyCase0 {
@@ -3380,7 +3368,7 @@ export type UpdateTeamRequestDeploymentPolicy =
   | UpdateTeamRequestDeploymentPolicyCase0
   | string;
 export const UpdateTeamRequestDeploymentPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicy>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestDeploymentPolicy>;
 
 /** When enabled, deployment protection settings require stricter permissions (owner-only). */
 export interface UpdateTeamRequestStrictDeploymentProtectionSettings {
@@ -3442,8 +3430,7 @@ export type UpdateTeamRequestNsnbConfigCase0Preference =
   | "auto-approval"
   | "manual-approval"
   | "block";
-export const UpdateTeamRequestNsnbConfigCase0Preference =
-  /*@__PURE__*/ S.String;
+export const UpdateTeamRequestNsnbConfigCase0Preference = S.String;
 
 /** NSNB configuration for the team. */
 export interface UpdateTeamRequestNsnbConfigCase0 {
@@ -3462,7 +3449,7 @@ export type UpdateTeamRequestNsnbConfig =
   | UpdateTeamRequestNsnbConfigCase0
   | string;
 export const UpdateTeamRequestNsnbConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestNsnbConfig>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestNsnbConfig>;
 
 export type UpdateTeamRequestDefaultProjectJobsCase0LintTargetsList =
   Array<string>;
@@ -3521,7 +3508,7 @@ export type UpdateTeamRequestDefaultProjectJobs =
   | UpdateTeamRequestDefaultProjectJobsCase0
   | string;
 export const UpdateTeamRequestDefaultProjectJobs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTeamRequestDefaultProjectJobs>;
+  S.Unknown as any as S.Schema<UpdateTeamRequestDefaultProjectJobs>;
 
 /** Default build machine type for new builds: standard, enhanced, turbo, or elastic. */
 export type UpdateTeamRequestResourceConfigBuildMachineDefault =
@@ -3530,8 +3517,7 @@ export type UpdateTeamRequestResourceConfigBuildMachineDefault =
   | "turbo"
   | "standard"
   | "elastic";
-export const UpdateTeamRequestResourceConfigBuildMachineDefault =
-  /*@__PURE__*/ S.String;
+export const UpdateTeamRequestResourceConfigBuildMachineDefault = S.String;
 
 /** Build machine configuration. */
 export interface UpdateTeamRequestResourceConfigBuildMachine {
@@ -3681,8 +3667,7 @@ export type UpdateTeamMemberRequestTeamPermissionsItem =
   | "V0Builder"
   | "V0Chatter"
   | "V0Viewer";
-export const UpdateTeamMemberRequestTeamPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const UpdateTeamMemberRequestTeamPermissionsItem = S.String;
 
 /** The team permissions to set for the member. Permissions must be compatible with the team roles assigned to the member. */
 export type UpdateTeamMemberRequestTeamPermissionsList = Array<
@@ -3697,7 +3682,7 @@ export type UpdateTeamMemberRequestProjectsItemRole =
   | "ADMIN"
   | "PROJECT_VIEWER"
   | "PROJECT_DEVELOPER";
-export const UpdateTeamMemberRequestProjectsItemRole = /*@__PURE__*/ S.String;
+export const UpdateTeamMemberRequestProjectsItemRole = S.String;
 
 export interface UpdateTeamMemberRequestProjectsItem {
   /** The ID of the project. */

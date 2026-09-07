@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 export type { HuggingFaceOpError, HuggingFaceOpContext };
 
 export type CreateEmbedRequestRepoType = "datasets";
-export const CreateEmbedRequestRepoType = /*@__PURE__*/ S.String;
+export const CreateEmbedRequestRepoType = S.String;
 
 export interface CreateEmbedRequestViewsItem {
   key: string;
@@ -103,7 +103,7 @@ export const CreateEmbedResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEmbedResponse>;
 
 export type DeleteEmbedRequestRepoType = "datasets";
-export const DeleteEmbedRequestRepoType = /*@__PURE__*/ S.String;
+export const DeleteEmbedRequestRepoType = S.String;
 
 export interface DeleteEmbedRequest {
   repoType: DeleteEmbedRequestRepoType | (string & {});
@@ -136,7 +136,7 @@ export const DeleteEmbedResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteEmbedResponse>;
 
 export type UpdateEmbedRequestRepoType = "datasets";
-export const UpdateEmbedRequestRepoType = /*@__PURE__*/ S.String;
+export const UpdateEmbedRequestRepoType = S.String;
 
 export interface UpdateEmbedRequest {
   repoType: UpdateEmbedRequestRepoType | (string & {});

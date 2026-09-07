@@ -163,13 +163,13 @@ export type V1VariantsCreateRequestOptionsFit =
   | "cover"
   | "crop"
   | "pad";
-export const V1VariantsCreateRequestOptionsFit = /*@__PURE__*/ S.String;
+export const V1VariantsCreateRequestOptionsFit = S.String;
 
 export type V1VariantsCreateRequestOptionsMetadata =
   | "keep"
   | "copyright"
   | "none";
-export const V1VariantsCreateRequestOptionsMetadata = /*@__PURE__*/ S.String;
+export const V1VariantsCreateRequestOptionsMetadata = S.String;
 
 export interface V1VariantsCreateRequestOptions {
   /** The fit property describes how the width and height dimensions should be interpreted. */
@@ -226,14 +226,13 @@ export type V1VariantsCreateResponseVariantOptionsFit =
   | "cover"
   | "crop"
   | "pad";
-export const V1VariantsCreateResponseVariantOptionsFit = /*@__PURE__*/ S.String;
+export const V1VariantsCreateResponseVariantOptionsFit = S.String;
 
 export type V1VariantsCreateResponseVariantOptionsMetadata =
   | "keep"
   | "copyright"
   | "none";
-export const V1VariantsCreateResponseVariantOptionsMetadata =
-  /*@__PURE__*/ S.String;
+export const V1VariantsCreateResponseVariantOptionsMetadata = S.String;
 
 export interface V1VariantsCreateResponseVariantOptions {
   /** The fit property describes how the width and height dimensions should be interpreted. */
@@ -595,14 +594,13 @@ export type V1VariantsGetResponseVariantOptionsFit =
   | "cover"
   | "crop"
   | "pad";
-export const V1VariantsGetResponseVariantOptionsFit = /*@__PURE__*/ S.String;
+export const V1VariantsGetResponseVariantOptionsFit = S.String;
 
 export type V1VariantsGetResponseVariantOptionsMetadata =
   | "keep"
   | "copyright"
   | "none";
-export const V1VariantsGetResponseVariantOptionsMetadata =
-  /*@__PURE__*/ S.String;
+export const V1VariantsGetResponseVariantOptionsMetadata = S.String;
 
 export interface V1VariantsGetResponseVariantOptions {
   /** The fit property describes how the width and height dimensions should be interpreted. */
@@ -799,15 +797,13 @@ export type V1VariantsListResponseVariantsHeroOptionsFit =
   | "cover"
   | "crop"
   | "pad";
-export const V1VariantsListResponseVariantsHeroOptionsFit =
-  /*@__PURE__*/ S.String;
+export const V1VariantsListResponseVariantsHeroOptionsFit = S.String;
 
 export type V1VariantsListResponseVariantsHeroOptionsMetadata =
   | "keep"
   | "copyright"
   | "none";
-export const V1VariantsListResponseVariantsHeroOptionsMetadata =
-  /*@__PURE__*/ S.String;
+export const V1VariantsListResponseVariantsHeroOptionsMetadata = S.String;
 
 export interface V1VariantsListResponseVariantsHeroOptions {
   /** The fit property describes how the width and height dimensions should be interpreted. */
@@ -884,7 +880,7 @@ export const V2ListRequestMeta = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2ListRequestMeta>;
 
 export type V2ListRequestSortOrder = "asc" | "desc";
-export const V2ListRequestSortOrder = /*@__PURE__*/ S.String;
+export const V2ListRequestSortOrder = S.String;
 
 export interface ListV2sRequest {
   /** Account identifier tag. */
@@ -1047,13 +1043,13 @@ export type V1VariantsEditRequestOptionsFit =
   | "cover"
   | "crop"
   | "pad";
-export const V1VariantsEditRequestOptionsFit = /*@__PURE__*/ S.String;
+export const V1VariantsEditRequestOptionsFit = S.String;
 
 export type V1VariantsEditRequestOptionsMetadata =
   | "keep"
   | "copyright"
   | "none";
-export const V1VariantsEditRequestOptionsMetadata = /*@__PURE__*/ S.String;
+export const V1VariantsEditRequestOptionsMetadata = S.String;
 
 export interface V1VariantsEditRequestOptions {
   /** The fit property describes how the width and height dimensions should be interpreted. */
@@ -1110,14 +1106,13 @@ export type V1VariantsEditResponseVariantOptionsFit =
   | "cover"
   | "crop"
   | "pad";
-export const V1VariantsEditResponseVariantOptionsFit = /*@__PURE__*/ S.String;
+export const V1VariantsEditResponseVariantOptionsFit = S.String;
 
 export type V1VariantsEditResponseVariantOptionsMetadata =
   | "keep"
   | "copyright"
   | "none";
-export const V1VariantsEditResponseVariantOptionsMetadata =
-  /*@__PURE__*/ S.String;
+export const V1VariantsEditResponseVariantOptionsMetadata = S.String;
 
 export interface V1VariantsEditResponseVariantOptions {
   /** The fit property describes how the width and height dimensions should be interpreted. */

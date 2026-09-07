@@ -124,7 +124,7 @@ export type RegistryRecordName = string;
 export type Description = string | redacted.Redacted<string>;
 export type RegistryRecordDisplayName = string;
 export type RecordType = "MCP" | "AGENT" | "CUSTOM" | "SKILL" | (string & {});
-export const RecordType = /*@__PURE__*/ S.String;
+export const RecordType = S.String;
 
 export type DescriptorData = string | redacted.Redacted<string>;
 export type DataSchemaVersion = string;
@@ -265,7 +265,7 @@ export type RegistryRecordStatus =
   | "CREATE_FAILED"
   | "UPDATE_FAILED"
   | (string & {});
-export const RegistryRecordStatus = /*@__PURE__*/ S.String;
+export const RegistryRecordStatus = S.String;
 
 export interface RegistryRecordSummary {
   registryArn: string;
@@ -308,8 +308,7 @@ export type BatchGetDiscoverableRegistryRecordErrorCode =
   | "ACCESS_DENIED"
   | "INTERNAL_ERROR"
   | (string & {});
-export const BatchGetDiscoverableRegistryRecordErrorCode =
-  /*@__PURE__*/ S.String;
+export const BatchGetDiscoverableRegistryRecordErrorCode = S.String;
 
 export interface BatchGetDiscoverableRegistryRecordError_ {
   registryId: string;
@@ -349,7 +348,7 @@ export type RegistryRecordFilterName =
   | "recordType"
   | "descriptorType"
   | (string & {});
-export const RegistryRecordFilterName = /*@__PURE__*/ S.String;
+export const RegistryRecordFilterName = S.String;
 
 export type FilterValue = string;
 export type DiscoverableFilterValues = string[];
@@ -493,7 +492,7 @@ export type ValidationExceptionReason =
   | "EventInOtherSession"
   | "ResourceConflict"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

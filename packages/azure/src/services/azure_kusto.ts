@@ -25,11 +25,11 @@ export type CalloutType =
   | "postgresql"
   | "genevametrics"
   | "azure_openai";
-export const CalloutType = /*@__PURE__*/ S.String;
+export const CalloutType = S.String;
 
 /** Indicates whether outbound access is permitted for the specified URI pattern. */
 export type OutboundAccess = "Allow" | "Deny";
-export const OutboundAccess = /*@__PURE__*/ S.String;
+export const OutboundAccess = S.String;
 
 /** Configuration for external callout policies, including URI patterns, access types, and service types. */
 export interface CalloutPolicyInput {
@@ -97,7 +97,7 @@ export const AddClusterCalloutPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Language extension that can run within KQL query. */
 export type LanguageExtensionName = "PYTHON" | "R";
-export const LanguageExtensionName = /*@__PURE__*/ S.String;
+export const LanguageExtensionName = S.String;
 
 /** Language extension image name. */
 export type LanguageExtensionImageName =
@@ -108,7 +108,7 @@ export type LanguageExtensionImageName =
   | "PythonCustomImage"
   | "Python3_11_7"
   | "Python3_11_7_DL";
-export const LanguageExtensionImageName = /*@__PURE__*/ S.String;
+export const LanguageExtensionImageName = S.String;
 
 /** The language extension object. */
 export interface LanguageExtension {
@@ -183,11 +183,11 @@ export type DatabasePrincipalRole =
   | "User"
   | "UnrestrictedViewer"
   | "Viewer";
-export const DatabasePrincipalRole = /*@__PURE__*/ S.String;
+export const DatabasePrincipalRole = S.String;
 
 /** Database principal type. */
 export type DatabasePrincipalType = "App" | "Group" | "User";
-export const DatabasePrincipalType = /*@__PURE__*/ S.String;
+export const DatabasePrincipalType = S.String;
 
 /** A class representing database principal entity. */
 export interface DatabasePrincipalInput {
@@ -310,7 +310,7 @@ export const DatabasePrincipalListResult = /*@__PURE__*/ S.suspend(() =>
 
 /** The default principals modification kind */
 export type DefaultPrincipalsModificationKind = "Union" | "Replace" | "None";
-export const DefaultPrincipalsModificationKind = /*@__PURE__*/ S.String;
+export const DefaultPrincipalsModificationKind = S.String;
 
 /** List of tables to include in the follower database */
 export type TableLevelSharingPropertiesTablesToIncludeList = Array<string>;
@@ -490,7 +490,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -498,7 +498,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -535,7 +535,7 @@ export type ProvisioningState =
   | "Failed"
   | "Moving"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The list of databases from the clusterResourceId which are currently attached to the cluster. */
 export type AttachedDatabaseConfigurationPropertiesAttachedDatabaseNamesList =
@@ -614,7 +614,7 @@ export const AttachedDatabaseConfigurationsCreateOrUpdateResponse =
 export type CheckAttachedDatabaseConfigurationNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
 export const CheckAttachedDatabaseConfigurationNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CheckAttachedDatabaseConfigurationNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -652,7 +652,7 @@ export const CheckAttachedDatabaseConfigurationNameAvailabilityRequest =
 
 /** Message providing the reason why the given name is invalid. */
 export type Reason = "Invalid" | "AlreadyExists";
-export const Reason = /*@__PURE__*/ S.String;
+export const Reason = S.String;
 
 /** The result returned from a check name availability request. */
 export interface CheckNameResult {
@@ -679,7 +679,7 @@ export const CheckNameResult = /*@__PURE__*/ S.suspend(() =>
 /** The type of resource, Microsoft.Kusto/clusters. */
 export type CheckClusterNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters";
-export const CheckClusterNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckClusterNameAvailabilityRequestType = S.String;
 
 export interface CheckClusterNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -713,7 +713,7 @@ export const CheckClusterNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 export type CheckClusterPrincipalAssignmentNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters/principalAssignments";
 export const CheckClusterPrincipalAssignmentNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CheckClusterPrincipalAssignmentNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -753,7 +753,7 @@ export const CheckClusterPrincipalAssignmentNameAvailabilityRequest =
 export type Type =
   | "Microsoft.Kusto/clusters/databases"
   | "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export interface CheckDatabaseNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -791,7 +791,7 @@ export const CheckDatabaseNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 export type CheckDatabasePrincipalAssignmentNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters/databases/principalAssignments";
 export const CheckDatabasePrincipalAssignmentNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CheckDatabasePrincipalAssignmentNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -833,8 +833,7 @@ export const CheckDatabasePrincipalAssignmentNameAvailabilityRequest =
 /** The type of resource, Microsoft.Kusto/clusters/databases/dataConnections. */
 export type CheckDataConnectionNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters/databases/dataConnections";
-export const CheckDataConnectionNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+export const CheckDataConnectionNameAvailabilityRequestType = S.String;
 
 export interface CheckDataConnectionNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -874,8 +873,7 @@ export const CheckDataConnectionNameAvailabilityRequest =
 /** The type of resource, for instance Microsoft.Kusto/clusters/managedPrivateEndpoints. */
 export type CheckManagedPrivateEndpointNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters/managedPrivateEndpoints";
-export const CheckManagedPrivateEndpointNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+export const CheckManagedPrivateEndpointNameAvailabilityRequestType = S.String;
 
 export interface CheckManagedPrivateEndpointNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -912,8 +910,7 @@ export const CheckManagedPrivateEndpointNameAvailabilityRequest =
 /** The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages. */
 export type CheckSandboxCustomImageNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters/sandboxCustomImages";
-export const CheckSandboxCustomImageNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+export const CheckSandboxCustomImageNameAvailabilityRequestType = S.String;
 
 export interface CheckSandboxCustomImageNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -950,7 +947,7 @@ export const CheckSandboxCustomImageNameAvailabilityRequest =
 /** The type of resource, Microsoft.Kusto/clusters/databases/scripts. */
 export type CheckScriptNameAvailabilityRequestType =
   "Microsoft.Kusto/clusters/databases/scripts";
-export const CheckScriptNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckScriptNameAvailabilityRequestType = S.String;
 
 export interface CheckScriptNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -991,11 +988,11 @@ export type ClusterPrincipalRole =
   | "AllDatabasesAdmin"
   | "AllDatabasesViewer"
   | "AllDatabasesMonitor";
-export const ClusterPrincipalRole = /*@__PURE__*/ S.String;
+export const ClusterPrincipalRole = S.String;
 
 /** Principal type. */
 export type PrincipalType = "App" | "Group" | "User";
-export const PrincipalType = /*@__PURE__*/ S.String;
+export const PrincipalType = S.String;
 
 /** A class representing cluster principal property. */
 export interface ClusterPrincipalPropertiesInput {
@@ -1164,7 +1161,7 @@ export const OptimizedAutoscale = /*@__PURE__*/ S.suspend(() =>
 
 /** When enabled, the cluster is deployed into the configured subnet, when disabled it will be removed from the subnet. */
 export type VirtualNetworkConfigurationState = "Enabled" | "Disabled";
-export const VirtualNetworkConfigurationState = /*@__PURE__*/ S.String;
+export const VirtualNetworkConfigurationState = S.String;
 
 /** A class that contains virtual network definition. */
 export interface VirtualNetworkConfiguration {
@@ -1240,7 +1237,7 @@ export type ClusterPropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const ClusterPropertiesInputPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const ClusterPropertiesInputPublicNetworkAccess = S.String;
 
 /** The list of ips in the format of CIDR allowed to connect to the cluster. */
 export type ClusterPropertiesInputAllowedIpRangeListList = Array<string>;
@@ -1251,7 +1248,7 @@ export const ClusterPropertiesInputAllowedIpRangeListList =
 
 /** The engine type */
 export type ClusterPropertiesInputEngineType = "V2" | "V3";
-export const ClusterPropertiesInputEngineType = /*@__PURE__*/ S.String;
+export const ClusterPropertiesInputEngineType = S.String;
 
 /** Represents an accepted audience trusted by the cluster. */
 export interface AcceptedAudiences {
@@ -1278,8 +1275,7 @@ export const ClusterPropertiesInputAcceptedAudiencesList =
 export type ClusterPropertiesInputRestrictOutboundNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const ClusterPropertiesInputRestrictOutboundNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ClusterPropertiesInputRestrictOutboundNetworkAccess = S.String;
 
 /** List of allowed FQDNs(Fully Qualified Domain Name) for egress from Cluster. */
 export type ClusterPropertiesInputAllowedFqdnListList = Array<string>;
@@ -1296,7 +1292,7 @@ export const ClusterPropertiesInputCalloutPoliciesList = /*@__PURE__*/ S.Array(
 
 /** Indicates what public IP type to create - IPv4 (default), or DualStack (both IPv4 and IPv6) */
 export type ClusterPropertiesInputPublicIPType = "IPv4" | "DualStack";
-export const ClusterPropertiesInputPublicIPType = /*@__PURE__*/ S.String;
+export const ClusterPropertiesInputPublicIPType = S.String;
 
 /** Class representing the Kusto cluster properties. */
 export interface ClusterPropertiesInput {
@@ -1441,11 +1437,11 @@ export type AzureSkuName =
   | "Standard_E4d_v5"
   | "Standard_E8d_v5"
   | "Standard_E16d_v5";
-export const AzureSkuName = /*@__PURE__*/ S.String;
+export const AzureSkuName = S.String;
 
 /** SKU tier. */
 export type AzureSkuTier = "Basic" | "Standard";
-export const AzureSkuTier = /*@__PURE__*/ S.String;
+export const AzureSkuTier = S.String;
 
 /** Azure SKU definition. */
 export interface AzureSku {
@@ -1476,7 +1472,7 @@ export type IdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 export interface ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalpropertiesInput {}
 export const ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAdditionalpropertiesInput =
@@ -1574,7 +1570,7 @@ export type State =
   | "Starting"
   | "Updating"
   | "Migrated";
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 /** The cluster's external tenants. */
 export type ClusterPropertiesTrustedExternalTenantsList =
@@ -1589,7 +1585,7 @@ export type ClusterPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const ClusterPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const ClusterPropertiesPublicNetworkAccess = S.String;
 
 /** The list of ips in the format of CIDR allowed to connect to the cluster. */
 export type ClusterPropertiesAllowedIpRangeListList = Array<string>;
@@ -1599,7 +1595,7 @@ export const ClusterPropertiesAllowedIpRangeListList = /*@__PURE__*/ S.Array(
 
 /** The engine type */
 export type ClusterPropertiesEngineType = "V2" | "V3";
-export const ClusterPropertiesEngineType = /*@__PURE__*/ S.String;
+export const ClusterPropertiesEngineType = S.String;
 
 /** The cluster's accepted audiences. */
 export type ClusterPropertiesAcceptedAudiencesList = Array<AcceptedAudiences>;
@@ -1611,8 +1607,7 @@ export const ClusterPropertiesAcceptedAudiencesList = /*@__PURE__*/ S.Array(
 export type ClusterPropertiesRestrictOutboundNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const ClusterPropertiesRestrictOutboundNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ClusterPropertiesRestrictOutboundNetworkAccess = S.String;
 
 /** List of allowed FQDNs(Fully Qualified Domain Name) for egress from Cluster. */
 export type ClusterPropertiesAllowedFqdnListList = Array<string>;
@@ -1648,7 +1643,7 @@ export const ClusterPropertiesCalloutPoliciesList = /*@__PURE__*/ S.Array(
 
 /** Indicates what public IP type to create - IPv4 (default), or DualStack (both IPv4 and IPv6) */
 export type ClusterPropertiesPublicIPType = "IPv4" | "DualStack";
-export const ClusterPropertiesPublicIPType = /*@__PURE__*/ S.String;
+export const ClusterPropertiesPublicIPType = S.String;
 
 /** Private endpoint which the connection belongs to. */
 export interface PrivateEndpointProperty {
@@ -1741,7 +1736,7 @@ export const ClusterPropertiesPrivateEndpointConnectionsList =
 
 /** The role of the cluster in the migration process. */
 export type MigrationClusterRole = "Source" | "Destination";
-export const MigrationClusterRole = /*@__PURE__*/ S.String;
+export const MigrationClusterRole = S.String;
 
 /** Represents a properties of a cluster that is part of a migration. */
 export interface MigrationClusterProperties {
@@ -1767,7 +1762,7 @@ export const MigrationClusterProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the cluster is zonal or non-zonal. */
 export type ZoneStatus = "NonZonal" | "ZonalInconsistency" | "Zonal";
-export const ZoneStatus = /*@__PURE__*/ S.String;
+export const ZoneStatus = S.String;
 
 /** Class representing the Kusto cluster properties. */
 export interface ClusterProperties {
@@ -2034,7 +2029,7 @@ export const ClustersListFollowerDatabasesGetRequest = /*@__PURE__*/ S.suspend(
 
 /** The origin of the following setup. */
 export type DatabaseShareOrigin = "Direct" | "DataShare" | "Other";
-export const DatabaseShareOrigin = /*@__PURE__*/ S.String;
+export const DatabaseShareOrigin = S.String;
 
 /** A class representing the properties of a follower database object. */
 export interface FollowerDatabaseProperties {
@@ -2214,11 +2209,11 @@ export const DatabasePrincipalAssignmentsCreateOrUpdateResponse =
   }) as any as S.Schema<DatabasePrincipalAssignmentsCreateOrUpdateResponse>;
 
 export type DatabasesCreateOrUpdateRequestCallerRole = "Admin" | "None";
-export const DatabasesCreateOrUpdateRequestCallerRole = /*@__PURE__*/ S.String;
+export const DatabasesCreateOrUpdateRequestCallerRole = S.String;
 
 /** Kind of the database */
 export type Kind = "ReadWrite" | "ReadOnlyFollowing";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 export interface DatabasesCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -2294,7 +2289,7 @@ export type DataConnectionKind =
   | "CosmosDb"
   | "EventHubWithManagedIdentity"
   | "EventGridWithManagedIdentity";
-export const DataConnectionKind = /*@__PURE__*/ S.String;
+export const DataConnectionKind = S.String;
 
 export interface DataConnectionsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -3309,7 +3304,7 @@ export const GetOperationsResultRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of operation. */
 export type Status = "Succeeded" | "Canceled" | "Failed" | "Running";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Operation result properties */
 export interface OperationResultProperties {
@@ -3552,7 +3547,7 @@ export const GetSandboxCustomImageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The language name, for example Python. */
 export type Language = "Python";
-export const Language = /*@__PURE__*/ S.String;
+export const Language = S.String;
 
 /** A class representing the properties of a sandbox custom image object. */
 export interface SandboxCustomImageProperties {
@@ -3636,13 +3631,13 @@ export const GetScriptRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Differentiates between the type of script commands included - Database or Cluster. The default is Database. */
 export type ScriptLevel = "Database" | "Cluster";
-export const ScriptLevel = /*@__PURE__*/ S.String;
+export const ScriptLevel = S.String;
 
 /** Indicates if the permissions for the script caller are kept following completion of the script. */
 export type PrincipalPermissionsAction =
   | "RetainPermissionOnScriptCompletion"
   | "RemovePermissionOnScriptCompletion";
-export const PrincipalPermissionsAction = /*@__PURE__*/ S.String;
+export const PrincipalPermissionsAction = S.String;
 
 /** A class representing database script property. */
 export interface ScriptProperties {
@@ -4482,7 +4477,7 @@ export const ListClusterSkusByResourceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Scale type. */
 export type AzureScaleType = "automatic" | "manual" | "none";
-export const AzureScaleType = /*@__PURE__*/ S.String;
+export const AzureScaleType = S.String;
 
 /** Azure capacity definition. */
 export interface AzureCapacity {
@@ -5842,7 +5837,7 @@ export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterResponse>;
 
 export type UpdateDatabaseRequestCallerRole = "Admin" | "None";
-export const UpdateDatabaseRequestCallerRole = /*@__PURE__*/ S.String;
+export const UpdateDatabaseRequestCallerRole = S.String;
 
 export interface UpdateDatabaseRequest {
   /** The ID of the target subscription. */

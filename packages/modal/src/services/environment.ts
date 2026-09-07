@@ -34,14 +34,14 @@ export const EnvironmentSettings = /*@__PURE__*/ S.suspend(() =>
 export type EnvironmentType =
   | "ENVIRONMENT_TYPE_UNSPECIFIED"
   | "ENVIRONMENT_TYPE_PUBLIC";
-export const EnvironmentType = /*@__PURE__*/ S.String;
+export const EnvironmentType = S.String;
 
 export type EnvironmentRole =
   | "ENVIRONMENT_ROLE_UNSPECIFIED"
   | "ENVIRONMENT_ROLE_VIEWER"
   | "ENVIRONMENT_ROLE_CONTRIBUTOR"
   | "ENVIRONMENT_ROLE_NO_ACCESS";
-export const EnvironmentRole = /*@__PURE__*/ S.String;
+export const EnvironmentRole = S.String;
 
 export interface CreateEnvironmentRequest {
   name?: string;
@@ -202,7 +202,7 @@ export type MemberRole =
   | "MEMBER_ROLE_USER"
   | "MEMBER_ROLE_MANAGER"
   | "MEMBER_ROLE_OWNER";
-export const MemberRole = /*@__PURE__*/ S.String;
+export const MemberRole = S.String;
 
 export interface EnvironmentGetManagedResponsePrincipalEnvRole {
   userId?: string;
@@ -267,7 +267,7 @@ export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
   | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
   | "OBJECT_CREATION_TYPE_EPHEMERAL";
-export const ObjectCreationType = /*@__PURE__*/ S.String;
+export const ObjectCreationType = S.String;
 
 export interface EnvironmentGetOrCreateRequest {
   deploymentName?: string;

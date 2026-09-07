@@ -148,7 +148,7 @@ export type DriveStatusState =
   | "Completed"
   | "CompletedMoreInfo"
   | "ShippedBack";
-export const DriveStatusState = /*@__PURE__*/ S.String;
+export const DriveStatusState = S.String;
 
 /** Provides information about the drive's status */
 export interface DriveStatus {
@@ -244,7 +244,7 @@ export const Export = /*@__PURE__*/ S.suspend(() =>
 export type EncryptionKeyDetailsKekType =
   | "MicrosoftManaged"
   | "CustomerManaged";
-export const EncryptionKeyDetailsKekType = /*@__PURE__*/ S.String;
+export const EncryptionKeyDetailsKekType = S.String;
 
 /** Specifies the encryption key properties */
 export interface EncryptionKeyDetails {
@@ -369,7 +369,7 @@ export type JobResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JobResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const JobResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type JobResponseSystemDataLastModifiedByType =
@@ -377,7 +377,7 @@ export type JobResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JobResponseSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const JobResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface JobResponseSystemData {
@@ -514,7 +514,7 @@ export const JobDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of identity */
 export type IdentityDetailsType = "None" | "SystemAssigned" | "UserAssigned";
-export const IdentityDetailsType = /*@__PURE__*/ S.String;
+export const IdentityDetailsType = S.String;
 
 /** Specifies the identity properties. */
 export interface IdentityDetails {

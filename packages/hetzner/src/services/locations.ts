@@ -76,7 +76,7 @@ export type ListLocationsRequestSortItem =
   | "name"
   | "name:asc"
   | "name:desc";
-export const ListLocationsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListLocationsRequestSortItem = S.String;
 
 export type ListLocationsRequestSortList = Array<
   ListLocationsRequestSortItem | (string & {})

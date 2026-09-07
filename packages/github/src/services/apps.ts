@@ -175,232 +175,224 @@ export const NullableSimpleUser = /*@__PURE__*/ S.suspend(() =>
 
 /** The level of permission to grant the access token for GitHub Actions workflows, workflow runs, and artifacts. */
 export type AppPermissionsActions = "read" | "write";
-export const AppPermissionsActions = /*@__PURE__*/ S.String;
+export const AppPermissionsActions = S.String;
 
 /** The level of permission to grant the access token for repository creation, deletion, settings, teams, and collaborators creation. */
 export type AppPermissionsAdministration = "read" | "write";
-export const AppPermissionsAdministration = /*@__PURE__*/ S.String;
+export const AppPermissionsAdministration = S.String;
 
 /** The level of permission to grant the access token to create and retrieve build artifact metadata records. */
 export type AppPermissionsArtifactMetadata = "read" | "write";
-export const AppPermissionsArtifactMetadata = /*@__PURE__*/ S.String;
+export const AppPermissionsArtifactMetadata = S.String;
 
 /** The level of permission to create and retrieve the access token for repository attestations. */
 export type AppPermissionsAttestations = "read" | "write";
-export const AppPermissionsAttestations = /*@__PURE__*/ S.String;
+export const AppPermissionsAttestations = S.String;
 
 /** The level of permission to grant the access token for checks on code. */
 export type AppPermissionsChecks = "read" | "write";
-export const AppPermissionsChecks = /*@__PURE__*/ S.String;
+export const AppPermissionsChecks = S.String;
 
 /** The level of permission to grant the access token to view and manage code quality data. */
 export type AppPermissionsCodeQuality = "read" | "write";
-export const AppPermissionsCodeQuality = /*@__PURE__*/ S.String;
+export const AppPermissionsCodeQuality = S.String;
 
 /** The level of permission to grant the access token to create, edit, delete, and list Codespaces. */
 export type AppPermissionsCodespaces = "read" | "write";
-export const AppPermissionsCodespaces = /*@__PURE__*/ S.String;
+export const AppPermissionsCodespaces = S.String;
 
 /** The level of permission to grant the access token for repository contents, commits, branches, downloads, releases, and merges. */
 export type AppPermissionsContents = "read" | "write";
-export const AppPermissionsContents = /*@__PURE__*/ S.String;
+export const AppPermissionsContents = S.String;
 
 /** The level of permission to grant the access token to manage Dependabot secrets. */
 export type AppPermissionsDependabotSecrets = "read" | "write";
-export const AppPermissionsDependabotSecrets = /*@__PURE__*/ S.String;
+export const AppPermissionsDependabotSecrets = S.String;
 
 /** The level of permission to grant the access token for deployments and deployment statuses. */
 export type AppPermissionsDeployments = "read" | "write";
-export const AppPermissionsDeployments = /*@__PURE__*/ S.String;
+export const AppPermissionsDeployments = S.String;
 
 /** The level of permission to grant the access token for discussions and related comments and labels. */
 export type AppPermissionsDiscussions = "read" | "write";
-export const AppPermissionsDiscussions = /*@__PURE__*/ S.String;
+export const AppPermissionsDiscussions = S.String;
 
 /** The level of permission to grant the access token for managing repository environments. */
 export type AppPermissionsEnvironments = "read" | "write";
-export const AppPermissionsEnvironments = /*@__PURE__*/ S.String;
+export const AppPermissionsEnvironments = S.String;
 
 /** The level of permission to grant the access token for issues and related comments, assignees, labels, and milestones. */
 export type AppPermissionsIssues = "read" | "write";
-export const AppPermissionsIssues = /*@__PURE__*/ S.String;
+export const AppPermissionsIssues = S.String;
 
 /** The level of permission to grant the access token to manage the merge queues for a repository. */
 export type AppPermissionsMergeQueues = "read" | "write";
-export const AppPermissionsMergeQueues = /*@__PURE__*/ S.String;
+export const AppPermissionsMergeQueues = S.String;
 
 /** The level of permission to grant the access token to search repositories, list collaborators, and access repository metadata. */
 export type AppPermissionsMetadata = "read" | "write";
-export const AppPermissionsMetadata = /*@__PURE__*/ S.String;
+export const AppPermissionsMetadata = S.String;
 
 /** The level of permission to grant the access token for packages published to GitHub Packages. */
 export type AppPermissionsPackages = "read" | "write";
-export const AppPermissionsPackages = /*@__PURE__*/ S.String;
+export const AppPermissionsPackages = S.String;
 
 /** The level of permission to grant the access token to retrieve Pages statuses, configuration, and builds, as well as create new builds. */
 export type AppPermissionsPages = "read" | "write";
-export const AppPermissionsPages = /*@__PURE__*/ S.String;
+export const AppPermissionsPages = S.String;
 
 /** The level of permission to grant the access token for pull requests and related comments, assignees, labels, milestones, and merges. */
 export type AppPermissionsPullRequests = "read" | "write";
-export const AppPermissionsPullRequests = /*@__PURE__*/ S.String;
+export const AppPermissionsPullRequests = S.String;
 
 /** The level of permission to grant the access token to view and edit custom properties for a repository, when allowed by the property. */
 export type AppPermissionsRepositoryCustomProperties = "read" | "write";
-export const AppPermissionsRepositoryCustomProperties = /*@__PURE__*/ S.String;
+export const AppPermissionsRepositoryCustomProperties = S.String;
 
 /** The level of permission to grant the access token to manage the post-receive hooks for a repository. */
 export type AppPermissionsRepositoryHooks = "read" | "write";
-export const AppPermissionsRepositoryHooks = /*@__PURE__*/ S.String;
+export const AppPermissionsRepositoryHooks = S.String;
 
 /** The level of permission to grant the access token to manage repository projects, columns, and cards. */
 export type AppPermissionsRepositoryProjects = "read" | "write" | "admin";
-export const AppPermissionsRepositoryProjects = /*@__PURE__*/ S.String;
+export const AppPermissionsRepositoryProjects = S.String;
 
 /** The level of permission to grant the access token to view and manage secret scanning alerts. */
 export type AppPermissionsSecretScanningAlerts = "read" | "write";
-export const AppPermissionsSecretScanningAlerts = /*@__PURE__*/ S.String;
+export const AppPermissionsSecretScanningAlerts = S.String;
 
 /** The level of permission to grant the access token to manage repository secrets. */
 export type AppPermissionsSecrets = "read" | "write";
-export const AppPermissionsSecrets = /*@__PURE__*/ S.String;
+export const AppPermissionsSecrets = S.String;
 
 /** The level of permission to grant the access token to view and manage security events like code scanning alerts. */
 export type AppPermissionsSecurityEvents = "read" | "write";
-export const AppPermissionsSecurityEvents = /*@__PURE__*/ S.String;
+export const AppPermissionsSecurityEvents = S.String;
 
 /** The level of permission to grant the access token to manage just a single file. */
 export type AppPermissionsSingleFile = "read" | "write";
-export const AppPermissionsSingleFile = /*@__PURE__*/ S.String;
+export const AppPermissionsSingleFile = S.String;
 
 /** The level of permission to grant the access token for commit statuses. */
 export type AppPermissionsStatuses = "read" | "write";
-export const AppPermissionsStatuses = /*@__PURE__*/ S.String;
+export const AppPermissionsStatuses = S.String;
 
 /** The level of permission to grant the access token to manage Dependabot alerts. */
 export type AppPermissionsVulnerabilityAlerts = "read" | "write";
-export const AppPermissionsVulnerabilityAlerts = /*@__PURE__*/ S.String;
+export const AppPermissionsVulnerabilityAlerts = S.String;
 
 /** The level of permission to grant the access token to update GitHub Actions workflow files. */
 export type AppPermissionsWorkflows = "write";
-export const AppPermissionsWorkflows = /*@__PURE__*/ S.String;
+export const AppPermissionsWorkflows = S.String;
 
 /** The level of permission to grant the access token to view and edit custom properties for an organization, when allowed by the property. */
 export type AppPermissionsCustomPropertiesForOrganizations = "read" | "write";
-export const AppPermissionsCustomPropertiesForOrganizations =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsCustomPropertiesForOrganizations = S.String;
 
 /** The level of permission to grant the access token for organization teams and members. */
 export type AppPermissionsMembers = "read" | "write";
-export const AppPermissionsMembers = /*@__PURE__*/ S.String;
+export const AppPermissionsMembers = S.String;
 
 /** The level of permission to grant the access token to manage access to an organization. */
 export type AppPermissionsOrganizationAdministration = "read" | "write";
-export const AppPermissionsOrganizationAdministration = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationAdministration = S.String;
 
 /** The level of permission to grant the access token for custom repository roles management. */
 export type AppPermissionsOrganizationCustomRoles = "read" | "write";
-export const AppPermissionsOrganizationCustomRoles = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationCustomRoles = S.String;
 
 /** The level of permission to grant the access token for custom organization roles management. */
 export type AppPermissionsOrganizationCustomOrgRoles = "read" | "write";
-export const AppPermissionsOrganizationCustomOrgRoles = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationCustomOrgRoles = S.String;
 
 /** The level of permission to grant the access token for repository custom properties management at the organization level. */
 export type AppPermissionsOrganizationCustomProperties =
   | "read"
   | "write"
   | "admin";
-export const AppPermissionsOrganizationCustomProperties =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationCustomProperties = S.String;
 
 /** The level of permission to grant the access token for managing access to GitHub Copilot for members of an organization with a Copilot Business subscription. This property is in public preview and is subject to change. */
 export type AppPermissionsOrganizationCopilotSeatManagement = "read" | "write";
-export const AppPermissionsOrganizationCopilotSeatManagement =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationCopilotSeatManagement = S.String;
 
 /** The level of permission to grant the access token to view and manage Copilot cloud agent settings for an organization. */
 export type AppPermissionsOrganizationCopilotAgentSettings = "read" | "write";
-export const AppPermissionsOrganizationCopilotAgentSettings =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationCopilotAgentSettings = S.String;
 
 /** The level of permission to grant the access token to view and manage announcement banners for an organization. */
 export type AppPermissionsOrganizationAnnouncementBanners = "read" | "write";
-export const AppPermissionsOrganizationAnnouncementBanners =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationAnnouncementBanners = S.String;
 
 /** The level of permission to grant the access token to view events triggered by an activity in an organization. */
 export type AppPermissionsOrganizationEvents = "read";
-export const AppPermissionsOrganizationEvents = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationEvents = S.String;
 
 /** The level of permission to grant the access token to manage the post-receive hooks for an organization. */
 export type AppPermissionsOrganizationHooks = "read" | "write";
-export const AppPermissionsOrganizationHooks = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationHooks = S.String;
 
 /** The level of permission to grant the access token for viewing and managing fine-grained personal access token requests to an organization. */
 export type AppPermissionsOrganizationPersonalAccessTokens = "read" | "write";
-export const AppPermissionsOrganizationPersonalAccessTokens =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationPersonalAccessTokens = S.String;
 
 /** The level of permission to grant the access token for viewing and managing fine-grained personal access tokens that have been approved by an organization. */
 export type AppPermissionsOrganizationPersonalAccessTokenRequests =
   | "read"
   | "write";
-export const AppPermissionsOrganizationPersonalAccessTokenRequests =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationPersonalAccessTokenRequests = S.String;
 
 /** The level of permission to grant the access token for viewing an organization's plan. */
 export type AppPermissionsOrganizationPlan = "read";
-export const AppPermissionsOrganizationPlan = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationPlan = S.String;
 
 /** The level of permission to grant the access token to manage organization projects and projects public preview (where available). */
 export type AppPermissionsOrganizationProjects = "read" | "write" | "admin";
-export const AppPermissionsOrganizationProjects = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationProjects = S.String;
 
 /** The level of permission to grant the access token for organization packages published to GitHub Packages. */
 export type AppPermissionsOrganizationPackages = "read" | "write";
-export const AppPermissionsOrganizationPackages = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationPackages = S.String;
 
 /** The level of permission to grant the access token to manage organization secrets. */
 export type AppPermissionsOrganizationSecrets = "read" | "write";
-export const AppPermissionsOrganizationSecrets = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationSecrets = S.String;
 
 /** The level of permission to grant the access token to view and manage GitHub Actions self-hosted runners available to an organization. */
 export type AppPermissionsOrganizationSelfHostedRunners = "read" | "write";
-export const AppPermissionsOrganizationSelfHostedRunners =
-  /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationSelfHostedRunners = S.String;
 
 /** The level of permission to grant the access token to view and manage users blocked by the organization. */
 export type AppPermissionsOrganizationUserBlocking = "read" | "write";
-export const AppPermissionsOrganizationUserBlocking = /*@__PURE__*/ S.String;
+export const AppPermissionsOrganizationUserBlocking = S.String;
 
 /** The level of permission to grant the access token to manage the email addresses belonging to a user. */
 export type AppPermissionsEmailAddresses = "read" | "write";
-export const AppPermissionsEmailAddresses = /*@__PURE__*/ S.String;
+export const AppPermissionsEmailAddresses = S.String;
 
 /** The level of permission to grant the access token to manage the followers belonging to a user. */
 export type AppPermissionsFollowers = "read" | "write";
-export const AppPermissionsFollowers = /*@__PURE__*/ S.String;
+export const AppPermissionsFollowers = S.String;
 
 /** The level of permission to grant the access token to manage git SSH keys. */
 export type AppPermissionsGitSshKeys = "read" | "write";
-export const AppPermissionsGitSshKeys = /*@__PURE__*/ S.String;
+export const AppPermissionsGitSshKeys = S.String;
 
 /** The level of permission to grant the access token to view and manage GPG keys belonging to a user. */
 export type AppPermissionsGpgKeys = "read" | "write";
-export const AppPermissionsGpgKeys = /*@__PURE__*/ S.String;
+export const AppPermissionsGpgKeys = S.String;
 
 /** The level of permission to grant the access token to view and manage interaction limits on a repository. */
 export type AppPermissionsInteractionLimits = "read" | "write";
-export const AppPermissionsInteractionLimits = /*@__PURE__*/ S.String;
+export const AppPermissionsInteractionLimits = S.String;
 
 /** The level of permission to grant the access token to manage the profile settings belonging to a user. */
 export type AppPermissionsProfile = "write";
-export const AppPermissionsProfile = /*@__PURE__*/ S.String;
+export const AppPermissionsProfile = S.String;
 
 /** The level of permission to grant the access token to list and manage repositories a user is starring. */
 export type AppPermissionsStarring = "read" | "write";
-export const AppPermissionsStarring = /*@__PURE__*/ S.String;
+export const AppPermissionsStarring = S.String;
 
 /** The level of permission to grant the access token for organization custom properties management at the enterprise level. */
 export type AppPermissionsEnterpriseCustomPropertiesForOrganizations =
@@ -408,7 +400,7 @@ export type AppPermissionsEnterpriseCustomPropertiesForOrganizations =
   | "write"
   | "admin";
 export const AppPermissionsEnterpriseCustomPropertiesForOrganizations =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The permissions granted to the fine-grained access token. */
 export interface AppPermissions {
@@ -641,8 +633,7 @@ export const AppPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** Describe whether all repositories have been selected or there's a selection involved */
 export type NullableScopedInstallationRepositorySelection = "all" | "selected";
-export const NullableScopedInstallationRepositorySelection =
-  /*@__PURE__*/ S.String;
+export const NullableScopedInstallationRepositorySelection = S.String;
 
 export type NullableScopedInstallationSingleFilePathsList = Array<string>;
 export const NullableScopedInstallationSingleFilePathsList =
@@ -771,7 +762,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateFromManifestResponseOwner = NullableSimpleUser | Enterprise;
 export const CreateFromManifestResponseOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFromManifestResponseOwner>;
+  S.Unknown as any as S.Schema<CreateFromManifestResponseOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface CreateFromManifestResponsePermissions {
@@ -897,7 +888,7 @@ export const CreateInstallationAccessTokenRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateInstallationAccessTokenRequest>;
 
 export type InstallationTokenRepositorySelection = "all" | "selected";
-export const InstallationTokenRepositorySelection = /*@__PURE__*/ S.String;
+export const InstallationTokenRepositorySelection = S.String;
 
 /** License Simple */
 export interface NullableLicenseSimple {
@@ -947,28 +938,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -1346,8 +1337,7 @@ export const GetAuthenticatedRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAuthenticatedRequest>;
 
 export type IntegrationOwner = NullableSimpleUser | Enterprise;
-export const IntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationOwner>;
+export const IntegrationOwner = S.Unknown as any as S.Schema<IntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export type IntegrationPermissions = CreateFromManifestResponsePermissions;
@@ -1432,11 +1422,11 @@ export const GetInstallationRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type InstallationAccount = NullableSimpleUser | Enterprise;
 export const InstallationAccount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InstallationAccount>;
+  S.Unknown as any as S.Schema<InstallationAccount>;
 
 /** Describe whether all repositories have been selected or there's a selection involved */
 export type InstallationRepositorySelection = "all" | "selected";
-export const InstallationRepositorySelection = /*@__PURE__*/ S.String;
+export const InstallationRepositorySelection = S.String;
 
 export type InstallationEventsList = Array<string>;
 export const InstallationEventsList = /*@__PURE__*/ S.Array(
@@ -1559,7 +1549,7 @@ export type MarketplaceListingPlanPriceModel =
   | "FREE"
   | "FLAT_RATE"
   | "PER_UNIT";
-export const MarketplaceListingPlanPriceModel = /*@__PURE__*/ S.String;
+export const MarketplaceListingPlanPriceModel = S.String;
 
 export type MarketplaceListingPlanBulletsList = Array<string>;
 export const MarketplaceListingPlanBulletsList = /*@__PURE__*/ S.Array(
@@ -1720,7 +1710,7 @@ export const GetWebhookConfigForAppRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type WebhookConfigInsecureSsl = string | number;
 export const WebhookConfigInsecureSsl =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebhookConfigInsecureSsl>;
+  S.Unknown as any as S.Schema<WebhookConfigInsecureSsl>;
 
 /** Configuration object of the webhook */
 export interface WebhookConfig {
@@ -1873,10 +1863,10 @@ export const HookDelivery = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "HookDelivery" }) as any as S.Schema<HookDelivery>;
 
 export type ListAccountsForPlanRequestSort = "created" | "updated";
-export const ListAccountsForPlanRequestSort = /*@__PURE__*/ S.String;
+export const ListAccountsForPlanRequestSort = S.String;
 
 export type ListAccountsForPlanRequestDirection = "asc" | "desc";
-export const ListAccountsForPlanRequestDirection = /*@__PURE__*/ S.String;
+export const ListAccountsForPlanRequestDirection = S.String;
 
 export interface ListAccountsForPlanRequest {
   /** The unique identifier of the plan. */
@@ -1921,11 +1911,10 @@ export const ListAccountsForPlanResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAccountsForPlanResponse>;
 
 export type ListAccountsForPlanStubbedRequestSort = "created" | "updated";
-export const ListAccountsForPlanStubbedRequestSort = /*@__PURE__*/ S.String;
+export const ListAccountsForPlanStubbedRequestSort = S.String;
 
 export type ListAccountsForPlanStubbedRequestDirection = "asc" | "desc";
-export const ListAccountsForPlanStubbedRequestDirection =
-  /*@__PURE__*/ S.String;
+export const ListAccountsForPlanStubbedRequestDirection = S.String;
 
 export interface ListAccountsForPlanStubbedRequest {
   /** The unique identifier of the plan. */
@@ -2015,14 +2004,14 @@ export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemPul
   | "all"
   | "collaborators_only";
 export const ListInstallationReposForAuthenticatedUserResponseRepositoriesItemPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemSquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
 export const ListInstallationReposForAuthenticatedUserResponseRepositoriesItemSquashMergeCommitTitle =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemSquashMergeCommitMessage =
@@ -2030,14 +2019,14 @@ export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemSqu
   | "COMMIT_MESSAGES"
   | "BLANK";
 export const ListInstallationReposForAuthenticatedUserResponseRepositoriesItemSquashMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemMergeCommitTitle =
   | "PR_TITLE"
   | "MERGE_MESSAGE";
 export const ListInstallationReposForAuthenticatedUserResponseRepositoriesItemMergeCommitTitle =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemMergeCommitMessage =
@@ -2045,7 +2034,7 @@ export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemMer
   | "PR_TITLE"
   | "BLANK";
 export const ListInstallationReposForAuthenticatedUserResponseRepositoriesItemMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status of the code search index for this repository */
 export type ListInstallationReposForAuthenticatedUserResponseRepositoriesItemCodeSearchIndexStatus =
@@ -2363,7 +2352,7 @@ export type IntegrationInstallationRequestAccount =
   | NullableSimpleUser
   | Enterprise;
 export const IntegrationInstallationRequestAccount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IntegrationInstallationRequestAccount>;
+  S.Unknown as any as S.Schema<IntegrationInstallationRequestAccount>;
 
 /** Request to install an integration on a target */
 export interface IntegrationInstallationRequest {
@@ -2571,14 +2560,14 @@ export type ListReposAccessibleToInstallationResponseRepositoriesItemPullRequest
   | "all"
   | "collaborators_only";
 export const ListReposAccessibleToInstallationResponseRepositoriesItemPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type ListReposAccessibleToInstallationResponseRepositoriesItemSquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
 export const ListReposAccessibleToInstallationResponseRepositoriesItemSquashMergeCommitTitle =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type ListReposAccessibleToInstallationResponseRepositoriesItemSquashMergeCommitMessage =
@@ -2586,14 +2575,14 @@ export type ListReposAccessibleToInstallationResponseRepositoriesItemSquashMerge
   | "COMMIT_MESSAGES"
   | "BLANK";
 export const ListReposAccessibleToInstallationResponseRepositoriesItemSquashMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type ListReposAccessibleToInstallationResponseRepositoriesItemMergeCommitTitle =
   | "PR_TITLE"
   | "MERGE_MESSAGE";
 export const ListReposAccessibleToInstallationResponseRepositoriesItemMergeCommitTitle =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type ListReposAccessibleToInstallationResponseRepositoriesItemMergeCommitMessage =
@@ -2601,7 +2590,7 @@ export type ListReposAccessibleToInstallationResponseRepositoriesItemMergeCommit
   | "PR_TITLE"
   | "BLANK";
 export const ListReposAccessibleToInstallationResponseRepositoriesItemMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The status of the code search index for this repository */
 export type ListReposAccessibleToInstallationResponseRepositoriesItemCodeSearchIndexStatus =
@@ -3021,7 +3010,7 @@ export const ListSubscriptionsForAuthenticatedUserStubbedResponse =
   }) as any as S.Schema<ListSubscriptionsForAuthenticatedUserStubbedResponse>;
 
 export type ListWebhookDeliveriesRequestStatus = "success" | "failure";
-export const ListWebhookDeliveriesRequestStatus = /*@__PURE__*/ S.String;
+export const ListWebhookDeliveriesRequestStatus = S.String;
 
 export interface ListWebhookDeliveriesRequest {
   /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */

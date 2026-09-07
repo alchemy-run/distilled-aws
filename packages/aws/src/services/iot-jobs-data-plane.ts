@@ -197,7 +197,7 @@ export type JobExecutionStatus =
   | "REMOVED"
   | "CANCELED"
   | (string & {});
-export const JobExecutionStatus = /*@__PURE__*/ S.String;
+export const JobExecutionStatus = S.String;
 
 export type DetailsKey = string;
 export type DetailsValue = string;

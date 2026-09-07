@@ -488,13 +488,13 @@ export type ResourceConfigurationType =
   | "SINGLE"
   | "ARN"
   | (string & {});
-export const ResourceConfigurationType = /*@__PURE__*/ S.String;
+export const ResourceConfigurationType = S.String;
 
 export type PortRange = string;
 export type PortRangeList = string[];
 export const PortRangeList = /*@__PURE__*/ S.Array(S.String);
 export type ProtocolType = "TCP" | (string & {});
-export const ProtocolType = /*@__PURE__*/ S.String;
+export const ProtocolType = S.String;
 
 export type ResourceGatewayIdentifier = string;
 export type ResourceConfigurationIdentifier = string;

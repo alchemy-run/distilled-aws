@@ -139,8 +139,7 @@ export type DeviceSignalsSafeBrowsingProtectionLevelEnum =
   | "INACTIVE"
   | "STANDARD"
   | "ENHANCED";
-export const DeviceSignalsSafeBrowsingProtectionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceSignalsSafeBrowsingProtectionLevelEnum = S.String;
 
 export type DeviceSignalsPasswordProtectionWarningTriggerEnum =
   | "PASSWORD_PROTECTION_WARNING_TRIGGER_UNSPECIFIED"
@@ -148,8 +147,7 @@ export type DeviceSignalsPasswordProtectionWarningTriggerEnum =
   | "PASSWORD_PROTECTION_OFF"
   | "PASSWORD_REUSE"
   | "PHISHING_REUSE";
-export const DeviceSignalsPasswordProtectionWarningTriggerEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceSignalsPasswordProtectionWarningTriggerEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -161,7 +159,7 @@ export type DeviceSignalsDiskEncryptionEnum =
   | "DISK_ENCRYPTION_UNKNOWN"
   | "DISK_ENCRYPTION_DISABLED"
   | "DISK_ENCRYPTION_ENCRYPTED";
-export const DeviceSignalsDiskEncryptionEnum = /*@__PURE__*/ S.String;
+export const DeviceSignalsDiskEncryptionEnum = S.String;
 
 export type DeviceSignalsOperatingSystemEnum =
   | "OPERATING_SYSTEM_UNSPECIFIED"
@@ -170,14 +168,14 @@ export type DeviceSignalsOperatingSystemEnum =
   | "WINDOWS"
   | "MAC_OS_X"
   | "LINUX";
-export const DeviceSignalsOperatingSystemEnum = /*@__PURE__*/ S.String;
+export const DeviceSignalsOperatingSystemEnum = S.String;
 
 export type AntivirusStateEnum =
   | "STATE_UNSPECIFIED"
   | "MISSING"
   | "DISABLED"
   | "ENABLED";
-export const AntivirusStateEnum = /*@__PURE__*/ S.String;
+export const AntivirusStateEnum = S.String;
 
 /** Antivirus information on a device. */
 export interface Antivirus {
@@ -195,33 +193,33 @@ export type DeviceSignalsSecureBootModeEnum =
   | "SECURE_BOOT_MODE_UNKNOWN"
   | "SECURE_BOOT_MODE_DISABLED"
   | "SECURE_BOOT_MODE_ENABLED";
-export const DeviceSignalsSecureBootModeEnum = /*@__PURE__*/ S.String;
+export const DeviceSignalsSecureBootModeEnum = S.String;
 
 export type DeviceSignalsScreenLockSecuredEnum =
   | "SCREEN_LOCK_SECURED_UNSPECIFIED"
   | "SCREEN_LOCK_SECURED_UNKNOWN"
   | "SCREEN_LOCK_SECURED_DISABLED"
   | "SCREEN_LOCK_SECURED_ENABLED";
-export const DeviceSignalsScreenLockSecuredEnum = /*@__PURE__*/ S.String;
+export const DeviceSignalsScreenLockSecuredEnum = S.String;
 
 export type DeviceSignalsTriggerEnum =
   | "TRIGGER_UNSPECIFIED"
   | "TRIGGER_BROWSER_NAVIGATION"
   | "TRIGGER_LOGIN_SCREEN";
-export const DeviceSignalsTriggerEnum = /*@__PURE__*/ S.String;
+export const DeviceSignalsTriggerEnum = S.String;
 
 export type DeviceSignalsOsFirewallEnum =
   | "OS_FIREWALL_UNSPECIFIED"
   | "OS_FIREWALL_UNKNOWN"
   | "OS_FIREWALL_DISABLED"
   | "OS_FIREWALL_ENABLED";
-export const DeviceSignalsOsFirewallEnum = /*@__PURE__*/ S.String;
+export const DeviceSignalsOsFirewallEnum = S.String;
 
 export type DeviceSignalsRealtimeUrlCheckModeEnum =
   | "REALTIME_URL_CHECK_MODE_UNSPECIFIED"
   | "REALTIME_URL_CHECK_MODE_DISABLED"
   | "REALTIME_URL_CHECK_MODE_ENABLED_MAIN_FRAME";
-export const DeviceSignalsRealtimeUrlCheckModeEnum = /*@__PURE__*/ S.String;
+export const DeviceSignalsRealtimeUrlCheckModeEnum = S.String;
 
 /** Properties of the CrowdStrike agent installed on a device. */
 export interface CrowdStrikeAgent {
@@ -358,8 +356,7 @@ export type VerifyChallengeResponseResultKeyTrustLevelEnum =
   | "CHROME_BROWSER_OS_KEY"
   | "CHROME_BROWSER_NO_KEY"
   | "CHROME_OS_NO_KEY";
-export const VerifyChallengeResponseResultKeyTrustLevelEnum =
-  /*@__PURE__*/ S.String;
+export const VerifyChallengeResponseResultKeyTrustLevelEnum = S.String;
 
 export type VerifyChallengeResponseResultProfileKeyTrustLevelEnum =
   | "KEY_TRUST_LEVEL_UNSPECIFIED"
@@ -369,8 +366,7 @@ export type VerifyChallengeResponseResultProfileKeyTrustLevelEnum =
   | "CHROME_BROWSER_OS_KEY"
   | "CHROME_BROWSER_NO_KEY"
   | "CHROME_OS_NO_KEY";
-export const VerifyChallengeResponseResultProfileKeyTrustLevelEnum =
-  /*@__PURE__*/ S.String;
+export const VerifyChallengeResponseResultProfileKeyTrustLevelEnum = S.String;
 
 /** Result message for VerifiedAccess.VerifyChallengeResponse. The response returned when successful for Managed profiles on Unmanaged browsers will NOT have devicePermanentId, keyTrustLevel, virtualDeviceId and customerId fields. Managed profiles will INSTEAD have the profileCustomerId, virtualProfileId, profilePermanentId and profileKeyTrustLevel fields. */
 export interface VerifyChallengeResponseResult {

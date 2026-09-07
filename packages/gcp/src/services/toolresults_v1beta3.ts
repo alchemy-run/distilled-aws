@@ -93,7 +93,7 @@ export type SuggestionClusterProtoCategoryEnum =
   | "touchTargetSize"
   | "lowContrast"
   | "implementation";
-export const SuggestionClusterProtoCategoryEnum = /*@__PURE__*/ S.String;
+export const SuggestionClusterProtoCategoryEnum = S.String;
 
 /** IMPORTANT: It is unsafe to accept this message from an untrusted source, since it's trivial for an attacker to forge serialized messages that don't fulfill the type's safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it's generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests. */
 export interface SafeHtmlProto {
@@ -111,7 +111,7 @@ export type SuggestionProtoPriorityEnum =
   | "error"
   | "warning"
   | "info";
-export const SuggestionProtoPriorityEnum = /*@__PURE__*/ S.String;
+export const SuggestionProtoPriorityEnum = S.String;
 
 /** A rectangular region. */
 export interface RegionProto {
@@ -308,7 +308,7 @@ export const BatchCreatePerfSamplesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchCreatePerfSamplesResponse>;
 
 export type HistoryTestPlatformEnum = "unknownPlatform" | "android" | "ios";
-export const HistoryTestPlatformEnum = /*@__PURE__*/ S.String;
+export const HistoryTestPlatformEnum = S.String;
 
 /** A History represents a sorted list of Executions ordered by the start_timestamp_millis field (descending). It can be used to group all the Executions of a continuous build. Note that the ordering only operates on one-dimension. If a repository has multiple branches, it means that multiple histories will need to be used in order to order Executions per branch. */
 export interface History {
@@ -405,7 +405,7 @@ export type OutcomeSummaryEnum =
   | "inconclusive"
   | "skipped"
   | "flaky";
-export const OutcomeSummaryEnum = /*@__PURE__*/ S.String;
+export const OutcomeSummaryEnum = S.String;
 
 /** Details for an outcome with a FAILURE outcome summary. */
 export interface FailureDetail {
@@ -483,7 +483,7 @@ export type ExecutionStateEnum =
   | "pending"
   | "inProgress"
   | "complete";
-export const ExecutionStateEnum = /*@__PURE__*/ S.String;
+export const ExecutionStateEnum = S.String;
 
 /** Test Loops are tests that can be launched by the app itself, determining when to run by listening for an intent. */
 export type AndroidTestLoop = MatrixDimensionDefinition;
@@ -871,7 +871,7 @@ export type IndividualOutcomeOutcomeSummaryEnum =
   | "inconclusive"
   | "skipped"
   | "flaky";
-export const IndividualOutcomeOutcomeSummaryEnum = /*@__PURE__*/ S.String;
+export const IndividualOutcomeOutcomeSummaryEnum = S.String;
 
 /** Step Id and outcome of each individual step that was run as a group with other steps with the same configuration. */
 export interface IndividualOutcome {
@@ -905,7 +905,7 @@ export type PrimaryStepRollUpEnum =
   | "inconclusive"
   | "skipped"
   | "flaky";
-export const PrimaryStepRollUpEnum = /*@__PURE__*/ S.String;
+export const PrimaryStepRollUpEnum = S.String;
 
 /** Stores rollup test status of multiple steps that were run as a group and outcome of each individual step. */
 export interface PrimaryStep {
@@ -1027,7 +1027,7 @@ export type TestIssueTypeEnum =
   | "assetIssue"
   | "licensingProtectionTermination"
   | "antiTamperingTermination";
-export const TestIssueTypeEnum = /*@__PURE__*/ S.String;
+export const TestIssueTypeEnum = S.String;
 
 /** A stacktrace. */
 export interface StackTrace {
@@ -1046,10 +1046,10 @@ export type TestIssueSeverityEnum =
   | "suggestion"
   | "warning"
   | "severe";
-export const TestIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const TestIssueSeverityEnum = S.String;
 
 export type TestIssueCategoryEnum = "unspecifiedCategory" | "common" | "robo";
-export const TestIssueCategoryEnum = /*@__PURE__*/ S.String;
+export const TestIssueCategoryEnum = S.String;
 
 /** An issue detected occurring during a test execution. */
 export interface TestIssue {
@@ -1120,7 +1120,7 @@ export type StepStateEnum =
   | "pending"
   | "inProgress"
   | "complete";
-export const StepStateEnum = /*@__PURE__*/ S.String;
+export const StepStateEnum = S.String;
 
 /** A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler). Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel). Here is an example, let's consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates a TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE A Step can be updated until its state is set to COMPLETE at which points it becomes immutable. */
 export interface Step {
@@ -1270,7 +1270,7 @@ export type PerfMetricsSummaryPerfMetricsItemEnum =
   | "cpu"
   | "network"
   | "graphics";
-export const PerfMetricsSummaryPerfMetricsItemEnum = /*@__PURE__*/ S.String;
+export const PerfMetricsSummaryPerfMetricsItemEnum = S.String;
 
 export type PerfMetricsSummaryPerfMetricsItemEnumList = Array<
   PerfMetricsSummaryPerfMetricsItemEnum | (string & {})
@@ -1422,8 +1422,7 @@ export type BasicPerfSampleSeriesSampleSeriesLabelEnum =
   | "networkSent"
   | "networkReceived"
   | "graphicsFrameRate";
-export const BasicPerfSampleSeriesSampleSeriesLabelEnum =
-  /*@__PURE__*/ S.String;
+export const BasicPerfSampleSeriesSampleSeriesLabelEnum = S.String;
 
 export type BasicPerfSampleSeriesPerfUnitEnum =
   | "perfUnitUnspecified"
@@ -1432,7 +1431,7 @@ export type BasicPerfSampleSeriesPerfUnitEnum =
   | "bytesPerSecond"
   | "framesPerSecond"
   | "byte";
-export const BasicPerfSampleSeriesPerfUnitEnum = /*@__PURE__*/ S.String;
+export const BasicPerfSampleSeriesPerfUnitEnum = S.String;
 
 export type BasicPerfSampleSeriesPerfMetricTypeEnum =
   | "perfMetricTypeUnspecified"
@@ -1440,7 +1439,7 @@ export type BasicPerfSampleSeriesPerfMetricTypeEnum =
   | "cpu"
   | "network"
   | "graphics";
-export const BasicPerfSampleSeriesPerfMetricTypeEnum = /*@__PURE__*/ S.String;
+export const BasicPerfSampleSeriesPerfMetricTypeEnum = S.String;
 
 /** Encapsulates the metadata for basic sample series represented by a line chart */
 export interface BasicPerfSampleSeries {
@@ -1707,7 +1706,7 @@ export type MergedResultStateEnum =
   | "pending"
   | "inProgress"
   | "complete";
-export const MergedResultStateEnum = /*@__PURE__*/ S.String;
+export const MergedResultStateEnum = S.String;
 
 /** Merged test result for environment. If the environment has only one step (no reruns or shards), then the merged result is the same as the step result. If the environment has multiple shards and/or reruns, then the results of shards and reruns that belong to the same environment are merged into one environment result. */
 export interface MergedResult {
@@ -1910,7 +1909,7 @@ export type TestCaseStatusEnum =
   | "error"
   | "skipped"
   | "flaky";
-export const TestCaseStatusEnum = /*@__PURE__*/ S.String;
+export const TestCaseStatusEnum = S.String;
 
 export interface TestCase {
   /** References to opaque files of any format output by the tool execution. @OutputOnly */
@@ -2256,7 +2255,7 @@ export type ListProjectsHistoriesExecutionsStepsPerfSampleSeriesFilterEnum =
   | "network"
   | "graphics";
 export const ListProjectsHistoriesExecutionsStepsPerfSampleSeriesFilterEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectsHistoriesExecutionsStepsPerfSampleSeriesFilterEnumList =
   Array<

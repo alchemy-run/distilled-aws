@@ -127,7 +127,7 @@ export type DateRangeRelativeEnum =
   | "LAST_6_MONTHS"
   | "LAST_12_MONTHS"
   | "ALL_AVAILABLE";
-export const DateRangeRelativeEnum = /*@__PURE__*/ S.String;
+export const DateRangeRelativeEnum = S.String;
 
 /** A date range for a report. */
 export interface DateRange {
@@ -191,7 +191,7 @@ export type FieldDimensionEnum =
   | "TRANSACTION_TYPE"
   | "VAST_ERROR_CODE"
   | "WEEK";
-export const FieldDimensionEnum = /*@__PURE__*/ S.String;
+export const FieldDimensionEnum = S.String;
 
 export type FieldMetricEnum =
   | "METRIC_UNSPECIFIED"
@@ -222,7 +222,7 @@ export type FieldMetricEnum =
   | "VIDEO_START"
   | "VIDEO_THIRD_QUARTILE"
   | "VIDEO_VTR";
-export const FieldMetricEnum = /*@__PURE__*/ S.String;
+export const FieldMetricEnum = S.String;
 
 /** A dimension or a metric in a report. */
 export interface Field {
@@ -305,7 +305,7 @@ export type ReportDefinitionDimensionsItemEnum =
   | "TRANSACTION_TYPE"
   | "VAST_ERROR_CODE"
   | "WEEK";
-export const ReportDefinitionDimensionsItemEnum = /*@__PURE__*/ S.String;
+export const ReportDefinitionDimensionsItemEnum = S.String;
 
 export type ReportDefinitionDimensionsItemEnumList = Array<
   ReportDefinitionDimensionsItemEnum | (string & {})
@@ -320,7 +320,7 @@ export type ReportDefinitionTimeZoneSourceEnum =
   | "UTC"
   | "PROVIDED"
   | "AGENCY";
-export const ReportDefinitionTimeZoneSourceEnum = /*@__PURE__*/ S.String;
+export const ReportDefinitionTimeZoneSourceEnum = S.String;
 
 export type FieldFilterOperationEnum =
   | "IN"
@@ -334,7 +334,7 @@ export type FieldFilterOperationEnum =
   | "BETWEEN"
   | "MATCHES"
   | "NOT_MATCHES";
-export const FieldFilterOperationEnum = /*@__PURE__*/ S.String;
+export const FieldFilterOperationEnum = S.String;
 
 export type StringList_ = Array<string>;
 export const StringList_ = /*@__PURE__*/ S.Array(
@@ -491,7 +491,7 @@ export type ReportDefinitionMetricsItemEnum =
   | "VIDEO_START"
   | "VIDEO_THIRD_QUARTILE"
   | "VIDEO_VTR";
-export const ReportDefinitionMetricsItemEnum = /*@__PURE__*/ S.String;
+export const ReportDefinitionMetricsItemEnum = S.String;
 
 export type ReportDefinitionMetricsItemEnumList = Array<
   ReportDefinitionMetricsItemEnum | (string & {})

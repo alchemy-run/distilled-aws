@@ -75,7 +75,7 @@ export type RulesListResultItemProvider =
   | "cloudflare_r2"
   | "gcp_storage"
   | "azure_storage";
-export const RulesListResultItemProvider = /*@__PURE__*/ S.String;
+export const RulesListResultItemProvider = S.String;
 
 export interface RulesListResultItem {
   id?: string | null;
@@ -138,7 +138,7 @@ export type RulesUpdateRequestRulesItemProvider =
   | "cloudflare_r2"
   | "gcp_storage"
   | "azure_storage";
-export const RulesUpdateRequestRulesItemProvider = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestRulesItemProvider = S.String;
 
 export interface RulesUpdateRequestRulesItem {
   id?: string;
@@ -194,7 +194,7 @@ export type RulesUpdateResultItemProvider =
   | "cloudflare_r2"
   | "gcp_storage"
   | "azure_storage";
-export const RulesUpdateResultItemProvider = /*@__PURE__*/ S.String;
+export const RulesUpdateResultItemProvider = S.String;
 
 export interface RulesUpdateResultItem {
   id?: string | null;

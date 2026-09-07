@@ -200,7 +200,7 @@ export type ShippingInfoShippingStatusEnum =
   | "SHIPPING_STATE_UNSPECIFIED"
   | "SHIPPED"
   | "DELIVERED";
-export const ShippingInfoShippingStatusEnum = /*@__PURE__*/ S.String;
+export const ShippingInfoShippingStatusEnum = S.String;
 
 /** The shipping information for the order. */
 export interface ShippingInfo {

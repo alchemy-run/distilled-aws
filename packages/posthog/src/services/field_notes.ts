@@ -17,7 +17,7 @@ export type FieldNoteStatusEnum =
   | "acknowledged"
   | "resolved"
   | "dismissed";
-export const FieldNoteStatusEnum = /*@__PURE__*/ S.String;
+export const FieldNoteStatusEnum = S.String;
 
 /** Structured element metadata (inferred selectors, attributes, component hints). */
 export type CreateFieldNoteRequestElementContextMap = {
@@ -126,14 +126,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -265,7 +265,7 @@ export type ListFieldNotesRequestFieldNoteStatus =
   | "dismissed"
   | "pending"
   | "resolved";
-export const ListFieldNotesRequestFieldNoteStatus = /*@__PURE__*/ S.String;
+export const ListFieldNotesRequestFieldNoteStatus = S.String;
 
 export interface ListFieldNotesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

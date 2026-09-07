@@ -108,11 +108,11 @@ export type VectorBucketName = string;
 export type VectorBucketArn = string;
 export type IndexName = string;
 export type DataType = "float32" | (string & {});
-export const DataType = /*@__PURE__*/ S.String;
+export const DataType = S.String;
 
 export type Dimension = number;
 export type DistanceMetric = "euclidean" | "cosine" | (string & {});
-export const DistanceMetric = /*@__PURE__*/ S.String;
+export const DistanceMetric = S.String;
 
 export type MetadataKey = string;
 export type NonFilterableMetadataKeys = string[];
@@ -126,7 +126,7 @@ export const MetadataConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "MetadataConfiguration",
 }) as any as S.Schema<MetadataConfiguration>;
 export type SseType = "AES256" | "aws:kms" | (string & {});
-export const SseType = /*@__PURE__*/ S.String;
+export const SseType = S.String;
 
 export type KmsKeyArn = string;
 export interface EncryptionConfiguration {

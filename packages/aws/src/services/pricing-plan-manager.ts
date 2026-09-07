@@ -110,7 +110,7 @@ export const ApprovePaidSubscriptionInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApprovePaidSubscriptionInput",
 }) as any as S.Schema<ApprovePaidSubscriptionInput>;
 export type ScheduledChangeType = "DOWNGRADE" | "CANCELLATION" | (string & {});
-export const ScheduledChangeType = /*@__PURE__*/ S.String;
+export const ScheduledChangeType = S.String;
 
 export interface ScheduledChange {
   changeType: ScheduledChangeType;
@@ -136,7 +136,7 @@ export type Status =
   | "SYNC_IN_PROGRESS"
   | "FAILED"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type ResourceArns = string[];
 export const ResourceArns = /*@__PURE__*/ S.Array(S.String);
@@ -296,7 +296,7 @@ export const CancelSubscriptionChangeOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelSubscriptionChangeOutput",
 }) as any as S.Schema<CancelSubscriptionChangeOutput>;
 export type ApprovalMode = "MANUAL" | "IMMEDIATE" | (string & {});
-export const ApprovalMode = /*@__PURE__*/ S.String;
+export const ApprovalMode = S.String;
 
 export interface CreateSubscriptionInput {
   planFamily: string;

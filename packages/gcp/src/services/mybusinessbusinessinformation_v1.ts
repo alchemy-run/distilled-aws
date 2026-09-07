@@ -69,7 +69,7 @@ export type BatchGetCategoriesViewEnum =
   | "CATEGORY_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const BatchGetCategoriesViewEnum = /*@__PURE__*/ S.String;
+export const BatchGetCategoriesViewEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -211,7 +211,7 @@ export type TimePeriodCloseDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const TimePeriodCloseDayEnum = /*@__PURE__*/ S.String;
+export const TimePeriodCloseDayEnum = S.String;
 
 export type TimePeriodOpenDayEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -222,7 +222,7 @@ export type TimePeriodOpenDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const TimePeriodOpenDayEnum = /*@__PURE__*/ S.String;
+export const TimePeriodOpenDayEnum = S.String;
 
 /** Represents a span of time that the business is open, starting on the specified open day/time and closing on the specified close day/time. The closing time must occur after the opening time, for example later in the same day, or on a subsequent day. */
 export interface TimePeriod {
@@ -447,7 +447,7 @@ export type OpenInfoStatusEnum =
   | "OPEN"
   | "CLOSED_PERMANENTLY"
   | "CLOSED_TEMPORARILY";
-export const OpenInfoStatusEnum = /*@__PURE__*/ S.String;
+export const OpenInfoStatusEnum = S.String;
 
 /** Information related to the opening state of the business. */
 export interface OpenInfo {
@@ -535,7 +535,7 @@ export type RelevantLocationRelationTypeEnum =
   | "RELATION_TYPE_UNSPECIFIED"
   | "DEPARTMENT_OF"
   | "INDEPENDENT_ESTABLISHMENT_IN";
-export const RelevantLocationRelationTypeEnum = /*@__PURE__*/ S.String;
+export const RelevantLocationRelationTypeEnum = S.String;
 
 /** Information about another location that is related to current one. The relation can be any one of DEPARTMENT_OF or INDEPENDENT_ESTABLISHMENT_OF, and the location specified here can be on either side (parent/child) of the location. */
 export interface RelevantLocation {
@@ -677,7 +677,7 @@ export type ServiceAreaBusinessBusinessTypeEnum =
   | "BUSINESS_TYPE_UNSPECIFIED"
   | "CUSTOMER_LOCATION_ONLY"
   | "CUSTOMER_AND_BUSINESS_LOCATION";
-export const ServiceAreaBusinessBusinessTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceAreaBusinessBusinessTypeEnum = S.String;
 
 /** Service area businesses provide their service at the customer's location (for example, a locksmith or plumber). */
 export interface ServiceAreaBusiness {
@@ -894,7 +894,7 @@ export type AttributeValueTypeEnum =
   | "ENUM"
   | "URL"
   | "REPEATED_ENUM";
-export const AttributeValueTypeEnum = /*@__PURE__*/ S.String;
+export const AttributeValueTypeEnum = S.String;
 
 /** A location attribute. Attributes provide additional information about a location. The attributes that can be set on a location may vary based on the properties of that location (for example, category). Available attributes are determined by Google and may be added and removed without API changes. */
 export interface Attribute {
@@ -1190,7 +1190,7 @@ export type AttributeMetadataValueTypeEnum =
   | "ENUM"
   | "URL"
   | "REPEATED_ENUM";
-export const AttributeMetadataValueTypeEnum = /*@__PURE__*/ S.String;
+export const AttributeMetadataValueTypeEnum = S.String;
 
 /** Metadata for supported attribute values. */
 export interface AttributeValueMetadata {
@@ -1269,7 +1269,7 @@ export type ListCategoriesViewEnum =
   | "CATEGORY_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListCategoriesViewEnum = /*@__PURE__*/ S.String;
+export const ListCategoriesViewEnum = S.String;
 
 export interface ListCategoriesRequest {
   /** Optional. If specified, the next page of categories will be fetched. */

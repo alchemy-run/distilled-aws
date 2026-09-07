@@ -243,7 +243,7 @@ export const AssociateWhatsAppBusinessAccountInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AssociateWhatsAppBusinessAccountInput>;
 export type WhatsAppBusinessAccountName = string;
 export type RegistrationStatus = "COMPLETE" | "INCOMPLETE" | (string & {});
-export const RegistrationStatus = /*@__PURE__*/ S.String;
+export const RegistrationStatus = S.String;
 
 export type LinkedWhatsAppPhoneNumberArn = string;
 export type PhoneNumber = string;
@@ -374,7 +374,7 @@ export type MetaFlowCategory =
   | "SURVEY"
   | "OTHER"
   | (string & {});
-export const MetaFlowCategory = /*@__PURE__*/ S.String;
+export const MetaFlowCategory = S.String;
 
 export type MetaFlowCategoryList = MetaFlowCategory[];
 export const MetaFlowCategoryList = /*@__PURE__*/ S.Array(MetaFlowCategory);

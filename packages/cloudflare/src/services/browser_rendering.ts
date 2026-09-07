@@ -210,8 +210,7 @@ export type ContentCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const ContentCreateRequestAllowResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const ContentCreateRequestAllowResourceTypesItem = S.String;
 
 export type ContentCreateRequestAllowResourceTypesList = Array<
   ContentCreateRequestAllowResourceTypesItem | (string & {})
@@ -234,17 +233,16 @@ export const ContentCreateRequestAuthenticate = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ContentCreateRequestAuthenticate>;
 
 export type ContentCreateRequestCookiesItemPriority = "Low" | "Medium" | "High";
-export const ContentCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const ContentCreateRequestCookiesItemPriority = S.String;
 
 export type ContentCreateRequestCookiesItemSameSite = "Strict" | "Lax" | "None";
-export const ContentCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const ContentCreateRequestCookiesItemSameSite = S.String;
 
 export type ContentCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const ContentCreateRequestCookiesItemSourceScheme =
-  /*@__PURE__*/ S.String;
+export const ContentCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface ContentCreateRequestCookiesItem {
   /** Cookie name. */
@@ -295,16 +293,14 @@ export type ContentCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const ContentCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const ContentCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type ContentCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const ContentCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const ContentCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type ContentCreateRequestGotoOptionsWaitUntilCase1List = Array<
   ContentCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -363,8 +359,7 @@ export type ContentCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const ContentCreateRequestRejectResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const ContentCreateRequestRejectResourceTypesItem = S.String;
 
 export type ContentCreateRequestRejectResourceTypesList = Array<
   ContentCreateRequestRejectResourceTypesItem | (string & {})
@@ -559,7 +554,7 @@ export type CrawlCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const CrawlCreateRequestAllowResourceTypesItem = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestAllowResourceTypesItem = S.String;
 
 export type CrawlCreateRequestAllowResourceTypesList = Array<
   CrawlCreateRequestAllowResourceTypesItem | (string & {})
@@ -572,16 +567,16 @@ export type CrawlCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 export const CrawlCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 
 export type CrawlCreateRequestCookiesItemPriority = "Low" | "Medium" | "High";
-export const CrawlCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestCookiesItemPriority = S.String;
 
 export type CrawlCreateRequestCookiesItemSameSite = "Strict" | "Lax" | "None";
-export const CrawlCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestCookiesItemSameSite = S.String;
 
 export type CrawlCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const CrawlCreateRequestCookiesItemSourceScheme = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface CrawlCreateRequestCookiesItem {
   /** Cookie name. */
@@ -631,7 +626,7 @@ export type CrawlCreateRequestCrawlPurposesItem =
   | "search"
   | "ai-input"
   | "ai-train";
-export const CrawlCreateRequestCrawlPurposesItem = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestCrawlPurposesItem = S.String;
 
 export type CrawlCreateRequestCrawlPurposesList = Array<
   CrawlCreateRequestCrawlPurposesItem | (string & {})
@@ -641,7 +636,7 @@ export const CrawlCreateRequestCrawlPurposesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CrawlCreateRequestCrawlPurposesList>;
 
 export type CrawlCreateRequestFormatsItem = "html" | "markdown" | "json";
-export const CrawlCreateRequestFormatsItem = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestFormatsItem = S.String;
 
 export type CrawlCreateRequestFormatsList = Array<
   CrawlCreateRequestFormatsItem | (string & {})
@@ -655,16 +650,14 @@ export type CrawlCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const CrawlCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const CrawlCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type CrawlCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const CrawlCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const CrawlCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type CrawlCreateRequestGotoOptionsWaitUntilCase1List = Array<
   CrawlCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -814,7 +807,7 @@ export type CrawlCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const CrawlCreateRequestRejectResourceTypesItem = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestRejectResourceTypesItem = S.String;
 
 export type CrawlCreateRequestRejectResourceTypesList = Array<
   CrawlCreateRequestRejectResourceTypesItem | (string & {})
@@ -832,7 +825,7 @@ export const CrawlCreateRequestSetExtraHTTPHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CrawlCreateRequestSetExtraHTTPHeadersMap>;
 
 export type CrawlCreateRequestSource = "sitemaps" | "links" | "all";
-export const CrawlCreateRequestSource = /*@__PURE__*/ S.String;
+export const CrawlCreateRequestSource = S.String;
 
 export type CrawlCreateRequestViewport = ContentCreateRequestViewport;
 export const CrawlCreateRequestViewport = ContentCreateRequestViewport;
@@ -1110,7 +1103,7 @@ export type JsonCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const JsonCreateRequestAllowResourceTypesItem = /*@__PURE__*/ S.String;
+export const JsonCreateRequestAllowResourceTypesItem = S.String;
 
 export type JsonCreateRequestAllowResourceTypesList = Array<
   JsonCreateRequestAllowResourceTypesItem | (string & {})
@@ -1123,16 +1116,16 @@ export type JsonCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 export const JsonCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 
 export type JsonCreateRequestCookiesItemPriority = "Low" | "Medium" | "High";
-export const JsonCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const JsonCreateRequestCookiesItemPriority = S.String;
 
 export type JsonCreateRequestCookiesItemSameSite = "Strict" | "Lax" | "None";
-export const JsonCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const JsonCreateRequestCookiesItemSameSite = S.String;
 
 export type JsonCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const JsonCreateRequestCookiesItemSourceScheme = /*@__PURE__*/ S.String;
+export const JsonCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface JsonCreateRequestCookiesItem {
   /** Cookie name. */
@@ -1193,16 +1186,14 @@ export type JsonCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const JsonCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const JsonCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type JsonCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const JsonCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const JsonCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type JsonCreateRequestGotoOptionsWaitUntilCase1List = Array<
   JsonCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -1260,7 +1251,7 @@ export type JsonCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const JsonCreateRequestRejectResourceTypesItem = /*@__PURE__*/ S.String;
+export const JsonCreateRequestRejectResourceTypesItem = S.String;
 
 export type JsonCreateRequestRejectResourceTypesList = Array<
   JsonCreateRequestRejectResourceTypesItem | (string & {})
@@ -1444,7 +1435,7 @@ export type LinksCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const LinksCreateRequestAllowResourceTypesItem = /*@__PURE__*/ S.String;
+export const LinksCreateRequestAllowResourceTypesItem = S.String;
 
 export type LinksCreateRequestAllowResourceTypesList = Array<
   LinksCreateRequestAllowResourceTypesItem | (string & {})
@@ -1457,16 +1448,16 @@ export type LinksCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 export const LinksCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 
 export type LinksCreateRequestCookiesItemPriority = "Low" | "Medium" | "High";
-export const LinksCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const LinksCreateRequestCookiesItemPriority = S.String;
 
 export type LinksCreateRequestCookiesItemSameSite = "Strict" | "Lax" | "None";
-export const LinksCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const LinksCreateRequestCookiesItemSameSite = S.String;
 
 export type LinksCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const LinksCreateRequestCookiesItemSourceScheme = /*@__PURE__*/ S.String;
+export const LinksCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface LinksCreateRequestCookiesItem {
   /** Cookie name. */
@@ -1517,16 +1508,14 @@ export type LinksCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const LinksCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const LinksCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type LinksCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const LinksCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const LinksCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type LinksCreateRequestGotoOptionsWaitUntilCase1List = Array<
   LinksCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -1584,7 +1573,7 @@ export type LinksCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const LinksCreateRequestRejectResourceTypesItem = /*@__PURE__*/ S.String;
+export const LinksCreateRequestRejectResourceTypesItem = S.String;
 
 export type LinksCreateRequestRejectResourceTypesList = Array<
   LinksCreateRequestRejectResourceTypesItem | (string & {})
@@ -1756,8 +1745,7 @@ export type MarkdownCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const MarkdownCreateRequestAllowResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const MarkdownCreateRequestAllowResourceTypesItem = S.String;
 
 export type MarkdownCreateRequestAllowResourceTypesList = Array<
   MarkdownCreateRequestAllowResourceTypesItem | (string & {})
@@ -1776,20 +1764,19 @@ export type MarkdownCreateRequestCookiesItemPriority =
   | "Low"
   | "Medium"
   | "High";
-export const MarkdownCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const MarkdownCreateRequestCookiesItemPriority = S.String;
 
 export type MarkdownCreateRequestCookiesItemSameSite =
   | "Strict"
   | "Lax"
   | "None";
-export const MarkdownCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const MarkdownCreateRequestCookiesItemSameSite = S.String;
 
 export type MarkdownCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const MarkdownCreateRequestCookiesItemSourceScheme =
-  /*@__PURE__*/ S.String;
+export const MarkdownCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface MarkdownCreateRequestCookiesItem {
   /** Cookie name. */
@@ -1840,16 +1827,14 @@ export type MarkdownCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const MarkdownCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const MarkdownCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type MarkdownCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const MarkdownCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const MarkdownCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type MarkdownCreateRequestGotoOptionsWaitUntilCase1List = Array<
   MarkdownCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -1908,8 +1893,7 @@ export type MarkdownCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const MarkdownCreateRequestRejectResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const MarkdownCreateRequestRejectResourceTypesItem = S.String;
 
 export type MarkdownCreateRequestRejectResourceTypesList = Array<
   MarkdownCreateRequestRejectResourceTypesItem | (string & {})
@@ -2076,7 +2060,7 @@ export type PdfCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const PdfCreateRequestAllowResourceTypesItem = /*@__PURE__*/ S.String;
+export const PdfCreateRequestAllowResourceTypesItem = S.String;
 
 export type PdfCreateRequestAllowResourceTypesList = Array<
   PdfCreateRequestAllowResourceTypesItem | (string & {})
@@ -2089,16 +2073,16 @@ export type PdfCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 export const PdfCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 
 export type PdfCreateRequestCookiesItemPriority = "Low" | "Medium" | "High";
-export const PdfCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const PdfCreateRequestCookiesItemPriority = S.String;
 
 export type PdfCreateRequestCookiesItemSameSite = "Strict" | "Lax" | "None";
-export const PdfCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const PdfCreateRequestCookiesItemSameSite = S.String;
 
 export type PdfCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const PdfCreateRequestCookiesItemSourceScheme = /*@__PURE__*/ S.String;
+export const PdfCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface PdfCreateRequestCookiesItem {
   /** Cookie name. */
@@ -2148,15 +2132,14 @@ export type PdfCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const PdfCreateRequestGotoOptionsWaitUntilCase0 = /*@__PURE__*/ S.String;
+export const PdfCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type PdfCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const PdfCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const PdfCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type PdfCreateRequestGotoOptionsWaitUntilCase1List = Array<
   PdfCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -2202,7 +2185,7 @@ export type PdfCreateRequestPdfOptionsFormat =
   | "a4"
   | "a5"
   | "a6";
-export const PdfCreateRequestPdfOptionsFormat = /*@__PURE__*/ S.String;
+export const PdfCreateRequestPdfOptionsFormat = S.String;
 
 export type PdfCreateRequestPdfOptionsHeight = string | number;
 export const PdfCreateRequestPdfOptionsHeight = /*@__PURE__*/ S.Unknown.pipe(
@@ -2329,7 +2312,7 @@ export type PdfCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const PdfCreateRequestRejectResourceTypesItem = /*@__PURE__*/ S.String;
+export const PdfCreateRequestRejectResourceTypesItem = S.String;
 
 export type PdfCreateRequestRejectResourceTypesList = Array<
   PdfCreateRequestRejectResourceTypesItem | (string & {})
@@ -2506,7 +2489,7 @@ export type ScrapeCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const ScrapeCreateRequestAllowResourceTypesItem = /*@__PURE__*/ S.String;
+export const ScrapeCreateRequestAllowResourceTypesItem = S.String;
 
 export type ScrapeCreateRequestAllowResourceTypesList = Array<
   ScrapeCreateRequestAllowResourceTypesItem | (string & {})
@@ -2519,17 +2502,16 @@ export type ScrapeCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 export const ScrapeCreateRequestAuthenticate = ContentCreateRequestAuthenticate;
 
 export type ScrapeCreateRequestCookiesItemPriority = "Low" | "Medium" | "High";
-export const ScrapeCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const ScrapeCreateRequestCookiesItemPriority = S.String;
 
 export type ScrapeCreateRequestCookiesItemSameSite = "Strict" | "Lax" | "None";
-export const ScrapeCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const ScrapeCreateRequestCookiesItemSameSite = S.String;
 
 export type ScrapeCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const ScrapeCreateRequestCookiesItemSourceScheme =
-  /*@__PURE__*/ S.String;
+export const ScrapeCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface ScrapeCreateRequestCookiesItem {
   /** Cookie name. */
@@ -2580,16 +2562,14 @@ export type ScrapeCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const ScrapeCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const ScrapeCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type ScrapeCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const ScrapeCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const ScrapeCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type ScrapeCreateRequestGotoOptionsWaitUntilCase1List = Array<
   ScrapeCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -2648,8 +2628,7 @@ export type ScrapeCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const ScrapeCreateRequestRejectResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const ScrapeCreateRequestRejectResourceTypesItem = S.String;
 
 export type ScrapeCreateRequestRejectResourceTypesList = Array<
   ScrapeCreateRequestRejectResourceTypesItem | (string & {})
@@ -2885,8 +2864,7 @@ export type ScreenshotCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const ScreenshotCreateRequestAllowResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestAllowResourceTypesItem = S.String;
 
 export type ScreenshotCreateRequestAllowResourceTypesList = Array<
   ScreenshotCreateRequestAllowResourceTypesItem | (string & {})
@@ -2905,22 +2883,19 @@ export type ScreenshotCreateRequestCookiesItemPriority =
   | "Low"
   | "Medium"
   | "High";
-export const ScreenshotCreateRequestCookiesItemPriority =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestCookiesItemPriority = S.String;
 
 export type ScreenshotCreateRequestCookiesItemSameSite =
   | "Strict"
   | "Lax"
   | "None";
-export const ScreenshotCreateRequestCookiesItemSameSite =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestCookiesItemSameSite = S.String;
 
 export type ScreenshotCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const ScreenshotCreateRequestCookiesItemSourceScheme =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface ScreenshotCreateRequestCookiesItem {
   /** Cookie name. */
@@ -2971,16 +2946,14 @@ export type ScreenshotCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const ScreenshotCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type ScreenshotCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const ScreenshotCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type ScreenshotCreateRequestGotoOptionsWaitUntilCase1List = Array<
   ScreenshotCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -3039,8 +3012,7 @@ export type ScreenshotCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const ScreenshotCreateRequestRejectResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestRejectResourceTypesItem = S.String;
 
 export type ScreenshotCreateRequestRejectResourceTypesList = Array<
   ScreenshotCreateRequestRejectResourceTypesItem | (string & {})
@@ -3073,15 +3045,13 @@ export const ScreenshotCreateRequestScreenshotOptionsClip =
 export type ScreenshotCreateRequestScreenshotOptionsEncoding =
   | "binary"
   | "base64";
-export const ScreenshotCreateRequestScreenshotOptionsEncoding =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestScreenshotOptionsEncoding = S.String;
 
 export type ScreenshotCreateRequestScreenshotOptionsType =
   | "png"
   | "jpeg"
   | "webp";
-export const ScreenshotCreateRequestScreenshotOptionsType =
-  /*@__PURE__*/ S.String;
+export const ScreenshotCreateRequestScreenshotOptionsType = S.String;
 
 export interface ScreenshotCreateRequestScreenshotOptions {
   captureBeyondViewport?: boolean;
@@ -3278,8 +3248,7 @@ export type SnapshotCreateRequestAllowResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const SnapshotCreateRequestAllowResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestAllowResourceTypesItem = S.String;
 
 export type SnapshotCreateRequestAllowResourceTypesList = Array<
   SnapshotCreateRequestAllowResourceTypesItem | (string & {})
@@ -3298,20 +3267,19 @@ export type SnapshotCreateRequestCookiesItemPriority =
   | "Low"
   | "Medium"
   | "High";
-export const SnapshotCreateRequestCookiesItemPriority = /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestCookiesItemPriority = S.String;
 
 export type SnapshotCreateRequestCookiesItemSameSite =
   | "Strict"
   | "Lax"
   | "None";
-export const SnapshotCreateRequestCookiesItemSameSite = /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestCookiesItemSameSite = S.String;
 
 export type SnapshotCreateRequestCookiesItemSourceScheme =
   | "Unset"
   | "NonSecure"
   | "Secure";
-export const SnapshotCreateRequestCookiesItemSourceScheme =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestCookiesItemSourceScheme = S.String;
 
 export interface SnapshotCreateRequestCookiesItem {
   /** Cookie name. */
@@ -3362,7 +3330,7 @@ export type SnapshotCreateRequestFormatsItem =
   | "screenshot"
   | "markdown"
   | "accessibilityTree";
-export const SnapshotCreateRequestFormatsItem = /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestFormatsItem = S.String;
 
 export type SnapshotCreateRequestFormatsList = Array<
   SnapshotCreateRequestFormatsItem | (string & {})
@@ -3376,16 +3344,14 @@ export type SnapshotCreateRequestGotoOptionsWaitUntilCase0 =
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const SnapshotCreateRequestGotoOptionsWaitUntilCase0 =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestGotoOptionsWaitUntilCase0 = S.String;
 
 export type SnapshotCreateRequestGotoOptionsWaitUntilCase1Item =
   | "load"
   | "domcontentloaded"
   | "networkidle0"
   | "networkidle2";
-export const SnapshotCreateRequestGotoOptionsWaitUntilCase1Item =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestGotoOptionsWaitUntilCase1Item = S.String;
 
 export type SnapshotCreateRequestGotoOptionsWaitUntilCase1List = Array<
   SnapshotCreateRequestGotoOptionsWaitUntilCase1Item | (string & {})
@@ -3444,8 +3410,7 @@ export type SnapshotCreateRequestRejectResourceTypesItem =
   | "cspviolationreport"
   | "preflight"
   | "other";
-export const SnapshotCreateRequestRejectResourceTypesItem =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestRejectResourceTypesItem = S.String;
 
 export type SnapshotCreateRequestRejectResourceTypesList = Array<
   SnapshotCreateRequestRejectResourceTypesItem | (string & {})
@@ -3464,8 +3429,7 @@ export type SnapshotCreateRequestScreenshotOptionsType =
   | "png"
   | "jpeg"
   | "webp";
-export const SnapshotCreateRequestScreenshotOptionsType =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateRequestScreenshotOptionsType = S.String;
 
 export interface SnapshotCreateRequestScreenshotOptions {
   captureBeyondViewport?: boolean;
@@ -3602,8 +3566,7 @@ export const CreateSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSnapshotRequest>;
 
 export type SnapshotCreateResponseAccessibilityTreeChecked = "mixed";
-export const SnapshotCreateResponseAccessibilityTreeChecked =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateResponseAccessibilityTreeChecked = S.String;
 
 export type SnapshotCreateResponseAccessibilityTreeChecked2 =
   | SnapshotCreateResponseAccessibilityTreeChecked
@@ -3619,8 +3582,7 @@ export const SnapshotCreateResponseAccessibilityTreeChildrenList =
   ) as any as S.Schema<SnapshotCreateResponseAccessibilityTreeChildrenList>;
 
 export type SnapshotCreateResponseAccessibilityTreePressed = "mixed";
-export const SnapshotCreateResponseAccessibilityTreePressed =
-  /*@__PURE__*/ S.String;
+export const SnapshotCreateResponseAccessibilityTreePressed = S.String;
 
 export type SnapshotCreateResponseAccessibilityTreePressed2 =
   | SnapshotCreateResponseAccessibilityTreePressed
@@ -3787,7 +3749,7 @@ export const DeleteDevtoolBrowserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteDevtoolBrowserRequest>;
 
 export type DevtoolsBrowserDeleteResponseStatus = "closing" | "closed";
-export const DevtoolsBrowserDeleteResponseStatus = /*@__PURE__*/ S.String;
+export const DevtoolsBrowserDeleteResponseStatus = S.String;
 
 /** Raw response payload (operation does not use the standard v4 result envelope). */
 export interface DeleteDevtoolBrowserResponse {
@@ -3808,7 +3770,7 @@ export type CrawlGetRequestStatus =
   | "disallowed"
   | "skipped"
   | "cancelled";
-export const CrawlGetRequestStatus = /*@__PURE__*/ S.String;
+export const CrawlGetRequestStatus = S.String;
 
 export interface GetCrawlRequest {
   /** Account ID. */
@@ -3870,7 +3832,7 @@ export type CrawlGetResponseRecordsItemStatus =
   | "disallowed"
   | "skipped"
   | "cancelled";
-export const CrawlGetResponseRecordsItemStatus = /*@__PURE__*/ S.String;
+export const CrawlGetResponseRecordsItemStatus = S.String;
 
 export type CrawlGetResponseRecordsItemJsonMap = {
   [key: string]: unknown | undefined;

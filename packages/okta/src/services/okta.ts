@@ -86,7 +86,7 @@ export type OperationalStatus =
   | "DISRUPTED"
   | "INACTIVE"
   | "OPERATIONAL";
-export const OperationalStatus = /*@__PURE__*/ S.String;
+export const OperationalStatus = S.String;
 
 /** Agent types that are being monitored */
 export type AgentType =
@@ -97,7 +97,7 @@ export type AgentType =
   | "OPP"
   | "RUM"
   | "Radius";
-export const AgentType = /*@__PURE__*/ S.String;
+export const AgentType = S.String;
 
 /** Status for one agent regarding the status to auto-update that agent */
 export type AgentUpdateInstanceStatus =
@@ -107,10 +107,10 @@ export type AgentUpdateInstanceStatus =
   | "PendingCompletion"
   | "Scheduled"
   | "Success";
-export const AgentUpdateInstanceStatus = /*@__PURE__*/ S.String;
+export const AgentUpdateInstanceStatus = S.String;
 
 export type HttpMethod = "DELETE" | "GET" | "POST" | "PUT";
-export const HttpMethod = /*@__PURE__*/ S.String;
+export const HttpMethod = S.String;
 
 export type HrefHintsAllowList = Array<HttpMethod>;
 export const HrefHintsAllowList = /*@__PURE__*/ S.Array(
@@ -238,7 +238,7 @@ export type AgentUpdateJobStatus =
   | "Paused"
   | "Scheduled"
   | "Success";
-export const AgentUpdateJobStatus = /*@__PURE__*/ S.String;
+export const AgentUpdateJobStatus = S.String;
 
 /** Various information about agent auto-update configuration */
 export interface AgentPoolUpdate {
@@ -305,7 +305,7 @@ export const ActivateApiServiceIntegrationInstanceSecretRequest =
 
 /** Status of the API Service Integration instance Secret */
 export type APIServiceIntegrationInstanceSecretStatus = "ACTIVE" | "INACTIVE";
-export const APIServiceIntegrationInstanceSecretStatus = /*@__PURE__*/ S.String;
+export const APIServiceIntegrationInstanceSecretStatus = S.String;
 
 export type HrefObjectActivateLink = HrefObjectSelfLink;
 export const HrefObjectActivateLink = HrefObjectSelfLink;
@@ -422,7 +422,7 @@ export type AuthenticatorKeyEnum =
   | "webauthn"
   | "yubikey_token"
   | "tac";
-export const AuthenticatorKeyEnum = /*@__PURE__*/ S.String;
+export const AuthenticatorKeyEnum = S.String;
 
 /** The type of authenticator */
 export type AuthenticatorType =
@@ -434,7 +434,7 @@ export type AuthenticatorType =
   | "security_key"
   | "security_question"
   | "tac";
-export const AuthenticatorType = /*@__PURE__*/ S.String;
+export const AuthenticatorType = S.String;
 
 export type HrefObject = HrefObjectSelfLink;
 export const HrefObject = HrefObjectSelfLink;
@@ -506,8 +506,7 @@ export type ActivateAuthenticatorMethodRequestMethodType =
   | "voice"
   | "webauthn"
   | "tac";
-export const ActivateAuthenticatorMethodRequestMethodType =
-  /*@__PURE__*/ S.String;
+export const ActivateAuthenticatorMethodRequestMethodType = S.String;
 
 export interface ActivateAuthenticatorMethodRequest {
   /** `id` of the authenticator */
@@ -546,7 +545,7 @@ export type AuthenticatorMethodType =
   | "voice"
   | "webauthn"
   | "tac";
-export const AuthenticatorMethodType = /*@__PURE__*/ S.String;
+export const AuthenticatorMethodType = S.String;
 
 export interface LinksSelfAndLifecycle {
   self?: HrefObjectSelfLink;
@@ -682,7 +681,7 @@ export const ActivateBehaviorDetectionRuleRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ActivateBehaviorDetectionRuleRequest>;
 
 export type LifecycleStatus = "ACTIVE" | "INACTIVE";
-export const LifecycleStatus = /*@__PURE__*/ S.String;
+export const LifecycleStatus = S.String;
 
 export type BehaviorRuleType =
   | "ANOMALOUS_DEVICE"
@@ -690,7 +689,7 @@ export type BehaviorRuleType =
   | "ANOMALOUS_LOCATION"
   | "VELOCITY"
   | "ANOMALOUS_ASN";
-export const BehaviorRuleType = /*@__PURE__*/ S.String;
+export const BehaviorRuleType = S.String;
 
 export interface BehaviorRule {
   /** Timestamp when the Behavior Detection Rule was created */
@@ -739,14 +738,13 @@ export const ActivateCustomTelephonyCredentialRequest = /*@__PURE__*/ S.suspend(
 /** The types of telephony operations (SMS or Voice) that you use with your telephony provider. `ALL` is the only valid value. It indicates that your provider can handle both SMS messages and voice calls. You're not required to use both types of telephony operations, but your provider can support both. */
 export type CustomTelephonyProviderCredentialResponseProviderCapability = "ALL";
 export const CustomTelephonyProviderCredentialResponseProviderCapability =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Name of the telephony provider */
 export type CustomTelephonyProviderCredentialResponseProviderName =
   | "TWILIO"
   | "TELESIGN";
-export const CustomTelephonyProviderCredentialResponseProviderName =
-  /*@__PURE__*/ S.String;
+export const CustomTelephonyProviderCredentialResponseProviderName = S.String;
 
 export interface CustomTelephonyProviderSettingsTwilioVerify {
   /** The Twilio Verify Service SID used for sending verification messages or calls. You can find this value in your Twilio console. This method uses Twilio's [Verify API](https://www.twilio.com/docs/verify/api). */
@@ -792,7 +790,7 @@ export type CustomTelephonyProviderSettingsTelesignServiceCallTelesignService =
   | "telesignVoiceService"
   | "telesignVerifyService";
 export const CustomTelephonyProviderSettingsTelesignServiceCallTelesignService =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CustomTelephonyProviderSettingsTelesignServiceCall {
   /** The Telesign service identifier used for sending making calls. You can find this value in your Telesign console. The `telesignVerifyService` method uses Telesign's [Verify API](https://developer.telesign.com/enterprise/docs/verify-api-overview). And the `telesignVoiceService` method uses Telesign's [Voice API](https://developer.telesign.com/enterprise/docs/voice-overview). */
@@ -818,7 +816,7 @@ export type CustomTelephonyProviderSettingsCall =
   | CustomTelephonyProviderSettingsTwilioCallerId
   | CustomTelephonyProviderSettingsTelesignServiceCall;
 export const CustomTelephonyProviderSettingsCall =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomTelephonyProviderSettingsCall>;
+  S.Unknown as any as S.Schema<CustomTelephonyProviderSettingsCall>;
 
 export interface CustomTelephonyProviderSettingsTwilioMessagingService {
   /** The Twilio Messaging Service SID used for sending SMS messages. You can find this value in your Twilio console. This method uses Twilio's [Programmable Messaging API](https://www.twilio.com/docs/messaging). */
@@ -838,7 +836,7 @@ export type CustomTelephonyProviderSettingsTelesignServiceSmsTelesignService =
   | "telesignMessagingService"
   | "telesignVerifyService";
 export const CustomTelephonyProviderSettingsTelesignServiceSmsTelesignService =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CustomTelephonyProviderSettingsTelesignServiceSms {
   /** The Telesign service identifier used for sending SMS messages. You can find this value in your Telesign console. The `telesignVerifyService` method uses Telesign's [Verify API](https://developer.telesign.com/enterprise/docs/verify-api-overview). And the `telesignMessagingService` method uses Telesign's [SMS](https://developer.telesign.com/enterprise/docs/voice-overview) and [Messaging](https://developer.telesign.com/enterprise/docs/messaging-overview) APIs. */
@@ -864,7 +862,7 @@ export type CustomTelephonyProviderSettingsSms =
   | CustomTelephonyProviderSettingsTwilioMessagingService
   | CustomTelephonyProviderSettingsTelesignServiceSms;
 export const CustomTelephonyProviderSettingsSms =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomTelephonyProviderSettingsSms>;
+  S.Unknown as any as S.Schema<CustomTelephonyProviderSettingsSms>;
 
 /** Settings for custom telephony provider. These settings vary based on the telephony provider and the type of telephony operation (SMS or Voice). For `sms` and `call`, you can select one method per telephony operation (`sms` and `call`) for sending messages or voice calls. > **Note:** Configure your telephony provider settings before selecting the methods for sending SMS messages or making voice calls. For example, if you select Twilio as your telephony provider, and you want to send SMS messages using Twilio's Verify Service, ensure that you have the Verify Service set up in your Twilio account. You can then use the `twilioVerifySid` field under `sms` to provide the necessary SID. */
 export interface CustomTelephonyProviderSettings {
@@ -985,7 +983,7 @@ export const ActivateDeviceIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ActivateDeviceIntegrationRequest>;
 
 export type DeviceIntegrationsMetadataCase0Type = "CHROME";
-export const DeviceIntegrationsMetadataCase0Type = /*@__PURE__*/ S.String;
+export const DeviceIntegrationsMetadataCase0Type = S.String;
 
 export interface DeviceIntegrationsMetadataCase0 {
   type: DeviceIntegrationsMetadataCase0Type;
@@ -1003,7 +1001,7 @@ export const DeviceIntegrationsMetadataCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeviceIntegrationsMetadataCase0>;
 
 export type DeviceIntegrationsMetadataCase1Type = "WORKSPACE_ONE";
-export const DeviceIntegrationsMetadataCase1Type = /*@__PURE__*/ S.String;
+export const DeviceIntegrationsMetadataCase1Type = S.String;
 
 export interface DeviceIntegrationsMetadataCase1 {
   type: DeviceIntegrationsMetadataCase1Type;
@@ -1023,7 +1021,7 @@ export const DeviceIntegrationsMetadataCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeviceIntegrationsMetadataCase1>;
 
 export type DeviceIntegrationsMetadataCase2Type = "DEVICE_IDP";
-export const DeviceIntegrationsMetadataCase2Type = /*@__PURE__*/ S.String;
+export const DeviceIntegrationsMetadataCase2Type = S.String;
 
 export interface DeviceIntegrationsMetadataCase2 {
   type: DeviceIntegrationsMetadataCase2Type;
@@ -1044,7 +1042,7 @@ export type DeviceIntegrationsMetadata =
   | DeviceIntegrationsMetadataCase1
   | DeviceIntegrationsMetadataCase2;
 export const DeviceIntegrationsMetadata =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeviceIntegrationsMetadata>;
+  S.Unknown as any as S.Schema<DeviceIntegrationsMetadata>;
 
 /** The namespace of the device integration */
 export type DeviceIntegrationsName =
@@ -1055,7 +1053,7 @@ export type DeviceIntegrationsName =
   | "com.okta.deviceidp"
   | "com.okta.windowssecuritycenter"
   | "com.okta.workspaceone";
-export const DeviceIntegrationsName = /*@__PURE__*/ S.String;
+export const DeviceIntegrationsName = S.String;
 
 export type DeviceIntegrationsPlatform =
   | "ANDROID"
@@ -1063,11 +1061,11 @@ export type DeviceIntegrationsPlatform =
   | "IOS"
   | "MACOS"
   | "WINDOWS";
-export const DeviceIntegrationsPlatform = /*@__PURE__*/ S.String;
+export const DeviceIntegrationsPlatform = S.String;
 
 /** The status of the device integration */
 export type DeviceIntegrationsStatus = "ACTIVE" | "DEACTIVATED";
-export const DeviceIntegrationsStatus = /*@__PURE__*/ S.String;
+export const DeviceIntegrationsStatus = S.String;
 
 export interface DeviceIntegrations {
   /** The display name of the device integration */
@@ -1114,7 +1112,7 @@ export const ActivateEventHookRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The authentication scheme type. Currently only supports `HEADER`. */
 export type EventHookChannelConfigAuthSchemeType = "HEADER";
-export const EventHookChannelConfigAuthSchemeType = /*@__PURE__*/ S.String;
+export const EventHookChannelConfigAuthSchemeType = S.String;
 
 /** The authentication scheme used for this request. To use Basic Auth for authentication, set `type` to `HEADER`, `key` to `Authorization`, and `value` to the Base64-encoded string of "username:password". Ensure that you include the scheme (including space) as part of the `value` parameter. For example, `Basic YWRtaW46c3VwZXJzZWNyZXQ=`. */
 export interface EventHookChannelConfigAuthSchemeOutput {
@@ -1176,7 +1174,7 @@ export const EventHookChannelConfigOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** The channel type. Currently supports `HTTP`. */
 export type EventHookChannelType = "HTTP";
-export const EventHookChannelType = /*@__PURE__*/ S.String;
+export const EventHookChannelType = S.String;
 
 export interface EventHookChannelOutput {
   config: EventHookChannelConfigOutput;
@@ -1252,7 +1250,7 @@ export const EventHookSubscribedEventTypes = /*@__PURE__*/ S.Array(
 
 /** The events object type. Currently supports `EVENT_TYPE`. */
 export type EventSubscriptionType = "EVENT_TYPE";
-export const EventSubscriptionType = /*@__PURE__*/ S.String;
+export const EventSubscriptionType = S.String;
 
 export interface EventSubscriptions {
   filter?: EventHookFilters | null;
@@ -1271,11 +1269,11 @@ export const EventSubscriptions = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the event hook */
 export type EventHookOutputStatus = "ACTIVE" | "INACTIVE";
-export const EventHookOutputStatus = /*@__PURE__*/ S.String;
+export const EventHookOutputStatus = S.String;
 
 /** Verification status of the event hook. `UNVERIFIED` event hooks won't receive any events. */
 export type EventHookVerificationStatus = "UNVERIFIED" | "VERIFIED";
-export const EventHookVerificationStatus = /*@__PURE__*/ S.String;
+export const EventHookVerificationStatus = S.String;
 
 export interface EventHookOutputLinks {
   self?: HrefObjectSelfLink;
@@ -1407,7 +1405,7 @@ export type UserFactorActivateRequest =
   | UserFactorActivateRequestCase5
   | UserFactorActivateRequestCase6;
 export const UserFactorActivateRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserFactorActivateRequest>;
+  S.Unknown as any as S.Schema<UserFactorActivateRequest>;
 
 export interface ActivateFactorRequest {
   /** ID of an existing Okta user */
@@ -1441,7 +1439,7 @@ export type UserFactorActivateResponseFactorType =
   | "token:software:totp"
   | "u2f"
   | "webauthn";
-export const UserFactorActivateResponseFactorType = /*@__PURE__*/ S.String;
+export const UserFactorActivateResponseFactorType = S.String;
 
 export type UserFactorActivateResponseLinksUser = HrefObjectSelfLink;
 export const UserFactorActivateResponseLinksUser = HrefObjectSelfLink;
@@ -1523,11 +1521,11 @@ export const ActivateIdentityProviderRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether Okta uses the original Okta org domain URL or a custom domain URL in the request to the social IdP */
 export type IdentityProviderIssuerMode = "CUSTOM_URL" | "DYNAMIC" | "ORG_URL";
-export const IdentityProviderIssuerMode = /*@__PURE__*/ S.String;
+export const IdentityProviderIssuerMode = S.String;
 
 /** Specifies the account linking action for an IdP user */
 export type PolicyAccountLinkAction = "AUTO" | "DISABLED";
-export const PolicyAccountLinkAction = /*@__PURE__*/ S.String;
+export const PolicyAccountLinkAction = S.String;
 
 /** Specifies the allowlist of Group identifiers to match against. Group memberships are restricted to type `OKTA_GROUP`. */
 export type PolicyAccountLinkFilterGroupsIncludeList = Array<string>;
@@ -1600,11 +1598,11 @@ export const PolicyAccountLink = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the user provisioning action during authentication when an IdP user isn't linked to an existing Okta user. * To successfully provision a new Okta user, you must enable just-in-time (JIT) provisioning in your org security settings. * If the target username isn't unique or the resulting Okta user profile is missing a required profile attribute, JIT provisioning may fail. * New Okta users are provisioned with either a `FEDERATION` or `SOCIAL` authentication provider depending on the IdP type. */
 export type ProvisioningAction = "AUTO" | "DISABLED";
-export const ProvisioningAction = /*@__PURE__*/ S.String;
+export const ProvisioningAction = S.String;
 
 /** Specifies the action during authentication when an IdP user is linked to a previously deprovisioned Okta user */
 export type ProvisioningDeprovisionedAction = "NONE" | "REACTIVATE";
-export const ProvisioningDeprovisionedAction = /*@__PURE__*/ S.String;
+export const ProvisioningDeprovisionedAction = S.String;
 
 /** Behavior for a previously deprovisioned IdP user during authentication */
 export interface ProvisioningDeprovisionedCondition {
@@ -1620,7 +1618,7 @@ export const ProvisioningDeprovisionedCondition = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the action during authentication when an IdP user is linked to a previously suspended Okta user */
 export type ProvisioningSuspendedAction = "NONE" | "UNSUSPEND";
-export const ProvisioningSuspendedAction = /*@__PURE__*/ S.String;
+export const ProvisioningSuspendedAction = S.String;
 
 /** Behavior for a previously suspended IdP user during authentication */
 export interface ProvisioningSuspendedCondition {
@@ -1650,7 +1648,7 @@ export const ProvisioningConditions = /*@__PURE__*/ S.suspend(() =>
 
 /** Provisioning action for the IdP user's group memberships | Enum | Description | Existing OKTA_GROUP Memberships | Existing APP_GROUP Memberships | Existing BUILT_IN Memberships | | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------ | ----------------------------- | | `APPEND` | Adds a user to any group defined by the IdP as a value of the `sourceAttributeName` array that matches the name of the allow listed group defined in the `filter` | Unchanged | Unchanged | Unchanged | | `ASSIGN` | Assigns a user to groups defined in the `assignments` array | Unchanged | Unchanged | Unchanged | | `NONE` | Skips processing of group memberships | Unchanged | Unchanged | Unchanged | | `SYNC` | Group memberships are sourced by the IdP as a value of the `sourceAttributeName` array that matches the name of the group defined in the `filter` | Removed if not defined by the IdP in `sourceAttributeName` and matching name of the group in `filter` | Unchanged | Unchanged | > **Note:** Group provisioning action is processed independently from profile sourcing. You can sync group memberships through SAML with profile sourcing disabled. */
 export type ProvisioningGroupsAction = "APPEND" | "ASSIGN" | "NONE" | "SYNC";
-export const ProvisioningGroupsAction = /*@__PURE__*/ S.String;
+export const ProvisioningGroupsAction = S.String;
 
 /** List of `OKTA_GROUP` group identifiers to add an IdP user as a member with the `ASSIGN` action */
 export type ProvisioningGroupsAssignmentsList = Array<string>;
@@ -1708,7 +1706,7 @@ export type PolicySubjectMatchType =
   | "EMAIL"
   | "USERNAME"
   | "USERNAME_OR_EMAIL";
-export const PolicySubjectMatchType = /*@__PURE__*/ S.String;
+export const PolicySubjectMatchType = S.String;
 
 /** [Okta Expression Language (EL) expression](https://developer.okta.com/docs/reference/okta-expression-language/) to generate or transform a unique username for the IdP user. * IdP user profile attributes can be referenced with the `idpuser` prefix such as `idpuser.subjectNameId`. * You must define an IdP user profile attribute before it can be referenced in an Okta EL expression. To define an IdP user attribute policy, you may need to create a new IdP instance without a base profile property. Then edit the IdP user profile to update the IdP instance with an expression that references the IdP user profile attribute that you just created. */
 export interface PolicyUserNameTemplate {
@@ -1766,8 +1764,7 @@ export type IdentityProviderPropertiesAdditionalAmrItem =
   | "hwk"
   | "pin"
   | "mfa";
-export const IdentityProviderPropertiesAdditionalAmrItem =
-  /*@__PURE__*/ S.String;
+export const IdentityProviderPropertiesAdditionalAmrItem = S.String;
 
 /** The additional Assurance Methods References (AMR) values for Smart Card IdPs. Applies to `X509` IdP type. */
 export type IdentityProviderPropertiesAdditionalAmrList = Array<
@@ -1833,14 +1830,14 @@ export const IdentityProviderProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** XML Digest Algorithm setting for cryptographically hashing `<AuthnRequest>` messages sent to the IdP > **Note:** This property is ignored when you disable request signatures (`scope` set as `NONE`). */
 export type SamlRequestDigestAlgorithm = "SHA-1" | "SHA-256";
-export const SamlRequestDigestAlgorithm = /*@__PURE__*/ S.String;
+export const SamlRequestDigestAlgorithm = S.String;
 
 export type SamlSigningAlgorithm = "SHA-1" | "SHA-256";
-export const SamlSigningAlgorithm = /*@__PURE__*/ S.String;
+export const SamlSigningAlgorithm = S.String;
 
 /** Specifies whether to digitally sign authorization requests to the IdP */
 export type ProtocolAlgorithmRequestScope = "NONE" | "REQUEST";
-export const ProtocolAlgorithmRequestScope = /*@__PURE__*/ S.String;
+export const ProtocolAlgorithmRequestScope = S.String;
 
 /** XML digital Signature Algorithm settings for signing `<AuthnRequest>` messages sent to the IdP > **Note:** The `algorithm` property is ignored when you disable request signatures (`scope` set as `NONE`). */
 export interface SamlRequestSignatureAlgorithm {
@@ -1872,7 +1869,7 @@ export const SamlRequestAlgorithm = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies whether to verify responses from the IdP */
 export type ProtocolAlgorithmResponseScope = "ANY" | "RESPONSE" | "TOKEN";
-export const ProtocolAlgorithmResponseScope = /*@__PURE__*/ S.String;
+export const ProtocolAlgorithmResponseScope = S.String;
 
 /** XML digital Signature Algorithm settings for verifying `<SAMLResponse>` messages and `<Assertion>` elements from the IdP */
 export interface SamlResponseSignatureAlgorithm {
@@ -1966,11 +1963,11 @@ export const SamlCredentials = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SamlCredentials>;
 
 export type ProtocolEndpointBinding = "HTTP-POST" | "HTTP-REDIRECT";
-export const ProtocolEndpointBinding = /*@__PURE__*/ S.String;
+export const ProtocolEndpointBinding = S.String;
 
 /** Determines whether to publish an instance-specific (trust) or organization (shared) ACS endpoint in the SAML metadata */
 export type SamlEndpointType = "INSTANCE" | "ORG";
-export const SamlEndpointType = /*@__PURE__*/ S.String;
+export const SamlEndpointType = S.String;
 
 /** Okta's `SPSSODescriptor` endpoint where the IdP sends a `<SAMLResponse>` message */
 export interface SamlAcsEndpoint {
@@ -2035,7 +2032,7 @@ export const SamlEndpoints = /*@__PURE__*/ S.suspend(() =>
 
 /** The format used to generate the `relayState` in the SAML request. The `FROM_URL` format is used if this value is null. */
 export type SamlRelayStateFormat = "FROM_URL" | "OPAQUE";
-export const SamlRelayStateFormat = /*@__PURE__*/ S.String;
+export const SamlRelayStateFormat = S.String;
 
 /** Relay state settings for IdP */
 export interface SamlRelayState {
@@ -2053,7 +2050,7 @@ export type SamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient";
-export const SamlNameIdFormat = /*@__PURE__*/ S.String;
+export const SamlNameIdFormat = S.String;
 
 /** Advanced settings for the SAML 2.0 protocol */
 export interface SamlSettings {
@@ -2076,7 +2073,7 @@ export const SamlSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** SAML 2.0 protocol */
 export type ProtocolSamlType = "SAML2";
-export const ProtocolSamlType = /*@__PURE__*/ S.String;
+export const ProtocolSamlType = S.String;
 
 /** Protocol settings for the [SAML 2.0 Authentication Request Protocol](http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf) */
 export interface ProtocolSaml {
@@ -2101,8 +2098,7 @@ export const ProtocolSaml = /*@__PURE__*/ S.suspend(() =>
 
 /** Client authentication methods supported by the token endpoint */
 export type OAuthCredentialsClientTokenEndpointAuthMethod = "private_key_jwt";
-export const OAuthCredentialsClientTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+export const OAuthCredentialsClientTokenEndpointAuthMethod = S.String;
 
 /** OAuth 2.0 and OpenID Connect Client object > **Note:** You must complete client registration with the IdP Authorization Server for your Okta IdP instance to obtain client credentials. */
 export interface OAuthCredentialsClient {
@@ -2262,7 +2258,7 @@ export const OAuthScopes = /*@__PURE__*/ S.Array(
 
 /** OAuth 2.0 Authorization Code flow */
 export type ProtocolOAuthType = "OAUTH2";
-export const ProtocolOAuthType = /*@__PURE__*/ S.String;
+export const ProtocolOAuthType = S.String;
 
 /** Protocol settings for authentication using the [OAuth 2.0 Authorization Code flow](https://tools.ietf.org/html/rfc6749#section-4.1) */
 export interface ProtocolOAuth {
@@ -2288,7 +2284,7 @@ export type OidcSigningAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const OidcSigningAlgorithm = /*@__PURE__*/ S.String;
+export const OidcSigningAlgorithm = S.String;
 
 /** Signature Algorithm settings for signing authorization requests sent to the IdP > **Note:** The `algorithm` property is ignored when you disable request signatures (`scope` set as `NONE`). */
 export interface OidcRequestSignatureAlgorithm {
@@ -2358,7 +2354,7 @@ export const OidcSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** OpenID Connect Authorization Code flow */
 export type ProtocolOidcType = "OIDC";
-export const ProtocolOidcType = /*@__PURE__*/ S.String;
+export const ProtocolOidcType = S.String;
 
 /** Protocol settings for authentication using the [OpenID Connect Protocol](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth) */
 export interface ProtocolOidc {
@@ -2389,7 +2385,7 @@ export const ProtocolOidc = /*@__PURE__*/ S.suspend(() =>
 
 /** Mechanism to validate the certificate > **Note:** This property isn't supported. Okta now handles CRL caching automatically. As of October 8, 2025, in Preview orgs, and October 13, 2025, in Production orgs, this property is ignored if it's specified in any API requests. Specifying the property in your API requests doesn't cause any errors since the property has no effect. > > See [Deprecation Notice - Smart Card IdP Legacy CRL Cache Setting](https://support.okta.com/help/s/article/deprecation-notice-smart-card-idp-legacy-crl-cache-setting?language=en_US). */
 export type MtlsTrustCredentialsRevocation = "CRL" | "DELTA_CRL" | "OCSP";
-export const MtlsTrustCredentialsRevocation = /*@__PURE__*/ S.String;
+export const MtlsTrustCredentialsRevocation = S.String;
 
 export interface MtlsTrustCredentials {
   /** Not used */
@@ -2448,7 +2444,7 @@ export const MtlsEndpoints = /*@__PURE__*/ S.suspend(() =>
 
 /** Mutual TLS */
 export type ProtocolMtlsType = "MTLS";
-export const ProtocolMtlsType = /*@__PURE__*/ S.String;
+export const ProtocolMtlsType = S.String;
 
 /** Protocol settings for the [MTLS Protocol](https://tools.ietf.org/html/rfc5246#section-7.4.4) */
 export interface ProtocolMtls {
@@ -2509,7 +2505,7 @@ export const IDVCredentials = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IDVCredentials" }) as any as S.Schema<IDVCredentials>;
 
 export type IDVAuthorizationEndpointBinding = "HTTP-REDIRECT";
-export const IDVAuthorizationEndpointBinding = /*@__PURE__*/ S.String;
+export const IDVAuthorizationEndpointBinding = S.String;
 
 /** IDV authorization endpoint */
 export interface IDVAuthorizationEndpoint {
@@ -2527,7 +2523,7 @@ export const IDVAuthorizationEndpoint = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IDVAuthorizationEndpoint>;
 
 export type IDVParEndpointBinding = "HTTP-POST";
-export const IDVParEndpointBinding = /*@__PURE__*/ S.String;
+export const IDVParEndpointBinding = S.String;
 
 /** IDV [PAR](https://datatracker.ietf.org/doc/html/rfc9126) endpoint */
 export interface IDVParEndpoint {
@@ -2543,7 +2539,7 @@ export const IDVParEndpoint = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IDVParEndpoint" }) as any as S.Schema<IDVParEndpoint>;
 
 export type IDVTokenEndpointBinding = "HTTP-POST";
-export const IDVTokenEndpointBinding = /*@__PURE__*/ S.String;
+export const IDVTokenEndpointBinding = S.String;
 
 /** Token endpoint of the IDV vendor */
 export interface IDVTokenEndpoint {
@@ -2578,7 +2574,7 @@ export const IDVEndpoints = /*@__PURE__*/ S.suspend(() =>
 
 /** ID verification protocol */
 export type ProtocolIdVerificationType = "ID_PROOFING";
-export const ProtocolIdVerificationType = /*@__PURE__*/ S.String;
+export const ProtocolIdVerificationType = S.String;
 
 /** Protocol settings for the IDV vendor */
 export interface ProtocolIdVerification {
@@ -2607,7 +2603,7 @@ export type IdentityProviderProtocol =
   | ProtocolMtls
   | ProtocolIdVerification;
 export const IdentityProviderProtocol =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IdentityProviderProtocol>;
+  S.Unknown as any as S.Schema<IdentityProviderProtocol>;
 
 /** The IdP object's `type` property identifies the social or enterprise IdP used for authentication. Each IdP uses a specific protocol, therefore the `protocol` object must correspond with the IdP `type`. If the protocol is OAuth 2.0-based, the `protocol` object's `scopes` property must also correspond with the scopes supported by the IdP `type`. For policy actions supported by each IdP type, see [IdP type policy actions](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/IdentityProvider/#tag/IdentityProvider/operation/createIdentityProvider!path=policy&t=request). | Type | Description | Corresponding protocol | Corresponding protocol scopes | | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | -------------------------------------------------------------------- | | `AMAZON` | [Amazon](https://developer.amazon.com/settings/console/registration?return_to=/)&nbsp;as the IdP | OpenID Connect | `profile`, `profile:user_id` | | `APPLE` | [Apple](https://developer.apple.com/sign-in-with-apple/)&nbsp;as the IdP | OpenID Connect | `names`, `email`, `openid` | | `DISCORD` | [Discord](https://discord.com/login)&nbsp;as the IdP | OAuth 2.0 | `identify`, `email` | | `FACEBOOK` | [Facebook](https://developers.facebook.com)&nbsp;as the IdP | OAuth 2.0 | `public_profile`, `email` | | `GITHUB` | [GitHub](https://github.com/join)&nbsp;as the IdP | OAuth 2.0 | `user` | | `GITLAB` | [GitLab](https://gitlab.com/users/sign_in)&nbsp;as the IdP | OpenID Connect | `openid`, `read_user`, `profile`, `email` | | `GOOGLE` | [Google](https://accounts.google.com/signup)&nbsp;as the IdP | OpenID Connect | `openid`, `email`, `profile` | | `IDV_PERSONA` | [Persona](https://app.withpersona.com/dashboard/login)&nbsp;as the IDV IdP | ID verification | | | `IDV_CLEAR` | [CLEAR Verified](https://www.clearme.com/)&nbsp;as the IDV IdP | ID verification | `openid`, `profile`, `identity_assurance` | | `IDV_INCODE` | [Incode](https://incode.com/)&nbsp;as the IDV IdP | ID verification | `openid`, `profile`, `identity_assurance` | | `IDV_STANDARD` | Custom IDV&nbsp;as the IDV IdP | ID verification | `openid`, `profile`, `identity_assurance` | | `LINKEDIN` | [LinkedIn](https://developer.linkedin.com/)&nbsp;as the IdP | OAuth 2.0 | `r_emailaddress`, `r_liteprofile` | | `LOGINGOV` | [Login.gov](https://developers.login.gov/)&nbsp;as the IdP | OpenID Connect | `email`, `profile`, `profile:name` | | `LOGINGOV_SANDBOX` | [Login.gov's identity sandbox](https://developers.login.gov/testing/)&nbsp;as the IdP | OpenID Connect | `email`, `profile`, `profile:name` | | `MICROSOFT` | [Microsoft Enterprise SSO](https://azure.microsoft.com/)&nbsp;as the IdP | OpenID Connect | `openid`, `email`, `profile`, `https://graph.microsoft.com/User.Read` | | `OIDC` | IdP that supports [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html) | OpenID Connect | `openid`, `email`, `profile` | | `PAYPAL` | [Paypal](https://www.paypal.com/signin)&nbsp;as the IdP | OpenID Connect | `openid`, `email`, `profile` | | `PAYPAL_SANDBOX` | [Paypal Sandbox](https://developer.paypal.com/tools/sandbox/)&nbsp;as the IdP | OpenID Connect | `openid`, `email`, `profile` | | `SALESFORCE` | [SalesForce](https://login.salesforce.com/)&nbsp;as the IdP | OAuth 2.0 | `id`, `email`, `profile` | | `SAML2` | Enterprise IdP that supports the [SAML 2.0 Web Browser SSO Profile](https://docs.oasis-open.org/security/saml/v2.0/saml-profiles-2.0-os.pdf)| SAML 2.0 | | | `SPOTIFY` | [Spotify](https://developer.spotify.com/)&nbsp;as the IdP | OpenID Connect | `user-read-email`, `user-read-private` | | `X509` | [Smart Card IdP](https://tools.ietf.org/html/rfc5280) | Mutual TLS | | | `XERO` | [Xero](https://www.xero.com/us/signup/api/)&nbsp;as the IdP | OpenID Connect | `openid`, `profile`, `email` | | `YAHOO` | [Yahoo](https://login.yahoo.com/)&nbsp;as the IdP | OpenID Connect | `openid`, `profile`, `email` | | `YAHOOJP` | [Yahoo Japan](https://login.yahoo.co.jp/config/login)&nbsp;as the IdP | OpenID Connect | `openid`, `profile`, `email` | | `OKTA_INTEGRATION` | IdP that supports the [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html) Org2Org IdP | OpenID Connect | `openid`, `email`, `profile` | */
 export type IdentityProviderType =
@@ -2637,7 +2633,7 @@ export type IdentityProviderType =
   | "XERO"
   | "YAHOO"
   | "YAHOOJP";
-export const IdentityProviderType = /*@__PURE__*/ S.String;
+export const IdentityProviderType = S.String;
 
 export interface IdentityProviderLinks {
   self?: HrefObjectSelfLink;
@@ -2727,7 +2723,7 @@ export const ActivateInlineHookRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ActivateInlineHookRequest>;
 
 export type InlineHookChannelType = "HTTP" | "OAUTH";
-export const InlineHookChannelType = /*@__PURE__*/ S.String;
+export const InlineHookChannelType = S.String;
 
 export interface InlineHookChannel {
   type?: InlineHookChannelType;
@@ -2744,7 +2740,7 @@ export const InlineHookChannel = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InlineHookChannel>;
 
 export type InlineHookStatus = "ACTIVE" | "INACTIVE";
-export const InlineHookStatus = /*@__PURE__*/ S.String;
+export const InlineHookStatus = S.String;
 
 /** One of the inline hook types */
 export type InlineHookType =
@@ -2754,7 +2750,7 @@ export type InlineHookType =
   | "com.okta.telephony.provider"
   | "com.okta.user.credential.password.import"
   | "com.okta.user.pre-registration";
-export const InlineHookType = /*@__PURE__*/ S.String;
+export const InlineHookType = S.String;
 
 export interface InlineHookLinks {
   self?: HrefObjectSelfLink;
@@ -2830,15 +2826,15 @@ export const ActivateLogStreamRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Lifecycle status of the log stream object */
 export type LogStreamStatus = "ACTIVE" | "INACTIVE";
-export const LogStreamStatus = /*@__PURE__*/ S.String;
+export const LogStreamStatus = S.String;
 
 /** Specifies the streaming provider used Supported providers: * `aws_eventbridge` ([AWS EventBridge](https://aws.amazon.com/eventbridge)) * `splunk_cloud_logstreaming` ([Splunk Cloud](https://www.splunk.com/en_us/software/splunk-cloud-platform.html)) Select the provider type to see provider-specific configurations in the `settings` property: */
 export type LogStreamType = "aws_eventbridge" | "splunk_cloud_logstreaming";
-export const LogStreamType = /*@__PURE__*/ S.String;
+export const LogStreamType = S.String;
 
 /** HTTP method allowed for the resource */
 export type LogStreamActivateLinkMethod = "GET" | "POST";
-export const LogStreamActivateLinkMethod = /*@__PURE__*/ S.String;
+export const LogStreamActivateLinkMethod = S.String;
 
 export interface LogStreamActivateLink {
   /** The URI of the resource */
@@ -2857,7 +2853,7 @@ export const LogStreamActivateLink = /*@__PURE__*/ S.suspend(() =>
 
 /** HTTP method allowed for the resource */
 export type LogStreamDeactivateLinkMethod = "GET" | "POST";
-export const LogStreamDeactivateLinkMethod = /*@__PURE__*/ S.String;
+export const LogStreamDeactivateLinkMethod = S.String;
 
 export interface LogStreamDeactivateLink {
   /** The URI of the resource */
@@ -2876,7 +2872,7 @@ export const LogStreamDeactivateLink = /*@__PURE__*/ S.suspend(() =>
 
 /** HTTP method allowed for the resource */
 export type LogStreamSelfLinkMethod = "GET" | "POST";
-export const LogStreamSelfLinkMethod = /*@__PURE__*/ S.String;
+export const LogStreamSelfLinkMethod = S.String;
 
 export interface LogStreamSelfLink {
   /** The URI of the resource */
@@ -2954,15 +2950,15 @@ export const ActivateNetworkZoneRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Network Zone status */
 export type NetworkZoneStatus = "ACTIVE" | "INACTIVE";
-export const NetworkZoneStatus = /*@__PURE__*/ S.String;
+export const NetworkZoneStatus = S.String;
 
 /** The type of Network Zone */
 export type NetworkZoneType = "DYNAMIC" | "IP" | "DYNAMIC_V2";
-export const NetworkZoneType = /*@__PURE__*/ S.String;
+export const NetworkZoneType = S.String;
 
 /** The usage of the Network Zone */
 export type NetworkZoneUsage = "BLOCKLIST" | "POLICY";
-export const NetworkZoneUsage = /*@__PURE__*/ S.String;
+export const NetworkZoneUsage = S.String;
 
 export interface NetworkZone {
   /** Timestamp when the object was created */
@@ -3018,7 +3014,7 @@ export const ActivateOAuth2ClientJsonWebKeyRequest = /*@__PURE__*/ S.suspend(
 
 /** Status of the OAuth 2.0 client JSON Web Key */
 export type OAuth2ClientJsonWebKeyRsaResponseStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ClientJsonWebKeyRsaResponseStatus = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyRsaResponseStatus = S.String;
 
 /** Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available for the current status of an app using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification. This object is used for dynamic discovery of related resources and lifecycle operations. */
 export type OAuthClientSecretLinks = APIServiceIntegrationSecretLinks;
@@ -3026,7 +3022,7 @@ export const OAuthClientSecretLinks = APIServiceIntegrationSecretLinks;
 
 /** Cryptographic algorithm family for the certificate's key pair */
 export type OAuth2ClientJsonWebKeyRsaResponseKty = "RSA";
-export const OAuth2ClientJsonWebKeyRsaResponseKty = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyRsaResponseKty = S.String;
 
 /** An RSA signing key */
 export interface OAuth2ClientJsonWebKeyRsaResponse {
@@ -3066,11 +3062,11 @@ export const OAuth2ClientJsonWebKeyRsaResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the OAuth 2.0 client JSON Web Key */
 export type OAuth2ClientJsonWebKeyECResponseStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ClientJsonWebKeyECResponseStatus = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyECResponseStatus = S.String;
 
 /** Cryptographic algorithm family for the certificate's key pair */
 export type OAuth2ClientJsonWebKeyECResponseKty = "EC";
-export const OAuth2ClientJsonWebKeyECResponseKty = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyECResponseKty = S.String;
 
 /** An EC signing key */
 export interface OAuth2ClientJsonWebKeyECResponse {
@@ -3113,20 +3109,19 @@ export type OAuth2ClientJsonSigningKeyResponse =
   | OAuth2ClientJsonWebKeyRsaResponse
   | OAuth2ClientJsonWebKeyECResponse;
 export const OAuth2ClientJsonSigningKeyResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OAuth2ClientJsonSigningKeyResponse>;
+  S.Unknown as any as S.Schema<OAuth2ClientJsonSigningKeyResponse>;
 
 /** Status of the OAuth 2.0 client JSON Web Key */
 export type OAuth2ClientJsonEncryptionKeyResponseStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ClientJsonEncryptionKeyResponseStatus =
-  /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonEncryptionKeyResponseStatus = S.String;
 
 /** Cryptographic algorithm family for the certificate's key pair */
 export type OAuth2ClientJsonEncryptionKeyResponseKty = "RSA";
-export const OAuth2ClientJsonEncryptionKeyResponseKty = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonEncryptionKeyResponseKty = S.String;
 
 /** Acceptable use of the JSON Web Key */
 export type OAuth2ClientJsonEncryptionKeyResponseUse = "enc";
-export const OAuth2ClientJsonEncryptionKeyResponseUse = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonEncryptionKeyResponseUse = S.String;
 
 /** A [JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517) is a JSON representation of a cryptographic key. Okta uses an encryption key to encrypt an ID token JWT minted by the org authorization server or custom authorization server. Okta supports only RSA keys for encrypting tokens. */
 export interface OAuth2ClientJsonEncryptionKeyResponse {
@@ -3172,7 +3167,7 @@ export type ActivateOAuth2ClientJsonWebKeyResponseBody =
   | OAuth2ClientJsonSigningKeyResponse
   | OAuth2ClientJsonEncryptionKeyResponse;
 export const ActivateOAuth2ClientJsonWebKeyResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActivateOAuth2ClientJsonWebKeyResponseBody>;
+  S.Unknown as any as S.Schema<ActivateOAuth2ClientJsonWebKeyResponseBody>;
 
 export type ActivateOAuth2ClientJsonWebKeyResponse =
   ActivateOAuth2ClientJsonWebKeyResponseBody;
@@ -3205,7 +3200,7 @@ export const ActivateOAuth2ClientSecretRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the OAuth 2.0 client secret */
 export type OAuth2ClientSecretStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ClientSecretStatus = /*@__PURE__*/ S.String;
+export const OAuth2ClientSecretStatus = S.String;
 
 export interface OAuth2ClientSecret {
   /** The OAuth 2.0 client secret string */
@@ -3260,7 +3255,7 @@ export const ActivateOAuth2ResourceServerJsonWebKeyRequest =
 
 /** The status of the encryption key. You can use only an `ACTIVE` key to encrypt tokens issued by the authorization server. */
 export type OAuth2ResourceServerJsonWebKeyStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ResourceServerJsonWebKeyStatus = /*@__PURE__*/ S.String;
+export const OAuth2ResourceServerJsonWebKeyStatus = S.String;
 
 /** Specifies link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) available for the current status of a JSON Web Key using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification. This object is used for dynamic discovery of related resources and lifecycle operations. */
 export interface OAuthResourceServerKeyLinks {
@@ -3395,19 +3390,19 @@ export const ActivatePreregistrationEnrollmentRequestCredResponsesList =
 export type ActivatePreregistrationEnrollmentRequestFulfillmentProvider =
   "yubico";
 export const ActivatePreregistrationEnrollmentRequestFulfillmentProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The elliptic curve protocol */
 export type ECKeyJWKCrv = "P-384";
-export const ECKeyJWKCrv = /*@__PURE__*/ S.String;
+export const ECKeyJWKCrv = S.String;
 
 /** The type of public key */
 export type ECKeyJWKKty = "EC";
-export const ECKeyJWKKty = /*@__PURE__*/ S.String;
+export const ECKeyJWKKty = S.String;
 
 /** The intended use for the key. This value is either `enc` (encryption) during enrollment, when Okta uses the ECKeyJWK to encrypt requests to Yubico. Or it's `sig` (signature) during activation, when Okta uses the ECKeyJWK to verify the responses from Yubico. */
 export type ECKeyJWKUse = "enc" | "sig";
-export const ECKeyJWKUse = /*@__PURE__*/ S.String;
+export const ECKeyJWKUse = S.String;
 
 /** Elliptic curve key in JSON Web Key (JWK) format. It's used during enrollment to encrypt fulfillment requests to Yubico, or during activation to verify Yubico's JWS (JSON Web Signature) objects in fulfillment responses. The currently agreed protocol uses P-384. */
 export interface ECKeyJWK {
@@ -3498,8 +3493,7 @@ export const EnrollmentActivationResponseAuthenticatorEnrollmentIdsList =
 
 /** Name of the fulfillment provider for the WebAuthn preregistration factor */
 export type EnrollmentActivationResponseFulfillmentProvider = "yubico";
-export const EnrollmentActivationResponseFulfillmentProvider =
-  /*@__PURE__*/ S.String;
+export const EnrollmentActivationResponseFulfillmentProvider = S.String;
 
 /** Enrollment initialization response */
 export interface EnrollmentActivationResponse {
@@ -3590,7 +3584,7 @@ export const SecurityEventsProviderSettingsResponse = /*@__PURE__*/ S.suspend(
 
 /** Indicates whether the security events provider is active or not */
 export type SecurityEventsProviderResponseStatus = "ACTIVE" | "INACTIVE";
-export const SecurityEventsProviderResponseStatus = /*@__PURE__*/ S.String;
+export const SecurityEventsProviderResponseStatus = S.String;
 
 /** The security events provider response */
 export interface SecurityEventsProviderResponse {
@@ -3638,7 +3632,7 @@ export const ActivateTrustedOriginRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ActivateTrustedOriginRequest>;
 
 export type IframeEmbedScopeAllowedApps = "OKTA_ENDUSER";
-export const IframeEmbedScopeAllowedApps = /*@__PURE__*/ S.String;
+export const IframeEmbedScopeAllowedApps = S.String;
 
 /** The allowed Okta apps for the trusted origin scope */
 export type TrustedOriginScopeAllowedOktaAppsList = Array<
@@ -3650,7 +3644,7 @@ export const TrustedOriginScopeAllowedOktaAppsList = /*@__PURE__*/ S.Array(
 
 /** The scope type. Supported values: When you use `IFRAME_EMBED` as the scope type, leave the `allowedOktaApps` property empty to allow iFrame embedding of only Okta sign-in pages. Include `OKTA_ENDUSER` as a value for the `allowedOktaApps` property to allow iFrame embedding of both Okta sign-in pages and the Okta End-User Dashboard. */
 export type TrustedOriginScopeType = "CORS" | "IFRAME_EMBED" | "REDIRECT";
-export const TrustedOriginScopeType = /*@__PURE__*/ S.String;
+export const TrustedOriginScopeType = S.String;
 
 export interface TrustedOriginScope {
   /** The allowed Okta apps for the trusted origin scope */
@@ -3804,12 +3798,11 @@ export const OktaActiveDirectoryGroupProfile = /*@__PURE__*/ S.suspend(() =>
 export type GroupProfile =
   | OktaUserGroupProfile
   | OktaActiveDirectoryGroupProfile;
-export const GroupProfile =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupProfile>;
+export const GroupProfile = S.Unknown as any as S.Schema<GroupProfile>;
 
 /** Determines how a group's profile and memberships are managed */
 export type GroupType = "APP_GROUP" | "BUILT_IN" | "OKTA_GROUP";
-export const GroupType = /*@__PURE__*/ S.String;
+export const GroupType = S.String;
 
 /** Statistics about the group */
 export interface GroupEmbeddedStats {
@@ -3926,11 +3919,11 @@ export const Group = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the OAuth 2.0 client JSON Web Key */
 export type OAuth2ClientJsonWebKeyRsaRequestStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ClientJsonWebKeyRsaRequestStatus = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyRsaRequestStatus = S.String;
 
 /** Cryptographic algorithm family for the certificate's key pair */
 export type OAuth2ClientJsonWebKeyRsaRequestKty = "RSA";
-export const OAuth2ClientJsonWebKeyRsaRequestKty = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyRsaRequestKty = S.String;
 
 /** An RSA signing key */
 export interface OAuth2ClientJsonWebKeyRsaRequest {
@@ -3959,11 +3952,11 @@ export const OAuth2ClientJsonWebKeyRsaRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the OAuth 2.0 client JSON Web Key */
 export type OAuth2ClientJsonWebKeyECRequestStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ClientJsonWebKeyECRequestStatus = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyECRequestStatus = S.String;
 
 /** Cryptographic algorithm family for the certificate's key pair */
 export type OAuth2ClientJsonWebKeyECRequestKty = "EC";
-export const OAuth2ClientJsonWebKeyECRequestKty = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonWebKeyECRequestKty = S.String;
 
 /** An EC signing key */
 export interface OAuth2ClientJsonWebKeyECRequest {
@@ -3995,20 +3988,19 @@ export type OAuth2ClientJsonSigningKeyRequest =
   | OAuth2ClientJsonWebKeyRsaRequest
   | OAuth2ClientJsonWebKeyECRequest;
 export const OAuth2ClientJsonSigningKeyRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OAuth2ClientJsonSigningKeyRequest>;
+  S.Unknown as any as S.Schema<OAuth2ClientJsonSigningKeyRequest>;
 
 /** Status of the OAuth 2.0 client JSON Web Key */
 export type OAuth2ClientJsonEncryptionKeyRequestStatus = "ACTIVE" | "INACTIVE";
-export const OAuth2ClientJsonEncryptionKeyRequestStatus =
-  /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonEncryptionKeyRequestStatus = S.String;
 
 /** Cryptographic algorithm family for the certificate's key pair */
 export type OAuth2ClientJsonEncryptionKeyRequestKty = "RSA";
-export const OAuth2ClientJsonEncryptionKeyRequestKty = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonEncryptionKeyRequestKty = S.String;
 
 /** Acceptable use of the JSON Web Key */
 export type OAuth2ClientJsonEncryptionKeyRequestUse = "enc";
-export const OAuth2ClientJsonEncryptionKeyRequestUse = /*@__PURE__*/ S.String;
+export const OAuth2ClientJsonEncryptionKeyRequestUse = S.String;
 
 /** A [JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517) is a JSON representation of a cryptographic key. Okta uses an encryption key to encrypt an ID token JWT minted by the org authorization server or custom authorization server. Okta supports only RSA keys for encrypting tokens. */
 export interface OAuth2ClientJsonEncryptionKeyRequest {
@@ -4046,7 +4038,7 @@ export type AddJwkRequestBody =
   | OAuth2ClientJsonSigningKeyRequest
   | OAuth2ClientJsonEncryptionKeyRequest;
 export const AddJwkRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddJwkRequestBody>;
+  S.Unknown as any as S.Schema<AddJwkRequestBody>;
 
 export interface AddJwkRequest {
   /** Application ID */
@@ -4070,7 +4062,7 @@ export type AddJwkResponseBody =
   | OAuth2ClientJsonSigningKeyResponse
   | OAuth2ClientJsonEncryptionKeyResponse;
 export const AddJwkResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddJwkResponseBody>;
+  S.Unknown as any as S.Schema<AddJwkResponseBody>;
 
 export type AddJwkResponse = AddJwkResponseBody;
 export const AddJwkResponse = /*@__PURE__*/ S.suspend(() =>
@@ -4143,8 +4135,7 @@ export const ResourceSetBindingEditResponse = /*@__PURE__*/ S.suspend(() =>
 export type AddOAuth2ResourceServerJsonWebKeyRequestStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const AddOAuth2ResourceServerJsonWebKeyRequestStatus =
-  /*@__PURE__*/ S.String;
+export const AddOAuth2ResourceServerJsonWebKeyRequestStatus = S.String;
 
 export interface AddOAuth2ResourceServerJsonWebKeyRequest {
   /** `id` of the Authorization Server */
@@ -4679,7 +4670,7 @@ export const AssignFulfillmentErrorWebAuthnPreregistrationFactorResponse =
 
 /** The entity type of the owner */
 export type GroupOwnerType = "GROUP" | "USER";
-export const GroupOwnerType = /*@__PURE__*/ S.String;
+export const GroupOwnerType = S.String;
 
 export interface AssignGroupOwnerRequest {
   /** The `id` of the group */
@@ -4706,7 +4697,7 @@ export const AssignGroupOwnerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The source where group ownership is managed */
 export type GroupOwnerOriginType = "APPLICATION" | "OKTA_DIRECTORY";
-export const GroupOwnerOriginType = /*@__PURE__*/ S.String;
+export const GroupOwnerOriginType = S.String;
 
 export interface GroupOwner {
   /** The display name of the group owner */
@@ -4998,7 +4989,7 @@ export type StandardRoleAssignmentSchemaType =
   | "SUPER_ADMIN"
   | "USER_ADMIN"
   | "WORKFLOWS_ADMIN";
-export const StandardRoleAssignmentSchemaType = /*@__PURE__*/ S.String;
+export const StandardRoleAssignmentSchemaType = S.String;
 
 export interface StandardRoleAssignmentSchema {
   /** Specify a [standard admin role](/openapi/okta-management/guides/roles/#standard-roles), an [IAM-based standard role](/openapi/okta-management/guides/roles/#iam-based-standard-roles), or `CUSTOM` for a custom role type: */
@@ -5014,7 +5005,7 @@ export const StandardRoleAssignmentSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** Specify a [standard admin role](/openapi/okta-management/guides/roles/#standard-roles), an [IAM-based standard role](/openapi/okta-management/guides/roles/#iam-based-standard-roles), or `CUSTOM` for a custom role type: */
 export type CustomRoleAssignmentSchemaType = "CUSTOM";
-export const CustomRoleAssignmentSchemaType = /*@__PURE__*/ S.String;
+export const CustomRoleAssignmentSchemaType = S.String;
 
 export interface CustomRoleAssignmentSchema {
   /** Resource set ID */
@@ -5038,7 +5029,7 @@ export type AssignRoleToClientRequestBody =
   | StandardRoleAssignmentSchema
   | CustomRoleAssignmentSchema;
 export const AssignRoleToClientRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AssignRoleToClientRequestBody>;
+  S.Unknown as any as S.Schema<AssignRoleToClientRequestBody>;
 
 export interface AssignRoleToClientRequest {
   /** `client_id` of the app */
@@ -5062,7 +5053,7 @@ export const AssignRoleToClientRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Role assignment type */
 export type RoleAssignmentType = "CLIENT" | "GROUP" | "USER";
-export const RoleAssignmentType = /*@__PURE__*/ S.String;
+export const RoleAssignmentType = S.String;
 
 /** | Role type | Description | |------------------------------|-------------------------------------------------------------| | ACCESS_CERTIFICATIONS_ADMIN | Access Certifications Administrator IAM-based standard role | | ACCESS_REQUESTS_ADMIN | Access Requests Administrator IAM-based standard role | | API_ACCESS_MANAGEMENT_ADMIN | Access Management Administrator standard role | | APP_ADMIN | Application Administrator standard role | | CUSTOM | Custom admin role | | GROUP_MEMBERSHIP_ADMIN | Group Membership Administrator standard role | | HELP_DESK_ADMIN | Help Desk Administrator standard role | | ORG_ADMIN | Organizational Administrator standard role | | READ_ONLY_ADMIN | Read-Only Administrator standard role | | REPORT_ADMIN | Report Administrator standard role | | SUPER_ADMIN | Super Administrator standard role | | USER_ADMIN | User Administrator standard role | | WORKFLOWS_ADMIN | Workflows Administrator IAM-based standard role | */
 export type RoleType =
@@ -5079,7 +5070,7 @@ export type RoleType =
   | "SUPER_ADMIN"
   | "USER_ADMIN"
   | "WORKFLOWS_ADMIN";
-export const RoleType = /*@__PURE__*/ S.String;
+export const RoleType = S.String;
 
 /** Group targets */
 export type StandardRoleEmbeddedTargetsGroupsList = Array<Group>;
@@ -5101,7 +5092,7 @@ export const CatalogApplicationSignOnModesList = /*@__PURE__*/ S.Array(
 
 /** App status */
 export type CatalogApplicationStatus = "ACTIVE" | "INACTIVE";
-export const CatalogApplicationStatus = /*@__PURE__*/ S.String;
+export const CatalogApplicationStatus = S.String;
 
 export type HrefObjectLogoLink = HrefObjectSelfLink;
 export const HrefObjectLogoLink = HrefObjectSelfLink;
@@ -5326,7 +5317,7 @@ export const CustomRole = /*@__PURE__*/ S.suspend(() =>
 
 export type AssignRoleToClientResponseBody = StandardRole | CustomRole;
 export const AssignRoleToClientResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AssignRoleToClientResponseBody>;
+  S.Unknown as any as S.Schema<AssignRoleToClientResponseBody>;
 
 export type AssignRoleToClientResponse = AssignRoleToClientResponseBody;
 export const AssignRoleToClientResponse = /*@__PURE__*/ S.suspend(() =>
@@ -5339,7 +5330,7 @@ export type AssignRoleToGroupRequestBody =
   | StandardRoleAssignmentSchema
   | CustomRoleAssignmentSchema;
 export const AssignRoleToGroupRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AssignRoleToGroupRequestBody>;
+  S.Unknown as any as S.Schema<AssignRoleToGroupRequestBody>;
 
 export interface AssignRoleToGroupRequest {
   /** The `id` of the group */
@@ -5366,7 +5357,7 @@ export const AssignRoleToGroupRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type AssignRoleToGroupResponseBody = StandardRole | CustomRole;
 export const AssignRoleToGroupResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AssignRoleToGroupResponseBody>;
+  S.Unknown as any as S.Schema<AssignRoleToGroupResponseBody>;
 
 export type AssignRoleToGroupResponse = AssignRoleToGroupResponseBody;
 export const AssignRoleToGroupResponse = /*@__PURE__*/ S.suspend(() =>
@@ -5379,7 +5370,7 @@ export type AssignRoleToUserRequestBody =
   | StandardRoleAssignmentSchema
   | CustomRoleAssignmentSchema;
 export const AssignRoleToUserRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AssignRoleToUserRequestBody>;
+  S.Unknown as any as S.Schema<AssignRoleToUserRequestBody>;
 
 export interface AssignRoleToUserRequest {
   /** ID of an existing Okta user */
@@ -5402,7 +5393,7 @@ export const AssignRoleToUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type AssignRoleToUserResponseBody = StandardRole | CustomRole;
 export const AssignRoleToUserResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AssignRoleToUserResponseBody>;
+  S.Unknown as any as S.Schema<AssignRoleToUserResponseBody>;
 
 export type AssignRoleToUserResponse = AssignRoleToUserResponseBody;
 export const AssignRoleToUserResponse = /*@__PURE__*/ S.suspend(() =>
@@ -5448,7 +5439,7 @@ export const AppUserProfile = /*@__PURE__*/ S.Record(
 
 /** Indicates if the assignment is direct (`USER`) or by group membership (`GROUP`). If not specified, Okta tries to determine the scope based on the assignment type. */
 export type AssignUserToApplicationRequestScope = "USER" | "GROUP";
-export const AssignUserToApplicationRequestScope = /*@__PURE__*/ S.String;
+export const AssignUserToApplicationRequestScope = S.String;
 
 export interface AssignUserToApplicationRequest {
   /** Application ID */
@@ -5503,7 +5494,7 @@ export const AppUserCredentialsOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates if the assignment is direct (`USER`) or by group membership (`GROUP`). If not specified, Okta tries to determine the scope based on the assignment type. */
 export type AppUserOutputScope = "USER" | "GROUP";
-export const AppUserOutputScope = /*@__PURE__*/ S.String;
+export const AppUserOutputScope = S.String;
 
 /** Status of an application user */
 export type AppUserStatus =
@@ -5520,7 +5511,7 @@ export type AppUserStatus =
   | "STAGED"
   | "SUSPENDED"
   | "UNASSIGNED";
-export const AppUserStatus = /*@__PURE__*/ S.String;
+export const AppUserStatus = S.String;
 
 /** The synchronization state for the application user. The application user's `syncState` depends on whether the `PROFILE_MASTERING` feature is enabled for the app. > **Note:** User provisioning currently must be configured through the Admin Console. */
 export type AppUserSyncState =
@@ -5529,7 +5520,7 @@ export type AppUserSyncState =
   | "OUT_OF_SYNC"
   | "SYNCHRONIZED"
   | "SYNCING";
-export const AppUserSyncState = /*@__PURE__*/ S.String;
+export const AppUserSyncState = S.String;
 
 /** Embedded resources related to the application user using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification */
 export type AppUserOutputEmbeddedMap = { [key: string]: unknown | undefined };
@@ -5698,11 +5689,11 @@ export type PasswordCredentialHashAlgorithm =
   | "SHA-1"
   | "SHA-256"
   | "SHA-512";
-export const PasswordCredentialHashAlgorithm = /*@__PURE__*/ S.String;
+export const PasswordCredentialHashAlgorithm = S.String;
 
 /** Algorithm used to generate the key. Only required for the PBKDF2 algorithm. */
 export type DigestAlgorithm = "SHA256_HMAC" | "SHA512_HMAC";
-export const DigestAlgorithm = /*@__PURE__*/ S.String;
+export const DigestAlgorithm = S.String;
 
 /** Specifies a hashed password to import into Okta. This allows an existing password to be imported into Okta directly from some other store. Okta supports the BCRYPT, SHA-512, SHA-256, SHA-1, MD5, and PBKDF2 hash functions for password import. A hashed password may be specified in a password object when creating or updating a user, but not for other operations. See the [Create user with imported hashed password](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/User/#create-user-with-imported-hashed-password) description. When you update a user with a hashed password, the user must be in the `STAGED` status. */
 export interface PasswordCredentialHash {
@@ -5816,7 +5807,7 @@ export type AuthenticationProviderType =
   | "LDAP"
   | "OKTA"
   | "SOCIAL";
-export const AuthenticationProviderType = /*@__PURE__*/ S.String;
+export const AuthenticationProviderType = S.String;
 
 /** Specifies the authentication provider that validates the user's password credential. The user's current provider is managed by the **Delegated Authentication** settings for your org. The provider object is **read-only**. */
 export interface AuthenticationProvider {
@@ -6061,7 +6052,7 @@ export type PolicyType =
   | "SESSION_VIOLATION_DETECTION"
   | "CLIENT_UPDATE"
   | "IDENTITY_CLAIM_SOURCING";
-export const PolicyType = /*@__PURE__*/ S.String;
+export const PolicyType = S.String;
 
 export type PolicyEmbeddedMap = { [key: string]: unknown | undefined };
 export const PolicyEmbeddedMap = /*@__PURE__*/ S.Record(
@@ -6405,7 +6396,7 @@ export type ApplicationSignOnMode =
   | "SAML_2_0"
   | "SECURE_PASSWORD_STORE"
   | "WS_FEDERATION";
-export const ApplicationSignOnMode = /*@__PURE__*/ S.String;
+export const ApplicationSignOnMode = S.String;
 
 /** Links or icons that appear on the End-User Dashboard if they're set to `true`. */
 export type ApplicationVisibilityAppLinksMap = {
@@ -6480,7 +6471,7 @@ export const CreateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Capabilities supported by the app */
 export type ApplicationCapability = "PROVISIONING" | "SSO" | "UNIVERSAL_LOGOUT";
-export const ApplicationCapability = /*@__PURE__*/ S.String;
+export const ApplicationCapability = S.String;
 
 /** Capabilities currently enabled for the app */
 export type ApplicationExpressConfigurationEnabledCapabilitiesList =
@@ -6561,7 +6552,7 @@ export type ApplicationFeaturesItem =
   | "SKYHOOK_SERVICE"
   | "ENTITLEMENT_MANAGEMENT"
   | "PUSH_NEW_USERS_WITH_HASHED_PASSWORD";
-export const ApplicationFeaturesItem = /*@__PURE__*/ S.String;
+export const ApplicationFeaturesItem = S.String;
 
 /** Enabled app features > **Note:** See [Application Features](/openapi/okta-management/management/tags/applicationfeatures/) for app provisioning features. */
 export type ApplicationFeaturesList = Array<ApplicationFeaturesItem>;
@@ -6578,28 +6569,28 @@ export const ApplicationProfileMap = /*@__PURE__*/ S.Record(
 
 /** App instance status */
 export type ApplicationLifecycleStatus = "ACTIVE" | "DELETED" | "INACTIVE";
-export const ApplicationLifecycleStatus = /*@__PURE__*/ S.String;
+export const ApplicationLifecycleStatus = S.String;
 
 /** Indicates whether the app uses a shared identity stack that may cause the user to sign out of other apps by the same company */
 export type ApplicationUniversalLogoutIdentityStack = "SHARED" | "NOT_SHARED";
-export const ApplicationUniversalLogoutIdentityStack = /*@__PURE__*/ S.String;
+export const ApplicationUniversalLogoutIdentityStack = S.String;
 
 /** The protocol used for Universal Logout */
 export type ApplicationUniversalLogoutProtocol =
   | "PROPRIETARY"
   | "GLOBAL_TOKEN_REVOCATION";
-export const ApplicationUniversalLogoutProtocol = /*@__PURE__*/ S.String;
+export const ApplicationUniversalLogoutProtocol = S.String;
 
 /** Universal Logout status for the app instance */
 export type ApplicationUniversalLogoutStatus =
   | "ENABLED"
   | "DISABLED"
   | "UNSUPPORTED";
-export const ApplicationUniversalLogoutStatus = /*@__PURE__*/ S.String;
+export const ApplicationUniversalLogoutStatus = S.String;
 
 /** Indicates whether the app supports full or partial Universal Logout (UL). */
 export type ApplicationUniversalLogoutSupportType = "FULL" | "PARTIAL";
-export const ApplicationUniversalLogoutSupportType = /*@__PURE__*/ S.String;
+export const ApplicationUniversalLogoutSupportType = S.String;
 
 /** <div class="x-lifecycle-container"><x-lifecycle class="oie"></x-lifecycle></div> Universal Logout properties for the app. These properties are only returned and can't be updated. */
 export interface ApplicationUniversalLogout {
@@ -6817,7 +6808,7 @@ export type ServiceAccountStatus =
   | "INFO"
   | "NO_ISSUES"
   | "UNSECURED";
-export const ServiceAccountStatus = /*@__PURE__*/ S.String;
+export const ServiceAccountStatus = S.String;
 
 /** Describes the detailed status of a service account */
 export type ServiceAccountStatusDetail =
@@ -6830,7 +6821,7 @@ export type ServiceAccountStatusDetail =
   | "STAGED"
   | "UNMANAGED"
   | "VAULTED";
-export const ServiceAccountStatusDetail = /*@__PURE__*/ S.String;
+export const ServiceAccountStatusDetail = S.String;
 
 export interface AppServiceAccountOutput {
   /** The key name of the app in the Okta Integration Network (OIN) */
@@ -6910,7 +6901,7 @@ export type AccessTokenKeyEncryptionAlgorithm =
   | "RSA-OAEP-256"
   | "RSA-OAEP-384"
   | "RSA-OAEP-512";
-export const AccessTokenKeyEncryptionAlgorithm = /*@__PURE__*/ S.String;
+export const AccessTokenKeyEncryptionAlgorithm = S.String;
 
 /** The recipients that the tokens are intended for. This becomes the `aud` claim in an access token. Okta currently supports only one audience. */
 export type AuthorizationServerAudiencesList = Array<string>;
@@ -6920,12 +6911,11 @@ export const AuthorizationServerAudiencesList = /*@__PURE__*/ S.Array(
 
 /** The Key rotation mode for the authorization server */
 export type AuthorizationServerCredentialsRotationMode = "AUTO" | "MANUAL";
-export const AuthorizationServerCredentialsRotationMode =
-  /*@__PURE__*/ S.String;
+export const AuthorizationServerCredentialsRotationMode = S.String;
 
 /** How the key is used */
 export type AuthorizationServerCredentialsUse = "sig";
-export const AuthorizationServerCredentialsUse = /*@__PURE__*/ S.String;
+export const AuthorizationServerCredentialsUse = S.String;
 
 export interface AuthorizationServerCredentialsSigningConfig {
   /** The ID of the JSON Web Key used for signing tokens issued by the authorization server */
@@ -6963,15 +6953,15 @@ export const AuthorizationServerCredentials = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of public key */
 export type JsonWebKeyType = "RSA";
-export const JsonWebKeyType = /*@__PURE__*/ S.String;
+export const JsonWebKeyType = S.String;
 
 /** The status of the public key */
 export type JsonWebKeyStatus = "ACTIVE" | "INACTIVE";
-export const JsonWebKeyStatus = /*@__PURE__*/ S.String;
+export const JsonWebKeyStatus = S.String;
 
 /** The intended use of the public key */
 export type JsonWebKeyUse = "enc";
-export const JsonWebKeyUse = /*@__PURE__*/ S.String;
+export const JsonWebKeyUse = S.String;
 
 /** A [JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517) is a JSON representation of a cryptographic key. Okta can use the active key to encrypt the access token minted by the authorization server. Okta supports only RSA keys with 'use: enc'. */
 export interface ResourceServerJsonWebKey {
@@ -7382,8 +7372,7 @@ export const CreateAuthorizationServerRequest = /*@__PURE__*/ S.suspend(() =>
 /** Indicates that the Policy is an authorization server Policy */
 export type CreateAuthorizationServerPolicyRequestType =
   "OAUTH_AUTHORIZATION_POLICY";
-export const CreateAuthorizationServerPolicyRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateAuthorizationServerPolicyRequestType = S.String;
 
 /** Which clients are included in the policy */
 export type ClientPolicyConditionIncludeList = Array<string>;
@@ -7419,8 +7408,7 @@ export const AuthorizationServerPolicyConditions = /*@__PURE__*/ S.suspend(() =>
 export type CreateAuthorizationServerPolicyRequestStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const CreateAuthorizationServerPolicyRequestStatus =
-  /*@__PURE__*/ S.String;
+export const CreateAuthorizationServerPolicyRequestStatus = S.String;
 
 export type CreateAuthorizationServerPolicyRequestLinksRules =
   HrefObjectSelfLinkInput;
@@ -7492,15 +7480,13 @@ export const CreateAuthorizationServerPolicyRequest = /*@__PURE__*/ S.suspend(
 /** Indicates that the Policy is an authorization server Policy */
 export type CreateAuthorizationServerPolicyResponseType =
   "OAUTH_AUTHORIZATION_POLICY";
-export const CreateAuthorizationServerPolicyResponseType =
-  /*@__PURE__*/ S.String;
+export const CreateAuthorizationServerPolicyResponseType = S.String;
 
 /** Specifies whether requests have access to this Policy */
 export type CreateAuthorizationServerPolicyResponseStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const CreateAuthorizationServerPolicyResponseStatus =
-  /*@__PURE__*/ S.String;
+export const CreateAuthorizationServerPolicyResponseStatus = S.String;
 
 export type CreateAuthorizationServerPolicyResponseLinksRules =
   HrefObjectSelfLink;
@@ -7734,13 +7720,11 @@ export const AuthorizationServerPolicyRuleConditions = /*@__PURE__*/ S.suspend(
 export type CreateAuthorizationServerPolicyRuleRequestStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const CreateAuthorizationServerPolicyRuleRequestStatus =
-  /*@__PURE__*/ S.String;
+export const CreateAuthorizationServerPolicyRuleRequestStatus = S.String;
 
 /** Rule type */
 export type CreateAuthorizationServerPolicyRuleRequestType = "RESOURCE_ACCESS";
-export const CreateAuthorizationServerPolicyRuleRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateAuthorizationServerPolicyRuleRequestType = S.String;
 
 export interface LinksSelfAndLifecycleInput {
   self?: HrefObjectSelfLinkInput;
@@ -7802,11 +7786,11 @@ export const CreateAuthorizationServerPolicyRuleRequest =
 
 /** Status of the rule */
 export type AuthorizationServerPolicyRuleStatus = "ACTIVE" | "INACTIVE";
-export const AuthorizationServerPolicyRuleStatus = /*@__PURE__*/ S.String;
+export const AuthorizationServerPolicyRuleStatus = S.String;
 
 /** Rule type */
 export type AuthorizationServerPolicyRuleType = "RESOURCE_ACCESS";
-export const AuthorizationServerPolicyRuleType = /*@__PURE__*/ S.String;
+export const AuthorizationServerPolicyRuleType = S.String;
 
 export interface AuthorizationServerPolicyRule {
   actions?: AuthorizationServerPolicyRuleActions;
@@ -7925,7 +7909,7 @@ export const Brand = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of CAPTCHA provider */
 export type CAPTCHAType = "HCAPTCHA" | "RECAPTCHA_V2";
-export const CAPTCHAType = /*@__PURE__*/ S.String;
+export const CAPTCHAType = S.String;
 
 export interface CreateCaptchaInstanceRequest {
   /** The name of the CAPTCHA instance */
@@ -8037,7 +8021,7 @@ export const OrgCreationAdmin = /*@__PURE__*/ S.suspend(() =>
 
 /** Edition for the org. `SKU` is the only supported value. */
 export type CreateChildOrgRequestEdition = "SKU";
-export const CreateChildOrgRequestEdition = /*@__PURE__*/ S.String;
+export const CreateChildOrgRequestEdition = S.String;
 
 export interface CreateChildOrgRequest {
   admin: OrgCreationAdmin;
@@ -8064,7 +8048,7 @@ export const CreateChildOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Edition for the org. `SKU` is the only supported value. */
 export type ChildOrgOutputEdition = "SKU";
-export const ChildOrgOutputEdition = /*@__PURE__*/ S.String;
+export const ChildOrgOutputEdition = S.String;
 
 /** Settings associated with the created org */
 export type ChildOrgOutputSettingsMap = { [key: string]: unknown | undefined };
@@ -8075,11 +8059,11 @@ export const ChildOrgOutputSettingsMap = /*@__PURE__*/ S.Record(
 
 /** Status of the org. `ACTIVE` is returned after the org is created. */
 export type ChildOrgOutputStatus = "ACTIVE";
-export const ChildOrgOutputStatus = /*@__PURE__*/ S.String;
+export const ChildOrgOutputStatus = S.String;
 
 /** Type of returned `token`. See [Okta API tokens](https://developer.okta.com/docs/guides/create-an-api-token/main/#okta-api-tokens). */
 export type ChildOrgOutputTokenType = "SSWS";
-export const ChildOrgOutputTokenType = /*@__PURE__*/ S.String;
+export const ChildOrgOutputTokenType = S.String;
 
 /** Specifies available link relations (see [Web Linking](https://www.rfc-editor.org/rfc/rfc8288)) using the [JSON Hypertext Application Language](https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-06) specification */
 export type ChildOrgOutputLinksMap = { [key: string]: unknown | undefined };
@@ -8133,8 +8117,7 @@ export const ChildOrgOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates if the Cross App Access connection is active or inactive */
 export type CreateCrossAppAccessConnectionRequestStatus = "ACTIVE" | "INACTIVE";
-export const CreateCrossAppAccessConnectionRequestStatus =
-  /*@__PURE__*/ S.String;
+export const CreateCrossAppAccessConnectionRequestStatus = S.String;
 
 export interface CreateCrossAppAccessConnectionRequest {
   /** Application ID */
@@ -8166,7 +8149,7 @@ export const CreateCrossAppAccessConnectionRequest = /*@__PURE__*/ S.suspend(
 
 /** Indicates if the Cross App Access connection is active or inactive */
 export type OrgCrossAppAccessConnectionStatus = "ACTIVE" | "INACTIVE";
-export const OrgCrossAppAccessConnectionStatus = /*@__PURE__*/ S.String;
+export const OrgCrossAppAccessConnectionStatus = S.String;
 
 /** Connection object for Cross App Access connections */
 export interface OrgCrossAppAccessConnection {
@@ -8317,7 +8300,7 @@ export const CustomAAGUIDResponseObject = /*@__PURE__*/ S.suspend(() =>
 
 /** Certificate source type that indicates whether the certificate is provided by the user or Okta. */
 export type DomainCertificateSourceType = "MANUAL" | "OKTA_MANAGED";
-export const DomainCertificateSourceType = /*@__PURE__*/ S.String;
+export const DomainCertificateSourceType = S.String;
 
 export interface CreateCustomDomainRequest {
   certificateSourceType: DomainCertificateSourceType | (string & {});
@@ -8334,7 +8317,7 @@ export const CreateCustomDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCustomDomainRequest>;
 
 export type DNSRecordTypeDomains = "CAA" | "CNAME" | "TXT";
-export const DNSRecordTypeDomains = /*@__PURE__*/ S.String;
+export const DNSRecordTypeDomains = S.String;
 
 /** DNS record value */
 export type DNSRecordDomainsValuesList = Array<string>;
@@ -8393,7 +8376,7 @@ export type DomainValidationStatus =
   | "IN_PROGRESS"
   | "NOT_STARTED"
   | "VERIFIED";
-export const DomainValidationStatus = /*@__PURE__*/ S.String;
+export const DomainValidationStatus = S.String;
 
 export type DomainLinksBrand = HrefObjectSelfLink;
 export const DomainLinksBrand = HrefObjectSelfLink;
@@ -8450,14 +8433,14 @@ export const DomainResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateCustomTelephonyProviderCredentialsRequestProviderCapability =
   "ALL";
 export const CreateCustomTelephonyProviderCredentialsRequestProviderCapability =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The name of the telephony provider */
 export type CreateCustomTelephonyProviderCredentialsRequestProviderName =
   | "TWILIO"
   | "TELESIGN";
 export const CreateCustomTelephonyProviderCredentialsRequestProviderName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCustomTelephonyProviderCredentialsRequest {
   /** The authentication token that's used to authenticate requests to the telephony provider. Your telephony provider gives you this token. */
@@ -8498,11 +8481,11 @@ export type CreateDeviceAssurancePolicyRequestDisplayRemediationMode =
   | "HIDE"
   | "SHOW";
 export const CreateDeviceAssurancePolicyRequestDisplayRemediationMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents the type of Grace Period configured for the device assurance policy */
 export type GracePeriodType = "BY_DATE_TIME" | "BY_DURATION";
-export const GracePeriodType = /*@__PURE__*/ S.String;
+export const GracePeriodType = S.String;
 
 /** Represents the Grace Period configuration for the device assurance policy */
 export interface GracePeriod {
@@ -8518,7 +8501,7 @@ export const GracePeriod = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GracePeriod" }) as any as S.Schema<GracePeriod>;
 
 export type Platform = "ANDROID" | "CHROMEOS" | "IOS" | "MACOS" | "WINDOWS";
-export const Platform = /*@__PURE__*/ S.String;
+export const Platform = S.String;
 
 export interface CreateDeviceAssurancePolicyRequest {
   /** Represents the remediation mode of this device assurance policy when users are denied access due to device noncompliance */
@@ -8547,7 +8530,7 @@ export const CreateDeviceAssurancePolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents the remediation mode of this device assurance policy when users are denied access due to device noncompliance */
 export type DeviceAssuranceDisplayRemediationMode = "HIDE" | "SHOW";
-export const DeviceAssuranceDisplayRemediationMode = /*@__PURE__*/ S.String;
+export const DeviceAssuranceDisplayRemediationMode = S.String;
 
 export interface DeviceAssurance {
   createdBy?: string;
@@ -8582,10 +8565,10 @@ export const DeviceAssurance = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents how the device posture check is rendered in device assurance policies */
 export type DevicePostureChecksMappingType = "CHECKBOX" | "TEXTBOX";
-export const DevicePostureChecksMappingType = /*@__PURE__*/ S.String;
+export const DevicePostureChecksMappingType = S.String;
 
 export type DevicePostureChecksPlatform = "MACOS" | "WINDOWS";
-export const DevicePostureChecksPlatform = /*@__PURE__*/ S.String;
+export const DevicePostureChecksPlatform = S.String;
 
 export interface DevicePostureChecksRemediationSettingsLink {
   /** Default URL for the link. This property is only relevant if type is set to `BUILTIN`. If type is set to `CUSTOM`, this field is ignored. */
@@ -8635,7 +8618,7 @@ export const DevicePostureChecksRemediationSettings = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DevicePostureChecksRemediationSettings>;
 
 export type DevicePostureChecksType = "BUILTIN" | "CUSTOM";
-export const DevicePostureChecksType = /*@__PURE__*/ S.String;
+export const DevicePostureChecksType = S.String;
 
 export interface CreateDevicePostureCheckRequest {
   /** Description of the device posture check */
@@ -8816,7 +8799,7 @@ export const CreateEmailCustomizationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEmailCustomizationResponse>;
 
 export type CreateEmailDomainRequestExpandItem = "brands";
-export const CreateEmailDomainRequestExpandItem = /*@__PURE__*/ S.String;
+export const CreateEmailDomainRequestExpandItem = S.String;
 
 export type CreateEmailDomainRequestExpandList = Array<
   CreateEmailDomainRequestExpandItem | (string & {})
@@ -8849,7 +8832,7 @@ export const CreateEmailDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEmailDomainRequest>;
 
 export type EmailDomainDNSRecordType = "CNAME" | "TXT";
-export const EmailDomainDNSRecordType = /*@__PURE__*/ S.String;
+export const EmailDomainDNSRecordType = S.String;
 
 export interface EmailDomainDNSRecord {
   fqdn?: string;
@@ -8879,7 +8862,7 @@ export type EmailDomainStatus =
   | "NOT_STARTED"
   | "POLLING"
   | "VERIFIED";
-export const EmailDomainStatus = /*@__PURE__*/ S.String;
+export const EmailDomainStatus = S.String;
 
 export interface CreateEmailDomainResponse {
   displayName: string;
@@ -8912,7 +8895,7 @@ export type SmtpAuthType =
   | "BASIC_SMTP_AUTH"
   | "OAUTH2_CLIENT_CREDENTIALS"
   | "OAUTH2_JWT_BEARER_GRANT";
-export const SmtpAuthType = /*@__PURE__*/ S.String;
+export const SmtpAuthType = S.String;
 
 export interface CreateEmailServerRequest {
   /** Human-readable name for your SMTP server */
@@ -9278,7 +9261,7 @@ export const GovernanceBundle = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the app configuration */
 export type AppConfigType = "ACTIVE_DIRECTORY";
-export const AppConfigType = /*@__PURE__*/ S.String;
+export const AppConfigType = S.String;
 
 /** Additional app configuration for group push mappings. Currently only required for Active Directory. */
 export interface AppConfig {
@@ -9292,7 +9275,7 @@ export const AppConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the group push mapping */
 export type GroupPushMappingStatusUpsert = "ACTIVE" | "INACTIVE";
-export const GroupPushMappingStatusUpsert = /*@__PURE__*/ S.String;
+export const GroupPushMappingStatusUpsert = S.String;
 
 export interface CreateGroupPushMappingRequest {
   /** Application ID */
@@ -9327,7 +9310,7 @@ export const CreateGroupPushMappingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the group push mapping */
 export type GroupPushMappingStatus = "ACTIVE" | "ERROR" | "INACTIVE";
-export const GroupPushMappingStatus = /*@__PURE__*/ S.String;
+export const GroupPushMappingStatus = S.String;
 
 /** Discoverable resources related to the group push mapping */
 export interface GroupPushMappingLinks {
@@ -9496,7 +9479,7 @@ export const GroupRuleConditions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GroupRuleConditions>;
 
 export type CreateGroupRuleRequestType = "group_rule";
-export const CreateGroupRuleRequestType = /*@__PURE__*/ S.String;
+export const CreateGroupRuleRequestType = S.String;
 
 export interface CreateGroupRuleRequest {
   actions?: GroupRuleAction;
@@ -9518,7 +9501,7 @@ export const CreateGroupRuleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of group rule. You can't update the status of a rule from `INACTIVE` to `ACTIVE`. You must use the activate and deactivate lifecycle operations. */
 export type GroupRuleStatus = "ACTIVE" | "INACTIVE" | "INVALID";
-export const GroupRuleStatus = /*@__PURE__*/ S.String;
+export const GroupRuleStatus = S.String;
 
 /** A mapping of group IDs to group names */
 export type GroupRuleEmbeddedGroupIdToGroupNameMapMap = {
@@ -9651,7 +9634,7 @@ export type CreateIdentityProviderRequestProtocol =
   | ProtocolMtls
   | ProtocolIdVerification;
 export const CreateIdentityProviderRequestProtocol =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIdentityProviderRequestProtocol>;
+  S.Unknown as any as S.Schema<CreateIdentityProviderRequestProtocol>;
 
 export interface CreateIdentityProviderRequestLinks {
   self?: HrefObjectSelfLinkInput;
@@ -9855,7 +9838,7 @@ export type IdentitySourceSessionStatus =
   | "EXPIRED"
   | "IN_PROGRESS"
   | "TRIGGERED";
-export const IdentitySourceSessionStatus = /*@__PURE__*/ S.String;
+export const IdentitySourceSessionStatus = S.String;
 
 export interface IdentitySourceSession {
   /** The timestamp when the identity source session was created */
@@ -10081,7 +10064,7 @@ export const InterclientTrustMapping = /*@__PURE__*/ S.suspend(() =>
 
 /** The object type for this relationship */
 export type LinkedObjectDetailsType = "USER";
-export const LinkedObjectDetailsType = /*@__PURE__*/ S.String;
+export const LinkedObjectDetailsType = S.String;
 
 export interface LinkedObjectDetails {
   /** Description of the `primary` or the `associated` relationship */
@@ -10191,7 +10174,7 @@ export const CreateNetworkZoneRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies whether the Claim is for an access token (`RESOURCE`) or an ID token (`IDENTITY`) */
 export type OAuth2ClaimType = "IDENTITY" | "RESOURCE";
-export const OAuth2ClaimType = /*@__PURE__*/ S.String;
+export const OAuth2ClaimType = S.String;
 
 export type OAuth2ClaimConditionsScopesList = Array<string>;
 export const OAuth2ClaimConditionsScopesList = /*@__PURE__*/ S.Array(
@@ -10216,11 +10199,11 @@ export type OAuth2ClaimGroupFilterType =
   | "EQUALS"
   | "REGEX"
   | "STARTS_WITH";
-export const OAuth2ClaimGroupFilterType = /*@__PURE__*/ S.String;
+export const OAuth2ClaimGroupFilterType = S.String;
 
 /** Specifies whether the Claim is an Okta Expression Language (EL) expression (`EXPRESSION`), a set of groups (`GROUPS`), or a system claim (`SYSTEM`) */
 export type OAuth2ClaimValueType = "EXPRESSION" | "GROUPS" | "SYSTEM";
-export const OAuth2ClaimValueType = /*@__PURE__*/ S.String;
+export const OAuth2ClaimValueType = S.String;
 
 export interface CreateOAuth2ClaimRequest {
   /** `id` of the Authorization Server */
@@ -10298,7 +10281,7 @@ export const OAuth2Claim = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the OAuth 2.0 client secret */
 export type CreateOAuth2ClientSecretRequestStatus = "ACTIVE" | "INACTIVE";
-export const CreateOAuth2ClientSecretRequestStatus = /*@__PURE__*/ S.String;
+export const CreateOAuth2ClientSecretRequestStatus = S.String;
 
 export interface CreateOAuth2ClientSecretRequest {
   /** Application ID */
@@ -10326,11 +10309,11 @@ export const CreateOAuth2ClientSecretRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether a consent dialog is needed for the Scope */
 export type OAuth2ScopeConsentType = "FLEXIBLE" | "IMPLICIT" | "REQUIRED";
-export const OAuth2ScopeConsentType = /*@__PURE__*/ S.String;
+export const OAuth2ScopeConsentType = S.String;
 
 /** Indicates whether the Scope is included in the metadata */
 export type OAuth2ScopeMetadataPublish = "ALL_CLIENTS" | "NO_CLIENTS";
-export const OAuth2ScopeMetadataPublish = /*@__PURE__*/ S.String;
+export const OAuth2ScopeMetadataPublish = S.String;
 
 export interface CreateOAuth2ScopeRequest {
   /** `id` of the Authorization Server */
@@ -10601,7 +10584,7 @@ export type PolicyRuleType =
   | "SESSION_VIOLATION_DETECTION"
   | "CLIENT_UPDATE"
   | "IDENTITY_CLAIM_SOURCING";
-export const PolicyRuleType = /*@__PURE__*/ S.String;
+export const PolicyRuleType = S.String;
 
 export interface CreatePolicyRuleRequest {
   /** `id` of the policy */
@@ -10710,10 +10693,10 @@ export const PolicyContextGroups = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PolicyContextGroups>;
 
 export type PolicyContextRiskLevel = "LOW" | "MEDIUM" | "HIGH";
-export const PolicyContextRiskLevel = /*@__PURE__*/ S.String;
+export const PolicyContextRiskLevel = S.String;
 
 export type PolicyContextRiskMinRiskLevel = "LOW" | "MEDIUM" | "HIGH";
-export const PolicyContextRiskMinRiskLevel = /*@__PURE__*/ S.String;
+export const PolicyContextRiskMinRiskLevel = S.String;
 
 /** The risk rule condition level */
 export interface PolicyContextRisk {
@@ -10788,7 +10771,7 @@ export type PolicyTypeSimulation =
   | "MFA_ENROLL"
   | "OKTA_SIGN_ON"
   | "PROFILE_ENROLLMENT";
-export const PolicyTypeSimulation = /*@__PURE__*/ S.String;
+export const PolicyTypeSimulation = S.String;
 
 /** Supported policy types for a simulate operation. The default value, `null`, returns all types. */
 export type SimulatePolicyBodyPolicyTypesList = Array<
@@ -10839,7 +10822,7 @@ export const CreatePolicySimulationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The result of this entity evaluation */
 export type SimulateResultStatus = "MATCH" | "NOT_MATCH" | "UNDEFINED";
-export const SimulateResultStatus = /*@__PURE__*/ S.String;
+export const SimulateResultStatus = S.String;
 
 export interface SimulateResultConditions {
   status?: SimulateResultStatus;
@@ -10986,7 +10969,7 @@ export const CreatePolicySimulationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of principal, either an API token or an OAuth 2.0 app */
 export type PrincipalType = "OAUTH_CLIENT" | "SSWS_TOKEN";
-export const PrincipalType = /*@__PURE__*/ S.String;
+export const PrincipalType = S.String;
 
 export interface CreatePrincipalRateLimitEntityRequest {
   /** The default percentage of a given concurrency limit threshold that the owning principal can consume */
@@ -11054,7 +11037,7 @@ export const PrincipalRateLimitEntity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrincipalRateLimitEntity>;
 
 export type ProviderType = "APNS" | "FCM";
-export const ProviderType = /*@__PURE__*/ S.String;
+export const ProviderType = S.String;
 
 export interface CreatePushProviderRequest {
   /** Display name of the push provider */
@@ -11098,7 +11081,7 @@ export const RealmProfileDomainsList = /*@__PURE__*/ S.Array(
 
 /** Used to store partner users. This property must be set to `PARTNER` to access Okta's external partner portal. */
 export type RealmProfileRealmType = "PARTNER" | "DEFAULT";
-export const RealmProfileRealmType = /*@__PURE__*/ S.String;
+export const RealmProfileRealmType = S.String;
 
 export interface RealmProfile {
   /** Array of allowed domains. No user in this realm can be created or updated unless they have a username and email from one of these domains. The following characters aren't allowed in the domain name: `!$%^&()=*+,:;<>'[]|/?\` */
@@ -11477,7 +11460,7 @@ export type CreateSecurityEventsProviderInstanceRequestSettings =
   | SecurityEventsProviderSettingsSSFCompliant
   | SecurityEventsProviderSettingsNonSSFCompliant;
 export const CreateSecurityEventsProviderInstanceRequestSettings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSecurityEventsProviderInstanceRequestSettings>;
+  S.Unknown as any as S.Schema<CreateSecurityEventsProviderInstanceRequestSettings>;
 
 export interface CreateSecurityEventsProviderInstanceRequest {
   /** The name of the security events provider instance */
@@ -11506,7 +11489,7 @@ export const CreateSecurityEventsProviderInstanceRequest =
 
 /** Type of the Template */
 export type SmsTemplateType = "SMS_VERIFY_CODE";
-export const SmsTemplateType = /*@__PURE__*/ S.String;
+export const SmsTemplateType = S.String;
 
 export interface CreateSmsTemplateRequest {
   /** Human-readable name of the Template */
@@ -11554,7 +11537,7 @@ export const SmsTemplate = /*@__PURE__*/ S.suspend(() =>
 export type StreamConfigurationDeliveryMethod =
   | "https://schemas.openid.net/secevent/risc/delivery-method/push"
   | "urn:ietf:rfc:8935";
-export const StreamConfigurationDeliveryMethod = /*@__PURE__*/ S.String;
+export const StreamConfigurationDeliveryMethod = S.String;
 
 /** Contains information about the intended SET delivery method by the receiver */
 export interface StreamConfigurationDelivery {
@@ -11583,7 +11566,7 @@ export const CreateSsfStreamRequestEventsRequestedList = /*@__PURE__*/ S.Array(
 
 /** The subject identifier format expected for any SET transmitted. */
 export type CreateSsfStreamRequestFormat = "iss_sub";
-export const CreateSsfStreamRequestFormat = /*@__PURE__*/ S.String;
+export const CreateSsfStreamRequestFormat = S.String;
 
 export interface CreateSsfStreamRequest {
   delivery: StreamConfigurationDelivery;
@@ -11610,7 +11593,7 @@ export const StreamConfigurationAudCase1List = /*@__PURE__*/ S.Array(
 /** The audience used in the SET. This value is set as `aud` in the claim. A read-only parameter that is set by the transmitter. If this parameter is included in the request, the value must match the expected value from the transmitter. */
 export type StreamConfigurationAud = string | StreamConfigurationAudCase1List;
 export const StreamConfigurationAud =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StreamConfigurationAud>;
+  S.Unknown as any as S.Schema<StreamConfigurationAud>;
 
 /** The events (mapped by the array of event type URIs) that the transmitter actually delivers to the SSF stream. A read-only parameter that is set by the transmitter. If this parameter is included in the request, the value must match the expected value from the transmitter. */
 export type StreamConfigurationEventsDeliveredList = Array<string>;
@@ -11632,7 +11615,7 @@ export const StreamConfigurationEventsSupportedList = /*@__PURE__*/ S.Array(
 
 /** The subject identifier format expected for any SET transmitted. */
 export type StreamConfigurationFormat = "iss_sub";
-export const StreamConfigurationFormat = /*@__PURE__*/ S.String;
+export const StreamConfigurationFormat = S.String;
 
 export interface StreamConfiguration {
   /** The audience used in the SET. This value is set as `aud` in the claim. A read-only parameter that is set by the transmitter. If this parameter is included in the request, the value must match the expected value from the transmitter. */
@@ -11787,7 +11770,7 @@ export type UIElementOptionsFormat =
   | "checkbox"
   | "radio_yes_no"
   | "radio_true_false";
-export const UIElementOptionsFormat = /*@__PURE__*/ S.String;
+export const UIElementOptionsFormat = S.String;
 
 /** UI Schema element options object */
 export interface UIElementOptions {
@@ -11880,7 +11863,7 @@ export const UISchemasResponseObject = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UISchemasResponseObject>;
 
 export type UserNextLogin = "changePassword";
-export const UserNextLogin = /*@__PURE__*/ S.String;
+export const UserNextLogin = S.String;
 
 /** The type of authentication provider */
 export type AuthenticationProviderTypeWritable =
@@ -11890,7 +11873,7 @@ export type AuthenticationProviderTypeWritable =
   | "LDAP"
   | "OKTA"
   | "SOCIAL";
-export const AuthenticationProviderTypeWritable = /*@__PURE__*/ S.String;
+export const AuthenticationProviderTypeWritable = S.String;
 
 /** Specifies the authentication provider that validates the user password credential. The user's current provider is managed by the **Delegated Authentication** settings in your org. See [Create user with authentication provider](/openapi/okta-management/management/user/create-user-with-password-and-recovery-question#user/Create-user-with-authentication-provider). */
 export interface AuthenticationProviderWritable {
@@ -12084,14 +12067,14 @@ export type UserStatus =
   | "RECOVERY"
   | "STAGED"
   | "SUSPENDED";
-export const UserStatus = /*@__PURE__*/ S.String;
+export const UserStatus = S.String;
 
 /** The target status of an in-progress asynchronous status transition. This property is only returned if the user's state is transitioning. */
 export type UserOutputTransitioningToStatus =
   | "ACTIVE"
   | "DEPROVISIONED"
   | "PROVISIONED";
-export const UserOutputTransitioningToStatus = /*@__PURE__*/ S.String;
+export const UserOutputTransitioningToStatus = S.String;
 
 /** The user type that determines the schema for the user's profile. The `type` property is a map that identifies the [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType). Currently it contains a single element, `id`. It can be specified when creating a new user, and can be updated by an admin on a full replace of an existing user (but not a partial update). */
 export type UserOutputType = CreateUserRequestType;
@@ -12399,8 +12382,7 @@ export type DeactivateAuthenticatorMethodRequestMethodType =
   | "voice"
   | "webauthn"
   | "tac";
-export const DeactivateAuthenticatorMethodRequestMethodType =
-  /*@__PURE__*/ S.String;
+export const DeactivateAuthenticatorMethodRequestMethodType = S.String;
 
 export interface DeactivateAuthenticatorMethodRequest {
   /** `id` of the authenticator */
@@ -13683,7 +13665,7 @@ export const DeleteEmailCustomizationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteEmailCustomizationResponse>;
 
 export type DeleteEmailDomainRequestExpandItem = "brands";
-export const DeleteEmailDomainRequestExpandItem = /*@__PURE__*/ S.String;
+export const DeleteEmailDomainRequestExpandItem = S.String;
 
 export type DeleteEmailDomainRequestExpandList = Array<
   DeleteEmailDomainRequestExpandItem | (string & {})
@@ -14979,7 +14961,7 @@ export type UserFactorType =
   | "u2f"
   | "web"
   | "webauthn";
-export const UserFactorType = /*@__PURE__*/ S.String;
+export const UserFactorType = S.String;
 
 export interface EnrollFactorRequest {
   /** ID of an existing Okta user */
@@ -15028,7 +15010,7 @@ export type UserFactorStatus =
   | "INACTIVE"
   | "NOT_SETUP"
   | "PENDING_ACTIVATION";
-export const UserFactorStatus = /*@__PURE__*/ S.String;
+export const UserFactorStatus = S.String;
 
 export type UserFactorEmbeddedMap = { [key: string]: unknown | undefined };
 export const UserFactorEmbeddedMap = /*@__PURE__*/ S.Record(
@@ -15152,7 +15134,7 @@ export const EnrollPreregistrationEnrollmentRequestEnrollmentRpIdsList =
 export type EnrollPreregistrationEnrollmentRequestFulfillmentProvider =
   "yubico";
 export const EnrollPreregistrationEnrollmentRequestFulfillmentProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EnrollPreregistrationEnrollmentRequest {
   /** List of relying party hostnames to register on the YubiKey */
@@ -15217,8 +15199,7 @@ export const EnrollmentInitializationResponseCredRequestsList =
 
 /** Name of the fulfillment provider for the WebAuthn preregistration factor */
 export type EnrollmentInitializationResponseFulfillmentProvider = "yubico";
-export const EnrollmentInitializationResponseFulfillmentProvider =
-  /*@__PURE__*/ S.String;
+export const EnrollmentInitializationResponseFulfillmentProvider = S.String;
 
 /** Yubico transport key in the form of a JSON Web Token (JWK), used to encrypt our fulfillment request to Yubico. The currently agreed protocol uses P-384. */
 export interface EnrollmentInitializationResponse {
@@ -15486,7 +15467,7 @@ export const TelephonyRequestExecute = /*@__PURE__*/ S.suspend(() =>
 export type RegistrationInlineHookRequestType =
   | "progressive.profile"
   | "self.service.registration";
-export const RegistrationInlineHookRequestType = /*@__PURE__*/ S.String;
+export const RegistrationInlineHookRequestType = S.String;
 
 /** Registration inline hook request */
 export interface RegistrationInlineHookRequest {
@@ -15518,7 +15499,7 @@ export type SessionIdentityProviderType =
   | "LDAP"
   | "OKTA"
   | "SOCIAL";
-export const SessionIdentityProviderType = /*@__PURE__*/ S.String;
+export const SessionIdentityProviderType = S.String;
 
 export interface SessionIdentityProviderInput {
   type?: SessionIdentityProviderType | (string & {});
@@ -15650,7 +15631,7 @@ export type GrantType =
   | "urn:okta:params:oauth:grant-type:oob"
   | "http://auth0.com/oauth/grant-type/mfa-otp"
   | "http://auth0.com/oauth/grant-type/mfa-oob";
-export const GrantType = /*@__PURE__*/ S.String;
+export const GrantType = S.String;
 
 /** The authorization response mode */
 export type TokenProtocolRequestResponseMode =
@@ -15658,7 +15639,7 @@ export type TokenProtocolRequestResponseMode =
   | "fragment"
   | "okta_post_message"
   | "query";
-export const TokenProtocolRequestResponseMode = /*@__PURE__*/ S.String;
+export const TokenProtocolRequestResponseMode = S.String;
 
 /** The authorization response type */
 export type TokenProtocolRequestResponseType =
@@ -15666,7 +15647,7 @@ export type TokenProtocolRequestResponseType =
   | "id_token"
   | "token"
   | "none";
-export const TokenProtocolRequestResponseType = /*@__PURE__*/ S.String;
+export const TokenProtocolRequestResponseType = S.String;
 
 /** Details of the token request */
 export interface TokenProtocolRequest {
@@ -16358,7 +16339,7 @@ export const SAMLPayloadExecuteInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The current default action that results when Okta imports a user. The two possible values are `CREATE_USER` and `LINK_USER`. You can change the action that is taken by means of the commands object you return. */
 export type UserImportRequestDataActionResult = "CREATE_USER" | "LINK_USER";
-export const UserImportRequestDataActionResult = /*@__PURE__*/ S.String;
+export const UserImportRequestDataActionResult = S.String;
 
 /** The object that specifies the default action Okta is set to take */
 export interface UserImportRequestDataAction {
@@ -16415,8 +16396,7 @@ export const UserImportRequestDataContextConflictsList = /*@__PURE__*/ S.Array(
 export type UserImportRequestDataContextApplicationStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const UserImportRequestDataContextApplicationStatus =
-  /*@__PURE__*/ S.String;
+export const UserImportRequestDataContextApplicationStatus = S.String;
 
 /** Details of the app from which the user is being imported */
 export interface UserImportRequestDataContextApplication {
@@ -16595,7 +16575,7 @@ export type ExecuteInlineHookRequestBody =
   | SAMLPayloadExecuteInput
   | UserImportRequestExecute;
 export const ExecuteInlineHookRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExecuteInlineHookRequestBody>;
+  S.Unknown as any as S.Schema<ExecuteInlineHookRequestBody>;
 
 export interface ExecuteInlineHookRequest {
   /** `id` of the inline hook */
@@ -16620,8 +16600,7 @@ export const ExecuteInlineHookRequest = /*@__PURE__*/ S.suspend(() =>
 export type PasswordImportResponseCommandsItemValueCredential =
   | "UNVERIFIED"
   | "VERIFIED";
-export const PasswordImportResponseCommandsItemValueCredential =
-  /*@__PURE__*/ S.String;
+export const PasswordImportResponseCommandsItemValueCredential = S.String;
 
 /** The parameter value of the command. * To indicate that the supplied credentials are valid, supply a type property set to `com.okta.action.update` together with a value property set to `{"credential": "VERIFIED"}`. * To indicate that the supplied credentials are invalid, supply a type property set to `com.okta.action.update` together with a value property set to `{"credential": "UNVERIFIED"}`. Alternatively, you can send an empty response (`204`). By default, the `data.action.credential` is always set to `UNVERIFIED`. */
 export interface PasswordImportResponseCommandsItemValue {
@@ -16676,8 +16655,7 @@ export type TelephonyResponseCommandsItemValueItemStatus =
   | "SUCCESSFUL"
   | "PENDING"
   | "FAILED";
-export const TelephonyResponseCommandsItemValueItemStatus =
-  /*@__PURE__*/ S.String;
+export const TelephonyResponseCommandsItemValueItemStatus = S.String;
 
 export interface TelephonyResponseCommandsItemValueItem {
   /** Status of telephony callout */
@@ -16766,7 +16744,7 @@ export type TokenHookResponseCommandsItemValueItemValue =
   | number
   | unknown;
 export const TokenHookResponseCommandsItemValueItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TokenHookResponseCommandsItemValueItemValue>;
+  S.Unknown as any as S.Schema<TokenHookResponseCommandsItemValueItemValue>;
 
 export interface TokenHookResponseCommandsItemValueItem {
   /** The name of one of the supported ops: `add`: Add a claim. `replace`: Modify an existing claim and update the token lifetime. `remove`: Remove an existing claim. #### `op: add` notes <details> <summary>Add a claim</summary> Add a claim **Existing JSON** ``` { "employeeId": "00u12345678" } ``` **Operation** ``` { "commands": [ { "type": "com.okta.assertion.patch", "value": [ { "op": "add", "path": "/claims/extPatientId", "value": "1234" } ] }, { "type": "com.okta.assertion.patch", "value": [ { "op": "add", "path": "/claims/external_guid", "value": "F0384685-F87D-474B-848D-2058AC5655A7" } ] } ] } ``` **Updated JSON** ``` { "employeeId": "00u12345678", "extPatientId": 1234, "external_guid": "F0384685-F87D-474B-848D-2058AC5655A7" } ``` > **Note:** If you use the `add` operation and include an existing claim in your response with a different value, that value is replaced. Use the `replace` operation instead. If you attempt to remove a system-specific claim or use an invalid operation, the entire PATCH fails and errors are logged in the token hooks events. See `op: replace` notes. </details> <details> <summary>Add new members to existing JSON objects</summary> If you have a JSON object in a claim called `employee_profile`, and you want to add the `department_id` member to the claim, the existing JSON is updated by specifying the claim in the path, followed by the name of the object member. **Existing JSON** ``` { "employee_profile": { "employee_id": "1234", "name": "Anna" } } ``` **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "add", "path": "/claims/employee_profile/department_id", "value": "4947" } ] } ] } ``` **Updated JSON** ``` { "employee_profile": { "employee_id": "1234", "name": "Anna", "department_id": "4947" } } ``` > **Note:** If you attempt to add a member within a JSON object that doesn't exist or using an invalid operation, the entire PATCH fails and errors are logged in the token hooks events. </details> <details> <summary>Add new elements to existing arrays</summary> Append an element to an array by specifying the name of the array, followed by the index where you want to insert the element in the path. Alternatively, you can specify the array name followed by a hyphen (-) in the path to append an element at the end of the array. For example, you have an array that contains the user's preferred airports, and you want to add a new airport to the array. The existing target JSON object is updated by specifying the claim in the path, followed by the index of where to insert the claim. **Existing JSON** ``` { "preferred_airports":[ "sjc", "sfo", "oak" ] } ``` **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "add", "path": "/claims/preferred_airports/3", "value": "lax" } ] } ] } ``` **Updated JSON** ``` { "preferred_airports":[ "sjc", "sfo", "oak", "lax" ] } ``` > **Note:** If you attempt to add an element within an array that doesn't exist or specify an invalid index, the entire PATCH fails and errors are logged in the token hooks events. </details> #### `op: replace` notes <details> <summary>Modify an existing claim</summary> You can modify (`replace`) existing custom claims or OIDC standard profile claims, such as `birthdate` and `locale`. You can't, however, modify any system-specific claims, such as `iss` or `ver`. Also, you can't modify a claim that isn't currently part of the token in the request payload. Attempting to modify a system-specific claim or using an invalid operation results in the entire PATCH failing and errors logged in the token hooks events. See [Access Tokens Scopes and Claims](/openapi/okta-oauth/guides/overview/#access-token-scopes-and-claims) for the list of access token-reserved claims that you can't modify. > **Note:** Although the `aud` and `sub` claims are listed as reserved claims, you can modify those claims in access tokens. You can't modify these claims in ID tokens. See [ID Token Claims](/openapi/okta-oauth/guides/overview/#id-token-claims) for a list of ID token-reserved claims that you can't modify. **Existing target JSON object** ``` { "employeeId": "00u12345678", "extPatientId": 1234, "external_guid": "F0384685-F87D-474B-848D-2058AC5655A7" } ``` **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "replace", "path": "/claims/extPatientId", "value": "12345" }, { "op": "replace", "path": "/claims/external_guid", "value": "D1495796-G98E-585C-959E-1269CD6766B8" } ] } ] } ``` **Updated JSON*** ``` { "employeeId": "00u12345678", "extPatientId": 12345, "external_guid": "D1495796-G98E-585C-959E-1269CD6766B8" } ``` </details> <details> <summary>Modify members within existing JSON objects and arrays</summary> Use the `replace` operation to modify members within JSON objects and elements within arrays. For example, you have a JSON object in a claim called `employee_profile`, and you want to update the email address of the employee. The existing target JSON object is updated by specifying the claim in the path, followed by the name of the object member that you want to modify. **Existing target JSON object** ``` { "employee_profile": { "employee_id":"1234", "name":"Anna", "email":"anna.v@company.com" } } ``` **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "replace", "path": "/claims/employee_profile/email", "value": "anna@company.com" } ] } ] } ``` **Updated JSON** ``` { "employee_profile": { "employee_id":"1234", "name":"Anna", "email":"anna@company.com" } } ``` > **Note:** If you attempt to modify a member within a JSON object that doesn't exist or use an invalid operation, the entire PATCH fails and errors are logged in the token hooks events. Similarly, you can replace elements in an array by specifying the array name and the valid index of the element that you want to replace in the path. </details> <details> <summary>Modify token lifetimes</summary> You can modify how long the access and ID tokens are valid by specifying the `lifetime` in seconds. The `lifetime` value must be a minimum of five minutes (300 seconds) and a maximum of 24 hours (86,400 seconds). **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "replace", "path": "/token/lifetime/expiration", "value": 36000 } ] }, { "type": "com.okta.access.patch", "value": [ { "op": "replace", "path": "/token/lifetime/expiration", "value": 36000 } ] } ] } ``` </details> #### `op: remove` notes <details> <summary>Remove a claim</summary> You can remove existing custom claims or OIDC standard profile claims, such as `birthdate` or `locale`. You can't, however, remove any system-specific claims, such as `iss` or `ver`. You also can't remove a claim that isn't currently part of the token in the request payload. If you attempt to remove a system-specific claim or use an invalid operation, the entire PATCH fails and errors are logged in the token hooks events. See [Access Tokens Scopes and Claims](/openapi/okta-oauth/guides/overview/#access-token-scopes-and-claims) for the list of access token-reserved claims that you can't modify. See [ID Token Claims](/openapi/okta-oauth/guides/overview/#id-token-claims) for a list of ID token-reserved claims that you can't modify. **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "remove", "path": "/claims/birthdate", "value": null } ] }, { "type": "com.okta.access.patch", "value": [ { "op": "remove", "path": "/claims/external_guid" } ] } ] } ``` > **Note:** The `value` property for the `remove` operation isn't required. If you provide it in the response, it should be set to `null`. Providing any other value fails the entire PATCH response. </details> <details> <summary>Remove members from existing arrays</summary> Use the `remove` operation to remove members from existing arrays. For example, you have an array that contains the user's preferred airports, and you want to remove an airport from the array. The existing target JSON object is updated by specifying the array name followed by the index of the element that you want to remove. You don't need to specify a value for the remove operation, but you can specify `null` as the value if you want. **Existing target JSON object** ``` { "preferred_airports": [ "sjc", "lax", "sfo", "oak" ] } ``` **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "remove", "path": "/claims/preferred_airports/1" } ] } ] } ``` **Updated JSON** ``` { "preferred_airports": [ "sjc", "sfo", "oak" ] } ``` </details> <details> <summary>Remove members from existing JSON objects</summary> Use the `remove` operation to remove members from existing JSON objects. Do this by specifying the JSON object in the path, followed by the claim member that you would like to remove. For example, you have an `employee_profile` claim, and you want to remove `email` from it. **Existing target JSON object** ``` { "employee_profile": { "employee_id":"1234", "name":"Anna", "email":"anna.v@company.com" } } ``` **Operation** ``` { "commands": [ { "type": "com.okta.identity.patch", "value": [ { "op": "remove", "path": "/claims/employee_profile/email" } ] } ] } ``` **Updated JSON** ``` { "employee_profile": { "employee_id":"1234", "name":"Anna", } } ``` </details> */
@@ -16851,7 +16829,7 @@ export type SAMLHookResponseCommandsItemValueItemValue =
   | number
   | unknown;
 export const SAMLHookResponseCommandsItemValueItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SAMLHookResponseCommandsItemValueItemValue>;
+  S.Unknown as any as S.Schema<SAMLHookResponseCommandsItemValueItemValue>;
 
 export interface SAMLHookResponseCommandsItemValueItem {
   /** The name of one of the supported ops: `add`: Add a new claim to the assertion `replace`: Modify any element of the assertion > **Note:** If a response to the SAML assertion inline hook request isn't received from your external service within three seconds, a timeout occurs. In this scenario, the Okta process flow continues with the original SAML assertion returned. */
@@ -16932,7 +16910,7 @@ export type UserImportResponseCommandsItemType =
   | "com.okta.user.profile.update"
   | "com.okta.action.update"
   | "com.okta.user.update";
-export const UserImportResponseCommandsItemType = /*@__PURE__*/ S.String;
+export const UserImportResponseCommandsItemType = S.String;
 
 /** The `value` object is the parameter to pass to the command. In the case of the `com.okta.appUser.profile.update` and `com.okta.user.profile.update` commands, the parameter should be a list of one or more profile attributes and the values you wish to set them to. In the case of the `com.okta.action.update` command, the parameter should be a `result` property set to either `CREATE_USER` or `LINK_USER`. */
 export type UserImportResponseCommandsItemValueMap = {
@@ -16992,7 +16970,7 @@ export type ExecuteInlineHookResponseBody =
   | SAMLHookResponse
   | UserImportResponse;
 export const ExecuteInlineHookResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExecuteInlineHookResponseBody>;
+  S.Unknown as any as S.Schema<ExecuteInlineHookResponseBody>;
 
 export type ExecuteInlineHookResponse = ExecuteInlineHookResponseBody;
 export const ExecuteInlineHookResponse = /*@__PURE__*/ S.suspend(() =>
@@ -17025,7 +17003,7 @@ export type ExecuteRealmAssignmentResponseStatus =
   | "SCHEDULED"
   | "IN_PROGRESS"
   | "FAILED";
-export const ExecuteRealmAssignmentResponseStatus = /*@__PURE__*/ S.String;
+export const ExecuteRealmAssignmentResponseStatus = S.String;
 
 /** Action that assigns a user to a realm */
 export type ExecuteRealmAssignmentResponseAssignmentOperationConfigurationActionsAssignUserToRealm =
@@ -17327,7 +17305,7 @@ export const GenerateCsrForApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GenerateCsrForApplicationRequest>;
 
 export type CsrPublishHrefHintsAllowItem = "POST";
-export const CsrPublishHrefHintsAllowItem = /*@__PURE__*/ S.String;
+export const CsrPublishHrefHintsAllowItem = S.String;
 
 export type CsrPublishHrefHintsAllowList = Array<CsrPublishHrefHintsAllowItem>;
 export const CsrPublishHrefHintsAllowList = /*@__PURE__*/ S.Array(
@@ -17362,7 +17340,7 @@ export const HrefCsrPublishLink = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HrefCsrPublishLink>;
 
 export type CsrSelfHrefHintsAllowItem = "GET" | "DELETE";
-export const CsrSelfHrefHintsAllowItem = /*@__PURE__*/ S.String;
+export const CsrSelfHrefHintsAllowItem = S.String;
 
 export type CsrSelfHrefHintsAllowList = Array<CsrSelfHrefHintsAllowItem>;
 export const CsrSelfHrefHintsAllowList = /*@__PURE__*/ S.Array(
@@ -17508,8 +17486,7 @@ export const FulfillmentData = /*@__PURE__*/ S.Array(
 
 /** Name of the fulfillment provider for the WebAuthn preregistration factor */
 export type GenerateFulfillmentRequestRequestFulfillmentProvider = "yubico";
-export const GenerateFulfillmentRequestRequestFulfillmentProvider =
-  /*@__PURE__*/ S.String;
+export const GenerateFulfillmentRequestRequestFulfillmentProvider = S.String;
 
 export interface GenerateFulfillmentRequestRequest {
   fulfillmentData?: FulfillmentData;
@@ -17653,7 +17630,7 @@ export const GetAgentPoolsUpdateSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Release channel for auto-update */
 export type ReleaseChannel = "BETA" | "EA" | "GA" | "TEST";
-export const ReleaseChannel = /*@__PURE__*/ S.String;
+export const ReleaseChannel = S.String;
 
 /** Settings for auto-update */
 export interface AgentPoolUpdateSettingResponse {
@@ -17687,8 +17664,7 @@ export const AgentPoolUpdateSettingResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetAllCrossAppAccessConnectionsRequestStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const GetAllCrossAppAccessConnectionsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const GetAllCrossAppAccessConnectionsRequestStatus = S.String;
 
 export interface GetAllCrossAppAccessConnectionsRequest {
   /** Application ID */
@@ -17756,7 +17732,7 @@ export type GetAllWellKnownURIsRequestExpandItem =
   | "apple-app-site-association"
   | "assetlinks.json"
   | "webauthn";
-export const GetAllWellKnownURIsRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetAllWellKnownURIsRequestExpandItem = S.String;
 
 export type GetAllWellKnownURIsRequestExpandList = Array<
   GetAllWellKnownURIsRequestExpandItem | (string & {})
@@ -18192,11 +18168,11 @@ export type UserSchemaAttributeDefault =
   | unknown
   | number;
 export const UserSchemaAttributeDefault =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserSchemaAttributeDefault>;
+  S.Unknown as any as S.Schema<UserSchemaAttributeDefault>;
 
 export type UserSchemaAttributeEnumItem = string | number;
 export const UserSchemaAttributeEnumItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserSchemaAttributeEnumItem>;
+  S.Unknown as any as S.Schema<UserSchemaAttributeEnumItem>;
 
 /** Enumerated value of the property. The value of the property is limited to one of the values specified in the enum definition. The list of values for the enum must consist of unique elements. */
 export type UserSchemaAttributeEnumList = Array<UserSchemaAttributeEnumItem>;
@@ -18215,7 +18191,7 @@ export type UserSchemaAttributeFormat =
   | "ref-id"
   | "timezone"
   | "uri";
-export const UserSchemaAttributeFormat = /*@__PURE__*/ S.String;
+export const UserSchemaAttributeFormat = S.String;
 
 export interface UserSchemaAttributeMasterPriority {
   type?: string;
@@ -18240,7 +18216,7 @@ export type UserSchemaAttributeMasterType =
   | "OKTA"
   | "OVERRIDE"
   | "PROFILE_MASTER";
-export const UserSchemaAttributeMasterType = /*@__PURE__*/ S.String;
+export const UserSchemaAttributeMasterType = S.String;
 
 export interface UserSchemaAttributeMaster {
   priority?: UserSchemaAttributeMasterPriorityList;
@@ -18260,7 +18236,7 @@ export type UserSchemaAttributeMutabilityString =
   | "READ_ONLY"
   | "READ_WRITE"
   | "WRITE_ONLY";
-export const UserSchemaAttributeMutabilityString = /*@__PURE__*/ S.String;
+export const UserSchemaAttributeMutabilityString = S.String;
 
 export interface UserSchemaAttributeEnum {
   /** The enumerated value */
@@ -18306,7 +18282,7 @@ export const UserSchemaAttributePermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UserSchemaAttributePermissionsList>;
 
 export type UserSchemaAttributeScope = "NONE" | "SELF";
-export const UserSchemaAttributeScope = /*@__PURE__*/ S.String;
+export const UserSchemaAttributeScope = S.String;
 
 export type UserSchemaAttributeType =
   | "array"
@@ -18314,7 +18290,7 @@ export type UserSchemaAttributeType =
   | "integer"
   | "number"
   | "string";
-export const UserSchemaAttributeType = /*@__PURE__*/ S.String;
+export const UserSchemaAttributeType = S.String;
 
 export interface UserSchemaAttribute {
   /** If specified, assigns the value as the default value for the custom attribute. This is a nullable property. If you don't specify a value for this custom attribute during user creation or update, the `default` is used instead of setting the value to `null` or empty. */
@@ -18691,7 +18667,7 @@ export const GetAuthenticatorRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetAuthenticatorEnrollmentRequestDiscloseIdentifiersItem = "phone";
 export const GetAuthenticatorEnrollmentRequestDiscloseIdentifiersItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAuthenticatorEnrollmentRequestDiscloseIdentifiersList = Array<
   GetAuthenticatorEnrollmentRequestDiscloseIdentifiersItem | (string & {})
@@ -18743,7 +18719,7 @@ export type GetAuthenticatorMethodRequestMethodType =
   | "voice"
   | "webauthn"
   | "tac";
-export const GetAuthenticatorMethodRequestMethodType = /*@__PURE__*/ S.String;
+export const GetAuthenticatorMethodRequestMethodType = S.String;
 
 export interface GetAuthenticatorMethodRequest {
   /** `id` of the authenticator */
@@ -18887,12 +18863,11 @@ export const GetAuthorizationServerPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 /** Indicates that the Policy is an authorization server Policy */
 export type GetAuthorizationServerPolicyResponseType =
   "OAUTH_AUTHORIZATION_POLICY";
-export const GetAuthorizationServerPolicyResponseType = /*@__PURE__*/ S.String;
+export const GetAuthorizationServerPolicyResponseType = S.String;
 
 /** Specifies whether requests have access to this Policy */
 export type GetAuthorizationServerPolicyResponseStatus = "ACTIVE" | "INACTIVE";
-export const GetAuthorizationServerPolicyResponseStatus =
-  /*@__PURE__*/ S.String;
+export const GetAuthorizationServerPolicyResponseStatus = S.String;
 
 export type GetAuthorizationServerPolicyResponseLinksRules = HrefObjectSelfLink;
 export const GetAuthorizationServerPolicyResponseLinksRules =
@@ -19078,19 +19053,19 @@ export const GetBotProtectionConfigurationRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of enforcement to trigger when a bot is detected */
 export type BotProtectionEnforcementType = "OKTA_CHALLENGE";
-export const BotProtectionEnforcementType = /*@__PURE__*/ S.String;
+export const BotProtectionEnforcementType = S.String;
 
 /** The sensitivity level of bot detection */
 export type BotProtectionLevel = "ANY" | "HIGH" | "LOW" | "MEDIUM";
-export const BotProtectionLevel = /*@__PURE__*/ S.String;
+export const BotProtectionLevel = S.String;
 
 /** The enforcement mode for bot protection */
 export type BotProtectionMode = "DISABLED" | "ENFORCED" | "LOG_ONLY";
-export const BotProtectionMode = /*@__PURE__*/ S.String;
+export const BotProtectionMode = S.String;
 
 /** Authentication flows that support bot protection */
 export type BotProtectionSupportedFlow = "SIGN_IN" | "SSPR" | "SSR";
-export const BotProtectionSupportedFlow = /*@__PURE__*/ S.String;
+export const BotProtectionSupportedFlow = S.String;
 
 /** An array of authentication flows that have bot protection enabled */
 export type BotProtectionConfigurationSupportedFlowsList =
@@ -19122,7 +19097,7 @@ export const BotProtectionConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BotProtectionConfiguration>;
 
 export type GetBrandRequestExpandItem = "themes" | "domains" | "emailDomain";
-export const GetBrandRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetBrandRequestExpandItem = S.String;
 
 export type GetBrandRequestExpandList = Array<
   GetBrandRequestExpandItem | (string & {})
@@ -19150,7 +19125,7 @@ export const GetBrandRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Variant for email templates. You can publish a theme for email templates with different combinations of assets. Variants are preset combinations of those assets. */
 export type EmailTemplateTouchPointVariant = "FULL_THEME" | "OKTA_DEFAULT";
-export const EmailTemplateTouchPointVariant = /*@__PURE__*/ S.String;
+export const EmailTemplateTouchPointVariant = S.String;
 
 /** Variant for the Okta End-User Dashboard. You can publish a theme for end-user dashboard with different combinations of assets. Variants are preset combinations of those assets. */
 export type EndUserDashboardTouchPointVariant =
@@ -19158,25 +19133,25 @@ export type EndUserDashboardTouchPointVariant =
   | "LOGO_ON_FULL_WHITE_BACKGROUND"
   | "OKTA_DEFAULT"
   | "WHITE_LOGO_BACKGROUND";
-export const EndUserDashboardTouchPointVariant = /*@__PURE__*/ S.String;
+export const EndUserDashboardTouchPointVariant = S.String;
 
 /** Variant for the error page. You can publish a theme for error page with different combinations of assets. Variants are preset combinations of those assets. */
 export type ErrorPageTouchPointVariant =
   | "BACKGROUND_IMAGE"
   | "BACKGROUND_SECONDARY_COLOR"
   | "OKTA_DEFAULT";
-export const ErrorPageTouchPointVariant = /*@__PURE__*/ S.String;
+export const ErrorPageTouchPointVariant = S.String;
 
 /** Variant for the Okta loading page. You can publish a theme for Okta loading page with different combinations of assets. Variants are preset combinations of those assets. */
 export type LoadingPageTouchPointVariant = "NONE" | "OKTA_DEFAULT";
-export const LoadingPageTouchPointVariant = /*@__PURE__*/ S.String;
+export const LoadingPageTouchPointVariant = S.String;
 
 /** Variant for the Okta sign-in page. You can publish a theme for sign-in page with different combinations of assets. Variants are preset combinations of those assets. > **Note:** For a non-`OKTA_DEFAULT` variant, `primaryColorHex` is used for button background color and `primaryColorContrastHex` is used to optimize the opacity for button text. */
 export type SignInPageTouchPointVariant =
   | "BACKGROUND_IMAGE"
   | "BACKGROUND_SECONDARY_COLOR"
   | "OKTA_DEFAULT";
-export const SignInPageTouchPointVariant = /*@__PURE__*/ S.String;
+export const SignInPageTouchPointVariant = S.String;
 
 export interface ThemeResponse {
   backgroundImage?: string;
@@ -19353,7 +19328,7 @@ export type GetBrandWellKnownURIRequestPath =
   | "apple-app-site-association"
   | "assetlinks.json"
   | "webauthn";
-export const GetBrandWellKnownURIRequestPath = /*@__PURE__*/ S.String;
+export const GetBrandWellKnownURIRequestPath = S.String;
 
 export interface GetBrandWellKnownURIRequest {
   /** The ID of the brand */
@@ -19426,7 +19401,7 @@ export const GetClientRoleRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetClientRoleResponseBody = StandardRole | CustomRole;
 export const GetClientRoleResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetClientRoleResponseBody>;
+  S.Unknown as any as S.Schema<GetClientRoleResponseBody>;
 
 export type GetClientRoleResponse = GetClientRoleResponseBody;
 export const GetClientRoleResponse = /*@__PURE__*/ S.suspend(() =>
@@ -19509,7 +19484,7 @@ export const GetCurrentConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies how Okta responds to authentication requests from suspicious IP addresses */
 export type ThreatInsightConfigurationAction = "none" | "audit" | "block";
-export const ThreatInsightConfigurationAction = /*@__PURE__*/ S.String;
+export const ThreatInsightConfigurationAction = S.String;
 
 /** Accepts a list of [Network Zone](/openapi/okta-management/management/networkzone/) IDs. IPs in the excluded network zones aren't logged or blocked. This ensures that traffic from known, trusted IPs isn't accidentally logged or blocked. */
 export type ThreatInsightConfigurationExcludeZonesList = Array<string>;
@@ -19652,7 +19627,7 @@ export const GetCustomizedErrorPageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomizedErrorPageRequest>;
 
 export type ContentSecurityPolicySettingMode = "enforced" | "report_only";
-export const ContentSecurityPolicySettingMode = /*@__PURE__*/ S.String;
+export const ContentSecurityPolicySettingMode = S.String;
 
 export type ContentSecurityPolicySettingSrcListList = Array<string>;
 export const ContentSecurityPolicySettingSrcListList = /*@__PURE__*/ S.Array(
@@ -19708,7 +19683,7 @@ export const GetCustomizedSignInPageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The generation of the Sign-in Widget */
 export type WidgetGeneration = "G2" | "G3";
-export const WidgetGeneration = /*@__PURE__*/ S.String;
+export const WidgetGeneration = S.String;
 
 export interface PostAuthKeepMeSignedInPrompt {
   /** The label on the accept button when prompting for Stay signed in */
@@ -19921,15 +19896,15 @@ export const GetDefaultProvisioningConnectionForApplicationRequest =
 
 /** A token is used to authenticate with the app. This property is only returned for the `TOKEN` authentication scheme. */
 export type ProvisioningConnectionTokenAuthScheme = "TOKEN";
-export const ProvisioningConnectionTokenAuthScheme = /*@__PURE__*/ S.String;
+export const ProvisioningConnectionTokenAuthScheme = S.String;
 
 /** Defines the method of authentication */
 export type ProvisioningConnectionAuthScheme = "OAUTH2" | "TOKEN" | "UNKNOWN";
-export const ProvisioningConnectionAuthScheme = /*@__PURE__*/ S.String;
+export const ProvisioningConnectionAuthScheme = S.String;
 
 /** The signing key rotation setting for the provisioning connection */
 export type ConnectionsSigningRotationMode = "AUTO" | "MANUAL";
-export const ConnectionsSigningRotationMode = /*@__PURE__*/ S.String;
+export const ConnectionsSigningRotationMode = S.String;
 
 /** Only used for the Okta Org2Org (`okta_org2org`) app. The signing key rotation setting. */
 export interface Org2OrgProvisioningOAuthSigningSettings {
@@ -19960,7 +19935,7 @@ export const ProvisioningConnectionResponseProfile = /*@__PURE__*/ S.suspend(
 
 /** Provisioning connection status */
 export type ProvisioningConnectionStatus = "DISABLED" | "ENABLED" | "UNKNOWN";
-export const ProvisioningConnectionStatus = /*@__PURE__*/ S.String;
+export const ProvisioningConnectionStatus = S.String;
 
 export type HrefHintsGuidanceObjectAllowList = Array<HttpMethod>;
 export const HrefHintsGuidanceObjectAllowList = /*@__PURE__*/ S.Array(
@@ -20103,11 +20078,11 @@ export type DiskEncryptionTypeDef =
   | "NONE"
   | "SYSTEM_VOLUME"
   | "USER";
-export const DiskEncryptionTypeDef = /*@__PURE__*/ S.String;
+export const DiskEncryptionTypeDef = S.String;
 
 /** OS platform of the device */
 export type DevicePlatform = "ANDROID" | "IOS" | "MACOS" | "WINDOWS";
-export const DevicePlatform = /*@__PURE__*/ S.String;
+export const DevicePlatform = S.String;
 
 export interface DeviceProfile {
   diskEncryptionType?: DiskEncryptionTypeDef;
@@ -20184,7 +20159,7 @@ export type DeviceStatus =
   | "DEACTIVATED"
   | "SUSPENDED"
   | "UNSUSPENDED";
-export const DeviceStatus = /*@__PURE__*/ S.String;
+export const DeviceStatus = S.String;
 
 export type HrefObjectSuspendLink = HrefObjectSelfLink;
 export const HrefObjectSuspendLink = HrefObjectSelfLink;
@@ -20323,7 +20298,7 @@ export const GetDeviceIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetDeviceOSAccountRequestExpandItem =
   | "users"
   | "account_linked_enrollments";
-export const GetDeviceOSAccountRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetDeviceOSAccountRequestExpandItem = S.String;
 
 export type GetDeviceOSAccountRequestExpandList = Array<
   GetDeviceOSAccountRequestExpandItem | (string & {})
@@ -20358,7 +20333,7 @@ export const GetDeviceOSAccountRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** OS platform for OS accounts (desktop platforms only) */
 export type OSAccountPlatform = "MACOS" | "WINDOWS";
-export const OSAccountPlatform = /*@__PURE__*/ S.String;
+export const OSAccountPlatform = S.String;
 
 /** Display name of the OS account */
 export interface OSAccountDisplayName {
@@ -20378,14 +20353,13 @@ export const OSAccountDisplayName = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the OS account */
 export type OSAccountWindowsOutputStatus = "ACTIVE" | "DELETED";
-export const OSAccountWindowsOutputStatus = /*@__PURE__*/ S.String;
+export const OSAccountWindowsOutputStatus = S.String;
 
 /** Authentication method used for the enrollment */
 export type AccountLinkedEnrollmentProfileAuthenticationMethod =
   | "PASSWORD"
   | "SECURE_ENCLAVE";
-export const AccountLinkedEnrollmentProfileAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+export const AccountLinkedEnrollmentProfileAuthenticationMethod = S.String;
 
 /** Profile details for a linked enrollment */
 export interface AccountLinkedEnrollmentProfile {
@@ -20408,11 +20382,11 @@ export type AccountLinkedEnrollmentStatus =
   | "SUSPENDED"
   | "REVOKED"
   | "DELETED";
-export const AccountLinkedEnrollmentStatus = /*@__PURE__*/ S.String;
+export const AccountLinkedEnrollmentStatus = S.String;
 
 /** Type of the linked enrollment */
 export type AccountLinkedEnrollmentType = "platform_sso" | "desktop_mfa";
-export const AccountLinkedEnrollmentType = /*@__PURE__*/ S.String;
+export const AccountLinkedEnrollmentType = S.String;
 
 /** Embedded data for a linked enrollment */
 export interface AccountLinkedEnrollmentEmbedded {
@@ -20501,7 +20475,7 @@ export const OSAccountLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** Profile type discriminator */
 export type WindowsOSAccountProfileType = "WINDOWS";
-export const WindowsOSAccountProfileType = /*@__PURE__*/ S.String;
+export const WindowsOSAccountProfileType = S.String;
 
 export interface WindowsOSAccountProfile {
   /** Active Directory join status */
@@ -20582,11 +20556,11 @@ export const OSAccountWindowsOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the OS account */
 export type OSAccountMacOSOutputStatus = "ACTIVE" | "DELETED";
-export const OSAccountMacOSOutputStatus = /*@__PURE__*/ S.String;
+export const OSAccountMacOSOutputStatus = S.String;
 
 /** Profile type discriminator */
 export type MacOSAccountProfileType = "MACOS";
-export const MacOSAccountProfileType = /*@__PURE__*/ S.String;
+export const MacOSAccountProfileType = S.String;
 
 export interface MacOSAccountProfile {
   /** Unique identifier for the macOS account */
@@ -20657,7 +20631,7 @@ export type GetDeviceOSAccountResponseBody =
   | OSAccountWindowsOutput
   | OSAccountMacOSOutput;
 export const GetDeviceOSAccountResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeviceOSAccountResponseBody>;
+  S.Unknown as any as S.Schema<GetDeviceOSAccountResponseBody>;
 
 export type GetDeviceOSAccountResponse = GetDeviceOSAccountResponseBody;
 export const GetDeviceOSAccountResponse = /*@__PURE__*/ S.suspend(() =>
@@ -20888,7 +20862,7 @@ export const GetEmailDefaultPreviewRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEmailDefaultPreviewRequest>;
 
 export type GetEmailDomainRequestExpandItem = "brands";
-export const GetEmailDomainRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetEmailDomainRequestExpandItem = S.String;
 
 export type GetEmailDomainRequestExpandList = Array<
   GetEmailDomainRequestExpandItem | (string & {})
@@ -21010,7 +20984,7 @@ export type EmailSettingsResponseRecipients =
   | "ALL_USERS"
   | "ADMINS_ONLY"
   | "NO_USERS";
-export const EmailSettingsResponseRecipients = /*@__PURE__*/ S.String;
+export const EmailSettingsResponseRecipients = S.String;
 
 export interface EmailSettingsResponseLinks {
   self?: HrefObjectSelfLink;
@@ -21041,7 +21015,7 @@ export const EmailSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetEmailTemplateRequestExpandItem =
   | "settings"
   | "customizationCount";
-export const GetEmailTemplateRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetEmailTemplateRequestExpandItem = S.String;
 
 export type GetEmailTemplateRequestExpandList = Array<
   GetEmailTemplateRequestExpandItem | (string & {})
@@ -21128,7 +21102,7 @@ export type GetErrorPageRequestExpandItem =
   | "customizedUrl"
   | "preview"
   | "previewUrl";
-export const GetErrorPageRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetErrorPageRequestExpandItem = S.String;
 
 export type GetErrorPageRequestExpandList = Array<
   GetErrorPageRequestExpandItem | (string & {})
@@ -21285,7 +21259,7 @@ export type UserFactorPushTransactionFactorResult =
   | "SUCCESS"
   | "REJECTED"
   | "TIMEOUT";
-export const UserFactorPushTransactionFactorResult = /*@__PURE__*/ S.String;
+export const UserFactorPushTransactionFactorResult = S.String;
 
 export interface UserFactorPushTransaction {
   /** Result of the verification transaction */
@@ -21315,11 +21289,11 @@ export const GetFeatureRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the release state of the feature */
 export type FeatureStageState = "CLOSED" | "OPEN";
-export const FeatureStageState = /*@__PURE__*/ S.String;
+export const FeatureStageState = S.String;
 
 /** Current release stage of the feature */
 export type FeatureStageValue = "BETA" | "EA";
-export const FeatureStageValue = /*@__PURE__*/ S.String;
+export const FeatureStageValue = S.String;
 
 /** Current release cycle stage of a feature If a feature's stage value is `EA`, the state is `null` and not returned. If the value is `BETA`, the state is `OPEN` or `CLOSED` depending on whether the `BETA` feature is manageable. > **Note:** If a feature's stage is `OPEN BETA`, you can update it only in Preview cells. If a feature's stage is `CLOSED BETA`, you can disable it only in Preview cells. */
 export interface FeatureStage {
@@ -21335,11 +21309,11 @@ export const FeatureStage = /*@__PURE__*/ S.suspend(() =>
 
 /** Setting status */
 export type EnabledStatus = "DISABLED" | "ENABLED";
-export const EnabledStatus = /*@__PURE__*/ S.String;
+export const EnabledStatus = S.String;
 
 /** Type of feature */
 export type FeatureType = "self-service";
-export const FeatureType = /*@__PURE__*/ S.String;
+export const FeatureType = S.String;
 
 /** Link to feature dependents */
 export interface FeatureLinksDependents {
@@ -21402,8 +21376,7 @@ export const Feature = /*@__PURE__*/ S.suspend(() =>
 export type GetFeatureForApplicationRequestFeatureName =
   | "USER_PROVISIONING"
   | "INBOUND_PROVISIONING";
-export const GetFeatureForApplicationRequestFeatureName =
-  /*@__PURE__*/ S.String;
+export const GetFeatureForApplicationRequestFeatureName = S.String;
 
 export interface GetFeatureForApplicationRequest {
   /** Application ID */
@@ -21430,7 +21403,7 @@ export const GetFeatureForApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 export type ApplicationFeatureType =
   | "USER_PROVISIONING"
   | "INBOUND_PROVISIONING";
-export const ApplicationFeatureType = /*@__PURE__*/ S.String;
+export const ApplicationFeatureType = S.String;
 
 export type ApplicationFeatureLinks = LinksSelf;
 export const ApplicationFeatureLinks = LinksSelf;
@@ -21579,7 +21552,7 @@ export const GetGroupAssignedRoleRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetGroupAssignedRoleResponseBody = StandardRole | CustomRole;
 export const GetGroupAssignedRoleResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetGroupAssignedRoleResponseBody>;
+  S.Unknown as any as S.Schema<GetGroupAssignedRoleResponseBody>;
 
 export type GetGroupAssignedRoleResponse = GetGroupAssignedRoleResponseBody;
 export const GetGroupAssignedRoleResponse = /*@__PURE__*/ S.suspend(() =>
@@ -21658,7 +21631,7 @@ export const GetGroupPushMappingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGroupPushMappingRequest>;
 
 export type GetGroupRuleRequestExpand = "groupIdToGroupNameMap";
-export const GetGroupRuleRequestExpand = /*@__PURE__*/ S.String;
+export const GetGroupRuleRequestExpand = S.String;
 
 export interface GetGroupRuleRequest {
   /** The `id` of the group rule */
@@ -21696,7 +21669,7 @@ export const GetGroupSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GroupSchemaAttributeEnumItem = string | number;
 export const GroupSchemaAttributeEnumItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupSchemaAttributeEnumItem>;
+  S.Unknown as any as S.Schema<GroupSchemaAttributeEnumItem>;
 
 /** Enumerated value of the property. The value of the property is limited to one of the values specified in the enum definition. The list of values for the enum must consist of unique elements. */
 export type GroupSchemaAttributeEnumList = Array<GroupSchemaAttributeEnumItem>;
@@ -22320,7 +22293,7 @@ export type GetJwkResponseBody =
   | OAuth2ClientJsonSigningKeyResponse
   | OAuth2ClientJsonEncryptionKeyResponse;
 export const GetJwkResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetJwkResponseBody>;
+  S.Unknown as any as S.Schema<GetJwkResponseBody>;
 
 export type GetJwkResponse = GetJwkResponseBody;
 export const GetJwkResponse = /*@__PURE__*/ S.suspend(() =>
@@ -22367,7 +22340,7 @@ export const GetLogStreamRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetLogStreamSchemaRequestLogStreamType =
   | "aws_eventbridge"
   | "splunk_cloud_logstreaming";
-export const GetLogStreamSchemaRequestLogStreamType = /*@__PURE__*/ S.String;
+export const GetLogStreamSchemaRequestLogStreamType = S.String;
 
 export interface GetLogStreamSchemaRequest {
   logStreamType: GetLogStreamSchemaRequestLogStreamType | (string & {});
@@ -22609,7 +22582,7 @@ export const OAuth2RefreshTokenScopesList = /*@__PURE__*/ S.Array(
 
 /** Status */
 export type GrantOrTokenStatus = "ACTIVE" | "REVOKED";
-export const GrantOrTokenStatus = /*@__PURE__*/ S.String;
+export const GrantOrTokenStatus = S.String;
 
 export interface OfflineAccessScopeResourceHrefObject {
   /** Link URI */
@@ -22866,7 +22839,7 @@ export type OptInStatusResponseOptInStatus =
   | "OPTED_IN"
   | "OPTING_OUT"
   | "OPTED_OUT";
-export const OptInStatusResponseOptInStatus = /*@__PURE__*/ S.String;
+export const OptInStatusResponseOptInStatus = S.String;
 
 export type OptInStatusResponseLinksOptInStatus = HrefObjectSelfLink;
 export const OptInStatusResponseLinksOptInStatus = HrefObjectSelfLink;
@@ -22908,7 +22881,7 @@ export const GetOrgCaptchaSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrgCaptchaSettingsRequest>;
 
 export type EnabledPagesType = "SIGN_IN" | "SSPR" | "SSR";
-export const EnabledPagesType = /*@__PURE__*/ S.String;
+export const EnabledPagesType = S.String;
 
 /** An array of pages that have CAPTCHA enabled */
 export type OrgCAPTCHASettingsEnabledPagesList = Array<EnabledPagesType>;
@@ -22940,7 +22913,7 @@ export const OrgCAPTCHASettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of contact */
 export type GetOrgContactUserRequestContactType = "BILLING" | "TECHNICAL";
-export const GetOrgContactUserRequestContactType = /*@__PURE__*/ S.String;
+export const GetOrgContactUserRequestContactType = S.String;
 
 export interface GetOrgContactUserRequest {
   contactType: GetOrgContactUserRequestContactType | (string & {});
@@ -22999,7 +22972,7 @@ export const GetOrgOktaSupportSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of Okta Support Settings */
 export type OrgOktaSupportSetting = "DISABLED" | "ENABLED";
-export const OrgOktaSupportSetting = /*@__PURE__*/ S.String;
+export const OrgOktaSupportSetting = S.String;
 
 export type OrgOktaSupportSettingsObjLinksExtend = HrefObjectSelfLink;
 export const OrgOktaSupportSettingsObjLinksExtend = HrefObjectSelfLink;
@@ -23107,7 +23080,7 @@ export const GetOrgSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of org */
 export type OrgSettingStatus = "ACTIVE" | "INACTIVE";
-export const OrgSettingStatus = /*@__PURE__*/ S.String;
+export const OrgSettingStatus = S.String;
 
 export type OrgGeneralSettingLinksContacts = HrefObjectSelfLink;
 export const OrgGeneralSettingLinksContacts = HrefObjectSelfLink;
@@ -23408,7 +23381,7 @@ export const GetProfileMappingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether to update target properties for user create and update or just for user create. - Having a pushStatus of `PUSH` causes properties in the target to be updated on create and update. - Having a pushStatus of `DONT_PUSH` causes properties in the target to be updated only on create. */
 export type ProfileMappingPropertyPushStatus = "DONT_PUSH" | "PUSH";
-export const ProfileMappingPropertyPushStatus = /*@__PURE__*/ S.String;
+export const ProfileMappingPropertyPushStatus = S.String;
 
 /** A target property, in string form, that maps to a valid [JSON Schema Draft](https://tools.ietf.org/html/draft-zyp-json-schema-04) document. */
 export interface ProfileMappingProperty {
@@ -23568,7 +23541,7 @@ export const GetRateLimitSettingsPerClientRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetRateLimitSettingsPerClientRequest>;
 
 export type PerClientRateLimitMode = "DISABLE" | "ENFORCE" | "PREVIEW";
-export const PerClientRateLimitMode = /*@__PURE__*/ S.String;
+export const PerClientRateLimitMode = S.String;
 
 /** A map of Per-Client Rate Limit Use Case to the applicable PerClientRateLimitMode. Overrides the `defaultMode` property for the specified use cases. */
 export interface PerClientRateLimitSettingsUseCaseModeOverrides {
@@ -23800,7 +23773,7 @@ export const GetRoleAssignmentGovernanceGrantRequest = /*@__PURE__*/ S.suspend(
 
 /** The grant type */
 export type GovernanceSourceType = "CUSTOM" | "ENTITLEMENT-BUNDLE";
-export const GovernanceSourceType = /*@__PURE__*/ S.String;
+export const GovernanceSourceType = S.String;
 
 export type HrefObjectGovernanceResourcesLink = HrefObjectSelfLink;
 export const HrefObjectGovernanceResourcesLink = HrefObjectSelfLink;
@@ -23972,8 +23945,7 @@ export const Permission = /*@__PURE__*/ S.suspend(() =>
 export type GetRoleTargetsByUserIdAndRoleIdRequestAssignmentType =
   | "USER"
   | "GROUP";
-export const GetRoleTargetsByUserIdAndRoleIdRequestAssignmentType =
-  /*@__PURE__*/ S.String;
+export const GetRoleTargetsByUserIdAndRoleIdRequestAssignmentType = S.String;
 
 export interface GetRoleTargetsByUserIdAndRoleIdRequest {
   /** ID of an existing Okta user */
@@ -24047,10 +24019,10 @@ export type GetRootBrandWellKnownURIRequestPath =
   | "apple-app-site-association"
   | "assetlinks.json"
   | "webauthn";
-export const GetRootBrandWellKnownURIRequestPath = /*@__PURE__*/ S.String;
+export const GetRootBrandWellKnownURIRequestPath = S.String;
 
 export type GetRootBrandWellKnownURIRequestExpandItem = "customized";
-export const GetRootBrandWellKnownURIRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetRootBrandWellKnownURIRequestExpandItem = S.String;
 
 export type GetRootBrandWellKnownURIRequestExpandList = Array<
   GetRootBrandWellKnownURIRequestExpandItem | (string & {})
@@ -24125,7 +24097,7 @@ export const OAuth2Actor = /*@__PURE__*/ S.suspend(() =>
 
 /** User type source that granted consent */
 export type OAuth2ScopeConsentGrantSource = "ADMIN" | "END_USER";
-export const OAuth2ScopeConsentGrantSource = /*@__PURE__*/ S.String;
+export const OAuth2ScopeConsentGrantSource = S.String;
 
 export interface OAuth2ScopeConsentGrantEmbeddedScope {
   /** The name of the Okta scope for which consent is granted */
@@ -24267,7 +24239,7 @@ export type SessionAuthenticationMethod =
   | "sms"
   | "swk"
   | "tel";
-export const SessionAuthenticationMethod = /*@__PURE__*/ S.String;
+export const SessionAuthenticationMethod = S.String;
 
 /** Authentication method reference */
 export type SessionAmrList = Array<SessionAuthenticationMethod>;
@@ -24290,7 +24262,7 @@ export const SessionIdentityProvider = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SessionIdentityProvider>;
 
 export type SessionStatus = "ACTIVE" | "MFA_ENROLL" | "MFA_REQUIRED";
-export const SessionStatus = /*@__PURE__*/ S.String;
+export const SessionStatus = S.String;
 
 export interface Session {
   /** Authentication method reference */
@@ -24335,7 +24307,7 @@ export type GetSignInPageRequestExpandItem =
   | "customizedUrl"
   | "preview"
   | "previewUrl";
-export const GetSignInPageRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetSignInPageRequestExpandItem = S.String;
 
 export type GetSignInPageRequestExpandList = Array<
   GetSignInPageRequestExpandItem | (string & {})
@@ -24384,7 +24356,7 @@ export const GetSignOutPageSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSignOutPageSettingsRequest>;
 
 export type HostedPageType = "EXTERNALLY_HOSTED" | "OKTA_DEFAULT";
-export const HostedPageType = /*@__PURE__*/ S.String;
+export const HostedPageType = S.String;
 
 export interface HostedPage {
   type: HostedPageType;
@@ -24436,7 +24408,7 @@ export type GetSsfStreamsResponseBody =
   | GetSsfStreamsResponseBodyCase0List
   | StreamConfiguration;
 export const GetSsfStreamsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSsfStreamsResponseBody>;
+  S.Unknown as any as S.Schema<GetSsfStreamsResponseBody>;
 
 export type GetSsfStreamsResponse = GetSsfStreamsResponseBody;
 export const GetSsfStreamsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -24461,7 +24433,7 @@ export const GetSsfStreamStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the SSF stream configuration */
 export type StreamStatusStatus = "enabled" | "disabled";
-export const StreamStatusStatus = /*@__PURE__*/ S.String;
+export const StreamStatusStatus = S.String;
 
 /** Status corresponding to the `stream_id` of the SSF stream */
 export interface StreamStatus {
@@ -24493,7 +24465,7 @@ export type GetSubscriptionsNotificationTypeRoleRequestNotificationType =
   | "USER_DEPROVISION"
   | "USER_LOCKED_OUT";
 export const GetSubscriptionsNotificationTypeRoleRequestNotificationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetSubscriptionsNotificationTypeRoleRequest {
   /** A reference to an existing role. Standard roles require a `roleType`, while Custom Roles require a `roleId`. See [Standard roles](/openapi/okta-management/guides/roles/#standard-roles). */
@@ -24542,11 +24514,11 @@ export type NotificationType =
   | "REPORT_SUSPICIOUS_ACTIVITY"
   | "USER_DEPROVISION"
   | "USER_LOCKED_OUT";
-export const NotificationType = /*@__PURE__*/ S.String;
+export const NotificationType = S.String;
 
 /** The status of the subscription */
 export type SubscriptionStatus = "subscribed" | "unsubscribed";
-export const SubscriptionStatus = /*@__PURE__*/ S.String;
+export const SubscriptionStatus = S.String;
 
 /** Discoverable resources related to the subscription */
 export type SubscriptionLinks = LinksSelf;
@@ -24585,7 +24557,7 @@ export type GetSubscriptionsNotificationTypeUserRequestNotificationType =
   | "USER_DEPROVISION"
   | "USER_LOCKED_OUT";
 export const GetSubscriptionsNotificationTypeUserRequestNotificationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetSubscriptionsNotificationTypeUserRequest {
   userId: string;
@@ -24688,7 +24660,7 @@ export type GetUserResponseTransitioningToStatus =
   | "ACTIVE"
   | "DEPROVISIONED"
   | "PROVISIONED";
-export const GetUserResponseTransitioningToStatus = /*@__PURE__*/ S.String;
+export const GetUserResponseTransitioningToStatus = S.String;
 
 /** The user type that determines the schema for the user's profile. The `type` property is a map that identifies the [User Types](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/UserType/#tag/UserType). Currently it contains a single element, `id`. It can be specified when creating a new user, and can be updated by an admin on a full replace of an existing user (but not a partial update). */
 export type GetUserResponseType = CreateUserRequestType;
@@ -24781,7 +24753,7 @@ export const GetUserAssignedRoleRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetUserAssignedRoleResponseBody = StandardRole | CustomRole;
 export const GetUserAssignedRoleResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetUserAssignedRoleResponseBody>;
+  S.Unknown as any as S.Schema<GetUserAssignedRoleResponseBody>;
 
 export type GetUserAssignedRoleResponse = GetUserAssignedRoleResponseBody;
 export const GetUserAssignedRoleResponse = /*@__PURE__*/ S.suspend(() =>
@@ -24863,7 +24835,7 @@ export const GetUserClassificationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of user classification */
 export type ClassificationType = "LITE" | "STANDARD";
-export const ClassificationType = /*@__PURE__*/ S.String;
+export const ClassificationType = S.String;
 
 export interface UserClassification {
   /** The timestamp when the user classification was last updated */
@@ -24991,7 +24963,7 @@ export const GetUserRiskRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The risk level associated with the user */
 export type UserRiskLevelAll = "HIGH" | "LOW" | "MEDIUM" | "NONE";
-export const UserRiskLevelAll = /*@__PURE__*/ S.String;
+export const UserRiskLevelAll = S.String;
 
 export interface UserRiskGetResponseLinks {
   self?: HrefObjectSelfLink;
@@ -25091,7 +25063,7 @@ export const GetWellKnownAppAuthenticatorConfigurationRequest =
 
 /** User verification setting */
 export type CustomAppUserVerificationEnum = "PREFERRED" | "REQUIRED";
-export const CustomAppUserVerificationEnum = /*@__PURE__*/ S.String;
+export const CustomAppUserVerificationEnum = S.String;
 
 export interface WellKnownAppAuthenticatorConfigurationSettings {
   userVerification?: CustomAppUserVerificationEnum;
@@ -25107,10 +25079,10 @@ export const WellKnownAppAuthenticatorConfigurationSettings =
 
 /** Indicates whether you must use a hardware key store */
 export type PushMethodKeyProtection = "ANY" | "HARDWARE";
-export const PushMethodKeyProtection = /*@__PURE__*/ S.String;
+export const PushMethodKeyProtection = S.String;
 
 export type AuthenticatorMethodAlgorithm = "ES256" | "RS256";
-export const AuthenticatorMethodAlgorithm = /*@__PURE__*/ S.String;
+export const AuthenticatorMethodAlgorithm = S.String;
 
 /** The encryption algorithm for this authenticator method */
 export type SupportedMethodsSettingsAlgorithmsList =
@@ -25120,7 +25092,7 @@ export const SupportedMethodsSettingsAlgorithmsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SupportedMethodsSettingsAlgorithmsList>;
 
 export type AuthenticatorMethodTransactionType = "CIBA" | "LOGIN";
-export const AuthenticatorMethodTransactionType = /*@__PURE__*/ S.String;
+export const AuthenticatorMethodTransactionType = S.String;
 
 /** The transaction type for this authenticator method */
 export type SupportedMethodsSettingsTransactionTypesList =
@@ -25149,7 +25121,7 @@ export const SupportedMethodsSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of authenticator method */
 export type SupportedMethodsType = "push";
-export const SupportedMethodsType = /*@__PURE__*/ S.String;
+export const SupportedMethodsType = S.String;
 
 /** The supported methods of an authenticator */
 export interface SupportedMethods {
@@ -25177,8 +25149,7 @@ export const WellKnownAppAuthenticatorConfigurationSupportedMethodsList =
 
 /** The type of authenticator */
 export type WellKnownAppAuthenticatorConfigurationType = "app";
-export const WellKnownAppAuthenticatorConfigurationType =
-  /*@__PURE__*/ S.String;
+export const WellKnownAppAuthenticatorConfigurationType = S.String;
 
 export interface WellKnownAppAuthenticatorConfiguration {
   /** The authenticator enrollment endpoint */
@@ -25248,7 +25219,7 @@ export const GetWellknownOrgMetadataRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The Okta authentication pipeline of the org */
 export type PipelineType = "idx" | "v1";
-export const PipelineType = /*@__PURE__*/ S.String;
+export const PipelineType = S.String;
 
 export type WellKnownOrgMetadataLinksAlternate = HrefObjectSelfLink;
 export const WellKnownOrgMetadataLinksAlternate = HrefObjectSelfLink;
@@ -25318,7 +25289,7 @@ export const WellKnownSSFMetadataAuthorizationSchemesList =
 
 /** A string that indicates the default behavior of newly created streams */
 export type WellKnownSSFMetadataDefaultSubjects = "ALL" | "NONE";
-export const WellKnownSSFMetadataDefaultSubjects = /*@__PURE__*/ S.String;
+export const WellKnownSSFMetadataDefaultSubjects = S.String;
 
 /** An array of supported SET delivery methods */
 export type WellKnownSSFMetadataDeliveryMethodsSupportedList = Array<string>;
@@ -25400,7 +25371,7 @@ export type UserFactorYubikeyOtpTokenStatus =
   | "REVOKED"
   | "DELETED"
   | "INACTIVE";
-export const UserFactorYubikeyOtpTokenStatus = /*@__PURE__*/ S.String;
+export const UserFactorYubikeyOtpTokenStatus = S.String;
 
 export type UserFactorYubikeyOtpTokenEmbeddedMap = {
   [key: string]: unknown | undefined;
@@ -26296,7 +26267,7 @@ export type ListAssignedRolesForUserResponseBodyItem =
   | StandardRole
   | CustomRole;
 export const ListAssignedRolesForUserResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAssignedRolesForUserResponseBodyItem>;
+  S.Unknown as any as S.Schema<ListAssignedRolesForUserResponseBodyItem>;
 
 export type ListAssignedRolesForUserResponseBodyList =
   Array<ListAssignedRolesForUserResponseBodyItem>;
@@ -26364,7 +26335,7 @@ export const ListAssociatedServersByTrustedTypeResponse =
 export type ListAuthenticatorEnrollmentsRequestDiscloseIdentifiersItem =
   "phone";
 export const ListAuthenticatorEnrollmentsRequestDiscloseIdentifiersItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListAuthenticatorEnrollmentsRequestDiscloseIdentifiersList = Array<
   ListAuthenticatorEnrollmentsRequestDiscloseIdentifiersItem | (string & {})
@@ -26506,11 +26477,11 @@ export const ListAuthorizationServerPoliciesRequest = /*@__PURE__*/ S.suspend(
 
 /** Indicates that the Policy is an authorization server Policy */
 export type AuthorizationServerPolicyType = "OAUTH_AUTHORIZATION_POLICY";
-export const AuthorizationServerPolicyType = /*@__PURE__*/ S.String;
+export const AuthorizationServerPolicyType = S.String;
 
 /** Specifies whether requests have access to this Policy */
 export type AuthorizationServerPolicyStatus = "ACTIVE" | "INACTIVE";
-export const AuthorizationServerPolicyStatus = /*@__PURE__*/ S.String;
+export const AuthorizationServerPolicyStatus = S.String;
 
 export type AuthorizationServerPolicyLinksRules = HrefObjectSelfLink;
 export const AuthorizationServerPolicyLinksRules = HrefObjectSelfLink;
@@ -26794,7 +26765,7 @@ export const BrandDomains = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "BrandDomains" }) as any as S.Schema<BrandDomains>;
 
 export type ListBrandsRequestExpandItem = "themes" | "domains" | "emailDomain";
-export const ListBrandsRequestExpandItem = /*@__PURE__*/ S.String;
+export const ListBrandsRequestExpandItem = S.String;
 
 export type ListBrandsRequestExpandList = Array<
   ListBrandsRequestExpandItem | (string & {})
@@ -27332,7 +27303,7 @@ export const ListDeviceIntegrationsResponse = /*@__PURE__*/ S.suspend(() =>
 export type ListDeviceOSAccountsRequestExpandItem =
   | "users"
   | "account_linked_enrollments";
-export const ListDeviceOSAccountsRequestExpandItem = /*@__PURE__*/ S.String;
+export const ListDeviceOSAccountsRequestExpandItem = S.String;
 
 export type ListDeviceOSAccountsRequestExpandList = Array<
   ListDeviceOSAccountsRequestExpandItem | (string & {})
@@ -27366,7 +27337,7 @@ export type ListDeviceOSAccountsResponseBodyItem =
   | OSAccountWindowsOutput
   | OSAccountMacOSOutput;
 export const ListDeviceOSAccountsResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeviceOSAccountsResponseBodyItem>;
+  S.Unknown as any as S.Schema<ListDeviceOSAccountsResponseBodyItem>;
 
 export type ListDeviceOSAccountsResponseBodyList =
   Array<ListDeviceOSAccountsResponseBodyItem>;
@@ -27404,7 +27375,7 @@ export const ListDevicePostureChecksResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDevicePostureChecksResponse>;
 
 export type ListDevicesRequestExpand = "user" | "userSummary";
-export const ListDevicesRequestExpand = /*@__PURE__*/ S.String;
+export const ListDevicesRequestExpand = S.String;
 
 export interface ListDevicesRequest {
   after?: string;
@@ -27428,11 +27399,11 @@ export const ListDevicesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The management status of the device */
 export type DeviceUserOutputManagementStatus = "MANAGED" | "NOT_MANAGED";
-export const DeviceUserOutputManagementStatus = /*@__PURE__*/ S.String;
+export const DeviceUserOutputManagementStatus = S.String;
 
 /** Screen lock type of the device */
 export type DeviceUserOutputScreenLockType = "NONE" | "PASSCODE" | "BIOMETRIC";
-export const DeviceUserOutputScreenLockType = /*@__PURE__*/ S.String;
+export const DeviceUserOutputScreenLockType = S.String;
 
 export interface DeviceUserOutput {
   /** Timestamp when device was created */
@@ -27626,7 +27597,7 @@ export const ListEmailCustomizationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListEmailCustomizationsResponse>;
 
 export type ListEmailDomainsRequestExpandItem = "brands";
-export const ListEmailDomainsRequestExpandItem = /*@__PURE__*/ S.String;
+export const ListEmailDomainsRequestExpandItem = S.String;
 
 export type ListEmailDomainsRequestExpandList = Array<
   ListEmailDomainsRequestExpandItem | (string & {})
@@ -27745,7 +27716,7 @@ export const EmailServerListResponse = /*@__PURE__*/ S.suspend(() =>
 export type ListEmailTemplatesRequestExpandItem =
   | "settings"
   | "customizationCount";
-export const ListEmailTemplatesRequestExpandItem = /*@__PURE__*/ S.String;
+export const ListEmailTemplatesRequestExpandItem = S.String;
 
 export type ListEmailTemplatesRequestExpandList = Array<
   ListEmailTemplatesRequestExpandItem | (string & {})
@@ -28084,7 +28055,7 @@ export const ListGroupAssignedRolesRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ListGroupAssignedRolesResponseBodyItem = StandardRole | CustomRole;
 export const ListGroupAssignedRolesResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListGroupAssignedRolesResponseBodyItem>;
+  S.Unknown as any as S.Schema<ListGroupAssignedRolesResponseBodyItem>;
 
 /** List of role assignments */
 export type ListGroupAssignedRolesResponseBodyList =
@@ -28187,7 +28158,7 @@ export const ListGroupPushMappingsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGroupPushMappingsResponse>;
 
 export type ListGroupRulesRequestExpand = "groupIdToGroupNameMap";
-export const ListGroupRulesRequestExpand = /*@__PURE__*/ S.String;
+export const ListGroupRulesRequestExpand = S.String;
 
 export interface ListGroupRulesRequest {
   /** Specifies the number of rule results in a page */
@@ -28625,7 +28596,7 @@ export type ListInlineHooksRequestType =
   | "com.okta.user.credential.password.import"
   | "com.okta.user.pre-registration"
   | "com.okta.telephony.provider";
-export const ListInlineHooksRequestType = /*@__PURE__*/ S.String;
+export const ListInlineHooksRequestType = S.String;
 
 export interface ListInlineHooksRequest {
   /** One of the supported inline hook types */
@@ -28743,7 +28714,7 @@ export type ListJwkResponseBodyItem =
   | OAuth2ClientJsonSigningKeyResponse
   | OAuth2ClientJsonEncryptionKeyResponse;
 export const ListJwkResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListJwkResponseBodyItem>;
+  S.Unknown as any as S.Schema<ListJwkResponseBodyItem>;
 
 export type ListJwkResponseBodyList = Array<ListJwkResponseBodyItem>;
 export const ListJwkResponseBodyList = /*@__PURE__*/ S.Array(
@@ -28829,7 +28800,7 @@ export const ListLinkedObjectsForUserResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLinkedObjectsForUserResponse>;
 
 export type ListLogEventsRequestSortOrder = "ASCENDING" | "DESCENDING";
-export const ListLogEventsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListLogEventsRequestSortOrder = S.String;
 
 export interface ListLogEventsRequest {
   /** Filters the lower time bound of the log events `published` property for bounded queries or persistence time for polling queries */
@@ -28899,7 +28870,7 @@ export type LogAuthenticationProvider =
   | "LDAP"
   | "OKTA_AUTHENTICATION_PROVIDER"
   | "SOCIAL";
-export const LogAuthenticationProvider = /*@__PURE__*/ S.String;
+export const LogAuthenticationProvider = S.String;
 
 /** A credential provider is a software service that manages identities and their associated credentials. When authentication occurs through credentials provided by a credential provider, the credential provider is recorded here. */
 export type LogCredentialProvider =
@@ -28910,7 +28881,7 @@ export type LogCredentialProvider =
   | "RSA"
   | "SYMANTEC"
   | "YUBIKEY";
-export const LogCredentialProvider = /*@__PURE__*/ S.String;
+export const LogCredentialProvider = S.String;
 
 /** The underlying technology/scheme used in the credential */
 export type LogCredentialType =
@@ -28926,7 +28897,7 @@ export type LogCredentialType =
   | "PASSWORD"
   | "PRE_SHARED_SYMMETRIC_KEY"
   | "SMS";
-export const LogCredentialType = /*@__PURE__*/ S.String;
+export const LogCredentialType = S.String;
 
 /** Describes the issuer of the authorization server when the authentication is performed through OAuth. This is the location where well-known resources regarding the details of the authorization servers are published. */
 export interface LogIssuer {
@@ -29084,7 +29055,7 @@ export type LogOutcomeResult =
   | "SCHEDULED"
   | "ABANDONED"
   | "UNANSWERED";
-export const LogOutcomeResult = /*@__PURE__*/ S.String;
+export const LogOutcomeResult = S.String;
 
 export interface LogOutcome {
   /** Reason for the result, for example, `INVALID_CREDENTIALS` */
@@ -29106,7 +29077,7 @@ export type LogIpServiceCategoryType =
   | "Tor"
   | "Residential Proxy"
   | "Blockchain VPN";
-export const LogIpServiceCategoryType = /*@__PURE__*/ S.String;
+export const LogIpServiceCategoryType = S.String;
 
 /** Describes the IP service category associated with an IP. */
 export interface LogIpServiceCategory {
@@ -29197,7 +29168,7 @@ export const LogRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The bot detected level associated with the bot protection configuration target */
 export type LogBotProtectionLevel = "NONE" | "LOW" | "MEDIUM" | "HIGH";
-export const LogBotProtectionLevel = /*@__PURE__*/ S.String;
+export const LogBotProtectionLevel = S.String;
 
 /** <x-lifecycle-container><x-lifecycle class="oie"></x-lifecycle></x-lifecycle-container>The result of the bot protection detection associated with the event */
 export interface LogBotProtection {
@@ -29214,11 +29185,11 @@ export const LogBotProtection = /*@__PURE__*/ S.suspend(() =>
 
 /** The risk level associated with the request */
 export type LogRiskLevel = "LOW" | "MEDIUM" | "HIGH";
-export const LogRiskLevel = /*@__PURE__*/ S.String;
+export const LogRiskLevel = S.String;
 
 /** The previous risk level (if any) associated with the user */
 export type LogRiskPreviousLevel = "LOW" | "MEDIUM" | "HIGH";
-export const LogRiskPreviousLevel = /*@__PURE__*/ S.String;
+export const LogRiskPreviousLevel = S.String;
 
 /** Reasons for the associated risk */
 export type LogRiskReasonsList = Array<string>;
@@ -29255,7 +29226,7 @@ export type LogUserBehaviorResult =
   | "POSITIVE"
   | "NEGATIVE"
   | "BAD_REQUEST";
-export const LogUserBehaviorResult = /*@__PURE__*/ S.String;
+export const LogUserBehaviorResult = S.String;
 
 /** The result of the user behavior detection models associated with the event */
 export interface LogUserBehavior {
@@ -29318,7 +29289,7 @@ export const LogSecurityContext = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates how severe the event is */
 export type LogSeverity = "DEBUG" | "ERROR" | "INFO" | "WARN";
-export const LogSeverity = /*@__PURE__*/ S.String;
+export const LogSeverity = S.String;
 
 /** The original properties of the target */
 export type LogTargetChangeDetailsFromMap = {
@@ -29936,7 +29907,7 @@ export type OktaSupportAccessStatus =
   | "ENABLED"
   | "NOT_REQUESTED"
   | "REQUESTED";
-export const OktaSupportAccessStatus = /*@__PURE__*/ S.String;
+export const OktaSupportAccessStatus = S.String;
 
 /** Allows the Okta Support team to sign in to your org as an admin and troubleshoot issues */
 export interface OktaSupportCaseImpersonation {
@@ -29955,7 +29926,7 @@ export const OktaSupportCaseImpersonation = /*@__PURE__*/ S.suspend(() =>
 
 /** Okta Support access approval status for self-assigned cases */
 export type SelfAssignedStatus = "APPROVED" | "NOT_REQUIRED" | "REQUESTED";
-export const SelfAssignedStatus = /*@__PURE__*/ S.String;
+export const SelfAssignedStatus = S.String;
 
 /** Customer allows Okta Support access to self-assigned cases. Support cases are self-assigned when an Okta Support team member creates and assigns the case to themselves. */
 export interface OktaSupportCaseSelfAssigned {
@@ -30017,7 +29988,7 @@ export const ListOrgContactTypesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of contact */
 export type OrgContactType = "BILLING" | "TECHNICAL";
-export const OrgContactType = /*@__PURE__*/ S.String;
+export const OrgContactType = S.String;
 
 export type OrgBillingContactTypeLinksBilling = HrefObjectSelfLink;
 export const OrgBillingContactTypeLinksBilling = HrefObjectSelfLink;
@@ -30081,7 +30052,7 @@ export const OrgTechnicalContactType = /*@__PURE__*/ S.suspend(() =>
 
 export type OrgContactTypeObj = OrgBillingContactType | OrgTechnicalContactType;
 export const OrgContactTypeObj =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrgContactTypeObj>;
+  S.Unknown as any as S.Schema<OrgContactTypeObj>;
 
 export type ListOrgContactTypesResponseBodyList = Array<OrgContactTypeObj>;
 export const ListOrgContactTypesResponseBodyList = /*@__PURE__*/ S.Array(
@@ -30380,7 +30351,7 @@ export type RealmAssignmentOperationResponseStatus =
   | "SCHEDULED"
   | "IN_PROGRESS"
   | "FAILED";
-export const RealmAssignmentOperationResponseStatus = /*@__PURE__*/ S.String;
+export const RealmAssignmentOperationResponseStatus = S.String;
 
 /** Action that assigns a user to a realm */
 export type RealmAssignmentOperationResponseAssignmentOperationConfigurationActionsAssignUserToRealm =
@@ -30805,7 +30776,7 @@ export const ListRolesForClientRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ListRolesForClientResponseBodyItem = StandardRole | CustomRole;
 export const ListRolesForClientResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRolesForClientResponseBodyItem>;
+  S.Unknown as any as S.Schema<ListRolesForClientResponseBodyItem>;
 
 export type ListRolesForClientResponseBodyList =
   Array<ListRolesForClientResponseBodyItem>;
@@ -31053,7 +31024,7 @@ export const ListSupportedFactorsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates if the factor is required for the specified user */
 export type UserFactorSupportedEnrollment = "OPTIONAL" | "REQUIRED";
-export const UserFactorSupportedEnrollment = /*@__PURE__*/ S.String;
+export const UserFactorSupportedEnrollment = S.String;
 
 export type UserFactorProvider =
   | "CUSTOM"
@@ -31064,7 +31035,7 @@ export type UserFactorProvider =
   | "RSA"
   | "SYMANTEC"
   | "YUBICO";
-export const UserFactorProvider = /*@__PURE__*/ S.String;
+export const UserFactorProvider = S.String;
 
 /** Embedded resources related to the factor */
 export type UserFactorSupportedEmbeddedMap = {
@@ -31154,8 +31125,7 @@ export type UserFactorSecurityQuestionProfileOutputQuestion =
   | "favorite_speaker_actor"
   | "favorite_book_movie_character"
   | "favorite_sports_player";
-export const UserFactorSecurityQuestionProfileOutputQuestion =
-  /*@__PURE__*/ S.String;
+export const UserFactorSecurityQuestionProfileOutputQuestion = S.String;
 
 export interface UserFactorSecurityQuestionProfileOutput {
   /** Unique key for the question */
@@ -31259,11 +31229,11 @@ export const ListUserBlocksRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The devices that the block applies to */
 export type UserBlockAppliesTo = "ANY_DEVICES" | "UNKNOWN_DEVICES";
-export const UserBlockAppliesTo = /*@__PURE__*/ S.String;
+export const UserBlockAppliesTo = S.String;
 
 /** Type of access block */
 export type UserBlockType = "DEVICE_BASED";
-export const UserBlockType = /*@__PURE__*/ S.String;
+export const UserBlockType = S.String;
 
 /** Describes how the account is blocked from access. If `appliesTo` is `ANY_DEVICES`, then the account is blocked for all devices. If `appliesTo` is `UNKNOWN_DEVICES`, then the account is only blocked for unknown devices. */
 export interface UserBlock {
@@ -31697,7 +31667,7 @@ export type ListYubikeyOtpTokensRequestFilter =
   | "created"
   | "status"
   | "lastVerified";
-export const ListYubikeyOtpTokensRequestFilter = /*@__PURE__*/ S.String;
+export const ListYubikeyOtpTokensRequestFilter = S.String;
 
 export type ListYubikeyOtpTokensRequestSortBy =
   | "profile.email"
@@ -31707,10 +31677,10 @@ export type ListYubikeyOtpTokensRequestSortBy =
   | "created"
   | "status"
   | "lastVerified";
-export const ListYubikeyOtpTokensRequestSortBy = /*@__PURE__*/ S.String;
+export const ListYubikeyOtpTokensRequestSortBy = S.String;
 
 export type ListYubikeyOtpTokensRequestSortOrder = "ASC" | "DESC";
-export const ListYubikeyOtpTokensRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListYubikeyOtpTokensRequestSortOrder = S.String;
 
 export interface ListYubikeyOtpTokensRequest {
   /** Specifies the pagination cursor for the next page of tokens */
@@ -31763,7 +31733,7 @@ export const ListYubikeyOtpTokensResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the type of resource to map. You can only map an app sign-in policy to a device signal collection policy (the `policyId` path parameter). */
 export type PolicyMappingResourceType = "ACCESS_POLICY";
-export const PolicyMappingResourceType = /*@__PURE__*/ S.String;
+export const PolicyMappingResourceType = S.String;
 
 export interface MapResourceToPolicyRequest {
   /** `id` of the policy */
@@ -32140,8 +32110,7 @@ export type ReplaceAuthenticatorMethodRequestMethodType =
   | "voice"
   | "webauthn"
   | "tac";
-export const ReplaceAuthenticatorMethodRequestMethodType =
-  /*@__PURE__*/ S.String;
+export const ReplaceAuthenticatorMethodRequestMethodType = S.String;
 
 export interface ReplaceAuthenticatorMethodRequest {
   /** `id` of the authenticator */
@@ -32248,15 +32217,13 @@ export const ReplaceAuthorizationServerRequest = /*@__PURE__*/ S.suspend(() =>
 /** Indicates that the Policy is an authorization server Policy */
 export type ReplaceAuthorizationServerPolicyRequestType =
   "OAUTH_AUTHORIZATION_POLICY";
-export const ReplaceAuthorizationServerPolicyRequestType =
-  /*@__PURE__*/ S.String;
+export const ReplaceAuthorizationServerPolicyRequestType = S.String;
 
 /** Specifies whether requests have access to this Policy */
 export type ReplaceAuthorizationServerPolicyRequestStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const ReplaceAuthorizationServerPolicyRequestStatus =
-  /*@__PURE__*/ S.String;
+export const ReplaceAuthorizationServerPolicyRequestStatus = S.String;
 
 export type ReplaceAuthorizationServerPolicyRequestLinksRules =
   HrefObjectSelfLinkInput;
@@ -32318,15 +32285,13 @@ export const ReplaceAuthorizationServerPolicyRequest = /*@__PURE__*/ S.suspend(
 /** Indicates that the Policy is an authorization server Policy */
 export type ReplaceAuthorizationServerPolicyResponseType =
   "OAUTH_AUTHORIZATION_POLICY";
-export const ReplaceAuthorizationServerPolicyResponseType =
-  /*@__PURE__*/ S.String;
+export const ReplaceAuthorizationServerPolicyResponseType = S.String;
 
 /** Specifies whether requests have access to this Policy */
 export type ReplaceAuthorizationServerPolicyResponseStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const ReplaceAuthorizationServerPolicyResponseStatus =
-  /*@__PURE__*/ S.String;
+export const ReplaceAuthorizationServerPolicyResponseStatus = S.String;
 
 export type ReplaceAuthorizationServerPolicyResponseLinksRules =
   HrefObjectSelfLink;
@@ -32383,13 +32348,11 @@ export const ReplaceAuthorizationServerPolicyResponse = /*@__PURE__*/ S.suspend(
 export type ReplaceAuthorizationServerPolicyRuleRequestStatus =
   | "ACTIVE"
   | "INACTIVE";
-export const ReplaceAuthorizationServerPolicyRuleRequestStatus =
-  /*@__PURE__*/ S.String;
+export const ReplaceAuthorizationServerPolicyRuleRequestStatus = S.String;
 
 /** Rule type */
 export type ReplaceAuthorizationServerPolicyRuleRequestType = "RESOURCE_ACCESS";
-export const ReplaceAuthorizationServerPolicyRuleRequestType =
-  /*@__PURE__*/ S.String;
+export const ReplaceAuthorizationServerPolicyRuleRequestType = S.String;
 
 export interface ReplaceAuthorizationServerPolicyRuleRequest {
   /** `id` of the Authorization Server */
@@ -32574,7 +32537,7 @@ export type ReplaceBrandWellKnownURIRequestPath =
   | "apple-app-site-association"
   | "assetlinks.json"
   | "webauthn";
-export const ReplaceBrandWellKnownURIRequestPath = /*@__PURE__*/ S.String;
+export const ReplaceBrandWellKnownURIRequestPath = S.String;
 
 export interface ReplaceBrandWellKnownURIRequest {
   /** The ID of the brand */
@@ -32847,7 +32810,7 @@ export type ReplaceDeviceAssurancePolicyRequestDisplayRemediationMode =
   | "HIDE"
   | "SHOW";
 export const ReplaceDeviceAssurancePolicyRequestDisplayRemediationMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplaceDeviceAssurancePolicyRequest {
   /** Id of the device assurance policy */
@@ -32998,7 +32961,7 @@ export const ReplaceEmailCustomizationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReplaceEmailCustomizationResponse>;
 
 export type ReplaceEmailDomainRequestExpandItem = "brands";
-export const ReplaceEmailDomainRequestExpandItem = /*@__PURE__*/ S.String;
+export const ReplaceEmailDomainRequestExpandItem = S.String;
 
 export type ReplaceEmailDomainRequestExpandList = Array<
   ReplaceEmailDomainRequestExpandItem | (string & {})
@@ -33068,7 +33031,7 @@ export type ReplaceEmailSettingsRequestRecipients =
   | "ALL_USERS"
   | "ADMINS_ONLY"
   | "NO_USERS";
-export const ReplaceEmailSettingsRequestRecipients = /*@__PURE__*/ S.String;
+export const ReplaceEmailSettingsRequestRecipients = S.String;
 
 export interface ReplaceEmailSettingsRequest {
   /** The ID of the brand */
@@ -33094,7 +33057,7 @@ export const ReplaceEmailSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReplaceEmailSettingsRequest>;
 
 export type EmailSettingsRecipients = "ALL_USERS" | "ADMINS_ONLY" | "NO_USERS";
-export const EmailSettingsRecipients = /*@__PURE__*/ S.String;
+export const EmailSettingsRecipients = S.String;
 
 export interface EmailSettings {
   recipients: EmailSettingsRecipients;
@@ -33317,7 +33280,7 @@ export type ReplaceIdentityProviderRequestProtocol =
   | ProtocolMtls
   | ProtocolIdVerification;
 export const ReplaceIdentityProviderRequestProtocol =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplaceIdentityProviderRequestProtocol>;
+  S.Unknown as any as S.Schema<ReplaceIdentityProviderRequestProtocol>;
 
 export type ReplaceIdentityProviderRequestLinks =
   CreateIdentityProviderRequestLinks;
@@ -33577,7 +33540,7 @@ export const ReplaceOktaPersonalAdminSettingsResponse = /*@__PURE__*/ S.suspend(
 
 /** Type of contact */
 export type ReplaceOrgContactUserRequestContactType = "BILLING" | "TECHNICAL";
-export const ReplaceOrgContactUserRequestContactType = /*@__PURE__*/ S.String;
+export const ReplaceOrgContactUserRequestContactType = S.String;
 
 export interface ReplaceOrgContactUserRequest {
   contactType: ReplaceOrgContactUserRequestContactType | (string & {});
@@ -34097,7 +34060,7 @@ export type ReplaceSecurityEventsProviderInstanceRequestSettings =
   | SecurityEventsProviderSettingsSSFCompliant
   | SecurityEventsProviderSettingsNonSSFCompliant;
 export const ReplaceSecurityEventsProviderInstanceRequestSettings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplaceSecurityEventsProviderInstanceRequestSettings>;
+  S.Unknown as any as S.Schema<ReplaceSecurityEventsProviderInstanceRequestSettings>;
 
 export interface ReplaceSecurityEventsProviderInstanceRequest {
   /** `id` of the security events provider instance */
@@ -34211,7 +34174,7 @@ export type ReplaceSsfStreamRequestAud =
   | string
   | ReplaceSsfStreamRequestAudCase1List;
 export const ReplaceSsfStreamRequestAud =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplaceSsfStreamRequestAud>;
+  S.Unknown as any as S.Schema<ReplaceSsfStreamRequestAud>;
 
 /** The events (mapped by the array of event type URIs) that the transmitter actually delivers to the SSF stream. A read-only parameter that is set by the transmitter. If this parameter is included in the request, the value must match the expected value from the transmitter. */
 export type ReplaceSsfStreamRequestEventsDeliveredList = Array<string>;
@@ -34233,7 +34196,7 @@ export const ReplaceSsfStreamRequestEventsSupportedList = /*@__PURE__*/ S.Array(
 
 /** The subject identifier format expected for any SET transmitted. */
 export type ReplaceSsfStreamRequestFormat = "iss_sub";
-export const ReplaceSsfStreamRequestFormat = /*@__PURE__*/ S.String;
+export const ReplaceSsfStreamRequestFormat = S.String;
 
 export interface ReplaceSsfStreamRequest {
   /** The audience used in the SET. This value is set as `aud` in the claim. A read-only parameter that is set by the transmitter. If this parameter is included in the request, the value must match the expected value from the transmitter. */
@@ -34429,7 +34392,7 @@ export const ReplaceUserTypeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the factor */
 export type ResendEnrollFactorRequestFactorType = "call" | "email" | "sms";
-export const ResendEnrollFactorRequestFactorType = /*@__PURE__*/ S.String;
+export const ResendEnrollFactorRequestFactorType = S.String;
 
 export interface ResendEnrollFactorRequest {
   /** ID of an existing Okta user */
@@ -34460,7 +34423,7 @@ export const ResendEnrollFactorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the factor */
 export type ResendUserFactorFactorType = "call" | "email" | "sms";
-export const ResendUserFactorFactorType = /*@__PURE__*/ S.String;
+export const ResendUserFactorFactorType = S.String;
 
 export interface ResendUserFactor {
   /** Type of the factor */
@@ -35055,7 +35018,7 @@ export const RevokeUserSessionsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Purpose of the certificate. The only supported value is `sig`. */
 export type JwkUseType = "sig";
-export const JwkUseType = /*@__PURE__*/ S.String;
+export const JwkUseType = S.String;
 
 export interface RotateAuthorizationServerKeysRequest {
   /** `id` of the Authorization Server */
@@ -35095,7 +35058,7 @@ export const RotateAuthorizationServerKeysResponse = /*@__PURE__*/ S.suspend(
 
 /** Name of the fulfillment provider for the WebAuthn preregistration factor */
 export type SendPinRequestFulfillmentProvider = "yubico";
-export const SendPinRequestFulfillmentProvider = /*@__PURE__*/ S.String;
+export const SendPinRequestFulfillmentProvider = S.String;
 
 export interface SendPinRequest {
   /** ID for a WebAuthn preregistration factor in Okta */
@@ -35130,8 +35093,7 @@ export const SendPinResponse = /*@__PURE__*/ S.suspend(() =>
 export type SendTestCustomTelephonyProviderCredentialRequestFactor =
   | "SMS"
   | "CALL";
-export const SendTestCustomTelephonyProviderCredentialRequestFactor =
-  /*@__PURE__*/ S.String;
+export const SendTestCustomTelephonyProviderCredentialRequestFactor = S.String;
 
 export interface SendTestCustomTelephonyProviderCredentialRequest {
   /** The ID of the custom telephony provider */
@@ -35289,7 +35251,7 @@ export const FailbackRequestSchema = /*@__PURE__*/ S.suspend(() =>
 
 export type StartOrgFailbackRequestBody = FailbackRequestSchema | unknown;
 export const StartOrgFailbackRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StartOrgFailbackRequestBody>;
+  S.Unknown as any as S.Schema<StartOrgFailbackRequestBody>;
 
 export interface StartOrgFailbackRequest {
   body?: StartOrgFailbackRequestBody;
@@ -35356,7 +35318,7 @@ export const FailoverRequestSchema = /*@__PURE__*/ S.suspend(() =>
 
 export type StartOrgFailoverRequestBody = FailoverRequestSchema | unknown;
 export const StartOrgFailoverRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StartOrgFailoverRequestBody>;
+  S.Unknown as any as S.Schema<StartOrgFailoverRequestBody>;
 
 export interface StartOrgFailoverRequest {
   body?: StartOrgFailoverRequestBody;
@@ -35477,8 +35439,7 @@ export type SubscribeByNotificationTypeRoleRequestNotificationType =
   | "REPORT_SUSPICIOUS_ACTIVITY"
   | "USER_DEPROVISION"
   | "USER_LOCKED_OUT";
-export const SubscribeByNotificationTypeRoleRequestNotificationType =
-  /*@__PURE__*/ S.String;
+export const SubscribeByNotificationTypeRoleRequestNotificationType = S.String;
 
 export interface SubscribeByNotificationTypeRoleRequest {
   /** A reference to an existing role. Standard roles require a `roleType`, while Custom Roles require a `roleId`. See [Standard roles](/openapi/okta-management/guides/roles/#standard-roles). */
@@ -35526,8 +35487,7 @@ export type SubscribeByNotificationTypeUserRequestNotificationType =
   | "REPORT_SUSPICIOUS_ACTIVITY"
   | "USER_DEPROVISION"
   | "USER_LOCKED_OUT";
-export const SubscribeByNotificationTypeUserRequestNotificationType =
-  /*@__PURE__*/ S.String;
+export const SubscribeByNotificationTypeUserRequestNotificationType = S.String;
 
 export interface SubscribeByNotificationTypeUserRequest {
   userId: string;
@@ -36105,7 +36065,7 @@ export type UnsubscribeByNotificationTypeRoleRequestNotificationType =
   | "USER_DEPROVISION"
   | "USER_LOCKED_OUT";
 export const UnsubscribeByNotificationTypeRoleRequestNotificationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UnsubscribeByNotificationTypeRoleRequest {
   /** A reference to an existing role. Standard roles require a `roleType`, while Custom Roles require a `roleId`. See [Standard roles](/openapi/okta-management/guides/roles/#standard-roles). */
@@ -36155,7 +36115,7 @@ export type UnsubscribeByNotificationTypeUserRequestNotificationType =
   | "USER_DEPROVISION"
   | "USER_LOCKED_OUT";
 export const UnsubscribeByNotificationTypeUserRequestNotificationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UnsubscribeByNotificationTypeUserRequest {
   userId: string;
@@ -36353,7 +36313,7 @@ export type AppUserUpdateRequest =
   | AppUserCredentialsRequestPayload
   | AppUserProfileRequestPayload;
 export const AppUserUpdateRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AppUserUpdateRequest>;
+  S.Unknown as any as S.Schema<AppUserUpdateRequest>;
 
 export interface UpdateApplicationUserRequest {
   /** Application ID */
@@ -36579,7 +36539,7 @@ export const UpdateCaptchaInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies how Okta responds to authentication requests from suspicious IP addresses */
 export type UpdateConfigurationRequestAction = "none" | "audit" | "block";
-export const UpdateConfigurationRequestAction = /*@__PURE__*/ S.String;
+export const UpdateConfigurationRequestAction = S.String;
 
 /** Accepts a list of [Network Zone](/openapi/okta-management/management/networkzone/) IDs. IPs in the excluded network zones aren't logged or blocked. This ensures that traffic from known, trusted IPs isn't accidentally logged or blocked. */
 export type UpdateConfigurationRequestExcludeZonesList = Array<string>;
@@ -36606,8 +36566,7 @@ export const UpdateConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Requested value of Cross App Access connection status */
 export type UpdateCrossAppAccessConnectionRequestStatus = "ACTIVE" | "INACTIVE";
-export const UpdateCrossAppAccessConnectionRequestStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateCrossAppAccessConnectionRequestStatus = S.String;
 
 export interface UpdateCrossAppAccessConnectionRequest {
   /** Application ID */
@@ -36716,7 +36675,7 @@ export const ProvisioningConnectionTokenRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** OAuth 2.0 is used to authenticate with the app. */
 export type ProvisioningConnectionOauthAuthScheme = "OAUTH2";
-export const ProvisioningConnectionOauthAuthScheme = /*@__PURE__*/ S.String;
+export const ProvisioningConnectionOauthAuthScheme = S.String;
 
 /** Settings required for the Microsoft Office 365 provisioning connection */
 export interface Office365ProvisioningSettings {
@@ -36768,7 +36727,7 @@ export type UpdateDefaultProvisioningConnectionForApplicationRequestBody =
   | ProvisioningConnectionTokenRequest
   | ProvisioningConnectionOauthRequest;
 export const UpdateDefaultProvisioningConnectionForApplicationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDefaultProvisioningConnectionForApplicationRequestBody>;
+  S.Unknown as any as S.Schema<UpdateDefaultProvisioningConnectionForApplicationRequestBody>;
 
 export interface UpdateDefaultProvisioningConnectionForApplicationRequest {
   /** Application ID */
@@ -36834,8 +36793,7 @@ export const UpdateEmailServerRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateFeatureForApplicationRequestFeatureName =
   | "USER_PROVISIONING"
   | "INBOUND_PROVISIONING";
-export const UpdateFeatureForApplicationRequestFeatureName =
-  /*@__PURE__*/ S.String;
+export const UpdateFeatureForApplicationRequestFeatureName = S.String;
 
 /** Determines whether to update a user in the app when a user in Okta is updated */
 export interface LifecycleCreateSettingObject {
@@ -36867,11 +36825,11 @@ export const LifecycleDeactivateSettingObject = LifecycleCreateSettingObject;
 
 /** Determines whether a change in a user's password also updates the user's password in the app */
 export type ChangeEnum = "CHANGE" | "KEEP_EXISTING";
-export const ChangeEnum = /*@__PURE__*/ S.String;
+export const ChangeEnum = S.String;
 
 /** Determines whether the generated password is the user's Okta password or a randomly generated password */
 export type SeedEnum = "OKTA" | "RANDOM";
-export const SeedEnum = /*@__PURE__*/ S.String;
+export const SeedEnum = S.String;
 
 /** Determines whether Okta creates and pushes a password in the app for each assigned user */
 export interface PasswordSettingObject {
@@ -36928,7 +36886,7 @@ export type CapabilitiesImportRulesUserCreateAndMatchObjectExactMatchCriteria =
   | "EMAIL"
   | "USERNAME";
 export const CapabilitiesImportRulesUserCreateAndMatchObjectExactMatchCriteria =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Rules for matching and creating users */
 export interface CapabilitiesImportRulesUserCreateAndMatchObject {
@@ -37015,7 +36973,7 @@ export const ImportScheduleObject = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines the username format when users sign in to Okta */
 export type ImportUsernameObjectUsernameFormat = "EMAIL" | "CUSTOM";
-export const ImportUsernameObjectUsernameFormat = /*@__PURE__*/ S.String;
+export const ImportUsernameObjectUsernameFormat = S.String;
 
 /** Determines the Okta username for the imported user */
 export interface ImportUsernameObject {
@@ -37066,7 +37024,7 @@ export type UpdateFeatureForApplicationRequestBody =
   | CapabilitiesObject
   | CapabilitiesInboundProvisioningObject;
 export const UpdateFeatureForApplicationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFeatureForApplicationRequestBody>;
+  S.Unknown as any as S.Schema<UpdateFeatureForApplicationRequestBody>;
 
 export interface UpdateFeatureForApplicationRequest {
   /** Application ID */
@@ -37092,7 +37050,7 @@ export const UpdateFeatureForApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFeatureForApplicationRequest>;
 
 export type UpdateFeatureLifecycleRequestLifecycle = "DISABLE" | "ENABLE";
-export const UpdateFeatureLifecycleRequestLifecycle = /*@__PURE__*/ S.String;
+export const UpdateFeatureLifecycleRequestLifecycle = S.String;
 
 export interface UpdateFeatureLifecycleRequest {
   /** `id` of the feature */
@@ -37120,7 +37078,7 @@ export const UpdateFeatureLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The operation (PATCH action) */
 export type PatchAction = "remove" | "replace";
-export const PatchAction = /*@__PURE__*/ S.String;
+export const PatchAction = S.String;
 
 /** The update action */
 export interface JsonPatchOperation {
@@ -37175,7 +37133,7 @@ export const UpdateGroupAssignmentToApplicationRequest =
 
 /** The update action to take */
 export type ParametersAction = "ADD" | "REMOVE";
-export const ParametersAction = /*@__PURE__*/ S.String;
+export const ParametersAction = S.String;
 
 /** List of user IDs whose group memberships to update */
 export type ParametersValuesList = Array<string>;
@@ -37620,7 +37578,7 @@ export type UpdateSsfStreamRequestAud =
   | string
   | UpdateSsfStreamRequestAudCase1List;
 export const UpdateSsfStreamRequestAud =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSsfStreamRequestAud>;
+  S.Unknown as any as S.Schema<UpdateSsfStreamRequestAud>;
 
 /** The events (mapped by the array of event type URIs) that the transmitter actually delivers to the SSF stream. A read-only parameter that is set by the transmitter. If this parameter is included in the request, the value must match the expected value from the transmitter. */
 export type UpdateSsfStreamRequestEventsDeliveredList = Array<string>;
@@ -37642,7 +37600,7 @@ export const UpdateSsfStreamRequestEventsSupportedList = /*@__PURE__*/ S.Array(
 
 /** The subject identifier format expected for any SET transmitted. */
 export type UpdateSsfStreamRequestFormat = "iss_sub";
-export const UpdateSsfStreamRequestFormat = /*@__PURE__*/ S.String;
+export const UpdateSsfStreamRequestFormat = S.String;
 
 export interface UpdateSsfStreamRequest {
   /** The audience used in the SET. This value is set as `aud` in the claim. A read-only parameter that is set by the transmitter. If this parameter is included in the request, the value must match the expected value from the transmitter. */
@@ -37891,8 +37849,7 @@ export const UploadBrandThemeLogoRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of data to bulk delete in a session. Currently, only `USERS` is supported. */
 export type UploadIdentitySourceDataForDeleteRequestEntityType = "USERS";
-export const UploadIdentitySourceDataForDeleteRequestEntityType =
-  /*@__PURE__*/ S.String;
+export const UploadIdentitySourceDataForDeleteRequestEntityType = S.String;
 
 export interface IdentitySourceUserProfileForDelete {
   /** The external ID of the entity that needs to be deleted in Okta */
@@ -37956,8 +37913,7 @@ export const UploadIdentitySourceDataForDeleteResponse =
 
 /** The type of data to upsert into the session. Currently, only `USERS` is supported. */
 export type UploadIdentitySourceDataForUpsertRequestEntityType = "USERS";
-export const UploadIdentitySourceDataForUpsertRequestEntityType =
-  /*@__PURE__*/ S.String;
+export const UploadIdentitySourceDataForUpsertRequestEntityType = S.String;
 
 export interface UploadIdentitySourceDataForUpsertRequestProfilesItem {
   /** The external ID of the entity that needs to be created or updated in Okta */
@@ -38255,7 +38211,7 @@ export type UploadYubikeyOtpTokenSeedRequestFilter =
   | "created"
   | "status"
   | "lastVerified";
-export const UploadYubikeyOtpTokenSeedRequestFilter = /*@__PURE__*/ S.String;
+export const UploadYubikeyOtpTokenSeedRequestFilter = S.String;
 
 export type UploadYubikeyOtpTokenSeedRequestSortBy =
   | "profile.email"
@@ -38265,10 +38221,10 @@ export type UploadYubikeyOtpTokenSeedRequestSortBy =
   | "created"
   | "status"
   | "lastVerified";
-export const UploadYubikeyOtpTokenSeedRequestSortBy = /*@__PURE__*/ S.String;
+export const UploadYubikeyOtpTokenSeedRequestSortBy = S.String;
 
 export type UploadYubikeyOtpTokenSeedRequestSortOrder = "ASC" | "DESC";
-export const UploadYubikeyOtpTokenSeedRequestSortOrder = /*@__PURE__*/ S.String;
+export const UploadYubikeyOtpTokenSeedRequestSortOrder = S.String;
 
 export interface UploadYubikeyOtpTokenSeedRequest {
   /** Specifies the pagination cursor for the next page of tokens */
@@ -38380,7 +38336,7 @@ export const UpsertApiTokenRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Certificate type */
 export type DomainCertificateType = "PEM";
-export const DomainCertificateType = /*@__PURE__*/ S.String;
+export const DomainCertificateType = S.String;
 
 export interface UpsertCertificateRequest {
   /** `id` of the Domain */
@@ -38420,7 +38376,7 @@ export const UpsertCertificateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The risk level associated with the user */
 export type UpsertUserRiskRequestRiskLevel = "HIGH" | "MEDIUM" | "LOW";
-export const UpsertUserRiskRequestRiskLevel = /*@__PURE__*/ S.String;
+export const UpsertUserRiskRequestRiskLevel = S.String;
 
 export interface UpsertUserRiskRequest {
   /** ID of an existing Okta user */
@@ -38444,7 +38400,7 @@ export const UpsertUserRiskRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The risk level associated with the user */
 export type UserRiskLevelPut = "HIGH" | "LOW" | "MEDIUM";
-export const UserRiskLevelPut = /*@__PURE__*/ S.String;
+export const UserRiskLevelPut = S.String;
 
 export type UserRiskPutResponseLinks = UserRiskGetResponseLinks;
 export const UserRiskPutResponseLinks = UserRiskGetResponseLinks;
@@ -38643,7 +38599,7 @@ export type UserFactorVerifyRequest =
   | UserFactorVerifyRequestCase9
   | UserFactorVerifyRequestCase10;
 export const UserFactorVerifyRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserFactorVerifyRequest>;
+  S.Unknown as any as S.Schema<UserFactorVerifyRequest>;
 
 export interface VerifyFactorRequest {
   /** ID of an existing Okta user */
@@ -38685,7 +38641,7 @@ export type UserFactorVerifyResult =
   | "SUCCESS"
   | "TIMEOUT"
   | "TIME_WINDOW_EXCEEDED";
-export const UserFactorVerifyResult = /*@__PURE__*/ S.String;
+export const UserFactorVerifyResult = S.String;
 
 export type UserFactorVerifyResponseProfileMap = {
   [key: string]: unknown | undefined;
@@ -38733,7 +38689,7 @@ export type VerifyProvisioningConnectionForApplicationRequestAppName =
   | "slack"
   | "zoomus";
 export const VerifyProvisioningConnectionForApplicationRequestAppName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VerifyProvisioningConnectionForApplicationRequest {
   appName:
@@ -38772,7 +38728,7 @@ export const VerifyProvisioningConnectionForApplicationResponse =
 
 /** The type of authenticator method */
 export type VerifyRpIdDomainRequestWebAuthnMethodType = "webauthn";
-export const VerifyRpIdDomainRequestWebAuthnMethodType = /*@__PURE__*/ S.String;
+export const VerifyRpIdDomainRequestWebAuthnMethodType = S.String;
 
 export interface VerifyRpIdDomainRequest {
   /** `id` of the authenticator */

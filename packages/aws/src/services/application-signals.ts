@@ -97,7 +97,7 @@ export class ValidationException
     ),
   ).pipe(C.withBadRequestError) {}
 export type InstrumentationType = "BREAKPOINT" | "PROBE" | (string & {});
-export const InstrumentationType = /*@__PURE__*/ S.String;
+export const InstrumentationType = S.String;
 
 export interface BatchDeleteScope {
   Service: string;
@@ -178,7 +178,7 @@ export type BatchDeleteErrorCode =
   | "AccessDeniedException"
   | "InternalServiceException"
   | (string & {});
-export const BatchDeleteErrorCode = /*@__PURE__*/ S.String;
+export const BatchDeleteErrorCode = S.String;
 
 export interface BatchDeleteError {
   ResourceArn: string;
@@ -238,7 +238,7 @@ export const BatchGetServiceLevelObjectiveBudgetReportInput =
 export type ServiceLevelObjectiveArn = string;
 export type ServiceLevelObjectiveName = string;
 export type EvaluationType = "PeriodBased" | "RequestBased" | (string & {});
-export const EvaluationType = /*@__PURE__*/ S.String;
+export const EvaluationType = S.String;
 
 export type ServiceLevelObjectiveBudgetStatus =
   | "OK"
@@ -246,7 +246,7 @@ export type ServiceLevelObjectiveBudgetStatus =
   | "BREACHED"
   | "INSUFFICIENT_DATA"
   | (string & {});
-export const ServiceLevelObjectiveBudgetStatus = /*@__PURE__*/ S.String;
+export const ServiceLevelObjectiveBudgetStatus = S.String;
 
 export type Attainment = number;
 export type TotalBudgetSeconds = number;
@@ -265,7 +265,7 @@ export type ServiceLevelIndicatorMetricType =
   | "LATENCY"
   | "AVAILABILITY"
   | (string & {});
-export const ServiceLevelIndicatorMetricType = /*@__PURE__*/ S.String;
+export const ServiceLevelIndicatorMetricType = S.String;
 
 export type MetricId = string;
 export type Namespace = string;
@@ -324,7 +324,7 @@ export type StandardUnit =
   | "Count/Second"
   | "None"
   | (string & {});
-export const StandardUnit = /*@__PURE__*/ S.String;
+export const StandardUnit = S.String;
 
 export interface MetricStat {
   Metric: Metric;
@@ -391,7 +391,7 @@ export const MetricSource = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "MetricSource" }) as any as S.Schema<MetricSource>;
 export type SelectionType = "EXPLICIT" | "PREFIX" | "REGEX" | (string & {});
-export const SelectionType = /*@__PURE__*/ S.String;
+export const SelectionType = S.String;
 
 export type SelectionPattern = string;
 export interface SelectionConfig {
@@ -452,7 +452,7 @@ export type ServiceLevelIndicatorComparisonOperator =
   | "LessThan"
   | "LessThanOrEqualTo"
   | (string & {});
-export const ServiceLevelIndicatorComparisonOperator = /*@__PURE__*/ S.String;
+export const ServiceLevelIndicatorComparisonOperator = S.String;
 
 export interface ServiceLevelIndicator {
   SliMetric: ServiceLevelIndicatorMetric;
@@ -515,7 +515,7 @@ export const RequestBasedServiceLevelIndicator = /*@__PURE__*/ S.suspend(() =>
   identifier: "RequestBasedServiceLevelIndicator",
 }) as any as S.Schema<RequestBasedServiceLevelIndicator>;
 export type DurationUnit = "MINUTE" | "HOUR" | "DAY" | "MONTH" | (string & {});
-export const DurationUnit = /*@__PURE__*/ S.String;
+export const DurationUnit = S.String;
 
 export type RollingIntervalDuration = number;
 export interface RollingInterval {
@@ -727,14 +727,14 @@ export const BatchUpdateExclusionWindowsOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchUpdateExclusionWindowsOutput",
 }) as any as S.Schema<BatchUpdateExclusionWindowsOutput>;
 export type DynamicInstrumentationSignalType = "SNAPSHOT" | (string & {});
-export const DynamicInstrumentationSignalType = /*@__PURE__*/ S.String;
+export const DynamicInstrumentationSignalType = S.String;
 
 export type ProgrammingLanguage =
   | "Java"
   | "Python"
   | "Javascript"
   | (string & {});
-export const ProgrammingLanguage = /*@__PURE__*/ S.String;
+export const ProgrammingLanguage = S.String;
 
 export interface CodeLocation {
   Language: ProgrammingLanguage;
@@ -1049,7 +1049,7 @@ export type MetricSourceType =
   | "Canary"
   | "Service"
   | (string & {});
-export const MetricSourceType = /*@__PURE__*/ S.String;
+export const MetricSourceType = S.String;
 
 export interface ServiceLevelObjective {
   Arn: string;
@@ -1151,7 +1151,7 @@ export const DeleteInstrumentationConfigurationRequest =
     identifier: "DeleteInstrumentationConfigurationRequest",
   }) as any as S.Schema<DeleteInstrumentationConfigurationRequest>;
 export type DynamicInstrumentationDeletionStatus = "DELETED" | (string & {});
-export const DynamicInstrumentationDeletionStatus = /*@__PURE__*/ S.String;
+export const DynamicInstrumentationDeletionStatus = S.String;
 
 export interface DeleteInstrumentationConfigurationResponse {
   DeletionStatus: DynamicInstrumentationDeletionStatus;
@@ -1259,7 +1259,7 @@ export type InstrumentationConfigurationStatus =
   | "ACTIVE"
   | "DISABLED"
   | (string & {});
-export const InstrumentationConfigurationStatus = /*@__PURE__*/ S.String;
+export const InstrumentationConfigurationStatus = S.String;
 
 export type NextToken = string;
 export interface GetInstrumentationConfigurationStatusRequest {
@@ -1311,7 +1311,7 @@ export type InstrumentationErrorCause =
   | "LANGUAGE_MISMATCH"
   | "RUNTIME_ERROR"
   | (string & {});
-export const InstrumentationErrorCause = /*@__PURE__*/ S.String;
+export const InstrumentationErrorCause = S.String;
 
 export interface InstrumentationStatusEvent {
   Time: Date;
@@ -1573,7 +1573,7 @@ export const AuditTarget = /*@__PURE__*/ S.suspend(() =>
 export type AuditTargets = AuditTarget[];
 export const AuditTargets = /*@__PURE__*/ S.Array(AuditTarget);
 export type DetailLevel = "BRIEF" | "DETAILED" | (string & {});
-export const DetailLevel = /*@__PURE__*/ S.String;
+export const DetailLevel = S.String;
 
 export type ListAuditFindingMaxResults = number;
 export interface ListAuditFindingsInput {
@@ -1623,7 +1623,7 @@ export type Severity =
   | "LOW"
   | "NONE"
   | (string & {});
-export const Severity = /*@__PURE__*/ S.String;
+export const Severity = S.String;
 
 export interface AuditorResult {
   Auditor?: string;
@@ -1676,7 +1676,7 @@ export const Node = /*@__PURE__*/ S.suspend(() =>
 export type Nodes = Node[];
 export const Nodes = /*@__PURE__*/ S.Array(Node);
 export type ConnectionType = "INDIRECT" | "DIRECT" | (string & {});
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 export interface Edge {
   SourceNodeId?: string;
@@ -1768,7 +1768,7 @@ export const ListEntityEventsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEntityEventsInput",
 }) as any as S.Schema<ListEntityEventsInput>;
 export type ChangeEventType = "DEPLOYMENT" | "CONFIGURATION" | (string & {});
-export const ChangeEventType = /*@__PURE__*/ S.String;
+export const ChangeEventType = S.String;
 
 export interface ChangeEvent {
   Timestamp: Date;
@@ -2545,7 +2545,7 @@ export type UnprocessedStatusEventFailureReason =
   | "INTERNAL_ERROR"
   | "VALIDATION_ERROR"
   | (string & {});
-export const UnprocessedStatusEventFailureReason = /*@__PURE__*/ S.String;
+export const UnprocessedStatusEventFailureReason = S.String;
 
 export interface UnprocessedStatusEvent {
   InstrumentationType: InstrumentationType;

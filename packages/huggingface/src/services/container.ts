@@ -22,7 +22,7 @@ export type RegistryTokenRequestScope =
   | string
   | RegistryTokenRequestScopeCase1List;
 export const RegistryTokenRequestScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RegistryTokenRequestScope>;
+  S.Unknown as any as S.Schema<RegistryTokenRequestScope>;
 
 export interface RegistryTokenRequest {
   service: string;

@@ -98,7 +98,7 @@ export type AccessSettingsAccessStateEnum =
   | "ACCESS_STATE_UNSPECIFIED"
   | "PRIVATE"
   | "DISCOVERABLE";
-export const AccessSettingsAccessStateEnum = /*@__PURE__*/ S.String;
+export const AccessSettingsAccessStateEnum = S.String;
 
 /** A target audience in Google Chat. A target audience represents a group of users within a Google Workspace organization, defined by an administrator. Target audiences are used to configure access and visibility settings for resources, such as making a space discoverable to a specific group of users. For more details, see [Target audiences](https://support.google.com/a/answer/9934697) and [Make a space discoverable to a target audience](https://developers.google.com/workspace/chat/space-target-audience). */
 export interface Audience {
@@ -192,14 +192,14 @@ export type SpaceSpaceTypeEnum =
   | "SPACE"
   | "GROUP_CHAT"
   | "DIRECT_MESSAGE";
-export const SpaceSpaceTypeEnum = /*@__PURE__*/ S.String;
+export const SpaceSpaceTypeEnum = S.String;
 
 export type SpaceSpaceThreadingStateEnum =
   | "SPACE_THREADING_STATE_UNSPECIFIED"
   | "THREADED_MESSAGES"
   | "GROUPED_MESSAGES"
   | "UNTHREADED_MESSAGES";
-export const SpaceSpaceThreadingStateEnum = /*@__PURE__*/ S.String;
+export const SpaceSpaceThreadingStateEnum = S.String;
 
 /** Represents a space permission setting. */
 export interface PermissionSetting {
@@ -255,7 +255,7 @@ export const PermissionSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PermissionSettings>;
 
 export type SpaceTypeEnum = "TYPE_UNSPECIFIED" | "ROOM" | "DM";
-export const SpaceTypeEnum = /*@__PURE__*/ S.String;
+export const SpaceTypeEnum = S.String;
 
 /** Represents the count of memberships of a space, grouped into categories. */
 export interface MembershipCount {
@@ -277,13 +277,13 @@ export type SpacePredefinedPermissionSettingsEnum =
   | "PREDEFINED_PERMISSION_SETTINGS_UNSPECIFIED"
   | "COLLABORATION_SPACE"
   | "ANNOUNCEMENT_SPACE";
-export const SpacePredefinedPermissionSettingsEnum = /*@__PURE__*/ S.String;
+export const SpacePredefinedPermissionSettingsEnum = S.String;
 
 export type SpaceSpaceHistoryStateEnum =
   | "HISTORY_STATE_UNSPECIFIED"
   | "HISTORY_OFF"
   | "HISTORY_ON";
-export const SpaceSpaceHistoryStateEnum = /*@__PURE__*/ S.String;
+export const SpaceSpaceHistoryStateEnum = S.String;
 
 /** A space in Google Chat. Spaces are conversations between two or more users or 1:1 messages between a user and a Chat app. */
 export interface Space {
@@ -456,21 +456,21 @@ export type MembershipStateEnum =
   | "JOINED"
   | "INVITED"
   | "NOT_A_MEMBER";
-export const MembershipStateEnum = /*@__PURE__*/ S.String;
+export const MembershipStateEnum = S.String;
 
 export type MembershipRoleEnum =
   | "MEMBERSHIP_ROLE_UNSPECIFIED"
   | "ROLE_MEMBER"
   | "ROLE_MANAGER"
   | "ROLE_ASSISTANT_MANAGER";
-export const MembershipRoleEnum = /*@__PURE__*/ S.String;
+export const MembershipRoleEnum = S.String;
 
 export type MembershipAffiliationEnum =
   | "AFFILIATION_UNSPECIFIED"
   | "INTERNAL"
   | "EXTERNAL"
   | "MANAGED_EXTERNAL";
-export const MembershipAffiliationEnum = /*@__PURE__*/ S.String;
+export const MembershipAffiliationEnum = S.String;
 
 /** A Google Group in Google Chat. */
 export interface Group {
@@ -484,7 +484,7 @@ export const Group = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Group" }) as any as S.Schema<Group>;
 
 export type UserTypeEnum = "TYPE_UNSPECIFIED" | "HUMAN" | "BOT";
-export const UserTypeEnum = /*@__PURE__*/ S.String;
+export const UserTypeEnum = S.String;
 
 /** A user in Google Chat. When returned as an output from a request, if your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), the output for a `User` resource only populates the user's `name` and `type`. */
 export interface User {
@@ -605,14 +605,13 @@ export type CreateSpacesMessagesCreateMessageNotificationOptions_notificationTyp
   | "NOTIFICATION_TYPE_FORCE_NOTIFY"
   | "NOTIFICATION_TYPE_SILENT";
 export const CreateSpacesMessagesCreateMessageNotificationOptions_notificationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateSpacesMessagesMessageReplyOptionEnum =
   | "MESSAGE_REPLY_OPTION_UNSPECIFIED"
   | "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD"
   | "REPLY_MESSAGE_OR_FAIL";
-export const CreateSpacesMessagesMessageReplyOptionEnum =
-  /*@__PURE__*/ S.String;
+export const CreateSpacesMessagesMessageReplyOptionEnum = S.String;
 
 /** A GIF image that's specified by a URL. */
 export interface AttachedGif {
@@ -645,7 +644,7 @@ export type MessageMarkupSyntaxEnum =
   | "MARKUP_SYNTAX_UNSPECIFIED"
   | "MARKUP_SYNTAX_CHAT"
   | "MARKUP_SYNTAX_MARKDOWN";
-export const MessageMarkupSyntaxEnum = /*@__PURE__*/ S.String;
+export const MessageMarkupSyntaxEnum = S.String;
 
 /** List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze one day, snooze next week. You might use `action method = snooze()`, passing the snooze type and snooze time in the list of string parameters. */
 export interface ActionParameter {
@@ -758,7 +757,7 @@ export type KeyValueIconEnum =
   | "TRAIN"
   | "VIDEO_CAMERA"
   | "VIDEO_PLAY";
-export const KeyValueIconEnum = /*@__PURE__*/ S.String;
+export const KeyValueIconEnum = S.String;
 
 export type ImageButtonIconEnum =
   | "ICON_UNSPECIFIED"
@@ -792,7 +791,7 @@ export type ImageButtonIconEnum =
   | "TRAIN"
   | "VIDEO_CAMERA"
   | "VIDEO_PLAY";
-export const ImageButtonIconEnum = /*@__PURE__*/ S.String;
+export const ImageButtonIconEnum = S.String;
 
 /** An image button with an `onclick` action. */
 export interface ImageButton {
@@ -954,7 +953,7 @@ export type CardHeaderImageStyleEnum =
   | "IMAGE_STYLE_UNSPECIFIED"
   | "IMAGE"
   | "AVATAR";
-export const CardHeaderImageStyleEnum = /*@__PURE__*/ S.String;
+export const CardHeaderImageStyleEnum = S.String;
 
 export interface CardHeader {
   /** The title must be specified. The header has a fixed height: if both a title and subtitle is specified, each takes up one line. If only the title is specified, it takes up both lines. */
@@ -1015,7 +1014,7 @@ export type UserMentionMetadataTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "ADD"
   | "MENTION";
-export const UserMentionMetadataTypeEnum = /*@__PURE__*/ S.String;
+export const UserMentionMetadataTypeEnum = S.String;
 
 /** Annotation metadata for user mentions (@). */
 export interface UserMentionMetadata {
@@ -1037,7 +1036,7 @@ export type SlashCommandMetadataTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "ADD"
   | "INVOKE";
-export const SlashCommandMetadataTypeEnum = /*@__PURE__*/ S.String;
+export const SlashCommandMetadataTypeEnum = S.String;
 
 /** Annotation metadata for slash commands (/). */
 export interface SlashCommandMetadata {
@@ -1083,20 +1082,20 @@ export type AnnotationTypeEnum =
   | "SLASH_COMMAND"
   | "RICH_LINK"
   | "CUSTOM_EMOJI";
-export const AnnotationTypeEnum = /*@__PURE__*/ S.String;
+export const AnnotationTypeEnum = S.String;
 
 export type MeetSpaceLinkDataHuddleStatusEnum =
   | "HUDDLE_STATUS_UNSPECIFIED"
   | "STARTED"
   | "ENDED"
   | "MISSED";
-export const MeetSpaceLinkDataHuddleStatusEnum = /*@__PURE__*/ S.String;
+export const MeetSpaceLinkDataHuddleStatusEnum = S.String;
 
 export type MeetSpaceLinkDataTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "MEETING"
   | "HUDDLE";
-export const MeetSpaceLinkDataTypeEnum = /*@__PURE__*/ S.String;
+export const MeetSpaceLinkDataTypeEnum = S.String;
 
 /** Data for Meet space links. */
 export interface MeetSpaceLinkData {
@@ -1184,7 +1183,7 @@ export type RichLinkMetadataRichLinkTypeEnum =
   | "GMAIL_MESSAGE"
   | "MEET_SPACE"
   | "CALENDAR_EVENT";
-export const RichLinkMetadataRichLinkTypeEnum = /*@__PURE__*/ S.String;
+export const RichLinkMetadataRichLinkTypeEnum = S.String;
 
 /** A rich link to a resource. Rich links can be associated with the plain-text body of the message or represent chips that link to Google Workspace resources like Google Docs or Sheets with `start_index` and `length` of 0. */
 export interface RichLinkMetadata {
@@ -1306,7 +1305,7 @@ export const GoogleAppsCardV1MaterialIcon = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GoogleAppsCardV1MaterialIcon>;
 
 export type GoogleAppsCardV1IconImageTypeEnum = "SQUARE" | "CIRCLE";
-export const GoogleAppsCardV1IconImageTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1IconImageTypeEnum = S.String;
 
 /** An icon displayed in a widget on a card. For an example in Google Chat apps, see [Add an icon](https://developers.google.com/workspace/chat/add-text-image-card-dialog#add_an_icon). Supports [built-in](https://developers.google.com/workspace/chat/format-messages#builtinicons) and [custom](https://developers.google.com/workspace/chat/format-messages#customicons) icons. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1Icon {
@@ -1339,7 +1338,7 @@ export type GoogleAppsCardV1ButtonTypeEnum =
   | "FILLED"
   | "FILLED_TONAL"
   | "BORDERLESS";
-export const GoogleAppsCardV1ButtonTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ButtonTypeEnum = S.String;
 
 /** List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze one day, or snooze next week. You might use `action method = snooze()`, passing the snooze type and snooze time in the list of string parameters. To learn more, see [`CommonEventObject`](https://developers.google.com/workspace/chat/api/reference/rest/v1/Event#commoneventobject). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export type GoogleAppsCardV1ActionParameter = ActionParameter;
@@ -1353,10 +1352,10 @@ export const GoogleAppsCardV1ActionParameterList = /*@__PURE__*/ S.Array(
 export type GoogleAppsCardV1ActionInteractionEnum =
   | "INTERACTION_UNSPECIFIED"
   | "OPEN_DIALOG";
-export const GoogleAppsCardV1ActionInteractionEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ActionInteractionEnum = S.String;
 
 export type GoogleAppsCardV1ActionLoadIndicatorEnum = "SPINNER" | "NONE";
-export const GoogleAppsCardV1ActionLoadIndicatorEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ActionLoadIndicatorEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -1395,10 +1394,10 @@ export const GoogleAppsCardV1Action = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GoogleAppsCardV1Action>;
 
 export type GoogleAppsCardV1OpenLinkOnCloseEnum = "NOTHING" | "RELOAD";
-export const GoogleAppsCardV1OpenLinkOnCloseEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1OpenLinkOnCloseEnum = S.String;
 
 export type GoogleAppsCardV1OpenLinkOpenAsEnum = "FULL_SIZE" | "OVERLAY";
-export const GoogleAppsCardV1OpenLinkOpenAsEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1OpenLinkOpenAsEnum = S.String;
 
 /** Represents an `onClick` event that opens a hyperlink. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1OpenLink {
@@ -1556,7 +1555,7 @@ export type GoogleAppsCardV1CardDisplayStyleEnum =
   | "DISPLAY_STYLE_UNSPECIFIED"
   | "PEEK"
   | "REPLACE";
-export const GoogleAppsCardV1CardDisplayStyleEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1CardDisplayStyleEnum = S.String;
 
 /** A text, icon, or text and icon chip that users can click. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1Chip {
@@ -1595,7 +1594,7 @@ export type GoogleAppsCardV1ChipListLayoutEnum =
   | "LAYOUT_UNSPECIFIED"
   | "WRAPPED"
   | "HORIZONTAL_SCROLLABLE";
-export const GoogleAppsCardV1ChipListLayoutEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ChipListLayoutEnum = S.String;
 
 /** A list of chips layed out horizontally, which can either scroll horizontally or wrap to the next line. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1ChipList {
@@ -1617,7 +1616,7 @@ export type GoogleAppsCardV1BorderStyleTypeEnum =
   | "BORDER_TYPE_UNSPECIFIED"
   | "NO_BORDER"
   | "STROKE";
-export const GoogleAppsCardV1BorderStyleTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1BorderStyleTypeEnum = S.String;
 
 /** The style options for the border of a card or widget, including the border type and color. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1BorderStyle {
@@ -1642,7 +1641,7 @@ export type GoogleAppsCardV1GridItemLayoutEnum =
   | "GRID_ITEM_LAYOUT_UNSPECIFIED"
   | "TEXT_BELOW"
   | "TEXT_ABOVE";
-export const GoogleAppsCardV1GridItemLayoutEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1GridItemLayoutEnum = S.String;
 
 export type GoogleAppsCardV1ImageCropStyleTypeEnum =
   | "IMAGE_CROP_TYPE_UNSPECIFIED"
@@ -1650,7 +1649,7 @@ export type GoogleAppsCardV1ImageCropStyleTypeEnum =
   | "CIRCLE"
   | "RECTANGLE_CUSTOM"
   | "RECTANGLE_4_3";
-export const GoogleAppsCardV1ImageCropStyleTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ImageCropStyleTypeEnum = S.String;
 
 /** Represents the crop style applied to an image. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, here's how to apply a 16:9 aspect ratio: ``` cropStyle { "type": "RECTANGLE_CUSTOM", "aspectRatio": 16/9 } ``` */
 export interface GoogleAppsCardV1ImageCropStyle {
@@ -1786,8 +1785,7 @@ export type GoogleAppsCardV1TextParagraphTextSyntaxEnum =
   | "TEXT_SYNTAX_UNSPECIFIED"
   | "HTML"
   | "MARKDOWN";
-export const GoogleAppsCardV1TextParagraphTextSyntaxEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1TextParagraphTextSyntaxEnum = S.String;
 
 /** A paragraph of text that supports formatting. For an example in Google Chat apps, see [Add a paragraph of formatted text](https://developers.google.com/workspace/chat/add-text-image-card-dialog#add_a_paragraph_of_formatted_text). For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/workspace/chat/format-messages#card-formatting) and [Formatting text in Google Workspace add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1TextParagraph {
@@ -1872,8 +1870,7 @@ export type GoogleAppsCardV1SwitchControlControlTypeEnum =
   | "SWITCH"
   | "CHECKBOX"
   | "CHECK_BOX";
-export const GoogleAppsCardV1SwitchControlControlTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1SwitchControlControlTypeEnum = S.String;
 
 /** Either a toggle-style switch or a checkbox inside a `decoratedText` widget. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): Only supported in the `decoratedText` widget. */
 export interface GoogleAppsCardV1SwitchControl {
@@ -1906,7 +1903,7 @@ export type GoogleAppsCardV1DecoratedTextStartIconVerticalAlignmentEnum =
   | "MIDDLE"
   | "BOTTOM";
 export const GoogleAppsCardV1DecoratedTextStartIconVerticalAlignmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget, or a button after the text. For an example in Google Chat apps, see [Display text with decorative text](https://developers.google.com/workspace/chat/add-text-image-card-dialog#display_text_with_decorative_elements). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1DecoratedText {
@@ -1995,7 +1992,7 @@ export type WorkflowDataSourceMarkupTypeEnum =
   | "USER"
   | "SPACE"
   | "USER_WITH_FREE_FORM";
-export const WorkflowDataSourceMarkupTypeEnum = /*@__PURE__*/ S.String;
+export const WorkflowDataSourceMarkupTypeEnum = S.String;
 
 /** * Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons. In a `TextInput` or `SelectionInput` widget with MULTI_SELECT type or a `DateTimePicker`, provide data source from Google. */
 export interface WorkflowDataSourceMarkup {
@@ -2032,8 +2029,7 @@ export const HostAppDataSourceMarkup = /*@__PURE__*/ S.suspend(() =>
 export type GoogleAppsCardV1PlatformDataSourceCommonDataSourceEnum =
   | "UNKNOWN"
   | "USER";
-export const GoogleAppsCardV1PlatformDataSourceCommonDataSourceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1PlatformDataSourceCommonDataSourceEnum = S.String;
 
 /** For a `SelectionInput` widget that uses a multiselect menu, a data source from Google Workspace. Used to populate items in a multiselect menu. [Google Chat apps](https://developers.google.com/workspace/chat): */
 export interface GoogleAppsCardV1PlatformDataSource {
@@ -2061,7 +2057,7 @@ export type GoogleAppsCardV1SelectionInputTypeEnum =
   | "SWITCH"
   | "DROPDOWN"
   | "MULTI_SELECT";
-export const GoogleAppsCardV1SelectionInputTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1SelectionInputTypeEnum = S.String;
 
 /** An item that users can select in a selection input, such as a checkbox or switch. Supports up to 100 items. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1SelectionItem {
@@ -2183,8 +2179,7 @@ export type GoogleAppsCardV1UpdateVisibilityActionVisibilityEnum =
   | "VISIBILITY_UNSPECIFIED"
   | "VISIBLE"
   | "HIDDEN";
-export const GoogleAppsCardV1UpdateVisibilityActionVisibilityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1UpdateVisibilityActionVisibilityEnum = S.String;
 
 /** Represents an action that updates the visibility of a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps. */
 export interface GoogleAppsCardV1UpdateVisibilityAction {
@@ -2246,7 +2241,7 @@ export type GoogleAppsCardV1WidgetVisibilityEnum =
   | "VISIBILITY_UNSPECIFIED"
   | "VISIBLE"
   | "HIDDEN";
-export const GoogleAppsCardV1WidgetVisibilityEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1WidgetVisibilityEnum = S.String;
 
 /** Displays a divider between widgets as a horizontal line. For an example in Google Chat apps, see [Add a horizontal divider between widgets](https://developers.google.com/workspace/chat/format-structure-card-dialog#add_a_horizontal_divider_between_widgets). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a divider: ``` "divider": {} ``` */
 export type GoogleAppsCardV1Divider = CompleteImportSpaceRequest;
@@ -2259,7 +2254,7 @@ export type GoogleAppsCardV1ValidationInputTypeEnum =
   | "FLOAT"
   | "EMAIL"
   | "EMOJI_PICKER";
-export const GoogleAppsCardV1ValidationInputTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ValidationInputTypeEnum = S.String;
 
 /** Represents the necessary data for validating the widget it's attached to. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1Validation {
@@ -2310,7 +2305,7 @@ export const GoogleAppsCardV1Suggestions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GoogleAppsCardV1Suggestions>;
 
 export type GoogleAppsCardV1TextInputTypeEnum = "SINGLE_LINE" | "MULTIPLE_LINE";
-export const GoogleAppsCardV1TextInputTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1TextInputTypeEnum = S.String;
 
 /** A field in which users can enter text. Supports suggestions and on-change actions. Supports form submission validation. When `Action.all_widgets_are_required` is set to `true` or this widget is specified in `Action.required_widgets`, the submission action is blocked unless a value is entered. For an example in Google Chat apps, see [Add a field in which a user can enter text](https://developers.google.com/workspace/chat/design-interactive-card-dialog#add_a_field_in_which_a_user_can_enter_text). Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/workspace/chat/read-form-data). When you need to collect undefined or abstract data from users, use a text input. To collect defined or enumerated data from users, use the SelectionInput widget. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1TextInput {
@@ -2360,29 +2355,26 @@ export type GoogleAppsCardV1ColumnHorizontalAlignmentEnum =
   | "START"
   | "CENTER"
   | "END";
-export const GoogleAppsCardV1ColumnHorizontalAlignmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ColumnHorizontalAlignmentEnum = S.String;
 
 export type GoogleAppsCardV1ColumnHorizontalSizeStyleEnum =
   | "HORIZONTAL_SIZE_STYLE_UNSPECIFIED"
   | "FILL_AVAILABLE_SPACE"
   | "FILL_MINIMUM_SPACE";
-export const GoogleAppsCardV1ColumnHorizontalSizeStyleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ColumnHorizontalSizeStyleEnum = S.String;
 
 export type GoogleAppsCardV1ColumnVerticalAlignmentEnum =
   | "VERTICAL_ALIGNMENT_UNSPECIFIED"
   | "CENTER"
   | "TOP"
   | "BOTTOM";
-export const GoogleAppsCardV1ColumnVerticalAlignmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1ColumnVerticalAlignmentEnum = S.String;
 
 export type GoogleAppsCardV1DateTimePickerTypeEnum =
   | "DATE_AND_TIME"
   | "DATE_ONLY"
   | "TIME_ONLY";
-export const GoogleAppsCardV1DateTimePickerTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1DateTimePickerTypeEnum = S.String;
 
 /** Lets users input a date, a time, or both a date and a time. Supports form submission validation. When `Action.all_widgets_are_required` is set to `true` or this widget is specified in `Action.required_widgets`, the submission action is blocked unless a value is selected. For an example in Google Chat apps, see [Let a user pick a date and time](https://developers.google.com/workspace/chat/design-interactive-card-dialog#let_a_user_pick_a_date_and_time). Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1DateTimePicker {
@@ -2509,8 +2501,7 @@ export type GoogleAppsCardV1WidgetHorizontalAlignmentEnum =
   | "START"
   | "CENTER"
   | "END";
-export const GoogleAppsCardV1WidgetHorizontalAlignmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1WidgetHorizontalAlignmentEnum = S.String;
 
 /** Each card is made up of widgets. A widget is a composite object that can represent one of text, images, buttons, and other object types. */
 export interface GoogleAppsCardV1Widget {
@@ -2584,8 +2575,7 @@ export type GoogleAppsCardV1CollapseControlHorizontalAlignmentEnum =
   | "START"
   | "CENTER"
   | "END";
-export const GoogleAppsCardV1CollapseControlHorizontalAlignmentEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1CollapseControlHorizontalAlignmentEnum = S.String;
 
 /** Represent an expand and collapse control. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1CollapseControl {
@@ -2644,7 +2634,7 @@ export const GoogleAppsCardV1SectionList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GoogleAppsCardV1SectionList>;
 
 export type GoogleAppsCardV1CardHeaderImageTypeEnum = "SQUARE" | "CIRCLE";
-export const GoogleAppsCardV1CardHeaderImageTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1CardHeaderImageTypeEnum = S.String;
 
 /** Represents a card header. For an example in Google Chat apps, see [Add a header](https://developers.google.com/workspace/chat/design-components-card-dialog#add_a_header). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): */
 export interface GoogleAppsCardV1CardHeader {
@@ -2676,7 +2666,7 @@ export type GoogleAppsCardV1ExpressionDataConditionConditionTypeEnum =
   | "EXPRESSION_EVALUATION_SUCCESS"
   | "EXPRESSION_EVALUATION_FAILURE";
 export const GoogleAppsCardV1ExpressionDataConditionConditionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a condition that is evaluated using CEL. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps. */
 export interface GoogleAppsCardV1ExpressionDataCondition {
@@ -2772,8 +2762,7 @@ export type GoogleAppsCardV1CardSectionDividerStyleEnum =
   | "DIVIDER_STYLE_UNSPECIFIED"
   | "SOLID_DIVIDER"
   | "NO_DIVIDER";
-export const GoogleAppsCardV1CardSectionDividerStyleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsCardV1CardSectionDividerStyleEnum = S.String;
 
 /** A card interface displayed in a Google Chat message or Google Workspace add-on. Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. [Card builder](https://addons.gsuite.google.com/uikit/builder) To learn how to build cards, see the following documentation: * For Google Chat apps, see [Design the components of a card or dialog](https://developers.google.com/workspace/chat/design-components-card-dialog). * For Google Workspace add-ons, see [Card-based interfaces](https://developers.google.com/apps-script/add-ons/concepts/cards). Note: You can add up to 100 widgets per card. If a section's widgets push the total count above 100, that entire section and all following sections are ignored. This limit applies to both card messages and dialogs in Google Chat apps, and to cards in Google Workspace add-ons. **Example: Card message for a Google Chat app** ![Example contact card](https://developers.google.com/workspace/chat/images/card_api_reference.png) To create the sample card message in Google Chat, use the following JSON: ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha" }, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL" }, "text": "sasha@example.com" } }, { "decoratedText": { "startIcon": { "knownIcon": "PERSON" }, "text": "Online" } }, { "decoratedText": { "startIcon": { "knownIcon": "PHONE" }, "text": "+1 (555) 555-1234" } }, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share" } } }, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT" } ] } } } ] } } ] } ] } } ] } ``` */
 export interface GoogleAppsCardV1Card {
@@ -2855,7 +2844,7 @@ export type AttachmentSourceEnum =
   | "SOURCE_UNSPECIFIED"
   | "DRIVE_FILE"
   | "UPLOADED_CONTENT";
-export const AttachmentSourceEnum = /*@__PURE__*/ S.String;
+export const AttachmentSourceEnum = S.String;
 
 /** A reference to the attachment data. */
 export interface AttachmentDataRef {
@@ -2939,7 +2928,7 @@ export type QuotedMessageMetadataQuoteTypeEnum =
   | "QUOTE_TYPE_UNSPECIFIED"
   | "REPLY"
   | "FORWARD";
-export const QuotedMessageMetadataQuoteTypeEnum = /*@__PURE__*/ S.String;
+export const QuotedMessageMetadataQuoteTypeEnum = S.String;
 
 /** Information about a message that another message quotes. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message). */
 export interface QuotedMessageMetadata {
@@ -2975,7 +2964,7 @@ export type DeletionMetadataDeletionTypeEnum =
   | "CREATOR_VIA_APP"
   | "SPACE_OWNER_VIA_APP"
   | "SPACE_MEMBER";
-export const DeletionMetadataDeletionTypeEnum = /*@__PURE__*/ S.String;
+export const DeletionMetadataDeletionTypeEnum = S.String;
 
 /** Information about a deleted message. A message is deleted when `delete_time` is set. */
 export interface DeletionMetadata {
@@ -3076,7 +3065,7 @@ export type ActionStatusStatusCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const ActionStatusStatusCodeEnum = /*@__PURE__*/ S.String;
+export const ActionStatusStatusCodeEnum = S.String;
 
 /** Represents the status for a request to either invoke or submit a [dialog](https://developers.google.com/workspace/chat/dialogs). */
 export interface ActionStatus {
@@ -3114,7 +3103,7 @@ export type ActionResponseTypeEnum =
   | "REQUEST_CONFIG"
   | "DIALOG"
   | "UPDATE_WIDGET";
-export const ActionResponseTypeEnum = /*@__PURE__*/ S.String;
+export const ActionResponseTypeEnum = S.String;
 
 /** Parameters that a Chat app can use to configure how its response is posted. */
 export interface ActionResponse {
@@ -3319,7 +3308,7 @@ export type GoogleChatV1SectionTypeEnum =
   | "DEFAULT_DIRECT_MESSAGES"
   | "DEFAULT_SPACES"
   | "DEFAULT_APPS";
-export const GoogleChatV1SectionTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleChatV1SectionTypeEnum = S.String;
 
 /** Represents a [section](https://support.google.com/chat/answer/16059854) in Google Chat. Sections help users organize their spaces. There are two types of sections: 1. **System Sections:** These are predefined sections managed by Google Chat. Their resource names are fixed, and they cannot be created, deleted, or have their `display_name` modified. Examples include: * `users/{user}/sections/default-direct-messages` * `users/{user}/sections/default-spaces` * `users/{user}/sections/default-apps` 2. **Custom Sections:** These are sections created and managed by the user. Creating a custom section using `CreateSection` **requires** a `display_name`. Custom sections can be updated using `UpdateSection` and deleted using `DeleteSection`. */
 export interface GoogleChatV1Section {
@@ -3557,7 +3546,7 @@ export type FindGroupChatsSpacesSpaceViewEnum =
   | "SPACE_VIEW_UNSPECIFIED"
   | "SPACE_VIEW_RESOURCE_NAME_ONLY"
   | "SPACE_VIEW_EXPANDED";
-export const FindGroupChatsSpacesSpaceViewEnum = /*@__PURE__*/ S.String;
+export const FindGroupChatsSpacesSpaceViewEnum = S.String;
 
 export interface FindGroupChatsSpacesRequest {
   /** Optional. Resource names of all human users in group chat with the calling user. Chat apps can't be included in the request. The maximum number of users that can be specified in a single request is `49`. Format: `users/{user}`, where `{user}` is either the `id` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, to find all group chats with the calling user and two other users, with People API profile IDs `123456789` and `987654321`, you can use `users/123456789` and `users/987654321`. You can also use the email as an alias for `{user}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user. */
@@ -3703,7 +3692,7 @@ export type GetSpacesMessagesMarkupSyntaxEnum =
   | "MARKUP_SYNTAX_UNSPECIFIED"
   | "MARKUP_SYNTAX_CHAT"
   | "MARKUP_SYNTAX_MARKDOWN";
-export const GetSpacesMessagesMarkupSyntaxEnum = /*@__PURE__*/ S.String;
+export const GetSpacesMessagesMarkupSyntaxEnum = S.String;
 
 export interface GetSpacesMessagesRequest {
   /** Required. Resource name of the message. Format: `spaces/{space}/messages/{message}` If you've set a custom ID for your message, you can use the value from the `clientAssignedMessageId` field for `{message}`. For details, see [Name a message] (https://developers.google.com/workspace/chat/create-messages#name_a_created_message). */
@@ -4197,7 +4186,7 @@ export type AvailabilityStateEnum =
   | "IDLE"
   | "AWAY"
   | "DO_NOT_DISTURB";
-export const AvailabilityStateEnum = /*@__PURE__*/ S.String;
+export const AvailabilityStateEnum = S.String;
 
 /** Metadata associated with the `DO_NOT_DISTURB` availability state, specifying when the state is set to expire. */
 export interface DoNotDisturbMetadata {
@@ -4255,7 +4244,7 @@ export type SpaceNotificationSettingMuteSettingEnum =
   | "MUTE_SETTING_UNSPECIFIED"
   | "UNMUTED"
   | "MUTED";
-export const SpaceNotificationSettingMuteSettingEnum = /*@__PURE__*/ S.String;
+export const SpaceNotificationSettingMuteSettingEnum = S.String;
 
 export type SpaceNotificationSettingNotificationSettingEnum =
   | "NOTIFICATION_SETTING_UNSPECIFIED"
@@ -4263,8 +4252,7 @@ export type SpaceNotificationSettingNotificationSettingEnum =
   | "MAIN_CONVERSATIONS"
   | "FOR_YOU"
   | "OFF";
-export const SpaceNotificationSettingNotificationSettingEnum =
-  /*@__PURE__*/ S.String;
+export const SpaceNotificationSettingNotificationSettingEnum = S.String;
 
 /** The notification setting of a user in a space. */
 export interface SpaceNotificationSetting {
@@ -4480,7 +4468,7 @@ export type ListSpacesMessagesMarkupSyntaxEnum =
   | "MARKUP_SYNTAX_UNSPECIFIED"
   | "MARKUP_SYNTAX_CHAT"
   | "MARKUP_SYNTAX_MARKDOWN";
-export const ListSpacesMessagesMarkupSyntaxEnum = /*@__PURE__*/ S.String;
+export const ListSpacesMessagesMarkupSyntaxEnum = S.String;
 
 export interface ListSpacesMessagesRequest {
   /** Optional. The maximum number of messages returned. The service might return fewer messages than this value. If unspecified, at most 25 are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000. Negative values return an `INVALID_ARGUMENT` error. */
@@ -5050,8 +5038,7 @@ export type PositionSectionRequestRelativePositionEnum =
   | "POSITION_UNSPECIFIED"
   | "START"
   | "END";
-export const PositionSectionRequestRelativePositionEnum =
-  /*@__PURE__*/ S.String;
+export const PositionSectionRequestRelativePositionEnum = S.String;
 
 /** Request message for positioning a section. */
 export interface PositionSectionRequest {
@@ -5177,13 +5164,13 @@ export type SearchMessagesRequestMarkupSyntaxEnum =
   | "MARKUP_SYNTAX_UNSPECIFIED"
   | "MARKUP_SYNTAX_CHAT"
   | "MARKUP_SYNTAX_MARKDOWN";
-export const SearchMessagesRequestMarkupSyntaxEnum = /*@__PURE__*/ S.String;
+export const SearchMessagesRequestMarkupSyntaxEnum = S.String;
 
 export type SearchMessagesRequestViewEnum =
   | "SEARCH_MESSAGES_VIEW_UNSPECIFIED"
   | "SEARCH_MESSAGES_VIEW_BASIC"
   | "SEARCH_MESSAGES_VIEW_FULL";
-export const SearchMessagesRequestViewEnum = /*@__PURE__*/ S.String;
+export const SearchMessagesRequestViewEnum = S.String;
 
 /** Request message for searching messages. */
 export interface SearchMessagesRequest {
@@ -5238,7 +5225,7 @@ export type SearchMessageResultSpaceMuteSettingEnum =
   | "MUTE_SETTING_UNSPECIFIED"
   | "UNMUTED"
   | "MUTED";
-export const SearchMessageResultSpaceMuteSettingEnum = /*@__PURE__*/ S.String;
+export const SearchMessageResultSpaceMuteSettingEnum = S.String;
 
 /** A single result item from a message search. */
 export interface SearchMessageResult {

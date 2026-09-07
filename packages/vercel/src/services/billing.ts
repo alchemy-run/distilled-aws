@@ -59,11 +59,11 @@ export class PaymentRequired
 
 /** The type of item to purchase. */
 export type BuyCreditsRequestItemType = "credits";
-export const BuyCreditsRequestItemType = /*@__PURE__*/ S.String;
+export const BuyCreditsRequestItemType = S.String;
 
 /** The type of credits to purchase. */
 export type BuyCreditsRequestItemCreditType = "v0" | "gateway" | "agent";
-export const BuyCreditsRequestItemCreditType = /*@__PURE__*/ S.String;
+export const BuyCreditsRequestItemCreditType = S.String;
 
 export interface BuyCreditsRequestItem {
   /** The type of item to purchase. */
@@ -124,7 +124,7 @@ export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase0OptionsCu
   | "v0_user_credits"
   | "vercel_agent_credits";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase0OptionsCurrency =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Purchase configuration specific options */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase0Options {
@@ -151,7 +151,7 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase0Options 
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase0Type =
   "credit_topup";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a credit purchase */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase0 {
@@ -177,7 +177,7 @@ export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase1OptionsIt
   | "renewal"
   | "transfer";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase1OptionsItemsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase1OptionsItemsItem {
   name: string;
@@ -227,7 +227,7 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase1Options 
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase1Type =
   "domain_name";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a credit purchase */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase1 {
@@ -251,13 +251,13 @@ export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsEf
   | "end_of_subscription_term"
   | "immediate";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsEffectiveDateCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsEffectiveDate =
   | unknown
   | BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsEffectiveDateCase1;
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsEffectiveDate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsEffectiveDate>;
+  S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsEffectiveDate>;
 
 /** The prices to replace in the subscription */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2OptionsReplacePricesItem {
@@ -333,7 +333,7 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2Output =
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2Type =
   "orb_plan_change";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a credit purchase */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase2 {
@@ -361,7 +361,7 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase3Output =
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase3Type =
   "orb_price_interval";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a credit purchase */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase3 {
@@ -399,7 +399,7 @@ export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4OptionsAd
   | BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4OptionsAddPricesItemCase0
   | unknown;
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4OptionsAddPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4OptionsAddPricesItem>;
+  S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4OptionsAddPricesItem>;
 
 /** The prices to add to the subscription */
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4OptionsAddPricesList =
@@ -509,7 +509,7 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4Output =
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4Type =
   "orb_subscription";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a credit purchase */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase4 {
@@ -638,7 +638,7 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5Output =
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5Type =
   "orb_subscription_intent";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a credit purchase */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5 {
@@ -810,7 +810,7 @@ export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6Output =
 export type BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6Type =
   "subscription";
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for a credit purchase */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6 {
@@ -840,12 +840,11 @@ export type BuyCreditsResponseBodyCase1PurchaseIntentConfiguration =
   | BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase5
   | BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6;
 export const BuyCreditsResponseBodyCase1PurchaseIntentConfiguration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfiguration>;
+  S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase1PurchaseIntentConfiguration>;
 
 /** The currency for the purchase intent */
 export type BuyCreditsResponseBodyCase1PurchaseIntentCurrency = "miu" | "usd";
-export const BuyCreditsResponseBodyCase1PurchaseIntentCurrency =
-  /*@__PURE__*/ S.String;
+export const BuyCreditsResponseBodyCase1PurchaseIntentCurrency = S.String;
 
 /** The type of the purchase provider */
 export type BuyCreditsResponseBodyCase1PurchaseIntentProviderType =
@@ -857,8 +856,7 @@ export type BuyCreditsResponseBodyCase1PurchaseIntentProviderType =
   | "stripe_invoice_elements"
   | "stripe_invoice_immediate"
   | "tackle_aws_marketplace";
-export const BuyCreditsResponseBodyCase1PurchaseIntentProviderType =
-  /*@__PURE__*/ S.String;
+export const BuyCreditsResponseBodyCase1PurchaseIntentProviderType = S.String;
 
 export interface BuyCreditsResponseBodyCase1PurchaseIntentProvider {
   /** Provider resource id */
@@ -887,8 +885,7 @@ export type BuyCreditsResponseBodyCase1PurchaseIntentStatus =
   | "failed"
   | "pending"
   | "succeeded";
-export const BuyCreditsResponseBodyCase1PurchaseIntentStatus =
-  /*@__PURE__*/ S.String;
+export const BuyCreditsResponseBodyCase1PurchaseIntentStatus = S.String;
 
 /** The dispute details, if any. */
 export interface BuyCreditsResponseBodyCase1PurchaseIntentDispute {
@@ -1101,14 +1098,14 @@ export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0Ou
   | "end_of_term"
   | "immediate";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0OutputEffectiveBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source used as the authoritative price for this intent. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0OutputPricingSource =
   | "copper"
   | "orb";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0OutputPricingSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource IDs that were added. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0OutputChangedResourcesItemAddedResourceIdsList =
@@ -1232,7 +1229,7 @@ export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0O
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0Type =
   "set_plan_item_quantity";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for the Orb subscription intent. */
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase0 {
@@ -1288,14 +1285,14 @@ export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1Ou
   | "end_of_term"
   | "immediate";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1OutputEffectiveBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source used as the authoritative price for this intent. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1OutputPricingSource =
   | "copper"
   | "orb";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1OutputPricingSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource IDs that were added. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1OutputChangedResourcesItemAddedResourceIdsList =
@@ -1419,7 +1416,7 @@ export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1O
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1Type =
   "increase_plan_item_quantity";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for the Orb subscription intent. */
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase1 {
@@ -1475,14 +1472,14 @@ export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2Ou
   | "end_of_term"
   | "immediate";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2OutputEffectiveBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source used as the authoritative price for this intent. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2OutputPricingSource =
   | "copper"
   | "orb";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2OutputPricingSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource IDs that were added. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2OutputChangedResourcesItemAddedResourceIdsList =
@@ -1606,7 +1603,7 @@ export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2O
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2Type =
   "decrease_plan_item_quantity";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for the Orb subscription intent. */
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2 {
@@ -1674,14 +1671,14 @@ export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3Ou
   | "end_of_term"
   | "immediate";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3OutputEffectiveBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source used as the authoritative price for this intent. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3OutputPricingSource =
   | "copper"
   | "orb";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3OutputPricingSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Resource IDs that were added. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3OutputChangedResourcesItemAddedResourceIdsList =
@@ -1805,7 +1802,7 @@ export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3O
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3Type =
   "adjust_plan_item_quantity";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for the Orb subscription intent. */
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3 {
@@ -1835,12 +1832,12 @@ export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfiguration =
   | BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase2
   | BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfigurationCase3;
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfiguration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfiguration>;
+  S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase2OrbSubscriptionIntentConfiguration>;
 
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase0Mode =
   "sync";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase0Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** How the subscription change is applied to Orb. */
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase0 {
@@ -1859,7 +1856,7 @@ export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase0 =
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1Mode =
   "async";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1Status =
   | "canceled"
@@ -1867,7 +1864,7 @@ export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1Status
   | "pending"
   | "running";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** How the subscription change is applied to Orb. */
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1 {
@@ -1889,12 +1886,12 @@ export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1 =
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase2Mode =
   "async";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase2Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase2Status =
   "succeeded";
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase2Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** How the subscription change is applied to Orb. */
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase2 {
@@ -1921,15 +1918,14 @@ export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdate =
   | BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase1
   | BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdateCase2;
 export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdate>;
+  S.Unknown as any as S.Schema<BuyCreditsResponseBodyCase2OrbSubscriptionIntentOrbUpdate>;
 
 /** The status of the Orb subscription intent. */
 export type BuyCreditsResponseBodyCase2OrbSubscriptionIntentStatus =
   | "failed"
   | "pending"
   | "succeeded";
-export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentStatus =
-  /*@__PURE__*/ S.String;
+export const BuyCreditsResponseBodyCase2OrbSubscriptionIntentStatus = S.String;
 
 export interface BuyCreditsResponseBodyCase2OrbSubscriptionIntent {
   /** The ID of the Orb subscription intent with the format `orbsubint_`. */
@@ -1983,7 +1979,7 @@ export type BuyCreditsResponseBody =
   | BuyCreditsResponseBodyCase1
   | BuyCreditsResponseBodyCase2;
 export const BuyCreditsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BuyCreditsResponseBody>;
+  S.Unknown as any as S.Schema<BuyCreditsResponseBody>;
 
 export type BuyCreditsResponse = BuyCreditsResponseBody;
 export const BuyCreditsResponse = /*@__PURE__*/ S.suspend(() =>

@@ -114,7 +114,7 @@ export type DataSetType =
   | "sales_compensation_billed_revenue"
   | "us_sales_and_use_tax_records"
   | (string & {});
-export const DataSetType = /*@__PURE__*/ S.String;
+export const DataSetType = S.String;
 
 export type DataSetPublicationDate = Date;
 export type RoleNameArn = string;
@@ -165,7 +165,7 @@ export type SupportDataSetType =
   | "customer_support_contacts_data"
   | "test_customer_support_contacts_data"
   | (string & {});
-export const SupportDataSetType = /*@__PURE__*/ S.String;
+export const SupportDataSetType = S.String;
 
 export type FromDate = Date;
 export interface StartSupportDataExportRequest {

@@ -136,7 +136,7 @@ export const CreateV2EnvRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateV2EnvRequest>;
 
 export type V2EnvType = "PRODUCTION" | "TEST" | "BRANCH";
-export const V2EnvType = /*@__PURE__*/ S.String;
+export const V2EnvType = S.String;
 
 export interface V2Env {
   createdAt?: string;
@@ -262,7 +262,7 @@ export type V2SandboxStatus =
   | "TERMINATING"
   | "TERMINATED"
   | "FAILED";
-export const V2SandboxStatus = /*@__PURE__*/ S.String;
+export const V2SandboxStatus = S.String;
 
 export interface V2Sandbox {
   createdAt?: string;
@@ -416,7 +416,7 @@ export const V2EventFilterEventsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<V2EventFilterEventsList>;
 
 export type V2FilterType = "ALLOW" | "DENY";
-export const V2FilterType = /*@__PURE__*/ S.String;
+export const V2FilterType = S.String;
 
 export interface V2EventFilter {
   /** Allow or deny specific events, e.g. 'orders/payment.created', or 'orders/*' for all orders. Only events in this list will be either allowed or denied. */
@@ -776,7 +776,7 @@ export const GetV2AppRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the latest sync. `success` and `duplicate` are successful terminal states. `duplicate` means the sync payload matched the previous successful sync, so no function configuration changes were applied. `error` is a failed terminal state, and `pending` means the sync is still in progress. */
 export type V2AppSyncStatus = "pending" | "success" | "error" | "duplicate";
-export const V2AppSyncStatus = /*@__PURE__*/ S.String;
+export const V2AppSyncStatus = S.String;
 
 export interface V2AppSync {
   /** App version reported by the latest sync, if set */
@@ -810,7 +810,7 @@ export const V2AppSync = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "V2AppSync" }) as any as S.Schema<V2AppSync>;
 
 export type V2AppMethod = "UNSPECIFIED" | "SERVE" | "CONNECT" | "API";
-export const V2AppMethod = /*@__PURE__*/ S.String;
+export const V2AppMethod = S.String;
 
 export interface V2App {
   /** User-defined app version, if set */
@@ -943,7 +943,7 @@ export type V2FunctionRunStatus =
   | "COMPLETED"
   | "FAILED"
   | "CANCELLED";
-export const V2FunctionRunStatus = /*@__PURE__*/ S.String;
+export const V2FunctionRunStatus = S.String;
 
 export type V2RunTriggerEventIdsList = Array<string>;
 export const V2RunTriggerEventIdsList = /*@__PURE__*/ S.Array(
@@ -1200,7 +1200,7 @@ export type V2FunctionConcurrencyScope =
   | "ACCOUNT"
   | "ENVIRONMENT"
   | "FUNCTION";
-export const V2FunctionConcurrencyScope = /*@__PURE__*/ S.String;
+export const V2FunctionConcurrencyScope = S.String;
 
 export interface V2FunctionConcurrencyConfiguration {
   key?: string;
@@ -1280,7 +1280,7 @@ export const V2FunctionRetryConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2FunctionRetryConfiguration>;
 
 export type V2FunctionSingletonMode = "UNSPECIFIED" | "SKIP" | "CANCEL";
-export const V2FunctionSingletonMode = /*@__PURE__*/ S.String;
+export const V2FunctionSingletonMode = S.String;
 
 export interface V2FunctionSingletonConfiguration {
   key?: string;
@@ -1353,7 +1353,7 @@ export const V2FunctionFailureHandler = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V2FunctionFailureHandler>;
 
 export type V2FunctionTriggerType = "UNSPECIFIED" | "EVENT" | "CRON";
-export const V2FunctionTriggerType = /*@__PURE__*/ S.String;
+export const V2FunctionTriggerType = S.String;
 
 export interface V2FunctionTrigger {
   if?: string;
@@ -1532,7 +1532,7 @@ export type V2TraceSpanStatus =
   | "WAITING"
   | "CANCELLED"
   | "SKIPPED";
-export const V2TraceSpanStatus = /*@__PURE__*/ S.String;
+export const V2TraceSpanStatus = S.String;
 
 export type V2TraceStepOp =
   | "UNSPECIFIED"
@@ -1543,7 +1543,7 @@ export type V2TraceStepOp =
   | "SEND_EVENT"
   | "AI_GATEWAY"
   | "WAIT_FOR_SIGNAL";
-export const V2TraceStepOp = /*@__PURE__*/ S.String;
+export const V2TraceStepOp = S.String;
 
 export interface V2TraceSpan {
   children?: V2TraceSpanChildrenList;
@@ -1660,7 +1660,7 @@ export type V2SandboxProcessState =
   | "KILLED"
   | "FAILED"
   | "LOST";
-export const V2SandboxProcessState = /*@__PURE__*/ S.String;
+export const V2SandboxProcessState = S.String;
 
 export interface V2SandboxProcess {
   command?: V2SandboxProcessCommandList;
@@ -1722,7 +1722,7 @@ export const GetV2SandboxProcessOutputRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetV2SandboxProcessOutputRequest>;
 
 export type V2SandboxLogStream = "UNSPECIFIED" | "STDOUT" | "STDERR";
-export const V2SandboxLogStream = /*@__PURE__*/ S.String;
+export const V2SandboxLogStream = S.String;
 
 export interface V2SandboxLogChunk {
   at?: string;
@@ -2713,7 +2713,7 @@ export const V2SyncAppError = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the sync. `success` and `duplicate` are successful terminal states. `duplicate` means the sync payload matched the previous successful sync, so no function configuration changes were applied. `error` is a failed terminal state, and `pending` means the sync is still in progress. */
 export type V2SyncAppDataStatus = "pending" | "success" | "error" | "duplicate";
-export const V2SyncAppDataStatus = /*@__PURE__*/ S.String;
+export const V2SyncAppDataStatus = S.String;
 
 export interface V2SyncAppData {
   /** App ID */
@@ -2791,7 +2791,7 @@ export type V2InsightsOutputColumnType =
   | "BOOLEAN"
   | "DATETIME"
   | "COMPLEX";
-export const V2InsightsOutputColumnType = /*@__PURE__*/ S.String;
+export const V2InsightsOutputColumnType = S.String;
 
 export interface V2InsightsOutputColumn {
   /** Name of the column in the insights query result */
@@ -2836,7 +2836,7 @@ export type V2InsightsDiagnosticSeverity =
   | "ERROR"
   | "WARNING"
   | "INFO";
-export const V2InsightsDiagnosticSeverity = /*@__PURE__*/ S.String;
+export const V2InsightsDiagnosticSeverity = S.String;
 
 export interface V2InsightsDiagnostic {
   /** Machine-readable code representing the type of diagnostic */

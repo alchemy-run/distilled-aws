@@ -50,7 +50,7 @@ export type NetworkAccessNetworkAccessType =
   | "OPEN"
   | "BLOCKED"
   | "ALLOWLIST";
-export const NetworkAccessNetworkAccessType = /*@__PURE__*/ S.String;
+export const NetworkAccessNetworkAccessType = S.String;
 
 export interface NetworkAccess {
   networkAccessType?: NetworkAccessNetworkAccessType | (string & {});
@@ -69,7 +69,7 @@ export type PTYInfoPTYType =
   | "PTY_TYPE_UNSPECIFIED"
   | "PTY_TYPE_FUNCTION"
   | "PTY_TYPE_SHELL";
-export const PTYInfoPTYType = /*@__PURE__*/ S.String;
+export const PTYInfoPTYType = S.String;
 
 export interface PTYInfo {
   enabled?: boolean;
@@ -184,7 +184,7 @@ export type GenericResultGenericStatus =
   | "GENERIC_STATUS_INTERNAL_FAILURE"
   | "GENERIC_STATUS_IDLE_TIMEOUT"
   | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
-export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
+export const GenericResultGenericStatus = S.String;
 
 /** sub-type for generic types like lists */
 export interface GenericResult {
@@ -383,13 +383,13 @@ export const TaskExecPollResponse = /*@__PURE__*/ S.suspend(() =>
 export type TaskExecStdoutConfig =
   | "TASK_EXEC_STDOUT_CONFIG_DEVNULL"
   | "TASK_EXEC_STDOUT_CONFIG_PIPE";
-export const TaskExecStdoutConfig = /*@__PURE__*/ S.String;
+export const TaskExecStdoutConfig = S.String;
 
 export type TaskExecStderrConfig =
   | "TASK_EXEC_STDERR_CONFIG_DEVNULL"
   | "TASK_EXEC_STDERR_CONFIG_PIPE"
   | "TASK_EXEC_STDERR_CONFIG_STDOUT";
-export const TaskExecStderrConfig = /*@__PURE__*/ S.String;
+export const TaskExecStderrConfig = S.String;
 
 export interface TaskExecStartRequest {
   /** The ID of the task to execute the command in. */

@@ -69,8 +69,7 @@ export type AnalyticsAccountLinkLinkVerificationStateEnum =
   | "LINK_VERIFICATION_STATE_UNSPECIFIED"
   | "LINK_VERIFICATION_STATE_VERIFIED"
   | "LINK_VERIFICATION_STATE_NOT_VERIFIED";
-export const AnalyticsAccountLinkLinkVerificationStateEnum =
-  /*@__PURE__*/ S.String;
+export const AnalyticsAccountLinkLinkVerificationStateEnum = S.String;
 
 /** A resource message representing the link between a Google Analytics account and a Google Marketing Platform organization. */
 export interface AnalyticsAccountLink {
@@ -435,13 +434,13 @@ export type PropertyUsagePropertyTypeEnum =
   | "ANALYTICS_PROPERTY_TYPE_ORDINARY"
   | "ANALYTICS_PROPERTY_TYPE_SUBPROPERTY"
   | "ANALYTICS_PROPERTY_TYPE_ROLLUP";
-export const PropertyUsagePropertyTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyUsagePropertyTypeEnum = S.String;
 
 export type PropertyUsageServiceLevelEnum =
   | "ANALYTICS_SERVICE_LEVEL_UNSPECIFIED"
   | "ANALYTICS_SERVICE_LEVEL_STANDARD"
   | "ANALYTICS_SERVICE_LEVEL_360";
-export const PropertyUsageServiceLevelEnum = /*@__PURE__*/ S.String;
+export const PropertyUsageServiceLevelEnum = S.String;
 
 /** Contains the count of events received by the property, along with metadata that influences the volume of `billable` events. */
 export interface PropertyUsage {
@@ -497,8 +496,7 @@ export type SetPropertyServiceLevelRequestServiceLevelEnum =
   | "ANALYTICS_SERVICE_LEVEL_UNSPECIFIED"
   | "ANALYTICS_SERVICE_LEVEL_STANDARD"
   | "ANALYTICS_SERVICE_LEVEL_360";
-export const SetPropertyServiceLevelRequestServiceLevelEnum =
-  /*@__PURE__*/ S.String;
+export const SetPropertyServiceLevelRequestServiceLevelEnum = S.String;
 
 /** Request message for SetPropertyServiceLevel RPC. */
 export interface SetPropertyServiceLevelRequest {

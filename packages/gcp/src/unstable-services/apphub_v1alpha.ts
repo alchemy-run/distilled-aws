@@ -102,7 +102,7 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
 }) as any as S.Schema<Empty>;
 
 export type ScopeTypeEnum = "TYPE_UNSPECIFIED" | "REGIONAL" | "GLOBAL";
-export const ScopeTypeEnum = /*@__PURE__*/ S.String;
+export const ScopeTypeEnum = S.String;
 
 /** Scope of an application. */
 export interface Scope {
@@ -154,7 +154,7 @@ export type EnvironmentTypeEnum =
   | "STAGING"
   | "TEST"
   | "DEVELOPMENT";
-export const EnvironmentTypeEnum = /*@__PURE__*/ S.String;
+export const EnvironmentTypeEnum = S.String;
 
 /** Environment of the Application, Service, or Workload */
 export interface Environment {
@@ -176,7 +176,7 @@ export type CriticalityTypeEnum =
   | "HIGH"
   | "MEDIUM"
   | "LOW";
-export const CriticalityTypeEnum = /*@__PURE__*/ S.String;
+export const CriticalityTypeEnum = S.String;
 
 /** Criticality of the Application, Service, or Workload */
 export interface Criticality {
@@ -223,7 +223,7 @@ export type ApplicationStateEnum =
   | "CREATING"
   | "ACTIVE"
   | "DELETING";
-export const ApplicationStateEnum = /*@__PURE__*/ S.String;
+export const ApplicationStateEnum = S.String;
 
 /** Application defines the governance boundary for App Hub entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements. */
 export interface Application {
@@ -365,7 +365,7 @@ export type FunctionalTypeTypeEnum =
   | "AGENT"
   | "MCP_SERVER"
   | "ENDPOINT";
-export const FunctionalTypeTypeEnum = /*@__PURE__*/ S.String;
+export const FunctionalTypeTypeEnum = S.String;
 
 /** The functional type of a service or workload. */
 export interface FunctionalType {
@@ -393,7 +393,7 @@ export type RegistrationTypeTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "EXCLUSIVE"
   | "SHARED";
-export const RegistrationTypeTypeEnum = /*@__PURE__*/ S.String;
+export const RegistrationTypeTypeEnum = S.String;
 
 /** The registration type of a service. */
 export interface RegistrationType {
@@ -461,7 +461,7 @@ export type ServiceStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "DETACHED";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Service is an App Hub data model that contains a discovered service, which represents a network or API interface that exposes some functionality to clients for consumption over the network. */
 export interface Service {
@@ -579,7 +579,7 @@ export type WorkloadStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "DETACHED";
-export const WorkloadStateEnum = /*@__PURE__*/ S.String;
+export const WorkloadStateEnum = S.String;
 
 /** Workload is an App Hub data model that contains a discovered workload, which represents a binary deployment (such as managed instance groups (MIGs) and GKE deployments) that performs the smallest logical subset of business functionality. */
 export interface Workload {
@@ -655,7 +655,7 @@ export type ServiceProjectAttachmentStateEnum =
   | "CREATING"
   | "ACTIVE"
   | "DELETING";
-export const ServiceProjectAttachmentStateEnum = /*@__PURE__*/ S.String;
+export const ServiceProjectAttachmentStateEnum = S.String;
 
 /** ServiceProjectAttachment represents an attachment from a service project to a host project. Service projects contain the underlying cloud infrastructure resources, and expose these resources to the host project through a ServiceProjectAttachment. With the attachments, the host project can provide an aggregated view of resources across all service projects. */
 export interface ServiceProjectAttachment {
@@ -1027,7 +1027,7 @@ export type BoundaryTypeEnum =
   | "AUTOMATIC"
   | "MANUAL"
   | "MANAGED_AUTOMATIC";
-export const BoundaryTypeEnum = /*@__PURE__*/ S.String;
+export const BoundaryTypeEnum = S.String;
 
 /** Application management boundary. */
 export interface Boundary {
@@ -1121,7 +1121,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

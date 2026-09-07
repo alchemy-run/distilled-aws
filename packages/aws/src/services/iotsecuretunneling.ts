@@ -179,10 +179,10 @@ export const DescribeTunnelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DescribeTunnelRequest>;
 export type TunnelArn = string;
 export type TunnelStatus = "OPEN" | "CLOSED" | (string & {});
-export const TunnelStatus = /*@__PURE__*/ S.String;
+export const TunnelStatus = S.String;
 
 export type ConnectionStatus = "CONNECTED" | "DISCONNECTED" | (string & {});
-export const ConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectionStatus = S.String;
 
 export interface ConnectionState {
   status?: ConnectionStatus;
@@ -390,7 +390,7 @@ export const OpenTunnelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OpenTunnelResponse",
 }) as any as S.Schema<OpenTunnelResponse>;
 export type ClientMode = "SOURCE" | "DESTINATION" | "ALL" | (string & {});
-export const ClientMode = /*@__PURE__*/ S.String;
+export const ClientMode = S.String;
 
 export interface RotateTunnelAccessTokenRequest {
   tunnelId: string;

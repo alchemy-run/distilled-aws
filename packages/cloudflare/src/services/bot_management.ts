@@ -57,7 +57,7 @@ export const CreateFeedbackRequestRequestsByAttribute = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateFeedbackRequestRequestsByAttribute>;
 
 export type CreateFeedbackRequestType = "false_positive" | "false_negative";
-export const CreateFeedbackRequestType = /*@__PURE__*/ S.String;
+export const CreateFeedbackRequestType = S.String;
 
 export interface CreateFeedbackRequest {
   /** Identifier. */
@@ -137,26 +137,22 @@ export type GetResultBotFightModeConfigurationAiBotsProtection =
   | "block"
   | "disabled"
   | "only_on_ad_pages";
-export const GetResultBotFightModeConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+export const GetResultBotFightModeConfigurationAiBotsProtection = S.String;
 
 export type GetResultBotFightModeConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
-export const GetResultBotFightModeConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+export const GetResultBotFightModeConfigurationCfRobotsVariant = S.String;
 
 export type GetResultBotFightModeConfigurationContentBotsProtection =
   | "block"
   | "disabled";
-export const GetResultBotFightModeConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+export const GetResultBotFightModeConfigurationContentBotsProtection = S.String;
 
 export type GetResultBotFightModeConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
-export const GetResultBotFightModeConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+export const GetResultBotFightModeConfigurationCrawlerProtection = S.String;
 
 export interface GetResultBotFightModeConfigurationStaleZoneConfiguration {
   /** Indicates that the zone's wordpress optimization for SBFM is turned on. */
@@ -263,38 +259,38 @@ export type GetResultSuperBotFightModeDefinitelyConfigurationAiBotsProtection =
   | "disabled"
   | "only_on_ad_pages";
 export const GetResultSuperBotFightModeDefinitelyConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeDefinitelyConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
 export const GetResultSuperBotFightModeDefinitelyConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeDefinitelyConfigurationContentBotsProtection =
   | "block"
   | "disabled";
 export const GetResultSuperBotFightModeDefinitelyConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeDefinitelyConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
 export const GetResultSuperBotFightModeDefinitelyConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeDefinitelyConfigurationSbfmDefinitelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
 export const GetResultSuperBotFightModeDefinitelyConfigurationSbfmDefinitelyAutomated =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeDefinitelyConfigurationSbfmVerifiedBots =
   | "allow"
   | "block";
 export const GetResultSuperBotFightModeDefinitelyConfigurationSbfmVerifiedBots =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResultSuperBotFightModeDefinitelyConfigurationStaleZoneConfiguration {
   /** Indicates that the zone's Bot Fight Mode is turned on. */
@@ -402,45 +398,45 @@ export type GetResultSuperBotFightModeLikelyConfigurationAiBotsProtection =
   | "disabled"
   | "only_on_ad_pages";
 export const GetResultSuperBotFightModeLikelyConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeLikelyConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
 export const GetResultSuperBotFightModeLikelyConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeLikelyConfigurationContentBotsProtection =
   | "block"
   | "disabled";
 export const GetResultSuperBotFightModeLikelyConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeLikelyConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
 export const GetResultSuperBotFightModeLikelyConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeLikelyConfigurationSbfmDefinitelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
 export const GetResultSuperBotFightModeLikelyConfigurationSbfmDefinitelyAutomated =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeLikelyConfigurationSbfmLikelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
 export const GetResultSuperBotFightModeLikelyConfigurationSbfmLikelyAutomated =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResultSuperBotFightModeLikelyConfigurationSbfmVerifiedBots =
   | "allow"
   | "block";
 export const GetResultSuperBotFightModeLikelyConfigurationSbfmVerifiedBots =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResultSuperBotFightModeLikelyConfigurationStaleZoneConfiguration {
   /** Indicates that the zone's Bot Fight Mode is turned on. */
@@ -549,26 +545,22 @@ export type GetResultSubscriptionConfigurationAiBotsProtection =
   | "block"
   | "disabled"
   | "only_on_ad_pages";
-export const GetResultSubscriptionConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+export const GetResultSubscriptionConfigurationAiBotsProtection = S.String;
 
 export type GetResultSubscriptionConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
-export const GetResultSubscriptionConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+export const GetResultSubscriptionConfigurationCfRobotsVariant = S.String;
 
 export type GetResultSubscriptionConfigurationContentBotsProtection =
   | "block"
   | "disabled";
-export const GetResultSubscriptionConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+export const GetResultSubscriptionConfigurationContentBotsProtection = S.String;
 
 export type GetResultSubscriptionConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
-export const GetResultSubscriptionConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+export const GetResultSubscriptionConfigurationCrawlerProtection = S.String;
 
 export interface GetResultSubscriptionConfigurationStaleZoneConfiguration {
   /** Indicates that the zone's Bot Fight Mode is turned on. */
@@ -776,7 +768,7 @@ export const ListFeedbackResponseRequestsByAttribute =
   CreateFeedbackRequestRequestsByAttribute;
 
 export type ListFeedbackResponseType = "false_positive" | "false_negative";
-export const ListFeedbackResponseType = /*@__PURE__*/ S.String;
+export const ListFeedbackResponseType = S.String;
 
 /** Raw response payload (operation does not use the standard v4 result envelope). */
 export interface ListFeedbackResponse {
@@ -821,16 +813,16 @@ export type UpdateRequestAiBotsProtection =
   | "block"
   | "disabled"
   | "only_on_ad_pages";
-export const UpdateRequestAiBotsProtection = /*@__PURE__*/ S.String;
+export const UpdateRequestAiBotsProtection = S.String;
 
 export type UpdateRequestCfRobotsVariant = "off" | "policy_only";
-export const UpdateRequestCfRobotsVariant = /*@__PURE__*/ S.String;
+export const UpdateRequestCfRobotsVariant = S.String;
 
 export type UpdateRequestContentBotsProtection = "block" | "disabled";
-export const UpdateRequestContentBotsProtection = /*@__PURE__*/ S.String;
+export const UpdateRequestContentBotsProtection = S.String;
 
 export type UpdateRequestCrawlerProtection = "enabled" | "disabled";
-export const UpdateRequestCrawlerProtection = /*@__PURE__*/ S.String;
+export const UpdateRequestCrawlerProtection = S.String;
 
 export interface UpdateRequestStaleZoneConfigurationBotFightModeConfiguration {
   /** Indicates that the zone's wordpress optimization for SBFM is turned on. */
@@ -971,16 +963,16 @@ export type UpdateRequestSbfmDefinitelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
-export const UpdateRequestSbfmDefinitelyAutomated = /*@__PURE__*/ S.String;
+export const UpdateRequestSbfmDefinitelyAutomated = S.String;
 
 export type UpdateRequestSbfmVerifiedBots = "allow" | "block";
-export const UpdateRequestSbfmVerifiedBots = /*@__PURE__*/ S.String;
+export const UpdateRequestSbfmVerifiedBots = S.String;
 
 export type UpdateRequestSbfmLikelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
-export const UpdateRequestSbfmLikelyAutomated = /*@__PURE__*/ S.String;
+export const UpdateRequestSbfmLikelyAutomated = S.String;
 
 export interface PutBotManagementRequest {
   /** Identifier. */
@@ -1087,26 +1079,23 @@ export type UpdateResultBotFightModeConfigurationAiBotsProtection =
   | "block"
   | "disabled"
   | "only_on_ad_pages";
-export const UpdateResultBotFightModeConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+export const UpdateResultBotFightModeConfigurationAiBotsProtection = S.String;
 
 export type UpdateResultBotFightModeConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
-export const UpdateResultBotFightModeConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+export const UpdateResultBotFightModeConfigurationCfRobotsVariant = S.String;
 
 export type UpdateResultBotFightModeConfigurationContentBotsProtection =
   | "block"
   | "disabled";
 export const UpdateResultBotFightModeConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultBotFightModeConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
-export const UpdateResultBotFightModeConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+export const UpdateResultBotFightModeConfigurationCrawlerProtection = S.String;
 
 export type UpdateResultBotFightModeConfigurationStaleZoneConfiguration =
   GetResultBotFightModeConfigurationStaleZoneConfiguration;
@@ -1179,38 +1168,38 @@ export type UpdateResultSuperBotFightModeDefinitelyConfigurationAiBotsProtection
   | "disabled"
   | "only_on_ad_pages";
 export const UpdateResultSuperBotFightModeDefinitelyConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeDefinitelyConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
 export const UpdateResultSuperBotFightModeDefinitelyConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeDefinitelyConfigurationContentBotsProtection =
   | "block"
   | "disabled";
 export const UpdateResultSuperBotFightModeDefinitelyConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeDefinitelyConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
 export const UpdateResultSuperBotFightModeDefinitelyConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeDefinitelyConfigurationSbfmDefinitelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
 export const UpdateResultSuperBotFightModeDefinitelyConfigurationSbfmDefinitelyAutomated =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeDefinitelyConfigurationSbfmVerifiedBots =
   | "allow"
   | "block";
 export const UpdateResultSuperBotFightModeDefinitelyConfigurationSbfmVerifiedBots =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeDefinitelyConfigurationStaleZoneConfiguration =
   GetResultSuperBotFightModeDefinitelyConfigurationStaleZoneConfiguration;
@@ -1304,45 +1293,45 @@ export type UpdateResultSuperBotFightModeLikelyConfigurationAiBotsProtection =
   | "disabled"
   | "only_on_ad_pages";
 export const UpdateResultSuperBotFightModeLikelyConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeLikelyConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
 export const UpdateResultSuperBotFightModeLikelyConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeLikelyConfigurationContentBotsProtection =
   | "block"
   | "disabled";
 export const UpdateResultSuperBotFightModeLikelyConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeLikelyConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
 export const UpdateResultSuperBotFightModeLikelyConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeLikelyConfigurationSbfmDefinitelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
 export const UpdateResultSuperBotFightModeLikelyConfigurationSbfmDefinitelyAutomated =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeLikelyConfigurationSbfmLikelyAutomated =
   | "allow"
   | "block"
   | "managed_challenge";
 export const UpdateResultSuperBotFightModeLikelyConfigurationSbfmLikelyAutomated =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeLikelyConfigurationSbfmVerifiedBots =
   | "allow"
   | "block";
 export const UpdateResultSuperBotFightModeLikelyConfigurationSbfmVerifiedBots =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSuperBotFightModeLikelyConfigurationStaleZoneConfiguration =
   GetResultSuperBotFightModeLikelyConfigurationStaleZoneConfiguration;
@@ -1442,26 +1431,23 @@ export type UpdateResultSubscriptionConfigurationAiBotsProtection =
   | "block"
   | "disabled"
   | "only_on_ad_pages";
-export const UpdateResultSubscriptionConfigurationAiBotsProtection =
-  /*@__PURE__*/ S.String;
+export const UpdateResultSubscriptionConfigurationAiBotsProtection = S.String;
 
 export type UpdateResultSubscriptionConfigurationCfRobotsVariant =
   | "off"
   | "policy_only";
-export const UpdateResultSubscriptionConfigurationCfRobotsVariant =
-  /*@__PURE__*/ S.String;
+export const UpdateResultSubscriptionConfigurationCfRobotsVariant = S.String;
 
 export type UpdateResultSubscriptionConfigurationContentBotsProtection =
   | "block"
   | "disabled";
 export const UpdateResultSubscriptionConfigurationContentBotsProtection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResultSubscriptionConfigurationCrawlerProtection =
   | "enabled"
   | "disabled";
-export const UpdateResultSubscriptionConfigurationCrawlerProtection =
-  /*@__PURE__*/ S.String;
+export const UpdateResultSubscriptionConfigurationCrawlerProtection = S.String;
 
 export type UpdateResultSubscriptionConfigurationStaleZoneConfiguration =
   GetResultSubscriptionConfigurationStaleZoneConfiguration;

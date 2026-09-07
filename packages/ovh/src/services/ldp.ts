@@ -119,7 +119,7 @@ export type DbaasLogsOperationStateEnum =
   | "RUNNING"
   | "STARTED"
   | "SUCCESS";
-export const DbaasLogsOperationStateEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsOperationStateEnum = S.String;
 
 /** Asynchronous operation */
 export interface DbaasLogsOperation {
@@ -350,11 +350,11 @@ export type DbaasLogsStreamColdStorageCompressionEnum =
   | "GZIP"
   | "LZMA"
   | "ZSTD";
-export const DbaasLogsStreamColdStorageCompressionEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsStreamColdStorageCompressionEnum = S.String;
 
 /** Possible values for StreamColdStorageContentEnum */
 export type DbaasLogsStreamColdStorageContentEnum = "ALL" | "GELF" | "PLAIN";
-export const DbaasLogsStreamColdStorageContentEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsStreamColdStorageContentEnum = S.String;
 
 /** Encryption keys used to encrypt stream archives */
 export type CreateDbaasLogOutputGraylogStreamRequestEncryptionKeysIdsList =
@@ -445,8 +445,7 @@ export type DbaasLogsStreamAlertConditionConditionTypeEnum =
   | "FIELD_CONTENT_VALUE"
   | "FIELD_VALUE"
   | "MESSAGE_COUNT";
-export const DbaasLogsStreamAlertConditionConditionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DbaasLogsStreamAlertConditionConditionTypeEnum = S.String;
 
 /** Possible values for StreamAlertConditionConstraintTypeEnum */
 export type DbaasLogsStreamAlertConditionConstraintTypeEnum =
@@ -455,8 +454,7 @@ export type DbaasLogsStreamAlertConditionConstraintTypeEnum =
   | "MIN"
   | "STDLABEU"
   | "SUM";
-export const DbaasLogsStreamAlertConditionConstraintTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DbaasLogsStreamAlertConditionConstraintTypeEnum = S.String;
 
 /** Possible values for StreamAlertConditionThresholdTypeEnum */
 export type DbaasLogsStreamAlertConditionThresholdTypeEnum =
@@ -465,8 +463,7 @@ export type DbaasLogsStreamAlertConditionThresholdTypeEnum =
   | "GTE"
   | "LT"
   | "LTE";
-export const DbaasLogsStreamAlertConditionThresholdTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DbaasLogsStreamAlertConditionThresholdTypeEnum = S.String;
 
 export interface CreateDbaasLogOutputGraylogStreamAlertRequest {
   /** Service name */
@@ -588,7 +585,7 @@ export type DbaasLogsStreamRuleOperatorEnum =
   | "GREATER_THAN"
   | "MATCH_EXACTLY"
   | "SMALLER_THAN";
-export const DbaasLogsStreamRuleOperatorEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsStreamRuleOperatorEnum = S.String;
 
 export interface CreateDbaasLogOutputGraylogStreamRuleRequest {
   /** Service name */
@@ -805,7 +802,7 @@ export const CreateDbaasLogRolePermissionAliasRequest = /*@__PURE__*/ S.suspend(
 
 /** Possible values for PermissionTypeEnum */
 export type DbaasLogsPermissionTypeEnum = "READ_ONLY" | "READ_WRITE";
-export const DbaasLogsPermissionTypeEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsPermissionTypeEnum = S.String;
 
 export interface CreateDbaasLogRolePermissionDashboardRequest {
   /** Service name */
@@ -1424,7 +1421,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for ServicePlanEnum */
 export type DbaasLogsServicePlanEnum = "ENTERPRISE" | "STANDARD";
-export const DbaasLogsServicePlanEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsServicePlanEnum = S.String;
 
 /** Possible values for ServiceStateEnum */
 export type DbaasLogsServiceStateEnum =
@@ -1432,7 +1429,7 @@ export type DbaasLogsServiceStateEnum =
   | "ENABLED"
   | "INIT"
   | "TO_CONFIG";
-export const DbaasLogsServiceStateEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsServiceStateEnum = S.String;
 
 /** Service */
 export interface DbaasLogsServiceWithIAM {
@@ -1509,11 +1506,11 @@ export type DbaasLogsCertificationLevelEnum =
   | "SOC2"
   | "STANDARD"
   | "TRUSTED_ZONE";
-export const DbaasLogsCertificationLevelEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsCertificationLevelEnum = S.String;
 
 /** Possible values for ClusterClusterTypeEnum */
 export type DbaasLogsClusterClusterTypeEnum = "DEDICATED" | "SHARED";
-export const DbaasLogsClusterClusterTypeEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsClusterClusterTypeEnum = S.String;
 
 /** Allowed networks for DIRECT_INPUT flow type */
 export type DbaasLogsClusterDirectInputAllowedNetworksList = Array<string>;
@@ -1530,7 +1527,7 @@ export const DbaasLogsClusterQueryAllowedNetworksList = /*@__PURE__*/ S.Array(
 
 /** Possible values for ClusterRegionEnum */
 export type DbaasLogsClusterRegionEnum = "BHS" | "GRA" | "P-19" | "RBX" | "SBG";
-export const DbaasLogsClusterRegionEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsClusterRegionEnum = S.String;
 
 /** Cluster */
 export interface DbaasLogsCluster {
@@ -1614,7 +1611,7 @@ export type DbaasLogsRetentionTypeEnum =
   | "LOGS_COLD_STORAGE"
   | "LOGS_INDEXING"
   | "METRICS_TENANT";
-export const DbaasLogsRetentionTypeEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsRetentionTypeEnum = S.String;
 
 /** Cluster retention */
 export interface DbaasLogsClusterRetention {
@@ -1661,7 +1658,7 @@ export const GetDbaasLogEncryptionKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for EncryptionKeyAlgorithmEnum */
 export type DbaasLogsEncryptionKeyAlgorithmEnum = "ECC25519" | "RSA4096";
-export const DbaasLogsEncryptionKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsEncryptionKeyAlgorithmEnum = S.String;
 
 /** Encryption key */
 export interface DbaasLogsEncryptionKey {
@@ -1733,7 +1730,7 @@ export type DbaasLogsInputStatusEnum =
   | "PENDING"
   | "PROCESSING"
   | "RUNNING";
-export const DbaasLogsInputStatusEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsInputStatusEnum = S.String;
 
 /** Input */
 export interface DbaasLogsInput {
@@ -1872,8 +1869,7 @@ export type DbaasLogsFlowggerConfigurationLogFormatEnum =
   | "GELF"
   | "LTSV"
   | "RFC5424";
-export const DbaasLogsFlowggerConfigurationLogFormatEnum =
-  /*@__PURE__*/ S.String;
+export const DbaasLogsFlowggerConfigurationLogFormatEnum = S.String;
 
 /** Possible values for FlowggerConfigurationLogFramingEnum */
 export type DbaasLogsFlowggerConfigurationLogFramingEnum =
@@ -1881,8 +1877,7 @@ export type DbaasLogsFlowggerConfigurationLogFramingEnum =
   | "LINE"
   | "NUL"
   | "SYSLEN";
-export const DbaasLogsFlowggerConfigurationLogFramingEnum =
-  /*@__PURE__*/ S.String;
+export const DbaasLogsFlowggerConfigurationLogFramingEnum = S.String;
 
 /** Flowgger configuration */
 export interface DbaasLogsFlowggerConfiguration {
@@ -1964,7 +1959,7 @@ export const GetDbaasLogInputEngineRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for EngineNameEnum */
 export type DbaasLogsEngineNameEnum = "FLOWGGER" | "LOGSTASH" | "TEST";
-export const DbaasLogsEngineNameEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsEngineNameEnum = S.String;
 
 /** Input engine */
 export interface DbaasLogsEngine {
@@ -2017,7 +2012,7 @@ export type DbaasLogsHelperSectionNameEnum =
   | "LOGSTASH_FILTER"
   | "LOGSTASH_INPUT"
   | "LOGSTASH_PATTERN";
-export const DbaasLogsHelperSectionNameEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsHelperSectionNameEnum = S.String;
 
 /** Helper section */
 export interface DbaasLogsHelperSection {
@@ -2400,7 +2395,7 @@ export type DbaasLogsArchiveRetrievalStateEnum =
   | "sealed"
   | "unsealed"
   | "unsealing";
-export const DbaasLogsArchiveRetrievalStateEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsArchiveRetrievalStateEnum = S.String;
 
 /** Stream archive */
 export interface DbaasLogsArchive {
@@ -2586,7 +2581,7 @@ export type DbaasLogsDeliveryStatusEnum =
   | "DELIVERING"
   | "READY"
   | "UPDATING";
-export const DbaasLogsDeliveryStatusEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsDeliveryStatusEnum = S.String;
 
 /** Metric Tenant */
 export interface DbaasLogsMetricTenant {
@@ -3049,7 +3044,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -3059,7 +3054,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -3313,7 +3308,7 @@ export type DbaasLogsInputActionTypeEnum =
   | "RESTART"
   | "START"
   | "TEST";
-export const DbaasLogsInputActionTypeEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsInputActionTypeEnum = S.String;
 
 /** Action on input */
 export interface DbaasLogsInputAction {
@@ -3464,7 +3459,7 @@ export type DbaasLogsUrlTypeEnum =
   | "UDP_LTSV_NUL"
   | "UDP_RFC5424"
   | "WEB_SOCKET";
-export const DbaasLogsUrlTypeEnum = /*@__PURE__*/ S.String;
+export const DbaasLogsUrlTypeEnum = S.String;
 
 /** Web address */
 export interface DbaasLogsUrl {

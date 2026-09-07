@@ -26,7 +26,7 @@ export const GetActionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type GetActionResponseActionStatus = "running" | "success" | "error";
-export const GetActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetActionResponseActionStatus = S.String;
 
 export interface GetActionResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -133,7 +133,7 @@ export type GetActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const GetActionsResponseActionsItemStatus = /*@__PURE__*/ S.String;
+export const GetActionsResponseActionsItemStatus = S.String;
 
 export type GetActionsResponseActionsItemResourcesItem =
   GetActionResponseActionResourcesItem;

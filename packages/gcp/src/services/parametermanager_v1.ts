@@ -70,7 +70,7 @@ export type ParameterFormatEnum =
   | "UNFORMATTED"
   | "YAML"
   | "JSON";
-export const ParameterFormatEnum = /*@__PURE__*/ S.String;
+export const ParameterFormatEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -224,7 +224,7 @@ export type TemplateFormatEnum =
   | "TEMPLATE_FORMAT_UNSPECIFIED"
   | "TEMPLATE_FORMAT_YAML"
   | "TEMPLATE_FORMAT_JSON";
-export const TemplateFormatEnum = /*@__PURE__*/ S.String;
+export const TemplateFormatEnum = S.String;
 
 /** Message describing Template resource */
 export interface Template {
@@ -498,8 +498,7 @@ export type GetProjectsLocationsParametersVersionsViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsParametersVersionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsParametersVersionsViewEnum = S.String;
 
 export interface GetProjectsLocationsParametersVersionsRequest {
   /** Required. Name of the resource in the format `projects/*\/locations/*\/parameters/*\/versions/*`. */
@@ -548,8 +547,7 @@ export type GetProjectsLocationsTemplatesVersionsViewEnum =
   | "VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsTemplatesVersionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsTemplatesVersionsViewEnum = S.String;
 
 export interface GetProjectsLocationsTemplatesVersionsRequest {
   /** Required. Name of the resource in the format `projects/*\/locations/*\/templates/*\/versions/*`. */
@@ -1027,8 +1025,7 @@ export type RenderTemplateVersionResponseTemplateFormatEnum =
   | "TEMPLATE_FORMAT_UNSPECIFIED"
   | "TEMPLATE_FORMAT_YAML"
   | "TEMPLATE_FORMAT_JSON";
-export const RenderTemplateVersionResponseTemplateFormatEnum =
-  /*@__PURE__*/ S.String;
+export const RenderTemplateVersionResponseTemplateFormatEnum = S.String;
 
 /** Message describing RenderTemplateVersionResponse resource */
 export interface RenderTemplateVersionResponse {

@@ -65,8 +65,7 @@ export type CreateServiceAccountTokenRequestPermissionsItem =
   | "org.serviceAccounts.read"
   | "org.serviceAccounts.write"
   | "org.auditLog.write";
-export const CreateServiceAccountTokenRequestPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const CreateServiceAccountTokenRequestPermissionsItem = S.String;
 
 /** Org-wide permissions for this token */
 export type CreateServiceAccountTokenRequestPermissionsList = Array<
@@ -87,8 +86,7 @@ export const CreateServiceAccountTokenRequestRepoIdsList =
 export type CreateServiceAccountTokenRequestRepoPermissionsItem =
   | "repo.content.read"
   | "repo.write";
-export const CreateServiceAccountTokenRequestRepoPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const CreateServiceAccountTokenRequestRepoPermissionsItem = S.String;
 
 /** Permissions granted on the selected `repoIds`. */
 export type CreateServiceAccountTokenRequestRepoPermissionsList = Array<
@@ -297,8 +295,7 @@ export type GetServiceAccountResponseAccessTokensItemRole =
   | "read"
   | "write"
   | "fineGrained";
-export const GetServiceAccountResponseAccessTokensItemRole =
-  /*@__PURE__*/ S.String;
+export const GetServiceAccountResponseAccessTokensItemRole = S.String;
 
 export type GetServiceAccountResponseAccessTokensItemPermissionsItem =
   | "repo.content.read"
@@ -316,7 +313,7 @@ export type GetServiceAccountResponseAccessTokensItemPermissionsItem =
   | "org.serviceAccounts.write"
   | "org.auditLog.write";
 export const GetServiceAccountResponseAccessTokensItemPermissionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetServiceAccountResponseAccessTokensItemPermissionsList =
   Array<GetServiceAccountResponseAccessTokensItemPermissionsItem>;
@@ -336,7 +333,7 @@ export type GetServiceAccountResponseAccessTokensItemRepoPermissionsItem =
   | "repo.content.read"
   | "repo.write";
 export const GetServiceAccountResponseAccessTokensItemRepoPermissionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetServiceAccountResponseAccessTokensItemRepoPermissionsList =
   Array<GetServiceAccountResponseAccessTokensItemRepoPermissionsItem>;
@@ -536,8 +533,7 @@ export type UpdateServiceAccountTokenRequestPermissionsItem =
   | "org.serviceAccounts.read"
   | "org.serviceAccounts.write"
   | "org.auditLog.write";
-export const UpdateServiceAccountTokenRequestPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceAccountTokenRequestPermissionsItem = S.String;
 
 /** Org-wide permissions for this token */
 export type UpdateServiceAccountTokenRequestPermissionsList = Array<
@@ -558,8 +554,7 @@ export const UpdateServiceAccountTokenRequestRepoIdsList =
 export type UpdateServiceAccountTokenRequestRepoPermissionsItem =
   | "repo.content.read"
   | "repo.write";
-export const UpdateServiceAccountTokenRequestRepoPermissionsItem =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceAccountTokenRequestRepoPermissionsItem = S.String;
 
 /** Permissions granted on the selected `repoIds`. */
 export type UpdateServiceAccountTokenRequestRepoPermissionsList = Array<

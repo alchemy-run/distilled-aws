@@ -154,7 +154,7 @@ export type BackendServingLocalityEnum =
   | "SERVING_LOCALITY_UNSPECIFIED"
   | "REGIONAL_STRICT"
   | "GLOBAL_ACCESS";
-export const BackendServingLocalityEnum = /*@__PURE__*/ S.String;
+export const BackendServingLocalityEnum = S.String;
 
 /** A backend is the primary resource of App Hosting. */
 export interface Backend {
@@ -307,7 +307,7 @@ export type EnvironmentVariableAvailabilityItemEnum =
   | "AVAILABILITY_UNSPECIFIED"
   | "BUILD"
   | "RUNTIME";
-export const EnvironmentVariableAvailabilityItemEnum = /*@__PURE__*/ S.String;
+export const EnvironmentVariableAvailabilityItemEnum = S.String;
 
 export type EnvironmentVariableAvailabilityItemEnumList = Array<
   EnvironmentVariableAvailabilityItemEnum | (string & {})
@@ -323,7 +323,7 @@ export type EnvironmentVariableOriginEnum =
   | "BUILD_CONFIG"
   | "APPHOSTING_YAML"
   | "FIREBASE_SYSTEM";
-export const EnvironmentVariableOriginEnum = /*@__PURE__*/ S.String;
+export const EnvironmentVariableOriginEnum = S.String;
 
 /** Environment variables for this build. */
 export interface EnvironmentVariable {
@@ -407,13 +407,13 @@ export type BuildStateEnum =
   | "FAILED"
   | "SKIPPED"
   | "EXPIRED";
-export const BuildStateEnum = /*@__PURE__*/ S.String;
+export const BuildStateEnum = S.String;
 
 export type Firebaseapphosting_ErrorErrorSourceEnum =
   | "ERROR_SOURCE_UNSPECIFIED"
   | "CLOUD_BUILD"
   | "CLOUD_RUN";
-export const Firebaseapphosting_ErrorErrorSourceEnum = /*@__PURE__*/ S.String;
+export const Firebaseapphosting_ErrorErrorSourceEnum = S.String;
 
 /** The container for the rpc status and source for any errors found during the build process. */
 export interface Firebaseapphosting_Error {
@@ -654,7 +654,7 @@ export const CreateProjectsLocationsBackendsBuildsRequest =
   }) as any as S.Schema<CreateProjectsLocationsBackendsBuildsRequest>;
 
 export type DomainTypeEnum = "TYPE_UNSPECIFIED" | "DEFAULT" | "CUSTOM";
-export const DomainTypeEnum = /*@__PURE__*/ S.String;
+export const DomainTypeEnum = S.String;
 
 /** Specifies redirect behavior for a domain. */
 export interface Redirect {
@@ -696,7 +696,7 @@ export type CustomDomainStatusOwnershipStateEnum =
   | "OWNERSHIP_CONFLICT"
   | "OWNERSHIP_PENDING"
   | "OWNERSHIP_ACTIVE";
-export const CustomDomainStatusOwnershipStateEnum = /*@__PURE__*/ S.String;
+export const CustomDomainStatusOwnershipStateEnum = S.String;
 
 export type CustomDomainStatusHostStateEnum =
   | "HOST_STATE_UNSPECIFIED"
@@ -706,7 +706,7 @@ export type CustomDomainStatusHostStateEnum =
   | "HOST_CONFLICT"
   | "HOST_WRONG_SHARD"
   | "HOST_ACTIVE";
-export const CustomDomainStatusHostStateEnum = /*@__PURE__*/ S.String;
+export const CustomDomainStatusHostStateEnum = S.String;
 
 export type CustomDomainStatusCertStateEnum =
   | "CERT_STATE_UNSPECIFIED"
@@ -716,17 +716,17 @@ export type CustomDomainStatusCertStateEnum =
   | "CERT_ACTIVE"
   | "CERT_EXPIRING_SOON"
   | "CERT_EXPIRED";
-export const CustomDomainStatusCertStateEnum = /*@__PURE__*/ S.String;
+export const CustomDomainStatusCertStateEnum = S.String;
 
 export type DnsRecordRequiredActionEnum = "NONE" | "ADD" | "REMOVE";
-export const DnsRecordRequiredActionEnum = /*@__PURE__*/ S.String;
+export const DnsRecordRequiredActionEnum = S.String;
 
 export type DnsRecordRelevantStateItemEnum =
   | "CUSTOM_DOMAIN_STATE_UNSPECIFIED"
   | "HOST_STATE"
   | "OWNERSHIP_STATE"
   | "CERT_STATE";
-export const DnsRecordRelevantStateItemEnum = /*@__PURE__*/ S.String;
+export const DnsRecordRelevantStateItemEnum = S.String;
 
 export type DnsRecordRelevantStateItemEnumList = Array<
   DnsRecordRelevantStateItemEnum | (string & {})
@@ -742,7 +742,7 @@ export type DnsRecordTypeEnum =
   | "TXT"
   | "AAAA"
   | "CAA";
-export const DnsRecordTypeEnum = /*@__PURE__*/ S.String;
+export const DnsRecordTypeEnum = S.String;
 
 /** A representation of a DNS records for a domain. DNS records are resource records that define how systems and services should behave when handling requests for a domain. For example, when you add `A` records to your domain's DNS records, you're informing other systems (such as your users' web browsers) to contact those IPv4 addresses to retrieve resources relevant to your domain (such as your App Hosting files). */
 export interface DnsRecord {
@@ -935,7 +935,7 @@ export type RolloutStateEnum =
   | "FAILED"
   | "CANCELLED"
   | "SKIPPED";
-export const RolloutStateEnum = /*@__PURE__*/ S.String;
+export const RolloutStateEnum = S.String;
 
 /** A single rollout of a build for a backend. */
 export interface Rollout {
@@ -1291,7 +1291,7 @@ export type PathTypeEnum =
   | "RE2"
   | "GLOB"
   | "PREFIX";
-export const PathTypeEnum = /*@__PURE__*/ S.String;
+export const PathTypeEnum = S.String;
 
 /** A file path pattern to match against. */
 export interface Path {

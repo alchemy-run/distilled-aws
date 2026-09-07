@@ -132,7 +132,7 @@ export type OutputFormat =
   | "INSPECTOR"
   | "INSPECTOR_ALT"
   | (string & {});
-export const OutputFormat = /*@__PURE__*/ S.String;
+export const OutputFormat = S.String;
 
 export interface ScanSbomRequest {
   sbom: any;
@@ -164,7 +164,7 @@ export type InternalServerExceptionReason =
   | "FAILED_TO_GENERATE_SBOM"
   | "OTHER"
   | (string & {});
-export const InternalServerExceptionReason = /*@__PURE__*/ S.String;
+export const InternalServerExceptionReason = S.String;
 
 export type ValidationExceptionReason =
   | "UNKNOWN_OPERATION"
@@ -173,7 +173,7 @@ export type ValidationExceptionReason =
   | "UNSUPPORTED_SBOM_TYPE"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

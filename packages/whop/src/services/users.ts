@@ -74,7 +74,7 @@ export type CheckUserAccessResponseAccessLevel =
   | "no_access"
   | "admin"
   | "customer";
-export const CheckUserAccessResponseAccessLevel = /*@__PURE__*/ S.String;
+export const CheckUserAccessResponseAccessLevel = S.String;
 
 export interface CheckUserAccessResponse {
   access_level: CheckUserAccessResponseAccessLevel;
@@ -91,8 +91,7 @@ export const CheckUserAccessResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** How `code_challenge` was derived. Only `S256` is accepted. */
 export type CreateOauthGrantRequestCodeChallengeMethod = "S256";
-export const CreateOauthGrantRequestCodeChallengeMethod =
-  /*@__PURE__*/ S.String;
+export const CreateOauthGrantRequestCodeChallengeMethod = S.String;
 
 /** The permissions the app is asking for, for example `member:basic:read`. `GET /api_keys/permissions` names and describes each one. Granting adds to whatever the user already granted this app rather than replacing it. */
 export type CreateOauthGrantRequestRequestedScopesList = Array<string>;
@@ -102,7 +101,7 @@ export const CreateOauthGrantRequestRequestedScopesList = /*@__PURE__*/ S.Array(
 
 /** The OAuth response type. Only `code` is accepted; defaults to `code`. */
 export type CreateOauthGrantRequestResponseType = "code";
-export const CreateOauthGrantRequestResponseType = /*@__PURE__*/ S.String;
+export const CreateOauthGrantRequestResponseType = S.String;
 
 export interface CreateOauthGrantRequest {
   /** Authorize the app for one of the user's accounts rather than for the user alone, prefixed `biz_`. The user must have access to it. */
@@ -233,8 +232,7 @@ export const Passkey = /*@__PURE__*/ S.suspend(() =>
 export type CreatePasskeyChallengeRequestChallengeType =
   | "registration"
   | "deletion";
-export const CreatePasskeyChallengeRequestChallengeType =
-  /*@__PURE__*/ S.String;
+export const CreatePasskeyChallengeRequestChallengeType = S.String;
 
 export interface CreatePasskeyChallengeRequest {
   /** The ceremony this challenge is for. */
@@ -307,7 +305,7 @@ export const DeletePasskeyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeletePasskeyResponse>;
 
 export type GetUserRequestInterval = "hour" | "day" | "week" | "month";
-export const GetUserRequestInterval = /*@__PURE__*/ S.String;
+export const GetUserRequestInterval = S.String;
 
 export interface GetUserRequest {
   /** User ID (prefixed `user_`), username, or `me` for the authenticated user. */
@@ -623,7 +621,7 @@ export type SocialAccountParentPlatform =
   | "facebook"
   | "discord"
   | "telegram";
-export const SocialAccountParentPlatform = /*@__PURE__*/ S.String;
+export const SocialAccountParentPlatform = S.String;
 
 export interface SocialAccountParent {
   /** The platform-specific ID for the parent social account. */
@@ -664,7 +662,7 @@ export type SocialAccountPlatform =
   | "facebook"
   | "discord"
   | "telegram";
-export const SocialAccountPlatform = /*@__PURE__*/ S.String;
+export const SocialAccountPlatform = S.String;
 
 export type SocialAccountScopesList = Array<string>;
 export const SocialAccountScopesList = /*@__PURE__*/ S.Array(
@@ -818,10 +816,10 @@ export const UserPreferences = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserPreferences>;
 
 export type ListOauthGrantsRequestOrder = "created_at";
-export const ListOauthGrantsRequestOrder = /*@__PURE__*/ S.String;
+export const ListOauthGrantsRequestOrder = S.String;
 
 export type ListOauthGrantsRequestDirection = "asc" | "desc";
-export const ListOauthGrantsRequestDirection = /*@__PURE__*/ S.String;
+export const ListOauthGrantsRequestDirection = S.String;
 
 export interface ListOauthGrantsRequest {
   /** Only return grants for this app, prefixed `app_`. An app the user has never authorized returns an empty list. */
@@ -889,10 +887,10 @@ export const ListOauthGrantsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOauthGrantsResponse>;
 
 export type ListPasskeysRequestOrder = "created_at";
-export const ListPasskeysRequestOrder = /*@__PURE__*/ S.String;
+export const ListPasskeysRequestOrder = S.String;
 
 export type ListPasskeysRequestDirection = "asc" | "desc";
-export const ListPasskeysRequestDirection = /*@__PURE__*/ S.String;
+export const ListPasskeysRequestDirection = S.String;
 
 export interface ListPasskeysRequest {
   /** The number of passkeys to return (default 20, max 100). */
@@ -969,16 +967,16 @@ export type ExperienceNotificationPreferenceLevel =
   | "all"
   | "mentions"
   | "nothing";
-export const ExperienceNotificationPreferenceLevel = /*@__PURE__*/ S.String;
+export const ExperienceNotificationPreferenceLevel = S.String;
 
 /** The type of object. Always `experience_notification_preference`. */
 export type ExperienceNotificationPreferenceObject =
   "experience_notification_preference";
-export const ExperienceNotificationPreferenceObject = /*@__PURE__*/ S.String;
+export const ExperienceNotificationPreferenceObject = S.String;
 
 /** Delivery channel the preference applies to. `null` applies to every channel. */
 export type NotificationPreferenceScopeChannel = "in_app" | "mobile";
-export const NotificationPreferenceScopeChannel = /*@__PURE__*/ S.String;
+export const NotificationPreferenceScopeChannel = S.String;
 
 export interface NotificationPreferenceScope {
   /** Account the preference is scoped to (member notifications), prefixed `biz_`. */
@@ -1051,8 +1049,7 @@ export const ListUserNotificationExperiencePreferencesResponse =
 export type ListUserNotificationTopicPreferencesRequestChannel =
   | "in_app"
   | "mobile";
-export const ListUserNotificationTopicPreferencesRequestChannel =
-  /*@__PURE__*/ S.String;
+export const ListUserNotificationTopicPreferencesRequestChannel = S.String;
 
 export interface ListUserNotificationTopicPreferencesRequest {
   /** Only return preferences for this delivery channel (or not narrowed to a channel). */
@@ -1095,11 +1092,11 @@ export const ListUserNotificationTopicPreferencesRequest =
 
 /** What the user is notified about in this scope: `all` or `nothing`. */
 export type UserNotificationPreferenceLevel = "all" | "nothing";
-export const UserNotificationPreferenceLevel = /*@__PURE__*/ S.String;
+export const UserNotificationPreferenceLevel = S.String;
 
 /** The type of object. Always `notification_preference`. */
 export type UserNotificationPreferenceObject = "notification_preference";
-export const UserNotificationPreferenceObject = /*@__PURE__*/ S.String;
+export const UserNotificationPreferenceObject = S.String;
 
 export interface UserNotificationPreference {
   /** When the preference was created, as an ISO 8601 timestamp. */
@@ -1193,7 +1190,7 @@ export type UserRecommendedActionAction =
   | "enable_tax_collection"
   | "create_card"
   | "apply_for_financing";
-export const UserRecommendedActionAction = /*@__PURE__*/ S.String;
+export const UserRecommendedActionAction = S.String;
 
 export type UserRecommendedActionBlockedCapabilitiesList = Array<string>;
 export const UserRecommendedActionBlockedCapabilitiesList =
@@ -1203,7 +1200,7 @@ export const UserRecommendedActionBlockedCapabilitiesList =
 
 /** Always optional — never blocking */
 export type UserRecommendedActionStatus = "optional";
-export const UserRecommendedActionStatus = /*@__PURE__*/ S.String;
+export const UserRecommendedActionStatus = S.String;
 
 export interface UserRecommendedAction {
   /** The account (`biz_`) a business recommendation is for, or `null` for personal recommendations */
@@ -1317,14 +1314,14 @@ export type SetUserNotificationPreferencesRequestPreferencesItemLevel =
   | "mentions"
   | "nothing";
 export const SetUserNotificationPreferencesRequestPreferencesItemLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Delivery channel the preference applies to. Required when setting a topic override. */
 export type SetUserNotificationPreferencesRequestPreferencesItemScopeChannel =
   | "in_app"
   | "mobile";
 export const SetUserNotificationPreferencesRequestPreferencesItemScopeChannel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** What the preference applies to. `null` on a dimension means the preference is not narrowed there. */
 export interface SetUserNotificationPreferencesRequestPreferencesItemScope {
@@ -1409,13 +1406,13 @@ export const SetUserNotificationPreferencesRequest = /*@__PURE__*/ S.suspend(
 
 /** What the user is now notified about in this scope, or `null` if the preference was cleared and the scope inherits its default again. */
 export type NotificationPreferenceStateLevel = "all" | "mentions" | "nothing";
-export const NotificationPreferenceStateLevel = /*@__PURE__*/ S.String;
+export const NotificationPreferenceStateLevel = S.String;
 
 /** Which kind of preference was written: `experience_notification_preference` for an experience level, `notification_preference` for a topic override. */
 export type NotificationPreferenceStateObject =
   | "notification_preference"
   | "experience_notification_preference";
-export const NotificationPreferenceStateObject = /*@__PURE__*/ S.String;
+export const NotificationPreferenceStateObject = S.String;
 
 export interface NotificationPreferenceState {
   /** What the user is now notified about in this scope, or `null` if the preference was cleared and the scope inherits its default again. */

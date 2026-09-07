@@ -77,19 +77,19 @@ export type NfsShareStateEnum =
   | "CREATING"
   | "UPDATING"
   | "DELETING";
-export const NfsShareStateEnum = /*@__PURE__*/ S.String;
+export const NfsShareStateEnum = S.String;
 
 export type NfsShareStorageTypeEnum =
   | "STORAGE_TYPE_UNSPECIFIED"
   | "SSD"
   | "HDD";
-export const NfsShareStorageTypeEnum = /*@__PURE__*/ S.String;
+export const NfsShareStorageTypeEnum = S.String;
 
 export type AllowedClientMountPermissionsEnum =
   | "MOUNT_PERMISSIONS_UNSPECIFIED"
   | "READ"
   | "READ_WRITE";
-export const AllowedClientMountPermissionsEnum = /*@__PURE__*/ S.String;
+export const AllowedClientMountPermissionsEnum = S.String;
 
 /** Represents an 'access point' for the share. */
 export interface AllowedClient {
@@ -248,7 +248,7 @@ export type ProvisioningConfigStateEnum =
   | "VALIDATED"
   | "CANCELLED"
   | "FAILED";
-export const ProvisioningConfigStateEnum = /*@__PURE__*/ S.String;
+export const ProvisioningConfigStateEnum = S.String;
 
 /** A network. */
 export interface NetworkAddress {
@@ -271,13 +271,13 @@ export type InstanceConfigNetworkConfigEnum =
   | "NETWORKCONFIG_UNSPECIFIED"
   | "SINGLE_VLAN"
   | "MULTI_VLAN";
-export const InstanceConfigNetworkConfigEnum = /*@__PURE__*/ S.String;
+export const InstanceConfigNetworkConfigEnum = S.String;
 
 export type LogicalNetworkInterfaceNetworkTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "CLIENT"
   | "PRIVATE";
-export const LogicalNetworkInterfaceNetworkTypeEnum = /*@__PURE__*/ S.String;
+export const LogicalNetworkInterfaceNetworkTypeEnum = S.String;
 
 /** Each logical network interface is effectively a network and IP pair. */
 export interface LogicalNetworkInterface {
@@ -421,7 +421,7 @@ export type NfsExportPermissionsEnum =
   | "PERMISSIONS_UNSPECIFIED"
   | "READ_ONLY"
   | "READ_WRITE";
-export const NfsExportPermissionsEnum = /*@__PURE__*/ S.String;
+export const NfsExportPermissionsEnum = S.String;
 
 /** A NFS export entry. */
 export interface NfsExport {
@@ -461,7 +461,7 @@ export type VolumeConfigProtocolEnum =
   | "PROTOCOL_UNSPECIFIED"
   | "PROTOCOL_FC"
   | "PROTOCOL_NFS";
-export const VolumeConfigProtocolEnum = /*@__PURE__*/ S.String;
+export const VolumeConfigProtocolEnum = S.String;
 
 export type VolumeConfigPerformanceTierEnum =
   | "VOLUME_PERFORMANCE_TIER_UNSPECIFIED"
@@ -469,10 +469,10 @@ export type VolumeConfigPerformanceTierEnum =
   | "VOLUME_PERFORMANCE_TIER_ASSIGNED"
   | "VOLUME_PERFORMANCE_TIER_HT"
   | "VOLUME_PERFORMANCE_TIER_QOS2_PERFORMANCE";
-export const VolumeConfigPerformanceTierEnum = /*@__PURE__*/ S.String;
+export const VolumeConfigPerformanceTierEnum = S.String;
 
 export type VolumeConfigTypeEnum = "TYPE_UNSPECIFIED" | "FLASH" | "DISK";
-export const VolumeConfigTypeEnum = /*@__PURE__*/ S.String;
+export const VolumeConfigTypeEnum = S.String;
 
 /** Configuration parameters for a new volume. */
 export interface VolumeConfig {
@@ -529,10 +529,10 @@ export type NetworkConfigBandwidthEnum =
   | "BW_2_GBPS"
   | "BW_5_GBPS"
   | "BW_10_GBPS";
-export const NetworkConfigBandwidthEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigBandwidthEnum = S.String;
 
 export type NetworkConfigTypeEnum = "TYPE_UNSPECIFIED" | "CLIENT" | "PRIVATE";
-export const NetworkConfigTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigTypeEnum = S.String;
 
 export type NetworkConfigServiceCidrEnum =
   | "SERVICE_CIDR_UNSPECIFIED"
@@ -540,7 +540,7 @@ export type NetworkConfigServiceCidrEnum =
   | "HIGH_26"
   | "HIGH_27"
   | "HIGH_28";
-export const NetworkConfigServiceCidrEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigServiceCidrEnum = S.String;
 
 /** A GCP vlan attachment. */
 export interface IntakeVlanAttachment {
@@ -735,7 +735,7 @@ export type VolumeSnapshotTypeEnum =
   | "SNAPSHOT_TYPE_UNSPECIFIED"
   | "AD_HOC"
   | "SCHEDULED";
-export const VolumeSnapshotTypeEnum = /*@__PURE__*/ S.String;
+export const VolumeSnapshotTypeEnum = S.String;
 
 /** A snapshot of a volume. Only boot volumes can have snapshots. */
 export interface VolumeSnapshot {
@@ -1117,10 +1117,10 @@ export type VolumeSnapshotAutoDeleteBehaviorEnum =
   | "DISABLED"
   | "OLDEST_FIRST"
   | "NEWEST_FIRST";
-export const VolumeSnapshotAutoDeleteBehaviorEnum = /*@__PURE__*/ S.String;
+export const VolumeSnapshotAutoDeleteBehaviorEnum = S.String;
 
 export type VolumeStorageTypeEnum = "STORAGE_TYPE_UNSPECIFIED" | "SSD" | "HDD";
-export const VolumeStorageTypeEnum = /*@__PURE__*/ S.String;
+export const VolumeStorageTypeEnum = S.String;
 
 export type VolumePerformanceTierEnum =
   | "VOLUME_PERFORMANCE_TIER_UNSPECIFIED"
@@ -1128,13 +1128,13 @@ export type VolumePerformanceTierEnum =
   | "VOLUME_PERFORMANCE_TIER_ASSIGNED"
   | "VOLUME_PERFORMANCE_TIER_HT"
   | "VOLUME_PERFORMANCE_TIER_QOS2_PERFORMANCE";
-export const VolumePerformanceTierEnum = /*@__PURE__*/ S.String;
+export const VolumePerformanceTierEnum = S.String;
 
 export type VolumeProtocolEnum =
   | "PROTOCOL_UNSPECIFIED"
   | "FIBRE_CHANNEL"
   | "NFS";
-export const VolumeProtocolEnum = /*@__PURE__*/ S.String;
+export const VolumeProtocolEnum = S.String;
 
 export type VolumeStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1143,7 +1143,7 @@ export type VolumeStateEnum =
   | "DELETING"
   | "UPDATING"
   | "COOL_OFF";
-export const VolumeStateEnum = /*@__PURE__*/ S.String;
+export const VolumeStateEnum = S.String;
 
 /** Details about snapshot space reservation and usage on the storage volume. */
 export interface SnapshotReservationDetail {
@@ -1171,7 +1171,7 @@ export type VolumeWorkloadProfileEnum =
   | "WORKLOAD_PROFILE_UNSPECIFIED"
   | "GENERIC"
   | "HANA";
-export const VolumeWorkloadProfileEnum = /*@__PURE__*/ S.String;
+export const VolumeWorkloadProfileEnum = S.String;
 
 /** A storage volume. */
 export interface Volume {
@@ -1290,7 +1290,7 @@ export const NetworkMountPointList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<NetworkMountPointList>;
 
 export type VRFStateEnum = "STATE_UNSPECIFIED" | "PROVISIONING" | "PROVISIONED";
-export const VRFStateEnum = /*@__PURE__*/ S.String;
+export const VRFStateEnum = S.String;
 
 /** QOS policy parameters. */
 export interface QosPolicy {
@@ -1363,7 +1363,7 @@ export type NetworkStateEnum =
   | "PROVISIONED"
   | "DEPROVISIONING"
   | "UPDATING";
-export const NetworkStateEnum = /*@__PURE__*/ S.String;
+export const NetworkStateEnum = S.String;
 
 /** A reservation of one or more addresses in a network. */
 export interface NetworkAddressReservation {
@@ -1390,7 +1390,7 @@ export const NetworkAddressReservationList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<NetworkAddressReservationList>;
 
 export type NetworkTypeEnum = "TYPE_UNSPECIFIED" | "CLIENT" | "PRIVATE";
-export const NetworkTypeEnum = /*@__PURE__*/ S.String;
+export const NetworkTypeEnum = S.String;
 
 /** A Network. */
 export interface Network {
@@ -1460,12 +1460,12 @@ export type InstanceWorkloadProfileEnum =
   | "WORKLOAD_PROFILE_UNSPECIFIED"
   | "WORKLOAD_PROFILE_GENERIC"
   | "WORKLOAD_PROFILE_HANA";
-export const InstanceWorkloadProfileEnum = /*@__PURE__*/ S.String;
+export const InstanceWorkloadProfileEnum = S.String;
 
 export type LunMultiprotocolTypeEnum =
   | "MULTIPROTOCOL_TYPE_UNSPECIFIED"
   | "LINUX";
-export const LunMultiprotocolTypeEnum = /*@__PURE__*/ S.String;
+export const LunMultiprotocolTypeEnum = S.String;
 
 export type LunStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1474,10 +1474,10 @@ export type LunStateEnum =
   | "READY"
   | "DELETING"
   | "COOL_OFF";
-export const LunStateEnum = /*@__PURE__*/ S.String;
+export const LunStateEnum = S.String;
 
 export type LunStorageTypeEnum = "STORAGE_TYPE_UNSPECIFIED" | "SSD" | "HDD";
-export const LunStorageTypeEnum = /*@__PURE__*/ S.String;
+export const LunStorageTypeEnum = S.String;
 
 /** A storage volume logical unit number (LUN). */
 export interface Lun {
@@ -1535,7 +1535,7 @@ export type InstanceStateEnum =
   | "STARTING"
   | "STOPPING"
   | "SHUTDOWN";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** A server. */
 export interface Instance {
@@ -2111,7 +2111,7 @@ export type ProvisioningQuotaAssetTypeEnum =
   | "ASSET_TYPE_SERVER"
   | "ASSET_TYPE_STORAGE"
   | "ASSET_TYPE_NETWORK";
-export const ProvisioningQuotaAssetTypeEnum = /*@__PURE__*/ S.String;
+export const ProvisioningQuotaAssetTypeEnum = S.String;
 
 /** A resource budget. */
 export interface InstanceQuota {

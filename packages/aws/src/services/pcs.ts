@@ -156,7 +156,7 @@ export class ValidationException
   ).pipe(C.withBadRequestError) {}
 export type ClusterName = string;
 export type SchedulerType = "SLURM" | (string & {});
-export const SchedulerType = /*@__PURE__*/ S.String;
+export const SchedulerType = S.String;
 
 export interface SchedulerRequest {
   type: SchedulerType;
@@ -168,7 +168,7 @@ export const SchedulerRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SchedulerRequest",
 }) as any as S.Schema<SchedulerRequest>;
 export type Size = "SMALL" | "MEDIUM" | "LARGE" | (string & {});
-export const Size = /*@__PURE__*/ S.String;
+export const Size = S.String;
 
 export type SubnetId = string;
 export type SubnetIdList = string[];
@@ -177,7 +177,7 @@ export type SecurityGroupId = string;
 export type SecurityGroupIdList = string[];
 export const SecurityGroupIdList = /*@__PURE__*/ S.Array(S.String);
 export type NetworkType = "IPV4" | "IPV6" | (string & {});
-export const NetworkType = /*@__PURE__*/ S.String;
+export const NetworkType = S.String;
 
 export interface NetworkingRequest {
   subnetIds?: string[];
@@ -229,7 +229,7 @@ export const CgroupCustomSetting = /*@__PURE__*/ S.suspend(() =>
 export type CgroupCustomSettings = CgroupCustomSetting[];
 export const CgroupCustomSettings = /*@__PURE__*/ S.Array(CgroupCustomSetting);
 export type AccountingMode = "STANDARD" | "NONE" | (string & {});
-export const AccountingMode = /*@__PURE__*/ S.String;
+export const AccountingMode = S.String;
 
 export interface AccountingRequest {
   defaultPurgeTimeInDays?: number;
@@ -244,7 +244,7 @@ export const AccountingRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountingRequest",
 }) as any as S.Schema<AccountingRequest>;
 export type SlurmRestMode = "STANDARD" | "NONE" | (string & {});
-export const SlurmRestMode = /*@__PURE__*/ S.String;
+export const SlurmRestMode = S.String;
 
 export interface SlurmRestRequest {
   mode: SlurmRestMode;
@@ -318,7 +318,7 @@ export type ClusterStatus =
   | "SUSPENDED"
   | "RESUMING"
   | (string & {});
-export const ClusterStatus = /*@__PURE__*/ S.String;
+export const ClusterStatus = S.String;
 
 export interface Scheduler {
   type: SchedulerType;
@@ -404,7 +404,7 @@ export type EndpointType =
   | "SLURMDBD"
   | "SLURMRESTD"
   | (string & {});
-export const EndpointType = /*@__PURE__*/ S.String;
+export const EndpointType = S.String;
 
 export interface Endpoint {
   type: EndpointType;
@@ -482,7 +482,7 @@ export type PurchaseOption =
   | "CAPACITY_BLOCK"
   | "INTERRUPTIBLE_CAPACITY_RESERVATION"
   | (string & {});
-export const PurchaseOption = /*@__PURE__*/ S.String;
+export const PurchaseOption = S.String;
 
 export interface CustomLaunchTemplate {
   id: string;
@@ -516,7 +516,7 @@ export type SpotAllocationStrategy =
   | "capacity-optimized"
   | "price-capacity-optimized"
   | (string & {});
-export const SpotAllocationStrategy = /*@__PURE__*/ S.String;
+export const SpotAllocationStrategy = S.String;
 
 export interface SpotOptions {
   allocationStrategy?: SpotAllocationStrategy;
@@ -557,10 +557,10 @@ export type OnError =
   | "STOP_SEQUENCE"
   | "CONTINUE"
   | (string & {});
-export const OnError = /*@__PURE__*/ S.String;
+export const OnError = S.String;
 
 export type ExecutionPolicy = "FIRST_BOOT_ONLY" | "EVERY_BOOT" | (string & {});
-export const ExecutionPolicy = /*@__PURE__*/ S.String;
+export const ExecutionPolicy = S.String;
 
 export interface NodeLifecycleScript {
   name: string;
@@ -599,7 +599,7 @@ export type ScriptCachingPolicy =
   | "CACHE_ONCE"
   | "REFRESH_ON_REBOOT"
   | (string & {});
-export const ScriptCachingPolicy = /*@__PURE__*/ S.String;
+export const ScriptCachingPolicy = S.String;
 
 export interface NodeLifecycleActionsRequest {
   stages: NodeLifecycleStages;
@@ -664,7 +664,7 @@ export type ComputeNodeGroupStatus =
   | "SUSPENDED"
   | "RESUMING"
   | (string & {});
-export const ComputeNodeGroupStatus = /*@__PURE__*/ S.String;
+export const ComputeNodeGroupStatus = S.String;
 
 export interface ScalingConfiguration {
   minInstanceCount: number;
@@ -808,7 +808,7 @@ export type QueueStatus =
   | "SUSPENDED"
   | "RESUMING"
   | (string & {});
-export const QueueStatus = /*@__PURE__*/ S.String;
+export const QueueStatus = S.String;
 
 export interface QueueSlurmConfiguration {
   slurmCustomSettings?: SlurmCustomSetting[];
@@ -1410,7 +1410,7 @@ export type ValidationExceptionReason =
   | "fieldValidationFailed"
   | "other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

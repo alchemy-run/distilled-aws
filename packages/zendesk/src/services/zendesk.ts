@@ -196,7 +196,7 @@ export const OrganizationObjectDomainNamesList = /*@__PURE__*/ S.Array(
 
 export type OrganizationObjectOrganizationFieldsValue = string | number;
 export const OrganizationObjectOrganizationFieldsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationObjectOrganizationFieldsValue>;
+  S.Unknown as any as S.Schema<OrganizationObjectOrganizationFieldsValue>;
 
 /** Custom fields for this organization. See [Custom organization fields](/api-reference/ticketing/organizations/organizations/#custom-organization-fields) */
 export type OrganizationObjectOrganizationFieldsMap = {
@@ -330,16 +330,16 @@ export const AutocompleteTagsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AutocompleteTagsRequest>;
 
 export type AutocompleteUsersRequestFilter = "assignable" | "requester";
-export const AutocompleteUsersRequestFilter = /*@__PURE__*/ S.String;
+export const AutocompleteUsersRequestFilter = S.String;
 
 export type AutocompleteUsersRequestBrandIdCase0 = "all";
-export const AutocompleteUsersRequestBrandIdCase0 = /*@__PURE__*/ S.String;
+export const AutocompleteUsersRequestBrandIdCase0 = S.String;
 
 export type AutocompleteUsersRequestBrandId =
   | AutocompleteUsersRequestBrandIdCase0
   | number;
 export const AutocompleteUsersRequestBrandId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AutocompleteUsersRequestBrandId>;
+  S.Unknown as any as S.Schema<AutocompleteUsersRequestBrandId>;
 
 export interface AutocompleteUsersRequest {
   /** The name to search for the user. You must specify either `name` or `phone`. */
@@ -391,7 +391,7 @@ export const UserForAdminPhotoMap = /*@__PURE__*/ S.Record(
 
 /** The separation scope. "account" means account-level access; "brand" means access limited to a specific brand. */
 export type UserForAdminSeparationScope = "account" | "brand";
-export const UserForAdminSeparationScope = /*@__PURE__*/ S.String;
+export const UserForAdminSeparationScope = S.String;
 
 /** The brand separation scope for the user. Only present when the account has brand separation enabled. For end users, indicates whether they are scoped to the full account or a specific brand. Staff users (agents and admins) always have `scope: "account"`. */
 export interface UserForAdminSeparation {
@@ -410,7 +410,7 @@ export const UserForAdminSeparation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserForAdminSeparation>;
 
 export type UserForAdminSuspensionDetailsChannelsItem = "all" | "messaging";
-export const UserForAdminSuspensionDetailsChannelsItem = /*@__PURE__*/ S.String;
+export const UserForAdminSuspensionDetailsChannelsItem = S.String;
 
 /** Channels on which the user is suspended. `["all"]` means suspended across every channel. If "all" is present, it must be the only element */
 export type UserForAdminSuspensionDetailsChannelsList =
@@ -641,8 +641,7 @@ export const UserForEndUser = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserForEndUser" }) as any as S.Schema<UserForEndUser>;
 
 export type UserObject = UserForAdmin | UserForEndUser;
-export const UserObject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserObject>;
+export const UserObject = S.Unknown as any as S.Schema<UserObject>;
 
 export type UsersResponseUsersList = Array<UserObject>;
 export const UsersResponseUsersList = /*@__PURE__*/ S.Array(
@@ -659,8 +658,7 @@ export const UsersResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UsersResponse" }) as any as S.Schema<UsersResponse>;
 
 export type BatchOperateTriggerCategoriesRequestJobAction = "patch";
-export const BatchOperateTriggerCategoriesRequestJobAction =
-  /*@__PURE__*/ S.String;
+export const BatchOperateTriggerCategoriesRequestJobAction = S.String;
 
 export interface TriggerCategoryBatchRequest {
   id: string;
@@ -812,7 +810,7 @@ export const BatchJobResponseOutputResultsTriggerCategoriesList =
 
 export type TriggerActionObjectValueCase2Item = string | number;
 export const TriggerActionObjectValueCase2Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerActionObjectValueCase2Item>;
+  S.Unknown as any as S.Schema<TriggerActionObjectValueCase2Item>;
 
 export type TriggerActionObjectValueCase2List =
   Array<TriggerActionObjectValueCase2Item>;
@@ -825,7 +823,7 @@ export type TriggerActionObjectValue =
   | number
   | TriggerActionObjectValueCase2List;
 export const TriggerActionObjectValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerActionObjectValue>;
+  S.Unknown as any as S.Schema<TriggerActionObjectValue>;
 
 export interface TriggerActionObject {
   field?: string;
@@ -848,7 +846,7 @@ export const TriggerObjectOutputActionsList = /*@__PURE__*/ S.Array(
 
 export type TriggerConditionObjectValueCase2Item = string | number;
 export const TriggerConditionObjectValueCase2Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerConditionObjectValueCase2Item>;
+  S.Unknown as any as S.Schema<TriggerConditionObjectValueCase2Item>;
 
 export type TriggerConditionObjectValueCase2List =
   Array<TriggerConditionObjectValueCase2Item>;
@@ -861,7 +859,7 @@ export type TriggerConditionObjectValue =
   | number
   | TriggerConditionObjectValueCase2List;
 export const TriggerConditionObjectValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerConditionObjectValue>;
+  S.Unknown as any as S.Schema<TriggerConditionObjectValue>;
 
 export interface TriggerConditionObject {
   field?: string;
@@ -1004,7 +1002,7 @@ export const BatchJobResponseOutputResults = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchJobResponseOutputResults>;
 
 export type BatchJobResponseOutputStatus = "complete" | "failed";
-export const BatchJobResponseOutputStatus = /*@__PURE__*/ S.String;
+export const BatchJobResponseOutputStatus = S.String;
 
 export interface BatchJobResponseOutput {
   errors?: BatchJobResponseOutputErrorsList;
@@ -1157,7 +1155,7 @@ export type JobStatusResultObject =
   | UpdateResourceResult
   | FailedResult;
 export const JobStatusResultObject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JobStatusResultObject>;
+  S.Unknown as any as S.Schema<JobStatusResultObject>;
 
 export type JobStatusObjectResultsCase0List = Array<JobStatusResultObject>;
 export const JobStatusObjectResultsCase0List = /*@__PURE__*/ S.Array(
@@ -1181,7 +1179,7 @@ export type JobStatusObjectResults =
   | JobStatusObjectResultsCase0List
   | JobStatusObjectResultsCase1;
 export const JobStatusObjectResults =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JobStatusObjectResults>;
+  S.Unknown as any as S.Schema<JobStatusObjectResults>;
 
 export interface JobStatusObject {
   /** Automatically assigned when the job is queued */
@@ -2316,11 +2314,11 @@ export const CountUsersRequestRoleList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CountUsersRequestRoleList>;
 
 export type CountUsersRequestBrandIdCase0 = "all";
-export const CountUsersRequestBrandIdCase0 = /*@__PURE__*/ S.String;
+export const CountUsersRequestBrandIdCase0 = S.String;
 
 export type CountUsersRequestBrandId = CountUsersRequestBrandIdCase0 | number;
 export const CountUsersRequestBrandId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountUsersRequestBrandId>;
+  S.Unknown as any as S.Schema<CountUsersRequestBrandId>;
 
 export interface CountUsersRequest {
   /** Filters the results by role. Possible values are "end-user", "agent", "admin", or a custom role name */
@@ -2378,12 +2376,12 @@ export type AccessRuleConditionOperator =
   | "not_includes"
   | "matches"
   | "present";
-export const AccessRuleConditionOperator = /*@__PURE__*/ S.String;
+export const AccessRuleConditionOperator = S.String;
 
 /** The value to compare against. Can be null for terminal operators like 'present' and 'not_present' */
 export type AccessRuleConditionValue = string | number | number | boolean;
 export const AccessRuleConditionValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccessRuleConditionValue>;
+  S.Unknown as any as S.Schema<AccessRuleConditionValue>;
 
 export interface AccessRuleCondition {
   /** The field to evaluate in the condition */
@@ -2574,7 +2572,7 @@ export type ApprovalRequestSimpleResponseApprovalRequestOriginationType =
   | "ACTION_FLOW_ORIGINATION"
   | "UNKNOWN_ORIGINATION";
 export const ApprovalRequestSimpleResponseApprovalRequestOriginationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ApprovalRequestSimpleResponseApprovalRequest {
   /** The id of the group assigned to review the request */
@@ -2752,8 +2750,7 @@ export const CreateAttributeValueRequest = /*@__PURE__*/ S.suspend(() =>
 export type SkillBasedRoutingAttributeValueObjectAgentSkillPriority =
   | "NORMAL"
   | "HIGH";
-export const SkillBasedRoutingAttributeValueObjectAgentSkillPriority =
-  /*@__PURE__*/ S.String;
+export const SkillBasedRoutingAttributeValueObjectAgentSkillPriority = S.String;
 
 export interface SkillBasedRoutingAttributeValueObject {
   /** The priority of the agent skill for this attribute value */
@@ -3173,7 +3170,7 @@ export type TicketFieldValueInputValue =
   | boolean
   | TicketFieldValueInputValueCase3List;
 export const TicketFieldValueInputValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketFieldValueInputValue>;
+  S.Unknown as any as S.Schema<TicketFieldValueInputValue>;
 
 /** A ticket custom field value assignment */
 export interface TicketFieldValueInput {
@@ -3223,7 +3220,7 @@ export const TicketObjectOutputFollowupIdsList = /*@__PURE__*/ S.Array(
 
 /** The urgency with which the ticket should be addressed */
 export type TicketObjectOutputPriority = "urgent" | "high" | "normal" | "low";
-export const TicketObjectOutputPriority = /*@__PURE__*/ S.String;
+export const TicketObjectOutputPriority = S.String;
 
 /** The satisfaction rating of the ticket, if it exists, or the state of satisfaction, "offered" or "unoffered". The value is null for plan types that don't support CSAT */
 export type TicketObjectOutputSatisfactionRatingMap = {
@@ -3248,11 +3245,11 @@ export type TicketObjectOutputStatus =
   | "hold"
   | "solved"
   | "closed";
-export const TicketObjectOutputStatus = /*@__PURE__*/ S.String;
+export const TicketObjectOutputStatus = S.String;
 
 /** The type of support that handled the ticket */
 export type TicketObjectOutputSupportType = "agent" | "ai_agent";
-export const TicketObjectOutputSupportType = /*@__PURE__*/ S.String;
+export const TicketObjectOutputSupportType = S.String;
 
 /** An array of tag strings */
 export type TicketObjectOutputTagsCase0List = Array<string>;
@@ -3263,7 +3260,7 @@ export const TicketObjectOutputTagsCase0List = /*@__PURE__*/ S.Array(
 /** The tags applied to this ticket. Unless otherwise specified, the [set tag](/api-reference/ticketing/ticket-management/tags/#set-tags) behavior is used, which overwrites and replaces existing tags */
 export type TicketObjectOutputTags = TicketObjectOutputTagsCase0List | string;
 export const TicketObjectOutputTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketObjectOutputTags>;
+  S.Unknown as any as S.Schema<TicketObjectOutputTags>;
 
 /** The type of this ticket */
 export type TicketObjectOutputType =
@@ -3271,12 +3268,11 @@ export type TicketObjectOutputType =
   | "incident"
   | "question"
   | "task";
-export const TicketObjectOutputType = /*@__PURE__*/ S.String;
+export const TicketObjectOutputType = S.String;
 
 /** This tells you how the ticket or event was created. Examples: "web", "mobile", "rule", "system". May be a string name or an integer channel ID. */
 export type ViaObjectChannel = string | number;
-export const ViaObjectChannel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ViaObjectChannel>;
+export const ViaObjectChannel = S.Unknown as any as S.Schema<ViaObjectChannel>;
 
 export interface ViaObjectSourceFrom {
   address?: string | null;
@@ -3517,7 +3513,7 @@ export const AttachmentObjectInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The user separation scope for the brand. When set to "brand", users created on this brand are isolated to it. When set to "account", users are shared across all account-scoped brands. */
 export type BrandObjectInputUserSeparation = "account" | "brand";
-export const BrandObjectInputUserSeparation = /*@__PURE__*/ S.String;
+export const BrandObjectInputUserSeparation = S.String;
 
 export interface BrandObjectInput {
   /** If the brand is set as active */
@@ -3573,7 +3569,7 @@ export const CreateBrandRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the Help Center */
 export type BrandObjectHelpCenterState = "enabled" | "disabled" | "restricted";
-export const BrandObjectHelpCenterState = /*@__PURE__*/ S.String;
+export const BrandObjectHelpCenterState = S.String;
 
 /** The ids of ticket forms that are available for use by a brand */
 export type BrandObjectTicketFormIdsList = Array<number>;
@@ -3583,7 +3579,7 @@ export const BrandObjectTicketFormIdsList = /*@__PURE__*/ S.Array(
 
 /** The user separation scope for the brand. When set to "brand", users created on this brand are isolated to it. When set to "account", users are shared across all account-scoped brands. */
 export type BrandObjectUserSeparation = "account" | "brand";
-export const BrandObjectUserSeparation = /*@__PURE__*/ S.String;
+export const BrandObjectUserSeparation = S.String;
 
 export interface BrandObject {
   /** If the brand is set as active */
@@ -3799,7 +3795,7 @@ export type CustomObjectFieldPropertiesObjectInputRollupAggregationType =
   | "MIN"
   | "MAX";
 export const CustomObjectFieldPropertiesObjectInputRollupAggregationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A set of field-specific properties. For the standard::name field, this includes autonumbering and uniqueness settings (which can't be used together). For currency fields, this includes the allowed currency code. For parent fields, includes the `cascade_permissions_enabled` setting. For roll-up summary fields, includes the aggregation configuration. */
 export interface CustomObjectFieldPropertiesObjectInput {
@@ -3977,8 +3973,7 @@ export type CustomObjectFieldPropertiesObjectRollupAggregationType =
   | "SUM"
   | "MIN"
   | "MAX";
-export const CustomObjectFieldPropertiesObjectRollupAggregationType =
-  /*@__PURE__*/ S.String;
+export const CustomObjectFieldPropertiesObjectRollupAggregationType = S.String;
 
 /** A set of field-specific properties. For the standard::name field, this includes autonumbering and uniqueness settings (which can't be used together). For currency fields, this includes the allowed currency code. For parent fields, includes the `cascade_permissions_enabled` setting. For roll-up summary fields, includes the aggregation configuration. */
 export interface CustomObjectFieldPropertiesObject {
@@ -4268,8 +4263,7 @@ export type CustomObjectRecordAttachmentMalwareScanStatus =
   | "malware_not_found"
   | "failed_to_scan"
   | "not_scanned";
-export const CustomObjectRecordAttachmentMalwareScanStatus =
-  /*@__PURE__*/ S.String;
+export const CustomObjectRecordAttachmentMalwareScanStatus = S.String;
 
 /** A file attachment associated with a custom object record */
 export interface CustomObjectRecordAttachment {
@@ -4552,7 +4546,7 @@ export type CustomStatusCreateInputStatusCategory =
   | "pending"
   | "hold"
   | "solved";
-export const CustomStatusCreateInputStatusCategory = /*@__PURE__*/ S.String;
+export const CustomStatusCreateInputStatusCategory = S.String;
 
 export interface CustomStatusCreateInput {
   /** True if the custom status is set as active; inactive if false */
@@ -4601,7 +4595,7 @@ export type CustomStatusObjectStatusCategory =
   | "pending"
   | "hold"
   | "solved";
-export const CustomStatusObjectStatusCategory = /*@__PURE__*/ S.String;
+export const CustomStatusObjectStatusCategory = S.String;
 
 export interface CustomStatusObject {
   /** If true, the custom status is set to active, If false, the custom status is set to inactive */
@@ -4958,7 +4952,7 @@ export const DynamicContentVariantResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DynamicContentVariantResponse>;
 
 export type CreateEndUserIdentityRequestType = "email" | "phone_number";
-export const CreateEndUserIdentityRequestType = /*@__PURE__*/ S.String;
+export const CreateEndUserIdentityRequestType = S.String;
 
 export interface CreateEndUserIdentityRequest {
   /** The id of the user */
@@ -4988,7 +4982,7 @@ export const CreateEndUserIdentityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the identity is owned or shared. Only returned to non-end-user callers. */
 export type UserIdentityObjectOwnership = "owned" | "shared";
-export const UserIdentityObjectOwnership = /*@__PURE__*/ S.String;
+export const UserIdentityObjectOwnership = S.String;
 
 /** The type of this identity */
 export type UserIdentityObjectType =
@@ -5002,7 +4996,7 @@ export type UserIdentityObjectType =
   | "foreign"
   | "sdk"
   | "messaging";
-export const UserIdentityObjectType = /*@__PURE__*/ S.String;
+export const UserIdentityObjectType = S.String;
 
 /** Indicates the state of user identity verification. See [Verification method](#verification-method). */
 export type UserIdentityObjectVerificationMethod =
@@ -5011,7 +5005,7 @@ export type UserIdentityObjectVerificationMethod =
   | "sso"
   | "embed"
   | "full";
-export const UserIdentityObjectVerificationMethod = /*@__PURE__*/ S.String;
+export const UserIdentityObjectVerificationMethod = S.String;
 
 export interface UserIdentityObject {
   /** The brand ID associated with this identity. Only present when brand separation is enabled. */
@@ -5200,7 +5194,7 @@ export const CreateGroupSLAPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GroupSLAPolicyFilterConditionObjectValueItem = string | number;
 export const GroupSLAPolicyFilterConditionObjectValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupSLAPolicyFilterConditionObjectValueItem>;
+  S.Unknown as any as S.Schema<GroupSLAPolicyFilterConditionObjectValueItem>;
 
 /** The value of a ticket field */
 export type GroupSLAPolicyFilterConditionObjectValueList =
@@ -5725,7 +5719,7 @@ export type CreateItamStatusRequestStatusCategory =
   | "in_use"
   | "unavailable"
   | "end_of_life";
-export const CreateItamStatusRequestStatusCategory = /*@__PURE__*/ S.String;
+export const CreateItamStatusRequestStatusCategory = S.String;
 
 export interface CreateItamStatusRequestStatus {
   /** The status category. One of available, in_use, unavailable, or end_of_life */
@@ -5771,7 +5765,7 @@ export type ItamAssetStatusCategory =
   | "in_use"
   | "unavailable"
   | "end_of_life";
-export const ItamAssetStatusCategory = /*@__PURE__*/ S.String;
+export const ItamAssetStatusCategory = S.String;
 
 export interface ItamAssetStatus {
   /** The status category. One of available, in_use, unavailable, or end_of_life */
@@ -6057,7 +6051,7 @@ export const UserCreateInputGroupIdsList = /*@__PURE__*/ S.Array(
 
 /** Write-only ownership control for the Shared Email EAP. Ignored unless the account has the Shared Email EAP enabled. */
 export type UserIdentityInputOwnership = "owned" | "shared";
-export const UserIdentityInputOwnership = /*@__PURE__*/ S.String;
+export const UserIdentityInputOwnership = S.String;
 
 export type UserIdentityInputType =
   | "email"
@@ -6070,7 +6064,7 @@ export type UserIdentityInputType =
   | "foreign"
   | "sdk"
   | "messaging";
-export const UserIdentityInputType = /*@__PURE__*/ S.String;
+export const UserIdentityInputType = S.String;
 
 /** Indicates the state of user identity verification. */
 export type UserIdentityInputVerificationMethod =
@@ -6079,7 +6073,7 @@ export type UserIdentityInputVerificationMethod =
   | "sso"
   | "embed"
   | "full";
-export const UserIdentityInputVerificationMethod = /*@__PURE__*/ S.String;
+export const UserIdentityInputVerificationMethod = S.String;
 
 export interface UserIdentityInput {
   /** Write-only ownership control for the Shared Email EAP. When true, attempts `owned` first and falls back to `shared` on an ownership conflict. Ignored unless the account has the Shared Email EAP enabled. */
@@ -6132,7 +6126,7 @@ export const UserCreateInputOrganizationIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UserCreateInputOrganizationIdsList>;
 
 export type UserCreateInputSeparationCase0Scope = "account";
-export const UserCreateInputSeparationCase0Scope = /*@__PURE__*/ S.String;
+export const UserCreateInputSeparationCase0Scope = S.String;
 
 /** Scopes the user to the full account. */
 export interface UserCreateInputSeparationCase0 {
@@ -6147,7 +6141,7 @@ export const UserCreateInputSeparationCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserCreateInputSeparationCase0>;
 
 export type UserCreateInputSeparationCase1Scope = "brand";
-export const UserCreateInputSeparationCase1Scope = /*@__PURE__*/ S.String;
+export const UserCreateInputSeparationCase1Scope = S.String;
 
 /** Scopes the user to a specific brand. */
 export interface UserCreateInputSeparationCase1 {
@@ -6169,7 +6163,7 @@ export type UserCreateInputSeparation =
   | UserCreateInputSeparationCase0
   | UserCreateInputSeparationCase1;
 export const UserCreateInputSeparation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserCreateInputSeparation>;
+  S.Unknown as any as S.Schema<UserCreateInputSeparation>;
 
 /** The user's tags */
 export type UserCreateInputTagsList = Array<string>;
@@ -6421,7 +6415,7 @@ export const UserMergeInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserMergeInput" }) as any as S.Schema<UserMergeInput>;
 
 export type UserInput = UserCreateInput | UserMergeInput;
-export const UserInput = /*@__PURE__*/ S.Unknown as any as S.Schema<UserInput>;
+export const UserInput = S.Unknown as any as S.Schema<UserInput>;
 
 export type CreateManyUsersRequestUsersList = Array<UserInput>;
 export const CreateManyUsersRequestUsersList = /*@__PURE__*/ S.Array(
@@ -6574,7 +6568,7 @@ export const OrganizationObjectInputDomainNamesList = /*@__PURE__*/ S.Array(
 
 export type OrganizationObjectInputOrganizationFieldsValue = string | number;
 export const OrganizationObjectInputOrganizationFieldsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationObjectInputOrganizationFieldsValue>;
+  S.Unknown as any as S.Schema<OrganizationObjectInputOrganizationFieldsValue>;
 
 /** Custom fields for this organization. See [Custom organization fields](/api-reference/ticketing/organizations/organizations/#custom-organization-fields) */
 export type OrganizationObjectInputOrganizationFieldsMap = {
@@ -6851,8 +6845,7 @@ export type OrganizationMergeResponseOrganizationMergeStatus =
   | "in_progress"
   | "error"
   | "complete";
-export const OrganizationMergeResponseOrganizationMergeStatus =
-  /*@__PURE__*/ S.String;
+export const OrganizationMergeResponseOrganizationMergeStatus = S.String;
 
 export interface OrganizationMergeResponseOrganizationMerge {
   id: string;
@@ -7387,7 +7380,7 @@ export type CreateSavedSearchRequestType =
   | "organization"
   | "side_conversation"
   | "article";
-export const CreateSavedSearchRequestType = /*@__PURE__*/ S.String;
+export const CreateSavedSearchRequestType = S.String;
 
 export interface CreateSavedSearchRequest {
   /** A JSON-stringified array of filter field IDs to persist alongside the search. Optional. */
@@ -7417,7 +7410,7 @@ export type SavedSearchObjectType =
   | "organization"
   | "side_conversation"
   | "article";
-export const SavedSearchObjectType = /*@__PURE__*/ S.String;
+export const SavedSearchObjectType = S.String;
 
 export interface SavedSearchObject {
   /** The time the saved search was created */
@@ -7527,7 +7520,7 @@ export const CreateSLAPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type SLAPolicyFilterConditionObjectValueCase1Item = string | number;
 export const SLAPolicyFilterConditionObjectValueCase1Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SLAPolicyFilterConditionObjectValueCase1Item>;
+  S.Unknown as any as S.Schema<SLAPolicyFilterConditionObjectValueCase1Item>;
 
 export type SLAPolicyFilterConditionObjectValueCase1List =
   Array<SLAPolicyFilterConditionObjectValueCase1Item>;
@@ -7541,7 +7534,7 @@ export type SLAPolicyFilterConditionObjectValue =
   | string
   | SLAPolicyFilterConditionObjectValueCase1List;
 export const SLAPolicyFilterConditionObjectValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SLAPolicyFilterConditionObjectValue>;
+  S.Unknown as any as S.Schema<SLAPolicyFilterConditionObjectValue>;
 
 export interface SLAPolicyFilterConditionObject {
   /** The name of a ticket field */
@@ -7654,19 +7647,18 @@ export const CreateSupportAddressRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether all of the required CNAME records are set. Possible values: "unknown", "verified", "failed" */
 export type SupportAddressObjectCnameStatus = "unknown" | "verified" | "failed";
-export const SupportAddressObjectCnameStatus = /*@__PURE__*/ S.String;
+export const SupportAddressObjectCnameStatus = S.String;
 
 /** Verification statuses for the domain and CNAME records. Possible types: "verified", "failed" */
 export type SupportAddressObjectDnsResults = "verified" | "failed";
-export const SupportAddressObjectDnsResults = /*@__PURE__*/ S.String;
+export const SupportAddressObjectDnsResults = S.String;
 
 /** Whether the domain verification record is valid. Possible values: "unknown", "verified", "failed" */
 export type SupportAddressObjectDomainVerificationStatus =
   | "unknown"
   | "verified"
   | "failed";
-export const SupportAddressObjectDomainVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const SupportAddressObjectDomainVerificationStatus = S.String;
 
 /** Status of email forwarding. Possible values: "unknown", "waiting", "verified", or "failed" */
 export type SupportAddressObjectForwardingStatus =
@@ -7674,11 +7666,11 @@ export type SupportAddressObjectForwardingStatus =
   | "waiting"
   | "verified"
   | "failed";
-export const SupportAddressObjectForwardingStatus = /*@__PURE__*/ S.String;
+export const SupportAddressObjectForwardingStatus = S.String;
 
 /** Whether the SPF record is set up correctly. Possible values: "unknown", "verified", "failed" */
 export type SupportAddressObjectSpfStatus = "unknown" | "verified" | "failed";
-export const SupportAddressObjectSpfStatus = /*@__PURE__*/ S.String;
+export const SupportAddressObjectSpfStatus = S.String;
 
 export interface SupportAddressObject {
   /** The ID of the [brand](/api-reference/ticketing/account-configuration/brands/) */
@@ -8202,7 +8194,7 @@ export const TicketObjectInputCustomFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TicketObjectInputCustomFieldsList>;
 
 export type EmailCCObjectAction = "put" | "delete";
-export const EmailCCObjectAction = /*@__PURE__*/ S.String;
+export const EmailCCObjectAction = S.String;
 
 export interface EmailCCObject {
   action?: EmailCCObjectAction | (string & {});
@@ -8232,7 +8224,7 @@ export const TicketObjectInputFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TicketObjectInputFieldsList>;
 
 export type FollowerObjectAction = "put" | "delete";
-export const FollowerObjectAction = /*@__PURE__*/ S.String;
+export const FollowerObjectAction = S.String;
 
 export interface FollowerObject {
   action?: FollowerObjectAction | (string & {});
@@ -8272,7 +8264,7 @@ export const TicketObjectInputMetadataMap = /*@__PURE__*/ S.Record(
 
 /** The urgency with which the ticket should be addressed */
 export type TicketObjectInputPriority = "urgent" | "high" | "normal" | "low";
-export const TicketObjectInputPriority = /*@__PURE__*/ S.String;
+export const TicketObjectInputPriority = S.String;
 
 /** User creation attributes */
 export interface TicketObjectInputRequesterCase2 {
@@ -8311,7 +8303,7 @@ export type TicketObjectInputRequester =
   | number
   | TicketObjectInputRequesterCase2;
 export const TicketObjectInputRequester =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketObjectInputRequester>;
+  S.Unknown as any as S.Schema<TicketObjectInputRequester>;
 
 /** An array of the numeric IDs of sharing agreements. Note that this replaces any existing agreements */
 export type TicketObjectInputSharingAgreementIdsList = Array<number>;
@@ -8352,7 +8344,7 @@ export type TicketObjectInputSharingAgreements =
   | SharingAgreementInput
   | TicketObjectInputSharingAgreementsCase1List;
 export const TicketObjectInputSharingAgreements =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketObjectInputSharingAgreements>;
+  S.Unknown as any as S.Schema<TicketObjectInputSharingAgreements>;
 
 /** The state of the ticket. If your account has activated custom ticket statuses, this is the ticket's status category. See [custom ticket statuses](#custom-ticket-statuses) */
 export type TicketObjectInputStatus =
@@ -8362,11 +8354,11 @@ export type TicketObjectInputStatus =
   | "hold"
   | "solved"
   | "closed";
-export const TicketObjectInputStatus = /*@__PURE__*/ S.String;
+export const TicketObjectInputStatus = S.String;
 
 /** The type of support that handled the ticket */
 export type TicketObjectInputSupportType = "agent" | "ai_agent";
-export const TicketObjectInputSupportType = /*@__PURE__*/ S.String;
+export const TicketObjectInputSupportType = S.String;
 
 /** Write only. System metadata for the ticket, typically set by internal clients */
 export interface TicketObjectInputSystemMetadata {
@@ -8391,7 +8383,7 @@ export const TicketObjectInputTagsCase0List = /*@__PURE__*/ S.Array(
 /** The tags applied to this ticket. Unless otherwise specified, the [set tag](/api-reference/ticketing/ticket-management/tags/#set-tags) behavior is used, which overwrites and replaces existing tags */
 export type TicketObjectInputTags = TicketObjectInputTagsCase0List | string;
 export const TicketObjectInputTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketObjectInputTags>;
+  S.Unknown as any as S.Schema<TicketObjectInputTags>;
 
 export interface TicketObjectInputTdeWorkspacePreviousWorkspace {
   id?: number;
@@ -8408,7 +8400,7 @@ export const TicketObjectInputTdeWorkspacePreviousWorkspace =
   }) as any as S.Schema<TicketObjectInputTdeWorkspacePreviousWorkspace>;
 
 export type TicketObjectInputTdeWorkspaceType = "ADD" | "CHANGE" | "DELETE";
-export const TicketObjectInputTdeWorkspaceType = /*@__PURE__*/ S.String;
+export const TicketObjectInputTdeWorkspaceType = S.String;
 
 export type TicketObjectInputTdeWorkspaceWorkspace =
   TicketObjectInputTdeWorkspacePreviousWorkspace;
@@ -8581,7 +8573,7 @@ export type TicketObjectInputType =
   | "incident"
   | "question"
   | "task";
-export const TicketObjectInputType = /*@__PURE__*/ S.String;
+export const TicketObjectInputType = S.String;
 
 /** Write only. A voice comment for Talk tickets. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets/) */
 export interface TicketObjectInputVoiceComment {
@@ -8956,7 +8948,7 @@ export type TicketFieldInputType =
   | "multiselect"
   | "lookup"
   | "multi_lookup";
-export const TicketFieldInputType = /*@__PURE__*/ S.String;
+export const TicketFieldInputType = S.String;
 
 /** The writable attributes accepted when creating a ticket field. */
 export interface TicketFieldInput {
@@ -9056,8 +9048,7 @@ export type TicketFieldCustomStatusObjectStatusCategory =
   | "pending"
   | "hold"
   | "solved";
-export const TicketFieldCustomStatusObjectStatusCategory =
-  /*@__PURE__*/ S.String;
+export const TicketFieldCustomStatusObjectStatusCategory = S.String;
 
 export interface TicketFieldCustomStatusObject {
   /** If true, if the custom status is set to active. If false, the custom status is set to inactive */
@@ -9479,8 +9470,7 @@ export type TicketCreateVoicemailTicketInputInputPriority =
   | "high"
   | "normal"
   | "low";
-export const TicketCreateVoicemailTicketInputInputPriority =
-  /*@__PURE__*/ S.String;
+export const TicketCreateVoicemailTicketInputInputPriority = S.String;
 
 /** User creation attributes */
 export type TicketCreateVoicemailTicketInputInputRequesterCase2 =
@@ -9494,7 +9484,7 @@ export type TicketCreateVoicemailTicketInputInputRequester =
   | number
   | TicketObjectInputRequesterCase2;
 export const TicketCreateVoicemailTicketInputInputRequester =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketCreateVoicemailTicketInputInputRequester>;
+  S.Unknown as any as S.Schema<TicketCreateVoicemailTicketInputInputRequester>;
 
 /** An array of the numeric IDs of sharing agreements. Note that this replaces any existing agreements */
 export type TicketCreateVoicemailTicketInputInputSharingAgreementIdsList =
@@ -9516,7 +9506,7 @@ export type TicketCreateVoicemailTicketInputInputSharingAgreements =
   | SharingAgreementInput
   | TicketCreateVoicemailTicketInputInputSharingAgreementsCase1List;
 export const TicketCreateVoicemailTicketInputInputSharingAgreements =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketCreateVoicemailTicketInputInputSharingAgreements>;
+  S.Unknown as any as S.Schema<TicketCreateVoicemailTicketInputInputSharingAgreements>;
 
 /** The state of the ticket. If your account has activated custom ticket statuses, this is the ticket's status category. See [custom ticket statuses](#custom-ticket-statuses) */
 export type TicketCreateVoicemailTicketInputInputStatus =
@@ -9526,15 +9516,13 @@ export type TicketCreateVoicemailTicketInputInputStatus =
   | "hold"
   | "solved"
   | "closed";
-export const TicketCreateVoicemailTicketInputInputStatus =
-  /*@__PURE__*/ S.String;
+export const TicketCreateVoicemailTicketInputInputStatus = S.String;
 
 /** The type of support that handled the ticket */
 export type TicketCreateVoicemailTicketInputInputSupportType =
   | "agent"
   | "ai_agent";
-export const TicketCreateVoicemailTicketInputInputSupportType =
-  /*@__PURE__*/ S.String;
+export const TicketCreateVoicemailTicketInputInputSupportType = S.String;
 
 /** Write only. System metadata for the ticket, typically set by internal clients */
 export type TicketCreateVoicemailTicketInputInputSystemMetadata =
@@ -9554,7 +9542,7 @@ export type TicketCreateVoicemailTicketInputInputTags =
   | TicketCreateVoicemailTicketInputInputTagsCase0List
   | string;
 export const TicketCreateVoicemailTicketInputInputTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketCreateVoicemailTicketInputInputTags>;
+  S.Unknown as any as S.Schema<TicketCreateVoicemailTicketInputInputTags>;
 
 export type TicketCreateVoicemailTicketInputInputTdeWorkspacePreviousWorkspace =
   TicketObjectInputTdeWorkspacePreviousWorkspace;
@@ -9565,8 +9553,7 @@ export type TicketCreateVoicemailTicketInputInputTdeWorkspaceType =
   | "ADD"
   | "CHANGE"
   | "DELETE";
-export const TicketCreateVoicemailTicketInputInputTdeWorkspaceType =
-  /*@__PURE__*/ S.String;
+export const TicketCreateVoicemailTicketInputInputTdeWorkspaceType = S.String;
 
 export type TicketCreateVoicemailTicketInputInputTdeWorkspaceWorkspace =
   TicketObjectInputTdeWorkspacePreviousWorkspace;
@@ -9604,7 +9591,7 @@ export type TicketCreateVoicemailTicketInputInputType =
   | "incident"
   | "question"
   | "task";
-export const TicketCreateVoicemailTicketInputInputType = /*@__PURE__*/ S.String;
+export const TicketCreateVoicemailTicketInputInputType = S.String;
 
 /** Write only. A voice comment for Talk tickets. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets/) */
 export type TicketCreateVoicemailTicketInputInputVoiceComment =
@@ -10612,7 +10599,7 @@ export type CustomObjectRecordBulkJobsRequestJobItemsItem =
   | CustomObjectRecordInput
   | string;
 export const CustomObjectRecordBulkJobsRequestJobItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomObjectRecordBulkJobsRequestJobItemsItem>;
+  S.Unknown as any as S.Schema<CustomObjectRecordBulkJobsRequestJobItemsItem>;
 
 /** An array of record objects for job actions that create, update, or set. An array of strings for job actions that delete. */
 export type CustomObjectRecordBulkJobsRequestJobItemsList =
@@ -12566,13 +12553,13 @@ export const DeleteWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteWorkspaceResponse>;
 
 export type DestroyManyUsersRequestBrandIdCase0 = "0";
-export const DestroyManyUsersRequestBrandIdCase0 = /*@__PURE__*/ S.String;
+export const DestroyManyUsersRequestBrandIdCase0 = S.String;
 
 export type DestroyManyUsersRequestBrandId =
   | DestroyManyUsersRequestBrandIdCase0
   | number;
 export const DestroyManyUsersRequestBrandId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DestroyManyUsersRequestBrandId>;
+  S.Unknown as any as S.Schema<DestroyManyUsersRequestBrandId>;
 
 export interface DestroyManyUsersRequest {
   /** Id of the users to delete. Comma separated */
@@ -12754,7 +12741,7 @@ export type DynamicContentListVariantsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const DynamicContentListVariantsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DynamicContentListVariantsRequestPage>;
+  S.Unknown as any as S.Schema<DynamicContentListVariantsRequestPage>;
 
 export interface DynamicContentListVariantsRequest {
   /** The ID of the dynamic content item */
@@ -12793,7 +12780,7 @@ export type ExecuteViewRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ExecuteViewRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExecuteViewRequestPage>;
+  S.Unknown as any as S.Schema<ExecuteViewRequestPage>;
 
 export interface ExecuteViewRequest {
   /** The ID of the view, or one of the string aliases `"incoming"`, `"my"`, or `"my_groups"`. */
@@ -13343,7 +13330,7 @@ export type CustomObjectRecordFilteredSearchConditionFieldKeyValueCase2Item =
   | string
   | number;
 export const CustomObjectRecordFilteredSearchConditionFieldKeyValueCase2Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomObjectRecordFilteredSearchConditionFieldKeyValueCase2Item>;
+  S.Unknown as any as S.Schema<CustomObjectRecordFilteredSearchConditionFieldKeyValueCase2Item>;
 
 export type CustomObjectRecordFilteredSearchConditionFieldKeyValueCase2List =
   Array<CustomObjectRecordFilteredSearchConditionFieldKeyValueCase2Item>;
@@ -13357,7 +13344,7 @@ export type CustomObjectRecordFilteredSearchConditionFieldKeyValue =
   | number
   | CustomObjectRecordFilteredSearchConditionFieldKeyValueCase2List;
 export const CustomObjectRecordFilteredSearchConditionFieldKeyValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomObjectRecordFilteredSearchConditionFieldKeyValue>;
+  S.Unknown as any as S.Schema<CustomObjectRecordFilteredSearchConditionFieldKeyValue>;
 
 export interface CustomObjectRecordFilteredSearchConditionFieldKey {
   operator?: string;
@@ -13443,7 +13430,7 @@ export type CustomObjectRecordFilterExpression =
   | CustomObjectRecordFilterExpressionCase1
   | CustomObjectRecordFilterExpressionCase2;
 export const CustomObjectRecordFilterExpression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomObjectRecordFilterExpression>;
+  S.Unknown as any as S.Schema<CustomObjectRecordFilterExpression>;
 
 export type CustomObjectRecordsFilteredSearchRequestComplexFilterAndList =
   Array<CustomObjectRecordFilterExpression>;
@@ -13497,7 +13484,7 @@ export type FilteredSearchCustomObjectRecordsRequestBody =
   | CustomObjectRecordsFilteredSearchRequestBasic
   | CustomObjectRecordsFilteredSearchRequestComplex;
 export const FilteredSearchCustomObjectRecordsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilteredSearchCustomObjectRecordsRequestBody>;
+  S.Unknown as any as S.Schema<FilteredSearchCustomObjectRecordsRequestBody>;
 
 export interface FilteredSearchCustomObjectRecordsRequest {
   /** The key of a custom object */
@@ -13596,7 +13583,7 @@ export type ItamAssetFilteredSearchConditionFieldKeyValueCase2Item =
   | string
   | number;
 export const ItamAssetFilteredSearchConditionFieldKeyValueCase2Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ItamAssetFilteredSearchConditionFieldKeyValueCase2Item>;
+  S.Unknown as any as S.Schema<ItamAssetFilteredSearchConditionFieldKeyValueCase2Item>;
 
 export type ItamAssetFilteredSearchConditionFieldKeyValueCase2List =
   Array<ItamAssetFilteredSearchConditionFieldKeyValueCase2Item>;
@@ -13610,7 +13597,7 @@ export type ItamAssetFilteredSearchConditionFieldKeyValue =
   | number
   | ItamAssetFilteredSearchConditionFieldKeyValueCase2List;
 export const ItamAssetFilteredSearchConditionFieldKeyValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ItamAssetFilteredSearchConditionFieldKeyValue>;
+  S.Unknown as any as S.Schema<ItamAssetFilteredSearchConditionFieldKeyValue>;
 
 export interface ItamAssetFilteredSearchConditionFieldKey {
   operator?: string;
@@ -13696,7 +13683,7 @@ export type FilteredSearchItamAssetsRequestBody =
   | ItamAssetFilteredSearchRequestBasic
   | ItamAssetFilteredSearchRequestComplex;
 export const FilteredSearchItamAssetsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilteredSearchItamAssetsRequestBody>;
+  S.Unknown as any as S.Schema<FilteredSearchItamAssetsRequestBody>;
 
 export interface FilteredSearchItamAssetsRequest {
   /** Lists the search terms, separated by a space, used to identify the asset records. */
@@ -13791,7 +13778,7 @@ export type AccountSettingsEmailObjectEmailSenderAuthenticationProfile =
   | "default"
   | "enhanced";
 export const AccountSettingsEmailObjectEmailSenderAuthenticationProfile =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Email settings */
 export interface AccountSettingsEmailObject {
@@ -15385,7 +15372,7 @@ export const CurrentUserResponseUserPhotoMap = /*@__PURE__*/ S.Record(
 
 /** The separation scope. "account" means account-level access; "brand" means access limited to a specific brand. */
 export type CurrentUserResponseUserSeparationScope = "account" | "brand";
-export const CurrentUserResponseUserSeparationScope = /*@__PURE__*/ S.String;
+export const CurrentUserResponseUserSeparationScope = S.String;
 
 /** The brand separation scope for the user. Only present when the account has brand separation enabled. For end users, indicates whether they are scoped to the full account or a specific brand. Staff users (agents and admins) always have `scope: "account"`. */
 export interface CurrentUserResponseUserSeparation {
@@ -15406,8 +15393,7 @@ export const CurrentUserResponseUserSeparation = /*@__PURE__*/ S.suspend(() =>
 export type CurrentUserResponseUserSuspensionDetailsChannelsItem =
   | "all"
   | "messaging";
-export const CurrentUserResponseUserSuspensionDetailsChannelsItem =
-  /*@__PURE__*/ S.String;
+export const CurrentUserResponseUserSuspensionDetailsChannelsItem = S.String;
 
 /** Channels on which the user is suspended. `["all"]` means suspended across every channel. If "all" is present, it must be the only element */
 export type CurrentUserResponseUserSuspensionDetailsChannelsList =
@@ -15633,7 +15619,7 @@ export type UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference =
   | "1"
   | "2";
 export const UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Theme preference for conversation panel (0=light, 1=dark, 2=system) */
 export type UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
@@ -15641,7 +15627,7 @@ export type UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForCon
   | "1"
   | "2";
 export const UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Lotus UI settings for onboarding, tooltips, and feature preferences */
 export interface UserSettingsResponseSettingsLotus {
@@ -15850,7 +15836,7 @@ export const GetDeletedUserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeletedUserRequest>;
 
 export type DeletedUserObjectSeparationScope = "account" | "brand";
-export const DeletedUserObjectSeparationScope = /*@__PURE__*/ S.String;
+export const DeletedUserObjectSeparationScope = S.String;
 
 /** Brand separation information for the deleted user */
 export interface DeletedUserObjectSeparation {
@@ -17508,7 +17494,7 @@ export type SecuritySettingsObjectAssumptionDuration =
   | "month"
   | "year"
   | "always";
-export const SecuritySettingsObjectAssumptionDuration = /*@__PURE__*/ S.String;
+export const SecuritySettingsObjectAssumptionDuration = S.String;
 
 export type SecuritySettingsObjectAuthenticationAgentSecurityPolicyName =
   | "low"
@@ -17517,7 +17503,7 @@ export type SecuritySettingsObjectAuthenticationAgentSecurityPolicyName =
   | "recommended"
   | "custom";
 export const SecuritySettingsObjectAuthenticationAgentSecurityPolicyName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecuritySettingsObjectAuthenticationAgentPassword {
   disallow_local_part_from_email?: boolean;
@@ -17595,7 +17581,7 @@ export type SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName =
   | "recommended"
   | "custom";
 export const SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecuritySettingsObjectAuthenticationEndUser {
   enforce_sso?: boolean;
@@ -19615,7 +19601,7 @@ export const TicketImportInputInputFollowersList = /*@__PURE__*/ S.Array(
 
 /** The urgency with which the ticket should be addressed. */
 export type TicketPriorityEnum = "urgent" | "high" | "normal" | "low";
-export const TicketPriorityEnum = /*@__PURE__*/ S.String;
+export const TicketPriorityEnum = S.String;
 
 /** The state of the ticket */
 export type TicketImportInputInputStatus =
@@ -19625,7 +19611,7 @@ export type TicketImportInputInputStatus =
   | "hold"
   | "solved"
   | "closed";
-export const TicketImportInputInputStatus = /*@__PURE__*/ S.String;
+export const TicketImportInputInputStatus = S.String;
 
 /** The array of tags applied to this ticket */
 export type TicketImportInputInputTagsList = Array<string>;
@@ -19936,7 +19922,7 @@ export type TicketMetricEventBaseObjectMetric =
   | "requester_wait_time"
   | "resolution_time"
   | "group_ownership_time";
-export const TicketMetricEventBaseObjectMetric = /*@__PURE__*/ S.String;
+export const TicketMetricEventBaseObjectMetric = S.String;
 
 /** The type of the metric event. See [Ticket metric event types reference](/documentation/ticketing/reference-guides/ticket-metric-event-types-reference) */
 export type TicketMetricEventBaseObjectType =
@@ -19948,7 +19934,7 @@ export type TicketMetricEventBaseObjectType =
   | "breach"
   | "update_status"
   | "measure";
-export const TicketMetricEventBaseObjectType = /*@__PURE__*/ S.String;
+export const TicketMetricEventBaseObjectType = S.String;
 
 export interface TicketMetricEventBaseObject {
   /** If true, the event has been deleted */
@@ -20185,11 +20171,11 @@ export type ItamAssetBulkJobsRequestJobAction =
   | "update"
   | "delete"
   | "delete_by_external_id";
-export const ItamAssetBulkJobsRequestJobAction = /*@__PURE__*/ S.String;
+export const ItamAssetBulkJobsRequestJobAction = S.String;
 
 export type ItamAssetBulkJobsRequestJobItemsItem = ItamAssetInput | string;
 export const ItamAssetBulkJobsRequestJobItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ItamAssetBulkJobsRequestJobItemsItem>;
+  S.Unknown as any as S.Schema<ItamAssetBulkJobsRequestJobItemsItem>;
 
 /** An array of asset objects for job actions that create or update. An array of strings for job actions that delete. */
 export type ItamAssetBulkJobsRequestJobItemsList =
@@ -20722,7 +20708,7 @@ export type ListActivitiesRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListActivitiesRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListActivitiesRequestPage>;
+  S.Unknown as any as S.Schema<ListActivitiesRequestPage>;
 
 export interface ListActivitiesRequest {
   /** A UTC time in ISO 8601 format to return ticket activities since said date. */
@@ -21028,7 +21014,7 @@ export type ApprovalRequestsListResponseApprovalRequestsItemDecisionsItemOrigina
   | "ACTION_FLOW_ORIGINATION"
   | "UNKNOWN_ORIGINATION";
 export const ApprovalRequestsListResponseApprovalRequestsItemDecisionsItemOriginationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ApprovalRequestsListResponseApprovalRequestsItemDecisionsItem {
   /** The time when the response was made */
@@ -21078,7 +21064,7 @@ export type ApprovalRequestsListResponseApprovalRequestsItemOriginationType =
   | "ACTION_FLOW_ORIGINATION"
   | "UNKNOWN_ORIGINATION";
 export const ApprovalRequestsListResponseApprovalRequestsItemOriginationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ApprovalRequestsListResponseApprovalRequestsItem {
   assignee_group?: ApprovalRequestsListResponseApprovalRequestsItemAssigneeGroup | null;
@@ -21406,7 +21392,7 @@ export type ListAuditsForTicketRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListAuditsForTicketRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAuditsForTicketRequestPage>;
+  S.Unknown as any as S.Schema<ListAuditsForTicketRequestPage>;
 
 export type ListAuditsForTicketRequestFilterEventsList = Array<string>;
 export const ListAuditsForTicketRequestFilterEventsList = /*@__PURE__*/ S.Array(
@@ -21414,7 +21400,7 @@ export const ListAuditsForTicketRequestFilterEventsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListAuditsForTicketRequestFilterEventsList>;
 
 export type ListAuditsForTicketRequestSortOrder = "asc" | "desc";
-export const ListAuditsForTicketRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListAuditsForTicketRequestSortOrder = S.String;
 
 export interface ListAuditsForTicketRequest {
   /** The ID of the ticket */
@@ -21489,7 +21475,7 @@ export type ListAutomationsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListAutomationsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAutomationsRequestPage>;
+  S.Unknown as any as S.Schema<ListAutomationsRequestPage>;
 
 export interface ListAutomationsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -21689,7 +21675,7 @@ export type ListBrandAgentsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListBrandAgentsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListBrandAgentsRequestPage>;
+  S.Unknown as any as S.Schema<ListBrandAgentsRequestPage>;
 
 export interface ListBrandAgentsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -21753,7 +21739,7 @@ export type ListBrandsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListBrandsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListBrandsRequestPage>;
+  S.Unknown as any as S.Schema<ListBrandsRequestPage>;
 
 export interface ListBrandsRequest {
   /** Cursor pagination parameters using deepObject format. Use `?page[size]=50&page[after]=cursor` to paginate through results. */
@@ -21921,7 +21907,7 @@ export const ConversationLogObjectAttachmentsList = /*@__PURE__*/ S.Array(
 
 /** Either user, agent, or bot */
 export type ConversationLogObjectAuthorType = "user" | "agent" | "bot";
-export const ConversationLogObjectAuthorType = /*@__PURE__*/ S.String;
+export const ConversationLogObjectAuthorType = S.String;
 
 /** Object that describes the user who created the event */
 export interface ConversationLogObjectAuthor {
@@ -22315,10 +22301,10 @@ export type ListDeletedTicketsRequestSortBy =
   | "group"
   | "assignee"
   | "assignee.name";
-export const ListDeletedTicketsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListDeletedTicketsRequestSortBy = S.String;
 
 export type ListDeletedTicketsRequestSortOrder = "asc" | "desc";
-export const ListDeletedTicketsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListDeletedTicketsRequestSortOrder = S.String;
 
 /** Cursor pagination parameters (JSON:API style) */
 export type ListDeletedTicketsRequestPageCase1 =
@@ -22330,7 +22316,7 @@ export type ListDeletedTicketsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListDeletedTicketsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeletedTicketsRequestPage>;
+  S.Unknown as any as S.Schema<ListDeletedTicketsRequestPage>;
 
 export interface ListDeletedTicketsRequest {
   /** Sort by */
@@ -22418,7 +22404,7 @@ export type ListDeletedUsersRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListDeletedUsersRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeletedUsersRequestPage>;
+  S.Unknown as any as S.Schema<ListDeletedUsersRequestPage>;
 
 export interface ListDeletedUsersRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -22493,7 +22479,7 @@ export type ListDynamicContentsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListDynamicContentsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDynamicContentsRequestPage>;
+  S.Unknown as any as S.Schema<ListDynamicContentsRequestPage>;
 
 export interface ListDynamicContentsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -22571,7 +22557,7 @@ export const EmailNotificationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EmailNotificationsResponse>;
 
 export type ListEndUserIdentitiesRequestType = "email" | "phone_number";
-export const ListEndUserIdentitiesRequestType = /*@__PURE__*/ S.String;
+export const ListEndUserIdentitiesRequestType = S.String;
 
 export interface ListEndUserIdentitiesRequest {
   /** The id of the user */
@@ -22658,7 +22644,7 @@ export type ListGroupMembershipsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListGroupMembershipsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListGroupMembershipsRequestPage>;
+  S.Unknown as any as S.Schema<ListGroupMembershipsRequestPage>;
 
 export interface ListGroupMembershipsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -22711,7 +22697,7 @@ export type ListGroupsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListGroupsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListGroupsRequestPage>;
+  S.Unknown as any as S.Schema<ListGroupsRequestPage>;
 
 export interface ListGroupsRequest {
   /** Whether to exclude deleted entities */
@@ -23121,7 +23107,7 @@ export type ListMacroGroupsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListMacroGroupsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListMacroGroupsRequestPage>;
+  S.Unknown as any as S.Schema<ListMacroGroupsRequestPage>;
 
 export interface ListMacroGroupsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -23148,7 +23134,7 @@ export type ListMacrosRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListMacrosRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListMacrosRequestPage>;
+  S.Unknown as any as S.Schema<ListMacrosRequestPage>;
 
 export interface ListMacrosRequest {
   /** A sideload to include in the response. See [Sideloads](#sideloads-2) */
@@ -23280,8 +23266,7 @@ export const ListManyAgentsAttributeValuesRequest = /*@__PURE__*/ S.suspend(
 export type ManySkillBasedRoutingAttributeValuesAgentSkillPriority =
   | "NORMAL"
   | "HIGH";
-export const ManySkillBasedRoutingAttributeValuesAgentSkillPriority =
-  /*@__PURE__*/ S.String;
+export const ManySkillBasedRoutingAttributeValuesAgentSkillPriority = S.String;
 
 export interface ManySkillBasedRoutingAttributeValues {
   /** Id of the associated agent */
@@ -23824,7 +23809,7 @@ export type ListOrganizationMembershipsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListOrganizationMembershipsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationMembershipsRequestPage>;
+  S.Unknown as any as S.Schema<ListOrganizationMembershipsRequestPage>;
 
 export interface ListOrganizationMembershipsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -23916,7 +23901,7 @@ export type OrganizationMergeListResponseOrganizationMergesItemStatus =
   | "error"
   | "complete";
 export const OrganizationMergeListResponseOrganizationMergesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationMergeListResponseOrganizationMergesItem {
   id?: string;
@@ -23994,7 +23979,7 @@ export type ListOrganizationsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListOrganizationsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationsRequestPage>;
+  S.Unknown as any as S.Schema<ListOrganizationsRequestPage>;
 
 export interface ListOrganizationsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -24179,10 +24164,10 @@ export type ListOrganizationUsersRequestSortBy =
   | "name"
   | "created_at"
   | "updated_at";
-export const ListOrganizationUsersRequestSortBy = /*@__PURE__*/ S.String;
+export const ListOrganizationUsersRequestSortBy = S.String;
 
 export type ListOrganizationUsersRequestSortOrder = "asc" | "desc";
-export const ListOrganizationUsersRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListOrganizationUsersRequestSortOrder = S.String;
 
 /** Cursor pagination parameters (JSON:API style) */
 export type ListOrganizationUsersRequestPageCase1 =
@@ -24194,7 +24179,7 @@ export type ListOrganizationUsersRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListOrganizationUsersRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationUsersRequestPage>;
+  S.Unknown as any as S.Schema<ListOrganizationUsersRequestPage>;
 
 export interface ListOrganizationUsersRequest {
   /** The ID of an organization */
@@ -24479,15 +24464,15 @@ export const ListRemoteAuthenticationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Authentication mode */
 export type RemoteAuthenticationObjectAuthFlow = "PKCE" | "authorization_code";
-export const RemoteAuthenticationObjectAuthFlow = /*@__PURE__*/ S.String;
+export const RemoteAuthenticationObjectAuthFlow = S.String;
 
 /** The numeric representation of remote authentication type */
 export type RemoteAuthenticationObjectAuthMode = 2 | 3 | 4;
-export const RemoteAuthenticationObjectAuthMode = /*@__PURE__*/ S.Number;
+export const RemoteAuthenticationObjectAuthMode = S.Number;
 
 /** The string representation of remote authentication type */
 export type RemoteAuthenticationObjectAuthModeName = "saml" | "jwt" | "oidc";
-export const RemoteAuthenticationObjectAuthModeName = /*@__PURE__*/ S.String;
+export const RemoteAuthenticationObjectAuthModeName = S.String;
 
 export interface RemoteAuthenticationObject {
   /** If true, the method is used for the team member remote authentication */
@@ -24617,7 +24602,7 @@ export type ListRequestsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListRequestsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRequestsRequestPage>;
+  S.Unknown as any as S.Schema<ListRequestsRequestPage>;
 
 export interface ListRequestsRequest {
   /** Possible values are "updated_at", "created_at" */
@@ -24813,7 +24798,7 @@ export type ListSatisfactionRatingsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListSatisfactionRatingsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSatisfactionRatingsRequestPage>;
+  S.Unknown as any as S.Schema<ListSatisfactionRatingsRequestPage>;
 
 export interface ListSatisfactionRatingsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -24993,7 +24978,7 @@ export const SharingAgreementsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SharingAgreementsResponse>;
 
 export type ListSkipsRequestSortOrder = "asc" | "desc";
-export const ListSkipsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListSkipsRequestSortOrder = S.String;
 
 export interface ListSkipsRequest {
   /** Sort order. Defaults to "asc" */
@@ -25109,7 +25094,7 @@ export type ListSupportAddressesRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListSupportAddressesRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSupportAddressesRequestPage>;
+  S.Unknown as any as S.Schema<ListSupportAddressesRequestPage>;
 
 export interface ListSupportAddressesRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -25164,7 +25149,7 @@ export type ListSuspendedTicketsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListSuspendedTicketsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSuspendedTicketsRequestPage>;
+  S.Unknown as any as S.Schema<ListSuspendedTicketsRequestPage>;
 
 export interface ListSuspendedTicketsRequest {
   /** The field to sort the suspended tickets by. One of "author_email", "cause", "created_at", or "subject" */
@@ -25199,7 +25184,7 @@ export type ListTagsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListTagsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTagsRequestPage>;
+  S.Unknown as any as S.Schema<ListTagsRequestPage>;
 
 export interface ListTagsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -25482,7 +25467,7 @@ export const ListTicketCollaboratorsResponse2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTicketCollaboratorsResponse2>;
 
 export type ListTicketCommentsRequestSortOrder = "asc" | "desc";
-export const ListTicketCommentsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListTicketCommentsRequestSortOrder = S.String;
 
 export type ListTicketCommentsRequestPage = ListAuditLogsRequestPage;
 export const ListTicketCommentsRequestPage = ListAuditLogsRequestPage;
@@ -25718,7 +25703,7 @@ export type ListTicketFormsRequestFormType =
   | "standard"
   | "service_catalog"
   | "all";
-export const ListTicketFormsRequestFormType = /*@__PURE__*/ S.String;
+export const ListTicketFormsRequestFormType = S.String;
 
 /** Cursor pagination parameters (JSON:API style) */
 export type ListTicketFormsRequestPageCase1 =
@@ -25730,7 +25715,7 @@ export type ListTicketFormsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListTicketFormsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTicketFormsRequestPage>;
+  S.Unknown as any as S.Schema<ListTicketFormsRequestPage>;
 
 export interface ListTicketFormsRequest {
   /** true returns active ticket forms; false returns inactive ticket forms. If not present, returns both */
@@ -25933,7 +25918,7 @@ export type ListTicketProblemsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListTicketProblemsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTicketProblemsRequestPage>;
+  S.Unknown as any as S.Schema<ListTicketProblemsRequestPage>;
 
 export interface ListTicketProblemsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -25978,10 +25963,10 @@ export type ListTicketsRequestSortBy =
   | "group"
   | "assignee"
   | "assignee.name";
-export const ListTicketsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListTicketsRequestSortBy = S.String;
 
 export type ListTicketsRequestSortOrder = "asc" | "desc";
-export const ListTicketsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListTicketsRequestSortOrder = S.String;
 
 /** Cursor pagination parameters (JSON:API style) */
 export type ListTicketsRequestPageCase1 =
@@ -25993,7 +25978,7 @@ export type ListTicketsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListTicketsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTicketsRequestPage>;
+  S.Unknown as any as S.Schema<ListTicketsRequestPage>;
 
 export interface ListTicketsRequest {
   /** Lists tickets by external id. External ids don't have to be unique for each ticket. As a result, the request may return multiple tickets with the same external id. */
@@ -26095,7 +26080,7 @@ export const SkillBasedRoutingTicketFulfilledResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SkillBasedRoutingTicketFulfilledResponse>;
 
 export type ListTicketSkipsRequestSortOrder = "asc" | "desc";
-export const ListTicketSkipsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListTicketSkipsRequestSortOrder = S.String;
 
 export interface ListTicketSkipsRequest {
   /** User ID of an agent */
@@ -26115,7 +26100,7 @@ export const ListTicketSkipsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTicketSkipsRequest>;
 
 export type ListTicketSkipsByTicketRequestSortOrder = "asc" | "desc";
-export const ListTicketSkipsByTicketRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListTicketSkipsByTicketRequestSortOrder = S.String;
 
 export interface ListTicketSkipsByTicketRequest {
   /** The ID of the ticket */
@@ -26252,10 +26237,10 @@ export type ListTriggerCategoriesRequestSort =
   | "-created_at"
   | "updated_at"
   | "-updated_at";
-export const ListTriggerCategoriesRequestSort = /*@__PURE__*/ S.String;
+export const ListTriggerCategoriesRequestSort = S.String;
 
 export type ListTriggerCategoriesRequestInclude = "rule_counts";
-export const ListTriggerCategoriesRequestInclude = /*@__PURE__*/ S.String;
+export const ListTriggerCategoriesRequestInclude = S.String;
 
 export interface ListTriggerCategoriesRequest {
   /** Pagination parameters */
@@ -26340,7 +26325,7 @@ export const ListTriggerRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type TriggerChangeObjectContentCase3Item = string | number | boolean;
 export const TriggerChangeObjectContentCase3Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerChangeObjectContentCase3Item>;
+  S.Unknown as any as S.Schema<TriggerChangeObjectContentCase3Item>;
 
 export type TriggerChangeObjectContentCase3List =
   Array<TriggerChangeObjectContentCase3Item>;
@@ -26355,7 +26340,7 @@ export type TriggerChangeObjectContent =
   | number
   | TriggerChangeObjectContentCase3List;
 export const TriggerChangeObjectContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TriggerChangeObjectContent>;
+  S.Unknown as any as S.Schema<TriggerChangeObjectContent>;
 
 export interface TriggerChangeObject {
   /** One of `-`, `+`, `=` representing the type of change */
@@ -26594,7 +26579,7 @@ export type ListTriggersRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListTriggersRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTriggersRequestPage>;
+  S.Unknown as any as S.Schema<ListTriggersRequestPage>;
 
 export interface ListTriggersRequest {
   /** Filter by active triggers if true or inactive triggers if false */
@@ -26731,10 +26716,10 @@ export type ListUserFollowedTicketsRequestSortBy =
   | "group"
   | "assignee"
   | "assignee.name";
-export const ListUserFollowedTicketsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListUserFollowedTicketsRequestSortBy = S.String;
 
 export type ListUserFollowedTicketsRequestSortOrder = "asc" | "desc";
-export const ListUserFollowedTicketsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListUserFollowedTicketsRequestSortOrder = S.String;
 
 /** Cursor pagination parameters (JSON:API style) */
 export type ListUserFollowedTicketsRequestPageCase1 =
@@ -26746,7 +26731,7 @@ export type ListUserFollowedTicketsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListUserFollowedTicketsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserFollowedTicketsRequestPage>;
+  S.Unknown as any as S.Schema<ListUserFollowedTicketsRequestPage>;
 
 export interface ListUserFollowedTicketsRequest {
   /** The id of the user */
@@ -26793,7 +26778,7 @@ export type ListUserGroupMembershipsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListUserGroupMembershipsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserGroupMembershipsRequestPage>;
+  S.Unknown as any as S.Schema<ListUserGroupMembershipsRequestPage>;
 
 export interface ListUserGroupMembershipsRequest {
   /** The id of the user */
@@ -26832,7 +26817,7 @@ export type ListUserGroupsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListUserGroupsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserGroupsRequestPage>;
+  S.Unknown as any as S.Schema<ListUserGroupsRequestPage>;
 
 export interface ListUserGroupsRequest {
   /** The id of the user */
@@ -26877,7 +26862,7 @@ export type ListUserIdentitiesRequestTypeItem =
   | "phone_number"
   | "sdk"
   | "twitter";
-export const ListUserIdentitiesRequestTypeItem = /*@__PURE__*/ S.String;
+export const ListUserIdentitiesRequestTypeItem = S.String;
 
 export type ListUserIdentitiesRequestTypeList = Array<
   ListUserIdentitiesRequestTypeItem | (string & {})
@@ -26954,7 +26939,7 @@ export type ListUserOrganizationsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListUserOrganizationsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserOrganizationsRequestPage>;
+  S.Unknown as any as S.Schema<ListUserOrganizationsRequestPage>;
 
 export interface ListUserOrganizationsRequest {
   /** The id of the user */
@@ -27052,10 +27037,10 @@ export type ListUserRequestedTicketsRequestSortBy =
   | "group"
   | "assignee"
   | "assignee.name";
-export const ListUserRequestedTicketsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListUserRequestedTicketsRequestSortBy = S.String;
 
 export type ListUserRequestedTicketsRequestSortOrder = "asc" | "desc";
-export const ListUserRequestedTicketsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListUserRequestedTicketsRequestSortOrder = S.String;
 
 /** Cursor pagination parameters (JSON:API style) */
 export type ListUserRequestedTicketsRequestPageCase1 =
@@ -27067,7 +27052,7 @@ export type ListUserRequestedTicketsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListUserRequestedTicketsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserRequestedTicketsRequestPage>;
+  S.Unknown as any as S.Schema<ListUserRequestedTicketsRequestPage>;
 
 export interface ListUserRequestedTicketsRequest {
   /** The id of the user */
@@ -27149,14 +27134,14 @@ export type ListUsersRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListUsersRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUsersRequestPage>;
+  S.Unknown as any as S.Schema<ListUsersRequestPage>;
 
 export type ListUsersRequestBrandIdCase0 = "all";
-export const ListUsersRequestBrandIdCase0 = /*@__PURE__*/ S.String;
+export const ListUsersRequestBrandIdCase0 = S.String;
 
 export type ListUsersRequestBrandId = ListUsersRequestBrandIdCase0 | number;
 export const ListUsersRequestBrandId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUsersRequestBrandId>;
+  S.Unknown as any as S.Schema<ListUsersRequestBrandId>;
 
 export interface ListUsersRequest {
   /** Filters the results by role. Possible values are "end-user", "agent", "admin", or a custom role name */
@@ -27370,7 +27355,7 @@ export type ListViewsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const ListViewsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListViewsRequestPage>;
+  S.Unknown as any as S.Schema<ListViewsRequestPage>;
 
 export interface ListViewsRequest {
   /** Only views with given access. May be "personal", "shared", or "account" */
@@ -27808,14 +27793,14 @@ export const PostAutocompleteTagRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PostAutocompleteTagRequest>;
 
 export type PostAutocompleteUserRequestBrandIdCase0 = "all";
-export const PostAutocompleteUserRequestBrandIdCase0 = /*@__PURE__*/ S.String;
+export const PostAutocompleteUserRequestBrandIdCase0 = S.String;
 
 /** When brand separation is enabled, scopes the autocomplete results to users belonging to the specified brand. Only applicable when the account has brand separation enabled. Accepted values: * "all" — search all users across all brands (no brand filtering applied). * 0 — restrict the autocomplete results to account-scoped (brand-less) users only. * A numeric brand id — if the brand has user separation enabled, autocomplete returns only end users belonging to that brand. Agents and admins are not included in the results when filtering by a specific brand. If the brand does not have user separation enabled, the request falls back to account scope (0). */
 export type PostAutocompleteUserRequestBrandId =
   | PostAutocompleteUserRequestBrandIdCase0
   | number;
 export const PostAutocompleteUserRequestBrandId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PostAutocompleteUserRequestBrandId>;
+  S.Unknown as any as S.Schema<PostAutocompleteUserRequestBrandId>;
 
 export interface PostAutocompleteUserRequest {
   /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
@@ -27871,7 +27856,7 @@ export type PreviewViewsRequestPage =
   | number
   | DynamicContentListVariantsRequestPageCase1;
 export const PreviewViewsRequestPage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PreviewViewsRequestPage>;
+  S.Unknown as any as S.Schema<PreviewViewsRequestPage>;
 
 export interface PreviewViewsRequest {
   /** Pagination parameter. Supports both traditional offset and cursor-based pagination: - Traditional: `?page=2` (integer page number) - Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before) These are mutually exclusive - use one format or the other, not both. */
@@ -28015,7 +28000,7 @@ export const PutUserTagsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutUserTagsRequest>;
 
 export type RecordNewSkipRequestSortOrder = "asc" | "desc";
-export const RecordNewSkipRequestSortOrder = /*@__PURE__*/ S.String;
+export const RecordNewSkipRequestSortOrder = S.String;
 
 export interface RecordNewSkipRequest {
   /** Sort order. Defaults to "asc" */
@@ -28980,11 +28965,11 @@ export const SearchTriggersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchTriggersRequest>;
 
 export type SearchUsersRequestBrandIdCase0 = "all";
-export const SearchUsersRequestBrandIdCase0 = /*@__PURE__*/ S.String;
+export const SearchUsersRequestBrandIdCase0 = S.String;
 
 export type SearchUsersRequestBrandId = SearchUsersRequestBrandIdCase0 | number;
 export const SearchUsersRequestBrandId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchUsersRequestBrandId>;
+  S.Unknown as any as S.Schema<SearchUsersRequestBrandId>;
 
 export interface SearchUsersRequest {
   /** Page number for offset-based pagination (non-negative integer). */
@@ -29463,8 +29448,7 @@ export type TicketsUpdateRequestInputCase0TicketPriority =
   | "high"
   | "normal"
   | "low";
-export const TicketsUpdateRequestInputCase0TicketPriority =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase0TicketPriority = S.String;
 
 /** User creation attributes */
 export type TicketsUpdateRequestInputCase0TicketRequesterCase2 =
@@ -29478,7 +29462,7 @@ export type TicketsUpdateRequestInputCase0TicketRequester =
   | number
   | TicketObjectInputRequesterCase2;
 export const TicketsUpdateRequestInputCase0TicketRequester =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase0TicketRequester>;
+  S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase0TicketRequester>;
 
 /** An array of the numeric IDs of sharing agreements. Note that this replaces any existing agreements */
 export type TicketsUpdateRequestInputCase0TicketSharingAgreementIdsList =
@@ -29500,7 +29484,7 @@ export type TicketsUpdateRequestInputCase0TicketSharingAgreements =
   | SharingAgreementInput
   | TicketsUpdateRequestInputCase0TicketSharingAgreementsCase1List;
 export const TicketsUpdateRequestInputCase0TicketSharingAgreements =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase0TicketSharingAgreements>;
+  S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase0TicketSharingAgreements>;
 
 /** The state of the ticket. If your account has activated custom ticket statuses, this is the ticket's status category. See [custom ticket statuses](#custom-ticket-statuses) */
 export type TicketsUpdateRequestInputCase0TicketStatus =
@@ -29510,15 +29494,13 @@ export type TicketsUpdateRequestInputCase0TicketStatus =
   | "hold"
   | "solved"
   | "closed";
-export const TicketsUpdateRequestInputCase0TicketStatus =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase0TicketStatus = S.String;
 
 /** The type of support that handled the ticket */
 export type TicketsUpdateRequestInputCase0TicketSupportType =
   | "agent"
   | "ai_agent";
-export const TicketsUpdateRequestInputCase0TicketSupportType =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase0TicketSupportType = S.String;
 
 /** Write only. System metadata for the ticket, typically set by internal clients */
 export type TicketsUpdateRequestInputCase0TicketSystemMetadata =
@@ -29538,7 +29520,7 @@ export type TicketsUpdateRequestInputCase0TicketTags =
   | TicketsUpdateRequestInputCase0TicketTagsCase0List
   | string;
 export const TicketsUpdateRequestInputCase0TicketTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase0TicketTags>;
+  S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase0TicketTags>;
 
 export type TicketsUpdateRequestInputCase0TicketTdeWorkspacePreviousWorkspace =
   TicketObjectInputTdeWorkspacePreviousWorkspace;
@@ -29549,8 +29531,7 @@ export type TicketsUpdateRequestInputCase0TicketTdeWorkspaceType =
   | "ADD"
   | "CHANGE"
   | "DELETE";
-export const TicketsUpdateRequestInputCase0TicketTdeWorkspaceType =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase0TicketTdeWorkspaceType = S.String;
 
 export type TicketsUpdateRequestInputCase0TicketTdeWorkspaceWorkspace =
   TicketObjectInputTdeWorkspacePreviousWorkspace;
@@ -29588,7 +29569,7 @@ export type TicketsUpdateRequestInputCase0TicketType =
   | "incident"
   | "question"
   | "task";
-export const TicketsUpdateRequestInputCase0TicketType = /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase0TicketType = S.String;
 
 /** Write only. A voice comment for Talk tickets. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets/) */
 export type TicketsUpdateRequestInputCase0TicketVoiceComment =
@@ -29901,8 +29882,7 @@ export type TicketsUpdateRequestInputCase1TicketsItemPriority =
   | "high"
   | "normal"
   | "low";
-export const TicketsUpdateRequestInputCase1TicketsItemPriority =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase1TicketsItemPriority = S.String;
 
 /** User creation attributes */
 export type TicketsUpdateRequestInputCase1TicketsItemRequesterCase2 =
@@ -29916,7 +29896,7 @@ export type TicketsUpdateRequestInputCase1TicketsItemRequester =
   | number
   | TicketObjectInputRequesterCase2;
 export const TicketsUpdateRequestInputCase1TicketsItemRequester =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase1TicketsItemRequester>;
+  S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase1TicketsItemRequester>;
 
 /** An array of the numeric IDs of sharing agreements. Note that this replaces any existing agreements */
 export type TicketsUpdateRequestInputCase1TicketsItemSharingAgreementIdsList =
@@ -29938,7 +29918,7 @@ export type TicketsUpdateRequestInputCase1TicketsItemSharingAgreements =
   | SharingAgreementInput
   | TicketsUpdateRequestInputCase1TicketsItemSharingAgreementsCase1List;
 export const TicketsUpdateRequestInputCase1TicketsItemSharingAgreements =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase1TicketsItemSharingAgreements>;
+  S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase1TicketsItemSharingAgreements>;
 
 /** The state of the ticket. If your account has activated custom ticket statuses, this is the ticket's status category. See [custom ticket statuses](#custom-ticket-statuses) */
 export type TicketsUpdateRequestInputCase1TicketsItemStatus =
@@ -29948,15 +29928,13 @@ export type TicketsUpdateRequestInputCase1TicketsItemStatus =
   | "hold"
   | "solved"
   | "closed";
-export const TicketsUpdateRequestInputCase1TicketsItemStatus =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase1TicketsItemStatus = S.String;
 
 /** The type of support that handled the ticket */
 export type TicketsUpdateRequestInputCase1TicketsItemSupportType =
   | "agent"
   | "ai_agent";
-export const TicketsUpdateRequestInputCase1TicketsItemSupportType =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase1TicketsItemSupportType = S.String;
 
 /** Write only. System metadata for the ticket, typically set by internal clients */
 export type TicketsUpdateRequestInputCase1TicketsItemSystemMetadata =
@@ -29977,7 +29955,7 @@ export type TicketsUpdateRequestInputCase1TicketsItemTags =
   | TicketsUpdateRequestInputCase1TicketsItemTagsCase0List
   | string;
 export const TicketsUpdateRequestInputCase1TicketsItemTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase1TicketsItemTags>;
+  S.Unknown as any as S.Schema<TicketsUpdateRequestInputCase1TicketsItemTags>;
 
 export type TicketsUpdateRequestInputCase1TicketsItemTdeWorkspacePreviousWorkspace =
   TicketObjectInputTdeWorkspacePreviousWorkspace;
@@ -29989,7 +29967,7 @@ export type TicketsUpdateRequestInputCase1TicketsItemTdeWorkspaceType =
   | "CHANGE"
   | "DELETE";
 export const TicketsUpdateRequestInputCase1TicketsItemTdeWorkspaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type TicketsUpdateRequestInputCase1TicketsItemTdeWorkspaceWorkspace =
   TicketObjectInputTdeWorkspacePreviousWorkspace;
@@ -30031,8 +30009,7 @@ export type TicketsUpdateRequestInputCase1TicketsItemType =
   | "incident"
   | "question"
   | "task";
-export const TicketsUpdateRequestInputCase1TicketsItemType =
-  /*@__PURE__*/ S.String;
+export const TicketsUpdateRequestInputCase1TicketsItemType = S.String;
 
 /** Write only. A voice comment for Talk tickets. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets/) */
 export type TicketsUpdateRequestInputCase1TicketsItemVoiceComment =
@@ -30274,7 +30251,7 @@ export type TicketsUpdateRequestInput =
   | TicketsUpdateRequestInputCase0
   | TicketsUpdateRequestInputCase1;
 export const TicketsUpdateRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketsUpdateRequestInput>;
+  S.Unknown as any as S.Schema<TicketsUpdateRequestInput>;
 
 export interface TicketsUpdateManyRequest {
   /** Comma-separated list of ticket ids */
@@ -30684,7 +30661,7 @@ export type UpdateCurrentUserSettingsRequestSettingsLotusAgentWorkspaceThemePref
   | "1"
   | "2";
 export const UpdateCurrentUserSettingsRequestSettingsLotusAgentWorkspaceThemePreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Theme preference for conversation panel (0=light, 1=dark, 2=system) */
 export type UpdateCurrentUserSettingsRequestSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
@@ -30692,7 +30669,7 @@ export type UpdateCurrentUserSettingsRequestSettingsLotusAgentWorkspaceThemePref
   | "1"
   | "2";
 export const UpdateCurrentUserSettingsRequestSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Lotus UI settings for onboarding, tooltips, and feature preferences */
 export interface UpdateCurrentUserSettingsRequestSettingsLotus {
@@ -31183,7 +31160,7 @@ export type UpdateItamStatusRequestStatusCategory =
   | "in_use"
   | "unavailable"
   | "end_of_life";
-export const UpdateItamStatusRequestStatusCategory = /*@__PURE__*/ S.String;
+export const UpdateItamStatusRequestStatusCategory = S.String;
 
 export interface UpdateItamStatusRequestStatus {
   /** The status category. One of available, in_use, unavailable, or end_of_life */
@@ -31624,7 +31601,7 @@ export const UsersRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateManyUsersRequestBody = UserUpdateRequest | UsersRequest;
 export const UpdateManyUsersRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateManyUsersRequestBody>;
+  S.Unknown as any as S.Schema<UpdateManyUsersRequestBody>;
 
 export interface UpdateManyUsersRequest {
   /** Id of the users to update. Comma separated */
@@ -31810,7 +31787,7 @@ export type UpdateSavedSearchRequestType =
   | "organization"
   | "side_conversation"
   | "article";
-export const UpdateSavedSearchRequestType = /*@__PURE__*/ S.String;
+export const UpdateSavedSearchRequestType = S.String;
 
 export interface UpdateSavedSearchRequest {
   /** The UUID of the saved search */
@@ -32018,7 +31995,7 @@ export type UpdateTaskListTemplateRequestTaskListTemplateTasksItem =
   | UpdateTaskListTemplateRequestTaskListTemplateTasksItemCase1
   | UpdateTaskListTemplateRequestTaskListTemplateTasksItemCase2;
 export const UpdateTaskListTemplateRequestTaskListTemplateTasksItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTaskListTemplateRequestTaskListTemplateTasksItem>;
+  S.Unknown as any as S.Schema<UpdateTaskListTemplateRequestTaskListTemplateTasksItem>;
 
 /** Tasks to create, update, or delete for the template */
 export type UpdateTaskListTemplateRequestTaskListTemplateTasksList =
@@ -32103,7 +32080,7 @@ export const UpdateTicketRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type AuditObjectEventsItemValue = string | number;
 export const AuditObjectEventsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AuditObjectEventsItemValue>;
+  S.Unknown as any as S.Schema<AuditObjectEventsItemValue>;
 
 export interface AuditObjectEventsItem {
   body?: string;
@@ -32166,7 +32143,7 @@ export const TicketUpdateResponseOutput = /*@__PURE__*/ S.suspend(() =>
 /** The id of an existing option to update. Omit to create a new option */
 export type TicketFieldOptionUpdateInputId = number | string;
 export const TicketFieldOptionUpdateInputId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketFieldOptionUpdateInputId>;
+  S.Unknown as any as S.Schema<TicketFieldOptionUpdateInputId>;
 
 /** An option for a "tagger" or "multiselect" custom ticket field. Include `id` to update an existing option in place. */
 export interface TicketFieldOptionUpdateInput {

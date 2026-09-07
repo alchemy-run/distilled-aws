@@ -111,7 +111,7 @@ export type GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentIn
   | "END_USER"
   | "ANY_AGENT";
 export const GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfoAgentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information about an agent involved in the conversation. */
 export interface GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo {
@@ -174,8 +174,7 @@ export type GoogleCloudContactcenterinsightsV1AssessmentStateEnum =
   | "PUBLISHED"
   | "APPEALED"
   | "FINALIZED";
-export const GoogleCloudContactcenterinsightsV1AssessmentStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContactcenterinsightsV1AssessmentStateEnum = S.String;
 
 /** The assessment resource. */
 export interface GoogleCloudContactcenterinsightsV1Assessment {
@@ -267,7 +266,7 @@ export type GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConf
   | "BASELINE_MODEL"
   | "BASELINE_MODEL_V2_0";
 export const GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigSummarizationModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for summarization. */
 export interface GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig {
@@ -657,14 +656,14 @@ export type GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestF
   | "TOPIC_MODELING"
   | "AGENT_ASSIST_SUMMARY";
 export const GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestFeedbackLabelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestGcsDestinationFormatEnum =
   | "FORMAT_UNSPECIFIED"
   | "CSV"
   | "JSON";
 export const GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestGcsDestinationFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Google Cloud Storage Object details to write the feedback labels to. */
 export interface GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestGcsDestination {
@@ -798,7 +797,7 @@ export type GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestGcs
   | "CSV"
   | "JSON";
 export const GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestGcsSourceFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Google Cloud Storage Object details to get the feedback label file from. */
 export interface GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestGcsSource {
@@ -1398,7 +1397,7 @@ export type GoogleCloudContactcenterinsightsV1AssistantSessionStateEnum =
   | "PROCESSING"
   | "IDLE";
 export const GoogleCloudContactcenterinsightsV1AssistantSessionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A chunk of data in an assistant message. */
 export interface GoogleCloudContactcenterinsightsV1AssistantChunk {
@@ -1426,7 +1425,7 @@ export type GoogleCloudContactcenterinsightsV1AssistantMessageRoleEnum =
   | "USER"
   | "MODEL";
 export const GoogleCloudContactcenterinsightsV1AssistantMessageRoleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A message in an assistant session. */
 export interface GoogleCloudContactcenterinsightsV1AssistantMessage {
@@ -1868,7 +1867,7 @@ export type GoogleCloudContactcenterinsightsV1AutoLabelingRuleLabelKeyTypeEnum =
   | "LABEL_KEY_TYPE_UNSPECIFIED"
   | "LABEL_KEY_TYPE_CUSTOM";
 export const GoogleCloudContactcenterinsightsV1AutoLabelingRuleLabelKeyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Condition for auto-labeling conversations. */
 export interface GoogleCloudContactcenterinsightsV1AutoLabelingRuleLabelingCondition {
@@ -2258,7 +2257,7 @@ export type GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInputQuerySou
   | "AGENT_QUERY"
   | "SUGGESTED_QUERY";
 export const GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInputQuerySourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Explicit input used for generating the answer */
 export interface GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput {
@@ -2612,7 +2611,7 @@ export type GoogleCloudContactcenterinsightsV1AnswerFeedbackCorrectnessLevelEnum
   | "PARTIALLY_CORRECT"
   | "FULLY_CORRECT";
 export const GoogleCloudContactcenterinsightsV1AnswerFeedbackCorrectnessLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The feedback that the customer has about a certain answer in the conversation. */
 export interface GoogleCloudContactcenterinsightsV1AnswerFeedback {
@@ -2725,7 +2724,7 @@ export type GoogleCloudContactcenterinsightsV1ConversationCorrelationInfoCorrela
   | "FULL"
   | "SYNTHETIC";
 export const GoogleCloudContactcenterinsightsV1ConversationCorrelationInfoCorrelationTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1ConversationCorrelationInfoCorrelationTypesItemEnumList =
   Array<
@@ -2764,7 +2763,7 @@ export type GoogleCloudContactcenterinsightsV1ConversationMediumEnum =
   | "PHONE_CALL"
   | "CHAT";
 export const GoogleCloudContactcenterinsightsV1ConversationMediumEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1ConversationParticipantRoleEnum =
   | "ROLE_UNSPECIFIED"
@@ -2773,7 +2772,7 @@ export type GoogleCloudContactcenterinsightsV1ConversationParticipantRoleEnum =
   | "END_USER"
   | "ANY_AGENT";
 export const GoogleCloudContactcenterinsightsV1ConversationParticipantRoleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The call participant speaking for a given utterance. */
 export interface GoogleCloudContactcenterinsightsV1ConversationParticipant {
@@ -2975,7 +2974,7 @@ export type GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSe
   | "ORDERED_NUMBER"
   | "ORDERED_ALPHA";
 export const GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListPartListTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An item in a list. */
 export interface GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListItem {
@@ -3525,7 +3524,7 @@ export type GoogleCloudContactcenterinsightsV1EntityMentionDataTypeEnum =
   | "PROPER"
   | "COMMON";
 export const GoogleCloudContactcenterinsightsV1EntityMentionDataTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The data for an entity mention annotation. This represents a mention of an `Entity` in the conversation. */
 export interface GoogleCloudContactcenterinsightsV1EntityMentionData {
@@ -3650,8 +3649,7 @@ export type GoogleCloudContactcenterinsightsV1EntityTypeEnum =
   | "DATE"
   | "NUMBER"
   | "PRICE";
-export const GoogleCloudContactcenterinsightsV1EntityTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContactcenterinsightsV1EntityTypeEnum = S.String;
 
 /** The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location. */
 export interface GoogleCloudContactcenterinsightsV1Entity {
@@ -3710,7 +3708,7 @@ export type GoogleCloudContactcenterinsightsV1QaScorecardResultScoreSourceSource
   | "SYSTEM_GENERATED_ONLY"
   | "INCLUDES_MANUAL_EDITS";
 export const GoogleCloudContactcenterinsightsV1QaScorecardResultScoreSourceSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Tags and their corresponding results. */
 export interface GoogleCloudContactcenterinsightsV1QaScorecardResultQaTagResult {
@@ -3788,7 +3786,7 @@ export type GoogleCloudContactcenterinsightsV1QaAnswerAnswerSourceSourceTypeEnum
   | "SYSTEM_GENERATED"
   | "MANUAL_EDIT";
 export const GoogleCloudContactcenterinsightsV1QaAnswerAnswerSourceSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A question may have multiple answers from varying sources, one of which becomes the "main" answer above. AnswerSource represents each individual answer. */
 export interface GoogleCloudContactcenterinsightsV1QaAnswerAnswerSource {
@@ -4246,7 +4244,7 @@ export type GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRangeUn
   | "QUARTER"
   | "YEAR";
 export const GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRangeUnitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Relative date range configuration. */
 export interface GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRange {
@@ -4312,8 +4310,7 @@ export type GoogleCloudContactcenterinsightsV1ChartChartTypeEnum =
   | "CHART_TYPE_UNSPECIFIED"
   | "SYSTEM_DEFINED"
   | "USER_DEFINED";
-export const GoogleCloudContactcenterinsightsV1ChartChartTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContactcenterinsightsV1ChartChartTypeEnum = S.String;
 
 /** The current chart checkpoint state. */
 export interface GoogleCloudContactcenterinsightsV1GenerativeInsightsChartCheckpoint {
@@ -4354,7 +4351,7 @@ export type GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversatio
   | "FINAL_RESPONSE"
   | "PROGRESS";
 export const GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessageTextOutputTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A text output message from the system. */
 export interface GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessageTextOutput {
@@ -4546,7 +4543,7 @@ export type GoogleCloudContactcenterinsightsV1ChartChartVisualizationTypeEnum =
   | "GAUGE"
   | "SANKEY";
 export const GoogleCloudContactcenterinsightsV1ChartChartVisualizationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The redirect action to be taken when the chart is clicked. */
 export interface GoogleCloudContactcenterinsightsV1RedirectAction {
@@ -4810,8 +4807,7 @@ export type GoogleCloudContactcenterinsightsV1DatasetTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "EVAL"
   | "LIVE";
-export const GoogleCloudContactcenterinsightsV1DatasetTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContactcenterinsightsV1DatasetTypeEnum = S.String;
 
 /** Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic) */
 export interface GoogleCloudContactcenterinsightsV1Dataset {
@@ -4905,7 +4901,7 @@ export type GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigMediumEnu
   | "PHONE_CALL"
   | "CHAT";
 export const GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigMediumEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configs for the input data used to create the issue model. */
 export interface GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig {
@@ -4936,7 +4932,7 @@ export type GoogleCloudContactcenterinsightsV1IssueModelModelTypeEnum =
   | "TYPE_V1"
   | "TYPE_V2";
 export const GoogleCloudContactcenterinsightsV1IssueModelModelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1IssueModelStateEnum =
   | "STATE_UNSPECIFIED"
@@ -4945,8 +4941,7 @@ export type GoogleCloudContactcenterinsightsV1IssueModelStateEnum =
   | "DEPLOYED"
   | "UNDEPLOYING"
   | "DELETING";
-export const GoogleCloudContactcenterinsightsV1IssueModelStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContactcenterinsightsV1IssueModelStateEnum = S.String;
 
 /** The issue model resource. */
 export interface GoogleCloudContactcenterinsightsV1IssueModel {
@@ -5149,7 +5144,7 @@ export type GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupTypeEnum =
   | "ALL_OF"
   | "ANY_OF";
 export const GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A message representing a rule in the phrase matcher. */
 export interface GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroup {
@@ -5188,14 +5183,13 @@ export type GoogleCloudContactcenterinsightsV1PhraseMatcherRoleMatchEnum =
   | "END_USER"
   | "ANY_AGENT";
 export const GoogleCloudContactcenterinsightsV1PhraseMatcherRoleMatchEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1PhraseMatcherTypeEnum =
   | "PHRASE_MATCHER_TYPE_UNSPECIFIED"
   | "ALL_OF"
   | "ANY_OF";
-export const GoogleCloudContactcenterinsightsV1PhraseMatcherTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContactcenterinsightsV1PhraseMatcherTypeEnum = S.String;
 
 /** The phrase matcher resource. */
 export interface GoogleCloudContactcenterinsightsV1PhraseMatcher {
@@ -5331,8 +5325,7 @@ export type GoogleCloudContactcenterinsightsV1QaScorecardSourceEnum =
   | "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED"
   | "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
   | "QA_SCORECARD_SOURCE_INTENT_TAXONOMY";
-export const GoogleCloudContactcenterinsightsV1QaScorecardSourceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContactcenterinsightsV1QaScorecardSourceEnum = S.String;
 
 /** A QaScorecard represents a collection of questions to be scored during analysis. */
 export interface GoogleCloudContactcenterinsightsV1QaScorecard {
@@ -5406,7 +5399,7 @@ export type GoogleCloudContactcenterinsightsV1QaScorecardRevisionStateEnum =
   | "DELETING"
   | "TRAINING_CANCELLED";
 export const GoogleCloudContactcenterinsightsV1QaScorecardRevisionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A revision of a QaScorecard. Modifying published scorecard fields would invalidate existing scorecard results — the questions may have changed, or the score weighting will make existing scores impossible to understand. So changes must create a new revision, rather than modifying the existing resource. */
 export interface GoogleCloudContactcenterinsightsV1QaScorecardRevision {
@@ -5517,7 +5510,7 @@ export type GoogleCloudContactcenterinsightsV1QaQuestionQuestionTypeEnum =
   | "CUSTOMIZABLE"
   | "PREDEFINED";
 export const GoogleCloudContactcenterinsightsV1QaQuestionQuestionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfigTypeEnum =
   | "PREDEFINED_QUESTION_TYPE_UNSPECIFIED"
@@ -5525,7 +5518,7 @@ export type GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig
   | "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE"
   | "CONVERSATION_OUTCOME_AI_AVERSION";
 export const GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for a predefined question. This field will only be set if the Question Type is predefined. */
 export interface GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig {
@@ -5589,7 +5582,7 @@ export type GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadataDatasetVal
   | "INSUFFICIENT_FEEDBACK_LABELS_PER_ANSWER"
   | "ALL_FEEDBACK_LABELS_HAVE_THE_SAME_ANSWER";
 export const GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadataDatasetValidationWarningsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadataDatasetValidationWarningsItemEnumList =
   Array<
@@ -6420,14 +6413,14 @@ export type GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestExportSch
   | "EXPORT_V17"
   | "EXPORT_VERSION_LATEST_AVAILABLE";
 export const GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestExportSchemaVersionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestWriteDispositionEnum =
   | "WRITE_DISPOSITION_UNSPECIFIED"
   | "WRITE_TRUNCATE"
   | "WRITE_APPEND";
 export const GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestWriteDispositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The request to export insights. */
 export interface GoogleCloudContactcenterinsightsV1ExportInsightsDataRequest {
@@ -6985,7 +6978,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -7196,7 +7189,7 @@ export type GetProjectsLocationsAuthorizedViewSetsAuthorizedViewsConversationsVi
   | "BASIC"
   | "FULL_WITH_STRUCTURED_TRANSCRIPT";
 export const GetProjectsLocationsAuthorizedViewSetsAuthorizedViewsConversationsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsAuthorizedViewSetsAuthorizedViewsConversationsRequest {
   /** Required. The name of the conversation to get. */
@@ -7311,7 +7304,7 @@ export type GetProjectsLocationsConversationsViewEnum =
   | "FULL"
   | "BASIC"
   | "FULL_WITH_STRUCTURED_TRANSCRIPT";
-export const GetProjectsLocationsConversationsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsConversationsViewEnum = S.String;
 
 export interface GetProjectsLocationsConversationsRequest {
   /** Required. The name of the conversation to get. */
@@ -7455,8 +7448,7 @@ export type GetProjectsLocationsDatasetsConversationsViewEnum =
   | "FULL"
   | "BASIC"
   | "FULL_WITH_STRUCTURED_TRANSCRIPT";
-export const GetProjectsLocationsDatasetsConversationsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsDatasetsConversationsViewEnum = S.String;
 
 export interface GetProjectsLocationsDatasetsConversationsRequest {
   /** Required. The name of the conversation to get. */
@@ -7901,7 +7893,7 @@ export type GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourc
   | "TRANSCRIPT"
   | "AUDIO";
 export const GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceBucketObjectTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for Cloud Storage bucket sources. */
 export interface GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource {
@@ -7942,7 +7934,7 @@ export type GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscri
   | "PHONE_CALL"
   | "CHAT";
 export const GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigMediumEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for processing transcript objects. */
 export interface GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig {
@@ -8473,7 +8465,7 @@ export type ListProjectsLocationsAuthorizedViewSetsAuthorizedViewsConversationsV
   | "BASIC"
   | "FULL_WITH_STRUCTURED_TRANSCRIPT";
 export const ListProjectsLocationsAuthorizedViewSetsAuthorizedViewsConversationsViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsAuthorizedViewSetsAuthorizedViewsConversationsRequest {
   /** Optional. The attribute by which to order conversations in the response. If empty, conversations will be ordered by descending creation time. Supported values are one of the following: * create_time * customer_satisfaction_rating * duration * latest_analysis * start_time * turn_count The default sort order is ascending. To specify order, append `asc` or `desc` (`create_time desc`). For more details, see [Google AIPs Ordering](https://google.aip.dev/132#ordering). */
@@ -8806,8 +8798,7 @@ export type ListProjectsLocationsConversationsViewEnum =
   | "FULL"
   | "BASIC"
   | "FULL_WITH_STRUCTURED_TRANSCRIPT";
-export const ListProjectsLocationsConversationsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsConversationsViewEnum = S.String;
 
 export interface ListProjectsLocationsConversationsRequest {
   /** The value returned by the last `ListConversationsResponse`. This value indicates that this is a continuation of a prior `ListConversations` call and that the system should return the next page of data. */
@@ -9133,8 +9124,7 @@ export type ListProjectsLocationsDatasetsConversationsViewEnum =
   | "FULL"
   | "BASIC"
   | "FULL_WITH_STRUCTURED_TRANSCRIPT";
-export const ListProjectsLocationsDatasetsConversationsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsDatasetsConversationsViewEnum = S.String;
 
 export interface ListProjectsLocationsDatasetsConversationsRequest {
   /** Required. The parent resource of the conversation. */
@@ -9419,8 +9409,7 @@ export type ListProjectsLocationsQaScorecardsQaScorecardSourcesEnum =
   | "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED"
   | "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
   | "QA_SCORECARD_SOURCE_INTENT_TAXONOMY";
-export const ListProjectsLocationsQaScorecardsQaScorecardSourcesEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsQaScorecardsQaScorecardSourcesEnum = S.String;
 
 export type ListProjectsLocationsQaScorecardsQaScorecardSourcesEnumList = Array<
   ListProjectsLocationsQaScorecardsQaScorecardSourcesEnum | (string & {})
@@ -9494,7 +9483,7 @@ export type ListProjectsLocationsQaScorecardsRevisionsQaScorecardSourcesEnum =
   | "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
   | "QA_SCORECARD_SOURCE_INTENT_TAXONOMY";
 export const ListProjectsLocationsQaScorecardsRevisionsQaScorecardSourcesEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectsLocationsQaScorecardsRevisionsQaScorecardSourcesEnumList =
   Array<
@@ -10520,7 +10509,7 @@ export type GoogleCloudContactcenterinsightsV1DimensionDimensionKeyEnum =
   | "LABEL_KEY_AND_VALUE"
   | "LAST_TRANSFER_SUB_AGENT_NAME";
 export const GoogleCloudContactcenterinsightsV1DimensionDimensionKeyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata about the conversation medium dimension. */
 export interface GoogleCloudContactcenterinsightsV1DimensionMediumDimensionMetadata {
@@ -10626,7 +10615,7 @@ export type GoogleCloudContactcenterinsightsV1QueryMetricsRequestTimeGranularity
   | "PER_5_MINUTES"
   | "MONTHLY";
 export const GoogleCloudContactcenterinsightsV1QueryMetricsRequestTimeGranularityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The request for querying metrics. */
 export interface GoogleCloudContactcenterinsightsV1QueryMetricsRequest {

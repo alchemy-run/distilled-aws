@@ -17,8 +17,7 @@ export type { HetznerOpError, HetznerOpContext };
 export type ApplyFirewallToResourcesRequestApplyToItemType =
   | "server"
   | "label_selector";
-export const ApplyFirewallToResourcesRequestApplyToItemType =
-  /*@__PURE__*/ S.String;
+export const ApplyFirewallToResourcesRequestApplyToItemType = S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export interface ApplyFirewallToResourcesRequestApplyToItemServer {
@@ -102,8 +101,7 @@ export type ApplyFirewallToResourcesResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ApplyFirewallToResourcesResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ApplyFirewallToResourcesResponseActionsItemStatus = S.String;
 
 export interface ApplyFirewallToResourcesResponseActionsItemResourcesItem {
   /** ID of the Resource. */
@@ -215,7 +213,7 @@ export type GetFirewallsActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetFirewallsActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetFirewallsActionResponseActionStatus = S.String;
 
 export type GetFirewallsActionResponseActionResourcesItem =
   ApplyFirewallToResourcesResponseActionsItemResourcesItem;
@@ -296,7 +294,7 @@ export type ListFirewallActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListFirewallActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListFirewallActionsRequestSortItem = S.String;
 
 export type ListFirewallActionsRequestSortList = Array<
   ListFirewallActionsRequestSortItem | (string & {})
@@ -310,7 +308,7 @@ export type ListFirewallActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListFirewallActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListFirewallActionsRequestStatusItem = S.String;
 
 export type ListFirewallActionsRequestStatusList = Array<
   ListFirewallActionsRequestStatusItem | (string & {})
@@ -348,8 +346,7 @@ export type ListFirewallActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListFirewallActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListFirewallActionsResponseActionsItemStatus = S.String;
 
 export type ListFirewallActionsResponseActionsItemResourcesItem =
   ApplyFirewallToResourcesResponseActionsItemResourcesItem;
@@ -485,7 +482,7 @@ export type ListFirewallsActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListFirewallsActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListFirewallsActionsRequestSortItem = S.String;
 
 export type ListFirewallsActionsRequestSortList = Array<
   ListFirewallsActionsRequestSortItem | (string & {})
@@ -499,7 +496,7 @@ export type ListFirewallsActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListFirewallsActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListFirewallsActionsRequestStatusItem = S.String;
 
 export type ListFirewallsActionsRequestStatusList = Array<
   ListFirewallsActionsRequestStatusItem | (string & {})
@@ -537,8 +534,7 @@ export type ListFirewallsActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListFirewallsActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListFirewallsActionsResponseActionsItemStatus = S.String;
 
 export type ListFirewallsActionsResponseActionsItemResourcesItem =
   ApplyFirewallToResourcesResponseActionsItemResourcesItem;
@@ -625,8 +621,7 @@ export const ListFirewallsActionsResponse = /*@__PURE__*/ S.suspend(() =>
 export type RemoveFirewallFromResourcesRequestRemoveFromItemType =
   | "server"
   | "label_selector";
-export const RemoveFirewallFromResourcesRequestRemoveFromItemType =
-  /*@__PURE__*/ S.String;
+export const RemoveFirewallFromResourcesRequestRemoveFromItemType = S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type RemoveFirewallFromResourcesRequestRemoveFromItemServer =
@@ -695,8 +690,7 @@ export type RemoveFirewallFromResourcesResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const RemoveFirewallFromResourcesResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const RemoveFirewallFromResourcesResponseActionsItemStatus = S.String;
 
 export type RemoveFirewallFromResourcesResponseActionsItemResourcesItem =
   ApplyFirewallToResourcesResponseActionsItemResourcesItem;
@@ -771,7 +765,7 @@ export const RemoveFirewallFromResourcesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Traffic direction in which the rule should be applied to. Use `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs. */
 export type SetFirewallRulesRequestRulesItemDirection = "in" | "out";
-export const SetFirewallRulesRequestRulesItemDirection = /*@__PURE__*/ S.String;
+export const SetFirewallRulesRequestRulesItemDirection = S.String;
 
 /** List of permitted IPv4/IPv6 addresses for incoming traffic. The `direction` must be set to `in`. IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most. The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`. Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses. IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4). */
 export type SetFirewallRulesRequestRulesItemSourceIpsList = Array<string>;
@@ -794,7 +788,7 @@ export type SetFirewallRulesRequestRulesItemProtocol =
   | "icmp"
   | "esp"
   | "gre";
-export const SetFirewallRulesRequestRulesItemProtocol = /*@__PURE__*/ S.String;
+export const SetFirewallRulesRequestRulesItemProtocol = S.String;
 
 export interface SetFirewallRulesRequestRulesItem {
   /** Description of the rule. */
@@ -858,7 +852,7 @@ export type SetFirewallRulesResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const SetFirewallRulesResponseActionsItemStatus = /*@__PURE__*/ S.String;
+export const SetFirewallRulesResponseActionsItemStatus = S.String;
 
 export type SetFirewallRulesResponseActionsItemResourcesItem =
   ApplyFirewallToResourcesResponseActionsItemResourcesItem;

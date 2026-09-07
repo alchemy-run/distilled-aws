@@ -37,7 +37,7 @@ export const ListDataQualityChecksRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `table` - table * `view` - view */
 export type SubjectTypeEnum = "table" | "view";
-export const SubjectTypeEnum = /*@__PURE__*/ S.String;
+export const SubjectTypeEnum = S.String;
 
 /** * `not_null` - not_null * `unique` - unique * `accepted_values` - accepted_values * `relationships` - relationships * `row_count` - row_count * `freshness` - freshness * `custom_sql` - custom_sql */
 export type CheckTypeEnum =
@@ -48,7 +48,7 @@ export type CheckTypeEnum =
   | "row_count"
   | "freshness"
   | "custom_sql";
-export const CheckTypeEnum = /*@__PURE__*/ S.String;
+export const CheckTypeEnum = S.String;
 
 /** Type-specific configuration, validated against the check type's JSON schema. */
 export type DataQualityOverviewCheckConfigMap = {
@@ -61,7 +61,7 @@ export const DataQualityOverviewCheckConfigMap = /*@__PURE__*/ S.Record(
 
 /** * `error` - error * `warn` - warn */
 export type DataQualityCheckSeverityEnum = "error" | "warn";
-export const DataQualityCheckSeverityEnum = /*@__PURE__*/ S.String;
+export const DataQualityCheckSeverityEnum = S.String;
 
 /** Free-form string labels for grouping and filtering. */
 export type DataQualityOverviewCheckTagsList = Array<string>;
@@ -71,7 +71,7 @@ export const DataQualityOverviewCheckTagsList = /*@__PURE__*/ S.Array(
 
 /** * `user` - user * `ai_generated` - ai_generated */
 export type CreatedSourceEnum = "user" | "ai_generated";
-export const CreatedSourceEnum = /*@__PURE__*/ S.String;
+export const CreatedSourceEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -90,14 +90,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;

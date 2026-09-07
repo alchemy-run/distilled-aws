@@ -184,7 +184,7 @@ export type LocalInventoryAttributesPickupSlaEnum =
   | "SIX_DAY"
   | "SEVEN_DAY"
   | "MULTI_WEEK";
-export const LocalInventoryAttributesPickupSlaEnum = /*@__PURE__*/ S.String;
+export const LocalInventoryAttributesPickupSlaEnum = S.String;
 
 /** A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty. */
 export interface CustomAttribute {
@@ -216,7 +216,7 @@ export type LocalInventoryAttributesAvailabilityEnum =
   | "LIMITED_AVAILABILITY"
   | "ON_DISPLAY_TO_ORDER"
   | "OUT_OF_STOCK";
-export const LocalInventoryAttributesAvailabilityEnum = /*@__PURE__*/ S.String;
+export const LocalInventoryAttributesAvailabilityEnum = S.String;
 
 export type LocalInventoryAttributesPickupMethodEnum =
   | "PICKUP_METHOD_UNSPECIFIED"
@@ -224,7 +224,7 @@ export type LocalInventoryAttributesPickupMethodEnum =
   | "RESERVE"
   | "SHIP_TO_STORE"
   | "NOT_SUPPORTED";
-export const LocalInventoryAttributesPickupMethodEnum = /*@__PURE__*/ S.String;
+export const LocalInventoryAttributesPickupMethodEnum = S.String;
 
 /** Local inventory attributes. */
 export interface LocalInventoryAttributes {
@@ -318,8 +318,7 @@ export type RegionalInventoryAttributesAvailabilityEnum =
   | "REGIONAL_INVENTORY_AVAILABILITY_UNSPECIFIED"
   | "IN_STOCK"
   | "OUT_OF_STOCK";
-export const RegionalInventoryAttributesAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const RegionalInventoryAttributesAvailabilityEnum = S.String;
 
 /** Regional inventory attributes. */
 export interface RegionalInventoryAttributes {

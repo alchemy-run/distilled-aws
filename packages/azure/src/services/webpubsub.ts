@@ -334,7 +334,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -342,7 +342,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -379,7 +379,7 @@ export const GetWebPubSubResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Optional tier of this particular SKU. 'Standard' or 'Free'. `Basic` is deprecated, use `Standard` instead. */
 export type WebPubSubSkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const WebPubSubSkuTier = /*@__PURE__*/ S.String;
+export const WebPubSubSkuTier = S.String;
 
 /** The billing information of the resource. */
 export interface ResourceSku {
@@ -414,7 +414,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Moving";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Private endpoint */
 export interface PrivateEndpoint {
@@ -442,7 +442,7 @@ export type PrivateLinkServiceConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateLinkServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkServiceConnectionStatus = S.String;
 
 /** Connection state of the private endpoint connection */
 export interface PrivateLinkServiceConnectionState {
@@ -522,7 +522,7 @@ export type SharedPrivateLinkResourceStatus =
   | "Rejected"
   | "Disconnected"
   | "Timeout";
-export const SharedPrivateLinkResourceStatus = /*@__PURE__*/ S.String;
+export const SharedPrivateLinkResourceStatus = S.String;
 
 /** Describes the properties of an existing Shared Private Link Resource */
 export interface SharedPrivateLinkResourceProperties {
@@ -667,7 +667,7 @@ export const ResourceLogConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Azure Networking ACL Action. */
 export type ACLAction = "Allow" | "Deny";
-export const ACLAction = /*@__PURE__*/ S.String;
+export const ACLAction = S.String;
 
 /** The incoming request type to the service */
 export type WebPubSubRequestType =
@@ -675,7 +675,7 @@ export type WebPubSubRequestType =
   | "ServerConnection"
   | "RESTAPI"
   | "Trace";
-export const WebPubSubRequestType = /*@__PURE__*/ S.String;
+export const WebPubSubRequestType = S.String;
 
 /** Allowed request types. The value can be one or more of: ClientConnection, ServerConnection, RESTAPI. */
 export type NetworkACLAllowList = Array<WebPubSubRequestType | (string & {})>;
@@ -864,11 +864,11 @@ export const WebPubSubProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the service */
 export type ServiceKind = "WebPubSub" | "SocketIO";
-export const ServiceKind = /*@__PURE__*/ S.String;
+export const ServiceKind = S.String;
 
 /** Represents the identity type: systemAssigned, userAssigned, None */
 export type ManagedIdentityType = "None" | "SystemAssigned" | "UserAssigned";
-export const ManagedIdentityType = /*@__PURE__*/ S.String;
+export const ManagedIdentityType = S.String;
 
 /** Properties of user assigned identity. */
 export interface UserAssignedIdentityProperty {
@@ -1144,7 +1144,7 @@ export const EventHandlerSystemEventsList = /*@__PURE__*/ S.Array(
 
 /** Upstream auth type enum. */
 export type UpstreamAuthType = "None" | "ManagedIdentity";
-export const UpstreamAuthType = /*@__PURE__*/ S.String;
+export const UpstreamAuthType = S.String;
 
 /** Managed identity settings for upstream. */
 export interface ManagedIdentitySettings {
@@ -1199,7 +1199,7 @@ export const WebPubSubHubPropertiesEventHandlersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WebPubSubHubPropertiesEventHandlersList>;
 
 export type EventListenerFilterType = "EventName";
-export const EventListenerFilterType = /*@__PURE__*/ S.String;
+export const EventListenerFilterType = S.String;
 
 /** A base class for event filter which determines whether an event should be sent to an event listener. */
 export interface EventListenerFilter {
@@ -1214,7 +1214,7 @@ export const EventListenerFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EventListenerFilter>;
 
 export type EventListenerEndpointType = "EventHub";
-export const EventListenerEndpointType = /*@__PURE__*/ S.String;
+export const EventListenerEndpointType = S.String;
 
 /** An endpoint specifying where Web PubSub should send events to. */
 export interface EventListenerEndpoint {
@@ -2555,7 +2555,7 @@ export const SkuCapacityAllowedValuesList = /*@__PURE__*/ S.Array(
 
 /** The scale type applicable to the sku. */
 export type ScaleType = "None" | "Manual" | "Automatic";
-export const ScaleType = /*@__PURE__*/ S.String;
+export const ScaleType = S.String;
 
 /** Describes scaling information of a sku. */
 export interface SkuCapacity {
@@ -2667,7 +2667,7 @@ export const ListWebPubSubSkusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of access key. */
 export type KeyType = "Primary" | "Secondary" | "Salt";
-export const KeyType = /*@__PURE__*/ S.String;
+export const KeyType = S.String;
 
 export interface RegenerateWebPubSubKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */

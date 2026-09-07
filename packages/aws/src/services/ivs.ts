@@ -432,7 +432,7 @@ export type ChannelType =
   | "ADVANCED_SD"
   | "ADVANCED_HD"
   | (string & {});
-export const ChannelType = /*@__PURE__*/ S.String;
+export const ChannelType = S.String;
 
 export type ChannelRecordingConfigurationArn = string;
 export type IngestEndpoint = string;
@@ -447,7 +447,7 @@ export type TranscodePreset =
   | "HIGHER_BANDWIDTH_DELIVERY"
   | "CONSTRAINED_BANDWIDTH_DELIVERY"
   | (string & {});
-export const TranscodePreset = /*@__PURE__*/ S.String;
+export const TranscodePreset = S.String;
 
 export type SrtEndpoint = string;
 export type SrtPassphrase = string | redacted.Redacted<string>;
@@ -464,14 +464,14 @@ export const Srt = /*@__PURE__*/ S.suspend(() =>
 export type ChannelPlaybackRestrictionPolicyArn = string;
 export type IsMultitrackInputEnabled = boolean;
 export type MultitrackPolicy = "ALLOW" | "REQUIRE" | (string & {});
-export const MultitrackPolicy = /*@__PURE__*/ S.String;
+export const MultitrackPolicy = S.String;
 
 export type MultitrackMaximumResolution =
   | "SD"
   | "HD"
   | "FULL_HD"
   | (string & {});
-export const MultitrackMaximumResolution = /*@__PURE__*/ S.String;
+export const MultitrackMaximumResolution = S.String;
 
 export interface MultitrackInputConfiguration {
   enabled?: boolean;
@@ -977,7 +977,7 @@ export type ThumbnailConfigurationResolution =
   | "FULL_HD"
   | "LOWEST_RESOLUTION"
   | (string & {});
-export const ThumbnailConfigurationResolution = /*@__PURE__*/ S.String;
+export const ThumbnailConfigurationResolution = S.String;
 
 export type ThumbnailConfigurationStorage = string;
 export type ThumbnailConfigurationStorageList = string[];
@@ -1008,7 +1008,7 @@ export type RenditionConfigurationRendition =
   | "FULL_HD"
   | "LOWEST_RESOLUTION"
   | (string & {});
-export const RenditionConfigurationRendition = /*@__PURE__*/ S.String;
+export const RenditionConfigurationRendition = S.String;
 
 export type RenditionConfigurationRenditionList =
   RenditionConfigurationRendition[];

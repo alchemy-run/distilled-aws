@@ -35,24 +35,24 @@ export const CreateMcpGatewayConfigSetAllServersEnabledRequest =
 
 /** * `allow` - Allow all * `user` - Member decides * `ask` - Ask for destructive * `block` - Block destructive */
 export type MCPPolicyPresetEnum = "allow" | "user" | "ask" | "block";
-export const MCPPolicyPresetEnum = /*@__PURE__*/ S.String;
+export const MCPPolicyPresetEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 /** Baseline preset for members. Empty until an admin applies one from Team settings. * `allow` - Allow all * `user` - Member decides * `ask` - Ask for destructive * `block` - Block destructive */
 export type TeamMCPGatewayConfigMemberDefaultPreset =
   | MCPPolicyPresetEnum
   | BlankEnum;
 export const TeamMCPGatewayConfigMemberDefaultPreset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamMCPGatewayConfigMemberDefaultPreset>;
+  S.Unknown as any as S.Schema<TeamMCPGatewayConfigMemberDefaultPreset>;
 
 /** Baseline preset deriving default policies for tools an agent has no explicit row for. * `allow` - Allow all * `user` - Member decides * `ask` - Ask for destructive * `block` - Block destructive */
 export type TeamMCPGatewayConfigAgentDefaultPreset =
   | MCPPolicyPresetEnum
   | BlankEnum;
 export const TeamMCPGatewayConfigAgentDefaultPreset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TeamMCPGatewayConfigAgentDefaultPreset>;
+  S.Unknown as any as S.Schema<TeamMCPGatewayConfigAgentDefaultPreset>;
 
 /** Catalog template ids that already have a gateway registration, including registrations hidden from the requesting member. Clients use this list to avoid presenting disabled or revoked templates as new. */
 export type TeamMCPGatewayConfigRegisteredTemplateIdsList = Array<string>;
@@ -127,11 +127,11 @@ export const CreateMcpGatewayMembersSetAccessResponse = /*@__PURE__*/ S.suspend(
 
 /** * `everyone` - Everyone * `members` - Members * `agents` - Agents */
 export type AppliesToEnum = "everyone" | "members" | "agents";
-export const AppliesToEnum = /*@__PURE__*/ S.String;
+export const AppliesToEnum = S.String;
 
 /** * `needs_approval` - Require approval * `do_not_use` - Block */
 export type EffectEnum = "needs_approval" | "do_not_use";
-export const EffectEnum = /*@__PURE__*/ S.String;
+export const EffectEnum = S.String;
 
 export interface CreateMcpGatewayRuleRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -202,14 +202,14 @@ export const MCPOrgRule = /*@__PURE__*/ S.suspend(() =>
 
 /** * `team` - Team default * `member` - Member * `agent` - Agent */
 export type ScopeTypeEnum = "team" | "member" | "agent";
-export const ScopeTypeEnum = /*@__PURE__*/ S.String;
+export const ScopeTypeEnum = S.String;
 
 /** * `approved` - Approved * `needs_approval` - Needs approval * `do_not_use` - Do not use */
 export type MCPToolApprovalStateEnum =
   | "approved"
   | "needs_approval"
   | "do_not_use";
-export const MCPToolApprovalStateEnum = /*@__PURE__*/ S.String;
+export const MCPToolApprovalStateEnum = S.String;
 
 export interface ToolPolicyEntry {
   /** Tool to set the policy for, up to 200 characters. */
@@ -285,7 +285,7 @@ export type DecidedByEnum =
   | "preset"
   | "legacy"
   | "default";
-export const DecidedByEnum = /*@__PURE__*/ S.String;
+export const DecidedByEnum = S.String;
 
 /** One tool with its effective policy for the requested scope. */
 export interface ResolvedToolPolicy {
@@ -383,11 +383,11 @@ export type MCPServerCategoryEnum =
   | "dev"
   | "infra"
   | "productivity";
-export const MCPServerCategoryEnum = /*@__PURE__*/ S.String;
+export const MCPServerCategoryEnum = S.String;
 
 /** * `api_key` - API Key * `oauth` - OAuth */
 export type MCPAuthTypeEnum = "api_key" | "oauth";
-export const MCPAuthTypeEnum = /*@__PURE__*/ S.String;
+export const MCPAuthTypeEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -406,11 +406,11 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -495,11 +495,11 @@ export const GatewayYourConnection = /*@__PURE__*/ S.suspend(() =>
 
 /** * `personal` - Personal * `team` - Team */
 export type MCPAgentGrantScopeEnum = "personal" | "team";
-export const MCPAgentGrantScopeEnum = /*@__PURE__*/ S.String;
+export const MCPAgentGrantScopeEnum = S.String;
 
 /** * `active` - Active * `paused` - Paused */
 export type MCPServiceAccountStatusEnum = "active" | "paused";
-export const MCPServiceAccountStatusEnum = /*@__PURE__*/ S.String;
+export const MCPServiceAccountStatusEnum = S.String;
 
 /** One agent's access to a gateway server, on behalf of one member. */
 export interface GatewayAgentAccess {
@@ -660,7 +660,7 @@ export const CreateMcpGatewayServiceAccountsAccessRequest =
   }) as any as S.Schema<CreateMcpGatewayServiceAccountsAccessRequest>;
 
 export type AgentKeyEnum = "support" | "scout" | "workflow";
-export const AgentKeyEnum = /*@__PURE__*/ S.String;
+export const AgentKeyEnum = S.String;
 
 /** Gateway servers configured for this agent. */
 export type MCPServiceAccountServerIdsList = Array<string>;
@@ -675,7 +675,7 @@ export type ConnectionStateEnum =
   | "needs_reauth"
   | "disabled"
   | "missing_credential";
-export const ConnectionStateEnum = /*@__PURE__*/ S.String;
+export const ConnectionStateEnum = S.String;
 
 /** A credential-safe summary of a server configured for an agent. */
 export interface MCPServiceAccountServer {
@@ -783,7 +783,7 @@ export const GetMcpGatewayAuditRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `auto` - Auto-approved * `approved` - Approved * `pending` - Awaiting approval * `blocked` - Blocked */
 export type MCPAuditDecisionEnum = "auto" | "approved" | "pending" | "blocked";
-export const MCPAuditDecisionEnum = /*@__PURE__*/ S.String;
+export const MCPAuditDecisionEnum = S.String;
 
 export interface AuditActorServiceAccount {
   /** Service account id. */
@@ -806,7 +806,7 @@ export const AuditActorServiceAccount = /*@__PURE__*/ S.suspend(() =>
 /** Scope of the agent grant the call used. Blank for member calls. * `personal` - Personal * `team` - Team */
 export type MCPAuditEventGrantScope = MCPAgentGrantScopeEnum | BlankEnum;
 export const MCPAuditEventGrantScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPAuditEventGrantScope>;
+  S.Unknown as any as S.Schema<MCPAuditEventGrantScope>;
 
 export interface MCPAuditEvent {
   id: string;
@@ -983,7 +983,7 @@ export type GetMcpGatewayServersToolRequestScopeType =
   | "team"
   | "member"
   | "agent";
-export const GetMcpGatewayServersToolRequestScopeType = /*@__PURE__*/ S.String;
+export const GetMcpGatewayServersToolRequestScopeType = S.String;
 
 export interface GetMcpGatewayServersToolRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1043,7 +1043,7 @@ export type ListMcpGatewayAuditRequestQuickFilter =
   | "agents"
   | "approvals"
   | "blocked";
-export const ListMcpGatewayAuditRequestQuickFilter = /*@__PURE__*/ S.String;
+export const ListMcpGatewayAuditRequestQuickFilter = S.String;
 
 export interface ListMcpGatewayAuditRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1307,7 +1307,7 @@ export const PaginatedMCPServiceAccountList = /*@__PURE__*/ S.suspend(() =>
 
 /** * `members` - members * `agents` - agents */
 export type AudienceEnum = "members" | "agents";
-export const AudienceEnum = /*@__PURE__*/ S.String;
+export const AudienceEnum = S.String;
 
 export interface McpGatewayConfigApplyPresetCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1339,14 +1339,14 @@ export type McpGatewayConfigUpdateSettingsCreateRequestMemberDefaultPreset =
   | MCPPolicyPresetEnum
   | BlankEnum;
 export const McpGatewayConfigUpdateSettingsCreateRequestMemberDefaultPreset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<McpGatewayConfigUpdateSettingsCreateRequestMemberDefaultPreset>;
+  S.Unknown as any as S.Schema<McpGatewayConfigUpdateSettingsCreateRequestMemberDefaultPreset>;
 
 /** Baseline preset for agents. * `allow` - Allow all * `user` - Member decides * `ask` - Ask for destructive * `block` - Block destructive */
 export type McpGatewayConfigUpdateSettingsCreateRequestAgentDefaultPreset =
   | MCPPolicyPresetEnum
   | BlankEnum;
 export const McpGatewayConfigUpdateSettingsCreateRequestAgentDefaultPreset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<McpGatewayConfigUpdateSettingsCreateRequestAgentDefaultPreset>;
+  S.Unknown as any as S.Schema<McpGatewayConfigUpdateSettingsCreateRequestAgentDefaultPreset>;
 
 export interface McpGatewayConfigUpdateSettingsCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

@@ -54,7 +54,7 @@ export type AccountRecommendedActionChainStepStatus =
   | "running"
   | "succeeded"
   | "failed";
-export const AccountRecommendedActionChainStepStatus = /*@__PURE__*/ S.String;
+export const AccountRecommendedActionChainStepStatus = S.String;
 
 export interface AccountRecommendedActionChainStep {
   /** The action definition key this step runs; new values may be added, so handle unknown actions gracefully */
@@ -156,7 +156,7 @@ export type RecommendedActionExecutionStatus =
   | "running"
   | "succeeded"
   | "failed";
-export const RecommendedActionExecutionStatus = /*@__PURE__*/ S.String;
+export const RecommendedActionExecutionStatus = S.String;
 
 export interface RecommendedActionExecution {
   /** The action definition key the step ran */
@@ -262,7 +262,7 @@ export const RunRecommendedActionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RunRecommendedActionRequest>;
 
 export type RunRecommendedActionResponseExecution = "redirect" | "executed";
-export const RunRecommendedActionResponseExecution = /*@__PURE__*/ S.String;
+export const RunRecommendedActionResponseExecution = S.String;
 
 export interface RunRecommendedActionResponse {
   chain_id: string;

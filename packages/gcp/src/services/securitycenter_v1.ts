@@ -76,7 +76,7 @@ export type GoogleCloudSecuritycenterV1ResourceValueConfigCloudProviderEnum =
   | "AMAZON_WEB_SERVICES"
   | "MICROSOFT_AZURE";
 export const GoogleCloudSecuritycenterV1ResourceValueConfigCloudProviderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudSecuritycenterV1SensitiveDataProtectionMappingMediumSensitivityMappingEnum =
   | "RESOURCE_VALUE_UNSPECIFIED"
@@ -85,7 +85,7 @@ export type GoogleCloudSecuritycenterV1SensitiveDataProtectionMappingMediumSensi
   | "LOW"
   | "NONE";
 export const GoogleCloudSecuritycenterV1SensitiveDataProtectionMappingMediumSensitivityMappingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudSecuritycenterV1SensitiveDataProtectionMappingHighSensitivityMappingEnum =
   | "RESOURCE_VALUE_UNSPECIFIED"
@@ -94,7 +94,7 @@ export type GoogleCloudSecuritycenterV1SensitiveDataProtectionMappingHighSensiti
   | "LOW"
   | "NONE";
 export const GoogleCloudSecuritycenterV1SensitiveDataProtectionMappingHighSensitivityMappingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping {
   mediumSensitivityMapping?:
@@ -125,7 +125,7 @@ export type GoogleCloudSecuritycenterV1ResourceValueConfigResourceValueEnum =
   | "LOW"
   | "NONE";
 export const GoogleCloudSecuritycenterV1ResourceValueConfigResourceValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -256,7 +256,7 @@ export type BulkMuteFindingsRequestMuteStateEnum =
   | "MUTE_STATE_UNSPECIFIED"
   | "MUTED"
   | "UNDEFINED";
-export const BulkMuteFindingsRequestMuteStateEnum = /*@__PURE__*/ S.String;
+export const BulkMuteFindingsRequestMuteStateEnum = S.String;
 
 export interface BulkMuteFindingsRequest {
   filter?: string;
@@ -453,16 +453,14 @@ export type EventThreatDetectionCustomModuleCloudProviderEnum =
   | "GOOGLE_CLOUD_PLATFORM"
   | "AMAZON_WEB_SERVICES"
   | "MICROSOFT_AZURE";
-export const EventThreatDetectionCustomModuleCloudProviderEnum =
-  /*@__PURE__*/ S.String;
+export const EventThreatDetectionCustomModuleCloudProviderEnum = S.String;
 
 export type EventThreatDetectionCustomModuleEnablementStateEnum =
   | "ENABLEMENT_STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED"
   | "INHERITED";
-export const EventThreatDetectionCustomModuleEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+export const EventThreatDetectionCustomModuleEnablementStateEnum = S.String;
 
 export interface EventThreatDetectionCustomModule {
   displayName?: string;
@@ -526,8 +524,7 @@ export type GoogleCloudSecuritycenterV1MuteConfigTypeEnum =
   | "MUTE_CONFIG_TYPE_UNSPECIFIED"
   | "STATIC"
   | "DYNAMIC";
-export const GoogleCloudSecuritycenterV1MuteConfigTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudSecuritycenterV1MuteConfigTypeEnum = S.String;
 
 export interface GoogleCloudSecuritycenterV1MuteConfig {
   expiryTime?: string;
@@ -638,7 +635,7 @@ export type GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleEnable
   | "DISABLED"
   | "INHERITED";
 export const GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleCloudProviderEnum =
   | "CLOUD_PROVIDER_UNSPECIFIED"
@@ -646,7 +643,7 @@ export type GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleCloudP
   | "AMAZON_WEB_SERVICES"
   | "MICROSOFT_AZURE";
 export const GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleCloudProviderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface Expr {
   expression?: string;
@@ -681,8 +678,7 @@ export type GoogleCloudSecuritycenterV1CustomConfigSeverityEnum =
   | "HIGH"
   | "MEDIUM"
   | "LOW";
-export const GoogleCloudSecuritycenterV1CustomConfigSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudSecuritycenterV1CustomConfigSeverityEnum = S.String;
 
 export interface GoogleCloudSecuritycenterV1Property {
   name?: string;
@@ -970,7 +966,7 @@ export const AffectedResources = /*@__PURE__*/ S.suspend(() =>
 export type ArtifactGuardPolicyTypeEnum =
   | "ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED"
   | "VULNERABILITY";
-export const ArtifactGuardPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const ArtifactGuardPolicyTypeEnum = S.String;
 
 export interface ArtifactGuardPolicy {
   type?: ArtifactGuardPolicyTypeEnum | (string & {});
@@ -1106,7 +1102,7 @@ export type DataFlowEventOperationEnum =
   | "READ"
   | "MOVE"
   | "COPY";
-export const DataFlowEventOperationEnum = /*@__PURE__*/ S.String;
+export const DataFlowEventOperationEnum = S.String;
 
 export interface DataFlowEvent {
   violatedLocation?: string;
@@ -1270,7 +1266,7 @@ export type MitreAttackAdditionalTechniquesItemEnum =
   | "REFLECTIVE_CODE_LOADING"
   | "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
   | "FINANCIAL_THEFT";
-export const MitreAttackAdditionalTechniquesItemEnum = /*@__PURE__*/ S.String;
+export const MitreAttackAdditionalTechniquesItemEnum = S.String;
 
 export type MitreAttackAdditionalTechniquesItemEnumList = Array<
   MitreAttackAdditionalTechniquesItemEnum | (string & {})
@@ -1296,7 +1292,7 @@ export type MitreAttackPrimaryTacticEnum =
   | "COMMAND_AND_CONTROL"
   | "EXFILTRATION"
   | "IMPACT";
-export const MitreAttackPrimaryTacticEnum = /*@__PURE__*/ S.String;
+export const MitreAttackPrimaryTacticEnum = S.String;
 
 export type MitreAttackAdditionalTacticsItemEnum =
   | "TACTIC_UNSPECIFIED"
@@ -1314,7 +1310,7 @@ export type MitreAttackAdditionalTacticsItemEnum =
   | "COMMAND_AND_CONTROL"
   | "EXFILTRATION"
   | "IMPACT";
-export const MitreAttackAdditionalTacticsItemEnum = /*@__PURE__*/ S.String;
+export const MitreAttackAdditionalTacticsItemEnum = S.String;
 
 export type MitreAttackAdditionalTacticsItemEnumList = Array<
   MitreAttackAdditionalTacticsItemEnum | (string & {})
@@ -1463,7 +1459,7 @@ export type MitreAttackPrimaryTechniquesItemEnum =
   | "REFLECTIVE_CODE_LOADING"
   | "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
   | "FINANCIAL_THEFT";
-export const MitreAttackPrimaryTechniquesItemEnum = /*@__PURE__*/ S.String;
+export const MitreAttackPrimaryTechniquesItemEnum = S.String;
 
 export type MitreAttackPrimaryTechniquesItemEnumList = Array<
   MitreAttackPrimaryTechniquesItemEnum | (string & {})
@@ -1497,7 +1493,7 @@ export type JobStateEnum =
   | "RUNNING"
   | "SUCCEEDED"
   | "FAILED";
-export const JobStateEnum = /*@__PURE__*/ S.String;
+export const JobStateEnum = S.String;
 
 export interface Job {
   location?: string;
@@ -1521,7 +1517,7 @@ export type ConnectionProtocolEnum =
   | "UDP"
   | "GRE"
   | "ESP";
-export const ConnectionProtocolEnum = /*@__PURE__*/ S.String;
+export const ConnectionProtocolEnum = S.String;
 
 export interface Connection {
   destinationIp?: string;
@@ -1601,7 +1597,7 @@ export const Agent = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Agent" }) as any as S.Schema<Agent>;
 
 export type IamBindingActionEnum = "ACTION_UNSPECIFIED" | "ADD" | "REMOVE";
-export const IamBindingActionEnum = /*@__PURE__*/ S.String;
+export const IamBindingActionEnum = S.String;
 
 export interface IamBinding {
   member?: string;
@@ -1640,7 +1636,7 @@ export type DataAccessEventOperationEnum =
   | "READ"
   | "MOVE"
   | "COPY";
-export const DataAccessEventOperationEnum = /*@__PURE__*/ S.String;
+export const DataAccessEventOperationEnum = S.String;
 
 export interface DataAccessEvent {
   operation?: DataAccessEventOperationEnum | (string & {});
@@ -1780,7 +1776,7 @@ export type AttackExposureStateEnum =
   | "STATE_UNSPECIFIED"
   | "CALCULATED"
   | "NOT_CALCULATED";
-export const AttackExposureStateEnum = /*@__PURE__*/ S.String;
+export const AttackExposureStateEnum = S.String;
 
 export interface AttackExposure {
   score?: number;
@@ -1878,7 +1874,7 @@ export const Securitycenter_ObjectList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<Securitycenter_ObjectList>;
 
 export type RoleKindEnum = "KIND_UNSPECIFIED" | "ROLE" | "CLUSTER_ROLE";
-export const RoleKindEnum = /*@__PURE__*/ S.String;
+export const RoleKindEnum = S.String;
 
 export interface Role {
   name?: string;
@@ -1903,7 +1899,7 @@ export type SubjectKindEnum =
   | "USER"
   | "SERVICEACCOUNT"
   | "GROUP";
-export const SubjectKindEnum = /*@__PURE__*/ S.String;
+export const SubjectKindEnum = S.String;
 
 export interface Subject {
   kind?: SubjectKindEnum | (string & {});
@@ -2016,7 +2012,7 @@ export type AiModelDeploymentPlatformEnum =
   | "GKE"
   | "GCE"
   | "FINE_TUNED_MODEL";
-export const AiModelDeploymentPlatformEnum = /*@__PURE__*/ S.String;
+export const AiModelDeploymentPlatformEnum = S.String;
 
 export interface AiModel {
   location?: string;
@@ -2060,7 +2056,7 @@ export type GroupMembershipGroupTypeEnum =
   | "GROUP_TYPE_UNSPECIFIED"
   | "GROUP_TYPE_TOXIC_COMBINATION"
   | "GROUP_TYPE_CHOKEPOINT";
-export const GroupMembershipGroupTypeEnum = /*@__PURE__*/ S.String;
+export const GroupMembershipGroupTypeEnum = S.String;
 
 export interface GroupMembership {
   groupId?: string;
@@ -2089,7 +2085,7 @@ export type SensitivityScoreScoreEnum =
   | "SENSITIVITY_UNKNOWN"
   | "SENSITIVITY_MODERATE"
   | "SENSITIVITY_HIGH";
-export const SensitivityScoreScoreEnum = /*@__PURE__*/ S.String;
+export const SensitivityScoreScoreEnum = S.String;
 
 export interface SensitivityScore {
   score?: SensitivityScoreScoreEnum | (string & {});
@@ -2124,7 +2120,7 @@ export type CloudDlpDataProfileParentTypeEnum =
   | "PARENT_TYPE_UNSPECIFIED"
   | "ORGANIZATION"
   | "PROJECT";
-export const CloudDlpDataProfileParentTypeEnum = /*@__PURE__*/ S.String;
+export const CloudDlpDataProfileParentTypeEnum = S.String;
 
 export interface CloudDlpDataProfile {
   dataProfile?: string;
@@ -2205,7 +2201,7 @@ export type FrameworkCategoryItemEnum =
   | "DATA_SECURITY"
   | "GOOGLE_BEST_PRACTICES"
   | "CUSTOM_FRAMEWORK";
-export const FrameworkCategoryItemEnum = /*@__PURE__*/ S.String;
+export const FrameworkCategoryItemEnum = S.String;
 
 export type FrameworkCategoryItemEnumList = Array<
   FrameworkCategoryItemEnum | (string & {})
@@ -2218,7 +2214,7 @@ export type FrameworkTypeEnum =
   | "FRAMEWORK_TYPE_UNSPECIFIED"
   | "FRAMEWORK_TYPE_BUILT_IN"
   | "FRAMEWORK_TYPE_CUSTOM";
-export const FrameworkTypeEnum = /*@__PURE__*/ S.String;
+export const FrameworkTypeEnum = S.String;
 
 export interface Control {
   controlName?: string;
@@ -2262,7 +2258,7 @@ export type CloudControlTypeEnum =
   | "CLOUD_CONTROL_TYPE_UNSPECIFIED"
   | "BUILT_IN"
   | "CUSTOM";
-export const CloudControlTypeEnum = /*@__PURE__*/ S.String;
+export const CloudControlTypeEnum = S.String;
 
 export interface CloudControl {
   policyType?: string;
@@ -2323,40 +2319,40 @@ export type CveImpactEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const CveImpactEnum = /*@__PURE__*/ S.String;
+export const CveImpactEnum = S.String;
 
 export type Cvssv3UserInteractionEnum =
   | "USER_INTERACTION_UNSPECIFIED"
   | "USER_INTERACTION_NONE"
   | "USER_INTERACTION_REQUIRED";
-export const Cvssv3UserInteractionEnum = /*@__PURE__*/ S.String;
+export const Cvssv3UserInteractionEnum = S.String;
 
 export type Cvssv3ConfidentialityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const Cvssv3ConfidentialityImpactEnum = /*@__PURE__*/ S.String;
+export const Cvssv3ConfidentialityImpactEnum = S.String;
 
 export type Cvssv3PrivilegesRequiredEnum =
   | "PRIVILEGES_REQUIRED_UNSPECIFIED"
   | "PRIVILEGES_REQUIRED_NONE"
   | "PRIVILEGES_REQUIRED_LOW"
   | "PRIVILEGES_REQUIRED_HIGH";
-export const Cvssv3PrivilegesRequiredEnum = /*@__PURE__*/ S.String;
+export const Cvssv3PrivilegesRequiredEnum = S.String;
 
 export type Cvssv3IntegrityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const Cvssv3IntegrityImpactEnum = /*@__PURE__*/ S.String;
+export const Cvssv3IntegrityImpactEnum = S.String;
 
 export type Cvssv3ScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "SCOPE_UNCHANGED"
   | "SCOPE_CHANGED";
-export const Cvssv3ScopeEnum = /*@__PURE__*/ S.String;
+export const Cvssv3ScopeEnum = S.String;
 
 export type Cvssv3AttackVectorEnum =
   | "ATTACK_VECTOR_UNSPECIFIED"
@@ -2364,20 +2360,20 @@ export type Cvssv3AttackVectorEnum =
   | "ATTACK_VECTOR_ADJACENT"
   | "ATTACK_VECTOR_LOCAL"
   | "ATTACK_VECTOR_PHYSICAL";
-export const Cvssv3AttackVectorEnum = /*@__PURE__*/ S.String;
+export const Cvssv3AttackVectorEnum = S.String;
 
 export type Cvssv3AttackComplexityEnum =
   | "ATTACK_COMPLEXITY_UNSPECIFIED"
   | "ATTACK_COMPLEXITY_LOW"
   | "ATTACK_COMPLEXITY_HIGH";
-export const Cvssv3AttackComplexityEnum = /*@__PURE__*/ S.String;
+export const Cvssv3AttackComplexityEnum = S.String;
 
 export type Cvssv3AvailabilityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const Cvssv3AvailabilityImpactEnum = /*@__PURE__*/ S.String;
+export const Cvssv3AvailabilityImpactEnum = S.String;
 
 export interface Cvssv3 {
   userInteraction?: Cvssv3UserInteractionEnum | (string & {});
@@ -2411,7 +2407,7 @@ export type CveExploitationActivityEnum =
   | "AVAILABLE"
   | "ANTICIPATED"
   | "NO_KNOWN";
-export const CveExploitationActivityEnum = /*@__PURE__*/ S.String;
+export const CveExploitationActivityEnum = S.String;
 
 export interface Reference {
   uri?: string;
@@ -2529,7 +2525,7 @@ export type DataRetentionDeletionEventEventTypeEnum =
   | "EVENT_TYPE_MAX_TTL_FROM_CREATION"
   | "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION"
   | "EVENT_TYPE_MIN_TTL_FROM_CREATION";
-export const DataRetentionDeletionEventEventTypeEnum = /*@__PURE__*/ S.String;
+export const DataRetentionDeletionEventEventTypeEnum = S.String;
 
 export interface DataRetentionDeletionEvent {
   dataObjectCount?: string;
@@ -2562,7 +2558,7 @@ export type FileOperationTypeEnum =
   | "RENAME"
   | "WRITE"
   | "EXECUTE";
-export const FileOperationTypeEnum = /*@__PURE__*/ S.String;
+export const FileOperationTypeEnum = S.String;
 
 export interface FileOperation {
   type?: FileOperationTypeEnum | (string & {});
@@ -2582,7 +2578,7 @@ export type FileFileLoadStateEnum =
   | "FILE_LOAD_STATE_UNSPECIFIED"
   | "LOADED_BY_PROCESS"
   | "NOT_LOADED_BY_PROCESS";
-export const FileFileLoadStateEnum = /*@__PURE__*/ S.String;
+export const FileFileLoadStateEnum = S.String;
 
 export interface DiskPath {
   relativePath?: string;
@@ -2683,7 +2679,7 @@ export type FindingSeverityEnum =
   | "HIGH"
   | "MEDIUM"
   | "LOW";
-export const FindingSeverityEnum = /*@__PURE__*/ S.String;
+export const FindingSeverityEnum = S.String;
 
 export interface SecurityPolicy {
   name?: string;
@@ -2853,7 +2849,7 @@ export type FindingMuteEnum =
   | "MUTED"
   | "UNMUTED"
   | "UNDEFINED";
-export const FindingMuteEnum = /*@__PURE__*/ S.String;
+export const FindingMuteEnum = S.String;
 
 export type FindingFindingClassEnum =
   | "FINDING_CLASS_UNSPECIFIED"
@@ -2868,7 +2864,7 @@ export type FindingFindingClassEnum =
   | "CHOKEPOINT"
   | "EXTERNAL_EXPOSURE"
   | "SECRET";
-export const FindingFindingClassEnum = /*@__PURE__*/ S.String;
+export const FindingFindingClassEnum = S.String;
 
 export interface Application {
   baseUri?: string;
@@ -2934,7 +2930,7 @@ export type IpRulesDirectionEnum =
   | "DIRECTION_UNSPECIFIED"
   | "INGRESS"
   | "EGRESS";
-export const IpRulesDirectionEnum = /*@__PURE__*/ S.String;
+export const IpRulesDirectionEnum = S.String;
 
 export type Allowed = Denied;
 export const Allowed = Denied;
@@ -2963,12 +2959,12 @@ export type DiscoveredWorkloadWorkloadTypeEnum =
   | "MCP_SERVER"
   | "AI_INFERENCE"
   | "AGENT";
-export const DiscoveredWorkloadWorkloadTypeEnum = /*@__PURE__*/ S.String;
+export const DiscoveredWorkloadWorkloadTypeEnum = S.String;
 
 export type DiscoveredWorkloadConfidenceEnum =
   | "CONFIDENCE_UNSPECIFIED"
   | "CONFIDENCE_HIGH";
-export const DiscoveredWorkloadConfidenceEnum = /*@__PURE__*/ S.String;
+export const DiscoveredWorkloadConfidenceEnum = S.String;
 
 export interface DiscoveredWorkload {
   workloadType?: DiscoveredWorkloadWorkloadTypeEnum | (string & {});
@@ -2994,7 +2990,7 @@ export type AgentDataAccessEventOperationEnum =
   | "READ"
   | "MOVE"
   | "COPY";
-export const AgentDataAccessEventOperationEnum = /*@__PURE__*/ S.String;
+export const AgentDataAccessEventOperationEnum = S.String;
 
 export interface AgentDataAccessEvent {
   principalSubject?: string;
@@ -3038,7 +3034,7 @@ export const Database = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
 
 export type FindingStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "INACTIVE";
-export const FindingStateEnum = /*@__PURE__*/ S.String;
+export const FindingStateEnum = S.String;
 
 export interface TicketInfo {
   assignee?: string;
@@ -3160,7 +3156,7 @@ export type ProcessSignatureSignatureTypeEnum =
   | "SIGNATURE_TYPE_UNSPECIFIED"
   | "SIGNATURE_TYPE_PROCESS"
   | "SIGNATURE_TYPE_FILE";
-export const ProcessSignatureSignatureTypeEnum = /*@__PURE__*/ S.String;
+export const ProcessSignatureSignatureTypeEnum = S.String;
 
 export interface Detection {
   percentPagesMatched?: number;
@@ -3232,7 +3228,7 @@ export type DetectorReferenceSeverityEnum =
   | "HIGH"
   | "MEDIUM"
   | "LOW";
-export const DetectorReferenceSeverityEnum = /*@__PURE__*/ S.String;
+export const DetectorReferenceSeverityEnum = S.String;
 
 export interface DetectorReference {
   recommendation?: string;
@@ -3349,7 +3345,7 @@ export type SecretStatusValidityEnum =
   | "SECRET_VALIDITY_FAILED"
   | "SECRET_VALIDITY_INVALID"
   | "SECRET_VALIDITY_VALID";
-export const SecretStatusValidityEnum = /*@__PURE__*/ S.String;
+export const SecretStatusValidityEnum = S.String;
 
 export interface SecretStatus {
   validity?: SecretStatusValidityEnum | (string & {});
@@ -3411,7 +3407,7 @@ export type StaticMuteStateEnum =
   | "MUTED"
   | "UNMUTED"
   | "UNDEFINED";
-export const StaticMuteStateEnum = /*@__PURE__*/ S.String;
+export const StaticMuteStateEnum = S.String;
 
 export interface StaticMute {
   applyTime?: string;
@@ -4149,14 +4145,14 @@ export type EffectiveEventThreatDetectionCustomModuleCloudProviderEnum =
   | "AMAZON_WEB_SERVICES"
   | "MICROSOFT_AZURE";
 export const EffectiveEventThreatDetectionCustomModuleCloudProviderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EffectiveEventThreatDetectionCustomModuleEnablementStateEnum =
   | "ENABLEMENT_STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
 export const EffectiveEventThreatDetectionCustomModuleEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EffectiveEventThreatDetectionCustomModule {
   displayName?: string;
@@ -4282,14 +4278,14 @@ export type GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomMod
   | "AMAZON_WEB_SERVICES"
   | "MICROSOFT_AZURE";
 export const GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModuleCloudProviderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModuleEnablementStateEnum =
   | "ENABLEMENT_STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
 export const GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModuleEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule {
   name?: string;
@@ -4364,7 +4360,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 export interface AuditLogConfig {
   logType?: AuditLogConfigLogTypeEnum | (string & {});
@@ -4471,7 +4467,7 @@ export type AssetDiscoveryConfigInclusionModeEnum =
   | "INCLUSION_MODE_UNSPECIFIED"
   | "INCLUDE_ONLY"
   | "EXCLUDE";
-export const AssetDiscoveryConfigInclusionModeEnum = /*@__PURE__*/ S.String;
+export const AssetDiscoveryConfigInclusionModeEnum = S.String;
 
 export interface AssetDiscoveryConfig {
   projectIds?: StringList;
@@ -4697,7 +4693,7 @@ export type SimulationCloudProviderEnum =
   | "GOOGLE_CLOUD_PLATFORM"
   | "AMAZON_WEB_SERVICES"
   | "MICROSOFT_AZURE";
-export const SimulationCloudProviderEnum = /*@__PURE__*/ S.String;
+export const SimulationCloudProviderEnum = S.String;
 
 export interface Simulation {
   resourceValueConfigsMetadata?: ResourceValueConfigMetadataList;
@@ -4737,7 +4733,7 @@ export type ValuedResourceResourceValueEnum =
   | "RESOURCE_VALUE_LOW"
   | "RESOURCE_VALUE_MEDIUM"
   | "RESOURCE_VALUE_HIGH";
-export const ValuedResourceResourceValueEnum = /*@__PURE__*/ S.String;
+export const ValuedResourceResourceValueEnum = S.String;
 
 export interface ValuedResource {
   resource?: string;
@@ -5429,7 +5425,7 @@ export type ListAssetsResultStateChangeEnum =
   | "ADDED"
   | "REMOVED"
   | "ACTIVE";
-export const ListAssetsResultStateChangeEnum = /*@__PURE__*/ S.String;
+export const ListAssetsResultStateChangeEnum = S.String;
 
 export interface ListAssetsResult {
   asset?: Asset;
@@ -5832,14 +5828,14 @@ export type ListFindingsResultStateChangeEnum =
   | "UNCHANGED"
   | "ADDED"
   | "REMOVED";
-export const ListFindingsResultStateChangeEnum = /*@__PURE__*/ S.String;
+export const ListFindingsResultStateChangeEnum = S.String;
 
 export type ResourceCloudProviderEnum =
   | "CLOUD_PROVIDER_UNSPECIFIED"
   | "GOOGLE_CLOUD_PLATFORM"
   | "AMAZON_WEB_SERVICES"
   | "MICROSOFT_AZURE";
-export const ResourceCloudProviderEnum = /*@__PURE__*/ S.String;
+export const ResourceCloudProviderEnum = S.String;
 
 export type GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo =
   Contact;
@@ -5860,7 +5856,7 @@ export type GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticalityT
   | "MEDIUM"
   | "LOW";
 export const GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticalityTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality {
   type?: GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticalityTypeEnum;
@@ -5884,7 +5880,7 @@ export type GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironmentT
   | "TEST"
   | "DEVELOPMENT";
 export const GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironmentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment {
   type?: GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironmentTypeEnum;
@@ -6014,7 +6010,7 @@ export type ResourcePathNodeNodeTypeEnum =
   | "AZURE_MANAGEMENT_GROUP"
   | "AZURE_SUBSCRIPTION"
   | "AZURE_RESOURCE_GROUP";
-export const ResourcePathNodeNodeTypeEnum = /*@__PURE__*/ S.String;
+export const ResourcePathNodeNodeTypeEnum = S.String;
 
 export interface ResourcePathNode {
   nodeType?: ResourcePathNodeNodeTypeEnum;
@@ -6253,7 +6249,7 @@ export type AttackStepNodeTypeEnum =
   | "NODE_TYPE_OR"
   | "NODE_TYPE_DEFENSE"
   | "NODE_TYPE_ATTACKER";
-export const AttackStepNodeTypeEnum = /*@__PURE__*/ S.String;
+export const AttackStepNodeTypeEnum = S.String;
 
 export interface AttackStepNode {
   labels?: StringMap;
@@ -7750,7 +7746,7 @@ export type SetMuteRequestMuteEnum =
   | "MUTED"
   | "UNMUTED"
   | "UNDEFINED";
-export const SetMuteRequestMuteEnum = /*@__PURE__*/ S.String;
+export const SetMuteRequestMuteEnum = S.String;
 
 export interface SetMuteRequest {
   mute?: SetMuteRequestMuteEnum | (string & {});
@@ -7828,7 +7824,7 @@ export type SetFindingStateRequestStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "INACTIVE";
-export const SetFindingStateRequestStateEnum = /*@__PURE__*/ S.String;
+export const SetFindingStateRequestStateEnum = S.String;
 
 export interface SetFindingStateRequest {
   startTime?: string;

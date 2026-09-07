@@ -176,7 +176,7 @@ export type UpdateCustomHostnameResponseOutputStatus =
   | "3_challenge_verified"
   | "4_origin_setup_completed"
   | "5_services_reconfigured";
-export const UpdateCustomHostnameResponseOutputStatus = /*@__PURE__*/ S.String;
+export const UpdateCustomHostnameResponseOutputStatus = S.String;
 
 export type JsonValueOutputCase0 = string | number | boolean;
 export const JsonValueOutputCase0 = /*@__PURE__*/ S.Unknown.pipe(
@@ -449,23 +449,19 @@ export type V1ApplyProjectAddonRequestAddonVariantCase0 =
   | "ci_48xlarge_optimized_cpu"
   | "ci_48xlarge_optimized_memory"
   | "ci_48xlarge_high_memory";
-export const V1ApplyProjectAddonRequestAddonVariantCase0 =
-  /*@__PURE__*/ S.String;
+export const V1ApplyProjectAddonRequestAddonVariantCase0 = S.String;
 
 export type V1ApplyProjectAddonRequestAddonVariantCase1 = "cd_default";
-export const V1ApplyProjectAddonRequestAddonVariantCase1 =
-  /*@__PURE__*/ S.String;
+export const V1ApplyProjectAddonRequestAddonVariantCase1 = S.String;
 
 export type V1ApplyProjectAddonRequestAddonVariantCase2 =
   | "pitr_7"
   | "pitr_14"
   | "pitr_28";
-export const V1ApplyProjectAddonRequestAddonVariantCase2 =
-  /*@__PURE__*/ S.String;
+export const V1ApplyProjectAddonRequestAddonVariantCase2 = S.String;
 
 export type V1ApplyProjectAddonRequestAddonVariantCase3 = "ipv4_default";
-export const V1ApplyProjectAddonRequestAddonVariantCase3 =
-  /*@__PURE__*/ S.String;
+export const V1ApplyProjectAddonRequestAddonVariantCase3 = S.String;
 
 export type V1ApplyProjectAddonRequestAddonVariant =
   | V1ApplyProjectAddonRequestAddonVariantCase0
@@ -488,7 +484,7 @@ export type V1ApplyProjectAddonRequestAddonType =
   | "auth_mfa_web_authn"
   | "log_drain"
   | "etl_pipeline";
-export const V1ApplyProjectAddonRequestAddonType = /*@__PURE__*/ S.String;
+export const V1ApplyProjectAddonRequestAddonType = S.String;
 
 export interface V1ApplyProjectAddonRequest {
   /** Project ref */
@@ -620,13 +616,13 @@ export type V1AuthorizeUserRequestResponseType =
   | "code"
   | "token"
   | "id_token token";
-export const V1AuthorizeUserRequestResponseType = /*@__PURE__*/ S.String;
+export const V1AuthorizeUserRequestResponseType = S.String;
 
 export type V1AuthorizeUserRequestCodeChallengeMethod =
   | "plain"
   | "sha256"
   | "S256";
-export const V1AuthorizeUserRequestCodeChallengeMethod = /*@__PURE__*/ S.String;
+export const V1AuthorizeUserRequestCodeChallengeMethod = S.String;
 
 export interface V1AuthorizeUserRequest {
   client_id: string;
@@ -746,7 +742,7 @@ export type BulkUpdateFunctionBodyItemStatus =
   | "ACTIVE"
   | "REMOVED"
   | "THROTTLED";
-export const BulkUpdateFunctionBodyItemStatus = /*@__PURE__*/ S.String;
+export const BulkUpdateFunctionBodyItemStatus = S.String;
 
 export interface BulkUpdateFunctionBodyItem {
   id: string;
@@ -804,8 +800,7 @@ export type BulkUpdateFunctionResponseOutputFunctionsItemStatus =
   | "ACTIVE"
   | "REMOVED"
   | "THROTTLED";
-export const BulkUpdateFunctionResponseOutputFunctionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const BulkUpdateFunctionResponseOutputFunctionsItemStatus = S.String;
 
 export interface BulkUpdateFunctionResponseOutputFunctionsItem {
   id: string;
@@ -965,7 +960,7 @@ export type V1CreateABranchRequestDesiredInstanceSize =
   | "48xlarge_optimized_memory"
   | "48xlarge_optimized_cpu"
   | "48xlarge_high_memory";
-export const V1CreateABranchRequestDesiredInstanceSize = /*@__PURE__*/ S.String;
+export const V1CreateABranchRequestDesiredInstanceSize = S.String;
 
 /** Release channel. If not provided, GA will be used. */
 export type V1CreateABranchRequestReleaseChannel =
@@ -975,11 +970,11 @@ export type V1CreateABranchRequestReleaseChannel =
   | "ga"
   | "withdrawn"
   | "preview";
-export const V1CreateABranchRequestReleaseChannel = /*@__PURE__*/ S.String;
+export const V1CreateABranchRequestReleaseChannel = S.String;
 
 /** Postgres engine version. If not provided, the latest version will be used. */
 export type V1CreateABranchRequestPostgresEngine = "15" | "17" | "17-oriole";
-export const V1CreateABranchRequestPostgresEngine = /*@__PURE__*/ S.String;
+export const V1CreateABranchRequestPostgresEngine = S.String;
 
 export type V1CreateABranchRequestSecretsMap = {
   [key: string]: string | undefined;
@@ -1040,7 +1035,7 @@ export type BranchResponseOutputStatus =
   | "MIGRATIONS_FAILED"
   | "FUNCTIONS_DEPLOYED"
   | "FUNCTIONS_FAILED";
-export const BranchResponseOutputStatus = /*@__PURE__*/ S.String;
+export const BranchResponseOutputStatus = S.String;
 
 export type BranchResponseOutputPreviewProjectStatus =
   | "INACTIVE"
@@ -1058,7 +1053,7 @@ export type BranchResponseOutputPreviewProjectStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const BranchResponseOutputPreviewProjectStatus = /*@__PURE__*/ S.String;
+export const BranchResponseOutputPreviewProjectStatus = S.String;
 
 export interface BranchResponseOutput {
   id: string;
@@ -1137,7 +1132,7 @@ export const OrganizationResponseV1Output = /*@__PURE__*/ S.suspend(() =>
 
 /** Subscription Plan is now set on organization level and is ignored in this request */
 export type V1CreateAProjectRequestPlan = "free" | "pro";
-export const V1CreateAProjectRequestPlan = /*@__PURE__*/ S.String;
+export const V1CreateAProjectRequestPlan = S.String;
 
 /** Region you want your server to reside in. Use region_selection instead. */
 export type V1CreateAProjectRequestRegion =
@@ -1159,11 +1154,10 @@ export type V1CreateAProjectRequestRegion =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const V1CreateAProjectRequestRegion = /*@__PURE__*/ S.String;
+export const V1CreateAProjectRequestRegion = S.String;
 
 export type V1CreateAProjectRequestRegionSelectionCase0Type = "specific";
-export const V1CreateAProjectRequestRegionSelectionCase0Type =
-  /*@__PURE__*/ S.String;
+export const V1CreateAProjectRequestRegionSelectionCase0Type = S.String;
 
 /** Specific region code. The codes supported are not a stable API, and should be retrieved from the /available-regions endpoint. */
 export type V1CreateAProjectRequestRegionSelectionCase0Code =
@@ -1185,8 +1179,7 @@ export type V1CreateAProjectRequestRegionSelectionCase0Code =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const V1CreateAProjectRequestRegionSelectionCase0Code =
-  /*@__PURE__*/ S.String;
+export const V1CreateAProjectRequestRegionSelectionCase0Code = S.String;
 
 export interface V1CreateAProjectRequestRegionSelectionCase0 {
   type: V1CreateAProjectRequestRegionSelectionCase0Type;
@@ -1204,16 +1197,14 @@ export const V1CreateAProjectRequestRegionSelectionCase0 =
   }) as any as S.Schema<V1CreateAProjectRequestRegionSelectionCase0>;
 
 export type V1CreateAProjectRequestRegionSelectionCase1Type = "smartGroup";
-export const V1CreateAProjectRequestRegionSelectionCase1Type =
-  /*@__PURE__*/ S.String;
+export const V1CreateAProjectRequestRegionSelectionCase1Type = S.String;
 
 /** The Smart Region Group's code. The codes supported are not a stable API, and should be retrieved from the /available-regions endpoint. */
 export type V1CreateAProjectRequestRegionSelectionCase1Code =
   | "americas"
   | "emea"
   | "apac";
-export const V1CreateAProjectRequestRegionSelectionCase1Code =
-  /*@__PURE__*/ S.String;
+export const V1CreateAProjectRequestRegionSelectionCase1Code = S.String;
 
 export interface V1CreateAProjectRequestRegionSelectionCase1 {
   type: V1CreateAProjectRequestRegionSelectionCase1Type;
@@ -1263,8 +1254,7 @@ export type V1CreateAProjectRequestDesiredInstanceSize =
   | "48xlarge_optimized_memory"
   | "48xlarge_optimized_cpu"
   | "48xlarge_high_memory";
-export const V1CreateAProjectRequestDesiredInstanceSize =
-  /*@__PURE__*/ S.String;
+export const V1CreateAProjectRequestDesiredInstanceSize = S.String;
 
 export interface V1CreateAProjectRequest {
   /** Database password */
@@ -1332,7 +1322,7 @@ export type V1ProjectResponseOutputStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const V1ProjectResponseOutputStatus = /*@__PURE__*/ S.String;
+export const V1ProjectResponseOutputStatus = S.String;
 
 export interface V1ProjectResponseOutput {
   /** Deprecated: Use `ref` instead. */
@@ -1368,7 +1358,7 @@ export const V1ProjectResponseOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** What type of provider will be created */
 export type V1CreateASsoProviderRequestType = "saml";
-export const V1CreateASsoProviderRequestType = /*@__PURE__*/ S.String;
+export const V1CreateASsoProviderRequestType = S.String;
 
 export type V1CreateASsoProviderRequestDomainsList = Array<string>;
 export const V1CreateASsoProviderRequestDomainsList = /*@__PURE__*/ S.Array(
@@ -1440,7 +1430,7 @@ export type V1CreateASsoProviderRequestNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const V1CreateASsoProviderRequestNameIdFormat = /*@__PURE__*/ S.String;
+export const V1CreateASsoProviderRequestNameIdFormat = S.String;
 
 export interface V1CreateASsoProviderRequest {
   /** Project ref */
@@ -1538,8 +1528,7 @@ export type CreateProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const CreateProviderResponseOutputSamlNameIdFormat =
-  /*@__PURE__*/ S.String;
+export const CreateProviderResponseOutputSamlNameIdFormat = S.String;
 
 export interface CreateProviderResponseOutputSaml {
   entity_id: string;
@@ -1626,14 +1615,14 @@ export type SigningKeyResponseOutputAlgorithm =
   | "ES256"
   | "RS256"
   | "HS256";
-export const SigningKeyResponseOutputAlgorithm = /*@__PURE__*/ S.String;
+export const SigningKeyResponseOutputAlgorithm = S.String;
 
 export type SigningKeyResponseOutputStatus =
   | "in_use"
   | "previously_used"
   | "revoked"
   | "standby";
-export const SigningKeyResponseOutputStatus = /*@__PURE__*/ S.String;
+export const SigningKeyResponseOutputStatus = S.String;
 
 export interface SigningKeyResponseOutput {
   id: string;
@@ -1692,7 +1681,7 @@ export const CreateRoleResponseOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRoleResponseOutput>;
 
 export type V1CreateProjectApiKeyRequestType = "publishable" | "secret";
-export const V1CreateProjectApiKeyRequestType = /*@__PURE__*/ S.String;
+export const V1CreateProjectApiKeyRequestType = S.String;
 
 export type V1CreateProjectApiKeyRequestSecretJwtTemplateMap = {
   [key: string]: unknown | undefined;
@@ -1731,7 +1720,7 @@ export const V1CreateProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1CreateProjectApiKeyRequest>;
 
 export type ApiKeyResponseOutputType = "legacy" | "publishable" | "secret";
-export const ApiKeyResponseOutputType = /*@__PURE__*/ S.String;
+export const ApiKeyResponseOutputType = S.String;
 
 export type ApiKeyResponseOutputSecretJwtTemplateMap = {
   [key: string]: unknown | undefined;
@@ -1815,20 +1804,19 @@ export type V1CreateProjectSigningKeyRequestAlgorithm =
   | "ES256"
   | "RS256"
   | "HS256";
-export const V1CreateProjectSigningKeyRequestAlgorithm = /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestAlgorithm = S.String;
 
 export type V1CreateProjectSigningKeyRequestStatus = "in_use" | "standby";
-export const V1CreateProjectSigningKeyRequestStatus = /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestStatus = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase0Use = "sig";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase0Use =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase0Use = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase0KeyOpsItem =
   | "sign"
   | "verify";
 export const V1CreateProjectSigningKeyRequestPrivateJwkCase0KeyOpsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase0KeyOpsList = Array<
   V1CreateProjectSigningKeyRequestPrivateJwkCase0KeyOpsItem | (string & {})
@@ -1839,16 +1827,13 @@ export const V1CreateProjectSigningKeyRequestPrivateJwkCase0KeyOpsList =
   ) as any as S.Schema<V1CreateProjectSigningKeyRequestPrivateJwkCase0KeyOpsList>;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase0Kty = "RSA";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase0Kty =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase0Kty = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase0Alg = "RS256";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase0Alg =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase0Alg = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase0E = "AQAB";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase0E =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase0E = S.String;
 
 export interface V1CreateProjectSigningKeyRequestPrivateJwkCase0 {
   kid?: string;
@@ -1891,14 +1876,13 @@ export const V1CreateProjectSigningKeyRequestPrivateJwkCase0 =
   }) as any as S.Schema<V1CreateProjectSigningKeyRequestPrivateJwkCase0>;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase1Use = "sig";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Use =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Use = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase1KeyOpsItem =
   | "sign"
   | "verify";
 export const V1CreateProjectSigningKeyRequestPrivateJwkCase1KeyOpsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase1KeyOpsList = Array<
   V1CreateProjectSigningKeyRequestPrivateJwkCase1KeyOpsItem | (string & {})
@@ -1909,16 +1893,13 @@ export const V1CreateProjectSigningKeyRequestPrivateJwkCase1KeyOpsList =
   ) as any as S.Schema<V1CreateProjectSigningKeyRequestPrivateJwkCase1KeyOpsList>;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase1Kty = "EC";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Kty =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Kty = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase1Alg = "ES256";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Alg =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Alg = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase1Crv = "P-256";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Crv =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase1Crv = S.String;
 
 export interface V1CreateProjectSigningKeyRequestPrivateJwkCase1 {
   kid?: string;
@@ -1953,14 +1934,13 @@ export const V1CreateProjectSigningKeyRequestPrivateJwkCase1 =
   }) as any as S.Schema<V1CreateProjectSigningKeyRequestPrivateJwkCase1>;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase2Use = "sig";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Use =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Use = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase2KeyOpsItem =
   | "sign"
   | "verify";
 export const V1CreateProjectSigningKeyRequestPrivateJwkCase2KeyOpsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase2KeyOpsList = Array<
   V1CreateProjectSigningKeyRequestPrivateJwkCase2KeyOpsItem | (string & {})
@@ -1971,16 +1951,13 @@ export const V1CreateProjectSigningKeyRequestPrivateJwkCase2KeyOpsList =
   ) as any as S.Schema<V1CreateProjectSigningKeyRequestPrivateJwkCase2KeyOpsList>;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase2Kty = "OKP";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Kty =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Kty = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase2Alg = "EdDSA";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Alg =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Alg = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase2Crv = "Ed25519";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Crv =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase2Crv = S.String;
 
 export interface V1CreateProjectSigningKeyRequestPrivateJwkCase2 {
   kid?: string;
@@ -2013,14 +1990,13 @@ export const V1CreateProjectSigningKeyRequestPrivateJwkCase2 =
   }) as any as S.Schema<V1CreateProjectSigningKeyRequestPrivateJwkCase2>;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase3Use = "sig";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase3Use =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase3Use = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase3KeyOpsItem =
   | "sign"
   | "verify";
 export const V1CreateProjectSigningKeyRequestPrivateJwkCase3KeyOpsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase3KeyOpsList = Array<
   V1CreateProjectSigningKeyRequestPrivateJwkCase3KeyOpsItem | (string & {})
@@ -2031,12 +2007,10 @@ export const V1CreateProjectSigningKeyRequestPrivateJwkCase3KeyOpsList =
   ) as any as S.Schema<V1CreateProjectSigningKeyRequestPrivateJwkCase3KeyOpsList>;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase3Kty = "oct";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase3Kty =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase3Kty = S.String;
 
 export type V1CreateProjectSigningKeyRequestPrivateJwkCase3Alg = "HS256";
-export const V1CreateProjectSigningKeyRequestPrivateJwkCase3Alg =
-  /*@__PURE__*/ S.String;
+export const V1CreateProjectSigningKeyRequestPrivateJwkCase3Alg = S.String;
 
 export interface V1CreateProjectSigningKeyRequestPrivateJwkCase3 {
   kid?: string;
@@ -2195,7 +2169,7 @@ export type V1RestorePointResponseStatus =
   | "PENDING"
   | "REMOVED"
   | "FAILED";
-export const V1RestorePointResponseStatus = /*@__PURE__*/ S.String;
+export const V1RestorePointResponseStatus = S.String;
 
 export interface V1RestorePointResponse {
   name: string;
@@ -2259,7 +2233,7 @@ export const V1DeleteABranchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1DeleteABranchRequest>;
 
 export type BranchDeleteResponseOutputMessage = "ok";
-export const BranchDeleteResponseOutputMessage = /*@__PURE__*/ S.String;
+export const BranchDeleteResponseOutputMessage = S.String;
 
 export interface BranchDeleteResponseOutput {
   message: BranchDeleteResponseOutputMessage;
@@ -2412,8 +2386,7 @@ export type DeleteProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const DeleteProviderResponseOutputSamlNameIdFormat =
-  /*@__PURE__*/ S.String;
+export const DeleteProviderResponseOutputSamlNameIdFormat = S.String;
 
 export interface DeleteProviderResponseOutputSaml {
   entity_id: string;
@@ -2568,7 +2541,7 @@ export const V1DeleteLoginRolesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1DeleteLoginRolesRequest>;
 
 export type DeleteRolesResponseOutputMessage = "ok";
-export const DeleteRolesResponseOutputMessage = /*@__PURE__*/ S.String;
+export const DeleteRolesResponseOutputMessage = S.String;
 
 export interface DeleteRolesResponseOutput {
   message: DeleteRolesResponseOutputMessage;
@@ -2758,7 +2731,7 @@ export type DeployFunctionResponseOutputStatus =
   | "ACTIVE"
   | "REMOVED"
   | "THROTTLED";
-export const DeployFunctionResponseOutputStatus = /*@__PURE__*/ S.String;
+export const DeployFunctionResponseOutputStatus = S.String;
 
 export interface DeployFunctionResponseOutput {
   id: string;
@@ -2899,7 +2872,7 @@ export type V1ExchangeOauthTokenRequestGrantType =
   | "authorization_code"
   | "refresh_token"
   | "urn:ietf:params:oauth:grant-type:jwt-bearer";
-export const V1ExchangeOauthTokenRequestGrantType = /*@__PURE__*/ S.String;
+export const V1ExchangeOauthTokenRequestGrantType = S.String;
 
 export interface V1ExchangeOauthTokenRequest {
   grant_type?: V1ExchangeOauthTokenRequestGrantType | (string & {});
@@ -2940,7 +2913,7 @@ export const V1ExchangeOauthTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1ExchangeOauthTokenRequest>;
 
 export type OAuthTokenResponseOutputTokenType = "Bearer";
-export const OAuthTokenResponseOutputTokenType = /*@__PURE__*/ S.String;
+export const OAuthTokenResponseOutputTokenType = S.String;
 
 export interface OAuthTokenResponseOutput {
   access_token: T.Sensitive;
@@ -3045,7 +3018,7 @@ export type BranchDetailResponseOutputStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const BranchDetailResponseOutputStatus = /*@__PURE__*/ S.String;
+export const BranchDetailResponseOutputStatus = S.String;
 
 export interface BranchDetailResponseOutput {
   ref: string;
@@ -3105,7 +3078,7 @@ export type ActionRunResponseOutputRunStepsItemName =
   | "migrate"
   | "seed"
   | "deploy";
-export const ActionRunResponseOutputRunStepsItemName = /*@__PURE__*/ S.String;
+export const ActionRunResponseOutputRunStepsItemName = S.String;
 
 export type ActionRunResponseOutputRunStepsItemStatus =
   | "CREATED"
@@ -3115,7 +3088,7 @@ export type ActionRunResponseOutputRunStepsItemStatus =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const ActionRunResponseOutputRunStepsItemStatus = /*@__PURE__*/ S.String;
+export const ActionRunResponseOutputRunStepsItemStatus = S.String;
 
 export interface ActionRunResponseOutputRunStepsItem {
   name: ActionRunResponseOutputRunStepsItemName;
@@ -3218,7 +3191,7 @@ export type FunctionSlugResponseOutputStatus =
   | "ACTIVE"
   | "REMOVED"
   | "THROTTLED";
-export const FunctionSlugResponseOutputStatus = /*@__PURE__*/ S.String;
+export const FunctionSlugResponseOutputStatus = S.String;
 
 export interface FunctionSlugResponseOutput {
   id: string;
@@ -3286,8 +3259,7 @@ export type V1GetAllProjectsForOrganizationRequestSort =
   | "name_desc"
   | "created_asc"
   | "created_desc";
-export const V1GetAllProjectsForOrganizationRequestSort =
-  /*@__PURE__*/ S.String;
+export const V1GetAllProjectsForOrganizationRequestSort = S.String;
 
 export interface V1GetAllProjectsForOrganizationRequest {
   /** Organization slug */
@@ -3341,8 +3313,7 @@ export type OrganizationProjectsResponseOutputProjectsItemStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const OrganizationProjectsResponseOutputProjectsItemStatus =
-  /*@__PURE__*/ S.String;
+export const OrganizationProjectsResponseOutputProjectsItemStatus = S.String;
 
 export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize =
   | "pico"
@@ -3366,7 +3337,7 @@ export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComp
   | "48xlarge_optimized_cpu"
   | "48xlarge_high_memory";
 export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus =
   | "ACTIVE_HEALTHY"
@@ -3382,19 +3353,19 @@ export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus =
   | "RESTARTING"
   | "RESIZING";
 export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemType =
   | "PRIMARY"
   | "READ_REPLICA";
 export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType =
   | "gp3"
   | "io2";
 export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationProjectsResponseOutputProjectsItemDatabasesItem {
   infra_compute_size?: OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize;
@@ -3573,14 +3544,13 @@ export type V1OrganizationSlugResponseOutputPlan =
   | "team"
   | "enterprise"
   | "platform";
-export const V1OrganizationSlugResponseOutputPlan = /*@__PURE__*/ S.String;
+export const V1OrganizationSlugResponseOutputPlan = S.String;
 
 export type V1OrganizationSlugResponseOutputOptInTagsItem =
   | "AI_SQL_GENERATOR_OPT_IN"
   | "AI_DATA_GENERATOR_OPT_IN"
   | "AI_LOG_GENERATOR_OPT_IN";
-export const V1OrganizationSlugResponseOutputOptInTagsItem =
-  /*@__PURE__*/ S.String;
+export const V1OrganizationSlugResponseOutputOptInTagsItem = S.String;
 
 export type V1OrganizationSlugResponseOutputOptInTagsList =
   Array<V1OrganizationSlugResponseOutputOptInTagsItem>;
@@ -3597,7 +3567,7 @@ export type V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem =
   | "withdrawn"
   | "preview";
 export const V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type V1OrganizationSlugResponseOutputAllowedReleaseChannelsList =
   Array<V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem>;
@@ -3638,14 +3608,14 @@ export const V1GetASnippetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1GetASnippetRequest>;
 
 export type SnippetResponseOutputType = "sql";
-export const SnippetResponseOutputType = /*@__PURE__*/ S.String;
+export const SnippetResponseOutputType = S.String;
 
 export type SnippetResponseOutputVisibility =
   | "user"
   | "project"
   | "org"
   | "public";
-export const SnippetResponseOutputVisibility = /*@__PURE__*/ S.String;
+export const SnippetResponseOutputVisibility = S.String;
 
 export interface SnippetResponseOutputProject {
   id: number;
@@ -3810,7 +3780,7 @@ export type GetProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const GetProviderResponseOutputSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const GetProviderResponseOutputSamlNameIdFormat = S.String;
 
 export interface GetProviderResponseOutputSaml {
   entity_id: string;
@@ -3880,21 +3850,19 @@ export const V1GetAuthServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
 export type AuthConfigResponseOutputDbMaxPoolSizeUnit =
   | "connections"
   | "percent";
-export const AuthConfigResponseOutputDbMaxPoolSizeUnit = /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputDbMaxPoolSizeUnit = S.String;
 
 export type AuthConfigResponseOutputPasswordRequiredCharacters =
   | "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
   | "abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
   | "abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789:!@#$%^&*()_+-=[]{};'\\\\:\"|<>?,./`~"
   | "";
-export const AuthConfigResponseOutputPasswordRequiredCharacters =
-  /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputPasswordRequiredCharacters = S.String;
 
 export type AuthConfigResponseOutputSecurityCaptchaProvider =
   | "turnstile"
   | "hcaptcha";
-export const AuthConfigResponseOutputSecurityCaptchaProvider =
-  /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputSecurityCaptchaProvider = S.String;
 
 export type AuthConfigResponseOutputSmsProvider =
   | "messagebird"
@@ -3902,7 +3870,7 @@ export type AuthConfigResponseOutputSmsProvider =
   | "twilio"
   | "twilio_verify"
   | "vonage";
-export const AuthConfigResponseOutputSmsProvider = /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputSmsProvider = S.String;
 
 export interface AuthConfigResponseOutput {
   api_max_request_duration: number | null;
@@ -4413,7 +4381,7 @@ export type V1GetAvailableRegionsRequestContinent =
   | "AS"
   | "OC"
   | "AN";
-export const V1GetAvailableRegionsRequestContinent = /*@__PURE__*/ S.String;
+export const V1GetAvailableRegionsRequestContinent = S.String;
 
 export type V1GetAvailableRegionsRequestDesiredInstanceSize =
   | "nano"
@@ -4435,8 +4403,7 @@ export type V1GetAvailableRegionsRequestDesiredInstanceSize =
   | "48xlarge_optimized_memory"
   | "48xlarge_optimized_cpu"
   | "48xlarge_high_memory";
-export const V1GetAvailableRegionsRequestDesiredInstanceSize =
-  /*@__PURE__*/ S.String;
+export const V1GetAvailableRegionsRequestDesiredInstanceSize = S.String;
 
 export interface V1GetAvailableRegionsRequest {
   /** Slug of your organization */
@@ -4468,12 +4435,10 @@ export type RegionsInfoOutputRecommendationsSmartGroupCode =
   | "americas"
   | "emea"
   | "apac";
-export const RegionsInfoOutputRecommendationsSmartGroupCode =
-  /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSmartGroupCode = S.String;
 
 export type RegionsInfoOutputRecommendationsSmartGroupType = "smartGroup";
-export const RegionsInfoOutputRecommendationsSmartGroupType =
-  /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSmartGroupType = S.String;
 
 export interface RegionsInfoOutputRecommendationsSmartGroup {
   name: string;
@@ -4510,25 +4475,21 @@ export type RegionsInfoOutputRecommendationsSpecificItemCode =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const RegionsInfoOutputRecommendationsSpecificItemCode =
-  /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSpecificItemCode = S.String;
 
 export type RegionsInfoOutputRecommendationsSpecificItemType = "specific";
-export const RegionsInfoOutputRecommendationsSpecificItemType =
-  /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSpecificItemType = S.String;
 
 export type RegionsInfoOutputRecommendationsSpecificItemProvider =
   | "AWS"
   | "AWS_K8S"
   | "AWS_NIMBUS";
-export const RegionsInfoOutputRecommendationsSpecificItemProvider =
-  /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSpecificItemProvider = S.String;
 
 export type RegionsInfoOutputRecommendationsSpecificItemStatus =
   | "capacity"
   | "other";
-export const RegionsInfoOutputRecommendationsSpecificItemStatus =
-  /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSpecificItemStatus = S.String;
 
 export interface RegionsInfoOutputRecommendationsSpecificItem {
   name: string;
@@ -4574,10 +4535,10 @@ export type RegionsInfoOutputAllSmartGroupItemCode =
   | "americas"
   | "emea"
   | "apac";
-export const RegionsInfoOutputAllSmartGroupItemCode = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSmartGroupItemCode = S.String;
 
 export type RegionsInfoOutputAllSmartGroupItemType = "smartGroup";
-export const RegionsInfoOutputAllSmartGroupItemType = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSmartGroupItemType = S.String;
 
 export interface RegionsInfoOutputAllSmartGroupItem {
   name: string;
@@ -4619,19 +4580,19 @@ export type RegionsInfoOutputAllSpecificItemCode =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const RegionsInfoOutputAllSpecificItemCode = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemCode = S.String;
 
 export type RegionsInfoOutputAllSpecificItemType = "specific";
-export const RegionsInfoOutputAllSpecificItemType = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemType = S.String;
 
 export type RegionsInfoOutputAllSpecificItemProvider =
   | "AWS"
   | "AWS_K8S"
   | "AWS_NIMBUS";
-export const RegionsInfoOutputAllSpecificItemProvider = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemProvider = S.String;
 
 export type RegionsInfoOutputAllSpecificItemStatus = "capacity" | "other";
-export const RegionsInfoOutputAllSpecificItemStatus = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemStatus = S.String;
 
 export interface RegionsInfoOutputAllSpecificItem {
   name: string;
@@ -4732,7 +4693,7 @@ export const V1GetDatabaseDiskRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1GetDatabaseDiskRequest>;
 
 export type DiskResponseOutputAttributesCase0Type = "gp3";
-export const DiskResponseOutputAttributesCase0Type = /*@__PURE__*/ S.String;
+export const DiskResponseOutputAttributesCase0Type = S.String;
 
 export interface DiskResponseOutputAttributesCase0 {
   iops: number;
@@ -4752,7 +4713,7 @@ export const DiskResponseOutputAttributesCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiskResponseOutputAttributesCase0>;
 
 export type DiskResponseOutputAttributesCase1Type = "io2";
-export const DiskResponseOutputAttributesCase1Type = /*@__PURE__*/ S.String;
+export const DiskResponseOutputAttributesCase1Type = S.String;
 
 export interface DiskResponseOutputAttributesCase1 {
   iops: number;
@@ -4918,8 +4879,7 @@ export const V1GetJitAccessConfigRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1GetJitAccessConfigRequest>;
 
 export type V1GetJitAccessConfigResponseBodyCase0State = "enabled" | "disabled";
-export const V1GetJitAccessConfigResponseBodyCase0State =
-  /*@__PURE__*/ S.String;
+export const V1GetJitAccessConfigResponseBodyCase0State = S.String;
 
 export interface V1GetJitAccessConfigResponseBodyCase0 {
   state: V1GetJitAccessConfigResponseBodyCase0State;
@@ -4940,8 +4900,7 @@ export type V1GetJitAccessConfigResponseBodyCase1UnavailableReason =
   | "postgres_upgrade_required"
   | "ssl_enforcement_required"
   | "temporarily_unavailable";
-export const V1GetJitAccessConfigResponseBodyCase1UnavailableReason =
-  /*@__PURE__*/ S.String;
+export const V1GetJitAccessConfigResponseBodyCase1UnavailableReason = S.String;
 
 export interface V1GetJitAccessConfigResponseBodyCase1 {
   state: string;
@@ -5013,8 +4972,7 @@ export const V1GetNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworkRestrictionsResponseOutputEntitlement =
   | "disallowed"
   | "allowed";
-export const NetworkRestrictionsResponseOutputEntitlement =
-  /*@__PURE__*/ S.String;
+export const NetworkRestrictionsResponseOutputEntitlement = S.String;
 
 export type NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList =
   Array<string>;
@@ -5083,7 +5041,7 @@ export const NetworkRestrictionsResponseOutputOldConfig =
   }) as any as S.Schema<NetworkRestrictionsResponseOutputOldConfig>;
 
 export type NetworkRestrictionsResponseOutputStatus = "stored" | "applied";
-export const NetworkRestrictionsResponseOutputStatus = /*@__PURE__*/ S.String;
+export const NetworkRestrictionsResponseOutputStatus = S.String;
 
 export interface NetworkRestrictionsResponseOutput {
   entitlement: NetworkRestrictionsResponseOutputEntitlement;
@@ -5193,14 +5151,14 @@ export type V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey =
   | "api.members.invitations"
   | "api.members.roles";
 export const V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type V1ListEntitlementsResponseOutputEntitlementsItemFeatureType =
   | "boolean"
   | "numeric"
   | "set";
 export const V1ListEntitlementsResponseOutputEntitlementsItemFeatureType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface V1ListEntitlementsResponseOutputEntitlementsItemFeature {
   key: V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey;
@@ -5220,8 +5178,7 @@ export type V1ListEntitlementsResponseOutputEntitlementsItemType =
   | "boolean"
   | "numeric"
   | "set";
-export const V1ListEntitlementsResponseOutputEntitlementsItemType =
-  /*@__PURE__*/ S.String;
+export const V1ListEntitlementsResponseOutputEntitlementsItemType = S.String;
 
 export interface V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0 {
   enabled: boolean;
@@ -5432,7 +5389,7 @@ export type OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan 
   | "enterprise"
   | "platform";
 export const OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan =
   | "free"
@@ -5441,7 +5398,7 @@ export type OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan 
   | "enterprise"
   | "platform";
 export const OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OrganizationProjectClaimResponseOutputPreview {
   valid: boolean;
@@ -5538,10 +5495,10 @@ export const V1GetPoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
 export type SupavisorConfigResponseOutputDatabaseType =
   | "PRIMARY"
   | "READ_REPLICA";
-export const SupavisorConfigResponseOutputDatabaseType = /*@__PURE__*/ S.String;
+export const SupavisorConfigResponseOutputDatabaseType = S.String;
 
 export type SupavisorConfigResponseOutputPoolMode = "transaction" | "session";
-export const SupavisorConfigResponseOutputPoolMode = /*@__PURE__*/ S.String;
+export const SupavisorConfigResponseOutputPoolMode = S.String;
 
 export interface SupavisorConfigResponseOutput {
   identifier: string;
@@ -5612,8 +5569,7 @@ export type PostgresConfigResponseOutputSessionReplicationRole =
   | "origin"
   | "replica"
   | "local";
-export const PostgresConfigResponseOutputSessionReplicationRole =
-  /*@__PURE__*/ S.String;
+export const PostgresConfigResponseOutputSessionReplicationRole = S.String;
 
 export interface PostgresConfigResponseOutput {
   effective_cache_size?: string;
@@ -5774,7 +5730,7 @@ export type ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChann
   | "withdrawn"
   | "preview";
 export const ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion =
   | "13"
@@ -5783,7 +5739,7 @@ export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPost
   | "17"
   | "17-oriole";
 export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel =
   | "internal"
@@ -5793,7 +5749,7 @@ export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemRele
   | "withdrawn"
   | "preview";
 export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem {
   postgres_version: ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion;
@@ -5855,7 +5811,7 @@ export const ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternal
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type =
   "objects_depending_on_pg_cron";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList =
   Array<string>;
@@ -5883,7 +5839,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type =
   "indexes_referencing_ll_to_earth";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type;
@@ -5907,7 +5863,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type =
   "function_using_obsolete_lang";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type;
@@ -5931,7 +5887,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type =
   "unsupported_extension";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type;
@@ -5951,7 +5907,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type =
   "unsupported_fdw_handler";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type;
@@ -5973,7 +5929,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type =
   "unlogged_table_with_persistent_sequence";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type;
@@ -5997,17 +5953,17 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type =
   "user_defined_objects_in_internal_schemas";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0 =
   "table";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1 =
   "function";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType =
   | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0
@@ -6038,7 +5994,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type =
   "active_replication_slot";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type;
@@ -6058,7 +6014,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type =
   "x86_architecture";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type;
@@ -6076,7 +6032,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8 =
 export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type =
   "project_hibernating";
 export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9 {
   type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type;
@@ -6128,7 +6084,7 @@ export const ProjectUpgradeEligibilityResponseOutputValidationErrorsList =
 export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type =
   "pg_graphql_introspection_change";
 export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase0 {
   type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type;
@@ -6145,7 +6101,7 @@ export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase0 =
 export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type =
   "ltree_reindex_required";
 export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase1 {
   type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type;
@@ -6162,7 +6118,7 @@ export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase1 =
 export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type =
   "operator_estimator_gate";
 export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase2 {
   type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type;
@@ -6179,7 +6135,7 @@ export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase2 =
 export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type =
   "btree_gist_nan_reindex";
 export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase3 {
   type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type;
@@ -6285,7 +6241,7 @@ export type DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError =
   | "8_upgrade_completion_failed"
   | "9_post_physical_backup_failed";
 export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress =
   | "0_requested"
@@ -6300,7 +6256,7 @@ export type DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress =
   | "9_completed_upgrade"
   | "10_completed_post_physical_backup";
 export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus {
   initiated_at: string;
@@ -6391,7 +6347,7 @@ export type V1ProjectWithDatabaseResponseOutputStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const V1ProjectWithDatabaseResponseOutputStatus = /*@__PURE__*/ S.String;
+export const V1ProjectWithDatabaseResponseOutputStatus = S.String;
 
 export interface V1ProjectWithDatabaseResponseOutputDatabase {
   /** Database host */
@@ -6574,8 +6530,7 @@ export type V1GetProjectFunctionCombinedStatsRequestInterval =
   | "1hr"
   | "3hr"
   | "1day";
-export const V1GetProjectFunctionCombinedStatsRequestInterval =
-  /*@__PURE__*/ S.String;
+export const V1GetProjectFunctionCombinedStatsRequestInterval = S.String;
 
 export interface V1GetProjectFunctionCombinedStatsRequest {
   /** Project ref */
@@ -6747,7 +6702,7 @@ export type V1PgbouncerConfigResponseOutputPoolMode =
   | "transaction"
   | "session"
   | "statement";
-export const V1PgbouncerConfigResponseOutputPoolMode = /*@__PURE__*/ S.String;
+export const V1PgbouncerConfigResponseOutputPoolMode = S.String;
 
 export interface V1PgbouncerConfigResponseOutput {
   default_pool_size?: number;
@@ -6819,15 +6774,14 @@ export type SigningKeysResponseOutputKeysItemAlgorithm =
   | "ES256"
   | "RS256"
   | "HS256";
-export const SigningKeysResponseOutputKeysItemAlgorithm =
-  /*@__PURE__*/ S.String;
+export const SigningKeysResponseOutputKeysItemAlgorithm = S.String;
 
 export type SigningKeysResponseOutputKeysItemStatus =
   | "in_use"
   | "previously_used"
   | "revoked"
   | "standby";
-export const SigningKeysResponseOutputKeysItemStatus = /*@__PURE__*/ S.String;
+export const SigningKeysResponseOutputKeysItemStatus = S.String;
 
 export interface SigningKeysResponseOutputKeysItem {
   id: string;
@@ -6895,7 +6849,7 @@ export type V1GetProjectUsageApiCountRequestInterval =
   | "1day"
   | "3day"
   | "7day";
-export const V1GetProjectUsageApiCountRequestInterval = /*@__PURE__*/ S.String;
+export const V1GetProjectUsageApiCountRequestInterval = S.String;
 
 export interface V1GetProjectUsageApiCountRequest {
   /** Project ref */
@@ -7207,8 +7161,7 @@ export type V1GetServicesHealthRequestServicesCase1Item =
   | "rest"
   | "storage"
   | "pg_bouncer";
-export const V1GetServicesHealthRequestServicesCase1Item =
-  /*@__PURE__*/ S.String;
+export const V1GetServicesHealthRequestServicesCase1Item = S.String;
 
 /** Array of enums. */
 export type V1GetServicesHealthRequestServicesCase1List = Array<
@@ -7254,17 +7207,16 @@ export type V1ServiceHealthResponseOutputName =
   | "rest"
   | "storage"
   | "pg_bouncer";
-export const V1ServiceHealthResponseOutputName = /*@__PURE__*/ S.String;
+export const V1ServiceHealthResponseOutputName = S.String;
 
 export type V1ServiceHealthResponseOutputStatus =
   | "COMING_UP"
   | "ACTIVE_HEALTHY"
   | "UNHEALTHY";
-export const V1ServiceHealthResponseOutputStatus = /*@__PURE__*/ S.String;
+export const V1ServiceHealthResponseOutputStatus = S.String;
 
 export type V1ServiceHealthResponseOutputInfoCase0Name = "GoTrue";
-export const V1ServiceHealthResponseOutputInfoCase0Name =
-  /*@__PURE__*/ S.String;
+export const V1ServiceHealthResponseOutputInfoCase0Name = S.String;
 
 export interface V1ServiceHealthResponseOutputInfoCase0 {
   name: V1ServiceHealthResponseOutputInfoCase0Name;
@@ -7505,8 +7457,7 @@ export const StorageConfigResponseOutputCapabilities = /*@__PURE__*/ S.suspend(
 export type StorageConfigResponseOutputExternalUpstreamTarget =
   | "main"
   | "canary";
-export const StorageConfigResponseOutputExternalUpstreamTarget =
-  /*@__PURE__*/ S.String;
+export const StorageConfigResponseOutputExternalUpstreamTarget = S.String;
 
 export interface StorageConfigResponseOutputExternal {
   upstreamTarget: StorageConfigResponseOutputExternalUpstreamTarget;
@@ -7560,7 +7511,7 @@ export type VanitySubdomainConfigResponseOutputStatus =
   | "not-used"
   | "custom-domain-used"
   | "active";
-export const VanitySubdomainConfigResponseOutputStatus = /*@__PURE__*/ S.String;
+export const VanitySubdomainConfigResponseOutputStatus = S.String;
 
 export interface VanitySubdomainConfigResponseOutput {
   status: VanitySubdomainConfigResponseOutputStatus;
@@ -7776,8 +7727,7 @@ export type ListActionRunResponseOutputItemRunStepsItemName =
   | "migrate"
   | "seed"
   | "deploy";
-export const ListActionRunResponseOutputItemRunStepsItemName =
-  /*@__PURE__*/ S.String;
+export const ListActionRunResponseOutputItemRunStepsItemName = S.String;
 
 export type ListActionRunResponseOutputItemRunStepsItemStatus =
   | "CREATED"
@@ -7787,8 +7737,7 @@ export type ListActionRunResponseOutputItemRunStepsItemStatus =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const ListActionRunResponseOutputItemRunStepsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListActionRunResponseOutputItemRunStepsItemStatus = S.String;
 
 export interface ListActionRunResponseOutputItemRunStepsItem {
   name: ListActionRunResponseOutputItemRunStepsItemName;
@@ -7878,7 +7827,7 @@ export type V1BackupsResponseOutputBackupsItemStatus =
   | "REMOVED"
   | "ARCHIVED"
   | "CANCELLED";
-export const V1BackupsResponseOutputBackupsItemStatus = /*@__PURE__*/ S.String;
+export const V1BackupsResponseOutputBackupsItemStatus = S.String;
 
 export interface V1BackupsResponseOutputBackupsItem {
   id: number;
@@ -8029,7 +7978,7 @@ export const V1ListAllFunctionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1ListAllFunctionsRequest>;
 
 export type FunctionResponseOutputStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
-export const FunctionResponseOutputStatus = /*@__PURE__*/ S.String;
+export const FunctionResponseOutputStatus = S.String;
 
 export interface FunctionResponseOutput {
   id: string;
@@ -8249,10 +8198,10 @@ export const V1ListAllSecretsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1ListAllSecretsResponse>;
 
 export type V1ListAllSnippetsRequestSortBy = "name" | "inserted_at";
-export const V1ListAllSnippetsRequestSortBy = /*@__PURE__*/ S.String;
+export const V1ListAllSnippetsRequestSortBy = S.String;
 
 export type V1ListAllSnippetsRequestSortOrder = "asc" | "desc";
-export const V1ListAllSnippetsRequestSortOrder = /*@__PURE__*/ S.String;
+export const V1ListAllSnippetsRequestSortOrder = S.String;
 
 export interface V1ListAllSnippetsRequest {
   /** Project ref */
@@ -8275,14 +8224,14 @@ export const V1ListAllSnippetsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1ListAllSnippetsRequest>;
 
 export type SnippetListOutputDataItemType = "sql";
-export const SnippetListOutputDataItemType = /*@__PURE__*/ S.String;
+export const SnippetListOutputDataItemType = S.String;
 
 export type SnippetListOutputDataItemVisibility =
   | "user"
   | "project"
   | "org"
   | "public";
-export const SnippetListOutputDataItemVisibility = /*@__PURE__*/ S.String;
+export const SnippetListOutputDataItemVisibility = S.String;
 
 export type SnippetListOutputDataItemProject = SnippetResponseOutputProject;
 export const SnippetListOutputDataItemProject = SnippetResponseOutputProject;
@@ -8426,8 +8375,7 @@ export type ListProvidersResponseOutputItemsItemSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const ListProvidersResponseOutputItemsItemSamlNameIdFormat =
-  /*@__PURE__*/ S.String;
+export const ListProvidersResponseOutputItemsItemSamlNameIdFormat = S.String;
 
 export interface ListProvidersResponseOutputItemsItemSaml {
   entity_id: string;
@@ -8525,7 +8473,7 @@ export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsIte
   | "withdrawn"
   | "preview";
 export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine =
   | "13"
@@ -8534,7 +8482,7 @@ export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsIte
   | "17"
   | "17-oriole";
 export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem {
   version: string;
@@ -8925,8 +8873,7 @@ export type ListProjectAddonsResponseOutputSelectedAddonsItemType =
   | "auth_mfa_web_authn"
   | "log_drain"
   | "etl_pipeline";
-export const ListProjectAddonsResponseOutputSelectedAddonsItemType =
-  /*@__PURE__*/ S.String;
+export const ListProjectAddonsResponseOutputSelectedAddonsItemType = S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0 =
   | "ci_micro"
@@ -8948,44 +8895,44 @@ export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0 =
   | "ci_48xlarge_optimized_memory"
   | "ci_48xlarge_high_memory";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1 =
   "cd_default";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2 =
   | "pitr_7"
   | "pitr_14"
   | "pitr_28";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3 =
   "ipv4_default";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4 =
   "auth_mfa_phone_default";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5 =
   "auth_mfa_web_authn_default";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6 =
   "log_drain_default";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7 =
   "etl_pipeline_default";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantId =
   | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0
@@ -9003,13 +8950,13 @@ export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType =
   | "fixed"
   | "usage";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval =
   | "monthly"
   | "hourly";
 export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice {
   description: string;
@@ -9078,8 +9025,7 @@ export type ListProjectAddonsResponseOutputAvailableAddonsItemType =
   | "auth_mfa_web_authn"
   | "log_drain"
   | "etl_pipeline";
-export const ListProjectAddonsResponseOutputAvailableAddonsItemType =
-  /*@__PURE__*/ S.String;
+export const ListProjectAddonsResponseOutputAvailableAddonsItemType = S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0 =
   | "ci_micro"
@@ -9101,44 +9047,44 @@ export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase
   | "ci_48xlarge_optimized_memory"
   | "ci_48xlarge_high_memory";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1 =
   "cd_default";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2 =
   | "pitr_7"
   | "pitr_14"
   | "pitr_28";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3 =
   "ipv4_default";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4 =
   "auth_mfa_phone_default";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5 =
   "auth_mfa_web_authn_default";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6 =
   "log_drain_default";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7 =
   "etl_pipeline_default";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId =
   | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0
@@ -9156,13 +9102,13 @@ export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceT
   | "fixed"
   | "usage";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval =
   | "monthly"
   | "hourly";
 export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice {
   description: string;
@@ -9301,7 +9247,7 @@ export const V1MergeABranchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1MergeABranchRequest>;
 
 export type BranchUpdateResponseOutputMessage = "ok";
-export const BranchUpdateResponseOutputMessage = /*@__PURE__*/ S.String;
+export const BranchUpdateResponseOutputMessage = S.String;
 
 export interface BranchUpdateResponseOutput {
   workflow_run_id: string;
@@ -9317,8 +9263,7 @@ export const BranchUpdateResponseOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BranchUpdateResponseOutput>;
 
 export type V1ModifyDatabaseDiskRequestAttributesCase0Type = "gp3";
-export const V1ModifyDatabaseDiskRequestAttributesCase0Type =
-  /*@__PURE__*/ S.String;
+export const V1ModifyDatabaseDiskRequestAttributesCase0Type = S.String;
 
 export interface V1ModifyDatabaseDiskRequestAttributesCase0 {
   iops: number;
@@ -9339,8 +9284,7 @@ export const V1ModifyDatabaseDiskRequestAttributesCase0 =
   }) as any as S.Schema<V1ModifyDatabaseDiskRequestAttributesCase0>;
 
 export type V1ModifyDatabaseDiskRequestAttributesCase1Type = "io2";
-export const V1ModifyDatabaseDiskRequestAttributesCase1Type =
-  /*@__PURE__*/ S.String;
+export const V1ModifyDatabaseDiskRequestAttributesCase1Type = S.String;
 
 export interface V1ModifyDatabaseDiskRequestAttributesCase1 {
   iops: number;
@@ -9400,15 +9344,13 @@ export type V1OauthAuthorizeProjectClaimRequestResponseType =
   | "code"
   | "token"
   | "id_token token";
-export const V1OauthAuthorizeProjectClaimRequestResponseType =
-  /*@__PURE__*/ S.String;
+export const V1OauthAuthorizeProjectClaimRequestResponseType = S.String;
 
 export type V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod =
   | "plain"
   | "sha256"
   | "S256";
-export const V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod =
-  /*@__PURE__*/ S.String;
+export const V1OauthAuthorizeProjectClaimRequestCodeChallengeMethod = S.String;
 
 export interface V1OauthAuthorizeProjectClaimRequest {
   /** Project ref */
@@ -9577,14 +9519,13 @@ export const V1PatchNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
 export type NetworkRestrictionsV2ResponseOutputEntitlement =
   | "disallowed"
   | "allowed";
-export const NetworkRestrictionsV2ResponseOutputEntitlement =
-  /*@__PURE__*/ S.String;
+export const NetworkRestrictionsV2ResponseOutputEntitlement = S.String;
 
 export type NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType =
   | "v4"
   | "v6";
 export const NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem {
   address: string;
@@ -9626,7 +9567,7 @@ export type NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType =
   | "v4"
   | "v6";
 export const NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem {
   address: string;
@@ -9666,7 +9607,7 @@ export const NetworkRestrictionsV2ResponseOutputOldConfig =
   }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputOldConfig>;
 
 export type NetworkRestrictionsV2ResponseOutputStatus = "stored" | "applied";
-export const NetworkRestrictionsV2ResponseOutputStatus = /*@__PURE__*/ S.String;
+export const NetworkRestrictionsV2ResponseOutputStatus = S.String;
 
 export interface NetworkRestrictionsV2ResponseOutput {
   entitlement: NetworkRestrictionsV2ResponseOutputEntitlement;
@@ -9900,7 +9841,7 @@ export const V1RestoreABranchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1RestoreABranchRequest>;
 
 export type BranchRestoreResponseOutputMessage = "Branch restoration initiated";
-export const BranchRestoreResponseOutputMessage = /*@__PURE__*/ S.String;
+export const BranchRestoreResponseOutputMessage = S.String;
 
 export interface BranchRestoreResponseOutput {
   message: BranchRestoreResponseOutputMessage;
@@ -10119,8 +10060,7 @@ export type V1SetupAReadReplicaRequestReadReplicaRegion =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const V1SetupAReadReplicaRequestReadReplicaRegion =
-  /*@__PURE__*/ S.String;
+export const V1SetupAReadReplicaRequestReadReplicaRegion = S.String;
 
 export interface V1SetupAReadReplicaRequest {
   /** Project ref */
@@ -10207,7 +10147,7 @@ export type V1UpdateABranchConfigRequestStatus =
   | "MIGRATIONS_FAILED"
   | "FUNCTIONS_DEPLOYED"
   | "FUNCTIONS_FAILED";
-export const V1UpdateABranchConfigRequestStatus = /*@__PURE__*/ S.String;
+export const V1UpdateABranchConfigRequestStatus = S.String;
 
 export interface V1UpdateABranchConfigRequest {
   /** Branch ref or deprecated branch ID */
@@ -10251,7 +10191,7 @@ export type V1UpdateActionRunStatusRequestClone =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const V1UpdateActionRunStatusRequestClone = /*@__PURE__*/ S.String;
+export const V1UpdateActionRunStatusRequestClone = S.String;
 
 export type V1UpdateActionRunStatusRequestPull =
   | "CREATED"
@@ -10261,7 +10201,7 @@ export type V1UpdateActionRunStatusRequestPull =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const V1UpdateActionRunStatusRequestPull = /*@__PURE__*/ S.String;
+export const V1UpdateActionRunStatusRequestPull = S.String;
 
 export type V1UpdateActionRunStatusRequestHealth =
   | "CREATED"
@@ -10271,7 +10211,7 @@ export type V1UpdateActionRunStatusRequestHealth =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const V1UpdateActionRunStatusRequestHealth = /*@__PURE__*/ S.String;
+export const V1UpdateActionRunStatusRequestHealth = S.String;
 
 export type V1UpdateActionRunStatusRequestConfigure =
   | "CREATED"
@@ -10281,7 +10221,7 @@ export type V1UpdateActionRunStatusRequestConfigure =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const V1UpdateActionRunStatusRequestConfigure = /*@__PURE__*/ S.String;
+export const V1UpdateActionRunStatusRequestConfigure = S.String;
 
 export type V1UpdateActionRunStatusRequestMigrate =
   | "CREATED"
@@ -10291,7 +10231,7 @@ export type V1UpdateActionRunStatusRequestMigrate =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const V1UpdateActionRunStatusRequestMigrate = /*@__PURE__*/ S.String;
+export const V1UpdateActionRunStatusRequestMigrate = S.String;
 
 export type V1UpdateActionRunStatusRequestSeed =
   | "CREATED"
@@ -10301,7 +10241,7 @@ export type V1UpdateActionRunStatusRequestSeed =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const V1UpdateActionRunStatusRequestSeed = /*@__PURE__*/ S.String;
+export const V1UpdateActionRunStatusRequestSeed = S.String;
 
 export type V1UpdateActionRunStatusRequestDeploy =
   | "CREATED"
@@ -10311,7 +10251,7 @@ export type V1UpdateActionRunStatusRequestDeploy =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const V1UpdateActionRunStatusRequestDeploy = /*@__PURE__*/ S.String;
+export const V1UpdateActionRunStatusRequestDeploy = S.String;
 
 export interface V1UpdateActionRunStatusRequest {
   /** Project ref */
@@ -10349,7 +10289,7 @@ export const V1UpdateActionRunStatusRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1UpdateActionRunStatusRequest>;
 
 export type UpdateRunStatusResponseOutputMessage = "ok";
-export const UpdateRunStatusResponseOutputMessage = /*@__PURE__*/ S.String;
+export const UpdateRunStatusResponseOutputMessage = S.String;
 
 export interface UpdateRunStatusResponseOutput {
   message: UpdateRunStatusResponseOutputMessage;
@@ -10483,7 +10423,7 @@ export type V1UpdateASsoProviderRequestNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const V1UpdateASsoProviderRequestNameIdFormat = /*@__PURE__*/ S.String;
+export const V1UpdateASsoProviderRequestNameIdFormat = S.String;
 
 export interface V1UpdateASsoProviderRequest {
   /** Project ref */
@@ -10580,8 +10520,7 @@ export type UpdateProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const UpdateProviderResponseOutputSamlNameIdFormat =
-  /*@__PURE__*/ S.String;
+export const UpdateProviderResponseOutputSamlNameIdFormat = S.String;
 
 export interface UpdateProviderResponseOutputSaml {
   entity_id: string;
@@ -10637,8 +10576,7 @@ export const UpdateProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
 export type V1UpdateAuthServiceConfigRequestSecurityCaptchaProvider =
   | "turnstile"
   | "hcaptcha";
-export const V1UpdateAuthServiceConfigRequestSecurityCaptchaProvider =
-  /*@__PURE__*/ S.String;
+export const V1UpdateAuthServiceConfigRequestSecurityCaptchaProvider = S.String;
 
 export type V1UpdateAuthServiceConfigRequestPasswordRequiredCharacters =
   | "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
@@ -10646,7 +10584,7 @@ export type V1UpdateAuthServiceConfigRequestPasswordRequiredCharacters =
   | "abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789:!@#$%^&*()_+-=[]{};'\\\\:\"|<>?,./`~"
   | "";
 export const V1UpdateAuthServiceConfigRequestPasswordRequiredCharacters =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type V1UpdateAuthServiceConfigRequestSmsProvider =
   | "messagebird"
@@ -10654,14 +10592,12 @@ export type V1UpdateAuthServiceConfigRequestSmsProvider =
   | "twilio"
   | "twilio_verify"
   | "vonage";
-export const V1UpdateAuthServiceConfigRequestSmsProvider =
-  /*@__PURE__*/ S.String;
+export const V1UpdateAuthServiceConfigRequestSmsProvider = S.String;
 
 export type V1UpdateAuthServiceConfigRequestDbMaxPoolSizeUnit =
   | "connections"
   | "percent";
-export const V1UpdateAuthServiceConfigRequestDbMaxPoolSizeUnit =
-  /*@__PURE__*/ S.String;
+export const V1UpdateAuthServiceConfigRequestDbMaxPoolSizeUnit = S.String;
 
 export interface V1UpdateAuthServiceConfigRequest {
   /** Project ref */
@@ -11422,7 +11358,7 @@ export const V1UpdateJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1UpdateJitAccessRequest>;
 
 export type V1UpdateJitAccessConfigRequestState = "enabled" | "disabled";
-export const V1UpdateJitAccessConfigRequestState = /*@__PURE__*/ S.String;
+export const V1UpdateJitAccessConfigRequestState = S.String;
 
 export interface V1UpdateJitAccessConfigRequest {
   /** Project ref */
@@ -11443,8 +11379,7 @@ export const V1UpdateJitAccessConfigRequest = /*@__PURE__*/ S.suspend(() =>
 export type V1UpdateJitAccessConfigResponseBodyCase0State =
   | "enabled"
   | "disabled";
-export const V1UpdateJitAccessConfigResponseBodyCase0State =
-  /*@__PURE__*/ S.String;
+export const V1UpdateJitAccessConfigResponseBodyCase0State = S.String;
 
 export interface V1UpdateJitAccessConfigResponseBodyCase0 {
   state: V1UpdateJitAccessConfigResponseBodyCase0State;
@@ -11466,7 +11401,7 @@ export type V1UpdateJitAccessConfigResponseBodyCase1UnavailableReason =
   | "ssl_enforcement_required"
   | "temporarily_unavailable";
 export const V1UpdateJitAccessConfigResponseBodyCase1UnavailableReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface V1UpdateJitAccessConfigResponseBodyCase1 {
   state: string;
@@ -11560,7 +11495,7 @@ export const V1UpdatePgsodiumConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Dedicated pooler mode for the project */
 export type V1UpdatePoolerConfigRequestPoolMode = "transaction" | "session";
-export const V1UpdatePoolerConfigRequestPoolMode = /*@__PURE__*/ S.String;
+export const V1UpdatePoolerConfigRequestPoolMode = S.String;
 
 export interface V1UpdatePoolerConfigRequest {
   /** Project ref */
@@ -11602,8 +11537,7 @@ export type V1UpdatePostgresConfigRequestSessionReplicationRole =
   | "origin"
   | "replica"
   | "local";
-export const V1UpdatePostgresConfigRequestSessionReplicationRole =
-  /*@__PURE__*/ S.String;
+export const V1UpdatePostgresConfigRequestSessionReplicationRole = S.String;
 
 export interface V1UpdatePostgresConfigRequest {
   /** Project ref */
@@ -11828,7 +11762,7 @@ export type V1UpdateProjectSigningKeyRequestStatus =
   | "previously_used"
   | "revoked"
   | "standby";
-export const V1UpdateProjectSigningKeyRequestStatus = /*@__PURE__*/ S.String;
+export const V1UpdateProjectSigningKeyRequestStatus = S.String;
 
 export interface V1UpdateProjectSigningKeyRequest {
   /** Project ref */
@@ -11996,8 +11930,7 @@ export const V1UpdateStorageConfigRequestFeatures = /*@__PURE__*/ S.suspend(
 export type V1UpdateStorageConfigRequestExternalUpstreamTarget =
   | "main"
   | "canary";
-export const V1UpdateStorageConfigRequestExternalUpstreamTarget =
-  /*@__PURE__*/ S.String;
+export const V1UpdateStorageConfigRequestExternalUpstreamTarget = S.String;
 
 export interface V1UpdateStorageConfigRequestExternal {
   upstreamTarget:
@@ -12051,8 +11984,7 @@ export type V1UpgradePostgresVersionRequestReleaseChannel =
   | "ga"
   | "withdrawn"
   | "preview";
-export const V1UpgradePostgresVersionRequestReleaseChannel =
-  /*@__PURE__*/ S.String;
+export const V1UpgradePostgresVersionRequestReleaseChannel = S.String;
 
 export interface V1UpgradePostgresVersionRequest {
   /** Project ref */

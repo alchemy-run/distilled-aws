@@ -284,7 +284,7 @@ export type ReplayState =
   | "CANCELLED"
   | "FAILED"
   | (string & {});
-export const ReplayState = /*@__PURE__*/ S.String;
+export const ReplayState = S.String;
 
 export type ReplayStateReason = string;
 export interface CancelReplayResponse {
@@ -314,7 +314,7 @@ export type ApiDestinationHttpMethod =
   | "PATCH"
   | "DELETE"
   | (string & {});
-export const ApiDestinationHttpMethod = /*@__PURE__*/ S.String;
+export const ApiDestinationHttpMethod = S.String;
 
 export type ApiDestinationInvocationRateLimitPerSecond = number;
 export interface CreateApiDestinationRequest {
@@ -349,7 +349,7 @@ export const CreateApiDestinationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateApiDestinationRequest>;
 export type ApiDestinationArn = string;
 export type ApiDestinationState = "ACTIVE" | "INACTIVE" | (string & {});
-export const ApiDestinationState = /*@__PURE__*/ S.String;
+export const ApiDestinationState = S.String;
 
 export interface CreateApiDestinationResponse {
   ApiDestinationArn?: string;
@@ -414,7 +414,7 @@ export type ArchiveState =
   | "CREATE_FAILED"
   | "UPDATE_FAILED"
   | (string & {});
-export const ArchiveState = /*@__PURE__*/ S.String;
+export const ArchiveState = S.String;
 
 export type ArchiveStateReason = string;
 export interface CreateArchiveResponse {
@@ -440,7 +440,7 @@ export type ConnectionAuthorizationType =
   | "OAUTH_CLIENT_CREDENTIALS"
   | "API_KEY"
   | (string & {});
-export const ConnectionAuthorizationType = /*@__PURE__*/ S.String;
+export const ConnectionAuthorizationType = S.String;
 
 export type AuthHeaderParameters = string;
 export type AuthHeaderParametersSensitive = string | redacted.Redacted<string>;
@@ -465,7 +465,7 @@ export const CreateConnectionOAuthClientRequestParameters =
     identifier: "CreateConnectionOAuthClientRequestParameters",
   }) as any as S.Schema<CreateConnectionOAuthClientRequestParameters>;
 export type ConnectionOAuthHttpMethod = "GET" | "POST" | "PUT" | (string & {});
-export const ConnectionOAuthHttpMethod = /*@__PURE__*/ S.String;
+export const ConnectionOAuthHttpMethod = S.String;
 
 export type HeaderKey = string;
 export type HeaderValueSensitive = string | redacted.Redacted<string>;
@@ -651,7 +651,7 @@ export type ConnectionState =
   | "ACTIVE"
   | "FAILED_CONNECTIVITY"
   | (string & {});
-export const ConnectionState = /*@__PURE__*/ S.String;
+export const ConnectionState = S.String;
 
 export interface CreateConnectionResponse {
   ConnectionArn?: string;
@@ -701,7 +701,7 @@ export const RoutingConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ FailoverConfig: FailoverConfig }),
 ).annotate({ identifier: "RoutingConfig" }) as any as S.Schema<RoutingConfig>;
 export type ReplicationState = "ENABLED" | "DISABLED" | (string & {});
-export const ReplicationState = /*@__PURE__*/ S.String;
+export const ReplicationState = S.String;
 
 export interface ReplicationConfig {
   State?: ReplicationState;
@@ -763,7 +763,7 @@ export type EndpointState =
   | "UPDATE_FAILED"
   | "DELETE_FAILED"
   | (string & {});
-export const EndpointState = /*@__PURE__*/ S.String;
+export const EndpointState = S.String;
 
 export interface CreateEndpointResponse {
   Name?: string;
@@ -799,10 +799,10 @@ export const DeadLetterConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeadLetterConfig",
 }) as any as S.Schema<DeadLetterConfig>;
 export type IncludeDetail = "NONE" | "FULL" | (string & {});
-export const IncludeDetail = /*@__PURE__*/ S.String;
+export const IncludeDetail = S.String;
 
 export type Level = "OFF" | "ERROR" | "INFO" | "TRACE" | (string & {});
-export const Level = /*@__PURE__*/ S.String;
+export const Level = S.String;
 
 export interface LogConfig {
   IncludeDetail?: IncludeDetail;
@@ -1524,7 +1524,7 @@ export const DescribeEventSourceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeEventSourceRequest",
 }) as any as S.Schema<DescribeEventSourceRequest>;
 export type EventSourceState = "PENDING" | "ACTIVE" | "DELETED" | (string & {});
-export const EventSourceState = /*@__PURE__*/ S.String;
+export const EventSourceState = S.String;
 
 export interface DescribeEventSourceResponse {
   Arn?: string;
@@ -1666,7 +1666,7 @@ export type RuleState =
   | "DISABLED"
   | "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS"
   | (string & {});
-export const RuleState = /*@__PURE__*/ S.String;
+export const RuleState = S.String;
 
 export type RuleDescription = string;
 export type RoleArn = string;
@@ -2526,12 +2526,12 @@ export const RunCommandParameters = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RunCommandParameters>;
 export type LimitMin1 = number;
 export type LaunchType = "EC2" | "FARGATE" | "EXTERNAL" | (string & {});
-export const LaunchType = /*@__PURE__*/ S.String;
+export const LaunchType = S.String;
 
 export type StringList = string[];
 export const StringList = /*@__PURE__*/ S.Array(S.String);
 export type AssignPublicIp = "ENABLED" | "DISABLED" | (string & {});
-export const AssignPublicIp = /*@__PURE__*/ S.String;
+export const AssignPublicIp = S.String;
 
 export interface AwsVpcConfiguration {
   Subnets: string[];
@@ -2580,7 +2580,7 @@ export type PlacementConstraintType =
   | "distinctInstance"
   | "memberOf"
   | (string & {});
-export const PlacementConstraintType = /*@__PURE__*/ S.String;
+export const PlacementConstraintType = S.String;
 
 export type PlacementConstraintExpression = string;
 export interface PlacementConstraint {
@@ -2602,7 +2602,7 @@ export type PlacementStrategyType =
   | "spread"
   | "binpack"
   | (string & {});
-export const PlacementStrategyType = /*@__PURE__*/ S.String;
+export const PlacementStrategyType = S.String;
 
 export type PlacementStrategyField = string;
 export interface PlacementStrategy {
@@ -2620,7 +2620,7 @@ export const PlacementStrategy = /*@__PURE__*/ S.suspend(() =>
 export type PlacementStrategies = PlacementStrategy[];
 export const PlacementStrategies = /*@__PURE__*/ S.Array(PlacementStrategy);
 export type PropagateTags = "TASK_DEFINITION" | (string & {});
-export const PropagateTags = /*@__PURE__*/ S.String;
+export const PropagateTags = S.String;
 
 export type ReferenceId = string;
 export interface EcsParameters {

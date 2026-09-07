@@ -103,7 +103,7 @@ export type NoteCreatorRoleEnum =
   | "BUYER_SELLER_ROLE_UNSPECIFIED"
   | "BUYER"
   | "SELLER";
-export const NoteCreatorRoleEnum = /*@__PURE__*/ S.String;
+export const NoteCreatorRoleEnum = S.String;
 
 /** A text note attached to the proposal to facilitate the communication between buyers and sellers. */
 export interface Note {
@@ -164,26 +164,26 @@ export type ProposalStateEnum =
   | "BUYER_ACCEPTANCE_REQUESTED"
   | "FINALIZED"
   | "TERMINATED";
-export const ProposalStateEnum = /*@__PURE__*/ S.String;
+export const ProposalStateEnum = S.String;
 
 export type ProposalLastUpdaterOrCommentorRoleEnum =
   | "BUYER_SELLER_ROLE_UNSPECIFIED"
   | "BUYER"
   | "SELLER";
-export const ProposalLastUpdaterOrCommentorRoleEnum = /*@__PURE__*/ S.String;
+export const ProposalLastUpdaterOrCommentorRoleEnum = S.String;
 
 export type ProposalDealTypeEnum =
   | "DEAL_TYPE_UNSPECIFIED"
   | "PREFERRED_DEAL"
   | "PRIVATE_AUCTION"
   | "PROGRAMMATIC_GUARANTEED";
-export const ProposalDealTypeEnum = /*@__PURE__*/ S.String;
+export const ProposalDealTypeEnum = S.String;
 
 export type ProposalOriginatorRoleEnum =
   | "BUYER_SELLER_ROLE_UNSPECIFIED"
   | "BUYER"
   | "SELLER";
-export const ProposalOriginatorRoleEnum = /*@__PURE__*/ S.String;
+export const ProposalOriginatorRoleEnum = S.String;
 
 /** Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer. */
 export interface Proposal {
@@ -284,14 +284,14 @@ export const ActivateBuyersClientsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ActivateBuyersClientsRequest>;
 
 export type ClientStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "INACTIVE";
-export const ClientStateEnum = /*@__PURE__*/ S.String;
+export const ClientStateEnum = S.String;
 
 export type ClientRoleEnum =
   | "CLIENT_ROLE_UNSPECIFIED"
   | "CLIENT_DEAL_VIEWER"
   | "CLIENT_DEAL_NEGOTIATOR"
   | "CLIENT_DEAL_APPROVER";
-export const ClientRoleEnum = /*@__PURE__*/ S.String;
+export const ClientRoleEnum = S.String;
 
 /** A client represents an agency, a brand, or an advertiser customer of the buyer. Based on the client's role, its client users will have varying levels of restricted access to the Marketplace and certain other sections of the Authorized Buyers UI. */
 export interface Client {
@@ -349,7 +349,7 @@ export type ClientUserStateEnum =
   | "INVITED"
   | "ACTIVE"
   | "INACTIVE";
-export const ClientUserStateEnum = /*@__PURE__*/ S.String;
+export const ClientUserStateEnum = S.String;
 
 /** A user of a client who has restricted access to the Marketplace and certain other sections of the Authorized Buyers UI based on the role granted to the associated client. */
 export interface ClientUser {
@@ -433,7 +433,7 @@ export type DealPausingInfoPauseRoleEnum =
   | "BUYER_SELLER_ROLE_UNSPECIFIED"
   | "BUYER"
   | "SELLER";
-export const DealPausingInfoPauseRoleEnum = /*@__PURE__*/ S.String;
+export const DealPausingInfoPauseRoleEnum = S.String;
 
 /** Information related to deal pausing. */
 export interface DealPausingInfo {
@@ -460,7 +460,7 @@ export type FinalizedDealDealServingStatusEnum =
   | "ENDED"
   | "PAUSED_BY_BUYER"
   | "PAUSED_BY_SELLER";
-export const FinalizedDealDealServingStatusEnum = /*@__PURE__*/ S.String;
+export const FinalizedDealDealServingStatusEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -505,21 +505,21 @@ export type DealBuyerPermissionTypeEnum =
   | "BUYER_PERMISSION_TYPE_UNSPECIFIED"
   | "NEGOTIATOR_ONLY"
   | "BIDDER";
-export const DealBuyerPermissionTypeEnum = /*@__PURE__*/ S.String;
+export const DealBuyerPermissionTypeEnum = S.String;
 
 export type DeliveryControlCompanionDeliveryTypeEnum =
   | "COMPANION_DELIVERY_TYPE_UNSPECIFIED"
   | "DELIVERY_OPTIONAL"
   | "DELIVERY_AT_LEAST_ONE"
   | "DELIVERY_ALL";
-export const DeliveryControlCompanionDeliveryTypeEnum = /*@__PURE__*/ S.String;
+export const DeliveryControlCompanionDeliveryTypeEnum = S.String;
 
 export type DeliveryControlDeliveryRateTypeEnum =
   | "DELIVERY_RATE_TYPE_UNSPECIFIED"
   | "EVENLY"
   | "FRONT_LOADED"
   | "AS_FAST_AS_POSSIBLE";
-export const DeliveryControlDeliveryRateTypeEnum = /*@__PURE__*/ S.String;
+export const DeliveryControlDeliveryRateTypeEnum = S.String;
 
 export type DeliveryControlCreativeRotationTypeEnum =
   | "CREATIVE_ROTATION_TYPE_UNSPECIFIED"
@@ -527,7 +527,7 @@ export type DeliveryControlCreativeRotationTypeEnum =
   | "ROTATION_OPTIMIZED"
   | "ROTATION_MANUAL"
   | "ROTATION_SEQUENTIAL";
-export const DeliveryControlCreativeRotationTypeEnum = /*@__PURE__*/ S.String;
+export const DeliveryControlCreativeRotationTypeEnum = S.String;
 
 export type FrequencyCapTimeUnitTypeEnum =
   | "TIME_UNIT_TYPE_UNSPECIFIED"
@@ -539,7 +539,7 @@ export type FrequencyCapTimeUnitTypeEnum =
   | "LIFETIME"
   | "POD"
   | "STREAM";
-export const FrequencyCapTimeUnitTypeEnum = /*@__PURE__*/ S.String;
+export const FrequencyCapTimeUnitTypeEnum = S.String;
 
 /** Message contains details about publisher-set frequency caps of the delivery. */
 export interface FrequencyCap {
@@ -570,7 +570,7 @@ export type DeliveryControlRoadblockingTypeEnum =
   | "AS_MANY_AS_POSSIBLE"
   | "ALL_ROADBLOCK"
   | "CREATIVE_SET";
-export const DeliveryControlRoadblockingTypeEnum = /*@__PURE__*/ S.String;
+export const DeliveryControlRoadblockingTypeEnum = S.String;
 
 /** Message contains details about how the deal will be paced. */
 export interface DeliveryControl {
@@ -606,7 +606,7 @@ export type DealDealTypeEnum =
   | "PREFERRED_DEAL"
   | "PRIVATE_AUCTION"
   | "PROGRAMMATIC_GUARANTEED";
-export const DealDealTypeEnum = /*@__PURE__*/ S.String;
+export const DealDealTypeEnum = S.String;
 
 /** Represents an amount of money with its currency type. */
 export interface Money {
@@ -626,7 +626,7 @@ export const Money = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
 
 export type PriceTypeEnum = "TYPE_UNSPECIFIED" | "CPM" | "CPD";
-export const PriceTypeEnum = /*@__PURE__*/ S.String;
+export const PriceTypeEnum = S.String;
 
 /** Represents a price and a pricing type for a deal. */
 export interface Price {
@@ -662,22 +662,19 @@ export type CreativeRequirementsCreativeSafeFrameCompatibilityEnum =
   | "CREATIVE_SAFE_FRAME_COMPATIBILITY_UNSPECIFIED"
   | "COMPATIBLE"
   | "INCOMPATIBLE";
-export const CreativeRequirementsCreativeSafeFrameCompatibilityEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeRequirementsCreativeSafeFrameCompatibilityEnum = S.String;
 
 export type CreativeRequirementsProgrammaticCreativeSourceEnum =
   | "PROGRAMMATIC_CREATIVE_SOURCE_UNSPECIFIED"
   | "ADVERTISER"
   | "PUBLISHER";
-export const CreativeRequirementsProgrammaticCreativeSourceEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeRequirementsProgrammaticCreativeSourceEnum = S.String;
 
 export type CreativeRequirementsCreativePreApprovalPolicyEnum =
   | "CREATIVE_PRE_APPROVAL_POLICY_UNSPECIFIED"
   | "SELLER_PRE_APPROVAL_REQUIRED"
   | "SELLER_PRE_APPROVAL_NOT_REQUIRED";
-export const CreativeRequirementsCreativePreApprovalPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeRequirementsCreativePreApprovalPolicyEnum = S.String;
 
 export type CreativeRequirementsSkippableAdTypeEnum =
   | "SKIPPABLE_AD_TYPE_UNSPECIFIED"
@@ -685,14 +682,14 @@ export type CreativeRequirementsSkippableAdTypeEnum =
   | "INSTREAM_SELECT"
   | "NOT_SKIPPABLE"
   | "ANY";
-export const CreativeRequirementsSkippableAdTypeEnum = /*@__PURE__*/ S.String;
+export const CreativeRequirementsSkippableAdTypeEnum = S.String;
 
 export type CreativeRequirementsCreativeFormatEnum =
   | "CREATIVE_FORMAT_UNSPECIFIED"
   | "DISPLAY"
   | "VIDEO"
   | "AUDIO";
-export const CreativeRequirementsCreativeFormatEnum = /*@__PURE__*/ S.String;
+export const CreativeRequirementsCreativeFormatEnum = S.String;
 
 /** Message captures data about the creatives in the deal. */
 export interface CreativeRequirements {
@@ -828,8 +825,7 @@ export type InventoryTypeTargetingInventoryTypesItemEnum =
   | "BROWSER"
   | "MOBILE_APP"
   | "VIDEO_PLAYER";
-export const InventoryTypeTargetingInventoryTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const InventoryTypeTargetingInventoryTypesItemEnum = S.String;
 
 export type InventoryTypeTargetingInventoryTypesItemEnumList = Array<
   InventoryTypeTargetingInventoryTypesItemEnum | (string & {})
@@ -894,8 +890,7 @@ export type VideoTargetingTargetedPositionTypesItemEnum =
   | "PREROLL"
   | "MIDROLL"
   | "POSTROLL";
-export const VideoTargetingTargetedPositionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const VideoTargetingTargetedPositionTypesItemEnum = S.String;
 
 export type VideoTargetingTargetedPositionTypesItemEnumList = Array<
   VideoTargetingTargetedPositionTypesItemEnum | (string & {})
@@ -910,8 +905,7 @@ export type VideoTargetingExcludedPositionTypesItemEnum =
   | "PREROLL"
   | "MIDROLL"
   | "POSTROLL";
-export const VideoTargetingExcludedPositionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const VideoTargetingExcludedPositionTypesItemEnum = S.String;
 
 export type VideoTargetingExcludedPositionTypesItemEnumList = Array<
   VideoTargetingExcludedPositionTypesItemEnum | (string & {})
@@ -945,7 +939,7 @@ export type AdSizeTypeEnum =
   | "INTERSTITIAL"
   | "NATIVE"
   | "FLUID";
-export const AdSizeTypeEnum = /*@__PURE__*/ S.String;
+export const AdSizeTypeEnum = S.String;
 
 /** Represents size of a single ad slot, or a creative. */
 export interface AdSize {
@@ -989,7 +983,7 @@ export type DayPartTargetingTimeZoneTypeEnum =
   | "TIME_ZONE_TYPE_UNSPECIFIED"
   | "SELLER"
   | "USER";
-export const DayPartTargetingTimeZoneTypeEnum = /*@__PURE__*/ S.String;
+export const DayPartTargetingTimeZoneTypeEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -1020,7 +1014,7 @@ export type DayPartDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const DayPartDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const DayPartDayOfWeekEnum = S.String;
 
 /** Defines targeting for a period of time on a specific week day. */
 export interface DayPart {
@@ -1104,8 +1098,7 @@ export type ProgrammaticGuaranteedTermsReservationTypeEnum =
   | "RESERVATION_TYPE_UNSPECIFIED"
   | "STANDARD"
   | "SPONSORSHIP";
-export const ProgrammaticGuaranteedTermsReservationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ProgrammaticGuaranteedTermsReservationTypeEnum = S.String;
 
 /** Pricing terms for Programmatic Guaranteed Deals. */
 export interface ProgrammaticGuaranteedTerms {
@@ -1681,8 +1674,7 @@ export type PublisherProfileMobileApplicationAppStoreEnum =
   | "VIVO"
   | "XIAOMI"
   | "LG_TV";
-export const PublisherProfileMobileApplicationAppStoreEnum =
-  /*@__PURE__*/ S.String;
+export const PublisherProfileMobileApplicationAppStoreEnum = S.String;
 
 /** A mobile application that contains a external app ID, name, and app store. */
 export interface PublisherProfileMobileApplication {

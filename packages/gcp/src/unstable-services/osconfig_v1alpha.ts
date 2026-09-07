@@ -107,7 +107,7 @@ export type OSPolicyAssignmentRolloutStateEnum =
   | "CANCELLING"
   | "CANCELLED"
   | "SUCCEEDED";
-export const OSPolicyAssignmentRolloutStateEnum = /*@__PURE__*/ S.String;
+export const OSPolicyAssignmentRolloutStateEnum = S.String;
 
 /** Message encapsulating a value that can be either absolute ("fixed") or relative ("percent") to a value. */
 export interface FixedOrPercent {
@@ -201,7 +201,7 @@ export type OSPolicyResourceFileResourceStateEnum =
   | "PRESENT"
   | "ABSENT"
   | "CONTENTS_MATCH";
-export const OSPolicyResourceFileResourceStateEnum = /*@__PURE__*/ S.String;
+export const OSPolicyResourceFileResourceStateEnum = S.String;
 
 /** A resource that manages the state of a file. */
 export interface OSPolicyResourceFileResource {
@@ -295,8 +295,7 @@ export type OSPolicyResourcePackageResourceDesiredStateEnum =
   | "DESIRED_STATE_UNSPECIFIED"
   | "INSTALLED"
   | "REMOVED";
-export const OSPolicyResourcePackageResourceDesiredStateEnum =
-  /*@__PURE__*/ S.String;
+export const OSPolicyResourcePackageResourceDesiredStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -360,8 +359,7 @@ export type OSPolicyResourceExecResourceExecInterpreterEnum =
   | "NONE"
   | "SHELL"
   | "POWERSHELL";
-export const OSPolicyResourceExecResourceExecInterpreterEnum =
-  /*@__PURE__*/ S.String;
+export const OSPolicyResourceExecResourceExecInterpreterEnum = S.String;
 
 /** A file or script to execute. */
 export interface OSPolicyResourceExecResourceExec {
@@ -409,7 +407,7 @@ export type OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum =
   | "DEB"
   | "DEB_SRC";
 export const OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a single apt package repository. These will be added to a repo file that will be managed at `/etc/apt/sources.list.d/google_osconfig.list`. */
 export interface OSPolicyResourceRepositoryResourceAptRepository {
@@ -621,7 +619,7 @@ export type OSPolicyModeEnum =
   | "MODE_UNSPECIFIED"
   | "VALIDATION"
   | "ENFORCEMENT";
-export const OSPolicyModeEnum = /*@__PURE__*/ S.String;
+export const OSPolicyModeEnum = S.String;
 
 /** An OS policy defines the desired state configuration for a VM. */
 export interface OSPolicy {
@@ -911,7 +909,7 @@ export type OSPolicyResourceConfigStepOutcomeEnum =
   | "OUTCOME_UNSPECIFIED"
   | "SUCCEEDED"
   | "FAILED";
-export const OSPolicyResourceConfigStepOutcomeEnum = /*@__PURE__*/ S.String;
+export const OSPolicyResourceConfigStepOutcomeEnum = S.String;
 
 export type OSPolicyResourceConfigStepTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -919,7 +917,7 @@ export type OSPolicyResourceConfigStepTypeEnum =
   | "DESIRED_STATE_CHECK"
   | "DESIRED_STATE_ENFORCEMENT"
   | "DESIRED_STATE_CHECK_POST_ENFORCEMENT";
-export const OSPolicyResourceConfigStepTypeEnum = /*@__PURE__*/ S.String;
+export const OSPolicyResourceConfigStepTypeEnum = S.String;
 
 /** Step performed by the OS Config agent for configuring an `OSPolicyResource` to its desired state. */
 export interface OSPolicyResourceConfigStep {
@@ -951,7 +949,7 @@ export type OSPolicyResourceComplianceStateEnum =
   | "NON_COMPLIANT"
   | "UNKNOWN"
   | "NO_OS_POLICIES_APPLICABLE";
-export const OSPolicyResourceComplianceStateEnum = /*@__PURE__*/ S.String;
+export const OSPolicyResourceComplianceStateEnum = S.String;
 
 /** Compliance data for an OS policy resource. */
 export interface OSPolicyResourceCompliance {
@@ -988,8 +986,7 @@ export type InstanceOSPoliciesComplianceOSPolicyComplianceStateEnum =
   | "NON_COMPLIANT"
   | "UNKNOWN"
   | "NO_OS_POLICIES_APPLICABLE";
-export const InstanceOSPoliciesComplianceOSPolicyComplianceStateEnum =
-  /*@__PURE__*/ S.String;
+export const InstanceOSPoliciesComplianceOSPolicyComplianceStateEnum = S.String;
 
 /** Compliance data for an OS policy */
 export interface InstanceOSPoliciesComplianceOSPolicyCompliance {
@@ -1029,7 +1026,7 @@ export type InstanceOSPoliciesComplianceStateEnum =
   | "NON_COMPLIANT"
   | "UNKNOWN"
   | "NO_OS_POLICIES_APPLICABLE";
-export const InstanceOSPoliciesComplianceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceOSPoliciesComplianceStateEnum = S.String;
 
 /** This API resource represents the OS policies compliance data for a Compute Engine virtual machine (VM) instance at a given point in time. A Compute Engine VM can have multiple OS policy assignments, and each assignment can have multiple OS policies. As a result, multiple OS policies could be applied to a single VM. You can use this API resource to determine both the compliance state of your VM as well as the compliance state of an individual OS policy. For more information, see [View compliance](https://cloud.google.com/compute/docs/os-configuration-management/view-compliance). */
 export interface InstanceOSPoliciesCompliance {
@@ -1071,8 +1068,7 @@ export type GetProjectsLocationsInstancesInventoriesViewEnum =
   | "INVENTORY_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsInstancesInventoriesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsInstancesInventoriesViewEnum = S.String;
 
 export interface GetProjectsLocationsInstancesInventoriesRequest {
   /** Required. API resource name for inventory resource. Format: `projects/{project}/locations/{location}/instances/{instance}/inventory` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance}`, either Compute Engine `instance-id` or `instance-name` can be provided. */
@@ -1101,7 +1097,7 @@ export const GetProjectsLocationsInstancesInventoriesRequest =
 export type InventoryItemOriginTypeEnum =
   | "ORIGIN_TYPE_UNSPECIFIED"
   | "INVENTORY_REPORT";
-export const InventoryItemOriginTypeEnum = /*@__PURE__*/ S.String;
+export const InventoryItemOriginTypeEnum = S.String;
 
 /** Information related to the a standard versioned package. This includes package info for APT, Yum, Zypper, and Googet package managers. */
 export interface InventoryVersionedPackage {
@@ -1313,7 +1309,7 @@ export type InventoryItemTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "INSTALLED_PACKAGE"
   | "AVAILABLE_PACKAGE";
-export const InventoryItemTypeEnum = /*@__PURE__*/ S.String;
+export const InventoryItemTypeEnum = S.String;
 
 /** A single piece of inventory on a VM. */
 export interface InventoryItem {
@@ -1429,7 +1425,7 @@ export type OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance
   | "COMPLIANT"
   | "NON_COMPLIANT";
 export const OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceComplianceStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** ExecResource specific output. */
 export interface OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput {
@@ -1453,7 +1449,7 @@ export type OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance
   | "DESIRED_STATE_ENFORCEMENT"
   | "DESIRED_STATE_CHECK_POST_ENFORCEMENT";
 export const OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStepTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Step performed by the OS Config agent for configuring an `OSPolicy` resource to its desired state. */
 export interface OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep {
@@ -1527,7 +1523,7 @@ export type OSPolicyAssignmentReportOSPolicyComplianceComplianceStateEnum =
   | "COMPLIANT"
   | "NON_COMPLIANT";
 export const OSPolicyAssignmentReportOSPolicyComplianceComplianceStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Compliance data for an OS policy */
 export interface OSPolicyAssignmentReportOSPolicyCompliance {
@@ -1620,41 +1616,40 @@ export type VulnerabilityReportHighestUpgradableCveSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const VulnerabilityReportHighestUpgradableCveSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const VulnerabilityReportHighestUpgradableCveSeverityEnum = S.String;
 
 export type CVSSv3IntegrityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const CVSSv3IntegrityImpactEnum = /*@__PURE__*/ S.String;
+export const CVSSv3IntegrityImpactEnum = S.String;
 
 export type CVSSv3ScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "SCOPE_UNCHANGED"
   | "SCOPE_CHANGED";
-export const CVSSv3ScopeEnum = /*@__PURE__*/ S.String;
+export const CVSSv3ScopeEnum = S.String;
 
 export type CVSSv3UserInteractionEnum =
   | "USER_INTERACTION_UNSPECIFIED"
   | "USER_INTERACTION_NONE"
   | "USER_INTERACTION_REQUIRED";
-export const CVSSv3UserInteractionEnum = /*@__PURE__*/ S.String;
+export const CVSSv3UserInteractionEnum = S.String;
 
 export type CVSSv3PrivilegesRequiredEnum =
   | "PRIVILEGES_REQUIRED_UNSPECIFIED"
   | "PRIVILEGES_REQUIRED_NONE"
   | "PRIVILEGES_REQUIRED_LOW"
   | "PRIVILEGES_REQUIRED_HIGH";
-export const CVSSv3PrivilegesRequiredEnum = /*@__PURE__*/ S.String;
+export const CVSSv3PrivilegesRequiredEnum = S.String;
 
 export type CVSSv3ConfidentialityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const CVSSv3ConfidentialityImpactEnum = /*@__PURE__*/ S.String;
+export const CVSSv3ConfidentialityImpactEnum = S.String;
 
 export type CVSSv3AttackVectorEnum =
   | "ATTACK_VECTOR_UNSPECIFIED"
@@ -1662,20 +1657,20 @@ export type CVSSv3AttackVectorEnum =
   | "ATTACK_VECTOR_ADJACENT"
   | "ATTACK_VECTOR_LOCAL"
   | "ATTACK_VECTOR_PHYSICAL";
-export const CVSSv3AttackVectorEnum = /*@__PURE__*/ S.String;
+export const CVSSv3AttackVectorEnum = S.String;
 
 export type CVSSv3AttackComplexityEnum =
   | "ATTACK_COMPLEXITY_UNSPECIFIED"
   | "ATTACK_COMPLEXITY_LOW"
   | "ATTACK_COMPLEXITY_HIGH";
-export const CVSSv3AttackComplexityEnum = /*@__PURE__*/ S.String;
+export const CVSSv3AttackComplexityEnum = S.String;
 
 export type CVSSv3AvailabilityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const CVSSv3AvailabilityImpactEnum = /*@__PURE__*/ S.String;
+export const CVSSv3AvailabilityImpactEnum = S.String;
 
 /** Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document */
 export interface CVSSv3 {
@@ -1955,8 +1950,7 @@ export type ListProjectsLocationsInstancesInventoriesViewEnum =
   | "INVENTORY_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsInstancesInventoriesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsInstancesInventoriesViewEnum = S.String;
 
 export interface ListProjectsLocationsInstancesInventoriesRequest {
   /** Required. The parent resource name. Format: `projects/{project}/locations/{location}/instances/-` For `{project}`, either `project-number` or `project-id` can be provided. */

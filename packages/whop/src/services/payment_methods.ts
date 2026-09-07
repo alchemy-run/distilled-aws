@@ -282,7 +282,7 @@ export type PaymentMethodTypes =
   | "zip"
   | "coinflow"
   | "unknown";
-export const PaymentMethodTypes = /*@__PURE__*/ S.String;
+export const PaymentMethodTypes = S.String;
 
 /** A saved payment method with no type-specific details available. */
 export interface PaymentMethodCase0 {
@@ -357,11 +357,11 @@ export type CardBrands =
   | "pulse"
   | "star"
   | "unknown";
-export const CardBrands = /*@__PURE__*/ S.String;
+export const CardBrands = S.String;
 
 /** The funding types of a card */
 export type CardFundingTypes = "credit" | "debit" | "prepaid";
-export const CardFundingTypes = /*@__PURE__*/ S.String;
+export const CardFundingTypes = S.String;
 
 /** The card-specific details for this payment method, including brand, last four digits, and expiration. */
 export interface PaymentMethodCase1Card {
@@ -775,8 +775,7 @@ export type PaymentMethod =
   | PaymentMethodCase3
   | PaymentMethodCase4
   | PaymentMethodCase5;
-export const PaymentMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentMethod>;
+export const PaymentMethod = S.Unknown as any as S.Schema<PaymentMethod>;
 
 export type GetPaymentMethodResponse = PaymentMethod;
 export const GetPaymentMethodResponse = /*@__PURE__*/ S.suspend(() =>
@@ -787,11 +786,11 @@ export const GetPaymentMethodResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 /** How a payment method will be charged after the buyer leaves — the same vocabulary as a confirmation token's setup_future_usage. */
 export type FutureUsageTypes = "off_session" | "on_session";
-export const FutureUsageTypes = /*@__PURE__*/ S.String;
+export const FutureUsageTypes = S.String;
 
 /** Only return payment methods of these types. Pass the eligible `type` values from the payment method types catalogue so the list holds nothing the purchase cannot take. An empty list returns no payment methods. */
 export type ListPaymentMethodRequestPaymentMethodTypesList = Array<
@@ -1142,7 +1141,7 @@ export type PaymentMethodListItem =
   | PaymentMethodCase4
   | PaymentMethodCase5;
 export const PaymentMethodListItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentMethodListItem>;
+  S.Unknown as any as S.Schema<PaymentMethodListItem>;
 
 /** A list of nodes. */
 export type ListPaymentMethodResponseDataList = Array<PaymentMethodListItem>;

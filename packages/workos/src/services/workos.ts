@@ -84,8 +84,7 @@ export type AcceptUserlandUserInvitesControllerResponseState =
   | "accepted"
   | "expired"
   | "revoked";
-export const AcceptUserlandUserInvitesControllerResponseState =
-  /*@__PURE__*/ S.String;
+export const AcceptUserlandUserInvitesControllerResponseState = S.String;
 
 export interface AcceptUserlandUserInvitesControllerResponse {
   /** Distinguishes the invitation object. */
@@ -170,7 +169,7 @@ export type AddAuthorizationOrganizationRolePermissionsControllerPermissionRespo
   | "EnvironmentRole"
   | "OrganizationRole";
 export const AddAuthorizationOrganizationRolePermissionsControllerPermissionResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The permission slugs assigned to the role. */
 export type AddAuthorizationOrganizationRolePermissionsControllerPermissionResponsePermissionsList =
@@ -246,7 +245,7 @@ export type AddAuthorizationRolePermissionsControllerPermissionResponseType =
   | "EnvironmentRole"
   | "OrganizationRole";
 export const AddAuthorizationRolePermissionsControllerPermissionResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The permission slugs assigned to the role. */
 export type AddAuthorizationRolePermissionsControllerPermissionResponsePermissionsList =
@@ -397,7 +396,7 @@ export type ClaimViewResponseStatus =
   | "verified"
   | "expired"
   | "revoked";
-export const ClaimViewResponseStatus = /*@__PURE__*/ S.String;
+export const ClaimViewResponseStatus = S.String;
 
 export interface ClaimViewResponseOrganizationsItem {
   /** The organization ID. */
@@ -525,7 +524,7 @@ export type AgentBlueprintsTokenControllerMintTokenRequestBody =
   | AgentBlueprintsTokenControllerMintTokenRequestBodyCase2
   | AgentBlueprintsTokenControllerMintTokenRequestBodyCase3;
 export const AgentBlueprintsTokenControllerMintTokenRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AgentBlueprintsTokenControllerMintTokenRequestBody>;
+  S.Unknown as any as S.Schema<AgentBlueprintsTokenControllerMintTokenRequestBody>;
 
 export interface AgentBlueprintsTokenControllerMintTokenRequest {
   /** The unique ID of the agent blueprint. */
@@ -637,8 +636,7 @@ export const ApiKeyOwnerCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** The entity that owns the API Key. */
 export type ApiKeyOwner = ApiKeyOwnerCase0 | ApiKeyOwnerCase1;
-export const ApiKeyOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ApiKeyOwner>;
+export const ApiKeyOwner = S.Unknown as any as S.Schema<ApiKeyOwner>;
 
 /** The permission slugs assigned to the API Key. */
 export type ApiKeyPermissionsList = Array<string>;
@@ -805,8 +803,7 @@ export type ApproveWaitlistEntriesControllerResponseState =
   | "pending"
   | "approved"
   | "denied";
-export const ApproveWaitlistEntriesControllerResponseState =
-  /*@__PURE__*/ S.String;
+export const ApproveWaitlistEntriesControllerResponseState = S.String;
 
 /** Additional fields submitted when the user joined the waitlist. Values are user-provided — treat them as untrusted input when rendering or exporting. */
 export type ApproveWaitlistEntriesControllerResponseAdditionalFieldsMap = {
@@ -920,7 +917,7 @@ export const UserRoleAssignmentResource = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the role was assigned directly or derived from a group. */
 export type UserRoleAssignmentSourceType = "direct" | "group";
-export const UserRoleAssignmentSourceType = /*@__PURE__*/ S.String;
+export const UserRoleAssignmentSourceType = S.String;
 
 /** The origin of the role assignment. */
 export interface UserRoleAssignmentSource {
@@ -1047,7 +1044,7 @@ export const AuditLogExportsControllerExportsRequest = /*@__PURE__*/ S.suspend(
 
 /** The state of the export. Possible values: pending, ready, error, expired. */
 export type AuditLogExportJsonState = "pending" | "ready" | "error" | "expired";
-export const AuditLogExportJsonState = /*@__PURE__*/ S.String;
+export const AuditLogExportJsonState = S.String;
 
 export interface AuditLogExportJson {
   /** Distinguishes the Audit Log Export object. */
@@ -1108,7 +1105,7 @@ export const AuditLogsRetentionJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuditLogsRetentionJson>;
 
 export type PaginationOrder = "normal" | "desc" | "asc";
-export const PaginationOrder = /*@__PURE__*/ S.String;
+export const PaginationOrder = S.String;
 
 export interface AuditLogValidatorVersionsControllerSchemasRequest {
   /** The name of the Audit Log action. */
@@ -1473,7 +1470,7 @@ export type AuthorizeSsoControllerRequestProvider =
   | "VercelMarketplaceOAuth"
   | "VercelOAuth"
   | "XeroOAuth";
-export const AuthorizeSsoControllerRequestProvider = /*@__PURE__*/ S.String;
+export const AuthorizeSsoControllerRequestProvider = S.String;
 
 export interface AuthorizeSsoControllerRequest {
   /** Additional scopes to request from the identity provider. Applicable when using OAuth or OpenID Connect connections. */
@@ -1561,8 +1558,7 @@ export const AuthorizeUserlandSsoControllerRequestProviderScopesList =
 export type AuthorizeUserlandSsoControllerRequestScreenHint =
   | "sign-up"
   | "sign-in";
-export const AuthorizeUserlandSsoControllerRequestScreenHint =
-  /*@__PURE__*/ S.String;
+export const AuthorizeUserlandSsoControllerRequestScreenHint = S.String;
 
 export type AuthorizeUserlandSsoControllerRequestProvider =
   | "authkit"
@@ -1579,8 +1575,7 @@ export type AuthorizeUserlandSsoControllerRequestProvider =
   | "VercelMarketplaceOAuth"
   | "VercelOAuth"
   | "XeroOAuth";
-export const AuthorizeUserlandSsoControllerRequestProvider =
-  /*@__PURE__*/ S.String;
+export const AuthorizeUserlandSsoControllerRequestProvider = S.String;
 
 export interface AuthorizeUserlandSsoControllerRequest {
   /** The only valid PKCE code challenge method is `"S256"`. Required when specifying a `code_challenge`. */
@@ -2016,7 +2011,7 @@ export type ConnectionConnectionType =
   | "VercelOAuth"
   | "VMwareSAML"
   | "XeroOAuth";
-export const ConnectionConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionConnectionType = S.String;
 
 /** Indicates whether a Connection is able to authenticate users. */
 export type ConnectionState =
@@ -2026,11 +2021,11 @@ export type ConnectionState =
   | "validating"
   | "inactive"
   | "deleting";
-export const ConnectionState = /*@__PURE__*/ S.String;
+export const ConnectionState = S.String;
 
 /** Deprecated. Use `state` instead. */
 export type ConnectionStatus = "linked" | "unlinked";
-export const ConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectionStatus = S.String;
 
 export interface ConnectionDomainsItem {
   /** Unique identifier for the Connection Domain. */
@@ -2420,7 +2415,7 @@ export type CreateApplicationsControllerRequestBody =
   | CreateOAuthApplicationDto
   | CreateM2MApplicationDto;
 export const CreateApplicationsControllerRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateApplicationsControllerRequestBody>;
+  S.Unknown as any as S.Schema<CreateApplicationsControllerRequestBody>;
 
 export interface CreateApplicationsControllerRequest {
   body: CreateApplicationsControllerRequestBody;
@@ -2698,8 +2693,7 @@ export type CreateAuthenticationFactorsControllerRequestType =
   | "generic_otp"
   | "sms"
   | "totp";
-export const CreateAuthenticationFactorsControllerRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateAuthenticationFactorsControllerRequestType = S.String;
 
 export interface CreateAuthenticationFactorsControllerRequest {
   /** The type of factor to enroll. */
@@ -2732,7 +2726,7 @@ export type AuthenticationFactorEnrolledType =
   | "sms"
   | "totp"
   | "webauthn";
-export const AuthenticationFactorEnrolledType = /*@__PURE__*/ S.String;
+export const AuthenticationFactorEnrolledType = S.String;
 
 /** SMS-based authentication factor details. */
 export interface AuthenticationFactorEnrolledSms {
@@ -2906,7 +2900,7 @@ export type CreateAuthorizationOrganizationRolesControllerResponseType =
   | "EnvironmentRole"
   | "OrganizationRole";
 export const CreateAuthorizationOrganizationRolesControllerResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The permission slugs assigned to the role. */
 export type CreateAuthorizationOrganizationRolesControllerResponsePermissionsList =
@@ -3120,8 +3114,7 @@ export const CreateAuthorizationRolesControllerRequest =
 export type CreateAuthorizationRolesControllerResponseType =
   | "EnvironmentRole"
   | "OrganizationRole";
-export const CreateAuthorizationRolesControllerResponseType =
-  /*@__PURE__*/ S.String;
+export const CreateAuthorizationRolesControllerResponseType = S.String;
 
 /** The permission slugs assigned to the role. */
 export type CreateAuthorizationRolesControllerResponsePermissionsList =
@@ -3298,8 +3291,7 @@ export type CreateConnectionOidcOptionsDtoTokenAuthenticationMethod =
   | "client_secret_post"
   | "client_secret_basic"
   | "private_key_jwt";
-export const CreateConnectionOidcOptionsDtoTokenAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+export const CreateConnectionOidcOptionsDtoTokenAuthenticationMethod = S.String;
 
 /** The ID-token signing algorithm. */
 export type CreateConnectionOidcOptionsDtoIdTokenSignatureAlgorithm =
@@ -3316,8 +3308,7 @@ export type CreateConnectionOidcOptionsDtoIdTokenSignatureAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const CreateConnectionOidcOptionsDtoIdTokenSignatureAlgorithm =
-  /*@__PURE__*/ S.String;
+export const CreateConnectionOidcOptionsDtoIdTokenSignatureAlgorithm = S.String;
 
 export interface CreateConnectionOidcOptionsDto {
   /** The OIDC discovery endpoint. */
@@ -3449,7 +3440,7 @@ export type CreateDataIntegrationsManagementControllerDataIntegrationRequestAuth
   | "api_key"
   | "client_credentials";
 export const CreateDataIntegrationsManagementControllerDataIntegrationRequestAuthMethodsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** How accounts authenticate with the provider. Defaults to `["oauth"]`. Use `["api_key"]` to declare an API key integration; `credentials` is then not required and keys are supplied per-tenant (optionally via `api_key` on this request). Use `["client_credentials"]` to declare a client-credentials integration; `credentials` is likewise not required and client credentials are supplied per-tenant. */
 export type CreateDataIntegrationsManagementControllerDataIntegrationRequestAuthMethodsList =
@@ -3473,7 +3464,7 @@ export const CreateDataIntegrationsManagementControllerDataIntegrationRequestCon
 
 /** The credentials type. `custom` uses your own OAuth app credentials; `organization` has each organization supply its own credentials (configured per-organization). */
 export type DataIntegrationCredentialsDtoType = "custom" | "organization";
-export const DataIntegrationCredentialsDtoType = /*@__PURE__*/ S.String;
+export const DataIntegrationCredentialsDtoType = S.String;
 
 export interface DataIntegrationCredentialsDto {
   /** The credentials type. `custom` uses your own OAuth app credentials; `organization` has each organization supply its own credentials (configured per-organization). */
@@ -3525,8 +3516,7 @@ export const CustomProviderDefinitionDtoAdditionalAuthorizationParametersMap =
 export type CustomProviderDefinitionDtoAuthenticateVia =
   | "request_body"
   | "basic_auth_header";
-export const CustomProviderDefinitionDtoAuthenticateVia =
-  /*@__PURE__*/ S.String;
+export const CustomProviderDefinitionDtoAuthenticateVia = S.String;
 
 export interface CustomProviderDefinitionDto {
   /** A descriptive name for the custom provider. */
@@ -3620,7 +3610,7 @@ export const CreateDataIntegrationsManagementControllerDataIntegrationRequest =
 
 /** The state of the Data Integration. */
 export type DataIntegrationState = "valid" | "invalid" | "requested";
-export const DataIntegrationState = /*@__PURE__*/ S.String;
+export const DataIntegrationState = S.String;
 
 export type DataIntegrationScopesList = Array<string>;
 export const DataIntegrationScopesList = /*@__PURE__*/ S.Array(
@@ -3631,7 +3621,7 @@ export type DataIntegrationAuthMethodsItem =
   | "oauth"
   | "api_key"
   | "client_credentials";
-export const DataIntegrationAuthMethodsItem = /*@__PURE__*/ S.String;
+export const DataIntegrationAuthMethodsItem = S.String;
 
 /** How accounts authenticate with the provider for this Data Integration. */
 export type DataIntegrationAuthMethodsList =
@@ -3642,7 +3632,7 @@ export const DataIntegrationAuthMethodsList = /*@__PURE__*/ S.Array(
 
 /** The credentials type. `custom` uses your own OAuth app credentials; `organization` has each organization supply its own credentials (so `client_id`/`redacted_client_secret` are null on the integration itself). */
 export type DataIntegrationCredentialsType = "custom" | "organization";
-export const DataIntegrationCredentialsType = /*@__PURE__*/ S.String;
+export const DataIntegrationCredentialsType = S.String;
 
 export interface DataIntegrationCredentials {
   /** The credentials type. `custom` uses your own OAuth app credentials; `organization` has each organization supply its own credentials (so `client_id`/`redacted_client_secret` are null on the integration itself). */
@@ -3703,8 +3693,7 @@ export const DataIntegrationCustomProviderAdditionalAuthorizationParametersMap =
 export type DataIntegrationCustomProviderAuthenticateVia =
   | "request_body"
   | "basic_auth_header";
-export const DataIntegrationCustomProviderAuthenticateVia =
-  /*@__PURE__*/ S.String;
+export const DataIntegrationCustomProviderAuthenticateVia = S.String;
 
 export interface DataIntegrationCustomProvider {
   /** A descriptive name for the custom provider. */
@@ -3819,7 +3808,7 @@ export type CreateDataIntegrationsUserManagementControllerUserDataInstallationRe
   | "connected"
   | "needs_reauthorization";
 export const CreateDataIntegrationsUserManagementControllerUserDataInstallationRequestState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDataIntegrationsUserManagementControllerUserDataInstallationRequest {
   /** A [User](/reference/authkit/user) identifier. */
@@ -3879,7 +3868,7 @@ export type ConnectedAccountAuthMethod =
   | "oauth"
   | "api_key"
   | "client_credentials";
-export const ConnectedAccountAuthMethod = /*@__PURE__*/ S.String;
+export const ConnectedAccountAuthMethod = S.String;
 
 /** The connection-level configuration values stored for this connection — the fields the provider declares at `installation` scope, excluding any it declares as secret. Only present when `auth_method` is `client_credentials`. */
 export type ConnectedAccountConfigMap = { [key: string]: string | undefined };
@@ -3893,7 +3882,7 @@ export type ConnectedAccountState =
   | "connected"
   | "needs_reauthorization"
   | "disconnected";
-export const ConnectedAccountState = /*@__PURE__*/ S.String;
+export const ConnectedAccountState = S.String;
 
 export interface ConnectedAccount {
   /** Distinguishes the connected account object. */
@@ -4231,15 +4220,14 @@ export type CreateOrganizationDomainsControllerResponseState =
   | "pending"
   | "unverified"
   | "verified";
-export const CreateOrganizationDomainsControllerResponseState =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationDomainsControllerResponseState = S.String;
 
 /** Strategy used to verify the domain. */
 export type CreateOrganizationDomainsControllerResponseVerificationStrategy =
   | "dns"
   | "manual";
 export const CreateOrganizationDomainsControllerResponseVerificationStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrganizationDomainsControllerResponse {
   /** Distinguishes the organization domain object. */
@@ -4292,7 +4280,7 @@ export const CreateOrganizationsControllerRequestDomainsList =
 
 /** The verification state of the domain. */
 export type OrganizationDomainDataDtoState = "pending" | "verified";
-export const OrganizationDomainDataDtoState = /*@__PURE__*/ S.String;
+export const OrganizationDomainDataDtoState = S.String;
 
 export interface OrganizationDomainDataDto {
   /** The domain value. */
@@ -4366,12 +4354,11 @@ export type OrganizationDomainsItemState =
   | "pending"
   | "unverified"
   | "verified";
-export const OrganizationDomainsItemState = /*@__PURE__*/ S.String;
+export const OrganizationDomainsItemState = S.String;
 
 /** Strategy used to verify the domain. */
 export type OrganizationDomainsItemVerificationStrategy = "dns" | "manual";
-export const OrganizationDomainsItemVerificationStrategy =
-  /*@__PURE__*/ S.String;
+export const OrganizationDomainsItemVerificationStrategy = S.String;
 
 export interface OrganizationDomainsItem {
   /** Distinguishes the organization domain object. */
@@ -4473,8 +4460,7 @@ export type CreatePortalSessionsControllerRequestIntent =
   | "domain_verification"
   | "certificate_renewal"
   | "bring_your_own_key";
-export const CreatePortalSessionsControllerRequestIntent =
-  /*@__PURE__*/ S.String;
+export const CreatePortalSessionsControllerRequestIntent = S.String;
 
 /** The email addresses of the IT contacts to grant access to the Admin Portal for the given organization. Accepts up to 20 emails. */
 export type CreatePortalSessionsControllerRequestItContactEmailsList =
@@ -4730,7 +4716,7 @@ export type TeamProductionState =
   | "Inactive"
   | "Suspended"
   | "Deleting";
-export const TeamProductionState = /*@__PURE__*/ S.String;
+export const TeamProductionState = S.String;
 
 export interface Team {
   /** Distinguishes the team object. */
@@ -4941,8 +4927,7 @@ export type CreateUserlandUserInvitesControllerRequestLocale =
   | "zh-HK"
   | "zh-TW"
   | "zu";
-export const CreateUserlandUserInvitesControllerRequestLocale =
-  /*@__PURE__*/ S.String;
+export const CreateUserlandUserInvitesControllerRequestLocale = S.String;
 
 export interface CreateUserlandUserInvitesControllerRequest {
   /** The email address of the recipient. */
@@ -4984,7 +4969,7 @@ export type UserlandUserInviteState =
   | "accepted"
   | "expired"
   | "revoked";
-export const UserlandUserInviteState = /*@__PURE__*/ S.String;
+export const UserlandUserInviteState = S.String;
 
 export interface UserlandUserInvite {
   /** Distinguishes the invitation object. */
@@ -5084,7 +5069,7 @@ export type CreateUserlandUserOrganizationMembershipsControllerResponseStatus =
   | "inactive"
   | "pending";
 export const CreateUserlandUserOrganizationMembershipsControllerResponseStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked. */
 export type CreateUserlandUserOrganizationMembershipsControllerResponseCustomAttributesMap =
@@ -5254,7 +5239,7 @@ export const CreateWaitlistsControllerEntryRequest = /*@__PURE__*/ S.suspend(
 
 /** The state of the waitlist entry. */
 export type WaitlistEntryState = "pending" | "approved" | "denied";
-export const WaitlistEntryState = /*@__PURE__*/ S.String;
+export const WaitlistEntryState = S.String;
 
 /** Additional fields submitted when the user joined the waitlist. Values are user-provided — treat them as untrusted input when rendering or exporting. */
 export type WaitlistEntryAdditionalFieldsMap = {
@@ -5400,8 +5385,7 @@ export type CreateWebhookEndpointsControllerRequestEventsItem =
   | "waitlist_user.approved"
   | "waitlist_user.created"
   | "waitlist_user.denied";
-export const CreateWebhookEndpointsControllerRequestEventsItem =
-  /*@__PURE__*/ S.String;
+export const CreateWebhookEndpointsControllerRequestEventsItem = S.String;
 
 /** The events that the Webhook Endpoint is subscribed to. */
 export type CreateWebhookEndpointsControllerRequestEventsList = Array<
@@ -5430,7 +5414,7 @@ export const CreateWebhookEndpointsControllerRequest = /*@__PURE__*/ S.suspend(
 
 /** Whether the Webhook Endpoint is enabled or disabled. */
 export type WebhookEndpointJsonStatus = "enabled" | "disabled";
-export const WebhookEndpointJsonStatus = /*@__PURE__*/ S.String;
+export const WebhookEndpointJsonStatus = S.String;
 
 /** The events that the Webhook Endpoint is subscribed to. */
 export type WebhookEndpointJsonEventsList = Array<string>;
@@ -5731,8 +5715,7 @@ export const DataIntegrationCredentialsResponseCase2 = /*@__PURE__*/ S.suspend(
 export type DataIntegrationCredentialsResponseCase3Error =
   | "not_installed"
   | "needs_reauthorization";
-export const DataIntegrationCredentialsResponseCase3Error =
-  /*@__PURE__*/ S.String;
+export const DataIntegrationCredentialsResponseCase3Error = S.String;
 
 export interface DataIntegrationCredentialsResponseCase3 {
   /** Indicates credentials are not available. */
@@ -5756,7 +5739,7 @@ export type DataIntegrationCredentialsResponse =
   | DataIntegrationCredentialsResponseCase2
   | DataIntegrationCredentialsResponseCase3;
 export const DataIntegrationCredentialsResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataIntegrationCredentialsResponse>;
+  S.Unknown as any as S.Schema<DataIntegrationCredentialsResponse>;
 
 export type DataIntegrationsControllerVendCredentialsResponse =
   DataIntegrationCredentialsResponse;
@@ -5793,7 +5776,7 @@ export type DeactivateUserlandUserOrganizationMembershipsControllerResponseStatu
   | "inactive"
   | "pending";
 export const DeactivateUserlandUserOrganizationMembershipsControllerResponseStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked. */
 export type DeactivateUserlandUserOrganizationMembershipsControllerResponseCustomAttributesMap =
@@ -6685,7 +6668,7 @@ export type DirectoryType =
   | "sftp"
   | "sftp workday"
   | "workday";
-export const DirectoryType = /*@__PURE__*/ S.String;
+export const DirectoryType = S.String;
 
 /** Describes whether the Directory has been successfully connected to an external provider. */
 export type DirectoryState =
@@ -6694,7 +6677,7 @@ export type DirectoryState =
   | "invalid_credentials"
   | "unlinked"
   | "deleting";
-export const DirectoryState = /*@__PURE__*/ S.String;
+export const DirectoryState = S.String;
 
 /** Counts of active and inactive directory users. */
 export interface DirectoryMetadataUsers {
@@ -6865,7 +6848,7 @@ export const DirectoryUserWithGroupsEmailsList = /*@__PURE__*/ S.Array(
 
 /** The state of the user. */
 export type DirectoryUserWithGroupsState = "active" | "suspended" | "inactive";
-export const DirectoryUserWithGroupsState = /*@__PURE__*/ S.String;
+export const DirectoryUserWithGroupsState = S.String;
 
 /** The raw attributes received from the directory provider. */
 export type DirectoryUserWithGroupsRawAttributesMap = {
@@ -7248,14 +7231,14 @@ export type AgentRegistrationStatus =
   | "verified"
   | "expired"
   | "revoked";
-export const AgentRegistrationStatus = /*@__PURE__*/ S.String;
+export const AgentRegistrationStatus = S.String;
 
 /** The kind of agent registration. */
 export type AgentRegistrationKind =
   | "anonymous"
   | "service_auth"
   | "identity_assertion";
-export const AgentRegistrationKind = /*@__PURE__*/ S.String;
+export const AgentRegistrationKind = S.String;
 
 export interface AgentRegistrationClaimClaimCompletion {
   /** Unique identifier of the claim completion. */
@@ -7377,7 +7360,7 @@ export const GetAgentInstancesControllerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the instance acts on behalf of a specific user (`delegated`) or as itself (`autonomous`). */
 export type AgentInstanceType = "delegated" | "autonomous";
-export const AgentInstanceType = /*@__PURE__*/ S.String;
+export const AgentInstanceType = S.String;
 
 export interface AgentInstance {
   /** Distinguishes the agent instance object. */
@@ -7431,7 +7414,7 @@ export const GetAgentInstanceSessionsControllerRequest =
 
 /** Derived from `revoked_at` and `expires_at` at read time; a revoked session stays `revoked` even after it expires. */
 export type AgentInstanceSessionStatus = "active" | "revoked" | "expired";
-export const AgentInstanceSessionStatus = /*@__PURE__*/ S.String;
+export const AgentInstanceSessionStatus = S.String;
 
 export interface AgentInstanceSession {
   /** Distinguishes the agent instance session object. */
@@ -7485,7 +7468,7 @@ export type AuthenticationFactorType =
   | "sms"
   | "totp"
   | "webauthn";
-export const AuthenticationFactorType = /*@__PURE__*/ S.String;
+export const AuthenticationFactorType = S.String;
 
 /** SMS-based authentication factor details. */
 export type AuthenticationFactorSms = AuthenticationFactorEnrolledSms;
@@ -7588,8 +7571,7 @@ export const GetAuthorizationOrganizationRolesControllerRequest =
 export type GetAuthorizationOrganizationRolesControllerResponseType =
   | "EnvironmentRole"
   | "OrganizationRole";
-export const GetAuthorizationOrganizationRolesControllerResponseType =
-  /*@__PURE__*/ S.String;
+export const GetAuthorizationOrganizationRolesControllerResponseType = S.String;
 
 /** The permission slugs assigned to the role. */
 export type GetAuthorizationOrganizationRolesControllerResponsePermissionsList =
@@ -7683,7 +7665,7 @@ export const GetAuthorizationRolesControllerRequest = /*@__PURE__*/ S.suspend(
 
 /** Whether the role is scoped to the environment or an organization (custom role). */
 export type RoleType = "EnvironmentRole" | "OrganizationRole";
-export const RoleType = /*@__PURE__*/ S.String;
+export const RoleType = S.String;
 
 /** The permission slugs assigned to the role. */
 export type RolePermissionsList = Array<string>;
@@ -7819,8 +7801,7 @@ export const DataIntegrationAccessTokenResponseCase0 = /*@__PURE__*/ S.suspend(
 export type DataIntegrationAccessTokenResponseCase1Error =
   | "needs_reauthorization"
   | "not_installed";
-export const DataIntegrationAccessTokenResponseCase1Error =
-  /*@__PURE__*/ S.String;
+export const DataIntegrationAccessTokenResponseCase1Error = S.String;
 
 export interface DataIntegrationAccessTokenResponseCase1 {
   /** Indicates whether the access token is valid and ready for use, or if reauthorization is required. */
@@ -7842,7 +7823,7 @@ export type DataIntegrationAccessTokenResponse =
   | DataIntegrationAccessTokenResponseCase0
   | DataIntegrationAccessTokenResponseCase1;
 export const DataIntegrationAccessTokenResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataIntegrationAccessTokenResponse>;
+  S.Unknown as any as S.Schema<DataIntegrationAccessTokenResponse>;
 
 export type GetDataIntegrationsControllerUserlandUserTokenResponse =
   DataIntegrationAccessTokenResponse;
@@ -7930,8 +7911,7 @@ export type DataIntegrationsListResponseDataItemAuthMethodsItem =
   | "oauth"
   | "api_key"
   | "client_credentials";
-export const DataIntegrationsListResponseDataItemAuthMethodsItem =
-  /*@__PURE__*/ S.String;
+export const DataIntegrationsListResponseDataItemAuthMethodsItem = S.String;
 
 /** The authentication methods supported by this provider (`oauth`, `api_key`, `client_credentials`, or a combination). Defaults to `["oauth"]` if absent. */
 export type DataIntegrationsListResponseDataItemAuthMethodsList =
@@ -7945,8 +7925,7 @@ export const DataIntegrationsListResponseDataItemAuthMethodsList =
 export type DataIntegrationsListResponseDataItemOwnership =
   | "userland_user"
   | "organization";
-export const DataIntegrationsListResponseDataItemOwnership =
-  /*@__PURE__*/ S.String;
+export const DataIntegrationsListResponseDataItemOwnership = S.String;
 
 /** The OAuth scopes granted for this connection. */
 export type DataIntegrationsListResponseDataItemConnectedAccountScopesList =
@@ -7962,7 +7941,7 @@ export type DataIntegrationsListResponseDataItemConnectedAccountAuthMethod =
   | "api_key"
   | "client_credentials";
 export const DataIntegrationsListResponseDataItemConnectedAccountAuthMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The connection-level configuration values stored for this connection — the fields the provider declares at `installation` scope, excluding any it declares as secret. Only present when `auth_method` is `client_credentials`. */
 export type DataIntegrationsListResponseDataItemConnectedAccountConfigMap = {
@@ -7980,7 +7959,7 @@ export type DataIntegrationsListResponseDataItemConnectedAccountState =
   | "needs_reauthorization"
   | "disconnected";
 export const DataIntegrationsListResponseDataItemConnectedAccountState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DataIntegrationsListResponseDataItemConnectedAccount {
   /** Distinguishes the connected account object. */
@@ -8061,7 +8040,7 @@ export type DataIntegrationsListResponseDataItemConnectedAccountsItemAuthMethod 
   | "api_key"
   | "client_credentials";
 export const DataIntegrationsListResponseDataItemConnectedAccountsItemAuthMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The connection-level configuration values stored for this connection — the fields the provider declares at `installation` scope, excluding any it declares as secret. Only present when `auth_method` is `client_credentials`. */
 export type DataIntegrationsListResponseDataItemConnectedAccountsItemConfigMap =
@@ -8078,7 +8057,7 @@ export type DataIntegrationsListResponseDataItemConnectedAccountsItemState =
   | "needs_reauthorization"
   | "disconnected";
 export const DataIntegrationsListResponseDataItemConnectedAccountsItemState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DataIntegrationsListResponseDataItemConnectedAccountsItem {
   /** Distinguishes the connected account object. */
@@ -8321,12 +8300,11 @@ export type OrganizationDomainStandAloneState =
   | "pending"
   | "unverified"
   | "verified";
-export const OrganizationDomainStandAloneState = /*@__PURE__*/ S.String;
+export const OrganizationDomainStandAloneState = S.String;
 
 /** Strategy used to verify the domain. */
 export type OrganizationDomainStandAloneVerificationStrategy = "dns" | "manual";
-export const OrganizationDomainStandAloneVerificationStrategy =
-  /*@__PURE__*/ S.String;
+export const OrganizationDomainStandAloneVerificationStrategy = S.String;
 
 export interface OrganizationDomainStandAlone {
   /** Distinguishes the organization domain object. */
@@ -8390,7 +8368,7 @@ export const GetOrganizationsControllerAuditLogConfigurationRequest =
 
 /** The current state of the audit log configuration for the organization. */
 export type AuditLogConfigurationState = "active" | "inactive" | "disabled";
-export const AuditLogConfigurationState = /*@__PURE__*/ S.String;
+export const AuditLogConfigurationState = S.String;
 
 /** The type of the Audit Log Stream destination. */
 export type AuditLogConfigurationLogStreamType =
@@ -8401,7 +8379,7 @@ export type AuditLogConfigurationLogStreamType =
   | "S3"
   | "Snowflake"
   | "Splunk";
-export const AuditLogConfigurationLogStreamType = /*@__PURE__*/ S.String;
+export const AuditLogConfigurationLogStreamType = S.String;
 
 /** The current state of the Audit Log Stream. */
 export type AuditLogConfigurationLogStreamState =
@@ -8409,7 +8387,7 @@ export type AuditLogConfigurationLogStreamState =
   | "inactive"
   | "error"
   | "invalid";
-export const AuditLogConfigurationLogStreamState = /*@__PURE__*/ S.String;
+export const AuditLogConfigurationLogStreamState = S.String;
 
 /** The Audit Log Stream currently configured for the organization, if any. */
 export interface AuditLogConfigurationLogStream {
@@ -8607,7 +8585,7 @@ export type ProfileConnectionType =
   | "VercelOAuth"
   | "VMwareSAML"
   | "XeroOAuth";
-export const ProfileConnectionType = /*@__PURE__*/ S.String;
+export const ProfileConnectionType = S.String;
 
 export type ProfileRolesList = Array<SlimRole>;
 export const ProfileRolesList = /*@__PURE__*/ S.Array(
@@ -8785,7 +8763,7 @@ export type GetUserlandUserIdentitiesControllerResponseBodyItemProvider =
   | "VercelOAuth"
   | "XeroOAuth";
 export const GetUserlandUserIdentitiesControllerResponseBodyItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetUserlandUserIdentitiesControllerResponseBodyItem {
   /** The unique ID of the user in the external identity provider. */
@@ -8886,7 +8864,7 @@ export type UserlandUserOrganizationMembershipStatus =
   | "active"
   | "inactive"
   | "pending";
-export const UserlandUserOrganizationMembershipStatus = /*@__PURE__*/ S.String;
+export const UserlandUserOrganizationMembershipStatus = S.String;
 
 /** An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked. */
 export type UserlandUserOrganizationMembershipCustomAttributesMap = {
@@ -9032,8 +9010,7 @@ export type InviteItContactsControllerRequestIntentsItem =
   | "log_streams"
   | "domain_verification"
   | "bring_your_own_key";
-export const InviteItContactsControllerRequestIntentsItem =
-  /*@__PURE__*/ S.String;
+export const InviteItContactsControllerRequestIntentsItem = S.String;
 
 /** The Admin Portal features that the IT contact can configure. */
 export type InviteItContactsControllerRequestIntentsList = Array<
@@ -9524,8 +9501,7 @@ export const ListApplicationCredentialsControllerResponse =
 export type ListApplicationsControllerRequestRegistrationTypesItem =
   | "dynamic"
   | "authenticated";
-export const ListApplicationsControllerRequestRegistrationTypesItem =
-  /*@__PURE__*/ S.String;
+export const ListApplicationsControllerRequestRegistrationTypesItem = S.String;
 
 export type ListApplicationsControllerRequestRegistrationTypesList = Array<
   ListApplicationsControllerRequestRegistrationTypesItem | (string & {})
@@ -10053,7 +10029,7 @@ export type ListAuthorizationResourcesByExternalIdControllerOrganizationMembersh
   | "direct"
   | "indirect";
 export const ListAuthorizationResourcesByExternalIdControllerOrganizationMembershipsForResourceByExternalIdRequestAssignment =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListAuthorizationResourcesByExternalIdControllerOrganizationMembershipsForResourceByExternalIdRequest {
   /** The ID of the organization that owns the resource. */
@@ -10110,8 +10086,7 @@ export type UserlandUserOrganizationMembershipBaseWithUserStatus =
   | "active"
   | "inactive"
   | "pending";
-export const UserlandUserOrganizationMembershipBaseWithUserStatus =
-  /*@__PURE__*/ S.String;
+export const UserlandUserOrganizationMembershipBaseWithUserStatus = S.String;
 
 /** An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked. */
 export type UserlandUserOrganizationMembershipBaseWithUserCustomAttributesMap =
@@ -10247,7 +10222,7 @@ export type ListAuthorizationResourcesControllerOrganizationMembershipsForResour
   | "direct"
   | "indirect";
 export const ListAuthorizationResourcesControllerOrganizationMembershipsForResourceRequestAssignment =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListAuthorizationResourcesControllerOrganizationMembershipsForResourceRequest {
   /** The ID of the authorization resource. */
@@ -10595,8 +10570,7 @@ export type ListConnectionsControllerRequestConnectionType =
   | "VercelOAuth"
   | "VMwareSAML"
   | "XeroOAuth";
-export const ListConnectionsControllerRequestConnectionType =
-  /*@__PURE__*/ S.String;
+export const ListConnectionsControllerRequestConnectionType = S.String;
 
 export interface ListConnectionsControllerRequest {
   /** An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. */
@@ -11164,7 +11138,7 @@ export type UserlandUserOrganizationMembershipBaseListDataItemStatus =
   | "inactive"
   | "pending";
 export const UserlandUserOrganizationMembershipBaseListDataItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked. */
 export type UserlandUserOrganizationMembershipBaseListDataItemCustomAttributesMap =
@@ -11363,8 +11337,7 @@ export const ItContactList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ItContactList" }) as any as S.Schema<ItContactList>;
 
 export type ListJumpWireWebDataVaultControllerRequestOrder = "asc" | "desc";
-export const ListJumpWireWebDataVaultControllerRequestOrder =
-  /*@__PURE__*/ S.String;
+export const ListJumpWireWebDataVaultControllerRequestOrder = S.String;
 
 export interface ListJumpWireWebDataVaultControllerRequest {
   /** Upper limit on the number of objects to return. */
@@ -11814,7 +11787,7 @@ export type DataIntegrationCredentialsCredentialsType =
   | "shared"
   | "custom"
   | "organization";
-export const DataIntegrationCredentialsCredentialsType = /*@__PURE__*/ S.String;
+export const DataIntegrationCredentialsCredentialsType = S.String;
 
 /** Organization-managed OAuth credential configuration. Present only for integrations whose credentials are supplied by the organization; absent otherwise. */
 export interface DataIntegrationCredentials2 {
@@ -12248,7 +12221,7 @@ export type ListUserlandUserOrganizationMembershipsControllerRequestStatusesItem
   | "inactive"
   | "pending";
 export const ListUserlandUserOrganizationMembershipsControllerRequestStatusesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListUserlandUserOrganizationMembershipsControllerRequestStatusesList =
   Array<
@@ -12403,7 +12376,7 @@ export type ListUserlandUserSessionsControllerResponseDataItemAuthMethod =
   | "sso"
   | "unknown";
 export const ListUserlandUserSessionsControllerResponseDataItemAuthMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current status of the session. */
 export type ListUserlandUserSessionsControllerResponseDataItemStatus =
@@ -12411,7 +12384,7 @@ export type ListUserlandUserSessionsControllerResponseDataItemStatus =
   | "expired"
   | "revoked";
 export const ListUserlandUserSessionsControllerResponseDataItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListUserlandUserSessionsControllerResponseDataItem {
   /** Distinguishes the session object. */
@@ -12556,8 +12529,7 @@ export type ListWaitlistsControllerEntriesRequestState =
   | "pending"
   | "approved"
   | "denied";
-export const ListWaitlistsControllerEntriesRequestState =
-  /*@__PURE__*/ S.String;
+export const ListWaitlistsControllerEntriesRequestState = S.String;
 
 export interface ListWaitlistsControllerEntriesRequest {
   /** The unique ID of the waitlist, or the literal `default` for the environment's default waitlist. The default waitlist is created when its first entry is added, so read requests for `default` return a `404` until then. */
@@ -12831,8 +12803,7 @@ export type PatchConnectionOidcOptionsDtoTokenAuthenticationMethod =
   | "client_secret_post"
   | "client_secret_basic"
   | "private_key_jwt";
-export const PatchConnectionOidcOptionsDtoTokenAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+export const PatchConnectionOidcOptionsDtoTokenAuthenticationMethod = S.String;
 
 /** The ID-token signing algorithm. */
 export type PatchConnectionOidcOptionsDtoIdTokenSignatureAlgorithm =
@@ -12849,8 +12820,7 @@ export type PatchConnectionOidcOptionsDtoIdTokenSignatureAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const PatchConnectionOidcOptionsDtoIdTokenSignatureAlgorithm =
-  /*@__PURE__*/ S.String;
+export const PatchConnectionOidcOptionsDtoIdTokenSignatureAlgorithm = S.String;
 
 export interface PatchConnectionOidcOptionsDto {
   /** The OIDC discovery endpoint. */
@@ -12985,15 +12955,13 @@ export type RadarStandaloneControllerAssessRequestAuthMethod =
   | "Social"
   | "SSO"
   | "Other";
-export const RadarStandaloneControllerAssessRequestAuthMethod =
-  /*@__PURE__*/ S.String;
+export const RadarStandaloneControllerAssessRequestAuthMethod = S.String;
 
 /** The action being performed. */
 export type RadarStandaloneControllerAssessRequestAction =
   | "sign-up"
   | "sign-in";
-export const RadarStandaloneControllerAssessRequestAction =
-  /*@__PURE__*/ S.String;
+export const RadarStandaloneControllerAssessRequestAction = S.String;
 
 export interface RadarStandaloneControllerAssessRequest {
   /** The IP address of the request to assess. */
@@ -13025,7 +12993,7 @@ export const RadarStandaloneControllerAssessRequest = /*@__PURE__*/ S.suspend(
 
 /** The verdict of the risk assessment. */
 export type RadarStandaloneResponseVerdict = "allow" | "block" | "challenge";
-export const RadarStandaloneResponseVerdict = /*@__PURE__*/ S.String;
+export const RadarStandaloneResponseVerdict = S.String;
 
 /** The Radar control that triggered the verdict. Only present if the verdict is `block` or `challenge`. */
 export type RadarStandaloneResponseControl =
@@ -13036,7 +13004,7 @@ export type RadarStandaloneResponseControl =
   | "stale_account"
   | "unrecognized_device"
   | "restriction";
-export const RadarStandaloneResponseControl = /*@__PURE__*/ S.String;
+export const RadarStandaloneResponseControl = S.String;
 
 /** The type of blocklist entry that triggered the verdict. Only present if the control is `restriction`. */
 export type RadarStandaloneResponseBlocklistType =
@@ -13047,7 +13015,7 @@ export type RadarStandaloneResponseBlocklistType =
   | "user_agent"
   | "device_fingerprint"
   | "country";
-export const RadarStandaloneResponseBlocklistType = /*@__PURE__*/ S.String;
+export const RadarStandaloneResponseBlocklistType = S.String;
 
 export interface RadarStandaloneResponse {
   /** The verdict of the risk assessment. */
@@ -13082,13 +13050,13 @@ export type RadarStandaloneControllerDeleteRadarListEntryRequestType =
   | "device_fingerprint"
   | "country";
 export const RadarStandaloneControllerDeleteRadarListEntryRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type RadarStandaloneControllerDeleteRadarListEntryRequestAction =
   | "block"
   | "allow";
 export const RadarStandaloneControllerDeleteRadarListEntryRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RadarStandaloneControllerDeleteRadarListEntryRequest {
   /** The type of the Radar list (e.g. ip_address, domain, email). */
@@ -13137,14 +13105,12 @@ export type RadarStandaloneControllerUpdateRadarListRequestType =
   | "user_agent"
   | "device_fingerprint"
   | "country";
-export const RadarStandaloneControllerUpdateRadarListRequestType =
-  /*@__PURE__*/ S.String;
+export const RadarStandaloneControllerUpdateRadarListRequestType = S.String;
 
 export type RadarStandaloneControllerUpdateRadarListRequestAction =
   | "block"
   | "allow";
-export const RadarStandaloneControllerUpdateRadarListRequestAction =
-  /*@__PURE__*/ S.String;
+export const RadarStandaloneControllerUpdateRadarListRequestAction = S.String;
 
 export interface RadarStandaloneControllerUpdateRadarListRequest {
   /** The type of the Radar list (e.g. ip_address, domain, email). */
@@ -13524,8 +13490,7 @@ export type ResendUserlandUserInvitesControllerRequestLocale =
   | "zh-HK"
   | "zh-TW"
   | "zu";
-export const ResendUserlandUserInvitesControllerRequestLocale =
-  /*@__PURE__*/ S.String;
+export const ResendUserlandUserInvitesControllerRequestLocale = S.String;
 
 export interface ResendUserlandUserInvitesControllerRequest {
   /** The unique ID of the invitation. */
@@ -13680,8 +13645,7 @@ export type RevokeUserlandUserInvitesControllerResponseState =
   | "accepted"
   | "expired"
   | "revoked";
-export const RevokeUserlandUserInvitesControllerResponseState =
-  /*@__PURE__*/ S.String;
+export const RevokeUserlandUserInvitesControllerResponseState = S.String;
 
 export interface RevokeUserlandUserInvitesControllerResponse {
   /** Distinguishes the invitation object. */
@@ -13899,7 +13863,7 @@ export type SetAuthorizationOrganizationRolePermissionsControllerPermissionsResp
   | "EnvironmentRole"
   | "OrganizationRole";
 export const SetAuthorizationOrganizationRolePermissionsControllerPermissionsResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The permission slugs assigned to the role. */
 export type SetAuthorizationOrganizationRolePermissionsControllerPermissionsResponsePermissionsList =
@@ -13988,7 +13952,7 @@ export type SetAuthorizationRolePermissionsControllerPermissionsResponseType =
   | "EnvironmentRole"
   | "OrganizationRole";
 export const SetAuthorizationRolePermissionsControllerPermissionsResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The permission slugs assigned to the role. */
 export type SetAuthorizationRolePermissionsControllerPermissionsResponsePermissionsList =
@@ -14136,7 +14100,7 @@ export const SsoLogoutAuthorizeResponse = /*@__PURE__*/ S.suspend(() =>
 export type SsoControllerTokenRequestGrantType =
   | "authorization_code"
   | "urn:ietf:params:oauth:grant-type:token-exchange";
-export const SsoControllerTokenRequestGrantType = /*@__PURE__*/ S.String;
+export const SsoControllerTokenRequestGrantType = S.String;
 
 export interface SsoControllerTokenRequest {
   /** The client ID of the WorkOS environment. */
@@ -14468,8 +14432,7 @@ export type UpdateAuditLogsRetentionDtoCase0RetentionPeriod =
   | "8_YEARS"
   | "9_YEARS"
   | "10_YEARS";
-export const UpdateAuditLogsRetentionDtoCase0RetentionPeriod =
-  /*@__PURE__*/ S.String;
+export const UpdateAuditLogsRetentionDtoCase0RetentionPeriod = S.String;
 
 export interface UpdateAuditLogsRetentionDtoCase0 {
   /** The period Audit Log events will be retained. Valid values are `1_MONTH` through `11_MONTHS` in one-month increments and `1_YEAR` through `10_YEARS` in one-year increments. Mutually exclusive with `retention_period_in_days`. */
@@ -14501,7 +14464,7 @@ export type UpdateAuditLogsRetentionDto =
   | UpdateAuditLogsRetentionDtoCase0
   | UpdateAuditLogsRetentionDtoCase1;
 export const UpdateAuditLogsRetentionDto =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateAuditLogsRetentionDto>;
+  S.Unknown as any as S.Schema<UpdateAuditLogsRetentionDto>;
 
 export interface UpdateAuditLogsRetentionControllerAuditLogsRetentionRequest {
   /** Unique identifier of the Organization. */
@@ -14557,7 +14520,7 @@ export type UpdateAuthorizationOrganizationRolesControllerResponseType =
   | "EnvironmentRole"
   | "OrganizationRole";
 export const UpdateAuthorizationOrganizationRolesControllerResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The permission slugs assigned to the role. */
 export type UpdateAuthorizationOrganizationRolesControllerResponsePermissionsList =
@@ -14818,8 +14781,7 @@ export const UpdateAuthorizationRolesControllerRequest =
 export type UpdateAuthorizationRolesControllerResponseType =
   | "EnvironmentRole"
   | "OrganizationRole";
-export const UpdateAuthorizationRolesControllerResponseType =
-  /*@__PURE__*/ S.String;
+export const UpdateAuthorizationRolesControllerResponseType = S.String;
 
 /** The permission slugs assigned to the role. */
 export type UpdateAuthorizationRolesControllerResponsePermissionsList =
@@ -14890,8 +14852,7 @@ export const UpdateCustomProviderDefinitionDtoAdditionalAuthorizationParametersM
 export type UpdateCustomProviderDefinitionDtoAuthenticateVia =
   | "request_body"
   | "basic_auth_header";
-export const UpdateCustomProviderDefinitionDtoAuthenticateVia =
-  /*@__PURE__*/ S.String;
+export const UpdateCustomProviderDefinitionDtoAuthenticateVia = S.String;
 
 export interface UpdateCustomProviderDefinitionDto {
   /** A descriptive name for the custom provider. */
@@ -14992,7 +14953,7 @@ export type UpdateDataIntegrationsUserManagementControllerUserDataInstallationRe
   | "connected"
   | "needs_reauthorization";
 export const UpdateDataIntegrationsUserManagementControllerUserDataInstallationRequestState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDataIntegrationsUserManagementControllerUserDataInstallationRequest {
   /** A [User](/reference/authkit/user) identifier. */
@@ -15239,7 +15200,7 @@ export type UpdateUserlandUserOrganizationMembershipDto =
   | UpdateUserlandUserOrganizationMembershipDtoCase1
   | UpdateUserlandUserOrganizationMembershipDtoCase2;
 export const UpdateUserlandUserOrganizationMembershipDto =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateUserlandUserOrganizationMembershipDto>;
+  S.Unknown as any as S.Schema<UpdateUserlandUserOrganizationMembershipDto>;
 
 export interface UpdateUserlandUserOrganizationMembershipsControllerRequest {
   /** The unique ID of the organization membership. */
@@ -15266,8 +15227,7 @@ export const UpdateUserlandUserOrganizationMembershipsControllerRequest =
 export type UpdateWebhookEndpointsControllerRequestStatus =
   | "enabled"
   | "disabled";
-export const UpdateWebhookEndpointsControllerRequestStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateWebhookEndpointsControllerRequestStatus = S.String;
 
 export type UpdateWebhookEndpointsControllerRequestEventsItem =
   | "agent.blueprint.created"
@@ -15370,8 +15330,7 @@ export type UpdateWebhookEndpointsControllerRequestEventsItem =
   | "waitlist_user.approved"
   | "waitlist_user.created"
   | "waitlist_user.denied";
-export const UpdateWebhookEndpointsControllerRequestEventsItem =
-  /*@__PURE__*/ S.String;
+export const UpdateWebhookEndpointsControllerRequestEventsItem = S.String;
 
 /** The events that the Webhook Endpoint is subscribed to. */
 export type UpdateWebhookEndpointsControllerRequestEventsList = Array<
@@ -15952,7 +15911,7 @@ export type UserlandSessionsControllerAuthenticate0RequestBody =
   | UserlandSessionsControllerAuthenticate0RequestBodyCase9
   | UserlandSessionsControllerAuthenticate0RequestBodyCase10;
 export const UserlandSessionsControllerAuthenticate0RequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserlandSessionsControllerAuthenticate0RequestBody>;
+  S.Unknown as any as S.Schema<UserlandSessionsControllerAuthenticate0RequestBody>;
 
 export interface UserlandSessionsControllerAuthenticate0Request {
   body: UserlandSessionsControllerAuthenticate0RequestBody;
@@ -15997,8 +15956,7 @@ export type UserlandAuthenticateResponseAuthenticationMethod =
   | "MagicAuth"
   | "Impersonation"
   | "MigratedSession";
-export const UserlandAuthenticateResponseAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+export const UserlandAuthenticateResponseAuthenticationMethod = S.String;
 
 /** Information about the impersonator if this session was created via impersonation. */
 export type UserlandAuthenticateResponseImpersonator =
@@ -16274,15 +16232,14 @@ export type UserlandUsersControllerCreate0RequestPasswordHashType =
   | "scrypt"
   | "pbkdf2"
   | "argon2";
-export const UserlandUsersControllerCreate0RequestPasswordHashType =
-  /*@__PURE__*/ S.String;
+export const UserlandUsersControllerCreate0RequestPasswordHashType = S.String;
 
 /** The position of the salt relative to the password when the `password_hash` digest was computed: `prefix` for `hash(salt + password)` or `suffix` for `hash(password + salt)`. Only supported with the `ssha256` hash type and only valid when a `password_hash` is provided. Defaults to `suffix`. Mutually exclusive with `password`. */
 export type UserlandUsersControllerCreate0RequestPasswordSaltPosition =
   | "prefix"
   | "suffix";
 export const UserlandUsersControllerCreate0RequestPasswordSaltPosition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserlandUsersControllerCreate0Request {
   /** The email address of the user. */
@@ -16637,15 +16594,14 @@ export type UserlandUsersControllerUpdate0RequestPasswordHashType =
   | "scrypt"
   | "pbkdf2"
   | "argon2";
-export const UserlandUsersControllerUpdate0RequestPasswordHashType =
-  /*@__PURE__*/ S.String;
+export const UserlandUsersControllerUpdate0RequestPasswordHashType = S.String;
 
 /** The position of the salt relative to the password when the `password_hash` digest was computed: `prefix` for `hash(salt + password)` or `suffix` for `hash(password + salt)`. Only supported with the `ssha256` hash type and only valid when a `password_hash` is provided. Defaults to `suffix`. Mutually exclusive with `password`. */
 export type UserlandUsersControllerUpdate0RequestPasswordSaltPosition =
   | "prefix"
   | "suffix";
 export const UserlandUsersControllerUpdate0RequestPasswordSaltPosition =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UserlandUsersControllerUpdate0Request {
   /** The unique ID of the user. */
@@ -16748,7 +16704,7 @@ export type ValidateAgentAdminControllerCredentialRequestBody =
   | ValidateAgentAdminControllerCredentialRequestBodyCase0
   | ValidateAgentAdminControllerCredentialRequestBodyCase1;
 export const ValidateAgentAdminControllerCredentialRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ValidateAgentAdminControllerCredentialRequestBody>;
+  S.Unknown as any as S.Schema<ValidateAgentAdminControllerCredentialRequestBody>;
 
 export interface ValidateAgentAdminControllerCredentialRequest {
   body: ValidateAgentAdminControllerCredentialRequestBody;
@@ -16959,8 +16915,7 @@ export type WaitlistEntriesControllerDenyResponseState =
   | "pending"
   | "approved"
   | "denied";
-export const WaitlistEntriesControllerDenyResponseState =
-  /*@__PURE__*/ S.String;
+export const WaitlistEntriesControllerDenyResponseState = S.String;
 
 /** Additional fields submitted when the user joined the waitlist. Values are user-provided — treat them as untrusted input when rendering or exporting. */
 export type WaitlistEntriesControllerDenyResponseAdditionalFieldsMap = {
@@ -17038,7 +16993,7 @@ export type WidgetsPublicControllerIssueWidgetSessionTokenRequestScopesItem =
   | "widgets:audit-log-streaming:manage"
   | "widgets:pipes:manage";
 export const WidgetsPublicControllerIssueWidgetSessionTokenRequestScopesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The scopes to grant the widget session. */
 export type WidgetsPublicControllerIssueWidgetSessionTokenRequestScopesList =

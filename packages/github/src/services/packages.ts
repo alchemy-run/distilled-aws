@@ -46,8 +46,7 @@ export type DeletePackageForAuthenticatedUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const DeletePackageForAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const DeletePackageForAuthenticatedUserRequestPackageType = S.String;
 
 export interface DeletePackageForAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -88,7 +87,7 @@ export type DeletePackageForOrgRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const DeletePackageForOrgRequestPackageType = /*@__PURE__*/ S.String;
+export const DeletePackageForOrgRequestPackageType = S.String;
 
 export interface DeletePackageForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -128,7 +127,7 @@ export type DeletePackageForUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const DeletePackageForUserRequestPackageType = /*@__PURE__*/ S.String;
+export const DeletePackageForUserRequestPackageType = S.String;
 
 export interface DeletePackageForUserRequest {
   /** The handle for the GitHub user account. */
@@ -169,7 +168,7 @@ export type DeletePackageVersionForAuthenticatedUserRequestPackageType =
   | "nuget"
   | "container";
 export const DeletePackageVersionForAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeletePackageVersionForAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -214,8 +213,7 @@ export type DeletePackageVersionForOrgRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const DeletePackageVersionForOrgRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const DeletePackageVersionForOrgRequestPackageType = S.String;
 
 export interface DeletePackageVersionForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -258,8 +256,7 @@ export type DeletePackageVersionForUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const DeletePackageVersionForUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const DeletePackageVersionForUserRequestPackageType = S.String;
 
 export interface DeletePackageVersionForUserRequest {
   /** The handle for the GitHub user account. */
@@ -303,13 +300,13 @@ export type GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestPackag
   | "nuget"
   | "container";
 export const GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestState =
   | "active"
   | "deleted";
 export const GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -361,7 +358,7 @@ export type PackageVersionMetadataPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const PackageVersionMetadataPackageType = /*@__PURE__*/ S.String;
+export const PackageVersionMetadataPackageType = S.String;
 
 export type PackageVersionMetadataContainerTagsList = Array<string>;
 export const PackageVersionMetadataContainerTagsList = /*@__PURE__*/ S.Array(
@@ -469,13 +466,12 @@ export type GetAllPackageVersionsForPackageOwnedByOrgRequestPackageType =
   | "nuget"
   | "container";
 export const GetAllPackageVersionsForPackageOwnedByOrgRequestPackageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllPackageVersionsForPackageOwnedByOrgRequestState =
   | "active"
   | "deleted";
-export const GetAllPackageVersionsForPackageOwnedByOrgRequestState =
-  /*@__PURE__*/ S.String;
+export const GetAllPackageVersionsForPackageOwnedByOrgRequestState = S.String;
 
 export interface GetAllPackageVersionsForPackageOwnedByOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -544,7 +540,7 @@ export type GetAllPackageVersionsForPackageOwnedByUserRequestPackageType =
   | "nuget"
   | "container";
 export const GetAllPackageVersionsForPackageOwnedByUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllPackageVersionsForPackageOwnedByUserRequest {
   /** The handle for the GitHub user account. */
@@ -601,8 +597,7 @@ export type GetPackageForAuthenticatedUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const GetPackageForAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const GetPackageForAuthenticatedUserRequestPackageType = S.String;
 
 export interface GetPackageForAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -637,10 +632,10 @@ export type PackagePackageType =
   | "docker"
   | "nuget"
   | "container";
-export const PackagePackageType = /*@__PURE__*/ S.String;
+export const PackagePackageType = S.String;
 
 export type PackageVisibility = "private" | "public";
-export const PackageVisibility = /*@__PURE__*/ S.String;
+export const PackageVisibility = S.String;
 
 /** A GitHub user. */
 export interface NullableSimpleUser {
@@ -709,8 +704,7 @@ export const NullableMinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type NullableMinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const NullableMinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const NullableMinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface NullableMinimalRepositoryPermissions {
   admin?: boolean;
@@ -770,7 +764,7 @@ export const NullableMinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NullableMinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -785,7 +779,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -802,8 +796,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -820,7 +813,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -836,8 +829,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -855,7 +847,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -874,8 +866,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -893,7 +884,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -912,8 +903,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -934,14 +924,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -1279,8 +1269,7 @@ export type GetPackageForOrganizationRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const GetPackageForOrganizationRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const GetPackageForOrganizationRequestPackageType = S.String;
 
 export interface GetPackageForOrganizationRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1313,7 +1302,7 @@ export type GetPackageForUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const GetPackageForUserRequestPackageType = /*@__PURE__*/ S.String;
+export const GetPackageForUserRequestPackageType = S.String;
 
 export interface GetPackageForUserRequest {
   /** The handle for the GitHub user account. */
@@ -1346,8 +1335,7 @@ export type GetPackageVersionForAuthenticatedUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const GetPackageVersionForAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const GetPackageVersionForAuthenticatedUserRequestPackageType = S.String;
 
 export interface GetPackageVersionForAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -1384,8 +1372,7 @@ export type GetPackageVersionForOrganizationRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const GetPackageVersionForOrganizationRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const GetPackageVersionForOrganizationRequestPackageType = S.String;
 
 export interface GetPackageVersionForOrganizationRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1426,8 +1413,7 @@ export type GetPackageVersionForUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const GetPackageVersionForUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const GetPackageVersionForUserRequestPackageType = S.String;
 
 export interface GetPackageVersionForUserRequest {
   /** The handle for the GitHub user account. */
@@ -1563,15 +1549,13 @@ export type ListPackagesForAuthenticatedUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const ListPackagesForAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const ListPackagesForAuthenticatedUserRequestPackageType = S.String;
 
 export type ListPackagesForAuthenticatedUserRequestVisibility =
   | "public"
   | "private"
   | "internal";
-export const ListPackagesForAuthenticatedUserRequestVisibility =
-  /*@__PURE__*/ S.String;
+export const ListPackagesForAuthenticatedUserRequestVisibility = S.String;
 
 export interface ListPackagesForAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -1625,15 +1609,13 @@ export type ListPackagesForOrganizationRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const ListPackagesForOrganizationRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const ListPackagesForOrganizationRequestPackageType = S.String;
 
 export type ListPackagesForOrganizationRequestVisibility =
   | "public"
   | "private"
   | "internal";
-export const ListPackagesForOrganizationRequestVisibility =
-  /*@__PURE__*/ S.String;
+export const ListPackagesForOrganizationRequestVisibility = S.String;
 
 export interface ListPackagesForOrganizationRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1682,13 +1664,13 @@ export type ListPackagesForUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const ListPackagesForUserRequestPackageType = /*@__PURE__*/ S.String;
+export const ListPackagesForUserRequestPackageType = S.String;
 
 export type ListPackagesForUserRequestVisibility =
   | "public"
   | "private"
   | "internal";
-export const ListPackagesForUserRequestVisibility = /*@__PURE__*/ S.String;
+export const ListPackagesForUserRequestVisibility = S.String;
 
 export interface ListPackagesForUserRequest {
   /** The handle for the GitHub user account. */
@@ -1737,8 +1719,7 @@ export type RestorePackageForAuthenticatedUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const RestorePackageForAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const RestorePackageForAuthenticatedUserRequestPackageType = S.String;
 
 export interface RestorePackageForAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -1782,7 +1763,7 @@ export type RestorePackageForOrgRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const RestorePackageForOrgRequestPackageType = /*@__PURE__*/ S.String;
+export const RestorePackageForOrgRequestPackageType = S.String;
 
 export interface RestorePackageForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1825,7 +1806,7 @@ export type RestorePackageForUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const RestorePackageForUserRequestPackageType = /*@__PURE__*/ S.String;
+export const RestorePackageForUserRequestPackageType = S.String;
 
 export interface RestorePackageForUserRequest {
   /** The handle for the GitHub user account. */
@@ -1869,7 +1850,7 @@ export type RestorePackageVersionForAuthenticatedUserRequestPackageType =
   | "nuget"
   | "container";
 export const RestorePackageVersionForAuthenticatedUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RestorePackageVersionForAuthenticatedUserRequest {
   /** The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry. */
@@ -1914,8 +1895,7 @@ export type RestorePackageVersionForOrgRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const RestorePackageVersionForOrgRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const RestorePackageVersionForOrgRequestPackageType = S.String;
 
 export interface RestorePackageVersionForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1958,8 +1938,7 @@ export type RestorePackageVersionForUserRequestPackageType =
   | "docker"
   | "nuget"
   | "container";
-export const RestorePackageVersionForUserRequestPackageType =
-  /*@__PURE__*/ S.String;
+export const RestorePackageVersionForUserRequestPackageType = S.String;
 
 export interface RestorePackageVersionForUserRequest {
   /** The handle for the GitHub user account. */

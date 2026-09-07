@@ -49,7 +49,7 @@ export type HogFunctionTypeEnum =
   | "site_app"
   | "transformation"
   | "transformation_log";
-export const HogFunctionTypeEnum = /*@__PURE__*/ S.String;
+export const HogFunctionTypeEnum = S.String;
 
 /** * `string` - string * `number` - number * `boolean` - boolean * `dictionary` - dictionary * `choice` - choice * `json` - json * `integration` - integration * `integration_multi` - integration_multi * `integration_field` - integration_field * `email` - email * `native_email` - native_email * `posthog_assignee` - posthog_assignee * `posthog_ticket_tags` - posthog_ticket_tags * `posthog_business_hours` - posthog_business_hours * `non_failure_status_codes` - non_failure_status_codes * `customer_analytics_account_properties` - customer_analytics_account_properties * `customer_analytics_account_relationships` - customer_analytics_account_relationships * `task_model` - task_model * `task_repository` - task_repository * `task_mcp_installations` - task_mcp_installations * `signals_scout` - signals_scout * `task_skills` - task_skills */
 export type InputsSchemaItemTypeEnum =
@@ -75,7 +75,7 @@ export type InputsSchemaItemTypeEnum =
   | "task_mcp_installations"
   | "signals_scout"
   | "task_skills";
-export const InputsSchemaItemTypeEnum = /*@__PURE__*/ S.String;
+export const InputsSchemaItemTypeEnum = S.String;
 
 export type InputsSchemaItemChoicesItemMap = {
   [key: string]: unknown | undefined;
@@ -91,13 +91,13 @@ export const InputsSchemaItemChoicesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<InputsSchemaItemChoicesList>;
 
 export type InputsSchemaItemTemplatingCase1 = "hog" | "liquid";
-export const InputsSchemaItemTemplatingCase1 = /*@__PURE__*/ S.String;
+export const InputsSchemaItemTemplatingCase1 = S.String;
 
 export type InputsSchemaItemTemplating =
   | boolean
   | InputsSchemaItemTemplatingCase1;
 export const InputsSchemaItemTemplating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InputsSchemaItemTemplating>;
+  S.Unknown as any as S.Schema<InputsSchemaItemTemplating>;
 
 export interface InputsSchemaItem {
   type?: InputsSchemaItemTypeEnum | (string & {});
@@ -148,7 +148,7 @@ export const CreateHogFunctionRequestInputsSchemaList = /*@__PURE__*/ S.Array(
 
 /** * `hog` - hog * `liquid` - liquid */
 export type HogFunctionTemplatingEnum = "hog" | "liquid";
-export const HogFunctionTemplatingEnum = /*@__PURE__*/ S.String;
+export const HogFunctionTemplatingEnum = S.String;
 
 export interface InputsItemInput {
   value?: unknown;
@@ -179,7 +179,7 @@ export type HogFunctionFiltersSourceEnum =
   | "person-updates"
   | "data-warehouse-table"
   | "data-warehouse-view";
-export const HogFunctionFiltersSourceEnum = /*@__PURE__*/ S.String;
+export const HogFunctionFiltersSourceEnum = S.String;
 
 export type HogFunctionFiltersActionsItemMap = {
   [key: string]: unknown | undefined;
@@ -401,14 +401,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -593,7 +593,7 @@ export const HogFunctionTemplate = /*@__PURE__*/ S.suspend(() =>
 
 /** * `0` - 0 * `1` - 1 * `2` - 2 * `3` - 3 * `11` - 11 * `12` - 12 */
 export type HogFunctionStatusStateEnum = 0 | 1 | 2 | 3 | 11 | 12;
-export const HogFunctionStatusStateEnum = /*@__PURE__*/ S.Number;
+export const HogFunctionStatusStateEnum = S.Number;
 
 export interface HogFunctionStatus {
   state?: HogFunctionStatusStateEnum;
@@ -609,7 +609,7 @@ export const HogFunctionStatus = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HogFunctionStatus>;
 
 export type SearchMatchTypeEnum = "exact" | "similar";
-export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
+export const SearchMatchTypeEnum = S.String;
 
 export interface HogFunctionOutput {
   id?: string;
@@ -876,7 +876,7 @@ export type HogInvocationRerunFilterStatusEnum =
   | "succeeded"
   | "failed"
   | "canceled";
-export const HogInvocationRerunFilterStatusEnum = /*@__PURE__*/ S.String;
+export const HogInvocationRerunFilterStatusEnum = S.String;
 
 /** Restrict to invocations whose latest status is one of these. Defaults to ['failed']. */
 export type HogInvocationRerunFilterStatusList = Array<
@@ -1165,10 +1165,10 @@ export const GetHogFunctionsMaskedSecretResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHogFunctionsMaskedSecretResponse>;
 
 export type GetHogFunctionsMetricsRequestBreakdownBy = "name" | "kind";
-export const GetHogFunctionsMetricsRequestBreakdownBy = /*@__PURE__*/ S.String;
+export const GetHogFunctionsMetricsRequestBreakdownBy = S.String;
 
 export type GetHogFunctionsMetricsRequestInterval = "hour" | "day" | "week";
-export const GetHogFunctionsMetricsRequestInterval = /*@__PURE__*/ S.String;
+export const GetHogFunctionsMetricsRequestInterval = S.String;
 
 export interface GetHogFunctionsMetricsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1256,15 +1256,13 @@ export const AppMetricsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AppMetricsResponse>;
 
 export type GetHogFunctionsMetricsTotalRequestBreakdownBy = "name" | "kind";
-export const GetHogFunctionsMetricsTotalRequestBreakdownBy =
-  /*@__PURE__*/ S.String;
+export const GetHogFunctionsMetricsTotalRequestBreakdownBy = S.String;
 
 export type GetHogFunctionsMetricsTotalRequestInterval =
   | "hour"
   | "day"
   | "week";
-export const GetHogFunctionsMetricsTotalRequestInterval =
-  /*@__PURE__*/ S.String;
+export const GetHogFunctionsMetricsTotalRequestInterval = S.String;
 
 export interface GetHogFunctionsMetricsTotalRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

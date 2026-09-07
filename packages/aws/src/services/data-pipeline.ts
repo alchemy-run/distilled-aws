@@ -649,7 +649,7 @@ export type OperatorType =
   | "GE"
   | "BETWEEN"
   | (string & {});
-export const OperatorType = /*@__PURE__*/ S.String;
+export const OperatorType = S.String;
 
 export type StringList = string[];
 export const StringList = /*@__PURE__*/ S.Array(S.String);
@@ -827,7 +827,7 @@ export const SetStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SetStatusResponse",
 }) as any as S.Schema<SetStatusResponse>;
 export type TaskStatus = "FINISHED" | "FAILED" | "FALSE" | (string & {});
-export const TaskStatus = /*@__PURE__*/ S.String;
+export const TaskStatus = S.String;
 
 export type ErrorMessage = string;
 export interface SetTaskStatusInput {

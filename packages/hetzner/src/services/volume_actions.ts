@@ -35,7 +35,7 @@ export const AttachVolumeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type AttachVolumeResponseActionStatus = "running" | "success" | "error";
-export const AttachVolumeResponseActionStatus = /*@__PURE__*/ S.String;
+export const AttachVolumeResponseActionStatus = S.String;
 
 export interface AttachVolumeResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -146,8 +146,7 @@ export type ChangeVolumeProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeVolumeProtectionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeVolumeProtectionResponseActionStatus = S.String;
 
 export type ChangeVolumeProtectionResponseActionResourcesItem =
   AttachVolumeResponseActionResourcesItem;
@@ -229,7 +228,7 @@ export const DetachVolumeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type DetachVolumeResponseActionStatus = "running" | "success" | "error";
-export const DetachVolumeResponseActionStatus = /*@__PURE__*/ S.String;
+export const DetachVolumeResponseActionStatus = S.String;
 
 export type DetachVolumeResponseActionResourcesItem =
   AttachVolumeResponseActionResourcesItem;
@@ -308,7 +307,7 @@ export type GetVolumesActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetVolumesActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetVolumesActionResponseActionStatus = S.String;
 
 export type GetVolumesActionResponseActionResourcesItem =
   AttachVolumeResponseActionResourcesItem;
@@ -389,7 +388,7 @@ export type ListVolumeActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListVolumeActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListVolumeActionsRequestSortItem = S.String;
 
 export type ListVolumeActionsRequestSortList = Array<
   ListVolumeActionsRequestSortItem | (string & {})
@@ -403,7 +402,7 @@ export type ListVolumeActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListVolumeActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListVolumeActionsRequestStatusItem = S.String;
 
 export type ListVolumeActionsRequestStatusList = Array<
   ListVolumeActionsRequestStatusItem | (string & {})
@@ -441,8 +440,7 @@ export type ListVolumeActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListVolumeActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListVolumeActionsResponseActionsItemStatus = S.String;
 
 export type ListVolumeActionsResponseActionsItemResourcesItem =
   AttachVolumeResponseActionResourcesItem;
@@ -578,7 +576,7 @@ export type ListVolumesActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListVolumesActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListVolumesActionsRequestSortItem = S.String;
 
 export type ListVolumesActionsRequestSortList = Array<
   ListVolumesActionsRequestSortItem | (string & {})
@@ -592,7 +590,7 @@ export type ListVolumesActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListVolumesActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListVolumesActionsRequestStatusItem = S.String;
 
 export type ListVolumesActionsRequestStatusList = Array<
   ListVolumesActionsRequestStatusItem | (string & {})
@@ -630,8 +628,7 @@ export type ListVolumesActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListVolumesActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListVolumesActionsResponseActionsItemStatus = S.String;
 
 export type ListVolumesActionsResponseActionsItemResourcesItem =
   AttachVolumeResponseActionResourcesItem;
@@ -733,7 +730,7 @@ export const ResizeVolumeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type ResizeVolumeResponseActionStatus = "running" | "success" | "error";
-export const ResizeVolumeResponseActionStatus = /*@__PURE__*/ S.String;
+export const ResizeVolumeResponseActionStatus = S.String;
 
 export type ResizeVolumeResponseActionResourcesItem =
   AttachVolumeResponseActionResourcesItem;

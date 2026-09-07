@@ -1002,7 +1002,7 @@ export const generateService = (
       const union = values.length ? values.join(" | ") : "number";
       out.push(
         `export type ${name} = ${union};`,
-        `export const ${name} = ${pure}S.Number;\n`,
+        `export const ${name} = S.Number;\n`,
       );
     }
   });

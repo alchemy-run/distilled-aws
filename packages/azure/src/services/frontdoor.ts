@@ -16,7 +16,7 @@ export type { AzureOpError, AzureOpContext };
 export type ResourceType =
   | "Microsoft.Network/frontDoors"
   | "Microsoft.Network/frontDoors/frontendEndpoints";
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export interface CheckFrontDoorNameAvailabilityRequest {
   /** The resource name to validate. */
@@ -43,7 +43,7 @@ export const CheckFrontDoorNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 
 /** Indicates whether the name is available. */
 export type Availability = "Available" | "Unavailable";
-export const Availability = /*@__PURE__*/ S.String;
+export const Availability = S.String;
 
 /** Output of check name availability API. */
 export interface CheckNameAvailabilityOutput {
@@ -294,15 +294,15 @@ export const DisableFrontendEndpointHttpsResponse = /*@__PURE__*/ S.suspend(
 
 /** Defines the source of the SSL certificate */
 export type FrontDoorCertificateSource = "AzureKeyVault" | "FrontDoor";
-export const FrontDoorCertificateSource = /*@__PURE__*/ S.String;
+export const FrontDoorCertificateSource = S.String;
 
 /** Defines the TLS extension protocol that is used for secure delivery */
 export type FrontDoorTlsProtocolType = "ServerNameIndication";
-export const FrontDoorTlsProtocolType = /*@__PURE__*/ S.String;
+export const FrontDoorTlsProtocolType = S.String;
 
 /** The minimum TLS version required from the clients to establish an SSL handshake with Front Door. */
 export type MinimumTLSVersion = "1.0" | "1.2";
-export const MinimumTLSVersion = /*@__PURE__*/ S.String;
+export const MinimumTLSVersion = S.String;
 
 /** The Key Vault containing the SSL certificate */
 export interface KeyVaultCertificateSourceParametersVault {
@@ -339,7 +339,7 @@ export const KeyVaultCertificateSourceParameters = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines the type of the certificate used for secure connections to a frontendEndpoint */
 export type FrontDoorCertificateType = "Dedicated";
-export const FrontDoorCertificateType = /*@__PURE__*/ S.String;
+export const FrontDoorCertificateType = S.String;
 
 /** Parameters required for enabling SSL with Front Door-managed certificates */
 export interface FrontDoorCertificateSourceParameters {
@@ -434,7 +434,7 @@ export const Endpoint = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the Experiment */
 export type State = "Enabled" | "Disabled";
-export const State = /*@__PURE__*/ S.String;
+export const State = S.String;
 
 /** Defines the properties of an experiment */
 export interface ExperimentPropertiesInput {
@@ -512,7 +512,7 @@ export type NetworkExperimentResourceState =
   | "Disabling"
   | "Disabled"
   | "Deleting";
-export const NetworkExperimentResourceState = /*@__PURE__*/ S.String;
+export const NetworkExperimentResourceState = S.String;
 
 /** Defines the properties of an experiment */
 export interface ExperimentProperties {
@@ -594,7 +594,7 @@ export const RoutingRulePropertiesFrontendEndpointsList = /*@__PURE__*/ S.Array(
 
 /** Accepted protocol schemes. */
 export type FrontDoorProtocol = "Http" | "Https";
-export const FrontDoorProtocol = /*@__PURE__*/ S.String;
+export const FrontDoorProtocol = S.String;
 
 /** Protocol schemes to match for this rule */
 export type RoutingRulePropertiesAcceptedProtocolsList = Array<
@@ -612,7 +612,7 @@ export const RoutingRulePropertiesPatternsToMatchList = /*@__PURE__*/ S.Array(
 
 /** Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled' */
 export type RoutingRuleEnabledState = "Enabled" | "Disabled";
-export const RoutingRuleEnabledState = /*@__PURE__*/ S.String;
+export const RoutingRuleEnabledState = S.String;
 
 /** Base class for all types of Route. */
 export interface RouteConfiguration {
@@ -642,7 +642,7 @@ export type FrontDoorResourceState =
   | "Deleting"
   | "Migrating"
   | "Migrated";
-export const FrontDoorResourceState = /*@__PURE__*/ S.String;
+export const FrontDoorResourceState = S.String;
 
 /** The JSON object that contains the properties required to create a routing rule. */
 export interface RoutingRuleProperties {
@@ -756,12 +756,11 @@ export const FrontDoorPropertiesInputLoadBalancingSettingsList =
 
 /** Configures which HTTP method to use to probe the backends defined under backendPools. */
 export type HealthProbeSettingsPropertiesHealthProbeMethod = "GET" | "HEAD";
-export const HealthProbeSettingsPropertiesHealthProbeMethod =
-  /*@__PURE__*/ S.String;
+export const HealthProbeSettingsPropertiesHealthProbeMethod = S.String;
 
 /** Whether to enable health probes to be made against backends defined under backendPools. Health probes can only be disabled if there is a single enabled backend in single enabled backend pool. */
 export type HealthProbeEnabled = "Enabled" | "Disabled";
-export const HealthProbeEnabled = /*@__PURE__*/ S.String;
+export const HealthProbeEnabled = S.String;
 
 /** The JSON object that contains the properties required to create a health probe settings. */
 export interface HealthProbeSettingsProperties {
@@ -829,11 +828,11 @@ export type PrivateEndpointStatus =
   | "Rejected"
   | "Disconnected"
   | "Timeout";
-export const PrivateEndpointStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointStatus = S.String;
 
 /** Whether to enable use of this backend. Permitted values are 'Enabled' or 'Disabled' */
 export type BackendEnabledState = "Enabled" | "Disabled";
-export const BackendEnabledState = /*@__PURE__*/ S.String;
+export const BackendEnabledState = S.String;
 
 /** Backend address of a frontDoor load balancer. */
 export interface Backend {
@@ -934,7 +933,7 @@ export const FrontDoorPropertiesInputBackendPoolsList = /*@__PURE__*/ S.Array(
 
 /** Whether to allow session affinity on this host. Valid options are 'Enabled' or 'Disabled' */
 export type SessionAffinityEnabledState = "Enabled" | "Disabled";
-export const SessionAffinityEnabledState = /*@__PURE__*/ S.String;
+export const SessionAffinityEnabledState = S.String;
 
 /** Defines the Web Application Firewall policy for each host (if applicable) */
 export type FrontendEndpointUpdateParametersWebApplicationFirewallPolicyLink =
@@ -949,7 +948,7 @@ export type CustomHttpsProvisioningState =
   | "Disabling"
   | "Disabled"
   | "Failed";
-export const CustomHttpsProvisioningState = /*@__PURE__*/ S.String;
+export const CustomHttpsProvisioningState = S.String;
 
 /** Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step. */
 export type CustomHttpsProvisioningSubstate =
@@ -963,7 +962,7 @@ export type CustomHttpsProvisioningSubstate =
   | "CertificateDeployed"
   | "DeletingCertificate"
   | "CertificateDeleted";
-export const CustomHttpsProvisioningSubstate = /*@__PURE__*/ S.String;
+export const CustomHttpsProvisioningSubstate = S.String;
 
 /** Https settings for a domain */
 export interface CustomHttpsConfiguration {
@@ -1065,8 +1064,7 @@ export const FrontDoorPropertiesInputFrontendEndpointsList =
 export type BackendPoolsSettingsEnforceCertificateNameCheck =
   | "Enabled"
   | "Disabled";
-export const BackendPoolsSettingsEnforceCertificateNameCheck =
-  /*@__PURE__*/ S.String;
+export const BackendPoolsSettingsEnforceCertificateNameCheck = S.String;
 
 /** Settings that apply to all backend pools. */
 export interface BackendPoolsSettings {
@@ -1090,7 +1088,7 @@ export const BackendPoolsSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Operational status of the Front Door load balancer. Permitted values are 'Enabled' or 'Disabled' */
 export type FrontDoorEnabledState = "Enabled" | "Disabled";
-export const FrontDoorEnabledState = /*@__PURE__*/ S.String;
+export const FrontDoorEnabledState = S.String;
 
 /** The JSON object that contains the properties required to create an endpoint. */
 export interface FrontDoorPropertiesInput {
@@ -1316,7 +1314,7 @@ export const FrontDoorPropertiesFrontendEndpointsList = /*@__PURE__*/ S.Array(
 
 /** Which type of manipulation to apply to the header. */
 export type HeaderActionType = "Append" | "Delete" | "Overwrite";
-export const HeaderActionType = /*@__PURE__*/ S.String;
+export const HeaderActionType = S.String;
 
 /** An action that can manipulate an http header. */
 export interface HeaderAction {
@@ -1382,7 +1380,7 @@ export type RulesEngineMatchVariable =
   | "RequestHeader"
   | "RequestBody"
   | "RequestScheme";
-export const RulesEngineMatchVariable = /*@__PURE__*/ S.String;
+export const RulesEngineMatchVariable = S.String;
 
 /** Describes operator to apply to the match condition. */
 export type RulesEngineOperator =
@@ -1397,7 +1395,7 @@ export type RulesEngineOperator =
   | "GreaterThanOrEqual"
   | "BeginsWith"
   | "EndsWith";
-export const RulesEngineOperator = /*@__PURE__*/ S.String;
+export const RulesEngineOperator = S.String;
 
 /** Match values to match against. The operator will apply to each value in here with OR semantics. If any of them match the variable with the given operator this match condition is considered a match. */
 export type RulesEngineMatchConditionRulesEngineMatchValueList = Array<string>;
@@ -1414,7 +1412,7 @@ export type Transform =
   | "UrlDecode"
   | "UrlEncode"
   | "RemoveNulls";
-export const Transform = /*@__PURE__*/ S.String;
+export const Transform = S.String;
 
 /** List of transforms */
 export type RulesEngineMatchConditionTransformsList = Array<
@@ -1461,7 +1459,7 @@ export const RulesEngineRuleMatchConditionsList = /*@__PURE__*/ S.Array(
 
 /** If this rule is a match should the rules engine continue running the remaining rules or stop. If not present, defaults to Continue. */
 export type MatchProcessingBehavior = "Continue" | "Stop";
-export const MatchProcessingBehavior = /*@__PURE__*/ S.String;
+export const MatchProcessingBehavior = S.String;
 
 /** Contains a list of match conditions, and an action on how to modify the request/response. If multiple rules match, the actions from one rule that conflict with a previous rule overwrite for a singular action, or append in the case of headers manipulation. */
 export interface RulesEngineRule {
@@ -1913,19 +1911,19 @@ export const GetPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Describes if the policy is in enabled or disabled state. Defaults to Enabled if not specified. */
 export type PolicyEnabledState = "Disabled" | "Enabled";
-export const PolicyEnabledState = /*@__PURE__*/ S.String;
+export const PolicyEnabledState = S.String;
 
 /** Describes if it is in detection mode or prevention mode at policy level. */
 export type PolicyMode = "Prevention" | "Detection";
-export const PolicyMode = /*@__PURE__*/ S.String;
+export const PolicyMode = S.String;
 
 /** Describes if policy managed rules will inspect the request body content. */
 export type PolicyRequestBodyCheck = "Disabled" | "Enabled";
-export const PolicyRequestBodyCheck = /*@__PURE__*/ S.String;
+export const PolicyRequestBodyCheck = S.String;
 
 /** State of the log scrubbing config. Default value is Enabled. */
 export type WebApplicationFirewallScrubbingState = "Enabled" | "Disabled";
-export const WebApplicationFirewallScrubbingState = /*@__PURE__*/ S.String;
+export const WebApplicationFirewallScrubbingState = S.String;
 
 /** The variable to be scrubbed from the logs. */
 export type ScrubbingRuleEntryMatchVariable =
@@ -1936,15 +1934,15 @@ export type ScrubbingRuleEntryMatchVariable =
   | "RequestCookieNames"
   | "RequestBodyPostArgNames"
   | "RequestBodyJsonArgNames";
-export const ScrubbingRuleEntryMatchVariable = /*@__PURE__*/ S.String;
+export const ScrubbingRuleEntryMatchVariable = S.String;
 
 /** When matchVariable is a collection, operate on the selector to specify which elements in the collection this rule applies to. */
 export type ScrubbingRuleEntryMatchOperator = "EqualsAny" | "Equals";
-export const ScrubbingRuleEntryMatchOperator = /*@__PURE__*/ S.String;
+export const ScrubbingRuleEntryMatchOperator = S.String;
 
 /** Defines the state of a log scrubbing rule. Default value is enabled. */
 export type ScrubbingRuleEntryState = "Enabled" | "Disabled";
-export const ScrubbingRuleEntryState = /*@__PURE__*/ S.String;
+export const ScrubbingRuleEntryState = S.String;
 
 /** Defines the contents of the log scrubbing rules. */
 export interface WebApplicationFirewallScrubbingRules {
@@ -2030,15 +2028,15 @@ export const PolicySettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes if the custom rule is in enabled or disabled state. Defaults to Enabled if not specified. */
 export type CustomRuleEnabledState = "Disabled" | "Enabled";
-export const CustomRuleEnabledState = /*@__PURE__*/ S.String;
+export const CustomRuleEnabledState = S.String;
 
 /** Describes type of rule. */
 export type RuleType = "MatchRule" | "RateLimitRule";
-export const RuleType = /*@__PURE__*/ S.String;
+export const RuleType = S.String;
 
 /** Describes the supported variable for group by */
 export type VariableName = "SocketAddr" | "GeoLocation" | "None";
-export const VariableName = /*@__PURE__*/ S.String;
+export const VariableName = S.String;
 
 /** Describes the variables available to group the rate limit requests */
 export interface GroupByVariable {
@@ -2071,7 +2069,7 @@ export type MatchVariable =
   | "Cookies"
   | "SocketAddr"
   | "JA4";
-export const MatchVariable = /*@__PURE__*/ S.String;
+export const MatchVariable = S.String;
 
 /** Comparison type to use for matching with the variable value. */
 export type Operator =
@@ -2090,7 +2088,7 @@ export type Operator =
   | "ServiceTagMatch"
   | "AsnMatch"
   | "ClientFingerprint";
-export const Operator = /*@__PURE__*/ S.String;
+export const Operator = S.String;
 
 /** List of possible match values. */
 export type MatchConditionMatchValueList = Array<string>;
@@ -2106,7 +2104,7 @@ export type TransformType =
   | "UrlDecode"
   | "UrlEncode"
   | "RemoveNulls";
-export const TransformType = /*@__PURE__*/ S.String;
+export const TransformType = S.String;
 
 /** List of transforms. */
 export type MatchConditionTransformsList = Array<TransformType | (string & {})>;
@@ -2155,7 +2153,7 @@ export type ActionType =
   | "AnomalyScoring"
   | "JSChallenge"
   | "CAPTCHA";
-export const ActionType = /*@__PURE__*/ S.String;
+export const ActionType = S.String;
 
 /** Defines contents of a web application rule */
 export interface CustomRule {
@@ -2211,7 +2209,7 @@ export const CustomRuleList = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines the action to take when a managed rule set score threshold is met. */
 export type ManagedRuleSetActionType = "Block" | "Log" | "Redirect";
-export const ManagedRuleSetActionType = /*@__PURE__*/ S.String;
+export const ManagedRuleSetActionType = S.String;
 
 /** The variable type to be excluded. */
 export type ManagedRuleExclusionMatchVariable =
@@ -2220,7 +2218,7 @@ export type ManagedRuleExclusionMatchVariable =
   | "QueryStringArgNames"
   | "RequestBodyPostArgNames"
   | "RequestBodyJsonArgNames";
-export const ManagedRuleExclusionMatchVariable = /*@__PURE__*/ S.String;
+export const ManagedRuleExclusionMatchVariable = S.String;
 
 /** Comparison operator to apply to the selector when specifying which elements in the collection this exclusion applies to. */
 export type ManagedRuleExclusionSelectorMatchOperator =
@@ -2229,7 +2227,7 @@ export type ManagedRuleExclusionSelectorMatchOperator =
   | "StartsWith"
   | "EndsWith"
   | "EqualsAny";
-export const ManagedRuleExclusionSelectorMatchOperator = /*@__PURE__*/ S.String;
+export const ManagedRuleExclusionSelectorMatchOperator = S.String;
 
 /** Exclude variables from managed rule evaluation. */
 export interface ManagedRuleExclusion {
@@ -2267,11 +2265,11 @@ export const ManagedRuleGroupOverrideExclusionsList = /*@__PURE__*/ S.Array(
 
 /** Describes if the managed rule is in enabled or disabled state. */
 export type ManagedRuleEnabledState = "Disabled" | "Enabled";
-export const ManagedRuleEnabledState = /*@__PURE__*/ S.String;
+export const ManagedRuleEnabledState = S.String;
 
 /** Defines the sensitivity for the rule. */
 export type SensitivityType = "Low" | "Medium" | "High";
-export const SensitivityType = /*@__PURE__*/ S.String;
+export const SensitivityType = S.String;
 
 /** Describes the exclusions that are applied to this specific rule. */
 export type ManagedRuleOverrideExclusionsList = Array<ManagedRuleExclusion>;
@@ -2370,11 +2368,11 @@ export type ExceptionMatchVariable =
   | "RequestUri"
   | "SocketAddr"
   | "RequestHeaderNames";
-export const ExceptionMatchVariable = /*@__PURE__*/ S.String;
+export const ExceptionMatchVariable = S.String;
 
 /** Comparison operator to apply to the selector when specifying which elements in the collection this exception applies to.. */
 export type ExceptionSelectorMatchOperator = "Equals";
-export const ExceptionSelectorMatchOperator = /*@__PURE__*/ S.String;
+export const ExceptionSelectorMatchOperator = S.String;
 
 /** Comparison operator to apply to the value to be matched.. */
 export type ExceptionValueMatchOperator =
@@ -2384,7 +2382,7 @@ export type ExceptionValueMatchOperator =
   | "EndsWith"
   | "EqualsAny"
   | "IPMatch";
-export const ExceptionValueMatchOperator = /*@__PURE__*/ S.String;
+export const ExceptionValueMatchOperator = S.String;
 
 /** List of values to be matched with. */
 export type ManagedRuleSetExceptionMatchValuesList = Array<string>;
@@ -2562,7 +2560,7 @@ export type PolicyResourceState =
   | "Disabling"
   | "Disabled"
   | "Deleting";
-export const PolicyResourceState = /*@__PURE__*/ S.String;
+export const PolicyResourceState = S.String;
 
 /** Defines web application firewall policy properties. */
 export interface WebApplicationFirewallPolicyProperties {
@@ -2610,7 +2608,7 @@ export type SkuName =
   | "Classic_AzureFrontDoor"
   | "Standard_AzureFrontDoor"
   | "Premium_AzureFrontDoor";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The pricing tier of the web application firewall policy. */
 export interface Sku {
@@ -2660,8 +2658,7 @@ export type GetReportLatencyScorecardsRequestAggregationInterval =
   | "Daily"
   | "Weekly"
   | "Monthly";
-export const GetReportLatencyScorecardsRequestAggregationInterval =
-  /*@__PURE__*/ S.String;
+export const GetReportLatencyScorecardsRequestAggregationInterval = S.String;
 
 export interface GetReportLatencyScorecardsRequest {
   /** The ID of the target subscription. */
@@ -2822,15 +2819,14 @@ export const GetReportLatencyScorecardsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetReportLatencyScorecardsResponse>;
 
 export type GetReportTimeseriesRequestAggregationInterval = "Hourly" | "Daily";
-export const GetReportTimeseriesRequestAggregationInterval =
-  /*@__PURE__*/ S.String;
+export const GetReportTimeseriesRequestAggregationInterval = S.String;
 
 export type GetReportTimeseriesRequestTimeseriesType =
   | "MeasurementCounts"
   | "LatencyP50"
   | "LatencyP75"
   | "LatencyP95";
-export const GetReportTimeseriesRequestTimeseriesType = /*@__PURE__*/ S.String;
+export const GetReportTimeseriesRequestTimeseriesType = S.String;
 
 export interface GetReportTimeseriesRequest {
   /** The ID of the target subscription. */
@@ -2893,7 +2889,7 @@ export const GetReportTimeseriesResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The aggregation interval of the Timeseries */
 export type AggregationInterval = "Hourly" | "Daily";
-export const AggregationInterval = /*@__PURE__*/ S.String;
+export const AggregationInterval = S.String;
 
 /** The type of Timeseries */
 export type TimeseriesType =
@@ -2901,7 +2897,7 @@ export type TimeseriesType =
   | "LatencyP50"
   | "LatencyP75"
   | "LatencyP95";
-export const TimeseriesType = /*@__PURE__*/ S.String;
+export const TimeseriesType = S.String;
 
 /** Defines a timeseries datapoint used in a timeseries */
 export interface TimeseriesDataPoint {
@@ -3658,7 +3654,7 @@ export const PreconfiguredEndpointTagsMap = /*@__PURE__*/ S.Record(
 
 /** The type of endpoint */
 export type EndpointType = "AFD" | "AzureRegion" | "CDN" | "ATM";
-export const EndpointType = /*@__PURE__*/ S.String;
+export const EndpointType = S.String;
 
 /** Defines the properties of a preconfigured endpoint */
 export interface PreconfiguredEndpointProperties {

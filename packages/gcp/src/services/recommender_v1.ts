@@ -95,8 +95,7 @@ export type GoogleCloudRecommenderV1InsightStateInfoStateEnum =
   | "ACTIVE"
   | "ACCEPTED"
   | "DISMISSED";
-export const GoogleCloudRecommenderV1InsightStateInfoStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1InsightStateInfoStateEnum = S.String;
 
 /** Information related to insight state. */
 export interface GoogleCloudRecommenderV1InsightStateInfo {
@@ -126,8 +125,7 @@ export type GoogleCloudRecommenderV1InsightSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const GoogleCloudRecommenderV1InsightSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1InsightSeverityEnum = S.String;
 
 /** Reference to an associated recommendation. */
 export interface GoogleCloudRecommenderV1InsightRecommendationReference {
@@ -164,8 +162,7 @@ export type GoogleCloudRecommenderV1InsightCategoryEnum =
   | "MANAGEABILITY"
   | "SUSTAINABILITY"
   | "RELIABILITY";
-export const GoogleCloudRecommenderV1InsightCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1InsightCategoryEnum = S.String;
 
 /** An insight along with the information used to derive the insight. The insight may have associated recommendations as well. */
 export interface GoogleCloudRecommenderV1Insight {
@@ -271,7 +268,7 @@ export type GoogleCloudRecommenderV1ReliabilityProjectionRisksItemEnum =
   | "DATA_LOSS"
   | "ACCESS_DENY";
 export const GoogleCloudRecommenderV1ReliabilityProjectionRisksItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecommenderV1ReliabilityProjectionRisksItemEnumList =
   Array<GoogleCloudRecommenderV1ReliabilityProjectionRisksItemEnum>;
@@ -346,8 +343,7 @@ export type GoogleCloudRecommenderV1ImpactCategoryEnum =
   | "MANAGEABILITY"
   | "SUSTAINABILITY"
   | "RELIABILITY";
-export const GoogleCloudRecommenderV1ImpactCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1ImpactCategoryEnum = S.String;
 
 /** Contains the impact a recommendation can have for a given category. */
 export interface GoogleCloudRecommenderV1Impact {
@@ -414,8 +410,7 @@ export type GoogleCloudRecommenderV1RecommendationPriorityEnum =
   | "P3"
   | "P2"
   | "P1";
-export const GoogleCloudRecommenderV1RecommendationPriorityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1RecommendationPriorityEnum = S.String;
 
 /** Contains various matching options for values for a GCP resource field. */
 export interface GoogleCloudRecommenderV1ValueMatcher {
@@ -530,7 +525,7 @@ export type GoogleCloudRecommenderV1RecommendationStateInfoStateEnum =
   | "FAILED"
   | "DISMISSED";
 export const GoogleCloudRecommenderV1RecommendationStateInfoStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information for state. Contains state and metadata. */
 export interface GoogleCloudRecommenderV1RecommendationStateInfo {

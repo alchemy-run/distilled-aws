@@ -156,7 +156,7 @@ export type DeleteRedirectsResponseBody =
   | DeleteRedirectsResponseBodyCase1
   | DeleteRedirectsResponseBodyCase2;
 export const DeleteRedirectsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteRedirectsResponseBody>;
+  S.Unknown as any as S.Schema<DeleteRedirectsResponseBody>;
 
 export type DeleteRedirectsResponse = DeleteRedirectsResponseBody;
 export const DeleteRedirectsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -233,17 +233,17 @@ export const EditRedirectResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EditRedirectResponse>;
 
 export type GetRedirectsRequestDiffCase1 = "only";
-export const GetRedirectsRequestDiffCase1 = /*@__PURE__*/ S.String;
+export const GetRedirectsRequestDiffCase1 = S.String;
 
 export type GetRedirectsRequestDiff = boolean | GetRedirectsRequestDiffCase1;
 export const GetRedirectsRequestDiff =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetRedirectsRequestDiff>;
+  S.Unknown as any as S.Schema<GetRedirectsRequestDiff>;
 
 export type GetRedirectsRequestSortBy = "source" | "destination" | "statusCode";
-export const GetRedirectsRequestSortBy = /*@__PURE__*/ S.String;
+export const GetRedirectsRequestSortBy = S.String;
 
 export type GetRedirectsRequestSortOrder = "asc" | "desc";
-export const GetRedirectsRequestSortOrder = /*@__PURE__*/ S.String;
+export const GetRedirectsRequestSortOrder = S.String;
 
 export interface GetRedirectsRequest {
   projectId: string;
@@ -393,7 +393,7 @@ export type GetRedirectsResponseBody =
   | GetRedirectsResponseBodyCase1
   | GetRedirectsResponseBodyCase2;
 export const GetRedirectsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetRedirectsResponseBody>;
+  S.Unknown as any as S.Schema<GetRedirectsResponseBody>;
 
 export type GetRedirectsResponse = GetRedirectsResponseBody;
 export const GetRedirectsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -506,7 +506,7 @@ export const RestoreRedirectsResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type StageRedirectsRequestRedirectsItemStatusCode = number | string;
 export const StageRedirectsRequestRedirectsItemStatusCode =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StageRedirectsRequestRedirectsItemStatusCode>;
+  S.Unknown as any as S.Schema<StageRedirectsRequestRedirectsItemStatusCode>;
 
 export interface StageRedirectsRequestRedirectsItem {
   source: string;
@@ -579,7 +579,7 @@ export const StageRedirectsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StageRedirectsResponse>;
 
 export type UpdateVersionRequestAction = "promote" | "restore" | "discard";
-export const UpdateVersionRequestAction = /*@__PURE__*/ S.String;
+export const UpdateVersionRequestAction = S.String;
 
 export interface UpdateVersionRequest {
   projectId: string;

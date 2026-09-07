@@ -89,7 +89,7 @@ export type EmailProTaskFunctionEnum =
   | "unknown"
   | "unsuspendAccount"
   | "unsuspendService";
-export const EmailProTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const EmailProTaskFunctionEnum = S.String;
 
 /** Task status */
 export type EmailProTaskStatusEnum =
@@ -98,7 +98,7 @@ export type EmailProTaskStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const EmailProTaskStatusEnum = /*@__PURE__*/ S.String;
+export const EmailProTaskStatusEnum = S.String;
 
 /** Organization task details */
 export interface EmailProTask {
@@ -471,7 +471,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Service Offer name */
 export type EmailMxplanServiceOfferEnum = "MXPLAN";
-export const EmailMxplanServiceOfferEnum = /*@__PURE__*/ S.String;
+export const EmailMxplanServiceOfferEnum = S.String;
 
 /** Spam and Antyvirus configuration */
 export interface EmailProSpamAndVirusConfiguration {
@@ -513,7 +513,7 @@ export type EmailProServiceStateEnum =
   | "reopening"
   | "suspended"
   | "suspending";
-export const EmailProServiceStateEnum = /*@__PURE__*/ S.String;
+export const EmailProServiceStateEnum = S.String;
 
 /** MXPlan service */
 export interface EmailMxplanServiceWithIAM {
@@ -608,7 +608,7 @@ export const GetEmailMxplanAccountRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Mailing filter options availlable */
 export type EmailProMailingFilterEnum = "vaderetro";
-export const EmailProMailingFilterEnum = /*@__PURE__*/ S.String;
+export const EmailProMailingFilterEnum = S.String;
 
 /** Enable or disable anti-virus and anti-spam */
 export type EmailMxplanAccountMailingFilterList =
@@ -619,7 +619,7 @@ export const EmailMxplanAccountMailingFilterList = /*@__PURE__*/ S.Array(
 
 /** Renew period */
 export type EmailProRenewPeriodEnum = "monthly" | "yearly";
-export const EmailProRenewPeriodEnum = /*@__PURE__*/ S.String;
+export const EmailProRenewPeriodEnum = S.String;
 
 /** Current object state */
 export type EmailProObjectStateEnum =
@@ -630,7 +630,7 @@ export type EmailProObjectStateEnum =
   | "suspended"
   | "suspending"
   | "unknown";
-export const EmailProObjectStateEnum = /*@__PURE__*/ S.String;
+export const EmailProObjectStateEnum = S.String;
 
 /** Mailbox */
 export interface EmailMxplanAccount {
@@ -1032,7 +1032,7 @@ export const EmailMxplanDomainSrvRecordList = /*@__PURE__*/ S.Array(
 
 /** Domain type */
 export type EmailProDomainTypeEnum = "authoritative" | "nonAuthoritative";
-export const EmailProDomainTypeEnum = /*@__PURE__*/ S.String;
+export const EmailProDomainTypeEnum = S.String;
 
 /** Domain */
 export interface EmailMxplanDomain {
@@ -1214,7 +1214,7 @@ export type EmailProServerStateEnum =
   | "configurationPending"
   | "notConfigured"
   | "ok";
-export const EmailProServerStateEnum = /*@__PURE__*/ S.String;
+export const EmailProServerStateEnum = S.String;
 
 /** Server */
 export interface EmailMxplanServer {
@@ -1664,7 +1664,7 @@ export type EmailProDisclaimerAttributeEnum =
   | "Title"
   | "UserLogonName"
   | "ZipCode";
-export const EmailProDisclaimerAttributeEnum = /*@__PURE__*/ S.String;
+export const EmailProDisclaimerAttributeEnum = S.String;
 
 export type ListEmailMxplanDomainDisclaimerAttributeResponseBodyList =
   Array<EmailProDisclaimerAttributeEnum>;

@@ -138,7 +138,7 @@ export const EntryProduct = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of an entry to a waitlist. */
 export type EntryStatus = "drafted" | "pending" | "approved" | "denied" | "any";
-export const EntryStatus = /*@__PURE__*/ S.String;
+export const EntryStatus = S.String;
 
 /** The user who submitted this waitlist entry. */
 export interface EntryUser {
@@ -203,11 +203,11 @@ export const GetEntryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 /** Which columns can be used to sort. */
 export type EntriesSortableColumns = "id" | "created_at";
-export const EntriesSortableColumns = /*@__PURE__*/ S.String;
+export const EntriesSortableColumns = S.String;
 
 /** Filter entries to only those for specific products. */
 export type ListEntryRequestProductIdsList = Array<string>;

@@ -162,7 +162,7 @@ export type ResourceTypeEnum =
   | "spot-instances-request"
   | "network-interface"
   | (string & {});
-export const ResourceTypeEnum = /*@__PURE__*/ S.String;
+export const ResourceTypeEnum = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -198,7 +198,7 @@ export type VolumeTypeEnum =
   | "st1"
   | "gp3"
   | (string & {});
-export const VolumeTypeEnum = /*@__PURE__*/ S.String;
+export const VolumeTypeEnum = S.String;
 
 export interface CreateVolumeRequest {
   AvailabilityZone: string;
@@ -282,7 +282,7 @@ export type CapacityReservationPreferenceEnum =
   | "open"
   | "none"
   | (string & {});
-export const CapacityReservationPreferenceEnum = /*@__PURE__*/ S.String;
+export const CapacityReservationPreferenceEnum = S.String;
 
 export type String128 = string;
 export type ARN = string;
@@ -313,7 +313,7 @@ export const CapacityReservationSpecification = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapacityReservationSpecification",
 }) as any as S.Schema<CapacityReservationSpecification>;
 export type AmdSevSnpEnum = "enabled" | "disabled" | (string & {});
-export const AmdSevSnpEnum = /*@__PURE__*/ S.String;
+export const AmdSevSnpEnum = S.String;
 
 export interface CpuOptionsRequest {
   AmdSevSnp?: AmdSevSnpEnum;
@@ -330,7 +330,7 @@ export const CpuOptionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CpuOptionsRequest",
 }) as any as S.Schema<CpuOptionsRequest>;
 export type CpuCreditsEnum = "standard" | "unlimited" | (string & {});
-export const CpuCreditsEnum = /*@__PURE__*/ S.String;
+export const CpuCreditsEnum = S.String;
 
 export interface CreditSpecificationRequest {
   CpuCredits?: CpuCreditsEnum;
@@ -367,16 +367,16 @@ export const IamInstanceProfileSpecification = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IamInstanceProfileSpecification>;
 export type ImageId = string;
 export type MarketTypeEnum = "spot" | "capacity-block" | (string & {});
-export const MarketTypeEnum = /*@__PURE__*/ S.String;
+export const MarketTypeEnum = S.String;
 
 export type InstanceInterruptionBehaviorEnum =
   | "hibernate"
   | "stop"
   | (string & {});
-export const InstanceInterruptionBehaviorEnum = /*@__PURE__*/ S.String;
+export const InstanceInterruptionBehaviorEnum = S.String;
 
 export type SpotInstanceTypeEnum = "one-time" | "persistent" | (string & {});
-export const SpotInstanceTypeEnum = /*@__PURE__*/ S.String;
+export const SpotInstanceTypeEnum = S.String;
 
 export interface SpotMarketOptions {
   BlockDurationMinutes?: number;
@@ -437,7 +437,7 @@ export const LicenseSpecifications = /*@__PURE__*/ S.Array(
   LicenseConfigurationRequest,
 );
 export type AutoRecoveryEnum = "disabled" | "default" | (string & {});
-export const AutoRecoveryEnum = /*@__PURE__*/ S.String;
+export const AutoRecoveryEnum = S.String;
 
 export interface InstanceMaintenanceOptionsRequest {
   AutoRecovery?: AutoRecoveryEnum;
@@ -448,17 +448,17 @@ export const InstanceMaintenanceOptionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "InstanceMaintenanceOptionsRequest",
 }) as any as S.Schema<InstanceMaintenanceOptionsRequest>;
 export type HttpEndpointEnum = "enabled" | "disabled" | (string & {});
-export const HttpEndpointEnum = /*@__PURE__*/ S.String;
+export const HttpEndpointEnum = S.String;
 
 export type HttpProtocolIpv6Enum = "enabled" | "disabled" | (string & {});
-export const HttpProtocolIpv6Enum = /*@__PURE__*/ S.String;
+export const HttpProtocolIpv6Enum = S.String;
 
 export type HttpPutResponseHopLimit = number;
 export type HttpTokensEnum = "optional" | "required" | (string & {});
-export const HttpTokensEnum = /*@__PURE__*/ S.String;
+export const HttpTokensEnum = S.String;
 
 export type InstanceMetadataTagsEnum = "enabled" | "disabled" | (string & {});
-export const InstanceMetadataTagsEnum = /*@__PURE__*/ S.String;
+export const InstanceMetadataTagsEnum = S.String;
 
 export interface InstanceMetadataOptionsRequest {
   HttpEndpoint?: HttpEndpointEnum;
@@ -527,7 +527,7 @@ export type InterfaceTypeEnum =
   | "efa"
   | "efa-only"
   | (string & {});
-export const InterfaceTypeEnum = /*@__PURE__*/ S.String;
+export const InterfaceTypeEnum = S.String;
 
 export type Ipv4Prefix = string;
 export interface Ipv4PrefixSpecificationRequest {
@@ -639,7 +639,7 @@ export type BandwidthWeightingEnum =
   | "vpc-1"
   | "ebs-1"
   | (string & {});
-export const BandwidthWeightingEnum = /*@__PURE__*/ S.String;
+export const BandwidthWeightingEnum = S.String;
 
 export interface InstanceNetworkPerformanceOptionsRequest {
   BandwidthWeighting?: BandwidthWeightingEnum;
@@ -653,7 +653,7 @@ export type AvailabilityZone = string;
 export type PlacementGroupId = string;
 export type HostId = string;
 export type TenancyEnum = "default" | "dedicated" | "host" | (string & {});
-export const TenancyEnum = /*@__PURE__*/ S.String;
+export const TenancyEnum = S.String;
 
 export interface Placement {
   Affinity?: string;
@@ -678,7 +678,7 @@ export const Placement = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Placement" }) as any as S.Schema<Placement>;
 export type HostnameTypeEnum = "ip-name" | "resource-name" | (string & {});
-export const HostnameTypeEnum = /*@__PURE__*/ S.String;
+export const HostnameTypeEnum = S.String;
 
 export interface PrivateDnsNameOptionsRequest {
   HostnameType?: HostnameTypeEnum;
@@ -775,7 +775,7 @@ export const ManagedInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedInstanceRequest",
 }) as any as S.Schema<ManagedInstanceRequest>;
 export type BillingMode = "MONTHLY" | "HOURLY" | (string & {});
-export const BillingMode = /*@__PURE__*/ S.String;
+export const BillingMode = S.String;
 
 export interface BillingConfiguration {
   BillingMode: BillingMode;
@@ -844,7 +844,7 @@ export const DeleteWorkspaceInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteWorkspaceInstanceResponse",
 }) as any as S.Schema<DeleteWorkspaceInstanceResponse>;
 export type DisassociateModeEnum = "FORCE" | "NO_FORCE" | (string & {});
-export const DisassociateModeEnum = /*@__PURE__*/ S.String;
+export const DisassociateModeEnum = S.String;
 
 export interface DisassociateVolumeRequest {
   WorkspaceInstanceId: string;
@@ -920,7 +920,7 @@ export type ProvisionStateEnum =
   | "ERROR_ALLOCATING"
   | "ERROR_DEALLOCATING"
   | (string & {});
-export const ProvisionStateEnum = /*@__PURE__*/ S.String;
+export const ProvisionStateEnum = S.String;
 
 export interface EC2ManagedInstance {
   InstanceId?: string;
@@ -961,13 +961,13 @@ export type PlatformTypeEnum =
   | "Red Hat BYOL Linux"
   | "SUSE Linux"
   | (string & {});
-export const PlatformTypeEnum = /*@__PURE__*/ S.String;
+export const PlatformTypeEnum = S.String;
 
 export type InstanceConfigurationTenancyEnum =
   | "SHARED"
   | "DEDICATED"
   | (string & {});
-export const InstanceConfigurationTenancyEnum = /*@__PURE__*/ S.String;
+export const InstanceConfigurationTenancyEnum = S.String;
 
 export interface InstanceConfigurationFilter {
   BillingMode: BillingMode;
@@ -1186,7 +1186,7 @@ export type ValidationExceptionReason =
   | "DEPENDENCY_FAILURE"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

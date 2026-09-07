@@ -135,7 +135,7 @@ export type BuyDomainsResponseLinksValueMethod =
   | "PUT"
   | "DELETE"
   | "PATCH";
-export const BuyDomainsResponseLinksValueMethod = /*@__PURE__*/ S.String;
+export const BuyDomainsResponseLinksValueMethod = S.String;
 
 export interface BuyDomainsResponseLinksValue {
   href: string;
@@ -216,7 +216,7 @@ export type BuySingleDomainResponseLinksValueMethod =
   | "PUT"
   | "DELETE"
   | "PATCH";
-export const BuySingleDomainResponseLinksValueMethod = /*@__PURE__*/ S.String;
+export const BuySingleDomainResponseLinksValueMethod = S.String;
 
 export interface BuySingleDomainResponseLinksValue {
   href: string;
@@ -446,7 +446,7 @@ export type GetDomainContactVerificationResponseBody =
   | ContactVerified
   | ContactPendingVerification;
 export const GetDomainContactVerificationResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDomainContactVerificationResponseBody>;
+  S.Unknown as any as S.Schema<GetDomainContactVerificationResponseBody>;
 
 export type GetDomainContactVerificationResponse =
   GetDomainContactVerificationResponseBody;
@@ -480,15 +480,15 @@ export const GetDomainPriceRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetDomainPriceResponsePurchasePrice = number | string;
 export const GetDomainPriceResponsePurchasePrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDomainPriceResponsePurchasePrice>;
+  S.Unknown as any as S.Schema<GetDomainPriceResponsePurchasePrice>;
 
 export type GetDomainPriceResponseRenewalPrice = number | string;
 export const GetDomainPriceResponseRenewalPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDomainPriceResponseRenewalPrice>;
+  S.Unknown as any as S.Schema<GetDomainPriceResponseRenewalPrice>;
 
 export type GetDomainPriceResponseTransferPrice = number | string;
 export const GetDomainPriceResponseTransferPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDomainPriceResponseTransferPrice>;
+  S.Unknown as any as S.Schema<GetDomainPriceResponseTransferPrice>;
 
 export interface GetDomainPriceResponse {
   years: number;
@@ -540,7 +540,7 @@ export type GetDomainTransferInResponseStatus =
   | "pending_registry_unlock"
   | "rejected"
   | "submitting_transfer";
-export const GetDomainTransferInResponseStatus = /*@__PURE__*/ S.String;
+export const GetDomainTransferInResponseStatus = S.String;
 
 export interface GetDomainTransferInResponse {
   status: GetDomainTransferInResponseStatus;
@@ -569,8 +569,7 @@ export const GetOrderRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderRequest>;
 
 export type GetOrderResponseDomainsItemCase0PurchaseType = "purchase";
-export const GetOrderResponseDomainsItemCase0PurchaseType =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0PurchaseType = S.String;
 
 export type GetOrderResponseDomainsItemCase0Status =
   | "pending"
@@ -578,12 +577,11 @@ export type GetOrderResponseDomainsItemCase0Status =
   | "failed"
   | "refunded"
   | "refund-failed";
-export const GetOrderResponseDomainsItemCase0Status = /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0Status = S.String;
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case0Code =
   "unsupported-language-code";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case0Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case0Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case0Details {
   detectedLanguageCode: string;
@@ -613,8 +611,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case0 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case1Code =
   "incorrect-language-code";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case1Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case1Code = S.String;
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case1Details =
   GetOrderResponseDomainsItemCase0ErrorCase0Case0Details;
@@ -637,8 +634,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case1 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case2Code =
   "client-transfer-prohibited";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case2Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case2Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case2 {
   code: GetOrderResponseDomainsItemCase0ErrorCase0Case2Code;
@@ -654,8 +650,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case2 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case3Code =
   "incorrect-auth-code";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case3Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case3Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case3 {
   code: GetOrderResponseDomainsItemCase0ErrorCase0Case3Code;
@@ -671,8 +666,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case3 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case4Code =
   "claims-notice-required";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case4Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case4Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case4 {
   code: GetOrderResponseDomainsItemCase0ErrorCase0Case4Code;
@@ -688,8 +682,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case4 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case5Code =
   "cannot-transfer-in-until";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case5Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case5Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case5Details {
   numDaysUntilTransferrable: number;
@@ -719,8 +712,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case5 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case6Code =
   "account-transfer-required";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case6Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case6Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case6 {
   code: GetOrderResponseDomainsItemCase0ErrorCase0Case6Code;
@@ -736,8 +728,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case6 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case7Code =
   "price-change";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case7Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case7Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case7 {
   code: GetOrderResponseDomainsItemCase0ErrorCase0Case7Code;
@@ -753,8 +744,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case7 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case8Code =
   "unavailable-legal";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case8Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case8Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case8 {
   code: GetOrderResponseDomainsItemCase0ErrorCase0Case8Code;
@@ -770,8 +760,7 @@ export const GetOrderResponseDomainsItemCase0ErrorCase0Case8 =
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case9Code =
   "invalid-contact";
-export const GetOrderResponseDomainsItemCase0ErrorCase0Case9Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase0ErrorCase0Case9Code = S.String;
 
 export type GetOrderResponseDomainsItemCase0ErrorCase0Case9DetailsInvalidField =
   | "firstName"
@@ -787,7 +776,7 @@ export type GetOrderResponseDomainsItemCase0ErrorCase0Case9DetailsInvalidField =
   | "companyName"
   | "fax";
 export const GetOrderResponseDomainsItemCase0ErrorCase0Case9DetailsInvalidField =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase0Case9Details {
   invalidField?: GetOrderResponseDomainsItemCase0ErrorCase0Case9DetailsInvalidField;
@@ -829,7 +818,7 @@ export type GetOrderResponseDomainsItemCase0ErrorCase0 =
   | GetOrderResponseDomainsItemCase0ErrorCase0Case8
   | GetOrderResponseDomainsItemCase0ErrorCase0Case9;
 export const GetOrderResponseDomainsItemCase0ErrorCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase0ErrorCase0>;
+  S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase0ErrorCase0>;
 
 export interface GetOrderResponseDomainsItemCase0ErrorCase1 {
   code: string;
@@ -849,7 +838,7 @@ export type GetOrderResponseDomainsItemCase0Error =
   | GetOrderResponseDomainsItemCase0ErrorCase0
   | GetOrderResponseDomainsItemCase0ErrorCase1;
 export const GetOrderResponseDomainsItemCase0Error =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase0Error>;
+  S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase0Error>;
 
 export interface GetOrderResponseDomainsItemCase0 {
   purchaseType: GetOrderResponseDomainsItemCase0PurchaseType;
@@ -876,8 +865,7 @@ export const GetOrderResponseDomainsItemCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderResponseDomainsItemCase0>;
 
 export type GetOrderResponseDomainsItemCase1PurchaseType = "renewal";
-export const GetOrderResponseDomainsItemCase1PurchaseType =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1PurchaseType = S.String;
 
 export type GetOrderResponseDomainsItemCase1Status =
   | "pending"
@@ -885,12 +873,11 @@ export type GetOrderResponseDomainsItemCase1Status =
   | "failed"
   | "refunded"
   | "refund-failed";
-export const GetOrderResponseDomainsItemCase1Status = /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1Status = S.String;
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case0Code =
   "unsupported-language-code";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case0Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case0Code = S.String;
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case0Details =
   GetOrderResponseDomainsItemCase0ErrorCase0Case0Details;
@@ -913,8 +900,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case0 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case1Code =
   "incorrect-language-code";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case1Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case1Code = S.String;
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case1Details =
   GetOrderResponseDomainsItemCase0ErrorCase0Case0Details;
@@ -937,8 +923,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case1 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case2Code =
   "client-transfer-prohibited";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case2Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case2Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase1ErrorCase0Case2 {
   code: GetOrderResponseDomainsItemCase1ErrorCase0Case2Code;
@@ -954,8 +939,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case2 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case3Code =
   "incorrect-auth-code";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case3Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case3Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase1ErrorCase0Case3 {
   code: GetOrderResponseDomainsItemCase1ErrorCase0Case3Code;
@@ -971,8 +955,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case3 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case4Code =
   "claims-notice-required";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case4Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case4Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase1ErrorCase0Case4 {
   code: GetOrderResponseDomainsItemCase1ErrorCase0Case4Code;
@@ -988,8 +971,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case4 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case5Code =
   "cannot-transfer-in-until";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case5Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case5Code = S.String;
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case5Details =
   GetOrderResponseDomainsItemCase0ErrorCase0Case5Details;
@@ -1012,8 +994,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case5 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case6Code =
   "account-transfer-required";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case6Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case6Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase1ErrorCase0Case6 {
   code: GetOrderResponseDomainsItemCase1ErrorCase0Case6Code;
@@ -1029,8 +1010,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case6 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case7Code =
   "price-change";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case7Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case7Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase1ErrorCase0Case7 {
   code: GetOrderResponseDomainsItemCase1ErrorCase0Case7Code;
@@ -1046,8 +1026,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case7 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case8Code =
   "unavailable-legal";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case8Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case8Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase1ErrorCase0Case8 {
   code: GetOrderResponseDomainsItemCase1ErrorCase0Case8Code;
@@ -1063,8 +1042,7 @@ export const GetOrderResponseDomainsItemCase1ErrorCase0Case8 =
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case9Code =
   "invalid-contact";
-export const GetOrderResponseDomainsItemCase1ErrorCase0Case9Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase1ErrorCase0Case9Code = S.String;
 
 export type GetOrderResponseDomainsItemCase1ErrorCase0Case9DetailsInvalidField =
   | "firstName"
@@ -1080,7 +1058,7 @@ export type GetOrderResponseDomainsItemCase1ErrorCase0Case9DetailsInvalidField =
   | "companyName"
   | "fax";
 export const GetOrderResponseDomainsItemCase1ErrorCase0Case9DetailsInvalidField =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponseDomainsItemCase1ErrorCase0Case9Details {
   invalidField?: GetOrderResponseDomainsItemCase1ErrorCase0Case9DetailsInvalidField;
@@ -1122,7 +1100,7 @@ export type GetOrderResponseDomainsItemCase1ErrorCase0 =
   | GetOrderResponseDomainsItemCase1ErrorCase0Case8
   | GetOrderResponseDomainsItemCase1ErrorCase0Case9;
 export const GetOrderResponseDomainsItemCase1ErrorCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase1ErrorCase0>;
+  S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase1ErrorCase0>;
 
 export type GetOrderResponseDomainsItemCase1ErrorCase1 =
   GetOrderResponseDomainsItemCase0ErrorCase1;
@@ -1133,7 +1111,7 @@ export type GetOrderResponseDomainsItemCase1Error =
   | GetOrderResponseDomainsItemCase1ErrorCase0
   | GetOrderResponseDomainsItemCase0ErrorCase1;
 export const GetOrderResponseDomainsItemCase1Error =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase1Error>;
+  S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase1Error>;
 
 export interface GetOrderResponseDomainsItemCase1 {
   purchaseType: GetOrderResponseDomainsItemCase1PurchaseType;
@@ -1158,8 +1136,7 @@ export const GetOrderResponseDomainsItemCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderResponseDomainsItemCase1>;
 
 export type GetOrderResponseDomainsItemCase2PurchaseType = "transfer";
-export const GetOrderResponseDomainsItemCase2PurchaseType =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2PurchaseType = S.String;
 
 export type GetOrderResponseDomainsItemCase2Status =
   | "pending"
@@ -1167,12 +1144,11 @@ export type GetOrderResponseDomainsItemCase2Status =
   | "failed"
   | "refunded"
   | "refund-failed";
-export const GetOrderResponseDomainsItemCase2Status = /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2Status = S.String;
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case0Code =
   "unsupported-language-code";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case0Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case0Code = S.String;
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case0Details =
   GetOrderResponseDomainsItemCase0ErrorCase0Case0Details;
@@ -1195,8 +1171,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case0 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case1Code =
   "incorrect-language-code";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case1Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case1Code = S.String;
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case1Details =
   GetOrderResponseDomainsItemCase0ErrorCase0Case0Details;
@@ -1219,8 +1194,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case1 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case2Code =
   "client-transfer-prohibited";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case2Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case2Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase2ErrorCase0Case2 {
   code: GetOrderResponseDomainsItemCase2ErrorCase0Case2Code;
@@ -1236,8 +1210,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case2 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case3Code =
   "incorrect-auth-code";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case3Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case3Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase2ErrorCase0Case3 {
   code: GetOrderResponseDomainsItemCase2ErrorCase0Case3Code;
@@ -1253,8 +1226,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case3 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case4Code =
   "claims-notice-required";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case4Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case4Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase2ErrorCase0Case4 {
   code: GetOrderResponseDomainsItemCase2ErrorCase0Case4Code;
@@ -1270,8 +1242,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case4 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case5Code =
   "cannot-transfer-in-until";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case5Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case5Code = S.String;
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case5Details =
   GetOrderResponseDomainsItemCase0ErrorCase0Case5Details;
@@ -1294,8 +1265,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case5 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case6Code =
   "account-transfer-required";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case6Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case6Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase2ErrorCase0Case6 {
   code: GetOrderResponseDomainsItemCase2ErrorCase0Case6Code;
@@ -1311,8 +1281,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case6 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case7Code =
   "price-change";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case7Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case7Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase2ErrorCase0Case7 {
   code: GetOrderResponseDomainsItemCase2ErrorCase0Case7Code;
@@ -1328,8 +1297,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case7 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case8Code =
   "unavailable-legal";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case8Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case8Code = S.String;
 
 export interface GetOrderResponseDomainsItemCase2ErrorCase0Case8 {
   code: GetOrderResponseDomainsItemCase2ErrorCase0Case8Code;
@@ -1345,8 +1313,7 @@ export const GetOrderResponseDomainsItemCase2ErrorCase0Case8 =
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case9Code =
   "invalid-contact";
-export const GetOrderResponseDomainsItemCase2ErrorCase0Case9Code =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponseDomainsItemCase2ErrorCase0Case9Code = S.String;
 
 export type GetOrderResponseDomainsItemCase2ErrorCase0Case9DetailsInvalidField =
   | "firstName"
@@ -1362,7 +1329,7 @@ export type GetOrderResponseDomainsItemCase2ErrorCase0Case9DetailsInvalidField =
   | "companyName"
   | "fax";
 export const GetOrderResponseDomainsItemCase2ErrorCase0Case9DetailsInvalidField =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponseDomainsItemCase2ErrorCase0Case9Details {
   invalidField?: GetOrderResponseDomainsItemCase2ErrorCase0Case9DetailsInvalidField;
@@ -1404,7 +1371,7 @@ export type GetOrderResponseDomainsItemCase2ErrorCase0 =
   | GetOrderResponseDomainsItemCase2ErrorCase0Case8
   | GetOrderResponseDomainsItemCase2ErrorCase0Case9;
 export const GetOrderResponseDomainsItemCase2ErrorCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase2ErrorCase0>;
+  S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase2ErrorCase0>;
 
 export type GetOrderResponseDomainsItemCase2ErrorCase1 =
   GetOrderResponseDomainsItemCase0ErrorCase1;
@@ -1415,7 +1382,7 @@ export type GetOrderResponseDomainsItemCase2Error =
   | GetOrderResponseDomainsItemCase2ErrorCase0
   | GetOrderResponseDomainsItemCase0ErrorCase1;
 export const GetOrderResponseDomainsItemCase2Error =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase2Error>;
+  S.Unknown as any as S.Schema<GetOrderResponseDomainsItemCase2Error>;
 
 export interface GetOrderResponseDomainsItemCase2 {
   purchaseType: GetOrderResponseDomainsItemCase2PurchaseType;
@@ -1446,7 +1413,7 @@ export type GetOrderResponseDomainsItem =
   | GetOrderResponseDomainsItemCase1
   | GetOrderResponseDomainsItemCase2;
 export const GetOrderResponseDomainsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseDomainsItem>;
+  S.Unknown as any as S.Schema<GetOrderResponseDomainsItem>;
 
 export type GetOrderResponseDomainsList = Array<GetOrderResponseDomainsItem>;
 export const GetOrderResponseDomainsList = /*@__PURE__*/ S.Array(
@@ -1458,10 +1425,10 @@ export type GetOrderResponseStatus =
   | "purchasing"
   | "completed"
   | "failed";
-export const GetOrderResponseStatus = /*@__PURE__*/ S.String;
+export const GetOrderResponseStatus = S.String;
 
 export type GetOrderResponseErrorCase0Case0Code = "payment-failed";
-export const GetOrderResponseErrorCase0Case0Code = /*@__PURE__*/ S.String;
+export const GetOrderResponseErrorCase0Case0Code = S.String;
 
 export interface GetOrderResponseErrorCase0Case0 {
   code: GetOrderResponseErrorCase0Case0Code;
@@ -1475,7 +1442,7 @@ export const GetOrderResponseErrorCase0Case0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderResponseErrorCase0Case0>;
 
 export type GetOrderResponseErrorCase0Case1Code = "tld-outage";
-export const GetOrderResponseErrorCase0Case1Code = /*@__PURE__*/ S.String;
+export const GetOrderResponseErrorCase0Case1Code = S.String;
 
 export interface GetOrderResponseErrorCase0Case1DetailsTldsItem {
   tldName: string;
@@ -1524,7 +1491,7 @@ export const GetOrderResponseErrorCase0Case1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderResponseErrorCase0Case1>;
 
 export type GetOrderResponseErrorCase0Case2Code = "price-mismatch";
-export const GetOrderResponseErrorCase0Case2Code = /*@__PURE__*/ S.String;
+export const GetOrderResponseErrorCase0Case2Code = S.String;
 
 export interface GetOrderResponseErrorCase0Case2Details {
   expectedPrice: number;
@@ -1554,7 +1521,7 @@ export const GetOrderResponseErrorCase0Case2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderResponseErrorCase0Case2>;
 
 export type GetOrderResponseErrorCase0Case3Code = "unexpected-error";
-export const GetOrderResponseErrorCase0Case3Code = /*@__PURE__*/ S.String;
+export const GetOrderResponseErrorCase0Case3Code = S.String;
 
 export interface GetOrderResponseErrorCase0Case3 {
   code: GetOrderResponseErrorCase0Case3Code;
@@ -1568,7 +1535,7 @@ export const GetOrderResponseErrorCase0Case3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderResponseErrorCase0Case3>;
 
 export type GetOrderResponseErrorCase0Case4Code = "claims-required";
-export const GetOrderResponseErrorCase0Case4Code = /*@__PURE__*/ S.String;
+export const GetOrderResponseErrorCase0Case4Code = S.String;
 
 export type GetOrderResponseErrorCase0Case4DetailsDomainNamesList =
   Array<string>;
@@ -1605,7 +1572,7 @@ export const GetOrderResponseErrorCase0Case4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrderResponseErrorCase0Case4>;
 
 export type GetOrderResponseErrorCase0Case5Code = "domain-mismatch";
-export const GetOrderResponseErrorCase0Case5Code = /*@__PURE__*/ S.String;
+export const GetOrderResponseErrorCase0Case5Code = S.String;
 
 export interface GetOrderResponseErrorCase0Case5 {
   code: GetOrderResponseErrorCase0Case5Code;
@@ -1626,7 +1593,7 @@ export type GetOrderResponseErrorCase0 =
   | GetOrderResponseErrorCase0Case4
   | GetOrderResponseErrorCase0Case5;
 export const GetOrderResponseErrorCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseErrorCase0>;
+  S.Unknown as any as S.Schema<GetOrderResponseErrorCase0>;
 
 export type GetOrderResponseErrorCase1 =
   GetOrderResponseDomainsItemCase0ErrorCase1;
@@ -1637,7 +1604,7 @@ export type GetOrderResponseError =
   | GetOrderResponseErrorCase0
   | GetOrderResponseDomainsItemCase0ErrorCase1;
 export const GetOrderResponseError =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrderResponseError>;
+  S.Unknown as any as S.Schema<GetOrderResponseError>;
 
 export interface GetOrderResponse {
   orderId: string;
@@ -1734,15 +1701,15 @@ export const GetTldPriceRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetTldPriceResponsePurchasePrice = number | string;
 export const GetTldPriceResponsePurchasePrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTldPriceResponsePurchasePrice>;
+  S.Unknown as any as S.Schema<GetTldPriceResponsePurchasePrice>;
 
 export type GetTldPriceResponseRenewalPrice = number | string;
 export const GetTldPriceResponseRenewalPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTldPriceResponseRenewalPrice>;
+  S.Unknown as any as S.Schema<GetTldPriceResponseRenewalPrice>;
 
 export type GetTldPriceResponseTransferPrice = number | string;
 export const GetTldPriceResponseTransferPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTldPriceResponseTransferPrice>;
+  S.Unknown as any as S.Schema<GetTldPriceResponseTransferPrice>;
 
 export interface GetTldPriceResponse {
   /** The number of years the returned price is for. */
@@ -1828,7 +1795,7 @@ export type RenewDomainResponseLinksValueMethod =
   | "PUT"
   | "DELETE"
   | "PATCH";
-export const RenewDomainResponseLinksValueMethod = /*@__PURE__*/ S.String;
+export const RenewDomainResponseLinksValueMethod = S.String;
 
 export interface RenewDomainResponseLinksValue {
   href: string;
@@ -1907,7 +1874,7 @@ export type TransferInDomainResponseLinksValueMethod =
   | "PUT"
   | "DELETE"
   | "PATCH";
-export const TransferInDomainResponseLinksValueMethod = /*@__PURE__*/ S.String;
+export const TransferInDomainResponseLinksValueMethod = S.String;
 
 export interface TransferInDomainResponseLinksValue {
   href: string;

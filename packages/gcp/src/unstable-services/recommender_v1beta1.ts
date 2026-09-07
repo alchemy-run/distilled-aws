@@ -92,8 +92,7 @@ export type GoogleCloudRecommenderV1beta1InsightCategoryEnum =
   | "MANAGEABILITY"
   | "SUSTAINABILITY"
   | "RELIABILITY";
-export const GoogleCloudRecommenderV1beta1InsightCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1beta1InsightCategoryEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -106,8 +105,7 @@ export type GoogleCloudRecommenderV1beta1InsightStateInfoStateEnum =
   | "ACTIVE"
   | "ACCEPTED"
   | "DISMISSED";
-export const GoogleCloudRecommenderV1beta1InsightStateInfoStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1beta1InsightStateInfoStateEnum = S.String;
 
 /** Information related to insight state. */
 export interface GoogleCloudRecommenderV1beta1InsightStateInfo {
@@ -132,8 +130,7 @@ export type GoogleCloudRecommenderV1beta1InsightSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const GoogleCloudRecommenderV1beta1InsightSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1beta1InsightSeverityEnum = S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -241,8 +238,7 @@ export type GoogleCloudRecommenderV1beta1RecommendationPriorityEnum =
   | "P3"
   | "P2"
   | "P1";
-export const GoogleCloudRecommenderV1beta1RecommendationPriorityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1beta1RecommendationPriorityEnum = S.String;
 
 export type GoogleCloudRecommenderV1beta1RecommendationStateInfoStateEnum =
   | "STATE_UNSPECIFIED"
@@ -252,7 +248,7 @@ export type GoogleCloudRecommenderV1beta1RecommendationStateInfoStateEnum =
   | "FAILED"
   | "DISMISSED";
 export const GoogleCloudRecommenderV1beta1RecommendationStateInfoStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information for state. Contains state and metadata. */
 export interface GoogleCloudRecommenderV1beta1RecommendationStateInfo {
@@ -409,7 +405,7 @@ export type GoogleCloudRecommenderV1beta1CostProjectionPricingTypeEnum =
   | "LIST_PRICE"
   | "CUSTOM_PRICE";
 export const GoogleCloudRecommenderV1beta1CostProjectionPricingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Contains metadata about how much money a recommendation can save or incur. */
 export interface GoogleCloudRecommenderV1beta1CostProjection {
@@ -473,7 +469,7 @@ export type GoogleCloudRecommenderV1beta1ReliabilityProjectionRisksItemEnum =
   | "DATA_LOSS"
   | "ACCESS_DENY";
 export const GoogleCloudRecommenderV1beta1ReliabilityProjectionRisksItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRecommenderV1beta1ReliabilityProjectionRisksItemEnumList =
   Array<GoogleCloudRecommenderV1beta1ReliabilityProjectionRisksItemEnum>;
@@ -509,8 +505,7 @@ export type GoogleCloudRecommenderV1beta1ImpactCategoryEnum =
   | "MANAGEABILITY"
   | "SUSTAINABILITY"
   | "RELIABILITY";
-export const GoogleCloudRecommenderV1beta1ImpactCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRecommenderV1beta1ImpactCategoryEnum = S.String;
 
 /** Contains the impact a recommendation can have for a given category. */
 export interface GoogleCloudRecommenderV1beta1Impact {

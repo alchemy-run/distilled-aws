@@ -19,7 +19,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -37,7 +37,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmStorageNetappTerminationRequest {
   /** Service name */
@@ -122,7 +122,7 @@ export const CreateStorageNetappChangeContactResponse = /*@__PURE__*/ S.suspend(
 
 /** ACL permission */
 export type StorageNetAppShareACLPermissionEnum = "ro" | "rw";
-export const StorageNetAppShareACLPermissionEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppShareACLPermissionEnum = S.String;
 
 export interface CreateStorageNetappShareAclRequest {
   /** Service name */
@@ -153,7 +153,7 @@ export const CreateStorageNetappShareAclRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** ACL type */
 export type StorageNetAppShareACLTypeEnum = "ip";
-export const StorageNetAppShareACLTypeEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppShareACLTypeEnum = S.String;
 
 /** ACL status */
 export type StorageNetAppShareACLStatusEnum =
@@ -163,7 +163,7 @@ export type StorageNetAppShareACLStatusEnum =
   | "error"
   | "queued_to_apply"
   | "queued_to_deny";
-export const StorageNetAppShareACLStatusEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppShareACLStatusEnum = S.String;
 
 /** A share ACL rule */
 export interface StorageNetAppShareACLRule {
@@ -297,11 +297,11 @@ export type StorageNetAppSnapshotStatusEnum =
   | "restoring"
   | "unmanage_error"
   | "unmanage_starting";
-export const StorageNetAppSnapshotStatusEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppSnapshotStatusEnum = S.String;
 
 /** Snapshot type */
 export type StorageNetAppSnapshotTypeEnum = "automatic" | "manual" | "system";
-export const StorageNetAppSnapshotTypeEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppSnapshotTypeEnum = S.String;
 
 /** A share snapshot */
 export interface StorageNetAppShareSnapshot {
@@ -490,7 +490,7 @@ export type StorageNetAppSnapshotPolicyStatusEnum =
   | "deleting"
   | "error"
   | "updating";
-export const StorageNetAppSnapshotPolicyStatusEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppSnapshotPolicyStatusEnum = S.String;
 
 /** A snapshot policy */
 export interface StorageNetAppSnapshotPolicy {
@@ -718,7 +718,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Service performance level */
 export type StorageNetAppServicePerformanceLevelEnum = "premium";
-export const StorageNetAppServicePerformanceLevelEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppServicePerformanceLevelEnum = S.String;
 
 /** Region of customer's service */
 export type StorageRegionEnum =
@@ -727,7 +727,7 @@ export type StorageRegionEnum =
   | "eu-west-lim"
   | "eu-west-rbx"
   | "eu-west-sbg";
-export const StorageRegionEnum = /*@__PURE__*/ S.String;
+export const StorageRegionEnum = S.String;
 
 /** Service status */
 export type StorageNetAppServiceStatusEnum =
@@ -738,7 +738,7 @@ export type StorageNetAppServiceStatusEnum =
   | "running"
   | "suspended"
   | "suspending";
-export const StorageNetAppServiceStatusEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppServiceStatusEnum = S.String;
 
 /** A service */
 export interface StorageNetAppServiceWithIAM {
@@ -841,7 +841,7 @@ export type StorageNetAppNetworkStatusEnum =
   | "associating"
   | "dissociating"
   | "to_configure";
-export const StorageNetAppNetworkStatusEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppNetworkStatusEnum = S.String;
 
 /** A network */
 export interface StorageNetAppNetwork {
@@ -920,7 +920,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -930,7 +930,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -996,7 +996,7 @@ export const GetStorageNetappShareRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Storage protocol */
 export type StorageProtocolEnum = "NFS";
-export const StorageProtocolEnum = /*@__PURE__*/ S.String;
+export const StorageProtocolEnum = S.String;
 
 /** Share status */
 export type StorageNetAppShareStatusEnum =
@@ -1023,7 +1023,7 @@ export type StorageNetAppShareStatusEnum =
   | "unmanage_error"
   | "unmanage_starting"
   | "unmanaged";
-export const StorageNetAppShareStatusEnum = /*@__PURE__*/ S.String;
+export const StorageNetAppShareStatusEnum = S.String;
 
 /** A share */
 export interface StorageNetAppShare {
@@ -1182,8 +1182,7 @@ export type StorageNetAppShareSnapshotPolicyStatusEnum =
   | "active"
   | "error"
   | "updating";
-export const StorageNetAppShareSnapshotPolicyStatusEnum =
-  /*@__PURE__*/ S.String;
+export const StorageNetAppShareSnapshotPolicyStatusEnum = S.String;
 
 /** A snapshot policy */
 export interface StorageNetAppShareSnapshotPolicy {
@@ -1228,8 +1227,7 @@ export type StorageNetAppShareSnapshotReserveStatusEnum =
   | "active"
   | "error"
   | "updating";
-export const StorageNetAppShareSnapshotReserveStatusEnum =
-  /*@__PURE__*/ S.String;
+export const StorageNetAppShareSnapshotReserveStatusEnum = S.String;
 
 /** Snapshot reserve properties */
 export interface StorageNetAppShareSnapshotReserve {

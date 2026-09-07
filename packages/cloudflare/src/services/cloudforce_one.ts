@@ -275,7 +275,7 @@ export type RequestsCreateRequestTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsCreateRequestTlp = /*@__PURE__*/ S.String;
+export const RequestsCreateRequestTlp = S.String;
 
 export interface CreateRequestRequest {
   /** Identifier. */
@@ -318,7 +318,7 @@ export type RequestsCreateResponseTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsCreateResponseTlp = /*@__PURE__*/ S.String;
+export const RequestsCreateResponseTlp = S.String;
 
 export type RequestsCreateResponseStatus =
   | "open"
@@ -327,7 +327,7 @@ export type RequestsCreateResponseStatus =
   | "approved"
   | "completed"
   | "declined";
-export const RequestsCreateResponseStatus = /*@__PURE__*/ S.String;
+export const RequestsCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateRequestResponse {
@@ -515,7 +515,7 @@ export type RequestsPriorityCreateRequestTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsPriorityCreateRequestTlp = /*@__PURE__*/ S.String;
+export const RequestsPriorityCreateRequestTlp = S.String;
 
 export interface CreateRequestPriorityRequest {
   /** Identifier. */
@@ -560,7 +560,7 @@ export type RequestsPriorityCreateResponseTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsPriorityCreateResponseTlp = /*@__PURE__*/ S.String;
+export const RequestsPriorityCreateResponseTlp = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateRequestPriorityResponse {
@@ -1032,8 +1032,7 @@ export type ThreatEventsTagsCreateRequestAliasesItemTlp =
   | "amber"
   | "green"
   | "white";
-export const ThreatEventsTagsCreateRequestAliasesItemTlp =
-  /*@__PURE__*/ S.String;
+export const ThreatEventsTagsCreateRequestAliasesItemTlp = S.String;
 
 export interface ThreatEventsTagsCreateRequestAliasesItem {
   value: string;
@@ -1103,8 +1102,7 @@ export type ThreatEventsTagsCreateRequestInternalAliasesItemTlp =
   | "amber"
   | "green"
   | "white";
-export const ThreatEventsTagsCreateRequestInternalAliasesItemTlp =
-  /*@__PURE__*/ S.String;
+export const ThreatEventsTagsCreateRequestInternalAliasesItemTlp = S.String;
 
 export interface ThreatEventsTagsCreateRequestInternalAliasesItem {
   value: string;
@@ -1134,8 +1132,7 @@ export type ThreatEventsTagsCreateRequestOriginCountryTlp =
   | "amber"
   | "green"
   | "white";
-export const ThreatEventsTagsCreateRequestOriginCountryTlp =
-  /*@__PURE__*/ S.String;
+export const ThreatEventsTagsCreateRequestOriginCountryTlp = S.String;
 
 export interface CreateThreatEventTagRequest {
   /** Account ID. */
@@ -1234,8 +1231,7 @@ export type ThreatEventsTagsCreateResponseAliasesItemTlp =
   | "amber"
   | "green"
   | "white";
-export const ThreatEventsTagsCreateResponseAliasesItemTlp =
-  /*@__PURE__*/ S.String;
+export const ThreatEventsTagsCreateResponseAliasesItemTlp = S.String;
 
 export interface ThreatEventsTagsCreateResponseAliasesItem {
   value: string;
@@ -1305,8 +1301,7 @@ export type ThreatEventsTagsCreateResponseInternalAliasesItemTlp =
   | "amber"
   | "green"
   | "white";
-export const ThreatEventsTagsCreateResponseInternalAliasesItemTlp =
-  /*@__PURE__*/ S.String;
+export const ThreatEventsTagsCreateResponseInternalAliasesItemTlp = S.String;
 
 export interface ThreatEventsTagsCreateResponseInternalAliasesItem {
   value: string;
@@ -1338,8 +1333,7 @@ export type ThreatEventsTagsCreateResponseOriginCountryTlp =
   | "amber"
   | "green"
   | "white";
-export const ThreatEventsTagsCreateResponseOriginCountryTlp =
-  /*@__PURE__*/ S.String;
+export const ThreatEventsTagsCreateResponseOriginCountryTlp = S.String;
 
 /** Raw response payload (operation does not use the standard v4 result envelope). */
 export interface CreateThreatEventTagResponse {
@@ -1745,7 +1739,7 @@ export type RequestsGetResponseTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsGetResponseTlp = /*@__PURE__*/ S.String;
+export const RequestsGetResponseTlp = S.String;
 
 export type RequestsGetResponseStatus =
   | "open"
@@ -1754,7 +1748,7 @@ export type RequestsGetResponseStatus =
   | "approved"
   | "completed"
   | "declined";
-export const RequestsGetResponseStatus = /*@__PURE__*/ S.String;
+export const RequestsGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRequestResponse {
@@ -1804,7 +1798,7 @@ export const GetRequestResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRequestResponse>;
 
 export type RequestsMessageGetRequestSortOrder = "asc" | "desc";
-export const RequestsMessageGetRequestSortOrder = /*@__PURE__*/ S.String;
+export const RequestsMessageGetRequestSortOrder = S.String;
 
 export interface GetRequestMessageRequest {
   /** Identifier. */
@@ -1925,7 +1919,7 @@ export type RequestsPriorityGetResponseTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsPriorityGetResponseTlp = /*@__PURE__*/ S.String;
+export const RequestsPriorityGetResponseTlp = S.String;
 
 export type RequestsPriorityGetResponseStatus =
   | "open"
@@ -1934,7 +1928,7 @@ export type RequestsPriorityGetResponseStatus =
   | "approved"
   | "completed"
   | "declined";
-export const RequestsPriorityGetResponseStatus = /*@__PURE__*/ S.String;
+export const RequestsPriorityGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRequestPriorityResponse {
@@ -2360,7 +2354,7 @@ export const GetThreatEventRawResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetThreatEventRawResponse>;
 
 export type ListRequestsRequestSortOrder = "asc" | "desc";
-export const ListRequestsRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListRequestsRequestSortOrder = S.String;
 
 export type ListRequestsRequestStatus =
   | "open"
@@ -2369,7 +2363,7 @@ export type ListRequestsRequestStatus =
   | "approved"
   | "completed"
   | "declined";
-export const ListRequestsRequestStatus = /*@__PURE__*/ S.String;
+export const ListRequestsRequestStatus = S.String;
 
 export interface ListRequestsRequest {
   /** Identifier. */
@@ -2424,7 +2418,7 @@ export const ListRequestsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRequestsRequest>;
 
 export type ListRequestsResultItemPriority = "routine" | "high" | "urgent";
-export const ListRequestsResultItemPriority = /*@__PURE__*/ S.String;
+export const ListRequestsResultItemPriority = S.String;
 
 export type ListRequestsResultItemTlp =
   | "clear"
@@ -2432,7 +2426,7 @@ export type ListRequestsResultItemTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const ListRequestsResultItemTlp = /*@__PURE__*/ S.String;
+export const ListRequestsResultItemTlp = S.String;
 
 export type ListRequestsResultItemStatus =
   | "open"
@@ -2441,7 +2435,7 @@ export type ListRequestsResultItemStatus =
   | "approved"
   | "completed"
   | "declined";
-export const ListRequestsResultItemStatus = /*@__PURE__*/ S.String;
+export const ListRequestsResultItemStatus = S.String;
 
 export interface ListRequestsResultItem {
   /** UUID. */
@@ -2843,10 +2837,10 @@ export const ThreatEventsListRequestDatasetIdList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ThreatEventsListRequestDatasetIdList>;
 
 export type ThreatEventsListRequestFormat = "json" | "stix2" | "taxii";
-export const ThreatEventsListRequestFormat = /*@__PURE__*/ S.String;
+export const ThreatEventsListRequestFormat = S.String;
 
 export type ThreatEventsListRequestOrder = "asc" | "desc";
-export const ThreatEventsListRequestOrder = /*@__PURE__*/ S.String;
+export const ThreatEventsListRequestOrder = S.String;
 
 export type ThreatEventsListRequestSearchList = Array<string>;
 export const ThreatEventsListRequestSearchList = /*@__PURE__*/ S.Array(
@@ -2854,7 +2848,7 @@ export const ThreatEventsListRequestSearchList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ThreatEventsListRequestSearchList>;
 
 export type ThreatEventsListRequestSource = "do" | "r2catalog";
-export const ThreatEventsListRequestSource = /*@__PURE__*/ S.String;
+export const ThreatEventsListRequestSource = S.String;
 
 export interface ListThreatEventsRequest {
   /** Account ID. */
@@ -3605,7 +3599,7 @@ export type RequestsConstantsResponsePriorityItem =
   | "routine"
   | "high"
   | "urgent";
-export const RequestsConstantsResponsePriorityItem = /*@__PURE__*/ S.String;
+export const RequestsConstantsResponsePriorityItem = S.String;
 
 export type RequestsConstantsResponsePriorityList =
   Array<RequestsConstantsResponsePriorityItem>;
@@ -3620,7 +3614,7 @@ export type RequestsConstantsResponseStatusItem =
   | "approved"
   | "completed"
   | "declined";
-export const RequestsConstantsResponseStatusItem = /*@__PURE__*/ S.String;
+export const RequestsConstantsResponseStatusItem = S.String;
 
 export type RequestsConstantsResponseStatusList =
   Array<RequestsConstantsResponseStatusItem>;
@@ -3634,7 +3628,7 @@ export type RequestsConstantsResponseTlpItem =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsConstantsResponseTlpItem = /*@__PURE__*/ S.String;
+export const RequestsConstantsResponseTlpItem = S.String;
 
 export type RequestsConstantsResponseTlpList =
   Array<RequestsConstantsResponseTlpItem>;
@@ -3737,7 +3731,7 @@ export type UpdateRequestRequestTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const UpdateRequestRequestTlp = /*@__PURE__*/ S.String;
+export const UpdateRequestRequestTlp = S.String;
 
 export interface UpdateRequestRequest {
   /** Identifier. */
@@ -3783,7 +3777,7 @@ export type UpdateRequestResponseTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const UpdateRequestResponseTlp = /*@__PURE__*/ S.String;
+export const UpdateRequestResponseTlp = S.String;
 
 export type UpdateRequestResponseStatus =
   | "open"
@@ -3792,7 +3786,7 @@ export type UpdateRequestResponseStatus =
   | "approved"
   | "completed"
   | "declined";
-export const UpdateRequestResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateRequestResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateRequestResponse {
@@ -3962,7 +3956,7 @@ export type RequestsPriorityUpdateRequestTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsPriorityUpdateRequestTlp = /*@__PURE__*/ S.String;
+export const RequestsPriorityUpdateRequestTlp = S.String;
 
 export interface UpdateRequestPriorityRequest {
   /** Identifier. */
@@ -4005,7 +3999,7 @@ export type RequestsPriorityUpdateResponseTlp =
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsPriorityUpdateResponseTlp = /*@__PURE__*/ S.String;
+export const RequestsPriorityUpdateResponseTlp = S.String;
 
 export type RequestsPriorityUpdateResponseStatus =
   | "open"
@@ -4014,7 +4008,7 @@ export type RequestsPriorityUpdateResponseStatus =
   | "approved"
   | "completed"
   | "declined";
-export const RequestsPriorityUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const RequestsPriorityUpdateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateRequestPriorityResponse {

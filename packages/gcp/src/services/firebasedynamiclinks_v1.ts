@@ -70,7 +70,7 @@ export type SuffixOptionEnum =
   | "UNGUESSABLE"
   | "SHORT"
   | "CUSTOM";
-export const SuffixOptionEnum = /*@__PURE__*/ S.String;
+export const SuffixOptionEnum = S.String;
 
 /** Short Dynamic Link suffix. */
 export interface Suffix {
@@ -325,12 +325,12 @@ export type ManagedShortLinkVisibilityEnum =
   | "UNARCHIVED"
   | "ARCHIVED"
   | "NEVER_SHOWN";
-export const ManagedShortLinkVisibilityEnum = /*@__PURE__*/ S.String;
+export const ManagedShortLinkVisibilityEnum = S.String;
 
 export type ManagedShortLinkFlaggedAttributeItemEnum =
   | "UNSPECIFIED_ATTRIBUTE"
   | "SPAM";
-export const ManagedShortLinkFlaggedAttributeItemEnum = /*@__PURE__*/ S.String;
+export const ManagedShortLinkFlaggedAttributeItemEnum = S.String;
 
 export type ManagedShortLinkFlaggedAttributeItemEnumList =
   Array<ManagedShortLinkFlaggedAttributeItemEnum>;
@@ -398,7 +398,7 @@ export type DynamicLinkWarningWarningCodeEnum =
   | "LINK_WITH_FRAGMENTS"
   | "NOT_MATCHING_IOS_BUNDLE_ID_AND_STORE_ID"
   | "API_DEPRECATED";
-export const DynamicLinkWarningWarningCodeEnum = /*@__PURE__*/ S.String;
+export const DynamicLinkWarningWarningCodeEnum = S.String;
 
 /** Dynamic Links warning messages. */
 export interface DynamicLinkWarning {
@@ -533,7 +533,7 @@ export type DynamicLinkEventStatEventEnum =
   | "APP_INSTALL"
   | "APP_FIRST_OPEN"
   | "APP_RE_OPEN";
-export const DynamicLinkEventStatEventEnum = /*@__PURE__*/ S.String;
+export const DynamicLinkEventStatEventEnum = S.String;
 
 export type DynamicLinkEventStatPlatformEnum =
   | "DYNAMIC_LINK_PLATFORM_UNSPECIFIED"
@@ -541,7 +541,7 @@ export type DynamicLinkEventStatPlatformEnum =
   | "IOS"
   | "DESKTOP"
   | "OTHER";
-export const DynamicLinkEventStatPlatformEnum = /*@__PURE__*/ S.String;
+export const DynamicLinkEventStatPlatformEnum = S.String;
 
 /** Dynamic Link event stat. */
 export interface DynamicLinkEventStat {
@@ -587,8 +587,7 @@ export type GetIosPostInstallAttributionRequestVisualStyleEnum =
   | "UNKNOWN_VISUAL_STYLE"
   | "DEFAULT_STYLE"
   | "CUSTOM_STYLE";
-export const GetIosPostInstallAttributionRequestVisualStyleEnum =
-  /*@__PURE__*/ S.String;
+export const GetIosPostInstallAttributionRequestVisualStyleEnum = S.String;
 
 /** Signals associated with the device making the request. */
 export interface DeviceInfo {
@@ -624,8 +623,7 @@ export type GetIosPostInstallAttributionRequestRetrievalMethodEnum =
   | "IMPLICIT_WEAK_MATCH"
   | "EXPLICIT_WEAK_MATCH"
   | "EXPLICIT_STRONG_AFTER_WEAK_MATCH";
-export const GetIosPostInstallAttributionRequestRetrievalMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GetIosPostInstallAttributionRequestRetrievalMethodEnum = S.String;
 
 /** Request for iSDK to execute strong match flow for post-install attribution. This is meant for iOS requests only. Requests from other platforms will not be honored. */
 export interface GetIosPostInstallAttributionRequest {
@@ -690,7 +688,7 @@ export type GetIosPostInstallAttributionResponseRequestIpVersionEnum =
   | "IP_V4"
   | "IP_V6";
 export const GetIosPostInstallAttributionResponseRequestIpVersionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetIosPostInstallAttributionResponseAttributionConfidenceEnum =
   | "UNKNOWN_ATTRIBUTION_CONFIDENCE"
@@ -698,7 +696,7 @@ export type GetIosPostInstallAttributionResponseAttributionConfidenceEnum =
   | "DEFAULT"
   | "UNIQUE";
 export const GetIosPostInstallAttributionResponseAttributionConfidenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Response for iSDK to execute strong match flow for post-install attribution. Information of the resolved FDL link. */
 export interface GetIosPostInstallAttributionResponse {

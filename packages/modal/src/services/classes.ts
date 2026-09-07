@@ -16,14 +16,13 @@ export type FunctionFunctionType =
   | "FUNCTION_TYPE_UNSPECIFIED"
   | "FUNCTION_TYPE_GENERATOR"
   | "FUNCTION_TYPE_FUNCTION";
-export const FunctionFunctionType = /*@__PURE__*/ S.String;
+export const FunctionFunctionType = S.String;
 
 export type ClassParameterInfoParameterSerializationFormat =
   | "PARAM_SERIALIZATION_FORMAT_UNSPECIFIED"
   | "PARAM_SERIALIZATION_FORMAT_PICKLE"
   | "PARAM_SERIALIZATION_FORMAT_PROTO";
-export const ClassParameterInfoParameterSerializationFormat =
-  /*@__PURE__*/ S.String;
+export const ClassParameterInfoParameterSerializationFormat = S.String;
 
 export type ParameterType =
   | "PARAM_TYPE_UNSPECIFIED"
@@ -36,7 +35,7 @@ export type ParameterType =
   | "PARAM_TYPE_DICT"
   | "PARAM_TYPE_NONE"
   | "PARAM_TYPE_BOOL";
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 export type GenericPayloadTypeList = Array<GenericPayloadType>;
 export const GenericPayloadTypeList = /*@__PURE__*/ S.Array(
@@ -116,7 +115,7 @@ export const FunctionHandleMetadataMap = /*@__PURE__*/ S.Record(
 export type FunctionSchemaFunctionSchemaType =
   | "FUNCTION_SCHEMA_UNSPECIFIED"
   | "FUNCTION_SCHEMA_V1";
-export const FunctionSchemaFunctionSchemaType = /*@__PURE__*/ S.String;
+export const FunctionSchemaFunctionSchemaType = S.String;
 
 export interface FunctionSchema {
   schemaType?: FunctionSchemaFunctionSchemaType | (string & {});
@@ -144,7 +143,7 @@ export type DataFormat =
   | "DATA_FORMAT_ASGI"
   | "DATA_FORMAT_GENERATOR_DONE"
   | "DATA_FORMAT_CBOR";
-export const DataFormat = /*@__PURE__*/ S.String;
+export const DataFormat = S.String;
 
 export type DataFormatList = Array<DataFormat | (string & {})>;
 export const DataFormatList = /*@__PURE__*/ S.Array(
@@ -306,7 +305,7 @@ export type WarningWarningType =
   | "WARNING_TYPE_CLIENT_DEPRECATION"
   | "WARNING_TYPE_RESOURCE_LIMIT"
   | "WARNING_TYPE_FUNCTION_CONFIGURATION";
-export const WarningWarningType = /*@__PURE__*/ S.String;
+export const WarningWarningType = S.String;
 
 export interface Warning {
   type?: WarningWarningType;

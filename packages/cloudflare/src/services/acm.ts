@@ -122,7 +122,7 @@ export type CustomTrustStoreCreateResponseStatus =
   | "pending_deletion"
   | "deleted"
   | "expired";
-export const CustomTrustStoreCreateResponseStatus = /*@__PURE__*/ S.String;
+export const CustomTrustStoreCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateCustomTrustStoreResponse {
@@ -228,7 +228,7 @@ export type CustomTrustStoreGetResponseStatus =
   | "pending_deletion"
   | "deleted"
   | "expired";
-export const CustomTrustStoreGetResponseStatus = /*@__PURE__*/ S.String;
+export const CustomTrustStoreGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetCustomTrustStoreResponse {
@@ -288,10 +288,10 @@ export type TotalTlsGetResponseCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const TotalTlsGetResponseCertificateAuthority = /*@__PURE__*/ S.String;
+export const TotalTlsGetResponseCertificateAuthority = S.String;
 
 export type TotalTlsGetResponseValidityPeriod = 90;
-export const TotalTlsGetResponseValidityPeriod = /*@__PURE__*/ S.Number;
+export const TotalTlsGetResponseValidityPeriod = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetTotalTlResponse {
@@ -359,7 +359,7 @@ export type CustomTrustStoreListResultItemStatus =
   | "pending_deletion"
   | "deleted"
   | "expired";
-export const CustomTrustStoreListResultItemStatus = /*@__PURE__*/ S.String;
+export const CustomTrustStoreListResultItemStatus = S.String;
 
 export interface CustomTrustStoreListResultItem {
   /** Identifier. */
@@ -419,7 +419,7 @@ export type TotalTlsEditRequestCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const TotalTlsEditRequestCertificateAuthority = /*@__PURE__*/ S.String;
+export const TotalTlsEditRequestCertificateAuthority = S.String;
 
 export interface UpdateTotalTlRequest {
   /** Identifier. */
@@ -457,10 +457,10 @@ export type TotalTlsEditResponseCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const TotalTlsEditResponseCertificateAuthority = /*@__PURE__*/ S.String;
+export const TotalTlsEditResponseCertificateAuthority = S.String;
 
 export type TotalTlsEditResponseValidityPeriod = 90;
-export const TotalTlsEditResponseValidityPeriod = /*@__PURE__*/ S.Number;
+export const TotalTlsEditResponseValidityPeriod = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateTotalTlResponse {
@@ -493,7 +493,7 @@ export type UpdateTotalTlsRequestCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const UpdateTotalTlsRequestCertificateAuthority = /*@__PURE__*/ S.String;
+export const UpdateTotalTlsRequestCertificateAuthority = S.String;
 
 export interface UpdateTotalTlsRequest {
   /** Identifier. */
@@ -531,11 +531,10 @@ export type UpdateTotalTlsResponseCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const UpdateTotalTlsResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const UpdateTotalTlsResponseCertificateAuthority = S.String;
 
 export type UpdateTotalTlsResponseValidityPeriod = 90;
-export const UpdateTotalTlsResponseValidityPeriod = /*@__PURE__*/ S.Number;
+export const UpdateTotalTlsResponseValidityPeriod = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateTotalTlsResponse {

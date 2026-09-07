@@ -177,7 +177,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -185,7 +185,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -222,7 +222,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Purgeable orchestration state to be used in retention policies */
 export type PurgeableOrchestrationState =
@@ -230,7 +230,7 @@ export type PurgeableOrchestrationState =
   | "Failed"
   | "Terminated"
   | "Canceled";
-export const PurgeableOrchestrationState = /*@__PURE__*/ S.String;
+export const PurgeableOrchestrationState = S.String;
 
 /** The properties of a retention policy */
 export interface RetentionPolicyDetails {
@@ -338,11 +338,11 @@ export const SchedulerPropertiesIpAllowlistList = /*@__PURE__*/ S.Array(
 
 /** The name of the Stock Keeping Unit (SKU) of a Durable Task Scheduler */
 export type SchedulerSkuName = "Dedicated" | "Consumption";
-export const SchedulerSkuName = /*@__PURE__*/ S.String;
+export const SchedulerSkuName = S.String;
 
 /** The state of the resource redundancy */
 export type RedundancyState = "None" | "Zone";
-export const RedundancyState = /*@__PURE__*/ S.String;
+export const RedundancyState = S.String;
 
 /** The SKU (Stock Keeping Unit) assigned to this durable task scheduler */
 export interface SchedulerSku {
@@ -363,7 +363,7 @@ export const SchedulerSku = /*@__PURE__*/ S.suspend(() =>
 
 /** State of the public network access. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** The group ids for the private endpoint resource. */
 export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
@@ -390,7 +390,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -417,8 +417,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -785,11 +784,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

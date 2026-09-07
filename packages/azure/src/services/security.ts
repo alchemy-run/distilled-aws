@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Type of managed service identity (either system assigned, or none). */
 export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
-export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
+export const SystemAssignedServiceIdentityType = S.String;
 
 /** Managed service identity (either system assigned, or none) */
 export interface DataScannersCreateOrUpdateRequestIdentity {
@@ -63,7 +63,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -71,7 +71,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {

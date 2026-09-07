@@ -324,7 +324,7 @@ export type CloudRunConfigLoadBalancerTypeEnum =
   | "LOAD_BALANCER_TYPE_UNSPECIFIED"
   | "LOAD_BALANCER_TYPE_EXTERNAL"
   | "LOAD_BALANCER_TYPE_INTERNAL";
-export const CloudRunConfigLoadBalancerTypeEnum = /*@__PURE__*/ S.String;
+export const CloudRunConfigLoadBalancerTypeEnum = S.String;
 
 /** Configuration options for the Cloud Run feature. */
 export interface CloudRunConfig {
@@ -341,7 +341,7 @@ export const CloudRunConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "CloudRunConfig" }) as any as S.Schema<CloudRunConfig>;
 
 export type IstioConfigAuthEnum = "AUTH_NONE" | "AUTH_MUTUAL_TLS";
-export const IstioConfigAuthEnum = /*@__PURE__*/ S.String;
+export const IstioConfigAuthEnum = S.String;
 
 /** Configuration options for Istio addon. */
 export interface IstioConfig {
@@ -550,7 +550,7 @@ export type StatusConditionCodeEnum =
   | "CA_EXPIRING"
   | "NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS"
   | "CLOUD_KMS_KEY_DESTROYED";
-export const StatusConditionCodeEnum = /*@__PURE__*/ S.String;
+export const StatusConditionCodeEnum = S.String;
 
 export type StatusConditionCanonicalCodeEnum =
   | "OK"
@@ -570,7 +570,7 @@ export type StatusConditionCanonicalCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const StatusConditionCanonicalCodeEnum = /*@__PURE__*/ S.String;
+export const StatusConditionCanonicalCodeEnum = S.String;
 
 /** StatusCondition describes why a cluster or a node pool has a certain status (e.g., ERROR or DEGRADED). */
 export interface StatusCondition {
@@ -616,7 +616,7 @@ export type OperationOperationTypeEnum =
   | "SET_MAINTENANCE_POLICY"
   | "RESIZE_CLUSTER"
   | "FLEET_FEATURE_UPGRADE";
-export const OperationOperationTypeEnum = /*@__PURE__*/ S.String;
+export const OperationOperationTypeEnum = S.String;
 
 export type OperationStatusEnum =
   | "STATUS_UNSPECIFIED"
@@ -624,7 +624,7 @@ export type OperationStatusEnum =
   | "RUNNING"
   | "DONE"
   | "ABORTING";
-export const OperationStatusEnum = /*@__PURE__*/ S.String;
+export const OperationStatusEnum = S.String;
 
 /** Progress metric is (string, int|float|string) pair. */
 export interface Metric {
@@ -662,7 +662,7 @@ export type OperationProgressStatusEnum =
   | "RUNNING"
   | "DONE"
   | "ABORTING";
-export const OperationProgressStatusEnum = /*@__PURE__*/ S.String;
+export const OperationProgressStatusEnum = S.String;
 
 /** Information about operation (or operation stage) progress. */
 export interface OperationProgress {
@@ -771,7 +771,7 @@ export type NodePoolAutoscalingLocationPolicyEnum =
   | "LOCATION_POLICY_UNSPECIFIED"
   | "BALANCED"
   | "ANY";
-export const NodePoolAutoscalingLocationPolicyEnum = /*@__PURE__*/ S.String;
+export const NodePoolAutoscalingLocationPolicyEnum = S.String;
 
 /** NodePoolAutoscaling contains information required by cluster autoscaler to adjust the size of the node pool to the current cluster usage. */
 export interface NodePoolAutoscaling {
@@ -965,8 +965,7 @@ export type AutopilotCompatibilityIssueIncompatibilityTypeEnum =
   | "INCOMPATIBILITY"
   | "ADDITIONAL_CONFIG_REQUIRED"
   | "PASSED_WITH_OPTIONAL_CONFIG";
-export const AutopilotCompatibilityIssueIncompatibilityTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AutopilotCompatibilityIssueIncompatibilityTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -1220,7 +1219,7 @@ export type FilterEventTypeItemEnum =
   | "UPGRADE_EVENT"
   | "SECURITY_BULLETIN_EVENT"
   | "UPGRADE_INFO_EVENT";
-export const FilterEventTypeItemEnum = /*@__PURE__*/ S.String;
+export const FilterEventTypeItemEnum = S.String;
 
 export type FilterEventTypeItemEnumList = Array<
   FilterEventTypeItemEnum | (string & {})
@@ -1274,13 +1273,13 @@ export type EnterpriseConfigDesiredTierEnum =
   | "CLUSTER_TIER_UNSPECIFIED"
   | "STANDARD"
   | "ENTERPRISE";
-export const EnterpriseConfigDesiredTierEnum = /*@__PURE__*/ S.String;
+export const EnterpriseConfigDesiredTierEnum = S.String;
 
 export type EnterpriseConfigClusterTierEnum =
   | "CLUSTER_TIER_UNSPECIFIED"
   | "STANDARD"
   | "ENTERPRISE";
-export const EnterpriseConfigClusterTierEnum = /*@__PURE__*/ S.String;
+export const EnterpriseConfigClusterTierEnum = S.String;
 
 /** EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier. */
 export interface EnterpriseConfig {
@@ -1312,7 +1311,7 @@ export const VerticalPodAutoscaling = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerticalPodAutoscaling>;
 
 export type SandboxConfigTypeEnum = "UNSPECIFIED" | "GVISOR";
-export const SandboxConfigTypeEnum = /*@__PURE__*/ S.String;
+export const SandboxConfigTypeEnum = S.String;
 
 /** SandboxConfig contains configurations of the sandbox to use for the node. */
 export interface SandboxConfig {
@@ -1332,7 +1331,7 @@ export type LoggingVariantConfigVariantEnum =
   | "VARIANT_UNSPECIFIED"
   | "DEFAULT"
   | "MAX_THROUGHPUT";
-export const LoggingVariantConfigVariantEnum = /*@__PURE__*/ S.String;
+export const LoggingVariantConfigVariantEnum = S.String;
 
 /** LoggingVariantConfig specifies the behaviour of the logging component. */
 export interface LoggingVariantConfig {
@@ -1370,7 +1369,7 @@ export type NodeConfigEffectiveCgroupModeEnum =
   | "EFFECTIVE_CGROUP_MODE_UNSPECIFIED"
   | "EFFECTIVE_CGROUP_MODE_V1"
   | "EFFECTIVE_CGROUP_MODE_V2";
-export const NodeConfigEffectiveCgroupModeEnum = /*@__PURE__*/ S.String;
+export const NodeConfigEffectiveCgroupModeEnum = S.String;
 
 /** Configuration settings for VFIO (Virtual Function I/O) on a node. VFIO allows safe, unprivileged, userspace drivers to access I/O devices. */
 export interface NodeVfioConfig {
@@ -1400,7 +1399,7 @@ export type NodeKernelModuleLoadingPolicyEnum =
   | "POLICY_UNSPECIFIED"
   | "ENFORCE_SIGNED_MODULES"
   | "DO_NOT_ENFORCE_SIGNED_MODULES";
-export const NodeKernelModuleLoadingPolicyEnum = /*@__PURE__*/ S.String;
+export const NodeKernelModuleLoadingPolicyEnum = S.String;
 
 /** Configuration for kernel module loading on nodes. */
 export interface NodeKernelModuleLoading {
@@ -1419,7 +1418,7 @@ export type LinuxNodeConfigCgroupModeEnum =
   | "CGROUP_MODE_UNSPECIFIED"
   | "CGROUP_MODE_V1"
   | "CGROUP_MODE_V2";
-export const LinuxNodeConfigCgroupModeEnum = /*@__PURE__*/ S.String;
+export const LinuxNodeConfigCgroupModeEnum = S.String;
 
 /** Provisions a new, separate local NVMe SSD exclusively for swap. */
 export interface DedicatedLocalSsdProfile {
@@ -1509,8 +1508,7 @@ export type LinuxNodeConfigTransparentHugepageDefragEnum =
   | "TRANSPARENT_HUGEPAGE_DEFRAG_DEFER_WITH_MADVISE"
   | "TRANSPARENT_HUGEPAGE_DEFRAG_MADVISE"
   | "TRANSPARENT_HUGEPAGE_DEFRAG_NEVER";
-export const LinuxNodeConfigTransparentHugepageDefragEnum =
-  /*@__PURE__*/ S.String;
+export const LinuxNodeConfigTransparentHugepageDefragEnum = S.String;
 
 /** Hugepages amount in both 2m and 1g size */
 export interface HugepagesConfig {
@@ -1533,8 +1531,7 @@ export type LinuxNodeConfigTransparentHugepageEnabledEnum =
   | "TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS"
   | "TRANSPARENT_HUGEPAGE_ENABLED_MADVISE"
   | "TRANSPARENT_HUGEPAGE_ENABLED_NEVER";
-export const LinuxNodeConfigTransparentHugepageEnabledEnum =
-  /*@__PURE__*/ S.String;
+export const LinuxNodeConfigTransparentHugepageEnabledEnum = S.String;
 
 /** DiskIoScheduler contains the configuration for the disk IO scheduler. */
 export interface DiskIoScheduler {
@@ -1639,7 +1636,7 @@ export type NodeTaintEffectEnum =
   | "NO_SCHEDULE"
   | "PREFER_NO_SCHEDULE"
   | "NO_EXECUTE";
-export const NodeTaintEffectEnum = /*@__PURE__*/ S.String;
+export const NodeTaintEffectEnum = S.String;
 
 /** Kubernetes taint is composed of three fields: key, value, and effect. Effect can only be one of three types: NoSchedule, PreferNoSchedule or NoExecute. See [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration) for more information, including usage and the valid values. */
 export interface NodeTaint {
@@ -1707,7 +1704,7 @@ export type TaintConfigArchitectureTaintBehaviorEnum =
   | "ARCHITECTURE_TAINT_BEHAVIOR_UNSPECIFIED"
   | "NONE"
   | "ARM";
-export const TaintConfigArchitectureTaintBehaviorEnum = /*@__PURE__*/ S.String;
+export const TaintConfigArchitectureTaintBehaviorEnum = S.String;
 
 /** TaintConfig contains the configuration for the taints of the node pool. */
 export interface TaintConfig {
@@ -1744,10 +1741,10 @@ export type NodeConfigLocalSsdEncryptionModeEnum =
   | "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED"
   | "STANDARD_ENCRYPTION"
   | "EPHEMERAL_KEY_ENCRYPTION";
-export const NodeConfigLocalSsdEncryptionModeEnum = /*@__PURE__*/ S.String;
+export const NodeConfigLocalSsdEncryptionModeEnum = S.String;
 
 export type NodeAffinityOperatorEnum = "OPERATOR_UNSPECIFIED" | "IN" | "NOT_IN";
-export const NodeAffinityOperatorEnum = /*@__PURE__*/ S.String;
+export const NodeAffinityOperatorEnum = S.String;
 
 /** Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity). */
 export interface NodeAffinity {
@@ -1805,8 +1802,7 @@ export type ConfidentialNodesConfidentialInstanceTypeEnum =
   | "SEV"
   | "SEV_SNP"
   | "TDX";
-export const ConfidentialNodesConfidentialInstanceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ConfidentialNodesConfidentialInstanceTypeEnum = S.String;
 
 /** ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs. */
 export interface ConfidentialNodes {
@@ -2040,8 +2036,7 @@ export type AdvancedMachineFeaturesPerformanceMonitoringUnitEnum =
   | "ARCHITECTURAL"
   | "STANDARD"
   | "ENHANCED";
-export const AdvancedMachineFeaturesPerformanceMonitoringUnitEnum =
-  /*@__PURE__*/ S.String;
+export const AdvancedMachineFeaturesPerformanceMonitoringUnitEnum = S.String;
 
 /** Specifies options for controlling advanced machine features. */
 export interface AdvancedMachineFeatures {
@@ -2082,13 +2077,13 @@ export type WorkloadMetadataConfigNodeMetadataEnum =
   | "SECURE"
   | "EXPOSE"
   | "GKE_METADATA_SERVER";
-export const WorkloadMetadataConfigNodeMetadataEnum = /*@__PURE__*/ S.String;
+export const WorkloadMetadataConfigNodeMetadataEnum = S.String;
 
 export type WorkloadMetadataConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "GCE_METADATA"
   | "GKE_METADATA";
-export const WorkloadMetadataConfigModeEnum = /*@__PURE__*/ S.String;
+export const WorkloadMetadataConfigModeEnum = S.String;
 
 /** WorkloadMetadataConfig defines the metadata configuration to expose to workloads on the node pool. */
 export interface WorkloadMetadataConfig {
@@ -2110,7 +2105,7 @@ export type WindowsNodeConfigOsVersionEnum =
   | "OS_VERSION_UNSPECIFIED"
   | "OS_VERSION_LTSC2019"
   | "OS_VERSION_LTSC2022";
-export const WindowsNodeConfigOsVersionEnum = /*@__PURE__*/ S.String;
+export const WindowsNodeConfigOsVersionEnum = S.String;
 
 /** Parameters that can be configured on Windows nodes. Windows Node Config that define the parameters that will be used to configure the Windows node pool settings. */
 export interface WindowsNodeConfig {
@@ -2256,7 +2251,7 @@ export type HostConfigCapabilitiesItemEnum =
   | "HOST_CAPABILITY_PULL"
   | "HOST_CAPABILITY_RESOLVE"
   | "HOST_CAPABILITY_PUSH";
-export const HostConfigCapabilitiesItemEnum = /*@__PURE__*/ S.String;
+export const HostConfigCapabilitiesItemEnum = S.String;
 
 export type HostConfigCapabilitiesItemEnumList = Array<
   HostConfigCapabilitiesItemEnum | (string & {})
@@ -2356,8 +2351,7 @@ export type HostMaintenancePolicyMaintenanceIntervalEnum =
   | "MAINTENANCE_INTERVAL_UNSPECIFIED"
   | "AS_NEEDED"
   | "PERIODIC";
-export const HostMaintenancePolicyMaintenanceIntervalEnum =
-  /*@__PURE__*/ S.String;
+export const HostMaintenancePolicyMaintenanceIntervalEnum = S.String;
 
 /** Strategy that will trigger maintenance on behalf of the customer. */
 export interface OpportunisticMaintenanceStrategy {
@@ -2419,7 +2413,7 @@ export const ShieldedInstanceConfig = /*@__PURE__*/ S.suspend(() =>
 export type GPUDirectConfigGpuDirectStrategyEnum =
   | "GPU_DIRECT_STRATEGY_UNSPECIFIED"
   | "RDMA";
-export const GPUDirectConfigGpuDirectStrategyEnum = /*@__PURE__*/ S.String;
+export const GPUDirectConfigGpuDirectStrategyEnum = S.String;
 
 /** GPUDirectConfig specifies the GPU direct strategy on the node pool. */
 export interface GPUDirectConfig {
@@ -2460,8 +2454,7 @@ export type ReservationAffinityConsumeReservationTypeEnum =
   | "ANY_RESERVATION"
   | "SPECIFIC_RESERVATION"
   | "ANY_RESERVATION_THEN_FAIL";
-export const ReservationAffinityConsumeReservationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ReservationAffinityConsumeReservationTypeEnum = S.String;
 
 /** [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) is the configuration of desired reservation which instances could take capacity from. */
 export interface ReservationAffinity {
@@ -2502,8 +2495,7 @@ export type GPUDriverInstallationConfigGpuDriverVersionEnum =
   | "INSTALLATION_DISABLED"
   | "DEFAULT"
   | "LATEST";
-export const GPUDriverInstallationConfigGpuDriverVersionEnum =
-  /*@__PURE__*/ S.String;
+export const GPUDriverInstallationConfigGpuDriverVersionEnum = S.String;
 
 /** GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed. */
 export interface GPUDriverInstallationConfig {
@@ -2526,7 +2518,7 @@ export type GPUSharingConfigGpuSharingStrategyEnum =
   | "GPU_SHARING_STRATEGY_UNSPECIFIED"
   | "TIME_SHARING"
   | "MPS";
-export const GPUSharingConfigGpuSharingStrategyEnum = /*@__PURE__*/ S.String;
+export const GPUSharingConfigGpuSharingStrategyEnum = S.String;
 
 /** GPUSharingConfig represents the GPU sharing configuration for Hardware Accelerators. */
 export interface GPUSharingConfig {
@@ -2580,7 +2572,7 @@ export const AcceleratorConfigList = /*@__PURE__*/ S.Array(
 export type SecondaryBootDiskModeEnum =
   | "MODE_UNSPECIFIED"
   | "CONTAINER_IMAGE_CACHE";
-export const SecondaryBootDiskModeEnum = /*@__PURE__*/ S.String;
+export const SecondaryBootDiskModeEnum = S.String;
 
 /** SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode. */
 export interface SecondaryBootDisk {
@@ -2768,7 +2760,7 @@ export type AutoMonitoringConfigScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "ALL"
   | "NONE";
-export const AutoMonitoringConfigScopeEnum = /*@__PURE__*/ S.String;
+export const AutoMonitoringConfigScopeEnum = S.String;
 
 /** AutoMonitoringConfig defines the configuration for GKE Workload Auto-Monitoring. */
 export interface AutoMonitoringConfig {
@@ -2804,8 +2796,7 @@ export type AdvancedDatapathObservabilityConfigRelayModeEnum =
   | "DISABLED"
   | "INTERNAL_VPC_LB"
   | "EXTERNAL_LB";
-export const AdvancedDatapathObservabilityConfigRelayModeEnum =
-  /*@__PURE__*/ S.String;
+export const AdvancedDatapathObservabilityConfigRelayModeEnum = S.String;
 
 /** AdvancedDatapathObservabilityConfig specifies configuration of observability features of advanced datapath. */
 export interface AdvancedDatapathObservabilityConfig {
@@ -2843,8 +2834,7 @@ export type MonitoringComponentConfigEnableComponentsItemEnum =
   | "KUBELET"
   | "DCGM"
   | "JOBSET";
-export const MonitoringComponentConfigEnableComponentsItemEnum =
-  /*@__PURE__*/ S.String;
+export const MonitoringComponentConfigEnableComponentsItemEnum = S.String;
 
 export type MonitoringComponentConfigEnableComponentsItemEnumList = Array<
   MonitoringComponentConfigEnableComponentsItemEnum | (string & {})
@@ -2908,7 +2898,7 @@ export type PodAutoscalingHpaProfileEnum =
   | "HPA_PROFILE_UNSPECIFIED"
   | "NONE"
   | "PERFORMANCE";
-export const PodAutoscalingHpaProfileEnum = /*@__PURE__*/ S.String;
+export const PodAutoscalingHpaProfileEnum = S.String;
 
 /** PodAutoscaling is used for configuration of parameters for workload autoscaling. */
 export interface PodAutoscaling {
@@ -2922,7 +2912,7 @@ export const PodAutoscaling = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PodAutoscaling" }) as any as S.Schema<PodAutoscaling>;
 
 export type NetworkPolicyProviderEnum = "PROVIDER_UNSPECIFIED" | "CALICO";
-export const NetworkPolicyProviderEnum = /*@__PURE__*/ S.String;
+export const NetworkPolicyProviderEnum = S.String;
 
 /** Configuration options for the NetworkPolicy feature. https://kubernetes.io/docs/concepts/services-networking/networkpolicies/ */
 export interface NetworkPolicy {
@@ -2974,7 +2964,7 @@ export type BlueGreenInfoPhaseEnum =
   | "NODE_POOL_SOAKING"
   | "DELETING_BLUE_POOL"
   | "ROLLBACK_STARTED";
-export const BlueGreenInfoPhaseEnum = /*@__PURE__*/ S.String;
+export const BlueGreenInfoPhaseEnum = S.String;
 
 /** Information relevant to blue-green upgrade. */
 export interface BlueGreenInfo {
@@ -3085,7 +3075,7 @@ export type UpgradeSettingsStrategyEnum =
   | "BLUE_GREEN"
   | "SURGE"
   | "SHORT_LIVED";
-export const UpgradeSettingsStrategyEnum = /*@__PURE__*/ S.String;
+export const UpgradeSettingsStrategyEnum = S.String;
 
 /** These upgrade settings control the level of parallelism and the level of disruption caused by an upgrade. maxUnavailable controls the number of nodes that can be simultaneously unavailable. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). Note: upgrades inevitably introduce some disruption since workloads need to be moved from old nodes to new, upgraded ones. Even if maxUnavailable=0, this holds true. (Disruption stays within the limits of PodDisruptionBudget, if it is configured.) Consider a hypothetical node pool with 5 nodes having maxSurge=2, maxUnavailable=1. This means the upgrade process upgrades 3 nodes simultaneously. It creates 2 additional (upgraded) nodes, then it brings down 3 old (not yet upgraded) nodes at the same time. This ensures that there are always at least 4 nodes available. These upgrade settings configure the upgrade strategy for the node pool. Use strategy to switch between the strategies applied to the node pool. If the strategy is SURGE, use max_surge and max_unavailable to control the level of parallelism and the level of disruption caused by upgrade. 1. maxSurge controls the number of additional nodes that can be added to the node pool temporarily for the time of the upgrade to increase the number of available nodes. 2. maxUnavailable controls the number of nodes that can be simultaneously unavailable. 3. (maxUnavailable + maxSurge) determines the level of parallelism (how many nodes are being upgraded at the same time). If the strategy is BLUE_GREEN, use blue_green_settings to configure the blue-green upgrade related settings. 1. standard_rollout_policy is the default policy. The policy is used to control the way blue pool gets drained. The draining is executed in the batch mode. The batch size could be specified as either percentage of the node pool size or the number of nodes. batch_soak_duration is the soak time after each batch gets drained. 2. node_pool_soak_duration is the soak time after all blue nodes are drained. After this period, the blue pool nodes will be deleted. */
 export interface UpgradeSettings {
@@ -3217,7 +3207,7 @@ export const BestEffortProvisioning = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BestEffortProvisioning>;
 
 export type PlacementPolicyTypeEnum = "TYPE_UNSPECIFIED" | "COMPACT";
-export const PlacementPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const PlacementPolicyTypeEnum = S.String;
 
 /** PlacementPolicy defines the placement policy used by the node pool. */
 export interface PlacementPolicy {
@@ -3262,14 +3252,14 @@ export type NodePoolStatusEnum =
   | "RECONCILING"
   | "STOPPING"
   | "ERROR";
-export const NodePoolStatusEnum = /*@__PURE__*/ S.String;
+export const NodePoolStatusEnum = S.String;
 
 export type NetworkTierConfigNetworkTierEnum =
   | "NETWORK_TIER_UNSPECIFIED"
   | "NETWORK_TIER_DEFAULT"
   | "NETWORK_TIER_PREMIUM"
   | "NETWORK_TIER_STANDARD";
-export const NetworkTierConfigNetworkTierEnum = /*@__PURE__*/ S.String;
+export const NetworkTierConfigNetworkTierEnum = S.String;
 
 /** NetworkTierConfig contains network tier information. */
 export interface NetworkTierConfig {
@@ -3349,14 +3339,13 @@ export const PodCIDROverprovisionConfig = /*@__PURE__*/ S.suspend(() =>
 export type NetworkPerformanceConfigTotalEgressBandwidthTierEnum =
   | "TIER_UNSPECIFIED"
   | "TIER_1";
-export const NetworkPerformanceConfigTotalEgressBandwidthTierEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkPerformanceConfigTotalEgressBandwidthTierEnum = S.String;
 
 export type NetworkPerformanceConfigExternalIpEgressBandwidthTierEnum =
   | "TIER_UNSPECIFIED"
   | "TIER_1";
 export const NetworkPerformanceConfigExternalIpEgressBandwidthTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration of all network bandwidth tiers */
 export interface NetworkPerformanceConfig {
@@ -3524,7 +3513,7 @@ export type ClusterTelemetryTypeEnum =
   | "DISABLED"
   | "ENABLED"
   | "SYSTEM_ONLY";
-export const ClusterTelemetryTypeEnum = /*@__PURE__*/ S.String;
+export const ClusterTelemetryTypeEnum = S.String;
 
 /** Telemetry integration for the cluster. */
 export interface ClusterTelemetry {
@@ -3669,13 +3658,12 @@ export type MaintenanceExclusionOptionsScopeEnum =
   | "NO_UPGRADES"
   | "NO_MINOR_UPGRADES"
   | "NO_MINOR_OR_NODE_UPGRADES";
-export const MaintenanceExclusionOptionsScopeEnum = /*@__PURE__*/ S.String;
+export const MaintenanceExclusionOptionsScopeEnum = S.String;
 
 export type MaintenanceExclusionOptionsEndTimeBehaviorEnum =
   | "END_TIME_BEHAVIOR_UNSPECIFIED"
   | "UNTIL_END_OF_SUPPORT";
-export const MaintenanceExclusionOptionsEndTimeBehaviorEnum =
-  /*@__PURE__*/ S.String;
+export const MaintenanceExclusionOptionsEndTimeBehaviorEnum = S.String;
 
 /** Represents the Maintenance exclusion option. */
 export interface MaintenanceExclusionOptions {
@@ -3878,7 +3866,7 @@ export type CompliancePostureConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
-export const CompliancePostureConfigModeEnum = /*@__PURE__*/ S.String;
+export const CompliancePostureConfigModeEnum = S.String;
 
 /** Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture. */
 export interface CompliancePostureConfig {
@@ -4067,7 +4055,7 @@ export type ClusterAutoscalingAutoscalingProfileEnum =
   | "PROFILE_UNSPECIFIED"
   | "OPTIMIZE_UTILIZATION"
   | "BALANCED";
-export const ClusterAutoscalingAutoscalingProfileEnum = /*@__PURE__*/ S.String;
+export const ClusterAutoscalingAutoscalingProfileEnum = S.String;
 
 /** Contains information about amount of some resource in the cluster. For memory, value should be in GB. */
 export interface ResourceLimit {
@@ -4108,8 +4096,7 @@ export type ClusterAutoscalingAutopilotGeneralProfileEnum =
   | "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED"
   | "NO_PERFORMANCE"
   | "NONE";
-export const ClusterAutoscalingAutopilotGeneralProfileEnum =
-  /*@__PURE__*/ S.String;
+export const ClusterAutoscalingAutopilotGeneralProfileEnum = S.String;
 
 /** ClusterAutoscaling contains global, per-cluster information required by Cluster Autoscaler to automatically adjust the size of the cluster and create/delete node pools based on the current needs. */
 export interface ClusterAutoscaling {
@@ -4214,7 +4201,7 @@ export const NodePoolAutoConfig = /*@__PURE__*/ S.suspend(() =>
 export type GkeAutoUpgradeConfigPatchModeEnum =
   | "PATCH_MODE_UNSPECIFIED"
   | "ACCELERATED";
-export const GkeAutoUpgradeConfigPatchModeEnum = /*@__PURE__*/ S.String;
+export const GkeAutoUpgradeConfigPatchModeEnum = S.String;
 
 /** GkeAutoUpgradeConfig is the configuration for GKE auto upgrades. */
 export interface GkeAutoUpgradeConfig {
@@ -4233,7 +4220,7 @@ export type ManagedOpenTelemetryConfigScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "NONE"
   | "COLLECTION_AND_INSTRUMENTATION_COMPONENTS";
-export const ManagedOpenTelemetryConfigScopeEnum = /*@__PURE__*/ S.String;
+export const ManagedOpenTelemetryConfigScopeEnum = S.String;
 
 /** ManagedOpenTelemetryConfig is the configuration for the GKE Managed OpenTelemetry pipeline. */
 export interface ManagedOpenTelemetryConfig {
@@ -4305,15 +4292,14 @@ export type SecurityPostureConfigVulnerabilityModeEnum =
   | "VULNERABILITY_DISABLED"
   | "VULNERABILITY_BASIC"
   | "VULNERABILITY_ENTERPRISE";
-export const SecurityPostureConfigVulnerabilityModeEnum =
-  /*@__PURE__*/ S.String;
+export const SecurityPostureConfigVulnerabilityModeEnum = S.String;
 
 export type SecurityPostureConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "DISABLED"
   | "BASIC"
   | "ENTERPRISE";
-export const SecurityPostureConfigModeEnum = /*@__PURE__*/ S.String;
+export const SecurityPostureConfigModeEnum = S.String;
 
 /** SecurityPostureConfig defines the flags needed to enable/disable features for the Security Posture API. */
 export interface SecurityPostureConfig {
@@ -4398,7 +4384,7 @@ export const ScheduleUpgradeConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScheduleUpgradeConfig>;
 
 export type AutopilotConversionStatusStateEnum = "STATE_UNSPECIFIED" | "DONE";
-export const AutopilotConversionStatusStateEnum = /*@__PURE__*/ S.String;
+export const AutopilotConversionStatusStateEnum = S.String;
 
 /** AutopilotConversionStatus represents conversion status. */
 export interface AutopilotConversionStatus {
@@ -4504,7 +4490,7 @@ export type ClusterNetworkPerformanceConfigTotalEgressBandwidthTierEnum =
   | "TIER_UNSPECIFIED"
   | "TIER_1";
 export const ClusterNetworkPerformanceConfigTotalEgressBandwidthTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration of all network bandwidth tiers */
 export interface ClusterNetworkPerformanceConfig {
@@ -4540,7 +4526,7 @@ export type DataplaneV2ConfigScalabilityModeEnum =
   | "SCALABILITY_MODE_UNSPECIFIED"
   | "DISABLED"
   | "SCALE_OPTIMIZED";
-export const DataplaneV2ConfigScalabilityModeEnum = /*@__PURE__*/ S.String;
+export const DataplaneV2ConfigScalabilityModeEnum = S.String;
 
 /** DataplaneV2Config is the configuration for DPv2. */
 export interface DataplaneV2Config {
@@ -4559,21 +4545,20 @@ export type NetworkConfigInTransitEncryptionConfigEnum =
   | "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED"
   | "IN_TRANSIT_ENCRYPTION_DISABLED"
   | "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT";
-export const NetworkConfigInTransitEncryptionConfigEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkConfigInTransitEncryptionConfigEnum = S.String;
 
 export type DNSConfigClusterDnsEnum =
   | "PROVIDER_UNSPECIFIED"
   | "PLATFORM_DEFAULT"
   | "CLOUD_DNS"
   | "KUBE_DNS";
-export const DNSConfigClusterDnsEnum = /*@__PURE__*/ S.String;
+export const DNSConfigClusterDnsEnum = S.String;
 
 export type DNSConfigClusterDnsScopeEnum =
   | "DNS_SCOPE_UNSPECIFIED"
   | "CLUSTER_SCOPE"
   | "VPC_SCOPE";
-export const DNSConfigClusterDnsScopeEnum = /*@__PURE__*/ S.String;
+export const DNSConfigClusterDnsScopeEnum = S.String;
 
 /** DNSConfig contains the desired set of options for configuring clusterDNS. */
 export interface DNSConfig {
@@ -4600,20 +4585,20 @@ export type NetworkConfigPrivateIpv6GoogleAccessEnum =
   | "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED"
   | "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE"
   | "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL";
-export const NetworkConfigPrivateIpv6GoogleAccessEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigPrivateIpv6GoogleAccessEnum = S.String;
 
 export type NetworkConfigDatapathProviderEnum =
   | "DATAPATH_PROVIDER_UNSPECIFIED"
   | "LEGACY_DATAPATH"
   | "ADVANCED_DATAPATH";
-export const NetworkConfigDatapathProviderEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigDatapathProviderEnum = S.String;
 
 export type GatewayAPIConfigChannelEnum =
   | "CHANNEL_UNSPECIFIED"
   | "CHANNEL_DISABLED"
   | "CHANNEL_EXPERIMENTAL"
   | "CHANNEL_STANDARD";
-export const GatewayAPIConfigChannelEnum = /*@__PURE__*/ S.String;
+export const GatewayAPIConfigChannelEnum = S.String;
 
 /** GatewayAPIConfig contains the desired config of Gateway API on this cluster. */
 export interface GatewayAPIConfig {
@@ -4761,7 +4746,7 @@ export type AnonymousAuthenticationConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "ENABLED"
   | "LIMITED";
-export const AnonymousAuthenticationConfigModeEnum = /*@__PURE__*/ S.String;
+export const AnonymousAuthenticationConfigModeEnum = S.String;
 
 /** AnonymousAuthenticationConfig defines the settings needed to limit endpoints that allow anonymous authentication. */
 export interface AnonymousAuthenticationConfig {
@@ -4782,7 +4767,7 @@ export type ReleaseChannelChannelEnum =
   | "REGULAR"
   | "STABLE"
   | "EXTENDED";
-export const ReleaseChannelChannelEnum = /*@__PURE__*/ S.String;
+export const ReleaseChannelChannelEnum = S.String;
 
 /** ReleaseChannel indicates which release channel a cluster is subscribed to. Release channels are arranged in order of risk. When a cluster is subscribed to a release channel, Google maintains both the master version and the node version. Node auto-upgrade defaults to true and cannot be disabled. */
 export interface ReleaseChannel {
@@ -4803,7 +4788,7 @@ export type ClusterStatusEnum =
   | "STOPPING"
   | "ERROR"
   | "DEGRADED";
-export const ClusterStatusEnum = /*@__PURE__*/ S.String;
+export const ClusterStatusEnum = S.String;
 
 /** ParentProductConfig is the configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of a GKE cluster and take the ownership of the cluster. */
 export interface ParentProductConfig {
@@ -4826,7 +4811,7 @@ export type DatabaseEncryptionStateEnum =
   | "ENCRYPTED"
   | "DECRYPTED"
   | "ALL_OBJECTS_ENCRYPTION_ENABLED";
-export const DatabaseEncryptionStateEnum = /*@__PURE__*/ S.String;
+export const DatabaseEncryptionStateEnum = S.String;
 
 /** OperationError records errors seen from CloudKMS keys encountered during updates to DatabaseEncryption configuration. */
 export interface OperationError {
@@ -4861,7 +4846,7 @@ export type DatabaseEncryptionCurrentStateEnum =
   | "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED"
   | "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING"
   | "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR";
-export const DatabaseEncryptionCurrentStateEnum = /*@__PURE__*/ S.String;
+export const DatabaseEncryptionCurrentStateEnum = S.String;
 
 /** Configuration of etcd encryption. */
 export interface DatabaseEncryption {
@@ -4891,7 +4876,7 @@ export const DatabaseEncryption = /*@__PURE__*/ S.suspend(() =>
 export type FleetMembershipTypeEnum =
   | "MEMBERSHIP_TYPE_UNSPECIFIED"
   | "LIGHTWEIGHT";
-export const FleetMembershipTypeEnum = /*@__PURE__*/ S.String;
+export const FleetMembershipTypeEnum = S.String;
 
 /** Fleet is the fleet configuration for the cluster. */
 export interface Fleet {
@@ -4969,13 +4954,13 @@ export type IPAllocationPolicyIpv6AccessTypeEnum =
   | "IPV6_ACCESS_TYPE_UNSPECIFIED"
   | "INTERNAL"
   | "EXTERNAL";
-export const IPAllocationPolicyIpv6AccessTypeEnum = /*@__PURE__*/ S.String;
+export const IPAllocationPolicyIpv6AccessTypeEnum = S.String;
 
 export type IPAllocationPolicyStackTypeEnum =
   | "STACK_TYPE_UNSPECIFIED"
   | "IPV4"
   | "IPV4_IPV6";
-export const IPAllocationPolicyStackTypeEnum = /*@__PURE__*/ S.String;
+export const IPAllocationPolicyStackTypeEnum = S.String;
 
 /** AutoIpamConfig contains all information related to Auto IPAM */
 export interface AutoIpamConfig {
@@ -4992,7 +4977,7 @@ export type AdditionalIPRangesConfigStatusEnum =
   | "STATUS_UNSPECIFIED"
   | "ACTIVE"
   | "DRAINING";
-export const AdditionalIPRangesConfigStatusEnum = /*@__PURE__*/ S.String;
+export const AdditionalIPRangesConfigStatusEnum = S.String;
 
 /** AdditionalIPRangesConfig is the configuration for individual additional subnetwork attached to the cluster */
 export interface AdditionalIPRangesConfig {
@@ -5104,7 +5089,7 @@ export type ControlPlaneEgressModeEnum =
   | "MODE_UNSPECIFIED"
   | "VIA_CONTROL_PLANE"
   | "NONE";
-export const ControlPlaneEgressModeEnum = /*@__PURE__*/ S.String;
+export const ControlPlaneEgressModeEnum = S.String;
 
 /** ControlPlaneEgress defines the settings needed to enable control plane egress control. */
 export interface ControlPlaneEgress {
@@ -5160,8 +5145,7 @@ export type LoggingComponentConfigEnableComponentsItemEnum =
   | "KCP_CONNECTION"
   | "KCP_HPA"
   | "KCP_VPA";
-export const LoggingComponentConfigEnableComponentsItemEnum =
-  /*@__PURE__*/ S.String;
+export const LoggingComponentConfigEnableComponentsItemEnum = S.String;
 
 export type LoggingComponentConfigEnableComponentsItemEnumList = Array<
   LoggingComponentConfigEnableComponentsItemEnum | (string & {})
@@ -5203,7 +5187,7 @@ export type BinaryAuthorizationEvaluationModeEnum =
   | "PROJECT_SINGLETON_POLICY_ENFORCE"
   | "POLICY_BINDINGS"
   | "POLICY_BINDINGS_AND_PROJECT_SINGLETON_POLICY_ENFORCE";
-export const BinaryAuthorizationEvaluationModeEnum = /*@__PURE__*/ S.String;
+export const BinaryAuthorizationEvaluationModeEnum = S.String;
 
 /** Binauthz policy that applies to this cluster. */
 export interface PolicyBinding {
@@ -5246,7 +5230,7 @@ export type WorkloadConfigAuditModeEnum =
   | "BASIC"
   | "BASELINE"
   | "RESTRICTED";
-export const WorkloadConfigAuditModeEnum = /*@__PURE__*/ S.String;
+export const WorkloadConfigAuditModeEnum = S.String;
 
 /** WorkloadConfig defines the flags to enable or disable the workload configurations for the cluster. */
 export interface WorkloadConfig {
@@ -5263,8 +5247,7 @@ export type ProtectConfigWorkloadVulnerabilityModeEnum =
   | "WORKLOAD_VULNERABILITY_MODE_UNSPECIFIED"
   | "DISABLED"
   | "BASIC";
-export const ProtectConfigWorkloadVulnerabilityModeEnum =
-  /*@__PURE__*/ S.String;
+export const ProtectConfigWorkloadVulnerabilityModeEnum = S.String;
 
 /** ProtectConfig defines the flags needed to enable/disable features for the Protect API. */
 export interface ProtectConfig {
@@ -5321,7 +5304,7 @@ export type NodeCreationConfigNodeCreationModeEnum =
   | "MODE_UNSPECIFIED"
   | "VIA_KUBELET"
   | "VIA_CONTROL_PLANE";
-export const NodeCreationConfigNodeCreationModeEnum = /*@__PURE__*/ S.String;
+export const NodeCreationConfigNodeCreationModeEnum = S.String;
 
 /** NodeCreationConfig defines the settings of node creation mode. */
 export interface NodeCreationConfig {
@@ -5971,8 +5954,7 @@ export type ClusterUpgradeInfoAutoUpgradeStatusItemEnum =
   | "ACTIVE"
   | "MINOR_UPGRADE_PAUSED"
   | "UPGRADE_PAUSED";
-export const ClusterUpgradeInfoAutoUpgradeStatusItemEnum =
-  /*@__PURE__*/ S.String;
+export const ClusterUpgradeInfoAutoUpgradeStatusItemEnum = S.String;
 
 export type ClusterUpgradeInfoAutoUpgradeStatusItemEnumList =
   Array<ClusterUpgradeInfoAutoUpgradeStatusItemEnum>;
@@ -5985,7 +5967,7 @@ export type UpgradeDetailsStartTypeEnum =
   | "START_TYPE_UNSPECIFIED"
   | "AUTOMATIC"
   | "MANUAL";
-export const UpgradeDetailsStartTypeEnum = /*@__PURE__*/ S.String;
+export const UpgradeDetailsStartTypeEnum = S.String;
 
 export type UpgradeDetailsStateEnum =
   | "UNKNOWN"
@@ -5993,7 +5975,7 @@ export type UpgradeDetailsStateEnum =
   | "SUCCEEDED"
   | "CANCELED"
   | "RUNNING";
-export const UpgradeDetailsStateEnum = /*@__PURE__*/ S.String;
+export const UpgradeDetailsStateEnum = S.String;
 
 /** UpgradeDetails contains detailed information of each individual upgrade operation. */
 export interface UpgradeDetails {
@@ -6040,7 +6022,7 @@ export type ClusterUpgradeInfoPausedReasonItemEnum =
   | "CLUSTER_DISRUPTION_BUDGET"
   | "CLUSTER_DISRUPTION_BUDGET_MINOR_UPGRADE"
   | "SYSTEM_CONFIG";
-export const ClusterUpgradeInfoPausedReasonItemEnum = /*@__PURE__*/ S.String;
+export const ClusterUpgradeInfoPausedReasonItemEnum = S.String;
 
 export type ClusterUpgradeInfoPausedReasonItemEnumList =
   Array<ClusterUpgradeInfoPausedReasonItemEnum>;
@@ -6051,7 +6033,7 @@ export const ClusterUpgradeInfoPausedReasonItemEnumList = /*@__PURE__*/ S.Array(
 export type RollbackSafeUpgradeStatusModeEnum =
   | "MODE_UNSPECIFIED"
   | "KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE";
-export const RollbackSafeUpgradeStatusModeEnum = /*@__PURE__*/ S.String;
+export const RollbackSafeUpgradeStatusModeEnum = S.String;
 
 /** RollbackSafeUpgradeStatus contains the rollback-safe upgrade status of a cluster. */
 export interface RollbackSafeUpgradeStatus {
@@ -6158,8 +6140,7 @@ export type NodePoolUpgradeInfoAutoUpgradeStatusItemEnum =
   | "ACTIVE"
   | "MINOR_UPGRADE_PAUSED"
   | "UPGRADE_PAUSED";
-export const NodePoolUpgradeInfoAutoUpgradeStatusItemEnum =
-  /*@__PURE__*/ S.String;
+export const NodePoolUpgradeInfoAutoUpgradeStatusItemEnum = S.String;
 
 export type NodePoolUpgradeInfoAutoUpgradeStatusItemEnumList =
   Array<NodePoolUpgradeInfoAutoUpgradeStatusItemEnum>;
@@ -6174,7 +6155,7 @@ export type NodePoolUpgradeInfoPausedReasonItemEnum =
   | "MAINTENANCE_EXCLUSION_NO_UPGRADES"
   | "MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES"
   | "SYSTEM_CONFIG";
-export const NodePoolUpgradeInfoPausedReasonItemEnum = /*@__PURE__*/ S.String;
+export const NodePoolUpgradeInfoPausedReasonItemEnum = S.String;
 
 export type NodePoolUpgradeInfoPausedReasonItemEnumList =
   Array<NodePoolUpgradeInfoPausedReasonItemEnum>;
@@ -6664,7 +6645,7 @@ export type ReleaseChannelConfigChannelEnum =
   | "REGULAR"
   | "STABLE"
   | "EXTENDED";
-export const ReleaseChannelConfigChannelEnum = /*@__PURE__*/ S.String;
+export const ReleaseChannelConfigChannelEnum = S.String;
 
 /** ReleaseChannelConfig exposes configuration for a release channel. */
 export interface ReleaseChannelConfig {
@@ -6842,7 +6823,7 @@ export type UsableSubnetworkSecondaryRangeStatusEnum =
   | "IN_USE_SERVICE"
   | "IN_USE_SHAREABLE_POD"
   | "IN_USE_MANAGED_POD";
-export const UsableSubnetworkSecondaryRangeStatusEnum = /*@__PURE__*/ S.String;
+export const UsableSubnetworkSecondaryRangeStatusEnum = S.String;
 
 /** Secondary IP range of a usable subnetwork. */
 export interface UsableSubnetworkSecondaryRange {
@@ -6934,7 +6915,7 @@ export const ListProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProjectsLocationsRequest>;
 
 export type LocationTypeEnum = "LOCATION_TYPE_UNSPECIFIED" | "ZONE" | "REGION";
-export const LocationTypeEnum = /*@__PURE__*/ S.String;
+export const LocationTypeEnum = S.String;
 
 /** Location returns the location name, and if the location is recommended for GKE cluster scheduling. */
 export interface Location {
@@ -7801,7 +7782,7 @@ export type SetMasterAuthRequestActionEnum =
   | "SET_PASSWORD"
   | "GENERATE_PASSWORD"
   | "SET_USERNAME";
-export const SetMasterAuthRequestActionEnum = /*@__PURE__*/ S.String;
+export const SetMasterAuthRequestActionEnum = S.String;
 
 /** SetMasterAuthRequest updates the admin password of a cluster. */
 export interface SetMasterAuthRequest {
@@ -8182,14 +8163,13 @@ export type ClusterUpdateDesiredInTransitEncryptionConfigEnum =
   | "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED"
   | "IN_TRANSIT_ENCRYPTION_DISABLED"
   | "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT";
-export const ClusterUpdateDesiredInTransitEncryptionConfigEnum =
-  /*@__PURE__*/ S.String;
+export const ClusterUpdateDesiredInTransitEncryptionConfigEnum = S.String;
 
 export type ClusterUpdateDesiredStackTypeEnum =
   | "STACK_TYPE_UNSPECIFIED"
   | "IPV4"
   | "IPV4_IPV6";
-export const ClusterUpdateDesiredStackTypeEnum = /*@__PURE__*/ S.String;
+export const ClusterUpdateDesiredStackTypeEnum = S.String;
 
 /** DesiredAdditionalIPRangesConfig is a wrapper used for cluster update operation and contains multiple AdditionalIPRangesConfigs. */
 export interface DesiredAdditionalIPRangesConfig {
@@ -8208,7 +8188,7 @@ export type ClusterUpdateDesiredDatapathProviderEnum =
   | "DATAPATH_PROVIDER_UNSPECIFIED"
   | "LEGACY_DATAPATH"
   | "ADVANCED_DATAPATH";
-export const ClusterUpdateDesiredDatapathProviderEnum = /*@__PURE__*/ S.String;
+export const ClusterUpdateDesiredDatapathProviderEnum = S.String;
 
 /** ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer subsetting on this cluster. */
 export interface ILBSubsettingConfig {
@@ -8227,7 +8207,7 @@ export type DesiredEnterpriseConfigDesiredTierEnum =
   | "CLUSTER_TIER_UNSPECIFIED"
   | "STANDARD"
   | "ENTERPRISE";
-export const DesiredEnterpriseConfigDesiredTierEnum = /*@__PURE__*/ S.String;
+export const DesiredEnterpriseConfigDesiredTierEnum = S.String;
 
 /** DesiredEnterpriseConfig is a wrapper used for updating enterprise_config. Deprecated: GKE Enterprise features are now available without an Enterprise tier. */
 export interface DesiredEnterpriseConfig {
@@ -8247,8 +8227,7 @@ export type ClusterUpdateDesiredPrivateIpv6GoogleAccessEnum =
   | "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED"
   | "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE"
   | "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL";
-export const ClusterUpdateDesiredPrivateIpv6GoogleAccessEnum =
-  /*@__PURE__*/ S.String;
+export const ClusterUpdateDesiredPrivateIpv6GoogleAccessEnum = S.String;
 
 /** IntraNodeVisibilityConfig contains the desired config of the intra-node visibility on this cluster. */
 export interface IntraNodeVisibilityConfig {

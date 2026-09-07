@@ -120,14 +120,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -416,10 +416,10 @@ export const GetCommentsThreadResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCommentsThreadResponse>;
 
 export type ListCommentsRequestCompleted = "any" | "open" | "completed";
-export const ListCommentsRequestCompleted = /*@__PURE__*/ S.String;
+export const ListCommentsRequestCompleted = S.String;
 
 export type ListCommentsRequestKind = "any" | "comment" | "task";
-export const ListCommentsRequestKind = /*@__PURE__*/ S.String;
+export const ListCommentsRequestKind = S.String;
 
 export interface ListCommentsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

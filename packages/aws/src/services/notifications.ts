@@ -1177,7 +1177,7 @@ export type AccessStatus =
   | "PENDING"
   | "FAILED"
   | (string & {});
-export const AccessStatus = /*@__PURE__*/ S.String;
+export const AccessStatus = S.String;
 
 export interface NotificationsAccessForOrganization {
   accessStatus: AccessStatus;

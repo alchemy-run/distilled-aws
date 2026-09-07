@@ -122,7 +122,7 @@ export type DataSourceInputEnum =
   | "FILE"
   | "UI"
   | "AUTOFEED";
-export const DataSourceInputEnum = /*@__PURE__*/ S.String;
+export const DataSourceInputEnum = S.String;
 
 /** The promotion data source. */
 export interface PromotionDataSource {
@@ -165,10 +165,10 @@ export type DestinationDestinationEnum =
   | "VEHICLE_ADS"
   | "CLOUD_RETAIL"
   | "LOCAL_CLOUD_RETAIL";
-export const DestinationDestinationEnum = /*@__PURE__*/ S.String;
+export const DestinationDestinationEnum = S.String;
 
 export type DestinationStateEnum = "STATE_UNSPECIFIED" | "ENABLED" | "DISABLED";
-export const DestinationStateEnum = /*@__PURE__*/ S.String;
+export const DestinationStateEnum = S.String;
 
 /** Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. */
 export interface Destination {
@@ -262,7 +262,7 @@ export type FileInputFileInputTypeEnum =
   | "UPLOAD"
   | "FETCH"
   | "GOOGLE_SHEETS";
-export const FileInputFileInputTypeEnum = /*@__PURE__*/ S.String;
+export const FileInputFileInputTypeEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -289,7 +289,7 @@ export type FetchSettingsFrequencyEnum =
   | "FREQUENCY_DAILY"
   | "FREQUENCY_WEEKLY"
   | "FREQUENCY_MONTHLY";
-export const FetchSettingsFrequencyEnum = /*@__PURE__*/ S.String;
+export const FetchSettingsFrequencyEnum = S.String;
 
 export type FetchSettingsDayOfWeekEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -300,7 +300,7 @@ export type FetchSettingsDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const FetchSettingsDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const FetchSettingsDayOfWeekEnum = S.String;
 
 /** Fetch details to deliver the data source. */
 export interface FetchSettings {
@@ -510,10 +510,10 @@ export type FileUploadProcessingStateEnum =
   | "FAILED"
   | "IN_PROGRESS"
   | "SUCCEEDED";
-export const FileUploadProcessingStateEnum = /*@__PURE__*/ S.String;
+export const FileUploadProcessingStateEnum = S.String;
 
 export type IssueSeverityEnum = "SEVERITY_UNSPECIFIED" | "WARNING" | "ERROR";
-export const IssueSeverityEnum = /*@__PURE__*/ S.String;
+export const IssueSeverityEnum = S.String;
 
 /** An error occurring in the data source, like "invalid price". */
 export interface Issue {

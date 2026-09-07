@@ -862,7 +862,7 @@ export const AddTagsToStreamResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddTagsToStreamResponse>;
 export type PositiveIntegerObject = number;
 export type StreamMode = "PROVISIONED" | "ON_DEMAND" | (string & {});
-export const StreamMode = /*@__PURE__*/ S.String;
+export const StreamMode = S.String;
 
 export interface StreamModeDetails {
   StreamMode: StreamMode;
@@ -1065,8 +1065,7 @@ export type MinimumThroughputBillingCommitmentOutputStatus =
   | "DISABLED"
   | "ENABLED_UNTIL_EARLIEST_ALLOWED_END"
   | (string & {});
-export const MinimumThroughputBillingCommitmentOutputStatus =
-  /*@__PURE__*/ S.String;
+export const MinimumThroughputBillingCommitmentOutputStatus = S.String;
 
 export interface MinimumThroughputBillingCommitmentOutput {
   Status: MinimumThroughputBillingCommitmentOutputStatus;
@@ -1172,7 +1171,7 @@ export type StreamStatus =
   | "ACTIVE"
   | "UPDATING"
   | (string & {});
-export const StreamStatus = /*@__PURE__*/ S.String;
+export const StreamStatus = S.String;
 
 export type HashKey = string;
 export interface HashKeyRange {
@@ -1223,7 +1222,7 @@ export type MetricsName =
   | "IteratorAgeMilliseconds"
   | "ALL"
   | (string & {});
-export const MetricsName = /*@__PURE__*/ S.String;
+export const MetricsName = S.String;
 
 export type MetricsNameList = MetricsName[];
 export const MetricsNameList = /*@__PURE__*/ S.Array(MetricsName);
@@ -1238,7 +1237,7 @@ export const EnhancedMetrics = /*@__PURE__*/ S.suspend(() =>
 export type EnhancedMonitoringList = EnhancedMetrics[];
 export const EnhancedMonitoringList = /*@__PURE__*/ S.Array(EnhancedMetrics);
 export type EncryptionType = "NONE" | "KMS" | (string & {});
-export const EncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionType = S.String;
 
 export type KeyId = string;
 export interface StreamDescription {
@@ -1307,7 +1306,7 @@ export const DescribeStreamConsumerInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeStreamConsumerInput",
 }) as any as S.Schema<DescribeStreamConsumerInput>;
 export type ConsumerStatus = "CREATING" | "DELETING" | "ACTIVE" | (string & {});
-export const ConsumerStatus = /*@__PURE__*/ S.String;
+export const ConsumerStatus = S.String;
 
 export interface ConsumerDescription {
   ConsumerName: string;
@@ -1610,7 +1609,7 @@ export type ShardIteratorType =
   | "LATEST"
   | "AT_TIMESTAMP"
   | (string & {});
-export const ShardIteratorType = /*@__PURE__*/ S.String;
+export const ShardIteratorType = S.String;
 
 export interface GetShardIteratorInput {
   StreamName?: string;
@@ -1696,7 +1695,7 @@ export type ShardFilterType =
   | "AT_TIMESTAMP"
   | "FROM_TIMESTAMP"
   | (string & {});
-export const ShardFilterType = /*@__PURE__*/ S.String;
+export const ShardFilterType = S.String;
 
 export interface ShardFilter {
   Type: ShardFilterType;
@@ -2631,8 +2630,7 @@ export type MinimumThroughputBillingCommitmentInputStatus =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const MinimumThroughputBillingCommitmentInputStatus =
-  /*@__PURE__*/ S.String;
+export const MinimumThroughputBillingCommitmentInputStatus = S.String;
 
 export interface MinimumThroughputBillingCommitmentInput {
   Status: MinimumThroughputBillingCommitmentInputStatus;
@@ -2707,7 +2705,7 @@ export const UpdateMaxRecordSizeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateMaxRecordSizeResponse",
 }) as any as S.Schema<UpdateMaxRecordSizeResponse>;
 export type ScalingType = "UNIFORM_SCALING" | (string & {});
-export const ScalingType = /*@__PURE__*/ S.String;
+export const ScalingType = S.String;
 
 export interface UpdateShardCountInput {
   StreamName?: string;

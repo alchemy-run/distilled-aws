@@ -47,7 +47,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -65,7 +65,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmIpLoadbalancingTerminationRequest {
   /** The internal name of your IP load balancing */
@@ -197,7 +197,7 @@ export type IpLoadbalancingTaskActionEnum =
   | "switchToIplbNextGenerationApi"
   | "vrackAttach"
   | "vrackDetach";
-export const IpLoadbalancingTaskActionEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingTaskActionEnum = S.String;
 
 /** Possible task status */
 export type IpLoadbalancingTaskStatusEnum =
@@ -207,7 +207,7 @@ export type IpLoadbalancingTaskStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const IpLoadbalancingTaskStatusEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingTaskStatusEnum = S.String;
 
 /** Zone of your Load Balancer which are updated by current Task */
 export type IpLoadbalancingTaskTaskZonesList = Array<string>;
@@ -253,7 +253,7 @@ export type IpLoadbalancingBalanceHTTPEnum =
   | "roundrobin"
   | "source"
   | "uri";
-export const IpLoadbalancingBalanceHTTPEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingBalanceHTTPEnum = S.String;
 
 /** List of possible probe result matches. "status" is only supported for HTTP probes */
 export type IpLoadbalancingProbeExpectMatchEnum =
@@ -262,7 +262,7 @@ export type IpLoadbalancingProbeExpectMatchEnum =
   | "internal"
   | "matches"
   | "status";
-export const IpLoadbalancingProbeExpectMatchEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingProbeExpectMatchEnum = S.String;
 
 /** List of possible method for HTTP probes. Consider using HEAD to save bandwidth when possible. */
 export type IpLoadbalancingProbeMethodEnum =
@@ -270,7 +270,7 @@ export type IpLoadbalancingProbeMethodEnum =
   | "HEAD"
   | "OPTIONS"
   | "internal";
-export const IpLoadbalancingProbeMethodEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingProbeMethodEnum = S.String;
 
 /** Possible values for farm probe */
 export type IpLoadbalancingProbeTypeEnum =
@@ -281,7 +281,7 @@ export type IpLoadbalancingProbeTypeEnum =
   | "pgsql"
   | "smtp"
   | "tcp";
-export const IpLoadbalancingProbeTypeEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingProbeTypeEnum = S.String;
 
 /** Probe used to determine if a backend is alive and can handle requests */
 export interface IpLoadbalancingBackendProbe {
@@ -322,7 +322,7 @@ export const IpLoadbalancingBackendProbe = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for HTTP backend stickiness */
 export type IpLoadbalancingStickinessHTTPEnum = "cookie" | "sourceIp";
-export const IpLoadbalancingStickinessHTTPEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingStickinessHTTPEnum = S.String;
 
 export interface CreateIpLoadbalancingHttpFarmRequest {
   /** The internal name of your IP load balancing */
@@ -401,7 +401,7 @@ export const IpLoadbalancingBackendHttpBackendHttp = /*@__PURE__*/ S.suspend(
 
 /** Possible values for OnMarkedDown type */
 export type IpLoadbalancingOnMarkedDownEnum = "shutdown-sessions";
-export const IpLoadbalancingOnMarkedDownEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingOnMarkedDownEnum = S.String;
 
 /** Possible values for proxy type */
 export type IpLoadbalancingProxyProtocolVersionEnum =
@@ -409,14 +409,13 @@ export type IpLoadbalancingProxyProtocolVersionEnum =
   | "v2"
   | "v2-ssl"
   | "v2-ssl-cn";
-export const IpLoadbalancingProxyProtocolVersionEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingProxyProtocolVersionEnum = S.String;
 
 /** Possible values for server status */
 export type IpLoadbalancingBackendCustomerServerStatusEnum =
   | "active"
   | "inactive";
-export const IpLoadbalancingBackendCustomerServerStatusEnum =
-  /*@__PURE__*/ S.String;
+export const IpLoadbalancingBackendCustomerServerStatusEnum = S.String;
 
 export interface CreateIpLoadbalancingHttpFarmServerRequest {
   /** The internal name of your IP load balancing */
@@ -892,7 +891,7 @@ export const IpLoadbalancingFrontendFrontendHttpHeaderList =
 
 /** Possible values for proxy type */
 export type IpLoadbalancingProxyTypeEnum = "http" | "tcp";
-export const IpLoadbalancingProxyTypeEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingProxyTypeEnum = S.String;
 
 /** Frontend */
 export interface IpLoadbalancingFrontendFrontend {
@@ -1014,7 +1013,7 @@ export type IpLoadbalancingRouteRuleMatchesEnum =
   | "is"
   | "matches"
   | "startswith";
-export const IpLoadbalancingRouteRuleMatchesEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingRouteRuleMatchesEnum = S.String;
 
 /** Match rule to combine to build routes */
 export interface IpLoadbalancingRouteRule {
@@ -1058,7 +1057,7 @@ export type IpLoadbalancingRouteStatusEnum =
   | "internal"
   | "ok"
   | "updating";
-export const IpLoadbalancingRouteStatusEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingRouteStatusEnum = S.String;
 
 /** HTTP Route */
 export interface IpLoadbalancingRouteHttpRouteHttp {
@@ -1282,7 +1281,7 @@ export type IpLoadbalancingSslTypeEnum =
   | "built"
   | "built_not_routed"
   | "custom";
-export const IpLoadbalancingSslTypeEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingSslTypeEnum = S.String;
 
 /** Ssl */
 export interface IpLoadbalancingSslSsl {
@@ -1324,11 +1323,11 @@ export type IpLoadbalancingBalanceTCPEnum =
   | "leastconn"
   | "roundrobin"
   | "source";
-export const IpLoadbalancingBalanceTCPEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingBalanceTCPEnum = S.String;
 
 /** Possible values for TCP backend stickiness */
 export type IpLoadbalancingStickinessTCPEnum = "sourceIp";
-export const IpLoadbalancingStickinessTCPEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingStickinessTCPEnum = S.String;
 
 export interface CreateIpLoadbalancingTcpFarmRequest {
   /** The internal name of your IP load balancing */
@@ -2774,7 +2773,7 @@ export const IpLoadbalancingIpWithIAMOrderableZoneList = /*@__PURE__*/ S.Array(
 
 /** Possible values for ssl ciphers */
 export type IpLoadbalancingSslConfigurationEnum = "intermediate" | "modern";
-export const IpLoadbalancingSslConfigurationEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingSslConfigurationEnum = S.String;
 
 /** Possible values for load balancing IP state */
 export type IpLoadbalancingIpStateEnum =
@@ -2784,7 +2783,7 @@ export type IpLoadbalancingIpStateEnum =
   | "ok"
   | "quarantined"
   | "suspended";
-export const IpLoadbalancingIpStateEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingIpStateEnum = S.String;
 
 /** Location where your service is */
 export type IpLoadbalancingIpWithIAMZoneList = Array<string>;
@@ -3310,7 +3309,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -3319,7 +3318,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -3442,7 +3441,7 @@ export const IpLoadbalancingStatusComponent = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for a Load Balancer status */
 export type IpLoadbalancingStatusEnum = "error" | "ok" | "unknown" | "warn";
-export const IpLoadbalancingStatusEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingStatusEnum = S.String;
 
 /** The status of a Load Balancer service */
 export interface IpLoadbalancingStatusService {
@@ -5353,7 +5352,7 @@ export type IpLoadbalancingVrackStateEnum =
   | "active"
   | "deactivating"
   | "inactive";
-export const IpLoadbalancingVrackStateEnum = /*@__PURE__*/ S.String;
+export const IpLoadbalancingVrackStateEnum = S.String;
 
 /** Ongoing task related to vRack installation or uninstallation on your Load Balancer */
 export type IpLoadbalancingVrackInformationTaskList = Array<number>;

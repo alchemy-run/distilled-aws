@@ -118,7 +118,7 @@ export class ThrottlingException
   ).pipe(C.withThrottlingError) {}
 export type HomeRegion = string;
 export type TargetType = "ACCOUNT" | (string & {});
-export const TargetType = /*@__PURE__*/ S.String;
+export const TargetType = S.String;
 
 export type TargetId = string;
 export interface Target {

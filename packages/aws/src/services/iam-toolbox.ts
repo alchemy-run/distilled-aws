@@ -141,10 +141,10 @@ export type EvaluatedEffect =
   | "EXPLICIT_DENY"
   | "IMPLICIT_DENY"
   | (string & {});
-export const EvaluatedEffect = /*@__PURE__*/ S.String;
+export const EvaluatedEffect = S.String;
 
 export type StatementEffect = "ALLOW" | "DENY" | (string & {});
-export const StatementEffect = /*@__PURE__*/ S.String;
+export const StatementEffect = S.String;
 
 export interface MatchedStatement {
   sid?: string;
@@ -199,7 +199,7 @@ export type PolicyType =
   | "RESOURCE_CONTROL_POLICY"
   | "VPC_ENDPOINT_POLICY"
   | (string & {});
-export const PolicyType = /*@__PURE__*/ S.String;
+export const PolicyType = S.String;
 
 export interface AttachedTo {
   arn?: string;

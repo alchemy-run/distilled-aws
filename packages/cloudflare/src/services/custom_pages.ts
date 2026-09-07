@@ -250,7 +250,7 @@ export type GetRequestIdentifier =
   | "under_attack"
   | "waf_block"
   | "waf_challenge";
-export const GetRequestIdentifier = /*@__PURE__*/ S.String;
+export const GetRequestIdentifier = S.String;
 
 export interface GetCustomPageForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -281,7 +281,7 @@ export const GetResponseRequiredTokensList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetResponseRequiredTokensList>;
 
 export type GetResponseState = "default" | "customized";
-export const GetResponseState = /*@__PURE__*/ S.String;
+export const GetResponseState = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetCustomPageResponse {
@@ -455,7 +455,7 @@ export const ListResultItemRequiredTokensList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListResultItemRequiredTokensList>;
 
 export type ListResultItemState = "default" | "customized";
-export const ListResultItemState = /*@__PURE__*/ S.String;
+export const ListResultItemState = S.String;
 
 export interface ListResultItem {
   id?: string | null;
@@ -539,10 +539,10 @@ export type UpdateRequestIdentifier =
   | "under_attack"
   | "waf_block"
   | "waf_challenge";
-export const UpdateRequestIdentifier = /*@__PURE__*/ S.String;
+export const UpdateRequestIdentifier = S.String;
 
 export type UpdateRequestState = "default" | "customized";
-export const UpdateRequestState = /*@__PURE__*/ S.String;
+export const UpdateRequestState = S.String;
 
 export interface PutCustomPageForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -579,7 +579,7 @@ export const UpdateResponseRequiredTokensList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateResponseRequiredTokensList>;
 
 export type UpdateResponseState = "default" | "customized";
-export const UpdateResponseState = /*@__PURE__*/ S.String;
+export const UpdateResponseState = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutCustomPageResponse {

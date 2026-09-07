@@ -47,7 +47,7 @@ export type InformationRequestApprovalStatus =
   | "READY_FOR_AUDIT"
   | "AUDITOR_APPROVED"
   | "AUDITOR_FLAGGED";
-export const InformationRequestApprovalStatus = /*@__PURE__*/ S.String;
+export const InformationRequestApprovalStatus = S.String;
 
 /** Frequency cadence for the information request, indicating how often it recurs. */
 export type InformationRequestCadence =
@@ -55,7 +55,7 @@ export type InformationRequestCadence =
   | "BIANNUALLY"
   | "MONTHLY"
   | "QUARTERLY";
-export const InformationRequestCadence = /*@__PURE__*/ S.String;
+export const InformationRequestCadence = S.String;
 
 /** The framework codes this request addresses. Links the request to specific compliance requirements. Can be an empty array if no framework codes are associated. These codes correspond to standards like SOC 2, ISO 27001, etc. */
 export type InformationRequestFrameworkCodesList = Array<string>;
@@ -65,10 +65,10 @@ export const InformationRequestFrameworkCodesList = /*@__PURE__*/ S.Array(
 
 /** Type of information request, defining what scope of evidence is needed. - POINT_IN_TIME: Evidence for a specific moment (e.g., current state of a policy) - POPULATION: Evidence covering all items in a category (e.g., all employees) - SAMPLE: Evidence for a representative sample (e.g., 10 random customer records) */
 export type InformationRequestType = "POINT_IN_TIME" | "POPULATION" | "SAMPLE";
-export const InformationRequestType = /*@__PURE__*/ S.String;
+export const InformationRequestType = S.String;
 
 export type ResourceOwnerCase0Type = "user";
-export const ResourceOwnerCase0Type = /*@__PURE__*/ S.String;
+export const ResourceOwnerCase0Type = S.String;
 
 export interface ResourceOwnerCase0 {
   displayName: string;
@@ -86,7 +86,7 @@ export const ResourceOwnerCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResourceOwnerCase0>;
 
 export type ResourceOwnerCase1Type = "team";
-export const ResourceOwnerCase1Type = /*@__PURE__*/ S.String;
+export const ResourceOwnerCase1Type = S.String;
 
 export interface ResourceOwnerCase1 {
   displayName: string;
@@ -105,8 +105,7 @@ export const ResourceOwnerCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents either a user or a team owning a resource. */
 export type ResourceOwner = ResourceOwnerCase0 | ResourceOwnerCase1;
-export const ResourceOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ResourceOwner>;
+export const ResourceOwner = S.Unknown as any as S.Schema<ResourceOwner>;
 
 /** Information Request resource representing a single request for audit evidence from a customer. An information request is created by an auditor and shared with the customer organization. The customer then uploads evidence, which the auditor reviews and either approves or flags for issues. */
 export interface InformationRequest {
@@ -423,7 +422,7 @@ export type ControlDomain =
   | "TECHNICAL"
   | "BASIC"
   | "DERIVED";
-export const ControlDomain = /*@__PURE__*/ S.String;
+export const ControlDomain = S.String;
 
 export type FrameworkId =
   | "AU_E_8"
@@ -462,11 +461,11 @@ export type FrameworkId =
   | "SOX_ITGC"
   | "UK_CYBER_ESSENTIALS"
   | "US_DATA_PRIVACY";
-export const FrameworkId = /*@__PURE__*/ S.String;
+export const FrameworkId = S.String;
 
 export type FrameworkSectionFrameworkId = FrameworkId | string;
 export const FrameworkSectionFrameworkId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FrameworkSectionFrameworkId>;
+  S.Unknown as any as S.Schema<FrameworkSectionFrameworkId>;
 
 export interface FrameworkSection {
   frameworkId: FrameworkSectionFrameworkId;
@@ -488,7 +487,7 @@ export const CreateCustomControlRequestSectionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateCustomControlRequestSectionsList>;
 
 export type GdprRole = "BOTH" | "CONTROLLER" | "PROCESSOR";
-export const GdprRole = /*@__PURE__*/ S.String;
+export const GdprRole = S.String;
 
 export interface CreateCustomControlRequest {
   auditId: string;
@@ -529,7 +528,7 @@ export const CreateCustomControlRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCustomControlRequest>;
 
 export type ControlSource = "Vanta" | "Custom";
-export const ControlSource = /*@__PURE__*/ S.String;
+export const ControlSource = S.String;
 
 /** The security domains that the control belongs to. */
 export type ControlDomainsList = Array<string>;
@@ -559,8 +558,7 @@ export const CustomFieldValueCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomFieldValueCase1List>;
 
 export type CustomFieldValue = string | CustomFieldValueCase1List;
-export const CustomFieldValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldValue>;
+export const CustomFieldValue = S.Unknown as any as S.Schema<CustomFieldValue>;
 
 export interface CustomField {
   label: string;
@@ -635,7 +633,7 @@ export type RecurrenceDuration =
   | "P6M"
   | "P1Y"
   | "P2Y";
-export const RecurrenceDuration = /*@__PURE__*/ S.String;
+export const RecurrenceDuration = S.String;
 
 export interface CreateCustomEvidenceRequestRequest {
   auditId: string;
@@ -900,7 +898,7 @@ export const AuditAllowAuditorEmailsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AuditAllowAuditorEmailsList>;
 
 export type AuditFocus = "EXTERNAL" | "INTERNAL";
-export const AuditFocus = /*@__PURE__*/ S.String;
+export const AuditFocus = S.String;
 
 /** Metadata about the auditor request list. This field is only present for IRL (Information Request List) based audits and will be undefined for standard audits. Use the presence of this field to differentiate between IRL and non-IRL audits. */
 export interface AuditAuditorRequestListMetadata {
@@ -916,7 +914,7 @@ export const AuditAuditorRequestListMetadata = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuditAuditorRequestListMetadata>;
 
 export type AuditSegmentKind = "PROGRAM" | "SYSTEM";
-export const AuditSegmentKind = /*@__PURE__*/ S.String;
+export const AuditSegmentKind = S.String;
 
 /** The framework reached through a segment. */
 export interface AuditSegmentFramework {
@@ -954,7 +952,7 @@ export const AuditSegmentAssociation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuditSegmentAssociation>;
 
 export type AuditSoc2ReportType = "soc2type1" | "soc2type2";
-export const AuditSoc2ReportType = /*@__PURE__*/ S.String;
+export const AuditSoc2ReportType = S.String;
 
 export type AuditSoc2Tsc =
   | "SECURITY"
@@ -962,7 +960,7 @@ export type AuditSoc2Tsc =
   | "CONFIDENTIALITY"
   | "PRIVACY"
   | "PROCESSING_INTEGRITY";
-export const AuditSoc2Tsc = /*@__PURE__*/ S.String;
+export const AuditSoc2Tsc = S.String;
 
 /** Trust Services Criteria this segment covers. */
 export type AuditSoc2DeliverableTscsList = Array<AuditSoc2Tsc>;
@@ -1145,10 +1143,10 @@ export type AuditEvidenceState =
   | "NA"
   | "Not ready for audit"
   | "Ready for audit";
-export const AuditEvidenceState = /*@__PURE__*/ S.String;
+export const AuditEvidenceState = S.String;
 
 export type AuditEvidenceType = "Evidence Request" | "Policy" | "Test";
-export const AuditEvidenceType = /*@__PURE__*/ S.String;
+export const AuditEvidenceType = S.String;
 
 /** A list sections associated to the control */
 export type EvidenceControlSectionNamesList = Array<string>;
@@ -1346,7 +1344,7 @@ export type InformationRequestSupportedEvidenceType =
   | "VANTA_POLICY"
   | "VANTA_TEST"
   | "VANTA_TEST_SNAPSHOT";
-export const InformationRequestSupportedEvidenceType = /*@__PURE__*/ S.String;
+export const InformationRequestSupportedEvidenceType = S.String;
 
 /** Evidence in the form of an uploaded document file. The URL is a temporary presigned URL that expires after a certain period. */
 export interface UploadedDocumentEvidence {
@@ -1416,7 +1414,7 @@ export const VantaDocumentEvidenceAddedBy = /*@__PURE__*/ S.suspend(() =>
 
 /** Discriminator to identify this as an uploaded file. */
 export type VantaDocumentUploadedEvidenceType = "uploaded";
-export const VantaDocumentUploadedEvidenceType = /*@__PURE__*/ S.String;
+export const VantaDocumentUploadedEvidenceType = S.String;
 
 /** Represents an uploaded file in a Vanta Document. The file is stored in Vanta's system and accessed via a presigned URL. */
 export interface VantaDocumentUploadedEvidence {
@@ -1445,7 +1443,7 @@ export const VantaDocumentUploadedEvidence = /*@__PURE__*/ S.suspend(() =>
 
 /** Discriminator to identify this as an external link. */
 export type VantaDocumentLinkEvidenceType = "link";
-export const VantaDocumentLinkEvidenceType = /*@__PURE__*/ S.String;
+export const VantaDocumentLinkEvidenceType = S.String;
 
 /** Represents an external link in a Vanta Document. The link points to documentation hosted outside of Vanta's system. */
 export interface VantaDocumentLinkEvidence {
@@ -1471,7 +1469,7 @@ export type VantaDocumentEvidenceFile =
   | VantaDocumentUploadedEvidence
   | VantaDocumentLinkEvidence;
 export const VantaDocumentEvidenceFile =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<VantaDocumentEvidenceFile>;
+  S.Unknown as any as S.Schema<VantaDocumentEvidenceFile>;
 
 /** Evidence in the form of a Vanta Document. Vanta Documents are managed documents with metadata like expiration dates and versioning. They can either be uploaded files stored in Vanta or links to external documentation. */
 export interface VantaDocumentEvidence {
@@ -1574,14 +1572,14 @@ export type VantaTestRunStatus =
   | "PASS"
   | "INVALID"
   | "DISABLED";
-export const VantaTestRunStatus = /*@__PURE__*/ S.String;
+export const VantaTestRunStatus = S.String;
 
 export type VantaTestFileType =
   | "TEST_EVIDENCE_WORKPAPER"
   | "TEST_RAW_DATA"
   | "OUT_OF_SCOPE_RESOURCES"
   | "API_REQUESTS";
-export const VantaTestFileType = /*@__PURE__*/ S.String;
+export const VantaTestFileType = S.String;
 
 /** The evidence file for this test run. */
 export interface VantaTestEvidenceFile {
@@ -1638,7 +1636,7 @@ export type VantaTestSnapshotEvidenceTestRunStatus =
   | "PASS"
   | "INVALID"
   | "DISABLED";
-export const VantaTestSnapshotEvidenceTestRunStatus = /*@__PURE__*/ S.String;
+export const VantaTestSnapshotEvidenceTestRunStatus = S.String;
 
 /** Evidence in the form of a Vanta automated test run snapshot. Unlike VantaTestEvidence (which represents a single file within a test run's evidence packet), a snapshot represents the entire test-run bundle. Use the dedicated snapshot detail endpoint to retrieve the files associated with a snapshot. */
 export interface VantaTestSnapshotEvidence {
@@ -1678,7 +1676,7 @@ export type InformationRequestEvidenceUnion =
   | VantaTestEvidence
   | VantaTestSnapshotEvidence;
 export const InformationRequestEvidenceUnion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InformationRequestEvidenceUnion>;
+  S.Unknown as any as S.Schema<InformationRequestEvidenceUnion>;
 
 export interface InformationRequestEvidence {
   /** The unique identifier for the evidence within Vanta's system. Format: ObjectId as a string (e.g., "6890e473dce1da5d8406f5e7"). */
@@ -2362,7 +2360,7 @@ export type AuditControlAssessmentState =
   | "OTHER_THAN_SATISFIED"
   | "TRUE"
   | "FALSE";
-export const AuditControlAssessmentState = /*@__PURE__*/ S.String;
+export const AuditControlAssessmentState = S.String;
 
 /** An auditor's assessment of a control within one segment of an audit. Assessments are keyed per segment, so a control in scope for more than one segment (a multi-framework audit) can carry a distinct assessment per segment. A segment with no recorded assessment coerces to `NOT_ASSESSED` with a `null` justification. */
 export interface AuditControlAssessment {
@@ -2608,11 +2606,11 @@ export type IssueSnapshotItemOrderBy =
   | "createdAt"
   | "lastModifiedAt"
   | "detectedAt";
-export const IssueSnapshotItemOrderBy = /*@__PURE__*/ S.String;
+export const IssueSnapshotItemOrderBy = S.String;
 
 /** `"asc"` for ascending, `"desc"` for descending. */
 export type OrderDirection = "asc" | "desc";
-export const OrderDirection = /*@__PURE__*/ S.String;
+export const OrderDirection = S.String;
 
 export interface ListAuditIssuesRequest {
   /** The audit ID */
@@ -2665,7 +2663,7 @@ export type IssueStatusTypeForSnapshot =
   | "NOT_STARTED"
   | "PENDING_REVIEW"
   | "CLOSED";
-export const IssueStatusTypeForSnapshot = /*@__PURE__*/ S.String;
+export const IssueStatusTypeForSnapshot = S.String;
 
 /** Approval progress for an issue at the time the snapshot was captured. */
 export interface IssueSnapshotItemApprovalProgress {
@@ -2771,7 +2769,7 @@ export type RiskOrderBy =
   | "categories"
   | "ciaCategories"
   | "identified";
-export const RiskOrderBy = /*@__PURE__*/ S.String;
+export const RiskOrderBy = S.String;
 
 export interface ListAuditRisksRequest {
   /** The audit ID */
@@ -2811,11 +2809,11 @@ export const ListAuditRisksRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Risk treatment strategy returned by the auditor API. */
 export type AuditRiskTreatment = "ACCEPT" | "AVOID" | "MITIGATE" | "TRANSFER";
-export const AuditRiskTreatment = /*@__PURE__*/ S.String;
+export const AuditRiskTreatment = S.String;
 
 /** Treatment implementation status returned by the auditor API. */
 export type AuditRiskTreatmentStatus = "IN_PROGRESS" | "DONE";
-export const AuditRiskTreatmentStatus = /*@__PURE__*/ S.String;
+export const AuditRiskTreatmentStatus = S.String;
 
 /** Risk scenario review status returned by the auditor API. */
 export type AuditRiskReviewStatus =
@@ -2825,7 +2823,7 @@ export type AuditRiskReviewStatus =
   | "AWAITING_SUBMISSION"
   | "PENDING_APPROVAL"
   | "REQUESTED_CHANGES";
-export const AuditRiskReviewStatus = /*@__PURE__*/ S.String;
+export const AuditRiskReviewStatus = S.String;
 
 /** Owner information for a risk. */
 export interface AuditRiskOwner {
@@ -2849,7 +2847,7 @@ export const AuditRiskCategoriesList = /*@__PURE__*/ S.Array(
 
 /** CIA triad category returned by the auditor API. */
 export type AuditRiskCia = "AVAILABILITY" | "CONFIDENTIALITY" | "INTEGRITY";
-export const AuditRiskCia = /*@__PURE__*/ S.String;
+export const AuditRiskCia = S.String;
 
 /** CIA triad categories, or empty array if not categorized. */
 export type AuditRiskCiaCategoriesList = Array<AuditRiskCia>;
@@ -3080,7 +3078,7 @@ export type ApiCodeChangeSource =
   | "gitlab"
   | "bitbucket"
   | "azuredevops";
-export const ApiCodeChangeSource = /*@__PURE__*/ S.String;
+export const ApiCodeChangeSource = S.String;
 
 export type ListCodeChangesRequestSourcesMatchesAnyList = Array<
   ApiCodeChangeSource | (string & {})
@@ -3346,7 +3344,7 @@ export type InformationRequestActivityType =
   | "REMOVE_EVIDENCE"
   | "SHARE_EVIDENCE_WITH_AUDITOR"
   | "UPLOAD_EVIDENCE";
-export const InformationRequestActivityType = /*@__PURE__*/ S.String;
+export const InformationRequestActivityType = S.String;
 
 /** Previous approval status before the status change. Only populated for status change activities. Null for all other activity types. */
 export type InformationRequestActivityLogOldStatus =
@@ -3355,7 +3353,7 @@ export type InformationRequestActivityLogOldStatus =
   | "AUDITOR_APPROVED"
   | "AUDITOR_FLAGGED"
   | "READY_FOR_INTERNAL_REVIEW";
-export const InformationRequestActivityLogOldStatus = /*@__PURE__*/ S.String;
+export const InformationRequestActivityLogOldStatus = S.String;
 
 /** New approval status after the status change. Only populated for status change activities. Null for all other activity types. */
 export type InformationRequestActivityLogNewStatus =
@@ -3364,10 +3362,10 @@ export type InformationRequestActivityLogNewStatus =
   | "AUDITOR_APPROVED"
   | "AUDITOR_FLAGGED"
   | "READY_FOR_INTERNAL_REVIEW";
-export const InformationRequestActivityLogNewStatus = /*@__PURE__*/ S.String;
+export const InformationRequestActivityLogNewStatus = S.String;
 
 export type EvidenceFillOutcome = "SUCCESS" | "PARTIAL" | "FAILED";
-export const EvidenceFillOutcome = /*@__PURE__*/ S.String;
+export const EvidenceFillOutcome = S.String;
 
 /** Activity log entry tracking changes and actions on an information request. The activity log provides a complete audit trail of all operations performed on an information request, including status changes, evidence uploads, edits, and evidence sharing. This enables tracking compliance activities and understanding the request's history. */
 export interface InformationRequestActivityLog {
@@ -3624,7 +3622,7 @@ export type AuditIntegrationTag =
   | "VENDOR_DISCOVERY"
   | "VENDOR_PROCUREMENT"
   | "VULNERABILITIES";
-export const AuditIntegrationTag = /*@__PURE__*/ S.String;
+export const AuditIntegrationTag = S.String;
 
 export type ListIntegrationsRequestTagsMatchesAnyList = Array<
   AuditIntegrationTag | (string & {})
@@ -3656,7 +3654,7 @@ export type AuditIntegrationCategory =
   | "TASK_TRACKER"
   | "VERSION_CONTROL_SYSTEM"
   | "VULNERABILITY_SCANNER";
-export const AuditIntegrationCategory = /*@__PURE__*/ S.String;
+export const AuditIntegrationCategory = S.String;
 
 export type ListIntegrationsRequestCategoriesMatchesAnyList = Array<
   AuditIntegrationCategory | (string & {})
@@ -3767,7 +3765,7 @@ export const PaginatedResponseAuditIntegration = /*@__PURE__*/ S.suspend(() =>
 
 /** Account status values for account access records. Unified status enum that covers all service types. */
 export type AccountAccessStatus = "ACTIVE" | "DEACTIVATED" | "UNKNOWN";
-export const AccountAccessStatus = /*@__PURE__*/ S.String;
+export const AccountAccessStatus = S.String;
 
 export interface ListPersonnelAccountAccessRequest {
   /** The audit ID */
@@ -3884,7 +3882,7 @@ export type GroupOrderBy =
   | "source"
   | "tasksLastUpdated"
   | "pointOfContact";
-export const GroupOrderBy = /*@__PURE__*/ S.String;
+export const GroupOrderBy = S.String;
 
 export interface ListPersonnelGroupsRequest {
   /** The audit ID */
@@ -4012,7 +4010,7 @@ export type PeopleEmploymentStatus =
   | "ON_LEAVE"
   | "PREVIOUSLY_EMPLOYED"
   | "UPCOMING_EMPLOYEE";
-export const PeopleEmploymentStatus = /*@__PURE__*/ S.String;
+export const PeopleEmploymentStatus = S.String;
 
 export type ListPersonnelPeopleRequestGroupsMatchesAnyList = Array<string>;
 export const ListPersonnelPeopleRequestGroupsMatchesAnyList =
@@ -4021,7 +4019,7 @@ export const ListPersonnelPeopleRequestGroupsMatchesAnyList =
   ) as any as S.Schema<ListPersonnelPeopleRequestGroupsMatchesAnyList>;
 
 export type PeopleOrderBy = "name" | "employmentStatus";
-export const PeopleOrderBy = /*@__PURE__*/ S.String;
+export const PeopleOrderBy = S.String;
 
 export interface ListPersonnelPeopleRequest {
   /** The audit ID */
@@ -4107,7 +4105,7 @@ export type PeopleTaskStatus =
   | "SECURITY_TASKS_COMPLETE"
   | "SECURITY_TASKS_DUE_SOON"
   | "SECURITY_TASKS_OVERDUE";
-export const PeopleTaskStatus = /*@__PURE__*/ S.String;
+export const PeopleTaskStatus = S.String;
 
 /** Overall task status information for a person. Full Audit View only - omitted in Controlled Audit View. */
 export interface PeopleTaskStatusInfo {
@@ -4143,7 +4141,7 @@ export type PeopleSecurityTaskStatus =
   | "SECURITY_TASKS_COMPLETE"
   | "SECURITY_TASKS_DUE_SOON"
   | "SECURITY_TASKS_OVERDUE";
-export const PeopleSecurityTaskStatus = /*@__PURE__*/ S.String;
+export const PeopleSecurityTaskStatus = S.String;
 
 /** Security task details for a specific task category. Full Audit View only - omitted in Controlled Audit View. */
 export interface PeopleSecurityTaskDetails {
@@ -4344,7 +4342,7 @@ export const ListShareInformationRequestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListShareInformationRequestRequest>;
 
 export type AuditVendorStatus = "ACTIVE" | "ARCHIVED" | "IN_PROCUREMENT";
-export const AuditVendorStatus = /*@__PURE__*/ S.String;
+export const AuditVendorStatus = S.String;
 
 export type ListVendorsRequestVendorStatusesMatchesAnyList = Array<
   AuditVendorStatus | (string & {})
@@ -4360,7 +4358,7 @@ export type AuditVendorRiskLevel =
   | "MEDIUM"
   | "LOW"
   | "UNSCORED";
-export const AuditVendorRiskLevel = /*@__PURE__*/ S.String;
+export const AuditVendorRiskLevel = S.String;
 
 export type ListVendorsRequestInherentRiskMatchesAnyList = Array<
   AuditVendorRiskLevel | (string & {})
@@ -4371,7 +4369,7 @@ export const ListVendorsRequestInherentRiskMatchesAnyList =
   ) as any as S.Schema<ListVendorsRequestInherentRiskMatchesAnyList>;
 
 export type VendorOrderBy = "name" | "inherentRisk";
-export const VendorOrderBy = /*@__PURE__*/ S.String;
+export const VendorOrderBy = S.String;
 
 export interface ListVendorsRequest {
   /** The audit ID */
@@ -4504,7 +4502,7 @@ export type AuditorEnabledStateTransition =
   | "FLAG"
   | "MARK_NA"
   | "READY_FOR_AUDIT";
-export const AuditorEnabledStateTransition = /*@__PURE__*/ S.String;
+export const AuditorEnabledStateTransition = S.String;
 
 export interface UpdateAuditEvidenceRequestStatusUpdate {
   /** Email of the auditor who changed the state */

@@ -94,7 +94,7 @@ export const CreateOrganizationTokenResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateOrganizationTokenResponse>;
 
 export type UrlAuth = "sprite" | "public";
-export const UrlAuth = /*@__PURE__*/ S.String;
+export const UrlAuth = S.String;
 
 export interface UrlSettings {
   auth?: UrlAuth | (string & {});
@@ -131,7 +131,7 @@ export const CreateSpriteRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSpriteRequest>;
 
 export type SpriteStatus = "cold" | "warm" | "running";
-export const SpriteStatus = /*@__PURE__*/ S.String;
+export const SpriteStatus = S.String;
 
 export type SpriteLabelsList = Array<string>;
 export const SpriteLabelsList = /*@__PURE__*/ S.Array(

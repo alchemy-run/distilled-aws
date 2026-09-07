@@ -168,7 +168,7 @@ export type ExperienceId = string;
 export type IndexId = string;
 export type EntityId = string;
 export type EntityType = "USER" | "GROUP" | (string & {});
-export const EntityType = /*@__PURE__*/ S.String;
+export const EntityType = S.String;
 
 export interface EntityConfiguration {
   EntityId: string;
@@ -226,7 +226,7 @@ export const AssociateEntitiesToExperienceResponse = /*@__PURE__*/ S.suspend(
   identifier: "AssociateEntitiesToExperienceResponse",
 }) as any as S.Schema<AssociateEntitiesToExperienceResponse>;
 export type Persona = "OWNER" | "VIEWER" | (string & {});
-export const Persona = /*@__PURE__*/ S.String;
+export const Persona = S.String;
 
 export interface EntityPersonaConfiguration {
   EntityId: string;
@@ -301,7 +301,7 @@ export const BatchDeleteDocumentRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchDeleteDocumentRequest",
 }) as any as S.Schema<BatchDeleteDocumentRequest>;
 export type ErrorCode = "InternalError" | "InvalidRequest" | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export interface BatchDeleteDocumentResponseFailedDocument {
   Id?: string;
@@ -459,7 +459,7 @@ export type DocumentStatus =
   | "FAILED"
   | "UPDATE_FAILED"
   | (string & {});
-export const DocumentStatus = /*@__PURE__*/ S.String;
+export const DocumentStatus = S.String;
 
 export interface Status {
   DocumentId?: string;
@@ -502,10 +502,10 @@ export const S3Path = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "S3Path" }) as any as S.Schema<S3Path>;
 export type PrincipalName = string;
 export type PrincipalType = "USER" | "GROUP" | (string & {});
-export const PrincipalType = /*@__PURE__*/ S.String;
+export const PrincipalType = S.String;
 
 export type ReadAccessType = "ALLOW" | "DENY" | (string & {});
-export const ReadAccessType = /*@__PURE__*/ S.String;
+export const ReadAccessType = S.String;
 
 export interface Principal {
   Name: string;
@@ -549,7 +549,7 @@ export type ContentType =
   | "JSON"
   | "MD"
   | (string & {});
-export const ContentType = /*@__PURE__*/ S.String;
+export const ContentType = S.String;
 
 export type AccessControlConfigurationId = string;
 export interface Document {
@@ -591,7 +591,7 @@ export type ConditionOperator =
   | "NotExists"
   | "BeginsWith"
   | (string & {});
-export const ConditionOperator = /*@__PURE__*/ S.String;
+export const ConditionOperator = S.String;
 
 export interface DocumentAttributeCondition {
   ConditionDocumentAttributeKey: string;
@@ -798,7 +798,7 @@ export type DataSourceType =
   | "ALFRESCO"
   | "TEMPLATE"
   | (string & {});
-export const DataSourceType = /*@__PURE__*/ S.String;
+export const DataSourceType = S.String;
 
 export type DataSourceInclusionsExclusionsStringsMember = string;
 export type DataSourceInclusionsExclusionsStrings = string[];
@@ -847,7 +847,7 @@ export type SharePointVersion =
   | "SHAREPOINT_ONLINE"
   | "SHAREPOINT_2019"
   | (string & {});
-export const SharePointVersion = /*@__PURE__*/ S.String;
+export const SharePointVersion = S.String;
 
 export type Url = string;
 export type SharePointUrlList = string[];
@@ -893,7 +893,7 @@ export type SharePointOnlineAuthenticationType =
   | "HTTP_BASIC"
   | "OAUTH2"
   | (string & {});
-export const SharePointOnlineAuthenticationType = /*@__PURE__*/ S.String;
+export const SharePointOnlineAuthenticationType = S.String;
 
 export type Host = string;
 export type Port = number;
@@ -953,7 +953,7 @@ export type DatabaseEngineType =
   | "RDS_MYSQL"
   | "RDS_POSTGRESQL"
   | (string & {});
-export const DatabaseEngineType = /*@__PURE__*/ S.String;
+export const DatabaseEngineType = S.String;
 
 export type DatabaseHost = string;
 export type DatabasePort = number;
@@ -1010,7 +1010,7 @@ export type QueryIdentifiersEnclosingOption =
   | "DOUBLE_QUOTES"
   | "NONE"
   | (string & {});
-export const QueryIdentifiersEnclosingOption = /*@__PURE__*/ S.String;
+export const QueryIdentifiersEnclosingOption = S.String;
 
 export interface SqlConfiguration {
   QueryIdentifiersEnclosingOption?: QueryIdentifiersEnclosingOption;
@@ -1063,7 +1063,7 @@ export type SalesforceStandardObjectName =
   | "TASK"
   | "USER"
   | (string & {});
-export const SalesforceStandardObjectName = /*@__PURE__*/ S.String;
+export const SalesforceStandardObjectName = S.String;
 
 export interface SalesforceStandardObjectConfiguration {
   Name: SalesforceStandardObjectName;
@@ -1092,7 +1092,7 @@ export type SalesforceKnowledgeArticleState =
   | "PUBLISHED"
   | "ARCHIVED"
   | (string & {});
-export const SalesforceKnowledgeArticleState = /*@__PURE__*/ S.String;
+export const SalesforceKnowledgeArticleState = S.String;
 
 export type SalesforceKnowledgeArticleStateList =
   SalesforceKnowledgeArticleState[];
@@ -1159,7 +1159,7 @@ export type SalesforceChatterFeedIncludeFilterType =
   | "ACTIVE_USER"
   | "STANDARD_USER"
   | (string & {});
-export const SalesforceChatterFeedIncludeFilterType = /*@__PURE__*/ S.String;
+export const SalesforceChatterFeedIncludeFilterType = S.String;
 
 export type SalesforceChatterFeedIncludeFilterTypes =
   SalesforceChatterFeedIncludeFilterType[];
@@ -1269,7 +1269,7 @@ export const OneDriveConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OneDriveConfiguration>;
 export type ServiceNowHostUrl = string;
 export type ServiceNowBuildVersionType = "LONDON" | "OTHERS" | (string & {});
-export const ServiceNowBuildVersionType = /*@__PURE__*/ S.String;
+export const ServiceNowBuildVersionType = S.String;
 
 export type ServiceNowKnowledgeArticleFilterQuery = string;
 export interface ServiceNowKnowledgeArticleConfiguration {
@@ -1328,7 +1328,7 @@ export type ServiceNowAuthenticationType =
   | "HTTP_BASIC"
   | "OAUTH2"
   | (string & {});
-export const ServiceNowAuthenticationType = /*@__PURE__*/ S.String;
+export const ServiceNowAuthenticationType = S.String;
 
 export interface ServiceNowConfiguration {
   HostUrl: string;
@@ -1355,7 +1355,7 @@ export const ServiceNowConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServiceNowConfiguration",
 }) as any as S.Schema<ServiceNowConfiguration>;
 export type ConfluenceVersion = "CLOUD" | "SERVER" | (string & {});
-export const ConfluenceVersion = /*@__PURE__*/ S.String;
+export const ConfluenceVersion = S.String;
 
 export type ConfluenceSpaceIdentifier = string;
 export type ConfluenceSpaceList = string[];
@@ -1366,7 +1366,7 @@ export type ConfluenceSpaceFieldName =
   | "SPACE_KEY"
   | "URL"
   | (string & {});
-export const ConfluenceSpaceFieldName = /*@__PURE__*/ S.String;
+export const ConfluenceSpaceFieldName = S.String;
 
 export interface ConfluenceSpaceToIndexFieldMapping {
   DataSourceFieldName?: ConfluenceSpaceFieldName;
@@ -1419,7 +1419,7 @@ export type ConfluencePageFieldName =
   | "URL"
   | "VERSION"
   | (string & {});
-export const ConfluencePageFieldName = /*@__PURE__*/ S.String;
+export const ConfluencePageFieldName = S.String;
 
 export interface ConfluencePageToIndexFieldMapping {
   DataSourceFieldName?: ConfluencePageFieldName;
@@ -1459,7 +1459,7 @@ export type ConfluenceBlogFieldName =
   | "URL"
   | "VERSION"
   | (string & {});
-export const ConfluenceBlogFieldName = /*@__PURE__*/ S.String;
+export const ConfluenceBlogFieldName = S.String;
 
 export interface ConfluenceBlogToIndexFieldMapping {
   DataSourceFieldName?: ConfluenceBlogFieldName;
@@ -1501,7 +1501,7 @@ export type ConfluenceAttachmentFieldName =
   | "URL"
   | "VERSION"
   | (string & {});
-export const ConfluenceAttachmentFieldName = /*@__PURE__*/ S.String;
+export const ConfluenceAttachmentFieldName = S.String;
 
 export interface ConfluenceAttachmentToIndexFieldMapping {
   DataSourceFieldName?: ConfluenceAttachmentFieldName;
@@ -1536,7 +1536,7 @@ export const ConfluenceAttachmentConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfluenceAttachmentConfiguration",
 }) as any as S.Schema<ConfluenceAttachmentConfiguration>;
 export type ConfluenceAuthenticationType = "HTTP_BASIC" | "PAT" | (string & {});
-export const ConfluenceAuthenticationType = /*@__PURE__*/ S.String;
+export const ConfluenceAuthenticationType = S.String;
 
 export interface ConfluenceConfiguration {
   ServerUrl: string;
@@ -1609,7 +1609,7 @@ export type WebCrawlerMode =
   | "SUBDOMAINS"
   | "EVERYTHING"
   | (string & {});
-export const WebCrawlerMode = /*@__PURE__*/ S.String;
+export const WebCrawlerMode = S.String;
 
 export interface SeedUrlConfiguration {
   SeedUrls: string[];
@@ -1722,7 +1722,7 @@ export const WorkDocsConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkDocsConfiguration>;
 export type FileSystemId = string;
 export type FsxFileSystemType = "WINDOWS" | (string & {});
-export const FsxFileSystemType = /*@__PURE__*/ S.String;
+export const FsxFileSystemType = S.String;
 
 export interface FsxConfiguration {
   FileSystemId: string;
@@ -1753,7 +1753,7 @@ export type SlackEntity =
   | "GROUP_MESSAGE"
   | "DIRECT_MESSAGE"
   | (string & {});
-export const SlackEntity = /*@__PURE__*/ S.String;
+export const SlackEntity = S.String;
 
 export type SlackEntityList = SlackEntity[];
 export const SlackEntityList = /*@__PURE__*/ S.Array(SlackEntity);
@@ -1882,7 +1882,7 @@ export type IssueSubEntity =
   | "ATTACHMENTS"
   | "WORKLOGS"
   | (string & {});
-export const IssueSubEntity = /*@__PURE__*/ S.String;
+export const IssueSubEntity = S.String;
 
 export type IssueSubEntityFilter = IssueSubEntity[];
 export const IssueSubEntityFilter = /*@__PURE__*/ S.Array(IssueSubEntity);
@@ -1949,7 +1949,7 @@ export const OnPremiseConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "OnPremiseConfiguration",
 }) as any as S.Schema<OnPremiseConfiguration>;
 export type Type = "SAAS" | "ON_PREMISE" | (string & {});
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export interface GitHubDocumentCrawlProperties {
   CrawlRepositoryDocuments?: boolean;
@@ -2053,7 +2053,7 @@ export type AlfrescoEntity =
   | "blog"
   | "documentLibrary"
   | (string & {});
-export const AlfrescoEntity = /*@__PURE__*/ S.String;
+export const AlfrescoEntity = S.String;
 
 export type EntityFilter = AlfrescoEntity[];
 export const EntityFilter = /*@__PURE__*/ S.Array(AlfrescoEntity);
@@ -2274,7 +2274,7 @@ export const CreateExperienceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateExperienceResponse>;
 export type FaqName = string;
 export type FaqFileFormat = "CSV" | "CSV_WITH_HEADER" | "JSON" | (string & {});
-export const FaqFileFormat = /*@__PURE__*/ S.String;
+export const FaqFileFormat = S.String;
 
 export interface CreateFaqRequest {
   IndexId: string;
@@ -2315,7 +2315,7 @@ export const CreateFaqResponse = /*@__PURE__*/ S.suspend(() =>
 export type FeaturedResultsSetName = string;
 export type FeaturedResultsSetDescription = string;
 export type FeaturedResultsSetStatus = "ACTIVE" | "INACTIVE" | (string & {});
-export const FeaturedResultsSetStatus = /*@__PURE__*/ S.String;
+export const FeaturedResultsSetStatus = S.String;
 
 export type QueryText = string;
 export type QueryTextList = string[];
@@ -2394,7 +2394,7 @@ export type IndexEdition =
   | "ENTERPRISE_EDITION"
   | "GEN_AI_ENTERPRISE_EDITION"
   | (string & {});
-export const IndexEdition = /*@__PURE__*/ S.String;
+export const IndexEdition = S.String;
 
 export type KmsKeyId = string | redacted.Redacted<string>;
 export interface ServerSideEncryptionConfiguration {
@@ -2406,7 +2406,7 @@ export const ServerSideEncryptionConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerSideEncryptionConfiguration",
 }) as any as S.Schema<ServerSideEncryptionConfiguration>;
 export type KeyLocation = "URL" | "SECRET_MANAGER" | (string & {});
-export const KeyLocation = /*@__PURE__*/ S.String;
+export const KeyLocation = S.String;
 
 export type UserNameAttributeField = string;
 export type GroupAttributeField = string;
@@ -2463,10 +2463,10 @@ export type UserContextPolicy =
   | "ATTRIBUTE_FILTER"
   | "USER_TOKEN"
   | (string & {});
-export const UserContextPolicy = /*@__PURE__*/ S.String;
+export const UserContextPolicy = S.String;
 
 export type UserGroupResolutionMode = "AWS_SSO" | "NONE" | (string & {});
-export const UserGroupResolutionMode = /*@__PURE__*/ S.String;
+export const UserGroupResolutionMode = S.String;
 
 export interface UserGroupResolutionConfiguration {
   UserGroupResolutionMode: UserGroupResolutionMode;
@@ -2782,7 +2782,7 @@ export type DataSourceStatus =
   | "UPDATING"
   | "ACTIVE"
   | (string & {});
-export const DataSourceStatus = /*@__PURE__*/ S.String;
+export const DataSourceStatus = S.String;
 
 export interface DescribeDataSourceResponse {
   Id?: string;
@@ -2836,7 +2836,7 @@ export const DescribeExperienceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeExperienceRequest",
 }) as any as S.Schema<DescribeExperienceRequest>;
 export type EndpointType = "HOME" | (string & {});
-export const EndpointType = /*@__PURE__*/ S.String;
+export const EndpointType = S.String;
 
 export type Endpoint = string;
 export interface ExperienceEndpoint {
@@ -2859,7 +2859,7 @@ export type ExperienceStatus =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const ExperienceStatus = /*@__PURE__*/ S.String;
+export const ExperienceStatus = S.String;
 
 export interface DescribeExperienceResponse {
   Id?: string;
@@ -2909,7 +2909,7 @@ export type FaqStatus =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const FaqStatus = /*@__PURE__*/ S.String;
+export const FaqStatus = S.String;
 
 export interface DescribeFaqResponse {
   Id?: string;
@@ -3028,7 +3028,7 @@ export type IndexStatus =
   | "UPDATING"
   | "SYSTEM_UPDATING"
   | (string & {});
-export const IndexStatus = /*@__PURE__*/ S.String;
+export const IndexStatus = S.String;
 
 export type DocumentMetadataConfigurationName = string;
 export type DocumentAttributeValueType =
@@ -3037,13 +3037,13 @@ export type DocumentAttributeValueType =
   | "LONG_VALUE"
   | "DATE_VALUE"
   | (string & {});
-export const DocumentAttributeValueType = /*@__PURE__*/ S.String;
+export const DocumentAttributeValueType = S.String;
 
 export type DocumentMetadataBoolean = boolean;
 export type Importance = number;
 export type Duration = string;
 export type Order = "ASCENDING" | "DESCENDING" | (string & {});
-export const Order = /*@__PURE__*/ S.String;
+export const Order = S.String;
 
 export type ValueImportanceMapKey = string;
 export type ValueImportanceMap = { [key: string]: number | undefined };
@@ -3211,7 +3211,7 @@ export type PrincipalMappingStatus =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const PrincipalMappingStatus = /*@__PURE__*/ S.String;
+export const PrincipalMappingStatus = S.String;
 
 export type FailureReason = string;
 export interface GroupOrderingIdSummary {
@@ -3272,7 +3272,7 @@ export type QuerySuggestionsBlockListStatus =
   | "ACTIVE_BUT_UPDATE_FAILED"
   | "FAILED"
   | (string & {});
-export const QuerySuggestionsBlockListStatus = /*@__PURE__*/ S.String;
+export const QuerySuggestionsBlockListStatus = S.String;
 
 export interface DescribeQuerySuggestionsBlockListResponse {
   IndexId?: string;
@@ -3319,10 +3319,10 @@ export const DescribeQuerySuggestionsConfigRequest = /*@__PURE__*/ S.suspend(
   identifier: "DescribeQuerySuggestionsConfigRequest",
 }) as any as S.Schema<DescribeQuerySuggestionsConfigRequest>;
 export type Mode = "ENABLED" | "LEARN_ONLY" | (string & {});
-export const Mode = /*@__PURE__*/ S.String;
+export const Mode = S.String;
 
 export type QuerySuggestionsStatus = "ACTIVE" | "UPDATING" | (string & {});
-export const QuerySuggestionsStatus = /*@__PURE__*/ S.String;
+export const QuerySuggestionsStatus = S.String;
 
 export type ObjectBoolean = boolean;
 export type MinimumNumberOfQueryingUsers = number;
@@ -3342,7 +3342,7 @@ export const SuggestableConfig = /*@__PURE__*/ S.suspend(() =>
 export type SuggestableConfigList = SuggestableConfig[];
 export const SuggestableConfigList = /*@__PURE__*/ S.Array(SuggestableConfig);
 export type AttributeSuggestionsMode = "ACTIVE" | "INACTIVE" | (string & {});
-export const AttributeSuggestionsMode = /*@__PURE__*/ S.String;
+export const AttributeSuggestionsMode = S.String;
 
 export interface AttributeSuggestionsDescribeConfig {
   SuggestableConfigList?: SuggestableConfig[];
@@ -3410,7 +3410,7 @@ export type ThesaurusStatus =
   | "ACTIVE_BUT_UPDATE_FAILED"
   | "FAILED"
   | (string & {});
-export const ThesaurusStatus = /*@__PURE__*/ S.String;
+export const ThesaurusStatus = S.String;
 
 export interface DescribeThesaurusResponse {
   Id?: string;
@@ -3504,7 +3504,7 @@ export const DisassociatePersonasFromEntitiesResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DisassociatePersonasFromEntitiesResponse>;
 export type SuggestionQueryText = string;
 export type SuggestionType = "QUERY" | "DOCUMENT_ATTRIBUTES" | (string & {});
-export const SuggestionType = /*@__PURE__*/ S.String;
+export const SuggestionType = S.String;
 
 export type SuggestionTypes = SuggestionType[];
 export const SuggestionTypes = /*@__PURE__*/ S.Array(SuggestionType);
@@ -3705,7 +3705,7 @@ export type Interval =
   | "ONE_MONTH_AGO"
   | "TWO_MONTHS_AGO"
   | (string & {});
-export const Interval = /*@__PURE__*/ S.String;
+export const Interval = S.String;
 
 export type MetricType =
   | "QUERIES_BY_COUNT"
@@ -3715,7 +3715,7 @@ export type MetricType =
   | "AGG_QUERY_DOC_METRICS"
   | "TREND_QUERY_DOC_METRICS"
   | (string & {});
-export const MetricType = /*@__PURE__*/ S.String;
+export const MetricType = S.String;
 
 export type NextToken = string;
 export interface GetSnapshotsRequest {
@@ -3877,7 +3877,7 @@ export type DataSourceSyncJobStatus =
   | "ABORTED"
   | "SYNCING_INDEXING"
   | (string & {});
-export const DataSourceSyncJobStatus = /*@__PURE__*/ S.String;
+export const DataSourceSyncJobStatus = S.String;
 
 export interface ListDataSourceSyncJobsRequest {
   Id: string;
@@ -4525,7 +4525,7 @@ export type QueryResultType =
   | "QUESTION_ANSWER"
   | "ANSWER"
   | (string & {});
-export const QueryResultType = /*@__PURE__*/ S.String;
+export const QueryResultType = S.String;
 
 export interface DocumentRelevanceConfiguration {
   Name: string;
@@ -4542,7 +4542,7 @@ export const DocumentRelevanceOverrideConfigurationList = /*@__PURE__*/ S.Array(
   DocumentRelevanceConfiguration,
 );
 export type SortOrder = "DESC" | "ASC" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface SortingConfiguration {
   DocumentAttributeKey: string;
@@ -4570,7 +4570,7 @@ export type MissingAttributeKeyStrategy =
   | "COLLAPSE"
   | "EXPAND"
   | (string & {});
-export const MissingAttributeKeyStrategy = /*@__PURE__*/ S.String;
+export const MissingAttributeKeyStrategy = S.String;
 
 export interface ExpandConfiguration {
   MaxResultItemsToExpand?: number;
@@ -4644,15 +4644,15 @@ export const QueryRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "QueryRequest" }) as any as S.Schema<QueryRequest>;
 export type QueryId = string;
 export type QueryResultFormat = "TABLE" | "TEXT" | (string & {});
-export const QueryResultFormat = /*@__PURE__*/ S.String;
+export const QueryResultFormat = S.String;
 
 export type AdditionalResultAttributeValueType =
   | "TEXT_WITH_HIGHLIGHTS_VALUE"
   | (string & {});
-export const AdditionalResultAttributeValueType = /*@__PURE__*/ S.String;
+export const AdditionalResultAttributeValueType = S.String;
 
 export type HighlightType = "STANDARD" | "THESAURUS_SYNONYM" | (string & {});
-export const HighlightType = /*@__PURE__*/ S.String;
+export const HighlightType = S.String;
 
 export interface Highlight {
   BeginOffset: number;
@@ -4715,7 +4715,7 @@ export type ScoreConfidence =
   | "LOW"
   | "NOT_AVAILABLE"
   | (string & {});
-export const ScoreConfidence = /*@__PURE__*/ S.String;
+export const ScoreConfidence = S.String;
 
 export interface ScoreAttributes {
   ScoreConfidence?: ScoreConfidence;
@@ -4880,7 +4880,7 @@ export const FacetResultList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FacetResultList>;
 export type WarningMessage = string;
 export type WarningCode = "QUERY_LANGUAGE_INVALID_SYNTAX" | (string & {});
-export const WarningCode = /*@__PURE__*/ S.String;
+export const WarningCode = S.String;
 
 export interface Warning {
   Message?: string;
@@ -5085,7 +5085,7 @@ export const ClickFeedback = /*@__PURE__*/ S.suspend(() =>
 export type ClickFeedbackList = ClickFeedback[];
 export const ClickFeedbackList = /*@__PURE__*/ S.Array(ClickFeedback);
 export type RelevanceType = "RELEVANT" | "NOT_RELEVANT" | (string & {});
-export const RelevanceType = /*@__PURE__*/ S.String;
+export const RelevanceType = S.String;
 
 export interface RelevanceFeedback {
   ResultId: string;

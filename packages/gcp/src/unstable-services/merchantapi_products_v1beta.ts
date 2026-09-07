@@ -114,7 +114,7 @@ export type ProductChannelEnum =
   | "CHANNEL_ENUM_UNSPECIFIED"
   | "ONLINE"
   | "LOCAL";
-export const ProductChannelEnum = /*@__PURE__*/ S.String;
+export const ProductChannelEnum = S.String;
 
 /** The price represented as a number and currency. */
 export interface Price {
@@ -199,7 +199,7 @@ export type SubscriptionCostPeriodEnum =
   | "MONTH"
   | "YEAR"
   | "WEEK";
-export const SubscriptionCostPeriodEnum = /*@__PURE__*/ S.String;
+export const SubscriptionCostPeriodEnum = S.String;
 
 /** The SubscriptionCost of the product. */
 export interface SubscriptionCost {
@@ -224,7 +224,7 @@ export type ProductSustainabilityIncentiveTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "EV_TAX_CREDIT"
   | "EV_PRICE_DISCOUNT";
-export const ProductSustainabilityIncentiveTypeEnum = /*@__PURE__*/ S.String;
+export const ProductSustainabilityIncentiveTypeEnum = S.String;
 
 /** Information regarding sustainability-related incentive programs such as rebates or tax relief. */
 export interface ProductSustainabilityIncentive {
@@ -944,7 +944,7 @@ export type ItemLevelIssueSeverityEnum =
   | "NOT_IMPACTED"
   | "DEMOTED"
   | "DISAPPROVED";
-export const ItemLevelIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const ItemLevelIssueSeverityEnum = S.String;
 
 export type ItemLevelIssueReportingContextEnum =
   | "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
@@ -967,7 +967,7 @@ export type ItemLevelIssueReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const ItemLevelIssueReportingContextEnum = /*@__PURE__*/ S.String;
+export const ItemLevelIssueReportingContextEnum = S.String;
 
 /** The ItemLevelIssue of the product status. */
 export interface ItemLevelIssue {
@@ -1030,7 +1030,7 @@ export type DestinationStatusReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const DestinationStatusReportingContextEnum = /*@__PURE__*/ S.String;
+export const DestinationStatusReportingContextEnum = S.String;
 
 /** The destination status of the product status. Equivalent to `StatusPerReportingContext` in Reports API. */
 export interface DestinationStatus {
@@ -1133,7 +1133,7 @@ export type ProductInputChannelEnum =
   | "CHANNEL_ENUM_UNSPECIFIED"
   | "ONLINE"
   | "LOCAL";
-export const ProductInputChannelEnum = /*@__PURE__*/ S.String;
+export const ProductInputChannelEnum = S.String;
 
 /** This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style. */
 export interface ProductInput {

@@ -26,7 +26,7 @@ export type AttestationServiceCreationSpecificParamsPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
 export const AttestationServiceCreationSpecificParamsPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The "x5c" (X.509 certificate chain) parameter contains a chain of one or more PKIX certificates [RFC5280]. The certificate chain is represented as a JSON array of certificate value strings. Each string in the array is a base64-encoded (Section 4 of [RFC4648] -- not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value. The PKIX certificate containing the key value MUST be the first certificate. */
 export type JsonWebKeyX5cList = Array<string>;
@@ -113,7 +113,7 @@ export type AttestationServiceCreationSpecificParamsTpmAttestationAuthentication
   | "Enabled"
   | "Disabled";
 export const AttestationServiceCreationSpecificParamsTpmAttestationAuthentication =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Client supplied parameters used to create a new attestation provider. */
 export interface AttestationServiceCreationSpecificParams {
@@ -183,7 +183,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -191,7 +191,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -230,11 +230,11 @@ export const CreateAttestationProviderResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Status of attestation service. */
 export type AttestationServiceStatus = "Ready" | "NotReady" | "Error";
-export const AttestationServiceStatus = /*@__PURE__*/ S.String;
+export const AttestationServiceStatus = S.String;
 
 /** Controls whether traffic from the public network is allowed to access the Attestation Provider APIs. */
 export type StatusResultPublicNetworkAccess = "Enabled" | "Disabled";
-export const StatusResultPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const StatusResultPublicNetworkAccess = S.String;
 
 /** The Private Endpoint resource. */
 export interface PrivateEndpoint {
@@ -254,7 +254,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -281,8 +281,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the PrivateEndpointConnectProperties. */
 export interface PrivateEndpointConnectionProperties {
@@ -338,7 +337,7 @@ export const StatusResultPrivateEndpointConnectionsList = /*@__PURE__*/ S.Array(
 
 /** The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs. */
 export type StatusResultTpmAttestationAuthentication = "Enabled" | "Disabled";
-export const StatusResultTpmAttestationAuthentication = /*@__PURE__*/ S.String;
+export const StatusResultTpmAttestationAuthentication = S.String;
 
 /** Status of attestation service. */
 export interface StatusResult {
@@ -760,8 +759,7 @@ export type AttestationProviderListResultSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AttestationProviderListResultSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AttestationProviderListResultSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AttestationProviderListResultSystemDataLastModifiedByType =
@@ -770,7 +768,7 @@ export type AttestationProviderListResultSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const AttestationProviderListResultSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AttestationProviderListResultSystemData {
@@ -924,7 +922,7 @@ export type OperationListSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OperationListSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const OperationListSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type OperationListSystemDataLastModifiedByType =
@@ -932,7 +930,7 @@ export type OperationListSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OperationListSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const OperationListSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface OperationListSystemData {
@@ -1253,14 +1251,14 @@ export type AttestationServicePatchSpecificParamsPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
 export const AttestationServicePatchSpecificParamsPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs. */
 export type AttestationServicePatchSpecificParamsTpmAttestationAuthentication =
   | "Enabled"
   | "Disabled";
 export const AttestationServicePatchSpecificParamsTpmAttestationAuthentication =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Client supplied parameters used to patch an existing attestation provider. */
 export interface AttestationServicePatchSpecificParams {

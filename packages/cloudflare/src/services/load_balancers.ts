@@ -207,7 +207,7 @@ export class PoolNotFound
   ) {}
 
 export type PoolsBulkEditRequestNotificationEmail = "";
-export const PoolsBulkEditRequestNotificationEmail = /*@__PURE__*/ S.String;
+export const PoolsBulkEditRequestNotificationEmail = S.String;
 
 export interface BulkPatchPoolsRequest {
   /** Identifier. */
@@ -249,7 +249,7 @@ export type PoolsBulkEditResultItemCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsBulkEditResultItemCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsBulkEditResultItemCheckRegionsItem = S.String;
 
 export type PoolsBulkEditResultItemCheckRegionsList =
   Array<PoolsBulkEditResultItemCheckRegionsItem>;
@@ -260,12 +260,10 @@ export const PoolsBulkEditResultItemCheckRegionsList = /*@__PURE__*/ S.Array(
 export type PoolsBulkEditResultItemLoadSheddingDefaultPolicy =
   | "random"
   | "hash";
-export const PoolsBulkEditResultItemLoadSheddingDefaultPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsBulkEditResultItemLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsBulkEditResultItemLoadSheddingSessionPolicy = "hash";
-export const PoolsBulkEditResultItemLoadSheddingSessionPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsBulkEditResultItemLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsBulkEditResultItemLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -346,8 +344,7 @@ export type PoolsBulkEditResultItemOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsBulkEditResultItemOriginSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsBulkEditResultItemOriginSteeringPolicy = S.String;
 
 export interface PoolsBulkEditResultItemOriginSteering {
   /** The type of origin steering policy to use. */
@@ -560,14 +557,14 @@ export const CreateRequestCountryPoolsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateRequestCountryPoolsMap>;
 
 export type CreateRequestLocationStrategyMode = "pop" | "resolver_ip";
-export const CreateRequestLocationStrategyMode = /*@__PURE__*/ S.String;
+export const CreateRequestLocationStrategyMode = S.String;
 
 export type CreateRequestLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const CreateRequestLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const CreateRequestLocationStrategyPreferEcs = S.String;
 
 export interface CreateRequestLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -689,8 +686,7 @@ export type CreateRequestRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const CreateRequestRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemOverridesSessionAffinity = S.String;
 
 export type CreateRequestRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -705,21 +701,21 @@ export type CreateRequestRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const CreateRequestRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const CreateRequestRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const CreateRequestRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -776,8 +772,7 @@ export type CreateRequestRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const CreateRequestRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const CreateRequestRulesItemOverridesSteeringPolicy = S.String;
 
 export interface CreateRequestRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -1031,14 +1026,14 @@ export const CreateResponseDefaultPoolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateResponseDefaultPoolsList>;
 
 export type CreateResponseLocationStrategyMode = "pop" | "resolver_ip";
-export const CreateResponseLocationStrategyMode = /*@__PURE__*/ S.String;
+export const CreateResponseLocationStrategyMode = S.String;
 
 export type CreateResponseLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const CreateResponseLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const CreateResponseLocationStrategyPreferEcs = S.String;
 
 export interface CreateResponseLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -1168,8 +1163,7 @@ export type CreateResponseRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const CreateResponseRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemOverridesSessionAffinity = S.String;
 
 export type CreateResponseRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -1184,21 +1178,21 @@ export type CreateResponseRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const CreateResponseRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const CreateResponseRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const CreateResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -1257,8 +1251,7 @@ export type CreateResponseRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const CreateResponseRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const CreateResponseRulesItemOverridesSteeringPolicy = S.String;
 
 export interface CreateResponseRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -1505,7 +1498,7 @@ export type MonitorsCreateRequestType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsCreateRequestType = /*@__PURE__*/ S.String;
+export const MonitorsCreateRequestType = S.String;
 
 export interface CreateMonitorRequest {
   /** Identifier. */
@@ -1590,7 +1583,7 @@ export type MonitorsCreateResponseType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsCreateResponseType = /*@__PURE__*/ S.String;
+export const MonitorsCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateMonitorResponse {
@@ -1800,7 +1793,7 @@ export type MonitorsPreviewsCreateRequestType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsPreviewsCreateRequestType = /*@__PURE__*/ S.String;
+export const MonitorsPreviewsCreateRequestType = S.String;
 
 export interface CreateMonitorPreviewRequest {
   /** Identifier. */
@@ -1958,12 +1951,10 @@ export const PoolsCreateRequestOriginsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsCreateRequestOriginsList>;
 
 export type PoolsCreateRequestLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsCreateRequestLoadSheddingDefaultPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsCreateRequestLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsCreateRequestLoadSheddingSessionPolicy = "hash";
-export const PoolsCreateRequestLoadSheddingSessionPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsCreateRequestLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsCreateRequestLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -2031,7 +2022,7 @@ export type PoolsCreateRequestOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsCreateRequestOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsCreateRequestOriginSteeringPolicy = S.String;
 
 export interface PoolsCreateRequestOriginSteering {
   /** The type of origin steering policy to use. */
@@ -2125,7 +2116,7 @@ export type PoolsCreateResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsCreateResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsCreateResponseCheckRegionsItem = S.String;
 
 export type PoolsCreateResponseCheckRegionsList =
   Array<PoolsCreateResponseCheckRegionsItem>;
@@ -2134,12 +2125,10 @@ export const PoolsCreateResponseCheckRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsCreateResponseCheckRegionsList>;
 
 export type PoolsCreateResponseLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsCreateResponseLoadSheddingDefaultPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsCreateResponseLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsCreateResponseLoadSheddingSessionPolicy = "hash";
-export const PoolsCreateResponseLoadSheddingSessionPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsCreateResponseLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsCreateResponseLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -2194,7 +2183,7 @@ export type PoolsCreateResponseOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsCreateResponseOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsCreateResponseOriginSteeringPolicy = S.String;
 
 export interface PoolsCreateResponseOriginSteering {
   /** The type of origin steering policy to use. */
@@ -2372,7 +2361,7 @@ export type PoolsHealthCreateRequestType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const PoolsHealthCreateRequestType = /*@__PURE__*/ S.String;
+export const PoolsHealthCreateRequestType = S.String;
 
 export interface CreatePoolHealthRequest {
   /** Identifier. */
@@ -2662,14 +2651,14 @@ export const GetResponseDefaultPoolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetResponseDefaultPoolsList>;
 
 export type GetResponseLocationStrategyMode = "pop" | "resolver_ip";
-export const GetResponseLocationStrategyMode = /*@__PURE__*/ S.String;
+export const GetResponseLocationStrategyMode = S.String;
 
 export type GetResponseLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const GetResponseLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const GetResponseLocationStrategyPreferEcs = S.String;
 
 export interface GetResponseLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -2776,8 +2765,7 @@ export type GetResponseRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const GetResponseRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemOverridesSessionAffinity = S.String;
 
 export type GetResponseRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -2792,21 +2780,21 @@ export type GetResponseRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const GetResponseRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const GetResponseRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const GetResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -2863,8 +2851,7 @@ export type GetResponseRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const GetResponseRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const GetResponseRulesItemOverridesSteeringPolicy = S.String;
 
 export interface GetResponseRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -3129,7 +3116,7 @@ export type MonitorsGetResponseType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsGetResponseType = /*@__PURE__*/ S.String;
+export const MonitorsGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetMonitorResponse {
@@ -3289,8 +3276,7 @@ export type MonitorGroupsReferencesGetResultItemReferenceType =
   | "*"
   | "referral"
   | "referrer";
-export const MonitorGroupsReferencesGetResultItemReferenceType =
-  /*@__PURE__*/ S.String;
+export const MonitorGroupsReferencesGetResultItemReferenceType = S.String;
 
 export interface MonitorGroupsReferencesGetResultItem {
   referenceType?: MonitorGroupsReferencesGetResultItemReferenceType | null;
@@ -3365,8 +3351,7 @@ export type MonitorsReferencesGetResultItemReferenceType =
   | "*"
   | "referral"
   | "referrer";
-export const MonitorsReferencesGetResultItemReferenceType =
-  /*@__PURE__*/ S.String;
+export const MonitorsReferencesGetResultItemReferenceType = S.String;
 
 export interface MonitorsReferencesGetResultItem {
   referenceType?: MonitorsReferencesGetResultItemReferenceType | null;
@@ -3445,7 +3430,7 @@ export type PoolsGetResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsGetResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsGetResponseCheckRegionsItem = S.String;
 
 export type PoolsGetResponseCheckRegionsList =
   Array<PoolsGetResponseCheckRegionsItem>;
@@ -3454,10 +3439,10 @@ export const PoolsGetResponseCheckRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsGetResponseCheckRegionsList>;
 
 export type PoolsGetResponseLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsGetResponseLoadSheddingDefaultPolicy = /*@__PURE__*/ S.String;
+export const PoolsGetResponseLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsGetResponseLoadSheddingSessionPolicy = "hash";
-export const PoolsGetResponseLoadSheddingSessionPolicy = /*@__PURE__*/ S.String;
+export const PoolsGetResponseLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsGetResponseLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -3512,7 +3497,7 @@ export type PoolsGetResponseOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsGetResponseOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsGetResponseOriginSteeringPolicy = S.String;
 
 export interface PoolsGetResponseOriginSteering {
   /** The type of origin steering policy to use. */
@@ -3790,7 +3775,7 @@ export type PoolsReferencesGetResultItemReferenceType =
   | "*"
   | "referral"
   | "referrer";
-export const PoolsReferencesGetResultItemReferenceType = /*@__PURE__*/ S.String;
+export const PoolsReferencesGetResultItemReferenceType = S.String;
 
 export interface PoolsReferencesGetResultItem {
   referenceType?: PoolsReferencesGetResultItemReferenceType | null;
@@ -3936,7 +3921,7 @@ export type RegionsGetRequestRegionId =
   | "SAS"
   | "SEAS"
   | "NEAS";
-export const RegionsGetRequestRegionId = /*@__PURE__*/ S.String;
+export const RegionsGetRequestRegionId = S.String;
 
 export interface GetRegionRequest {
   /** Identifier. */
@@ -4004,14 +3989,14 @@ export const ListResultItemDefaultPoolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListResultItemDefaultPoolsList>;
 
 export type ListResultItemLocationStrategyMode = "pop" | "resolver_ip";
-export const ListResultItemLocationStrategyMode = /*@__PURE__*/ S.String;
+export const ListResultItemLocationStrategyMode = S.String;
 
 export type ListResultItemLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const ListResultItemLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const ListResultItemLocationStrategyPreferEcs = S.String;
 
 export interface ListResultItemLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -4124,8 +4109,7 @@ export type ListResultItemRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const ListResultItemRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const ListResultItemRulesItemOverridesSessionAffinity = S.String;
 
 export type ListResultItemRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -4140,21 +4124,21 @@ export type ListResultItemRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const ListResultItemRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListResultItemRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const ListResultItemRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListResultItemRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const ListResultItemRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListResultItemRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -4213,8 +4197,7 @@ export type ListResultItemRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const ListResultItemRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const ListResultItemRulesItemOverridesSteeringPolicy = S.String;
 
 export interface ListResultItemRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -4573,7 +4556,7 @@ export type MonitorsListResultItemType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsListResultItemType = /*@__PURE__*/ S.String;
+export const MonitorsListResultItemType = S.String;
 
 export interface MonitorsListResultItem {
   id?: string | null;
@@ -4706,7 +4689,7 @@ export type PoolsListResultItemCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsListResultItemCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsListResultItemCheckRegionsItem = S.String;
 
 export type PoolsListResultItemCheckRegionsList =
   Array<PoolsListResultItemCheckRegionsItem>;
@@ -4715,12 +4698,10 @@ export const PoolsListResultItemCheckRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsListResultItemCheckRegionsList>;
 
 export type PoolsListResultItemLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsListResultItemLoadSheddingDefaultPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsListResultItemLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsListResultItemLoadSheddingSessionPolicy = "hash";
-export const PoolsListResultItemLoadSheddingSessionPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsListResultItemLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsListResultItemLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -4775,7 +4756,7 @@ export type PoolsListResultItemOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsListResultItemOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsListResultItemOriginSteeringPolicy = S.String;
 
 export interface PoolsListResultItemOriginSteering {
   /** The type of origin steering policy to use. */
@@ -4996,7 +4977,7 @@ export const ListRegionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRegionsResponse>;
 
 export type SearchesListRequestReferences = "" | "*" | "referral" | "referrer";
-export const SearchesListRequestReferences = /*@__PURE__*/ S.String;
+export const SearchesListRequestReferences = S.String;
 
 export interface ListSearchesRequest {
   /** Identifier. */
@@ -5031,8 +5012,7 @@ export const ListSearchesRequest = /*@__PURE__*/ S.suspend(() =>
 export type SearchesListResponseResourcesItemReferenceType =
   | "referral"
   | "referrer";
-export const SearchesListResponseResourcesItemReferenceType =
-  /*@__PURE__*/ S.String;
+export const SearchesListResponseResourcesItemReferenceType = S.String;
 
 export type SearchesListResponseResourcesItemReferencesList = Array<unknown>;
 export const SearchesListResponseResourcesItemReferencesList =
@@ -5044,8 +5024,7 @@ export type SearchesListResponseResourcesItemResourceType =
   | "load_balancer"
   | "monitor"
   | "pool";
-export const SearchesListResponseResourcesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const SearchesListResponseResourcesItemResourceType = S.String;
 
 export interface SearchesListResponseResourcesItem {
   /** When listed as a reference, the type (direction) of the reference. */
@@ -5114,14 +5093,14 @@ export const EditRequestDefaultPoolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EditRequestDefaultPoolsList>;
 
 export type EditRequestLocationStrategyMode = "pop" | "resolver_ip";
-export const EditRequestLocationStrategyMode = /*@__PURE__*/ S.String;
+export const EditRequestLocationStrategyMode = S.String;
 
 export type EditRequestLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const EditRequestLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const EditRequestLocationStrategyPreferEcs = S.String;
 
 export interface EditRequestLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -5219,8 +5198,7 @@ export type EditRequestRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const EditRequestRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const EditRequestRulesItemOverridesSessionAffinity = S.String;
 
 export type EditRequestRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -5235,21 +5213,21 @@ export type EditRequestRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const EditRequestRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EditRequestRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const EditRequestRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EditRequestRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const EditRequestRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EditRequestRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -5306,8 +5284,7 @@ export type EditRequestRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const EditRequestRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const EditRequestRulesItemOverridesSteeringPolicy = S.String;
 
 export interface EditRequestRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -5548,14 +5525,14 @@ export const EditResponseDefaultPoolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EditResponseDefaultPoolsList>;
 
 export type EditResponseLocationStrategyMode = "pop" | "resolver_ip";
-export const EditResponseLocationStrategyMode = /*@__PURE__*/ S.String;
+export const EditResponseLocationStrategyMode = S.String;
 
 export type EditResponseLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const EditResponseLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const EditResponseLocationStrategyPreferEcs = S.String;
 
 export interface EditResponseLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -5664,8 +5641,7 @@ export type EditResponseRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const EditResponseRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const EditResponseRulesItemOverridesSessionAffinity = S.String;
 
 export type EditResponseRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -5680,21 +5656,21 @@ export type EditResponseRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const EditResponseRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EditResponseRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const EditResponseRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EditResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const EditResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EditResponseRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -5751,8 +5727,7 @@ export type EditResponseRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const EditResponseRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const EditResponseRulesItemOverridesSteeringPolicy = S.String;
 
 export interface EditResponseRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -5995,7 +5970,7 @@ export type MonitorsEditRequestType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsEditRequestType = /*@__PURE__*/ S.String;
+export const MonitorsEditRequestType = S.String;
 
 export interface PatchMonitorRequest {
   /** Identifier. */
@@ -6082,7 +6057,7 @@ export type MonitorsEditResponseType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsEditResponseType = /*@__PURE__*/ S.String;
+export const MonitorsEditResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchMonitorResponse {
@@ -6248,7 +6223,7 @@ export type PoolsEditRequestCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsEditRequestCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsEditRequestCheckRegionsItem = S.String;
 
 export type PoolsEditRequestCheckRegionsList = Array<
   PoolsEditRequestCheckRegionsItem | (string & {})
@@ -6258,10 +6233,10 @@ export const PoolsEditRequestCheckRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsEditRequestCheckRegionsList>;
 
 export type PoolsEditRequestLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsEditRequestLoadSheddingDefaultPolicy = /*@__PURE__*/ S.String;
+export const PoolsEditRequestLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsEditRequestLoadSheddingSessionPolicy = "hash";
-export const PoolsEditRequestLoadSheddingSessionPolicy = /*@__PURE__*/ S.String;
+export const PoolsEditRequestLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsEditRequestLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -6303,7 +6278,7 @@ export type PoolsEditRequestOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsEditRequestOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsEditRequestOriginSteeringPolicy = S.String;
 
 export interface PoolsEditRequestOriginSteering {
   /** The type of origin steering policy to use. */
@@ -6464,7 +6439,7 @@ export type PoolsEditResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsEditResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsEditResponseCheckRegionsItem = S.String;
 
 export type PoolsEditResponseCheckRegionsList =
   Array<PoolsEditResponseCheckRegionsItem>;
@@ -6473,12 +6448,10 @@ export const PoolsEditResponseCheckRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsEditResponseCheckRegionsList>;
 
 export type PoolsEditResponseLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsEditResponseLoadSheddingDefaultPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsEditResponseLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsEditResponseLoadSheddingSessionPolicy = "hash";
-export const PoolsEditResponseLoadSheddingSessionPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsEditResponseLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsEditResponseLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -6533,7 +6506,7 @@ export type PoolsEditResponseOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsEditResponseOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsEditResponseOriginSteeringPolicy = S.String;
 
 export interface PoolsEditResponseOriginSteering {
   /** The type of origin steering policy to use. */
@@ -6704,14 +6677,14 @@ export const UpdateRequestCountryPoolsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UpdateRequestCountryPoolsMap>;
 
 export type UpdateRequestLocationStrategyMode = "pop" | "resolver_ip";
-export const UpdateRequestLocationStrategyMode = /*@__PURE__*/ S.String;
+export const UpdateRequestLocationStrategyMode = S.String;
 
 export type UpdateRequestLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const UpdateRequestLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const UpdateRequestLocationStrategyPreferEcs = S.String;
 
 export interface UpdateRequestLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -6817,8 +6790,7 @@ export type UpdateRequestRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const UpdateRequestRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemOverridesSessionAffinity = S.String;
 
 export type UpdateRequestRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -6833,21 +6805,21 @@ export type UpdateRequestRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const UpdateRequestRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const UpdateRequestRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const UpdateRequestRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -6904,8 +6876,7 @@ export type UpdateRequestRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const UpdateRequestRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestRulesItemOverridesSteeringPolicy = S.String;
 
 export interface UpdateRequestRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -7153,14 +7124,14 @@ export const UpdateResponseDefaultPoolsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateResponseDefaultPoolsList>;
 
 export type UpdateResponseLocationStrategyMode = "pop" | "resolver_ip";
-export const UpdateResponseLocationStrategyMode = /*@__PURE__*/ S.String;
+export const UpdateResponseLocationStrategyMode = S.String;
 
 export type UpdateResponseLocationStrategyPreferEcs =
   | "always"
   | "never"
   | "proximity"
   | "geo";
-export const UpdateResponseLocationStrategyPreferEcs = /*@__PURE__*/ S.String;
+export const UpdateResponseLocationStrategyPreferEcs = S.String;
 
 export interface UpdateResponseLocationStrategy {
   /** Determines the authoritative location when ECS is not preferred, does not exist in the request, or its GeoIP lookup is unsuccessful. */
@@ -7273,8 +7244,7 @@ export type UpdateResponseRulesItemOverridesSessionAffinity =
   | "cookie"
   | "ip_cookie"
   | "header";
-export const UpdateResponseRulesItemOverridesSessionAffinity =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemOverridesSessionAffinity = S.String;
 
 export type UpdateResponseRulesItemOverridesSessionAffinityAttributesHeadersList =
   Array<string>;
@@ -7289,21 +7259,21 @@ export type UpdateResponseRulesItemOverridesSessionAffinityAttributesSamesite =
   | "None"
   | "Strict";
 export const UpdateResponseRulesItemOverridesSessionAffinityAttributesSamesite =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemOverridesSessionAffinityAttributesSecure =
   | "Auto"
   | "Always"
   | "Never";
 export const UpdateResponseRulesItemOverridesSessionAffinityAttributesSecure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
   | "none"
   | "temporary"
   | "sticky";
 export const UpdateResponseRulesItemOverridesSessionAffinityAttributesZeroDowntimeFailover =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseRulesItemOverridesSessionAffinityAttributes {
   /** Configures the drain duration in seconds. This field is only used when session affinity is enabled on the load balancer. */
@@ -7362,8 +7332,7 @@ export type UpdateResponseRulesItemOverridesSteeringPolicy =
   | "least_outstanding_requests"
   | "least_connections"
   | "";
-export const UpdateResponseRulesItemOverridesSteeringPolicy =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseRulesItemOverridesSteeringPolicy = S.String;
 
 export interface UpdateResponseRulesItemOverrides {
   /** Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin. */
@@ -7610,7 +7579,7 @@ export type MonitorsUpdateRequestType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsUpdateRequestType = /*@__PURE__*/ S.String;
+export const MonitorsUpdateRequestType = S.String;
 
 export interface UpdateMonitorRequest {
   /** Identifier. */
@@ -7697,7 +7666,7 @@ export type MonitorsUpdateResponseType =
   | "udp_icmp"
   | "icmp_ping"
   | "smtp";
-export const MonitorsUpdateResponseType = /*@__PURE__*/ S.String;
+export const MonitorsUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateMonitorResponse {
@@ -7925,7 +7894,7 @@ export type PoolsUpdateRequestCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsUpdateRequestCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsUpdateRequestCheckRegionsItem = S.String;
 
 export type PoolsUpdateRequestCheckRegionsList = Array<
   PoolsUpdateRequestCheckRegionsItem | (string & {})
@@ -7935,12 +7904,10 @@ export const PoolsUpdateRequestCheckRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsUpdateRequestCheckRegionsList>;
 
 export type PoolsUpdateRequestLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsUpdateRequestLoadSheddingDefaultPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsUpdateRequestLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsUpdateRequestLoadSheddingSessionPolicy = "hash";
-export const PoolsUpdateRequestLoadSheddingSessionPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsUpdateRequestLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsUpdateRequestLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -7986,7 +7953,7 @@ export type PoolsUpdateRequestOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsUpdateRequestOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsUpdateRequestOriginSteeringPolicy = S.String;
 
 export interface PoolsUpdateRequestOriginSteering {
   /** The type of origin steering policy to use. */
@@ -8087,7 +8054,7 @@ export type PoolsUpdateResponseCheckRegionsItem =
   | "SEAS"
   | "NEAS"
   | "ALL_REGIONS";
-export const PoolsUpdateResponseCheckRegionsItem = /*@__PURE__*/ S.String;
+export const PoolsUpdateResponseCheckRegionsItem = S.String;
 
 export type PoolsUpdateResponseCheckRegionsList =
   Array<PoolsUpdateResponseCheckRegionsItem>;
@@ -8096,12 +8063,10 @@ export const PoolsUpdateResponseCheckRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PoolsUpdateResponseCheckRegionsList>;
 
 export type PoolsUpdateResponseLoadSheddingDefaultPolicy = "random" | "hash";
-export const PoolsUpdateResponseLoadSheddingDefaultPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsUpdateResponseLoadSheddingDefaultPolicy = S.String;
 
 export type PoolsUpdateResponseLoadSheddingSessionPolicy = "hash";
-export const PoolsUpdateResponseLoadSheddingSessionPolicy =
-  /*@__PURE__*/ S.String;
+export const PoolsUpdateResponseLoadSheddingSessionPolicy = S.String;
 
 export interface PoolsUpdateResponseLoadShedding {
   /** The percent of traffic to shed from the pool, according to the default policy. Applies to new sessions and traffic without session affinity. */
@@ -8156,7 +8121,7 @@ export type PoolsUpdateResponseOriginSteeringPolicy =
   | "hash"
   | "least_outstanding_requests"
   | "least_connections";
-export const PoolsUpdateResponseOriginSteeringPolicy = /*@__PURE__*/ S.String;
+export const PoolsUpdateResponseOriginSteeringPolicy = S.String;
 
 export interface PoolsUpdateResponseOriginSteering {
   /** The type of origin steering policy to use. */

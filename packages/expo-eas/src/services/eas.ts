@@ -179,7 +179,7 @@ export type AuthProviderIdentifier =
   | "OKTA"
   | "ONE_LOGIN"
   | "STUB_IDP";
-export const AuthProviderIdentifier = /*@__PURE__*/ S.String;
+export const AuthProviderIdentifier = S.String;
 
 export type AccessTokenSetAccessTokenRevokedResponseOwnerAccountsItemSsoAllowedAuthProvidersList =
   Array<AuthProviderIdentifier>;
@@ -189,7 +189,7 @@ export const AccessTokenSetAccessTokenRevokedResponseOwnerAccountsItemSsoAllowed
   ) as any as S.Schema<AccessTokenSetAccessTokenRevokedResponseOwnerAccountsItemSsoAllowedAuthProvidersList>;
 
 export type UserSpecifiedAccountUsage = "COMPANY" | "PERSONAL";
-export const UserSpecifiedAccountUsage = /*@__PURE__*/ S.String;
+export const UserSpecifiedAccountUsage = S.String;
 
 export interface AccessTokenSetAccessTokenRevokedResponseOwnerAccountsItem {
   aiChatEnabled: boolean;
@@ -249,7 +249,7 @@ export const AccessTokenSetAccessTokenRevokedResponseOwnerAccountsList =
   ) as any as S.Schema<AccessTokenSetAccessTokenRevokedResponseOwnerAccountsList>;
 
 export type Experiment = "ORBIT";
-export const Experiment = /*@__PURE__*/ S.String;
+export const Experiment = S.String;
 
 export interface AccessTokenSetAccessTokenRevokedResponseOwnerExperimentsItem {
   createdAt: string;
@@ -358,13 +358,13 @@ export const AccountByIdResponseAgentProviderConnectionsItemCreatedByActor =
   AccessTokenCreateAccessTokenResponseAccessTokenOwner;
 
 export type AgentProvider = "ANTHROPIC" | "OPENAI";
-export const AgentProvider = /*@__PURE__*/ S.String;
+export const AgentProvider = S.String;
 
 export type AgentProviderConnectionStatus =
   | "INVALID"
   | "UNABLE_TO_VERIFY"
   | "VALID";
-export const AgentProviderConnectionStatus = /*@__PURE__*/ S.String;
+export const AgentProviderConnectionStatus = S.String;
 
 export interface AccountByIdResponseAgentProviderConnectionsItem {
   createdAt: string;
@@ -411,7 +411,7 @@ export type AppleTeamType =
   | "COMPANY_OR_ORGANIZATION"
   | "INDIVIDUAL"
   | "IN_HOUSE";
-export const AppleTeamType = /*@__PURE__*/ S.String;
+export const AppleTeamType = S.String;
 
 export interface AccountByIdResponseAppStoreConnectApiKeysItemAppleTeam {
   appleTeamIdentifier: string;
@@ -450,7 +450,7 @@ export type AppStoreConnectUserRole =
   | "SALES"
   | "TECHNICAL"
   | "UNKNOWN";
-export const AppStoreConnectUserRole = /*@__PURE__*/ S.String;
+export const AppStoreConnectUserRole = S.String;
 
 export type AccountByIdResponseAppStoreConnectApiKeysItemRolesList =
   Array<AppStoreConnectUserRole>;
@@ -506,7 +506,7 @@ export type IosDistributionType =
   | "APP_STORE"
   | "DEVELOPMENT"
   | "ENTERPRISE";
-export const IosDistributionType = /*@__PURE__*/ S.String;
+export const IosDistributionType = S.String;
 
 export interface AccountByIdResponseAppleDistributionCertificatesItemIosAppBuildCredentialsListItem {
   id: string;
@@ -797,13 +797,13 @@ export const AccountByIdResponseGithubAppInstallationsItemActor =
   AccessTokenCreateAccessTokenResponseAccessTokenOwner;
 
 export type GitHubAppInstallationAccountType = "ORGANIZATION" | "USER";
-export const GitHubAppInstallationAccountType = /*@__PURE__*/ S.String;
+export const GitHubAppInstallationAccountType = S.String;
 
 export type GitHubAppInstallationStatus =
   | "ACTIVE"
   | "NOT_INSTALLED"
   | "SUSPENDED";
-export const GitHubAppInstallationStatus = /*@__PURE__*/ S.String;
+export const GitHubAppInstallationStatus = S.String;
 
 export interface AccountByIdResponseGithubAppInstallationsItemMetadata {
   githubAccountAvatarUrl: string | null;
@@ -921,7 +921,7 @@ export const AccountByIdResponseMemberStats = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountByIdResponseMemberStats>;
 
 export type Feature = "BUILDS" | "OPEN_SOURCE" | "SUPPORT" | "TEAMS";
-export const Feature = /*@__PURE__*/ S.String;
+export const Feature = S.String;
 
 export type AccountByIdResponseOffersItemFeaturesList = (Feature | null)[];
 export const AccountByIdResponseOffersItemFeaturesList = /*@__PURE__*/ S.Array(
@@ -950,7 +950,7 @@ export const AccountByIdResponseOffersItemPrerequisite =
   }) as any as S.Schema<AccountByIdResponseOffersItemPrerequisite>;
 
 export type OfferType = "ADDON" | "PREPAID" | "SUBSCRIPTION";
-export const OfferType = /*@__PURE__*/ S.String;
+export const OfferType = S.String;
 
 export interface AccountByIdResponseOffersItem {
   features: AccountByIdResponseOffersItemFeaturesList | null;
@@ -1074,7 +1074,7 @@ export const AccountByIdResponseOwnerGithubUser = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountByIdResponseOwnerGithubUser>;
 
 export type OAuthProvider = "apple" | "github" | "google";
-export const OAuthProvider = /*@__PURE__*/ S.String;
+export const OAuthProvider = S.String;
 
 export interface AccountByIdResponseOwnerOAuthIdentitiesItem {
   email: string;
@@ -1131,7 +1131,7 @@ export const AccountByIdResponseOwnerPasskeyCredentialsList =
   ) as any as S.Schema<AccountByIdResponseOwnerPasskeyCredentialsList>;
 
 export type Permission = "ADMIN" | "OWN" | "PUBLISH" | "VIEW";
-export const Permission = /*@__PURE__*/ S.String;
+export const Permission = S.String;
 
 export type AccountByIdResponseOwnerPendingUserInvitationsItemPermissionsList =
   Array<Permission>;
@@ -1148,7 +1148,7 @@ export type Role =
   | "NOT_ADMIN"
   | "OWNER"
   | "VIEW_ONLY";
-export const Role = /*@__PURE__*/ S.String;
+export const Role = S.String;
 
 export interface AccountByIdResponseOwnerPendingUserInvitationsItem {
   accountName: string;
@@ -1192,7 +1192,7 @@ export type AppStoreConnectWorkflowConnectionStatus =
   | "HAS_WORKFLOWS_IS_CONNECTED"
   | "HAS_WORKFLOWS_MISSING_CONNECTION"
   | "NO_APP_STORE_CONNECT_WORKFLOWS";
-export const AppStoreConnectWorkflowConnectionStatus = /*@__PURE__*/ S.String;
+export const AppStoreConnectWorkflowConnectionStatus = S.String;
 
 export type AccountByIdResponseOwnerPinnedAppsItemBuildProfilesList =
   Array<string>;
@@ -1216,10 +1216,10 @@ export const AccountByIdResponseOwnerPinnedAppsItemEnvironmentVariableEnvironmen
   ) as any as S.Schema<AccountByIdResponseOwnerPinnedAppsItemEnvironmentVariableEnvironmentsList>;
 
 export type AppInternalDistributionBuildPrivacy = "PRIVATE" | "PUBLIC";
-export const AppInternalDistributionBuildPrivacy = /*@__PURE__*/ S.String;
+export const AppInternalDistributionBuildPrivacy = S.String;
 
 export type ResourceClassExperiment = "C3D" | "N2";
-export const ResourceClassExperiment = /*@__PURE__*/ S.String;
+export const ResourceClassExperiment = S.String;
 
 export interface AccountByIdResponseOwnerPinnedAppsItem {
   appStoreConnectWorkflowConnectionStatus: AppStoreConnectWorkflowConnectionStatus;
@@ -1295,7 +1295,7 @@ export const AccountByIdResponseOwnerPinnedAppsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AccountByIdResponseOwnerPinnedAppsList>;
 
 export type DashboardViewPin = "ACTIVITY" | "OVERVIEW";
-export const DashboardViewPin = /*@__PURE__*/ S.String;
+export const DashboardViewPin = S.String;
 
 export interface AccountByIdResponseOwnerPinnedDashboardViewsItem {
   view: DashboardViewPin;
@@ -1317,7 +1317,7 @@ export const AccountByIdResponseOwnerPinnedDashboardViewsList =
   ) as any as S.Schema<AccountByIdResponseOwnerPinnedDashboardViewsList>;
 
 export type SecondFactorMethod = "AUTHENTICATOR" | "SMS";
-export const SecondFactorMethod = /*@__PURE__*/ S.String;
+export const SecondFactorMethod = S.String;
 
 export interface AccountByIdResponseOwnerSecondFactorDevicesItem {
   createdAt: string;
@@ -1649,7 +1649,7 @@ export const AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsList
   ) as any as S.Schema<AccountByIdResponsePosthogOrganizationConnectionPosthogProjectsList>;
 
 export type PostHogRegion = "EU" | "US";
-export const PostHogRegion = /*@__PURE__*/ S.String;
+export const PostHogRegion = S.String;
 
 export interface AccountByIdResponsePosthogOrganizationConnection {
   createdAt: string;
@@ -1689,7 +1689,7 @@ export const AccountByIdResponseSsoAllowedAuthProvidersList =
   ) as any as S.Schema<AccountByIdResponseSsoAllowedAuthProvidersList>;
 
 export type AuthProtocolType = "OIDC";
-export const AuthProtocolType = /*@__PURE__*/ S.String;
+export const AuthProtocolType = S.String;
 
 export interface AccountByIdResponseSsoConfiguration {
   authProtocol: AuthProtocolType;
@@ -24074,8 +24074,7 @@ export type AgentProviderConnectionAuthorizationStatus =
   | "EXPIRED"
   | "PENDING"
   | "SUCCEEDED";
-export const AgentProviderConnectionAuthorizationStatus =
-  /*@__PURE__*/ S.String;
+export const AgentProviderConnectionAuthorizationStatus = S.String;
 
 /** Selection set for `agentProviderConnection.pollCodexConnection` (unwrapped from the GraphQL `data` envelope). */
 export interface AgentProviderConnectionPollCodexConnectionResponse {
@@ -24942,7 +24941,7 @@ export const AndroidAppBuildCredentialsCreateAndroidAppBuildCredentialsResponseA
   }) as any as S.Schema<AndroidAppBuildCredentialsCreateAndroidAppBuildCredentialsResponseAndroidKeystoreAccount>;
 
 export type AndroidKeystoreType = "JKS" | "PKCS12" | "UNKNOWN";
-export const AndroidKeystoreType = /*@__PURE__*/ S.String;
+export const AndroidKeystoreType = S.String;
 
 export interface AndroidAppBuildCredentialsCreateAndroidAppBuildCredentialsResponseAndroidKeystore {
   account: AndroidAppBuildCredentialsCreateAndroidAppBuildCredentialsResponseAndroidKeystoreAccount;
@@ -25672,7 +25671,7 @@ export const AndroidAppCredentialsCreateAndroidAppCredentialsResponseAndroidFcmA
   }) as any as S.Schema<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAndroidFcmAccount>;
 
 export type AndroidFcmVersion = "LEGACY" | "V1";
-export const AndroidFcmVersion = /*@__PURE__*/ S.String;
+export const AndroidFcmVersion = S.String;
 
 export interface AndroidAppCredentialsCreateAndroidAppCredentialsResponseAndroidFcm {
   account: AndroidAppCredentialsCreateAndroidAppCredentialsResponseAndroidFcmAccount;
@@ -25773,19 +25772,19 @@ export const AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppEnvironm
 export type GitHubBuildTriggerExecutionBehavior =
   | "ALWAYS"
   | "BASE_DIRECTORY_CHANGED";
-export const GitHubBuildTriggerExecutionBehavior = /*@__PURE__*/ S.String;
+export const GitHubBuildTriggerExecutionBehavior = S.String;
 
 export type GitHubBuildTriggerRunStatus = "ERRORED" | "SUCCESS";
-export const GitHubBuildTriggerRunStatus = /*@__PURE__*/ S.String;
+export const GitHubBuildTriggerRunStatus = S.String;
 
 export type AppPlatform = "ANDROID" | "IOS";
-export const AppPlatform = /*@__PURE__*/ S.String;
+export const AppPlatform = S.String;
 
 export type GitHubBuildTriggerType =
   | "PULL_REQUEST_UPDATED"
   | "PUSH_TO_BRANCH"
   | "TAG_UPDATED";
-export const GitHubBuildTriggerType = /*@__PURE__*/ S.String;
+export const GitHubBuildTriggerType = S.String;
 
 export interface AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersItem {
   autoSubmit: boolean;
@@ -25840,13 +25839,13 @@ export const AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBu
   ) as any as S.Schema<AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubBuildTriggersList>;
 
 export type GitHubJobRunJobType = "PUBLISH_UPDATE";
-export const GitHubJobRunJobType = /*@__PURE__*/ S.String;
+export const GitHubJobRunJobType = S.String;
 
 export type GitHubJobRunTriggerRunStatus = "ERRORED" | "SUCCESS";
-export const GitHubJobRunTriggerRunStatus = /*@__PURE__*/ S.String;
+export const GitHubJobRunTriggerRunStatus = S.String;
 
 export type GitHubJobRunTriggerType = "PULL_REQUEST_UPDATED" | "PUSH_TO_BRANCH";
-export const GitHubJobRunTriggerType = /*@__PURE__*/ S.String;
+export const GitHubJobRunTriggerType = S.String;
 
 export interface AndroidAppCredentialsCreateAndroidAppCredentialsResponseAppGithubJobRunTriggersItem {
   createdAt: string;
@@ -30259,13 +30258,13 @@ export const AppByDevDomainNameResponseEnvironmentVariableEnvironmentsList =
   ) as any as S.Schema<AppByDevDomainNameResponseEnvironmentVariableEnvironmentsList>;
 
 export type BuildMode = "BUILD" | "CUSTOM" | "LOCAL" | "REPACK" | "RESIGN";
-export const BuildMode = /*@__PURE__*/ S.String;
+export const BuildMode = S.String;
 
 export type DistributionType = "INTERNAL" | "SIMULATOR" | "STORE";
-export const DistributionType = /*@__PURE__*/ S.String;
+export const DistributionType = S.String;
 
 export type BuildIosEnterpriseProvisioning = "ADHOC" | "UNIVERSAL";
-export const BuildIosEnterpriseProvisioning = /*@__PURE__*/ S.String;
+export const BuildIosEnterpriseProvisioning = S.String;
 
 export type AppByDevDomainNameResponseGithubBuildTriggersItemLastRunBuildLogFileUrlsList =
   Array<string>;
@@ -30282,7 +30281,7 @@ export const AppByDevDomainNameResponseGithubBuildTriggersItemLastRunBuildLogFil
   ) as any as S.Schema<AppByDevDomainNameResponseGithubBuildTriggersItemLastRunBuildLogFilesList>;
 
 export type BuildPriority = "HIGH" | "NORMAL" | "NORMAL_PLUS";
-export const BuildPriority = /*@__PURE__*/ S.String;
+export const BuildPriority = S.String;
 
 export type BuildResourceClass =
   | "ANDROID_DEFAULT"
@@ -30300,7 +30299,7 @@ export type BuildResourceClass =
   | "LEGACY"
   | "LINUX_LARGE"
   | "LINUX_MEDIUM";
-export const BuildResourceClass = /*@__PURE__*/ S.String;
+export const BuildResourceClass = S.String;
 
 export type BuildStatus =
   | "CANCELED"
@@ -30310,10 +30309,10 @@ export type BuildStatus =
   | "IN_QUEUE"
   | "NEW"
   | "PENDING_CANCEL";
-export const BuildStatus = /*@__PURE__*/ S.String;
+export const BuildStatus = S.String;
 
 export type EASBuildWaiverType = "FAST_FAILED_BUILD" | "SYSTEM_ERROR";
-export const EASBuildWaiverType = /*@__PURE__*/ S.String;
+export const EASBuildWaiverType = S.String;
 
 export interface AppByDevDomainNameResponseGithubBuildTriggersItemLastRunBuild {
   activityTimestamp: string;
@@ -31157,7 +31156,7 @@ export const AppByDevDomainNameResponseWorkerCustomDomainAlias =
   }) as any as S.Schema<AppByDevDomainNameResponseWorkerCustomDomainAlias>;
 
 export type CustomDomainDNSRecordType = "A" | "CNAME" | "TXT";
-export const CustomDomainDNSRecordType = /*@__PURE__*/ S.String;
+export const CustomDomainDNSRecordType = S.String;
 
 export interface AppByDevDomainNameResponseWorkerCustomDomainDcvDelegationRecord {
   dnsContent: string;
@@ -31191,7 +31190,7 @@ export const AppByDevDomainNameResponseWorkerCustomDomainSetupSslErrorsList =
   ) as any as S.Schema<AppByDevDomainNameResponseWorkerCustomDomainSetupSslErrorsList>;
 
 export type CustomDomainStatus = "ACTIVE" | "ERROR" | "PENDING" | "TIMED_OUT";
-export const CustomDomainStatus = /*@__PURE__*/ S.String;
+export const CustomDomainStatus = S.String;
 
 export type AppByDevDomainNameResponseWorkerCustomDomainSetupVerificationErrorsList =
   Array<string>;
@@ -34147,7 +34146,7 @@ export const AppleAppIdentifierCreateAppleAppIdentifierResponse =
   }) as any as S.Schema<AppleAppIdentifierCreateAppleAppIdentifierResponse>;
 
 export type AppleDeviceClass = "IPAD" | "IPHONE" | "MAC" | "UNKNOWN";
-export const AppleDeviceClass = /*@__PURE__*/ S.String;
+export const AppleDeviceClass = S.String;
 
 export interface AppleDeviceInput {
   appleTeamId: string;
@@ -35529,7 +35528,7 @@ export const AppleDeviceRegistrationRequestByIdResponseResolvedAppleDevice =
   }) as any as S.Schema<AppleDeviceRegistrationRequestByIdResponseResolvedAppleDevice>;
 
 export type WorkflowDeviceTestCaseStatus = "FAILED" | "PASSED";
-export const WorkflowDeviceTestCaseStatus = /*@__PURE__*/ S.String;
+export const WorkflowDeviceTestCaseStatus = S.String;
 
 export type AppleDeviceRegistrationRequestByIdResponseWorkflowJobAllDeviceTestCaseResultsItemTagsList =
   Array<string>;
@@ -35581,7 +35580,7 @@ export const AppleDeviceRegistrationRequestByIdResponseWorkflowJobAllDeviceTestC
   ) as any as S.Schema<AppleDeviceRegistrationRequestByIdResponseWorkflowJobAllDeviceTestCaseResultsList>;
 
 export type WorkflowJobReviewDecision = "APPROVED" | "REJECTED";
-export const WorkflowJobReviewDecision = /*@__PURE__*/ S.String;
+export const WorkflowJobReviewDecision = S.String;
 
 export interface AppleDeviceRegistrationRequestByIdResponseWorkflowJobApprovalsItem {
   createdAt: string;
@@ -35756,7 +35755,7 @@ export type WorkflowJobStatus =
   | "PENDING_CANCEL"
   | "SKIPPED"
   | "SUCCESS";
-export const WorkflowJobStatus = /*@__PURE__*/ S.String;
+export const WorkflowJobStatus = S.String;
 
 export type AppleDeviceRegistrationRequestByIdResponseWorkflowJobTurtleBuildLogFileUrlsList =
   Array<string>;
@@ -35897,7 +35896,7 @@ export const AppleDeviceRegistrationRequestByIdResponseWorkflowJobTurtleJobRunLo
   ) as any as S.Schema<AppleDeviceRegistrationRequestByIdResponseWorkflowJobTurtleJobRunLogFileUrlsList>;
 
 export type JobRunPriority = "HIGH" | "NORMAL";
-export const JobRunPriority = /*@__PURE__*/ S.String;
+export const JobRunPriority = S.String;
 
 export type JobRunStatus =
   | "CANCELED"
@@ -35907,7 +35906,7 @@ export type JobRunStatus =
   | "IN_QUEUE"
   | "NEW"
   | "PENDING_CANCEL";
-export const JobRunStatus = /*@__PURE__*/ S.String;
+export const JobRunStatus = S.String;
 
 export type AppleDeviceRegistrationRequestByIdResponseWorkflowJobTurtleJobRunUpdateGroupsItemList =
   Array<unknown>;
@@ -35980,7 +35979,7 @@ export const AppleDeviceRegistrationRequestByIdResponseWorkflowJobTurtleSubmissi
   ) as any as S.Schema<AppleDeviceRegistrationRequestByIdResponseWorkflowJobTurtleSubmissionLogFilesList>;
 
 export type SubmissionPriority = "HIGH" | "NORMAL";
-export const SubmissionPriority = /*@__PURE__*/ S.String;
+export const SubmissionPriority = S.String;
 
 export type SubmissionStatus =
   | "AWAITING_BUILD"
@@ -35989,7 +35988,7 @@ export type SubmissionStatus =
   | "FINISHED"
   | "IN_PROGRESS"
   | "IN_QUEUE";
-export const SubmissionStatus = /*@__PURE__*/ S.String;
+export const SubmissionStatus = S.String;
 
 export interface AppleDeviceRegistrationRequestByIdResponseWorkflowJobTurtleSubmission {
   activityTimestamp: string;
@@ -36048,7 +36047,7 @@ export type WorkflowJobType =
   | "TESTFLIGHT"
   | "UPDATE"
   | "UPDATE_ROLLOUT";
-export const WorkflowJobType = /*@__PURE__*/ S.String;
+export const WorkflowJobType = S.String;
 
 export type WorkflowRunStatus =
   | "ACTION_REQUIRED"
@@ -36058,7 +36057,7 @@ export type WorkflowRunStatus =
   | "NEW"
   | "SUCCESS"
   | "WAITING";
-export const WorkflowRunStatus = /*@__PURE__*/ S.String;
+export const WorkflowRunStatus = S.String;
 
 export type WorkflowRunTriggerEventType =
   | "APP_STORE_CONNECT_APP_VERSION_STATE_CHANGED"
@@ -36082,7 +36081,7 @@ export type WorkflowRunTriggerEventType =
   | "MANUAL"
   | "REPACK_EXPO_GO"
   | "SCHEDULE";
-export const WorkflowRunTriggerEventType = /*@__PURE__*/ S.String;
+export const WorkflowRunTriggerEventType = S.String;
 
 export interface AppleDeviceRegistrationRequestByIdResponseWorkflowJobWorkflowRun {
   activityTimestamp: string;
@@ -44911,14 +44910,14 @@ export type BackgroundJobResultType =
   | "USER_AUDIT_LOGS_EXPORT"
   | "VOID"
   | "WORKFLOWS_INSIGHTS_EXPORT";
-export const BackgroundJobResultType = /*@__PURE__*/ S.String;
+export const BackgroundJobResultType = S.String;
 
 export type BackgroundJobState =
   | "FAILURE"
   | "IN_PROGRESS"
   | "QUEUED"
   | "SUCCESS";
-export const BackgroundJobState = /*@__PURE__*/ S.String;
+export const BackgroundJobState = S.String;
 
 /** Selection set for `appleTeam.scheduleAppleTeamDeletion` (unwrapped from the GraphQL `data` envelope). */
 export interface AppleTeamScheduleAppleTeamDeletionResponse {
@@ -55388,7 +55387,7 @@ export const AssetMetadataRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AssetMetadataRequest>;
 
 export type AssetMetadataStatus = "DOES_NOT_EXIST" | "EXISTS";
-export const AssetMetadataStatus = /*@__PURE__*/ S.String;
+export const AssetMetadataStatus = S.String;
 
 export interface AssetMetadataResultItem {
   status: AssetMetadataStatus;
@@ -55471,10 +55470,10 @@ export const AssetSignedUrlsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AssetSignedUrlsResponse>;
 
 export type AuditLogsExportFormat = "CSV" | "JSON" | "JSONL";
-export const AuditLogsExportFormat = /*@__PURE__*/ S.String;
+export const AuditLogsExportFormat = S.String;
 
 export type TargetEntityMutationType = "CREATE" | "DELETE" | "UPDATE";
-export const TargetEntityMutationType = /*@__PURE__*/ S.String;
+export const TargetEntityMutationType = S.String;
 
 export type TargetEntityMutationTypeList = Array<
   TargetEntityMutationType | (string & {})
@@ -55523,7 +55522,7 @@ export type EntityTypeName =
   | "WorkflowEntity"
   | "WorkflowRevisionEntity"
   | "WorkflowScheduleEntity";
-export const EntityTypeName = /*@__PURE__*/ S.String;
+export const EntityTypeName = S.String;
 
 export type EntityTypeNameList = Array<EntityTypeName | (string & {})>;
 export const EntityTypeNameList = /*@__PURE__*/ S.Array(
@@ -57206,7 +57205,7 @@ export type BuildPhase =
   | "UPLOAD_ARTIFACTS"
   | "UPLOAD_BUILD_ARTIFACTS"
   | "UPLOAD_EMBEDDED_BUNDLE";
-export const BuildPhase = /*@__PURE__*/ S.String;
+export const BuildPhase = S.String;
 
 export interface BuildResponseCancelError {
   buildPhase: BuildPhase | null;
@@ -57616,7 +57615,7 @@ export const BuildResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "BuildResponse" }) as any as S.Schema<BuildResponse>;
 
 export type BuildAnnotationType = "ERROR" | "INFO" | "WARNING";
-export const BuildAnnotationType = /*@__PURE__*/ S.String;
+export const BuildAnnotationType = S.String;
 
 export interface BuildAnnotationDataInput {
   buildPhase: string;
@@ -58731,7 +58730,7 @@ export const BuildsByIdResponseFingerprintApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BuildsByIdResponseFingerprintApp>;
 
 export type FingerprintSourceType = "GCS";
-export const FingerprintSourceType = /*@__PURE__*/ S.String;
+export const FingerprintSourceType = S.String;
 
 export interface BuildsByIdResponseFingerprintSource {
   bucketKey: string;
@@ -59029,7 +59028,7 @@ export const BuildsByIdResponseRuntime = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BuildsByIdResponseRuntime>;
 
 export type TurtleSshTransportType = "UPTERM_V1";
-export const TurtleSshTransportType = /*@__PURE__*/ S.String;
+export const TurtleSshTransportType = S.String;
 
 export interface BuildsByIdResponseSshSessionConnectionConfig {
   host: string;
@@ -59166,7 +59165,7 @@ export type SubmissionAndroidReleaseStatus =
   | "DRAFT"
   | "HALTED"
   | "IN_PROGRESS";
-export const SubmissionAndroidReleaseStatus = /*@__PURE__*/ S.String;
+export const SubmissionAndroidReleaseStatus = S.String;
 
 export interface BuildsByIdResponseSubmissionsItemAndroidConfig {
   applicationIdentifier: string | null;
@@ -59279,7 +59278,7 @@ export type AppStoreConnectBuildUploadState =
   | "COMPLETE"
   | "FAILED"
   | "PROCESSING";
-export const AppStoreConnectBuildUploadState = /*@__PURE__*/ S.String;
+export const AppStoreConnectBuildUploadState = S.String;
 
 export interface BuildsByIdResponseSubmissionsItemAppStoreConnectBuildUpload {
   ascBuildUploadIdentifier: string;
@@ -60603,7 +60602,7 @@ export type AppStoreConnectBuildProcessingState =
   | "INVALID"
   | "PROCESSING"
   | "VALID";
-export const AppStoreConnectBuildProcessingState = /*@__PURE__*/ S.String;
+export const AppStoreConnectBuildProcessingState = S.String;
 
 export interface CancelSubmissionResponseAppStoreConnectBuildUploadAppStoreConnectBuild {
   ascBuildIdentifier: string;
@@ -60997,7 +60996,7 @@ export const CancelSubmissionResponseJobRunApp = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CancelSubmissionResponseJobRunApp>;
 
 export type WorkflowArtifactStorageType = "GCS" | "R2";
-export const WorkflowArtifactStorageType = /*@__PURE__*/ S.String;
+export const WorkflowArtifactStorageType = S.String;
 
 export interface CancelSubmissionResponseJobRunArtifactsItem {
   contentType: string | null;
@@ -62409,7 +62408,7 @@ export const ChannelsByIdResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChannelsByIdResponse>;
 
 export type ExitInterviewMessageRole = "ASSISTANT" | "USER";
-export const ExitInterviewMessageRole = /*@__PURE__*/ S.String;
+export const ExitInterviewMessageRole = S.String;
 
 export interface ExitInterviewMessageInput {
   content: string;
@@ -62434,7 +62433,7 @@ export type ExitInterviewOutcome =
   | "CONTINUED_TO_STRIPE"
   | "DISMISSED"
   | "KEPT_PLAN";
-export const ExitInterviewOutcome = /*@__PURE__*/ S.String;
+export const ExitInterviewOutcome = S.String;
 
 /** Tags produced by the website's churn-classification step. The website runs this synchronously before calling complete, then forwards the structured result. Allowed category / sentiment values are enforced by the resolver. */
 export interface ExitInterviewTagsInput {
@@ -65789,7 +65788,7 @@ export const CreateRobotForAccountResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRobotForAccountResponse>;
 
 export type WebhookType = "BUILD" | "SUBMIT";
-export const WebhookType = /*@__PURE__*/ S.String;
+export const WebhookType = S.String;
 
 export interface WebhookInput {
   event: WebhookType | (string & {});
@@ -66217,10 +66216,10 @@ export const DashboardChatAddUserMessageResponsePartsList =
   ) as any as S.Schema<DashboardChatAddUserMessageResponsePartsList>;
 
 export type DashboardChatMessageRole = "ASSISTANT" | "USER";
-export const DashboardChatMessageRole = /*@__PURE__*/ S.String;
+export const DashboardChatMessageRole = S.String;
 
 export type DashboardChatMessageStatus = "CANCELED" | "COMPLETED" | "ERROR";
-export const DashboardChatMessageStatus = /*@__PURE__*/ S.String;
+export const DashboardChatMessageStatus = S.String;
 
 /** Selection set for `dashboardChat.addUserMessage` (unwrapped from the GraphQL `data` envelope). */
 export interface DashboardChatAddUserMessageResponse {
@@ -69971,7 +69970,7 @@ export type DeviceRunSessionStatus =
   | "IN_PROGRESS"
   | "NEW"
   | "STOPPED";
-export const DeviceRunSessionStatus = /*@__PURE__*/ S.String;
+export const DeviceRunSessionStatus = S.String;
 
 export type DeviceRunSessionArtifactsByIdResponseDeviceRunSessionTagsList =
   Array<string>;
@@ -70056,7 +70055,7 @@ export type DeviceRunSessionType =
   | "ARGENT"
   | "SERVE_SIM"
   | "WEB_PREVIEW_ONLY";
-export const DeviceRunSessionType = /*@__PURE__*/ S.String;
+export const DeviceRunSessionType = S.String;
 
 export interface DeviceRunSessionArtifactsByIdResponseDeviceRunSession {
   app: DeviceRunSessionArtifactsByIdResponseDeviceRunSessionApp;
@@ -70239,7 +70238,7 @@ export const CreateIosDeviceRunSessionInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIosDeviceRunSessionInput>;
 
 export type DeviceRunSessionResourceClass = "LARGE" | "MEDIUM";
-export const DeviceRunSessionResourceClass = /*@__PURE__*/ S.String;
+export const DeviceRunSessionResourceClass = S.String;
 
 export interface CreateDeviceRunSessionInput {
   /** Android emulator options. Only supported when platform is ANDROID. */
@@ -75326,7 +75325,7 @@ export const EchoChatByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EchoChatByIdRequest>;
 
 export type EchoAgentType = "CLAUDE_CODE" | "CODEX" | "GEMINI";
-export const EchoAgentType = /*@__PURE__*/ S.String;
+export const EchoAgentType = S.String;
 
 export type EchoChatByIdResponseEchoProjectAccountEnvironmentVariableEnvironmentsList =
   Array<unknown>;
@@ -75398,10 +75397,10 @@ export const EchoChatByIdResponseEchoProjectCreatedByActor =
   AccessTokenCreateAccessTokenResponseAccessTokenOwner;
 
 export type EchoBuildStatus = "BUILDING" | "FAILED" | "PENDING" | "SUCCESS";
-export const EchoBuildStatus = /*@__PURE__*/ S.String;
+export const EchoBuildStatus = S.String;
 
 export type EchoVersionSource = "AGENT" | "GITHUB" | "MANUAL" | "REVERT";
-export const EchoVersionSource = /*@__PURE__*/ S.String;
+export const EchoVersionSource = S.String;
 
 export interface EchoChatByIdResponseEchoProjectCurrentPreviewEchoVersion {
   buildError: string | null;
@@ -75434,7 +75433,7 @@ export const EchoChatByIdResponseEchoProjectCurrentPreviewEchoVersion =
   }) as any as S.Schema<EchoChatByIdResponseEchoProjectCurrentPreviewEchoVersion>;
 
 export type EchoProjectIconSource = "AI_GENERATED" | "USER_UPLOADED";
-export const EchoProjectIconSource = /*@__PURE__*/ S.String;
+export const EchoProjectIconSource = S.String;
 
 export interface EchoChatByIdResponseEchoProjectEchoProjectIcon {
   accentColor: string | null;
@@ -75550,7 +75549,7 @@ export const EchoChatByIdResponseEchoProjectThumbnail = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<EchoChatByIdResponseEchoProjectThumbnail>;
 
 export type EchoProjectVisibility = "PRIVATE" | "PUBLIC";
-export const EchoProjectVisibility = /*@__PURE__*/ S.String;
+export const EchoProjectVisibility = S.String;
 
 export interface EchoChatByIdResponseEchoProject {
   account: EchoChatByIdResponseEchoProjectAccount;
@@ -75600,7 +75599,7 @@ export const EchoChatByIdResponseEchoProject = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EchoChatByIdResponseEchoProject>;
 
 export type EchoChatState = "ACTIVE" | "ARCHIVED";
-export const EchoChatState = /*@__PURE__*/ S.String;
+export const EchoChatState = S.String;
 
 /** Selection set for `echoChat.byId` (unwrapped from the GraphQL `data` envelope). */
 export interface EchoChatByIdResponse {
@@ -76375,7 +76374,7 @@ export type EchoMessagePartType =
   | "SUBTASK"
   | "TEXT"
   | "TOOL";
-export const EchoMessagePartType = /*@__PURE__*/ S.String;
+export const EchoMessagePartType = S.String;
 
 export interface EchoMessageByIdResponseEchoMessagePartsItem {
   data: unknown;
@@ -76403,7 +76402,7 @@ export const EchoMessageByIdResponseEchoMessagePartsList =
   ) as any as S.Schema<EchoMessageByIdResponseEchoMessagePartsList>;
 
 export type EchoTurnCompletionStatus = "CANCELLED" | "COMPLETED" | "ERROR";
-export const EchoTurnCompletionStatus = /*@__PURE__*/ S.String;
+export const EchoTurnCompletionStatus = S.String;
 
 export interface EchoMessageByIdResponseEchoTurnEchoChat {
   agentMetadata: unknown | null;
@@ -76449,7 +76448,7 @@ export const EchoMessageByIdResponseEchoTurn = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EchoMessageByIdResponseEchoTurn>;
 
 export type EchoMessageRole = "ASSISTANT" | "USER";
-export const EchoMessageRole = /*@__PURE__*/ S.String;
+export const EchoMessageRole = S.String;
 
 export type EchoMessageByIdResponseUserAccessTokensItem =
   AccountByIdResponseOwnerAccessTokensItem;
@@ -85632,7 +85631,7 @@ export const EmbeddedUpdateUploadEmbeddedUpdateResponse =
   }) as any as S.Schema<EmbeddedUpdateUploadEmbeddedUpdateResponse>;
 
 export type EnvironmentSecretType = "FILE_BASE64" | "STRING";
-export const EnvironmentSecretType = /*@__PURE__*/ S.String;
+export const EnvironmentSecretType = S.String;
 
 export interface CreateEnvironmentSecretInput {
   name: string;
@@ -85774,7 +85773,7 @@ export const EnvironmentSecretDeleteEnvironmentSecretResponse =
   }) as any as S.Schema<EnvironmentSecretDeleteEnvironmentSecretResponse>;
 
 export type EnvironmentVariableVisibility = "PUBLIC" | "SECRET" | "SENSITIVE";
-export const EnvironmentVariableVisibility = /*@__PURE__*/ S.String;
+export const EnvironmentVariableVisibility = S.String;
 
 export interface CreateSharedEnvironmentVariableInput {
   environments?: DocumentList | null;
@@ -85839,7 +85838,7 @@ export const EnvironmentVariableCreateBulkEnvironmentVariablesForAccountResultIt
   ) as any as S.Schema<EnvironmentVariableCreateBulkEnvironmentVariablesForAccountResultItemEnvironmentsList>;
 
 export type EnvironmentVariableScope = "ECHO_PROJECT" | "PROJECT" | "SHARED";
-export const EnvironmentVariableScope = /*@__PURE__*/ S.String;
+export const EnvironmentVariableScope = S.String;
 
 export interface EnvironmentVariableCreateBulkEnvironmentVariablesForAccountResultItem {
   createdAt: string;
@@ -87207,7 +87206,7 @@ export const GithubAppRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GithubAppRequest>;
 
 export type GitHubAppEnvironment = "DEVELOPMENT" | "PRODUCTION" | "STAGING";
-export const GitHubAppEnvironment = /*@__PURE__*/ S.String;
+export const GitHubAppEnvironment = S.String;
 
 /** Selection set for `githubApp` (unwrapped from the GraphQL `data` envelope). */
 export interface GithubAppResponse {
@@ -107343,10 +107342,10 @@ export const MeResponsePinnedDashboardViewsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MeResponsePinnedDashboardViewsList>;
 
 export type OnboardingDeviceType = "DEVICE" | "SIMULATOR";
-export const OnboardingDeviceType = /*@__PURE__*/ S.String;
+export const OnboardingDeviceType = S.String;
 
 export type OnboardingEnvironment = "DEV_BUILD" | "EXPO_GO";
-export const OnboardingEnvironment = /*@__PURE__*/ S.String;
+export const OnboardingEnvironment = S.String;
 
 export interface MeResponsePreferencesOnboarding {
   appId: string;
@@ -109789,10 +109788,10 @@ export type NotificationEvent =
   | "SUBMISSION_COMPLETE"
   | "SUBMISSION_ERRORED"
   | "TEST";
-export const NotificationEvent = /*@__PURE__*/ S.String;
+export const NotificationEvent = S.String;
 
 export type NotificationType = "EMAIL" | "WEB";
-export const NotificationType = /*@__PURE__*/ S.String;
+export const NotificationType = S.String;
 
 export interface AccountNotificationPreferenceInput {
   accountId: string;
@@ -111218,7 +111217,7 @@ export const PosthogOrganizationConnectionCreatePostHogAccountRequestResponse =
   }) as any as S.Schema<PosthogOrganizationConnectionCreatePostHogAccountRequestResponse>;
 
 export type PostHogDeepLinkPurpose = "DASHBOARD" | "OBSERVABILITY" | "PROJECT";
-export const PostHogDeepLinkPurpose = /*@__PURE__*/ S.String;
+export const PostHogDeepLinkPurpose = S.String;
 
 export interface CreatePostHogDeepLinkInput {
   /** When set, deep-links to this app's linked PostHog project; otherwise lands on the organization home. */
@@ -116332,7 +116331,7 @@ export type StatuspageServiceName =
   | "EAS_WORKFLOWS"
   | "GITHUB_API_REQUESTS"
   | "GITHUB_WEBHOOKS";
-export const StatuspageServiceName = /*@__PURE__*/ S.String;
+export const StatuspageServiceName = S.String;
 
 export type StatuspageServiceNameList = Array<
   StatuspageServiceName | (string & {})
@@ -116369,7 +116368,7 @@ export type StatuspageIncidentImpact =
   | "MAJOR"
   | "MINOR"
   | "NONE";
-export const StatuspageIncidentImpact = /*@__PURE__*/ S.String;
+export const StatuspageIncidentImpact = S.String;
 
 export type StatuspageIncidentStatus =
   | "COMPLETED"
@@ -116380,7 +116379,7 @@ export type StatuspageIncidentStatus =
   | "RESOLVED"
   | "SCHEDULED"
   | "VERIFYING";
-export const StatuspageIncidentStatus = /*@__PURE__*/ S.String;
+export const StatuspageIncidentStatus = S.String;
 
 export interface StatuspageServiceByServiceNamesResultItemIncidentsItemUpdatesItem {
   body: string;
@@ -116450,7 +116449,7 @@ export type StatuspageServiceStatus =
   | "OPERATIONAL"
   | "PARTIAL_OUTAGE"
   | "UNDER_MAINTENANCE";
-export const StatuspageServiceStatus = /*@__PURE__*/ S.String;
+export const StatuspageServiceStatus = S.String;
 
 export interface StatuspageServiceByServiceNamesResultItem {
   description: string | null;
@@ -116495,7 +116494,7 @@ export type SubmissionArchiveSourceType =
   | "GCS_BUILD_APPLICATION_ARCHIVE_ORCHESTRATOR"
   | "GCS_SUBMIT_ARCHIVE"
   | "URL";
-export const SubmissionArchiveSourceType = /*@__PURE__*/ S.String;
+export const SubmissionArchiveSourceType = S.String;
 
 export interface SubmissionArchiveSourceInput {
   /** Required if the archive source type is GCS_BUILD_APPLICATION_ARCHIVE, GCS_BUILD_APPLICATION_ARCHIVE_ORCHESTRATOR or GCS_SUBMIT_ARCHIVE */
@@ -122644,7 +122643,7 @@ export const TurtleSshSessionSettingsInput =
   BuildsByIdResponseSshSessionSessionSettings;
 
 export type TurtleSshTargetType = "BUILD" | "JOB_RUN";
-export const TurtleSshTargetType = /*@__PURE__*/ S.String;
+export const TurtleSshTargetType = S.String;
 
 export interface TurtleSshTargetInput {
   id: string;
@@ -124323,7 +124322,7 @@ export const UpdateBranchEditUpdateBranchResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateBranchEditUpdateBranchResponse>;
 
 export type AssetMapSourceType = "GCS";
-export const AssetMapSourceType = /*@__PURE__*/ S.String;
+export const AssetMapSourceType = S.String;
 
 export interface AssetMapSourceInput {
   bucketKey?: string | null;
@@ -129826,7 +129825,7 @@ export const UpdateInvoicePreviewInvoiceForAdditionalAgentCreditsCountRequest =
   }) as any as S.Schema<UpdateInvoicePreviewInvoiceForAdditionalAgentCreditsCountRequest>;
 
 export type InvoiceDiscountType = "AMOUNT" | "PERCENTAGE";
-export const InvoiceDiscountType = /*@__PURE__*/ S.String;
+export const InvoiceDiscountType = S.String;
 
 export interface UpdateInvoicePreviewInvoiceForAdditionalAgentCreditsCountResponseDiscount {
   amount: number;
@@ -137937,7 +137936,7 @@ export const UpdateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
 export type AccountUploadSessionType =
   | "PROFILE_IMAGE_UPLOAD"
   | "WORKFLOWS_PROJECT_SOURCES";
-export const AccountUploadSessionType = /*@__PURE__*/ S.String;
+export const AccountUploadSessionType = S.String;
 
 export interface UploadSessionCreateAccountScopedUploadSessionRequest {
   accountID: string;
@@ -137974,7 +137973,7 @@ export const UploadSessionCreateAccountScopedUploadSessionResponse =
   }) as any as S.Schema<UploadSessionCreateAccountScopedUploadSessionResponse>;
 
 export type AppUploadSessionType = "PROFILE_IMAGE_UPLOAD";
-export const AppUploadSessionType = /*@__PURE__*/ S.String;
+export const AppUploadSessionType = S.String;
 
 export interface UploadSessionCreateAppScopedUploadSessionRequest {
   appID: string;
@@ -138011,7 +138010,7 @@ export const UploadSessionCreateAppScopedUploadSessionResponse =
   }) as any as S.Schema<UploadSessionCreateAppScopedUploadSessionResponse>;
 
 export type EchoProjectUploadSessionType = "IMAGE_UPLOAD";
-export const EchoProjectUploadSessionType = /*@__PURE__*/ S.String;
+export const EchoProjectUploadSessionType = S.String;
 
 export interface UploadSessionCreateEchoProjectScopedUploadSessionRequest {
   echoProjectID: string;
@@ -138056,7 +138055,7 @@ export type UploadSessionType =
   | "EAS_SUBMIT_GCS_APP_ARCHIVE"
   | "EAS_UPDATE_ASSETS_METADATA"
   | "EAS_UPDATE_FINGERPRINT";
-export const UploadSessionType = /*@__PURE__*/ S.String;
+export const UploadSessionType = S.String;
 
 export interface UploadSessionCreateUploadSessionRequest {
   filename?: string | null;
@@ -138204,7 +138203,7 @@ export type UserEntityTypeName =
   | "UserPermissionEntity"
   | "UserSecondFactorBackupCodesEntity"
   | "UserSecondFactorDeviceEntity";
-export const UserEntityTypeName = /*@__PURE__*/ S.String;
+export const UserEntityTypeName = S.String;
 
 export type UserEntityTypeNameList = Array<UserEntityTypeName | (string & {})>;
 export const UserEntityTypeNameList = /*@__PURE__*/ S.Array(
@@ -151854,7 +151853,7 @@ export type WorkflowDispatchInputType =
   | "ENVIRONMENT"
   | "NUMBER"
   | "STRING";
-export const WorkflowDispatchInputType = /*@__PURE__*/ S.String;
+export const WorkflowDispatchInputType = S.String;
 
 export interface WorkflowRevisionGetOrCreateWorkflowRevisionFromGitRefResponseInputsItem {
   default: unknown | null;
@@ -153460,7 +153459,7 @@ export const WorkflowRunCancelWorkflowRunResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<WorkflowRunCancelWorkflowRunResponse>;
 
 export type WorkflowProjectSourceType = "GCS";
-export const WorkflowProjectSourceType = /*@__PURE__*/ S.String;
+export const WorkflowProjectSourceType = S.String;
 
 export interface WorkflowProjectSourceInput {
   easJsonBucketKey?: string | null;
@@ -159275,7 +159274,7 @@ export const WorkflowsInsightsFiltersInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkflowsInsightsFiltersInput>;
 
 export type WorkflowsInsightsExportFormat = "CSV" | "NDJSON";
-export const WorkflowsInsightsExportFormat = /*@__PURE__*/ S.String;
+export const WorkflowsInsightsExportFormat = S.String;
 
 export type WorkflowsInsightsTimespanInput =
   UpdateInvoicePreviewInvoiceForAdditionalAgentCreditsCountResponseLineItemsItemPeriod;

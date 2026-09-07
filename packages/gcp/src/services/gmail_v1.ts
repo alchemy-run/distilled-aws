@@ -365,13 +365,13 @@ export type LabelLabelListVisibilityEnum =
   | "labelShow"
   | "labelShowIfUnread"
   | "labelHide";
-export const LabelLabelListVisibilityEnum = /*@__PURE__*/ S.String;
+export const LabelLabelListVisibilityEnum = S.String;
 
 export type LabelMessageListVisibilityEnum = "show" | "hide";
-export const LabelMessageListVisibilityEnum = /*@__PURE__*/ S.String;
+export const LabelMessageListVisibilityEnum = S.String;
 
 export type LabelTypeEnum = "system" | "user";
-export const LabelTypeEnum = /*@__PURE__*/ S.String;
+export const LabelTypeEnum = S.String;
 
 /** Labels are used to categorize messages and threads within the user's mailbox. The maximum number of labels supported for a user's mailbox is 10,000. */
 export interface Label {
@@ -488,14 +488,13 @@ export const CreateUsersSettingsCseIdentitiesRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateUsersSettingsCseIdentitiesRequest>;
 
 export type CreateUsersSettingsCseKeypairsChainValidationEnum = "all" | "none";
-export const CreateUsersSettingsCseKeypairsChainValidationEnum =
-  /*@__PURE__*/ S.String;
+export const CreateUsersSettingsCseKeypairsChainValidationEnum = S.String;
 
 export type CseKeyPairEnablementStateEnum =
   | "stateUnspecified"
   | "enabled"
   | "disabled";
-export const CseKeyPairEnablementStateEnum = /*@__PURE__*/ S.String;
+export const CseKeyPairEnablementStateEnum = S.String;
 
 /** Metadata for hardware keys. If [hardware key encryption](https://support.google.com/a/answer/14153163) is set up for the Google Workspace organization, users can optionally store their private key on their smart card and use it to sign and decrypt email messages in Gmail by inserting their smart card into a reader attached to their Windows device. */
 export interface HardwareKeyMetadata {
@@ -614,7 +613,7 @@ export type DelegateVerificationStatusEnum =
   | "pending"
   | "rejected"
   | "expired";
-export const DelegateVerificationStatusEnum = /*@__PURE__*/ S.String;
+export const DelegateVerificationStatusEnum = S.String;
 
 /** Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator's account. See "Set up mail delegation" for more information about delegates. */
 export interface Delegate {
@@ -672,7 +671,7 @@ export type FilterCriteriaSizeComparisonEnum =
   | "unspecified"
   | "smaller"
   | "larger";
-export const FilterCriteriaSizeComparisonEnum = /*@__PURE__*/ S.String;
+export const FilterCriteriaSizeComparisonEnum = S.String;
 
 /** Message matching criteria. */
 export interface FilterCriteria {
@@ -751,7 +750,7 @@ export type ForwardingAddressVerificationStatusEnum =
   | "verificationStatusUnspecified"
   | "accepted"
   | "pending";
-export const ForwardingAddressVerificationStatusEnum = /*@__PURE__*/ S.String;
+export const ForwardingAddressVerificationStatusEnum = S.String;
 
 /** Settings for a forwarding address. */
 export interface ForwardingAddress {
@@ -795,14 +794,14 @@ export type SendAsVerificationStatusEnum =
   | "verificationStatusUnspecified"
   | "accepted"
   | "pending";
-export const SendAsVerificationStatusEnum = /*@__PURE__*/ S.String;
+export const SendAsVerificationStatusEnum = S.String;
 
 export type SmtpMsaSecurityModeEnum =
   | "securityModeUnspecified"
   | "none"
   | "ssl"
   | "starttls";
-export const SmtpMsaSecurityModeEnum = /*@__PURE__*/ S.String;
+export const SmtpMsaSecurityModeEnum = S.String;
 
 /** Configuration for communication with an SMTP service. */
 export interface SmtpMsa {
@@ -1254,7 +1253,7 @@ export type AutoForwardingDispositionEnum =
   | "archive"
   | "trash"
   | "markRead";
-export const AutoForwardingDispositionEnum = /*@__PURE__*/ S.String;
+export const AutoForwardingDispositionEnum = S.String;
 
 /** Auto-forwarding settings for an account. */
 export interface AutoForwarding {
@@ -1296,7 +1295,7 @@ export type ImapSettingsExpungeBehaviorEnum =
   | "archive"
   | "trash"
   | "deleteForever";
-export const ImapSettingsExpungeBehaviorEnum = /*@__PURE__*/ S.String;
+export const ImapSettingsExpungeBehaviorEnum = S.String;
 
 /** IMAP settings for an account. */
 export interface ImapSettings {
@@ -1372,7 +1371,7 @@ export type PopSettingsAccessWindowEnum =
   | "disabled"
   | "fromNowOn"
   | "allMail";
-export const PopSettingsAccessWindowEnum = /*@__PURE__*/ S.String;
+export const PopSettingsAccessWindowEnum = S.String;
 
 export type PopSettingsDispositionEnum =
   | "dispositionUnspecified"
@@ -1380,7 +1379,7 @@ export type PopSettingsDispositionEnum =
   | "archive"
   | "trash"
   | "markRead";
-export const PopSettingsDispositionEnum = /*@__PURE__*/ S.String;
+export const PopSettingsDispositionEnum = S.String;
 
 /** POP settings for an account. */
 export interface PopSettings {
@@ -1435,7 +1434,7 @@ export const Profile = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Profile" }) as any as S.Schema<Profile>;
 
 export type GetUsersDraftsFormatEnum = "minimal" | "full" | "raw" | "metadata";
-export const GetUsersDraftsFormatEnum = /*@__PURE__*/ S.String;
+export const GetUsersDraftsFormatEnum = S.String;
 
 export interface GetUsersDraftsRequest {
   /** The ID of the draft to retrieve. */
@@ -1487,7 +1486,7 @@ export type GetUsersMessagesFormatEnum =
   | "full"
   | "raw"
   | "metadata";
-export const GetUsersMessagesFormatEnum = /*@__PURE__*/ S.String;
+export const GetUsersMessagesFormatEnum = S.String;
 
 export interface GetUsersMessagesRequest {
   /** The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`). */
@@ -1723,7 +1722,7 @@ export const SmimeInfo = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SmimeInfo" }) as any as S.Schema<SmimeInfo>;
 
 export type GetUsersThreadsFormatEnum = "full" | "metadata" | "minimal";
-export const GetUsersThreadsFormatEnum = /*@__PURE__*/ S.String;
+export const GetUsersThreadsFormatEnum = S.String;
 
 export interface GetUsersThreadsRequest {
   /** The ID of the thread to retrieve. */
@@ -1832,7 +1831,7 @@ export const VacationSettings = /*@__PURE__*/ S.suspend(() =>
 export type ImportUsersMessagesInternalDateSourceEnum =
   | "receivedTime"
   | "dateHeader";
-export const ImportUsersMessagesInternalDateSourceEnum = /*@__PURE__*/ S.String;
+export const ImportUsersMessagesInternalDateSourceEnum = S.String;
 
 export interface ImportUsersMessagesRequest {
   /** Source for Gmail's internal date of the message. */
@@ -1874,7 +1873,7 @@ export const ImportUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 export type InsertUsersMessagesInternalDateSourceEnum =
   | "receivedTime"
   | "dateHeader";
-export const InsertUsersMessagesInternalDateSourceEnum = /*@__PURE__*/ S.String;
+export const InsertUsersMessagesInternalDateSourceEnum = S.String;
 
 export interface InsertUsersMessagesRequest {
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
@@ -1990,7 +1989,7 @@ export type ListUsersHistoryHistoryTypesEnum =
   | "messageDeleted"
   | "labelAdded"
   | "labelRemoved";
-export const ListUsersHistoryHistoryTypesEnum = /*@__PURE__*/ S.String;
+export const ListUsersHistoryHistoryTypesEnum = S.String;
 
 export type ListUsersHistoryHistoryTypesEnumList = Array<
   ListUsersHistoryHistoryTypesEnum | (string & {})
@@ -3141,10 +3140,10 @@ export const VerifyUsersSettingsSendAsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VerifyUsersSettingsSendAsResponse>;
 
 export type WatchRequestLabelFilterBehaviorEnum = "include" | "exclude";
-export const WatchRequestLabelFilterBehaviorEnum = /*@__PURE__*/ S.String;
+export const WatchRequestLabelFilterBehaviorEnum = S.String;
 
 export type WatchRequestLabelFilterActionEnum = "include" | "exclude";
-export const WatchRequestLabelFilterActionEnum = /*@__PURE__*/ S.String;
+export const WatchRequestLabelFilterActionEnum = S.String;
 
 /** Set up or update a new push notification watch on this user's mailbox. */
 export interface WatchRequest {

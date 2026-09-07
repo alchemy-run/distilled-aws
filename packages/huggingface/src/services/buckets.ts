@@ -77,7 +77,7 @@ export type AddResourceGroupResponseType =
   | "space"
   | "bucket"
   | "kernel";
-export const AddResourceGroupResponseType = /*@__PURE__*/ S.String;
+export const AddResourceGroupResponseType = S.String;
 
 export interface AddResourceGroupResponse {
   name: string;
@@ -160,10 +160,10 @@ export const BatchFileOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchFileOperationsResponse>;
 
 export type CreateBucketRequestCdnItemProvider = "gcp" | "aws";
-export const CreateBucketRequestCdnItemProvider = /*@__PURE__*/ S.String;
+export const CreateBucketRequestCdnItemProvider = S.String;
 
 export type CreateBucketRequestCdnItemRegion = "us" | "eu";
-export const CreateBucketRequestCdnItemRegion = /*@__PURE__*/ S.String;
+export const CreateBucketRequestCdnItemRegion = S.String;
 
 export interface CreateBucketRequestCdnItem {
   provider: CreateBucketRequestCdnItemProvider | (string & {});
@@ -186,7 +186,7 @@ export const CreateBucketRequestCdnList = /*@__PURE__*/ S.Array(
 
 /** The region where the bucket is hosted. */
 export type CreateBucketRequestRegion = "us" | "eu";
-export const CreateBucketRequestRegion = /*@__PURE__*/ S.String;
+export const CreateBucketRequestRegion = S.String;
 
 export interface CreateBucketRequest {
   namespace: string;
@@ -264,7 +264,7 @@ export type DuplicateXetFilesRequestTargetType =
   | "model"
   | "space"
   | "kernel";
-export const DuplicateXetFilesRequestTargetType = /*@__PURE__*/ S.String;
+export const DuplicateXetFilesRequestTargetType = S.String;
 
 export interface DuplicateXetFilesRequestTarget {
   type: DuplicateXetFilesRequestTargetType | (string & {});
@@ -407,12 +407,10 @@ export const GetBucketDetailsResponseDisabled = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBucketDetailsResponseDisabled>;
 
 export type GetBucketDetailsResponseCdnRegionsItemProvider = "gcp" | "aws";
-export const GetBucketDetailsResponseCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+export const GetBucketDetailsResponseCdnRegionsItemProvider = S.String;
 
 export type GetBucketDetailsResponseCdnRegionsItemRegion = "us" | "eu";
-export const GetBucketDetailsResponseCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+export const GetBucketDetailsResponseCdnRegionsItemRegion = S.String;
 
 export interface GetBucketDetailsResponseCdnRegionsItem {
   provider: GetBucketDetailsResponseCdnRegionsItemProvider;
@@ -577,11 +575,11 @@ export const GetResourceGroupResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. `path` (default) sorts lexicographically; `uploadedAt` sorts by most recent upload first. In recursive mode `uploadedAt` is only supported at the bucket root (no path prefix). In non-recursive mode, only supported at root or exact folder prefixes. */
 export type ListFilesRequestSort = "path" | "uploadedAt";
-export const ListFilesRequestSort = /*@__PURE__*/ S.String;
+export const ListFilesRequestSort = S.String;
 
 /** Sort direction. Defaults to `asc` for `path` and `desc` for `uploadedAt`. */
 export type ListFilesRequestDirection = "asc" | "desc";
-export const ListFilesRequestDirection = /*@__PURE__*/ S.String;
+export const ListFilesRequestDirection = S.String;
 
 export interface ListFilesRequest {
   namespace: string;
@@ -615,7 +613,7 @@ export const ListFilesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListFilesRequest>;
 
 export type ListFilesResponseBodyItemType = "file" | "directory";
-export const ListFilesResponseBodyItemType = /*@__PURE__*/ S.String;
+export const ListFilesResponseBodyItemType = S.String;
 
 export interface ListFilesResponseBodyItem {
   type: ListFilesResponseBodyItemType;
@@ -686,13 +684,13 @@ export type ListNamespaceBucketsResponseBodyItemCdnRegionsItemProvider =
   | "gcp"
   | "aws";
 export const ListNamespaceBucketsResponseBodyItemCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListNamespaceBucketsResponseBodyItemCdnRegionsItemRegion =
   | "us"
   | "eu";
 export const ListNamespaceBucketsResponseBodyItemCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListNamespaceBucketsResponseBodyItemCdnRegionsItem {
   provider: ListNamespaceBucketsResponseBodyItemCdnRegionsItemProvider;
@@ -781,7 +779,7 @@ export type ListPathsInfoRequestPaths =
   | ListPathsInfoRequestPathsCase0List
   | string;
 export const ListPathsInfoRequestPaths =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListPathsInfoRequestPaths>;
+  S.Unknown as any as S.Schema<ListPathsInfoRequestPaths>;
 
 export interface ListPathsInfoRequest {
   namespace: string;
@@ -805,7 +803,7 @@ export const ListPathsInfoRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPathsInfoRequest>;
 
 export type ListPathsInfoResponseBodyItemType = "file" | "directory";
-export const ListPathsInfoResponseBodyItemType = /*@__PURE__*/ S.String;
+export const ListPathsInfoResponseBodyItemType = S.String;
 
 export interface ListPathsInfoResponseBodyItem {
   type: ListPathsInfoResponseBodyItemType;
@@ -849,15 +847,13 @@ export const ListPathsInfoResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateBucketSettingsRequestPrivate = boolean | unknown;
 export const UpdateBucketSettingsRequestPrivate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBucketSettingsRequestPrivate>;
+  S.Unknown as any as S.Schema<UpdateBucketSettingsRequestPrivate>;
 
 export type UpdateBucketSettingsRequestCdnRegionsItemProvider = "gcp" | "aws";
-export const UpdateBucketSettingsRequestCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+export const UpdateBucketSettingsRequestCdnRegionsItemProvider = S.String;
 
 export type UpdateBucketSettingsRequestCdnRegionsItemRegion = "us" | "eu";
-export const UpdateBucketSettingsRequestCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+export const UpdateBucketSettingsRequestCdnRegionsItemRegion = S.String;
 
 export interface UpdateBucketSettingsRequestCdnRegionsItem {
   provider: UpdateBucketSettingsRequestCdnRegionsItemProvider | (string & {});
@@ -903,12 +899,10 @@ export const UpdateBucketSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBucketSettingsRequest>;
 
 export type UpdateBucketSettingsResponseCdnRegionsItemProvider = "gcp" | "aws";
-export const UpdateBucketSettingsResponseCdnRegionsItemProvider =
-  /*@__PURE__*/ S.String;
+export const UpdateBucketSettingsResponseCdnRegionsItemProvider = S.String;
 
 export type UpdateBucketSettingsResponseCdnRegionsItemRegion = "us" | "eu";
-export const UpdateBucketSettingsResponseCdnRegionsItemRegion =
-  /*@__PURE__*/ S.String;
+export const UpdateBucketSettingsResponseCdnRegionsItemRegion = S.String;
 
 export interface UpdateBucketSettingsResponseCdnRegionsItem {
   provider: UpdateBucketSettingsResponseCdnRegionsItemProvider;

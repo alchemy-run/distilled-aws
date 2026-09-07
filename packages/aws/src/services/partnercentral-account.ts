@@ -154,12 +154,12 @@ export type ConnectionType =
   | "OPPORTUNITY_COLLABORATION"
   | "SUBSIDIARY"
   | (string & {});
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 export type Email = string;
 export type SensitiveUnicodeString = string | redacted.Redacted<string>;
 export type ConnectionTypeStatus = "ACTIVE" | "CANCELED" | (string & {});
-export const ConnectionTypeStatus = /*@__PURE__*/ S.String;
+export const ConnectionTypeStatus = S.String;
 
 export type PartnerProfileId = string;
 export type UnicodeString = string;
@@ -349,7 +349,7 @@ export const CancelConnectionInvitationRequest = /*@__PURE__*/ S.suspend(() =>
 export type ConnectionInvitationArn = string;
 export type ParticipantIdentifier = string;
 export type ParticipantType = "SENDER" | "RECEIVER" | (string & {});
-export const ParticipantType = /*@__PURE__*/ S.String;
+export const ParticipantType = S.String;
 
 export type InvitationStatus =
   | "PENDING"
@@ -358,7 +358,7 @@ export type InvitationStatus =
   | "CANCELED"
   | "EXPIRED"
   | (string & {});
-export const InvitationStatus = /*@__PURE__*/ S.String;
+export const InvitationStatus = S.String;
 
 export type UnicodeStringIncludingNewLine = string;
 export interface CancelConnectionInvitationResponse {
@@ -431,7 +431,7 @@ export type PrimarySolutionType =
   | "VALUE_ADDED_RESALE_AWS_SERVICES"
   | "TRAINING_SERVICES"
   | (string & {});
-export const PrimarySolutionType = /*@__PURE__*/ S.String;
+export const PrimarySolutionType = S.String;
 
 export type IndustrySegment =
   | "AGRICULTURE_MINING"
@@ -472,7 +472,7 @@ export type IndustrySegment =
   | "TRAVEL_HOSPITALITY"
   | "WHOLESALE_DISTRIBUTION"
   | (string & {});
-export const IndustrySegment = /*@__PURE__*/ S.String;
+export const IndustrySegment = S.String;
 
 export type IndustrySegmentList = IndustrySegment[];
 export const IndustrySegmentList = /*@__PURE__*/ S.Array(IndustrySegment);
@@ -536,7 +536,7 @@ export type ProfileTaskStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const ProfileTaskStatus = /*@__PURE__*/ S.String;
+export const ProfileTaskStatus = S.String;
 
 export type ProfileValidationErrorReason =
   | "INVALID_CONTENT"
@@ -547,7 +547,7 @@ export type ProfileValidationErrorReason =
   | "INVALID_LOGO_SIZE"
   | "INVALID_WEBSITE_URL"
   | (string & {});
-export const ProfileValidationErrorReason = /*@__PURE__*/ S.String;
+export const ProfileValidationErrorReason = S.String;
 
 export interface ErrorDetail {
   Locale: string;
@@ -912,7 +912,7 @@ export type AccessType =
   | "DENY_ALL"
   | "ALLOW_BY_DEFAULT_DENY_SOME"
   | (string & {});
-export const AccessType = /*@__PURE__*/ S.String;
+export const AccessType = S.String;
 
 export type ParticipantIdentifierList = string[];
 export const ParticipantIdentifierList = /*@__PURE__*/ S.Array(S.String);
@@ -1019,7 +1019,7 @@ export const GetProfileVisibilityRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProfileVisibilityRequest",
 }) as any as S.Schema<GetProfileVisibilityRequest>;
 export type ProfileVisibility = "PRIVATE" | "PUBLIC" | (string & {});
-export const ProfileVisibility = /*@__PURE__*/ S.String;
+export const ProfileVisibility = S.String;
 
 export interface GetProfileVisibilityResponse {
   Catalog: string;
@@ -1055,7 +1055,7 @@ export type QualificationsAssociationStatus =
   | "ASSOCIATED"
   | "NOT_ASSOCIATED"
   | (string & {});
-export const QualificationsAssociationStatus = /*@__PURE__*/ S.String;
+export const QualificationsAssociationStatus = S.String;
 
 export interface QualificationsAssociationPartner {
   ProfileId?: string;
@@ -1115,7 +1115,7 @@ export type QualificationsAssociationTaskStatus =
   | "IN_PROGRESS"
   | "SUCCEEDED"
   | (string & {});
-export const QualificationsAssociationTaskStatus = /*@__PURE__*/ S.String;
+export const QualificationsAssociationTaskStatus = S.String;
 
 export interface GetQualificationsAssociationTaskResponse {
   Catalog: string;
@@ -1161,7 +1161,7 @@ export type QualificationsDisassociationTaskStatus =
   | "IN_PROGRESS"
   | "SUCCEEDED"
   | (string & {});
-export const QualificationsDisassociationTaskStatus = /*@__PURE__*/ S.String;
+export const QualificationsDisassociationTaskStatus = S.String;
 
 export interface GetQualificationsDisassociationTaskResponse {
   Catalog: string;
@@ -1194,7 +1194,7 @@ export type VerificationType =
   | "BUSINESS_VERIFICATION"
   | "REGISTRANT_VERIFICATION"
   | (string & {});
-export const VerificationType = /*@__PURE__*/ S.String;
+export const VerificationType = S.String;
 
 export interface GetVerificationRequest {
   VerificationType: VerificationType;
@@ -1213,7 +1213,7 @@ export type VerificationStatus =
   | "SUCCEEDED"
   | "REJECTED"
   | (string & {});
-export const VerificationStatus = /*@__PURE__*/ S.String;
+export const VerificationStatus = S.String;
 
 export type VerificationStatusReason = string;
 export type LegalName = string | redacted.Redacted<string>;
@@ -1909,7 +1909,7 @@ export type AccessDeniedExceptionReason =
   | "ACCESS_DENIED"
   | "INCOMPATIBLE_BENEFIT_AWS_PARTNER_STATE"
   | (string & {});
-export const AccessDeniedExceptionReason = /*@__PURE__*/ S.String;
+export const AccessDeniedExceptionReason = S.String;
 
 export type ConflictExceptionReason =
   | "CONFLICT_CLIENT_TOKEN"
@@ -1926,7 +1926,7 @@ export type ConflictExceptionReason =
   | "VERIFICATION_ALREADY_IN_PROGRESS"
   | "INCOMPATIBLE_QUALIFICATIONS_ASSOCIATION_TASK_STATE"
   | (string & {});
-export const ConflictExceptionReason = /*@__PURE__*/ S.String;
+export const ConflictExceptionReason = S.String;
 
 export type ResourceNotFoundExceptionReason =
   | "PARTNER_NOT_FOUND"
@@ -1941,7 +1941,7 @@ export type ResourceNotFoundExceptionReason =
   | "QUALIFICATIONS_ASSOCIATION_TASK_NOT_FOUND"
   | "QUALIFICATIONS_DISASSOCIATION_TASK_NOT_FOUND"
   | (string & {});
-export const ResourceNotFoundExceptionReason = /*@__PURE__*/ S.String;
+export const ResourceNotFoundExceptionReason = S.String;
 
 export type ServiceQuotaExceededExceptionReason =
   | "LIMIT_EXCEEDED_NUMBER_OF_EMAIL"
@@ -1952,13 +1952,13 @@ export type ServiceQuotaExceededExceptionReason =
   | "LIMIT_EXCEEDED_NUMBER_OF_PROFILE_UPDATE_PER_DAY"
   | "LIMIT_EXCEEDED_NUMBER_OF_PROFILE_VISIBILITY_UPDATE_PER_DAY"
   | (string & {});
-export const ServiceQuotaExceededExceptionReason = /*@__PURE__*/ S.String;
+export const ServiceQuotaExceededExceptionReason = S.String;
 
 export type ValidationExceptionReason =
   | "REQUEST_VALIDATION_FAILED"
   | "BUSINESS_VALIDATION_FAILED"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type FieldValidationCode =
   | "REQUIRED_FIELD_MISSING"
@@ -1969,7 +1969,7 @@ export type FieldValidationCode =
   | "ACTION_NOT_PERMITTED"
   | "INVALID_ENUM_VALUE"
   | (string & {});
-export const FieldValidationCode = /*@__PURE__*/ S.String;
+export const FieldValidationCode = S.String;
 
 export interface FieldValidationError {
   Name: string;
@@ -1997,7 +1997,7 @@ export type BusinessValidationCode =
   | "QUALIFICATIONS_ASSOCIATION_NOT_FOUND"
   | "QUALIFICATIONS_ASSOCIATION_EXISTS"
   | (string & {});
-export const BusinessValidationCode = /*@__PURE__*/ S.String;
+export const BusinessValidationCode = S.String;
 
 export interface BusinessValidationError {
   Message: string;

@@ -793,7 +793,7 @@ export type Action =
   | "initiateDatabaseReset"
   | "performDatabaseReset"
   | (string & {});
-export const Action = /*@__PURE__*/ S.String;
+export const Action = S.String;
 
 export interface ExecuteFastResetInput {
   action: Action;
@@ -958,7 +958,7 @@ export type OpenCypherExplainMode =
   | "dynamic"
   | "details"
   | (string & {});
-export const OpenCypherExplainMode = /*@__PURE__*/ S.String;
+export const OpenCypherExplainMode = S.String;
 
 export interface ExecuteOpenCypherExplainQueryInput {
   openCypherQuery: string;
@@ -1456,10 +1456,10 @@ export type IteratorType =
   | "TRIM_HORIZON"
   | "LATEST"
   | (string & {});
-export const IteratorType = /*@__PURE__*/ S.String;
+export const IteratorType = S.String;
 
 export type Encoding = "gzip" | (string & {});
-export const Encoding = /*@__PURE__*/ S.String;
+export const Encoding = S.String;
 
 export interface GetPropertygraphStreamInput {
   limit?: number;
@@ -1548,7 +1548,7 @@ export const GetPropertygraphStreamOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPropertygraphStreamOutput",
 }) as any as S.Schema<GetPropertygraphStreamOutput>;
 export type GraphSummaryType = "basic" | "detailed" | (string & {});
-export const GraphSummaryType = /*@__PURE__*/ S.String;
+export const GraphSummaryType = S.String;
 
 export interface GetPropertygraphSummaryInput {
   mode?: GraphSummaryType;
@@ -2106,7 +2106,7 @@ export type StatisticsAutoGenerationMode =
   | "enableAutoCompute"
   | "refresh"
   | (string & {});
-export const StatisticsAutoGenerationMode = /*@__PURE__*/ S.String;
+export const StatisticsAutoGenerationMode = S.String;
 
 export interface ManagePropertygraphStatisticsInput {
   mode?: StatisticsAutoGenerationMode;
@@ -2176,7 +2176,7 @@ export type Format =
   | "rdfxml"
   | "turtle"
   | (string & {});
-export const Format = /*@__PURE__*/ S.String;
+export const Format = S.String;
 
 export type S3BucketRegion =
   | "us-east-1"
@@ -2216,10 +2216,10 @@ export type S3BucketRegion =
   | "ap-south-2"
   | "eu-central-2"
   | (string & {});
-export const S3BucketRegion = /*@__PURE__*/ S.String;
+export const S3BucketRegion = S.String;
 
 export type Mode = "RESUME" | "NEW" | "AUTO" | (string & {});
-export const Mode = /*@__PURE__*/ S.String;
+export const Mode = S.String;
 
 export type Parallelism =
   | "LOW"
@@ -2227,7 +2227,7 @@ export type Parallelism =
   | "HIGH"
   | "OVERSUBSCRIBE"
   | (string & {});
-export const Parallelism = /*@__PURE__*/ S.String;
+export const Parallelism = S.String;
 
 export interface StartLoaderJobInput {
   source: string;

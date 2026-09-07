@@ -98,7 +98,7 @@ export type SymptomSymptomTypeEnum =
   | "MESH_BUILD_FAIL"
   | "HBM_OUT_OF_MEMORY"
   | "PROJECT_ABUSE";
-export const SymptomSymptomTypeEnum = /*@__PURE__*/ S.String;
+export const SymptomSymptomTypeEnum = S.String;
 
 /** DEPRECATED: Please use TPU API v2alpha1 instead. A Symptom instance. */
 export interface Symptom {
@@ -153,7 +153,7 @@ export type NodeHealthEnum =
   | "TIMEOUT"
   | "UNHEALTHY_TENSORFLOW"
   | "UNHEALTHY_MAINTENANCE";
-export const NodeHealthEnum = /*@__PURE__*/ S.String;
+export const NodeHealthEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -166,7 +166,7 @@ export type NodeApiVersionEnum =
   | "V1_ALPHA1"
   | "V1"
   | "V2_ALPHA1";
-export const NodeApiVersionEnum = /*@__PURE__*/ S.String;
+export const NodeApiVersionEnum = S.String;
 
 /** DEPRECATED: Please use TPU API v2alpha1 instead. Sets the scheduling options for this node. */
 export interface SchedulingConfig {
@@ -201,7 +201,7 @@ export type NodeStateEnum =
   | "HIDDEN"
   | "UNHIDING"
   | "UNKNOWN";
-export const NodeStateEnum = /*@__PURE__*/ S.String;
+export const NodeStateEnum = S.String;
 
 /** DEPRECATED: Please use TPU API v2alpha1 instead. A TPU instance. */
 export interface Node {

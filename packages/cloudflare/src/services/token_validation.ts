@@ -73,7 +73,7 @@ export class TokenValidationRuleNotFound
   ) {}
 
 export type RulesBulkCreateRequestBodyItemAction = "log" | "block";
-export const RulesBulkCreateRequestBodyItemAction = /*@__PURE__*/ S.String;
+export const RulesBulkCreateRequestBodyItemAction = S.String;
 
 export type RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList =
   Array<string>;
@@ -207,7 +207,7 @@ export const BulkCreateRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BulkCreateRulesRequest>;
 
 export type RulesBulkCreateResultItemAction = "log" | "block";
-export const RulesBulkCreateResultItemAction = /*@__PURE__*/ S.String;
+export const RulesBulkCreateResultItemAction = S.String;
 
 export type RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList =
   Array<string>;
@@ -339,7 +339,7 @@ export const BulkCreateRulesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BulkCreateRulesResponse>;
 
 export type RulesBulkEditRequestBodyItemAction = "log" | "block";
-export const RulesBulkEditRequestBodyItemAction = /*@__PURE__*/ S.String;
+export const RulesBulkEditRequestBodyItemAction = S.String;
 
 export interface RulesBulkEditRequestBodyItemPositionAPIShieldIndex {
   /** Move rule to this position */
@@ -524,7 +524,7 @@ export const BulkPatchRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BulkPatchRulesRequest>;
 
 export type RulesBulkEditResultItemAction = "log" | "block";
-export const RulesBulkEditResultItemAction = /*@__PURE__*/ S.String;
+export const RulesBulkEditResultItemAction = S.String;
 
 export type RulesBulkEditResultItemSelectorExcludeItemOperationIdsList =
   Array<string>;
@@ -660,12 +660,12 @@ export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWT
   | "PS384"
   | "PS512";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAAlg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
   "RSA";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyRSA {
   /** Algorithm */
@@ -698,17 +698,17 @@ export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJW
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
   "ES256";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
   "P-256";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
   "EC";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256 {
   /** Algorithm */
@@ -742,17 +742,17 @@ export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJW
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
   "ES384";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
   "P-384";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
   "EC";
 export const ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384 {
   /** Algorithm */
@@ -821,7 +821,7 @@ export const ConfigurationCreateRequestTokenSourcesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConfigurationCreateRequestTokenSourcesList>;
 
 export type ConfigurationCreateRequestTokenType = "JWT";
-export const ConfigurationCreateRequestTokenType = /*@__PURE__*/ S.String;
+export const ConfigurationCreateRequestTokenType = S.String;
 
 export interface CreateConfigurationRequest {
   /** Identifier. */
@@ -863,12 +863,12 @@ export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJW
   | "PS384"
   | "PS512";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAAlg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
   "RSA";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSA {
   /** Algorithm */
@@ -899,17 +899,17 @@ export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJ
 export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
   "ES256";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
   "P-256";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
   "EC";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256 {
   /** Algorithm */
@@ -943,17 +943,17 @@ export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJ
 export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
   "ES384";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
   "P-384";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
   "EC";
 export const ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCreateResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384 {
   /** Algorithm */
@@ -1023,7 +1023,7 @@ export const ConfigurationCreateResponseTokenSourcesList =
   ) as any as S.Schema<ConfigurationCreateResponseTokenSourcesList>;
 
 export type ConfigurationCreateResponseTokenType = "JWT";
-export const ConfigurationCreateResponseTokenType = /*@__PURE__*/ S.String;
+export const ConfigurationCreateResponseTokenType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateConfigurationResponse {
@@ -1055,7 +1055,7 @@ export const CreateConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateConfigurationResponse>;
 
 export type RulesCreateRequestAction = "log" | "block";
-export const RulesCreateRequestAction = /*@__PURE__*/ S.String;
+export const RulesCreateRequestAction = S.String;
 
 export type RulesCreateRequestSelectorExcludeItemOperationIdsList =
   Array<string>;
@@ -1166,7 +1166,7 @@ export const CreateRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRuleRequest>;
 
 export type RulesCreateResponseAction = "log" | "block";
-export const RulesCreateResponseAction = /*@__PURE__*/ S.String;
+export const RulesCreateResponseAction = S.String;
 
 export type RulesCreateResponseSelectorExcludeItemOperationIdsList =
   Array<string>;
@@ -1372,12 +1372,12 @@ export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKe
   | "PS384"
   | "PS512";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAAlg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
   "RSA";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyRSA {
   /** Algorithm */
@@ -1408,17 +1408,17 @@ export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTK
 export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
   "ES256";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
   "P-256";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
   "EC";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256 {
   /** Algorithm */
@@ -1452,17 +1452,17 @@ export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTK
 export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
   "ES384";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
   "P-384";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
   "EC";
 export const ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationGetResponseCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384 {
   /** Algorithm */
@@ -1530,7 +1530,7 @@ export const ConfigurationGetResponseTokenSourcesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConfigurationGetResponseTokenSourcesList>;
 
 export type ConfigurationGetResponseTokenType = "JWT";
-export const ConfigurationGetResponseTokenType = /*@__PURE__*/ S.String;
+export const ConfigurationGetResponseTokenType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetConfigurationResponse {
@@ -1583,7 +1583,7 @@ export const GetRuleRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetRuleRequest" }) as any as S.Schema<GetRuleRequest>;
 
 export type RulesGetResponseAction = "log" | "block";
-export const RulesGetResponseAction = /*@__PURE__*/ S.String;
+export const RulesGetResponseAction = S.String;
 
 export type RulesGetResponseSelectorExcludeItemOperationIdsList = Array<string>;
 export const RulesGetResponseSelectorExcludeItemOperationIdsList =
@@ -1721,12 +1721,12 @@ export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJW
   | "PS384"
   | "PS512";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAAlg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
   "RSA";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAKty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyRSA {
   /** Algorithm */
@@ -1757,17 +1757,17 @@ export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJ
 export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
   "ES256";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
   "P-256";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
   "EC";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs256 {
   /** Algorithm */
@@ -1801,17 +1801,17 @@ export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJ
 export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
   "ES384";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
   "P-384";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
   "EC";
 export const ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationListResultItemCredentialsKeysItemAPIShieldCredentialsJWTKeyEcEs384 {
   /** Algorithm */
@@ -1881,7 +1881,7 @@ export const ConfigurationListResultItemTokenSourcesList =
   ) as any as S.Schema<ConfigurationListResultItemTokenSourcesList>;
 
 export type ConfigurationListResultItemTokenType = "JWT";
-export const ConfigurationListResultItemTokenType = /*@__PURE__*/ S.String;
+export const ConfigurationListResultItemTokenType = S.String;
 
 export interface ConfigurationListResultItem {
   /** UUID. */
@@ -1932,7 +1932,7 @@ export const ListConfigurationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListConfigurationsResponse>;
 
 export type RulesListRequestAction = "log" | "block";
-export const RulesListRequestAction = /*@__PURE__*/ S.String;
+export const RulesListRequestAction = S.String;
 
 export type RulesListRequestTokenConfigurationList = Array<string>;
 export const RulesListRequestTokenConfigurationList = /*@__PURE__*/ S.Array(
@@ -1991,7 +1991,7 @@ export const ListRulesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRulesRequest>;
 
 export type RulesListResultItemAction = "log" | "block";
-export const RulesListResultItemAction = /*@__PURE__*/ S.String;
+export const RulesListResultItemAction = S.String;
 
 export type RulesListResultItemSelectorExcludeItemOperationIdsList =
   Array<string>;
@@ -2184,7 +2184,7 @@ export const PatchConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchConfigurationResponse>;
 
 export type RulesEditRequestAction = "log" | "block";
-export const RulesEditRequestAction = /*@__PURE__*/ S.String;
+export const RulesEditRequestAction = S.String;
 
 export type RulesEditRequestPositionAPIShieldIndex =
   RulesBulkEditRequestBodyItemPositionAPIShieldIndex;
@@ -2321,7 +2321,7 @@ export const PatchRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchRuleRequest>;
 
 export type RulesEditResponseAction = "log" | "block";
-export const RulesEditResponseAction = /*@__PURE__*/ S.String;
+export const RulesEditResponseAction = S.String;
 
 export type RulesEditResponseSelectorExcludeItemOperationIdsList =
   Array<string>;
@@ -2436,12 +2436,12 @@ export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWT
   | "PS384"
   | "PS512";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyRSAAlg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyRSAKty =
   "RSA";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyRSAKty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyRSA {
   /** Algorithm */
@@ -2474,17 +2474,17 @@ export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJW
 export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
   "ES256";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
   "P-256";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
   "EC";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs256 {
   /** Algorithm */
@@ -2518,17 +2518,17 @@ export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJW
 export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
   "ES384";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
   "P-384";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
   "EC";
 export const ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCredentialsUpdateRequestKeysItemAPIShieldCredentialsJWTKeyEcEs384 {
   /** Algorithm */
@@ -2612,12 +2612,12 @@ export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJW
   | "PS384"
   | "PS512";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyRSAAlg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyRSAKty =
   "RSA";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyRSAKty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyRSA {
   /** Algorithm */
@@ -2648,17 +2648,17 @@ export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJ
 export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
   "ES256";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs256Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
   "P-256";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs256Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
   "EC";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs256Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs256 {
   /** Algorithm */
@@ -2692,17 +2692,17 @@ export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJ
 export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
   "ES384";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs384Alg =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
   "P-384";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs384Crv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
   "EC";
 export const ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs384Kty =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfigurationCredentialsUpdateResponseKeysItemAPIShieldCredentialsJWTKeyEcEs384 {
   /** Algorithm */

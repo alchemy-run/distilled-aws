@@ -15,7 +15,7 @@ export type { HetznerOpError, HetznerOpContext };
 
 /** Type of resource assigning the Primary IP to. */
 export type AssignPrimaryIpRequestAssigneeType = "server";
-export const AssignPrimaryIpRequestAssigneeType = /*@__PURE__*/ S.String;
+export const AssignPrimaryIpRequestAssigneeType = S.String;
 
 export interface AssignPrimaryIpRequest {
   /** ID of the Primary IP. */
@@ -46,7 +46,7 @@ export type AssignPrimaryIpResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AssignPrimaryIpResponseActionStatus = /*@__PURE__*/ S.String;
+export const AssignPrimaryIpResponseActionStatus = S.String;
 
 export interface AssignPrimaryIpResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -160,7 +160,7 @@ export type ChangePrimaryIpDnsPtrResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangePrimaryIpDnsPtrResponseActionStatus = /*@__PURE__*/ S.String;
+export const ChangePrimaryIpDnsPtrResponseActionStatus = S.String;
 
 export type ChangePrimaryIpDnsPtrResponseActionResourcesItem =
   AssignPrimaryIpResponseActionResourcesItem;
@@ -251,8 +251,7 @@ export type ChangePrimaryIpProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangePrimaryIpProtectionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangePrimaryIpProtectionResponseActionStatus = S.String;
 
 export type ChangePrimaryIpProtectionResponseActionResourcesItem =
   AssignPrimaryIpResponseActionResourcesItem;
@@ -337,7 +336,7 @@ export type GetPrimaryIpsActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetPrimaryIpsActionResponseActionStatus = /*@__PURE__*/ S.String;
+export const GetPrimaryIpsActionResponseActionStatus = S.String;
 
 export type GetPrimaryIpsActionResponseActionResourcesItem =
   AssignPrimaryIpResponseActionResourcesItem;
@@ -418,7 +417,7 @@ export type ListPrimaryIpActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListPrimaryIpActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListPrimaryIpActionsRequestSortItem = S.String;
 
 export type ListPrimaryIpActionsRequestSortList = Array<
   ListPrimaryIpActionsRequestSortItem | (string & {})
@@ -432,7 +431,7 @@ export type ListPrimaryIpActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListPrimaryIpActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListPrimaryIpActionsRequestStatusItem = S.String;
 
 export type ListPrimaryIpActionsRequestStatusList = Array<
   ListPrimaryIpActionsRequestStatusItem | (string & {})
@@ -472,8 +471,7 @@ export type ListPrimaryIpActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListPrimaryIpActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListPrimaryIpActionsResponseActionsItemStatus = S.String;
 
 export type ListPrimaryIpActionsResponseActionsItemResourcesItem =
   AssignPrimaryIpResponseActionResourcesItem;
@@ -609,7 +607,7 @@ export type ListPrimaryIpsActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListPrimaryIpsActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListPrimaryIpsActionsRequestSortItem = S.String;
 
 export type ListPrimaryIpsActionsRequestSortList = Array<
   ListPrimaryIpsActionsRequestSortItem | (string & {})
@@ -623,7 +621,7 @@ export type ListPrimaryIpsActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListPrimaryIpsActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListPrimaryIpsActionsRequestStatusItem = S.String;
 
 export type ListPrimaryIpsActionsRequestStatusList = Array<
   ListPrimaryIpsActionsRequestStatusItem | (string & {})
@@ -661,8 +659,7 @@ export type ListPrimaryIpsActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListPrimaryIpsActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListPrimaryIpsActionsResponseActionsItemStatus = S.String;
 
 export type ListPrimaryIpsActionsResponseActionsItemResourcesItem =
   AssignPrimaryIpResponseActionResourcesItem;
@@ -770,7 +767,7 @@ export type UnassignPrimaryIpResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const UnassignPrimaryIpResponseActionStatus = /*@__PURE__*/ S.String;
+export const UnassignPrimaryIpResponseActionStatus = S.String;
 
 export type UnassignPrimaryIpResponseActionResourcesItem =
   AssignPrimaryIpResponseActionResourcesItem;

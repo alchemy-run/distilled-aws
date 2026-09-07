@@ -138,7 +138,7 @@ export type NotificationTopicSummaryTopicType =
   | "account"
   | "user"
   | "account_team";
-export const NotificationTopicSummaryTopicType = /*@__PURE__*/ S.String;
+export const NotificationTopicSummaryTopicType = S.String;
 
 export interface NotificationTopicSummary {
   /** Whether notifications for this topic are enabled by default when the user has not set a preference. */
@@ -333,7 +333,7 @@ export const ListNotificationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListNotificationsResponse>;
 
 export type ListNotificationTopicsRequestTopicType = "user" | "account_team";
-export const ListNotificationTopicsRequestTopicType = /*@__PURE__*/ S.String;
+export const ListNotificationTopicsRequestTopicType = S.String;
 
 export interface ListNotificationTopicsRequest {
   /** Only return topics of this scope: `user` (member notifications) or `account_team` (team notifications). */
@@ -357,7 +357,7 @@ export const ListNotificationTopicsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Scope of the topic: whether it applies to an account, a user, or an account's team. */
 export type NotificationTopicTopicType = "account" | "user" | "account_team";
-export const NotificationTopicTopicType = /*@__PURE__*/ S.String;
+export const NotificationTopicTopicType = S.String;
 
 export interface NotificationTopic {
   /** Whether notifications for this topic are enabled by default when the user has not set a preference. */

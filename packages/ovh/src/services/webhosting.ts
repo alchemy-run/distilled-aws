@@ -20,7 +20,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -38,7 +38,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmHostingWebTerminationRequest {
   /** Service name */
@@ -104,7 +104,7 @@ export type HostingWebDatabaseCopyStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const HostingWebDatabaseCopyStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseCopyStatusEnum = S.String;
 
 /** Copy */
 export interface HostingWebDatabaseCopy {
@@ -189,7 +189,7 @@ export type HostingWebTaskObjectTypeEnum =
   | "Web"
   | "Webd"
   | "Website";
-export const HostingWebTaskObjectTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebTaskObjectTypeEnum = S.String;
 
 /** Task status enum */
 export type HostingWebTaskStatusEnum =
@@ -198,7 +198,7 @@ export type HostingWebTaskStatusEnum =
   | "done"
   | "init"
   | "todo";
-export const HostingWebTaskStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebTaskStatusEnum = S.String;
 
 /** Tasks */
 export interface HostingWebTask {
@@ -234,11 +234,11 @@ export const HostingWebTask = /*@__PURE__*/ S.suspend(() =>
 
 /** whether or not the attachedDomain is linked to the hosting cdn */
 export type HostingWebAttachedDomainCdnEnum = "active" | "none";
-export const HostingWebAttachedDomainCdnEnum = /*@__PURE__*/ S.String;
+export const HostingWebAttachedDomainCdnEnum = S.String;
 
 /** Firewall state for this path */
 export type HostingWebAttachedDomainFirewallEnum = "active" | "none";
-export const HostingWebAttachedDomainFirewallEnum = /*@__PURE__*/ S.String;
+export const HostingWebAttachedDomainFirewallEnum = S.String;
 
 /** Available cluster countries */
 export type HostingWebCountryEnum =
@@ -256,7 +256,7 @@ export type HostingWebCountryEnum =
   | "PL"
   | "PT"
   | "UK";
-export const HostingWebCountryEnum = /*@__PURE__*/ S.String;
+export const HostingWebCountryEnum = S.String;
 
 export interface CreateHostingWebAttachedDomainRequest {
   /** Service name */
@@ -496,7 +496,7 @@ export type HostingWebTaskFunctionEnum =
   | "website/create"
   | "website/delete"
   | "website/deploy";
-export const HostingWebTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const HostingWebTaskFunctionEnum = S.String;
 
 /** Public task */
 export interface HostingWebPublicTask {
@@ -560,7 +560,7 @@ export type HostingWebHostedsslProviderEnum =
   | "CUSTOM"
   | "LETSENCRYPT"
   | "SECTIGO";
-export const HostingWebHostedsslProviderEnum = /*@__PURE__*/ S.String;
+export const HostingWebHostedsslProviderEnum = S.String;
 
 /** Hosted SSL status */
 export type HostingWebHostedsslStatusEnum =
@@ -569,11 +569,11 @@ export type HostingWebHostedsslStatusEnum =
   | "deleting"
   | "importing"
   | "regenerating";
-export const HostingWebHostedsslStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebHostedsslStatusEnum = S.String;
 
 /** Hosted SSL type */
 export type HostingWebHostedsslTypeEnum = "CUSTOM" | "DV" | "EV";
-export const HostingWebHostedsslTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebHostedsslTypeEnum = S.String;
 
 /** Hosted SSL properties */
 export interface HostingWebSSL {
@@ -603,11 +603,11 @@ export const HostingWebSSL = /*@__PURE__*/ S.suspend(() =>
 
 /** Option pattern type */
 export type CdnOptionPatternTypeEnum = "extension" | "folder" | "regex" | "uri";
-export const CdnOptionPatternTypeEnum = /*@__PURE__*/ S.String;
+export const CdnOptionPatternTypeEnum = S.String;
 
 /** Option query parameters */
 export type CdnOptionQueryParametersEnum = "ignored" | "sorted";
-export const CdnOptionQueryParametersEnum = /*@__PURE__*/ S.String;
+export const CdnOptionQueryParametersEnum = S.String;
 
 /** List of URI */
 export type CdnDomainOptionConfigResourcesList = Array<string>;
@@ -654,7 +654,7 @@ export const CdnDomainOptionConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Option type */
 export type CdnOptionTypePostEnum = "cache_rule";
-export const CdnOptionTypePostEnum = /*@__PURE__*/ S.String;
+export const CdnOptionTypePostEnum = S.String;
 
 export interface CreateHostingWebCdnDomainOptionRequest {
   /** Service name */
@@ -724,7 +724,7 @@ export type CdnOptionTypeEnum =
   | "prewarm"
   | "querystring"
   | "waf";
-export const CdnOptionTypeEnum = /*@__PURE__*/ S.String;
+export const CdnOptionTypeEnum = S.String;
 
 /** Option details */
 export interface CdnDomainOption {
@@ -877,11 +877,11 @@ export type HostingWebLanguagesEnum =
   | "python2"
   | "python3"
   | "ruby2.6";
-export const HostingWebLanguagesEnum = /*@__PURE__*/ S.String;
+export const HostingWebLanguagesEnum = S.String;
 
 /** Cron status */
 export type HostingWebCronStatusEnum = "disabled" | "enabled" | "suspended";
-export const HostingWebCronStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebCronStatusEnum = S.String;
 
 export interface CreateHostingWebCronRequest {
   /** Service name */
@@ -927,8 +927,7 @@ export type HostingWebDatabaseDatabaseCapabilitiesTypeEnum =
   | "sqlLocal"
   | "sqlPerso"
   | "sqlPro";
-export const HostingWebDatabaseDatabaseCapabilitiesTypeEnum =
-  /*@__PURE__*/ S.String;
+export const HostingWebDatabaseDatabaseCapabilitiesTypeEnum = S.String;
 
 /** ExtraSqlPerso quota enum */
 export type HostingWebDatabaseExtraSqlQuotaEnum =
@@ -940,7 +939,7 @@ export type HostingWebDatabaseExtraSqlQuotaEnum =
   | 512
   | 800
   | 1024;
-export const HostingWebDatabaseExtraSqlQuotaEnum = /*@__PURE__*/ S.Number;
+export const HostingWebDatabaseExtraSqlQuotaEnum = S.Number;
 
 /** Database Type enum */
 export type HostingWebDatabaseDatabaseCreationTypeEnum =
@@ -948,8 +947,7 @@ export type HostingWebDatabaseDatabaseCreationTypeEnum =
   | "mysql"
   | "postgresql"
   | "redis";
-export const HostingWebDatabaseDatabaseCreationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const HostingWebDatabaseDatabaseCreationTypeEnum = S.String;
 
 /** Database Version enum */
 export type HostingWebDatabaseVersionEnum =
@@ -979,7 +977,7 @@ export type HostingWebDatabaseVersionEnum =
   | "9.4"
   | "9.5"
   | "9.6";
-export const HostingWebDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseVersionEnum = S.String;
 
 export interface CreateHostingWebDatabaseRequest {
   /** The internal name of your hosting */
@@ -1044,7 +1042,7 @@ export const CreateHostingWebDatabaseChangePasswordRequest =
 
 /** List of dump types */
 export type HostingWebDatabaseDumpDateEnum = "daily.1" | "now" | "weekly.1";
-export const HostingWebDatabaseDumpDateEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseDumpDateEnum = S.String;
 
 export interface CreateHostingWebDatabaseDumpRequest {
   /** The internal name of your hosting */
@@ -1075,7 +1073,7 @@ export const CreateHostingWebDatabaseDumpRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Types of action you can request for your database */
 export type HostingWebDatabaseRequestActionEnum = "CHECK_QUOTA";
-export const HostingWebDatabaseRequestActionEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseRequestActionEnum = S.String;
 
 export interface CreateHostingWebDatabaseRequestRequest {
   /** The internal name of your hosting */
@@ -1104,7 +1102,7 @@ export const CreateHostingWebDatabaseRequestRequest = /*@__PURE__*/ S.suspend(
 
 /** Types of action you can request for your mail */
 export type HostingWebMailActionEnum = "BLOCK" | "PURGE" | "UNBLOCK";
-export const HostingWebMailActionEnum = /*@__PURE__*/ S.String;
+export const HostingWebMailActionEnum = S.String;
 
 export interface CreateHostingWebEmailRequestRequest {
   /** The internal name of your hosting */
@@ -1136,7 +1134,7 @@ export const CreateHostingWebEmailRequestResponse = /*@__PURE__*/ S.suspend(
 
 /** Filter the value of type property (=) */
 export type HostingWebEnvVarTypeEnum = "integer" | "password" | "string";
-export const HostingWebEnvVarTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebEnvVarTypeEnum = S.String;
 
 export interface CreateHostingWebEnvVarRequest {
   /** Service name */
@@ -1258,7 +1256,7 @@ export const CreateHostingWebLocalSeoLocationServiceInfosUpdateResponse =
 
 /** Location country */
 export type HostingWebLocalSeoLocationCountryEnum = "FR";
-export const HostingWebLocalSeoLocationCountryEnum = /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoLocationCountryEnum = S.String;
 
 export interface CreateHostingWebLocalSeoVisibilityCheckRequest {
   /** Country of the location */
@@ -1344,7 +1342,7 @@ export const HostingWebLocalSeoVisibilityCheckResponse =
 
 /** The type of the dependency. A dependency can be a standard database (like MySQL or PostgreSQL) or a key-value store (like Redis or Memcached) for example */
 export type HostingWebModuleDependencyTypeEnum = "mysql";
-export const HostingWebModuleDependencyTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebModuleDependencyTypeEnum = S.String;
 
 /** Dependency parameters. A dependency can be a standard database (like MySQL or PostgreSQL) or a key-value store (like Redis or Memcached) for example */
 export interface HostingWebModuleDependencyType {
@@ -1398,7 +1396,7 @@ export type HostingWebModuleLanguageEnum =
   | "nl"
   | "pl"
   | "pt";
-export const HostingWebModuleLanguageEnum = /*@__PURE__*/ S.String;
+export const HostingWebModuleLanguageEnum = S.String;
 
 export interface CreateHostingWebModuleRequest {
   /** The internal name of your hosting */
@@ -1471,11 +1469,11 @@ export type HostingWebOvhconfigContainerEnum =
   | "stable"
   | "stable64"
   | "testing";
-export const HostingWebOvhconfigContainerEnum = /*@__PURE__*/ S.String;
+export const HostingWebOvhconfigContainerEnum = S.String;
 
 /** Hosting configuration engine */
 export type HostingWebOvhConfigEngineNameEnum = "php" | "phpcgi";
-export const HostingWebOvhConfigEngineNameEnum = /*@__PURE__*/ S.String;
+export const HostingWebOvhConfigEngineNameEnum = S.String;
 
 /** Hosting available configuration version */
 export type HostingWebOvhConfigAvailableEngineVersionEnum =
@@ -1492,16 +1490,15 @@ export type HostingWebOvhConfigAvailableEngineVersionEnum =
   | "8.2"
   | "8.3"
   | "8.4";
-export const HostingWebOvhConfigAvailableEngineVersionEnum =
-  /*@__PURE__*/ S.String;
+export const HostingWebOvhConfigAvailableEngineVersionEnum = S.String;
 
 /** Hosting configuration environment */
 export type HostingWebOvhConfigEnvironmentEnum = "development" | "production";
-export const HostingWebOvhConfigEnvironmentEnum = /*@__PURE__*/ S.String;
+export const HostingWebOvhConfigEnvironmentEnum = S.String;
 
 /** Hosting configuration firewall */
 export type HostingWebOvhConfigHttpFirewallEnum = "none" | "security";
-export const HostingWebOvhConfigHttpFirewallEnum = /*@__PURE__*/ S.String;
+export const HostingWebOvhConfigHttpFirewallEnum = S.String;
 
 export interface CreateHostingWebOvhConfigChangeConfigurationRequest {
   /** The internal name of your hosting */
@@ -1664,7 +1661,7 @@ export type HostingWebRequestActionEnum =
   | "CHECK_QUOTA"
   | "FLUSH_CACHE"
   | "SCAN_ANTIHACK";
-export const HostingWebRequestActionEnum = /*@__PURE__*/ S.String;
+export const HostingWebRequestActionEnum = S.String;
 
 export interface CreateHostingWebRequestRequest {
   /** The internal name of your hosting */
@@ -1701,7 +1698,7 @@ export type HostingWebOfferEnum =
   | "POWER_BETA_1"
   | "PRO"
   | "START";
-export const HostingWebOfferEnum = /*@__PURE__*/ S.String;
+export const HostingWebOfferEnum = S.String;
 
 export interface CreateHostingWebRequestBoostRequest {
   /** Service name */
@@ -1726,7 +1723,7 @@ export const CreateHostingWebRequestBoostRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Runtime env enum */
 export type HostingWebRuntimeEnvEnum = "development" | "production";
-export const HostingWebRuntimeEnvEnum = /*@__PURE__*/ S.String;
+export const HostingWebRuntimeEnvEnum = S.String;
 
 /** The attached domains fqdn to link to this runtime configuration */
 export type CreateHostingWebRuntimeRequestAttachedDomainsList = Array<string>;
@@ -1753,7 +1750,7 @@ export type HostingWebRuntimeTypeEnum =
   | "python-2"
   | "python-3"
   | "ruby-2.6";
-export const HostingWebRuntimeTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebRuntimeTypeEnum = S.String;
 
 export interface CreateHostingWebRuntimeRequest {
   /** The internal name of your hosting */
@@ -1798,7 +1795,7 @@ export const CreateHostingWebRuntimeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Account's ssh state */
 export type HostingWebUserSshStateEnum = "active" | "none" | "sftponly";
-export const HostingWebUserSshStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebUserSshStateEnum = S.String;
 
 export interface CreateHostingWebUserRequest {
   /** The internal name of your hosting */
@@ -2274,7 +2271,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with its currency and textual representation */
 export interface OrderPrice {
@@ -2406,7 +2403,7 @@ export type HostingWebOfferCapabilitiesEnum =
   | "starter"
   | "xxlpack"
   | "xxlplan";
-export const HostingWebOfferCapabilitiesEnum = /*@__PURE__*/ S.String;
+export const HostingWebOfferCapabilitiesEnum = S.String;
 
 /** Available clusterIp by country */
 export interface HostingWebCountriesIp {
@@ -2465,7 +2462,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Hosting's OS */
 export type HostingWebOperatingSystemEnum = "linux";
-export const HostingWebOperatingSystemEnum = /*@__PURE__*/ S.String;
+export const HostingWebOperatingSystemEnum = S.String;
 
 /** Different support of PHP versions */
 export type HostingWebPhpVersionStateEnum =
@@ -2473,7 +2470,7 @@ export type HostingWebPhpVersionStateEnum =
   | "END_OF_LIFE"
   | "SECURITY_FIXES"
   | "SUPPORTED";
-export const HostingWebPhpVersionStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebPhpVersionStateEnum = S.String;
 
 /** State of available php versions for this account */
 export interface HostingWebPhpVersion {
@@ -2519,7 +2516,7 @@ export type HostingWebResourceEnum =
   | "cloud"
   | "dedicated"
   | "shared";
-export const HostingWebResourceEnum = /*@__PURE__*/ S.String;
+export const HostingWebResourceEnum = S.String;
 
 /** Url and port of a service */
 export interface HostingWebAddress {
@@ -2558,7 +2555,7 @@ export const HostingWebServiceAccess = /*@__PURE__*/ S.suspend(() =>
 
 /** Hosting's state */
 export type HostingWebStateEnum = "active" | "bloqued" | "maintenance";
-export const HostingWebStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebStateEnum = S.String;
 
 /** List of updates on your hosting */
 export type HostingWebServiceWithIAMUpdatesList = Array<string>;
@@ -2704,8 +2701,7 @@ export type HostingWebAttachedDomainCapabilityMethodEnum =
   | "GET"
   | "POST"
   | "PUT";
-export const HostingWebAttachedDomainCapabilityMethodEnum =
-  /*@__PURE__*/ S.String;
+export const HostingWebAttachedDomainCapabilityMethodEnum = S.String;
 
 /** Attached domain Capability */
 export interface HostingWebAttachedDomainCapabilities {
@@ -2744,7 +2740,7 @@ export type HostingWebAttachedDomainStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebAttachedDomainStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebAttachedDomainStatusEnum = S.String;
 
 /** AttachedDomain vcs status */
 export type HostingWebAttachedDomainVcsStatusEnum =
@@ -2755,7 +2751,7 @@ export type HostingWebAttachedDomainVcsStatusEnum =
   | "disabled"
   | "error"
   | "initialError";
-export const HostingWebAttachedDomainVcsStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebAttachedDomainVcsStatusEnum = S.String;
 
 /** Public attached domain */
 export interface HostingWebAttachedDomainPublicAttachedDomain {
@@ -2870,7 +2866,7 @@ export const HostingWebAttachedDomainRecommendedIps = /*@__PURE__*/ S.suspend(
 
 /** DNS Record type */
 export type HostingWebAttachedDomainRecordTypeEnum = "A" | "AAAA";
-export const HostingWebAttachedDomainRecordTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebAttachedDomainRecordTypeEnum = S.String;
 
 /** Attached domain record status */
 export interface HostingWebAttachedDomainRecordStatus {
@@ -3006,7 +3002,7 @@ export type HostingWebCdnStatusEnum =
   | "reopening"
   | "suspended"
   | "suspending";
-export const HostingWebCdnStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebCdnStatusEnum = S.String;
 
 /** CDN properties */
 export interface HostingWebCDN {
@@ -3065,7 +3061,7 @@ export type CdnDomainStatusEnum =
   | "to_delete"
   | "to_disable"
   | "to_refresh";
-export const CdnDomainStatusEnum = /*@__PURE__*/ S.String;
+export const CdnDomainStatusEnum = S.String;
 
 /** Domain details */
 export interface CdnDomain {
@@ -3184,11 +3180,11 @@ export type CdnOperationFunctionEnum =
   | "service_install"
   | "ssl_delete"
   | "ssl_install";
-export const CdnOperationFunctionEnum = /*@__PURE__*/ S.String;
+export const CdnOperationFunctionEnum = S.String;
 
 /** Shared CDN offer */
 export type CdnOperationOfferEnum = "advanced" | "basic" | "security";
-export const CdnOperationOfferEnum = /*@__PURE__*/ S.String;
+export const CdnOperationOfferEnum = S.String;
 
 /** Operation parameter */
 export interface CdnOperationParameter {
@@ -3234,7 +3230,7 @@ export type CdnOperationStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const CdnOperationStatusEnum = /*@__PURE__*/ S.String;
+export const CdnOperationStatusEnum = S.String;
 
 /** Operation details */
 export interface CdnOperation {
@@ -3304,7 +3300,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -3314,7 +3310,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -3377,11 +3373,11 @@ export const GetHostingWebConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Configuration env enum */
 export type HostingWebConfigurationEnvEnum = "development" | "production";
-export const HostingWebConfigurationEnvEnum = /*@__PURE__*/ S.String;
+export const HostingWebConfigurationEnvEnum = S.String;
 
 /** Configuration languages enum */
 export type HostingWebConfigurationLanguageEnum = "nodejs" | "python" | "ruby";
-export const HostingWebConfigurationLanguageEnum = /*@__PURE__*/ S.String;
+export const HostingWebConfigurationLanguageEnum = S.String;
 
 /** Configuration state enum */
 export type HostingWebConfigurationStateEnum =
@@ -3389,7 +3385,7 @@ export type HostingWebConfigurationStateEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebConfigurationStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebConfigurationStateEnum = S.String;
 
 /** The Configuration of an hosting Power offer */
 export interface HostingWebConfiguration {
@@ -3449,7 +3445,7 @@ export type HostingWebCronStateEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebCronStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebCronStateEnum = S.String;
 
 /** Cron */
 export interface HostingWebCron {
@@ -3509,15 +3505,15 @@ export type HostingWebDatabaseDatabaseServiceTypeEnum =
   | "extra"
   | "included"
   | "optional";
-export const HostingWebDatabaseDatabaseServiceTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseDatabaseServiceTypeEnum = S.String;
 
 /** Database mode */
 export type HostingWebDatabaseModeEnum = "besteffort" | "classic" | "module";
-export const HostingWebDatabaseModeEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseModeEnum = S.String;
 
 /** Database state */
 export type HostingWebDatabaseStateEnum = "close" | "ok" | "readonly";
-export const HostingWebDatabaseStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseStateEnum = S.String;
 
 /** Database status */
 export type HostingWebDatabaseStatusEnum =
@@ -3531,7 +3527,7 @@ export type HostingWebDatabaseStatusEnum =
   | "optimizing"
   | "restoring"
   | "updating";
-export const HostingWebDatabaseStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseStatusEnum = S.String;
 
 /** Database Type enum */
 export type HostingWebDatabaseDatabaseTypeEnum =
@@ -3540,14 +3536,14 @@ export type HostingWebDatabaseDatabaseTypeEnum =
   | "mysql"
   | "postgresql"
   | "redis";
-export const HostingWebDatabaseDatabaseTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseDatabaseTypeEnum = S.String;
 
 /** Indicates the current support state of your database version */
 export type HostingWebDatabaseSupportedVersionEnum =
   | "beta"
   | "deprecated"
   | "stable";
-export const HostingWebDatabaseSupportedVersionEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseSupportedVersionEnum = S.String;
 
 /** Database */
 export interface HostingWebDatabase {
@@ -3728,7 +3724,7 @@ export type HostingWebDatabaseDumpStatusEnum =
   | "created"
   | "creating"
   | "deleting";
-export const HostingWebDatabaseDumpStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseDumpStatusEnum = S.String;
 
 /** Dump */
 export interface HostingWebDatabaseDump {
@@ -3843,7 +3839,7 @@ export type HostingWebMailStateEnum =
   | "ok"
   | "purging"
   | "spam";
-export const HostingWebMailStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebMailStateEnum = S.String;
 
 /** Hosting automated emails */
 export interface HostingWebEmail {
@@ -3962,7 +3958,7 @@ export type HostingWebEnvVarStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebEnvVarStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebEnvVarStatusEnum = S.String;
 
 /** Environment variables set into your webhosting account */
 export interface HostingWebEnvVar {
@@ -4095,7 +4091,7 @@ export const HostingWebIndyAttachedDomainsList = /*@__PURE__*/ S.Array(
 
 /** Account's state */
 export type HostingWebUserStateEnum = "off" | "rw";
-export const HostingWebUserStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebUserStateEnum = S.String;
 
 /** Hosting indys */
 export interface HostingWebIndy {
@@ -4162,7 +4158,7 @@ export type HostingWebLocalSeoAccountStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebLocalSeoAccountStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoAccountStatusEnum = S.String;
 
 /** Local SEO accounts */
 export interface HostingWebLocalSeoAccount {
@@ -4217,8 +4213,7 @@ export type HostingWebLocalSeoAccountEmailAvailabilityEnum =
   | "merge"
   | "nic"
   | "taken";
-export const HostingWebLocalSeoAccountEmailAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoAccountEmailAvailabilityEnum = S.String;
 
 /** Struct describing the availability of an email address for a local SEO order */
 export interface HostingWebLocalSeoEmailAvailability {
@@ -4282,7 +4277,7 @@ export const GetHostingWebLocalSeoLocationRequest = /*@__PURE__*/ S.suspend(
 
 /** Location offer */
 export type HostingWebLocalSeoLocationOfferEnum = "normal";
-export const HostingWebLocalSeoLocationOfferEnum = /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoLocationOfferEnum = S.String;
 
 /** Location status */
 export type HostingWebLocalSeoLocationStatusEnum =
@@ -4290,7 +4285,7 @@ export type HostingWebLocalSeoLocationStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebLocalSeoLocationStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoLocationStatusEnum = S.String;
 
 /** Local SEO locations */
 export interface HostingWebLocalSeoLocation {
@@ -4425,7 +4420,7 @@ export type HostingWebModuleStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebModuleStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebModuleStatusEnum = S.String;
 
 /** Hosting modules installed */
 export interface HostingWebModule {
@@ -4489,11 +4484,11 @@ export const GetHostingWebModuleListRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the admin name */
 export type HostingWebModuleAdminNameTypeEnum = "email" | "string";
-export const HostingWebModuleAdminNameTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebModuleAdminNameTypeEnum = S.String;
 
 /** Branch enum */
 export type HostingWebModuleBranchEnum = "old" | "stable" | "testing";
-export const HostingWebModuleBranchEnum = /*@__PURE__*/ S.String;
+export const HostingWebModuleBranchEnum = S.String;
 
 /** The keywords for this module */
 export type HostingWebModuleListKeywordsList = Array<string>;
@@ -4610,7 +4605,7 @@ export type HostingWebDatabaseDatabaseIsolationEnum =
   | "dedicated"
   | "local"
   | "shared";
-export const HostingWebDatabaseDatabaseIsolationEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseDatabaseIsolationEnum = S.String;
 
 /** A numeric value tagged with its unit */
 export type ComplexTypeUnitAndValueLong = ComplexTypeUnitAndValueDouble;
@@ -4653,7 +4648,7 @@ export const HostingWebCapabilitiesDatabasesList = /*@__PURE__*/ S.Array(
 
 /** Disk type available */
 export type HostingWebDiskTypeEnum = "HDD" | "SSD";
-export const HostingWebDiskTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebDiskTypeEnum = S.String;
 
 /** Disk properties (size and type of disk) */
 export interface HostingWebDiskType {
@@ -4692,7 +4687,7 @@ export const HostingWebCreationEmailCapabilities = /*@__PURE__*/ S.suspend(() =>
 
 /** Highlight tips for offer */
 export type HostingWebHighLightEnum = "best-seller" | "new";
-export const HostingWebHighLightEnum = /*@__PURE__*/ S.String;
+export const HostingWebHighLightEnum = S.String;
 
 /** Different NodeJs versions available */
 export type HostingWebNodejsVersionAvailableEnum =
@@ -4701,7 +4696,7 @@ export type HostingWebNodejsVersionAvailableEnum =
   | "nodejs-12"
   | "nodejs-8"
   | "nodejs-9";
-export const HostingWebNodejsVersionAvailableEnum = /*@__PURE__*/ S.String;
+export const HostingWebNodejsVersionAvailableEnum = S.String;
 
 /** NodeJS versions */
 export type HostingWebCronLanguageAvailableNodejsList =
@@ -4723,7 +4718,7 @@ export type HostingWebPhpVersionAvailableEnum =
   | "phpfpm-8.2"
   | "phpfpm-8.3"
   | "phpfpm-8.4";
-export const HostingWebPhpVersionAvailableEnum = /*@__PURE__*/ S.String;
+export const HostingWebPhpVersionAvailableEnum = S.String;
 
 /** Php versions */
 export type HostingWebCronLanguageAvailablePhpList =
@@ -4734,7 +4729,7 @@ export const HostingWebCronLanguageAvailablePhpList = /*@__PURE__*/ S.Array(
 
 /** Different Python versions available */
 export type HostingWebPythonVersionAvailableEnum = "python-2" | "python-3";
-export const HostingWebPythonVersionAvailableEnum = /*@__PURE__*/ S.String;
+export const HostingWebPythonVersionAvailableEnum = S.String;
 
 /** Python versions */
 export type HostingWebCronLanguageAvailablePythonList =
@@ -4745,7 +4740,7 @@ export const HostingWebCronLanguageAvailablePythonList = /*@__PURE__*/ S.Array(
 
 /** Different Ruby versions available */
 export type HostingWebRubyVersionAvailableEnum = "ruby-2.6";
-export const HostingWebRubyVersionAvailableEnum = /*@__PURE__*/ S.String;
+export const HostingWebRubyVersionAvailableEnum = S.String;
 
 /** Ruby versions */
 export type HostingWebCronLanguageAvailableRubyList =
@@ -4886,14 +4881,14 @@ export type HostingWebOvhConfigEngineVersionEnum =
   | "8.3"
   | "8.4"
   | "AUTO";
-export const HostingWebOvhConfigEngineVersionEnum = /*@__PURE__*/ S.String;
+export const HostingWebOvhConfigEngineVersionEnum = S.String;
 
 /** Ovhconfig status */
 export type HostingWebOvhConfigStatusEnum =
   | "created"
   | "rollbacking"
   | "updating";
-export const HostingWebOvhConfigStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebOvhConfigStatusEnum = S.String;
 
 /** Virtual service */
 export interface HostingWebOvhConfig {
@@ -5009,7 +5004,7 @@ export const GetHostingWebOwnLogRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** OwnLogs status */
 export type HostingWebOwnLogsStatusEnum = "created" | "creating" | "deleting";
-export const HostingWebOwnLogsStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebOwnLogsStatusEnum = S.String;
 
 /** Hosting own logs */
 export interface HostingWebOwnLogs {
@@ -5069,7 +5064,7 @@ export type HostingWebUserLogsStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebUserLogsStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebUserLogsStatusEnum = S.String;
 
 /** Hosting users logs */
 export interface HostingWebUserLogs {
@@ -5126,7 +5121,7 @@ export type HostingWebRuntimeStateEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebRuntimeStateEnum = /*@__PURE__*/ S.String;
+export const HostingWebRuntimeStateEnum = S.String;
 
 /** The runtime configuration of an attached domain for cloud web offer */
 export interface HostingWebRuntime {
@@ -5300,7 +5295,7 @@ export type HostingWebUserStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingWebUserStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebUserStatusEnum = S.String;
 
 /** Hosting users */
 export interface HostingWebUser {
@@ -5370,7 +5365,7 @@ export const GetHostingWebUserLogsTokenResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Supported VCS platforms */
 export type HostingWebSupportedVcsEnum = "github";
-export const HostingWebSupportedVcsEnum = /*@__PURE__*/ S.String;
+export const HostingWebSupportedVcsEnum = S.String;
 
 export interface GetHostingWebVcsWebhooksRequest {
   /** Service name */
@@ -5463,7 +5458,7 @@ export type HostingWebWebsiteStatusEnum =
   | "deploying"
   | "error"
   | "initialError";
-export const HostingWebWebsiteStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebWebsiteStatusEnum = S.String;
 
 /** A website on your hosting */
 export interface HostingWebWebsite {
@@ -5568,7 +5563,7 @@ export type HostingWebWebsiteDeploymentStatusEnum =
   | "doing"
   | "failed"
   | "successful";
-export const HostingWebWebsiteDeploymentStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebWebsiteDeploymentStatusEnum = S.String;
 
 /** A website deployment */
 export interface HostingWebWebsiteDeployment {
@@ -5781,7 +5776,7 @@ export type HostingWebConfigurationVersionEnum =
   | "python-3.9"
   | "ruby-2.6"
   | "ruby-2.7";
-export const HostingWebConfigurationVersionEnum = /*@__PURE__*/ S.String;
+export const HostingWebConfigurationVersionEnum = S.String;
 
 export type ListHostingWebAvailableConfigurationsResponseBodyList =
   Array<HostingWebConfigurationVersionEnum>;
@@ -5885,11 +5880,11 @@ export const ListHostingWebCdnAvailableOptionsRequest = /*@__PURE__*/ S.suspend(
 
 /** Option category */
 export type CdnOptionCategoryEnum = "cache" | "performance" | "security";
-export const CdnOptionCategoryEnum = /*@__PURE__*/ S.String;
+export const CdnOptionCategoryEnum = S.String;
 
 /** Option Config Parameter type */
 export type CdnOptionConfigParamTypeEnum = "bool" | "int" | "list" | "str";
-export const CdnOptionConfigParamTypeEnum = /*@__PURE__*/ S.String;
+export const CdnOptionConfigParamTypeEnum = S.String;
 
 /** Option configuration constraints */
 export interface CdnAvailableOptionsConfigConstraints {
@@ -6426,13 +6421,13 @@ export type HostingWebStatisticsPeriodEnum =
   | "monthly"
   | "weekly"
   | "yearly";
-export const HostingWebStatisticsPeriodEnum = /*@__PURE__*/ S.String;
+export const HostingWebStatisticsPeriodEnum = S.String;
 
 /** Types of statistics available for the database */
 export type HostingWebDatabaseStatisticsTypeEnum =
   | "statement"
   | "statementMeanTime";
-export const HostingWebDatabaseStatisticsTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebDatabaseStatisticsTypeEnum = S.String;
 
 export interface ListHostingWebDatabaseStatisticsRequest {
   /** The internal name of your hosting */
@@ -6810,7 +6805,7 @@ export type HostingWebFreedomStatusEnum =
   | "blockedBySystem"
   | "ok"
   | "preset";
-export const HostingWebFreedomStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebFreedomStatusEnum = S.String;
 
 export interface ListHostingWebFreedomRequest {
   /** Service name */
@@ -7090,7 +7085,7 @@ export type HostingWebLocalSeoFieldStatusEnum =
   | "MISSING"
   | "NOT_APPLICABLE"
   | "PRESENT";
-export const HostingWebLocalSeoFieldStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoFieldStatusEnum = S.String;
 
 /** Status of a listing */
 export type HostingWebLocalSeoFlowStatusEnum =
@@ -7108,7 +7103,7 @@ export type HostingWebLocalSeoFlowStatusEnum =
   | "SUBMISSION_NEEDED"
   | "WAITING_DIRECTORY_ACTION"
   | "WAITING_USER_ACTION";
-export const HostingWebLocalSeoFlowStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoFlowStatusEnum = S.String;
 
 /** Sync status of a listing */
 export type HostingWebLocalSeoListingStatusEnum =
@@ -7118,7 +7113,7 @@ export type HostingWebLocalSeoListingStatusEnum =
   | "NOT_SUPPORTED"
   | "NO_ONLINE_LISTING"
   | "TECHNICAL_PROBLEMS";
-export const HostingWebLocalSeoListingStatusEnum = /*@__PURE__*/ S.String;
+export const HostingWebLocalSeoListingStatusEnum = S.String;
 
 /** Struct describing a visibility check result */
 export interface HostingWebLocalSeoVisibilityCheckResultResponse {
@@ -7669,7 +7664,7 @@ export type HostingWebStatisticsTypeEnum =
   | "out.tcpConn"
   | "sys.cpuUsage"
   | "sys.workerSpawnOverload";
-export const HostingWebStatisticsTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebStatisticsTypeEnum = S.String;
 
 export interface ListHostingWebStatisticsRequest {
   /** The internal name of your hosting */
@@ -7986,7 +7981,7 @@ export const PurgeHostingWebAttachedDomainCacheRequest =
 
 /** Purge type */
 export type CdnPurgeTypeEnum = "extension" | "folder" | "regex" | "uri";
-export const CdnPurgeTypeEnum = /*@__PURE__*/ S.String;
+export const CdnPurgeTypeEnum = S.String;
 
 export interface PurgeHostingWebCdnDomainRequest {
   /** Service name */
@@ -8539,7 +8534,7 @@ export type HostingWebBackupTypeEnum =
   | "daily.3"
   | "weekly.1"
   | "weekly.2";
-export const HostingWebBackupTypeEnum = /*@__PURE__*/ S.String;
+export const HostingWebBackupTypeEnum = S.String;
 
 export interface RestoreHostingWebSnapshotRequest {
   /** The internal name of your hosting */

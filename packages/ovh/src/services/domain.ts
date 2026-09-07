@@ -15,7 +15,7 @@ export type { OvhOpError, OvhOpContext };
 
 /** Type of claim notice */
 export type DomainApproveTypeEnum = "accept" | "reject";
-export const DomainApproveTypeEnum = /*@__PURE__*/ S.String;
+export const DomainApproveTypeEnum = S.String;
 
 export interface ApproveDomainOutgoingTransferRequest {
   /** Service name */
@@ -138,7 +138,7 @@ export const ChangePasswordDynDnsLoginResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** An action to execute on a domain name */
 export type DomainActionEnum = "create" | "trade" | "transfer" | "update";
-export const DomainActionEnum = /*@__PURE__*/ S.String;
+export const DomainActionEnum = S.String;
 
 /** Countries a nichandle can choose */
 export type NichandleCountryEnum =
@@ -396,7 +396,7 @@ export type NichandleCountryEnum =
   | "ZA"
   | "ZM"
   | "ZW";
-export const NichandleCountryEnum = /*@__PURE__*/ S.String;
+export const NichandleCountryEnum = S.String;
 
 /** Languages a nichandle can choose */
 export type NichandleLanguageEnum =
@@ -419,7 +419,7 @@ export type NichandleLanguageEnum =
   | "nl_NL"
   | "pl_PL"
   | "pt_PT";
-export const NichandleLanguageEnum = /*@__PURE__*/ S.String;
+export const NichandleLanguageEnum = S.String;
 
 /** Legal forms a nichandle can be registered as */
 export type NichandleLegalFormEnum =
@@ -429,15 +429,15 @@ export type NichandleLegalFormEnum =
   | "individual"
   | "other"
   | "personalcorporation";
-export const NichandleLegalFormEnum = /*@__PURE__*/ S.String;
+export const NichandleLegalFormEnum = S.String;
 
 /** All phone type a person can choose */
 export type NichandlePhoneTypeEnum = "landline" | "mobile";
-export const NichandlePhoneTypeEnum = /*@__PURE__*/ S.String;
+export const NichandlePhoneTypeEnum = S.String;
 
 /** All genders a person can choose */
 export type NichandleGenderEnum = "female" | "male";
-export const NichandleGenderEnum = /*@__PURE__*/ S.String;
+export const NichandleGenderEnum = S.String;
 
 /** Details about your OVH identifier */
 export interface NichandleNichandleInput {
@@ -753,7 +753,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -771,7 +771,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmDomainZoneTerminationRequest {
   /** Zone name */
@@ -1189,11 +1189,11 @@ export type DnssecKeyAlgorithmEnum =
   | 14
   | 15
   | 16;
-export const DnssecKeyAlgorithmEnum = /*@__PURE__*/ S.Number;
+export const DnssecKeyAlgorithmEnum = S.Number;
 
 /** DNSSEC Key Flag Type: 256=ZSK (Zone Signing Key), 257=KSK (Key Signing Key) */
 export type DnssecKeyFlagEnum = 256 | 257;
-export const DnssecKeyFlagEnum = /*@__PURE__*/ S.Number;
+export const DnssecKeyFlagEnum = S.Number;
 
 /** Domain's DNSSEC Key */
 export interface DnssecKeyInput {
@@ -1250,11 +1250,11 @@ export type DomainOperationStatusEnum =
   | "error"
   | "problem"
   | "todo";
-export const DomainOperationStatusEnum = /*@__PURE__*/ S.String;
+export const DomainOperationStatusEnum = S.String;
 
 /** Operation type */
 export type DomainOperationTypeEnum = "alldom" | "domain";
-export const DomainOperationTypeEnum = /*@__PURE__*/ S.String;
+export const DomainOperationTypeEnum = S.String;
 
 /** Tasks associated to domain */
 export interface DomainTask {
@@ -1433,7 +1433,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Minimal price payload sent by the client to acknowledge the price seen, before placing the actual order */
 export interface DomainOrderPriceAcknowledge {
@@ -1915,7 +1915,7 @@ export type DomainZoneRecordTypeEnum =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const DomainZoneRecordTypeEnum = /*@__PURE__*/ S.String;
+export const DomainZoneRecordTypeEnum = S.String;
 
 export interface CreateRecordRequest {
   /** Zone name */
@@ -1978,7 +1978,7 @@ export type DomainZoneRedirectionTypeEnum =
   | "invisible"
   | "visible"
   | "visiblePermanent";
-export const DomainZoneRedirectionTypeEnum = /*@__PURE__*/ S.String;
+export const DomainZoneRedirectionTypeEnum = S.String;
 
 export interface CreateRedirectionRequest {
   /** Zone name */
@@ -2113,7 +2113,7 @@ export const DeleteDomainNameServerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** All options a domain can have */
 export type DeleteDomainOptionRequestOption = "dnsAnycast";
-export const DeleteDomainOptionRequestOption = /*@__PURE__*/ S.String;
+export const DeleteDomainOptionRequestOption = S.String;
 
 export interface DeleteDomainOptionRequest {
   /** Service name */
@@ -2291,7 +2291,7 @@ export type DomainNameServerNameServerTypeEnum =
   | "hosting"
   | "mixed"
   | "parking";
-export const DomainNameServerNameServerTypeEnum = /*@__PURE__*/ S.String;
+export const DomainNameServerNameServerTypeEnum = S.String;
 
 /** Domain lock status */
 export type DomainLockStatusEnum =
@@ -2300,7 +2300,7 @@ export type DomainLockStatusEnum =
   | "unavailable"
   | "unlocked"
   | "unlocking";
-export const DomainLockStatusEnum = /*@__PURE__*/ S.String;
+export const DomainLockStatusEnum = S.String;
 
 export interface EditDomainRequest {
   /** Service name */
@@ -2335,7 +2335,7 @@ export const DomainContactSummary = /*@__PURE__*/ S.suspend(() =>
 
 /** Domain dnssec state */
 export type DomainDnssecStateEnum = "disabled" | "enabled" | "not_supported";
-export const DomainDnssecStateEnum = /*@__PURE__*/ S.String;
+export const DomainDnssecStateEnum = S.String;
 
 /** Name server configuration */
 export interface DomainNameServerNameServer {
@@ -2371,11 +2371,11 @@ export const DomainDomainServiceNameServersList = /*@__PURE__*/ S.Array(
 
 /** Offer */
 export type DomainOfferEnum = "diamond" | "gold" | "platinum";
-export const DomainOfferEnum = /*@__PURE__*/ S.String;
+export const DomainOfferEnum = S.String;
 
 /** Parent service type enum */
 export type DomainParentServiceTypeEnum = "/allDom";
-export const DomainParentServiceTypeEnum = /*@__PURE__*/ S.String;
+export const DomainParentServiceTypeEnum = S.String;
 
 /** Parent service */
 export interface DomainParentService {
@@ -2400,7 +2400,7 @@ export type DomainRenewalStateEnum =
   | "cancellation_requested"
   | "manual_renew"
   | "unpaid";
-export const DomainRenewalStateEnum = /*@__PURE__*/ S.String;
+export const DomainRenewalStateEnum = S.String;
 
 /** Domain name current state */
 export type DomainDomainStateEnum =
@@ -2418,11 +2418,11 @@ export type DomainDomainStateEnum =
   | "registry_suspended"
   | "restorable"
   | "technical_suspended";
-export const DomainDomainStateEnum = /*@__PURE__*/ S.String;
+export const DomainDomainStateEnum = S.String;
 
 /** Domain suspension state */
 export type DomainSuspensionStateEnum = "not_suspended" | "suspended";
-export const DomainSuspensionStateEnum = /*@__PURE__*/ S.String;
+export const DomainSuspensionStateEnum = S.String;
 
 /** General information about a domain name service */
 export interface DomainDomainService {
@@ -2730,7 +2730,7 @@ export type DomainDnssecStatusEnum =
   | "disabled"
   | "enableInProgress"
   | "enabled";
-export const DomainDnssecStatusEnum = /*@__PURE__*/ S.String;
+export const DomainDnssecStatusEnum = S.String;
 
 /** DNS zone DNSSEC */
 export interface DomainZoneDnssec {
@@ -2763,7 +2763,7 @@ export type IamResourceMetadataStateEnum =
   | "IN_CREATION"
   | "OK"
   | "SUSPENDED";
-export const IamResourceMetadataStateEnum = /*@__PURE__*/ S.String;
+export const IamResourceMetadataStateEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -2937,7 +2937,7 @@ export type DomainIsForEnum =
   | "other_purpose"
   | "redirect_page"
   | "transactional_website";
-export const DomainIsForEnum = /*@__PURE__*/ S.String;
+export const DomainIsForEnum = S.String;
 
 /** Purposes of the domain */
 export type DomainConfigurationsCustomFieldsIsForList = Array<DomainIsForEnum>;
@@ -3009,7 +3009,7 @@ export type DomainConfigurationRulesContextEnum =
   | "trade"
   | "transfer"
   | "update";
-export const DomainConfigurationRulesContextEnum = /*@__PURE__*/ S.String;
+export const DomainConfigurationRulesContextEnum = S.String;
 
 /** The context on which the constraint applies */
 export type DomainConfigurationRulesConstraintContextsList =
@@ -3038,7 +3038,7 @@ export type DomainConfigurationRulesOperatorEnum =
   | "readonly"
   | "required"
   | "shouldbetrue";
-export const DomainConfigurationRulesOperatorEnum = /*@__PURE__*/ S.String;
+export const DomainConfigurationRulesOperatorEnum = S.String;
 
 /** The values to match against */
 export type DomainConfigurationRulesConstraintValuesList = Array<string>;
@@ -3109,7 +3109,7 @@ export type DomainConfigurationRulesTypeEnum =
   | "string"
   | "string[]"
   | "text";
-export const DomainConfigurationRulesTypeEnum = /*@__PURE__*/ S.String;
+export const DomainConfigurationRulesTypeEnum = S.String;
 
 /** A configuration rule defines validation to launch when executing an action on a domain (create, trade...). Depending on the extension, the rule may be different */
 export interface DomainConfigurationRulesRule {
@@ -3396,7 +3396,7 @@ export const DomainDataClaimNoticeClaimNoticeClaimsList = /*@__PURE__*/ S.Array(
 
 /** Type of claim notice */
 export type DomainDataClaimNoticeClaimNoticeTypeEnum = "TRADEMARK" | "UK";
-export const DomainDataClaimNoticeClaimNoticeTypeEnum = /*@__PURE__*/ S.String;
+export const DomainDataClaimNoticeClaimNoticeTypeEnum = S.String;
 
 /** Definition of claim notices applying to a domain name */
 export interface DomainDataClaimNoticeClaimNotice {
@@ -3469,7 +3469,7 @@ export type DnssecKeyStatusEnum =
   | "removed"
   | "retired"
   | "revoked";
-export const DnssecKeyStatusEnum = /*@__PURE__*/ S.String;
+export const DnssecKeyStatusEnum = S.String;
 
 /** Domain's DNSSEC Key */
 export interface DnssecKey {
@@ -3568,8 +3568,7 @@ export const DomainExtensionsRegistryConfigurationsDNSRegistryConfiguration =
 export type DomainExtensionsRegistryConfigurationsExtensionTypeEnum =
   | "cctld"
   | "gtld";
-export const DomainExtensionsRegistryConfigurationsExtensionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DomainExtensionsRegistryConfigurationsExtensionTypeEnum = S.String;
 
 /** The registry configurations applied to the domain name label */
 export interface DomainExtensionsRegistryConfigurationsLabelDomainRegistryConfiguration {
@@ -3915,7 +3914,7 @@ export const GetDomainNameServerStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** DNS server state */
 export type DomainNameServerNameServerStateEnum = "ko" | "ok";
-export const DomainNameServerNameServerStateEnum = /*@__PURE__*/ S.String;
+export const DomainNameServerNameServerStateEnum = S.String;
 
 /** DNS server status */
 export interface DomainNameServerNameServerStatus {
@@ -3938,7 +3937,7 @@ export const DomainNameServerNameServerStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** All options a domain can have */
 export type GetDomainOptionRequestOption = "dnsAnycast";
-export const GetDomainOptionRequestOption = /*@__PURE__*/ S.String;
+export const GetDomainOptionRequestOption = S.String;
 
 export interface GetDomainOptionRequest {
   /** Service name */
@@ -3963,11 +3962,11 @@ export const GetDomainOptionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** All options a domain can have */
 export type DomainDomainOptionEnum = "dnsAnycast";
-export const DomainDomainOptionEnum = /*@__PURE__*/ S.String;
+export const DomainDomainOptionEnum = S.String;
 
 /** All states a domain Option can be in */
 export type DomainDomainOptionStateEnum = "released" | "subscribed";
-export const DomainDomainOptionStateEnum = /*@__PURE__*/ S.String;
+export const DomainDomainOptionStateEnum = S.String;
 
 /** Information about the options of a domain */
 export interface DomainOption {
@@ -4139,7 +4138,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -4149,7 +4148,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -4456,7 +4455,7 @@ export type DomainTaskFunctionEnum =
   | "ZoneImport"
   | "ZoneRefresh"
   | "ZoneRestore";
-export const DomainTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const DomainTaskFunctionEnum = S.String;
 
 /** All statuses from a dns task */
 export type DomainTaskStatusEnum =
@@ -4466,7 +4465,7 @@ export type DomainTaskStatusEnum =
   | "error"
   | "problem"
   | "todo";
-export const DomainTaskStatusEnum = /*@__PURE__*/ S.String;
+export const DomainTaskStatusEnum = S.String;
 
 /** DNS zone task */
 export interface DomainZoneTask {
@@ -4853,7 +4852,7 @@ export const ListDomainConfigurationObfuscatedEmailsRequest =
 
 /** The possible statuses of an email obfuscation */
 export type DomainConfigurationsObfuscationStatusEnum = "done" | "todo";
-export const DomainConfigurationsObfuscationStatusEnum = /*@__PURE__*/ S.String;
+export const DomainConfigurationsObfuscationStatusEnum = S.String;
 
 /** The possible types of contacts associated to a domain name */
 export type DomainConfigurationsContactTypeEnum =
@@ -4862,7 +4861,7 @@ export type DomainConfigurationsContactTypeEnum =
   | "billing"
   | "owner"
   | "tech";
-export const DomainConfigurationsContactTypeEnum = /*@__PURE__*/ S.String;
+export const DomainConfigurationsContactTypeEnum = S.String;
 
 /** Configuration of the email obfuscations for contacts related to a domain name */
 export interface DomainConfigurationsObfuscatedEmail {
@@ -4931,7 +4930,7 @@ export type DomainOptinFieldsEnum =
   | "phone"
   | "province"
   | "zip";
-export const DomainOptinFieldsEnum = /*@__PURE__*/ S.String;
+export const DomainOptinFieldsEnum = S.String;
 
 /** Fields to display publicly on the Whois */
 export type DomainConfigurationsOptinFieldsList = Array<
@@ -5027,7 +5026,7 @@ export const ListDomainDsRecordResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of extension category */
 export type DomainExtensionsCategoryTypeEnum = "geolocalization" | "thematic";
-export const DomainExtensionsCategoryTypeEnum = /*@__PURE__*/ S.String;
+export const DomainExtensionsCategoryTypeEnum = S.String;
 
 export type ListDomainExtensionByCategoryRequestCategoryTypeList = Array<
   DomainExtensionsCategoryTypeEnum | (string & {})
@@ -5140,7 +5139,7 @@ export type NichandleOvhSubsidiaryEnum =
   | "PT"
   | "SN"
   | "TN";
-export const NichandleOvhSubsidiaryEnum = /*@__PURE__*/ S.String;
+export const NichandleOvhSubsidiaryEnum = S.String;
 
 export interface ListDomainExtensionHighlightedRequest {
   /** OVHcloud subsidiary targeted. Highlighted extensions are different from one subsidiary to another. Default to FR. */
@@ -5235,7 +5234,7 @@ export const ListDomainExtensionPricingAttributesResponse =
 
 /** Type used to change the order of extensions results */
 export type DomainExtensionsOrderByTypeEnum = "alphabetical" | "trending";
-export const DomainExtensionsOrderByTypeEnum = /*@__PURE__*/ S.String;
+export const DomainExtensionsOrderByTypeEnum = S.String;
 
 export interface ListDomainExtensionsRequest {
   /** Filter only extensions related to this list of geolocalization places (comma separated). Default to empty. */
@@ -6027,8 +6026,7 @@ export const RefreshZoneResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource record name */
 export type DomainZoneResettableNamedResolutionFieldTypeEnum = "A" | "MX";
-export const DomainZoneResettableNamedResolutionFieldTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DomainZoneResettableNamedResolutionFieldTypeEnum = S.String;
 
 /** Record associated to domain zone reset */
 export interface DomainZoneResetRecord {

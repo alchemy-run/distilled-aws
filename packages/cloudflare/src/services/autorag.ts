@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 export type { CloudflareOpError, CloudflareOpContext };
 
 export type FilesRequestStatus = "completed" | "queued" | "running" | "error";
-export const FilesRequestStatus = /*@__PURE__*/ S.String;
+export const FilesRequestStatus = S.String;
 
 export interface FilesRequest {
   accountId: string;
@@ -85,7 +85,7 @@ export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
 
 export type GetJobResponseSource = "user" | "schedule";
-export const GetJobResponseSource = /*@__PURE__*/ S.String;
+export const GetJobResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetJobResponse {
@@ -187,7 +187,7 @@ export const ListJobsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListJobsRequest>;
 
 export type ListJobsResultItemSource = "user" | "schedule";
-export const ListJobsResultItemSource = /*@__PURE__*/ S.String;
+export const ListJobsResultItemSource = S.String;
 
 export interface ListJobsResultItem {
   id: string;
@@ -229,7 +229,7 @@ export type SearchRequestFiltersCase0Type =
   | "gte"
   | "lt"
   | "lte";
-export const SearchRequestFiltersCase0Type = /*@__PURE__*/ S.String;
+export const SearchRequestFiltersCase0Type = S.String;
 
 export type SearchRequestFiltersCase0Value = string | number | boolean;
 export const SearchRequestFiltersCase0Value = /*@__PURE__*/ S.Unknown.pipe(
@@ -258,7 +258,7 @@ export type SearchRequestFiltersCase1FiltersItemType =
   | "gte"
   | "lt"
   | "lte";
-export const SearchRequestFiltersCase1FiltersItemType = /*@__PURE__*/ S.String;
+export const SearchRequestFiltersCase1FiltersItemType = S.String;
 
 export type SearchRequestFiltersCase1FiltersItemValue =
   | string
@@ -290,7 +290,7 @@ export const SearchRequestFiltersCase1FiltersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchRequestFiltersCase1FiltersList>;
 
 export type SearchRequestFiltersCase1Type = "and" | "or";
-export const SearchRequestFiltersCase1Type = /*@__PURE__*/ S.String;
+export const SearchRequestFiltersCase1Type = S.String;
 
 export interface SearchRequestFiltersCase1 {
   filters: SearchRequestFiltersCase1FiltersList;
@@ -329,7 +329,7 @@ export const SearchRequestRankingOptions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchRequestRankingOptions>;
 
 export type SearchRequestRerankingModel = "@cf/baai/bge-reranker-base" | "";
-export const SearchRequestRerankingModel = /*@__PURE__*/ S.String;
+export const SearchRequestRerankingModel = S.String;
 
 export interface SearchRequestReranking {
   enabled?: boolean;
@@ -444,7 +444,7 @@ export type SearchAiRequestFiltersCase0Type =
   | "gte"
   | "lt"
   | "lte";
-export const SearchAiRequestFiltersCase0Type = /*@__PURE__*/ S.String;
+export const SearchAiRequestFiltersCase0Type = S.String;
 
 export type SearchAiRequestFiltersCase0Value = string | number | boolean;
 export const SearchAiRequestFiltersCase0Value = /*@__PURE__*/ S.Unknown.pipe(
@@ -473,8 +473,7 @@ export type SearchAiRequestFiltersCase1FiltersItemType =
   | "gte"
   | "lt"
   | "lte";
-export const SearchAiRequestFiltersCase1FiltersItemType =
-  /*@__PURE__*/ S.String;
+export const SearchAiRequestFiltersCase1FiltersItemType = S.String;
 
 export type SearchAiRequestFiltersCase1FiltersItemValue =
   | string
@@ -506,7 +505,7 @@ export const SearchAiRequestFiltersCase1FiltersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchAiRequestFiltersCase1FiltersList>;
 
 export type SearchAiRequestFiltersCase1Type = "and" | "or";
-export const SearchAiRequestFiltersCase1Type = /*@__PURE__*/ S.String;
+export const SearchAiRequestFiltersCase1Type = S.String;
 
 export interface SearchAiRequestFiltersCase1 {
   filters: SearchAiRequestFiltersCase1FiltersList;
@@ -558,13 +557,13 @@ export type SearchAiRequestModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const SearchAiRequestModel = /*@__PURE__*/ S.String;
+export const SearchAiRequestModel = S.String;
 
 export type SearchAiRequestRankingOptions = SearchRequestRankingOptions;
 export const SearchAiRequestRankingOptions = SearchRequestRankingOptions;
 
 export type SearchAiRequestRerankingModel = "@cf/baai/bge-reranker-base" | "";
-export const SearchAiRequestRerankingModel = /*@__PURE__*/ S.String;
+export const SearchAiRequestRerankingModel = S.String;
 
 export interface SearchAiRequestReranking {
   enabled?: boolean;

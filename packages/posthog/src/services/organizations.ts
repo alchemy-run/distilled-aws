@@ -73,18 +73,17 @@ export const CimdVerificationTokensDestroyResponse = /*@__PURE__*/ S.suspend(
 export type OrganizationDefaultExperimentStatsMethodEnum =
   | "bayesian"
   | "frequentist";
-export const OrganizationDefaultExperimentStatsMethodEnum =
-  /*@__PURE__*/ S.String;
+export const OrganizationDefaultExperimentStatsMethodEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 /** Default statistical method for new experiments in this organization. * `bayesian` - Bayesian * `frequentist` - Frequentist */
 export type CreateRequestDefaultExperimentStatsMethod =
   | OrganizationDefaultExperimentStatsMethodEnum
   | BlankEnum;
 export const CreateRequestDefaultExperimentStatsMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateRequestDefaultExperimentStatsMethod>;
+  S.Unknown as any as S.Schema<CreateRequestDefaultExperimentStatsMethod>;
 
 export interface CreateRequest {
   name?: string;
@@ -135,11 +134,11 @@ export const CreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `1` - member * `8` - administrator * `15` - owner */
 export type OrganizationMembershipLevelEnum = 1 | 8 | 15;
-export const OrganizationMembershipLevelEnum = /*@__PURE__*/ S.Number;
+export const OrganizationMembershipLevelEnum = S.Number;
 
 /** * `0` - none * `3` - config * `6` - install * `9` - root */
 export type OrganizationPluginsAccessLevelEnum = 0 | 3 | 6 | 9;
-export const OrganizationPluginsAccessLevelEnum = /*@__PURE__*/ S.Number;
+export const OrganizationPluginsAccessLevelEnum = S.Number;
 
 export type OrganizationTeamsItemMap = { [key: string]: unknown | undefined };
 export const OrganizationTeamsItemMap = /*@__PURE__*/ S.Record(
@@ -181,7 +180,7 @@ export type OrganizationDefaultExperimentStatsMethod =
   | OrganizationDefaultExperimentStatsMethodEnum
   | BlankEnum;
 export const OrganizationDefaultExperimentStatsMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationDefaultExperimentStatsMethod>;
+  S.Unknown as any as S.Schema<OrganizationDefaultExperimentStatsMethod>;
 
 export interface Organization {
   id?: string;
@@ -317,11 +316,11 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -459,25 +458,25 @@ export const OrganizationDomain = /*@__PURE__*/ S.suspend(() =>
 
 /** * `all` - All * `selected` - Selected */
 export type DomainScopeEnum = "all" | "selected";
-export const DomainScopeEnum = /*@__PURE__*/ S.String;
+export const DomainScopeEnum = S.String;
 
 /** Domains this configuration applies to. An unset value behaves like selected domains. * `all` - All * `selected` - Selected */
 export type CreateIdentityProviderConfigRequestDomainScope =
   | DomainScopeEnum
   | BlankEnum;
 export const CreateIdentityProviderConfigRequestDomainScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIdentityProviderConfigRequestDomainScope>;
+  S.Unknown as any as S.Schema<CreateIdentityProviderConfigRequestDomainScope>;
 
 /** * `saml` - Saml * `scim` - Scim * `xaa` - Xaa */
 export type ConfigScopeEnum = "saml" | "scim" | "xaa";
-export const ConfigScopeEnum = /*@__PURE__*/ S.String;
+export const ConfigScopeEnum = S.String;
 
 /** Feature configured by this identity provider configuration. * `saml` - Saml * `scim` - Scim * `xaa` - Xaa */
 export type CreateIdentityProviderConfigRequestConfigScope =
   | ConfigScopeEnum
   | BlankEnum;
 export const CreateIdentityProviderConfigRequestConfigScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateIdentityProviderConfigRequestConfigScope>;
+  S.Unknown as any as S.Schema<CreateIdentityProviderConfigRequestConfigScope>;
 
 /** Organization domain IDs that this identity provider configuration applies to. */
 export type CreateIdentityProviderConfigRequestOrganizationDomainIdsList =
@@ -557,12 +556,12 @@ export const CreateIdentityProviderConfigRequest = /*@__PURE__*/ S.suspend(() =>
 /** Domains this configuration applies to. An unset value behaves like selected domains. * `all` - All * `selected` - Selected */
 export type IdentityProviderConfigDomainScope = DomainScopeEnum | BlankEnum;
 export const IdentityProviderConfigDomainScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IdentityProviderConfigDomainScope>;
+  S.Unknown as any as S.Schema<IdentityProviderConfigDomainScope>;
 
 /** Feature configured by this identity provider configuration. * `saml` - Saml * `scim` - Scim * `xaa` - Xaa */
 export type IdentityProviderConfigConfigScope = ConfigScopeEnum | BlankEnum;
 export const IdentityProviderConfigConfigScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IdentityProviderConfigConfigScope>;
+  S.Unknown as any as S.Schema<IdentityProviderConfigConfigScope>;
 
 /** Organization domain IDs that this identity provider configuration applies to. */
 export type IdentityProviderConfigOrganizationDomainIdsList = Array<string>;
@@ -780,7 +779,7 @@ export const CreateInvitesDelegateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `BAA` - BAA * `DPA` - DPA */
 export type CreateLegalDocumentDocumentTypeEnum = "BAA" | "DPA";
-export const CreateLegalDocumentDocumentTypeEnum = /*@__PURE__*/ S.String;
+export const CreateLegalDocumentDocumentTypeEnum = S.String;
 
 export interface CreateLegalDocumentRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -1461,7 +1460,7 @@ export type TimezoneEnum =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const TimezoneEnum = /*@__PURE__*/ S.String;
+export const TimezoneEnum = S.String;
 
 /** Ordered list of person properties used to render a human-friendly display name in the UI. */
 export type CreateOrganizationsProjectRequestPersonDisplayNamePropertiesList =
@@ -1494,11 +1493,11 @@ export const CreateOrganizationsProjectRequestSessionRecordingEventTriggerConfig
 
 /** * `30d` - 30 Days * `90d` - 90 Days * `1y` - 1 Year * `5y` - 5 Years */
 export type SessionRecordingRetentionPeriodEnum = "30d" | "90d" | "1y" | "5y";
-export const SessionRecordingRetentionPeriodEnum = /*@__PURE__*/ S.String;
+export const SessionRecordingRetentionPeriodEnum = S.String;
 
 /** * `0` - Sunday * `1` - Monday */
 export type WeekStartDayEnum = 0 | 1;
-export const WeekStartDayEnum = /*@__PURE__*/ S.Number;
+export const WeekStartDayEnum = S.Number;
 
 export type CreateOrganizationsProjectRequestLiveEventsColumnsList =
   Array<string>;
@@ -1517,14 +1516,14 @@ export const CreateOrganizationsProjectRequestRecordingDomainsList =
 
 /** * `b2b` - B2B * `b2c` - B2C * `other` - Other */
 export type BusinessModelEnum = "b2b" | "b2c" | "other";
-export const BusinessModelEnum = /*@__PURE__*/ S.String;
+export const BusinessModelEnum = S.String;
 
 /** Whether this project serves B2B or B2C customers. Used to optimize default UI layouts. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
 export type CreateOrganizationsProjectRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const CreateOrganizationsProjectRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationsProjectRequestBusinessModel>;
+  S.Unknown as any as S.Schema<CreateOrganizationsProjectRequestBusinessModel>;
 
 /** * `AED` - AED * `AFN` - AFN * `ALL` - ALL * `AMD` - AMD * `ANG` - ANG * `AOA` - AOA * `ARS` - ARS * `AUD` - AUD * `AWG` - AWG * `AZN` - AZN * `BAM` - BAM * `BBD` - BBD * `BDT` - BDT * `BGN` - BGN * `BHD` - BHD * `BIF` - BIF * `BMD` - BMD * `BND` - BND * `BOB` - BOB * `BRL` - BRL * `BSD` - BSD * `BTC` - BTC * `BTN` - BTN * `BWP` - BWP * `BYN` - BYN * `BZD` - BZD * `CAD` - CAD * `CDF` - CDF * `CHF` - CHF * `CLP` - CLP * `CNY` - CNY * `COP` - COP * `CRC` - CRC * `CVE` - CVE * `CZK` - CZK * `DJF` - DJF * `DKK` - DKK * `DOP` - DOP * `DZD` - DZD * `EGP` - EGP * `ERN` - ERN * `ETB` - ETB * `EUR` - EUR * `FJD` - FJD * `GBP` - GBP * `GEL` - GEL * `GHS` - GHS * `GIP` - GIP * `GMD` - GMD * `GNF` - GNF * `GTQ` - GTQ * `GYD` - GYD * `HKD` - HKD * `HNL` - HNL * `HRK` - HRK * `HTG` - HTG * `HUF` - HUF * `IDR` - IDR * `ILS` - ILS * `INR` - INR * `IQD` - IQD * `IRR` - IRR * `ISK` - ISK * `JMD` - JMD * `JOD` - JOD * `JPY` - JPY * `KES` - KES * `KGS` - KGS * `KHR` - KHR * `KMF` - KMF * `KRW` - KRW * `KWD` - KWD * `KYD` - KYD * `KZT` - KZT * `LAK` - LAK * `LBP` - LBP * `LKR` - LKR * `LRD` - LRD * `LTL` - LTL * `LVL` - LVL * `LSL` - LSL * `LYD` - LYD * `MAD` - MAD * `MDL` - MDL * `MGA` - MGA * `MKD` - MKD * `MMK` - MMK * `MNT` - MNT * `MOP` - MOP * `MRU` - MRU * `MTL` - MTL * `MUR` - MUR * `MVR` - MVR * `MWK` - MWK * `MXN` - MXN * `MYR` - MYR * `MZN` - MZN * `NAD` - NAD * `NGN` - NGN * `NIO` - NIO * `NOK` - NOK * `NPR` - NPR * `NZD` - NZD * `OMR` - OMR * `PAB` - PAB * `PEN` - PEN * `PGK` - PGK * `PHP` - PHP * `PKR` - PKR * `PLN` - PLN * `PYG` - PYG * `QAR` - QAR * `RON` - RON * `RSD` - RSD * `RUB` - RUB * `RWF` - RWF * `SAR` - SAR * `SBD` - SBD * `SCR` - SCR * `SDG` - SDG * `SEK` - SEK * `SGD` - SGD * `SRD` - SRD * `SSP` - SSP * `STN` - STN * `SYP` - SYP * `SZL` - SZL * `THB` - THB * `TJS` - TJS * `TMT` - TMT * `TND` - TND * `TOP` - TOP * `TRY` - TRY * `TTD` - TTD * `TWD` - TWD * `TZS` - TZS * `UAH` - UAH * `UGX` - UGX * `USD` - USD * `UYU` - UYU * `UZS` - UZS * `VES` - VES * `VND` - VND * `VUV` - VUV * `WST` - WST * `XAF` - XAF * `XCD` - XCD * `XOF` - XOF * `XPF` - XPF * `YER` - YER * `ZAR` - ZAR * `ZMW` - ZMW */
 export type BaseCurrencyEnum =
@@ -1680,7 +1679,7 @@ export type BaseCurrencyEnum =
   | "YER"
   | "ZAR"
   | "ZMW";
-export const BaseCurrencyEnum = /*@__PURE__*/ S.String;
+export const BaseCurrencyEnum = S.String;
 
 export interface TeamRevenueAnalyticsConfig {
   base_currency?: BaseCurrencyEnum | (string & {});
@@ -1749,13 +1748,13 @@ export type BaseMathType =
   | "unique_session"
   | "first_time_for_user"
   | "first_matching_event_for_user";
-export const BaseMathType = /*@__PURE__*/ S.String;
+export const BaseMathType = S.String;
 
 export type FunnelMathType =
   | "total"
   | "first_time_for_user"
   | "first_time_for_user_with_filters";
-export const FunnelMathType = /*@__PURE__*/ S.String;
+export const FunnelMathType = S.String;
 
 export type PropertyMathType =
   | "avg"
@@ -1767,7 +1766,7 @@ export type PropertyMathType =
   | "p90"
   | "p95"
   | "p99";
-export const PropertyMathType = /*@__PURE__*/ S.String;
+export const PropertyMathType = S.String;
 
 export type CountPerActorMathType =
   | "avg_count_per_actor"
@@ -1778,13 +1777,13 @@ export type CountPerActorMathType =
   | "p90_count_per_actor"
   | "p95_count_per_actor"
   | "p99_count_per_actor";
-export const CountPerActorMathType = /*@__PURE__*/ S.String;
+export const CountPerActorMathType = S.String;
 
 export type GroupMathType =
   | "unique_group"
   | "first_time_for_group"
   | "first_matching_event_for_group";
-export const GroupMathType = /*@__PURE__*/ S.String;
+export const GroupMathType = S.String;
 
 export type ExperimentMetricMathType =
   | "total"
@@ -1796,10 +1795,10 @@ export type ExperimentMetricMathType =
   | "dau"
   | "unique_group"
   | "hogql";
-export const ExperimentMetricMathType = /*@__PURE__*/ S.String;
+export const ExperimentMetricMathType = S.String;
 
 export type CalendarHeatmapMathType = "total" | "dau";
-export const CalendarHeatmapMathType = /*@__PURE__*/ S.String;
+export const CalendarHeatmapMathType = S.String;
 
 export type MarketingAnalyticsEventConversionGoalMath =
   | BaseMathType
@@ -1811,10 +1810,10 @@ export type MarketingAnalyticsEventConversionGoalMath =
   | CalendarHeatmapMathType
   | string;
 export const MarketingAnalyticsEventConversionGoalMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalMath>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalMath>;
 
 export type MathGroupTypeIndex = 0 | 1 | 2 | 3 | 4;
-export const MathGroupTypeIndex = /*@__PURE__*/ S.Number;
+export const MathGroupTypeIndex = S.Number;
 
 export type CurrencyCode =
   | "AED"
@@ -1969,7 +1968,7 @@ export type CurrencyCode =
   | "YER"
   | "ZAR"
   | "ZMW";
-export const CurrencyCode = /*@__PURE__*/ S.String;
+export const CurrencyCode = S.String;
 
 export interface RevenueCurrencyPropertyConfig {
   property?: string | null;
@@ -2029,11 +2028,11 @@ export type PropertyOperator =
   | "semver_wildcard"
   | "icontains_multi"
   | "not_icontains_multi";
-export const PropertyOperator = /*@__PURE__*/ S.String;
+export const PropertyOperator = S.String;
 
 export type EventPropertyFilterValueCase0Item = string | number | boolean;
 export const EventPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValueCase0Item>;
 
 export type EventPropertyFilterValueCase0List =
   Array<EventPropertyFilterValueCase0Item>;
@@ -2047,7 +2046,7 @@ export type EventPropertyFilterValue =
   | number
   | boolean;
 export const EventPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPropertyFilterValue>;
+  S.Unknown as any as S.Schema<EventPropertyFilterValue>;
 
 export interface EventPropertyFilter {
   key?: string;
@@ -2071,7 +2070,7 @@ export const EventPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type PersonPropertyFilterValueCase0Item = string | number | boolean;
 export const PersonPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValueCase0Item>;
 
 export type PersonPropertyFilterValueCase0List =
   Array<PersonPropertyFilterValueCase0Item>;
@@ -2085,7 +2084,7 @@ export type PersonPropertyFilterValue =
   | number
   | boolean;
 export const PersonPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
+  S.Unknown as any as S.Schema<PersonPropertyFilterValue>;
 
 export interface PersonPropertyFilter {
   key?: string;
@@ -2129,11 +2128,11 @@ export const CohortPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CohortPropertyFilter>;
 
 export type Key10 = "tag_name" | "text" | "href" | "selector";
-export const Key10 = /*@__PURE__*/ S.String;
+export const Key10 = S.String;
 
 export type ElementPropertyFilterValueCase0Item = string | number | boolean;
 export const ElementPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValueCase0Item>;
 
 export type ElementPropertyFilterValueCase0List =
   Array<ElementPropertyFilterValueCase0Item>;
@@ -2147,7 +2146,7 @@ export type ElementPropertyFilterValue =
   | number
   | boolean;
 export const ElementPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
+  S.Unknown as any as S.Schema<ElementPropertyFilterValue>;
 
 export interface ElementPropertyFilter {
   key?: Key10 | (string & {});
@@ -2170,7 +2169,7 @@ export const ElementPropertyFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type HogQLPropertyFilterValueCase0Item = string | number | boolean;
 export const HogQLPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValueCase0Item>;
 
 export type HogQLPropertyFilterValueCase0List =
   Array<HogQLPropertyFilterValueCase0Item>;
@@ -2184,7 +2183,7 @@ export type HogQLPropertyFilterValue =
   | number
   | boolean;
 export const HogQLPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
+  S.Unknown as any as S.Schema<HogQLPropertyFilterValue>;
 
 export interface HogQLPropertyFilter {
   key?: string;
@@ -2208,7 +2207,7 @@ export type DataWarehousePropertyFilterValueCase0Item =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValueCase0Item>;
 
 export type DataWarehousePropertyFilterValueCase0List =
   Array<DataWarehousePropertyFilterValueCase0Item>;
@@ -2222,7 +2221,7 @@ export type DataWarehousePropertyFilterValue =
   | number
   | boolean;
 export const DataWarehousePropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
+  S.Unknown as any as S.Schema<DataWarehousePropertyFilterValue>;
 
 export interface DataWarehousePropertyFilter {
   key?: string;
@@ -2251,7 +2250,7 @@ export type MarketingAnalyticsEventConversionGoalPropertiesItem =
   | HogQLPropertyFilter
   | DataWarehousePropertyFilter;
 export const MarketingAnalyticsEventConversionGoalPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalPropertiesItem>;
 
 export type MarketingAnalyticsEventConversionGoalPropertiesList =
   Array<MarketingAnalyticsEventConversionGoalPropertiesItem>;
@@ -2273,7 +2272,7 @@ export type MarketingAnalyticsEventConversionGoalSchemaMapValue =
   | string
   | unknown;
 export const MarketingAnalyticsEventConversionGoalSchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalSchemaMapValue>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsEventConversionGoalSchemaMapValue>;
 
 export type MarketingAnalyticsEventConversionGoalSchemaMapMap = {
   [key: string]:
@@ -2364,7 +2363,7 @@ export type MarketingAnalyticsActionConversionGoalMath =
   | CalendarHeatmapMathType
   | string;
 export const MarketingAnalyticsActionConversionGoalMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalMath>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalMath>;
 
 export type MarketingAnalyticsActionConversionGoalPropertiesItem =
   | EventPropertyFilter
@@ -2374,7 +2373,7 @@ export type MarketingAnalyticsActionConversionGoalPropertiesItem =
   | HogQLPropertyFilter
   | DataWarehousePropertyFilter;
 export const MarketingAnalyticsActionConversionGoalPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalPropertiesItem>;
 
 export type MarketingAnalyticsActionConversionGoalPropertiesList =
   Array<MarketingAnalyticsActionConversionGoalPropertiesItem>;
@@ -2396,7 +2395,7 @@ export type MarketingAnalyticsActionConversionGoalSchemaMapValue =
   | string
   | unknown;
 export const MarketingAnalyticsActionConversionGoalSchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalSchemaMapValue>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsActionConversionGoalSchemaMapValue>;
 
 export type MarketingAnalyticsActionConversionGoalSchemaMapMap = {
   [key: string]:
@@ -2479,7 +2478,7 @@ export type MarketingAnalyticsWarehouseConversionGoalMath =
   | CalendarHeatmapMathType
   | string;
 export const MarketingAnalyticsWarehouseConversionGoalMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalMath>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalMath>;
 
 export type MarketingAnalyticsWarehouseConversionGoalPropertiesItem =
   | EventPropertyFilter
@@ -2489,7 +2488,7 @@ export type MarketingAnalyticsWarehouseConversionGoalPropertiesItem =
   | HogQLPropertyFilter
   | DataWarehousePropertyFilter;
 export const MarketingAnalyticsWarehouseConversionGoalPropertiesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalPropertiesItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalPropertiesItem>;
 
 export type MarketingAnalyticsWarehouseConversionGoalPropertiesList =
   Array<MarketingAnalyticsWarehouseConversionGoalPropertiesItem>;
@@ -2511,7 +2510,7 @@ export type MarketingAnalyticsWarehouseConversionGoalSchemaMapValue =
   | string
   | unknown;
 export const MarketingAnalyticsWarehouseConversionGoalSchemaMapValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalSchemaMapValue>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsWarehouseConversionGoalSchemaMapValue>;
 
 export type MarketingAnalyticsWarehouseConversionGoalSchemaMapMap = {
   [key: string]:
@@ -2599,7 +2598,7 @@ export type MarketingAnalyticsConversionGoalListItem =
   | MarketingAnalyticsActionConversionGoal
   | MarketingAnalyticsWarehouseConversionGoal;
 export const MarketingAnalyticsConversionGoalListItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MarketingAnalyticsConversionGoalListItem>;
+  S.Unknown as any as S.Schema<MarketingAnalyticsConversionGoalListItem>;
 
 /** The conversion goals configured for marketing analytics, in display order. */
 export type MarketingAnalyticsConversionGoalList =
@@ -2615,7 +2614,7 @@ export type AttributionModeEnum =
   | "linear"
   | "time_decay"
   | "position_based";
-export const AttributionModeEnum = /*@__PURE__*/ S.String;
+export const AttributionModeEnum = S.String;
 
 export type MarketingAnalyticsCampaignNameMappingsValueValueList =
   Array<string>;
@@ -2660,7 +2659,7 @@ export const MarketingAnalyticsCustomSourceMappings = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<MarketingAnalyticsCustomSourceMappings>;
 
 export type MatchField = "campaign_name" | "campaign_id";
-export const MatchField = /*@__PURE__*/ S.String;
+export const MatchField = S.String;
 
 export interface CampaignFieldPreference {
   match_field: MatchField | (string & {});
@@ -2744,7 +2743,7 @@ export const TeamCustomerAnalyticsConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** * `off` - Off * `opt_out` - Opt Out * `opt_in` - Opt In */
 export type EmailTrackingConsentModeEnum = "off" | "opt_out" | "opt_in";
-export const EmailTrackingConsentModeEnum = /*@__PURE__*/ S.String;
+export const EmailTrackingConsentModeEnum = S.String;
 
 export interface TeamWorkflowsConfig {
   /** When enabled, workflows engagement activity (email sends, opens, clicks, bounces, spam reports, unsubscribes) is captured as standard PostHog events ($workflows_email_*) alongside the existing workflow metrics. */
@@ -2775,7 +2774,7 @@ export const TeamFeatureFlagPolicyConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** * `0` - Disabled * `1` - Stateless * `2` - Stateful */
 export type CookielessServerHashModeEnum = 0 | 1 | 2;
-export const CookielessServerHashModeEnum = /*@__PURE__*/ S.Number;
+export const CookielessServerHashModeEnum = S.Number;
 
 export interface CreateOrganizationsProjectRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -3099,7 +3098,7 @@ export const ProjectBackwardCompatProductIntentsList = /*@__PURE__*/ S.Array(
 /** Whether this project serves B2B or B2C customers. Used to optimize default UI layouts. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
 export type ProjectBackwardCompatBusinessModel = BusinessModelEnum | BlankEnum;
 export const ProjectBackwardCompatBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProjectBackwardCompatBusinessModel>;
+  S.Unknown as any as S.Schema<ProjectBackwardCompatBusinessModel>;
 
 /** * `ingest_first_event` - ingest_first_event * `set_up_reverse_proxy` - set_up_reverse_proxy * `create_first_insight` - create_first_insight * `create_first_dashboard` - create_first_dashboard * `track_custom_events` - track_custom_events * `define_actions` - define_actions * `set_up_cohorts` - set_up_cohorts * `explore_trends_insight` - explore_trends_insight * `create_funnel` - create_funnel * `explore_retention_insight` - explore_retention_insight * `explore_paths_insight` - explore_paths_insight * `explore_stickiness_insight` - explore_stickiness_insight * `explore_lifecycle_insight` - explore_lifecycle_insight * `add_authorized_domain` - add_authorized_domain * `set_up_web_vitals` - set_up_web_vitals * `review_web_analytics_dashboard` - review_web_analytics_dashboard * `filter_web_analytics` - filter_web_analytics * `set_up_web_analytics_conversion_goals` - set_up_web_analytics_conversion_goals * `visit_web_vitals_dashboard` - visit_web_vitals_dashboard * `setup_session_recordings` - setup_session_recordings * `watch_session_recording` - watch_session_recording * `configure_recording_settings` - configure_recording_settings * `create_recording_playlist` - create_recording_playlist * `enable_console_logs` - enable_console_logs * `create_feature_flag` - create_feature_flag * `implement_flag_in_code` - implement_flag_in_code * `update_feature_flag_release_conditions` - update_feature_flag_release_conditions * `create_multivariate_flag` - create_multivariate_flag * `set_up_flag_payloads` - set_up_flag_payloads * `set_up_flag_evaluation_runtimes` - set_up_flag_evaluation_runtimes * `create_experiment` - create_experiment * `implement_experiment_variants` - implement_experiment_variants * `launch_experiment` - launch_experiment * `review_experiment_results` - review_experiment_results * `create_survey` - create_survey * `launch_survey` - launch_survey * `collect_survey_responses` - collect_survey_responses * `connect_source` - connect_source * `run_first_query` - run_first_query * `join_external_data` - join_external_data * `create_saved_view` - create_saved_view * `enable_error_tracking` - enable_error_tracking * `upload_source_maps` - upload_source_maps * `view_first_error` - view_first_error * `resolve_first_error` - resolve_first_error * `ingest_first_llm_event` - ingest_first_llm_event * `view_first_trace` - view_first_trace * `track_costs` - track_costs * `set_up_llm_evaluation` - set_up_llm_evaluation * `run_ai_playground` - run_ai_playground * `enable_log_capture` - enable_log_capture * `view_first_logs` - view_first_logs * `create_first_workflow` - create_first_workflow * `set_up_first_workflow_channel` - set_up_first_workflow_channel * `configure_workflow_trigger` - configure_workflow_trigger * `add_workflow_action` - add_workflow_action * `launch_workflow` - launch_workflow * `create_first_endpoint` - create_first_endpoint * `configure_endpoint` - configure_endpoint * `test_endpoint` - test_endpoint * `create_early_access_feature` - create_early_access_feature * `update_feature_stage` - update_feature_stage * `use_posthog_ai` - use_posthog_ai * `use_posthog_code` - use_posthog_code * `use_posthog_mcp` - use_posthog_mcp * `use_posthog_in_slack` - use_posthog_in_slack */
 export type AvailableSetupTaskIdsEnum =
@@ -3169,7 +3168,7 @@ export type AvailableSetupTaskIdsEnum =
   | "use_posthog_code"
   | "use_posthog_mcp"
   | "use_posthog_in_slack";
-export const AvailableSetupTaskIdsEnum = /*@__PURE__*/ S.String;
+export const AvailableSetupTaskIdsEnum = S.String;
 
 export type ProjectBackwardCompatAvailableSetupTaskIdsList =
   Array<AvailableSetupTaskIdsEnum>;
@@ -3502,7 +3501,7 @@ export type CreateOrganizationsProjectsChangeOrganizationRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const CreateOrganizationsProjectsChangeOrganizationRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationsProjectsChangeOrganizationRequestBusinessModel>;
+  S.Unknown as any as S.Schema<CreateOrganizationsProjectsChangeOrganizationRequestBusinessModel>;
 
 export interface CreateOrganizationsProjectsChangeOrganizationRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -3806,7 +3805,7 @@ export type CreateOrganizationsProjectsDefaultEvaluationContextRequestBusinessMo
   | BusinessModelEnum
   | BlankEnum;
 export const CreateOrganizationsProjectsDefaultEvaluationContextRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationsProjectsDefaultEvaluationContextRequestBusinessModel>;
+  S.Unknown as any as S.Schema<CreateOrganizationsProjectsDefaultEvaluationContextRequestBusinessModel>;
 
 export interface CreateOrganizationsProjectsDefaultEvaluationContextRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -4263,7 +4262,7 @@ export const CreateRolesRoleMembershipRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRolesRoleMembershipRequest>;
 
 export type SearchMatchTypeEnum = "exact" | "similar";
-export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
+export const SearchMatchTypeEnum = S.String;
 
 export interface OrganizationMember {
   id?: string;
@@ -4987,7 +4986,7 @@ export const GetTeamsDataFreshnessRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `never` - never * `live` - live * `stale` - stale */
 export type FreshnessEnum = "never" | "live" | "stale";
-export const FreshnessEnum = /*@__PURE__*/ S.String;
+export const FreshnessEnum = S.String;
 
 export interface DataFreshnessSource {
   /** The product this timestamp is about, as a `ProductKey` (e.g. `session_replay`, `logs`). Not an enum: products declare their own data sources, so the set grows without an API change. */
@@ -5086,7 +5085,7 @@ export const WelcomeInviter = /*@__PURE__*/ S.suspend(() =>
 
 /** * `today` - today * `this_week` - this_week * `inactive` - inactive * `never` - never */
 export type LastActiveEnum = "today" | "this_week" | "inactive" | "never";
-export const LastActiveEnum = /*@__PURE__*/ S.String;
+export const LastActiveEnum = S.String;
 
 export interface WelcomeTeamMember {
   name?: string;
@@ -5660,7 +5659,7 @@ export const PaginatedLegalDocumentDTOList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedLegalDocumentDTOList>;
 
 export type ListMembersRequestOrder = "-joined_at" | "joined_at";
-export const ListMembersRequestOrder = /*@__PURE__*/ S.String;
+export const ListMembersRequestOrder = S.String;
 
 export interface ListMembersRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -5807,7 +5806,7 @@ export const PaginatedOrganizationOAuthApplicationList =
   }) as any as S.Schema<PaginatedOrganizationOAuthApplicationList>;
 
 export type ListOrganizationsProjectsRequestTagsMatch = "all" | "any";
-export const ListOrganizationsProjectsRequestTagsMatch = /*@__PURE__*/ S.String;
+export const ListOrganizationsProjectsRequestTagsMatch = S.String;
 
 export interface ListOrganizationsProjectsRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -5945,7 +5944,7 @@ export type RestrictionTypeEnum =
   | "force_overflow_from_ingestion"
   | "redirect_to_dlq"
   | "redirect_to_topic";
-export const RestrictionTypeEnum = /*@__PURE__*/ S.String;
+export const RestrictionTypeEnum = S.String;
 
 /** Distinct IDs the restriction applies to. Empty means it is not filtered by distinct ID. */
 export type EventIngestionRestrictionDistinctIdsList = Array<string>;
@@ -5978,7 +5977,7 @@ export type IngestionPipelineEnum =
   | "errortracking"
   | "clientwarnings"
   | "ai";
-export const IngestionPipelineEnum = /*@__PURE__*/ S.String;
+export const IngestionPipelineEnum = S.String;
 
 /** Ingestion pipelines the restriction applies to. Filters combine with AND; values within a filter combine with OR. */
 export type EventIngestionRestrictionPipelinesList =
@@ -6267,7 +6266,7 @@ export type OrganizationsProjectsAddProductIntentPartialUpdateRequestBusinessMod
   | BusinessModelEnum
   | BlankEnum;
 export const OrganizationsProjectsAddProductIntentPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationsProjectsAddProductIntentPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<OrganizationsProjectsAddProductIntentPartialUpdateRequestBusinessModel>;
 
 export interface OrganizationsProjectsAddProductIntentPartialUpdateRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -6599,7 +6598,7 @@ export type OrganizationsProjectsDeleteSecretTokenBackupPartialUpdateRequestBusi
   | BusinessModelEnum
   | BlankEnum;
 export const OrganizationsProjectsDeleteSecretTokenBackupPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationsProjectsDeleteSecretTokenBackupPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<OrganizationsProjectsDeleteSecretTokenBackupPartialUpdateRequestBusinessModel>;
 
 export interface OrganizationsProjectsDeleteSecretTokenBackupPartialUpdateRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -6958,7 +6957,7 @@ export type OrganizationsProjectsGenerateConversationsPublicTokenCreateRequestBu
   | BusinessModelEnum
   | BlankEnum;
 export const OrganizationsProjectsGenerateConversationsPublicTokenCreateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationsProjectsGenerateConversationsPublicTokenCreateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<OrganizationsProjectsGenerateConversationsPublicTokenCreateRequestBusinessModel>;
 
 export interface OrganizationsProjectsGenerateConversationsPublicTokenCreateRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -7263,7 +7262,7 @@ export type OrganizationsProjectsResetTokenPartialUpdateRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const OrganizationsProjectsResetTokenPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationsProjectsResetTokenPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<OrganizationsProjectsResetTokenPartialUpdateRequestBusinessModel>;
 
 export interface OrganizationsProjectsResetTokenPartialUpdateRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -7567,7 +7566,7 @@ export type OrganizationsProjectsRotateSecretTokenPartialUpdateRequestBusinessMo
   | BusinessModelEnum
   | BlankEnum;
 export const OrganizationsProjectsRotateSecretTokenPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationsProjectsRotateSecretTokenPartialUpdateRequestBusinessModel>;
+  S.Unknown as any as S.Schema<OrganizationsProjectsRotateSecretTokenPartialUpdateRequestBusinessModel>;
 
 export interface OrganizationsProjectsRotateSecretTokenPartialUpdateRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -7934,7 +7933,7 @@ export type UpdateRequestDefaultExperimentStatsMethod =
   | OrganizationDefaultExperimentStatsMethodEnum
   | BlankEnum;
 export const UpdateRequestDefaultExperimentStatsMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRequestDefaultExperimentStatsMethod>;
+  S.Unknown as any as S.Schema<UpdateRequestDefaultExperimentStatsMethod>;
 
 export interface UpdateRequest {
   /** A UUID string identifying this organization. */
@@ -8072,14 +8071,14 @@ export type UpdateIdentityProviderConfigRequestDomainScope =
   | DomainScopeEnum
   | BlankEnum;
 export const UpdateIdentityProviderConfigRequestDomainScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateIdentityProviderConfigRequestDomainScope>;
+  S.Unknown as any as S.Schema<UpdateIdentityProviderConfigRequestDomainScope>;
 
 /** Feature configured by this identity provider configuration. * `saml` - Saml * `scim` - Scim * `xaa` - Xaa */
 export type UpdateIdentityProviderConfigRequestConfigScope =
   | ConfigScopeEnum
   | BlankEnum;
 export const UpdateIdentityProviderConfigRequestConfigScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateIdentityProviderConfigRequestConfigScope>;
+  S.Unknown as any as S.Schema<UpdateIdentityProviderConfigRequestConfigScope>;
 
 /** Organization domain IDs that this identity provider configuration applies to. */
 export type UpdateIdentityProviderConfigRequestOrganizationDomainIdsList =
@@ -8164,14 +8163,14 @@ export type UpdateIdentityProviderConfigsPartialRequestDomainScope =
   | DomainScopeEnum
   | BlankEnum;
 export const UpdateIdentityProviderConfigsPartialRequestDomainScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateIdentityProviderConfigsPartialRequestDomainScope>;
+  S.Unknown as any as S.Schema<UpdateIdentityProviderConfigsPartialRequestDomainScope>;
 
 /** Feature configured by this identity provider configuration. * `saml` - Saml * `scim` - Scim * `xaa` - Xaa */
 export type UpdateIdentityProviderConfigsPartialRequestConfigScope =
   | ConfigScopeEnum
   | BlankEnum;
 export const UpdateIdentityProviderConfigsPartialRequestConfigScope =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateIdentityProviderConfigsPartialRequestConfigScope>;
+  S.Unknown as any as S.Schema<UpdateIdentityProviderConfigsPartialRequestConfigScope>;
 
 /** Organization domain IDs that this identity provider configuration applies to. */
 export type UpdateIdentityProviderConfigsPartialRequestOrganizationDomainIdsList =
@@ -8276,7 +8275,7 @@ export const UpdateIntegrationsEnvironmentMappingPartialRequest =
 
 /** * `vercel` - Vercel */
 export type OrganizationIntegrationKindEnum = "vercel";
-export const OrganizationIntegrationKindEnum = /*@__PURE__*/ S.String;
+export const OrganizationIntegrationKindEnum = S.String;
 
 /** Serializer for organization-level integrations. */
 export interface OrganizationIntegration {
@@ -8407,7 +8406,7 @@ export type UpdateOrganizationsProjectRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateOrganizationsProjectRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationsProjectRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateOrganizationsProjectRequestBusinessModel>;
 
 export interface UpdateOrganizationsProjectRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -8698,7 +8697,7 @@ export type UpdateOrganizationsProjectsCompleteProductOnboardingPartialRequestBu
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateOrganizationsProjectsCompleteProductOnboardingPartialRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationsProjectsCompleteProductOnboardingPartialRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateOrganizationsProjectsCompleteProductOnboardingPartialRequestBusinessModel>;
 
 export interface UpdateOrganizationsProjectsCompleteProductOnboardingPartialRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -9003,7 +9002,7 @@ export type UpdateOrganizationsProjectsDefaultReleaseConditionRequestBusinessMod
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateOrganizationsProjectsDefaultReleaseConditionRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationsProjectsDefaultReleaseConditionRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateOrganizationsProjectsDefaultReleaseConditionRequestBusinessModel>;
 
 export interface UpdateOrganizationsProjectsDefaultReleaseConditionRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -9307,7 +9306,7 @@ export type UpdateOrganizationsProjectsExperimentsConfigPartialRequestBusinessMo
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateOrganizationsProjectsExperimentsConfigPartialRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationsProjectsExperimentsConfigPartialRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateOrganizationsProjectsExperimentsConfigPartialRequestBusinessModel>;
 
 export interface UpdateOrganizationsProjectsExperimentsConfigPartialRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -9611,7 +9610,7 @@ export type UpdateOrganizationsProjectsLogsConfigPartialRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateOrganizationsProjectsLogsConfigPartialRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationsProjectsLogsConfigPartialRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateOrganizationsProjectsLogsConfigPartialRequestBusinessModel>;
 
 export interface UpdateOrganizationsProjectsLogsConfigPartialRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -9914,7 +9913,7 @@ export type UpdateOrganizationsProjectsPartialRequestBusinessModel =
   | BusinessModelEnum
   | BlankEnum;
 export const UpdateOrganizationsProjectsPartialRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationsProjectsPartialRequestBusinessModel>;
+  S.Unknown as any as S.Schema<UpdateOrganizationsProjectsPartialRequestBusinessModel>;
 
 export interface UpdateOrganizationsProjectsPartialRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -10153,7 +10152,7 @@ export type UpdatePartialRequestDefaultExperimentStatsMethod =
   | OrganizationDefaultExperimentStatsMethodEnum
   | BlankEnum;
 export const UpdatePartialRequestDefaultExperimentStatsMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdatePartialRequestDefaultExperimentStatsMethod>;
+  S.Unknown as any as S.Schema<UpdatePartialRequestDefaultExperimentStatsMethod>;
 
 export interface UpdatePartialRequest {
   /** A UUID string identifying this organization. */

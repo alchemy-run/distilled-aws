@@ -192,7 +192,7 @@ export const CreateCancelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of your request. This will always have the value **received**. */
 export type StandalonePaymentCancelResponseStatus = "received";
-export const StandalonePaymentCancelResponseStatus = /*@__PURE__*/ S.String;
+export const StandalonePaymentCancelResponseStatus = S.String;
 
 export interface StandalonePaymentCancelResponse {
   /** The merchant account that is used to process the payment. */
@@ -303,7 +303,7 @@ export type AccountInfoAccountAgeIndicator =
   | "lessThan30Days"
   | "from30To60Days"
   | "moreThan60Days";
-export const AccountInfoAccountAgeIndicator = /*@__PURE__*/ S.String;
+export const AccountInfoAccountAgeIndicator = S.String;
 
 /** Indicator for the length of time since the shopper's account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days */
 export type AccountInfoAccountChangeIndicator =
@@ -311,11 +311,11 @@ export type AccountInfoAccountChangeIndicator =
   | "lessThan30Days"
   | "from30To60Days"
   | "moreThan60Days";
-export const AccountInfoAccountChangeIndicator = /*@__PURE__*/ S.String;
+export const AccountInfoAccountChangeIndicator = S.String;
 
 /** Indicates the type of account. For example, for a multi-account card product. Allowed values: * notApplicable * credit * debit */
 export type AccountInfoAccountType = "notApplicable" | "credit" | "debit";
-export const AccountInfoAccountType = /*@__PURE__*/ S.String;
+export const AccountInfoAccountType = S.String;
 
 /** Indicator for the length of time since this delivery address was first used. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days */
 export type AccountInfoDeliveryAddressUsageIndicator =
@@ -323,7 +323,7 @@ export type AccountInfoDeliveryAddressUsageIndicator =
   | "lessThan30Days"
   | "from30To60Days"
   | "moreThan60Days";
-export const AccountInfoDeliveryAddressUsageIndicator = /*@__PURE__*/ S.String;
+export const AccountInfoDeliveryAddressUsageIndicator = S.String;
 
 /** Indicator when the shopper has changed their password. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days */
 export type AccountInfoPasswordChangeIndicator =
@@ -332,7 +332,7 @@ export type AccountInfoPasswordChangeIndicator =
   | "lessThan30Days"
   | "from30To60Days"
   | "moreThan60Days";
-export const AccountInfoPasswordChangeIndicator = /*@__PURE__*/ S.String;
+export const AccountInfoPasswordChangeIndicator = S.String;
 
 /** Indicator for the length of time since this payment method was added to this shopper's account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days */
 export type AccountInfoPaymentAccountIndicator =
@@ -341,7 +341,7 @@ export type AccountInfoPaymentAccountIndicator =
   | "lessThan30Days"
   | "from30To60Days"
   | "moreThan60Days";
-export const AccountInfoPaymentAccountIndicator = /*@__PURE__*/ S.String;
+export const AccountInfoPaymentAccountIndicator = S.String;
 
 export interface AccountInfo {
   /** Indicator for the length of time since this shopper account was created in the merchant's environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days */
@@ -426,7 +426,7 @@ export const Amount = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure). Possible values: * **always**: Perform 3D Secure authentication. * **never**: Don't perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined. */
 export type AuthenticationDataAttemptAuthentication = "always" | "never";
-export const AuthenticationDataAttemptAuthentication = /*@__PURE__*/ S.String;
+export const AuthenticationDataAttemptAuthentication = S.String;
 
 /** Dimensions of the 3DS2 challenge window to be displayed to the cardholder. Possible values: * **01** - size of 250x400 * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen */
 export type ThreeDSRequestDataChallengeWindowSize =
@@ -435,19 +435,19 @@ export type ThreeDSRequestDataChallengeWindowSize =
   | "03"
   | "04"
   | "05";
-export const ThreeDSRequestDataChallengeWindowSize = /*@__PURE__*/ S.String;
+export const ThreeDSRequestDataChallengeWindowSize = S.String;
 
 /** Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. */
 export type ThreeDSRequestDataDataOnly = "false" | "true";
-export const ThreeDSRequestDataDataOnly = /*@__PURE__*/ S.String;
+export const ThreeDSRequestDataDataOnly = S.String;
 
 /** Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be triggered when available. Adyen can still select to fallback to the redirect flow to optimize authorization rates and improve the shopper's experience. Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Use the redirect 3D Secure authentication flow. */
 export type ThreeDSRequestDataNativeThreeDS = "preferred" | "disabled";
-export const ThreeDSRequestDataNativeThreeDS = /*@__PURE__*/ S.String;
+export const ThreeDSRequestDataNativeThreeDS = S.String;
 
 /** The version of 3D Secure to use. Possible values: * **2.1.0** * **2.2.0** */
 export type ThreeDSRequestDataThreeDSVersion = "2.1.0" | "2.2.0";
-export const ThreeDSRequestDataThreeDSVersion = /*@__PURE__*/ S.String;
+export const ThreeDSRequestDataThreeDSVersion = S.String;
 
 export interface ThreeDSRequestData {
   /** Dimensions of the 3DS2 challenge window to be displayed to the cardholder. Possible values: * **01** - size of 250x400 * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen */
@@ -551,7 +551,7 @@ export const BrowserInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`. Possible values: * iOS * Android * Web */
 export type CreateDonationRequestChannel = "iOS" | "Android" | "Web";
-export const CreateDonationRequestChannel = /*@__PURE__*/ S.String;
+export const CreateDonationRequestChannel = S.String;
 
 export interface DeliveryAddress {
   /** The name of the city. Maximum length: 3000 characters. */
@@ -681,8 +681,7 @@ export type MerchantRiskIndicatorDeliveryAddressIndicator =
   | "digitalGoods"
   | "goodsNotShipped"
   | "other";
-export const MerchantRiskIndicatorDeliveryAddressIndicator =
-  /*@__PURE__*/ S.String;
+export const MerchantRiskIndicatorDeliveryAddressIndicator = S.String;
 
 /** The estimated delivery time for the shopper to receive the goods. Allowed values: * `electronicDelivery` * `sameDayShipping` * `overnightShipping` * `twoOrMoreDaysShipping` */
 export type MerchantRiskIndicatorDeliveryTimeframe =
@@ -690,7 +689,7 @@ export type MerchantRiskIndicatorDeliveryTimeframe =
   | "sameDayShipping"
   | "overnightShipping"
   | "twoOrMoreDaysShipping";
-export const MerchantRiskIndicatorDeliveryTimeframe = /*@__PURE__*/ S.String;
+export const MerchantRiskIndicatorDeliveryTimeframe = S.String;
 
 export interface MerchantRiskIndicator {
   /** Whether the chosen delivery address is identical to the billing address. */
@@ -758,7 +757,7 @@ export const CreateDonationRequestMetadataMap = /*@__PURE__*/ S.Record(
 
 /** In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter. */
 export type ThreeDSecureDataAuthenticationResponse = "Y" | "N" | "U" | "A";
-export const ThreeDSecureDataAuthenticationResponse = /*@__PURE__*/ S.String;
+export const ThreeDSecureDataAuthenticationResponse = S.String;
 
 /** Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata). */
 export type ThreeDSecureDataChallengeCancel =
@@ -769,7 +768,7 @@ export type ThreeDSecureDataChallengeCancel =
   | "05"
   | "06"
   | "07";
-export const ThreeDSecureDataChallengeCancel = /*@__PURE__*/ S.String;
+export const ThreeDSecureDataChallengeCancel = S.String;
 
 /** In 3D Secure 2, this is the `transStatus` from the `ARes`. */
 export type ThreeDSecureDataDirectoryResponse =
@@ -781,7 +780,7 @@ export type ThreeDSecureDataDirectoryResponse =
   | "R"
   | "U"
   | "Y";
-export const ThreeDSecureDataDirectoryResponse = /*@__PURE__*/ S.String;
+export const ThreeDSecureDataDirectoryResponse = S.String;
 
 export interface ThreeDSecureData {
   /** In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter. */
@@ -832,11 +831,11 @@ export const ThreeDSecureData = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type ApplePayDonationsFundingSource = "credit" | "debit" | "prepaid";
-export const ApplePayDonationsFundingSource = /*@__PURE__*/ S.String;
+export const ApplePayDonationsFundingSource = S.String;
 
 /** **applepay** */
 export type ApplePayDonationsType = "applepay";
-export const ApplePayDonationsType = /*@__PURE__*/ S.String;
+export const ApplePayDonationsType = S.String;
 
 export interface ApplePayDonations {
   /** The stringified and base64 encoded `paymentData` you retrieved from the Apple framework. */
@@ -870,7 +869,7 @@ export const ApplePayDonations = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type CardDonationsFundingSource = "credit" | "debit" | "prepaid";
-export const CardDonationsFundingSource = /*@__PURE__*/ S.String;
+export const CardDonationsFundingSource = S.String;
 
 /** Default payment method details. Common for scheme payment methods, and for simple payment method details. */
 export type CardDonationsType =
@@ -880,7 +879,7 @@ export type CardDonationsType =
   | "giftcard"
   | "card"
   | "clicktopay";
-export const CardDonationsType = /*@__PURE__*/ S.String;
+export const CardDonationsType = S.String;
 
 export interface CardDonations {
   /** The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper. */
@@ -976,11 +975,11 @@ export const CardDonations = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type GooglePayDonationsFundingSource = "credit" | "debit" | "prepaid";
-export const GooglePayDonationsFundingSource = /*@__PURE__*/ S.String;
+export const GooglePayDonationsFundingSource = S.String;
 
 /** **googlepay**, **paywithgoogle** */
 export type GooglePayDonationsType = "googlepay";
-export const GooglePayDonationsType = /*@__PURE__*/ S.String;
+export const GooglePayDonationsType = S.String;
 
 export interface GooglePayDonations {
   /** The checkout attempt identifier. */
@@ -1020,7 +1019,7 @@ export const GooglePayDonations = /*@__PURE__*/ S.suspend(() =>
 
 /** **ideal** */
 export type IdealDonationsType = "ideal";
-export const IdealDonationsType = /*@__PURE__*/ S.String;
+export const IdealDonationsType = S.String;
 
 export interface IdealDonations {
   /** The checkout attempt identifier. */
@@ -1052,11 +1051,11 @@ export type PayWithGoogleDonationsFundingSource =
   | "credit"
   | "debit"
   | "prepaid";
-export const PayWithGoogleDonationsFundingSource = /*@__PURE__*/ S.String;
+export const PayWithGoogleDonationsFundingSource = S.String;
 
 /** **paywithgoogle** */
 export type PayWithGoogleDonationsType = "paywithgoogle";
-export const PayWithGoogleDonationsType = /*@__PURE__*/ S.String;
+export const PayWithGoogleDonationsType = S.String;
 
 export interface PayWithGoogleDonations {
   /** The checkout attempt identifier. */
@@ -1093,7 +1092,7 @@ export const PayWithGoogleDonations = /*@__PURE__*/ S.suspend(() =>
 
 /** **sepadirectdebit** */
 export type SepaDirectDebitDonationsType = "sepadirectdebit";
-export const SepaDirectDebitDonationsType = /*@__PURE__*/ S.String;
+export const SepaDirectDebitDonationsType = S.String;
 
 export interface SepaDirectDebitDonations {
   /** The checkout attempt identifier. */
@@ -1128,15 +1127,14 @@ export type CreateDonationRequestPaymentMethod =
   | PayWithGoogleDonations
   | SepaDirectDebitDonations;
 export const CreateDonationRequestPaymentMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDonationRequestPaymentMethod>;
+  S.Unknown as any as S.Schema<CreateDonationRequestPaymentMethod>;
 
 /** Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. */
 export type CreateDonationRequestRecurringProcessingModel =
   | "CardOnFile"
   | "Subscription"
   | "UnscheduledCardOnFile";
-export const CreateDonationRequestRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+export const CreateDonationRequestRecurringProcessingModel = S.String;
 
 /** Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default. This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal. */
 export type CreateDonationRequestShopperInteraction =
@@ -1144,7 +1142,7 @@ export type CreateDonationRequestShopperInteraction =
   | "ContAuth"
   | "Moto"
   | "POS";
-export const CreateDonationRequestShopperInteraction = /*@__PURE__*/ S.String;
+export const CreateDonationRequestShopperInteraction = S.String;
 
 export interface ShopperName {
   /** The first name. */
@@ -1161,31 +1159,31 @@ export const ShopperName = /*@__PURE__*/ S.suspend(() =>
 
 /** Length of time that the cardholder has had the account with the 3DS Requestor. Allowed values: * **01** — No account * **02** — Created during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days */
 export type AcctInfoChAccAgeInd = "01" | "02" | "03" | "04" | "05";
-export const AcctInfoChAccAgeInd = /*@__PURE__*/ S.String;
+export const AcctInfoChAccAgeInd = S.String;
 
 /** Length of time since the cardholder’s account information with the 3DS Requestor was last changed, including Billing or Shipping address, new payment account, or new user(s) added. Allowed values: * **01** — Changed during this transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days */
 export type AcctInfoChAccChangeInd = "01" | "02" | "03" | "04";
-export const AcctInfoChAccChangeInd = /*@__PURE__*/ S.String;
+export const AcctInfoChAccChangeInd = S.String;
 
 /** Indicates the length of time since the cardholder’s account with the 3DS Requestor had a password change or account reset. Allowed values: * **01** — No change * **02** — Changed during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days */
 export type AcctInfoChAccPwChangeInd = "01" | "02" | "03" | "04" | "05";
-export const AcctInfoChAccPwChangeInd = /*@__PURE__*/ S.String;
+export const AcctInfoChAccPwChangeInd = S.String;
 
 /** Indicates the length of time that the payment account was enrolled in the cardholder’s account with the 3DS Requestor. Allowed values: * **01** — No account (guest checkout) * **02** — During this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days */
 export type AcctInfoPaymentAccInd = "01" | "02" | "03" | "04" | "05";
-export const AcctInfoPaymentAccInd = /*@__PURE__*/ S.String;
+export const AcctInfoPaymentAccInd = S.String;
 
 /** Indicates when the shipping address used for this transaction was first used with the 3DS Requestor. Allowed values: * **01** — This transaction * **02** — Less than 30 days * **03** — 30–60 days * **04** — More than 60 days */
 export type AcctInfoShipAddressUsageInd = "01" | "02" | "03" | "04";
-export const AcctInfoShipAddressUsageInd = /*@__PURE__*/ S.String;
+export const AcctInfoShipAddressUsageInd = S.String;
 
 /** Indicates if the Cardholder Name on the account is identical to the shipping Name used for this transaction. Allowed values: * **01** — Account Name identical to shipping Name * **02** — Account Name different to shipping Name */
 export type AcctInfoShipNameIndicator = "01" | "02";
-export const AcctInfoShipNameIndicator = /*@__PURE__*/ S.String;
+export const AcctInfoShipNameIndicator = S.String;
 
 /** Indicates whether the 3DS Requestor has experienced suspicious activity (including previous fraud) on the cardholder account. Allowed values: * **01** — No suspicious activity has been observed * **02** — Suspicious activity has been observed */
 export type AcctInfoSuspiciousAccActivity = "01" | "02";
-export const AcctInfoSuspiciousAccActivity = /*@__PURE__*/ S.String;
+export const AcctInfoSuspiciousAccActivity = S.String;
 
 export interface AcctInfo {
   /** Length of time that the cardholder has had the account with the 3DS Requestor. Allowed values: * **01** — No account * **02** — Created during this transaction * **03** — Less than 30 days * **04** — 30–60 days * **05** — More than 60 days */
@@ -1244,11 +1242,11 @@ export const AcctInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit */
 export type ThreeDS2RequestFieldsAcctType = "01" | "02" | "03";
-export const ThreeDS2RequestFieldsAcctType = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestFieldsAcctType = S.String;
 
 /** Indicates whether the cardholder shipping Address and cardholder billing address are the same. Allowed values: * **Y** — Shipping Address matches Billing Address. * **N** — Shipping Address does not match Billing Address. */
 export type ThreeDS2RequestFieldsAddrMatch = "Y" | "N";
-export const ThreeDS2RequestFieldsAddrMatch = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestFieldsAddrMatch = S.String;
 
 /** Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` */
 export type ThreeDS2RequestFieldsChallengeIndicator =
@@ -1256,11 +1254,11 @@ export type ThreeDS2RequestFieldsChallengeIndicator =
   | "requestNoChallenge"
   | "requestChallenge"
   | "requestChallengeAsMandate";
-export const ThreeDS2RequestFieldsChallengeIndicator = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestFieldsChallengeIndicator = S.String;
 
 /** Supported SDK interface types. Allowed values: * native * html * both */
 export type DeviceRenderOptionsSdkInterface = "native" | "html" | "both";
-export const DeviceRenderOptionsSdkInterface = /*@__PURE__*/ S.String;
+export const DeviceRenderOptionsSdkInterface = S.String;
 
 export type DeviceRenderOptionsSdkUiTypeItem =
   | "multiSelect"
@@ -1268,7 +1266,7 @@ export type DeviceRenderOptionsSdkUiTypeItem =
   | "outOfBand"
   | "singleSelect"
   | "text";
-export const DeviceRenderOptionsSdkUiTypeItem = /*@__PURE__*/ S.String;
+export const DeviceRenderOptionsSdkUiTypeItem = S.String;
 
 /** UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect */
 export type DeviceRenderOptionsSdkUiTypeList = Array<
@@ -1333,8 +1331,7 @@ export type ThreeDSRequestorAuthenticationInfoThreeDSReqAuthMethod =
   | "04"
   | "05"
   | "06";
-export const ThreeDSRequestorAuthenticationInfoThreeDSReqAuthMethod =
-  /*@__PURE__*/ S.String;
+export const ThreeDSRequestorAuthenticationInfoThreeDSReqAuthMethod = S.String;
 
 export interface ThreeDSRequestorAuthenticationInfo {
   /** Data that documents and supports a specific authentication process. Maximum length: 2048 bytes. */
@@ -1366,8 +1363,7 @@ export type ThreeDS2RequestFieldsThreeDSRequestorChallengeInd =
   | "04"
   | "05"
   | "06";
-export const ThreeDS2RequestFieldsThreeDSRequestorChallengeInd =
-  /*@__PURE__*/ S.String;
+export const ThreeDS2RequestFieldsThreeDSRequestorChallengeInd = S.String;
 
 /** Mechanism used by the Cardholder to previously authenticate to the 3DS Requestor. Allowed values: * **01** — Frictionless authentication occurred by ACS. * **02** — Cardholder challenge occurred by ACS. * **03** — AVS verified. * **04** — Other issuer methods. */
 export type ThreeDSRequestorPriorAuthenticationInfoThreeDSReqPriorAuthMethod =
@@ -1376,7 +1372,7 @@ export type ThreeDSRequestorPriorAuthenticationInfoThreeDSReqPriorAuthMethod =
   | "03"
   | "04";
 export const ThreeDSRequestorPriorAuthenticationInfoThreeDSReqPriorAuthMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ThreeDSRequestorPriorAuthenticationInfo {
   /** Data that documents and supports a specific authentication process. Maximum length: 2048 bytes. */
@@ -1406,7 +1402,7 @@ export const ThreeDSRequestorPriorAuthenticationInfo = /*@__PURE__*/ S.suspend(
 
 /** Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load */
 export type ThreeDS2RequestFieldsTransType = "01" | "03" | "10" | "11" | "28";
-export const ThreeDS2RequestFieldsTransType = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestFieldsTransType = S.String;
 
 /** Identify the type of the transaction being authenticated. */
 export type ThreeDS2RequestFieldsTransactionType =
@@ -1415,7 +1411,7 @@ export type ThreeDS2RequestFieldsTransactionType =
   | "accountFunding"
   | "quasiCashTransaction"
   | "prepaidActivationAndLoad";
-export const ThreeDS2RequestFieldsTransactionType = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestFieldsTransactionType = S.String;
 
 export interface ThreeDS2RequestFields {
   /** Additional information about the cardholder’s account provided by the 3DS Requestor. */
@@ -1677,7 +1673,7 @@ export const CreateDonationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** **await** */
 export type CheckoutAwaitActionType = "await";
-export const CheckoutAwaitActionType = /*@__PURE__*/ S.String;
+export const CheckoutAwaitActionType = S.String;
 
 export interface CheckoutAwaitAction {
   /** Encoded payment data. */
@@ -1702,7 +1698,7 @@ export const CheckoutAwaitAction = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the action. */
 export type CheckoutBankTransferActionType = "bankTransfer";
-export const CheckoutBankTransferActionType = /*@__PURE__*/ S.String;
+export const CheckoutBankTransferActionType = S.String;
 
 export interface CheckoutBankTransferAction {
   /** The account number of the bank transfer. */
@@ -1761,7 +1757,7 @@ export const CheckoutBankTransferAction = /*@__PURE__*/ S.suspend(() =>
 /** **delegatedAuthentication** */
 export type CheckoutDelegatedAuthenticationActionType =
   "delegatedAuthentication";
-export const CheckoutDelegatedAuthenticationActionType = /*@__PURE__*/ S.String;
+export const CheckoutDelegatedAuthenticationActionType = S.String;
 
 export interface CheckoutDelegatedAuthenticationAction {
   /** A token needed to authorise a payment. */
@@ -1802,7 +1798,7 @@ export const CheckoutNativeRedirectActionDataMap = /*@__PURE__*/ S.Record(
 
 /** **nativeRedirect** */
 export type CheckoutNativeRedirectActionType = "nativeRedirect";
-export const CheckoutNativeRedirectActionType = /*@__PURE__*/ S.String;
+export const CheckoutNativeRedirectActionType = S.String;
 
 export interface CheckoutNativeRedirectAction {
   /** When the redirect URL must be accessed via POST, use this data to post to the redirect URL. */
@@ -1833,7 +1829,7 @@ export const CheckoutNativeRedirectAction = /*@__PURE__*/ S.suspend(() =>
 
 /** **qrCode** */
 export type CheckoutQrCodeActionType = "qrCode";
-export const CheckoutQrCodeActionType = /*@__PURE__*/ S.String;
+export const CheckoutQrCodeActionType = S.String;
 
 export interface CheckoutQrCodeAction {
   /** Expiry time of the QR code. */
@@ -1873,7 +1869,7 @@ export const CheckoutRedirectActionDataMap = /*@__PURE__*/ S.Record(
 
 /** **redirect** */
 export type CheckoutRedirectActionType = "redirect";
-export const CheckoutRedirectActionType = /*@__PURE__*/ S.String;
+export const CheckoutRedirectActionType = S.String;
 
 export interface CheckoutRedirectAction {
   /** When the redirect URL must be accessed via POST, use this data to post to the redirect URL. */
@@ -1908,7 +1904,7 @@ export const CheckoutSDKActionSdkDataMap = /*@__PURE__*/ S.Record(
 
 /** The type of the action. */
 export type CheckoutSDKActionType = "sdk" | "wechatpaySDK";
-export const CheckoutSDKActionType = /*@__PURE__*/ S.String;
+export const CheckoutSDKActionType = S.String;
 
 export interface CheckoutSDKAction {
   /** Encoded payment data. */
@@ -1936,7 +1932,7 @@ export const CheckoutSDKAction = /*@__PURE__*/ S.suspend(() =>
 
 /** **threeDS2** */
 export type CheckoutThreeDS2ActionType = "threeDS2";
-export const CheckoutThreeDS2ActionType = /*@__PURE__*/ S.String;
+export const CheckoutThreeDS2ActionType = S.String;
 
 export interface CheckoutThreeDS2Action {
   /** A token needed to authorise a payment. */
@@ -1970,7 +1966,7 @@ export const CheckoutThreeDS2Action = /*@__PURE__*/ S.suspend(() =>
 
 /** **voucher** */
 export type CheckoutVoucherActionType = "voucher";
-export const CheckoutVoucherActionType = /*@__PURE__*/ S.String;
+export const CheckoutVoucherActionType = S.String;
 
 export interface CheckoutVoucherAction {
   /** The voucher alternative reference code. */
@@ -2056,7 +2052,7 @@ export type PaymentResponseAction =
   | CheckoutThreeDS2Action
   | CheckoutVoucherAction;
 export const PaymentResponseAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentResponseAction>;
+  S.Unknown as any as S.Schema<PaymentResponseAction>;
 
 /** Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**. */
 export type PaymentResponseAdditionalDataMap = {
@@ -2198,7 +2194,7 @@ export type PaymentValidationsNameResponseStatus =
   | "notPerformed"
   | "notSupported"
   | "performed";
-export const PaymentValidationsNameResponseStatus = /*@__PURE__*/ S.String;
+export const PaymentValidationsNameResponseStatus = S.String;
 
 export interface PaymentValidationsNameResponse {
   /** Contains the raw response(s) returned by the scheme for the name validation. */
@@ -2246,7 +2242,7 @@ export type PaymentResponseResultCode =
   | "RedirectShopper"
   | "Refused"
   | "Success";
-export const PaymentResponseResultCode = /*@__PURE__*/ S.String;
+export const PaymentResponseResultCode = S.String;
 
 export interface ThreeDS2ResponseData {
   acsChallengeMandated?: string;
@@ -2304,7 +2300,7 @@ export type ThreeDS2ResultChallengeCancel =
   | "05"
   | "06"
   | "07";
-export const ThreeDS2ResultChallengeCancel = /*@__PURE__*/ S.String;
+export const ThreeDS2ResultChallengeCancel = S.String;
 
 /** Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis` */
 export type ThreeDS2ResultExemptionIndicator =
@@ -2312,7 +2308,7 @@ export type ThreeDS2ResultExemptionIndicator =
   | "secureCorporate"
   | "trustedBeneficiary"
   | "transactionRiskAnalysis";
-export const ThreeDS2ResultExemptionIndicator = /*@__PURE__*/ S.String;
+export const ThreeDS2ResultExemptionIndicator = S.String;
 
 /** Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only */
 export type ThreeDS2ResultThreeDSRequestorChallengeInd =
@@ -2322,8 +2318,7 @@ export type ThreeDS2ResultThreeDSRequestorChallengeInd =
   | "04"
   | "05"
   | "06";
-export const ThreeDS2ResultThreeDSRequestorChallengeInd =
-  /*@__PURE__*/ S.String;
+export const ThreeDS2ResultThreeDSRequestorChallengeInd = S.String;
 
 export interface ThreeDS2Result {
   /** The `authenticationValue` value as defined in the 3D Secure 2 specification. */
@@ -2435,7 +2430,7 @@ export const PaymentResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the donation transaction. Possible values: * **completed** * **pending** * **refused** */
 export type DonationPaymentResponseStatus = "completed" | "pending" | "refused";
-export const DonationPaymentResponseStatus = /*@__PURE__*/ S.String;
+export const DonationPaymentResponseStatus = S.String;
 
 export interface DonationPaymentResponse {
   /** Authorised amount in the transaction. */
@@ -2669,7 +2664,7 @@ export const CheckoutForwardRequestOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** Default payment method details. Common for scheme payment methods, and for simple payment method details. */
 export type CheckoutForwardRequestCardType = "scheme";
-export const CheckoutForwardRequestCardType = /*@__PURE__*/ S.String;
+export const CheckoutForwardRequestCardType = S.String;
 
 export interface CheckoutForwardRequestCard {
   /** The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is also known as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits */
@@ -2721,7 +2716,7 @@ export const CheckoutOutgoingForwardRequestHeadersMap = /*@__PURE__*/ S.Record(
 
 /** The HTTP method to use for the request Adyen makes on your behalf to the third party. */
 export type CheckoutOutgoingForwardRequestHttpMethod = "post" | "put" | "patch";
-export const CheckoutOutgoingForwardRequestHttpMethod = /*@__PURE__*/ S.String;
+export const CheckoutOutgoingForwardRequestHttpMethod = S.String;
 
 export interface CheckoutOutgoingForwardRequest {
   /** The request body that you want Adyen to forward to the third party on your behalf, in string format. Include key value pairs to specify the payment details, and use [placeholders](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#placeholders) for the values. Adyen replaces the placeholders with the payment details when making the request to the third party. When forwarding a network token, include a [condition](https://docs.adyen.com/online-payments/tokenization/forward-payment-details#conditional-placeholders) that checks if the network token exists, and informs Adyen of which fields to send depending on the outcome. */
@@ -2869,7 +2864,7 @@ export const CreateOrderResponseAdditionalDataMap = /*@__PURE__*/ S.Record(
 
 /** The result of the order creation request. The value is always **Success**. */
 export type CreateOrderResponseResultCode = "Success";
-export const CreateOrderResponseResultCode = /*@__PURE__*/ S.String;
+export const CreateOrderResponseResultCode = S.String;
 
 export interface CreateOrderResponse {
   /** Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**. */
@@ -2945,7 +2940,7 @@ export const CreateOrdersCancelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The result of the cancellation request. Possible values: * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed. */
 export type CancelOrderResponseResultCode = "Received";
-export const CancelOrderResponseResultCode = /*@__PURE__*/ S.String;
+export const CancelOrderResponseResultCode = S.String;
 
 export interface CancelOrderResponse {
   /** A unique reference of the cancellation request. */
@@ -2980,7 +2975,7 @@ export type CheckoutBankAccountAccountType =
   | "other"
   | "payment"
   | "savings";
-export const CheckoutBankAccountAccountType = /*@__PURE__*/ S.String;
+export const CheckoutBankAccountAccountType = S.String;
 
 export interface CheckoutBankAccount {
   /** The type of the bank account. */
@@ -3023,7 +3018,7 @@ export const CheckoutBankAccount = /*@__PURE__*/ S.suspend(() =>
 
 /** The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`. Possible values: * iOS * Android * Web */
 export type CreatePaymentRequestChannel = "iOS" | "Android" | "Web";
-export const CreatePaymentRequestChannel = /*@__PURE__*/ S.String;
+export const CreatePaymentRequestChannel = S.String;
 
 export interface Company {
   /** The company website's home page. */
@@ -3263,7 +3258,7 @@ export const PickupInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the rental rate is daily or weekly. * **additionalData key:** `carRental.rateIndicator` */
 export type CarRentalRateType = "daily" | "weekly";
-export const CarRentalRateType = /*@__PURE__*/ S.String;
+export const CarRentalRateType = S.String;
 
 export interface RentalSurcharges {
   /** The fuel charges associated with the rental, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * For example, 2000 means USD 20.00. * Encoding: Numeric * Max value: 10000000000 * **additionalData key:** `carRental.fuelCharges` */
@@ -3466,7 +3461,7 @@ export const Folio = /*@__PURE__*/ S.suspend(() =>
 
 /** The category of lodging charges for the payment. * **additionalData key:** `lodging.specialProgramCode` */
 export type LodgingLodgingChargeType = "advanceDeposit" | "noShow" | "stay";
-export const LodgingLodgingChargeType = /*@__PURE__*/ S.String;
+export const LodgingLodgingChargeType = S.String;
 
 export interface Room {
   /** The total number of nights the room is booked for. * Format: Numeric * Must be a number between 1 and 99 * **additionalData key:** `lodging.room[N].numberOfNights` */
@@ -3595,7 +3590,7 @@ export const EnhancedSchemeData = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the entity the payment is processed for. */
 export type CreatePaymentRequestEntityType = "NaturalPerson" | "CompanyName";
-export const CreatePaymentRequestEntityType = /*@__PURE__*/ S.String;
+export const CreatePaymentRequestEntityType = S.String;
 
 export type Address = BillingAddress;
 export const Address = BillingAddress;
@@ -3627,7 +3622,7 @@ export const FundOrigin = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type CardDetailsFundingSource = "credit" | "debit" | "prepaid";
-export const CardDetailsFundingSource = /*@__PURE__*/ S.String;
+export const CardDetailsFundingSource = S.String;
 
 /** Default payment method details. Common for scheme payment methods, and for simple payment method details. */
 export type CardDetailsType =
@@ -3637,7 +3632,7 @@ export type CardDetailsType =
   | "giftcard"
   | "card"
   | "clicktopay";
-export const CardDetailsType = /*@__PURE__*/ S.String;
+export const CardDetailsType = S.String;
 
 export interface CardDetails {
   /** The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper. */
@@ -3760,7 +3755,7 @@ export type FundRecipientWalletPurpose =
   | "transferOwnWallet"
   | "transferSameWallet"
   | "unidentifiedBoleto";
-export const FundRecipientWalletPurpose = /*@__PURE__*/ S.String;
+export const FundRecipientWalletPurpose = S.String;
 
 export interface FundRecipient {
   /** The IBAN of the bank account where the funds are being transferred to. */
@@ -3810,7 +3805,7 @@ export type CreatePaymentRequestIndustryUsage =
   | "delayedCharge"
   | "installment"
   | "noShow";
-export const CreatePaymentRequestIndustryUsage = /*@__PURE__*/ S.String;
+export const CreatePaymentRequestIndustryUsage = S.String;
 
 /** The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. */
 export type InstallmentsPlan =
@@ -3824,7 +3819,7 @@ export type InstallmentsPlan =
   | "regular"
   | "revolving"
   | "with_interest";
-export const InstallmentsPlan = /*@__PURE__*/ S.String;
+export const InstallmentsPlan = S.String;
 
 export interface Installments {
   /** Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) */
@@ -3860,11 +3855,11 @@ export const CreatePaymentRequestLocalizedShopperStatementMap =
 
 /** The limitation rule of the billing amount. Possible values: * **max**: The transaction amount can not exceed the `amount`. * **exact**: The transaction amount should be the same as the `amount`. */
 export type MandateAmountRule = "max" | "exact";
-export const MandateAmountRule = /*@__PURE__*/ S.String;
+export const MandateAmountRule = S.String;
 
 /** The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date. Possible values: * **on**: On a specific date. * **before**: Before and on a specific date. * **after**: On and after a specific date. */
 export type MandateBillingAttemptsRule = "on" | "before" | "after";
-export const MandateBillingAttemptsRule = /*@__PURE__*/ S.String;
+export const MandateBillingAttemptsRule = S.String;
 
 /** The frequency with which a shopper should be charged. Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**. */
 export type MandateFrequency =
@@ -3876,7 +3871,7 @@ export type MandateFrequency =
   | "quarterly"
   | "halfYearly"
   | "yearly";
-export const MandateFrequency = /*@__PURE__*/ S.String;
+export const MandateFrequency = S.String;
 
 export interface Mandate {
   /** The billing amount (in minor units) of the recurring transactions. */
@@ -3923,7 +3918,7 @@ export const CreatePaymentRequestMetadataMap = /*@__PURE__*/ S.Record(
 
 /** The account holder type (personal or business). */
 export type AchDetailsAccountHolderType = "business" | "personal";
-export const AchDetailsAccountHolderType = /*@__PURE__*/ S.String;
+export const AchDetailsAccountHolderType = S.String;
 
 /** The bank account type (checking, savings...). */
 export type AchDetailsBankAccountType =
@@ -3934,11 +3929,11 @@ export type AchDetailsBankAccountType =
   | "other"
   | "payment"
   | "savings";
-export const AchDetailsBankAccountType = /*@__PURE__*/ S.String;
+export const AchDetailsBankAccountType = S.String;
 
 /** **ach** */
 export type AchDetailsType = "ach" | "ach_plaid";
-export const AchDetailsType = /*@__PURE__*/ S.String;
+export const AchDetailsType = S.String;
 
 export interface AchDetails {
   /** The account holder type (personal or business). */
@@ -3988,7 +3983,7 @@ export const AchDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **affirm** */
 export type AffirmDetailsType = "affirm";
-export const AffirmDetailsType = /*@__PURE__*/ S.String;
+export const AffirmDetailsType = S.String;
 
 export interface AffirmDetails {
   /** The checkout attempt identifier. */
@@ -4015,7 +4010,7 @@ export type AfterpayDetailsType =
   | "afterpaytouch"
   | "afterpay_b2b"
   | "clearpay";
-export const AfterpayDetailsType = /*@__PURE__*/ S.String;
+export const AfterpayDetailsType = S.String;
 
 export interface AfterpayDetails {
   /** The address where to send the invoice. */
@@ -4052,11 +4047,11 @@ export const AfterpayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **Alma payment request fee type** */
 export type AlmaDetailsFeeType = "merchantPays" | "shopperPays";
-export const AlmaDetailsFeeType = /*@__PURE__*/ S.String;
+export const AlmaDetailsFeeType = S.String;
 
 /** The payment method type. */
 export type AlmaDetailsType = "alma";
-export const AlmaDetailsType = /*@__PURE__*/ S.String;
+export const AlmaDetailsType = S.String;
 
 export interface AlmaDetails {
   /** The checkout attempt identifier. */
@@ -4079,7 +4074,7 @@ export const AlmaDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **amazonpay** */
 export type AmazonPayDetailsType = "amazonpay";
-export const AmazonPayDetailsType = /*@__PURE__*/ S.String;
+export const AmazonPayDetailsType = S.String;
 
 export interface AmazonPayDetails {
   /** This is the `amazonPayToken` that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically. */
@@ -4107,7 +4102,7 @@ export const AmazonPayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **ancv** */
 export type AncvDetailsType = "ancv";
-export const AncvDetailsType = /*@__PURE__*/ S.String;
+export const AncvDetailsType = S.String;
 
 export interface AncvDetails {
   /** ANCV account identification (email or account number) */
@@ -4136,7 +4131,7 @@ export const AncvDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **androidpay** */
 export type AndroidPayDetailsType = "androidpay";
-export const AndroidPayDetailsType = /*@__PURE__*/ S.String;
+export const AndroidPayDetailsType = S.String;
 
 export interface AndroidPayDetails {
   /** The checkout attempt identifier. */
@@ -4158,11 +4153,11 @@ export const AndroidPayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type ApplePayDetailsFundingSource = "credit" | "debit" | "prepaid";
-export const ApplePayDetailsFundingSource = /*@__PURE__*/ S.String;
+export const ApplePayDetailsFundingSource = S.String;
 
 /** **applepay** */
 export type ApplePayDetailsType = "applepay";
-export const ApplePayDetailsType = /*@__PURE__*/ S.String;
+export const ApplePayDetailsType = S.String;
 
 export interface ApplePayDetails {
   /** The stringified and base64 encoded `paymentData` you retrieved from the Apple framework. */
@@ -4196,7 +4191,7 @@ export const ApplePayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **aupay** */
 export type AuPayDetailsType = "aupay";
-export const AuPayDetailsType = /*@__PURE__*/ S.String;
+export const AuPayDetailsType = S.String;
 
 export interface AuPayDetails {
   /** The checkout attempt identifier. */
@@ -4222,7 +4217,7 @@ export const AuPayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **directdebit_GB** */
 export type BacsDirectDebitDetailsType = "directdebit_GB";
-export const BacsDirectDebitDetailsType = /*@__PURE__*/ S.String;
+export const BacsDirectDebitDetailsType = S.String;
 
 export interface BacsDirectDebitDetails {
   /** The bank account number (without separators). */
@@ -4262,7 +4257,7 @@ export const BacsDirectDebitDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **billdesk** */
 export type BillDeskDetailsType = "billdesk_online" | "billdesk_wallet";
-export const BillDeskDetailsType = /*@__PURE__*/ S.String;
+export const BillDeskDetailsType = S.String;
 
 export interface BillDeskDetails {
   /** The checkout attempt identifier. */
@@ -4287,7 +4282,7 @@ export const BillDeskDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **blik** */
 export type BlikDetailsType = "blik";
-export const BlikDetailsType = /*@__PURE__*/ S.String;
+export const BlikDetailsType = S.String;
 
 export interface BlikDetails {
   /** BLIK code consisting of 6 digits. */
@@ -4316,7 +4311,7 @@ export const BlikDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** cashapp */
 export type CashAppDetailsType = "cashapp";
-export const CashAppDetailsType = /*@__PURE__*/ S.String;
+export const CashAppDetailsType = S.String;
 
 export interface CashAppDetails {
   /** Cash App issued cashtag for recurring payment */
@@ -4360,7 +4355,7 @@ export const CashAppDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **Cellulant** */
 export type CellulantDetailsType = "cellulant";
-export const CellulantDetailsType = /*@__PURE__*/ S.String;
+export const CellulantDetailsType = S.String;
 
 export interface CellulantDetails {
   /** The checkout attempt identifier. */
@@ -4385,7 +4380,7 @@ export const CellulantDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **dbarai** */
 export type DBaraiDetailsType = "dbarai";
-export const DBaraiDetailsType = /*@__PURE__*/ S.String;
+export const DBaraiDetailsType = S.String;
 
 export interface DBaraiDetails {
   /** The checkout attempt identifier. */
@@ -4411,7 +4406,7 @@ export const DBaraiDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **directdebit_AU** */
 export type DirectDebitAuDetailsType = "directdebit_AU";
-export const DirectDebitAuDetailsType = /*@__PURE__*/ S.String;
+export const DirectDebitAuDetailsType = S.String;
 
 export interface DirectDebitAuDetails {
   /** The shopper's banking account number used to complete payment. */
@@ -4459,7 +4454,7 @@ export type DokuDetailsType =
   | "doku_indomaret"
   | "doku_wallet"
   | "doku_ovo";
-export const DokuDetailsType = /*@__PURE__*/ S.String;
+export const DokuDetailsType = S.String;
 
 export interface DokuDetails {
   /** The checkout attempt identifier. */
@@ -4492,7 +4487,7 @@ export type DragonpayDetailsType =
   | "dragonpay_otc_banking"
   | "dragonpay_otc_non_banking"
   | "dragonpay_otc_philippines";
-export const DragonpayDetailsType = /*@__PURE__*/ S.String;
+export const DragonpayDetailsType = S.String;
 
 export interface DragonpayDetails {
   /** The checkout attempt identifier. */
@@ -4520,7 +4515,7 @@ export const DragonpayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **ebanking_FI** */
 export type EBankingFinlandDetailsType = "ebanking_FI";
-export const EBankingFinlandDetailsType = /*@__PURE__*/ S.String;
+export const EBankingFinlandDetailsType = S.String;
 
 export interface EBankingFinlandDetails {
   /** The checkout attempt identifier. */
@@ -4550,7 +4545,7 @@ export type EcontextVoucherDetailsType =
   | "econtext"
   | "econtext_stores"
   | "econtext_atm";
-export const EcontextVoucherDetailsType = /*@__PURE__*/ S.String;
+export const EcontextVoucherDetailsType = S.String;
 
 export interface EcontextVoucherDetails {
   /** The checkout attempt identifier. */
@@ -4584,7 +4579,7 @@ export const EcontextVoucherDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **eft** */
 export type EftDetailsType = "eft_directdebit_CA";
-export const EftDetailsType = /*@__PURE__*/ S.String;
+export const EftDetailsType = S.String;
 
 export interface EftDetails {
   /** The bank account number (without separators). */
@@ -4622,11 +4617,11 @@ export const EftDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The external service from which to fetch the token. Supported only for specific companies. Contact Adyen if you want to use this feature. */
 export type ExternalTokenDetailsSubtype = "hilton";
-export const ExternalTokenDetailsSubtype = /*@__PURE__*/ S.String;
+export const ExternalTokenDetailsSubtype = S.String;
 
 /** The type of token. Allowed value: **externalToken**. */
 export type ExternalTokenDetailsType = "externalToken";
-export const ExternalTokenDetailsType = /*@__PURE__*/ S.String;
+export const ExternalTokenDetailsType = S.String;
 
 export interface ExternalTokenDetails {
   /** The checkout attempt identifier. */
@@ -4663,7 +4658,7 @@ export const ExternalTokenDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **fastlane** */
 export type FastlaneDetailsType = "fastlane";
-export const FastlaneDetailsType = /*@__PURE__*/ S.String;
+export const FastlaneDetailsType = S.String;
 
 export interface FastlaneDetails {
   /** The checkout attempt identifier. */
@@ -4699,7 +4694,7 @@ export type GenericIssuerPaymentMethodDetailsType =
   | "onlineBanking_SK"
   | "onlineBanking_CZ"
   | "onlinebanking_IN";
-export const GenericIssuerPaymentMethodDetailsType = /*@__PURE__*/ S.String;
+export const GenericIssuerPaymentMethodDetailsType = S.String;
 
 export interface GenericIssuerPaymentMethodDetails {
   /** The checkout attempt identifier. */
@@ -4730,11 +4725,11 @@ export const GenericIssuerPaymentMethodDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type GooglePayDetailsFundingSource = "credit" | "debit" | "prepaid";
-export const GooglePayDetailsFundingSource = /*@__PURE__*/ S.String;
+export const GooglePayDetailsFundingSource = S.String;
 
 /** **googlepay**, **paywithgoogle** */
 export type GooglePayDetailsType = "googlepay";
-export const GooglePayDetailsType = /*@__PURE__*/ S.String;
+export const GooglePayDetailsType = S.String;
 
 export interface GooglePayDetails {
   /** The checkout attempt identifier. */
@@ -4774,7 +4769,7 @@ export const GooglePayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **ideal** */
 export type IdealDetailsType = "ideal";
-export const IdealDetailsType = /*@__PURE__*/ S.String;
+export const IdealDetailsType = S.String;
 
 export interface IdealDetails {
   /** The checkout attempt identifier. */
@@ -4810,7 +4805,7 @@ export type KlarnaDetailsType =
   | "klarna_paynow"
   | "klarna_account"
   | "klarna_b2b";
-export const KlarnaDetailsType = /*@__PURE__*/ S.String;
+export const KlarnaDetailsType = S.String;
 
 export interface KlarnaDetails {
   /** The address where to send the invoice. */
@@ -4851,7 +4846,7 @@ export const KlarnaDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **klarna_network** */
 export type KlarnaNetworkDetailsType = "klarna_network";
-export const KlarnaNetworkDetailsType = /*@__PURE__*/ S.String;
+export const KlarnaNetworkDetailsType = S.String;
 
 export interface KlarnaNetworkDetails {
   /** The checkout attempt identifier. */
@@ -4885,11 +4880,11 @@ export const KlarnaNetworkDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type MasterpassDetailsFundingSource = "credit" | "debit" | "prepaid";
-export const MasterpassDetailsFundingSource = /*@__PURE__*/ S.String;
+export const MasterpassDetailsFundingSource = S.String;
 
 /** **masterpass** */
 export type MasterpassDetailsType = "masterpass";
-export const MasterpassDetailsType = /*@__PURE__*/ S.String;
+export const MasterpassDetailsType = S.String;
 
 export interface MasterpassDetails {
   /** The checkout attempt identifier. */
@@ -4917,7 +4912,7 @@ export const MasterpassDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **mbway** */
 export type MbwayDetailsType = "mbway";
-export const MbwayDetailsType = /*@__PURE__*/ S.String;
+export const MbwayDetailsType = S.String;
 
 export interface MbwayDetails {
   /** The checkout attempt identifier. */
@@ -4941,7 +4936,7 @@ export const MbwayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **mobilepay** */
 export type MobilePayDetailsType = "mobilepay";
-export const MobilePayDetailsType = /*@__PURE__*/ S.String;
+export const MobilePayDetailsType = S.String;
 
 export interface MobilePayDetails {
   /** The checkout attempt identifier. */
@@ -4963,7 +4958,7 @@ export const MobilePayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **molpay** */
 export type MolPayDetailsType = "molpay_ebanking_fpx_MY" | "molpay_ebanking_TH";
-export const MolPayDetailsType = /*@__PURE__*/ S.String;
+export const MolPayDetailsType = S.String;
 
 export interface MolPayDetails {
   /** The checkout attempt identifier. */
@@ -4989,7 +4984,7 @@ export type OpenInvoiceDetailsType =
   | "openinvoice"
   | "afterpay_directdebit"
   | "atome_pos";
-export const OpenInvoiceDetailsType = /*@__PURE__*/ S.String;
+export const OpenInvoiceDetailsType = S.String;
 
 export interface OpenInvoiceDetails {
   /** The address where to send the invoice. */
@@ -5026,7 +5021,7 @@ export const OpenInvoiceDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **paybybank_AIS_DD** */
 export type PayByBankAISDirectDebitDetailsType = "paybybank_AIS_DD";
-export const PayByBankAISDirectDebitDetailsType = /*@__PURE__*/ S.String;
+export const PayByBankAISDirectDebitDetailsType = S.String;
 
 export interface PayByBankAISDirectDebitDetails {
   /** The checkout attempt identifier. */
@@ -5054,7 +5049,7 @@ export const PayByBankAISDirectDebitDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **paybybank** */
 export type PayByBankDetailsType = "paybybank";
-export const PayByBankDetailsType = /*@__PURE__*/ S.String;
+export const PayByBankDetailsType = S.String;
 
 export interface PayByBankDetails {
   /** The checkout attempt identifier. */
@@ -5079,11 +5074,11 @@ export const PayByBankDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of flow to initiate. */
 export type PayPalDetailsSubtype = "express" | "redirect" | "sdk";
-export const PayPalDetailsSubtype = /*@__PURE__*/ S.String;
+export const PayPalDetailsSubtype = S.String;
 
 /** **paypal** */
 export type PayPalDetailsType = "paypal";
-export const PayPalDetailsType = /*@__PURE__*/ S.String;
+export const PayPalDetailsType = S.String;
 
 export interface PayPalDetails {
   /** The checkout attempt identifier. */
@@ -5124,7 +5119,7 @@ export const PayPalDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **paypay** */
 export type PayPayDetailsType = "paypay";
-export const PayPayDetailsType = /*@__PURE__*/ S.String;
+export const PayPayDetailsType = S.String;
 
 export interface PayPayDetails {
   /** The checkout attempt identifier. */
@@ -5150,7 +5145,7 @@ export const PayPayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **payto** */
 export type PayToDetailsType = "payto";
-export const PayToDetailsType = /*@__PURE__*/ S.String;
+export const PayToDetailsType = S.String;
 
 export interface PayToDetails {
   /** The checkout attempt identifier. */
@@ -5179,7 +5174,7 @@ export const PayToDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **payu_IN_upi** */
 export type PayUUpiDetailsType = "payu_IN_upi";
-export const PayUUpiDetailsType = /*@__PURE__*/ S.String;
+export const PayUUpiDetailsType = S.String;
 
 export interface PayUUpiDetails {
   /** The checkout attempt identifier. */
@@ -5211,11 +5206,11 @@ export const PayUUpiDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type PayWithGoogleDetailsFundingSource = "credit" | "debit" | "prepaid";
-export const PayWithGoogleDetailsFundingSource = /*@__PURE__*/ S.String;
+export const PayWithGoogleDetailsFundingSource = S.String;
 
 /** **paywithgoogle** */
 export type PayWithGoogleDetailsType = "paywithgoogle";
-export const PayWithGoogleDetailsType = /*@__PURE__*/ S.String;
+export const PayWithGoogleDetailsType = S.String;
 
 export interface PayWithGoogleDetails {
   /** The checkout attempt identifier. */
@@ -5337,7 +5332,7 @@ export type PaymentDetailsType =
   | "alipay_hk_wap"
   | "alipay_wap"
   | "balanceplatform";
-export const PaymentDetailsType = /*@__PURE__*/ S.String;
+export const PaymentDetailsType = S.String;
 
 export interface PaymentDetails {
   /** The checkout attempt identifier. */
@@ -5362,7 +5357,7 @@ export type PixRecurringFrequency =
   | "quarterly"
   | "half-yearly"
   | "yearly";
-export const PixRecurringFrequency = /*@__PURE__*/ S.String;
+export const PixRecurringFrequency = S.String;
 
 export interface PixRecurring {
   /** The date on which the shopper's payment method will be charged, in YYYY-MM-DD format. */
@@ -5403,7 +5398,7 @@ export const PixRecurring = /*@__PURE__*/ S.suspend(() =>
 
 /** The payment method type. */
 export type PixDetailsType = "pix";
-export const PixDetailsType = /*@__PURE__*/ S.String;
+export const PixDetailsType = S.String;
 
 export interface PixDetails {
   /** The checkout attempt identifier. */
@@ -5487,7 +5482,7 @@ export const PixPayByBankRiskSignals = /*@__PURE__*/ S.suspend(() =>
 
 /** **paybybank_pix** */
 export type PixPayByBankDetailsType = "paybybank_pix";
-export const PixPayByBankDetailsType = /*@__PURE__*/ S.String;
+export const PixPayByBankDetailsType = S.String;
 
 export interface PixPayByBankDetails {
   /** The checkout attempt identifier. */
@@ -5521,7 +5516,7 @@ export const PixPayByBankDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The payment method type. */
 export type PseDetailsType = "pse_payulatam";
-export const PseDetailsType = /*@__PURE__*/ S.String;
+export const PseDetailsType = S.String;
 
 export interface PseDetails {
   /** The shopper's bank. */
@@ -5553,7 +5548,7 @@ export const PseDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **rakutenpay** */
 export type RakutenPayDetailsType = "rakutenpay";
-export const RakutenPayDetailsType = /*@__PURE__*/ S.String;
+export const RakutenPayDetailsType = S.String;
 
 export interface RakutenPayDetails {
   /** The checkout attempt identifier. */
@@ -5581,7 +5576,7 @@ export const RakutenPayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **ratepay** */
 export type RatepayDetailsType = "ratepay" | "ratepay_directdebit";
-export const RatepayDetailsType = /*@__PURE__*/ S.String;
+export const RatepayDetailsType = S.String;
 
 export interface RatepayDetails {
   /** The address where to send the invoice. */
@@ -5620,7 +5615,7 @@ export type RivertyDetailsType =
   | "riverty_account"
   | "riverty_installments"
   | "sepadirectdebit_riverty";
-export const RivertyDetailsType = /*@__PURE__*/ S.String;
+export const RivertyDetailsType = S.String;
 
 export interface RivertyDetails {
   /** The address where to send the invoice. */
@@ -5667,11 +5662,11 @@ export const RivertyDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type SamsungPayDetailsFundingSource = "credit" | "debit" | "prepaid";
-export const SamsungPayDetailsFundingSource = /*@__PURE__*/ S.String;
+export const SamsungPayDetailsFundingSource = S.String;
 
 /** **samsungpay** */
 export type SamsungPayDetailsType = "samsungpay";
-export const SamsungPayDetailsType = /*@__PURE__*/ S.String;
+export const SamsungPayDetailsType = S.String;
 
 export interface SamsungPayDetails {
   /** The checkout attempt identifier. */
@@ -5707,7 +5702,7 @@ export const SamsungPayDetails = /*@__PURE__*/ S.suspend(() =>
 export type SepaDirectDebitDetailsType =
   | "sepadirectdebit"
   | "sepadirectdebit_amazonpay";
-export const SepaDirectDebitDetailsType = /*@__PURE__*/ S.String;
+export const SepaDirectDebitDetailsType = S.String;
 
 export interface SepaDirectDebitDetails {
   /** The checkout attempt identifier. */
@@ -5778,7 +5773,7 @@ export type StoredPaymentMethodDetailsType =
   | "truemoney"
   | "paysafecard"
   | "gopay_wallet";
-export const StoredPaymentMethodDetailsType = /*@__PURE__*/ S.String;
+export const StoredPaymentMethodDetailsType = S.String;
 
 export interface StoredPaymentMethodDetails {
   /** The checkout attempt identifier. */
@@ -5806,7 +5801,7 @@ export const StoredPaymentMethodDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The payment method type. */
 export type TwintDetailsType = "twint";
-export const TwintDetailsType = /*@__PURE__*/ S.String;
+export const TwintDetailsType = S.String;
 
 export interface TwintDetails {
   /** The checkout attempt identifier. */
@@ -5835,7 +5830,7 @@ export const TwintDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **upi_collect** */
 export type UpiCollectDetailsType = "upi_collect";
-export const UpiCollectDetailsType = /*@__PURE__*/ S.String;
+export const UpiCollectDetailsType = S.String;
 
 export interface UpiCollectDetails {
   /** The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper. */
@@ -5872,7 +5867,7 @@ export const UpiCollectDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **upi_intent** */
 export type UpiIntentDetailsType = "upi_intent";
-export const UpiIntentDetailsType = /*@__PURE__*/ S.String;
+export const UpiIntentDetailsType = S.String;
 
 export interface UpiIntentDetails {
   /** TPAP (Third Party Application) Id that is being used to make the UPI payment */
@@ -5909,7 +5904,7 @@ export const UpiIntentDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **upi_qr** */
 export type UpiQrDetailsType = "upi_qr";
-export const UpiQrDetailsType = /*@__PURE__*/ S.String;
+export const UpiQrDetailsType = S.String;
 
 export interface UpiQrDetails {
   /** The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper. */
@@ -5941,7 +5936,7 @@ export const UpiQrDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **vipps** */
 export type VippsDetailsType = "vipps";
-export const VippsDetailsType = /*@__PURE__*/ S.String;
+export const VippsDetailsType = S.String;
 
 export interface VippsDetails {
   /** The checkout attempt identifier. */
@@ -5969,11 +5964,11 @@ export const VippsDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**. */
 export type VisaCheckoutDetailsFundingSource = "credit" | "debit" | "prepaid";
-export const VisaCheckoutDetailsFundingSource = /*@__PURE__*/ S.String;
+export const VisaCheckoutDetailsFundingSource = S.String;
 
 /** **visacheckout** */
 export type VisaCheckoutDetailsType = "visacheckout";
-export const VisaCheckoutDetailsType = /*@__PURE__*/ S.String;
+export const VisaCheckoutDetailsType = S.String;
 
 export interface VisaCheckoutDetails {
   /** The checkout attempt identifier. */
@@ -6001,7 +5996,7 @@ export const VisaCheckoutDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **wechatpay** */
 export type WeChatPayDetailsType = "wechatpay" | "wechatpay_pos";
-export const WeChatPayDetailsType = /*@__PURE__*/ S.String;
+export const WeChatPayDetailsType = S.String;
 
 export interface WeChatPayDetails {
   /** The checkout attempt identifier. */
@@ -6023,7 +6018,7 @@ export const WeChatPayDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **wechatpayMiniProgram** */
 export type WeChatPayMiniProgramDetailsType = "wechatpayMiniProgram";
-export const WeChatPayMiniProgramDetailsType = /*@__PURE__*/ S.String;
+export const WeChatPayMiniProgramDetailsType = S.String;
 
 export interface WeChatPayMiniProgramDetails {
   appId?: string;
@@ -6055,7 +6050,7 @@ export const WeChatPayMiniProgramDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** **zip** */
 export type ZipDetailsType = "zip" | "zip_pos";
-export const ZipDetailsType = /*@__PURE__*/ S.String;
+export const ZipDetailsType = S.String;
 
 export interface ZipDetails {
   /** The checkout attempt identifier. */
@@ -6145,7 +6140,7 @@ export type CreatePaymentRequestPaymentMethod =
   | WeChatPayMiniProgramDetails
   | ZipDetails;
 export const CreatePaymentRequestPaymentMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreatePaymentRequestPaymentMethod>;
+  S.Unknown as any as S.Schema<CreatePaymentRequestPaymentMethod>;
 
 export interface PaymentValidationsNameRequest {
   /** Set to **requested** to request a [name validation](https://docs.adyen.com/payment-methods/cards/name-validation) to verify if the cardholder name provided by the shopper matches the cardholder name on file at the issuing bank. */
@@ -6175,7 +6170,7 @@ export type PlatformChargebackLogicBehavior =
   | "deductFromOneBalanceAccount"
   | "deductAccordingToSplitRatio"
   | "deductFromLiableAccount";
-export const PlatformChargebackLogicBehavior = /*@__PURE__*/ S.String;
+export const PlatformChargebackLogicBehavior = S.String;
 
 export interface PlatformChargebackLogic {
   /** The method of handling the chargeback. Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**. */
@@ -6200,8 +6195,7 @@ export type CreatePaymentRequestRecurringProcessingModel =
   | "CardOnFile"
   | "Subscription"
   | "UnscheduledCardOnFile";
-export const CreatePaymentRequestRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentRequestRecurringProcessingModel = S.String;
 
 /** Any custom fields used as part of the input to configured risk rules. */
 export type RiskDataCustomFieldsMap = { [key: string]: string | undefined };
@@ -6235,7 +6229,7 @@ export type CreatePaymentRequestShopperInteraction =
   | "ContAuth"
   | "Moto"
   | "POS";
-export const CreatePaymentRequestShopperInteraction = /*@__PURE__*/ S.String;
+export const CreatePaymentRequestShopperInteraction = S.String;
 
 export interface ShopperTaxInfo {
   /** The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code associated with the provided tax identification number. Currently used only for Indian PA-CB tax verification, when applicable. */
@@ -6281,7 +6275,7 @@ export type SplitType =
   | "Tip"
   | "TopUp"
   | "VAT";
-export const SplitType = /*@__PURE__*/ S.String;
+export const SplitType = S.String;
 
 export interface Split {
   /** The unique identifier of the account to which the split amount is booked. Required if `type` is **MarketPlace** or **BalanceAccount**. * [Classic Platforms integration](https://docs.adyen.com/classic-platforms): The [`accountCode`](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccount#request-accountCode) of the account to which the split amount is booked. * [Balance Platform](https://docs.adyen.com/adyen-for-platforms-model): The [`balanceAccountId`](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/balanceAccounts/_id_#path-id) of the account to which the split amount is booked. */
@@ -6636,16 +6630,14 @@ export const CreatePaymentRequest = /*@__PURE__*/ S.suspend(() =>
 export type CreatePaymentAmountUpdateRequestAdjustAuthType =
   | "cardholderInitiatedTransaction"
   | "merchantInitiatedTransaction";
-export const CreatePaymentAmountUpdateRequestAdjustAuthType =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentAmountUpdateRequestAdjustAuthType = S.String;
 
 /** The reason for the amount update. Possible values: * **delayedCharge** * **noShow** * **installment** */
 export type CreatePaymentAmountUpdateRequestIndustryUsage =
   | "delayedCharge"
   | "installment"
   | "noShow";
-export const CreatePaymentAmountUpdateRequestIndustryUsage =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentAmountUpdateRequestIndustryUsage = S.String;
 
 /** Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip. */
 export type CreatePaymentAmountUpdateRequestLineItemsList = Array<LineItem>;
@@ -6718,7 +6710,7 @@ export type PaymentAmountUpdateResponseIndustryUsage =
   | "delayedCharge"
   | "installment"
   | "noShow";
-export const PaymentAmountUpdateResponseIndustryUsage = /*@__PURE__*/ S.String;
+export const PaymentAmountUpdateResponseIndustryUsage = S.String;
 
 /** Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip. */
 export type PaymentAmountUpdateResponseLineItemsList = Array<LineItem>;
@@ -6737,7 +6729,7 @@ export type PaymentAmountUpdateResponseStatus =
   | "authorised"
   | "received"
   | "refused";
-export const PaymentAmountUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const PaymentAmountUpdateResponseStatus = S.String;
 
 export interface PaymentAmountUpdateResponse {
   /** The data blob for subsequent synchronous adjust authorisation calls. Returned when the synchronous flow is used. */
@@ -6810,7 +6802,7 @@ export const CreatePaymentCancelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of your request. This will always have the value **received**. */
 export type PaymentCancelResponseStatus = "received";
-export const PaymentCancelResponseStatus = /*@__PURE__*/ S.String;
+export const PaymentCancelResponseStatus = S.String;
 
 export interface PaymentCancelResponse {
   /** The merchant account that is used to process the payment. */
@@ -6918,7 +6910,7 @@ export const PaymentCaptureResponseSplitsList = /*@__PURE__*/ S.Array(
 
 /** The status of your request. This will always have the value **received**. */
 export type PaymentCaptureResponseStatus = "received";
-export const PaymentCaptureResponseStatus = /*@__PURE__*/ S.String;
+export const PaymentCaptureResponseStatus = S.String;
 
 /** List of sub-merchants. */
 export type PaymentCaptureResponseSubMerchantsList = Array<SubMerchantInfo>;
@@ -6990,7 +6982,7 @@ export type InstallmentOptionPlansItem =
   | "regular"
   | "revolving"
   | "with_interest";
-export const InstallmentOptionPlansItem = /*@__PURE__*/ S.String;
+export const InstallmentOptionPlansItem = S.String;
 
 /** Defines the type of installment plan. If not set, defaults to **regular**. Possible values: * **regular** * **revolving** */
 export type InstallmentOptionPlansList = Array<
@@ -7057,8 +7049,7 @@ export type CreatePaymentLinkRequestRecurringProcessingModel =
   | "CardOnFile"
   | "Subscription"
   | "UnscheduledCardOnFile";
-export const CreatePaymentLinkRequestRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentLinkRequestRecurringProcessingModel = S.String;
 
 export type CreatePaymentLinkRequestRequiredShopperFieldsItem =
   | "billingAddress"
@@ -7066,8 +7057,7 @@ export type CreatePaymentLinkRequestRequiredShopperFieldsItem =
   | "shopperEmail"
   | "shopperName"
   | "telephoneNumber";
-export const CreatePaymentLinkRequestRequiredShopperFieldsItem =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentLinkRequestRequiredShopperFieldsItem = S.String;
 
 /** List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information). Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper's email address. * **shopperName** – The shopper's full name. * **telephoneNumber** – The shopper's phone number. */
 export type CreatePaymentLinkRequestRequiredShopperFieldsList = Array<
@@ -7089,8 +7079,7 @@ export type CreatePaymentLinkRequestStorePaymentMethodMode =
   | "askForConsent"
   | "disabled"
   | "enabled";
-export const CreatePaymentLinkRequestStorePaymentMethodMode =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentLinkRequestStorePaymentMethodMode = S.String;
 
 /** Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only */
 export type CheckoutSessionThreeDS2RequestDataThreeDSRequestorChallengeInd =
@@ -7101,7 +7090,7 @@ export type CheckoutSessionThreeDS2RequestDataThreeDSRequestorChallengeInd =
   | "05"
   | "06";
 export const CheckoutSessionThreeDS2RequestDataThreeDSRequestorChallengeInd =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CheckoutSessionThreeDS2RequestData {
   /** The home phone number provided by the cardholder. The phone number must consist of a country code, followed by the number. If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`, and did not send the shopper's phone number in `telephoneNumber`. */
@@ -7325,8 +7314,7 @@ export type PaymentLinkResponseRecurringProcessingModel =
   | "CardOnFile"
   | "Subscription"
   | "UnscheduledCardOnFile";
-export const PaymentLinkResponseRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+export const PaymentLinkResponseRecurringProcessingModel = S.String;
 
 export type PaymentLinkResponseRequiredShopperFieldsItem =
   | "billingAddress"
@@ -7334,8 +7322,7 @@ export type PaymentLinkResponseRequiredShopperFieldsItem =
   | "shopperEmail"
   | "shopperName"
   | "telephoneNumber";
-export const PaymentLinkResponseRequiredShopperFieldsItem =
-  /*@__PURE__*/ S.String;
+export const PaymentLinkResponseRequiredShopperFieldsItem = S.String;
 
 /** List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information). Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper's email address. * **shopperName** – The shopper's full name. * **telephoneNumber** – The shopper's phone number. */
 export type PaymentLinkResponseRequiredShopperFieldsList =
@@ -7358,14 +7345,14 @@ export type PaymentLinkResponseStatus =
   | "expired"
   | "paid"
   | "paymentPending";
-export const PaymentLinkResponseStatus = /*@__PURE__*/ S.String;
+export const PaymentLinkResponseStatus = S.String;
 
 /** Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent. When set to **askForConsent** or **enabled**, you must also include the `recurringProcessingModel` parameter. */
 export type PaymentLinkResponseStorePaymentMethodMode =
   | "askForConsent"
   | "disabled"
   | "enabled";
-export const PaymentLinkResponseStorePaymentMethodMode = /*@__PURE__*/ S.String;
+export const PaymentLinkResponseStorePaymentMethodMode = S.String;
 
 export interface PaymentLinkResponse {
   /** List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types). Example: `"allowedPaymentMethods":["ideal","applepay"]` */
@@ -7550,15 +7537,14 @@ export const CreatePaymentMethodRequestBlockedPaymentMethodsList =
 
 /** The platform where a payment transaction takes place. This field can be used for filtering out payment methods that are only available on specific platforms. Possible values: * iOS * Android * Web */
 export type CreatePaymentMethodRequestChannel = "iOS" | "Android" | "Web";
-export const CreatePaymentMethodRequestChannel = /*@__PURE__*/ S.String;
+export const CreatePaymentMethodRequestChannel = S.String;
 
 /** Specifies how payment methods should be filtered based on the `store` parameter: - **exclusive**: Only payment methods belonging to the specified `store` are returned. - **inclusive**: Payment methods from the `store` and those not associated with any other store are returned. */
 export type CreatePaymentMethodRequestStoreFiltrationMode =
   | "exclusive"
   | "inclusive"
   | "skipFilter";
-export const CreatePaymentMethodRequestStoreFiltrationMode =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentMethodRequestStoreFiltrationMode = S.String;
 
 export interface CreatePaymentMethodRequest {
   /** A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). */
@@ -7690,7 +7676,7 @@ export const PaymentMethodConfigurationMap = /*@__PURE__*/ S.Record(
 
 /** The funding source of the payment method. */
 export type PaymentMethodFundingSource = "credit" | "debit" | "prepaid";
-export const PaymentMethodFundingSource = /*@__PURE__*/ S.String;
+export const PaymentMethodFundingSource = S.String;
 
 export interface PaymentMethodGroup {
   /** The name of the group. */
@@ -8055,7 +8041,7 @@ export type RecurringContract =
   | "RECURRING"
   | "PAYOUT"
   | "EXTERNAL";
-export const RecurringContract = /*@__PURE__*/ S.String;
+export const RecurringContract = S.String;
 
 /** The name of the token service. */
 export type RecurringTokenService =
@@ -8063,7 +8049,7 @@ export type RecurringTokenService =
   | "MCTOKENSERVICE"
   | "AMEXTOKENSERVICE"
   | "TOKEN_SHARING";
-export const RecurringTokenService = /*@__PURE__*/ S.String;
+export const RecurringTokenService = S.String;
 
 export interface Recurring {
   /** The type of recurring contract to be used. Possible values: * `ONECLICK` – Payment details can be used to initiate a one-click payment, where the shopper enters the [card security code (CVC/CVV)](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid). * `RECURRING` – Payment details can be used without the card security code to initiate [card-not-present transactions](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-not-present-cnp). * `ONECLICK,RECURRING` – Payment details can be used regardless of whether the shopper is on your site or not. * `PAYOUT` – Payment details can be used to [make a payout](https://docs.adyen.com/online-payments/online-payouts). * `EXTERNAL` - Use this when you store payment details and send the raw card number or network token directly in your API request. */
@@ -8093,7 +8079,7 @@ export type CreatePaymentMethodsBalanceRequestRecurringProcessingModel =
   | "Subscription"
   | "UnscheduledCardOnFile";
 export const CreatePaymentMethodsBalanceRequestRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default. This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal. */
 export type CreatePaymentMethodsBalanceRequestShopperInteraction =
@@ -8101,8 +8087,7 @@ export type CreatePaymentMethodsBalanceRequestShopperInteraction =
   | "ContAuth"
   | "Moto"
   | "POS";
-export const CreatePaymentMethodsBalanceRequestShopperInteraction =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentMethodsBalanceRequestShopperInteraction = S.String;
 
 /** An array of objects specifying how the payment should be split when using either Adyen for Platforms for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/split-payments), or standalone [Issuing](https://docs.adyen.com/issuing/add-manage-funds#split). */
 export type CreatePaymentMethodsBalanceRequestSplitsList = Array<Split>;
@@ -8113,11 +8098,11 @@ export const CreatePaymentMethodsBalanceRequestSplitsList =
 
 /** Indicates the type of account. For example, for a multi-account card product. Length: 2 characters. Allowed values: * **01** — Not applicable * **02** — Credit * **03** — Debit */
 export type ThreeDS2RequestDataAcctType = "01" | "02" | "03";
-export const ThreeDS2RequestDataAcctType = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestDataAcctType = S.String;
 
 /** Indicates whether the cardholder shipping address and cardholder billing address are the same. Allowed values: * **Y** — Shipping address matches billing address. * **N** — Shipping address does not match billing address. */
 export type ThreeDS2RequestDataAddrMatch = "Y" | "N";
-export const ThreeDS2RequestDataAddrMatch = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestDataAddrMatch = S.String;
 
 /** Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` */
 export type ThreeDS2RequestDataChallengeIndicator =
@@ -8125,7 +8110,7 @@ export type ThreeDS2RequestDataChallengeIndicator =
   | "requestNoChallenge"
   | "requestChallenge"
   | "requestChallengeAsMandate";
-export const ThreeDS2RequestDataChallengeIndicator = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestDataChallengeIndicator = S.String;
 
 /** Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only */
 export type ThreeDS2RequestDataThreeDSRequestorChallengeInd =
@@ -8135,12 +8120,11 @@ export type ThreeDS2RequestDataThreeDSRequestorChallengeInd =
   | "04"
   | "05"
   | "06";
-export const ThreeDS2RequestDataThreeDSRequestorChallengeInd =
-  /*@__PURE__*/ S.String;
+export const ThreeDS2RequestDataThreeDSRequestorChallengeInd = S.String;
 
 /** Identifies the type of transaction being authenticated. Length: 2 characters. Allowed values: * **01** — Goods/Service Purchase * **03** — Check Acceptance * **10** — Account Funding * **11** — Quasi-Cash Transaction * **28** — Prepaid Activation and Load */
 export type ThreeDS2RequestDataTransType = "01" | "03" | "10" | "11" | "28";
-export const ThreeDS2RequestDataTransType = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestDataTransType = S.String;
 
 /** Identify the type of the transaction being authenticated. */
 export type ThreeDS2RequestDataTransactionType =
@@ -8149,7 +8133,7 @@ export type ThreeDS2RequestDataTransactionType =
   | "accountFunding"
   | "quasiCashTransaction"
   | "prepaidActivationAndLoad";
-export const ThreeDS2RequestDataTransactionType = /*@__PURE__*/ S.String;
+export const ThreeDS2RequestDataTransactionType = S.String;
 
 export interface ThreeDS2RequestData {
   /** Additional information about the cardholder’s account provided by the 3DS Requestor. */
@@ -8457,7 +8441,7 @@ export type BalanceCheckResponseResultCode =
   | "Success"
   | "NotEnoughBalance"
   | "Failed";
-export const BalanceCheckResponseResultCode = /*@__PURE__*/ S.String;
+export const BalanceCheckResponseResultCode = S.String;
 
 export interface BalanceCheckResponse {
   /** Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**. */
@@ -8502,8 +8486,7 @@ export type CreatePaymentRefundRequestMerchantRefundReason =
   | "RETURN"
   | "DUPLICATE"
   | "OTHER";
-export const CreatePaymentRefundRequestMerchantRefundReason =
-  /*@__PURE__*/ S.String;
+export const CreatePaymentRefundRequestMerchantRefundReason = S.String;
 
 /** An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/). */
 export type CreatePaymentRefundRequestSplitsList = Array<Split>;
@@ -8580,7 +8563,7 @@ export type PaymentRefundResponseMerchantRefundReason =
   | "RETURN"
   | "DUPLICATE"
   | "OTHER";
-export const PaymentRefundResponseMerchantRefundReason = /*@__PURE__*/ S.String;
+export const PaymentRefundResponseMerchantRefundReason = S.String;
 
 /** An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/). */
 export type PaymentRefundResponseSplitsList = Array<Split>;
@@ -8590,7 +8573,7 @@ export const PaymentRefundResponseSplitsList = /*@__PURE__*/ S.Array(
 
 /** The status of your request. This will always have the value **received**. */
 export type PaymentRefundResponseStatus = "received";
-export const PaymentRefundResponseStatus = /*@__PURE__*/ S.String;
+export const PaymentRefundResponseStatus = S.String;
 
 export interface PaymentRefundResponse {
   /** The refund amount. */
@@ -8668,7 +8651,7 @@ export const CreatePaymentReversalRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of your request. This will always have the value **received**. */
 export type PaymentReversalResponseStatus = "received";
-export const PaymentReversalResponseStatus = /*@__PURE__*/ S.String;
+export const PaymentReversalResponseStatus = S.String;
 
 export interface PaymentReversalResponse {
   /** The merchant account that is used to process the payment. */
@@ -8829,7 +8812,7 @@ export type PaymentDetailsResponseResultCode =
   | "RedirectShopper"
   | "Refused"
   | "Success";
-export const PaymentDetailsResponseResultCode = /*@__PURE__*/ S.String;
+export const PaymentDetailsResponseResultCode = S.String;
 
 export interface PaymentDetailsResponse {
   /** Action to be taken for completing the payment. When returned, only the 3D Secure action is needed in most cases. */
@@ -8893,7 +8876,7 @@ export const PaymentDetailsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the delivery method. */
 export type DeliveryMethodType = "Shipping";
-export const DeliveryMethodType = /*@__PURE__*/ S.String;
+export const DeliveryMethodType = S.String;
 
 export interface DeliveryMethod {
   /** The cost of this delivery method. */
@@ -8977,7 +8960,7 @@ export const CreatePaypalUpdateOrderRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the request. This indicates whether the order was successfully updated with PayPal. */
 export type PaypalUpdateOrderResponseStatus = "error" | "success";
-export const PaypalUpdateOrderResponseStatus = /*@__PURE__*/ S.String;
+export const PaypalUpdateOrderResponseStatus = S.String;
 
 export interface PaypalUpdateOrderResponse {
   /** The updated paymentData. */
@@ -9019,7 +9002,7 @@ export const CreateSessionRequestBlockedPaymentMethodsList =
 
 /** The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`. Possible values: * **iOS** * **Android** * **Web** */
 export type CreateSessionRequestChannel = "iOS" | "Android" | "Web";
-export const CreateSessionRequestChannel = /*@__PURE__*/ S.String;
+export const CreateSessionRequestChannel = S.String;
 
 export type CheckoutSessionInstallmentOptionPlansItem =
   | "bonus"
@@ -9032,7 +9015,7 @@ export type CheckoutSessionInstallmentOptionPlansItem =
   | "regular"
   | "revolving"
   | "with_interest";
-export const CheckoutSessionInstallmentOptionPlansItem = /*@__PURE__*/ S.String;
+export const CheckoutSessionInstallmentOptionPlansItem = S.String;
 
 /** Defines the type of installment plan. If not set, defaults to **regular**. Possible values: * **regular** * **revolving** * **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg** */
 export type CheckoutSessionInstallmentOptionPlansList = Array<
@@ -9092,15 +9075,14 @@ export const CreateSessionRequestMetadataMap = /*@__PURE__*/ S.Record(
 
 /** Indicates the type of front end integration. Possible values: * **embedded** (default): Drop-in or Components integration * **hosted**: Hosted Checkout integration */
 export type CreateSessionRequestMode = "embedded" | "hosted";
-export const CreateSessionRequestMode = /*@__PURE__*/ S.String;
+export const CreateSessionRequestMode = S.String;
 
 /** Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. */
 export type CreateSessionRequestRecurringProcessingModel =
   | "CardOnFile"
   | "Subscription"
   | "UnscheduledCardOnFile";
-export const CreateSessionRequestRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+export const CreateSessionRequestRecurringProcessingModel = S.String;
 
 /** Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default. This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal. */
 export type CreateSessionRequestShopperInteraction =
@@ -9108,7 +9090,7 @@ export type CreateSessionRequestShopperInteraction =
   | "ContAuth"
   | "Moto"
   | "POS";
-export const CreateSessionRequestShopperInteraction = /*@__PURE__*/ S.String;
+export const CreateSessionRequestShopperInteraction = S.String;
 
 /** An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split). */
 export type CreateSessionRequestSplitsList = Array<Split>;
@@ -9121,15 +9103,14 @@ export type CreateSessionRequestStoreFiltrationMode =
   | "exclusive"
   | "inclusive"
   | "skipFilter";
-export const CreateSessionRequestStoreFiltrationMode = /*@__PURE__*/ S.String;
+export const CreateSessionRequestStoreFiltrationMode = S.String;
 
 /** Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent. */
 export type CreateSessionRequestStorePaymentMethodMode =
   | "askForConsent"
   | "disabled"
   | "enabled";
-export const CreateSessionRequestStorePaymentMethodMode =
-  /*@__PURE__*/ S.String;
+export const CreateSessionRequestStorePaymentMethodMode = S.String;
 
 export interface CreateSessionRequest {
   /** A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). */
@@ -9372,7 +9353,7 @@ export const CreateCheckoutSessionResponseBlockedPaymentMethodsList =
 
 /** The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`. Possible values: * **iOS** * **Android** * **Web** */
 export type CreateCheckoutSessionResponseChannel = "iOS" | "Android" | "Web";
-export const CreateCheckoutSessionResponseChannel = /*@__PURE__*/ S.String;
+export const CreateCheckoutSessionResponseChannel = S.String;
 
 /** A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options. */
 export type CreateCheckoutSessionResponseInstallmentOptionsMap = {
@@ -9401,15 +9382,14 @@ export const CreateCheckoutSessionResponseMetadataMap = /*@__PURE__*/ S.Record(
 
 /** Indicates the type of front end integration. Possible values: * **embedded** (default): Drop-in or Components integration * **hosted**: Hosted Checkout integration */
 export type CreateCheckoutSessionResponseMode = "embedded" | "hosted";
-export const CreateCheckoutSessionResponseMode = /*@__PURE__*/ S.String;
+export const CreateCheckoutSessionResponseMode = S.String;
 
 /** Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. */
 export type CreateCheckoutSessionResponseRecurringProcessingModel =
   | "CardOnFile"
   | "Subscription"
   | "UnscheduledCardOnFile";
-export const CreateCheckoutSessionResponseRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutSessionResponseRecurringProcessingModel = S.String;
 
 /** Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default. This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal. */
 export type CreateCheckoutSessionResponseShopperInteraction =
@@ -9417,8 +9397,7 @@ export type CreateCheckoutSessionResponseShopperInteraction =
   | "ContAuth"
   | "Moto"
   | "POS";
-export const CreateCheckoutSessionResponseShopperInteraction =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutSessionResponseShopperInteraction = S.String;
 
 /** An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split). */
 export type CreateCheckoutSessionResponseSplitsList = Array<Split>;
@@ -9431,16 +9410,14 @@ export type CreateCheckoutSessionResponseStoreFiltrationMode =
   | "exclusive"
   | "inclusive"
   | "skipFilter";
-export const CreateCheckoutSessionResponseStoreFiltrationMode =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutSessionResponseStoreFiltrationMode = S.String;
 
 /** Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the Drop-in/Component shows a checkbox where the shopper can select to store their payment details for card payments. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent. */
 export type CreateCheckoutSessionResponseStorePaymentMethodMode =
   | "askForConsent"
   | "disabled"
   | "enabled";
-export const CreateCheckoutSessionResponseStorePaymentMethodMode =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutSessionResponseStorePaymentMethodMode = S.String;
 
 export interface CreateCheckoutSessionResponse {
   /** Shopper account information for 3D Secure 2. > For 3D Secure 2 transactions, we recommend that you include this object to increase the chances of achieving a frictionless flow. */
@@ -9711,7 +9688,7 @@ export type CreateStoredPaymentMethodRequestRecurringProcessingModel =
   | "Subscription"
   | "UnscheduledCardOnFile";
 export const CreateStoredPaymentMethodRequestRecurringProcessingModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateStoredPaymentMethodRequest {
   /** A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). */
@@ -9748,11 +9725,11 @@ export const CreateStoredPaymentMethodRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The limitation rule of the billing amount. Possible values: * **max**: The transaction amount can not exceed the `amount`. * **exact**: The transaction amount should be the same as the `amount`. */
 export type TokenMandateAmountRule = "max" | "exact";
-export const TokenMandateAmountRule = /*@__PURE__*/ S.String;
+export const TokenMandateAmountRule = S.String;
 
 /** The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date. Possible values: * **on**: On a specific date. * **before**: Before and on a specific date. * **after**: On and after a specific date. */
 export type TokenMandateBillingAttemptsRule = "on" | "before" | "after";
-export const TokenMandateBillingAttemptsRule = /*@__PURE__*/ S.String;
+export const TokenMandateBillingAttemptsRule = S.String;
 
 /** The frequency with which a shopper should be charged. Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**. */
 export type TokenMandateFrequency =
@@ -9764,11 +9741,11 @@ export type TokenMandateFrequency =
   | "quarterly"
   | "halfYearly"
   | "yearly";
-export const TokenMandateFrequency = /*@__PURE__*/ S.String;
+export const TokenMandateFrequency = S.String;
 
 /** When set to true, you can retry for failed recurring payments. The default value is true. */
 export type TokenMandateRetryPolicy = "true" | "false";
-export const TokenMandateRetryPolicy = /*@__PURE__*/ S.String;
+export const TokenMandateRetryPolicy = S.String;
 
 export interface TokenMandate {
   /** The type of account identifier for the masked account number. */
@@ -9961,7 +9938,7 @@ export const CreateValidateShopperIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateValidateShopperIdRequest>;
 
 export type Result = "VALID" | "INVALID" | "UNKNOWN" | "NOT_REQUIRED";
-export const Result = /*@__PURE__*/ S.String;
+export const Result = S.String;
 
 export interface ValidateShopperIdResponse {
   /** Reason for the result. */
@@ -10047,7 +10024,7 @@ export const SessionResultResponseAdditionalDataMap = /*@__PURE__*/ S.Record(
 
 /** The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes). Possible values: * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Received** – Indicates the payment request was successfully received by Adyen, and will be processed. This is the initial state for all payments. * **Pending** – The payment order was successfully received but the final status of the payment is not available yet. This is common for payment methods with an asynchronous flow. */
 export type PaymentResultCode = "Authorised" | "Received" | "Pending";
-export const PaymentResultCode = /*@__PURE__*/ S.String;
+export const PaymentResultCode = S.String;
 
 export interface Payment {
   /** Authorised amount in the transaction. */
@@ -10082,7 +10059,7 @@ export type SessionResultResponseStatus =
   | "expired"
   | "paymentPending"
   | "refused";
-export const SessionResultResponseStatus = /*@__PURE__*/ S.String;
+export const SessionResultResponseStatus = S.String;
 
 export interface SessionResultResponse {
   /** Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** > **Additional data**. */
@@ -10153,7 +10130,7 @@ export const ListStoredPaymentMethodsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the payment link. Possible values: * **expired** */
 export type UpdatePaymentLinkRequestStatus = "expired";
-export const UpdatePaymentLinkRequestStatus = /*@__PURE__*/ S.String;
+export const UpdatePaymentLinkRequestStatus = S.String;
 
 export interface UpdatePaymentLinkRequest {
   /** Unique identifier of the payment link. */

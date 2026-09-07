@@ -134,7 +134,7 @@ export const CanvasesEditCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `freeform` - freeform * `grid` - grid * `component` - component */
 export type CanvasKindEnum = "freeform" | "grid" | "component";
-export const CanvasKindEnum = /*@__PURE__*/ S.String;
+export const CanvasKindEnum = S.String;
 
 /** Identity and version pointers for one canvas. */
 export interface CanvasSummary {
@@ -170,7 +170,7 @@ export const CanvasSummary = /*@__PURE__*/ S.suspend(() =>
 
 /** * `error` - error * `warning` - warning */
 export type DiagnosticSeverityEnum = "error" | "warning";
-export const DiagnosticSeverityEnum = /*@__PURE__*/ S.String;
+export const DiagnosticSeverityEnum = S.String;
 
 /** One structured validation/build diagnostic for a canvas source project. */
 export interface CanvasDiagnostic {
@@ -229,11 +229,11 @@ export type CanvasLayoutOpEnum =
   | "add_placement"
   | "update_placement"
   | "remove_placement";
-export const CanvasLayoutOpEnum = /*@__PURE__*/ S.String;
+export const CanvasLayoutOpEnum = S.String;
 
 /** * `4` - 4 * `6` - 6 * `8` - 8 * `10` - 10 * `12` - 12 */
 export type CanvasGridColumnsEnum = 4 | 6 | 8 | 10 | 12;
-export const CanvasGridColumnsEnum = /*@__PURE__*/ S.Number;
+export const CanvasGridColumnsEnum = S.Number;
 
 /** The grid a grid canvas lays its placements out on. */
 export interface CanvasGrid {
@@ -258,7 +258,7 @@ export type CanvasPlacementStatusEnum =
   | "generating"
   | "live"
   | "failed";
-export const CanvasPlacementStatusEnum = /*@__PURE__*/ S.String;
+export const CanvasPlacementStatusEnum = S.String;
 
 /** Per-placement settings, validated against the component's configSchema. */
 export type CanvasPlacementConfigMap = { [key: string]: unknown | undefined };
@@ -424,7 +424,7 @@ export const CanvasesLayoutPatchCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `1` - 1 */
 export type CanvasLayoutSchemaVersionEnum = 1;
-export const CanvasLayoutSchemaVersionEnum = /*@__PURE__*/ S.Number;
+export const CanvasLayoutSchemaVersionEnum = S.Number;
 
 /** The placed widgets, at most 24. Placements may not overlap or extend past the grid. */
 export type CanvasLayoutPlacementsList = Array<CanvasPlacement>;
@@ -507,7 +507,7 @@ export const CanvasSourceProjectFilesMap = /*@__PURE__*/ S.Record(
 
 /** * `base64` - base64 */
 export type EncodingEnum = "base64";
-export const EncodingEnum = /*@__PURE__*/ S.String;
+export const EncodingEnum = S.String;
 
 /** * `image/png` - image/png * `image/jpeg` - image/jpeg * `image/gif` - image/gif * `image/webp` - image/webp * `image/svg+xml` - image/svg+xml * `font/woff` - font/woff * `font/woff2` - font/woff2 * `application/wasm` - application/wasm * `application/octet-stream` - application/octet-stream */
 export type ContentTypeEnum =
@@ -520,7 +520,7 @@ export type ContentTypeEnum =
   | "font/woff2"
   | "application/wasm"
   | "application/octet-stream";
-export const ContentTypeEnum = /*@__PURE__*/ S.String;
+export const ContentTypeEnum = S.String;
 
 export interface CanvasSourceAsset {
   encoding: EncodingEnum | (string & {});
@@ -620,7 +620,7 @@ export const CanvasPostHogCapabilitiesCaptureEventsList = /*@__PURE__*/ S.Array(
 
 /** * `user` - user * `shared` - shared */
 export type CanvasStateScopeEnum = "user" | "shared";
-export const CanvasStateScopeEnum = /*@__PURE__*/ S.String;
+export const CanvasStateScopeEnum = S.String;
 
 /** State scopes the canvas may use via ph.state: 'user' (private to each viewer) and/or 'shared' (one value per canvas, team-visible). */
 export type CanvasPostHogCapabilitiesStateList = Array<
@@ -782,7 +782,7 @@ export const CanvasesPublishCurrentVersionCreateRequest =
 
 /** * `queued` - queued * `building` - building * `ready` - ready * `failed` - failed */
 export type BuildStatusEnum = "queued" | "building" | "ready" | "failed";
-export const BuildStatusEnum = /*@__PURE__*/ S.String;
+export const BuildStatusEnum = S.String;
 
 /** Structured diagnostics recorded by the build (errors explain a failed status). */
 export type CanvasBuildDiagnosticsList = Array<CanvasDiagnostic>;
@@ -1010,14 +1010,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -1095,7 +1095,7 @@ export const Canvas = /*@__PURE__*/ S.suspend(() =>
 
 /** * `retry` - retry * `pin` - pin * `unpin` - unpin * `cancel` - cancel */
 export type CanvasBuildActionActionEnum = "retry" | "pin" | "unpin" | "cancel";
-export const CanvasBuildActionActionEnum = /*@__PURE__*/ S.String;
+export const CanvasBuildActionActionEnum = S.String;
 
 export interface CreateCanvasesBuildActionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1706,7 +1706,7 @@ export const CanvasSourceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CanvasSourceResponse>;
 
 export type GetCanvasesStateRequestScope = "shared" | "user";
-export const GetCanvasesStateRequestScope = /*@__PURE__*/ S.String;
+export const GetCanvasesStateRequestScope = S.String;
 
 export interface GetCanvasesStateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1912,7 +1912,7 @@ export const CanvasActionResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CanvasActionResult>;
 
 export type ListCanvasesRequestKind = "component" | "freeform" | "grid";
-export const ListCanvasesRequestKind = /*@__PURE__*/ S.String;
+export const ListCanvasesRequestKind = S.String;
 
 export interface ListCanvasesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

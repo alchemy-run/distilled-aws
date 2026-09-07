@@ -106,7 +106,7 @@ export type InboundTokenClaimValueType =
   | "STRING"
   | "STRING_ARRAY"
   | (string & {});
-export const InboundTokenClaimValueType = /*@__PURE__*/ S.String;
+export const InboundTokenClaimValueType = S.String;
 
 export type MatchValueString = string;
 export type MatchValueStringList = string[];
@@ -123,7 +123,7 @@ export type ClaimMatchOperatorType =
   | "CONTAINS"
   | "CONTAINS_ANY"
   | (string & {});
-export const ClaimMatchOperatorType = /*@__PURE__*/ S.String;
+export const ClaimMatchOperatorType = S.String;
 
 export interface AuthorizingClaimMatchValueType {
   claimMatchValue: ClaimMatchValueType;
@@ -167,7 +167,7 @@ export type SubnetId = string;
 export type SubnetIds = string[];
 export const SubnetIds = /*@__PURE__*/ S.Array(S.String);
 export type EndpointIpAddressType = "IPV4" | "IPV6" | (string & {});
-export const EndpointIpAddressType = /*@__PURE__*/ S.String;
+export const EndpointIpAddressType = S.String;
 
 export type SecurityGroupIdentifier = string;
 export type SecurityGroupIds = string[];
@@ -256,7 +256,7 @@ export const AuthorizerConfiguration = /*@__PURE__*/ S.Union([
   S.Struct({ customJWTAuthorizer: CustomJWTAuthorizerConfiguration }),
 ]);
 export type RegistryAuthorizerType = "CUSTOM_JWT" | "AWS_IAM" | (string & {});
-export const RegistryAuthorizerType = /*@__PURE__*/ S.String;
+export const RegistryAuthorizerType = S.String;
 
 export interface DiscoveryConfiguration {
   authorizerConfiguration?: AuthorizerConfiguration;
@@ -272,7 +272,7 @@ export const DiscoveryConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiscoveryConfiguration>;
 export type ClientToken = string;
 export type AutoApprovalRule = "APPROVE_ALL" | (string & {});
-export const AutoApprovalRule = /*@__PURE__*/ S.String;
+export const AutoApprovalRule = S.String;
 
 export type AutoApprovalRuleList = AutoApprovalRule[];
 export const AutoApprovalRuleList = /*@__PURE__*/ S.Array(AutoApprovalRule);
@@ -326,7 +326,7 @@ export type RegistryIdentifier = string;
 export type RegistryRecordName = string;
 export type RegistryRecordDisplayName = string;
 export type RecordType = "MCP" | "AGENT" | "CUSTOM" | "SKILL" | (string & {});
-export const RecordType = /*@__PURE__*/ S.String;
+export const RecordType = S.String;
 
 export type DescriptorData = string | redacted.Redacted<string>;
 export type DataSchemaVersion = string;
@@ -355,11 +355,11 @@ export type RegistryRecordCredentialProviderType =
   | "OAUTH"
   | "IAM"
   | (string & {});
-export const RegistryRecordCredentialProviderType = /*@__PURE__*/ S.String;
+export const RegistryRecordCredentialProviderType = S.String;
 
 export type CredentialProviderArn = string;
 export type RegistryRecordOAuthGrantType = "CLIENT_CREDENTIALS" | (string & {});
-export const RegistryRecordOAuthGrantType = /*@__PURE__*/ S.String;
+export const RegistryRecordOAuthGrantType = S.String;
 
 export type ScopeList = string[];
 export const ScopeList = /*@__PURE__*/ S.Array(S.String);
@@ -590,7 +590,7 @@ export type RegistryRecordStatus =
   | "CREATE_FAILED"
   | "UPDATE_FAILED"
   | (string & {});
-export const RegistryRecordStatus = /*@__PURE__*/ S.String;
+export const RegistryRecordStatus = S.String;
 
 export interface CreateRegistryRecordResponse {
   recordArn: string;
@@ -627,7 +627,7 @@ export type RegistryStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const RegistryStatus = /*@__PURE__*/ S.String;
+export const RegistryStatus = S.String;
 
 export interface DeleteRegistryResponse {
   status: RegistryStatus;
@@ -779,7 +779,7 @@ export type RegistryFilterName =
   | "status"
   | "discoveryConfiguration.authorizerType"
   | (string & {});
-export const RegistryFilterName = /*@__PURE__*/ S.String;
+export const RegistryFilterName = S.String;
 
 export type FilterValue = string;
 export type FilterValues = string[];
@@ -861,7 +861,7 @@ export type RegistryRecordFilterName =
   | "status"
   | "recordType"
   | (string & {});
-export const RegistryRecordFilterName = /*@__PURE__*/ S.String;
+export const RegistryRecordFilterName = S.String;
 
 export interface RegistryRecordFilter {
   name: RegistryRecordFilterName;
@@ -1515,7 +1515,7 @@ export type ValidationExceptionReason =
   | "EventInOtherSession"
   | "ResourceConflict"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

@@ -41,10 +41,10 @@ export const GetCsamScannerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCsamScannerRequest>;
 
 export type GetResponseId = "csam_scanner";
-export const GetResponseId = /*@__PURE__*/ S.String;
+export const GetResponseId = S.String;
 
 export type GetResponseValueEmailState = "valid" | "pending" | "unverified";
-export const GetResponseValueEmailState = /*@__PURE__*/ S.String;
+export const GetResponseValueEmailState = S.String;
 
 export type GetResponseValueSourcesMap = { [key: string]: boolean | undefined };
 export const GetResponseValueSourcesMap = /*@__PURE__*/ S.Record(
@@ -101,7 +101,7 @@ export const GetCsamScannerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCsamScannerResponse>;
 
 export type EditRequestId = "csam_scanner";
-export const EditRequestId = /*@__PURE__*/ S.String;
+export const EditRequestId = S.String;
 
 export type EditRequestValueSourcesMap = { [key: string]: boolean | undefined };
 export const EditRequestValueSourcesMap = /*@__PURE__*/ S.Record(
@@ -157,10 +157,10 @@ export const PatchCsamScannerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCsamScannerRequest>;
 
 export type EditResponseId = "csam_scanner";
-export const EditResponseId = /*@__PURE__*/ S.String;
+export const EditResponseId = S.String;
 
 export type EditResponseValueEmailState = "valid" | "pending" | "unverified";
-export const EditResponseValueEmailState = /*@__PURE__*/ S.String;
+export const EditResponseValueEmailState = S.String;
 
 export type EditResponseValueSourcesMap = {
   [key: string]: boolean | undefined;

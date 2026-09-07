@@ -78,10 +78,10 @@ export type CreateStorageStoresBlobRequestRegion =
   | "sin1"
   | "syd1"
   | "yul1";
-export const CreateStorageStoresBlobRequestRegion = /*@__PURE__*/ S.String;
+export const CreateStorageStoresBlobRequestRegion = S.String;
 
 export type CreateStorageStoresBlobRequestAccess = "public" | "private";
-export const CreateStorageStoresBlobRequestAccess = /*@__PURE__*/ S.String;
+export const CreateStorageStoresBlobRequestAccess = S.String;
 
 export interface CreateStorageStoresBlobRequest {
   name: string;
@@ -176,7 +176,7 @@ export type CreateStorageStoresBlobResponseStoreProjectsMetadataItemFramework =
   | "xmcp"
   | "zola";
 export const CreateStorageStoresBlobResponseStoreProjectsMetadataItemFramework =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateStorageStoresBlobResponseStoreProjectsMetadataItemEnvironmentsList =
   Array<string>;
@@ -197,7 +197,7 @@ export type CreateStorageStoresBlobResponseStoreProjectsMetadataItemDeploymentsA
   | "preview"
   | "production";
 export const CreateStorageStoresBlobResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateStorageStoresBlobResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsList =
   Array<CreateStorageStoresBlobResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsItem>;
@@ -295,7 +295,7 @@ export type CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase0It
   | "github"
   | "gitlab";
 export const CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase0Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase0List =
   Array<CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase0Item>;
@@ -307,13 +307,13 @@ export const CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase0L
 export type CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase1 =
   "*";
 export const CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateStorageStoresBlobResponseStoreProjectFilterGitProviders =
   | CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase0List
   | CreateStorageStoresBlobResponseStoreProjectFilterGitProvidersCase1;
 export const CreateStorageStoresBlobResponseStoreProjectFilterGitProviders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateStorageStoresBlobResponseStoreProjectFilterGitProviders>;
+  S.Unknown as any as S.Schema<CreateStorageStoresBlobResponseStoreProjectFilterGitProviders>;
 
 export type CreateStorageStoresBlobResponseStoreProjectFilterGitOwnersList =
   Array<string>;
@@ -370,18 +370,16 @@ export type CreateStorageStoresBlobResponseStoreStatus =
   | "onboarding"
   | "suspended"
   | "uninstalled";
-export const CreateStorageStoresBlobResponseStoreStatus =
-  /*@__PURE__*/ S.String;
+export const CreateStorageStoresBlobResponseStoreStatus = S.String;
 
 export type CreateStorageStoresBlobResponseStoreAccess = "private" | "public";
-export const CreateStorageStoresBlobResponseStoreAccess =
-  /*@__PURE__*/ S.String;
+export const CreateStorageStoresBlobResponseStoreAccess = S.String;
 
 /** A project-default store is a private blob store that is lazily created per-project, uses OIDC auth instead of read-write tokens, and cannot be modified through standard store mutation APIs. Undefined for legacy stores. */
 export type CreateStorageStoresBlobResponseStoreKind =
   | "project-default"
   | "user-created";
-export const CreateStorageStoresBlobResponseStoreKind = /*@__PURE__*/ S.String;
+export const CreateStorageStoresBlobResponseStoreKind = S.String;
 
 export type CreateStorageStoresBlobResponseStoreRegion =
   | "arn1"
@@ -404,8 +402,7 @@ export type CreateStorageStoresBlobResponseStoreRegion =
   | "sin1"
   | "syd1"
   | "yul1";
-export const CreateStorageStoresBlobResponseStoreRegion =
-  /*@__PURE__*/ S.String;
+export const CreateStorageStoresBlobResponseStoreRegion = S.String;
 
 export interface CreateStorageStoresBlobResponseStore {
   projectsMetadata: CreateStorageStoresBlobResponseStoreProjectsMetadataList;
@@ -572,7 +569,7 @@ export type GetStorageStoreResponseStoreProjectsMetadataItemFramework =
   | "xmcp"
   | "zola";
 export const GetStorageStoreResponseStoreProjectsMetadataItemFramework =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetStorageStoreResponseStoreProjectsMetadataItemEnvironmentsList =
   Array<string>;
@@ -593,7 +590,7 @@ export type GetStorageStoreResponseStoreProjectsMetadataItemDeploymentsActionsIt
   | "preview"
   | "production";
 export const GetStorageStoreResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetStorageStoreResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsList =
   Array<GetStorageStoreResponseStoreProjectsMetadataItemDeploymentsActionsItemEnvironmentsItem>;
@@ -688,7 +685,7 @@ export type GetStorageStoreResponseStoreProjectFilterGitProvidersCase0Item =
   | "github"
   | "gitlab";
 export const GetStorageStoreResponseStoreProjectFilterGitProvidersCase0Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetStorageStoreResponseStoreProjectFilterGitProvidersCase0List =
   Array<GetStorageStoreResponseStoreProjectFilterGitProvidersCase0Item>;
@@ -699,13 +696,13 @@ export const GetStorageStoreResponseStoreProjectFilterGitProvidersCase0List =
 
 export type GetStorageStoreResponseStoreProjectFilterGitProvidersCase1 = "*";
 export const GetStorageStoreResponseStoreProjectFilterGitProvidersCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetStorageStoreResponseStoreProjectFilterGitProviders =
   | GetStorageStoreResponseStoreProjectFilterGitProvidersCase0List
   | GetStorageStoreResponseStoreProjectFilterGitProvidersCase1;
 export const GetStorageStoreResponseStoreProjectFilterGitProviders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetStorageStoreResponseStoreProjectFilterGitProviders>;
+  S.Unknown as any as S.Schema<GetStorageStoreResponseStoreProjectFilterGitProviders>;
 
 export type GetStorageStoreResponseStoreProjectFilterGitOwnersList =
   Array<string>;
@@ -760,7 +757,7 @@ export type GetStorageStoreResponseStoreStatus =
   | "onboarding"
   | "suspended"
   | "uninstalled";
-export const GetStorageStoreResponseStoreStatus = /*@__PURE__*/ S.String;
+export const GetStorageStoreResponseStoreStatus = S.String;
 
 export interface GetStorageStoreResponseStore {
   projectsMetadata: GetStorageStoreResponseStoreProjectsMetadataList;

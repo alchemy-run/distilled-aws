@@ -70,14 +70,14 @@ export type AggregatedProjectsJobsViewEnum =
   | "JOB_VIEW_SUMMARY"
   | "JOB_VIEW_ALL"
   | "JOB_VIEW_DESCRIPTION";
-export const AggregatedProjectsJobsViewEnum = /*@__PURE__*/ S.String;
+export const AggregatedProjectsJobsViewEnum = S.String;
 
 export type AggregatedProjectsJobsFilterEnum =
   | "UNKNOWN"
   | "ALL"
   | "TERMINATED"
   | "ACTIVE";
-export const AggregatedProjectsJobsFilterEnum = /*@__PURE__*/ S.String;
+export const AggregatedProjectsJobsFilterEnum = S.String;
 
 export interface AggregatedProjectsJobsRequest {
   /** Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews. */
@@ -128,13 +128,13 @@ export type EnvironmentShuffleModeEnum =
   | "SHUFFLE_MODE_UNSPECIFIED"
   | "VM_BASED"
   | "SERVICE_BASED";
-export const EnvironmentShuffleModeEnum = /*@__PURE__*/ S.String;
+export const EnvironmentShuffleModeEnum = S.String;
 
 export type WorkerPoolIpConfigurationEnum =
   | "WORKER_IP_UNSPECIFIED"
   | "WORKER_IP_PUBLIC"
   | "WORKER_IP_PRIVATE";
-export const WorkerPoolIpConfigurationEnum = /*@__PURE__*/ S.String;
+export const WorkerPoolIpConfigurationEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -245,13 +245,13 @@ export type WorkerPoolDefaultPackageSetEnum =
   | "DEFAULT_PACKAGE_SET_NONE"
   | "DEFAULT_PACKAGE_SET_JAVA"
   | "DEFAULT_PACKAGE_SET_PYTHON";
-export const WorkerPoolDefaultPackageSetEnum = /*@__PURE__*/ S.String;
+export const WorkerPoolDefaultPackageSetEnum = S.String;
 
 export type AutoscalingSettingsAlgorithmEnum =
   | "AUTOSCALING_ALGORITHM_UNKNOWN"
   | "AUTOSCALING_ALGORITHM_NONE"
   | "AUTOSCALING_ALGORITHM_BASIC";
-export const AutoscalingSettingsAlgorithmEnum = /*@__PURE__*/ S.String;
+export const AutoscalingSettingsAlgorithmEnum = S.String;
 
 /** Settings for WorkerPool autoscaling. */
 export interface AutoscalingSettings {
@@ -345,7 +345,7 @@ export type WorkerPoolTeardownPolicyEnum =
   | "TEARDOWN_ALWAYS"
   | "TEARDOWN_ON_SUCCESS"
   | "TEARDOWN_NEVER";
-export const WorkerPoolTeardownPolicyEnum = /*@__PURE__*/ S.String;
+export const WorkerPoolTeardownPolicyEnum = S.String;
 
 /** Describes one particular pool of Cloud Dataflow workers to be instantiated by the Cloud Dataflow service in order to perform the computations required by a job. Note that a workflow job may use multiple pools, in order to match the various computational requirements of the various stages of the job. */
 export interface WorkerPool {
@@ -436,14 +436,14 @@ export type EnvironmentFlexResourceSchedulingGoalEnum =
   | "FLEXRS_UNSPECIFIED"
   | "FLEXRS_SPEED_OPTIMIZED"
   | "FLEXRS_COST_OPTIMIZED";
-export const EnvironmentFlexResourceSchedulingGoalEnum = /*@__PURE__*/ S.String;
+export const EnvironmentFlexResourceSchedulingGoalEnum = S.String;
 
 export type DataSamplingConfigBehaviorsItemEnum =
   | "DATA_SAMPLING_BEHAVIOR_UNSPECIFIED"
   | "DISABLED"
   | "ALWAYS_ON"
   | "EXCEPTIONS";
-export const DataSamplingConfigBehaviorsItemEnum = /*@__PURE__*/ S.String;
+export const DataSamplingConfigBehaviorsItemEnum = S.String;
 
 export type DataSamplingConfigBehaviorsItemEnumList = Array<
   DataSamplingConfigBehaviorsItemEnum | (string & {})
@@ -483,7 +483,7 @@ export type EnvironmentStreamingModeEnum =
   | "STREAMING_MODE_UNSPECIFIED"
   | "STREAMING_MODE_EXACTLY_ONCE"
   | "STREAMING_MODE_AT_LEAST_ONCE";
-export const EnvironmentStreamingModeEnum = /*@__PURE__*/ S.String;
+export const EnvironmentStreamingModeEnum = S.String;
 
 /** Describes the environment in which a Dataflow Job runs. */
 export interface Environment {
@@ -573,8 +573,7 @@ export type ExecutionStageStateExecutionStageStateEnum =
   | "JOB_STATE_RESOURCE_CLEANING_UP"
   | "JOB_STATE_PAUSING"
   | "JOB_STATE_PAUSED";
-export const ExecutionStageStateExecutionStageStateEnum =
-  /*@__PURE__*/ S.String;
+export const ExecutionStageStateExecutionStageStateEnum = S.String;
 
 /** A message describing the state of a particular execution stage. */
 export interface ExecutionStageState {
@@ -618,13 +617,13 @@ export type JobRequestedStateEnum =
   | "JOB_STATE_RESOURCE_CLEANING_UP"
   | "JOB_STATE_PAUSING"
   | "JOB_STATE_PAUSED";
-export const JobRequestedStateEnum = /*@__PURE__*/ S.String;
+export const JobRequestedStateEnum = S.String;
 
 export type JobTypeEnum =
   | "JOB_TYPE_UNKNOWN"
   | "JOB_TYPE_BATCH"
   | "JOB_TYPE_STREAMING";
-export const JobTypeEnum = /*@__PURE__*/ S.String;
+export const JobTypeEnum = S.String;
 
 /** The parameters to use for autoscaling when this schedule is active. */
 export interface Parameters {
@@ -807,7 +806,7 @@ export type TransformSummaryKindEnum =
   | "CONSTANT_KIND"
   | "SINGLETON_KIND"
   | "SHUFFLE_KIND";
-export const TransformSummaryKindEnum = /*@__PURE__*/ S.String;
+export const TransformSummaryKindEnum = S.String;
 
 /** Description of the type, names/ids, and input/outputs for a transform. */
 export interface TransformSummary {
@@ -901,7 +900,7 @@ export type ExecutionStageSummaryKindEnum =
   | "CONSTANT_KIND"
   | "SINGLETON_KIND"
   | "SHUFFLE_KIND";
-export const ExecutionStageSummaryKindEnum = /*@__PURE__*/ S.String;
+export const ExecutionStageSummaryKindEnum = S.String;
 
 /** Description of an interstitial value between transforms in an execution stage. */
 export interface ComponentSource {
@@ -1038,7 +1037,7 @@ export type JobCurrentStateEnum =
   | "JOB_STATE_RESOURCE_CLEANING_UP"
   | "JOB_STATE_PAUSING"
   | "JOB_STATE_PAUSED";
-export const JobCurrentStateEnum = /*@__PURE__*/ S.String;
+export const JobCurrentStateEnum = S.String;
 
 /** Metadata for a File connector used by the job. */
 export interface FileIODetails {
@@ -1061,14 +1060,14 @@ export type SdkBugSeverityEnum =
   | "NOTICE"
   | "WARNING"
   | "SEVERE";
-export const SdkBugSeverityEnum = /*@__PURE__*/ S.String;
+export const SdkBugSeverityEnum = S.String;
 
 export type SdkBugTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "GENERAL"
   | "PERFORMANCE"
   | "DATALOSS";
-export const SdkBugTypeEnum = /*@__PURE__*/ S.String;
+export const SdkBugTypeEnum = S.String;
 
 /** A bug found in the Dataflow SDK. */
 export interface SdkBug {
@@ -1098,7 +1097,7 @@ export type SdkVersionSdkSupportStatusEnum =
   | "STALE"
   | "DEPRECATED"
   | "UNSUPPORTED";
-export const SdkVersionSdkSupportStatusEnum = /*@__PURE__*/ S.String;
+export const SdkVersionSdkSupportStatusEnum = S.String;
 
 /** The version of the SDK used to run the job. */
 export interface SdkVersion {
@@ -1489,7 +1488,7 @@ export type CreateProjectsJobsViewEnum =
   | "JOB_VIEW_SUMMARY"
   | "JOB_VIEW_ALL"
   | "JOB_VIEW_DESCRIPTION";
-export const CreateProjectsJobsViewEnum = /*@__PURE__*/ S.String;
+export const CreateProjectsJobsViewEnum = S.String;
 
 export interface CreateProjectsJobsRequest {
   /** The ID of the Cloud Platform project that the job belongs to. */
@@ -1551,7 +1550,7 @@ export type CreateProjectsLocationsJobsViewEnum =
   | "JOB_VIEW_SUMMARY"
   | "JOB_VIEW_ALL"
   | "JOB_VIEW_DESCRIPTION";
-export const CreateProjectsLocationsJobsViewEnum = /*@__PURE__*/ S.String;
+export const CreateProjectsLocationsJobsViewEnum = S.String;
 
 export interface CreateProjectsLocationsJobsRequest {
   /** The ID of the Cloud Platform project that the job belongs to. */
@@ -1587,13 +1586,13 @@ export type RuntimeEnvironmentIpConfigurationEnum =
   | "WORKER_IP_UNSPECIFIED"
   | "WORKER_IP_PUBLIC"
   | "WORKER_IP_PRIVATE";
-export const RuntimeEnvironmentIpConfigurationEnum = /*@__PURE__*/ S.String;
+export const RuntimeEnvironmentIpConfigurationEnum = S.String;
 
 export type RuntimeEnvironmentStreamingModeEnum =
   | "STREAMING_MODE_UNSPECIFIED"
   | "STREAMING_MODE_EXACTLY_ONCE"
   | "STREAMING_MODE_AT_LEAST_ONCE";
-export const RuntimeEnvironmentStreamingModeEnum = /*@__PURE__*/ S.String;
+export const RuntimeEnvironmentStreamingModeEnum = S.String;
 
 /** The environment values to set at runtime. */
 export interface RuntimeEnvironment {
@@ -2215,7 +2214,7 @@ export type StageSummaryStateEnum =
   | "EXECUTION_STATE_SUCCEEDED"
   | "EXECUTION_STATE_FAILED"
   | "EXECUTION_STATE_CANCELLED";
-export const StageSummaryStateEnum = /*@__PURE__*/ S.String;
+export const StageSummaryStateEnum = S.String;
 
 /** Information about a particular execution stage of a job. */
 export interface StageSummary {
@@ -2314,7 +2313,7 @@ export type WorkItemDetailsStateEnum =
   | "EXECUTION_STATE_SUCCEEDED"
   | "EXECUTION_STATE_FAILED"
   | "EXECUTION_STATE_CANCELLED";
-export const WorkItemDetailsStateEnum = /*@__PURE__*/ S.String;
+export const WorkItemDetailsStateEnum = S.String;
 
 /** Information about an individual work item execution. */
 export interface WorkItemDetails {
@@ -2502,7 +2501,7 @@ export type GetProjectsJobsViewEnum =
   | "JOB_VIEW_SUMMARY"
   | "JOB_VIEW_ALL"
   | "JOB_VIEW_DESCRIPTION";
-export const GetProjectsJobsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsJobsViewEnum = S.String;
 
 export interface GetProjectsJobsRequest {
   /** The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job. */
@@ -2555,7 +2554,7 @@ export type GetProjectsLocationsJobsViewEnum =
   | "JOB_VIEW_SUMMARY"
   | "JOB_VIEW_ALL"
   | "JOB_VIEW_DESCRIPTION";
-export const GetProjectsLocationsJobsViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsJobsViewEnum = S.String;
 
 export interface GetProjectsLocationsJobsRequest {
   /** The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job. */
@@ -2640,7 +2639,7 @@ export type SnapshotStateEnum =
   | "READY"
   | "FAILED"
   | "DELETED";
-export const SnapshotStateEnum = /*@__PURE__*/ S.String;
+export const SnapshotStateEnum = S.String;
 
 /** Represents a snapshot of a job. */
 export interface Snapshot {
@@ -2681,7 +2680,7 @@ export const Snapshot = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
 
 export type GetProjectsLocationsTemplatesViewEnum = "METADATA_ONLY";
-export const GetProjectsLocationsTemplatesViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsTemplatesViewEnum = S.String;
 
 export interface GetProjectsLocationsTemplatesRequest {
   /** Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'. */
@@ -2712,10 +2711,10 @@ export const GetProjectsLocationsTemplatesRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetProjectsLocationsTemplatesRequest>;
 
 export type GetTemplateResponseTemplateTypeEnum = "UNKNOWN" | "LEGACY" | "FLEX";
-export const GetTemplateResponseTemplateTypeEnum = /*@__PURE__*/ S.String;
+export const GetTemplateResponseTemplateTypeEnum = S.String;
 
 export type SDKInfoLanguageEnum = "UNKNOWN" | "JAVA" | "PYTHON" | "GO" | "YAML";
-export const SDKInfoLanguageEnum = /*@__PURE__*/ S.String;
+export const SDKInfoLanguageEnum = S.String;
 
 /** SDK Information. */
 export interface SDKInfo {
@@ -2780,7 +2779,7 @@ export type ParameterMetadataParamTypeEnum =
   | "KAFKA_TOPIC"
   | "KAFKA_READ_TOPIC"
   | "KAFKA_WRITE_TOPIC";
-export const ParameterMetadataParamTypeEnum = /*@__PURE__*/ S.String;
+export const ParameterMetadataParamTypeEnum = S.String;
 
 /** Metadata for a specific parameter. */
 export interface ParameterMetadata {
@@ -2955,7 +2954,7 @@ export const GetProjectsSnapshotsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectsSnapshotsRequest>;
 
 export type GetProjectsTemplatesViewEnum = "METADATA_ONLY";
-export const GetProjectsTemplatesViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsTemplatesViewEnum = S.String;
 
 export interface GetProjectsTemplatesRequest {
   /** Required. A Cloud Storage path to the template from which to create the job. Must be valid Cloud Storage URL, beginning with 'gs://'. */
@@ -3090,29 +3089,25 @@ export type FlexTemplateRuntimeEnvironmentIpConfigurationEnum =
   | "WORKER_IP_UNSPECIFIED"
   | "WORKER_IP_PUBLIC"
   | "WORKER_IP_PRIVATE";
-export const FlexTemplateRuntimeEnvironmentIpConfigurationEnum =
-  /*@__PURE__*/ S.String;
+export const FlexTemplateRuntimeEnvironmentIpConfigurationEnum = S.String;
 
 export type FlexTemplateRuntimeEnvironmentAutoscalingAlgorithmEnum =
   | "AUTOSCALING_ALGORITHM_UNKNOWN"
   | "AUTOSCALING_ALGORITHM_NONE"
   | "AUTOSCALING_ALGORITHM_BASIC";
-export const FlexTemplateRuntimeEnvironmentAutoscalingAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const FlexTemplateRuntimeEnvironmentAutoscalingAlgorithmEnum = S.String;
 
 export type FlexTemplateRuntimeEnvironmentStreamingModeEnum =
   | "STREAMING_MODE_UNSPECIFIED"
   | "STREAMING_MODE_EXACTLY_ONCE"
   | "STREAMING_MODE_AT_LEAST_ONCE";
-export const FlexTemplateRuntimeEnvironmentStreamingModeEnum =
-  /*@__PURE__*/ S.String;
+export const FlexTemplateRuntimeEnvironmentStreamingModeEnum = S.String;
 
 export type FlexTemplateRuntimeEnvironmentFlexrsGoalEnum =
   | "FLEXRS_UNSPECIFIED"
   | "FLEXRS_SPEED_OPTIMIZED"
   | "FLEXRS_COST_OPTIMIZED";
-export const FlexTemplateRuntimeEnvironmentFlexrsGoalEnum =
-  /*@__PURE__*/ S.String;
+export const FlexTemplateRuntimeEnvironmentFlexrsGoalEnum = S.String;
 
 /** The environment values to be set at runtime for flex template. */
 export interface FlexTemplateRuntimeEnvironment {
@@ -4366,7 +4361,7 @@ export type StreamingComputationTaskTaskTypeEnum =
   | "STREAMING_COMPUTATION_TASK_UNKNOWN"
   | "STREAMING_COMPUTATION_TASK_STOP"
   | "STREAMING_COMPUTATION_TASK_START";
-export const StreamingComputationTaskTaskTypeEnum = /*@__PURE__*/ S.String;
+export const StreamingComputationTaskTaskTypeEnum = S.String;
 
 /** Describes mounted data disk. */
 export interface MountedDataDisk {
@@ -4583,14 +4578,14 @@ export type ListProjectsJobsFilterEnum =
   | "ALL"
   | "TERMINATED"
   | "ACTIVE";
-export const ListProjectsJobsFilterEnum = /*@__PURE__*/ S.String;
+export const ListProjectsJobsFilterEnum = S.String;
 
 export type ListProjectsJobsViewEnum =
   | "JOB_VIEW_UNKNOWN"
   | "JOB_VIEW_SUMMARY"
   | "JOB_VIEW_ALL"
   | "JOB_VIEW_DESCRIPTION";
-export const ListProjectsJobsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsJobsViewEnum = S.String;
 
 export interface ListProjectsJobsRequest {
   /** Optional. */
@@ -4638,8 +4633,7 @@ export type ListProjectsJobsMessagesMinimumImportanceEnum =
   | "JOB_MESSAGE_BASIC"
   | "JOB_MESSAGE_WARNING"
   | "JOB_MESSAGE_ERROR";
-export const ListProjectsJobsMessagesMinimumImportanceEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsJobsMessagesMinimumImportanceEnum = S.String;
 
 export interface ListProjectsJobsMessagesRequest {
   /** A project id. */
@@ -4691,7 +4685,7 @@ export type JobMessageMessageImportanceEnum =
   | "JOB_MESSAGE_BASIC"
   | "JOB_MESSAGE_WARNING"
   | "JOB_MESSAGE_ERROR";
-export const JobMessageMessageImportanceEnum = /*@__PURE__*/ S.String;
+export const JobMessageMessageImportanceEnum = S.String;
 
 /** A particular message pertaining to a Dataflow job. */
 export interface JobMessage {
@@ -4724,7 +4718,7 @@ export type AutoscalingEventEventTypeEnum =
   | "CURRENT_NUM_WORKERS_CHANGED"
   | "ACTUATION_FAILURE"
   | "NO_CHANGE";
-export const AutoscalingEventEventTypeEnum = /*@__PURE__*/ S.String;
+export const AutoscalingEventEventTypeEnum = S.String;
 
 /** Structured data associated with this message. */
 export interface Parameter {
@@ -4846,14 +4840,14 @@ export type ListProjectsLocationsJobsFilterEnum =
   | "ALL"
   | "TERMINATED"
   | "ACTIVE";
-export const ListProjectsLocationsJobsFilterEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsJobsFilterEnum = S.String;
 
 export type ListProjectsLocationsJobsViewEnum =
   | "JOB_VIEW_UNKNOWN"
   | "JOB_VIEW_SUMMARY"
   | "JOB_VIEW_ALL"
   | "JOB_VIEW_DESCRIPTION";
-export const ListProjectsLocationsJobsViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsJobsViewEnum = S.String;
 
 export interface ListProjectsLocationsJobsRequest {
   /** The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job. */
@@ -4901,8 +4895,7 @@ export type ListProjectsLocationsJobsMessagesMinimumImportanceEnum =
   | "JOB_MESSAGE_BASIC"
   | "JOB_MESSAGE_WARNING"
   | "JOB_MESSAGE_ERROR";
-export const ListProjectsLocationsJobsMessagesMinimumImportanceEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsJobsMessagesMinimumImportanceEnum = S.String;
 
 export interface ListProjectsLocationsJobsMessagesRequest {
   /** If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned. */
@@ -5045,7 +5038,7 @@ export type DerivedSourceDerivationModeEnum =
   | "SOURCE_DERIVATION_MODE_INDEPENDENT"
   | "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT"
   | "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT";
-export const DerivedSourceDerivationModeEnum = /*@__PURE__*/ S.String;
+export const DerivedSourceDerivationModeEnum = S.String;
 
 /** Specification of one of the bundles produced as a result of splitting a Source (e.g. when executing a SourceSplitRequest, or when splitting an active task using WorkItemStatus.dynamic_source_split), relative to the source being split. */
 export interface DerivedSource {
@@ -5141,7 +5134,7 @@ export type SourceSplitShardDerivationModeEnum =
   | "SOURCE_DERIVATION_MODE_INDEPENDENT"
   | "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT"
   | "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT";
-export const SourceSplitShardDerivationModeEnum = /*@__PURE__*/ S.String;
+export const SourceSplitShardDerivationModeEnum = S.String;
 
 /** DEPRECATED in favor of DerivedSource. */
 export interface SourceSplitShard {
@@ -5307,10 +5300,10 @@ export const DistributionUpdate = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DistributionUpdate>;
 
 export type CounterStructuredNameOriginEnum = "SYSTEM" | "USER";
-export const CounterStructuredNameOriginEnum = /*@__PURE__*/ S.String;
+export const CounterStructuredNameOriginEnum = S.String;
 
 export type CounterStructuredNamePortionEnum = "ALL" | "KEY" | "VALUE";
-export const CounterStructuredNamePortionEnum = /*@__PURE__*/ S.String;
+export const CounterStructuredNamePortionEnum = S.String;
 
 /** Identifies a counter within a per-job namespace. Counters whose structured names are the same get merged into a single value for the job. */
 export interface CounterStructuredName {
@@ -5361,7 +5354,7 @@ export type CounterMetadataStandardUnitsEnum =
   | "TIMESTAMP_MSEC"
   | "TIMESTAMP_USEC"
   | "TIMESTAMP_NSEC";
-export const CounterMetadataStandardUnitsEnum = /*@__PURE__*/ S.String;
+export const CounterMetadataStandardUnitsEnum = S.String;
 
 export type CounterMetadataKindEnum =
   | "INVALID"
@@ -5374,7 +5367,7 @@ export type CounterMetadataKindEnum =
   | "SET"
   | "DISTRIBUTION"
   | "LATEST_VALUE";
-export const CounterMetadataKindEnum = /*@__PURE__*/ S.String;
+export const CounterMetadataKindEnum = S.String;
 
 /** CounterMetadata includes all static non-name non-value counter attributes. */
 export interface CounterMetadata {
@@ -5443,7 +5436,7 @@ export type NameAndKindKindEnum =
   | "SET"
   | "DISTRIBUTION"
   | "LATEST_VALUE";
-export const NameAndKindKindEnum = /*@__PURE__*/ S.String;
+export const NameAndKindKindEnum = S.String;
 
 /** Basic metadata about a counter. */
 export interface NameAndKind {
@@ -5568,7 +5561,7 @@ export type SourceSplitResponseOutcomeEnum =
   | "SOURCE_SPLIT_OUTCOME_UNKNOWN"
   | "SOURCE_SPLIT_OUTCOME_USE_CURRENT"
   | "SOURCE_SPLIT_OUTCOME_SPLITTING_HAPPENED";
-export const SourceSplitResponseOutcomeEnum = /*@__PURE__*/ S.String;
+export const SourceSplitResponseOutcomeEnum = S.String;
 
 export type DerivedSourceList = Array<DerivedSource>;
 export const DerivedSourceList = /*@__PURE__*/ S.Array(
@@ -6016,7 +6009,7 @@ export type SendDebugCaptureRequestDataFormatEnum =
   | "JSON"
   | "ZLIB"
   | "BROTLI";
-export const SendDebugCaptureRequestDataFormatEnum = /*@__PURE__*/ S.String;
+export const SendDebugCaptureRequestDataFormatEnum = S.String;
 
 /** Request to send encoded debug information. Next ID: 8 */
 export interface SendDebugCaptureRequest {
@@ -6461,7 +6454,7 @@ export type WorkerLifecycleEventEventEnum =
   | "STAGING_FILES_DOWNLOAD_FINISH"
   | "SDK_INSTALL_START"
   | "SDK_INSTALL_FINISH";
-export const WorkerLifecycleEventEventEnum = /*@__PURE__*/ S.String;
+export const WorkerLifecycleEventEventEnum = S.String;
 
 /** A report of an event in a worker's lifecycle. The proto contains one event, because the worker is expected to asynchronously send each message immediately after the event. Due to this asynchrony, messages may arrive out of order (or missing), and it is up to the consumer to interpret. The timestamp of the event is in the enclosing WorkerMessage proto. */
 export interface WorkerLifecycleEvent {

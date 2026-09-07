@@ -172,7 +172,7 @@ export type InterconnectsCreateRequestBandwidth =
   | "10G"
   | "20G"
   | "50G";
-export const InterconnectsCreateRequestBandwidth = /*@__PURE__*/ S.String;
+export const InterconnectsCreateRequestBandwidth = S.String;
 
 export interface CreateInterconnectRequest {
   /** Customer account tag */
@@ -672,7 +672,7 @@ export type InterconnectsListResponseItemsItemNscInterconnectGcpPartnerBodySpeed
   | "20G"
   | "50G";
 export const InterconnectsListResponseItemsItemNscInterconnectGcpPartnerBodySpeed =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InterconnectsListResponseItemsItemNscInterconnectGcpPartnerBody {
   account: string;

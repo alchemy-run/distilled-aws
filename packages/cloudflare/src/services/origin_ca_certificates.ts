@@ -88,7 +88,7 @@ export type CreateRequestRequestType =
   | "origin-rsa"
   | "origin-ecc"
   | "keyless-certificate";
-export const CreateRequestRequestType = /*@__PURE__*/ S.String;
+export const CreateRequestRequestType = S.String;
 
 export type CreateRequestRequestedValidity =
   | 7
@@ -98,7 +98,7 @@ export type CreateRequestRequestedValidity =
   | 730
   | 1095
   | 5475;
-export const CreateRequestRequestedValidity = /*@__PURE__*/ S.Number;
+export const CreateRequestRequestedValidity = S.Number;
 
 export interface CreateOriginCaCertificateRequest {
   /** The Certificate Signing Request (CSR). Must be newline-encoded. */
@@ -134,7 +134,7 @@ export type CreateResponseRequestType =
   | "origin-rsa"
   | "origin-ecc"
   | "keyless-certificate";
-export const CreateResponseRequestType = /*@__PURE__*/ S.String;
+export const CreateResponseRequestType = S.String;
 
 export type CreateResponseRequestedValidity =
   | 7
@@ -144,7 +144,7 @@ export type CreateResponseRequestedValidity =
   | 730
   | 1095
   | 5475;
-export const CreateResponseRequestedValidity = /*@__PURE__*/ S.Number;
+export const CreateResponseRequestedValidity = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateOriginCaCertificateResponse {
@@ -247,7 +247,7 @@ export type GetResponseRequestType =
   | "origin-rsa"
   | "origin-ecc"
   | "keyless-certificate";
-export const GetResponseRequestType = /*@__PURE__*/ S.String;
+export const GetResponseRequestType = S.String;
 
 export type GetResponseRequestedValidity =
   | 7
@@ -257,7 +257,7 @@ export type GetResponseRequestedValidity =
   | 730
   | 1095
   | 5475;
-export const GetResponseRequestedValidity = /*@__PURE__*/ S.Number;
+export const GetResponseRequestedValidity = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetOriginCaCertificateResponse {
@@ -330,7 +330,7 @@ export type ListResultItemRequestType =
   | "origin-rsa"
   | "origin-ecc"
   | "keyless-certificate";
-export const ListResultItemRequestType = /*@__PURE__*/ S.String;
+export const ListResultItemRequestType = S.String;
 
 export type ListResultItemRequestedValidity =
   | 7
@@ -340,7 +340,7 @@ export type ListResultItemRequestedValidity =
   | 730
   | 1095
   | 5475;
-export const ListResultItemRequestedValidity = /*@__PURE__*/ S.Number;
+export const ListResultItemRequestedValidity = S.Number;
 
 export interface ListResultItem {
   /** The Certificate Signing Request (CSR). Must be newline-encoded. */

@@ -164,14 +164,14 @@ export type GoogleCloudDatacatalogV1BigQueryConnectionSpecConnectionTypeEnum =
   | "CONNECTION_TYPE_UNSPECIFIED"
   | "CLOUD_SQL";
 export const GoogleCloudDatacatalogV1BigQueryConnectionSpecConnectionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpecTypeEnum =
   | "DATABASE_TYPE_UNSPECIFIED"
   | "POSTGRES"
   | "MYSQL";
 export const GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpecTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification for the BigQuery connection to a Cloud SQL instance. */
 export interface GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec {
@@ -342,8 +342,7 @@ export type GoogleCloudDatacatalogV1DataSourceServiceEnum =
   | "SERVICE_UNSPECIFIED"
   | "CLOUD_STORAGE"
   | "BIGQUERY";
-export const GoogleCloudDatacatalogV1DataSourceServiceEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1DataSourceServiceEnum = S.String;
 
 /** Physical location of an entry. */
 export interface GoogleCloudDatacatalogV1DataSource {
@@ -392,7 +391,7 @@ export type GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpecViewTypeEnu
   | "STANDARD_VIEW"
   | "MATERIALIZED_VIEW";
 export const GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpecViewTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification that applies to database view. */
 export interface GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec {
@@ -422,8 +421,7 @@ export type GoogleCloudDatacatalogV1DatabaseTableSpecTypeEnum =
   | "TABLE_TYPE_UNSPECIFIED"
   | "NATIVE"
   | "EXTERNAL";
-export const GoogleCloudDatacatalogV1DatabaseTableSpecTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1DatabaseTableSpecTypeEnum = S.String;
 
 /** Schema in Avro JSON format. */
 export interface GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema {
@@ -551,8 +549,7 @@ export type GoogleCloudDatacatalogV1DataplexExternalTableSystemEnum =
   | "CLOUD_SQL"
   | "LOOKER"
   | "VERTEX_AI";
-export const GoogleCloudDatacatalogV1DataplexExternalTableSystemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1DataplexExternalTableSystemEnum = S.String;
 
 /** External table registered by Dataplex Universal Catalog. Dataplex Universal Catalog publishes data discovered from an asset into multiple other systems (BigQuery, DPMS) in form of tables. We call them "external tables". External tables are also synced into the Data Catalog. This message contains pointers to those external tables (fully qualified name, resource name et cetera) within the Data Catalog. */
 export interface GoogleCloudDatacatalogV1DataplexExternalTable {
@@ -822,8 +819,7 @@ export type GoogleCloudDatacatalogV1EntryIntegratedSystemEnum =
   | "CLOUD_SQL"
   | "LOOKER"
   | "VERTEX_AI";
-export const GoogleCloudDatacatalogV1EntryIntegratedSystemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1EntryIntegratedSystemEnum = S.String;
 
 export type GoogleCloudDatacatalogV1VertexDatasetSpecDataTypeEnum =
   | "DATA_TYPE_UNSPECIFIED"
@@ -839,8 +835,7 @@ export type GoogleCloudDatacatalogV1VertexDatasetSpecDataTypeEnum =
   | "STORE_VISION"
   | "ENTERPRISE_KNOWLEDGE_GRAPH"
   | "TEXT_PROMPT";
-export const GoogleCloudDatacatalogV1VertexDatasetSpecDataTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1VertexDatasetSpecDataTypeEnum = S.String;
 
 /** Specification for vertex dataset resources. */
 export interface GoogleCloudDatacatalogV1VertexDatasetSpec {
@@ -880,16 +875,14 @@ export type GoogleCloudDatacatalogV1RoutineSpecRoutineTypeEnum =
   | "ROUTINE_TYPE_UNSPECIFIED"
   | "SCALAR_FUNCTION"
   | "PROCEDURE";
-export const GoogleCloudDatacatalogV1RoutineSpecRoutineTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1RoutineSpecRoutineTypeEnum = S.String;
 
 export type GoogleCloudDatacatalogV1RoutineSpecArgumentModeEnum =
   | "MODE_UNSPECIFIED"
   | "IN"
   | "OUT"
   | "INOUT";
-export const GoogleCloudDatacatalogV1RoutineSpecArgumentModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1RoutineSpecArgumentModeEnum = S.String;
 
 /** Input or output argument of a function or stored procedure. */
 export interface GoogleCloudDatacatalogV1RoutineSpecArgument {
@@ -972,7 +965,7 @@ export type GoogleCloudDatacatalogV1BigQueryTableSpecTableSourceTypeEnum =
   | "BIGQUERY_TABLE"
   | "BIGQUERY_MATERIALIZED_VIEW";
 export const GoogleCloudDatacatalogV1BigQueryTableSpecTableSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Normal BigQuery table specification. */
 export interface GoogleCloudDatacatalogV1TableSpec {
@@ -1045,7 +1038,7 @@ export type GoogleCloudDatacatalogV1ColumnSchemaHighestIndexingTypeEnum =
   | "INDEXING_TYPE_UNIQUE"
   | "INDEXING_TYPE_PRIMARY_KEY";
 export const GoogleCloudDatacatalogV1ColumnSchemaHighestIndexingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpecTypeEnum =
   | "LOOKER_COLUMN_TYPE_UNSPECIFIED"
@@ -1055,7 +1048,7 @@ export type GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpecTypeEnum =
   | "MEASURE"
   | "PARAMETER";
 export const GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpecTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Column info specific to Looker System. */
 export interface GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec {
@@ -1194,7 +1187,7 @@ export type GoogleCloudDatacatalogV1EntryTypeEnum =
   | "GRAPH"
   | "NODE"
   | "EDGE";
-export const GoogleCloudDatacatalogV1EntryTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1EntryTypeEnum = S.String;
 
 /** Entry metadata relevant only to the user and private to them. */
 export interface GoogleCloudDatacatalogV1PersonalDetails {
@@ -1301,14 +1294,14 @@ export type GoogleCloudDatacatalogV1GraphSpecGraphElementTableKindEnum =
   | "NODE"
   | "EDGE";
 export const GoogleCloudDatacatalogV1GraphSpecGraphElementTableKindEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1GraphSpecGraphElementTableInputSourceEnum =
   | "INPUT_SOURCE_UNSPECIFIED"
   | "TABLE"
   | "VIEW";
 export const GoogleCloudDatacatalogV1GraphSpecGraphElementTableInputSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A property declaration. */
 export interface GoogleCloudDatacatalogV1GraphSpecGraphElementTableProperty {
@@ -1451,7 +1444,7 @@ export type GoogleCloudDatacatalogV1FeatureOnlineStoreSpecStorageTypeEnum =
   | "BIGTABLE"
   | "OPTIMIZED";
 export const GoogleCloudDatacatalogV1FeatureOnlineStoreSpecStorageTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Detail description of the source information of a Vertex Feature Online Store. */
 export interface GoogleCloudDatacatalogV1FeatureOnlineStoreSpec {
@@ -1481,7 +1474,7 @@ export type GoogleCloudDatacatalogV1VertexModelSourceInfoSourceTypeEnum =
   | "CUSTOM_TEXT_EMBEDDING"
   | "MARKETPLACE";
 export const GoogleCloudDatacatalogV1VertexModelSourceInfoSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Detail description of the source information of a Vertex model. */
 export interface GoogleCloudDatacatalogV1VertexModelSourceInfo {
@@ -1791,8 +1784,7 @@ export type GoogleCloudDatacatalogV1TagDataplexTransferStatusEnum =
   | "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED"
   | "MIGRATED"
   | "TRANSFERRED";
-export const GoogleCloudDatacatalogV1TagDataplexTransferStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1TagDataplexTransferStatusEnum = S.String;
 
 /** An enum value. */
 export interface GoogleCloudDatacatalogV1TagFieldEnumValue {
@@ -1968,8 +1960,7 @@ export type GoogleCloudDatacatalogV1FieldTypePrimitiveTypeEnum =
   | "BOOL"
   | "TIMESTAMP"
   | "RICHTEXT";
-export const GoogleCloudDatacatalogV1FieldTypePrimitiveTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1FieldTypePrimitiveTypeEnum = S.String;
 
 export interface GoogleCloudDatacatalogV1FieldType {
   /** An enum type. */
@@ -2033,7 +2024,7 @@ export type GoogleCloudDatacatalogV1TagTemplateDataplexTransferStatusEnum =
   | "MIGRATED"
   | "TRANSFERRED";
 export const GoogleCloudDatacatalogV1TagTemplateDataplexTransferStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A tag template defines a tag that can have one or more typed fields. The template is used to create tags that are attached to Google Cloud resources. [Tag template roles] (https://cloud.google.com/iam/docs/roles-permissions/datacatalog) provide permissions to create, edit, and use the template. For example, see the [TagTemplate User] (https://cloud.google.com/data-catalog/docs/how-to/template-user) role that includes a permission to use the tag template to tag resources. */
 export interface GoogleCloudDatacatalogV1TagTemplate {
@@ -2120,7 +2111,7 @@ export type GoogleCloudDatacatalogV1TaxonomyActivatedPolicyTypesItemEnum =
   | "POLICY_TYPE_UNSPECIFIED"
   | "FINE_GRAINED_ACCESS_CONTROL";
 export const GoogleCloudDatacatalogV1TaxonomyActivatedPolicyTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1TaxonomyActivatedPolicyTypesItemEnumList =
   Array<
@@ -2135,8 +2126,7 @@ export type GoogleCloudDatacatalogV1TaxonomyServiceNameEnum =
   | "MANAGING_SYSTEM_UNSPECIFIED"
   | "MANAGING_SYSTEM_DATAPLEX"
   | "MANAGING_SYSTEM_OTHER";
-export const GoogleCloudDatacatalogV1TaxonomyServiceNameEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1TaxonomyServiceNameEnum = S.String;
 
 /** The source system of the Taxonomy. */
 export interface GoogleCloudDatacatalogV1TaxonomyService {
@@ -2498,7 +2488,7 @@ export type GoogleCloudDatacatalogV1SerializedTaxonomyActivatedPolicyTypesItemEn
   | "POLICY_TYPE_UNSPECIFIED"
   | "FINE_GRAINED_ACCESS_CONTROL";
 export const GoogleCloudDatacatalogV1SerializedTaxonomyActivatedPolicyTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1SerializedTaxonomyActivatedPolicyTypesItemEnumList =
   Array<
@@ -2580,14 +2570,14 @@ export type GoogleCloudDatacatalogV1MigrationConfigTagTemplateMigrationEnum =
   | "TAG_TEMPLATE_MIGRATION_ENABLED"
   | "TAG_TEMPLATE_MIGRATION_DISABLED";
 export const GoogleCloudDatacatalogV1MigrationConfigTagTemplateMigrationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1MigrationConfigCatalogUiExperienceEnum =
   | "CATALOG_UI_EXPERIENCE_UNSPECIFIED"
   | "CATALOG_UI_EXPERIENCE_ENABLED"
   | "CATALOG_UI_EXPERIENCE_DISABLED";
 export const GoogleCloudDatacatalogV1MigrationConfigCatalogUiExperienceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration related to the migration to Dataplex Universal Catalog applied to an organization or project. It is the response message for SetConfig and RetrieveEffectiveConfig. */
 export interface GoogleCloudDatacatalogV1MigrationConfig {
@@ -4045,7 +4035,7 @@ export type GoogleCloudDatacatalogV1SearchCatalogResultSearchResultTypeEnum =
   | "TAG_TEMPLATE"
   | "ENTRY_GROUP";
 export const GoogleCloudDatacatalogV1SearchCatalogResultSearchResultTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1SearchCatalogResultIntegratedSystemEnum =
   | "INTEGRATED_SYSTEM_UNSPECIFIED"
@@ -4059,7 +4049,7 @@ export type GoogleCloudDatacatalogV1SearchCatalogResultIntegratedSystemEnum =
   | "LOOKER"
   | "VERTEX_AI";
 export const GoogleCloudDatacatalogV1SearchCatalogResultIntegratedSystemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Result in the response to a search request. Each result captures details of one entry that matches the search. */
 export interface GoogleCloudDatacatalogV1SearchCatalogResult {
@@ -4141,14 +4131,14 @@ export type GoogleCloudDatacatalogV1SetConfigRequestTagTemplateMigrationEnum =
   | "TAG_TEMPLATE_MIGRATION_ENABLED"
   | "TAG_TEMPLATE_MIGRATION_DISABLED";
 export const GoogleCloudDatacatalogV1SetConfigRequestTagTemplateMigrationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1SetConfigRequestCatalogUiExperienceEnum =
   | "CATALOG_UI_EXPERIENCE_UNSPECIFIED"
   | "CATALOG_UI_EXPERIENCE_ENABLED"
   | "CATALOG_UI_EXPERIENCE_DISABLED";
 export const GoogleCloudDatacatalogV1SetConfigRequestCatalogUiExperienceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for SetConfig. */
 export interface GoogleCloudDatacatalogV1SetConfigRequest {

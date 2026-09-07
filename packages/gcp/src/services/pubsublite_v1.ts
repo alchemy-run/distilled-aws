@@ -379,7 +379,7 @@ export type ExportConfigDesiredStateEnum =
   | "PAUSED"
   | "PERMISSION_DENIED"
   | "NOT_FOUND";
-export const ExportConfigDesiredStateEnum = /*@__PURE__*/ S.String;
+export const ExportConfigDesiredStateEnum = S.String;
 
 /** Configuration for exporting to a Pub/Sub topic. */
 export interface PubSubConfig {
@@ -398,7 +398,7 @@ export type ExportConfigCurrentStateEnum =
   | "PAUSED"
   | "PERMISSION_DENIED"
   | "NOT_FOUND";
-export const ExportConfigCurrentStateEnum = /*@__PURE__*/ S.String;
+export const ExportConfigCurrentStateEnum = S.String;
 
 /** Configuration for a Pub/Sub Lite subscription that writes messages to a destination. User subscriber clients must not connect to this subscription. */
 export interface ExportConfig {
@@ -424,7 +424,7 @@ export type DeliveryConfigDeliveryRequirementEnum =
   | "DELIVERY_REQUIREMENT_UNSPECIFIED"
   | "DELIVER_IMMEDIATELY"
   | "DELIVER_AFTER_STORED";
-export const DeliveryConfigDeliveryRequirementEnum = /*@__PURE__*/ S.String;
+export const DeliveryConfigDeliveryRequirementEnum = S.String;
 
 /** The settings for a subscription's message delivery. */
 export interface DeliveryConfig {
@@ -1248,7 +1248,7 @@ export type SeekSubscriptionRequestNamedTargetEnum =
   | "NAMED_TARGET_UNSPECIFIED"
   | "TAIL"
   | "HEAD";
-export const SeekSubscriptionRequestNamedTargetEnum = /*@__PURE__*/ S.String;
+export const SeekSubscriptionRequestNamedTargetEnum = S.String;
 
 /** Request for SeekSubscription. */
 export interface SeekSubscriptionRequest {

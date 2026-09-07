@@ -388,8 +388,7 @@ export type AttributePropagationSettingsOutputCredentialsItemEnum =
   | "HEADER"
   | "JWT"
   | "RCTOKEN";
-export const AttributePropagationSettingsOutputCredentialsItemEnum =
-  /*@__PURE__*/ S.String;
+export const AttributePropagationSettingsOutputCredentialsItemEnum = S.String;
 
 export type AttributePropagationSettingsOutputCredentialsItemEnumList = Array<
   AttributePropagationSettingsOutputCredentialsItemEnum | (string & {})
@@ -467,7 +466,7 @@ export const CorsSettings = /*@__PURE__*/ S.suspend(() =>
 export type AccessSettingsIdentitySourcesItemEnum =
   | "IDENTITY_SOURCE_UNSPECIFIED"
   | "WORKFORCE_IDENTITY_FEDERATION";
-export const AccessSettingsIdentitySourcesItemEnum = /*@__PURE__*/ S.String;
+export const AccessSettingsIdentitySourcesItemEnum = S.String;
 
 export type AccessSettingsIdentitySourcesItemEnumList = Array<
   AccessSettingsIdentitySourcesItemEnum | (string & {})
@@ -614,13 +613,13 @@ export type ReauthSettingsMethodEnum =
   | "PASSWORD"
   | "SECURE_KEY"
   | "ENROLLED_SECOND_FACTORS";
-export const ReauthSettingsMethodEnum = /*@__PURE__*/ S.String;
+export const ReauthSettingsMethodEnum = S.String;
 
 export type ReauthSettingsPolicyTypeEnum =
   | "POLICY_TYPE_UNSPECIFIED"
   | "MINIMUM"
   | "DEFAULT";
-export const ReauthSettingsPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const ReauthSettingsPolicyTypeEnum = S.String;
 
 /** Configuration for IAP reauthentication policies. */
 export interface ReauthSettings {

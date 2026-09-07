@@ -108,8 +108,7 @@ export type CompetitiveVisibilityTopMerchantViewTrafficSourceEnum =
   | "ORGANIC"
   | "ADS"
   | "ALL";
-export const CompetitiveVisibilityTopMerchantViewTrafficSourceEnum =
-  /*@__PURE__*/ S.String;
+export const CompetitiveVisibilityTopMerchantViewTrafficSourceEnum = S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Merchantapi_Date {
@@ -178,8 +177,7 @@ export type CompetitiveVisibilityBenchmarkViewTrafficSourceEnum =
   | "ORGANIC"
   | "ADS"
   | "ALL";
-export const CompetitiveVisibilityBenchmarkViewTrafficSourceEnum =
-  /*@__PURE__*/ S.String;
+export const CompetitiveVisibilityBenchmarkViewTrafficSourceEnum = S.String;
 
 /** Fields available for query in `competitive_visibility_benchmark_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with the category benchmark. Values are only set for fields requested explicitly in the request's search query. */
 export interface CompetitiveVisibilityBenchmarkView {
@@ -230,7 +228,7 @@ export type PriceInsightsProductViewEffectivenessEnum =
   | "LOW"
   | "MEDIUM"
   | "HIGH";
-export const PriceInsightsProductViewEffectivenessEnum = /*@__PURE__*/ S.String;
+export const PriceInsightsProductViewEffectivenessEnum = S.String;
 
 /** Fields available for query in `price_insights_product_view` table. [Price insights](https://support.google.com/merchants/answer/11916926) report. Values are only set for fields requested explicitly in the request's search query. */
 export interface PriceInsightsProductView {
@@ -307,8 +305,7 @@ export type CompetitiveVisibilityCompetitorViewTrafficSourceEnum =
   | "ORGANIC"
   | "ADS"
   | "ALL";
-export const CompetitiveVisibilityCompetitorViewTrafficSourceEnum =
-  /*@__PURE__*/ S.String;
+export const CompetitiveVisibilityCompetitorViewTrafficSourceEnum = S.String;
 
 /** Fields available for query in `competitive_visibility_competitor_view` table. [Competitive visibility](https://support.google.com/merchants/answer/11366442) report with businesses with similar visibility. Values are only set for fields requested explicitly in the request's search query. */
 export interface CompetitiveVisibilityCompetitorView {
@@ -386,14 +383,13 @@ export type ProductViewAggregatedReportingContextStatusEnum =
   | "PENDING"
   | "ELIGIBLE_LIMITED"
   | "ELIGIBLE";
-export const ProductViewAggregatedReportingContextStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ProductViewAggregatedReportingContextStatusEnum = S.String;
 
 export type ProductViewChannelEnum =
   | "CHANNEL_ENUM_UNSPECIFIED"
   | "ONLINE"
   | "LOCAL";
-export const ProductViewChannelEnum = /*@__PURE__*/ S.String;
+export const ProductViewChannelEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -421,8 +417,7 @@ export type StatusPerReportingContextReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const StatusPerReportingContextReportingContextEnum =
-  /*@__PURE__*/ S.String;
+export const StatusPerReportingContextReportingContextEnum = S.String;
 
 /** Status of the product for a specific reporting context. Equivalent to `DestinationStatus` in Products API. */
 export interface StatusPerReportingContext {
@@ -470,7 +465,7 @@ export type ItemIssueSeverityAggregatedSeverityEnum =
   | "DISAPPROVED"
   | "DEMOTED"
   | "PENDING";
-export const ItemIssueSeverityAggregatedSeverityEnum = /*@__PURE__*/ S.String;
+export const ItemIssueSeverityAggregatedSeverityEnum = S.String;
 
 export type IssueSeverityPerReportingContextReportingContextEnum =
   | "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
@@ -493,8 +488,7 @@ export type IssueSeverityPerReportingContextReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const IssueSeverityPerReportingContextReportingContextEnum =
-  /*@__PURE__*/ S.String;
+export const IssueSeverityPerReportingContextReportingContextEnum = S.String;
 
 /** Issue severity per reporting context. */
 export interface IssueSeverityPerReportingContext {
@@ -545,7 +539,7 @@ export type ItemIssueResolutionEnum =
   | "ITEM_ISSUE_RESOLUTION_UNSPECIFIED"
   | "MERCHANT_ACTION"
   | "PENDING_PROCESSING";
-export const ItemIssueResolutionEnum = /*@__PURE__*/ S.String;
+export const ItemIssueResolutionEnum = S.String;
 
 /** Item issue associated with the product. */
 export interface ItemIssue {
@@ -574,7 +568,7 @@ export type ProductViewClickPotentialEnum =
   | "LOW"
   | "MEDIUM"
   | "HIGH";
-export const ProductViewClickPotentialEnum = /*@__PURE__*/ S.String;
+export const ProductViewClickPotentialEnum = S.String;
 
 export type ProductViewReportingContextEnum =
   | "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
@@ -597,7 +591,7 @@ export type ProductViewReportingContextEnum =
   | "PRODUCT_REVIEWS"
   | "MERCHANT_REVIEWS"
   | "YOUTUBE_CHECKOUT";
-export const ProductViewReportingContextEnum = /*@__PURE__*/ S.String;
+export const ProductViewReportingContextEnum = S.String;
 
 /** Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query. */
 export interface ProductView {
@@ -712,16 +706,14 @@ export type BestSellersProductClusterViewRelativeDemandEnum =
   | "MEDIUM"
   | "HIGH"
   | "VERY_HIGH";
-export const BestSellersProductClusterViewRelativeDemandEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersProductClusterViewRelativeDemandEnum = S.String;
 
 export type BestSellersProductClusterViewRelativeDemandChangeEnum =
   | "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED"
   | "SINKER"
   | "FLAT"
   | "RISER";
-export const BestSellersProductClusterViewRelativeDemandChangeEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersProductClusterViewRelativeDemandChangeEnum = S.String;
 
 export type BestSellersProductClusterViewPreviousRelativeDemandEnum =
   | "RELATIVE_DEMAND_ENUM_UNSPECIFIED"
@@ -730,31 +722,27 @@ export type BestSellersProductClusterViewPreviousRelativeDemandEnum =
   | "MEDIUM"
   | "HIGH"
   | "VERY_HIGH";
-export const BestSellersProductClusterViewPreviousRelativeDemandEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersProductClusterViewPreviousRelativeDemandEnum = S.String;
 
 export type BestSellersProductClusterViewInventoryStatusEnum =
   | "INVENTORY_STATUS_UNSPECIFIED"
   | "IN_STOCK"
   | "OUT_OF_STOCK"
   | "NOT_IN_INVENTORY";
-export const BestSellersProductClusterViewInventoryStatusEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersProductClusterViewInventoryStatusEnum = S.String;
 
 export type BestSellersProductClusterViewReportGranularityEnum =
   | "REPORT_GRANULARITY_ENUM_UNSPECIFIED"
   | "WEEKLY"
   | "MONTHLY";
-export const BestSellersProductClusterViewReportGranularityEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersProductClusterViewReportGranularityEnum = S.String;
 
 export type BestSellersProductClusterViewBrandInventoryStatusEnum =
   | "INVENTORY_STATUS_UNSPECIFIED"
   | "IN_STOCK"
   | "OUT_OF_STOCK"
   | "NOT_IN_INVENTORY";
-export const BestSellersProductClusterViewBrandInventoryStatusEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersProductClusterViewBrandInventoryStatusEnum = S.String;
 
 /** Fields available for query in `best_sellers_product_cluster_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top product clusters. A product cluster is a grouping for different offers and variants that represent the same product, for example, Google Pixel 7. Values are only set for fields requested explicitly in the request's search query. */
 export interface BestSellersProductClusterView {
@@ -837,7 +825,7 @@ export type BestSellersBrandViewReportGranularityEnum =
   | "REPORT_GRANULARITY_ENUM_UNSPECIFIED"
   | "WEEKLY"
   | "MONTHLY";
-export const BestSellersBrandViewReportGranularityEnum = /*@__PURE__*/ S.String;
+export const BestSellersBrandViewReportGranularityEnum = S.String;
 
 export type BestSellersBrandViewPreviousRelativeDemandEnum =
   | "RELATIVE_DEMAND_ENUM_UNSPECIFIED"
@@ -846,16 +834,14 @@ export type BestSellersBrandViewPreviousRelativeDemandEnum =
   | "MEDIUM"
   | "HIGH"
   | "VERY_HIGH";
-export const BestSellersBrandViewPreviousRelativeDemandEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersBrandViewPreviousRelativeDemandEnum = S.String;
 
 export type BestSellersBrandViewRelativeDemandChangeEnum =
   | "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED"
   | "SINKER"
   | "FLAT"
   | "RISER";
-export const BestSellersBrandViewRelativeDemandChangeEnum =
-  /*@__PURE__*/ S.String;
+export const BestSellersBrandViewRelativeDemandChangeEnum = S.String;
 
 export type BestSellersBrandViewRelativeDemandEnum =
   | "RELATIVE_DEMAND_ENUM_UNSPECIFIED"
@@ -864,7 +850,7 @@ export type BestSellersBrandViewRelativeDemandEnum =
   | "MEDIUM"
   | "HIGH"
   | "VERY_HIGH";
-export const BestSellersBrandViewRelativeDemandEnum = /*@__PURE__*/ S.String;
+export const BestSellersBrandViewRelativeDemandEnum = S.String;
 
 /** Fields available for query in `best_sellers_brand_view` table. [Best sellers](https://support.google.com/merchants/answer/9488679) report with top brands. Values are only set for fields requested explicitly in the request's search query. */
 export interface BestSellersBrandView {
@@ -914,13 +900,13 @@ export type ProductPerformanceViewStoreTypeEnum =
   | "STORE_TYPE_ENUM_UNSPECIFIED"
   | "ONLINE_STORE"
   | "LOCAL_STORES";
-export const ProductPerformanceViewStoreTypeEnum = /*@__PURE__*/ S.String;
+export const ProductPerformanceViewStoreTypeEnum = S.String;
 
 export type ProductPerformanceViewMarketingMethodEnum =
   | "MARKETING_METHOD_ENUM_UNSPECIFIED"
   | "ORGANIC"
   | "ADS";
-export const ProductPerformanceViewMarketingMethodEnum = /*@__PURE__*/ S.String;
+export const ProductPerformanceViewMarketingMethodEnum = S.String;
 
 /** Fields available for query in `product_performance_view` table. Product performance data for your account, including performance metrics (for example, `clicks`) and dimensions according to which performance metrics are segmented (for example, `offer_id`). Values of product dimensions, such as `offer_id`, reflect the state of a product at the time of the impression. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for fields requested explicitly in the request's search query. */
 export interface ProductPerformanceView {

@@ -178,7 +178,7 @@ export type DeviceAttribute =
   | "MODEL"
   | "AVAILABILITY"
   | (string & {});
-export const DeviceAttribute = /*@__PURE__*/ S.String;
+export const DeviceAttribute = S.String;
 
 export type RuleOperator =
   | "EQUALS"
@@ -190,7 +190,7 @@ export type RuleOperator =
   | "NOT_IN"
   | "CONTAINS"
   | (string & {});
-export const RuleOperator = /*@__PURE__*/ S.String;
+export const RuleOperator = S.String;
 
 export interface Rule {
   attribute?: DeviceAttribute;
@@ -235,7 +235,7 @@ export const CreateDevicePoolRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDevicePoolRequest",
 }) as any as S.Schema<CreateDevicePoolRequest>;
 export type DevicePoolType = "CURATED" | "PRIVATE" | (string & {});
-export const DevicePoolType = /*@__PURE__*/ S.String;
+export const DevicePoolType = S.String;
 
 export interface DevicePool {
   arn?: string;
@@ -322,7 +322,7 @@ export const CreateInstanceProfileResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateInstanceProfileResult",
 }) as any as S.Schema<CreateInstanceProfileResult>;
 export type NetworkProfileType = "CURATED" | "PRIVATE" | (string & {});
-export const NetworkProfileType = /*@__PURE__*/ S.String;
+export const NetworkProfileType = S.String;
 
 export type PercentInteger = number;
 export interface CreateNetworkProfileRequest {
@@ -498,7 +498,7 @@ export const CreateProjectResult = /*@__PURE__*/ S.suspend(() =>
 export type AuxiliaryAppArnList = string[];
 export const AuxiliaryAppArnList = /*@__PURE__*/ S.Array(S.String);
 export type BillingMethod = "METERED" | "UNMETERED" | (string & {});
-export const BillingMethod = /*@__PURE__*/ S.String;
+export const BillingMethod = S.String;
 
 export type AmazonResourceNames = string[];
 export const AmazonResourceNames = /*@__PURE__*/ S.Array(S.String);
@@ -542,7 +542,7 @@ export type InteractionMode =
   | "NO_VIDEO"
   | "VIDEO_ONLY"
   | (string & {});
-export const InteractionMode = /*@__PURE__*/ S.String;
+export const InteractionMode = S.String;
 
 export interface CreateRemoteAccessSessionRequest {
   projectArn: string;
@@ -589,7 +589,7 @@ export type ExecutionStatus =
   | "COMPLETED"
   | "STOPPING"
   | (string & {});
-export const ExecutionStatus = /*@__PURE__*/ S.String;
+export const ExecutionStatus = S.String;
 
 export type ExecutionResult =
   | "PENDING"
@@ -600,13 +600,13 @@ export type ExecutionResult =
   | "ERRORED"
   | "STOPPED"
   | (string & {});
-export const ExecutionResult = /*@__PURE__*/ S.String;
+export const ExecutionResult = S.String;
 
 export type DeviceFormFactor = "PHONE" | "TABLET" | (string & {});
-export const DeviceFormFactor = /*@__PURE__*/ S.String;
+export const DeviceFormFactor = S.String;
 
 export type DevicePlatform = "ANDROID" | "IOS" | (string & {});
-export const DevicePlatform = /*@__PURE__*/ S.String;
+export const DevicePlatform = S.String;
 
 export interface CPU {
   frequency?: string;
@@ -635,7 +635,7 @@ export type InstanceStatus =
   | "AVAILABLE"
   | "NOT_AVAILABLE"
   | (string & {});
-export const InstanceStatus = /*@__PURE__*/ S.String;
+export const InstanceStatus = S.String;
 
 export interface DeviceInstance {
   arn?: string;
@@ -663,7 +663,7 @@ export type DeviceAvailability =
   | "AVAILABLE"
   | "HIGHLY_AVAILABLE"
   | (string & {});
-export const DeviceAvailability = /*@__PURE__*/ S.String;
+export const DeviceAvailability = S.String;
 
 export interface Device {
   arn?: string;
@@ -933,7 +933,7 @@ export type UploadType =
   | "INSTRUMENTATION_TEST_SPEC"
   | "XCTEST_UI_TEST_SPEC"
   | (string & {});
-export const UploadType = /*@__PURE__*/ S.String;
+export const UploadType = S.String;
 
 export type ContentType = string;
 export interface CreateUploadRequest {
@@ -968,11 +968,11 @@ export type UploadStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const UploadStatus = /*@__PURE__*/ S.String;
+export const UploadStatus = S.String;
 
 export type Metadata = string;
 export type UploadCategory = "CURATED" | "PRIVATE" | (string & {});
-export const UploadCategory = /*@__PURE__*/ S.String;
+export const UploadCategory = S.String;
 
 export interface Upload {
   arn?: string;
@@ -1440,7 +1440,7 @@ export type TestType =
   | "XCTEST"
   | "XCTEST_UI"
   | (string & {});
-export const TestType = /*@__PURE__*/ S.String;
+export const TestType = S.String;
 
 export type Filter = string;
 export type TestParameters = { [key: string]: string | undefined };
@@ -1508,7 +1508,7 @@ export const Radios = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Radios" }) as any as S.Schema<Radios>;
 export type InsightsType = "TEST_REPORT" | (string & {});
-export const InsightsType = /*@__PURE__*/ S.String;
+export const InsightsType = S.String;
 
 export type InsightsTypes = InsightsType[];
 export const InsightsTypes = /*@__PURE__*/ S.Array(InsightsType);
@@ -1692,7 +1692,7 @@ export type ReportStatus =
   | "SKIPPED"
   | "ERRORED"
   | (string & {});
-export const ReportStatus = /*@__PURE__*/ S.String;
+export const ReportStatus = S.String;
 
 export type ReportMessage = string;
 export interface TestReportMetrics {
@@ -1838,13 +1838,13 @@ export type OfferingTransactionType =
   | "RENEW"
   | "SYSTEM"
   | (string & {});
-export const OfferingTransactionType = /*@__PURE__*/ S.String;
+export const OfferingTransactionType = S.String;
 
 export type OfferingType = "RECURRING" | (string & {});
-export const OfferingType = /*@__PURE__*/ S.String;
+export const OfferingType = S.String;
 
 export type CurrencyCode = "USD" | (string & {});
-export const CurrencyCode = /*@__PURE__*/ S.String;
+export const CurrencyCode = S.String;
 
 export interface MonetaryAmount {
   amount?: number;
@@ -1857,7 +1857,7 @@ export const MonetaryAmount = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "MonetaryAmount" }) as any as S.Schema<MonetaryAmount>;
 export type RecurringChargeFrequency = "MONTHLY" | (string & {});
-export const RecurringChargeFrequency = /*@__PURE__*/ S.String;
+export const RecurringChargeFrequency = S.String;
 
 export interface RecurringCharge {
   cost?: MonetaryAmount;
@@ -1994,7 +1994,7 @@ export type ExecutionResultCode =
   | "PARSING_FAILED"
   | "VPC_ENDPOINT_SETUP_FAILED"
   | (string & {});
-export const ExecutionResultCode = /*@__PURE__*/ S.String;
+export const ExecutionResultCode = S.String;
 
 export type DeviceFilterAttribute =
   | "ARN"
@@ -2010,7 +2010,7 @@ export type DeviceFilterAttribute =
   | "INSTANCE_LABELS"
   | "FLEET_TYPE"
   | (string & {});
-export const DeviceFilterAttribute = /*@__PURE__*/ S.String;
+export const DeviceFilterAttribute = S.String;
 
 export type DeviceFilterValues = string[];
 export const DeviceFilterValues = /*@__PURE__*/ S.Array(S.String);
@@ -2336,7 +2336,7 @@ export type TestGridSessionStatus =
   | "CLOSED"
   | "ERRORED"
   | (string & {});
-export const TestGridSessionStatus = /*@__PURE__*/ S.String;
+export const TestGridSessionStatus = S.String;
 
 export interface TestGridSession {
   arn?: string;
@@ -2446,7 +2446,7 @@ export const InstallToRemoteAccessSessionResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "InstallToRemoteAccessSessionResult",
 }) as any as S.Schema<InstallToRemoteAccessSessionResult>;
 export type ArtifactCategory = "SCREENSHOT" | "FILE" | "LOG" | (string & {});
-export const ArtifactCategory = /*@__PURE__*/ S.String;
+export const ArtifactCategory = S.String;
 
 export interface ListArtifactsRequest {
   arn: string;
@@ -2502,7 +2502,7 @@ export type ArtifactType =
   | "CUSTOMER_ARTIFACT_LOG"
   | "TESTSPEC_OUTPUT"
   | (string & {});
-export const ArtifactType = /*@__PURE__*/ S.String;
+export const ArtifactType = S.String;
 
 export type URL = string;
 export interface Artifact {
@@ -3008,7 +3008,7 @@ export type SampleType =
   | "OPENGL_AVG_DRAWTIME"
   | "OPENGL_MAX_DRAWTIME"
   | (string & {});
-export const SampleType = /*@__PURE__*/ S.String;
+export const SampleType = S.String;
 
 export interface Sample {
   arn?: string;
@@ -3202,7 +3202,7 @@ export const ListTestGridSessionActionsResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTestGridSessionActionsResult",
 }) as any as S.Schema<ListTestGridSessionActionsResult>;
 export type TestGridSessionArtifactCategory = "VIDEO" | "LOG" | (string & {});
-export const TestGridSessionArtifactCategory = /*@__PURE__*/ S.String;
+export const TestGridSessionArtifactCategory = S.String;
 
 export interface ListTestGridSessionArtifactsRequest {
   sessionArn: string;
@@ -3235,7 +3235,7 @@ export type TestGridSessionArtifactType =
   | "VIDEO"
   | "SELENIUM_LOG"
   | (string & {});
-export const TestGridSessionArtifactType = /*@__PURE__*/ S.String;
+export const TestGridSessionArtifactType = S.String;
 
 export interface TestGridSessionArtifact {
   filename?: string;

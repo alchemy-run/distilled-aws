@@ -22,14 +22,14 @@ export type CustomPropertyDisplayTypeEnum =
   | "datetime"
   | "boolean"
   | "select";
-export const CustomPropertyDisplayTypeEnum = /*@__PURE__*/ S.String;
+export const CustomPropertyDisplayTypeEnum = S.String;
 
 /** * `account` - account * `person` - person * `group` - group */
 export type CustomPropertyDefinitionTargetTypeEnum =
   | "account"
   | "person"
   | "group";
-export const CustomPropertyDefinitionTargetTypeEnum = /*@__PURE__*/ S.String;
+export const CustomPropertyDefinitionTargetTypeEnum = S.String;
 
 /** * `preset-1` - preset-1 * `preset-2` - preset-2 * `preset-3` - preset-3 * `preset-4` - preset-4 * `preset-5` - preset-5 * `preset-6` - preset-6 * `preset-7` - preset-7 * `preset-8` - preset-8 * `preset-9` - preset-9 * `preset-10` - preset-10 */
 export type CustomPropertyOptionColorEnum =
@@ -43,7 +43,7 @@ export type CustomPropertyOptionColorEnum =
   | "preset-8"
   | "preset-9"
   | "preset-10";
-export const CustomPropertyOptionColorEnum = /*@__PURE__*/ S.String;
+export const CustomPropertyOptionColorEnum = S.String;
 
 /** An allowed value of a select custom property. */
 export interface CustomPropertyOption {
@@ -122,11 +122,11 @@ export const CustomPropertyDefinitionOptionsList = /*@__PURE__*/ S.Array(
 
 /** * `tracked` - tracked * `ignored` - ignored */
 export type SyncSegmentEnum = "tracked" | "ignored";
-export const SyncSegmentEnum = /*@__PURE__*/ S.String;
+export const SyncSegmentEnum = S.String;
 
 /** * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
 export type SyncPhaseEnum = "staging" | "dispatching" | "syncing" | "completed";
-export const SyncPhaseEnum = /*@__PURE__*/ S.String;
+export const SyncPhaseEnum = S.String;
 
 /** One warehouse-backed custom property sync run. */
 export interface CustomPropertySyncRun {

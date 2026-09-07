@@ -83,7 +83,7 @@ export const CreateEdgeConfigRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEdgeConfigRequest>;
 
 export type CreateEdgeConfigResponsePurposeCase0Type = "flags";
-export const CreateEdgeConfigResponsePurposeCase0Type = /*@__PURE__*/ S.String;
+export const CreateEdgeConfigResponsePurposeCase0Type = S.String;
 
 export interface CreateEdgeConfigResponsePurposeCase0 {
   type: CreateEdgeConfigResponsePurposeCase0Type;
@@ -100,7 +100,7 @@ export const CreateEdgeConfigResponsePurposeCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateEdgeConfigResponsePurposeCase0>;
 
 export type CreateEdgeConfigResponsePurposeCase1Type = "experimentation";
-export const CreateEdgeConfigResponsePurposeCase1Type = /*@__PURE__*/ S.String;
+export const CreateEdgeConfigResponsePurposeCase1Type = S.String;
 
 export interface CreateEdgeConfigResponsePurposeCase1 {
   type: CreateEdgeConfigResponsePurposeCase1Type;
@@ -120,7 +120,7 @@ export type CreateEdgeConfigResponsePurpose =
   | CreateEdgeConfigResponsePurposeCase0
   | CreateEdgeConfigResponsePurposeCase1;
 export const CreateEdgeConfigResponsePurpose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEdgeConfigResponsePurpose>;
+  S.Unknown as any as S.Schema<CreateEdgeConfigResponsePurpose>;
 
 /** Keeps track of the current state of the Global Config while it gets transferred. */
 export interface CreateEdgeConfigResponseTransfer {
@@ -345,7 +345,7 @@ export const GetEdgeConfigRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEdgeConfigRequest>;
 
 export type GetEdgeConfigResponsePurposeCase0Type = "flags";
-export const GetEdgeConfigResponsePurposeCase0Type = /*@__PURE__*/ S.String;
+export const GetEdgeConfigResponsePurposeCase0Type = S.String;
 
 export interface GetEdgeConfigResponsePurposeCase0 {
   type: GetEdgeConfigResponsePurposeCase0Type;
@@ -361,7 +361,7 @@ export const GetEdgeConfigResponsePurposeCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEdgeConfigResponsePurposeCase0>;
 
 export type GetEdgeConfigResponsePurposeCase1Type = "experimentation";
-export const GetEdgeConfigResponsePurposeCase1Type = /*@__PURE__*/ S.String;
+export const GetEdgeConfigResponsePurposeCase1Type = S.String;
 
 export interface GetEdgeConfigResponsePurposeCase1 {
   type: GetEdgeConfigResponsePurposeCase1Type;
@@ -380,7 +380,7 @@ export type GetEdgeConfigResponsePurpose =
   | GetEdgeConfigResponsePurposeCase0
   | GetEdgeConfigResponsePurposeCase1;
 export const GetEdgeConfigResponsePurpose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEdgeConfigResponsePurpose>;
+  S.Unknown as any as S.Schema<GetEdgeConfigResponsePurpose>;
 
 /** Keeps track of the current state of the Global Config while it gets transferred. */
 export type GetEdgeConfigResponseTransfer = CreateEdgeConfigResponseTransfer;
@@ -472,7 +472,7 @@ export type GlobalConfigItemValue =
   | GlobalConfigItemValueCase3List
   | boolean;
 export const GlobalConfigItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalConfigItemValue>;
+  S.Unknown as any as S.Schema<GlobalConfigItemValue>;
 
 export interface GetEdgeConfigBackupResponseBodyCase0BackupItemsValue {
   createdAt: number;
@@ -650,7 +650,7 @@ export type GetEdgeConfigBackupResponseBody =
   | GetEdgeConfigBackupResponseBodyCase0
   | GetEdgeConfigBackupResponseBodyCase1;
 export const GetEdgeConfigBackupResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEdgeConfigBackupResponseBody>;
+  S.Unknown as any as S.Schema<GetEdgeConfigBackupResponseBody>;
 
 export type GetEdgeConfigBackupResponse = GetEdgeConfigBackupResponseBody;
 export const GetEdgeConfigBackupResponse = /*@__PURE__*/ S.suspend(() =>
@@ -840,7 +840,7 @@ export const GetEdgeConfigsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEdgeConfigsRequest>;
 
 export type GetEdgeConfigsResponsePurposeCase0Type = "flags";
-export const GetEdgeConfigsResponsePurposeCase0Type = /*@__PURE__*/ S.String;
+export const GetEdgeConfigsResponsePurposeCase0Type = S.String;
 
 export interface GetEdgeConfigsResponsePurposeCase0 {
   type: GetEdgeConfigsResponsePurposeCase0Type;
@@ -856,7 +856,7 @@ export const GetEdgeConfigsResponsePurposeCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEdgeConfigsResponsePurposeCase0>;
 
 export type GetEdgeConfigsResponsePurposeCase1Type = "experimentation";
-export const GetEdgeConfigsResponsePurposeCase1Type = /*@__PURE__*/ S.String;
+export const GetEdgeConfigsResponsePurposeCase1Type = S.String;
 
 export interface GetEdgeConfigsResponsePurposeCase1 {
   type: GetEdgeConfigsResponsePurposeCase1Type;
@@ -875,7 +875,7 @@ export type GetEdgeConfigsResponsePurpose =
   | GetEdgeConfigsResponsePurposeCase0
   | GetEdgeConfigsResponsePurposeCase1;
 export const GetEdgeConfigsResponsePurpose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEdgeConfigsResponsePurpose>;
+  S.Unknown as any as S.Schema<GetEdgeConfigsResponsePurpose>;
 
 /** Keeps track of the current state of the Global Config while it gets transferred. */
 export type GetEdgeConfigsResponseTransfer = CreateEdgeConfigResponseTransfer;
@@ -1040,8 +1040,7 @@ export const PatchEdgeConfigItemsRequestItemsItemCase0 =
 export type PatchEdgeConfigItemsRequestItemsItemCase1Operation =
   | "update"
   | "upsert";
-export const PatchEdgeConfigItemsRequestItemsItemCase1Operation =
-  /*@__PURE__*/ S.String;
+export const PatchEdgeConfigItemsRequestItemsItemCase1Operation = S.String;
 
 export interface PatchEdgeConfigItemsRequestItemsItemCase1 {
   operation: PatchEdgeConfigItemsRequestItemsItemCase1Operation | (string & {});
@@ -1058,8 +1057,7 @@ export const PatchEdgeConfigItemsRequestItemsItemCase1 =
 export type PatchEdgeConfigItemsRequestItemsItemCase2Operation =
   | "update"
   | "upsert";
-export const PatchEdgeConfigItemsRequestItemsItemCase2Operation =
-  /*@__PURE__*/ S.String;
+export const PatchEdgeConfigItemsRequestItemsItemCase2Operation = S.String;
 
 export interface PatchEdgeConfigItemsRequestItemsItemCase2 {
   operation: PatchEdgeConfigItemsRequestItemsItemCase2Operation | (string & {});
@@ -1084,7 +1082,7 @@ export type PatchEdgeConfigItemsRequestItemsItem =
   | PatchEdgeConfigItemsRequestItemsItemCase2
   | PatchEdgeConfigItemsRequestItemsItemCase0;
 export const PatchEdgeConfigItemsRequestItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchEdgeConfigItemsRequestItemsItem>;
+  S.Unknown as any as S.Schema<PatchEdgeConfigItemsRequestItemsItem>;
 
 export type PatchEdgeConfigItemsRequestItemsList =
   Array<PatchEdgeConfigItemsRequestItemsItem>;
@@ -1188,7 +1186,7 @@ export const RestoreEdgeConfigBackupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestoreEdgeConfigBackupRequest>;
 
 export type RestoreEdgeConfigBackupResponseStatus = "ok";
-export const RestoreEdgeConfigBackupResponseStatus = /*@__PURE__*/ S.String;
+export const RestoreEdgeConfigBackupResponseStatus = S.String;
 
 export interface RestoreEdgeConfigBackupResponse {
   status: RestoreEdgeConfigBackupResponseStatus;
@@ -1231,7 +1229,7 @@ export const UpdateEdgeConfigRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEdgeConfigRequest>;
 
 export type UpdateEdgeConfigResponsePurposeCase0Type = "flags";
-export const UpdateEdgeConfigResponsePurposeCase0Type = /*@__PURE__*/ S.String;
+export const UpdateEdgeConfigResponsePurposeCase0Type = S.String;
 
 export interface UpdateEdgeConfigResponsePurposeCase0 {
   type: UpdateEdgeConfigResponsePurposeCase0Type;
@@ -1248,7 +1246,7 @@ export const UpdateEdgeConfigResponsePurposeCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateEdgeConfigResponsePurposeCase0>;
 
 export type UpdateEdgeConfigResponsePurposeCase1Type = "experimentation";
-export const UpdateEdgeConfigResponsePurposeCase1Type = /*@__PURE__*/ S.String;
+export const UpdateEdgeConfigResponsePurposeCase1Type = S.String;
 
 export interface UpdateEdgeConfigResponsePurposeCase1 {
   type: UpdateEdgeConfigResponsePurposeCase1Type;
@@ -1268,7 +1266,7 @@ export type UpdateEdgeConfigResponsePurpose =
   | UpdateEdgeConfigResponsePurposeCase0
   | UpdateEdgeConfigResponsePurposeCase1;
 export const UpdateEdgeConfigResponsePurpose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEdgeConfigResponsePurpose>;
+  S.Unknown as any as S.Schema<UpdateEdgeConfigResponsePurpose>;
 
 /** Keeps track of the current state of the Global Config while it gets transferred. */
 export type UpdateEdgeConfigResponseTransfer = CreateEdgeConfigResponseTransfer;

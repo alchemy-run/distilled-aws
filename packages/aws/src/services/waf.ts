@@ -250,7 +250,7 @@ export type MatchFieldType =
   | "SINGLE_QUERY_ARG"
   | "ALL_QUERY_ARGS"
   | (string & {});
-export const MatchFieldType = /*@__PURE__*/ S.String;
+export const MatchFieldType = S.String;
 
 export type MatchFieldData = string;
 export interface FieldToMatch {
@@ -269,7 +269,7 @@ export type TextTransformation =
   | "CMD_LINE"
   | "URL_DECODE"
   | (string & {});
-export const TextTransformation = /*@__PURE__*/ S.String;
+export const TextTransformation = S.String;
 
 export type PositionalConstraint =
   | "EXACTLY"
@@ -278,7 +278,7 @@ export type PositionalConstraint =
   | "CONTAINS"
   | "CONTAINS_WORD"
   | (string & {});
-export const PositionalConstraint = /*@__PURE__*/ S.String;
+export const PositionalConstraint = S.String;
 
 export interface ByteMatchTuple {
   FieldToMatch: FieldToMatch;
@@ -340,7 +340,7 @@ export const CreateGeoMatchSetRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateGeoMatchSetRequest",
 }) as any as S.Schema<CreateGeoMatchSetRequest>;
 export type GeoMatchConstraintType = "Country" | (string & {});
-export const GeoMatchConstraintType = /*@__PURE__*/ S.String;
+export const GeoMatchConstraintType = S.String;
 
 export type GeoMatchConstraintValue =
   | "AF"
@@ -593,7 +593,7 @@ export type GeoMatchConstraintValue =
   | "ZM"
   | "ZW"
   | (string & {});
-export const GeoMatchConstraintValue = /*@__PURE__*/ S.String;
+export const GeoMatchConstraintValue = S.String;
 
 export interface GeoMatchConstraint {
   Type: GeoMatchConstraintType;
@@ -650,7 +650,7 @@ export const CreateIPSetRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateIPSetRequest",
 }) as any as S.Schema<CreateIPSetRequest>;
 export type IPSetDescriptorType = "IPV4" | "IPV6" | (string & {});
-export const IPSetDescriptorType = /*@__PURE__*/ S.String;
+export const IPSetDescriptorType = S.String;
 
 export type IPSetDescriptorValue = string;
 export interface IPSetDescriptor {
@@ -690,7 +690,7 @@ export const CreateIPSetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIPSetResponse>;
 export type MetricName = string;
 export type RateKey = "IP" | (string & {});
-export const RateKey = /*@__PURE__*/ S.String;
+export const RateKey = S.String;
 
 export type RateLimit = number;
 export type TagKey = string;
@@ -744,7 +744,7 @@ export type PredicateType =
   | "XssMatch"
   | "RegexMatch"
   | (string & {});
-export const PredicateType = /*@__PURE__*/ S.String;
+export const PredicateType = S.String;
 
 export interface Predicate {
   Negated: boolean;
@@ -1021,7 +1021,7 @@ export type ComparisonOperator =
   | "GE"
   | "GT"
   | (string & {});
-export const ComparisonOperator = /*@__PURE__*/ S.String;
+export const ComparisonOperator = S.String;
 
 export type Size = number;
 export interface SizeConstraint {
@@ -1128,7 +1128,7 @@ export const CreateSqlInjectionMatchSetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSqlInjectionMatchSetResponse",
 }) as any as S.Schema<CreateSqlInjectionMatchSetResponse>;
 export type WafActionType = "BLOCK" | "ALLOW" | "COUNT" | (string & {});
-export const WafActionType = /*@__PURE__*/ S.String;
+export const WafActionType = S.String;
 
 export interface WafAction {
   Type: WafActionType;
@@ -1166,7 +1166,7 @@ export const CreateWebACLRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateWebACLRequest>;
 export type RulePriority = number;
 export type WafOverrideActionType = "NONE" | "COUNT" | (string & {});
-export const WafOverrideActionType = /*@__PURE__*/ S.String;
+export const WafOverrideActionType = S.String;
 
 export interface WafOverrideAction {
   Type: WafOverrideActionType;
@@ -1177,7 +1177,7 @@ export const WafOverrideAction = /*@__PURE__*/ S.suspend(() =>
   identifier: "WafOverrideAction",
 }) as any as S.Schema<WafOverrideAction>;
 export type WafRuleType = "REGULAR" | "RATE_BASED" | "GROUP" | (string & {});
-export const WafRuleType = /*@__PURE__*/ S.String;
+export const WafRuleType = S.String;
 
 export interface ExcludedRule {
   RuleId: string;
@@ -1773,7 +1773,7 @@ export type ChangeTokenStatus =
   | "PENDING"
   | "INSYNC"
   | (string & {});
-export const ChangeTokenStatus = /*@__PURE__*/ S.String;
+export const ChangeTokenStatus = S.String;
 
 export interface GetChangeTokenStatusResponse {
   ChangeTokenStatus?: ChangeTokenStatus;
@@ -3084,7 +3084,7 @@ export const UntagResourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UntagResourceResponse",
 }) as any as S.Schema<UntagResourceResponse>;
 export type ChangeAction = "INSERT" | "DELETE" | (string & {});
-export const ChangeAction = /*@__PURE__*/ S.String;
+export const ChangeAction = S.String;
 
 export interface ByteMatchSetUpdate {
   Action: ChangeAction;
@@ -3619,7 +3619,7 @@ export type ParameterExceptionField =
   | "TAGS"
   | "TAG_KEYS"
   | (string & {});
-export const ParameterExceptionField = /*@__PURE__*/ S.String;
+export const ParameterExceptionField = S.String;
 
 export type ParameterExceptionParameter = string;
 export type ParameterExceptionReason =
@@ -3628,7 +3628,7 @@ export type ParameterExceptionReason =
   | "ILLEGAL_ARGUMENT"
   | "INVALID_TAG_KEY"
   | (string & {});
-export const ParameterExceptionReason = /*@__PURE__*/ S.String;
+export const ParameterExceptionReason = S.String;
 
 export type MigrationErrorType =
   | "ENTITY_NOT_SUPPORTED"
@@ -3639,7 +3639,7 @@ export type MigrationErrorType =
   | "S3_BUCKET_INVALID_REGION"
   | "S3_INTERNAL_ERROR"
   | (string & {});
-export const MigrationErrorType = /*@__PURE__*/ S.String;
+export const MigrationErrorType = S.String;
 
 export type ErrorReason = string;
 export type CreateByteMatchSetError =

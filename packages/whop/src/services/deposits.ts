@@ -36,8 +36,7 @@ export type CreateDepositRequestDestinationCase1Network =
   | "polygon"
   | "base"
   | "solana";
-export const CreateDepositRequestDestinationCase1Network =
-  /*@__PURE__*/ S.String;
+export const CreateDepositRequestDestinationCase1Network = S.String;
 
 export interface CreateDepositRequestDestinationCase1 {
   /** Destination account ID. */
@@ -63,7 +62,7 @@ export type CreateDepositRequestDestination =
   | string
   | CreateDepositRequestDestinationCase1;
 export const CreateDepositRequestDestination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDepositRequestDestination>;
+  S.Unknown as any as S.Schema<CreateDepositRequestDestination>;
 
 /** Metadata to include with the deposit response. */
 export type CreateDepositRequestMetadataMap = {
@@ -80,7 +79,7 @@ export type CreateDepositRequestNetwork =
   | "polygon"
   | "base"
   | "solana";
-export const CreateDepositRequestNetwork = /*@__PURE__*/ S.String;
+export const CreateDepositRequestNetwork = S.String;
 
 export interface CreateDepositRequest {
   /** Amount to prefill on hosted deposit page. */
@@ -121,8 +120,7 @@ export type CreateDepositResponseMethodsBankCurrenciesItemRailsItem =
   | "sepa"
   | "fps"
   | "chaps";
-export const CreateDepositResponseMethodsBankCurrenciesItemRailsItem =
-  /*@__PURE__*/ S.String;
+export const CreateDepositResponseMethodsBankCurrenciesItemRailsItem = S.String;
 
 /** Active deposit rails for this currency. */
 export type CreateDepositResponseMethodsBankCurrenciesItemRailsList =
@@ -202,8 +200,7 @@ export type CreateDepositResponseMethodsCryptoItemName =
   | "Polygon"
   | "Plasma"
   | "Arbitrum";
-export const CreateDepositResponseMethodsCryptoItemName =
-  /*@__PURE__*/ S.String;
+export const CreateDepositResponseMethodsCryptoItemName = S.String;
 
 /** Token symbol. */
 export type CreateDepositResponseMethodsCryptoItemSupportedCurrenciesItemName =
@@ -227,7 +224,7 @@ export type CreateDepositResponseMethodsCryptoItemSupportedCurrenciesItemName =
   | "pUSD"
   | "wETH";
 export const CreateDepositResponseMethodsCryptoItemSupportedCurrenciesItemName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDepositResponseMethodsCryptoItemSupportedCurrenciesItem {
   /** Token icon URL. Null when no icon is available. */
@@ -300,7 +297,7 @@ export const CreateDepositResponseMethods = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDepositResponseMethods>;
 
 export type CreateDepositResponseObject = "deposit";
-export const CreateDepositResponseObject = /*@__PURE__*/ S.String;
+export const CreateDepositResponseObject = S.String;
 
 export interface CreateDepositResponse {
   /** Account ID of the destination owner. Null for raw wallet address destinations. */

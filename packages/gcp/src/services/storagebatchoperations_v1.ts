@@ -150,7 +150,7 @@ export type JobStateEnum =
   | "CANCELED"
   | "FAILED"
   | "QUEUED";
-export const JobStateEnum = /*@__PURE__*/ S.String;
+export const JobStateEnum = S.String;
 
 export type RewriteObjectStorageClassEnum =
   | "STORAGE_CLASS_UNSPECIFIED"
@@ -158,7 +158,7 @@ export type RewriteObjectStorageClassEnum =
   | "NEARLINE"
   | "COLDLINE"
   | "ARCHIVE";
-export const RewriteObjectStorageClassEnum = /*@__PURE__*/ S.String;
+export const RewriteObjectStorageClassEnum = S.String;
 
 /** Describes options for object rewrite. */
 export interface RewriteObject {
@@ -267,7 +267,7 @@ export const UpdateObjectCustomContext = /*@__PURE__*/ S.suspend(() =>
 export type LoggingConfigLogActionsItemEnum =
   | "LOGGABLE_ACTION_UNSPECIFIED"
   | "TRANSFORM";
-export const LoggingConfigLogActionsItemEnum = /*@__PURE__*/ S.String;
+export const LoggingConfigLogActionsItemEnum = S.String;
 
 export type LoggingConfigLogActionsItemEnumList = Array<
   LoggingConfigLogActionsItemEnum | (string & {})
@@ -280,7 +280,7 @@ export type LoggingConfigLogActionStatesItemEnum =
   | "LOGGABLE_ACTION_STATE_UNSPECIFIED"
   | "SUCCEEDED"
   | "FAILED";
-export const LoggingConfigLogActionStatesItemEnum = /*@__PURE__*/ S.String;
+export const LoggingConfigLogActionStatesItemEnum = S.String;
 
 export type LoggingConfigLogActionStatesItemEnumList = Array<
   LoggingConfigLogActionStatesItemEnum | (string & {})
@@ -444,7 +444,7 @@ export type ObjectRetentionRetentionModeEnum =
   | "RETENTION_MODE_UNSPECIFIED"
   | "LOCKED"
   | "UNLOCKED";
-export const ObjectRetentionRetentionModeEnum = /*@__PURE__*/ S.String;
+export const ObjectRetentionRetentionModeEnum = S.String;
 
 /** Describes options for object retention update. */
 export interface ObjectRetention {
@@ -546,13 +546,13 @@ export type PutObjectHoldEventBasedHoldEnum =
   | "HOLD_STATUS_UNSPECIFIED"
   | "SET"
   | "UNSET";
-export const PutObjectHoldEventBasedHoldEnum = /*@__PURE__*/ S.String;
+export const PutObjectHoldEventBasedHoldEnum = S.String;
 
 export type PutObjectHoldTemporaryHoldEnum =
   | "HOLD_STATUS_UNSPECIFIED"
   | "SET"
   | "UNSET";
-export const PutObjectHoldTemporaryHoldEnum = /*@__PURE__*/ S.String;
+export const PutObjectHoldTemporaryHoldEnum = S.String;
 
 /** Describes options to update object hold. */
 export interface PutObjectHold {
@@ -605,7 +605,7 @@ export type ErrorSummaryErrorCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const ErrorSummaryErrorCodeEnum = /*@__PURE__*/ S.String;
+export const ErrorSummaryErrorCodeEnum = S.String;
 
 /** A summary of errors by error code, plus a count and sample error log entries. */
 export interface ErrorSummary {
@@ -900,7 +900,7 @@ export type BucketOperationStateEnum =
   | "SUCCEEDED"
   | "CANCELED"
   | "FAILED";
-export const BucketOperationStateEnum = /*@__PURE__*/ S.String;
+export const BucketOperationStateEnum = S.String;
 
 /** BucketOperation represents a bucket-level breakdown of a Job. */
 export interface BucketOperation {

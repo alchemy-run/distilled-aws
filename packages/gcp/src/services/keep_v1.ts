@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type PermissionRoleEnum = "ROLE_UNSPECIFIED" | "OWNER" | "WRITER";
-export const PermissionRoleEnum = /*@__PURE__*/ S.String;
+export const PermissionRoleEnum = S.String;
 
 /** Describes a single user. */
 export interface User {

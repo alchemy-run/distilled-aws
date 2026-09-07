@@ -181,7 +181,7 @@ export type EncryptionOption =
   | "AWS_OWNED_CMK"
   | "CUSTOMER_MANAGED_CMK"
   | (string & {});
-export const EncryptionOption = /*@__PURE__*/ S.String;
+export const EncryptionOption = S.String;
 
 export interface KMSKeyDetails {
   KMSKeyId?: string;
@@ -227,7 +227,7 @@ export type ProviderType =
   | "GitHubEnterpriseServer"
   | "S3Bucket"
   | (string & {});
-export const ProviderType = /*@__PURE__*/ S.String;
+export const ProviderType = S.String;
 
 export type RepositoryAssociationState =
   | "Associated"
@@ -236,7 +236,7 @@ export type RepositoryAssociationState =
   | "Disassociating"
   | "Disassociated"
   | (string & {});
-export const RepositoryAssociationState = /*@__PURE__*/ S.String;
+export const RepositoryAssociationState = S.String;
 
 export type StateReason = string;
 export type SourceCodeArtifactsObjectKey = string;
@@ -367,7 +367,7 @@ export const EventInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ Name: S.optional(S.String), State: S.optional(S.String) }),
 ).annotate({ identifier: "EventInfo" }) as any as S.Schema<EventInfo>;
 export type VendorName = "GitHub" | "GitLab" | "NativeS3" | (string & {});
-export const VendorName = /*@__PURE__*/ S.String;
+export const VendorName = S.String;
 
 export interface RequestMetadata {
   RequestId?: string;
@@ -414,7 +414,7 @@ export const RepositoryAnalysis = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepositoryAnalysis",
 }) as any as S.Schema<RepositoryAnalysis>;
 export type AnalysisType = "Security" | "CodeQuality" | (string & {});
-export const AnalysisType = /*@__PURE__*/ S.String;
+export const AnalysisType = S.String;
 
 export type AnalysisTypes = AnalysisType[];
 export const AnalysisTypes = /*@__PURE__*/ S.Array(AnalysisType);
@@ -459,10 +459,10 @@ export type JobState =
   | "Failed"
   | "Deleting"
   | (string & {});
-export const JobState = /*@__PURE__*/ S.String;
+export const JobState = S.String;
 
 export type Type = "PullRequest" | "RepositoryAnalysis" | (string & {});
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 export type PullRequestId = string;
 export type LinesOfCodeCount = number;
@@ -484,7 +484,7 @@ export type ConfigFileState =
   | "Absent"
   | "PresentWithErrors"
   | (string & {});
-export const ConfigFileState = /*@__PURE__*/ S.String;
+export const ConfigFileState = S.String;
 
 export interface CodeReview {
   Name?: string;
@@ -588,7 +588,7 @@ export const DescribeRecommendationFeedbackRequest = /*@__PURE__*/ S.suspend(
   identifier: "DescribeRecommendationFeedbackRequest",
 }) as any as S.Schema<DescribeRecommendationFeedbackRequest>;
 export type Reaction = "ThumbsUp" | "ThumbsDown" | (string & {});
-export const Reaction = /*@__PURE__*/ S.String;
+export const Reaction = S.String;
 
 export type Reactions = Reaction[];
 export const Reactions = /*@__PURE__*/ S.Array(Reaction);
@@ -902,7 +902,7 @@ export type RecommendationCategory =
   | "SecurityIssues"
   | "CodeInconsistencies"
   | (string & {});
-export const RecommendationCategory = /*@__PURE__*/ S.String;
+export const RecommendationCategory = S.String;
 
 export type RuleId = string;
 export type RuleName = string;
@@ -934,7 +934,7 @@ export type Severity =
   | "High"
   | "Critical"
   | (string & {});
-export const Severity = /*@__PURE__*/ S.String;
+export const Severity = S.String;
 
 export interface RecommendationSummary {
   FilePath?: string;

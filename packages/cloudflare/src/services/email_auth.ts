@@ -268,7 +268,7 @@ export type DmarcReportsGetResponseStatus =
   | "multiple-dmarc-reports"
   | "missing-dmarc-rua"
   | "cname-on-dmarc-record";
-export const DmarcReportsGetResponseStatus = /*@__PURE__*/ S.String;
+export const DmarcReportsGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDmarcReportResponse {
@@ -625,7 +625,7 @@ export type DmarcReportsEditResponseStatus =
   | "multiple-dmarc-reports"
   | "missing-dmarc-rua"
   | "cname-on-dmarc-record";
-export const DmarcReportsEditResponseStatus = /*@__PURE__*/ S.String;
+export const DmarcReportsEditResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchDmarcReportResponse {

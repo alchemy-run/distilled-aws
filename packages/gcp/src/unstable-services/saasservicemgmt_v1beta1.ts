@@ -77,7 +77,7 @@ export type FlagAttributeValueTypeEnum =
   | "INTEGER"
   | "STRING"
   | "DOUBLE";
-export const FlagAttributeValueTypeEnum = /*@__PURE__*/ S.String;
+export const FlagAttributeValueTypeEnum = S.String;
 
 export type FlagAttributeAttributeValueTypeEnum =
   | "FLAG_ATTRIBUTE_VALUE_TYPE_UNSPECIFIED"
@@ -85,7 +85,7 @@ export type FlagAttributeAttributeValueTypeEnum =
   | "FLAG_ATTRIBUTE_VALUE_TYPE_INTEGER"
   | "FLAG_ATTRIBUTE_VALUE_TYPE_STRING"
   | "FLAG_ATTRIBUTE_VALUE_TYPE_DOUBLE";
-export const FlagAttributeAttributeValueTypeEnum = /*@__PURE__*/ S.String;
+export const FlagAttributeAttributeValueTypeEnum = S.String;
 
 /** FlagAttribute defines a custom property in the evaluation context. */
 export interface FlagAttribute {
@@ -415,7 +415,7 @@ export type FlagFlagValueTypeEnum =
   | "FLAG_VALUE_TYPE_INTEGER"
   | "FLAG_VALUE_TYPE_STRING"
   | "FLAG_VALUE_TYPE_DOUBLE";
-export const FlagFlagValueTypeEnum = /*@__PURE__*/ S.String;
+export const FlagFlagValueTypeEnum = S.String;
 
 /** Variant is an identifier for a value (name assigned to a value). */
 export interface FlagVariant {
@@ -457,7 +457,7 @@ export type FlagStateEnum =
   | "FLAG_STATE_ACTIVE"
   | "FLAG_STATE_SUNSETTING"
   | "FLAG_STATE_CLEANUP";
-export const FlagStateEnum = /*@__PURE__*/ S.String;
+export const FlagStateEnum = S.String;
 
 export type FlagValueTypeEnum =
   | "FLAG_VALUE_TYPE_UNSPECIFIED"
@@ -465,7 +465,7 @@ export type FlagValueTypeEnum =
   | "FLAG_VALUE_TYPE_INT"
   | "FLAG_VALUE_TYPE_STRING"
   | "FLAG_VALUE_TYPE_DOUBLE";
-export const FlagValueTypeEnum = /*@__PURE__*/ S.String;
+export const FlagValueTypeEnum = S.String;
 
 /** Represents a single Flag. */
 export interface Flag {
@@ -629,7 +629,7 @@ export type UnitVariableTypeEnum =
   | "BOOL"
   | "STRUCT"
   | "LIST";
-export const UnitVariableTypeEnum = /*@__PURE__*/ S.String;
+export const UnitVariableTypeEnum = S.String;
 
 /** UnitVariable describes a parameter for a Unit. */
 export interface UnitVariable {
@@ -843,7 +843,7 @@ export type RolloutKindUpdateUnitKindStrategyEnum =
   | "UPDATE_UNIT_KIND_STRATEGY_UNSPECIFIED"
   | "UPDATE_UNIT_KIND_STRATEGY_ON_START"
   | "UPDATE_UNIT_KIND_STRATEGY_NEVER";
-export const RolloutKindUpdateUnitKindStrategyEnum = /*@__PURE__*/ S.String;
+export const RolloutKindUpdateUnitKindStrategyEnum = S.String;
 
 /** An object that describes various settings of Rollout execution. Includes built-in and customizable policies. */
 export interface RolloutKind {
@@ -930,7 +930,7 @@ export type RolloutControlActionEnum =
   | "ROLLOUT_ACTION_RUN"
   | "ROLLOUT_ACTION_PAUSE"
   | "ROLLOUT_ACTION_CANCEL";
-export const RolloutControlActionEnum = /*@__PURE__*/ S.String;
+export const RolloutControlActionEnum = S.String;
 
 /** Parameters for the RUN action controlling the behavior of the rollout when it is resumed from a PAUSED state. */
 export interface RunRolloutActionParams {
@@ -1003,7 +1003,7 @@ export type RolloutStateEnum =
   | "ROLLOUT_STATE_CANCELLING"
   | "ROLLOUT_STATE_RESUMING"
   | "ROLLOUT_STATE_PAUSING";
-export const RolloutStateEnum = /*@__PURE__*/ S.String;
+export const RolloutStateEnum = S.String;
 
 /** Represents a single rollout execution and its results */
 export interface Rollout {
@@ -1162,13 +1162,13 @@ export type SaasConditionStatusEnum =
   | "STATUS_UNKNOWN"
   | "STATUS_TRUE"
   | "STATUS_FALSE";
-export const SaasConditionStatusEnum = /*@__PURE__*/ S.String;
+export const SaasConditionStatusEnum = S.String;
 
 export type SaasConditionTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_READY"
   | "TYPE_SYNCHRONIZED";
-export const SaasConditionTypeEnum = /*@__PURE__*/ S.String;
+export const SaasConditionTypeEnum = S.String;
 
 /** SaasCondition describes the status of a Saas. */
 export interface SaasCondition {
@@ -1204,7 +1204,7 @@ export type SaasStateEnum =
   | "STATE_ACTIVE"
   | "STATE_RUNNING"
   | "STATE_FAILED";
-export const SaasStateEnum = /*@__PURE__*/ S.String;
+export const SaasStateEnum = S.String;
 
 /** Saas is a representation of a SaaS service managed by the Producer. */
 export interface Saas {
@@ -1609,13 +1609,13 @@ export type UnitKindBoundaryTypeEnum =
   | "BOUNDARY_TYPE_UNSPECIFIED"
   | "BOUNDARY_TYPE_TENANT_PROJECT"
   | "BOUNDARY_TYPE_MANAGED_PROJECT";
-export const UnitKindBoundaryTypeEnum = /*@__PURE__*/ S.String;
+export const UnitKindBoundaryTypeEnum = S.String;
 
 export type ScopeTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_REGIONAL"
   | "TYPE_GLOBAL";
-export const ScopeTypeEnum = /*@__PURE__*/ S.String;
+export const ScopeTypeEnum = S.String;
 
 /** Scope of an application. */
 export interface Scope {
@@ -1790,7 +1790,7 @@ export type UnitOperationConditionStatusEnum =
   | "STATUS_UNKNOWN"
   | "STATUS_TRUE"
   | "STATUS_FALSE";
-export const UnitOperationConditionStatusEnum = /*@__PURE__*/ S.String;
+export const UnitOperationConditionStatusEnum = S.String;
 
 export type UnitOperationConditionTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -1801,7 +1801,7 @@ export type UnitOperationConditionTypeEnum =
   | "TYPE_APP_CREATED"
   | "TYPE_APP_COMPONENTS_REGISTERED"
   | "TYPE_WORKLOAD_SUCCEEDED";
-export const UnitOperationConditionTypeEnum = /*@__PURE__*/ S.String;
+export const UnitOperationConditionTypeEnum = S.String;
 
 /** UnitOperationCondition describes the status of an Unit Operation. UnitOperationCondition is individual components that contribute to an overall state. */
 export interface UnitOperationCondition {
@@ -1841,7 +1841,7 @@ export type UnitOperationStateEnum =
   | "UNIT_OPERATION_STATE_SUCCEEDED"
   | "UNIT_OPERATION_STATE_FAILED"
   | "UNIT_OPERATION_STATE_CANCELLED";
-export const UnitOperationStateEnum = /*@__PURE__*/ S.String;
+export const UnitOperationStateEnum = S.String;
 
 export type UnitOperationErrorCategoryEnum =
   | "UNIT_OPERATION_ERROR_CATEGORY_UNSPECIFIED"
@@ -1850,7 +1850,7 @@ export type UnitOperationErrorCategoryEnum =
   | "RETRIABLE"
   | "IGNORABLE"
   | "STANDARD";
-export const UnitOperationErrorCategoryEnum = /*@__PURE__*/ S.String;
+export const UnitOperationErrorCategoryEnum = S.String;
 
 /** UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 22 */
 export interface UnitOperation {
@@ -1962,7 +1962,7 @@ export type UnitStateEnum =
   | "UNIT_STATE_DEPROVISIONING"
   | "UNIT_STATE_READY"
   | "UNIT_STATE_ERROR";
-export const UnitStateEnum = /*@__PURE__*/ S.String;
+export const UnitStateEnum = S.String;
 
 /** Set of dependencies for this unit. Maximum 10. */
 export interface UnitDependency {
@@ -1988,7 +1988,7 @@ export type UnitConditionStatusEnum =
   | "STATUS_UNKNOWN"
   | "STATUS_TRUE"
   | "STATUS_FALSE";
-export const UnitConditionStatusEnum = /*@__PURE__*/ S.String;
+export const UnitConditionStatusEnum = S.String;
 
 export type UnitConditionTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -1999,7 +1999,7 @@ export type UnitConditionTypeEnum =
   | "TYPE_FLAGS_CONFIG_INITIALIZED"
   | "TYPE_APP_CREATED_OR_ALREADY_EXISTS"
   | "TYPE_APP_COMPONENTS_REGISTERED";
-export const UnitConditionTypeEnum = /*@__PURE__*/ S.String;
+export const UnitConditionTypeEnum = S.String;
 
 /** UnitCondition describes the status of an Unit. UnitCondition is individual components that contribute to an overall state. */
 export interface UnitCondition {
@@ -2033,14 +2033,14 @@ export type UnitManagementModeEnum =
   | "MANAGEMENT_MODE_UNSPECIFIED"
   | "MANAGEMENT_MODE_USER"
   | "MANAGEMENT_MODE_SYSTEM";
-export const UnitManagementModeEnum = /*@__PURE__*/ S.String;
+export const UnitManagementModeEnum = S.String;
 
 export type UnitSystemManagedStateEnum =
   | "SYSTEM_MANAGED_STATE_UNSPECIFIED"
   | "SYSTEM_MANAGED_STATE_ACTIVE"
   | "SYSTEM_MANAGED_STATE_INACTIVE"
   | "SYSTEM_MANAGED_STATE_DECOMMISSIONED";
-export const UnitSystemManagedStateEnum = /*@__PURE__*/ S.String;
+export const UnitSystemManagedStateEnum = S.String;
 
 /** Captures requested directives for performing future maintenance on the unit. This includes a request for the unit to skip maintenance for a period of time and remain pinned to its current release as well as controls for postponing maintenance scheduled in future. */
 export interface MaintenanceSettings {

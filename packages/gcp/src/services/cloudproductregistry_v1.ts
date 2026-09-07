@@ -63,7 +63,7 @@ export type LogicalProductLifecycleStateEnum =
   | "LIFECYCLE_STATE_PRIVATE_GA"
   | "LIFECYCLE_STATE_GA"
   | "LIFECYCLE_STATE_DEPRECATED";
-export const LogicalProductLifecycleStateEnum = /*@__PURE__*/ S.String;
+export const LogicalProductLifecycleStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -123,7 +123,7 @@ export type LogicalProductVariantLifecycleStateEnum =
   | "LIFECYCLE_STATE_PRIVATE_GA"
   | "LIFECYCLE_STATE_GA"
   | "LIFECYCLE_STATE_DEPRECATED";
-export const LogicalProductVariantLifecycleStateEnum = /*@__PURE__*/ S.String;
+export const LogicalProductVariantLifecycleStateEnum = S.String;
 
 /** Represents a distinct offering derived from a primary product that retains core functionalities but offers specialized features for a specific market segment. */
 export interface LogicalProductVariant {

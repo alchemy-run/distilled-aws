@@ -336,7 +336,7 @@ export const GitRef = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the object we're tagging. Normally this is a `commit` but it can also be a `tree` or a `blob`. */
 export type CreateTagRequestType = "commit" | "tree" | "blob";
-export const CreateTagRequestType = /*@__PURE__*/ S.String;
+export const CreateTagRequestType = S.String;
 
 /** An object with information about the individual creating the tag. */
 export interface CreateTagRequestTagger {
@@ -470,11 +470,11 @@ export type CreateTreeRequestTreeItemMode =
   | "040000"
   | "160000"
   | "120000";
-export const CreateTreeRequestTreeItemMode = /*@__PURE__*/ S.String;
+export const CreateTreeRequestTreeItemMode = S.String;
 
 /** Either `blob`, `tree`, or `commit`. */
 export type CreateTreeRequestTreeItemType = "blob" | "tree" | "commit";
-export const CreateTreeRequestTreeItemType = /*@__PURE__*/ S.String;
+export const CreateTreeRequestTreeItemType = S.String;
 
 export interface CreateTreeRequestTreeItem {
   /** The file referenced in the tree. */

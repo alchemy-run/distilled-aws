@@ -63,7 +63,7 @@ const spacetimedbSpec: SdkSpec = {
 
   union: ({ name, caseTargets, tsRef }) => [
     `export type ${name} = ${caseTargets.map(tsRef).join(" | ") || "unknown"};`,
-    `export const ${name} = /*@__PURE__*/ S.Unknown as any as S.Schema<${name}>;\n`,
+    `export const ${name} = S.Unknown as any as S.Schema<${name}>;\n`,
   ],
 
   paginationProfiles: {

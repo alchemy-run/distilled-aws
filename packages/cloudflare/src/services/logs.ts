@@ -187,8 +187,7 @@ export const CreateLogExplorerDatasetForAccountRequest =
   }) as any as S.Schema<CreateLogExplorerDatasetForAccountRequest>;
 
 export type LogExplorerDatasetsCreateResponseObjectType = "account" | "zone";
-export const LogExplorerDatasetsCreateResponseObjectType =
-  /*@__PURE__*/ S.String;
+export const LogExplorerDatasetsCreateResponseObjectType = S.String;
 
 export type LogExplorerDatasetsCreateResponseFieldsItem =
   LogExplorerDatasetsCreateRequestFieldsItem;
@@ -387,7 +386,7 @@ export const GetLogExplorerDatasetForAccountRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetLogExplorerDatasetForAccountRequest>;
 
 export type LogExplorerDatasetsGetResponseObjectType = "account" | "zone";
-export const LogExplorerDatasetsGetResponseObjectType = /*@__PURE__*/ S.String;
+export const LogExplorerDatasetsGetResponseObjectType = S.String;
 
 export type LogExplorerDatasetsGetResponseFieldsItem =
   LogExplorerDatasetsCreateRequestFieldsItem;
@@ -459,7 +458,7 @@ export const GetLogExplorerDatasetForZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLogExplorerDatasetForZoneRequest>;
 
 export type RayidGetRequestTimestamps = "unix" | "unixnano" | "rfc3339";
-export const RayidGetRequestTimestamps = /*@__PURE__*/ S.String;
+export const RayidGetRequestTimestamps = S.String;
 
 export interface GetRayidRequest {
   /** Identifier. */
@@ -499,7 +498,7 @@ export const GetRayidResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRayidResponse>;
 
 export type ReceivedGetRequestTimestamps = "unix" | "unixnano" | "rfc3339";
-export const ReceivedGetRequestTimestamps = /*@__PURE__*/ S.String;
+export const ReceivedGetRequestTimestamps = S.String;
 
 export interface GetReceivedRequest {
   /** Identifier. */
@@ -603,8 +602,7 @@ export const ListLogExplorerDatasetAvailablesForAccountRequest =
 export type LogExplorerDatasetsAvailableListResultItemObjectType =
   | "account"
   | "zone";
-export const LogExplorerDatasetsAvailableListResultItemObjectType =
-  /*@__PURE__*/ S.String;
+export const LogExplorerDatasetsAvailableListResultItemObjectType = S.String;
 
 export type LogExplorerDatasetsAvailableListResultItemSchemaPropertiesMap = {
   [key: string]: unknown | undefined;
@@ -623,8 +621,7 @@ export const LogExplorerDatasetsAvailableListResultItemSchemaRequiredList =
   ) as any as S.Schema<LogExplorerDatasetsAvailableListResultItemSchemaRequiredList>;
 
 export type LogExplorerDatasetsAvailableListResultItemSchemaType = "object";
-export const LogExplorerDatasetsAvailableListResultItemSchemaType =
-  /*@__PURE__*/ S.String;
+export const LogExplorerDatasetsAvailableListResultItemSchemaType = S.String;
 
 export interface LogExplorerDatasetsAvailableListResultItemSchema {
   properties?: LogExplorerDatasetsAvailableListResultItemSchemaPropertiesMap | null;
@@ -742,8 +739,7 @@ export const ListLogExplorerDatasetsForAccountRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListLogExplorerDatasetsForAccountRequest>;
 
 export type LogExplorerDatasetsListResultItemObjectType = "account" | "zone";
-export const LogExplorerDatasetsListResultItemObjectType =
-  /*@__PURE__*/ S.String;
+export const LogExplorerDatasetsListResultItemObjectType = S.String;
 
 export interface LogExplorerDatasetsListResultItem {
   /** RFC3339 timestamp recording when the API created this dataset. */
@@ -933,8 +929,7 @@ export const UpdateLogExplorerDatasetForAccountRequest =
   }) as any as S.Schema<UpdateLogExplorerDatasetForAccountRequest>;
 
 export type LogExplorerDatasetsUpdateResponseObjectType = "account" | "zone";
-export const LogExplorerDatasetsUpdateResponseObjectType =
-  /*@__PURE__*/ S.String;
+export const LogExplorerDatasetsUpdateResponseObjectType = S.String;
 
 export type LogExplorerDatasetsUpdateResponseFieldsItem =
   LogExplorerDatasetsCreateRequestFieldsItem;

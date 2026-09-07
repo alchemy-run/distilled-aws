@@ -75,7 +75,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -83,7 +83,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -113,7 +113,7 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum indicating a type of graph query. */
 export type ResultKind = "basic";
-export const ResultKind = /*@__PURE__*/ S.String;
+export const ResultKind = S.String;
 
 /** Properties that contain a graph query. */
 export interface GraphQueryProperties {
@@ -476,7 +476,7 @@ export const ResourcesRequestManagementGroupsList = /*@__PURE__*/ S.Array(
 
 /** Defines in which format query result returned. */
 export type QueryRequestOptionsResultFormat = "table" | "objectArray";
-export const QueryRequestOptionsResultFormat = /*@__PURE__*/ S.String;
+export const QueryRequestOptionsResultFormat = S.String;
 
 /** Defines what level of authorization resources should be returned based on the which subscriptions and management groups are passed as scopes. */
 export type QueryRequestOptionsAuthorizationScopeFilter =
@@ -484,8 +484,7 @@ export type QueryRequestOptionsAuthorizationScopeFilter =
   | "AtScopeAndAbove"
   | "AtScopeExact"
   | "AtScopeAboveAndBelow";
-export const QueryRequestOptionsAuthorizationScopeFilter =
-  /*@__PURE__*/ S.String;
+export const QueryRequestOptionsAuthorizationScopeFilter = S.String;
 
 /** The options for query evaluation */
 export interface QueryRequestOptions {
@@ -521,7 +520,7 @@ export const QueryRequestOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** The sorting order by the selected column (count by default). */
 export type FacetRequestOptionsSortOrder = "asc" | "desc";
-export const FacetRequestOptionsSortOrder = /*@__PURE__*/ S.String;
+export const FacetRequestOptionsSortOrder = S.String;
 
 /** The options for facet evaluation */
 export interface FacetRequestOptions {
@@ -598,7 +597,7 @@ export const ResourcesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the query results are truncated. */
 export type ResultTruncated = "true" | "false";
-export const ResultTruncated = /*@__PURE__*/ S.String;
+export const ResultTruncated = S.String;
 
 /** A facet containing additional statistics on the response of a query. Can be either FacetResult or FacetError. */
 export interface Facet {

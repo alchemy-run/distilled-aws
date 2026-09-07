@@ -207,14 +207,13 @@ export type AchievementConfigurationInitialStateEnum =
   | "INITIAL_STATE_UNSPECIFIED"
   | "HIDDEN"
   | "REVEALED";
-export const AchievementConfigurationInitialStateEnum = /*@__PURE__*/ S.String;
+export const AchievementConfigurationInitialStateEnum = S.String;
 
 export type AchievementConfigurationAchievementTypeEnum =
   | "ACHIEVEMENT_TYPE_UNSPECIFIED"
   | "STANDARD"
   | "INCREMENTAL";
-export const AchievementConfigurationAchievementTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AchievementConfigurationAchievementTypeEnum = S.String;
 
 /** An achievement configuration resource. */
 export interface AchievementConfiguration {
@@ -301,8 +300,7 @@ export type GamesNumberFormatConfigurationNumberFormatTypeEnum =
   | "NUMERIC"
   | "TIME_DURATION"
   | "CURRENCY";
-export const GamesNumberFormatConfigurationNumberFormatTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GamesNumberFormatConfigurationNumberFormatTypeEnum = S.String;
 
 /** A number format resource. */
 export interface GamesNumberFormatConfiguration {
@@ -359,7 +357,7 @@ export type LeaderboardConfigurationScoreOrderEnum =
   | "SCORE_ORDER_UNSPECIFIED"
   | "LARGER_IS_BETTER"
   | "SMALLER_IS_BETTER";
-export const LeaderboardConfigurationScoreOrderEnum = /*@__PURE__*/ S.String;
+export const LeaderboardConfigurationScoreOrderEnum = S.String;
 
 /** An leaderboard configuration resource. */
 export interface LeaderboardConfiguration {

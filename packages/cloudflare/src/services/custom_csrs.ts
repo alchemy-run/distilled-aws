@@ -32,7 +32,7 @@ export const CreateRequestSansList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateRequestSansList>;
 
 export type CreateRequestKeyType = "rsa2048" | "p256v1";
-export const CreateRequestKeyType = /*@__PURE__*/ S.String;
+export const CreateRequestKeyType = S.String;
 
 export interface CreateCustomCsrForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -87,7 +87,7 @@ export const CreateCustomCsrForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCustomCsrForAccountRequest>;
 
 export type CreateResponseKeyType = "rsa2048" | "p256v1";
-export const CreateResponseKeyType = /*@__PURE__*/ S.String;
+export const CreateResponseKeyType = S.String;
 
 export type CreateResponseSansList = Array<string>;
 export const CreateResponseSansList = /*@__PURE__*/ S.Array(
@@ -283,7 +283,7 @@ export const GetCustomCsrForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomCsrForAccountRequest>;
 
 export type GetResponseKeyType = "rsa2048" | "p256v1";
-export const GetResponseKeyType = /*@__PURE__*/ S.String;
+export const GetResponseKeyType = S.String;
 
 export type GetResponseSansList = Array<string>;
 export const GetResponseSansList = /*@__PURE__*/ S.Array(
@@ -394,7 +394,7 @@ export const ListCustomCsrsForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCustomCsrsForAccountRequest>;
 
 export type ListResultItemKeyType = "rsa2048" | "p256v1";
-export const ListResultItemKeyType = /*@__PURE__*/ S.String;
+export const ListResultItemKeyType = S.String;
 
 export type ListResultItemSansList = Array<string>;
 export const ListResultItemSansList = /*@__PURE__*/ S.Array(

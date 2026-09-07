@@ -131,14 +131,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -313,7 +313,7 @@ export const CreateLlmSkillsNameFileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLlmSkillsNameFileRequest>;
 
 export type GetLlmSkillsBundleRequestContent = "stub" | "full";
-export const GetLlmSkillsBundleRequestContent = /*@__PURE__*/ S.String;
+export const GetLlmSkillsBundleRequestContent = S.String;
 
 export interface GetLlmSkillsBundleRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -680,7 +680,7 @@ export type LLMSkillMarketplaceCommandStatusEnum =
   | "exists"
   | "created"
   | "rotated";
-export const LLMSkillMarketplaceCommandStatusEnum = /*@__PURE__*/ S.String;
+export const LLMSkillMarketplaceCommandStatusEnum = S.String;
 
 export interface LLMSkillMarketplaceCommand {
   /** absent: no credential yet. exists: one already exists (no token returned). created: a new credential was just minted. rotated: the existing credential was rolled. * `absent` - absent * `exists` - exists * `created` - created * `rotated` - rotated */

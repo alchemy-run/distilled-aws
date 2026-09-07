@@ -48,7 +48,7 @@ export const ActivatePartnerTopicResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The kind of event type used. */
 export type EventTypeInfoKind = "Inline";
-export const EventTypeInfoKind = /*@__PURE__*/ S.String;
+export const EventTypeInfoKind = S.String;
 
 /** Additional information about every inline event. */
 export interface InlineEventProperties {
@@ -104,14 +104,14 @@ export type PartnerTopicPropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "IdleDueToMirroredChannelResourceDeletion";
-export const PartnerTopicPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const PartnerTopicPropertiesProvisioningState = S.String;
 
 /** Activation state of the partner topic. */
 export type PartnerTopicPropertiesActivationState =
   | "NeverActivated"
   | "Activated"
   | "Deactivated";
-export const PartnerTopicPropertiesActivationState = /*@__PURE__*/ S.String;
+export const PartnerTopicPropertiesActivationState = S.String;
 
 /** Properties of the Partner Topic. */
 export interface PartnerTopicProperties {
@@ -153,8 +153,7 @@ export type ActivatePartnerTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ActivatePartnerTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ActivatePartnerTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ActivatePartnerTopicResponseSystemDataLastModifiedByType =
@@ -163,7 +162,7 @@ export type ActivatePartnerTopicResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ActivatePartnerTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ActivatePartnerTopicResponseSystemData {
@@ -204,7 +203,7 @@ export type IdentityInfoType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const IdentityInfoType = /*@__PURE__*/ S.String;
+export const IdentityInfoType = S.String;
 
 /** The information about the user identity. */
 export interface UserIdentityProperties {
@@ -366,8 +365,7 @@ export type PartnerConfigurationPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const PartnerConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PartnerConfigurationPropertiesProvisioningState = S.String;
 
 /** Properties of the partner configuration. */
 export interface PartnerConfigurationProperties {
@@ -396,7 +394,7 @@ export type AuthorizePartnerConfigurationPartnerResponseSystemDataCreatedByType 
   | "ManagedIdentity"
   | "Key";
 export const AuthorizePartnerConfigurationPartnerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type AuthorizePartnerConfigurationPartnerResponseSystemDataLastModifiedByType =
@@ -405,7 +403,7 @@ export type AuthorizePartnerConfigurationPartnerResponseSystemDataLastModifiedBy
   | "ManagedIdentity"
   | "Key";
 export const AuthorizePartnerConfigurationPartnerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AuthorizePartnerConfigurationPartnerResponseSystemData {
@@ -539,7 +537,7 @@ export type CaCertificatePropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "Deleted";
-export const CaCertificatePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const CaCertificatePropertiesProvisioningState = S.String;
 
 /** The properties of CA certificate. */
 export interface CaCertificateProperties {
@@ -573,7 +571,7 @@ export type CaCertificatesCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const CaCertificatesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type CaCertificatesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -582,7 +580,7 @@ export type CaCertificatesCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const CaCertificatesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CaCertificatesCreateOrUpdateResponseSystemData {
@@ -644,7 +642,7 @@ export const CaCertificatesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** The type of the event channel which represents the direction flow of events. */
 export type ChannelPropertiesChannelType = "PartnerTopic";
-export const ChannelPropertiesChannelType = /*@__PURE__*/ S.String;
+export const ChannelPropertiesChannelType = S.String;
 
 /** Properties of the corresponding partner topic of a Channel. */
 export interface PartnerTopicInfo {
@@ -680,11 +678,11 @@ export type ChannelPropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "IdleDueToMirroredPartnerTopicDeletion";
-export const ChannelPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ChannelPropertiesProvisioningState = S.String;
 
 /** The readiness state of the corresponding partner topic. */
 export type ChannelPropertiesReadinessState = "NeverActivated" | "Activated";
-export const ChannelPropertiesReadinessState = /*@__PURE__*/ S.String;
+export const ChannelPropertiesReadinessState = S.String;
 
 /** Properties of the Channel. */
 export interface ChannelProperties {
@@ -751,8 +749,7 @@ export type ChannelsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ChannelsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ChannelsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ChannelsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -761,7 +758,7 @@ export type ChannelsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ChannelsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ChannelsCreateOrUpdateResponseSystemData {
@@ -876,7 +873,7 @@ export type ClientGroupPropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "Deleted";
-export const ClientGroupPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ClientGroupPropertiesProvisioningState = S.String;
 
 /** The properties of client group. */
 export interface ClientGroupProperties {
@@ -904,7 +901,7 @@ export type ClientGroupsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const ClientGroupsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ClientGroupsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -913,7 +910,7 @@ export type ClientGroupsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ClientGroupsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ClientGroupsCreateOrUpdateResponseSystemData {
@@ -980,8 +977,7 @@ export type ClientCertificateAuthenticationValidationScheme =
   | "IpMatchesAuthenticationName"
   | "EmailMatchesAuthenticationName"
   | "ThumbprintMatch";
-export const ClientCertificateAuthenticationValidationScheme =
-  /*@__PURE__*/ S.String;
+export const ClientCertificateAuthenticationValidationScheme = S.String;
 
 /** The list of thumbprints that are allowed during client authentication. This property is required only if the validationScheme is 'ThumbprintMatch'. */
 export type ClientCertificateAuthenticationAllowedThumbprintsList =
@@ -1015,7 +1011,7 @@ export const ClientCertificateAuthentication = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates if the client is enabled or not. Default value is Enabled. */
 export type ClientPropertiesInputState = "Enabled" | "Disabled";
-export const ClientPropertiesInputState = /*@__PURE__*/ S.String;
+export const ClientPropertiesInputState = S.String;
 
 /** Attributes for the client. Supported values are int, bool, string, string[]. Example: "attributes": { "room": "345", "floor": 12, "deviceTypes": ["Fan", "Light"] } */
 export type ClientPropertiesInputAttributesMap = {
@@ -1086,7 +1082,7 @@ export const ClientsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates if the client is enabled or not. Default value is Enabled. */
 export type ClientPropertiesState = "Enabled" | "Disabled";
-export const ClientPropertiesState = /*@__PURE__*/ S.String;
+export const ClientPropertiesState = S.String;
 
 /** Attributes for the client. Supported values are int, bool, string, string[]. Example: "attributes": { "room": "345", "floor": 12, "deviceTypes": ["Fan", "Light"] } */
 export type ClientPropertiesAttributesMap = {
@@ -1106,7 +1102,7 @@ export type ClientPropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "Deleted";
-export const ClientPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ClientPropertiesProvisioningState = S.String;
 
 /** The properties of client. */
 export interface ClientProperties {
@@ -1144,8 +1140,7 @@ export type ClientsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClientsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ClientsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ClientsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -1154,7 +1149,7 @@ export type ClientsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ClientsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ClientsCreateOrUpdateResponseSystemData {
@@ -1253,8 +1248,7 @@ export type DeactivatePartnerTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DeactivatePartnerTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const DeactivatePartnerTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type DeactivatePartnerTopicResponseSystemDataLastModifiedByType =
@@ -1263,7 +1257,7 @@ export type DeactivatePartnerTopicResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const DeactivatePartnerTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DeactivatePartnerTopicResponseSystemData {
@@ -1946,8 +1940,7 @@ export type DeletePrivateEndpointConnectionRequestParentType =
   | "domains"
   | "partnerNamespaces"
   | "namespaces";
-export const DeletePrivateEndpointConnectionRequestParentType =
-  /*@__PURE__*/ S.String;
+export const DeletePrivateEndpointConnectionRequestParentType = S.String;
 
 export interface DeletePrivateEndpointConnectionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -2170,7 +2163,7 @@ export type EventSubscriptionDestinationEndpointType =
   | "AzureFunction"
   | "MonitorAlert"
   | "NamespaceTopic";
-export const EventSubscriptionDestinationEndpointType = /*@__PURE__*/ S.String;
+export const EventSubscriptionDestinationEndpointType = S.String;
 
 /** Information about the destination for an event subscription. */
 export interface EventSubscriptionDestination {
@@ -2187,7 +2180,7 @@ export const EventSubscriptionDestination = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of managed identity used. Can be either 'SystemAssigned' or 'UserAssigned'. */
 export type EventSubscriptionIdentityType = "SystemAssigned" | "UserAssigned";
-export const EventSubscriptionIdentityType = /*@__PURE__*/ S.String;
+export const EventSubscriptionIdentityType = S.String;
 
 /** The identity information with the event subscription. */
 export interface EventSubscriptionIdentity {
@@ -2249,7 +2242,7 @@ export type AdvancedFilterOperatorType =
   | "StringNotContains"
   | "IsNullOrUndefined"
   | "IsNotNull";
-export const AdvancedFilterOperatorType = /*@__PURE__*/ S.String;
+export const AdvancedFilterOperatorType = S.String;
 
 /** This is the base type that represents an advanced filter. To configure an advanced filter, do not directly instantiate an object of this class. Instead, instantiate an object of a derived class such as BoolEqualsAdvancedFilter, NumberInAdvancedFilter, StringEqualsAdvancedFilter etc. depending on the type of the key based on which you want to filter. */
 export interface AdvancedFilter {
@@ -2312,8 +2305,7 @@ export type EventSubscriptionPropertiesInputEventDeliverySchema =
   | "EventGridSchema"
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
-export const EventSubscriptionPropertiesInputEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+export const EventSubscriptionPropertiesInputEventDeliverySchema = S.String;
 
 /** Information about the retry policy for an event subscription. */
 export interface RetryPolicy {
@@ -2331,7 +2323,7 @@ export const RetryPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the endpoint for the dead letter destination */
 export type DeadLetterDestinationEndpointType = "StorageBlob";
-export const DeadLetterDestinationEndpointType = /*@__PURE__*/ S.String;
+export const DeadLetterDestinationEndpointType = S.String;
 
 /** Information about the dead letter destination for an event subscription. To configure a deadletter destination, do not directly instantiate an object of this class. Instead, instantiate an object of a derived class. Currently, StorageBlobDeadLetterDestination is the only class that derives from this class. */
 export interface DeadLetterDestination {
@@ -2444,8 +2436,7 @@ export type EventSubscriptionPropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "AwaitingManualAction";
-export const EventSubscriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const EventSubscriptionPropertiesProvisioningState = S.String;
 
 /** List of user defined labels. */
 export type EventSubscriptionPropertiesLabelsList = Array<string>;
@@ -2458,8 +2449,7 @@ export type EventSubscriptionPropertiesEventDeliverySchema =
   | "EventGridSchema"
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
-export const EventSubscriptionPropertiesEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+export const EventSubscriptionPropertiesEventDeliverySchema = S.String;
 
 /** Properties of the Event Subscription. */
 export interface EventSubscriptionProperties {
@@ -2513,7 +2503,7 @@ export type DomainEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByTyp
   | "ManagedIdentity"
   | "Key";
 export const DomainEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -2522,7 +2512,7 @@ export type DomainEventSubscriptionsCreateOrUpdateResponseSystemDataLastModified
   | "ManagedIdentity"
   | "Key";
 export const DomainEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainEventSubscriptionsCreateOrUpdateResponseSystemData {
@@ -2598,19 +2588,18 @@ export type DomainPropertiesInputMinimumTlsVersionAllowed =
   | "1.0"
   | "1.1"
   | "1.2";
-export const DomainPropertiesInputMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const DomainPropertiesInputMinimumTlsVersionAllowed = S.String;
 
 /** This determines the format that Event Grid should expect for incoming events published to the Event Grid Domain Resource. */
 export type DomainPropertiesInputInputSchema =
   | "EventGridSchema"
   | "CustomEventSchema"
   | "CloudEventSchemaV1_0";
-export const DomainPropertiesInputInputSchema = /*@__PURE__*/ S.String;
+export const DomainPropertiesInputInputSchema = S.String;
 
 /** Type of the custom mapping */
 export type InputSchemaMappingInputSchemaMappingType = "Json";
-export const InputSchemaMappingInputSchemaMappingType = /*@__PURE__*/ S.String;
+export const InputSchemaMappingInputSchemaMappingType = S.String;
 
 /** By default, Event Grid expects events to be in the Event Grid event schema. Specifying an input schema mapping enables publishing to Event Grid using a custom input schema. Currently, the only supported type of InputSchemaMapping is 'JsonInputSchemaMapping'. */
 export interface InputSchemaMapping {
@@ -2629,11 +2618,11 @@ export const InputSchemaMapping = /*@__PURE__*/ S.suspend(() =>
 
 /** This determines if traffic is allowed over public network. By default it is enabled. You can further restrict to specific IPs by configuring <seealso cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.DomainProperties.InboundIpRules" /> */
 export type DomainPropertiesInputPublicNetworkAccess = "Enabled" | "Disabled";
-export const DomainPropertiesInputPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const DomainPropertiesInputPublicNetworkAccess = S.String;
 
 /** Action to perform based on the match or no match of the IpMask. */
 export type InboundIpRuleAction = "Allow";
-export const InboundIpRuleAction = /*@__PURE__*/ S.String;
+export const InboundIpRuleAction = S.String;
 
 export interface InboundIpRule {
   /** IP Address in CIDR notation e.g., 10.0.0.0/8. */
@@ -2658,8 +2647,7 @@ export const DomainPropertiesInputInboundIpRulesList = /*@__PURE__*/ S.Array(
 export type DomainPropertiesInputDataResidencyBoundary =
   | "WithinGeopair"
   | "WithinRegion";
-export const DomainPropertiesInputDataResidencyBoundary =
-  /*@__PURE__*/ S.String;
+export const DomainPropertiesInputDataResidencyBoundary = S.String;
 
 /** Properties of the Event Grid Domain Resource. */
 export interface DomainPropertiesInput {
@@ -2783,7 +2771,7 @@ export type ConnectionStateStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const ConnectionStateStatus = /*@__PURE__*/ S.String;
+export const ConnectionStateStatus = S.String;
 
 /** ConnectionState information. */
 export interface ConnectionState {
@@ -2812,8 +2800,7 @@ export type PrivateEndpointConnectionPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const PrivateEndpointConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionPropertiesProvisioningState = S.String;
 
 /** Properties of the private endpoint connection resource. */
 export interface PrivateEndpointConnectionProperties {
@@ -2878,22 +2865,22 @@ export type DomainPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const DomainPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const DomainPropertiesProvisioningState = S.String;
 
 /** Minimum TLS version of the publisher allowed to publish to this domain */
 export type DomainPropertiesMinimumTlsVersionAllowed = "1.0" | "1.1" | "1.2";
-export const DomainPropertiesMinimumTlsVersionAllowed = /*@__PURE__*/ S.String;
+export const DomainPropertiesMinimumTlsVersionAllowed = S.String;
 
 /** This determines the format that Event Grid should expect for incoming events published to the Event Grid Domain Resource. */
 export type DomainPropertiesInputSchema =
   | "EventGridSchema"
   | "CustomEventSchema"
   | "CloudEventSchemaV1_0";
-export const DomainPropertiesInputSchema = /*@__PURE__*/ S.String;
+export const DomainPropertiesInputSchema = S.String;
 
 /** This determines if traffic is allowed over public network. By default it is enabled. You can further restrict to specific IPs by configuring <seealso cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.DomainProperties.InboundIpRules" /> */
 export type DomainPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const DomainPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const DomainPropertiesPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type DomainPropertiesInboundIpRulesList = Array<InboundIpRule>;
@@ -2905,7 +2892,7 @@ export const DomainPropertiesInboundIpRulesList = /*@__PURE__*/ S.Array(
 export type DomainPropertiesDataResidencyBoundary =
   | "WithinGeopair"
   | "WithinRegion";
-export const DomainPropertiesDataResidencyBoundary = /*@__PURE__*/ S.String;
+export const DomainPropertiesDataResidencyBoundary = S.String;
 
 /** Properties of the Event Grid Domain Resource. */
 export interface DomainProperties {
@@ -2969,8 +2956,7 @@ export type DomainsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const DomainsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -2979,7 +2965,7 @@ export type DomainsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const DomainsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainsCreateOrUpdateResponseSystemData {
@@ -3089,7 +3075,7 @@ export type DomainTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreated
   | "ManagedIdentity"
   | "Key";
 export const DomainTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -3098,7 +3084,7 @@ export type DomainTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastMod
   | "ManagedIdentity"
   | "Key";
 export const DomainTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainTopicEventSubscriptionsCreateOrUpdateResponseSystemData {
@@ -3196,7 +3182,7 @@ export type DomainTopicPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const DomainTopicPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const DomainTopicPropertiesProvisioningState = S.String;
 
 /** Properties of the Domain Topic. */
 export interface DomainTopicProperties {
@@ -3218,7 +3204,7 @@ export type DomainTopicsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const DomainTopicsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -3227,7 +3213,7 @@ export type DomainTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const DomainTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainTopicsCreateOrUpdateResponseSystemData {
@@ -3319,7 +3305,7 @@ export type EventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const EventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type EventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -3328,7 +3314,7 @@ export type EventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType
   | "ManagedIdentity"
   | "Key";
 export const EventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface EventSubscriptionsCreateOrUpdateResponseSystemData {
@@ -3424,8 +3410,7 @@ export type GetCaCertificateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCaCertificateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetCaCertificateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetCaCertificateResponseSystemDataLastModifiedByType =
@@ -3433,8 +3418,7 @@ export type GetCaCertificateResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCaCertificateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetCaCertificateResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetCaCertificateResponseSystemData {
@@ -3524,7 +3508,7 @@ export type GetChannelResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetChannelResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetChannelResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetChannelResponseSystemDataLastModifiedByType =
@@ -3532,8 +3516,7 @@ export type GetChannelResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetChannelResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetChannelResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetChannelResponseSystemData {
@@ -3664,7 +3647,7 @@ export type GetClientResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetClientResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetClientResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetClientResponseSystemDataLastModifiedByType =
@@ -3672,8 +3655,7 @@ export type GetClientResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetClientResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetClientResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetClientResponseSystemData {
@@ -3763,8 +3745,7 @@ export type GetClientGroupResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetClientGroupResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetClientGroupResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetClientGroupResponseSystemDataLastModifiedByType =
@@ -3772,8 +3753,7 @@ export type GetClientGroupResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetClientGroupResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetClientGroupResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetClientGroupResponseSystemData {
@@ -3867,7 +3847,7 @@ export type GetDomainResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetDomainResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetDomainResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetDomainResponseSystemDataLastModifiedByType =
@@ -3875,8 +3855,7 @@ export type GetDomainResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetDomainResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetDomainResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetDomainResponseSystemData {
@@ -3976,7 +3955,7 @@ export type GetDomainEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetDomainEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetDomainEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -3985,7 +3964,7 @@ export type GetDomainEventSubscriptionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetDomainEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetDomainEventSubscriptionResponseSystemData {
@@ -4075,7 +4054,7 @@ export const GetDomainEventSubscriptionDeliveryAttributesRequest =
 
 /** Type of the delivery attribute or header name. */
 export type DeliveryAttributeMappingType = "Static" | "Dynamic";
-export const DeliveryAttributeMappingType = /*@__PURE__*/ S.String;
+export const DeliveryAttributeMappingType = S.String;
 
 /** Delivery attribute mapping details. */
 export interface DeliveryAttributeMapping {
@@ -4176,8 +4155,7 @@ export type GetDomainTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetDomainTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetDomainTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetDomainTopicResponseSystemDataLastModifiedByType =
@@ -4185,8 +4163,7 @@ export type GetDomainTopicResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetDomainTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetDomainTopicResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetDomainTopicResponseSystemData {
@@ -4281,7 +4258,7 @@ export type GetDomainTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetDomainTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -4290,7 +4267,7 @@ export type GetDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const GetDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetDomainTopicEventSubscriptionResponseSystemData {
@@ -4442,8 +4419,7 @@ export type GetEventSubscriptionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetEventSubscriptionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -4452,7 +4428,7 @@ export type GetEventSubscriptionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetEventSubscriptionResponseSystemData {
@@ -4597,8 +4573,7 @@ export type GetExtensionTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetExtensionTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetExtensionTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetExtensionTopicResponseSystemDataLastModifiedByType =
@@ -4606,8 +4581,7 @@ export type GetExtensionTopicResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetExtensionTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetExtensionTopicResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetExtensionTopicResponseSystemData {
@@ -4715,18 +4689,18 @@ export type NamespacePropertiesProvisioningState =
   | "DeleteFailed"
   | "CreateFailed"
   | "UpdatedFailed";
-export const NamespacePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NamespacePropertiesProvisioningState = S.String;
 
 /** Validation state for the custom domain. This is a read only property and is initially set to 'Pending' and will be updated to 'Approved' by Event Grid only after ownership of the domain name has been successfully validated. */
 export type CustomDomainConfigurationValidationState =
   | "Pending"
   | "Approved"
   | "ErrorRetrievingDnsRecord";
-export const CustomDomainConfigurationValidationState = /*@__PURE__*/ S.String;
+export const CustomDomainConfigurationValidationState = S.String;
 
 /** The type of managed identity used. Can be either 'SystemAssigned' or 'UserAssigned'. */
 export type CustomDomainIdentityType = "SystemAssigned" | "UserAssigned";
-export const CustomDomainIdentityType = /*@__PURE__*/ S.String;
+export const CustomDomainIdentityType = S.String;
 
 /** The identity information for retrieving the certificate for the custom domain. */
 export interface CustomDomainIdentity {
@@ -4797,11 +4771,11 @@ export const TopicsConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicate if Topic Spaces Configuration is enabled for the namespace. Default is Disabled. */
 export type TopicSpacesConfigurationState = "Disabled" | "Enabled";
-export const TopicSpacesConfigurationState = /*@__PURE__*/ S.String;
+export const TopicSpacesConfigurationState = S.String;
 
 /** Static routing enrichment value type. For e.g. this property value can be 'String'. */
 export type StaticRoutingEnrichmentValueType = "String";
-export const StaticRoutingEnrichmentValueType = /*@__PURE__*/ S.String;
+export const StaticRoutingEnrichmentValueType = S.String;
 
 /** Static routing enrichment details. */
 export interface StaticRoutingEnrichment {
@@ -4862,7 +4836,7 @@ export type RoutingIdentityInfoType =
   | "None"
   | "SystemAssigned"
   | "UserAssigned";
-export const RoutingIdentityInfoType = /*@__PURE__*/ S.String;
+export const RoutingIdentityInfoType = S.String;
 
 /** Routing identity info for topic spaces configuration. */
 export interface RoutingIdentityInfo {
@@ -4922,7 +4896,7 @@ export const TopicSpacesConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** This determines if traffic is allowed over public network. By default it is enabled. You can further restrict to specific IPs by configuring <seealso cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.PubSub.NamespaceProperties.InboundIpRules" /> */
 export type NamespacePropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const NamespacePropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const NamespacePropertiesPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type NamespacePropertiesInboundIpRulesList = Array<InboundIpRule>;
@@ -4932,8 +4906,7 @@ export const NamespacePropertiesInboundIpRulesList = /*@__PURE__*/ S.Array(
 
 /** Minimum TLS version of the publisher allowed to publish to this namespace. Only TLS version 1.2 is supported. */
 export type NamespacePropertiesMinimumTlsVersionAllowed = "1.0" | "1.1" | "1.2";
-export const NamespacePropertiesMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const NamespacePropertiesMinimumTlsVersionAllowed = S.String;
 
 /** Properties of the namespace resource. */
 export interface NamespaceProperties {
@@ -4975,7 +4948,7 @@ export const NamespaceProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the SKU. */
 export type NamespaceSkuName = "Standard";
-export const NamespaceSkuName = /*@__PURE__*/ S.String;
+export const NamespaceSkuName = S.String;
 
 /** Represents available Sku pricing tiers. */
 export interface NamespaceSku {
@@ -4997,8 +4970,7 @@ export type GetNamespaceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNamespaceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetNamespaceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNamespaceResponseSystemDataLastModifiedByType =
@@ -5006,8 +4978,7 @@ export type GetNamespaceResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNamespaceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetNamespaceResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNamespaceResponseSystemData {
@@ -5115,15 +5086,15 @@ export type NamespaceTopicPropertiesProvisioningState =
   | "DeleteFailed"
   | "CreateFailed"
   | "UpdatedFailed";
-export const NamespaceTopicPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const NamespaceTopicPropertiesProvisioningState = S.String;
 
 /** Publisher type of the namespace topic. */
 export type NamespaceTopicPropertiesPublisherType = "Custom";
-export const NamespaceTopicPropertiesPublisherType = /*@__PURE__*/ S.String;
+export const NamespaceTopicPropertiesPublisherType = S.String;
 
 /** This determines the format that is expected for incoming events published to the topic. */
 export type NamespaceTopicPropertiesInputSchema = "CloudEventSchemaV1_0";
-export const NamespaceTopicPropertiesInputSchema = /*@__PURE__*/ S.String;
+export const NamespaceTopicPropertiesInputSchema = S.String;
 
 /** Properties of the namespace topic. */
 export interface NamespaceTopicProperties {
@@ -5153,8 +5124,7 @@ export type GetNamespaceTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNamespaceTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetNamespaceTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNamespaceTopicResponseSystemDataLastModifiedByType =
@@ -5162,8 +5132,7 @@ export type GetNamespaceTopicResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetNamespaceTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetNamespaceTopicResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNamespaceTopicResponseSystemData {
@@ -5264,11 +5233,11 @@ export type SubscriptionPropertiesProvisioningState =
   | "DeleteFailed"
   | "CreateFailed"
   | "UpdatedFailed";
-export const SubscriptionPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const SubscriptionPropertiesProvisioningState = S.String;
 
 /** Delivery mode of the event subscription. */
 export type DeliveryConfigurationDeliveryMode = "Queue" | "Push";
-export const DeliveryConfigurationDeliveryMode = /*@__PURE__*/ S.String;
+export const DeliveryConfigurationDeliveryMode = S.String;
 
 /** Properties of the Queue info for event subscription. */
 export interface QueueInfo {
@@ -5338,7 +5307,7 @@ export const DeliveryConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** The event delivery schema for the event subscription. */
 export type SubscriptionPropertiesEventDeliverySchema = "CloudEventSchemaV1_0";
-export const SubscriptionPropertiesEventDeliverySchema = /*@__PURE__*/ S.String;
+export const SubscriptionPropertiesEventDeliverySchema = S.String;
 
 /** A list of applicable event types that need to be part of the event subscription. If it is desired to subscribe to all default event types, set the IncludedEventTypes to null. */
 export type FiltersConfigurationIncludedEventTypesList = Array<string>;
@@ -5367,7 +5336,7 @@ export type FilterOperatorType =
   | "StringNotContains"
   | "IsNullOrUndefined"
   | "IsNotNull";
-export const FilterOperatorType = /*@__PURE__*/ S.String;
+export const FilterOperatorType = S.String;
 
 /** This is the base type that represents a filter. To configure a filter, do not directly instantiate an object of this class. Instead, instantiate an object of a derived class such as BoolEqualsFilter, NumberInFilter etc depending on the type of the key based on which you want to filter. */
 export interface Filter {
@@ -5437,7 +5406,7 @@ export type GetNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -5446,7 +5415,7 @@ export type GetNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const GetNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetNamespaceTopicEventSubscriptionResponseSystemData {
@@ -5613,8 +5582,7 @@ export type GetPartnerConfigurationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPartnerConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetPartnerConfigurationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPartnerConfigurationResponseSystemDataLastModifiedByType =
@@ -5623,7 +5591,7 @@ export type GetPartnerConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPartnerConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPartnerConfigurationResponseSystemData {
@@ -5747,23 +5715,20 @@ export type PartnerNamespacePropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const PartnerNamespacePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespacePropertiesProvisioningState = S.String;
 
 /** Minimum TLS version of the publisher allowed to publish to this partner namespace */
 export type PartnerNamespacePropertiesMinimumTlsVersionAllowed =
   | "1.0"
   | "1.1"
   | "1.2";
-export const PartnerNamespacePropertiesMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespacePropertiesMinimumTlsVersionAllowed = S.String;
 
 /** This determines if traffic is allowed over public network. By default it is enabled. You can further restrict to specific IPs by configuring <seealso cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.PartnerNamespaceProperties.InboundIpRules" /> */
 export type PartnerNamespacePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PartnerNamespacePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespacePropertiesPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type PartnerNamespacePropertiesInboundIpRulesList = Array<InboundIpRule>;
@@ -5776,8 +5741,7 @@ export const PartnerNamespacePropertiesInboundIpRulesList =
 export type PartnerNamespacePropertiesPartnerTopicRoutingMode =
   | "SourceEventAttribute"
   | "ChannelNameHeader";
-export const PartnerNamespacePropertiesPartnerTopicRoutingMode =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespacePropertiesPartnerTopicRoutingMode = S.String;
 
 /** Properties of the partner namespace. */
 export interface PartnerNamespaceProperties {
@@ -5830,8 +5794,7 @@ export type GetPartnerNamespaceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPartnerNamespaceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetPartnerNamespaceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPartnerNamespaceResponseSystemDataLastModifiedByType =
@@ -5839,8 +5802,7 @@ export type GetPartnerNamespaceResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPartnerNamespaceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetPartnerNamespaceResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPartnerNamespaceResponseSystemData {
@@ -5947,8 +5909,7 @@ export type PartnerRegistrationPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const PartnerRegistrationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PartnerRegistrationPropertiesProvisioningState = S.String;
 
 /** Properties of the partner registration. */
 export interface PartnerRegistrationProperties {
@@ -5974,8 +5935,7 @@ export type GetPartnerRegistrationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPartnerRegistrationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetPartnerRegistrationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPartnerRegistrationResponseSystemDataLastModifiedByType =
@@ -5984,7 +5944,7 @@ export type GetPartnerRegistrationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPartnerRegistrationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPartnerRegistrationResponseSystemData {
@@ -6089,8 +6049,7 @@ export type GetPartnerTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPartnerTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetPartnerTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPartnerTopicResponseSystemDataLastModifiedByType =
@@ -6098,8 +6057,7 @@ export type GetPartnerTopicResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPartnerTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetPartnerTopicResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPartnerTopicResponseSystemData {
@@ -6200,7 +6158,7 @@ export type GetPartnerTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPartnerTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -6209,7 +6167,7 @@ export type GetPartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType
   | "ManagedIdentity"
   | "Key";
 export const GetPartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPartnerTopicEventSubscriptionResponseSystemData {
@@ -6359,7 +6317,7 @@ export const GetPermissionBindingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The allowed permission. */
 export type PermissionBindingPropertiesPermission = "Publisher" | "Subscriber";
-export const PermissionBindingPropertiesPermission = /*@__PURE__*/ S.String;
+export const PermissionBindingPropertiesPermission = S.String;
 
 /** Provisioning state of the PermissionBinding resource. */
 export type PermissionBindingPropertiesProvisioningState =
@@ -6370,8 +6328,7 @@ export type PermissionBindingPropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "Deleted";
-export const PermissionBindingPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PermissionBindingPropertiesProvisioningState = S.String;
 
 /** The properties of permission binding. */
 export interface PermissionBindingProperties {
@@ -6404,8 +6361,7 @@ export type GetPermissionBindingResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPermissionBindingResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetPermissionBindingResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPermissionBindingResponseSystemDataLastModifiedByType =
@@ -6414,7 +6370,7 @@ export type GetPermissionBindingResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPermissionBindingResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPermissionBindingResponseSystemData {
@@ -6478,8 +6434,7 @@ export type GetPrivateEndpointConnectionRequestParentType =
   | "domains"
   | "partnerNamespaces"
   | "namespaces";
-export const GetPrivateEndpointConnectionRequestParentType =
-  /*@__PURE__*/ S.String;
+export const GetPrivateEndpointConnectionRequestParentType = S.String;
 
 export interface GetPrivateEndpointConnectionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -6662,7 +6617,7 @@ export type SystemTopicPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const SystemTopicPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const SystemTopicPropertiesProvisioningState = S.String;
 
 /** Properties of the System Topic. */
 export interface SystemTopicProperties {
@@ -6692,8 +6647,7 @@ export type GetSystemTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetSystemTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetSystemTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSystemTopicResponseSystemDataLastModifiedByType =
@@ -6701,8 +6655,7 @@ export type GetSystemTopicResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetSystemTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetSystemTopicResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSystemTopicResponseSystemData {
@@ -6803,7 +6756,7 @@ export type GetSystemTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSystemTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -6812,7 +6765,7 @@ export type GetSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const GetSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSystemTopicEventSubscriptionResponseSystemData {
@@ -6978,22 +6931,22 @@ export type TopicPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const TopicPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const TopicPropertiesProvisioningState = S.String;
 
 /** Minimum TLS version of the publisher allowed to publish to this topic */
 export type TopicPropertiesMinimumTlsVersionAllowed = "1.0" | "1.1" | "1.2";
-export const TopicPropertiesMinimumTlsVersionAllowed = /*@__PURE__*/ S.String;
+export const TopicPropertiesMinimumTlsVersionAllowed = S.String;
 
 /** This determines the format that Event Grid should expect for incoming events published to the topic. */
 export type TopicPropertiesInputSchema =
   | "EventGridSchema"
   | "CustomEventSchema"
   | "CloudEventSchemaV1_0";
-export const TopicPropertiesInputSchema = /*@__PURE__*/ S.String;
+export const TopicPropertiesInputSchema = S.String;
 
 /** This determines if traffic is allowed over public network. By default it is enabled. You can further restrict to specific IPs by configuring <seealso cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.TopicProperties.InboundIpRules" /> */
 export type TopicPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const TopicPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const TopicPropertiesPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type TopicPropertiesInboundIpRulesList = Array<InboundIpRule>;
@@ -7005,7 +6958,7 @@ export const TopicPropertiesInboundIpRulesList = /*@__PURE__*/ S.Array(
 export type TopicPropertiesDataResidencyBoundary =
   | "WithinGeopair"
   | "WithinRegion";
-export const TopicPropertiesDataResidencyBoundary = /*@__PURE__*/ S.String;
+export const TopicPropertiesDataResidencyBoundary = S.String;
 
 /** Properties of the Topic. */
 export interface TopicProperties {
@@ -7063,7 +7016,7 @@ export type GetTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetTopicResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetTopicResponseSystemDataLastModifiedByType =
@@ -7071,8 +7024,7 @@ export type GetTopicResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetTopicResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetTopicResponseSystemData {
@@ -7172,7 +7124,7 @@ export type GetTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -7181,7 +7133,7 @@ export type GetTopicEventSubscriptionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetTopicEventSubscriptionResponseSystemData {
@@ -7341,7 +7293,7 @@ export type TopicSpacePropertiesProvisioningState =
   | "Canceled"
   | "Failed"
   | "Deleted";
-export const TopicSpacePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const TopicSpacePropertiesProvisioningState = S.String;
 
 /** The properties of topic space. */
 export interface TopicSpaceProperties {
@@ -7368,8 +7320,7 @@ export type GetTopicSpaceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetTopicSpaceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetTopicSpaceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetTopicSpaceResponseSystemDataLastModifiedByType =
@@ -7377,8 +7328,7 @@ export type GetTopicSpaceResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetTopicSpaceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetTopicSpaceResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetTopicSpaceResponseSystemData {
@@ -7457,7 +7407,7 @@ export const GetTopicTypeRequest = /*@__PURE__*/ S.suspend(() =>
 export type TopicTypePropertiesResourceRegionType =
   | "RegionalResource"
   | "GlobalResource";
-export const TopicTypePropertiesResourceRegionType = /*@__PURE__*/ S.String;
+export const TopicTypePropertiesResourceRegionType = S.String;
 
 /** Provisioning state of the topic type. */
 export type TopicTypePropertiesProvisioningState =
@@ -7467,7 +7417,7 @@ export type TopicTypePropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const TopicTypePropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const TopicTypePropertiesProvisioningState = S.String;
 
 /** List of locations supported by this topic type. */
 export type TopicTypePropertiesSupportedLocationsList = Array<string>;
@@ -7480,8 +7430,7 @@ export type TopicTypePropertiesSupportedScopesForSourceItem =
   | "ResourceGroup"
   | "AzureSubscription"
   | "ManagementGroup";
-export const TopicTypePropertiesSupportedScopesForSourceItem =
-  /*@__PURE__*/ S.String;
+export const TopicTypePropertiesSupportedScopesForSourceItem = S.String;
 
 /** Supported source scopes. */
 export type TopicTypePropertiesSupportedScopesForSourceList =
@@ -7622,8 +7571,7 @@ export type VerifiedPartnerPropertiesProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "Failed";
-export const VerifiedPartnerPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const VerifiedPartnerPropertiesProvisioningState = S.String;
 
 /** Properties of the verified partner. */
 export interface VerifiedPartnerProperties {
@@ -7656,8 +7604,7 @@ export type GetVerifiedPartnerResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetVerifiedPartnerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetVerifiedPartnerResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetVerifiedPartnerResponseSystemDataLastModifiedByType =
@@ -7665,8 +7612,7 @@ export type GetVerifiedPartnerResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetVerifiedPartnerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetVerifiedPartnerResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetVerifiedPartnerResponseSystemData {
@@ -7762,7 +7708,7 @@ export type CaCertificateSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CaCertificateSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const CaCertificateSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CaCertificateSystemDataLastModifiedByType =
@@ -7770,7 +7716,7 @@ export type CaCertificateSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CaCertificateSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const CaCertificateSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CaCertificateSystemData {
@@ -7883,7 +7829,7 @@ export type ChannelSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ChannelSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ChannelSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ChannelSystemDataLastModifiedByType =
@@ -7891,7 +7837,7 @@ export type ChannelSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ChannelSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const ChannelSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ChannelSystemData {
@@ -8003,7 +7949,7 @@ export type ClientSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClientSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ClientSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ClientSystemDataLastModifiedByType =
@@ -8011,7 +7957,7 @@ export type ClientSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClientSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const ClientSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ClientSystemData {
@@ -8123,7 +8069,7 @@ export type ClientGroupSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClientGroupSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ClientGroupSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ClientGroupSystemDataLastModifiedByType =
@@ -8131,7 +8077,7 @@ export type ClientGroupSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClientGroupSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const ClientGroupSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ClientGroupSystemData {
@@ -8247,7 +8193,7 @@ export type DomainSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const DomainSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainSystemDataLastModifiedByType =
@@ -8255,7 +8201,7 @@ export type DomainSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const DomainSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainSystemData {
@@ -8401,7 +8347,7 @@ export type EventSubscriptionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const EventSubscriptionSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const EventSubscriptionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type EventSubscriptionSystemDataLastModifiedByType =
@@ -8409,8 +8355,7 @@ export type EventSubscriptionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const EventSubscriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const EventSubscriptionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface EventSubscriptionSystemData {
@@ -8567,7 +8512,7 @@ export type DomainTopicSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainTopicSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const DomainTopicSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type DomainTopicSystemDataLastModifiedByType =
@@ -8575,7 +8520,7 @@ export type DomainTopicSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainTopicSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const DomainTopicSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface DomainTopicSystemData {
@@ -9045,7 +8990,7 @@ export type NamespaceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NamespaceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NamespaceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NamespaceSystemDataLastModifiedByType =
@@ -9053,7 +8998,7 @@ export type NamespaceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NamespaceSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const NamespaceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NamespaceSystemData {
@@ -9245,7 +9190,7 @@ export type NamespaceTopicSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NamespaceTopicSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const NamespaceTopicSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NamespaceTopicSystemDataLastModifiedByType =
@@ -9253,8 +9198,7 @@ export type NamespaceTopicSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NamespaceTopicSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const NamespaceTopicSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NamespaceTopicSystemData {
@@ -9370,7 +9314,7 @@ export type SubscriptionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SubscriptionSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SubscriptionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SubscriptionSystemDataLastModifiedByType =
@@ -9378,7 +9322,7 @@ export type SubscriptionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SubscriptionSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SubscriptionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SubscriptionSystemData {
@@ -9603,8 +9547,7 @@ export type PartnerConfigurationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerConfigurationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const PartnerConfigurationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerConfigurationSystemDataLastModifiedByType =
@@ -9612,8 +9555,7 @@ export type PartnerConfigurationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PartnerConfigurationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerConfigurationSystemData {
@@ -9774,7 +9716,7 @@ export type PartnerNamespaceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerNamespaceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const PartnerNamespaceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerNamespaceSystemDataLastModifiedByType =
@@ -9782,8 +9724,7 @@ export type PartnerNamespaceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerNamespaceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespaceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerNamespaceSystemData {
@@ -9978,8 +9919,7 @@ export type PartnerRegistrationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerRegistrationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const PartnerRegistrationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerRegistrationSystemDataLastModifiedByType =
@@ -9987,8 +9927,7 @@ export type PartnerRegistrationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerRegistrationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PartnerRegistrationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerRegistrationSystemData {
@@ -10142,7 +10081,7 @@ export type PartnerTopicSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerTopicSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const PartnerTopicSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerTopicSystemDataLastModifiedByType =
@@ -10150,7 +10089,7 @@ export type PartnerTopicSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PartnerTopicSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const PartnerTopicSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerTopicSystemData {
@@ -10330,7 +10269,7 @@ export type PermissionBindingSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PermissionBindingSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const PermissionBindingSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PermissionBindingSystemDataLastModifiedByType =
@@ -10338,8 +10277,7 @@ export type PermissionBindingSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PermissionBindingSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PermissionBindingSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PermissionBindingSystemData {
@@ -10424,7 +10362,7 @@ export type ListPrivateEndpointConnectionByResourceRequestParentType =
   | "partnerNamespaces"
   | "namespaces";
 export const ListPrivateEndpointConnectionByResourceRequestParentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPrivateEndpointConnectionByResourceRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -10589,7 +10527,7 @@ export type SystemTopicSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemTopicSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemTopicSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemTopicSystemDataLastModifiedByType =
@@ -10597,7 +10535,7 @@ export type SystemTopicSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemTopicSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemTopicSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemTopicSystemData {
@@ -10780,7 +10718,7 @@ export type TopicSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TopicSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const TopicSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type TopicSystemDataLastModifiedByType =
@@ -10788,7 +10726,7 @@ export type TopicSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TopicSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const TopicSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface TopicSystemData {
@@ -11082,7 +11020,7 @@ export type TopicSpaceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TopicSpaceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const TopicSpaceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type TopicSpaceSystemDataLastModifiedByType =
@@ -11090,7 +11028,7 @@ export type TopicSpaceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TopicSpaceSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const TopicSpaceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface TopicSpaceSystemData {
@@ -11265,7 +11203,7 @@ export type VerifiedPartnerSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const VerifiedPartnerSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const VerifiedPartnerSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type VerifiedPartnerSystemDataLastModifiedByType =
@@ -11273,8 +11211,7 @@ export type VerifiedPartnerSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const VerifiedPartnerSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const VerifiedPartnerSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface VerifiedPartnerSystemData {
@@ -11402,7 +11339,7 @@ export const TopicsConfigurationInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicate if Topic Spaces Configuration is enabled for the namespace. Default is Disabled. */
 export type TopicSpacesConfigurationInputState = "Disabled" | "Enabled";
-export const TopicSpacesConfigurationInputState = /*@__PURE__*/ S.String;
+export const TopicSpacesConfigurationInputState = S.String;
 
 /** List of custom domain configurations for the namespace. */
 export type TopicSpacesConfigurationInputCustomDomainsList =
@@ -11447,8 +11384,7 @@ export const TopicSpacesConfigurationInput = /*@__PURE__*/ S.suspend(() =>
 export type NamespacePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const NamespacePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const NamespacePropertiesInputPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type NamespacePropertiesInputInboundIpRulesList = Array<InboundIpRule>;
@@ -11461,8 +11397,7 @@ export type NamespacePropertiesInputMinimumTlsVersionAllowed =
   | "1.0"
   | "1.1"
   | "1.2";
-export const NamespacePropertiesInputMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const NamespacePropertiesInputMinimumTlsVersionAllowed = S.String;
 
 /** Properties of the namespace resource. */
 export interface NamespacePropertiesInput {
@@ -11560,8 +11495,7 @@ export type NamespacesCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NamespacesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const NamespacesCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type NamespacesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -11570,7 +11504,7 @@ export type NamespacesCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const NamespacesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NamespacesCreateOrUpdateResponseSystemData {
@@ -11644,8 +11578,7 @@ export const NamespacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 /** The event delivery schema for the event subscription. */
 export type SubscriptionPropertiesInputEventDeliverySchema =
   "CloudEventSchemaV1_0";
-export const SubscriptionPropertiesInputEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+export const SubscriptionPropertiesInputEventDeliverySchema = S.String;
 
 /** Properties of the event subscription. */
 export interface SubscriptionPropertiesInput {
@@ -11715,7 +11648,7 @@ export type NamespaceTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCrea
   | "ManagedIdentity"
   | "Key";
 export const NamespaceTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NamespaceTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -11724,7 +11657,7 @@ export type NamespaceTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLast
   | "ManagedIdentity"
   | "Key";
 export const NamespaceTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NamespaceTopicEventSubscriptionsCreateOrUpdateResponseSystemData {
@@ -11789,12 +11722,11 @@ export const NamespaceTopicEventSubscriptionsCreateOrUpdateResponse =
 
 /** Publisher type of the namespace topic. */
 export type NamespaceTopicPropertiesInputPublisherType = "Custom";
-export const NamespaceTopicPropertiesInputPublisherType =
-  /*@__PURE__*/ S.String;
+export const NamespaceTopicPropertiesInputPublisherType = S.String;
 
 /** This determines the format that is expected for incoming events published to the topic. */
 export type NamespaceTopicPropertiesInputInputSchema = "CloudEventSchemaV1_0";
-export const NamespaceTopicPropertiesInputInputSchema = /*@__PURE__*/ S.String;
+export const NamespaceTopicPropertiesInputInputSchema = S.String;
 
 /** Properties of the namespace topic. */
 export interface NamespaceTopicPropertiesInput {
@@ -11854,7 +11786,7 @@ export type NamespaceTopicsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const NamespaceTopicsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type NamespaceTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -11863,7 +11795,7 @@ export type NamespaceTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const NamespaceTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface NamespaceTopicsCreateOrUpdateResponseSystemData {
@@ -11972,7 +11904,7 @@ export type PartnerConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PartnerConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -11981,7 +11913,7 @@ export type PartnerConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByT
   | "ManagedIdentity"
   | "Key";
 export const PartnerConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerConfigurationsCreateOrUpdateResponseSystemData {
@@ -12098,7 +12030,7 @@ export type PartnerConfigurationsUnauthorizePartnerResponseSystemDataCreatedByTy
   | "ManagedIdentity"
   | "Key";
 export const PartnerConfigurationsUnauthorizePartnerResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerConfigurationsUnauthorizePartnerResponseSystemDataLastModifiedByType =
@@ -12107,7 +12039,7 @@ export type PartnerConfigurationsUnauthorizePartnerResponseSystemDataLastModifie
   | "ManagedIdentity"
   | "Key";
 export const PartnerConfigurationsUnauthorizePartnerResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerConfigurationsUnauthorizePartnerResponseSystemData {
@@ -12200,15 +12132,13 @@ export type PartnerNamespacePropertiesInputMinimumTlsVersionAllowed =
   | "1.0"
   | "1.1"
   | "1.2";
-export const PartnerNamespacePropertiesInputMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespacePropertiesInputMinimumTlsVersionAllowed = S.String;
 
 /** This determines if traffic is allowed over public network. By default it is enabled. You can further restrict to specific IPs by configuring <seealso cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.PartnerNamespaceProperties.InboundIpRules" /> */
 export type PartnerNamespacePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PartnerNamespacePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespacePropertiesInputPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type PartnerNamespacePropertiesInputInboundIpRulesList =
@@ -12222,8 +12152,7 @@ export const PartnerNamespacePropertiesInputInboundIpRulesList =
 export type PartnerNamespacePropertiesInputPartnerTopicRoutingMode =
   | "SourceEventAttribute"
   | "ChannelNameHeader";
-export const PartnerNamespacePropertiesInputPartnerTopicRoutingMode =
-  /*@__PURE__*/ S.String;
+export const PartnerNamespacePropertiesInputPartnerTopicRoutingMode = S.String;
 
 /** Properties of the partner namespace. */
 export interface PartnerNamespacePropertiesInput {
@@ -12319,7 +12248,7 @@ export type PartnerNamespacesCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PartnerNamespacesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerNamespacesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -12328,7 +12257,7 @@ export type PartnerNamespacesCreateOrUpdateResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const PartnerNamespacesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerNamespacesCreateOrUpdateResponseSystemData {
@@ -12469,7 +12398,7 @@ export type PartnerRegistrationsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PartnerRegistrationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerRegistrationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -12478,7 +12407,7 @@ export type PartnerRegistrationsCreateOrUpdateResponseSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const PartnerRegistrationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerRegistrationsCreateOrUpdateResponseSystemData {
@@ -12585,7 +12514,7 @@ export type PartnerTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreate
   | "ManagedIdentity"
   | "Key";
 export const PartnerTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -12594,7 +12523,7 @@ export type PartnerTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastMo
   | "ManagedIdentity"
   | "Key";
 export const PartnerTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerTopicEventSubscriptionsCreateOrUpdateResponseSystemData {
@@ -12671,8 +12600,7 @@ export type PartnerTopicPropertiesInputActivationState =
   | "NeverActivated"
   | "Activated"
   | "Deactivated";
-export const PartnerTopicPropertiesInputActivationState =
-  /*@__PURE__*/ S.String;
+export const PartnerTopicPropertiesInputActivationState = S.String;
 
 /** Properties of the Partner Topic. */
 export interface PartnerTopicPropertiesInput {
@@ -12759,7 +12687,7 @@ export type PartnerTopicsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PartnerTopicsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PartnerTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -12768,7 +12696,7 @@ export type PartnerTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const PartnerTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PartnerTopicsCreateOrUpdateResponseSystemData {
@@ -12840,8 +12768,7 @@ export const PartnerTopicsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 export type PermissionBindingPropertiesInputPermission =
   | "Publisher"
   | "Subscriber";
-export const PermissionBindingPropertiesInputPermission =
-  /*@__PURE__*/ S.String;
+export const PermissionBindingPropertiesInputPermission = S.String;
 
 /** The properties of permission binding. */
 export interface PermissionBindingPropertiesInput {
@@ -12904,7 +12831,7 @@ export type PermissionBindingsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PermissionBindingsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PermissionBindingsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -12913,7 +12840,7 @@ export type PermissionBindingsCreateOrUpdateResponseSystemDataLastModifiedByType
   | "ManagedIdentity"
   | "Key";
 export const PermissionBindingsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PermissionBindingsCreateOrUpdateResponseSystemData {
@@ -13158,7 +13085,7 @@ export type SystemTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreated
   | "ManagedIdentity"
   | "Key";
 export const SystemTopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -13167,7 +13094,7 @@ export type SystemTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastMod
   | "ManagedIdentity"
   | "Key";
 export const SystemTopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemTopicEventSubscriptionsCreateOrUpdateResponseSystemData {
@@ -13307,7 +13234,7 @@ export type SystemTopicsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const SystemTopicsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -13316,7 +13243,7 @@ export type SystemTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const SystemTopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemTopicsCreateOrUpdateResponseSystemData {
@@ -13423,7 +13350,7 @@ export type TopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType
   | "ManagedIdentity"
   | "Key";
 export const TopicEventSubscriptionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type TopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -13432,7 +13359,7 @@ export type TopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedB
   | "ManagedIdentity"
   | "Key";
 export const TopicEventSubscriptionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface TopicEventSubscriptionsCreateOrUpdateResponseSystemData {
@@ -13508,19 +13435,18 @@ export type TopicPropertiesInputMinimumTlsVersionAllowed =
   | "1.0"
   | "1.1"
   | "1.2";
-export const TopicPropertiesInputMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const TopicPropertiesInputMinimumTlsVersionAllowed = S.String;
 
 /** This determines the format that Event Grid should expect for incoming events published to the topic. */
 export type TopicPropertiesInputInputSchema =
   | "EventGridSchema"
   | "CustomEventSchema"
   | "CloudEventSchemaV1_0";
-export const TopicPropertiesInputInputSchema = /*@__PURE__*/ S.String;
+export const TopicPropertiesInputInputSchema = S.String;
 
 /** This determines if traffic is allowed over public network. By default it is enabled. You can further restrict to specific IPs by configuring <seealso cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.TopicProperties.InboundIpRules" /> */
 export type TopicPropertiesInputPublicNetworkAccess = "Enabled" | "Disabled";
-export const TopicPropertiesInputPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const TopicPropertiesInputPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type TopicPropertiesInputInboundIpRulesList = Array<InboundIpRule>;
@@ -13532,7 +13458,7 @@ export const TopicPropertiesInputInboundIpRulesList = /*@__PURE__*/ S.Array(
 export type TopicPropertiesInputDataResidencyBoundary =
   | "WithinGeopair"
   | "WithinRegion";
-export const TopicPropertiesInputDataResidencyBoundary = /*@__PURE__*/ S.String;
+export const TopicPropertiesInputDataResidencyBoundary = S.String;
 
 /** Properties of the Topic. */
 export interface TopicPropertiesInput {
@@ -13628,8 +13554,7 @@ export type TopicsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TopicsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const TopicsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type TopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -13638,7 +13563,7 @@ export type TopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const TopicsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface TopicsCreateOrUpdateResponseSystemData {
@@ -13767,7 +13692,7 @@ export type TopicSpacesCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const TopicSpacesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type TopicSpacesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -13776,7 +13701,7 @@ export type TopicSpacesCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const TopicSpacesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface TopicSpacesCreateOrUpdateResponseSystemData {
@@ -13912,8 +13837,7 @@ export const UpdateDomainRequestTagsMap = /*@__PURE__*/ S.Record(
 export type DomainUpdateParameterPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const DomainUpdateParameterPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const DomainUpdateParameterPropertiesPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type DomainUpdateParameterPropertiesInboundIpRulesList =
@@ -13928,15 +13852,13 @@ export type DomainUpdateParameterPropertiesMinimumTlsVersionAllowed =
   | "1.0"
   | "1.1"
   | "1.2";
-export const DomainUpdateParameterPropertiesMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const DomainUpdateParameterPropertiesMinimumTlsVersionAllowed = S.String;
 
 /** The data residency boundary for the domain. */
 export type DomainUpdateParameterPropertiesDataResidencyBoundary =
   | "WithinGeopair"
   | "WithinRegion";
-export const DomainUpdateParameterPropertiesDataResidencyBoundary =
-  /*@__PURE__*/ S.String;
+export const DomainUpdateParameterPropertiesDataResidencyBoundary = S.String;
 
 /** Information of domain update parameter properties. */
 export interface DomainUpdateParameterProperties {
@@ -14039,8 +13961,7 @@ export type UpdateDomainEventSubscriptionRequestEventDeliverySchema =
   | "EventGridSchema"
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
-export const UpdateDomainEventSubscriptionRequestEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+export const UpdateDomainEventSubscriptionRequestEventDeliverySchema = S.String;
 
 export interface UpdateDomainEventSubscriptionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -14111,7 +14032,7 @@ export type UpdateDomainEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateDomainEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateDomainEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -14120,7 +14041,7 @@ export type UpdateDomainEventSubscriptionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateDomainEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateDomainEventSubscriptionResponseSystemData {
@@ -14193,7 +14114,7 @@ export type UpdateDomainTopicEventSubscriptionRequestEventDeliverySchema =
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
 export const UpdateDomainTopicEventSubscriptionRequestEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDomainTopicEventSubscriptionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -14267,7 +14188,7 @@ export type UpdateDomainTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateDomainTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -14276,7 +14197,7 @@ export type UpdateDomainTopicEventSubscriptionResponseSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const UpdateDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateDomainTopicEventSubscriptionResponseSystemData {
@@ -14349,8 +14270,7 @@ export type UpdateEventSubscriptionRequestEventDeliverySchema =
   | "EventGridSchema"
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
-export const UpdateEventSubscriptionRequestEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+export const UpdateEventSubscriptionRequestEventDeliverySchema = S.String;
 
 export interface UpdateEventSubscriptionRequest {
   /** The scope of existing event subscription. The scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use '/subscriptions/{subscriptionId}/' for a subscription, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for a resource group, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}' for a resource, and '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics/{topicName}' for an EventGrid topic. */
@@ -14411,8 +14331,7 @@ export type UpdateEventSubscriptionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateEventSubscriptionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -14421,7 +14340,7 @@ export type UpdateEventSubscriptionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateEventSubscriptionResponseSystemData {
@@ -14491,7 +14410,7 @@ export const UpdateNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Indicate if Topic Spaces Configuration is enabled for the namespace. Default is Disabled. */
 export type UpdateTopicSpacesConfigurationInfoState = "Disabled" | "Enabled";
-export const UpdateTopicSpacesConfigurationInfoState = /*@__PURE__*/ S.String;
+export const UpdateTopicSpacesConfigurationInfoState = S.String;
 
 /** Custom domain info for topic spaces configuration. */
 export type UpdateTopicSpacesConfigurationInfoCustomDomainsList =
@@ -14559,8 +14478,7 @@ export const UpdateTopicsConfigurationInfo = /*@__PURE__*/ S.suspend(() =>
 export type NamespaceUpdateParameterPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const NamespaceUpdateParameterPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const NamespaceUpdateParameterPropertiesPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type NamespaceUpdateParameterPropertiesInboundIpRulesList =
@@ -14650,8 +14568,7 @@ export type UpdateNamespaceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateNamespaceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateNamespaceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateNamespaceResponseSystemDataLastModifiedByType =
@@ -14659,8 +14576,7 @@ export type UpdateNamespaceResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateNamespaceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateNamespaceResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateNamespaceResponseSystemData {
@@ -14779,8 +14695,7 @@ export type UpdateNamespaceTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateNamespaceTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateNamespaceTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateNamespaceTopicResponseSystemDataLastModifiedByType =
@@ -14789,7 +14704,7 @@ export type UpdateNamespaceTopicResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateNamespaceTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateNamespaceTopicResponseSystemData {
@@ -14852,7 +14767,7 @@ export const UpdateNamespaceTopicResponse = /*@__PURE__*/ S.suspend(() =>
 export type SubscriptionUpdateParametersPropertiesEventDeliverySchema =
   "CloudEventSchemaV1_0";
 export const SubscriptionUpdateParametersPropertiesEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of the Event Subscription update parameters. */
 export interface SubscriptionUpdateParametersProperties {
@@ -14922,7 +14837,7 @@ export type UpdateNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType
   | "ManagedIdentity"
   | "Key";
 export const UpdateNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -14931,7 +14846,7 @@ export type UpdateNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedB
   | "ManagedIdentity"
   | "Key";
 export const UpdateNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateNamespaceTopicEventSubscriptionResponseSystemData {
@@ -15051,7 +14966,7 @@ export type UpdatePartnerConfigurationResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdatePartnerConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePartnerConfigurationResponseSystemDataLastModifiedByType =
@@ -15060,7 +14975,7 @@ export type UpdatePartnerConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdatePartnerConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePartnerConfigurationResponseSystemData {
@@ -15148,7 +15063,7 @@ export type PartnerNamespaceUpdateParameterPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
 export const PartnerNamespaceUpdateParameterPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type PartnerNamespaceUpdateParameterPropertiesInboundIpRulesList =
@@ -15164,7 +15079,7 @@ export type PartnerNamespaceUpdateParameterPropertiesMinimumTlsVersionAllowed =
   | "1.1"
   | "1.2";
 export const PartnerNamespaceUpdateParameterPropertiesMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information of Partner Namespace update parameter properties. */
 export interface PartnerNamespaceUpdateParameterProperties {
@@ -15342,7 +15257,7 @@ export type UpdatePartnerTopicEventSubscriptionRequestEventDeliverySchema =
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
 export const UpdatePartnerTopicEventSubscriptionRequestEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdatePartnerTopicEventSubscriptionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -15413,7 +15328,7 @@ export type UpdatePartnerTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdatePartnerTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -15422,7 +15337,7 @@ export type UpdatePartnerTopicEventSubscriptionResponseSystemDataLastModifiedByT
   | "ManagedIdentity"
   | "Key";
 export const UpdatePartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePartnerTopicEventSubscriptionResponseSystemData {
@@ -15489,8 +15404,7 @@ export type UpdatePrivateEndpointConnectionRequestParentType =
   | "domains"
   | "partnerNamespaces"
   | "namespaces";
-export const UpdatePrivateEndpointConnectionRequestParentType =
-  /*@__PURE__*/ S.String;
+export const UpdatePrivateEndpointConnectionRequestParentType = S.String;
 
 export interface UpdatePrivateEndpointConnectionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -15606,8 +15520,7 @@ export type UpdateSystemTopicResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateSystemTopicResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateSystemTopicResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateSystemTopicResponseSystemDataLastModifiedByType =
@@ -15615,8 +15528,7 @@ export type UpdateSystemTopicResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateSystemTopicResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateSystemTopicResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateSystemTopicResponseSystemData {
@@ -15694,7 +15606,7 @@ export type UpdateSystemTopicEventSubscriptionRequestEventDeliverySchema =
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
 export const UpdateSystemTopicEventSubscriptionRequestEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateSystemTopicEventSubscriptionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -15765,7 +15677,7 @@ export type UpdateSystemTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateSystemTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -15774,7 +15686,7 @@ export type UpdateSystemTopicEventSubscriptionResponseSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const UpdateSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateSystemTopicEventSubscriptionResponseSystemData {
@@ -15847,8 +15759,7 @@ export const UpdateTopicRequestTagsMap = /*@__PURE__*/ S.Record(
 export type TopicUpdateParameterPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const TopicUpdateParameterPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const TopicUpdateParameterPropertiesPublicNetworkAccess = S.String;
 
 /** This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if PublicNetworkAccess is enabled. */
 export type TopicUpdateParameterPropertiesInboundIpRulesList =
@@ -15863,15 +15774,13 @@ export type TopicUpdateParameterPropertiesMinimumTlsVersionAllowed =
   | "1.0"
   | "1.1"
   | "1.2";
-export const TopicUpdateParameterPropertiesMinimumTlsVersionAllowed =
-  /*@__PURE__*/ S.String;
+export const TopicUpdateParameterPropertiesMinimumTlsVersionAllowed = S.String;
 
 /** The data residency boundary for the topic. */
 export type TopicUpdateParameterPropertiesDataResidencyBoundary =
   | "WithinGeopair"
   | "WithinRegion";
-export const TopicUpdateParameterPropertiesDataResidencyBoundary =
-  /*@__PURE__*/ S.String;
+export const TopicUpdateParameterPropertiesDataResidencyBoundary = S.String;
 
 /** Information of topic update parameter properties. */
 export interface TopicUpdateParameterProperties {
@@ -15968,8 +15877,7 @@ export type UpdateTopicEventSubscriptionRequestEventDeliverySchema =
   | "EventGridSchema"
   | "CustomInputSchema"
   | "CloudEventSchemaV1_0";
-export const UpdateTopicEventSubscriptionRequestEventDeliverySchema =
-  /*@__PURE__*/ S.String;
+export const UpdateTopicEventSubscriptionRequestEventDeliverySchema = S.String;
 
 export interface UpdateTopicEventSubscriptionRequest {
   /** Subscription credentials that uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -16037,7 +15945,7 @@ export type UpdateTopicEventSubscriptionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateTopicEventSubscriptionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateTopicEventSubscriptionResponseSystemDataLastModifiedByType =
@@ -16046,7 +15954,7 @@ export type UpdateTopicEventSubscriptionResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateTopicEventSubscriptionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateTopicEventSubscriptionResponseSystemData {

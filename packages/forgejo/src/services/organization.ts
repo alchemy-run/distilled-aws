@@ -77,7 +77,7 @@ export class UnprocessableEntity
 
 /** possible values are `public` (default), `limited` or `private` */
 export type CreateOrgRequestVisibility = "public" | "limited" | "private";
-export const CreateOrgRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateOrgRequestVisibility = S.String;
 
 export interface CreateOrgRequest {
   description?: string;
@@ -140,7 +140,7 @@ export const Organization = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type CreateOrgRepoRequestObjectFormatName = "sha1" | "sha256";
-export const CreateOrgRepoRequestObjectFormatName = /*@__PURE__*/ S.String;
+export const CreateOrgRepoRequestObjectFormatName = S.String;
 
 /** TrustModel of the repository */
 export type CreateOrgRepoRequestTrustModel =
@@ -148,7 +148,7 @@ export type CreateOrgRepoRequestTrustModel =
   | "collaborator"
   | "committer"
   | "collaboratorcommitter";
-export const CreateOrgRepoRequestTrustModel = /*@__PURE__*/ S.String;
+export const CreateOrgRepoRequestTrustModel = S.String;
 
 export interface CreateOrgRepoRequest {
   /** name of organization */
@@ -252,7 +252,7 @@ export const InternalTracker = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type RepositoryObjectFormatName = "sha1" | "sha256";
-export const RepositoryObjectFormatName = /*@__PURE__*/ S.String;
+export const RepositoryObjectFormatName = S.String;
 
 /** User represents a user */
 export interface User {
@@ -341,7 +341,7 @@ export const Permission = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Permission" }) as any as S.Schema<Permission>;
 
 export type TeamPermission = "none" | "read" | "write" | "admin" | "owner";
-export const TeamPermission = /*@__PURE__*/ S.String;
+export const TeamPermission = S.String;
 
 export type TeamUnitsList = Array<string>;
 export const TeamUnitsList = /*@__PURE__*/ S.Array(
@@ -683,7 +683,7 @@ export const DeleteOrgVariableResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** possible values are `public`, `limited` or `private` */
 export type EditOrgRequestVisibility = "public" | "limited" | "private";
-export const EditOrgRequestVisibility = /*@__PURE__*/ S.String;
+export const EditOrgRequestVisibility = S.String;
 
 export interface EditOrgRequest {
   /** name of the organization to edit */
@@ -749,7 +749,7 @@ export const ActionRunnerLabelsList = /*@__PURE__*/ S.Array(
 
 /** Status indicates whether this runner is offline, or active, for example. */
 export type ActionRunnerStatus = "offline" | "idle" | "active";
-export const ActionRunnerStatus = /*@__PURE__*/ S.String;
+export const ActionRunnerStatus = S.String;
 
 /** ActionRunner represents a runner */
 export interface ActionRunner {
@@ -1046,7 +1046,7 @@ export type OrgCreateHookRequestType =
   | "feishu"
   | "wechatwork"
   | "packagist";
-export const OrgCreateHookRequestType = /*@__PURE__*/ S.String;
+export const OrgCreateHookRequestType = S.String;
 
 export interface OrgCreateHookRequest {
   /** name of the organization */
@@ -1162,7 +1162,7 @@ export const Label = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Label" }) as any as S.Schema<Label>;
 
 export type OrgCreateTeamRequestPermission = "read" | "write" | "admin";
-export const OrgCreateTeamRequestPermission = /*@__PURE__*/ S.String;
+export const OrgCreateTeamRequestPermission = S.String;
 
 export type OrgCreateTeamRequestUnitsList = Array<string>;
 export const OrgCreateTeamRequestUnitsList = /*@__PURE__*/ S.Array(
@@ -1383,7 +1383,7 @@ export const OrgEditLabelRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OrgEditLabelRequest>;
 
 export type OrgEditTeamRequestPermission = "read" | "write" | "admin";
-export const OrgEditTeamRequestPermission = /*@__PURE__*/ S.String;
+export const OrgEditTeamRequestPermission = S.String;
 
 export type OrgEditTeamRequestUnitsList = Array<string>;
 export const OrgEditTeamRequestUnitsList = /*@__PURE__*/ S.Array(
@@ -1828,7 +1828,7 @@ export const OrgListActivityFeedsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OrgListActivityFeedsRequest>;
 
 export type AttachmentType = "attachment" | "external";
-export const AttachmentType = /*@__PURE__*/ S.String;
+export const AttachmentType = S.String;
 
 /** Attachment a generic attachment */
 export interface Attachment {
@@ -1929,7 +1929,7 @@ export type ActivityOpType =
   | "pull_review_dismissed"
   | "pull_request_ready_for_review"
   | "auto_merge_pull_request";
-export const ActivityOpType = /*@__PURE__*/ S.String;
+export const ActivityOpType = S.String;
 
 export interface Activity {
   act_user?: User;
@@ -2082,7 +2082,7 @@ export type OrgListLabelsRequestSort =
   | "mostissues"
   | "leastissues"
   | "reversealphabetically";
-export const OrgListLabelsRequestSort = /*@__PURE__*/ S.String;
+export const OrgListLabelsRequestSort = S.String;
 
 export interface OrgListLabelsRequest {
   /** name of the organization */

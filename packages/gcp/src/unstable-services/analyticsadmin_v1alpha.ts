@@ -723,7 +723,7 @@ export type GoogleAnalyticsAdminV1alphaLinkProposalStatusDetailsLinkProposalInit
   | "GOOGLE_ANALYTICS"
   | "LINKED_PRODUCT";
 export const GoogleAnalyticsAdminV1alphaLinkProposalStatusDetailsLinkProposalInitiatingProductEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaLinkProposalStatusDetailsLinkProposalStateEnum =
   | "LINK_PROPOSAL_STATE_UNSPECIFIED"
@@ -734,7 +734,7 @@ export type GoogleAnalyticsAdminV1alphaLinkProposalStatusDetailsLinkProposalStat
   | "EXPIRED"
   | "OBSOLETE";
 export const GoogleAnalyticsAdminV1alphaLinkProposalStatusDetailsLinkProposalStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Status information for a link proposal. */
 export interface GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails {
@@ -830,8 +830,7 @@ export type GoogleAnalyticsAdminV1alphaPropertyPropertyTypeEnum =
   | "PROPERTY_TYPE_ORDINARY"
   | "PROPERTY_TYPE_SUBPROPERTY"
   | "PROPERTY_TYPE_ROLLUP";
-export const GoogleAnalyticsAdminV1alphaPropertyPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1alphaPropertyPropertyTypeEnum = S.String;
 
 export type GoogleAnalyticsAdminV1alphaPropertyIndustryCategoryEnum =
   | "INDUSTRY_CATEGORY_UNSPECIFIED"
@@ -861,15 +860,13 @@ export type GoogleAnalyticsAdminV1alphaPropertyIndustryCategoryEnum =
   | "SPORTS"
   | "JOBS_AND_EDUCATION"
   | "SHOPPING";
-export const GoogleAnalyticsAdminV1alphaPropertyIndustryCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1alphaPropertyIndustryCategoryEnum = S.String;
 
 export type GoogleAnalyticsAdminV1alphaPropertyServiceLevelEnum =
   | "SERVICE_LEVEL_UNSPECIFIED"
   | "GOOGLE_ANALYTICS_STANDARD"
   | "GOOGLE_ANALYTICS_360";
-export const GoogleAnalyticsAdminV1alphaPropertyServiceLevelEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1alphaPropertyServiceLevelEnum = S.String;
 
 /** A resource message representing a Google Analytics property. */
 export interface GoogleAnalyticsAdminV1alphaProperty {
@@ -1017,7 +1014,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceExclusionDurationModeEnum =
   | "EXCLUDE_TEMPORARILY"
   | "EXCLUDE_PERMANENTLY";
 export const GoogleAnalyticsAdminV1alphaAudienceExclusionDurationModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaAudienceSequenceFilterScopeEnum =
   | "AUDIENCE_FILTER_SCOPE_UNSPECIFIED"
@@ -1025,7 +1022,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceSequenceFilterScopeEnum =
   | "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION"
   | "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS";
 export const GoogleAnalyticsAdminV1alphaAudienceSequenceFilterScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilterMatchTypeEnum =
   | "MATCH_TYPE_UNSPECIFIED"
@@ -1035,7 +1032,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilt
   | "CONTAINS"
   | "FULL_REGEXP";
 export const GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilterMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A filter for a string-type dimension that matches a particular pattern. */
 export interface GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilter {
@@ -1126,7 +1123,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFil
   | "LESS_THAN"
   | "GREATER_THAN";
 export const GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilterOperationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A filter for numeric or date values on a dimension or metric. */
 export interface GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter {
@@ -1274,7 +1271,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceSte
   | "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION"
   | "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS";
 export const GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStepScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A condition that must occur in the specified step order for this user to match the sequence. */
 export interface GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep {
@@ -1344,7 +1341,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceFilterClauseClauseTypeEnum =
   | "INCLUDE"
   | "EXCLUDE";
 export const GoogleAnalyticsAdminV1alphaAudienceFilterClauseClauseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaAudienceSimpleFilterScopeEnum =
   | "AUDIENCE_FILTER_SCOPE_UNSPECIFIED"
@@ -1352,7 +1349,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceSimpleFilterScopeEnum =
   | "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION"
   | "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS";
 export const GoogleAnalyticsAdminV1alphaAudienceSimpleFilterScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines a simple filter that a user must satisfy to be a member of the Audience. */
 export interface GoogleAnalyticsAdminV1alphaAudienceSimpleFilter {
@@ -1415,7 +1412,7 @@ export type GoogleAnalyticsAdminV1alphaAudienceEventTriggerLogConditionEnum =
   | "AUDIENCE_JOINED"
   | "AUDIENCE_MEMBERSHIP_RENEWED";
 export const GoogleAnalyticsAdminV1alphaAudienceEventTriggerLogConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies an event to log when a user joins the Audience. */
 export interface GoogleAnalyticsAdminV1alphaAudienceEventTrigger {
@@ -1580,14 +1577,14 @@ export type GoogleAnalyticsAdminV1alphaCalculatedMetricMetricUnitEnum =
   | "MINUTES"
   | "HOURS";
 export const GoogleAnalyticsAdminV1alphaCalculatedMetricMetricUnitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaCalculatedMetricRestrictedMetricTypeItemEnum =
   | "RESTRICTED_METRIC_TYPE_UNSPECIFIED"
   | "COST_DATA"
   | "REVENUE_DATA";
 export const GoogleAnalyticsAdminV1alphaCalculatedMetricRestrictedMetricTypeItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaCalculatedMetricRestrictedMetricTypeItemEnumList =
   Array<
@@ -1699,7 +1696,7 @@ export type GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilterMatchTypeEn
   | "FULL_REGEXP"
   | "PARTIAL_REGEXP";
 export const GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilterMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Filter where the field value is a String. The match is case insensitive. */
 export interface GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter {
@@ -1873,7 +1870,7 @@ export type GoogleAnalyticsAdminV1alphaConversionEventCountingMethodEnum =
   | "ONCE_PER_EVENT"
   | "ONCE_PER_SESSION";
 export const GoogleAnalyticsAdminV1alphaConversionEventCountingMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines a default value/currency for a conversion event. Both value and currency must be provided. */
 export interface GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue {
@@ -1960,8 +1957,7 @@ export type GoogleAnalyticsAdminV1alphaCustomDimensionScopeEnum =
   | "EVENT"
   | "USER"
   | "ITEM";
-export const GoogleAnalyticsAdminV1alphaCustomDimensionScopeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1alphaCustomDimensionScopeEnum = S.String;
 
 /** A definition for a CustomDimension. */
 export interface GoogleAnalyticsAdminV1alphaCustomDimension {
@@ -2019,15 +2015,14 @@ export const CreatePropertiesCustomDimensionsRequest = /*@__PURE__*/ S.suspend(
 export type GoogleAnalyticsAdminV1alphaCustomMetricScopeEnum =
   | "METRIC_SCOPE_UNSPECIFIED"
   | "EVENT";
-export const GoogleAnalyticsAdminV1alphaCustomMetricScopeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1alphaCustomMetricScopeEnum = S.String;
 
 export type GoogleAnalyticsAdminV1alphaCustomMetricRestrictedMetricTypeItemEnum =
   | "RESTRICTED_METRIC_TYPE_UNSPECIFIED"
   | "COST_DATA"
   | "REVENUE_DATA";
 export const GoogleAnalyticsAdminV1alphaCustomMetricRestrictedMetricTypeItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaCustomMetricRestrictedMetricTypeItemEnumList =
   Array<
@@ -2052,7 +2047,7 @@ export type GoogleAnalyticsAdminV1alphaCustomMetricMeasurementUnitEnum =
   | "MINUTES"
   | "HOURS";
 export const GoogleAnalyticsAdminV1alphaCustomMetricMeasurementUnitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A definition for a custom metric. */
 export interface GoogleAnalyticsAdminV1alphaCustomMetric {
@@ -2121,8 +2116,7 @@ export type GoogleAnalyticsAdminV1alphaDataStreamTypeEnum =
   | "WEB_DATA_STREAM"
   | "ANDROID_APP_DATA_STREAM"
   | "IOS_APP_DATA_STREAM";
-export const GoogleAnalyticsAdminV1alphaDataStreamTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1alphaDataStreamTypeEnum = S.String;
 
 /** Data specific to Android app streams. */
 export interface GoogleAnalyticsAdminV1alphaDataStreamAndroidAppStreamData {
@@ -2257,7 +2251,7 @@ export type GoogleAnalyticsAdminV1alphaMatchingConditionComparisonTypeEnum =
   | "REGULAR_EXPRESSION"
   | "REGULAR_EXPRESSION_CASE_INSENSITIVE";
 export const GoogleAnalyticsAdminV1alphaMatchingConditionComparisonTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines a condition for when an Event Edit or Event Creation rule applies to an event. */
 export interface GoogleAnalyticsAdminV1alphaMatchingCondition {
@@ -2508,7 +2502,7 @@ export type GoogleAnalyticsAdminV1alphaConversionValuesCoarseValueEnum =
   | "COARSE_VALUE_MEDIUM"
   | "COARSE_VALUE_HIGH";
 export const GoogleAnalyticsAdminV1alphaConversionValuesCoarseValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Conversion value settings for a postback window for SKAdNetwork conversion value schema. */
 export interface GoogleAnalyticsAdminV1alphaConversionValues {
@@ -2678,7 +2672,7 @@ export type GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilterMatchTyp
   | "EXACT"
   | "CONTAINS";
 export const GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilterMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A filter for a string-type dimension that matches a particular pattern. */
 export interface GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter {
@@ -2955,8 +2949,7 @@ export type GoogleAnalyticsAdminV1alphaKeyEventCountingMethodEnum =
   | "COUNTING_METHOD_UNSPECIFIED"
   | "ONCE_PER_EVENT"
   | "ONCE_PER_SESSION";
-export const GoogleAnalyticsAdminV1alphaKeyEventCountingMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1alphaKeyEventCountingMethodEnum = S.String;
 
 /** Defines a default value/currency for a key event. */
 export interface GoogleAnalyticsAdminV1alphaKeyEventDefaultValue {
@@ -3075,7 +3068,7 @@ export type GoogleAnalyticsAdminV1alphaReportingDataAnnotationColorEnum =
   | "CYAN"
   | "ORANGE";
 export const GoogleAnalyticsAdminV1alphaReportingDataAnnotationColorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A Reporting Data Annotation is a comment connected to certain dates for reporting data. */
 export interface GoogleAnalyticsAdminV1alphaReportingDataAnnotation {
@@ -3245,7 +3238,7 @@ export type GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilt
   | "FULL_REGEXP"
   | "PARTIAL_REGEXP";
 export const GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilterMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A filter for a string-type dimension that matches a particular pattern. */
 export interface GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter {
@@ -3351,7 +3344,7 @@ export type GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClauseFilterClauseT
   | "INCLUDE"
   | "EXCLUDE";
 export const GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClauseFilterClauseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A clause for defining a filter. A filter may be inclusive (events satisfying the filter clause are included in the subproperty's data) or exclusive (events satisfying the filter clause are excluded from the subproperty's data). */
 export interface GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause {
@@ -4038,7 +4031,7 @@ export type GoogleAnalyticsAdminV1alphaAttributionSettingsReportingAttributionMo
   | "PAID_AND_ORGANIC_CHANNELS_LAST_CLICK"
   | "GOOGLE_PAID_CHANNELS_LAST_CLICK";
 export const GoogleAnalyticsAdminV1alphaAttributionSettingsReportingAttributionModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaAttributionSettingsAdsWebConversionDataExportScopeEnum =
   | "ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED"
@@ -4046,14 +4039,14 @@ export type GoogleAnalyticsAdminV1alphaAttributionSettingsAdsWebConversionDataEx
   | "PAID_AND_ORGANIC_CHANNELS"
   | "GOOGLE_PAID_CHANNELS";
 export const GoogleAnalyticsAdminV1alphaAttributionSettingsAdsWebConversionDataExportScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaAttributionSettingsAcquisitionConversionEventLookbackWindowEnum =
   | "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED"
   | "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_7_DAYS"
   | "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_30_DAYS";
 export const GoogleAnalyticsAdminV1alphaAttributionSettingsAcquisitionConversionEventLookbackWindowEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaAttributionSettingsOtherConversionEventLookbackWindowEnum =
   | "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED"
@@ -4061,7 +4054,7 @@ export type GoogleAnalyticsAdminV1alphaAttributionSettingsOtherConversionEventLo
   | "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_60_DAYS"
   | "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_90_DAYS";
 export const GoogleAnalyticsAdminV1alphaAttributionSettingsOtherConversionEventLookbackWindowEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The attribution settings used for a given property. This is a singleton resource. */
 export interface GoogleAnalyticsAdminV1alphaAttributionSettings {
@@ -4174,7 +4167,7 @@ export type GoogleAnalyticsAdminV1alphaDataRetentionSettingsEventDataRetentionEn
   | "THIRTY_EIGHT_MONTHS"
   | "FIFTY_MONTHS";
 export const GoogleAnalyticsAdminV1alphaDataRetentionSettingsEventDataRetentionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaDataRetentionSettingsUserDataRetentionEnum =
   | "RETENTION_DURATION_UNSPECIFIED"
@@ -4184,7 +4177,7 @@ export type GoogleAnalyticsAdminV1alphaDataRetentionSettingsUserDataRetentionEnu
   | "THIRTY_EIGHT_MONTHS"
   | "FIFTY_MONTHS";
 export const GoogleAnalyticsAdminV1alphaDataRetentionSettingsUserDataRetentionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings values for data retention. This is a singleton resource. */
 export interface GoogleAnalyticsAdminV1alphaDataRetentionSettings {
@@ -4388,14 +4381,14 @@ export type GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsStateEnum =
   | "GOOGLE_SIGNALS_ENABLED"
   | "GOOGLE_SIGNALS_DISABLED";
 export const GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsConsentEnum =
   | "GOOGLE_SIGNALS_CONSENT_UNSPECIFIED"
   | "GOOGLE_SIGNALS_CONSENT_CONSENTED"
   | "GOOGLE_SIGNALS_CONSENT_NOT_CONSENTED";
 export const GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsConsentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings values for Google Signals. This is a singleton resource. */
 export interface GoogleAnalyticsAdminV1alphaGoogleSignalsSettings {
@@ -4878,7 +4871,7 @@ export type GoogleAnalyticsAdminV1alphaSubpropertySyncConfigCustomDimensionAndMe
   | "NONE"
   | "ALL";
 export const GoogleAnalyticsAdminV1alphaSubpropertySyncConfigCustomDimensionAndMetricSyncModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Subproperty synchronization configuration controls how ordinary property configurations are synchronized to subproperties. This resource is provisioned automatically for each subproperty. */
 export interface GoogleAnalyticsAdminV1alphaSubpropertySyncConfig {
@@ -4929,7 +4922,7 @@ export type GoogleAnalyticsAdminV1alphaReportingIdentitySettingsReportingIdentit
   | "OBSERVED"
   | "DEVICE_BASED";
 export const GoogleAnalyticsAdminV1alphaReportingIdentitySettingsReportingIdentityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A resource containing settings related to reporting identity. */
 export interface GoogleAnalyticsAdminV1alphaReportingIdentitySettings {
@@ -5106,7 +5099,7 @@ export type GoogleAnalyticsAdminV1alphaPropertySummaryPropertyTypeEnum =
   | "PROPERTY_TYPE_SUBPROPERTY"
   | "PROPERTY_TYPE_ROLLUP";
 export const GoogleAnalyticsAdminV1alphaPropertySummaryPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A virtual resource representing metadata for a Google Analytics property. */
 export interface GoogleAnalyticsAdminV1alphaPropertySummary {
@@ -7150,7 +7143,7 @@ export type GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequestCustomDimensio
   | "NONE"
   | "ALL";
 export const GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequestCustomDimensionAndMetricSynchronizationModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for CreateSubproperty RPC. */
 export interface GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest {
@@ -7292,7 +7285,7 @@ export type GoogleAnalyticsAdminV1alphaAccessStringFilterMatchTypeEnum =
   | "FULL_REGEXP"
   | "PARTIAL_REGEXP";
 export const GoogleAnalyticsAdminV1alphaAccessStringFilterMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The filter for strings. */
 export interface GoogleAnalyticsAdminV1alphaAccessStringFilter {
@@ -7343,7 +7336,7 @@ export type GoogleAnalyticsAdminV1alphaAccessNumericFilterOperationEnum =
   | "GREATER_THAN"
   | "GREATER_THAN_OR_EQUAL";
 export const GoogleAnalyticsAdminV1alphaAccessNumericFilterOperationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** To represent a number. */
 export interface GoogleAnalyticsAdminV1alphaNumericValue {
@@ -7503,7 +7496,7 @@ export type GoogleAnalyticsAdminV1alphaAccessOrderByDimensionOrderByOrderTypeEnu
   | "CASE_INSENSITIVE_ALPHANUMERIC"
   | "NUMERIC";
 export const GoogleAnalyticsAdminV1alphaAccessOrderByDimensionOrderByOrderTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Sorts by dimension values. */
 export interface GoogleAnalyticsAdminV1alphaAccessOrderByDimensionOrderBy {
@@ -7886,7 +7879,7 @@ export type GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequestActionIte
   | "UPDATED"
   | "DELETED";
 export const GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequestActionItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequestActionItemEnumList =
   Array<
@@ -7931,7 +7924,7 @@ export type GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequestResourceT
   | "REPORTING_IDENTITY_SETTINGS"
   | "USER_PROVIDED_DATA_SETTINGS";
 export const GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequestResourceTypeItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequestResourceTypeItemEnumList =
   Array<
@@ -8142,7 +8135,7 @@ export type GoogleAnalyticsAdminV1alphaChangeHistoryChangeActionEnum =
   | "UPDATED"
   | "DELETED";
 export const GoogleAnalyticsAdminV1alphaChangeHistoryChangeActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A description of a change to a single Google Analytics resource. */
 export interface GoogleAnalyticsAdminV1alphaChangeHistoryChange {
@@ -8186,7 +8179,7 @@ export type GoogleAnalyticsAdminV1alphaChangeHistoryEventActorTypeEnum =
   | "SYSTEM"
   | "SUPPORT";
 export const GoogleAnalyticsAdminV1alphaChangeHistoryEventActorTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A set of changes within a Google Analytics account or its child properties that resulted from the same cause. Common causes would be updates made in the Google Analytics UI, changes from customer support, or automatic Google Analytics system changes. */
 export interface GoogleAnalyticsAdminV1alphaChangeHistoryEvent {

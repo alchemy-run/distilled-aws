@@ -50,7 +50,7 @@ export class PaymentRequired
   ) {}
 
 export type CreateDrainRequestProjects = "some" | "all";
-export const CreateDrainRequestProjects = /*@__PURE__*/ S.String;
+export const CreateDrainRequestProjects = S.String;
 
 export type CreateDrainRequestProjectIdsList = Array<string>;
 export const CreateDrainRequestProjectIdsList = /*@__PURE__*/ S.Array(
@@ -83,8 +83,7 @@ export type CreateDrainRequestFilterFilterCase0LogSourcesItem =
   | "external"
   | "firewall"
   | "redirect";
-export const CreateDrainRequestFilterFilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+export const CreateDrainRequestFilterFilterCase0LogSourcesItem = S.String;
 
 export type CreateDrainRequestFilterFilterCase0LogSourcesList = Array<
   CreateDrainRequestFilterFilterCase0LogSourcesItem | (string & {})
@@ -110,7 +109,7 @@ export type CreateDrainRequestFilterFilterCase0DeploymentEnvironmentsItem =
   | "production"
   | "preview";
 export const CreateDrainRequestFilterFilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDrainRequestFilterFilterCase0DeploymentEnvironmentsList =
   Array<
@@ -170,7 +169,7 @@ export type CreateDrainRequestFilterFilter =
   | CreateDrainRequestFilterFilterCase0
   | CreateDrainRequestFilterFilterCase1;
 export const CreateDrainRequestFilterFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainRequestFilterFilter>;
+  S.Unknown as any as S.Schema<CreateDrainRequestFilterFilter>;
 
 export interface CreateDrainRequestFilter {
   version: string;
@@ -205,11 +204,10 @@ export const CreateDrainRequestSchemasMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateDrainRequestSchemasMap>;
 
 export type CreateDrainRequestDeliveryCase0Compression = "gzip" | "none";
-export const CreateDrainRequestDeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase0Compression = S.String;
 
 export type CreateDrainRequestDeliveryCase0Encoding = "json" | "ndjson";
-export const CreateDrainRequestDeliveryCase0Encoding = /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase0Encoding = S.String;
 
 export type CreateDrainRequestDeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -253,7 +251,7 @@ export const CreateDrainRequestDeliveryCase1Endpoint = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDrainRequestDeliveryCase1Endpoint>;
 
 export type CreateDrainRequestDeliveryCase1Encoding = "proto" | "json";
-export const CreateDrainRequestDeliveryCase1Encoding = /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase1Encoding = S.String;
 
 export type CreateDrainRequestDeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -283,28 +281,25 @@ export const CreateDrainRequestDeliveryCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDrainRequestDeliveryCase1>;
 
 export type CreateDrainRequestDeliveryCase2Encoding = "json" | "ndjson";
-export const CreateDrainRequestDeliveryCase2Encoding = /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase2Encoding = S.String;
 
 export type CreateDrainRequestDeliveryCase2Compression = "none";
-export const CreateDrainRequestDeliveryCase2Compression =
-  /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase2Compression = S.String;
 
 export type CreateDrainRequestDeliveryCase2FileStructure = "hive";
-export const CreateDrainRequestDeliveryCase2FileStructure =
-  /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase2FileStructure = S.String;
 
 export type CreateDrainRequestDeliveryCase2ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
-export const CreateDrainRequestDeliveryCase2ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase2ServerSideEncryption = S.String;
 
 export type CreateDrainRequestDeliveryCase2ObjectAcl =
   | "private"
   | "bucket-owner-read"
   | "bucket-owner-full-control";
-export const CreateDrainRequestDeliveryCase2ObjectAcl = /*@__PURE__*/ S.String;
+export const CreateDrainRequestDeliveryCase2ObjectAcl = S.String;
 
 export interface CreateDrainRequestDeliveryCase2 {
   type: string;
@@ -342,11 +337,11 @@ export type CreateDrainRequestDelivery =
   | CreateDrainRequestDeliveryCase1
   | CreateDrainRequestDeliveryCase2;
 export const CreateDrainRequestDelivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainRequestDelivery>;
+  S.Unknown as any as S.Schema<CreateDrainRequestDelivery>;
 
 /** Environment to apply sampling to */
 export type CreateDrainRequestSamplingItemEnv = "production" | "preview";
-export const CreateDrainRequestSamplingItemEnv = /*@__PURE__*/ S.String;
+export const CreateDrainRequestSamplingItemEnv = S.String;
 
 export interface CreateDrainRequestSamplingItem {
   type: string;
@@ -433,7 +428,7 @@ export type CreateDrainRequestSourceCase0 =
   | CreateDrainRequestSourceCase0Case1
   | CreateDrainRequestSourceCase0Case2;
 export const CreateDrainRequestSourceCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainRequestSourceCase0>;
+  S.Unknown as any as S.Schema<CreateDrainRequestSourceCase0>;
 
 export type CreateDrainRequestSourceCase1 = CreateDrainRequestSourceCase0Case2;
 export const CreateDrainRequestSourceCase1 = CreateDrainRequestSourceCase0Case2;
@@ -442,7 +437,7 @@ export type CreateDrainRequestSource =
   | CreateDrainRequestSourceCase0
   | CreateDrainRequestSourceCase0Case2;
 export const CreateDrainRequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainRequestSource>;
+  S.Unknown as any as S.Schema<CreateDrainRequestSource>;
 
 export interface CreateDrainRequest {
   /** The Team identifier to perform the request on behalf of. */
@@ -486,7 +481,7 @@ export type CreateDrainResponseBodyCase0Status =
   | "disabled"
   | "enabled"
   | "errored";
-export const CreateDrainResponseBodyCase0Status = /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0Status = S.String;
 
 export type CreateDrainResponseBodyCase0DisabledReason =
   | "account-plan-downgrade"
@@ -494,8 +489,7 @@ export type CreateDrainResponseBodyCase0DisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const CreateDrainResponseBodyCase0DisabledReason =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DisabledReason = S.String;
 
 export interface CreateDrainResponseBodyCase0Schemas {
   log?: unknown;
@@ -521,20 +515,17 @@ export const CreateDrainResponseBodyCase0Schemas = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDrainResponseBodyCase0Schemas>;
 
 export type CreateDrainResponseBodyCase0DeliveryCase0Type = "http";
-export const CreateDrainResponseBodyCase0DeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase0Type = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase0Encoding =
   | "json"
   | "ndjson";
-export const CreateDrainResponseBodyCase0DeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase0Encoding = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase0Compression =
   | "gzip"
   | "none";
-export const CreateDrainResponseBodyCase0DeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase0Compression = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -548,7 +539,7 @@ export const CreateDrainResponseBodyCase0DeliveryCase0HeadersMap =
 export type CreateDrainResponseBodyCase0DeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const CreateDrainResponseBodyCase0DeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDrainResponseBodyCase0DeliveryCase0SecretCase1 {
   kind: CreateDrainResponseBodyCase0DeliveryCase0SecretCase1Kind;
@@ -566,7 +557,7 @@ export type CreateDrainResponseBodyCase0DeliveryCase0Secret =
   | string
   | CreateDrainResponseBodyCase0DeliveryCase0SecretCase1;
 export const CreateDrainResponseBodyCase0DeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase0Secret>;
 
 export interface CreateDrainResponseBodyCase0DeliveryCase0 {
   type: CreateDrainResponseBodyCase0DeliveryCase0Type;
@@ -593,8 +584,7 @@ export const CreateDrainResponseBodyCase0DeliveryCase0 =
   }) as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase0>;
 
 export type CreateDrainResponseBodyCase0DeliveryCase1Type = "otlphttp";
-export const CreateDrainResponseBodyCase0DeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase1Type = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -604,8 +594,7 @@ export const CreateDrainResponseBodyCase0DeliveryCase1Endpoint =
 export type CreateDrainResponseBodyCase0DeliveryCase1Encoding =
   | "json"
   | "proto";
-export const CreateDrainResponseBodyCase0DeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase1Encoding = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -619,7 +608,7 @@ export const CreateDrainResponseBodyCase0DeliveryCase1HeadersMap =
 export type CreateDrainResponseBodyCase0DeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const CreateDrainResponseBodyCase0DeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDrainResponseBodyCase0DeliveryCase1SecretCase1 {
   kind: CreateDrainResponseBodyCase0DeliveryCase1SecretCase1Kind;
@@ -637,7 +626,7 @@ export type CreateDrainResponseBodyCase0DeliveryCase1Secret =
   | string
   | CreateDrainResponseBodyCase0DeliveryCase1SecretCase1;
 export const CreateDrainResponseBodyCase0DeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase1Secret>;
 
 export interface CreateDrainResponseBodyCase0DeliveryCase1 {
   type: CreateDrainResponseBodyCase0DeliveryCase1Type;
@@ -660,8 +649,7 @@ export const CreateDrainResponseBodyCase0DeliveryCase1 =
   }) as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase1>;
 
 export type CreateDrainResponseBodyCase0DeliveryCase2Type = "clickhouse";
-export const CreateDrainResponseBodyCase0DeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase2Type = S.String;
 
 export interface CreateDrainResponseBodyCase0DeliveryCase2 {
   type: CreateDrainResponseBodyCase0DeliveryCase2Type;
@@ -680,29 +668,25 @@ export const CreateDrainResponseBodyCase0DeliveryCase2 =
   }) as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase2>;
 
 export type CreateDrainResponseBodyCase0DeliveryCase3Type = "s3";
-export const CreateDrainResponseBodyCase0DeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase3Type = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase3Encoding =
   | "json"
   | "ndjson";
-export const CreateDrainResponseBodyCase0DeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase3Encoding = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase3Compression = "none";
-export const CreateDrainResponseBodyCase0DeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase3Compression = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase3FileStructure = "hive";
-export const CreateDrainResponseBodyCase0DeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase3FileStructure = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const CreateDrainResponseBodyCase0DeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -712,8 +696,7 @@ export type CreateDrainResponseBodyCase0DeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const CreateDrainResponseBodyCase0DeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase3ObjectAcl = S.String;
 
 export interface CreateDrainResponseBodyCase0DeliveryCase3 {
   type: CreateDrainResponseBodyCase0DeliveryCase3Type;
@@ -746,13 +729,11 @@ export const CreateDrainResponseBodyCase0DeliveryCase3 =
   }) as any as S.Schema<CreateDrainResponseBodyCase0DeliveryCase3>;
 
 export type CreateDrainResponseBodyCase0DeliveryCase4Type = "internal";
-export const CreateDrainResponseBodyCase0DeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase4Type = S.String;
 
 export type CreateDrainResponseBodyCase0DeliveryCase4Target =
   "vercel-otel-traces-db";
-export const CreateDrainResponseBodyCase0DeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0DeliveryCase4Target = S.String;
 
 export interface CreateDrainResponseBodyCase0DeliveryCase4 {
   type: CreateDrainResponseBodyCase0DeliveryCase4Type;
@@ -775,17 +756,15 @@ export type CreateDrainResponseBodyCase0Delivery =
   | CreateDrainResponseBodyCase0DeliveryCase3
   | CreateDrainResponseBodyCase0DeliveryCase4;
 export const CreateDrainResponseBodyCase0Delivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0Delivery>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0Delivery>;
 
 export type CreateDrainResponseBodyCase0SamplingItemType = "head_sampling";
-export const CreateDrainResponseBodyCase0SamplingItemType =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0SamplingItemType = S.String;
 
 export type CreateDrainResponseBodyCase0SamplingItemEnv =
   | "preview"
   | "production";
-export const CreateDrainResponseBodyCase0SamplingItemEnv =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0SamplingItemEnv = S.String;
 
 export interface CreateDrainResponseBodyCase0SamplingItem {
   type: CreateDrainResponseBodyCase0SamplingItemType;
@@ -812,8 +791,7 @@ export const CreateDrainResponseBodyCase0SamplingList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateDrainResponseBodyCase0SamplingList>;
 
 export type CreateDrainResponseBodyCase0SourceCase0Kind = "self-served";
-export const CreateDrainResponseBodyCase0SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0SourceCase0Kind = S.String;
 
 export interface CreateDrainResponseBodyCase0SourceCase0 {
   kind: CreateDrainResponseBodyCase0SourceCase0Kind;
@@ -828,8 +806,7 @@ export const CreateDrainResponseBodyCase0SourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDrainResponseBodyCase0SourceCase0>;
 
 export type CreateDrainResponseBodyCase0SourceCase1Kind = "integration";
-export const CreateDrainResponseBodyCase0SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0SourceCase1Kind = S.String;
 
 export interface CreateDrainResponseBodyCase0SourceCase1 {
   kind: CreateDrainResponseBodyCase0SourceCase1Kind;
@@ -855,15 +832,13 @@ export type CreateDrainResponseBodyCase0Source =
   | CreateDrainResponseBodyCase0SourceCase0
   | CreateDrainResponseBodyCase0SourceCase1;
 export const CreateDrainResponseBodyCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0Source>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0Source>;
 
 export type CreateDrainResponseBodyCase0FilterV2Version = "v2";
-export const CreateDrainResponseBodyCase0FilterV2Version =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0FilterV2Version = S.String;
 
 export type CreateDrainResponseBodyCase0FilterV2FilterCase0Type = "basic";
-export const CreateDrainResponseBodyCase0FilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0FilterV2FilterCase0Type = S.String;
 
 export type CreateDrainResponseBodyCase0FilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -895,7 +870,7 @@ export type CreateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const CreateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesList =
   Array<CreateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem>;
@@ -924,7 +899,7 @@ export type CreateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironment
   | "preview"
   | "production";
 export const CreateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsList =
   Array<CreateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -970,8 +945,7 @@ export const CreateDrainResponseBodyCase0FilterV2FilterCase0 =
   }) as any as S.Schema<CreateDrainResponseBodyCase0FilterV2FilterCase0>;
 
 export type CreateDrainResponseBodyCase0FilterV2FilterCase1Type = "odata";
-export const CreateDrainResponseBodyCase0FilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase0FilterV2FilterCase1Type = S.String;
 
 export interface CreateDrainResponseBodyCase0FilterV2FilterCase1 {
   type: CreateDrainResponseBodyCase0FilterV2FilterCase1Type;
@@ -991,7 +965,7 @@ export type CreateDrainResponseBodyCase0FilterV2Filter =
   | CreateDrainResponseBodyCase0FilterV2FilterCase0
   | CreateDrainResponseBodyCase0FilterV2FilterCase1;
 export const CreateDrainResponseBodyCase0FilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0FilterV2Filter>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase0FilterV2Filter>;
 
 export interface CreateDrainResponseBodyCase0FilterV2 {
   version: CreateDrainResponseBodyCase0FilterV2Version;
@@ -1059,7 +1033,7 @@ export type CreateDrainResponseBodyCase1Status =
   | "disabled"
   | "enabled"
   | "errored";
-export const CreateDrainResponseBodyCase1Status = /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1Status = S.String;
 
 export type CreateDrainResponseBodyCase1DisabledReason =
   | "account-plan-downgrade"
@@ -1067,8 +1041,7 @@ export type CreateDrainResponseBodyCase1DisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const CreateDrainResponseBodyCase1DisabledReason =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DisabledReason = S.String;
 
 export type CreateDrainResponseBodyCase1Schemas =
   CreateDrainResponseBodyCase0Schemas;
@@ -1076,20 +1049,17 @@ export const CreateDrainResponseBodyCase1Schemas =
   CreateDrainResponseBodyCase0Schemas;
 
 export type CreateDrainResponseBodyCase1DeliveryCase0Type = "http";
-export const CreateDrainResponseBodyCase1DeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase0Type = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase0Encoding =
   | "json"
   | "ndjson";
-export const CreateDrainResponseBodyCase1DeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase0Encoding = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase0Compression =
   | "gzip"
   | "none";
-export const CreateDrainResponseBodyCase1DeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase0Compression = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -1103,7 +1073,7 @@ export const CreateDrainResponseBodyCase1DeliveryCase0HeadersMap =
 export type CreateDrainResponseBodyCase1DeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const CreateDrainResponseBodyCase1DeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDrainResponseBodyCase1DeliveryCase0SecretCase1 {
   kind: CreateDrainResponseBodyCase1DeliveryCase0SecretCase1Kind;
@@ -1121,7 +1091,7 @@ export type CreateDrainResponseBodyCase1DeliveryCase0Secret =
   | string
   | CreateDrainResponseBodyCase1DeliveryCase0SecretCase1;
 export const CreateDrainResponseBodyCase1DeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase0Secret>;
 
 export interface CreateDrainResponseBodyCase1DeliveryCase0 {
   type: CreateDrainResponseBodyCase1DeliveryCase0Type;
@@ -1148,8 +1118,7 @@ export const CreateDrainResponseBodyCase1DeliveryCase0 =
   }) as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase0>;
 
 export type CreateDrainResponseBodyCase1DeliveryCase1Type = "otlphttp";
-export const CreateDrainResponseBodyCase1DeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase1Type = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -1159,8 +1128,7 @@ export const CreateDrainResponseBodyCase1DeliveryCase1Endpoint =
 export type CreateDrainResponseBodyCase1DeliveryCase1Encoding =
   | "json"
   | "proto";
-export const CreateDrainResponseBodyCase1DeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase1Encoding = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -1174,7 +1142,7 @@ export const CreateDrainResponseBodyCase1DeliveryCase1HeadersMap =
 export type CreateDrainResponseBodyCase1DeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const CreateDrainResponseBodyCase1DeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDrainResponseBodyCase1DeliveryCase1SecretCase1 {
   kind: CreateDrainResponseBodyCase1DeliveryCase1SecretCase1Kind;
@@ -1192,7 +1160,7 @@ export type CreateDrainResponseBodyCase1DeliveryCase1Secret =
   | string
   | CreateDrainResponseBodyCase1DeliveryCase1SecretCase1;
 export const CreateDrainResponseBodyCase1DeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase1Secret>;
 
 export interface CreateDrainResponseBodyCase1DeliveryCase1 {
   type: CreateDrainResponseBodyCase1DeliveryCase1Type;
@@ -1215,8 +1183,7 @@ export const CreateDrainResponseBodyCase1DeliveryCase1 =
   }) as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase1>;
 
 export type CreateDrainResponseBodyCase1DeliveryCase2Type = "clickhouse";
-export const CreateDrainResponseBodyCase1DeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase2Type = S.String;
 
 export interface CreateDrainResponseBodyCase1DeliveryCase2 {
   type: CreateDrainResponseBodyCase1DeliveryCase2Type;
@@ -1235,29 +1202,25 @@ export const CreateDrainResponseBodyCase1DeliveryCase2 =
   }) as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase2>;
 
 export type CreateDrainResponseBodyCase1DeliveryCase3Type = "s3";
-export const CreateDrainResponseBodyCase1DeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase3Type = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase3Encoding =
   | "json"
   | "ndjson";
-export const CreateDrainResponseBodyCase1DeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase3Encoding = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase3Compression = "none";
-export const CreateDrainResponseBodyCase1DeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase3Compression = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase3FileStructure = "hive";
-export const CreateDrainResponseBodyCase1DeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase3FileStructure = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const CreateDrainResponseBodyCase1DeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -1267,8 +1230,7 @@ export type CreateDrainResponseBodyCase1DeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const CreateDrainResponseBodyCase1DeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase3ObjectAcl = S.String;
 
 export interface CreateDrainResponseBodyCase1DeliveryCase3 {
   type: CreateDrainResponseBodyCase1DeliveryCase3Type;
@@ -1301,13 +1263,11 @@ export const CreateDrainResponseBodyCase1DeliveryCase3 =
   }) as any as S.Schema<CreateDrainResponseBodyCase1DeliveryCase3>;
 
 export type CreateDrainResponseBodyCase1DeliveryCase4Type = "internal";
-export const CreateDrainResponseBodyCase1DeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase4Type = S.String;
 
 export type CreateDrainResponseBodyCase1DeliveryCase4Target =
   "vercel-otel-traces-db";
-export const CreateDrainResponseBodyCase1DeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1DeliveryCase4Target = S.String;
 
 export interface CreateDrainResponseBodyCase1DeliveryCase4 {
   type: CreateDrainResponseBodyCase1DeliveryCase4Type;
@@ -1330,17 +1290,15 @@ export type CreateDrainResponseBodyCase1Delivery =
   | CreateDrainResponseBodyCase1DeliveryCase3
   | CreateDrainResponseBodyCase1DeliveryCase4;
 export const CreateDrainResponseBodyCase1Delivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1Delivery>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1Delivery>;
 
 export type CreateDrainResponseBodyCase1SamplingItemType = "head_sampling";
-export const CreateDrainResponseBodyCase1SamplingItemType =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1SamplingItemType = S.String;
 
 export type CreateDrainResponseBodyCase1SamplingItemEnv =
   | "preview"
   | "production";
-export const CreateDrainResponseBodyCase1SamplingItemEnv =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1SamplingItemEnv = S.String;
 
 export interface CreateDrainResponseBodyCase1SamplingItem {
   type: CreateDrainResponseBodyCase1SamplingItemType;
@@ -1367,8 +1325,7 @@ export const CreateDrainResponseBodyCase1SamplingList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateDrainResponseBodyCase1SamplingList>;
 
 export type CreateDrainResponseBodyCase1SourceCase0Kind = "self-served";
-export const CreateDrainResponseBodyCase1SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1SourceCase0Kind = S.String;
 
 export interface CreateDrainResponseBodyCase1SourceCase0 {
   kind: CreateDrainResponseBodyCase1SourceCase0Kind;
@@ -1383,8 +1340,7 @@ export const CreateDrainResponseBodyCase1SourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDrainResponseBodyCase1SourceCase0>;
 
 export type CreateDrainResponseBodyCase1SourceCase1Kind = "integration";
-export const CreateDrainResponseBodyCase1SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1SourceCase1Kind = S.String;
 
 export interface CreateDrainResponseBodyCase1SourceCase1 {
   kind: CreateDrainResponseBodyCase1SourceCase1Kind;
@@ -1410,15 +1366,13 @@ export type CreateDrainResponseBodyCase1Source =
   | CreateDrainResponseBodyCase1SourceCase0
   | CreateDrainResponseBodyCase1SourceCase1;
 export const CreateDrainResponseBodyCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1Source>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1Source>;
 
 export type CreateDrainResponseBodyCase1FilterV2Version = "v2";
-export const CreateDrainResponseBodyCase1FilterV2Version =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1FilterV2Version = S.String;
 
 export type CreateDrainResponseBodyCase1FilterV2FilterCase0Type = "basic";
-export const CreateDrainResponseBodyCase1FilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1FilterV2FilterCase0Type = S.String;
 
 export type CreateDrainResponseBodyCase1FilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -1450,7 +1404,7 @@ export type CreateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const CreateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesList =
   Array<CreateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem>;
@@ -1479,7 +1433,7 @@ export type CreateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironment
   | "preview"
   | "production";
 export const CreateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsList =
   Array<CreateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -1525,8 +1479,7 @@ export const CreateDrainResponseBodyCase1FilterV2FilterCase0 =
   }) as any as S.Schema<CreateDrainResponseBodyCase1FilterV2FilterCase0>;
 
 export type CreateDrainResponseBodyCase1FilterV2FilterCase1Type = "odata";
-export const CreateDrainResponseBodyCase1FilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1FilterV2FilterCase1Type = S.String;
 
 export interface CreateDrainResponseBodyCase1FilterV2FilterCase1 {
   type: CreateDrainResponseBodyCase1FilterV2FilterCase1Type;
@@ -1546,7 +1499,7 @@ export type CreateDrainResponseBodyCase1FilterV2Filter =
   | CreateDrainResponseBodyCase1FilterV2FilterCase0
   | CreateDrainResponseBodyCase1FilterV2FilterCase1;
 export const CreateDrainResponseBodyCase1FilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1FilterV2Filter>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1FilterV2Filter>;
 
 export interface CreateDrainResponseBodyCase1FilterV2 {
   version: CreateDrainResponseBodyCase1FilterV2Version;
@@ -1563,14 +1516,12 @@ export const CreateDrainResponseBodyCase1FilterV2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDrainResponseBodyCase1FilterV2>;
 
 export type CreateDrainResponseBodyCase1ProjectAccessCase0Access = "all";
-export const CreateDrainResponseBodyCase1ProjectAccessCase0Access =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1ProjectAccessCase0Access = S.String;
 
 export type CreateDrainResponseBodyCase1ProjectAccessCase0ManagedBy =
   | "drain"
   | "integration";
-export const CreateDrainResponseBodyCase1ProjectAccessCase0ManagedBy =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1ProjectAccessCase0ManagedBy = S.String;
 
 export interface CreateDrainResponseBodyCase1ProjectAccessCase0 {
   access: CreateDrainResponseBodyCase1ProjectAccessCase0Access;
@@ -1587,8 +1538,7 @@ export const CreateDrainResponseBodyCase1ProjectAccessCase0 =
   }) as any as S.Schema<CreateDrainResponseBodyCase1ProjectAccessCase0>;
 
 export type CreateDrainResponseBodyCase1ProjectAccessCase1Access = "some";
-export const CreateDrainResponseBodyCase1ProjectAccessCase1Access =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1ProjectAccessCase1Access = S.String;
 
 export type CreateDrainResponseBodyCase1ProjectAccessCase1ProjectIdsList =
   Array<string>;
@@ -1600,8 +1550,7 @@ export const CreateDrainResponseBodyCase1ProjectAccessCase1ProjectIdsList =
 export type CreateDrainResponseBodyCase1ProjectAccessCase1ManagedBy =
   | "drain"
   | "integration";
-export const CreateDrainResponseBodyCase1ProjectAccessCase1ManagedBy =
-  /*@__PURE__*/ S.String;
+export const CreateDrainResponseBodyCase1ProjectAccessCase1ManagedBy = S.String;
 
 export interface CreateDrainResponseBodyCase1ProjectAccessCase1 {
   access: CreateDrainResponseBodyCase1ProjectAccessCase1Access;
@@ -1623,7 +1572,7 @@ export type CreateDrainResponseBodyCase1ProjectAccess =
   | CreateDrainResponseBodyCase1ProjectAccessCase0
   | CreateDrainResponseBodyCase1ProjectAccessCase1;
 export const CreateDrainResponseBodyCase1ProjectAccess =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1ProjectAccess>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBodyCase1ProjectAccess>;
 
 export interface CreateDrainResponseBodyCase1 {
   id: string;
@@ -1680,7 +1629,7 @@ export type CreateDrainResponseBody =
   | CreateDrainResponseBodyCase0
   | CreateDrainResponseBodyCase1;
 export const CreateDrainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDrainResponseBody>;
+  S.Unknown as any as S.Schema<CreateDrainResponseBody>;
 
 export type CreateDrainResponse = CreateDrainResponseBody;
 export const CreateDrainResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1739,7 +1688,7 @@ export type GetDrainResponseBodyCase0Status =
   | "disabled"
   | "enabled"
   | "errored";
-export const GetDrainResponseBodyCase0Status = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0Status = S.String;
 
 export type GetDrainResponseBodyCase0DisabledReason =
   | "account-plan-downgrade"
@@ -1747,7 +1696,7 @@ export type GetDrainResponseBodyCase0DisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const GetDrainResponseBodyCase0DisabledReason = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DisabledReason = S.String;
 
 export type GetDrainResponseBodyCase0Schemas =
   CreateDrainResponseBodyCase0Schemas;
@@ -1755,16 +1704,13 @@ export const GetDrainResponseBodyCase0Schemas =
   CreateDrainResponseBodyCase0Schemas;
 
 export type GetDrainResponseBodyCase0DeliveryCase0Type = "http";
-export const GetDrainResponseBodyCase0DeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase0Type = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase0Encoding = "json" | "ndjson";
-export const GetDrainResponseBodyCase0DeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase0Encoding = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase0Compression = "gzip" | "none";
-export const GetDrainResponseBodyCase0DeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase0Compression = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -1777,8 +1723,7 @@ export const GetDrainResponseBodyCase0DeliveryCase0HeadersMap =
 
 export type GetDrainResponseBodyCase0DeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
-export const GetDrainResponseBodyCase0DeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase0SecretCase1Kind = S.String;
 
 export interface GetDrainResponseBodyCase0DeliveryCase0SecretCase1 {
   kind: GetDrainResponseBodyCase0DeliveryCase0SecretCase1Kind;
@@ -1796,7 +1741,7 @@ export type GetDrainResponseBodyCase0DeliveryCase0Secret =
   | string
   | GetDrainResponseBodyCase0DeliveryCase0SecretCase1;
 export const GetDrainResponseBodyCase0DeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase0Secret>;
 
 export interface GetDrainResponseBodyCase0DeliveryCase0 {
   type: GetDrainResponseBodyCase0DeliveryCase0Type;
@@ -1823,8 +1768,7 @@ export const GetDrainResponseBodyCase0DeliveryCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase0>;
 
 export type GetDrainResponseBodyCase0DeliveryCase1Type = "otlphttp";
-export const GetDrainResponseBodyCase0DeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase1Type = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -1832,8 +1776,7 @@ export const GetDrainResponseBodyCase0DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
 
 export type GetDrainResponseBodyCase0DeliveryCase1Encoding = "json" | "proto";
-export const GetDrainResponseBodyCase0DeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase1Encoding = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -1846,8 +1789,7 @@ export const GetDrainResponseBodyCase0DeliveryCase1HeadersMap =
 
 export type GetDrainResponseBodyCase0DeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
-export const GetDrainResponseBodyCase0DeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase1SecretCase1Kind = S.String;
 
 export interface GetDrainResponseBodyCase0DeliveryCase1SecretCase1 {
   kind: GetDrainResponseBodyCase0DeliveryCase1SecretCase1Kind;
@@ -1865,7 +1807,7 @@ export type GetDrainResponseBodyCase0DeliveryCase1Secret =
   | string
   | GetDrainResponseBodyCase0DeliveryCase1SecretCase1;
 export const GetDrainResponseBodyCase0DeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase1Secret>;
 
 export interface GetDrainResponseBodyCase0DeliveryCase1 {
   type: GetDrainResponseBodyCase0DeliveryCase1Type;
@@ -1888,8 +1830,7 @@ export const GetDrainResponseBodyCase0DeliveryCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase1>;
 
 export type GetDrainResponseBodyCase0DeliveryCase2Type = "clickhouse";
-export const GetDrainResponseBodyCase0DeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase2Type = S.String;
 
 export interface GetDrainResponseBodyCase0DeliveryCase2 {
   type: GetDrainResponseBodyCase0DeliveryCase2Type;
@@ -1908,27 +1849,23 @@ export const GetDrainResponseBodyCase0DeliveryCase2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase2>;
 
 export type GetDrainResponseBodyCase0DeliveryCase3Type = "s3";
-export const GetDrainResponseBodyCase0DeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase3Type = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase3Encoding = "json" | "ndjson";
-export const GetDrainResponseBodyCase0DeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase3Encoding = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase3Compression = "none";
-export const GetDrainResponseBodyCase0DeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase3Compression = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase3FileStructure = "hive";
-export const GetDrainResponseBodyCase0DeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase3FileStructure = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const GetDrainResponseBodyCase0DeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -1938,8 +1875,7 @@ export type GetDrainResponseBodyCase0DeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const GetDrainResponseBodyCase0DeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase3ObjectAcl = S.String;
 
 export interface GetDrainResponseBodyCase0DeliveryCase3 {
   type: GetDrainResponseBodyCase0DeliveryCase3Type;
@@ -1972,13 +1908,11 @@ export const GetDrainResponseBodyCase0DeliveryCase3 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase0DeliveryCase3>;
 
 export type GetDrainResponseBodyCase0DeliveryCase4Type = "internal";
-export const GetDrainResponseBodyCase0DeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase4Type = S.String;
 
 export type GetDrainResponseBodyCase0DeliveryCase4Target =
   "vercel-otel-traces-db";
-export const GetDrainResponseBodyCase0DeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0DeliveryCase4Target = S.String;
 
 export interface GetDrainResponseBodyCase0DeliveryCase4 {
   type: GetDrainResponseBodyCase0DeliveryCase4Type;
@@ -2001,13 +1935,13 @@ export type GetDrainResponseBodyCase0Delivery =
   | GetDrainResponseBodyCase0DeliveryCase3
   | GetDrainResponseBodyCase0DeliveryCase4;
 export const GetDrainResponseBodyCase0Delivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase0Delivery>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase0Delivery>;
 
 export type GetDrainResponseBodyCase0SamplingItemType = "head_sampling";
-export const GetDrainResponseBodyCase0SamplingItemType = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0SamplingItemType = S.String;
 
 export type GetDrainResponseBodyCase0SamplingItemEnv = "preview" | "production";
-export const GetDrainResponseBodyCase0SamplingItemEnv = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0SamplingItemEnv = S.String;
 
 export interface GetDrainResponseBodyCase0SamplingItem {
   type: GetDrainResponseBodyCase0SamplingItemType;
@@ -2034,7 +1968,7 @@ export const GetDrainResponseBodyCase0SamplingList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetDrainResponseBodyCase0SamplingList>;
 
 export type GetDrainResponseBodyCase0SourceCase0Kind = "self-served";
-export const GetDrainResponseBodyCase0SourceCase0Kind = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0SourceCase0Kind = S.String;
 
 export interface GetDrainResponseBodyCase0SourceCase0 {
   kind: GetDrainResponseBodyCase0SourceCase0Kind;
@@ -2049,7 +1983,7 @@ export const GetDrainResponseBodyCase0SourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase0SourceCase0>;
 
 export type GetDrainResponseBodyCase0SourceCase1Kind = "integration";
-export const GetDrainResponseBodyCase0SourceCase1Kind = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0SourceCase1Kind = S.String;
 
 export interface GetDrainResponseBodyCase0SourceCase1 {
   kind: GetDrainResponseBodyCase0SourceCase1Kind;
@@ -2075,14 +2009,13 @@ export type GetDrainResponseBodyCase0Source =
   | GetDrainResponseBodyCase0SourceCase0
   | GetDrainResponseBodyCase0SourceCase1;
 export const GetDrainResponseBodyCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase0Source>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase0Source>;
 
 export type GetDrainResponseBodyCase0FilterV2Version = "v2";
-export const GetDrainResponseBodyCase0FilterV2Version = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0FilterV2Version = S.String;
 
 export type GetDrainResponseBodyCase0FilterV2FilterCase0Type = "basic";
-export const GetDrainResponseBodyCase0FilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0FilterV2FilterCase0Type = S.String;
 
 export type GetDrainResponseBodyCase0FilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -2114,7 +2047,7 @@ export type GetDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const GetDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainResponseBodyCase0FilterV2FilterCase0LogSourcesList =
   Array<GetDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem>;
@@ -2143,7 +2076,7 @@ export type GetDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsIt
   | "preview"
   | "production";
 export const GetDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsList =
   Array<GetDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -2187,8 +2120,7 @@ export const GetDrainResponseBodyCase0FilterV2FilterCase0 =
   }) as any as S.Schema<GetDrainResponseBodyCase0FilterV2FilterCase0>;
 
 export type GetDrainResponseBodyCase0FilterV2FilterCase1Type = "odata";
-export const GetDrainResponseBodyCase0FilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase0FilterV2FilterCase1Type = S.String;
 
 export interface GetDrainResponseBodyCase0FilterV2FilterCase1 {
   type: GetDrainResponseBodyCase0FilterV2FilterCase1Type;
@@ -2208,7 +2140,7 @@ export type GetDrainResponseBodyCase0FilterV2Filter =
   | GetDrainResponseBodyCase0FilterV2FilterCase0
   | GetDrainResponseBodyCase0FilterV2FilterCase1;
 export const GetDrainResponseBodyCase0FilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase0FilterV2Filter>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase0FilterV2Filter>;
 
 export interface GetDrainResponseBodyCase0FilterV2 {
   version: GetDrainResponseBodyCase0FilterV2Version;
@@ -2275,7 +2207,7 @@ export type GetDrainResponseBodyCase1Status =
   | "disabled"
   | "enabled"
   | "errored";
-export const GetDrainResponseBodyCase1Status = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1Status = S.String;
 
 export type GetDrainResponseBodyCase1DisabledReason =
   | "account-plan-downgrade"
@@ -2283,7 +2215,7 @@ export type GetDrainResponseBodyCase1DisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const GetDrainResponseBodyCase1DisabledReason = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DisabledReason = S.String;
 
 export type GetDrainResponseBodyCase1Schemas =
   CreateDrainResponseBodyCase0Schemas;
@@ -2291,16 +2223,13 @@ export const GetDrainResponseBodyCase1Schemas =
   CreateDrainResponseBodyCase0Schemas;
 
 export type GetDrainResponseBodyCase1DeliveryCase0Type = "http";
-export const GetDrainResponseBodyCase1DeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase0Type = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase0Encoding = "json" | "ndjson";
-export const GetDrainResponseBodyCase1DeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase0Encoding = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase0Compression = "gzip" | "none";
-export const GetDrainResponseBodyCase1DeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase0Compression = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -2313,8 +2242,7 @@ export const GetDrainResponseBodyCase1DeliveryCase0HeadersMap =
 
 export type GetDrainResponseBodyCase1DeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
-export const GetDrainResponseBodyCase1DeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase0SecretCase1Kind = S.String;
 
 export interface GetDrainResponseBodyCase1DeliveryCase0SecretCase1 {
   kind: GetDrainResponseBodyCase1DeliveryCase0SecretCase1Kind;
@@ -2332,7 +2260,7 @@ export type GetDrainResponseBodyCase1DeliveryCase0Secret =
   | string
   | GetDrainResponseBodyCase1DeliveryCase0SecretCase1;
 export const GetDrainResponseBodyCase1DeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase0Secret>;
 
 export interface GetDrainResponseBodyCase1DeliveryCase0 {
   type: GetDrainResponseBodyCase1DeliveryCase0Type;
@@ -2359,8 +2287,7 @@ export const GetDrainResponseBodyCase1DeliveryCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase0>;
 
 export type GetDrainResponseBodyCase1DeliveryCase1Type = "otlphttp";
-export const GetDrainResponseBodyCase1DeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase1Type = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -2368,8 +2295,7 @@ export const GetDrainResponseBodyCase1DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
 
 export type GetDrainResponseBodyCase1DeliveryCase1Encoding = "json" | "proto";
-export const GetDrainResponseBodyCase1DeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase1Encoding = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -2382,8 +2308,7 @@ export const GetDrainResponseBodyCase1DeliveryCase1HeadersMap =
 
 export type GetDrainResponseBodyCase1DeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
-export const GetDrainResponseBodyCase1DeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase1SecretCase1Kind = S.String;
 
 export interface GetDrainResponseBodyCase1DeliveryCase1SecretCase1 {
   kind: GetDrainResponseBodyCase1DeliveryCase1SecretCase1Kind;
@@ -2401,7 +2326,7 @@ export type GetDrainResponseBodyCase1DeliveryCase1Secret =
   | string
   | GetDrainResponseBodyCase1DeliveryCase1SecretCase1;
 export const GetDrainResponseBodyCase1DeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase1Secret>;
 
 export interface GetDrainResponseBodyCase1DeliveryCase1 {
   type: GetDrainResponseBodyCase1DeliveryCase1Type;
@@ -2424,8 +2349,7 @@ export const GetDrainResponseBodyCase1DeliveryCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase1>;
 
 export type GetDrainResponseBodyCase1DeliveryCase2Type = "clickhouse";
-export const GetDrainResponseBodyCase1DeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase2Type = S.String;
 
 export interface GetDrainResponseBodyCase1DeliveryCase2 {
   type: GetDrainResponseBodyCase1DeliveryCase2Type;
@@ -2444,27 +2368,23 @@ export const GetDrainResponseBodyCase1DeliveryCase2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase2>;
 
 export type GetDrainResponseBodyCase1DeliveryCase3Type = "s3";
-export const GetDrainResponseBodyCase1DeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase3Type = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase3Encoding = "json" | "ndjson";
-export const GetDrainResponseBodyCase1DeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase3Encoding = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase3Compression = "none";
-export const GetDrainResponseBodyCase1DeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase3Compression = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase3FileStructure = "hive";
-export const GetDrainResponseBodyCase1DeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase3FileStructure = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const GetDrainResponseBodyCase1DeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -2474,8 +2394,7 @@ export type GetDrainResponseBodyCase1DeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const GetDrainResponseBodyCase1DeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase3ObjectAcl = S.String;
 
 export interface GetDrainResponseBodyCase1DeliveryCase3 {
   type: GetDrainResponseBodyCase1DeliveryCase3Type;
@@ -2508,13 +2427,11 @@ export const GetDrainResponseBodyCase1DeliveryCase3 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase1DeliveryCase3>;
 
 export type GetDrainResponseBodyCase1DeliveryCase4Type = "internal";
-export const GetDrainResponseBodyCase1DeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase4Type = S.String;
 
 export type GetDrainResponseBodyCase1DeliveryCase4Target =
   "vercel-otel-traces-db";
-export const GetDrainResponseBodyCase1DeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1DeliveryCase4Target = S.String;
 
 export interface GetDrainResponseBodyCase1DeliveryCase4 {
   type: GetDrainResponseBodyCase1DeliveryCase4Type;
@@ -2537,13 +2454,13 @@ export type GetDrainResponseBodyCase1Delivery =
   | GetDrainResponseBodyCase1DeliveryCase3
   | GetDrainResponseBodyCase1DeliveryCase4;
 export const GetDrainResponseBodyCase1Delivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase1Delivery>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase1Delivery>;
 
 export type GetDrainResponseBodyCase1SamplingItemType = "head_sampling";
-export const GetDrainResponseBodyCase1SamplingItemType = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1SamplingItemType = S.String;
 
 export type GetDrainResponseBodyCase1SamplingItemEnv = "preview" | "production";
-export const GetDrainResponseBodyCase1SamplingItemEnv = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1SamplingItemEnv = S.String;
 
 export interface GetDrainResponseBodyCase1SamplingItem {
   type: GetDrainResponseBodyCase1SamplingItemType;
@@ -2570,7 +2487,7 @@ export const GetDrainResponseBodyCase1SamplingList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetDrainResponseBodyCase1SamplingList>;
 
 export type GetDrainResponseBodyCase1SourceCase0Kind = "self-served";
-export const GetDrainResponseBodyCase1SourceCase0Kind = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1SourceCase0Kind = S.String;
 
 export interface GetDrainResponseBodyCase1SourceCase0 {
   kind: GetDrainResponseBodyCase1SourceCase0Kind;
@@ -2585,7 +2502,7 @@ export const GetDrainResponseBodyCase1SourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDrainResponseBodyCase1SourceCase0>;
 
 export type GetDrainResponseBodyCase1SourceCase1Kind = "integration";
-export const GetDrainResponseBodyCase1SourceCase1Kind = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1SourceCase1Kind = S.String;
 
 export interface GetDrainResponseBodyCase1SourceCase1 {
   kind: GetDrainResponseBodyCase1SourceCase1Kind;
@@ -2611,14 +2528,13 @@ export type GetDrainResponseBodyCase1Source =
   | GetDrainResponseBodyCase1SourceCase0
   | GetDrainResponseBodyCase1SourceCase1;
 export const GetDrainResponseBodyCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase1Source>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase1Source>;
 
 export type GetDrainResponseBodyCase1FilterV2Version = "v2";
-export const GetDrainResponseBodyCase1FilterV2Version = /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1FilterV2Version = S.String;
 
 export type GetDrainResponseBodyCase1FilterV2FilterCase0Type = "basic";
-export const GetDrainResponseBodyCase1FilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1FilterV2FilterCase0Type = S.String;
 
 export type GetDrainResponseBodyCase1FilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -2650,7 +2566,7 @@ export type GetDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const GetDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainResponseBodyCase1FilterV2FilterCase0LogSourcesList =
   Array<GetDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem>;
@@ -2679,7 +2595,7 @@ export type GetDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsIt
   | "preview"
   | "production";
 export const GetDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsList =
   Array<GetDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -2723,8 +2639,7 @@ export const GetDrainResponseBodyCase1FilterV2FilterCase0 =
   }) as any as S.Schema<GetDrainResponseBodyCase1FilterV2FilterCase0>;
 
 export type GetDrainResponseBodyCase1FilterV2FilterCase1Type = "odata";
-export const GetDrainResponseBodyCase1FilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1FilterV2FilterCase1Type = S.String;
 
 export interface GetDrainResponseBodyCase1FilterV2FilterCase1 {
   type: GetDrainResponseBodyCase1FilterV2FilterCase1Type;
@@ -2744,7 +2659,7 @@ export type GetDrainResponseBodyCase1FilterV2Filter =
   | GetDrainResponseBodyCase1FilterV2FilterCase0
   | GetDrainResponseBodyCase1FilterV2FilterCase1;
 export const GetDrainResponseBodyCase1FilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase1FilterV2Filter>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase1FilterV2Filter>;
 
 export interface GetDrainResponseBodyCase1FilterV2 {
   version: GetDrainResponseBodyCase1FilterV2Version;
@@ -2760,14 +2675,12 @@ export const GetDrainResponseBodyCase1FilterV2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDrainResponseBodyCase1FilterV2>;
 
 export type GetDrainResponseBodyCase1ProjectAccessCase0Access = "all";
-export const GetDrainResponseBodyCase1ProjectAccessCase0Access =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1ProjectAccessCase0Access = S.String;
 
 export type GetDrainResponseBodyCase1ProjectAccessCase0ManagedBy =
   | "drain"
   | "integration";
-export const GetDrainResponseBodyCase1ProjectAccessCase0ManagedBy =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1ProjectAccessCase0ManagedBy = S.String;
 
 export interface GetDrainResponseBodyCase1ProjectAccessCase0 {
   access: GetDrainResponseBodyCase1ProjectAccessCase0Access;
@@ -2784,8 +2697,7 @@ export const GetDrainResponseBodyCase1ProjectAccessCase0 =
   }) as any as S.Schema<GetDrainResponseBodyCase1ProjectAccessCase0>;
 
 export type GetDrainResponseBodyCase1ProjectAccessCase1Access = "some";
-export const GetDrainResponseBodyCase1ProjectAccessCase1Access =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1ProjectAccessCase1Access = S.String;
 
 export type GetDrainResponseBodyCase1ProjectAccessCase1ProjectIdsList =
   Array<string>;
@@ -2797,8 +2709,7 @@ export const GetDrainResponseBodyCase1ProjectAccessCase1ProjectIdsList =
 export type GetDrainResponseBodyCase1ProjectAccessCase1ManagedBy =
   | "drain"
   | "integration";
-export const GetDrainResponseBodyCase1ProjectAccessCase1ManagedBy =
-  /*@__PURE__*/ S.String;
+export const GetDrainResponseBodyCase1ProjectAccessCase1ManagedBy = S.String;
 
 export interface GetDrainResponseBodyCase1ProjectAccessCase1 {
   access: GetDrainResponseBodyCase1ProjectAccessCase1Access;
@@ -2820,7 +2731,7 @@ export type GetDrainResponseBodyCase1ProjectAccess =
   | GetDrainResponseBodyCase1ProjectAccessCase0
   | GetDrainResponseBodyCase1ProjectAccessCase1;
 export const GetDrainResponseBodyCase1ProjectAccess =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBodyCase1ProjectAccess>;
+  S.Unknown as any as S.Schema<GetDrainResponseBodyCase1ProjectAccess>;
 
 export interface GetDrainResponseBodyCase1 {
   id: string;
@@ -2877,7 +2788,7 @@ export type GetDrainResponseBody =
   | GetDrainResponseBodyCase0
   | GetDrainResponseBodyCase1;
 export const GetDrainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainResponseBody>;
+  S.Unknown as any as S.Schema<GetDrainResponseBody>;
 
 export type GetDrainResponse = GetDrainResponseBody;
 export const GetDrainResponse = /*@__PURE__*/ S.suspend(() =>
@@ -2915,7 +2826,7 @@ export type GetDrainsResponseDrainsCase0ItemStatus =
   | "disabled"
   | "enabled"
   | "errored";
-export const GetDrainsResponseDrainsCase0ItemStatus = /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemStatus = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDisabledReason =
   | "account-plan-downgrade"
@@ -2923,8 +2834,7 @@ export type GetDrainsResponseDrainsCase0ItemDisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const GetDrainsResponseDrainsCase0ItemDisabledReason =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDisabledReason = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemSchemas =
   CreateDrainResponseBodyCase0Schemas;
@@ -2932,20 +2842,18 @@ export const GetDrainsResponseDrainsCase0ItemSchemas =
   CreateDrainResponseBodyCase0Schemas;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase0Type = "http";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase0Type = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase0Encoding =
   | "json"
   | "ndjson";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase0Encoding = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase0Compression =
   | "gzip"
   | "none";
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -2959,7 +2867,7 @@ export const GetDrainsResponseDrainsCase0ItemDeliveryCase0HeadersMap =
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemDeliveryCase0SecretCase1 {
   kind: GetDrainsResponseDrainsCase0ItemDeliveryCase0SecretCase1Kind;
@@ -2977,7 +2885,7 @@ export type GetDrainsResponseDrainsCase0ItemDeliveryCase0Secret =
   | string
   | GetDrainsResponseDrainsCase0ItemDeliveryCase0SecretCase1;
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase0Secret>;
 
 export interface GetDrainsResponseDrainsCase0ItemDeliveryCase0 {
   type: GetDrainsResponseDrainsCase0ItemDeliveryCase0Type;
@@ -3004,8 +2912,7 @@ export const GetDrainsResponseDrainsCase0ItemDeliveryCase0 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase0>;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase1Type = "otlphttp";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase1Type = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -3015,8 +2922,7 @@ export const GetDrainsResponseDrainsCase0ItemDeliveryCase1Endpoint =
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase1Encoding =
   | "json"
   | "proto";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase1Encoding = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -3030,7 +2936,7 @@ export const GetDrainsResponseDrainsCase0ItemDeliveryCase1HeadersMap =
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemDeliveryCase1SecretCase1 {
   kind: GetDrainsResponseDrainsCase0ItemDeliveryCase1SecretCase1Kind;
@@ -3048,7 +2954,7 @@ export type GetDrainsResponseDrainsCase0ItemDeliveryCase1Secret =
   | string
   | GetDrainsResponseDrainsCase0ItemDeliveryCase1SecretCase1;
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase1Secret>;
 
 export interface GetDrainsResponseDrainsCase0ItemDeliveryCase1 {
   type: GetDrainsResponseDrainsCase0ItemDeliveryCase1Type;
@@ -3071,8 +2977,7 @@ export const GetDrainsResponseDrainsCase0ItemDeliveryCase1 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase1>;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase2Type = "clickhouse";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase2Type = S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemDeliveryCase2 {
   type: GetDrainsResponseDrainsCase0ItemDeliveryCase2Type;
@@ -3091,29 +2996,27 @@ export const GetDrainsResponseDrainsCase0ItemDeliveryCase2 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase2>;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase3Type = "s3";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase3Type = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase3Encoding =
   | "json"
   | "ndjson";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase3Encoding = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase3Compression = "none";
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase3FileStructure = "hive";
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const GetDrainsResponseDrainsCase0ItemDeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -3123,8 +3026,7 @@ export type GetDrainsResponseDrainsCase0ItemDeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase3ObjectAcl = S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemDeliveryCase3 {
   type: GetDrainsResponseDrainsCase0ItemDeliveryCase3Type;
@@ -3159,13 +3061,11 @@ export const GetDrainsResponseDrainsCase0ItemDeliveryCase3 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase0ItemDeliveryCase3>;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase4Type = "internal";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase4Type = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemDeliveryCase4Target =
   "vercel-otel-traces-db";
-export const GetDrainsResponseDrainsCase0ItemDeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemDeliveryCase4Target = S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemDeliveryCase4 {
   type: GetDrainsResponseDrainsCase0ItemDeliveryCase4Type;
@@ -3188,17 +3088,15 @@ export type GetDrainsResponseDrainsCase0ItemDelivery =
   | GetDrainsResponseDrainsCase0ItemDeliveryCase3
   | GetDrainsResponseDrainsCase0ItemDeliveryCase4;
 export const GetDrainsResponseDrainsCase0ItemDelivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemDelivery>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemDelivery>;
 
 export type GetDrainsResponseDrainsCase0ItemSamplingItemType = "head_sampling";
-export const GetDrainsResponseDrainsCase0ItemSamplingItemType =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemSamplingItemType = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemSamplingItemEnv =
   | "preview"
   | "production";
-export const GetDrainsResponseDrainsCase0ItemSamplingItemEnv =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemSamplingItemEnv = S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemSamplingItem {
   type: GetDrainsResponseDrainsCase0ItemSamplingItemType;
@@ -3226,8 +3124,7 @@ export const GetDrainsResponseDrainsCase0ItemSamplingList =
   ) as any as S.Schema<GetDrainsResponseDrainsCase0ItemSamplingList>;
 
 export type GetDrainsResponseDrainsCase0ItemSourceCase0Kind = "self-served";
-export const GetDrainsResponseDrainsCase0ItemSourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemSourceCase0Kind = S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemSourceCase0 {
   kind: GetDrainsResponseDrainsCase0ItemSourceCase0Kind;
@@ -3242,8 +3139,7 @@ export const GetDrainsResponseDrainsCase0ItemSourceCase0 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase0ItemSourceCase0>;
 
 export type GetDrainsResponseDrainsCase0ItemSourceCase1Kind = "integration";
-export const GetDrainsResponseDrainsCase0ItemSourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemSourceCase1Kind = S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemSourceCase1 {
   kind: GetDrainsResponseDrainsCase0ItemSourceCase1Kind;
@@ -3269,15 +3165,13 @@ export type GetDrainsResponseDrainsCase0ItemSource =
   | GetDrainsResponseDrainsCase0ItemSourceCase0
   | GetDrainsResponseDrainsCase0ItemSourceCase1;
 export const GetDrainsResponseDrainsCase0ItemSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemSource>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemSource>;
 
 export type GetDrainsResponseDrainsCase0ItemFilterV2Version = "v2";
-export const GetDrainsResponseDrainsCase0ItemFilterV2Version =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemFilterV2Version = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0Type = "basic";
-export const GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0Type = S.String;
 
 export type GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -3309,7 +3203,7 @@ export type GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0LogSourcesList =
   Array<GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0LogSourcesItem>;
@@ -3338,7 +3232,7 @@ export type GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0DeploymentEnviron
   | "preview"
   | "production";
 export const GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0DeploymentEnvironmentsList =
   Array<GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -3384,8 +3278,7 @@ export const GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0>;
 
 export type GetDrainsResponseDrainsCase0ItemFilterV2FilterCase1Type = "odata";
-export const GetDrainsResponseDrainsCase0ItemFilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase0ItemFilterV2FilterCase1Type = S.String;
 
 export interface GetDrainsResponseDrainsCase0ItemFilterV2FilterCase1 {
   type: GetDrainsResponseDrainsCase0ItemFilterV2FilterCase1Type;
@@ -3405,7 +3298,7 @@ export type GetDrainsResponseDrainsCase0ItemFilterV2Filter =
   | GetDrainsResponseDrainsCase0ItemFilterV2FilterCase0
   | GetDrainsResponseDrainsCase0ItemFilterV2FilterCase1;
 export const GetDrainsResponseDrainsCase0ItemFilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemFilterV2Filter>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase0ItemFilterV2Filter>;
 
 export interface GetDrainsResponseDrainsCase0ItemFilterV2 {
   version: GetDrainsResponseDrainsCase0ItemFilterV2Version;
@@ -3480,7 +3373,7 @@ export type GetDrainsResponseDrainsCase1ItemStatus =
   | "disabled"
   | "enabled"
   | "errored";
-export const GetDrainsResponseDrainsCase1ItemStatus = /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemStatus = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDisabledReason =
   | "account-plan-downgrade"
@@ -3488,8 +3381,7 @@ export type GetDrainsResponseDrainsCase1ItemDisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const GetDrainsResponseDrainsCase1ItemDisabledReason =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDisabledReason = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemSchemas =
   CreateDrainResponseBodyCase0Schemas;
@@ -3497,20 +3389,18 @@ export const GetDrainsResponseDrainsCase1ItemSchemas =
   CreateDrainResponseBodyCase0Schemas;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase0Type = "http";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase0Type = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase0Encoding =
   | "json"
   | "ndjson";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase0Encoding = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase0Compression =
   | "gzip"
   | "none";
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -3524,7 +3414,7 @@ export const GetDrainsResponseDrainsCase1ItemDeliveryCase0HeadersMap =
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemDeliveryCase0SecretCase1 {
   kind: GetDrainsResponseDrainsCase1ItemDeliveryCase0SecretCase1Kind;
@@ -3542,7 +3432,7 @@ export type GetDrainsResponseDrainsCase1ItemDeliveryCase0Secret =
   | string
   | GetDrainsResponseDrainsCase1ItemDeliveryCase0SecretCase1;
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase0Secret>;
 
 export interface GetDrainsResponseDrainsCase1ItemDeliveryCase0 {
   type: GetDrainsResponseDrainsCase1ItemDeliveryCase0Type;
@@ -3569,8 +3459,7 @@ export const GetDrainsResponseDrainsCase1ItemDeliveryCase0 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase0>;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase1Type = "otlphttp";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase1Type = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -3580,8 +3469,7 @@ export const GetDrainsResponseDrainsCase1ItemDeliveryCase1Endpoint =
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase1Encoding =
   | "json"
   | "proto";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase1Encoding = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -3595,7 +3483,7 @@ export const GetDrainsResponseDrainsCase1ItemDeliveryCase1HeadersMap =
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemDeliveryCase1SecretCase1 {
   kind: GetDrainsResponseDrainsCase1ItemDeliveryCase1SecretCase1Kind;
@@ -3613,7 +3501,7 @@ export type GetDrainsResponseDrainsCase1ItemDeliveryCase1Secret =
   | string
   | GetDrainsResponseDrainsCase1ItemDeliveryCase1SecretCase1;
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase1Secret>;
 
 export interface GetDrainsResponseDrainsCase1ItemDeliveryCase1 {
   type: GetDrainsResponseDrainsCase1ItemDeliveryCase1Type;
@@ -3636,8 +3524,7 @@ export const GetDrainsResponseDrainsCase1ItemDeliveryCase1 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase1>;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase2Type = "clickhouse";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase2Type = S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemDeliveryCase2 {
   type: GetDrainsResponseDrainsCase1ItemDeliveryCase2Type;
@@ -3656,29 +3543,27 @@ export const GetDrainsResponseDrainsCase1ItemDeliveryCase2 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase2>;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase3Type = "s3";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase3Type = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase3Encoding =
   | "json"
   | "ndjson";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase3Encoding = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase3Compression = "none";
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase3FileStructure = "hive";
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const GetDrainsResponseDrainsCase1ItemDeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -3688,8 +3573,7 @@ export type GetDrainsResponseDrainsCase1ItemDeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase3ObjectAcl = S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemDeliveryCase3 {
   type: GetDrainsResponseDrainsCase1ItemDeliveryCase3Type;
@@ -3724,13 +3608,11 @@ export const GetDrainsResponseDrainsCase1ItemDeliveryCase3 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase1ItemDeliveryCase3>;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase4Type = "internal";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase4Type = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemDeliveryCase4Target =
   "vercel-otel-traces-db";
-export const GetDrainsResponseDrainsCase1ItemDeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemDeliveryCase4Target = S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemDeliveryCase4 {
   type: GetDrainsResponseDrainsCase1ItemDeliveryCase4Type;
@@ -3753,17 +3635,15 @@ export type GetDrainsResponseDrainsCase1ItemDelivery =
   | GetDrainsResponseDrainsCase1ItemDeliveryCase3
   | GetDrainsResponseDrainsCase1ItemDeliveryCase4;
 export const GetDrainsResponseDrainsCase1ItemDelivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemDelivery>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemDelivery>;
 
 export type GetDrainsResponseDrainsCase1ItemSamplingItemType = "head_sampling";
-export const GetDrainsResponseDrainsCase1ItemSamplingItemType =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemSamplingItemType = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemSamplingItemEnv =
   | "preview"
   | "production";
-export const GetDrainsResponseDrainsCase1ItemSamplingItemEnv =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemSamplingItemEnv = S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemSamplingItem {
   type: GetDrainsResponseDrainsCase1ItemSamplingItemType;
@@ -3791,8 +3671,7 @@ export const GetDrainsResponseDrainsCase1ItemSamplingList =
   ) as any as S.Schema<GetDrainsResponseDrainsCase1ItemSamplingList>;
 
 export type GetDrainsResponseDrainsCase1ItemSourceCase0Kind = "self-served";
-export const GetDrainsResponseDrainsCase1ItemSourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemSourceCase0Kind = S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemSourceCase0 {
   kind: GetDrainsResponseDrainsCase1ItemSourceCase0Kind;
@@ -3807,8 +3686,7 @@ export const GetDrainsResponseDrainsCase1ItemSourceCase0 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase1ItemSourceCase0>;
 
 export type GetDrainsResponseDrainsCase1ItemSourceCase1Kind = "integration";
-export const GetDrainsResponseDrainsCase1ItemSourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemSourceCase1Kind = S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemSourceCase1 {
   kind: GetDrainsResponseDrainsCase1ItemSourceCase1Kind;
@@ -3834,15 +3712,13 @@ export type GetDrainsResponseDrainsCase1ItemSource =
   | GetDrainsResponseDrainsCase1ItemSourceCase0
   | GetDrainsResponseDrainsCase1ItemSourceCase1;
 export const GetDrainsResponseDrainsCase1ItemSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemSource>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemSource>;
 
 export type GetDrainsResponseDrainsCase1ItemFilterV2Version = "v2";
-export const GetDrainsResponseDrainsCase1ItemFilterV2Version =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemFilterV2Version = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0Type = "basic";
-export const GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0Type = S.String;
 
 export type GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -3874,7 +3750,7 @@ export type GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0LogSourcesList =
   Array<GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0LogSourcesItem>;
@@ -3903,7 +3779,7 @@ export type GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0DeploymentEnviron
   | "preview"
   | "production";
 export const GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0DeploymentEnvironmentsList =
   Array<GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -3949,8 +3825,7 @@ export const GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0 =
   }) as any as S.Schema<GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0>;
 
 export type GetDrainsResponseDrainsCase1ItemFilterV2FilterCase1Type = "odata";
-export const GetDrainsResponseDrainsCase1ItemFilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const GetDrainsResponseDrainsCase1ItemFilterV2FilterCase1Type = S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemFilterV2FilterCase1 {
   type: GetDrainsResponseDrainsCase1ItemFilterV2FilterCase1Type;
@@ -3970,7 +3845,7 @@ export type GetDrainsResponseDrainsCase1ItemFilterV2Filter =
   | GetDrainsResponseDrainsCase1ItemFilterV2FilterCase0
   | GetDrainsResponseDrainsCase1ItemFilterV2FilterCase1;
 export const GetDrainsResponseDrainsCase1ItemFilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemFilterV2Filter>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemFilterV2Filter>;
 
 export interface GetDrainsResponseDrainsCase1ItemFilterV2 {
   version: GetDrainsResponseDrainsCase1ItemFilterV2Version;
@@ -3988,13 +3863,13 @@ export const GetDrainsResponseDrainsCase1ItemFilterV2 = /*@__PURE__*/ S.suspend(
 
 export type GetDrainsResponseDrainsCase1ItemProjectAccessCase0Access = "all";
 export const GetDrainsResponseDrainsCase1ItemProjectAccessCase0Access =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemProjectAccessCase0ManagedBy =
   | "drain"
   | "integration";
 export const GetDrainsResponseDrainsCase1ItemProjectAccessCase0ManagedBy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemProjectAccessCase0 {
   access: GetDrainsResponseDrainsCase1ItemProjectAccessCase0Access;
@@ -4012,7 +3887,7 @@ export const GetDrainsResponseDrainsCase1ItemProjectAccessCase0 =
 
 export type GetDrainsResponseDrainsCase1ItemProjectAccessCase1Access = "some";
 export const GetDrainsResponseDrainsCase1ItemProjectAccessCase1Access =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDrainsResponseDrainsCase1ItemProjectAccessCase1ProjectIdsList =
   Array<string>;
@@ -4025,7 +3900,7 @@ export type GetDrainsResponseDrainsCase1ItemProjectAccessCase1ManagedBy =
   | "drain"
   | "integration";
 export const GetDrainsResponseDrainsCase1ItemProjectAccessCase1ManagedBy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDrainsResponseDrainsCase1ItemProjectAccessCase1 {
   access: GetDrainsResponseDrainsCase1ItemProjectAccessCase1Access;
@@ -4048,7 +3923,7 @@ export type GetDrainsResponseDrainsCase1ItemProjectAccess =
   | GetDrainsResponseDrainsCase1ItemProjectAccessCase0
   | GetDrainsResponseDrainsCase1ItemProjectAccessCase1;
 export const GetDrainsResponseDrainsCase1ItemProjectAccess =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemProjectAccess>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrainsCase1ItemProjectAccess>;
 
 export interface GetDrainsResponseDrainsCase1Item {
   id: string;
@@ -4111,7 +3986,7 @@ export type GetDrainsResponseDrains =
   | GetDrainsResponseDrainsCase0List
   | GetDrainsResponseDrainsCase1List;
 export const GetDrainsResponseDrains =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDrainsResponseDrains>;
+  S.Unknown as any as S.Schema<GetDrainsResponseDrains>;
 
 export interface GetDrainsResponse {
   drains: GetDrainsResponseDrains;
@@ -4136,10 +4011,10 @@ export const TestDrainRequestSchemasMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TestDrainRequestSchemasMap>;
 
 export type TestDrainRequestDeliveryCase0Compression = "gzip" | "none";
-export const TestDrainRequestDeliveryCase0Compression = /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase0Compression = S.String;
 
 export type TestDrainRequestDeliveryCase0Encoding = "json" | "ndjson";
-export const TestDrainRequestDeliveryCase0Encoding = /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase0Encoding = S.String;
 
 export type TestDrainRequestDeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -4176,7 +4051,7 @@ export const TestDrainRequestDeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
 
 export type TestDrainRequestDeliveryCase1Encoding = "proto" | "json";
-export const TestDrainRequestDeliveryCase1Encoding = /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase1Encoding = S.String;
 
 export type TestDrainRequestDeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -4206,27 +4081,25 @@ export const TestDrainRequestDeliveryCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TestDrainRequestDeliveryCase1>;
 
 export type TestDrainRequestDeliveryCase2Encoding = "json" | "ndjson";
-export const TestDrainRequestDeliveryCase2Encoding = /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase2Encoding = S.String;
 
 export type TestDrainRequestDeliveryCase2Compression = "none";
-export const TestDrainRequestDeliveryCase2Compression = /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase2Compression = S.String;
 
 export type TestDrainRequestDeliveryCase2FileStructure = "hive";
-export const TestDrainRequestDeliveryCase2FileStructure =
-  /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase2FileStructure = S.String;
 
 export type TestDrainRequestDeliveryCase2ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
-export const TestDrainRequestDeliveryCase2ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase2ServerSideEncryption = S.String;
 
 export type TestDrainRequestDeliveryCase2ObjectAcl =
   | "private"
   | "bucket-owner-read"
   | "bucket-owner-full-control";
-export const TestDrainRequestDeliveryCase2ObjectAcl = /*@__PURE__*/ S.String;
+export const TestDrainRequestDeliveryCase2ObjectAcl = S.String;
 
 export interface TestDrainRequestDeliveryCase2 {
   type: string;
@@ -4264,7 +4137,7 @@ export type TestDrainRequestDelivery =
   | TestDrainRequestDeliveryCase1
   | TestDrainRequestDeliveryCase2;
 export const TestDrainRequestDelivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TestDrainRequestDelivery>;
+  S.Unknown as any as S.Schema<TestDrainRequestDelivery>;
 
 export interface TestDrainRequest {
   /** The Team identifier to perform the request on behalf of. */
@@ -4302,7 +4175,7 @@ export const TestDrainResponseBodyCase1 = /*@__PURE__*/ S.suspend(() =>
 
 export type TestDrainResponseBody = unknown | TestDrainResponseBodyCase1;
 export const TestDrainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TestDrainResponseBody>;
+  S.Unknown as any as S.Schema<TestDrainResponseBody>;
 
 export type TestDrainResponse = TestDrainResponseBody;
 export const TestDrainResponse = /*@__PURE__*/ S.suspend(() =>
@@ -4312,7 +4185,7 @@ export const TestDrainResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TestDrainResponse>;
 
 export type UpdateDrainRequestProjects = "some" | "all";
-export const UpdateDrainRequestProjects = /*@__PURE__*/ S.String;
+export const UpdateDrainRequestProjects = S.String;
 
 export type UpdateDrainRequestProjectIdsList = Array<string>;
 export const UpdateDrainRequestProjectIdsList = /*@__PURE__*/ S.Array(
@@ -4346,8 +4219,7 @@ export type UpdateDrainRequestFilterCase1FilterCase0LogSourcesItem =
   | "external"
   | "firewall"
   | "redirect";
-export const UpdateDrainRequestFilterCase1FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainRequestFilterCase1FilterCase0LogSourcesItem = S.String;
 
 export type UpdateDrainRequestFilterCase1FilterCase0LogSourcesList = Array<
   UpdateDrainRequestFilterCase1FilterCase0LogSourcesItem | (string & {})
@@ -4375,7 +4247,7 @@ export type UpdateDrainRequestFilterCase1FilterCase0DeploymentEnvironmentsItem =
   | "production"
   | "preview";
 export const UpdateDrainRequestFilterCase1FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDrainRequestFilterCase1FilterCase0DeploymentEnvironmentsList =
   Array<
@@ -4430,7 +4302,7 @@ export type UpdateDrainRequestFilterCase1Filter =
   | UpdateDrainRequestFilterCase1FilterCase0
   | CreateDrainRequestFilterFilterCase1;
 export const UpdateDrainRequestFilterCase1Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainRequestFilterCase1Filter>;
+  S.Unknown as any as S.Schema<UpdateDrainRequestFilterCase1Filter>;
 
 export interface UpdateDrainRequestFilterCase1 {
   version: string;
@@ -4447,7 +4319,7 @@ export const UpdateDrainRequestFilterCase1 = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateDrainRequestFilter = string | UpdateDrainRequestFilterCase1;
 export const UpdateDrainRequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainRequestFilter>;
+  S.Unknown as any as S.Schema<UpdateDrainRequestFilter>;
 
 export type UpdateDrainRequestSchemasValue = CreateDrainRequestSchemasValue;
 export const UpdateDrainRequestSchemasValue = CreateDrainRequestSchemasValue;
@@ -4461,11 +4333,10 @@ export const UpdateDrainRequestSchemasMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UpdateDrainRequestSchemasMap>;
 
 export type UpdateDrainRequestDeliveryCase0Compression = "gzip" | "none";
-export const UpdateDrainRequestDeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase0Compression = S.String;
 
 export type UpdateDrainRequestDeliveryCase0Encoding = "json" | "ndjson";
-export const UpdateDrainRequestDeliveryCase0Encoding = /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase0Encoding = S.String;
 
 export type UpdateDrainRequestDeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -4502,7 +4373,7 @@ export const UpdateDrainRequestDeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
 
 export type UpdateDrainRequestDeliveryCase1Encoding = "proto" | "json";
-export const UpdateDrainRequestDeliveryCase1Encoding = /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase1Encoding = S.String;
 
 export type UpdateDrainRequestDeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -4532,28 +4403,25 @@ export const UpdateDrainRequestDeliveryCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDrainRequestDeliveryCase1>;
 
 export type UpdateDrainRequestDeliveryCase2Encoding = "json" | "ndjson";
-export const UpdateDrainRequestDeliveryCase2Encoding = /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase2Encoding = S.String;
 
 export type UpdateDrainRequestDeliveryCase2Compression = "none";
-export const UpdateDrainRequestDeliveryCase2Compression =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase2Compression = S.String;
 
 export type UpdateDrainRequestDeliveryCase2FileStructure = "hive";
-export const UpdateDrainRequestDeliveryCase2FileStructure =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase2FileStructure = S.String;
 
 export type UpdateDrainRequestDeliveryCase2ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
-export const UpdateDrainRequestDeliveryCase2ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase2ServerSideEncryption = S.String;
 
 export type UpdateDrainRequestDeliveryCase2ObjectAcl =
   | "private"
   | "bucket-owner-read"
   | "bucket-owner-full-control";
-export const UpdateDrainRequestDeliveryCase2ObjectAcl = /*@__PURE__*/ S.String;
+export const UpdateDrainRequestDeliveryCase2ObjectAcl = S.String;
 
 export interface UpdateDrainRequestDeliveryCase2 {
   type: string;
@@ -4591,11 +4459,11 @@ export type UpdateDrainRequestDelivery =
   | UpdateDrainRequestDeliveryCase1
   | UpdateDrainRequestDeliveryCase2;
 export const UpdateDrainRequestDelivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainRequestDelivery>;
+  S.Unknown as any as S.Schema<UpdateDrainRequestDelivery>;
 
 /** Environment to apply sampling to */
 export type UpdateDrainRequestSamplingItemEnv = "production" | "preview";
-export const UpdateDrainRequestSamplingItemEnv = /*@__PURE__*/ S.String;
+export const UpdateDrainRequestSamplingItemEnv = S.String;
 
 export interface UpdateDrainRequestSamplingItem {
   type: string;
@@ -4634,7 +4502,7 @@ export const UpdateDrainRequestTransformsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateDrainRequestTransformsList>;
 
 export type UpdateDrainRequestStatus = "enabled" | "disabled";
-export const UpdateDrainRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateDrainRequestStatus = S.String;
 
 export type UpdateDrainRequestSourceCase0Case0 =
   CreateDrainRequestSourceCase0Case0;
@@ -4656,7 +4524,7 @@ export type UpdateDrainRequestSourceCase0 =
   | CreateDrainRequestSourceCase0Case1
   | CreateDrainRequestSourceCase0Case2;
 export const UpdateDrainRequestSourceCase0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainRequestSourceCase0>;
+  S.Unknown as any as S.Schema<UpdateDrainRequestSourceCase0>;
 
 export type UpdateDrainRequestSourceCase1 = CreateDrainRequestSourceCase0Case2;
 export const UpdateDrainRequestSourceCase1 = CreateDrainRequestSourceCase0Case2;
@@ -4665,7 +4533,7 @@ export type UpdateDrainRequestSource =
   | UpdateDrainRequestSourceCase0
   | CreateDrainRequestSourceCase0Case2;
 export const UpdateDrainRequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainRequestSource>;
+  S.Unknown as any as S.Schema<UpdateDrainRequestSource>;
 
 export interface UpdateDrainRequest {
   id: string;
@@ -4713,7 +4581,7 @@ export type UpdateDrainResponseBodyCase0Status =
   | "disabled"
   | "enabled"
   | "errored";
-export const UpdateDrainResponseBodyCase0Status = /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0Status = S.String;
 
 export type UpdateDrainResponseBodyCase0DisabledReason =
   | "account-plan-downgrade"
@@ -4721,8 +4589,7 @@ export type UpdateDrainResponseBodyCase0DisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const UpdateDrainResponseBodyCase0DisabledReason =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DisabledReason = S.String;
 
 export type UpdateDrainResponseBodyCase0Schemas =
   CreateDrainResponseBodyCase0Schemas;
@@ -4730,20 +4597,17 @@ export const UpdateDrainResponseBodyCase0Schemas =
   CreateDrainResponseBodyCase0Schemas;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase0Type = "http";
-export const UpdateDrainResponseBodyCase0DeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase0Type = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase0Encoding =
   | "json"
   | "ndjson";
-export const UpdateDrainResponseBodyCase0DeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase0Encoding = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase0Compression =
   | "gzip"
   | "none";
-export const UpdateDrainResponseBodyCase0DeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase0Compression = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -4757,7 +4621,7 @@ export const UpdateDrainResponseBodyCase0DeliveryCase0HeadersMap =
 export type UpdateDrainResponseBodyCase0DeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const UpdateDrainResponseBodyCase0DeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDrainResponseBodyCase0DeliveryCase0SecretCase1 {
   kind: UpdateDrainResponseBodyCase0DeliveryCase0SecretCase1Kind;
@@ -4775,7 +4639,7 @@ export type UpdateDrainResponseBodyCase0DeliveryCase0Secret =
   | string
   | UpdateDrainResponseBodyCase0DeliveryCase0SecretCase1;
 export const UpdateDrainResponseBodyCase0DeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase0Secret>;
 
 export interface UpdateDrainResponseBodyCase0DeliveryCase0 {
   type: UpdateDrainResponseBodyCase0DeliveryCase0Type;
@@ -4802,8 +4666,7 @@ export const UpdateDrainResponseBodyCase0DeliveryCase0 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase0>;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase1Type = "otlphttp";
-export const UpdateDrainResponseBodyCase0DeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase1Type = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -4813,8 +4676,7 @@ export const UpdateDrainResponseBodyCase0DeliveryCase1Endpoint =
 export type UpdateDrainResponseBodyCase0DeliveryCase1Encoding =
   | "json"
   | "proto";
-export const UpdateDrainResponseBodyCase0DeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase1Encoding = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -4828,7 +4690,7 @@ export const UpdateDrainResponseBodyCase0DeliveryCase1HeadersMap =
 export type UpdateDrainResponseBodyCase0DeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const UpdateDrainResponseBodyCase0DeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDrainResponseBodyCase0DeliveryCase1SecretCase1 {
   kind: UpdateDrainResponseBodyCase0DeliveryCase1SecretCase1Kind;
@@ -4846,7 +4708,7 @@ export type UpdateDrainResponseBodyCase0DeliveryCase1Secret =
   | string
   | UpdateDrainResponseBodyCase0DeliveryCase1SecretCase1;
 export const UpdateDrainResponseBodyCase0DeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase1Secret>;
 
 export interface UpdateDrainResponseBodyCase0DeliveryCase1 {
   type: UpdateDrainResponseBodyCase0DeliveryCase1Type;
@@ -4869,8 +4731,7 @@ export const UpdateDrainResponseBodyCase0DeliveryCase1 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase1>;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase2Type = "clickhouse";
-export const UpdateDrainResponseBodyCase0DeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase2Type = S.String;
 
 export interface UpdateDrainResponseBodyCase0DeliveryCase2 {
   type: UpdateDrainResponseBodyCase0DeliveryCase2Type;
@@ -4889,29 +4750,25 @@ export const UpdateDrainResponseBodyCase0DeliveryCase2 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase2>;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase3Type = "s3";
-export const UpdateDrainResponseBodyCase0DeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase3Type = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase3Encoding =
   | "json"
   | "ndjson";
-export const UpdateDrainResponseBodyCase0DeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase3Encoding = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase3Compression = "none";
-export const UpdateDrainResponseBodyCase0DeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase3Compression = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase3FileStructure = "hive";
-export const UpdateDrainResponseBodyCase0DeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase3FileStructure = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const UpdateDrainResponseBodyCase0DeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -4921,8 +4778,7 @@ export type UpdateDrainResponseBodyCase0DeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const UpdateDrainResponseBodyCase0DeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase3ObjectAcl = S.String;
 
 export interface UpdateDrainResponseBodyCase0DeliveryCase3 {
   type: UpdateDrainResponseBodyCase0DeliveryCase3Type;
@@ -4955,13 +4811,11 @@ export const UpdateDrainResponseBodyCase0DeliveryCase3 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase0DeliveryCase3>;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase4Type = "internal";
-export const UpdateDrainResponseBodyCase0DeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase4Type = S.String;
 
 export type UpdateDrainResponseBodyCase0DeliveryCase4Target =
   "vercel-otel-traces-db";
-export const UpdateDrainResponseBodyCase0DeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0DeliveryCase4Target = S.String;
 
 export interface UpdateDrainResponseBodyCase0DeliveryCase4 {
   type: UpdateDrainResponseBodyCase0DeliveryCase4Type;
@@ -4984,17 +4838,15 @@ export type UpdateDrainResponseBodyCase0Delivery =
   | UpdateDrainResponseBodyCase0DeliveryCase3
   | UpdateDrainResponseBodyCase0DeliveryCase4;
 export const UpdateDrainResponseBodyCase0Delivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0Delivery>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0Delivery>;
 
 export type UpdateDrainResponseBodyCase0SamplingItemType = "head_sampling";
-export const UpdateDrainResponseBodyCase0SamplingItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0SamplingItemType = S.String;
 
 export type UpdateDrainResponseBodyCase0SamplingItemEnv =
   | "preview"
   | "production";
-export const UpdateDrainResponseBodyCase0SamplingItemEnv =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0SamplingItemEnv = S.String;
 
 export interface UpdateDrainResponseBodyCase0SamplingItem {
   type: UpdateDrainResponseBodyCase0SamplingItemType;
@@ -5021,8 +4873,7 @@ export const UpdateDrainResponseBodyCase0SamplingList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateDrainResponseBodyCase0SamplingList>;
 
 export type UpdateDrainResponseBodyCase0SourceCase0Kind = "self-served";
-export const UpdateDrainResponseBodyCase0SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0SourceCase0Kind = S.String;
 
 export interface UpdateDrainResponseBodyCase0SourceCase0 {
   kind: UpdateDrainResponseBodyCase0SourceCase0Kind;
@@ -5037,8 +4888,7 @@ export const UpdateDrainResponseBodyCase0SourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateDrainResponseBodyCase0SourceCase0>;
 
 export type UpdateDrainResponseBodyCase0SourceCase1Kind = "integration";
-export const UpdateDrainResponseBodyCase0SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0SourceCase1Kind = S.String;
 
 export interface UpdateDrainResponseBodyCase0SourceCase1 {
   kind: UpdateDrainResponseBodyCase0SourceCase1Kind;
@@ -5064,15 +4914,13 @@ export type UpdateDrainResponseBodyCase0Source =
   | UpdateDrainResponseBodyCase0SourceCase0
   | UpdateDrainResponseBodyCase0SourceCase1;
 export const UpdateDrainResponseBodyCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0Source>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0Source>;
 
 export type UpdateDrainResponseBodyCase0FilterV2Version = "v2";
-export const UpdateDrainResponseBodyCase0FilterV2Version =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0FilterV2Version = S.String;
 
 export type UpdateDrainResponseBodyCase0FilterV2FilterCase0Type = "basic";
-export const UpdateDrainResponseBodyCase0FilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0FilterV2FilterCase0Type = S.String;
 
 export type UpdateDrainResponseBodyCase0FilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -5104,7 +4952,7 @@ export type UpdateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const UpdateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesList =
   Array<UpdateDrainResponseBodyCase0FilterV2FilterCase0LogSourcesItem>;
@@ -5133,7 +4981,7 @@ export type UpdateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironment
   | "preview"
   | "production";
 export const UpdateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsList =
   Array<UpdateDrainResponseBodyCase0FilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -5179,8 +5027,7 @@ export const UpdateDrainResponseBodyCase0FilterV2FilterCase0 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase0FilterV2FilterCase0>;
 
 export type UpdateDrainResponseBodyCase0FilterV2FilterCase1Type = "odata";
-export const UpdateDrainResponseBodyCase0FilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase0FilterV2FilterCase1Type = S.String;
 
 export interface UpdateDrainResponseBodyCase0FilterV2FilterCase1 {
   type: UpdateDrainResponseBodyCase0FilterV2FilterCase1Type;
@@ -5200,7 +5047,7 @@ export type UpdateDrainResponseBodyCase0FilterV2Filter =
   | UpdateDrainResponseBodyCase0FilterV2FilterCase0
   | UpdateDrainResponseBodyCase0FilterV2FilterCase1;
 export const UpdateDrainResponseBodyCase0FilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0FilterV2Filter>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase0FilterV2Filter>;
 
 export interface UpdateDrainResponseBodyCase0FilterV2 {
   version: UpdateDrainResponseBodyCase0FilterV2Version;
@@ -5268,7 +5115,7 @@ export type UpdateDrainResponseBodyCase1Status =
   | "disabled"
   | "enabled"
   | "errored";
-export const UpdateDrainResponseBodyCase1Status = /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1Status = S.String;
 
 export type UpdateDrainResponseBodyCase1DisabledReason =
   | "account-plan-downgrade"
@@ -5276,8 +5123,7 @@ export type UpdateDrainResponseBodyCase1DisabledReason =
   | "disabled-by-owner"
   | "feature-not-available"
   | "limits-exceeded";
-export const UpdateDrainResponseBodyCase1DisabledReason =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DisabledReason = S.String;
 
 export type UpdateDrainResponseBodyCase1Schemas =
   CreateDrainResponseBodyCase0Schemas;
@@ -5285,20 +5131,17 @@ export const UpdateDrainResponseBodyCase1Schemas =
   CreateDrainResponseBodyCase0Schemas;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase0Type = "http";
-export const UpdateDrainResponseBodyCase1DeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase0Type = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase0Encoding =
   | "json"
   | "ndjson";
-export const UpdateDrainResponseBodyCase1DeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase0Encoding = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase0Compression =
   | "gzip"
   | "none";
-export const UpdateDrainResponseBodyCase1DeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase0Compression = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase0HeadersMap = {
   [key: string]: string | undefined;
@@ -5312,7 +5155,7 @@ export const UpdateDrainResponseBodyCase1DeliveryCase0HeadersMap =
 export type UpdateDrainResponseBodyCase1DeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const UpdateDrainResponseBodyCase1DeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDrainResponseBodyCase1DeliveryCase0SecretCase1 {
   kind: UpdateDrainResponseBodyCase1DeliveryCase0SecretCase1Kind;
@@ -5330,7 +5173,7 @@ export type UpdateDrainResponseBodyCase1DeliveryCase0Secret =
   | string
   | UpdateDrainResponseBodyCase1DeliveryCase0SecretCase1;
 export const UpdateDrainResponseBodyCase1DeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase0Secret>;
 
 export interface UpdateDrainResponseBodyCase1DeliveryCase0 {
   type: UpdateDrainResponseBodyCase1DeliveryCase0Type;
@@ -5357,8 +5200,7 @@ export const UpdateDrainResponseBodyCase1DeliveryCase0 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase0>;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase1Type = "otlphttp";
-export const UpdateDrainResponseBodyCase1DeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase1Type = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase1Endpoint =
   CreateDrainRequestDeliveryCase1Endpoint;
@@ -5368,8 +5210,7 @@ export const UpdateDrainResponseBodyCase1DeliveryCase1Endpoint =
 export type UpdateDrainResponseBodyCase1DeliveryCase1Encoding =
   | "json"
   | "proto";
-export const UpdateDrainResponseBodyCase1DeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase1Encoding = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase1HeadersMap = {
   [key: string]: string | undefined;
@@ -5383,7 +5224,7 @@ export const UpdateDrainResponseBodyCase1DeliveryCase1HeadersMap =
 export type UpdateDrainResponseBodyCase1DeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const UpdateDrainResponseBodyCase1DeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDrainResponseBodyCase1DeliveryCase1SecretCase1 {
   kind: UpdateDrainResponseBodyCase1DeliveryCase1SecretCase1Kind;
@@ -5401,7 +5242,7 @@ export type UpdateDrainResponseBodyCase1DeliveryCase1Secret =
   | string
   | UpdateDrainResponseBodyCase1DeliveryCase1SecretCase1;
 export const UpdateDrainResponseBodyCase1DeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase1Secret>;
 
 export interface UpdateDrainResponseBodyCase1DeliveryCase1 {
   type: UpdateDrainResponseBodyCase1DeliveryCase1Type;
@@ -5424,8 +5265,7 @@ export const UpdateDrainResponseBodyCase1DeliveryCase1 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase1>;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase2Type = "clickhouse";
-export const UpdateDrainResponseBodyCase1DeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase2Type = S.String;
 
 export interface UpdateDrainResponseBodyCase1DeliveryCase2 {
   type: UpdateDrainResponseBodyCase1DeliveryCase2Type;
@@ -5444,29 +5284,25 @@ export const UpdateDrainResponseBodyCase1DeliveryCase2 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase2>;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase3Type = "s3";
-export const UpdateDrainResponseBodyCase1DeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase3Type = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase3Encoding =
   | "json"
   | "ndjson";
-export const UpdateDrainResponseBodyCase1DeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase3Encoding = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase3Compression = "none";
-export const UpdateDrainResponseBodyCase1DeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase3Compression = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase3FileStructure = "hive";
-export const UpdateDrainResponseBodyCase1DeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase3FileStructure = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const UpdateDrainResponseBodyCase1DeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -5476,8 +5312,7 @@ export type UpdateDrainResponseBodyCase1DeliveryCase3ObjectAcl =
   | "private"
   | "public-read"
   | "public-read-write";
-export const UpdateDrainResponseBodyCase1DeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase3ObjectAcl = S.String;
 
 export interface UpdateDrainResponseBodyCase1DeliveryCase3 {
   type: UpdateDrainResponseBodyCase1DeliveryCase3Type;
@@ -5510,13 +5345,11 @@ export const UpdateDrainResponseBodyCase1DeliveryCase3 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase1DeliveryCase3>;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase4Type = "internal";
-export const UpdateDrainResponseBodyCase1DeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase4Type = S.String;
 
 export type UpdateDrainResponseBodyCase1DeliveryCase4Target =
   "vercel-otel-traces-db";
-export const UpdateDrainResponseBodyCase1DeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1DeliveryCase4Target = S.String;
 
 export interface UpdateDrainResponseBodyCase1DeliveryCase4 {
   type: UpdateDrainResponseBodyCase1DeliveryCase4Type;
@@ -5539,17 +5372,15 @@ export type UpdateDrainResponseBodyCase1Delivery =
   | UpdateDrainResponseBodyCase1DeliveryCase3
   | UpdateDrainResponseBodyCase1DeliveryCase4;
 export const UpdateDrainResponseBodyCase1Delivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1Delivery>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1Delivery>;
 
 export type UpdateDrainResponseBodyCase1SamplingItemType = "head_sampling";
-export const UpdateDrainResponseBodyCase1SamplingItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1SamplingItemType = S.String;
 
 export type UpdateDrainResponseBodyCase1SamplingItemEnv =
   | "preview"
   | "production";
-export const UpdateDrainResponseBodyCase1SamplingItemEnv =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1SamplingItemEnv = S.String;
 
 export interface UpdateDrainResponseBodyCase1SamplingItem {
   type: UpdateDrainResponseBodyCase1SamplingItemType;
@@ -5576,8 +5407,7 @@ export const UpdateDrainResponseBodyCase1SamplingList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateDrainResponseBodyCase1SamplingList>;
 
 export type UpdateDrainResponseBodyCase1SourceCase0Kind = "self-served";
-export const UpdateDrainResponseBodyCase1SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1SourceCase0Kind = S.String;
 
 export interface UpdateDrainResponseBodyCase1SourceCase0 {
   kind: UpdateDrainResponseBodyCase1SourceCase0Kind;
@@ -5592,8 +5422,7 @@ export const UpdateDrainResponseBodyCase1SourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateDrainResponseBodyCase1SourceCase0>;
 
 export type UpdateDrainResponseBodyCase1SourceCase1Kind = "integration";
-export const UpdateDrainResponseBodyCase1SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1SourceCase1Kind = S.String;
 
 export interface UpdateDrainResponseBodyCase1SourceCase1 {
   kind: UpdateDrainResponseBodyCase1SourceCase1Kind;
@@ -5619,15 +5448,13 @@ export type UpdateDrainResponseBodyCase1Source =
   | UpdateDrainResponseBodyCase1SourceCase0
   | UpdateDrainResponseBodyCase1SourceCase1;
 export const UpdateDrainResponseBodyCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1Source>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1Source>;
 
 export type UpdateDrainResponseBodyCase1FilterV2Version = "v2";
-export const UpdateDrainResponseBodyCase1FilterV2Version =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1FilterV2Version = S.String;
 
 export type UpdateDrainResponseBodyCase1FilterV2FilterCase0Type = "basic";
-export const UpdateDrainResponseBodyCase1FilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1FilterV2FilterCase0Type = S.String;
 
 export type UpdateDrainResponseBodyCase1FilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -5659,7 +5486,7 @@ export type UpdateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem =
   | "redirect"
   | "static";
 export const UpdateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesList =
   Array<UpdateDrainResponseBodyCase1FilterV2FilterCase0LogSourcesItem>;
@@ -5688,7 +5515,7 @@ export type UpdateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironment
   | "preview"
   | "production";
 export const UpdateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsList =
   Array<UpdateDrainResponseBodyCase1FilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -5734,8 +5561,7 @@ export const UpdateDrainResponseBodyCase1FilterV2FilterCase0 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase1FilterV2FilterCase0>;
 
 export type UpdateDrainResponseBodyCase1FilterV2FilterCase1Type = "odata";
-export const UpdateDrainResponseBodyCase1FilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1FilterV2FilterCase1Type = S.String;
 
 export interface UpdateDrainResponseBodyCase1FilterV2FilterCase1 {
   type: UpdateDrainResponseBodyCase1FilterV2FilterCase1Type;
@@ -5755,7 +5581,7 @@ export type UpdateDrainResponseBodyCase1FilterV2Filter =
   | UpdateDrainResponseBodyCase1FilterV2FilterCase0
   | UpdateDrainResponseBodyCase1FilterV2FilterCase1;
 export const UpdateDrainResponseBodyCase1FilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1FilterV2Filter>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1FilterV2Filter>;
 
 export interface UpdateDrainResponseBodyCase1FilterV2 {
   version: UpdateDrainResponseBodyCase1FilterV2Version;
@@ -5772,14 +5598,12 @@ export const UpdateDrainResponseBodyCase1FilterV2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateDrainResponseBodyCase1FilterV2>;
 
 export type UpdateDrainResponseBodyCase1ProjectAccessCase0Access = "all";
-export const UpdateDrainResponseBodyCase1ProjectAccessCase0Access =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1ProjectAccessCase0Access = S.String;
 
 export type UpdateDrainResponseBodyCase1ProjectAccessCase0ManagedBy =
   | "drain"
   | "integration";
-export const UpdateDrainResponseBodyCase1ProjectAccessCase0ManagedBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1ProjectAccessCase0ManagedBy = S.String;
 
 export interface UpdateDrainResponseBodyCase1ProjectAccessCase0 {
   access: UpdateDrainResponseBodyCase1ProjectAccessCase0Access;
@@ -5796,8 +5620,7 @@ export const UpdateDrainResponseBodyCase1ProjectAccessCase0 =
   }) as any as S.Schema<UpdateDrainResponseBodyCase1ProjectAccessCase0>;
 
 export type UpdateDrainResponseBodyCase1ProjectAccessCase1Access = "some";
-export const UpdateDrainResponseBodyCase1ProjectAccessCase1Access =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1ProjectAccessCase1Access = S.String;
 
 export type UpdateDrainResponseBodyCase1ProjectAccessCase1ProjectIdsList =
   Array<string>;
@@ -5809,8 +5632,7 @@ export const UpdateDrainResponseBodyCase1ProjectAccessCase1ProjectIdsList =
 export type UpdateDrainResponseBodyCase1ProjectAccessCase1ManagedBy =
   | "drain"
   | "integration";
-export const UpdateDrainResponseBodyCase1ProjectAccessCase1ManagedBy =
-  /*@__PURE__*/ S.String;
+export const UpdateDrainResponseBodyCase1ProjectAccessCase1ManagedBy = S.String;
 
 export interface UpdateDrainResponseBodyCase1ProjectAccessCase1 {
   access: UpdateDrainResponseBodyCase1ProjectAccessCase1Access;
@@ -5832,7 +5654,7 @@ export type UpdateDrainResponseBodyCase1ProjectAccess =
   | UpdateDrainResponseBodyCase1ProjectAccessCase0
   | UpdateDrainResponseBodyCase1ProjectAccessCase1;
 export const UpdateDrainResponseBodyCase1ProjectAccess =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1ProjectAccess>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBodyCase1ProjectAccess>;
 
 export interface UpdateDrainResponseBodyCase1 {
   id: string;
@@ -5889,7 +5711,7 @@ export type UpdateDrainResponseBody =
   | UpdateDrainResponseBodyCase0
   | UpdateDrainResponseBodyCase1;
 export const UpdateDrainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDrainResponseBody>;
+  S.Unknown as any as S.Schema<UpdateDrainResponseBody>;
 
 export type UpdateDrainResponse = UpdateDrainResponseBody;
 export const UpdateDrainResponse = /*@__PURE__*/ S.suspend(() =>

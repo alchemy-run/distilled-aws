@@ -143,7 +143,7 @@ export type ArtifactQueryResponseBodyValue =
   | ArtifactQueryResponseBodyValueCase0
   | ArtifactQueryResponseBodyValueCase1;
 export const ArtifactQueryResponseBodyValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ArtifactQueryResponseBodyValue>;
+  S.Unknown as any as S.Schema<ArtifactQueryResponseBodyValue>;
 
 export type ArtifactQueryResponseBodyMap = {
   [key: string]: ArtifactQueryResponseBodyValue | undefined;
@@ -223,11 +223,11 @@ export const DownloadArtifactResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** One of `LOCAL` or `REMOTE`. `LOCAL` specifies that the cache event was from the user's filesystem cache. `REMOTE` specifies that the cache event is from a remote cache. */
 export type RecordEventsRequestBodyItemSource = "LOCAL" | "REMOTE";
-export const RecordEventsRequestBodyItemSource = /*@__PURE__*/ S.String;
+export const RecordEventsRequestBodyItemSource = S.String;
 
 /** One of `HIT` or `MISS`. `HIT` specifies that a cached artifact for `hash` was found in the cache. `MISS` specifies that a cached artifact with `hash` was not found. */
 export type RecordEventsRequestBodyItemEvent = "HIT" | "MISS";
-export const RecordEventsRequestBodyItemEvent = /*@__PURE__*/ S.String;
+export const RecordEventsRequestBodyItemEvent = S.String;
 
 export interface RecordEventsRequestBodyItem {
   /** A UUID (universally unique identifer) for the session that generated this event. */
@@ -321,7 +321,7 @@ export type StatusResponseBodyCase1Status =
   | "enabled"
   | "over_limit"
   | "paused";
-export const StatusResponseBodyCase1Status = /*@__PURE__*/ S.String;
+export const StatusResponseBodyCase1Status = S.String;
 
 export interface StatusResponseBodyCase1 {
   status: StatusResponseBodyCase1Status;
@@ -338,7 +338,7 @@ export type StatusResponseBody =
   | StatusResponseBodyCase0
   | StatusResponseBodyCase1;
 export const StatusResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StatusResponseBody>;
+  S.Unknown as any as S.Schema<StatusResponseBody>;
 
 export type StatusResponse = StatusResponseBody;
 export const StatusResponse = /*@__PURE__*/ S.suspend(() =>

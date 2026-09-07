@@ -180,11 +180,11 @@ export type PromoCodeCurrency =
   | "awg"
   | "whop_usd"
   | "xau";
-export const PromoCodeCurrency = /*@__PURE__*/ S.String;
+export const PromoCodeCurrency = S.String;
 
 /** How long the discount applies. */
 export type PromoCodeDuration = "forever" | "once" | "repeating";
-export const PromoCodeDuration = /*@__PURE__*/ S.String;
+export const PromoCodeDuration = S.String;
 
 export interface PromoCodeProduct {
   /** Product ID, prefixed `prod_`. */
@@ -203,11 +203,11 @@ export const PromoCodeProduct = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the discount is percentage-based or a fixed amount. */
 export type PromoCodePromoType = "percentage" | "flat_amount";
-export const PromoCodePromoType = /*@__PURE__*/ S.String;
+export const PromoCodePromoType = S.String;
 
 /** Promo code lifecycle status. */
 export type PromoCodeStatus = "active" | "inactive" | "archived";
-export const PromoCodeStatus = /*@__PURE__*/ S.String;
+export const PromoCodeStatus = S.String;
 
 export interface PromoCode {
   /** Account that owns the promo code. */
@@ -370,7 +370,7 @@ export type CreatePromoCodeRequestBaseCurrency =
   | "awg"
   | "whop_usd"
   | "xau";
-export const CreatePromoCodeRequestBaseCurrency = /*@__PURE__*/ S.String;
+export const CreatePromoCodeRequestBaseCurrency = S.String;
 
 export type CreatePromoCodeRequestPlanIdsList = Array<string>;
 export const CreatePromoCodeRequestPlanIdsList = /*@__PURE__*/ S.Array(
@@ -378,7 +378,7 @@ export const CreatePromoCodeRequestPlanIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreatePromoCodeRequestPlanIdsList>;
 
 export type CreatePromoCodeRequestPromoType = "percentage" | "flat_amount";
-export const CreatePromoCodeRequestPromoType = /*@__PURE__*/ S.String;
+export const CreatePromoCodeRequestPromoType = S.String;
 
 export interface CreatePromoCodeRequest {
   account_id: string;
@@ -481,7 +481,7 @@ export type ListPromoCodesRequestStatus =
   | "inactive"
   | "archived"
   | "expired";
-export const ListPromoCodesRequestStatus = /*@__PURE__*/ S.String;
+export const ListPromoCodesRequestStatus = S.String;
 
 export type ListPromoCodesRequestProductIdsList = Array<string>;
 export const ListPromoCodesRequestProductIdsList = /*@__PURE__*/ S.Array(
@@ -494,10 +494,10 @@ export const ListPromoCodesRequestPlanIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListPromoCodesRequestPlanIdsList>;
 
 export type ListPromoCodesRequestOrder = "created_at";
-export const ListPromoCodesRequestOrder = /*@__PURE__*/ S.String;
+export const ListPromoCodesRequestOrder = S.String;
 
 export type ListPromoCodesRequestDirection = "asc" | "desc";
-export const ListPromoCodesRequestDirection = /*@__PURE__*/ S.String;
+export const ListPromoCodesRequestDirection = S.String;
 
 export interface ListPromoCodesRequest {
   /** Account whose promo codes are listed (`biz_` tag). */
@@ -638,19 +638,19 @@ export type PromoCodeListItemCurrency =
   | "awg"
   | "whop_usd"
   | "xau";
-export const PromoCodeListItemCurrency = /*@__PURE__*/ S.String;
+export const PromoCodeListItemCurrency = S.String;
 
 /** How long the discount applies. */
 export type PromoCodeListItemDuration = "forever" | "once" | "repeating";
-export const PromoCodeListItemDuration = /*@__PURE__*/ S.String;
+export const PromoCodeListItemDuration = S.String;
 
 /** Whether the discount is percentage-based or a fixed amount. */
 export type PromoCodeListItemPromoType = "percentage" | "flat_amount";
-export const PromoCodeListItemPromoType = /*@__PURE__*/ S.String;
+export const PromoCodeListItemPromoType = S.String;
 
 /** Promo code lifecycle status. */
 export type PromoCodeListItemStatus = "active" | "inactive" | "archived";
-export const PromoCodeListItemStatus = /*@__PURE__*/ S.String;
+export const PromoCodeListItemStatus = S.String;
 
 export interface PromoCodeListItem {
   /** Discount amount. Percentage discounts are represented as a decimal fraction. */
@@ -758,7 +758,7 @@ export const ListPromoCodesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Statuses that can be applied to promo codes through update operations. */
 export type PromoCodeUpdateStatus = "active" | "inactive";
-export const PromoCodeUpdateStatus = /*@__PURE__*/ S.String;
+export const PromoCodeUpdateStatus = S.String;
 
 export interface UpdatePromoCodeRequest {
   /** The unique identifier of the promo code to update. */
@@ -883,11 +883,11 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** The duration setting for the promo code */
 export type PromoDurations = "forever" | "once" | "repeating";
-export const PromoDurations = /*@__PURE__*/ S.String;
+export const PromoDurations = S.String;
 
 /** The product this promo code applies to */
 export interface LegacyPromoCodeProduct {
@@ -907,11 +907,11 @@ export const LegacyPromoCodeProduct = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of promo code used to discount a plan */
 export type PromoTypes = "percentage" | "flat_amount";
-export const PromoTypes = /*@__PURE__*/ S.String;
+export const PromoTypes = S.String;
 
 /** Statuses for promo codes */
 export type PromoCodeStatus2 = "active" | "inactive" | "archived";
-export const PromoCodeStatus2 = /*@__PURE__*/ S.String;
+export const PromoCodeStatus2 = S.String;
 
 /** A promo code applies a discount to a plan during checkout. Promo codes can be percentage-based or fixed-amount, and can have usage limits and expiration dates. */
 export interface LegacyPromoCode {

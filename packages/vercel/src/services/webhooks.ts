@@ -144,7 +144,7 @@ export type CreateWebhookRequestEventsItem =
   | "comment.reaction-added"
   | "comment.reaction-removed"
   | "comment.mentioned";
-export const CreateWebhookRequestEventsItem = /*@__PURE__*/ S.String;
+export const CreateWebhookRequestEventsItem = S.String;
 
 export type CreateWebhookRequestEventsList = Array<
   CreateWebhookRequestEventsItem | (string & {})
@@ -298,7 +298,7 @@ export type CreateWebhookResponseEventsItem =
   | "test-webhook"
   | "thread.resolved"
   | "thread.unresolved";
-export const CreateWebhookResponseEventsItem = /*@__PURE__*/ S.String;
+export const CreateWebhookResponseEventsItem = S.String;
 
 /** The webhooks events */
 export type CreateWebhookResponseEventsList =
@@ -508,7 +508,7 @@ export type GetWebhookResponseEventsItem =
   | "test-webhook"
   | "thread.resolved"
   | "thread.unresolved";
-export const GetWebhookResponseEventsItem = /*@__PURE__*/ S.String;
+export const GetWebhookResponseEventsItem = S.String;
 
 /** The webhooks events */
 export type GetWebhookResponseEventsList = Array<GetWebhookResponseEventsItem>;
@@ -647,7 +647,7 @@ export type GetWebhooksResponseBodyCase0ItemProjectsMetadataItemFramework =
   | "xmcp"
   | "zola";
 export const GetWebhooksResponseBodyCase0ItemProjectsMetadataItemFramework =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetWebhooksResponseBodyCase0ItemProjectsMetadataItem {
   id: string;
@@ -796,8 +796,7 @@ export type GetWebhooksResponseBodyCase0ItemEventsItem =
   | "test-webhook"
   | "thread.resolved"
   | "thread.unresolved";
-export const GetWebhooksResponseBodyCase0ItemEventsItem =
-  /*@__PURE__*/ S.String;
+export const GetWebhooksResponseBodyCase0ItemEventsItem = S.String;
 
 /** The webhooks events */
 export type GetWebhooksResponseBodyCase0ItemEventsList =
@@ -975,8 +974,7 @@ export type GetWebhooksResponseBodyCase1ItemEventsItem =
   | "test-webhook"
   | "thread.resolved"
   | "thread.unresolved";
-export const GetWebhooksResponseBodyCase1ItemEventsItem =
-  /*@__PURE__*/ S.String;
+export const GetWebhooksResponseBodyCase1ItemEventsItem = S.String;
 
 /** The webhooks events */
 export type GetWebhooksResponseBodyCase1ItemEventsList =
@@ -1034,7 +1032,7 @@ export type GetWebhooksResponseBody =
   | GetWebhooksResponseBodyCase0List
   | GetWebhooksResponseBodyCase1List;
 export const GetWebhooksResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetWebhooksResponseBody>;
+  S.Unknown as any as S.Schema<GetWebhooksResponseBody>;
 
 export type GetWebhooksResponse = GetWebhooksResponseBody;
 export const GetWebhooksResponse = /*@__PURE__*/ S.suspend(() =>

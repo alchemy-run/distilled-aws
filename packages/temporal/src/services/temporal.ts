@@ -614,7 +614,7 @@ export type TaskQueueKind =
   | "TASK_QUEUE_KIND_NORMAL"
   | "TASK_QUEUE_KIND_STICKY"
   | "TASK_QUEUE_KIND_WORKER_COMMANDS";
-export const TaskQueueKind = /*@__PURE__*/ S.String;
+export const TaskQueueKind = S.String;
 
 /** See https://docs.temporal.io/docs/concepts/task-queues/ */
 export interface TaskQueue {
@@ -654,8 +654,7 @@ export type NewWorkflowExecutionInfoWorkflowIdReusePolicy =
   | "WORKFLOW_ID_REUSE_POLICY_ALLOW_DUPLICATE_FAILED_ONLY"
   | "WORKFLOW_ID_REUSE_POLICY_REJECT_DUPLICATE"
   | "WORKFLOW_ID_REUSE_POLICY_TERMINATE_IF_RUNNING";
-export const NewWorkflowExecutionInfoWorkflowIdReusePolicy =
-  /*@__PURE__*/ S.String;
+export const NewWorkflowExecutionInfoWorkflowIdReusePolicy = S.String;
 
 /** Non-Retryable errors types. Will stop retrying if the error type matches this list. Note that this is not a substring match, the error *type* (not message) must match exactly. */
 export type RetryPolicyNonRetryableErrorTypesList = Array<string>;
@@ -756,7 +755,7 @@ export const UserMetadata = /*@__PURE__*/ S.suspend(() =>
 export type VersioningOverridePinnedOverrideBehavior =
   | "PINNED_OVERRIDE_BEHAVIOR_UNSPECIFIED"
   | "PINNED_OVERRIDE_BEHAVIOR_PINNED";
-export const VersioningOverridePinnedOverrideBehavior = /*@__PURE__*/ S.String;
+export const VersioningOverridePinnedOverrideBehavior = S.String;
 
 /** A Worker Deployment Version (Version, for short) represents a version of workers within a Worker Deployment. (see documentation of WorkerDeploymentVersionInfo) Version records are created in Temporal server automatically when their first poller arrives to the server. Experimental. Worker Deployment Versions are experimental and might significantly change in the future. */
 export interface WorkerDeploymentVersion {
@@ -794,7 +793,7 @@ export type VersioningOverrideBehavior =
   | "VERSIONING_BEHAVIOR_UNSPECIFIED"
   | "VERSIONING_BEHAVIOR_PINNED"
   | "VERSIONING_BEHAVIOR_AUTO_UPGRADE";
-export const VersioningOverrideBehavior = /*@__PURE__*/ S.String;
+export const VersioningOverrideBehavior = S.String;
 
 /** `Deployment` identifies a deployment of Temporal workers. The combination of deployment series name + build ID serves as the identifier. User can use `WorkerDeploymentOptions` in their worker programs to specify these values. Deprecated. */
 export interface Deployment {
@@ -927,7 +926,7 @@ export type SchedulePoliciesOverlapPolicy =
   | "SCHEDULE_OVERLAP_POLICY_CANCEL_OTHER"
   | "SCHEDULE_OVERLAP_POLICY_TERMINATE_OTHER"
   | "SCHEDULE_OVERLAP_POLICY_ALLOW_ALL";
-export const SchedulePoliciesOverlapPolicy = /*@__PURE__*/ S.String;
+export const SchedulePoliciesOverlapPolicy = S.String;
 
 export interface SchedulePolicies {
   /** Policy for overlaps. Note that this can be changed after a schedule has taken some actions, and some changes might produce unintuitive results. In general, the later policy overrides the earlier policy. */
@@ -992,7 +991,7 @@ export type TriggerImmediatelyRequestOverlapPolicy =
   | "SCHEDULE_OVERLAP_POLICY_CANCEL_OTHER"
   | "SCHEDULE_OVERLAP_POLICY_TERMINATE_OTHER"
   | "SCHEDULE_OVERLAP_POLICY_ALLOW_ALL";
-export const TriggerImmediatelyRequestOverlapPolicy = /*@__PURE__*/ S.String;
+export const TriggerImmediatelyRequestOverlapPolicy = S.String;
 
 export interface TriggerImmediatelyRequest {
   /** If set, override overlap policy for this one request. */
@@ -1018,7 +1017,7 @@ export type BackfillRequestOverlapPolicy =
   | "SCHEDULE_OVERLAP_POLICY_CANCEL_OTHER"
   | "SCHEDULE_OVERLAP_POLICY_TERMINATE_OTHER"
   | "SCHEDULE_OVERLAP_POLICY_ALLOW_ALL";
-export const BackfillRequestOverlapPolicy = /*@__PURE__*/ S.String;
+export const BackfillRequestOverlapPolicy = S.String;
 
 export interface BackfillRequest {
   /** Time range to evaluate schedule in. Currently, this time range is exclusive on start_time and inclusive on end_time. (This is admittedly counterintuitive and it may change in the future, so to be safe, use a start time strictly before a scheduled time.) Also note that an action nominally scheduled in the interval but with jitter that pushes it after end_time will not be included. */
@@ -1153,8 +1152,7 @@ export type ComputeConfigScalingGroupTaskQueueTypesItem =
   | "TASK_QUEUE_TYPE_WORKFLOW"
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
-export const ComputeConfigScalingGroupTaskQueueTypesItem =
-  /*@__PURE__*/ S.String;
+export const ComputeConfigScalingGroupTaskQueueTypesItem = S.String;
 
 /** Optional. The set of task queue types this scaling group serves. If not provided, this scaling group serves all not otherwise defined task types. */
 export type ComputeConfigScalingGroupTaskQueueTypesList = Array<
@@ -1603,7 +1601,7 @@ export type ActivityExecutionInfoStatus =
   | "ACTIVITY_EXECUTION_STATUS_CANCELED"
   | "ACTIVITY_EXECUTION_STATUS_TERMINATED"
   | "ACTIVITY_EXECUTION_STATUS_TIMED_OUT";
-export const ActivityExecutionInfoStatus = /*@__PURE__*/ S.String;
+export const ActivityExecutionInfoStatus = S.String;
 
 /** More detailed breakdown of ACTIVITY_EXECUTION_STATUS_RUNNING. */
 export type ActivityExecutionInfoRunState =
@@ -1613,12 +1611,12 @@ export type ActivityExecutionInfoRunState =
   | "PENDING_ACTIVITY_STATE_CANCEL_REQUESTED"
   | "PENDING_ACTIVITY_STATE_PAUSED"
   | "PENDING_ACTIVITY_STATE_PAUSE_REQUESTED";
-export const ActivityExecutionInfoRunState = /*@__PURE__*/ S.String;
+export const ActivityExecutionInfoRunState = S.String;
 
 export type ApplicationFailureInfoCategory =
   | "APPLICATION_ERROR_CATEGORY_UNSPECIFIED"
   | "APPLICATION_ERROR_CATEGORY_BENIGN";
-export const ApplicationFailureInfoCategory = /*@__PURE__*/ S.String;
+export const ApplicationFailureInfoCategory = S.String;
 
 export interface ApplicationFailureInfo {
   type?: string;
@@ -1646,7 +1644,7 @@ export type TimeoutFailureInfoTimeoutType =
   | "TIMEOUT_TYPE_SCHEDULE_TO_START"
   | "TIMEOUT_TYPE_SCHEDULE_TO_CLOSE"
   | "TIMEOUT_TYPE_HEARTBEAT";
-export const TimeoutFailureInfoTimeoutType = /*@__PURE__*/ S.String;
+export const TimeoutFailureInfoTimeoutType = S.String;
 
 export interface TimeoutFailureInfo {
   timeoutType?: TimeoutFailureInfoTimeoutType | (string & {});
@@ -1718,7 +1716,7 @@ export type ActivityFailureInfoRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const ActivityFailureInfoRetryState = /*@__PURE__*/ S.String;
+export const ActivityFailureInfoRetryState = S.String;
 
 export interface ActivityFailureInfo {
   scheduledEventId?: string;
@@ -1764,8 +1762,7 @@ export type ChildWorkflowExecutionFailureInfoRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const ChildWorkflowExecutionFailureInfoRetryState =
-  /*@__PURE__*/ S.String;
+export const ChildWorkflowExecutionFailureInfoRetryState = S.String;
 
 export interface ChildWorkflowExecutionFailureInfo {
   namespace?: string;
@@ -1821,7 +1818,7 @@ export type NexusHandlerFailureInfoRetryBehavior =
   | "NEXUS_HANDLER_ERROR_RETRY_BEHAVIOR_UNSPECIFIED"
   | "NEXUS_HANDLER_ERROR_RETRY_BEHAVIOR_RETRYABLE"
   | "NEXUS_HANDLER_ERROR_RETRY_BEHAVIOR_NON_RETRYABLE";
-export const NexusHandlerFailureInfoRetryBehavior = /*@__PURE__*/ S.String;
+export const NexusHandlerFailureInfoRetryBehavior = S.String;
 
 export interface NexusHandlerFailureInfo {
   /** The Nexus error type as defined in the spec: https://github.com/nexus-rpc/api/blob/main/SPEC.md#predefined-handler-errors. */
@@ -1941,7 +1938,7 @@ export type WorkflowEventEventReferenceEventType =
   | "EVENT_TYPE_WORKFLOW_EXECUTION_PAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_UNPAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_TIME_SKIPPING_TRANSITIONED";
-export const WorkflowEventEventReferenceEventType = /*@__PURE__*/ S.String;
+export const WorkflowEventEventReferenceEventType = S.String;
 
 /** EventReference is a direct reference to a history event through the event ID. */
 export interface WorkflowEventEventReference {
@@ -2019,7 +2016,7 @@ export type WorkflowEventRequestIdReferenceEventType =
   | "EVENT_TYPE_WORKFLOW_EXECUTION_PAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_UNPAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_TIME_SKIPPING_TRANSITIONED";
-export const WorkflowEventRequestIdReferenceEventType = /*@__PURE__*/ S.String;
+export const WorkflowEventRequestIdReferenceEventType = S.String;
 
 /** RequestIdReference is a indirect reference to a history event through the request ID. */
 export interface WorkflowEventRequestIdReference {
@@ -2302,7 +2299,7 @@ export type CallbackInfoState =
   | "CALLBACK_STATE_FAILED"
   | "CALLBACK_STATE_SUCCEEDED"
   | "CALLBACK_STATE_BLOCKED";
-export const CallbackInfoState = /*@__PURE__*/ S.String;
+export const CallbackInfoState = S.String;
 
 /** Common callback information. Specific CallbackInfo messages should embed this and may include additional fields. */
 export interface CallbackInfo {
@@ -2404,8 +2401,7 @@ export type DescribeBatchOperationResponseOperationType =
   | "BATCH_OPERATION_TYPE_UNPAUSE_ACTIVITY"
   | "BATCH_OPERATION_TYPE_UPDATE_ACTIVITY_OPTIONS"
   | "BATCH_OPERATION_TYPE_RESET_ACTIVITY";
-export const DescribeBatchOperationResponseOperationType =
-  /*@__PURE__*/ S.String;
+export const DescribeBatchOperationResponseOperationType = S.String;
 
 /** Batch operation state */
 export type DescribeBatchOperationResponseState =
@@ -2413,7 +2409,7 @@ export type DescribeBatchOperationResponseState =
   | "BATCH_OPERATION_STATE_RUNNING"
   | "BATCH_OPERATION_STATE_COMPLETED"
   | "BATCH_OPERATION_STATE_FAILED";
-export const DescribeBatchOperationResponseState = /*@__PURE__*/ S.String;
+export const DescribeBatchOperationResponseState = S.String;
 
 export interface DescribeBatchOperationResponse {
   /** Batch operation type */
@@ -2490,7 +2486,7 @@ export type DeploymentInfoTaskQueueInfoType =
   | "TASK_QUEUE_TYPE_WORKFLOW"
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
-export const DeploymentInfoTaskQueueInfoType = /*@__PURE__*/ S.String;
+export const DeploymentInfoTaskQueueInfoType = S.String;
 
 export interface DeploymentInfoTaskQueueInfo {
   name?: string;
@@ -2576,7 +2572,7 @@ export type NamespaceInfoState =
   | "NAMESPACE_STATE_REGISTERED"
   | "NAMESPACE_STATE_DEPRECATED"
   | "NAMESPACE_STATE_DELETED";
-export const NamespaceInfoState = /*@__PURE__*/ S.String;
+export const NamespaceInfoState = S.String;
 
 /** A key-value map for any customized purpose. */
 export type NamespaceInfoDataMap = { [key: string]: string | undefined };
@@ -2704,14 +2700,14 @@ export type NamespaceConfigHistoryArchivalState =
   | "ARCHIVAL_STATE_UNSPECIFIED"
   | "ARCHIVAL_STATE_DISABLED"
   | "ARCHIVAL_STATE_ENABLED";
-export const NamespaceConfigHistoryArchivalState = /*@__PURE__*/ S.String;
+export const NamespaceConfigHistoryArchivalState = S.String;
 
 /** If unspecified (ARCHIVAL_STATE_UNSPECIFIED) then default server configuration is used. */
 export type NamespaceConfigVisibilityArchivalState =
   | "ARCHIVAL_STATE_UNSPECIFIED"
   | "ARCHIVAL_STATE_DISABLED"
   | "ARCHIVAL_STATE_ENABLED";
-export const NamespaceConfigVisibilityArchivalState = /*@__PURE__*/ S.String;
+export const NamespaceConfigVisibilityArchivalState = S.String;
 
 /** Map from field name to alias. */
 export type NamespaceConfigCustomSearchAttributeAliasesMap = {
@@ -2774,7 +2770,7 @@ export type NamespaceReplicationConfigState =
   | "REPLICATION_STATE_UNSPECIFIED"
   | "REPLICATION_STATE_NORMAL"
   | "REPLICATION_STATE_HANDOVER";
-export const NamespaceReplicationConfigState = /*@__PURE__*/ S.String;
+export const NamespaceReplicationConfigState = S.String;
 
 export interface NamespaceReplicationConfig {
   activeClusterName?: string;
@@ -2875,7 +2871,7 @@ export type NexusOperationExecutionInfoStatus =
   | "NEXUS_OPERATION_EXECUTION_STATUS_CANCELED"
   | "NEXUS_OPERATION_EXECUTION_STATUS_TERMINATED"
   | "NEXUS_OPERATION_EXECUTION_STATUS_TIMED_OUT";
-export const NexusOperationExecutionInfoStatus = /*@__PURE__*/ S.String;
+export const NexusOperationExecutionInfoStatus = S.String;
 
 /** More detailed breakdown of NEXUS_OPERATION_EXECUTION_STATUS_RUNNING. */
 export type NexusOperationExecutionInfoState =
@@ -2884,7 +2880,7 @@ export type NexusOperationExecutionInfoState =
   | "PENDING_NEXUS_OPERATION_STATE_BACKING_OFF"
   | "PENDING_NEXUS_OPERATION_STATE_STARTED"
   | "PENDING_NEXUS_OPERATION_STATE_BLOCKED";
-export const NexusOperationExecutionInfoState = /*@__PURE__*/ S.String;
+export const NexusOperationExecutionInfoState = S.String;
 
 export type NexusOperationExecutionCancellationInfoState =
   | "NEXUS_OPERATION_CANCELLATION_STATE_UNSPECIFIED"
@@ -2894,8 +2890,7 @@ export type NexusOperationExecutionCancellationInfoState =
   | "NEXUS_OPERATION_CANCELLATION_STATE_FAILED"
   | "NEXUS_OPERATION_CANCELLATION_STATE_TIMED_OUT"
   | "NEXUS_OPERATION_CANCELLATION_STATE_BLOCKED";
-export const NexusOperationExecutionCancellationInfoState =
-  /*@__PURE__*/ S.String;
+export const NexusOperationExecutionCancellationInfoState = S.String;
 
 /** NexusOperationExecutionCancellationInfo contains the state of a Nexus operation cancellation. */
 export interface NexusOperationExecutionCancellationInfo {
@@ -3103,7 +3098,7 @@ export type ScheduleActionResultStartWorkflowStatus =
   | "WORKFLOW_EXECUTION_STATUS_CONTINUED_AS_NEW"
   | "WORKFLOW_EXECUTION_STATUS_TIMED_OUT"
   | "WORKFLOW_EXECUTION_STATUS_PAUSED";
-export const ScheduleActionResultStartWorkflowStatus = /*@__PURE__*/ S.String;
+export const ScheduleActionResultStartWorkflowStatus = S.String;
 
 export interface ScheduleActionResult {
   /** Time that the action was taken (according to the schedule, including jitter). */
@@ -3205,19 +3200,19 @@ export type DescribeTaskQueueRequestTaskQueueKind =
   | "TASK_QUEUE_KIND_NORMAL"
   | "TASK_QUEUE_KIND_STICKY"
   | "TASK_QUEUE_KIND_WORKER_COMMANDS";
-export const DescribeTaskQueueRequestTaskQueueKind = /*@__PURE__*/ S.String;
+export const DescribeTaskQueueRequestTaskQueueKind = S.String;
 
 export type DescribeTaskQueueRequestTaskQueueType =
   | "TASK_QUEUE_TYPE_UNSPECIFIED"
   | "TASK_QUEUE_TYPE_WORKFLOW"
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
-export const DescribeTaskQueueRequestTaskQueueType = /*@__PURE__*/ S.String;
+export const DescribeTaskQueueRequestTaskQueueType = S.String;
 
 export type DescribeTaskQueueRequestApiMode =
   | "DESCRIBE_TASK_QUEUE_MODE_UNSPECIFIED"
   | "DESCRIBE_TASK_QUEUE_MODE_ENHANCED";
-export const DescribeTaskQueueRequestApiMode = /*@__PURE__*/ S.String;
+export const DescribeTaskQueueRequestApiMode = S.String;
 
 export type DescribeTaskQueueRequestVersionsBuildIdsList = Array<string>;
 export const DescribeTaskQueueRequestVersionsBuildIdsList =
@@ -3230,8 +3225,7 @@ export type DescribeTaskQueueRequestTaskQueueTypesItem =
   | "TASK_QUEUE_TYPE_WORKFLOW"
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
-export const DescribeTaskQueueRequestTaskQueueTypesItem =
-  /*@__PURE__*/ S.String;
+export const DescribeTaskQueueRequestTaskQueueTypesItem = S.String;
 
 export type DescribeTaskQueueRequestTaskQueueTypesList = Array<
   DescribeTaskQueueRequestTaskQueueTypesItem | (string & {})
@@ -3340,8 +3334,7 @@ export type WorkerDeploymentOptionsWorkerVersioningMode =
   | "WORKER_VERSIONING_MODE_UNSPECIFIED"
   | "WORKER_VERSIONING_MODE_UNVERSIONED"
   | "WORKER_VERSIONING_MODE_VERSIONED";
-export const WorkerDeploymentOptionsWorkerVersioningMode =
-  /*@__PURE__*/ S.String;
+export const WorkerDeploymentOptionsWorkerVersioningMode = S.String;
 
 /** Worker Deployment options set in SDK that need to be sent to server in every poll. */
 export interface WorkerDeploymentOptions {
@@ -3522,7 +3515,7 @@ export type DescribeTaskQueueResponseEffectiveRateLimitRateLimitSource =
   | "RATE_LIMIT_SOURCE_WORKER"
   | "RATE_LIMIT_SOURCE_SYSTEM";
 export const DescribeTaskQueueResponseEffectiveRateLimitRateLimitSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DescribeTaskQueueResponseEffectiveRateLimit {
   /** The effective rate limit for the task queue. */
@@ -3608,7 +3601,7 @@ export type TaskQueueVersionInfoTaskReachability =
   | "BUILD_ID_TASK_REACHABILITY_REACHABLE"
   | "BUILD_ID_TASK_REACHABILITY_CLOSED_WORKFLOWS_ONLY"
   | "BUILD_ID_TASK_REACHABILITY_UNREACHABLE";
-export const TaskQueueVersionInfoTaskReachability = /*@__PURE__*/ S.String;
+export const TaskQueueVersionInfoTaskReachability = S.String;
 
 export interface TaskQueueVersionInfo {
   /** Task Queue info per Task Type. Key is the numerical value of the temporal.api.enums.v1.TaskQueueType enum. */
@@ -3717,7 +3710,7 @@ export type WorkerHeartbeatStatus =
   | "WORKER_STATUS_RUNNING"
   | "WORKER_STATUS_SHUTTING_DOWN"
   | "WORKER_STATUS_SHUTDOWN";
-export const WorkerHeartbeatStatus = /*@__PURE__*/ S.String;
+export const WorkerHeartbeatStatus = S.String;
 
 export interface WorkerSlotsInfo {
   /** Number of slots available for the worker to specific tasks. May be -1 if the upper bound is not known. */
@@ -3924,7 +3917,7 @@ export type WorkerDeploymentInfoWorkerDeploymentVersionSummaryStatus =
   | "WORKER_DEPLOYMENT_VERSION_STATUS_DRAINED"
   | "WORKER_DEPLOYMENT_VERSION_STATUS_CREATED";
 export const WorkerDeploymentInfoWorkerDeploymentVersionSummaryStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Deprecated. Use `drainage_info` instead. */
 export type WorkerDeploymentInfoWorkerDeploymentVersionSummaryDrainageStatus =
@@ -3932,14 +3925,14 @@ export type WorkerDeploymentInfoWorkerDeploymentVersionSummaryDrainageStatus =
   | "VERSION_DRAINAGE_STATUS_DRAINING"
   | "VERSION_DRAINAGE_STATUS_DRAINED";
 export const WorkerDeploymentInfoWorkerDeploymentVersionSummaryDrainageStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Set to DRAINING when the version first stops accepting new executions (is no longer current or ramping). Set to DRAINED when no more open pinned workflows exist on this version. */
 export type VersionDrainageInfoStatus =
   | "VERSION_DRAINAGE_STATUS_UNSPECIFIED"
   | "VERSION_DRAINAGE_STATUS_DRAINING"
   | "VERSION_DRAINAGE_STATUS_DRAINED";
-export const VersionDrainageInfoStatus = /*@__PURE__*/ S.String;
+export const VersionDrainageInfoStatus = S.String;
 
 /** Information about workflow drainage to help the user determine when it is safe to decommission a Version. Not present while version is current or ramping. */
 export interface VersionDrainageInfo {
@@ -3965,8 +3958,7 @@ export type ComputeConfigScalingGroupSummaryTaskQueueTypesItem =
   | "TASK_QUEUE_TYPE_WORKFLOW"
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
-export const ComputeConfigScalingGroupSummaryTaskQueueTypesItem =
-  /*@__PURE__*/ S.String;
+export const ComputeConfigScalingGroupSummaryTaskQueueTypesItem = S.String;
 
 export type ComputeConfigScalingGroupSummaryTaskQueueTypesList =
   Array<ComputeConfigScalingGroupSummaryTaskQueueTypesItem>;
@@ -4107,8 +4099,7 @@ export type WorkerDeploymentInfoRoutingConfigUpdateState =
   | "ROUTING_CONFIG_UPDATE_STATE_UNSPECIFIED"
   | "ROUTING_CONFIG_UPDATE_STATE_IN_PROGRESS"
   | "ROUTING_CONFIG_UPDATE_STATE_COMPLETED";
-export const WorkerDeploymentInfoRoutingConfigUpdateState =
-  /*@__PURE__*/ S.String;
+export const WorkerDeploymentInfoRoutingConfigUpdateState = S.String;
 
 /** A Worker Deployment (Deployment, for short) represents all workers serving a shared set of Task Queues. Typically, a Deployment represents one service or application. A Deployment contains multiple Deployment Versions, each representing a different version of workers. (see documentation of WorkerDeploymentVersionInfo) Deployment records are created in Temporal server automatically when their first poller arrives to the server. */
 export interface WorkerDeploymentInfo {
@@ -4202,15 +4193,14 @@ export type WorkerDeploymentVersionInfoStatus =
   | "WORKER_DEPLOYMENT_VERSION_STATUS_DRAINING"
   | "WORKER_DEPLOYMENT_VERSION_STATUS_DRAINED"
   | "WORKER_DEPLOYMENT_VERSION_STATUS_CREATED";
-export const WorkerDeploymentVersionInfoStatus = /*@__PURE__*/ S.String;
+export const WorkerDeploymentVersionInfoStatus = S.String;
 
 export type WorkerDeploymentVersionInfoVersionTaskQueueInfoType =
   | "TASK_QUEUE_TYPE_UNSPECIFIED"
   | "TASK_QUEUE_TYPE_WORKFLOW"
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
-export const WorkerDeploymentVersionInfoVersionTaskQueueInfoType =
-  /*@__PURE__*/ S.String;
+export const WorkerDeploymentVersionInfoVersionTaskQueueInfoType = S.String;
 
 export interface WorkerDeploymentVersionInfoVersionTaskQueueInfo {
   name?: string;
@@ -4319,7 +4309,7 @@ export type DescribeWorkerDeploymentVersionResponseVersionTaskQueueType =
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
 export const DescribeWorkerDeploymentVersionResponseVersionTaskQueueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Task queue stats breakdown by priority key. Only contains actively used priority keys. Only set if `report_task_queue_stats` is set to true in the request. (-- api-linter: core::0140::prepositions=disabled aip.dev/not-precedent: "by" is used to clarify the key. --) */
 export type DescribeWorkerDeploymentVersionResponseVersionTaskQueueStatsByPriorityKeyMap =
@@ -4434,7 +4424,7 @@ export type WorkflowExecutionInfoStatus =
   | "WORKFLOW_EXECUTION_STATUS_CONTINUED_AS_NEW"
   | "WORKFLOW_EXECUTION_STATUS_TIMED_OUT"
   | "WORKFLOW_EXECUTION_STATUS_PAUSED";
-export const WorkflowExecutionInfoStatus = /*@__PURE__*/ S.String;
+export const WorkflowExecutionInfoStatus = S.String;
 
 /** ResetPointInfo records the workflow event id that is the first one processed by a given build id or binary checksum. A new reset point will be created if either build id or binary checksum changes (although in general only one or the other will be used at a time). */
 export interface ResetPointInfo {
@@ -4499,7 +4489,7 @@ export type WorkflowExecutionVersioningInfoBehavior =
   | "VERSIONING_BEHAVIOR_UNSPECIFIED"
   | "VERSIONING_BEHAVIOR_PINNED"
   | "VERSIONING_BEHAVIOR_AUTO_UPGRADE";
-export const WorkflowExecutionVersioningInfoBehavior = /*@__PURE__*/ S.String;
+export const WorkflowExecutionVersioningInfoBehavior = S.String;
 
 /** Holds information about ongoing transition of a workflow execution from one deployment to another. Deprecated. Use DeploymentVersionTransition. */
 export interface DeploymentTransition {
@@ -4536,7 +4526,7 @@ export type WorkflowExecutionVersioningInfoContinueAsNewInitialVersioningBehavio
   | "CONTINUE_AS_NEW_VERSIONING_BEHAVIOR_AUTO_UPGRADE"
   | "CONTINUE_AS_NEW_VERSIONING_BEHAVIOR_USE_RAMPING_VERSION";
 export const WorkflowExecutionVersioningInfoContinueAsNewInitialVersioningBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Holds all the information about worker versioning for a particular workflow execution. Experimental. Versioning info is experimental and might change in the future. */
 export interface WorkflowExecutionVersioningInfo {
@@ -4657,7 +4647,7 @@ export type PendingActivityInfoState =
   | "PENDING_ACTIVITY_STATE_CANCEL_REQUESTED"
   | "PENDING_ACTIVITY_STATE_PAUSED"
   | "PENDING_ACTIVITY_STATE_PAUSE_REQUESTED";
-export const PendingActivityInfoState = /*@__PURE__*/ S.String;
+export const PendingActivityInfoState = S.String;
 
 export interface PauseInfoManual {
   /** The identity of the actor that paused the activity. */
@@ -4818,8 +4808,7 @@ export type PendingChildExecutionInfoParentClosePolicy =
   | "PARENT_CLOSE_POLICY_TERMINATE"
   | "PARENT_CLOSE_POLICY_ABANDON"
   | "PARENT_CLOSE_POLICY_REQUEST_CANCEL";
-export const PendingChildExecutionInfoParentClosePolicy =
-  /*@__PURE__*/ S.String;
+export const PendingChildExecutionInfoParentClosePolicy = S.String;
 
 export interface PendingChildExecutionInfo {
   workflowId?: string;
@@ -4852,7 +4841,7 @@ export type PendingWorkflowTaskInfoState =
   | "PENDING_WORKFLOW_TASK_STATE_UNSPECIFIED"
   | "PENDING_WORKFLOW_TASK_STATE_SCHEDULED"
   | "PENDING_WORKFLOW_TASK_STATE_STARTED";
-export const PendingWorkflowTaskInfoState = /*@__PURE__*/ S.String;
+export const PendingWorkflowTaskInfoState = S.String;
 
 export interface PendingWorkflowTaskInfo {
   state?: PendingWorkflowTaskInfoState;
@@ -4887,7 +4876,7 @@ export type PendingNexusOperationInfoState =
   | "PENDING_NEXUS_OPERATION_STATE_BACKING_OFF"
   | "PENDING_NEXUS_OPERATION_STATE_STARTED"
   | "PENDING_NEXUS_OPERATION_STATE_BLOCKED";
-export const PendingNexusOperationInfoState = /*@__PURE__*/ S.String;
+export const PendingNexusOperationInfoState = S.String;
 
 export type NexusOperationCancellationInfoState =
   | "NEXUS_OPERATION_CANCELLATION_STATE_UNSPECIFIED"
@@ -4897,7 +4886,7 @@ export type NexusOperationCancellationInfoState =
   | "NEXUS_OPERATION_CANCELLATION_STATE_FAILED"
   | "NEXUS_OPERATION_CANCELLATION_STATE_TIMED_OUT"
   | "NEXUS_OPERATION_CANCELLATION_STATE_BLOCKED";
-export const NexusOperationCancellationInfoState = /*@__PURE__*/ S.String;
+export const NexusOperationCancellationInfoState = S.String;
 
 /** NexusOperationCancellationInfo contains the state of a nexus operation cancellation. */
 export interface NexusOperationCancellationInfo {
@@ -5058,7 +5047,7 @@ export type RequestIdInfoEventType =
   | "EVENT_TYPE_WORKFLOW_EXECUTION_PAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_UNPAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_TIME_SKIPPING_TRANSITIONED";
-export const RequestIdInfoEventType = /*@__PURE__*/ S.String;
+export const RequestIdInfoEventType = S.String;
 
 /** RequestIdInfo contains details of a request ID. */
 export interface RequestIdInfo {
@@ -5338,7 +5327,7 @@ export type AlertSeverity =
   | "SEVERITY_HIGH"
   | "SEVERITY_MEDIUM"
   | "SEVERITY_LOW";
-export const AlertSeverity = /*@__PURE__*/ S.String;
+export const AlertSeverity = S.String;
 
 /** Alert contains notification and severity. */
 export interface Alert {
@@ -5473,8 +5462,7 @@ export type GetDeploymentReachabilityResponseReachability =
   | "DEPLOYMENT_REACHABILITY_REACHABLE"
   | "DEPLOYMENT_REACHABILITY_CLOSED_WORKFLOWS_ONLY"
   | "DEPLOYMENT_REACHABILITY_UNREACHABLE";
-export const GetDeploymentReachabilityResponseReachability =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentReachabilityResponseReachability = S.String;
 
 /** [cleanup-wv-pre-release] Pre-release deployment APIs, clean up later */
 export interface GetDeploymentReachabilityResponse {
@@ -5673,8 +5661,7 @@ export type GetWorkerTaskReachabilityRequestReachability =
   | "TASK_REACHABILITY_EXISTING_WORKFLOWS"
   | "TASK_REACHABILITY_OPEN_WORKFLOWS"
   | "TASK_REACHABILITY_CLOSED_WORKFLOWS";
-export const GetWorkerTaskReachabilityRequestReachability =
-  /*@__PURE__*/ S.String;
+export const GetWorkerTaskReachabilityRequestReachability = S.String;
 
 export interface GetWorkerTaskReachabilityRequest {
   namespace: string;
@@ -5714,7 +5701,7 @@ export type TaskQueueReachabilityReachabilityItem =
   | "TASK_REACHABILITY_EXISTING_WORKFLOWS"
   | "TASK_REACHABILITY_OPEN_WORKFLOWS"
   | "TASK_REACHABILITY_CLOSED_WORKFLOWS";
-export const TaskQueueReachabilityReachabilityItem = /*@__PURE__*/ S.String;
+export const TaskQueueReachabilityReachabilityItem = S.String;
 
 /** Task reachability for a worker in a single task queue. See the TaskReachability docstring for information about each enum variant. If reachability is empty, this worker is considered unreachable in this task queue. */
 export type TaskQueueReachabilityReachabilityList =
@@ -5915,7 +5902,7 @@ export type GetWorkflowExecutionHistoryRequestHistoryEventFilterType =
   | "HISTORY_EVENT_FILTER_TYPE_ALL_EVENT"
   | "HISTORY_EVENT_FILTER_TYPE_CLOSE_EVENT";
 export const GetWorkflowExecutionHistoryRequestHistoryEventFilterType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetWorkflowExecutionHistoryRequest {
   namespace: string;
@@ -6021,7 +6008,7 @@ export type HistoryEventEventType =
   | "EVENT_TYPE_WORKFLOW_EXECUTION_PAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_UNPAUSED"
   | "EVENT_TYPE_WORKFLOW_EXECUTION_TIME_SKIPPING_TRANSITIONED";
-export const HistoryEventEventType = /*@__PURE__*/ S.String;
+export const HistoryEventEventType = S.String;
 
 /** Links to related entities, such as the entity that started this event's workflow. */
 export type HistoryEventLinksList = Array<Link>;
@@ -6048,8 +6035,7 @@ export type WorkflowExecutionStartedEventAttributesInitiator =
   | "CONTINUE_AS_NEW_INITIATOR_WORKFLOW"
   | "CONTINUE_AS_NEW_INITIATOR_RETRY"
   | "CONTINUE_AS_NEW_INITIATOR_CRON_SCHEDULE";
-export const WorkflowExecutionStartedEventAttributesInitiator =
-  /*@__PURE__*/ S.String;
+export const WorkflowExecutionStartedEventAttributesInitiator = S.String;
 
 /** Completion callbacks attached when this workflow was started. */
 export type WorkflowExecutionStartedEventAttributesCompletionCallbacksList =
@@ -6065,7 +6051,7 @@ export type InheritedAutoUpgradeInfoContinueAsNewInitialVersioningBehavior =
   | "CONTINUE_AS_NEW_VERSIONING_BEHAVIOR_AUTO_UPGRADE"
   | "CONTINUE_AS_NEW_VERSIONING_BEHAVIOR_USE_RAMPING_VERSION";
 export const InheritedAutoUpgradeInfoContinueAsNewInitialVersioningBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Used as part of WorkflowExecutionStartedEventAttributes to pass down the AutoUpgrade behavior and source deployment version to a workflow execution whose parent/previous workflow has an AutoUpgrade behavior. Also used for Upgrade-on-CaN behaviors AutoUpgrade and UseRampingVersion. */
 export interface InheritedAutoUpgradeInfo {
@@ -6275,8 +6261,7 @@ export type WorkflowExecutionFailedEventAttributesRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const WorkflowExecutionFailedEventAttributesRetryState =
-  /*@__PURE__*/ S.String;
+export const WorkflowExecutionFailedEventAttributesRetryState = S.String;
 
 export interface WorkflowExecutionFailedEventAttributes {
   /** Serialized result of workflow failure (ex: An exception thrown, or error returned) */
@@ -6308,8 +6293,7 @@ export type WorkflowExecutionTimedOutEventAttributesRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const WorkflowExecutionTimedOutEventAttributesRetryState =
-  /*@__PURE__*/ S.String;
+export const WorkflowExecutionTimedOutEventAttributesRetryState = S.String;
 
 export interface WorkflowExecutionTimedOutEventAttributes {
   retryState?: WorkflowExecutionTimedOutEventAttributesRetryState;
@@ -6353,7 +6337,7 @@ export type WorkflowTaskStartedEventAttributesSuggestContinueAsNewReasonsItem =
   | "SUGGEST_CONTINUE_AS_NEW_REASON_TOO_MANY_HISTORY_EVENTS"
   | "SUGGEST_CONTINUE_AS_NEW_REASON_TOO_MANY_UPDATES";
 export const WorkflowTaskStartedEventAttributesSuggestContinueAsNewReasonsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason(s) that suggest_continue_as_new is true, if it is. Unset if suggest_continue_as_new is false. */
 export type WorkflowTaskStartedEventAttributesSuggestContinueAsNewReasonsList =
@@ -6454,8 +6438,7 @@ export type WorkflowTaskCompletedEventAttributesVersioningBehavior =
   | "VERSIONING_BEHAVIOR_UNSPECIFIED"
   | "VERSIONING_BEHAVIOR_PINNED"
   | "VERSIONING_BEHAVIOR_AUTO_UPGRADE";
-export const WorkflowTaskCompletedEventAttributesVersioningBehavior =
-  /*@__PURE__*/ S.String;
+export const WorkflowTaskCompletedEventAttributesVersioningBehavior = S.String;
 
 export interface WorkflowTaskCompletedEventAttributes {
   /** The id of the `WORKFLOW_TASK_SCHEDULED` event this task corresponds to */
@@ -6511,8 +6494,7 @@ export type WorkflowTaskTimedOutEventAttributesTimeoutType =
   | "TIMEOUT_TYPE_SCHEDULE_TO_START"
   | "TIMEOUT_TYPE_SCHEDULE_TO_CLOSE"
   | "TIMEOUT_TYPE_HEARTBEAT";
-export const WorkflowTaskTimedOutEventAttributesTimeoutType =
-  /*@__PURE__*/ S.String;
+export const WorkflowTaskTimedOutEventAttributesTimeoutType = S.String;
 
 export interface WorkflowTaskTimedOutEventAttributes {
   /** The id of the `WORKFLOW_TASK_SCHEDULED` event this task corresponds to */
@@ -6570,7 +6552,7 @@ export type WorkflowTaskFailedEventAttributesCause =
   | "WORKFLOW_TASK_FAILED_CAUSE_FEATURE_DISABLED"
   | "WORKFLOW_TASK_FAILED_CAUSE_GRPC_MESSAGE_TOO_LARGE"
   | "WORKFLOW_TASK_FAILED_CAUSE_PAYLOADS_TOO_LARGE";
-export const WorkflowTaskFailedEventAttributesCause = /*@__PURE__*/ S.String;
+export const WorkflowTaskFailedEventAttributesCause = S.String;
 
 export interface WorkflowTaskFailedEventAttributes {
   /** The id of the `WORKFLOW_TASK_SCHEDULED` event this task corresponds to */
@@ -6719,8 +6701,7 @@ export type ActivityTaskFailedEventAttributesRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const ActivityTaskFailedEventAttributesRetryState =
-  /*@__PURE__*/ S.String;
+export const ActivityTaskFailedEventAttributesRetryState = S.String;
 
 export interface ActivityTaskFailedEventAttributes {
   /** Failure details */
@@ -6757,8 +6738,7 @@ export type ActivityTaskTimedOutEventAttributesRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const ActivityTaskTimedOutEventAttributesRetryState =
-  /*@__PURE__*/ S.String;
+export const ActivityTaskTimedOutEventAttributesRetryState = S.String;
 
 export interface ActivityTaskTimedOutEventAttributes {
   /** If this activity had failed, was retried, and then timed out, that failure is stored as the `cause` in here. */
@@ -7029,7 +7009,7 @@ export type RequestCancelExternalWorkflowExecutionFailedEventAttributesCause =
   | "CANCEL_EXTERNAL_WORKFLOW_EXECUTION_FAILED_CAUSE_EXTERNAL_WORKFLOW_EXECUTION_NOT_FOUND"
   | "CANCEL_EXTERNAL_WORKFLOW_EXECUTION_FAILED_CAUSE_NAMESPACE_NOT_FOUND";
 export const RequestCancelExternalWorkflowExecutionFailedEventAttributesCause =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RequestCancelExternalWorkflowExecutionFailedEventAttributes {
   cause?: RequestCancelExternalWorkflowExecutionFailedEventAttributesCause;
@@ -7086,8 +7066,7 @@ export type WorkflowExecutionContinuedAsNewEventAttributesInitiator =
   | "CONTINUE_AS_NEW_INITIATOR_WORKFLOW"
   | "CONTINUE_AS_NEW_INITIATOR_RETRY"
   | "CONTINUE_AS_NEW_INITIATOR_CRON_SCHEDULE";
-export const WorkflowExecutionContinuedAsNewEventAttributesInitiator =
-  /*@__PURE__*/ S.String;
+export const WorkflowExecutionContinuedAsNewEventAttributesInitiator = S.String;
 
 /** Experimental. Optionally decide the versioning behavior that the first task of the new run should use. For example, choose to AutoUpgrade on continue-as-new instead of inheriting the pinned version of the previous run. */
 export type WorkflowExecutionContinuedAsNewEventAttributesInitialVersioningBehavior =
@@ -7095,7 +7074,7 @@ export type WorkflowExecutionContinuedAsNewEventAttributesInitialVersioningBehav
   | "CONTINUE_AS_NEW_VERSIONING_BEHAVIOR_AUTO_UPGRADE"
   | "CONTINUE_AS_NEW_VERSIONING_BEHAVIOR_USE_RAMPING_VERSION";
 export const WorkflowExecutionContinuedAsNewEventAttributesInitialVersioningBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface WorkflowExecutionContinuedAsNewEventAttributes {
   /** The run ID of the new workflow started by this continue-as-new */
@@ -7159,7 +7138,7 @@ export type StartChildWorkflowExecutionInitiatedEventAttributesParentClosePolicy
   | "PARENT_CLOSE_POLICY_ABANDON"
   | "PARENT_CLOSE_POLICY_REQUEST_CANCEL";
 export const StartChildWorkflowExecutionInitiatedEventAttributesParentClosePolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Default: WORKFLOW_ID_REUSE_POLICY_ALLOW_DUPLICATE. */
 export type StartChildWorkflowExecutionInitiatedEventAttributesWorkflowIdReusePolicy =
@@ -7169,7 +7148,7 @@ export type StartChildWorkflowExecutionInitiatedEventAttributesWorkflowIdReusePo
   | "WORKFLOW_ID_REUSE_POLICY_REJECT_DUPLICATE"
   | "WORKFLOW_ID_REUSE_POLICY_TERMINATE_IF_RUNNING";
 export const StartChildWorkflowExecutionInitiatedEventAttributesWorkflowIdReusePolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface StartChildWorkflowExecutionInitiatedEventAttributes {
   /** Namespace of the child workflow. SDKs and UI tools should use `namespace` field but server must use `namespace_id` only. */
@@ -7246,8 +7225,7 @@ export type StartChildWorkflowExecutionFailedEventAttributesCause =
   | "START_CHILD_WORKFLOW_EXECUTION_FAILED_CAUSE_UNSPECIFIED"
   | "START_CHILD_WORKFLOW_EXECUTION_FAILED_CAUSE_WORKFLOW_ALREADY_EXISTS"
   | "START_CHILD_WORKFLOW_EXECUTION_FAILED_CAUSE_NAMESPACE_NOT_FOUND";
-export const StartChildWorkflowExecutionFailedEventAttributesCause =
-  /*@__PURE__*/ S.String;
+export const StartChildWorkflowExecutionFailedEventAttributesCause = S.String;
 
 export interface StartChildWorkflowExecutionFailedEventAttributes {
   /** Namespace of the child workflow. SDKs and UI tools should use `namespace` field but server must use `namespace_id` only. */
@@ -7339,8 +7317,7 @@ export type ChildWorkflowExecutionFailedEventAttributesRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const ChildWorkflowExecutionFailedEventAttributesRetryState =
-  /*@__PURE__*/ S.String;
+export const ChildWorkflowExecutionFailedEventAttributesRetryState = S.String;
 
 export interface ChildWorkflowExecutionFailedEventAttributes {
   failure?: Failure;
@@ -7409,8 +7386,7 @@ export type ChildWorkflowExecutionTimedOutEventAttributesRetryState =
   | "RETRY_STATE_RETRY_POLICY_NOT_SET"
   | "RETRY_STATE_INTERNAL_SERVER_ERROR"
   | "RETRY_STATE_CANCEL_REQUESTED";
-export const ChildWorkflowExecutionTimedOutEventAttributesRetryState =
-  /*@__PURE__*/ S.String;
+export const ChildWorkflowExecutionTimedOutEventAttributesRetryState = S.String;
 
 export interface ChildWorkflowExecutionTimedOutEventAttributes {
   /** Namespace of the child workflow. SDKs and UI tools should use `namespace` field but server must use `namespace_id` only. */
@@ -7506,7 +7482,7 @@ export type SignalExternalWorkflowExecutionFailedEventAttributesCause =
   | "SIGNAL_EXTERNAL_WORKFLOW_EXECUTION_FAILED_CAUSE_NAMESPACE_NOT_FOUND"
   | "SIGNAL_EXTERNAL_WORKFLOW_EXECUTION_FAILED_CAUSE_SIGNAL_COUNT_LIMIT_EXCEEDED";
 export const SignalExternalWorkflowExecutionFailedEventAttributesCause =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SignalExternalWorkflowExecutionFailedEventAttributes {
   cause?: SignalExternalWorkflowExecutionFailedEventAttributesCause;
@@ -7757,8 +7733,7 @@ export const WorkflowPropertiesModifiedEventAttributes =
 export type WorkflowExecutionUpdateAdmittedEventAttributesOrigin =
   | "UPDATE_ADMITTED_EVENT_ORIGIN_UNSPECIFIED"
   | "UPDATE_ADMITTED_EVENT_ORIGIN_REAPPLY";
-export const WorkflowExecutionUpdateAdmittedEventAttributesOrigin =
-  /*@__PURE__*/ S.String;
+export const WorkflowExecutionUpdateAdmittedEventAttributesOrigin = S.String;
 
 export interface WorkflowExecutionUpdateAdmittedEventAttributes {
   /** The update request associated with this event. */
@@ -8375,7 +8350,7 @@ export type DataBlobEncodingType =
   | "ENCODING_TYPE_UNSPECIFIED"
   | "ENCODING_TYPE_PROTO3"
   | "ENCODING_TYPE_JSON";
-export const DataBlobEncodingType = /*@__PURE__*/ S.String;
+export const DataBlobEncodingType = S.String;
 
 export interface DataBlob {
   encodingType?: DataBlobEncodingType;
@@ -8494,7 +8469,7 @@ export type ActivityExecutionListInfoStatus =
   | "ACTIVITY_EXECUTION_STATUS_CANCELED"
   | "ACTIVITY_EXECUTION_STATUS_TERMINATED"
   | "ACTIVITY_EXECUTION_STATUS_TIMED_OUT";
-export const ActivityExecutionListInfoStatus = /*@__PURE__*/ S.String;
+export const ActivityExecutionListInfoStatus = S.String;
 
 /** Limited activity information returned in the list response. When adding fields here, ensure that it is also present in ActivityExecutionInfo (note that it may already be present in ActivityExecutionInfo but not at the top-level). */
 export interface ActivityExecutionListInfo {
@@ -8637,7 +8612,7 @@ export type BatchOperationInfoState =
   | "BATCH_OPERATION_STATE_RUNNING"
   | "BATCH_OPERATION_STATE_COMPLETED"
   | "BATCH_OPERATION_STATE_FAILED";
-export const BatchOperationInfoState = /*@__PURE__*/ S.String;
+export const BatchOperationInfoState = S.String;
 
 export interface BatchOperationInfo {
   /** Batch job ID */
@@ -8850,7 +8825,7 @@ export type NexusOperationExecutionListInfoStatus =
   | "NEXUS_OPERATION_EXECUTION_STATUS_CANCELED"
   | "NEXUS_OPERATION_EXECUTION_STATUS_TERMINATED"
   | "NEXUS_OPERATION_EXECUTION_STATUS_TIMED_OUT";
-export const NexusOperationExecutionListInfoStatus = /*@__PURE__*/ S.String;
+export const NexusOperationExecutionListInfoStatus = S.String;
 
 /** Limited Nexus operation information returned in the list response. When adding fields here, ensure that it is also present in NexusOperationExecutionInfo (note that it may already be present in NexusOperationExecutionInfo but not at the top-level). */
 export interface NexusOperationExecutionListInfo {
@@ -9088,8 +9063,7 @@ export type ListSearchAttributesResponseCustomAttributesValue =
   | "INDEXED_VALUE_TYPE_BOOL"
   | "INDEXED_VALUE_TYPE_DATETIME"
   | "INDEXED_VALUE_TYPE_KEYWORD_LIST";
-export const ListSearchAttributesResponseCustomAttributesValue =
-  /*@__PURE__*/ S.String;
+export const ListSearchAttributesResponseCustomAttributesValue = S.String;
 
 /** Mapping between custom (user-registered) search attribute name to its IndexedValueType. */
 export type ListSearchAttributesResponseCustomAttributesMap = {
@@ -9110,8 +9084,7 @@ export type ListSearchAttributesResponseSystemAttributesValue =
   | "INDEXED_VALUE_TYPE_BOOL"
   | "INDEXED_VALUE_TYPE_DATETIME"
   | "INDEXED_VALUE_TYPE_KEYWORD_LIST";
-export const ListSearchAttributesResponseSystemAttributesValue =
-  /*@__PURE__*/ S.String;
+export const ListSearchAttributesResponseSystemAttributesValue = S.String;
 
 /** Mapping between system (predefined) search attribute name to its IndexedValueType. */
 export type ListSearchAttributesResponseSystemAttributesMap = {
@@ -9271,7 +9244,7 @@ export type WorkerListInfoStatus =
   | "WORKER_STATUS_RUNNING"
   | "WORKER_STATUS_SHUTTING_DOWN"
   | "WORKER_STATUS_SHUTDOWN";
-export const WorkerListInfoStatus = /*@__PURE__*/ S.String;
+export const WorkerListInfoStatus = S.String;
 
 /** Plugins currently in use by this SDK. */
 export type WorkerListInfoPluginsList = Array<PluginInfo>;
@@ -9638,8 +9611,7 @@ export type PollNexusOperationExecutionRequestWaitStage =
   | "NEXUS_OPERATION_WAIT_STAGE_UNSPECIFIED"
   | "NEXUS_OPERATION_WAIT_STAGE_STARTED"
   | "NEXUS_OPERATION_WAIT_STAGE_CLOSED";
-export const PollNexusOperationExecutionRequestWaitStage =
-  /*@__PURE__*/ S.String;
+export const PollNexusOperationExecutionRequestWaitStage = S.String;
 
 export interface PollNexusOperationExecutionRequest {
   namespace: string;
@@ -9673,8 +9645,7 @@ export type PollNexusOperationExecutionResponseWaitStage =
   | "NEXUS_OPERATION_WAIT_STAGE_UNSPECIFIED"
   | "NEXUS_OPERATION_WAIT_STAGE_STARTED"
   | "NEXUS_OPERATION_WAIT_STAGE_CLOSED";
-export const PollNexusOperationExecutionResponseWaitStage =
-  /*@__PURE__*/ S.String;
+export const PollNexusOperationExecutionResponseWaitStage = S.String;
 
 export interface PollNexusOperationExecutionResponse {
   /** The run ID of the operation, useful when run_id was not specified in the request. */
@@ -9723,7 +9694,7 @@ export type QueryWorkflowRequestQueryRejectCondition =
   | "QUERY_REJECT_CONDITION_NONE"
   | "QUERY_REJECT_CONDITION_NOT_OPEN"
   | "QUERY_REJECT_CONDITION_NOT_COMPLETED_CLEANLY";
-export const QueryWorkflowRequestQueryRejectCondition = /*@__PURE__*/ S.String;
+export const QueryWorkflowRequestQueryRejectCondition = S.String;
 
 export interface QueryWorkflowRequest {
   namespace: string;
@@ -9765,7 +9736,7 @@ export type QueryRejectedStatus =
   | "WORKFLOW_EXECUTION_STATUS_CONTINUED_AS_NEW"
   | "WORKFLOW_EXECUTION_STATUS_TIMED_OUT"
   | "WORKFLOW_EXECUTION_STATUS_PAUSED";
-export const QueryRejectedStatus = /*@__PURE__*/ S.String;
+export const QueryRejectedStatus = S.String;
 
 export interface QueryRejected {
   status?: QueryRejectedStatus;
@@ -9954,16 +9925,14 @@ export type RegisterNamespaceRequestHistoryArchivalState =
   | "ARCHIVAL_STATE_UNSPECIFIED"
   | "ARCHIVAL_STATE_DISABLED"
   | "ARCHIVAL_STATE_ENABLED";
-export const RegisterNamespaceRequestHistoryArchivalState =
-  /*@__PURE__*/ S.String;
+export const RegisterNamespaceRequestHistoryArchivalState = S.String;
 
 /** If unspecified (ARCHIVAL_STATE_UNSPECIFIED) then default server configuration is used. */
 export type RegisterNamespaceRequestVisibilityArchivalState =
   | "ARCHIVAL_STATE_UNSPECIFIED"
   | "ARCHIVAL_STATE_DISABLED"
   | "ARCHIVAL_STATE_ENABLED";
-export const RegisterNamespaceRequestVisibilityArchivalState =
-  /*@__PURE__*/ S.String;
+export const RegisterNamespaceRequestVisibilityArchivalState = S.String;
 
 export interface RegisterNamespaceRequest {
   namespace?: string;
@@ -10256,8 +10225,7 @@ export type ResetWorkflowExecutionRequestResetReapplyType =
   | "RESET_REAPPLY_TYPE_SIGNAL"
   | "RESET_REAPPLY_TYPE_NONE"
   | "RESET_REAPPLY_TYPE_ALL_ELIGIBLE";
-export const ResetWorkflowExecutionRequestResetReapplyType =
-  /*@__PURE__*/ S.String;
+export const ResetWorkflowExecutionRequestResetReapplyType = S.String;
 
 export type ResetWorkflowExecutionRequestResetReapplyExcludeTypesItem =
   | "RESET_REAPPLY_EXCLUDE_TYPE_UNSPECIFIED"
@@ -10266,7 +10234,7 @@ export type ResetWorkflowExecutionRequestResetReapplyExcludeTypesItem =
   | "RESET_REAPPLY_EXCLUDE_TYPE_NEXUS"
   | "RESET_REAPPLY_EXCLUDE_TYPE_CANCEL_REQUEST";
 export const ResetWorkflowExecutionRequestResetReapplyExcludeTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Event types not to be reapplied */
 export type ResetWorkflowExecutionRequestResetReapplyExcludeTypesList = Array<
@@ -10966,7 +10934,7 @@ export type SignalWithStartWorkflowExecutionRequestWorkflowIdReusePolicy =
   | "WORKFLOW_ID_REUSE_POLICY_REJECT_DUPLICATE"
   | "WORKFLOW_ID_REUSE_POLICY_TERMINATE_IF_RUNNING";
 export const SignalWithStartWorkflowExecutionRequestWorkflowIdReusePolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines how to resolve a workflow id conflict with a *running* workflow. The default policy is WORKFLOW_ID_CONFLICT_POLICY_USE_EXISTING. Note that WORKFLOW_ID_CONFLICT_POLICY_FAIL is an invalid option. See `workflow_id_reuse_policy` for handling a workflow id duplication with a *closed* workflow. */
 export type SignalWithStartWorkflowExecutionRequestWorkflowIdConflictPolicy =
@@ -10975,7 +10943,7 @@ export type SignalWithStartWorkflowExecutionRequestWorkflowIdConflictPolicy =
   | "WORKFLOW_ID_CONFLICT_POLICY_USE_EXISTING"
   | "WORKFLOW_ID_CONFLICT_POLICY_TERMINATE_EXISTING";
 export const SignalWithStartWorkflowExecutionRequestWorkflowIdConflictPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Links to be associated with the WorkflowExecutionStarted and WorkflowExecutionSignaled events. */
 export type SignalWithStartWorkflowExecutionRequestLinksList = Array<Link>;
@@ -11165,16 +11133,14 @@ export type StartActivityExecutionRequestIdReusePolicy =
   | "ACTIVITY_ID_REUSE_POLICY_ALLOW_DUPLICATE"
   | "ACTIVITY_ID_REUSE_POLICY_ALLOW_DUPLICATE_FAILED_ONLY"
   | "ACTIVITY_ID_REUSE_POLICY_REJECT_DUPLICATE";
-export const StartActivityExecutionRequestIdReusePolicy =
-  /*@__PURE__*/ S.String;
+export const StartActivityExecutionRequestIdReusePolicy = S.String;
 
 /** Defines how to resolve an activity id conflict with a *running* activity. The default policy is ACTIVITY_ID_CONFLICT_POLICY_FAIL. */
 export type StartActivityExecutionRequestIdConflictPolicy =
   | "ACTIVITY_ID_CONFLICT_POLICY_UNSPECIFIED"
   | "ACTIVITY_ID_CONFLICT_POLICY_FAIL"
   | "ACTIVITY_ID_CONFLICT_POLICY_USE_EXISTING";
-export const StartActivityExecutionRequestIdConflictPolicy =
-  /*@__PURE__*/ S.String;
+export const StartActivityExecutionRequestIdConflictPolicy = S.String;
 
 /** Callbacks to be called by the server when this activity reaches a terminal state. Callback addresses must be whitelisted in the server's dynamic configuration. */
 export type StartActivityExecutionRequestCompletionCallbacksList =
@@ -11378,7 +11344,7 @@ export type ResetOptionsResetReapplyType =
   | "RESET_REAPPLY_TYPE_SIGNAL"
   | "RESET_REAPPLY_TYPE_NONE"
   | "RESET_REAPPLY_TYPE_ALL_ELIGIBLE";
-export const ResetOptionsResetReapplyType = /*@__PURE__*/ S.String;
+export const ResetOptionsResetReapplyType = S.String;
 
 export type ResetOptionsResetReapplyExcludeTypesItem =
   | "RESET_REAPPLY_EXCLUDE_TYPE_UNSPECIFIED"
@@ -11386,7 +11352,7 @@ export type ResetOptionsResetReapplyExcludeTypesItem =
   | "RESET_REAPPLY_EXCLUDE_TYPE_UPDATE"
   | "RESET_REAPPLY_EXCLUDE_TYPE_NEXUS"
   | "RESET_REAPPLY_EXCLUDE_TYPE_CANCEL_REQUEST";
-export const ResetOptionsResetReapplyExcludeTypesItem = /*@__PURE__*/ S.String;
+export const ResetOptionsResetReapplyExcludeTypesItem = S.String;
 
 /** Event types not to be reapplied */
 export type ResetOptionsResetReapplyExcludeTypesList = Array<
@@ -11426,7 +11392,7 @@ export type BatchOperationResetResetType =
   | "RESET_TYPE_UNSPECIFIED"
   | "RESET_TYPE_FIRST_WORKFLOW_TASK"
   | "RESET_TYPE_LAST_WORKFLOW_TASK";
-export const BatchOperationResetResetType = /*@__PURE__*/ S.String;
+export const BatchOperationResetResetType = S.String;
 
 /** Deprecated. Use `options`. */
 export type BatchOperationResetResetReapplyType =
@@ -11434,7 +11400,7 @@ export type BatchOperationResetResetReapplyType =
   | "RESET_REAPPLY_TYPE_SIGNAL"
   | "RESET_REAPPLY_TYPE_NONE"
   | "RESET_REAPPLY_TYPE_ALL_ELIGIBLE";
-export const BatchOperationResetResetReapplyType = /*@__PURE__*/ S.String;
+export const BatchOperationResetResetReapplyType = S.String;
 
 /** Operations to perform after the workflow has been reset. These operations will be applied to the *new* run of the workflow execution in the order they are provided. All operations are applied to the workflow before the first new workflow task is generated */
 export type BatchOperationResetPostResetOperationsList =
@@ -11640,16 +11606,14 @@ export type StartNexusOperationExecutionRequestIdReusePolicy =
   | "NEXUS_OPERATION_ID_REUSE_POLICY_ALLOW_DUPLICATE"
   | "NEXUS_OPERATION_ID_REUSE_POLICY_ALLOW_DUPLICATE_FAILED_ONLY"
   | "NEXUS_OPERATION_ID_REUSE_POLICY_REJECT_DUPLICATE";
-export const StartNexusOperationExecutionRequestIdReusePolicy =
-  /*@__PURE__*/ S.String;
+export const StartNexusOperationExecutionRequestIdReusePolicy = S.String;
 
 /** Defines how to resolve an operation id conflict with a *running* operation. The default policy is NEXUS_OPERATION_ID_CONFLICT_POLICY_FAIL. */
 export type StartNexusOperationExecutionRequestIdConflictPolicy =
   | "NEXUS_OPERATION_ID_CONFLICT_POLICY_UNSPECIFIED"
   | "NEXUS_OPERATION_ID_CONFLICT_POLICY_FAIL"
   | "NEXUS_OPERATION_ID_CONFLICT_POLICY_USE_EXISTING";
-export const StartNexusOperationExecutionRequestIdConflictPolicy =
-  /*@__PURE__*/ S.String;
+export const StartNexusOperationExecutionRequestIdConflictPolicy = S.String;
 
 /** Header to attach to the Nexus request. Users are responsible for encrypting sensitive data in this header as it is stored in workflow history and transmitted to external services as-is. This is useful for propagating tracing information. Note these headers are not the same as Temporal headers on internal activities and child workflows, these are transmitted to Nexus operations that may be external and are not traditional payloads. */
 export type StartNexusOperationExecutionRequestNexusHeaderMap = {
@@ -11752,8 +11716,7 @@ export type StartWorkflowExecutionRequestWorkflowIdReusePolicy =
   | "WORKFLOW_ID_REUSE_POLICY_ALLOW_DUPLICATE_FAILED_ONLY"
   | "WORKFLOW_ID_REUSE_POLICY_REJECT_DUPLICATE"
   | "WORKFLOW_ID_REUSE_POLICY_TERMINATE_IF_RUNNING";
-export const StartWorkflowExecutionRequestWorkflowIdReusePolicy =
-  /*@__PURE__*/ S.String;
+export const StartWorkflowExecutionRequestWorkflowIdReusePolicy = S.String;
 
 /** Defines how to resolve a workflow id conflict with a *running* workflow. The default policy is WORKFLOW_ID_CONFLICT_POLICY_FAIL. See `workflow_id_reuse_policy` for handling a workflow id duplication with a *closed* workflow. */
 export type StartWorkflowExecutionRequestWorkflowIdConflictPolicy =
@@ -11761,8 +11724,7 @@ export type StartWorkflowExecutionRequestWorkflowIdConflictPolicy =
   | "WORKFLOW_ID_CONFLICT_POLICY_FAIL"
   | "WORKFLOW_ID_CONFLICT_POLICY_USE_EXISTING"
   | "WORKFLOW_ID_CONFLICT_POLICY_TERMINATE_EXISTING";
-export const StartWorkflowExecutionRequestWorkflowIdConflictPolicy =
-  /*@__PURE__*/ S.String;
+export const StartWorkflowExecutionRequestWorkflowIdConflictPolicy = S.String;
 
 /** Callbacks to be called by the server when this workflow reaches a terminal state. If the workflow continues-as-new, these callbacks will be carried over to the new execution. Callback addresses must be whitelisted in the server's dynamic configuration. */
 export type StartWorkflowExecutionRequestCompletionCallbacksList =
@@ -11893,7 +11855,7 @@ export type StartWorkflowExecutionResponseStatus =
   | "WORKFLOW_EXECUTION_STATUS_CONTINUED_AS_NEW"
   | "WORKFLOW_EXECUTION_STATUS_TIMED_OUT"
   | "WORKFLOW_EXECUTION_STATUS_PAUSED";
-export const StartWorkflowExecutionResponseStatus = /*@__PURE__*/ S.String;
+export const StartWorkflowExecutionResponseStatus = S.String;
 
 /** Queries that should be executed after applying the history in this task. Responses should be attached to `RespondWorkflowTaskCompletedRequest::query_results` */
 export type PollWorkflowTaskQueueResponseQueriesMap = {
@@ -12530,7 +12492,7 @@ export type UpdateNamespaceInfoState =
   | "NAMESPACE_STATE_REGISTERED"
   | "NAMESPACE_STATE_DEPRECATED"
   | "NAMESPACE_STATE_DELETED";
-export const UpdateNamespaceInfoState = /*@__PURE__*/ S.String;
+export const UpdateNamespaceInfoState = S.String;
 
 export interface UpdateNamespaceInfo {
   description?: string;
@@ -12686,7 +12648,7 @@ export type UpdateTaskQueueConfigRequestTaskQueueType =
   | "TASK_QUEUE_TYPE_WORKFLOW"
   | "TASK_QUEUE_TYPE_ACTIVITY"
   | "TASK_QUEUE_TYPE_NEXUS";
-export const UpdateTaskQueueConfigRequestTaskQueueType = /*@__PURE__*/ S.String;
+export const UpdateTaskQueueConfigRequestTaskQueueType = S.String;
 
 export interface UpdateTaskQueueConfigRequestRateLimitUpdate {
   /** Rate Limit to be updated */
@@ -12979,7 +12941,7 @@ export type WaitPolicyLifecycleStage =
   | "UPDATE_WORKFLOW_EXECUTION_LIFECYCLE_STAGE_ADMITTED"
   | "UPDATE_WORKFLOW_EXECUTION_LIFECYCLE_STAGE_ACCEPTED"
   | "UPDATE_WORKFLOW_EXECUTION_LIFECYCLE_STAGE_COMPLETED";
-export const WaitPolicyLifecycleStage = /*@__PURE__*/ S.String;
+export const WaitPolicyLifecycleStage = S.String;
 
 /** Specifies client's intent to wait for Update results. */
 export interface WaitPolicy {
@@ -13044,7 +13006,7 @@ export type UpdateWorkflowExecutionResponseStage =
   | "UPDATE_WORKFLOW_EXECUTION_LIFECYCLE_STAGE_ADMITTED"
   | "UPDATE_WORKFLOW_EXECUTION_LIFECYCLE_STAGE_ACCEPTED"
   | "UPDATE_WORKFLOW_EXECUTION_LIFECYCLE_STAGE_COMPLETED";
-export const UpdateWorkflowExecutionResponseStage = /*@__PURE__*/ S.String;
+export const UpdateWorkflowExecutionResponseStage = S.String;
 
 export interface UpdateWorkflowExecutionResponse {
   /** Enough information for subsequent poll calls if needed. Never null. */

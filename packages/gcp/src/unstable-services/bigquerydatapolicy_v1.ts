@@ -69,7 +69,7 @@ export type DataPolicyDataPolicyTypeEnum =
   | "DATA_POLICY_TYPE_UNSPECIFIED"
   | "COLUMN_LEVEL_SECURITY_POLICY"
   | "DATA_MASKING_POLICY";
-export const DataPolicyDataPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const DataPolicyDataPolicyTypeEnum = S.String;
 
 export type DataMaskingPolicyPredefinedExpressionEnum =
   | "PREDEFINED_EXPRESSION_UNSPECIFIED"
@@ -81,7 +81,7 @@ export type DataMaskingPolicyPredefinedExpressionEnum =
   | "EMAIL_MASK"
   | "DATE_YEAR_MASK"
   | "RANDOM_HASH";
-export const DataMaskingPolicyPredefinedExpressionEnum = /*@__PURE__*/ S.String;
+export const DataMaskingPolicyPredefinedExpressionEnum = S.String;
 
 /** The data masking policy that is used to specify data masking rule. */
 export interface DataMaskingPolicy {
@@ -227,7 +227,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

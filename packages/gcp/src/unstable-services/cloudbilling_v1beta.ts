@@ -90,7 +90,7 @@ export type UserContextPersonaEnum =
   | "PERSONA_UNSPECIFIED"
   | "FINOPS_MANAGER"
   | "DEVELOPER";
-export const UserContextPersonaEnum = /*@__PURE__*/ S.String;
+export const UserContextPersonaEnum = S.String;
 
 /** Additional context for personalization (e.g., user persona, role). */
 export interface UserContext {
@@ -152,7 +152,7 @@ export const GenerateInsightsV1betaRequest = /*@__PURE__*/ S.suspend(() =>
 export type RejectionReasonEnum =
   | "REASON_UNSPECIFIED"
   | "EXPLICIT_OUT_OF_SCOPE";
-export const RejectionReasonEnum = /*@__PURE__*/ S.String;
+export const RejectionReasonEnum = S.String;
 
 /** Encapsulates details about why a request was rejected. */
 export interface Rejection {
@@ -189,7 +189,7 @@ export type InsightSeverityEnum =
   | "INFO"
   | "WARNING"
   | "CRITICAL";
-export const InsightSeverityEnum = /*@__PURE__*/ S.String;
+export const InsightSeverityEnum = S.String;
 
 /** e.g. insight: title: "Cost Increase (The Explanation)" description: "Your cost increase was driven by Vertex AI Online Prediction in us-central1..." severity: INFO */
 export interface Insight {
@@ -218,7 +218,7 @@ export type InteropLinkLinkTypeEnum =
   | "COST_REPORT"
   | "BQE_QUERY"
   | "FINOPS_HUB";
-export const InteropLinkLinkTypeEnum = /*@__PURE__*/ S.String;
+export const InteropLinkLinkTypeEnum = S.String;
 
 /** A link to interoperable tools (e.g., pre-filtered Cost Reports, BQE queries). */
 export interface InteropLink {
@@ -473,7 +473,7 @@ export type SuggestedChartChartTypeEnum =
   | "UNCHARTABLE"
   | "LINE_CHART"
   | "AREA_CHART";
-export const SuggestedChartChartTypeEnum = /*@__PURE__*/ S.String;
+export const SuggestedChartChartTypeEnum = S.String;
 
 /** A suggested chart for the data set, used for UI rendering. */
 export interface SuggestedChart {
@@ -750,7 +750,7 @@ export type GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyTypeEnu
   | "TYPE_REGIONAL"
   | "TYPE_MULTI_REGIONAL";
 export const GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegionList =
   Array<GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegion>;
@@ -945,7 +945,7 @@ export type GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyTypeEnum =
   | "TYPE_REGIONAL"
   | "TYPE_MULTI_REGIONAL";
 export const GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Encapsulates a global geographic taxonomy. */
 export type GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyGlobal =
@@ -1067,14 +1067,14 @@ export type GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoIntervalE
   | "INTERVAL_MONTHLY"
   | "INTERVAL_DAILY";
 export const GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoIntervalEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoLevelEnum =
   | "LEVEL_UNSPECIFIED"
   | "LEVEL_ACCOUNT"
   | "LEVEL_PROJECT";
 export const GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Encapsulates the aggregation information such as aggregation level and interval for a billing account price. */
 export interface GoogleCloudBillingBillingaccountpricesV1betaAggregationInfo {
@@ -1488,8 +1488,7 @@ export type GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyTypeEnum =
   | "TYPE_GLOBAL"
   | "TYPE_REGIONAL"
   | "TYPE_MULTI_REGIONAL";
-export const GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyTypeEnum = S.String;
 
 /** Encapsulates geographic metadata, such as regions and multi-regions like `us-east4` or `European Union`. */
 export interface GoogleCloudBillingSkugroupskusV1betaGeoTaxonomy {
@@ -1596,15 +1595,14 @@ export type GoogleCloudBillingPricesV1betaAggregationInfoLevelEnum =
   | "LEVEL_UNSPECIFIED"
   | "LEVEL_ACCOUNT"
   | "LEVEL_PROJECT";
-export const GoogleCloudBillingPricesV1betaAggregationInfoLevelEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudBillingPricesV1betaAggregationInfoLevelEnum = S.String;
 
 export type GoogleCloudBillingPricesV1betaAggregationInfoIntervalEnum =
   | "INTERVAL_UNSPECIFIED"
   | "INTERVAL_MONTHLY"
   | "INTERVAL_DAILY";
 export const GoogleCloudBillingPricesV1betaAggregationInfoIntervalEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Encapsulates the aggregation information such as aggregation level and interval for a price. */
 export interface GoogleCloudBillingPricesV1betaAggregationInfo {

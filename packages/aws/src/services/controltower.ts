@@ -142,7 +142,7 @@ export class ValidationException
   ).pipe(C.withBadRequestError) {}
 export type LandingZoneVersion = string;
 export type RemediationType = "INHERITANCE_DRIFT" | (string & {});
-export const RemediationType = /*@__PURE__*/ S.String;
+export const RemediationType = S.String;
 
 export type RemediationTypes = RemediationType[];
 export const RemediationTypes = /*@__PURE__*/ S.Array(RemediationType);
@@ -426,14 +426,14 @@ export type BaselineOperationType =
   | "UPDATE_ENABLED_BASELINE"
   | "RESET_ENABLED_BASELINE"
   | (string & {});
-export const BaselineOperationType = /*@__PURE__*/ S.String;
+export const BaselineOperationType = S.String;
 
 export type BaselineOperationStatus =
   | "SUCCEEDED"
   | "FAILED"
   | "IN_PROGRESS"
   | (string & {});
-export const BaselineOperationStatus = /*@__PURE__*/ S.String;
+export const BaselineOperationStatus = S.String;
 
 export interface BaselineOperation {
   operationIdentifier?: string;
@@ -488,14 +488,14 @@ export type ControlOperationType =
   | "UPDATE_ENABLED_CONTROL"
   | "RESET_ENABLED_CONTROL"
   | (string & {});
-export const ControlOperationType = /*@__PURE__*/ S.String;
+export const ControlOperationType = S.String;
 
 export type ControlOperationStatus =
   | "SUCCEEDED"
   | "FAILED"
   | "IN_PROGRESS"
   | (string & {});
-export const ControlOperationStatus = /*@__PURE__*/ S.String;
+export const ControlOperationStatus = S.String;
 
 export interface ControlOperation {
   operationType?: ControlOperationType;
@@ -551,7 +551,7 @@ export const GetEnabledBaselineInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEnabledBaselineInput",
 }) as any as S.Schema<GetEnabledBaselineInput>;
 export type EnabledBaselineDriftStatus = "IN_SYNC" | "DRIFTED" | (string & {});
-export const EnabledBaselineDriftStatus = /*@__PURE__*/ S.String;
+export const EnabledBaselineDriftStatus = S.String;
 
 export interface EnabledBaselineInheritanceDrift {
   status?: EnabledBaselineDriftStatus;
@@ -582,7 +582,7 @@ export type EnablementStatus =
   | "FAILED"
   | "UNDER_CHANGE"
   | (string & {});
-export const EnablementStatus = /*@__PURE__*/ S.String;
+export const EnablementStatus = S.String;
 
 export interface EnablementStatusSummary {
   status?: EnablementStatus;
@@ -665,7 +665,7 @@ export type DriftStatus =
   | "NOT_CHECKING"
   | "UNKNOWN"
   | (string & {});
-export const DriftStatus = /*@__PURE__*/ S.String;
+export const DriftStatus = S.String;
 
 export interface EnabledControlInheritanceDrift {
   status?: DriftStatus;
@@ -784,10 +784,10 @@ export type LandingZoneStatus =
   | "PROCESSING"
   | "FAILED"
   | (string & {});
-export const LandingZoneStatus = /*@__PURE__*/ S.String;
+export const LandingZoneStatus = S.String;
 
 export type LandingZoneDriftStatus = "DRIFTED" | "IN_SYNC" | (string & {});
-export const LandingZoneDriftStatus = /*@__PURE__*/ S.String;
+export const LandingZoneDriftStatus = S.String;
 
 export interface LandingZoneDriftStatusSummary {
   status?: LandingZoneDriftStatus;
@@ -850,14 +850,14 @@ export type LandingZoneOperationType =
   | "UPDATE"
   | "RESET"
   | (string & {});
-export const LandingZoneOperationType = /*@__PURE__*/ S.String;
+export const LandingZoneOperationType = S.String;
 
 export type LandingZoneOperationStatus =
   | "SUCCEEDED"
   | "FAILED"
   | "IN_PROGRESS"
   | (string & {});
-export const LandingZoneOperationStatus = /*@__PURE__*/ S.String;
+export const LandingZoneOperationStatus = S.String;
 
 export interface LandingZoneOperationDetail {
   operationType?: LandingZoneOperationType;

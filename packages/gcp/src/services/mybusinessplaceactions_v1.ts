@@ -75,13 +75,13 @@ export type PlaceActionLinkPlaceActionTypeEnum =
   | "FOOD_TAKEOUT"
   | "SHOP_ONLINE"
   | "SOLOPRENEUR_APPOINTMENT";
-export const PlaceActionLinkPlaceActionTypeEnum = /*@__PURE__*/ S.String;
+export const PlaceActionLinkPlaceActionTypeEnum = S.String;
 
 export type PlaceActionLinkProviderTypeEnum =
   | "PROVIDER_TYPE_UNSPECIFIED"
   | "MERCHANT"
   | "AGGREGATOR_3P";
-export const PlaceActionLinkProviderTypeEnum = /*@__PURE__*/ S.String;
+export const PlaceActionLinkProviderTypeEnum = S.String;
 
 /** Represents a place action link and its attributes. */
 export interface PlaceActionLink {
@@ -268,8 +268,7 @@ export type PlaceActionTypeMetadataPlaceActionTypeEnum =
   | "FOOD_TAKEOUT"
   | "SHOP_ONLINE"
   | "SOLOPRENEUR_APPOINTMENT";
-export const PlaceActionTypeMetadataPlaceActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PlaceActionTypeMetadataPlaceActionTypeEnum = S.String;
 
 /** Metadata for supported place action types. */
 export interface PlaceActionTypeMetadata {

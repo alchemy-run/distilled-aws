@@ -115,7 +115,7 @@ export type DataMaskingPolicyPredefinedExpressionEnum =
   | "EMAIL_MASK"
   | "DATE_YEAR_MASK"
   | "RANDOM_HASH";
-export const DataMaskingPolicyPredefinedExpressionEnum = /*@__PURE__*/ S.String;
+export const DataMaskingPolicyPredefinedExpressionEnum = S.String;
 
 /** The policy used to specify data masking rule. */
 export interface DataMaskingPolicy {
@@ -140,7 +140,7 @@ export type DataPolicyDataPolicyTypeEnum =
   | "DATA_MASKING_POLICY"
   | "RAW_DATA_ACCESS_POLICY"
   | "COLUMN_LEVEL_SECURITY_POLICY";
-export const DataPolicyDataPolicyTypeEnum = /*@__PURE__*/ S.String;
+export const DataPolicyDataPolicyTypeEnum = S.String;
 
 /** This is a namespaced name specifying the key and the value. For example: `project-id/pii/sensitive`. */
 export interface DataGovernanceTag {
@@ -159,7 +159,7 @@ export const DataGovernanceTag = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DataGovernanceTag>;
 
 export type DataPolicyVersionEnum = "VERSION_UNSPECIFIED" | "V1" | "V2";
-export const DataPolicyVersionEnum = /*@__PURE__*/ S.String;
+export const DataPolicyVersionEnum = S.String;
 
 /** Represents the label-policy binding. */
 export interface DataPolicy {
@@ -312,7 +312,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

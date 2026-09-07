@@ -131,7 +131,7 @@ export type LfpStoreStateMatchingStateEnum =
   | "STORE_MATCHING_STATE_UNSPECIFIED"
   | "STORE_MATCHING_STATE_MATCHED"
   | "STORE_MATCHING_STATE_FAILED";
-export const LfpStoreStateMatchingStateEnum = /*@__PURE__*/ S.String;
+export const LfpStoreStateMatchingStateEnum = S.String;
 
 /** The state of a specific merchant's store. */
 export interface LfpStoreState {
@@ -160,31 +160,28 @@ export type CountrySettingsProductPageTypeEnum =
   | "GOOGLE_HOSTED"
   | "MERCHANT_HOSTED"
   | "MERCHANT_HOSTED_STORE_SPECIFIC";
-export const CountrySettingsProductPageTypeEnum = /*@__PURE__*/ S.String;
+export const CountrySettingsProductPageTypeEnum = S.String;
 
 export type CountrySettingsInventoryVerificationStateEnum =
   | "VERIFICATION_STATE_UNSPECIFIED"
   | "VERIFICATION_STATE_NOT_APPROVED"
   | "VERIFICATION_STATE_IN_PROGRESS"
   | "VERIFICATION_STATE_APPROVED";
-export const CountrySettingsInventoryVerificationStateEnum =
-  /*@__PURE__*/ S.String;
+export const CountrySettingsInventoryVerificationStateEnum = S.String;
 
 export type CountrySettingsPickupServingVerificationStateEnum =
   | "VERIFICATION_STATE_UNSPECIFIED"
   | "VERIFICATION_STATE_NOT_APPROVED"
   | "VERIFICATION_STATE_IN_PROGRESS"
   | "VERIFICATION_STATE_APPROVED";
-export const CountrySettingsPickupServingVerificationStateEnum =
-  /*@__PURE__*/ S.String;
+export const CountrySettingsPickupServingVerificationStateEnum = S.String;
 
 export type CountrySettingsInstockServingVerificationStateEnum =
   | "VERIFICATION_STATE_UNSPECIFIED"
   | "VERIFICATION_STATE_NOT_APPROVED"
   | "VERIFICATION_STATE_IN_PROGRESS"
   | "VERIFICATION_STATE_APPROVED";
-export const CountrySettingsInstockServingVerificationStateEnum =
-  /*@__PURE__*/ S.String;
+export const CountrySettingsInstockServingVerificationStateEnum = S.String;
 
 /** Country-specific settings for the merchant. */
 export interface CountrySettings {
@@ -280,7 +277,7 @@ export type LfpStoreMatchingStateEnum =
   | "STORE_MATCHING_STATE_UNSPECIFIED"
   | "STORE_MATCHING_STATE_MATCHED"
   | "STORE_MATCHING_STATE_FAILED";
-export const LfpStoreMatchingStateEnum = /*@__PURE__*/ S.String;
+export const LfpStoreMatchingStateEnum = S.String;
 
 /** A store for the merchant. This will be used to match to a store under the Google Business Profile of the target merchant. If a matching store can't be found, the inventories or sales submitted with the store code will not be used. */
 export interface LfpStore {

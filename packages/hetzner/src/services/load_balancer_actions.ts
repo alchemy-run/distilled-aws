@@ -15,12 +15,11 @@ export type { HetznerOpError, HetznerOpContext };
 
 /** Protocol of the Load Balancer. */
 export type AddLoadBalancerServiceRequestProtocol = "tcp" | "http" | "https";
-export const AddLoadBalancerServiceRequestProtocol = /*@__PURE__*/ S.String;
+export const AddLoadBalancerServiceRequestProtocol = S.String;
 
 /** Type of the health check. */
 export type AddLoadBalancerServiceRequestHealthCheckProtocol = "tcp" | "http";
-export const AddLoadBalancerServiceRequestHealthCheckProtocol =
-  /*@__PURE__*/ S.String;
+export const AddLoadBalancerServiceRequestHealthCheckProtocol = S.String;
 
 /** List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones. */
 export type AddLoadBalancerServiceRequestHealthCheckHttpStatusCodesList =
@@ -161,8 +160,7 @@ export type AddLoadBalancerServiceResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AddLoadBalancerServiceResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const AddLoadBalancerServiceResponseActionStatus = S.String;
 
 export interface AddLoadBalancerServiceResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -255,7 +253,7 @@ export type AddLoadBalancerTargetRequestType =
   | "server"
   | "label_selector"
   | "ip";
-export const AddLoadBalancerTargetRequestType = /*@__PURE__*/ S.String;
+export const AddLoadBalancerTargetRequestType = S.String;
 
 /** Configuration for type Server, only valid and required if type is `server`. */
 export interface AddLoadBalancerTargetRequestServer {
@@ -338,7 +336,7 @@ export type AddLoadBalancerTargetResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AddLoadBalancerTargetResponseActionStatus = /*@__PURE__*/ S.String;
+export const AddLoadBalancerTargetResponseActionStatus = S.String;
 
 export type AddLoadBalancerTargetResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -435,8 +433,7 @@ export type AttachLoadBalancerToNetworkResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const AttachLoadBalancerToNetworkResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const AttachLoadBalancerToNetworkResponseActionStatus = S.String;
 
 export type AttachLoadBalancerToNetworkResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -506,7 +503,7 @@ export const AttachLoadBalancerToNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 export type ChangeLoadBalancerAlgorithmRequestType =
   | "round_robin"
   | "least_connections";
-export const ChangeLoadBalancerAlgorithmRequestType = /*@__PURE__*/ S.String;
+export const ChangeLoadBalancerAlgorithmRequestType = S.String;
 
 export interface ChangeLoadBalancerAlgorithmRequest {
   /** ID of the Load Balancer. */
@@ -534,8 +531,7 @@ export type ChangeLoadBalancerAlgorithmResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeLoadBalancerAlgorithmResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeLoadBalancerAlgorithmResponseActionStatus = S.String;
 
 export type ChangeLoadBalancerAlgorithmResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -630,8 +626,7 @@ export type ChangeLoadBalancerDnsPtrResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeLoadBalancerDnsPtrResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeLoadBalancerDnsPtrResponseActionStatus = S.String;
 
 export type ChangeLoadBalancerDnsPtrResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -723,8 +718,7 @@ export type ChangeLoadBalancerProtectionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeLoadBalancerProtectionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeLoadBalancerProtectionResponseActionStatus = S.String;
 
 export type ChangeLoadBalancerProtectionResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -817,8 +811,7 @@ export type ChangeLoadBalancerTypeResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const ChangeLoadBalancerTypeResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const ChangeLoadBalancerTypeResponseActionStatus = S.String;
 
 export type ChangeLoadBalancerTypeResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -910,8 +903,7 @@ export type DeleteLoadBalancerServiceResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DeleteLoadBalancerServiceResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const DeleteLoadBalancerServiceResponseActionStatus = S.String;
 
 export type DeleteLoadBalancerServiceResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1004,8 +996,7 @@ export type DetachLoadBalancerFromNetworkResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DetachLoadBalancerFromNetworkResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const DetachLoadBalancerFromNetworkResponseActionStatus = S.String;
 
 export type DetachLoadBalancerFromNetworkResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1096,8 +1087,7 @@ export type DisableLoadBalancerPublicInterfaceResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const DisableLoadBalancerPublicInterfaceResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const DisableLoadBalancerPublicInterfaceResponseActionStatus = S.String;
 
 export type DisableLoadBalancerPublicInterfaceResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1188,8 +1178,7 @@ export type EnableLoadBalancerPublicInterfaceResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const EnableLoadBalancerPublicInterfaceResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const EnableLoadBalancerPublicInterfaceResponseActionStatus = S.String;
 
 export type EnableLoadBalancerPublicInterfaceResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1275,8 +1264,7 @@ export type GetLoadBalancersActionResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const GetLoadBalancersActionResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const GetLoadBalancersActionResponseActionStatus = S.String;
 
 export type GetLoadBalancersActionResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1358,7 +1346,7 @@ export type ListLoadBalancerActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListLoadBalancerActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListLoadBalancerActionsRequestSortItem = S.String;
 
 export type ListLoadBalancerActionsRequestSortList = Array<
   ListLoadBalancerActionsRequestSortItem | (string & {})
@@ -1372,7 +1360,7 @@ export type ListLoadBalancerActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListLoadBalancerActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListLoadBalancerActionsRequestStatusItem = S.String;
 
 export type ListLoadBalancerActionsRequestStatusList = Array<
   ListLoadBalancerActionsRequestStatusItem | (string & {})
@@ -1414,8 +1402,7 @@ export type ListLoadBalancerActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListLoadBalancerActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListLoadBalancerActionsResponseActionsItemStatus = S.String;
 
 export type ListLoadBalancerActionsResponseActionsItemResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1551,7 +1538,7 @@ export type ListLoadBalancersActionsRequestSortItem =
   | "finished"
   | "finished:asc"
   | "finished:desc";
-export const ListLoadBalancersActionsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListLoadBalancersActionsRequestSortItem = S.String;
 
 export type ListLoadBalancersActionsRequestSortList = Array<
   ListLoadBalancersActionsRequestSortItem | (string & {})
@@ -1565,7 +1552,7 @@ export type ListLoadBalancersActionsRequestStatusItem =
   | "running"
   | "success"
   | "error";
-export const ListLoadBalancersActionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListLoadBalancersActionsRequestStatusItem = S.String;
 
 export type ListLoadBalancersActionsRequestStatusList = Array<
   ListLoadBalancersActionsRequestStatusItem | (string & {})
@@ -1605,8 +1592,7 @@ export type ListLoadBalancersActionsResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const ListLoadBalancersActionsResponseActionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListLoadBalancersActionsResponseActionsItemStatus = S.String;
 
 export type ListLoadBalancersActionsResponseActionsItemResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1697,7 +1683,7 @@ export type RemoveLoadBalancerTargetRequestType =
   | "server"
   | "label_selector"
   | "ip";
-export const RemoveLoadBalancerTargetRequestType = /*@__PURE__*/ S.String;
+export const RemoveLoadBalancerTargetRequestType = S.String;
 
 /** Configuration for type Server, only valid and required if type is `server`. */
 export type RemoveLoadBalancerTargetRequestServer =
@@ -1750,8 +1736,7 @@ export type RemoveLoadBalancerTargetResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const RemoveLoadBalancerTargetResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const RemoveLoadBalancerTargetResponseActionStatus = S.String;
 
 export type RemoveLoadBalancerTargetResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;
@@ -1819,14 +1804,13 @@ export const RemoveLoadBalancerTargetResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Protocol of the Load Balancer. */
 export type UpdateLoadBalancerServiceRequestProtocol = "tcp" | "http" | "https";
-export const UpdateLoadBalancerServiceRequestProtocol = /*@__PURE__*/ S.String;
+export const UpdateLoadBalancerServiceRequestProtocol = S.String;
 
 /** Type of the health check. */
 export type UpdateLoadBalancerServiceRequestHealthCheckProtocol =
   | "tcp"
   | "http";
-export const UpdateLoadBalancerServiceRequestHealthCheckProtocol =
-  /*@__PURE__*/ S.String;
+export const UpdateLoadBalancerServiceRequestHealthCheckProtocol = S.String;
 
 /** List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones. */
 export type UpdateLoadBalancerServiceRequestHealthCheckHttpStatusCodesList =
@@ -1971,8 +1955,7 @@ export type UpdateLoadBalancerServiceResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const UpdateLoadBalancerServiceResponseActionStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateLoadBalancerServiceResponseActionStatus = S.String;
 
 export type UpdateLoadBalancerServiceResponseActionResourcesItem =
   AddLoadBalancerServiceResponseActionResourcesItem;

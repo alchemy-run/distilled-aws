@@ -57,7 +57,7 @@ export const AcceptMeMigrationContractRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of the agreement */
 export type MeAgreementsAgreementStatusEnum = "ko" | "obsolete" | "ok" | "todo";
-export const MeAgreementsAgreementStatusEnum = /*@__PURE__*/ S.String;
+export const MeAgreementsAgreementStatusEnum = S.String;
 
 /** Contract Agreement */
 export interface MeAgreementsContractAgreement {
@@ -258,8 +258,7 @@ export const NichandleAccessRestrictionSOTPSecret = /*@__PURE__*/ S.suspend(
 
 /** Accept or deny IP access */
 export type NichandleAccessRestrictionIpRestrictionRuleEnum = "accept" | "deny";
-export const NichandleAccessRestrictionIpRestrictionRuleEnum =
-  /*@__PURE__*/ S.String;
+export const NichandleAccessRestrictionIpRestrictionRuleEnum = S.String;
 
 export interface CreateMeAccessRestrictionIpRequest {
   /** An IP range where we will apply the rule */
@@ -633,7 +632,7 @@ export type NichandleCountryEnum =
   | "ZA"
   | "ZM"
   | "ZW";
-export const NichandleCountryEnum = /*@__PURE__*/ S.String;
+export const NichandleCountryEnum = S.String;
 
 /** Languages a nichandle can choose */
 export type NichandleLanguageEnum =
@@ -656,7 +655,7 @@ export type NichandleLanguageEnum =
   | "nl_NL"
   | "pl_PL"
   | "pt_PT";
-export const NichandleLanguageEnum = /*@__PURE__*/ S.String;
+export const NichandleLanguageEnum = S.String;
 
 /** Legal forms a nichandle can be registered as */
 export type NichandleLegalFormEnum =
@@ -666,15 +665,15 @@ export type NichandleLegalFormEnum =
   | "individual"
   | "other"
   | "personalcorporation";
-export const NichandleLegalFormEnum = /*@__PURE__*/ S.String;
+export const NichandleLegalFormEnum = S.String;
 
 /** All phone type a person can choose */
 export type NichandlePhoneTypeEnum = "landline" | "mobile";
-export const NichandlePhoneTypeEnum = /*@__PURE__*/ S.String;
+export const NichandlePhoneTypeEnum = S.String;
 
 /** All genders a person can choose */
 export type NichandleGenderEnum = "female" | "male";
-export const NichandleGenderEnum = /*@__PURE__*/ S.String;
+export const NichandleGenderEnum = S.String;
 
 export interface CreateMeAccountRequest {
   /** Address of nichandle */
@@ -783,7 +782,7 @@ export const NichandleCurrency = /*@__PURE__*/ S.suspend(() =>
 
 /** OVH companies */
 export type NichandleOvhCompanyEnum = "kimsufi" | "ovh" | "soyoustart";
-export const NichandleOvhCompanyEnum = /*@__PURE__*/ S.String;
+export const NichandleOvhCompanyEnum = S.String;
 
 /** OVH subsidiaries */
 export type NichandleOvhSubsidiaryEnum =
@@ -803,11 +802,11 @@ export type NichandleOvhSubsidiaryEnum =
   | "PT"
   | "SN"
   | "TN";
-export const NichandleOvhSubsidiaryEnum = /*@__PURE__*/ S.String;
+export const NichandleOvhSubsidiaryEnum = S.String;
 
 /** States a nichandle can be in */
 export type NichandleStateEnum = "complete" | "incomplete";
-export const NichandleStateEnum = /*@__PURE__*/ S.String;
+export const NichandleStateEnum = S.String;
 
 /** Details about your OVH identifier */
 export interface NichandleNichandle {
@@ -974,7 +973,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with its currency and textual representation */
 export interface OrderPrice {
@@ -1138,8 +1137,7 @@ export const CreateMeBillingInvoicesByPostalMailResponse =
 export type MeBillingPurchaseOrderPurchaseOrderTypeEnum =
   | "PURCHASE_ORDER"
   | "REFERENCE_ORDER";
-export const MeBillingPurchaseOrderPurchaseOrderTypeEnum =
-  /*@__PURE__*/ S.String;
+export const MeBillingPurchaseOrderPurchaseOrderTypeEnum = S.String;
 
 export interface CreateMeBillingPurchaseOrderRequest {
   /** Active */
@@ -1175,7 +1173,7 @@ export const CreateMeBillingPurchaseOrderRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Purchase Order */
 export type MeBillingPurchaseOrderStatusEnum = "CREATED" | "DELETED";
-export const MeBillingPurchaseOrderStatusEnum = /*@__PURE__*/ S.String;
+export const MeBillingPurchaseOrderStatusEnum = S.String;
 
 /** Purchase Order */
 export interface MeBillingPurchaseOrderPurchaseOrder {
@@ -1301,7 +1299,7 @@ export type NichandleChangeEmailTaskStateEnum =
   | "done"
   | "refused"
   | "todo";
-export const NichandleChangeEmailTaskStateEnum = /*@__PURE__*/ S.String;
+export const NichandleChangeEmailTaskStateEnum = S.String;
 
 /** Task running an email change on an account */
 export interface NichandleEmailChangeTask {
@@ -1587,7 +1585,7 @@ export type MeCreditBalanceMovementTypeEnum =
   | "UNPAID"
   | "USE"
   | "VOUCHER";
-export const MeCreditBalanceMovementTypeEnum = /*@__PURE__*/ S.String;
+export const MeCreditBalanceMovementTypeEnum = S.String;
 
 /** Missing description */
 export interface MeCreditBalanceMovement {
@@ -1890,7 +1888,7 @@ export type MeGeolocationContinentEnum =
   | "north-america"
   | "oceania"
   | "south-america";
-export const MeGeolocationContinentEnum = /*@__PURE__*/ S.String;
+export const MeGeolocationContinentEnum = S.String;
 
 /** Country iso code */
 export type MeGeolocationCountryEnum =
@@ -2154,7 +2152,7 @@ export type MeGeolocationCountryEnum =
   | "za"
   | "zm"
   | "zw";
-export const MeGeolocationCountryEnum = /*@__PURE__*/ S.String;
+export const MeGeolocationCountryEnum = S.String;
 
 /** Representation of country and continent from visitor IP */
 export interface MeGeolocationContinentCountryLocation {
@@ -2178,7 +2176,7 @@ export const MeGeolocationContinentCountryLocation = /*@__PURE__*/ S.suspend(
 
 /** Permission given on the account */
 export type AuthRoleEnum = "ADMIN" | "NONE" | "REGULAR" | "UNPRIVILEGED";
-export const AuthRoleEnum = /*@__PURE__*/ S.String;
+export const AuthRoleEnum = S.String;
 
 export interface CreateMeIdentityGroupRequest {
   /** Group's description */
@@ -2392,7 +2390,7 @@ export const AuthProvider = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of user */
 export type AuthUserTypeEnum = "ROOT" | "SERVICE" | "USER";
-export const AuthUserTypeEnum = /*@__PURE__*/ S.String;
+export const AuthUserTypeEnum = S.String;
 
 export interface CreateMeIdentityUserRequest {
   /** User's description */
@@ -2488,7 +2486,7 @@ export const AuthPersonalAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Ip registries */
 export type NichandleIpRegistryEnum = "ARIN" | "RIPE";
-export const NichandleIpRegistryEnum = /*@__PURE__*/ S.String;
+export const NichandleIpRegistryEnum = S.String;
 
 export interface CreateMeIpOrganisationRequest {
   abuse_mailbox: string;
@@ -2646,7 +2644,7 @@ export const CreateMeOauth2ClientRequestCallbackUrlsList =
 
 /** oAuth2 Flow */
 export type Oauth2ClientFlowEnum = "AUTHORIZATION_CODE" | "CLIENT_CREDENTIALS";
-export const Oauth2ClientFlowEnum = /*@__PURE__*/ S.String;
+export const Oauth2ClientFlowEnum = S.String;
 
 export interface CreateMeOauth2ClientRequest {
   /** allowed callback urls */
@@ -2783,7 +2781,7 @@ export type BillingReusablePaymentMeanEnum =
   | "fidelityAccount"
   | "ovhAccount"
   | "paypal";
-export const BillingReusablePaymentMeanEnum = /*@__PURE__*/ S.String;
+export const BillingReusablePaymentMeanEnum = S.String;
 
 export interface CreateMeOrderPayWithRegisteredPaymentMeanRequest {
   orderId: number;
@@ -2824,7 +2822,7 @@ export type BillingOrderRetractionReasonEnum =
   | "performance"
   | "reliability"
   | "unused";
-export const BillingOrderRetractionReasonEnum = /*@__PURE__*/ S.String;
+export const BillingOrderRetractionReasonEnum = S.String;
 
 export interface CreateMeOrderRetractionRequest {
   orderId: number;
@@ -3006,7 +3004,7 @@ export const MePaymentMethodCallbackUrl = /*@__PURE__*/ S.suspend(() =>
 
 /** Payment method creation sub-type enum */
 export type MePaymentCreationSubTypeEnum = "CHORUS" | "NONE";
-export const MePaymentCreationSubTypeEnum = /*@__PURE__*/ S.String;
+export const MePaymentCreationSubTypeEnum = S.String;
 
 export interface CreateMePaymentMethodRequest {
   /** Associated billing contact ID */
@@ -3053,7 +3051,7 @@ export type MePaymentIntegrationEnum =
   | "NONE"
   | "POST_FORM"
   | "REDIRECT";
-export const MePaymentIntegrationEnum = /*@__PURE__*/ S.String;
+export const MePaymentIntegrationEnum = S.String;
 
 /** Registration response to validate */
 export interface MePaymentMethodValidation {
@@ -3275,7 +3273,7 @@ export type MeTagStatusEnum =
   | "REVOCATING"
   | "WAIT_MODERATION"
   | "WAIT_REVOCATION";
-export const MeTagStatusEnum = /*@__PURE__*/ S.String;
+export const MeTagStatusEnum = S.String;
 
 /** Tag */
 export interface MeTagTag {
@@ -3452,7 +3450,7 @@ export const CreateMeTaskEmailChangeRefuseResponse = /*@__PURE__*/ S.suspend(
 
 /** Phone protocol */
 export type TelephonyProtocolEnum = "mgcp" | "sip";
-export const TelephonyProtocolEnum = /*@__PURE__*/ S.String;
+export const TelephonyProtocolEnum = S.String;
 
 export interface CreateMeTelephonyDefaultIpRestrictionRequest {
   /** The IPv4 subnet you want to allow */
@@ -4165,7 +4163,7 @@ export type MePaymentAvailableSubTypeEnum =
   | "NONE"
   | "RUPAY"
   | "VISA";
-export const MePaymentAvailableSubTypeEnum = /*@__PURE__*/ S.String;
+export const MePaymentAvailableSubTypeEnum = S.String;
 
 /** Payment method status */
 export type MePaymentMethodStatusEnum =
@@ -4182,7 +4180,7 @@ export type MePaymentMethodStatusEnum =
   | "REPLACED"
   | "VALID"
   | "VALIDATING";
-export const MePaymentMethodStatusEnum = /*@__PURE__*/ S.String;
+export const MePaymentMethodStatusEnum = S.String;
 
 /** Payment method object */
 export interface MePaymentPaymentMethod {
@@ -4686,7 +4684,7 @@ export const EnableMeIdentityUserResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** List of available archive types */
 export type BillingArchiveTypeEnum = "csv" | "zip";
-export const BillingArchiveTypeEnum = /*@__PURE__*/ S.String;
+export const BillingArchiveTypeEnum = S.String;
 
 /** A list of ids to export */
 export type ExportMeBillRequestIdsList = Array<string>;
@@ -4840,7 +4838,7 @@ export type MeAbuseAbuseCategoryEnum =
   | "Other"
   | "Phishing"
   | "Spam";
-export const MeAbuseAbuseCategoryEnum = /*@__PURE__*/ S.String;
+export const MeAbuseAbuseCategoryEnum = S.String;
 
 /** The abuse status */
 export type MeAbuseAbuseStatusEnum =
@@ -4853,7 +4851,7 @@ export type MeAbuseAbuseStatusEnum =
   | "Reopened"
   | "Updated"
   | "WaitingAnswer";
-export const MeAbuseAbuseStatusEnum = /*@__PURE__*/ S.String;
+export const MeAbuseAbuseStatusEnum = S.String;
 
 /** Get report API response */
 export interface MeAbuseAbuse {
@@ -4898,7 +4896,7 @@ export type NichandleAccessRestrictionSOTPStatusEnum =
   | "enabled"
   | "needCodeValidation"
   | "needEmailValidation";
-export const NichandleAccessRestrictionSOTPStatusEnum = /*@__PURE__*/ S.String;
+export const NichandleAccessRestrictionSOTPStatusEnum = S.String;
 
 /** SOTP Two-Factor Authentication */
 export interface NichandleAccessRestrictionSOTPAccount {
@@ -5036,7 +5034,7 @@ export type NichandleAccessRestrictionSmsStatusEnum =
   | "enabled"
   | "needCodeValidation"
   | "needEmailValidation";
-export const NichandleAccessRestrictionSmsStatusEnum = /*@__PURE__*/ S.String;
+export const NichandleAccessRestrictionSmsStatusEnum = S.String;
 
 /** Sms Two-Factor Authentication */
 export interface NichandleAccessRestrictionSmsAccount {
@@ -5091,7 +5089,7 @@ export type NichandleAccessRestrictionTOTPStatusEnum =
   | "enabled"
   | "needCodeValidation"
   | "needEmailValidation";
-export const NichandleAccessRestrictionTOTPStatusEnum = /*@__PURE__*/ S.String;
+export const NichandleAccessRestrictionTOTPStatusEnum = S.String;
 
 /** TOTP Two-Factor Authentication */
 export interface NichandleAccessRestrictionTOTPAccount {
@@ -5138,7 +5136,7 @@ export type NichandleAccessRestrictionU2FStatusEnum =
   | "disabled"
   | "enabled"
   | "needCodeValidation";
-export const NichandleAccessRestrictionU2FStatusEnum = /*@__PURE__*/ S.String;
+export const NichandleAccessRestrictionU2FStatusEnum = S.String;
 
 /** U2F Two-Factor Authentication */
 export interface NichandleAccessRestrictionU2FAccount {
@@ -5180,7 +5178,7 @@ export const GetMeAgreementRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current state of a contract agreement */
 export type AgreementsAgreementStateEnum = "ko" | "obsolete" | "ok" | "todo";
-export const AgreementsAgreementStateEnum = /*@__PURE__*/ S.String;
+export const AgreementsAgreementStateEnum = S.String;
 
 /** Contract agreement */
 export interface AgreementsContractAgreement {
@@ -5267,7 +5265,7 @@ export type AuthApplicationStatusEnum =
   | "blocked"
   | "inactive"
   | "trusted";
-export const AuthApplicationStatusEnum = /*@__PURE__*/ S.String;
+export const AuthApplicationStatusEnum = S.String;
 
 /** API Application */
 export interface AuthApiApplication {
@@ -5376,7 +5374,7 @@ export type BillingCategoryEnum =
   | "purchase-servers"
   | "purchase-telecom"
   | "purchase-web";
-export const BillingCategoryEnum = /*@__PURE__*/ S.String;
+export const BillingCategoryEnum = S.String;
 
 /** List of available eInvoicing Status types */
 export type BillingEInvoicingStatusEnum =
@@ -5390,7 +5388,7 @@ export type BillingEInvoicingStatusEnum =
   | "readyToSubmit"
   | "rejected"
   | "submitted";
-export const BillingEInvoicingStatusEnum = /*@__PURE__*/ S.String;
+export const BillingEInvoicingStatusEnum = S.String;
 
 /** Details about a Bill */
 export interface BillingBill {
@@ -5443,7 +5441,7 @@ export type DebtEntryStatusDebtOrderEnum =
   | "UNMATURED"
   | "UNPAID"
   | "WRITE_OFF";
-export const DebtEntryStatusDebtOrderEnum = /*@__PURE__*/ S.String;
+export const DebtEntryStatusDebtOrderEnum = S.String;
 
 /** State of a debt */
 export interface DebtDebt {
@@ -5509,7 +5507,7 @@ export type DebtEntryStatusEnum =
   | "PAID"
   | "PENDING"
   | "TODO";
-export const DebtEntryStatusEnum = /*@__PURE__*/ S.String;
+export const DebtEntryStatusEnum = S.String;
 
 /** All operations a debt entry can represent */
 export type DebtEntryOperationEnum =
@@ -5585,7 +5583,7 @@ export type DebtEntryOperationEnum =
   | "UNPAID_WITHDRAW"
   | "WARRANT_MANUAL"
   | "WITHDRAW_AUTOMATIC";
-export const DebtEntryOperationEnum = /*@__PURE__*/ S.String;
+export const DebtEntryOperationEnum = S.String;
 
 /** Operation that happend on a debt */
 export interface DebtOperation {
@@ -5660,7 +5658,7 @@ export type BillingPaymentMeanEnum =
   | "rupay"
   | "transfer"
   | "withdrawal";
-export const BillingPaymentMeanEnum = /*@__PURE__*/ S.String;
+export const BillingPaymentMeanEnum = S.String;
 
 /** The payment infos linked to this debt entry */
 export interface DebtAssociatedObjectPaymentInfo {
@@ -5690,7 +5688,7 @@ export type DebtAssociatedObjectTypeEnum =
   | "OvhAccountMovement"
   | "Refund"
   | "Withdrawal";
-export const DebtAssociatedObjectTypeEnum = /*@__PURE__*/ S.String;
+export const DebtAssociatedObjectTypeEnum = S.String;
 
 /** The object linked to this debt entry */
 export interface DebtEntryAssociatedObject {
@@ -5783,7 +5781,7 @@ export type NichandleRequiredPaymentMethodEnum =
   | "mandatoryForAutorenew"
   | "mandatoryForPostpaid"
   | "notMandatory";
-export const NichandleRequiredPaymentMethodEnum = /*@__PURE__*/ S.String;
+export const NichandleRequiredPaymentMethodEnum = S.String;
 
 /** Internal customer billing capacities for customer control panel */
 export interface NichandleBillingCapacities {
@@ -5898,7 +5896,7 @@ export type MeBillingReportConsumptionStatusEnum =
   | "CREATING"
   | "ERROR"
   | "READY";
-export const MeBillingReportConsumptionStatusEnum = /*@__PURE__*/ S.String;
+export const MeBillingReportConsumptionStatusEnum = S.String;
 
 /** Consumption billing report */
 export interface MeBillingReportConsumption {
@@ -5961,7 +5959,7 @@ export const MeBillingTasksTaskMetadataList = /*@__PURE__*/ S.Array(
 
 /** Billing tasks names */
 export type MeBillingTasksTaskNameEnum = "contact/change";
-export const MeBillingTasksTaskNameEnum = /*@__PURE__*/ S.String;
+export const MeBillingTasksTaskNameEnum = S.String;
 
 /** Billing tasks statuses */
 export type MeBillingTasksTaskStatusEnum =
@@ -5972,7 +5970,7 @@ export type MeBillingTasksTaskStatusEnum =
   | "INIT"
   | "PROBLEM"
   | "TODO";
-export const MeBillingTasksTaskStatusEnum = /*@__PURE__*/ S.String;
+export const MeBillingTasksTaskStatusEnum = S.String;
 
 /** Asynchronous task related to Billing */
 export interface MeBillingTasksTask {
@@ -6043,7 +6041,7 @@ export type IpCampusEnum =
   | "WAW"
   | "YNM"
   | "YYZ";
-export const IpCampusEnum = /*@__PURE__*/ S.String;
+export const IpCampusEnum = S.String;
 
 export interface GetMeBringYourOwnIpTokenRequest {
   /** Campus where you plan to bring your own IP range in. See /ip/campus to get more details. */
@@ -6121,7 +6119,7 @@ export type CarbonCalculatorTaskTaskStatusEnum =
   | "ERROR"
   | "IN_PROGRESS"
   | "SUCCESS";
-export const CarbonCalculatorTaskTaskStatusEnum = /*@__PURE__*/ S.String;
+export const CarbonCalculatorTaskTaskStatusEnum = S.String;
 
 /** Task to generate a carbon impact document */
 export interface CarbonCalculatorTask {
@@ -6158,7 +6156,7 @@ export const GetMeConsentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Campaign type */
 export type MeConsentCampaignTypeEnum = "OPTIN" | "OPTOUT";
-export const MeConsentCampaignTypeEnum = /*@__PURE__*/ S.String;
+export const MeConsentCampaignTypeEnum = S.String;
 
 /** Consent campaign */
 export interface MeConsentCampaign {
@@ -6390,7 +6388,7 @@ export const AuthApiCredentialAllowedIPsList = /*@__PURE__*/ S.Array(
 
 /** All HTTP methods available */
 export type AuthHTTPMethodEnum = "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
-export const AuthHTTPMethodEnum = /*@__PURE__*/ S.String;
+export const AuthHTTPMethodEnum = S.String;
 
 /** Access rule allowed to an application */
 export interface AuthAccessRule {
@@ -6418,7 +6416,7 @@ export type AuthCredentialStateEnum =
   | "pendingValidation"
   | "refused"
   | "validated";
-export const AuthCredentialStateEnum = /*@__PURE__*/ S.String;
+export const AuthCredentialStateEnum = S.String;
 
 /** API Credential */
 export interface AuthApiCredential {
@@ -6592,7 +6590,7 @@ export type MeCreditBalanceTypeEnum =
   | "DEPOSIT"
   | "PREPAID_ACCOUNT"
   | "VOUCHER";
-export const MeCreditBalanceTypeEnum = /*@__PURE__*/ S.String;
+export const MeCreditBalanceTypeEnum = S.String;
 
 /** Missing description */
 export interface MeCreditBalance {
@@ -7202,7 +7200,7 @@ export type BillingFidelityAccountOperationEnum =
   | "debit"
   | "pre-credit"
   | "pre-debit";
-export const BillingFidelityAccountOperationEnum = /*@__PURE__*/ S.String;
+export const BillingFidelityAccountOperationEnum = S.String;
 
 /** Details about a fidelity account */
 export interface BillingFidelityMovement {
@@ -7311,7 +7309,7 @@ export const AuthUserGroupsList = /*@__PURE__*/ S.Array(
 
 /** Status of a User */
 export type AuthUserStatusEnum = "DISABLED" | "OK" | "PASSWORD_CHANGE_REQUIRED";
-export const AuthUserStatusEnum = /*@__PURE__*/ S.String;
+export const AuthUserStatusEnum = S.String;
 
 /** An IAM User */
 export interface AuthUser {
@@ -7620,7 +7618,7 @@ export const GetMeLogSelfRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** All HTTP methods available */
 export type HttpMethodEnum = "DELETE" | "GET" | "POST" | "PUT";
-export const HttpMethodEnum = /*@__PURE__*/ S.String;
+export const HttpMethodEnum = S.String;
 
 /** API Log */
 export interface ApiLog {
@@ -7699,7 +7697,7 @@ export type BillingBillingTaskStatusEnum =
   | "init"
   | "ovhError"
   | "todo";
-export const BillingBillingTaskStatusEnum = /*@__PURE__*/ S.String;
+export const BillingBillingTaskStatusEnum = S.String;
 
 /** Status of your manual domain payment migration */
 export interface BillingManualDomainPaymentStatus {
@@ -7795,7 +7793,7 @@ export type MeMigrationStatusEnum =
   | "MIGRATED"
   | "TODO"
   | "TO_CHECK";
-export const MeMigrationStatusEnum = /*@__PURE__*/ S.String;
+export const MeMigrationStatusEnum = S.String;
 
 /** Array of contract agreements to accept */
 export type MeMigrationStepContractsAgreementsList =
@@ -7835,7 +7833,7 @@ export const MeMigrationStepDebt = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of the migration step */
 export type MeMigrationStepNameEnum = "CONTRACTS" | "DEBT" | "NIC" | "ORDERS";
-export const MeMigrationStepNameEnum = /*@__PURE__*/ S.String;
+export const MeMigrationStepNameEnum = S.String;
 
 /** Country Migration step orders data */
 export interface MeMigrationStepOrders {
@@ -7858,7 +7856,7 @@ export const MeMigrationStepOrders = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the migration step */
 export type MeMigrationStepStatusEnum = "OK" | "PENDING";
-export const MeMigrationStepStatusEnum = /*@__PURE__*/ S.String;
+export const MeMigrationStepStatusEnum = S.String;
 
 /** Country Migration Step */
 export interface MeMigrationStep {
@@ -8212,7 +8210,7 @@ export type BillingOrderAssociatedObjectTypeEnum =
   | "Refund"
   | "ReverseBill"
   | "Withdrawal";
-export const BillingOrderAssociatedObjectTypeEnum = /*@__PURE__*/ S.String;
+export const BillingOrderAssociatedObjectTypeEnum = S.String;
 
 /** The object the processing of the order leaded to */
 export interface BillingOrderAssociatedObject {
@@ -8250,7 +8248,7 @@ export const GetMeOrderBalanceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Export file format */
 export type ConsumptionConsumptionExportFormatsEnum = "csv";
-export const ConsumptionConsumptionExportFormatsEnum = /*@__PURE__*/ S.String;
+export const ConsumptionConsumptionExportFormatsEnum = S.String;
 
 export interface GetMeOrderConsumptionDetailsRequest {
   orderId: number;
@@ -8278,8 +8276,7 @@ export type ConsumptionConsumptionExportTaskStatusEnum =
   | "DONE"
   | "ERROR"
   | "TODO";
-export const ConsumptionConsumptionExportTaskStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ConsumptionConsumptionExportTaskStatusEnum = S.String;
 
 /** Detailed consumption's retrieval information */
 export interface BillingOrderConsumptionDetails {
@@ -8399,7 +8396,7 @@ export type OrderOrderDetailTypeEnum =
   | "SWITCH"
   | "TRANSFER"
   | "VOUCHER";
-export const OrderOrderDetailTypeEnum = /*@__PURE__*/ S.String;
+export const OrderOrderDetailTypeEnum = S.String;
 
 /** Information about a Bill entry */
 export interface BillingOrderDetail {
@@ -8454,7 +8451,7 @@ export type BillingItemDetailOrderActionEnum =
   | "renew"
   | "revert"
   | "upgrade";
-export const BillingItemDetailOrderActionEnum = /*@__PURE__*/ S.String;
+export const BillingItemDetailOrderActionEnum = S.String;
 
 /** Configuration of order */
 export interface BillingItemDetailOrderConfiguration {
@@ -8519,7 +8516,7 @@ export const BillingItemDetailOrderPlan = /*@__PURE__*/ S.suspend(() =>
 
 /** List of order detail types */
 export type BillingItemDetailOrderDetailTypeEnum = "plan" | "product";
-export const BillingItemDetailOrderDetailTypeEnum = /*@__PURE__*/ S.String;
+export const BillingItemDetailOrderDetailTypeEnum = S.String;
 
 /** Order data for this Detail */
 export interface BillingItemDetailOrder {
@@ -8591,7 +8588,7 @@ export type BillingOrderOrderStatusEnum =
   | "documentsRequested"
   | "notPaid"
   | "unknown";
-export const BillingOrderOrderStatusEnum = /*@__PURE__*/ S.String;
+export const BillingOrderOrderStatusEnum = S.String;
 
 export type GetMeOrderStatusResponse = BillingOrderOrderStatusEnum;
 export const GetMeOrderStatusResponse = /*@__PURE__*/ S.suspend(() =>
@@ -8692,7 +8689,7 @@ export type BillingOvhAccountOperationEnum =
   | "debit"
   | "pre-credit"
   | "pre-debit";
-export const BillingOvhAccountOperationEnum = /*@__PURE__*/ S.String;
+export const BillingOvhAccountOperationEnum = S.String;
 
 /** Details about an OVH account */
 export interface BillingMovement {
@@ -8737,14 +8734,14 @@ export type MePartnerLevelLevelTypeEnum =
   | "none"
   | "standard"
   | "strategic";
-export const MePartnerLevelLevelTypeEnum = /*@__PURE__*/ S.String;
+export const MePartnerLevelLevelTypeEnum = S.String;
 
 /** Level of Support required */
 export type MePartnerLevelRequirementLoSEnum =
   | "none"
   | "premium"
   | "premium-accredited";
-export const MePartnerLevelRequirementLoSEnum = /*@__PURE__*/ S.String;
+export const MePartnerLevelRequirementLoSEnum = S.String;
 
 /** Partner level of an account */
 export interface MePartnerLevelLevel {
@@ -8805,7 +8802,7 @@ export const MePaymentMeanIconData = /*@__PURE__*/ S.suspend(() =>
 
 /** State of you deferred account */
 export type MePaymentMeanDeferredStateEnum = "failed" | "valid";
-export const MePaymentMeanDeferredStateEnum = /*@__PURE__*/ S.String;
+export const MePaymentMeanDeferredStateEnum = S.String;
 
 /** Deferred account information */
 export interface MePaymentMeanDeferred {
@@ -8883,11 +8880,11 @@ export type MePaymentTransactionStatusEnum =
   | "FAILED"
   | "READY"
   | "SUCCESS";
-export const MePaymentTransactionStatusEnum = /*@__PURE__*/ S.String;
+export const MePaymentTransactionStatusEnum = S.String;
 
 /** Transaction type */
 export type MePaymentTransactionTypeEnum = "CREDIT" | "DEBIT";
-export const MePaymentTransactionTypeEnum = /*@__PURE__*/ S.String;
+export const MePaymentTransactionTypeEnum = S.String;
 
 /** Transaction object */
 export interface MePaymentTransaction {
@@ -9309,7 +9306,7 @@ export type MeSupportLevelLevelTypeEnum =
   | "premium"
   | "premium-accredited"
   | "standard";
-export const MeSupportLevelLevelTypeEnum = /*@__PURE__*/ S.String;
+export const MeSupportLevelLevelTypeEnum = S.String;
 
 /** Support level of an account */
 export interface MeSupportLevelLevel {
@@ -9354,7 +9351,7 @@ export type NichandleChangeContactContactTypeEnum =
   | "contactAdmin"
   | "contactBilling"
   | "contactTech";
-export const NichandleChangeContactContactTypeEnum = /*@__PURE__*/ S.String;
+export const NichandleChangeContactContactTypeEnum = S.String;
 
 /** Contacts to be changed */
 export type NichandleContactChangeTaskContactTypesList =
@@ -9374,7 +9371,7 @@ export type NichandleChangeContactTaskStateEnum =
   | "refused"
   | "todo"
   | "validatingByCustomers";
-export const NichandleChangeContactTaskStateEnum = /*@__PURE__*/ S.String;
+export const NichandleChangeContactTaskStateEnum = S.String;
 
 /** Task running a contact change on a service */
 export interface NichandleContactChangeTask {
@@ -9440,7 +9437,7 @@ export type DomainTaskFunctionEnum =
   | "ZoneImport"
   | "ZoneRefresh"
   | "ZoneRestore";
-export const DomainTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const DomainTaskFunctionEnum = S.String;
 
 /** All statuses from a dns task */
 export type DomainTaskStatusEnum =
@@ -9450,7 +9447,7 @@ export type DomainTaskStatusEnum =
   | "error"
   | "problem"
   | "todo";
-export const DomainTaskStatusEnum = /*@__PURE__*/ S.String;
+export const DomainTaskStatusEnum = S.String;
 
 /** DNS task */
 export interface MeDnsTask {
@@ -9516,11 +9513,11 @@ export type DomainOperationStatusEnum =
   | "error"
   | "problem"
   | "todo";
-export const DomainOperationStatusEnum = /*@__PURE__*/ S.String;
+export const DomainOperationStatusEnum = S.String;
 
 /** Operation type */
 export type DomainOperationTypeEnum = "alldom" | "domain";
-export const DomainOperationTypeEnum = /*@__PURE__*/ S.String;
+export const DomainOperationTypeEnum = S.String;
 
 /** Tasks associated to domain */
 export interface DomainTask {
@@ -9592,7 +9589,7 @@ export const GetMeTaskDomainArgumentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Document file format */
 export type DomainDocumentFormatsEnum = "gif" | "jpeg" | "jpg" | "pdf" | "png";
-export const DomainDocumentFormatsEnum = /*@__PURE__*/ S.String;
+export const DomainDocumentFormatsEnum = S.String;
 
 /** List of accepted formats */
 export type NichandleDomainTaskArgumentAcceptedFormatsList =
@@ -9639,7 +9636,7 @@ export type XanderContactFieldEnum =
   | "phone"
   | "spareEmail"
   | "vat";
-export const XanderContactFieldEnum = /*@__PURE__*/ S.String;
+export const XanderContactFieldEnum = S.String;
 
 /** List of impacted field names */
 export type NichandleDomainTaskArgumentFieldsList =
@@ -9746,7 +9743,7 @@ export type DomainOperationActionEnum =
   | "canCorrect"
   | "canRelaunch"
   | "canReset";
-export const DomainOperationActionEnum = /*@__PURE__*/ S.String;
+export const DomainOperationActionEnum = S.String;
 
 /** Action possible on task */
 export type NichandleDomainTaskProgressBarTaskActionsList =
@@ -9921,7 +9918,7 @@ export type BillingVoucherAccountOperationEnum =
   | "debit"
   | "pre-credit"
   | "pre-debit";
-export const BillingVoucherAccountOperationEnum = /*@__PURE__*/ S.String;
+export const BillingVoucherAccountOperationEnum = S.String;
 
 /** Details about a voucher account */
 export interface BillingVoucherMovement {
@@ -11583,8 +11580,7 @@ export type OrderCartGenericProductPricingCapacitiesEnum =
   | "installation"
   | "renew"
   | "upgrade";
-export const OrderCartGenericProductPricingCapacitiesEnum =
-  /*@__PURE__*/ S.String;
+export const OrderCartGenericProductPricingCapacitiesEnum = S.String;
 
 /** Capacities of the pricing (type of pricing) */
 export type OrderCartGenericProductPricingCapacitiesList =
@@ -11599,7 +11595,7 @@ export type OrderCartGenericProductPricingTypeEnum =
   | "consumption"
   | "purchase"
   | "rental";
-export const OrderCartGenericProductPricingTypeEnum = /*@__PURE__*/ S.String;
+export const OrderCartGenericProductPricingTypeEnum = S.String;
 
 /** Representation of a product pricing */
 export interface OrderCartGenericProductPricing {
@@ -11665,7 +11661,7 @@ export type OrderCartGenericProductTypeEnum =
   | "saas_license"
   | "shipping"
   | "storage";
-export const OrderCartGenericProductTypeEnum = /*@__PURE__*/ S.String;
+export const OrderCartGenericProductTypeEnum = S.String;
 
 /** Representation of a generic product */
 export interface OrderCartGenericProductDefinition {
@@ -11829,7 +11825,7 @@ export const ListMeLogAuditRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Authentication type */
 export type AuditLogAuthUserTypeEnum = "ACCOUNT" | "PROVIDER" | "USER";
-export const AuditLogAuthUserTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogAuthUserTypeEnum = S.String;
 
 /** Authenticated user details */
 export interface AuditLogAuthUserDetails {
@@ -11939,7 +11935,7 @@ export type AuditLogAuthMFATypeEnum =
   | "TOTP"
   | "U2F"
   | "UNKNOWN";
-export const AuditLogAuthMFATypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogAuthMFATypeEnum = S.String;
 
 /** specific fields for LOGIN_SUCCESS events */
 export interface AuditLogLoginSuccessDetails {
@@ -12359,7 +12355,7 @@ export type AuditLogTypeEnum =
   | "USER_DELETED"
   | "USER_MODIFIED"
   | "USER_PASSWORD_CHANGED";
-export const AuditLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogTypeEnum = S.String;
 
 /** specific fields for USER events */
 export interface AuditLogUserDetails {
@@ -12921,7 +12917,7 @@ export const BillingOrderAvailablePaymentMeanFieldOptionsList =
 
 /** Field type of a payment mean */
 export type BillingOrderPaymentMeanFieldTypeEnum = "hidden" | "select" | "text";
-export const BillingOrderPaymentMeanFieldTypeEnum = /*@__PURE__*/ S.String;
+export const BillingOrderPaymentMeanFieldTypeEnum = S.String;
 
 /** All fields needed for a payment mean integration */
 export interface BillingOrderAvailablePaymentMeanField {
@@ -12955,7 +12951,7 @@ export type BillingOrderPaymentMeanIntegrationEnum =
   | "GET_FORM"
   | "POST_FORM"
   | "REDIRECT";
-export const BillingOrderPaymentMeanIntegrationEnum = /*@__PURE__*/ S.String;
+export const BillingOrderPaymentMeanIntegrationEnum = S.String;
 
 /** All data needed to use a payment mean */
 export interface BillingOrderAvailablePaymentMean {
@@ -13150,7 +13146,7 @@ export type BillingOrderFollowUpHistoryStatusEnum =
   | "PAYMENT_INITIATED"
   | "PAYMENT_RECEIVED"
   | "REGISTERED_PAYMENT_INITIATED";
-export const BillingOrderFollowUpHistoryStatusEnum = /*@__PURE__*/ S.String;
+export const BillingOrderFollowUpHistoryStatusEnum = S.String;
 
 /** Step history of order follow-up */
 export interface BillingOrderFollowUpHistory {
@@ -13184,7 +13180,7 @@ export type BillingOrderFollowUpStatusEnum =
   | "DONE"
   | "ERROR"
   | "TODO";
-export const BillingOrderFollowUpStatusEnum = /*@__PURE__*/ S.String;
+export const BillingOrderFollowUpStatusEnum = S.String;
 
 /** Status of order follow-up */
 export type BillingOrderFollowUpStepEnum =
@@ -13192,7 +13188,7 @@ export type BillingOrderFollowUpStepEnum =
   | "DELIVERING"
   | "VALIDATED"
   | "VALIDATING";
-export const BillingOrderFollowUpStepEnum = /*@__PURE__*/ S.String;
+export const BillingOrderFollowUpStepEnum = S.String;
 
 /** Follow up history of an order */
 export interface BillingOrderFollowUp {
@@ -13432,7 +13428,7 @@ export type PaymentMethodIntegrationType =
   | "NONE"
   | "POST_FORM"
   | "REDIRECT";
-export const PaymentMethodIntegrationType = /*@__PURE__*/ S.String;
+export const PaymentMethodIntegrationType = S.String;
 
 /** Available payment methods */
 export interface PaymentMethodAvailablePaymentMethod {
@@ -13499,7 +13495,7 @@ export type PaymentMethodSubTypeEnum =
   | "NONE"
   | "RUPAY"
   | "VISA";
-export const PaymentMethodSubTypeEnum = /*@__PURE__*/ S.String;
+export const PaymentMethodSubTypeEnum = S.String;
 
 /** Payment method status */
 export type PaymentMethodStatusEnum =
@@ -13516,7 +13512,7 @@ export type PaymentMethodStatusEnum =
   | "REPLACED"
   | "VALID"
   | "VALIDATING";
-export const PaymentMethodStatusEnum = /*@__PURE__*/ S.String;
+export const PaymentMethodStatusEnum = S.String;
 
 /** payment method */
 export interface PaymentMethodPaymentMethod {
@@ -13854,7 +13850,7 @@ export type RecommendationsProductRangesEnum =
   | "saas"
   | "vps"
   | "web";
-export const RecommendationsProductRangesEnum = /*@__PURE__*/ S.String;
+export const RecommendationsProductRangesEnum = S.String;
 
 export interface ListMeRecommendationsRequest {
   /** Maximum number of recommendations to be returned */
@@ -14322,7 +14318,7 @@ export type MeTagTagKeyTypeEnum =
   | "INTEGER"
   | "TEXT"
   | "VARCHAR";
-export const MeTagTagKeyTypeEnum = /*@__PURE__*/ S.String;
+export const MeTagTagKeyTypeEnum = S.String;
 
 /** Tag configuration key */
 export interface MeTagTagKey {
@@ -14483,7 +14479,7 @@ export type DomainOperationFunctionEnum =
   | "DomainUnhold"
   | "DomainUnlock"
   | "ZoneImport";
-export const DomainOperationFunctionEnum = /*@__PURE__*/ S.String;
+export const DomainOperationFunctionEnum = S.String;
 
 export interface ListMeTaskDomainRequest {
   /** Filter the value of domain property (like) */
@@ -14773,14 +14769,14 @@ export const OrderOrderContractsList = /*@__PURE__*/ S.Array(
 
 /** Context of the reduction */
 export type OrderReductionContextEnum = "promotion" | "voucher";
-export const OrderReductionContextEnum = /*@__PURE__*/ S.String;
+export const OrderReductionContextEnum = S.String;
 
 /** Type of reduction */
 export type OrderReductionTypeEnum =
   | "fixed_amount"
   | "forced_amount"
   | "percentage";
-export const OrderReductionTypeEnum = /*@__PURE__*/ S.String;
+export const OrderReductionTypeEnum = S.String;
 
 /** Order detail reduction */
 export interface OrderReduction {

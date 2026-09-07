@@ -299,7 +299,7 @@ export type AssociateResourceErrorReason =
   | "INTERNAL_SERVER_EXCEPTION"
   | "INVALID_BILLING_PERIOD_RANGE"
   | (string & {});
-export const AssociateResourceErrorReason = /*@__PURE__*/ S.String;
+export const AssociateResourceErrorReason = S.String;
 
 export interface AssociateResourceError {
   Message?: string;
@@ -513,19 +513,19 @@ export const CustomLineItemPercentageChargeDetails = /*@__PURE__*/ S.suspend(
   identifier: "CustomLineItemPercentageChargeDetails",
 }) as any as S.Schema<CustomLineItemPercentageChargeDetails>;
 export type CustomLineItemType = "CREDIT" | "FEE" | (string & {});
-export const CustomLineItemType = /*@__PURE__*/ S.String;
+export const CustomLineItemType = S.String;
 
 export type LineItemFilterAttributeName =
   | "LINE_ITEM_TYPE"
   | "SERVICE"
   | (string & {});
-export const LineItemFilterAttributeName = /*@__PURE__*/ S.String;
+export const LineItemFilterAttributeName = S.String;
 
 export type MatchOption = "NOT_EQUAL" | "EQUAL" | (string & {});
-export const MatchOption = /*@__PURE__*/ S.String;
+export const MatchOption = S.String;
 
 export type LineItemFilterValue = "SAVINGS_PLAN_NEGATION" | (string & {});
-export const LineItemFilterValue = /*@__PURE__*/ S.String;
+export const LineItemFilterValue = S.String;
 
 export type LineItemFilterValuesList = LineItemFilterValue[];
 export const LineItemFilterValuesList =
@@ -566,7 +566,7 @@ export const CustomLineItemChargeDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomLineItemChargeDetails",
 }) as any as S.Schema<CustomLineItemChargeDetails>;
 export type ComputationRuleEnum = "ITEMIZED" | "CONSOLIDATED" | (string & {});
-export const ComputationRuleEnum = /*@__PURE__*/ S.String;
+export const ComputationRuleEnum = S.String;
 
 export type Service = string;
 export interface PresentationObject {
@@ -675,10 +675,10 @@ export type PricingRuleScope =
   | "BILLING_ENTITY"
   | "SKU"
   | (string & {});
-export const PricingRuleScope = /*@__PURE__*/ S.String;
+export const PricingRuleScope = S.String;
 
 export type PricingRuleType = "MARKUP" | "DISCOUNT" | "TIERING" | (string & {});
-export const PricingRuleType = /*@__PURE__*/ S.String;
+export const PricingRuleType = S.String;
 
 export type ModifierPercentage = number;
 export type BillingEntity = string;
@@ -928,7 +928,7 @@ export type GroupByAttributeName =
   | "PRODUCT_NAME"
   | "BILLING_PERIOD"
   | (string & {});
-export const GroupByAttributeName = /*@__PURE__*/ S.String;
+export const GroupByAttributeName = S.String;
 
 export type GroupByAttributesList = GroupByAttributeName[];
 export const GroupByAttributesList =
@@ -1168,19 +1168,19 @@ export type BillingGroupStatus =
   | "PRIMARY_ACCOUNT_MISSING"
   | "PENDING"
   | (string & {});
-export const BillingGroupStatus = /*@__PURE__*/ S.String;
+export const BillingGroupStatus = S.String;
 
 export type BillingGroupStatusList = BillingGroupStatus[];
 export const BillingGroupStatusList = /*@__PURE__*/ S.Array(BillingGroupStatus);
 export type PrimaryAccountIdList = string[];
 export const PrimaryAccountIdList = /*@__PURE__*/ S.Array(S.String);
 export type BillingGroupType = "STANDARD" | "TRANSFER_BILLING" | (string & {});
-export const BillingGroupType = /*@__PURE__*/ S.String;
+export const BillingGroupType = S.String;
 
 export type BillingGroupTypeList = BillingGroupType[];
 export const BillingGroupTypeList = /*@__PURE__*/ S.Array(BillingGroupType);
 export type SearchOption = "STARTS_WITH" | (string & {});
-export const SearchOption = /*@__PURE__*/ S.String;
+export const SearchOption = S.String;
 
 export type SearchValue = string;
 export interface StringSearch {
@@ -1384,7 +1384,7 @@ export const ListCustomLineItemChargeDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCustomLineItemChargeDetails",
 }) as any as S.Schema<ListCustomLineItemChargeDetails>;
 export type CurrencyCode = "USD" | "CNY" | (string & {});
-export const CurrencyCode = /*@__PURE__*/ S.String;
+export const CurrencyCode = S.String;
 
 export type CustomLineItemProductCode = string;
 export type NumberOfAssociations = number;
@@ -1811,7 +1811,7 @@ export const ListPricingRulesAssociatedToPricingPlanOutput =
     identifier: "ListPricingRulesAssociatedToPricingPlanOutput",
   }) as any as S.Schema<ListPricingRulesAssociatedToPricingPlanOutput>;
 export type CustomLineItemRelationship = "PARENT" | "CHILD" | (string & {});
-export const CustomLineItemRelationship = /*@__PURE__*/ S.String;
+export const CustomLineItemRelationship = S.String;
 
 export interface ListResourcesAssociatedToCustomLineItemFilter {
   Relationship?: CustomLineItemRelationship;
@@ -2248,7 +2248,7 @@ export type ConflictExceptionReason =
   | "PRICING_RULE_ATTACHED_TO_PRICING_PLAN_DELETE_CONFLICT"
   | "WRITE_CONFLICT_RETRY"
   | (string & {});
-export const ConflictExceptionReason = /*@__PURE__*/ S.String;
+export const ConflictExceptionReason = S.String;
 
 export type RetryAfterSeconds = number;
 export type ValidationExceptionReason =
@@ -2319,7 +2319,7 @@ export type ValidationExceptionReason =
   | "ILLEGAL_COMPUTATION_RULE"
   | "ILLEGAL_LINE_ITEM_FILTER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

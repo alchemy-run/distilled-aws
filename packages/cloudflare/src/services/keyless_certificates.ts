@@ -57,7 +57,7 @@ export class KeylessSslNotAvailable
   ) {}
 
 export type CreateRequestBundleMethod = "ubiquitous" | "optimal" | "force";
-export const CreateRequestBundleMethod = /*@__PURE__*/ S.String;
+export const CreateRequestBundleMethod = S.String;
 
 export interface CreateRequestTunnel {
   /** Private IP of the Key Server Host. */
@@ -120,7 +120,7 @@ export const CreateResponsePermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateResponsePermissionsList>;
 
 export type CreateResponseStatus = "active" | "deleted";
-export const CreateResponseStatus = /*@__PURE__*/ S.String;
+export const CreateResponseStatus = S.String;
 
 export type CreateResponseTunnel = CreateRequestTunnel;
 export const CreateResponseTunnel = CreateRequestTunnel;
@@ -230,7 +230,7 @@ export const GetResponsePermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetResponsePermissionsList>;
 
 export type GetResponseStatus = "active" | "deleted";
-export const GetResponseStatus = /*@__PURE__*/ S.String;
+export const GetResponseStatus = S.String;
 
 export type GetResponseTunnel = CreateRequestTunnel;
 export const GetResponseTunnel = CreateRequestTunnel;
@@ -301,7 +301,7 @@ export const ListResultItemPermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListResultItemPermissionsList>;
 
 export type ListResultItemStatus = "active" | "deleted";
-export const ListResultItemStatus = /*@__PURE__*/ S.String;
+export const ListResultItemStatus = S.String;
 
 export type ListResultItemTunnel = CreateRequestTunnel;
 export const ListResultItemTunnel = CreateRequestTunnel;
@@ -410,7 +410,7 @@ export const EditResponsePermissionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EditResponsePermissionsList>;
 
 export type EditResponseStatus = "active" | "deleted";
-export const EditResponseStatus = /*@__PURE__*/ S.String;
+export const EditResponseStatus = S.String;
 
 export type EditResponseTunnel = CreateRequestTunnel;
 export const EditResponseTunnel = CreateRequestTunnel;

@@ -83,7 +83,7 @@ export const WebAnalyticsRecapRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `Up` - Up * `Down` - Down */
 export type WoWChangeDirectionEnum = "Up" | "Down";
-export const WoWChangeDirectionEnum = /*@__PURE__*/ S.String;
+export const WoWChangeDirectionEnum = S.String;
 
 export interface WoWChange {
   /** Absolute percentage change, rounded to nearest integer. */

@@ -169,7 +169,7 @@ export type ContentPolicyStatusStateEnum =
   | "ORGANIZATION_VIOLATION_GRACE_PERIOD"
   | "ORGANIZATION_VIOLATION_ACTIVE"
   | "ORGANIZATION_VIOLATION_ACTIVE_IMMEDIATE";
-export const ContentPolicyStatusStateEnum = /*@__PURE__*/ S.String;
+export const ContentPolicyStatusStateEnum = S.String;
 
 /** The content policy status of the publication, indicating any violations. */
 export interface ContentPolicyStatus {
@@ -192,14 +192,14 @@ export type PublicationOnboardingStateEnum =
   | "ACTION_REQUIRED"
   | "PENDING_VERIFICATION"
   | "COMPLETE";
-export const PublicationOnboardingStateEnum = /*@__PURE__*/ S.String;
+export const PublicationOnboardingStateEnum = S.String;
 
 export type PublicationPaymentOptionEnum =
   | "PAYMENT_OPTION_UNSPECIFIED"
   | "NONE"
   | "SUBSCRIPTIONS"
   | "CONTRIBUTIONS";
-export const PublicationPaymentOptionEnum = /*@__PURE__*/ S.String;
+export const PublicationPaymentOptionEnum = S.String;
 
 export type DomainPropertyList = Array<DomainProperty>;
 export const DomainPropertyList = /*@__PURE__*/ S.Array(
@@ -210,7 +210,7 @@ export type PublicationPublicationTypeEnum =
   | "PUBLICATION_TYPE_UNSPECIFIED"
   | "FOR_PROFIT"
   | "NON_PROFIT";
-export const PublicationPublicationTypeEnum = /*@__PURE__*/ S.String;
+export const PublicationPublicationTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -302,7 +302,7 @@ export const CreateOrganizationsPublicationsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateOrganizationsPublicationsRequest>;
 
 export type CtaTypeEnum = "TYPE_UNSPECIFIED" | "NEWSLETTER_SIGNUP";
-export const CtaTypeEnum = /*@__PURE__*/ S.String;
+export const CtaTypeEnum = S.String;
 
 /** Configuration for newsletter signup calls-to-action (CTAs). */
 export interface NewsletterConfig {
@@ -330,7 +330,7 @@ export const NewsletterConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NewsletterConfig>;
 
 export type CtaStateEnum = "STATE_UNSPECIFIED" | "DRAFT" | "ACTIVE";
-export const CtaStateEnum = /*@__PURE__*/ S.String;
+export const CtaStateEnum = S.String;
 
 /** Represents a Call-To-Action (CTA) configuration for a publication. */
 export interface Cta {

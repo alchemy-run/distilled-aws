@@ -87,7 +87,7 @@ export const BackupInstancesAdhocBackupResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the specific object - used for deserializing */
 export type ResourcePropertiesObjectType = "DefaultResourceProperties";
-export const ResourcePropertiesObjectType = /*@__PURE__*/ S.String;
+export const ResourcePropertiesObjectType = S.String;
 
 /** Properties which are specific to datasource/datasourceSets */
 export interface BaseResourceProperties {
@@ -168,7 +168,7 @@ export const DatasourceSet = /*@__PURE__*/ S.suspend(() =>
 
 /** type of datastore; Operational/Vault/Archive */
 export type DataStoreTypes = "OperationalStore" | "VaultStore" | "ArchiveStore";
-export const DataStoreTypes = /*@__PURE__*/ S.String;
+export const DataStoreTypes = S.String;
 
 /** Parameters for DataStore */
 export interface DataStoreParameters {
@@ -264,7 +264,7 @@ export const AuthCredentials = BackupDatasourceParameters;
 
 /** Specifies the type of validation. In case of DeepValidation, all validations from /validateForBackup API will run again. */
 export type ValidationType = "ShallowValidation" | "DeepValidation";
-export const ValidationType = /*@__PURE__*/ S.String;
+export const ValidationType = S.String;
 
 export interface IdentityDetails {
   /** Specifies if the BI is protected by System Identity. */
@@ -370,7 +370,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -378,7 +378,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -517,7 +517,7 @@ export type Status =
   | "ProtectionStopped"
   | "SoftDeleted"
   | "SoftDeleting";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Protection status details */
 export interface ProtectionStatusDetails {
@@ -549,7 +549,7 @@ export type CurrentProtectionState =
   | "SoftDeleting"
   | "SoftDeleted"
   | "UpdatingProtection";
-export const CurrentProtectionState = /*@__PURE__*/ S.String;
+export const CurrentProtectionState = S.String;
 
 /** Backup Instance */
 export interface BackupInstance {
@@ -639,7 +639,7 @@ export const BackupInstancesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** Recovery Option */
 export type RecoveryOption = "FailIfExists";
-export const RecoveryOption = /*@__PURE__*/ S.String;
+export const RecoveryOption = S.String;
 
 /** Base class common to RestoreTargetInfo and RestoreFilesTargetInfo */
 export interface RestoreTargetInfoBase {
@@ -666,7 +666,7 @@ export type SourceDataStoreType =
   | "SnapshotStore"
   | "OperationalStore"
   | "VaultStore";
-export const SourceDataStoreType = /*@__PURE__*/ S.String;
+export const SourceDataStoreType = S.String;
 
 /** ResourceGuardOperationRequests on which LAC check will be performed */
 export type AzureBackupRestoreRequestResourceGuardOperationRequestsList =
@@ -1059,7 +1059,7 @@ export const BackupVaultsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<BackupVaultsCreateOrUpdateRequestTagsMap>;
 
 export type AlertsState = "Enabled" | "Disabled";
-export const AlertsState = /*@__PURE__*/ S.String;
+export const AlertsState = S.String;
 
 /** Settings for Azure Monitor based alerts */
 export interface AzureMonitorAlertSettings {
@@ -1090,7 +1090,7 @@ export type GranularityLevel =
   | "VaultLevel"
   | "ProtectedItemLevel"
   | "ProtectedItemWithParentTag";
-export const GranularityLevel = /*@__PURE__*/ S.String;
+export const GranularityLevel = S.String;
 
 /** Cost Management Settings of the vault */
 export interface CostManagementSettings {
@@ -1107,7 +1107,7 @@ export const CostManagementSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** State of soft delete */
 export type SoftDeleteState = "Off" | "On" | "AlwaysOn";
-export const SoftDeleteState = /*@__PURE__*/ S.String;
+export const SoftDeleteState = S.String;
 
 /** Soft delete related settings */
 export interface SoftDeleteSettings {
@@ -1127,7 +1127,7 @@ export const SoftDeleteSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Immutability state */
 export type ImmutabilityState = "Disabled" | "Unlocked" | "Locked";
-export const ImmutabilityState = /*@__PURE__*/ S.String;
+export const ImmutabilityState = S.String;
 
 /** Immutability Settings at vault level */
 export interface ImmutabilitySettings {
@@ -1144,7 +1144,7 @@ export const ImmutabilitySettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Encryption state of the Backup Vault. */
 export type EncryptionState = "Enabled" | "Disabled" | "Inconsistent";
-export const EncryptionState = /*@__PURE__*/ S.String;
+export const EncryptionState = S.String;
 
 /** The properties of the Key Vault which hosts CMK */
 export interface CmkKeyVaultProperties {
@@ -1161,7 +1161,7 @@ export const CmkKeyVaultProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type. 'SystemAssigned' and 'UserAssigned' are mutually exclusive. 'SystemAssigned' will use implicitly created managed identity. */
 export type IdentityType = "SystemAssigned" | "UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** The details of the managed identity used for CMK */
 export interface CmkKekIdentity {
@@ -1179,7 +1179,7 @@ export const CmkKekIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** Enabling/Disabling the Double Encryption state */
 export type InfrastructureEncryptionState = "Enabled" | "Disabled";
-export const InfrastructureEncryptionState = /*@__PURE__*/ S.String;
+export const InfrastructureEncryptionState = S.String;
 
 /** Customer Managed Key details of the resource. */
 export interface EncryptionSettings {
@@ -1227,14 +1227,14 @@ export type StorageSettingStoreTypes =
   | "ArchiveStore"
   | "OperationalStore"
   | "VaultStore";
-export const StorageSettingStoreTypes = /*@__PURE__*/ S.String;
+export const StorageSettingStoreTypes = S.String;
 
 /** Gets or sets the type. */
 export type StorageSettingTypes =
   | "GeoRedundant"
   | "LocallyRedundant"
   | "ZoneRedundant";
-export const StorageSettingTypes = /*@__PURE__*/ S.String;
+export const StorageSettingTypes = S.String;
 
 /** Storage setting */
 export interface StorageSetting {
@@ -1261,7 +1261,7 @@ export type CrossSubscriptionRestoreState =
   | "Disabled"
   | "PermanentlyDisabled"
   | "Enabled";
-export const CrossSubscriptionRestoreState = /*@__PURE__*/ S.String;
+export const CrossSubscriptionRestoreState = S.String;
 
 /** CrossSubscriptionRestore Settings */
 export interface CrossSubscriptionRestoreSettings {
@@ -1278,7 +1278,7 @@ export const CrossSubscriptionRestoreSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** CrossRegionRestore state */
 export type CrossRegionRestoreState = "Disabled" | "Enabled";
-export const CrossRegionRestoreState = /*@__PURE__*/ S.String;
+export const CrossRegionRestoreState = S.String;
 
 export interface CrossRegionRestoreSettings {
   /** CrossRegionRestore state */
@@ -1446,7 +1446,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Unknown"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Resource move state for backup vault */
 export type ResourceMoveState =
@@ -1460,7 +1460,7 @@ export type ResourceMoveState =
   | "CriticalFailure"
   | "PartialSuccess"
   | "MoveSucceeded";
-export const ResourceMoveState = /*@__PURE__*/ S.String;
+export const ResourceMoveState = S.String;
 
 /** ResourceMoveDetails will be returned in response to GetResource call from ARM */
 export interface ResourceMoveDetails {
@@ -1500,7 +1500,7 @@ export type SecureScoreLevel =
   | "Adequate"
   | "Maximum"
   | "NotSupported";
-export const SecureScoreLevel = /*@__PURE__*/ S.String;
+export const SecureScoreLevel = S.String;
 
 /** Security Level of Backup Vault */
 export type BCDRSecurityLevel =
@@ -1509,7 +1509,7 @@ export type BCDRSecurityLevel =
   | "Good"
   | "Excellent"
   | "NotSupported";
-export const BCDRSecurityLevel = /*@__PURE__*/ S.String;
+export const BCDRSecurityLevel = S.String;
 
 /** ResourceGuardOperationRequests on which LAC check will be performed */
 export type BackupVaultResourceGuardOperationRequestsList = Array<string>;
@@ -4153,11 +4153,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -5284,7 +5284,7 @@ export type RestoreSourceDataStoreType =
   | "OperationalStore"
   | "VaultStore"
   | "ArchiveStore";
-export const RestoreSourceDataStoreType = /*@__PURE__*/ S.String;
+export const RestoreSourceDataStoreType = S.String;
 
 export interface RestorableTimeRangesFindRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5329,8 +5329,7 @@ export type RestorableTimeRangesFindResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const RestorableTimeRangesFindResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const RestorableTimeRangesFindResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type RestorableTimeRangesFindResponseSystemDataLastModifiedByType =
@@ -5339,7 +5338,7 @@ export type RestorableTimeRangesFindResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const RestorableTimeRangesFindResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface RestorableTimeRangesFindResponseSystemData {
@@ -5610,7 +5609,7 @@ export const SuspendBackupInstanceBackupsResponse = /*@__PURE__*/ S.suspend(
 
 /** Field indicating sync type e.g. to sync only in case of failure or in all cases */
 export type SyncType = "Default" | "ForceResync";
-export const SyncType = /*@__PURE__*/ S.String;
+export const SyncType = S.String;
 
 export interface SyncBackupInstanceBackupInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5653,7 +5652,7 @@ export const SyncBackupInstanceBackupInstanceResponse = /*@__PURE__*/ S.suspend(
 
 /** Priority to be used for rehydration. Values High or Standard */
 export type RehydrationPriority = "Invalid" | "High" | "Standard";
-export const RehydrationPriority = /*@__PURE__*/ S.String;
+export const RehydrationPriority = S.String;
 
 export interface TriggerBackupInstanceRehydrateRequest {
   /** The ID of the target subscription. The value must be an UUID. */

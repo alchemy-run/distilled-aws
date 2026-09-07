@@ -72,7 +72,7 @@ export const StringMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<StringMap>;
 
 export type AdUnitMappingStateEnum = "STATE_UNSPECIFIED" | "ENABLED";
-export const AdUnitMappingStateEnum = /*@__PURE__*/ S.String;
+export const AdUnitMappingStateEnum = S.String;
 
 /** Settings to map an AdMob ad unit to a 3rd party ad unit. */
 export interface AdUnitMapping {
@@ -272,7 +272,7 @@ export type AppLinkedAppInfoAndroidAppStoresItemEnum =
   | "SAMSUNG_APP_STORE"
   | "VIVO_APP_STORE"
   | "XIAOMI_APP_STORE";
-export const AppLinkedAppInfoAndroidAppStoresItemEnum = /*@__PURE__*/ S.String;
+export const AppLinkedAppInfoAndroidAppStoresItemEnum = S.String;
 
 export type AppLinkedAppInfoAndroidAppStoresItemEnumList = Array<
   AppLinkedAppInfoAndroidAppStoresItemEnum | (string & {})
@@ -306,7 +306,7 @@ export type AppAppApprovalStateEnum =
   | "ACTION_REQUIRED"
   | "IN_REVIEW"
   | "APPROVED";
-export const AppAppApprovalStateEnum = /*@__PURE__*/ S.String;
+export const AppAppApprovalStateEnum = S.String;
 
 /** Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store). */
 export interface AppManualAppInfo {
@@ -373,23 +373,21 @@ export type MediationGroupMediationGroupLineCpmModeEnum =
   | "LIVE"
   | "MANUAL"
   | "ANO";
-export const MediationGroupMediationGroupLineCpmModeEnum =
-  /*@__PURE__*/ S.String;
+export const MediationGroupMediationGroupLineCpmModeEnum = S.String;
 
 export type MediationGroupMediationGroupLineExperimentVariantEnum =
   | "VARIANT_UNSPECIFIED"
   | "VARIANT_A"
   | "VARIANT_B"
   | "ORIGINAL";
-export const MediationGroupMediationGroupLineExperimentVariantEnum =
-  /*@__PURE__*/ S.String;
+export const MediationGroupMediationGroupLineExperimentVariantEnum = S.String;
 
 export type MediationGroupMediationGroupLineStateEnum =
   | "STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED"
   | "REMOVED";
-export const MediationGroupMediationGroupLineStateEnum = /*@__PURE__*/ S.String;
+export const MediationGroupMediationGroupLineStateEnum = S.String;
 
 /** Settings for an ad network used by a mediation group. */
 export interface MediationGroupMediationGroupLine {
@@ -441,14 +439,14 @@ export type MediationGroupStateEnum =
   | "STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const MediationGroupStateEnum = /*@__PURE__*/ S.String;
+export const MediationGroupStateEnum = S.String;
 
 export type MediationGroupTargetingIdfaTargetingEnum =
   | "IDFA_TARGETING_UNSPECIFIED"
   | "ALL"
   | "AVAILABLE"
   | "NOT_AVAILABLE";
-export const MediationGroupTargetingIdfaTargetingEnum = /*@__PURE__*/ S.String;
+export const MediationGroupTargetingIdfaTargetingEnum = S.String;
 
 /** Set of criteria targeted by this mediation group. For example, a mediation group can target specific ad unit IDs, platform, format and geo location. */
 export interface MediationGroupTargeting {
@@ -482,8 +480,7 @@ export type MediationGroupMediationAbExperimentStateEnum =
   | "EXPERIMENT_STATE_UNSPECIFIED"
   | "RUNNING"
   | "NOT_RUNNING";
-export const MediationGroupMediationAbExperimentStateEnum =
-  /*@__PURE__*/ S.String;
+export const MediationGroupMediationAbExperimentStateEnum = S.String;
 
 /** Describes an AdMob Mediation group. */
 export interface MediationGroup {
@@ -566,7 +563,7 @@ export type MediationAbExperimentStateEnum =
   | "EXPIRED"
   | "RUNNING"
   | "ENDED";
-export const MediationAbExperimentStateEnum = /*@__PURE__*/ S.String;
+export const MediationAbExperimentStateEnum = S.String;
 
 export type MediationAbExperimentVariantLeaderEnum =
   | "VARIANT_LEADER_UNSPECIFIED"
@@ -575,7 +572,7 @@ export type MediationAbExperimentVariantLeaderEnum =
   | "INSUFFICIENT_DATA"
   | "TOO_EARLY_TO_CALL"
   | "NO_VARIANT_LEADER";
-export const MediationAbExperimentVariantLeaderEnum = /*@__PURE__*/ S.String;
+export const MediationAbExperimentVariantLeaderEnum = S.String;
 
 /** The mediation A/B experiment. */
 export interface MediationAbExperiment {
@@ -655,7 +652,7 @@ export type CampaignReportSpecMetricsItemEnum =
   | "ESTIMATED_COST"
   | "AVERAGE_CPI"
   | "INTERACTIONS";
-export const CampaignReportSpecMetricsItemEnum = /*@__PURE__*/ S.String;
+export const CampaignReportSpecMetricsItemEnum = S.String;
 
 export type CampaignReportSpecMetricsItemEnumList = Array<
   CampaignReportSpecMetricsItemEnum | (string & {})
@@ -676,7 +673,7 @@ export type CampaignReportSpecDimensionsItemEnum =
   | "PLACEMENT_PLATFORM"
   | "COUNTRY"
   | "FORMAT";
-export const CampaignReportSpecDimensionsItemEnum = /*@__PURE__*/ S.String;
+export const CampaignReportSpecDimensionsItemEnum = S.String;
 
 export type CampaignReportSpecDimensionsItemEnumList = Array<
   CampaignReportSpecDimensionsItemEnum | (string & {})
@@ -889,7 +886,7 @@ export type MediationReportSpecDimensionsItemEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const MediationReportSpecDimensionsItemEnum = /*@__PURE__*/ S.String;
+export const MediationReportSpecDimensionsItemEnum = S.String;
 
 export type MediationReportSpecDimensionsItemEnumList = Array<
   MediationReportSpecDimensionsItemEnum | (string & {})
@@ -908,14 +905,13 @@ export type MediationReportSpecSortConditionMetricEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "OBSERVED_ECPM";
-export const MediationReportSpecSortConditionMetricEnum =
-  /*@__PURE__*/ S.String;
+export const MediationReportSpecSortConditionMetricEnum = S.String;
 
 export type MediationReportSpecSortConditionOrderEnum =
   | "SORT_ORDER_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const MediationReportSpecSortConditionOrderEnum = /*@__PURE__*/ S.String;
+export const MediationReportSpecSortConditionOrderEnum = S.String;
 
 export type MediationReportSpecSortConditionDimensionEnum =
   | "DIMENSION_UNSPECIFIED"
@@ -934,8 +930,7 @@ export type MediationReportSpecSortConditionDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const MediationReportSpecSortConditionDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const MediationReportSpecSortConditionDimensionEnum = S.String;
 
 /** Sorting direction to be applied on a dimension or a metric. */
 export interface MediationReportSpecSortCondition {
@@ -990,8 +985,7 @@ export type MediationReportSpecDimensionFilterDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const MediationReportSpecDimensionFilterDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const MediationReportSpecDimensionFilterDimensionEnum = S.String;
 
 /** Describes which report rows to match based on their dimension values. */
 export interface MediationReportSpecDimensionFilter {
@@ -1025,7 +1019,7 @@ export type MediationReportSpecMetricsItemEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "OBSERVED_ECPM";
-export const MediationReportSpecMetricsItemEnum = /*@__PURE__*/ S.String;
+export const MediationReportSpecMetricsItemEnum = S.String;
 
 export type MediationReportSpecMetricsItemEnumList = Array<
   MediationReportSpecMetricsItemEnum | (string & {})
@@ -1126,7 +1120,7 @@ export type ReportWarningTypeEnum =
   | "DATA_DELAYED"
   | "OTHER"
   | "REPORT_CURRENCY_NOT_ACCOUNT_CURRENCY";
-export const ReportWarningTypeEnum = /*@__PURE__*/ S.String;
+export const ReportWarningTypeEnum = S.String;
 
 /** Warnings associated with generation of the report. */
 export interface ReportWarning {
@@ -1195,8 +1189,7 @@ export type NetworkReportSpecDimensionFilterDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const NetworkReportSpecDimensionFilterDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkReportSpecDimensionFilterDimensionEnum = S.String;
 
 /** Describes which report rows to match based on their dimension values. */
 export interface NetworkReportSpecDimensionFilter {
@@ -1235,14 +1228,13 @@ export type NetworkReportSpecSortConditionDimensionEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const NetworkReportSpecSortConditionDimensionEnum =
-  /*@__PURE__*/ S.String;
+export const NetworkReportSpecSortConditionDimensionEnum = S.String;
 
 export type NetworkReportSpecSortConditionOrderEnum =
   | "SORT_ORDER_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const NetworkReportSpecSortConditionOrderEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecSortConditionOrderEnum = S.String;
 
 export type NetworkReportSpecSortConditionMetricEnum =
   | "METRIC_UNSPECIFIED"
@@ -1255,7 +1247,7 @@ export type NetworkReportSpecSortConditionMetricEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "SHOW_RATE";
-export const NetworkReportSpecSortConditionMetricEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecSortConditionMetricEnum = S.String;
 
 /** Sorting direction to be applied on a dimension or a metric. */
 export interface NetworkReportSpecSortCondition {
@@ -1293,7 +1285,7 @@ export type NetworkReportSpecMetricsItemEnum =
   | "MATCHED_REQUESTS"
   | "MATCH_RATE"
   | "SHOW_RATE";
-export const NetworkReportSpecMetricsItemEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecMetricsItemEnum = S.String;
 
 export type NetworkReportSpecMetricsItemEnumList = Array<
   NetworkReportSpecMetricsItemEnum | (string & {})
@@ -1317,7 +1309,7 @@ export type NetworkReportSpecDimensionsItemEnum =
   | "GMA_SDK_VERSION"
   | "APP_VERSION_NAME"
   | "SERVING_RESTRICTION";
-export const NetworkReportSpecDimensionsItemEnum = /*@__PURE__*/ S.String;
+export const NetworkReportSpecDimensionsItemEnum = S.String;
 
 export type NetworkReportSpecDimensionsItemEnumList = Array<
   NetworkReportSpecDimensionsItemEnum | (string & {})
@@ -1863,8 +1855,7 @@ export type StopMediationAbExperimentRequestVariantChoiceEnum =
   | "VARIANT_CHOICE_UNSPECIFIED"
   | "VARIANT_CHOICE_A"
   | "VARIANT_CHOICE_B";
-export const StopMediationAbExperimentRequestVariantChoiceEnum =
-  /*@__PURE__*/ S.String;
+export const StopMediationAbExperimentRequestVariantChoiceEnum = S.String;
 
 /** Request to end the mediation A/B experiment and choose a winning variant. */
 export interface StopMediationAbExperimentRequest {

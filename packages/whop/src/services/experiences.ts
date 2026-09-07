@@ -407,7 +407,7 @@ export const ListExperienceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE). */
 export type ExperienceAccessLevels = "public" | "private";
-export const ExperienceAccessLevels = /*@__PURE__*/ S.String;
+export const ExperienceAccessLevels = S.String;
 
 /** A logo image displayed alongside the experience name. */
 export type UpdateExperienceRequestLogo = CreateExperienceRequestLogo;

@@ -91,7 +91,7 @@ export type PagesTestsCreateRequestRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesTestsCreateRequestRegion = /*@__PURE__*/ S.String;
+export const PagesTestsCreateRequestRegion = S.String;
 
 export interface CreatePageTestRequest {
   /** Identifier. */
@@ -122,8 +122,7 @@ export const CreatePageTestRequest = /*@__PURE__*/ S.suspend(() =>
 export type PagesTestsCreateResponseDesktopReportDeviceType =
   | "DESKTOP"
   | "MOBILE";
-export const PagesTestsCreateResponseDesktopReportDeviceType =
-  /*@__PURE__*/ S.String;
+export const PagesTestsCreateResponseDesktopReportDeviceType = S.String;
 
 export type PagesTestsCreateResponseDesktopReportErrorCode =
   | "NOT_REACHABLE"
@@ -131,8 +130,7 @@ export type PagesTestsCreateResponseDesktopReportErrorCode =
   | "NOT_HTML"
   | "LIGHTHOUSE_TIMEOUT"
   | "UNKNOWN";
-export const PagesTestsCreateResponseDesktopReportErrorCode =
-  /*@__PURE__*/ S.String;
+export const PagesTestsCreateResponseDesktopReportErrorCode = S.String;
 
 export interface PagesTestsCreateResponseDesktopReportError {
   /** The error code of the Lighthouse result. */
@@ -159,8 +157,7 @@ export type PagesTestsCreateResponseDesktopReportState =
   | "RUNNING"
   | "COMPLETE"
   | "FAILED";
-export const PagesTestsCreateResponseDesktopReportState =
-  /*@__PURE__*/ S.String;
+export const PagesTestsCreateResponseDesktopReportState = S.String;
 
 export interface PagesTestsCreateResponseDesktopReport {
   /** Cumulative Layout Shift. */
@@ -231,7 +228,7 @@ export type PagesTestsCreateResponseRegionValue =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesTestsCreateResponseRegionValue = /*@__PURE__*/ S.String;
+export const PagesTestsCreateResponseRegionValue = S.String;
 
 export interface PagesTestsCreateResponseRegion {
   label?: string | null;
@@ -248,7 +245,7 @@ export const PagesTestsCreateResponseRegion = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PagesTestsCreateResponseRegion>;
 
 export type PagesTestsCreateResponseScheduleFrequency = "DAILY" | "WEEKLY";
-export const PagesTestsCreateResponseScheduleFrequency = /*@__PURE__*/ S.String;
+export const PagesTestsCreateResponseScheduleFrequency = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreatePageTestResponse {
@@ -283,7 +280,7 @@ export const CreatePageTestResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreatePageTestResponse>;
 
 export type ScheduleCreateRequestFrequency = "DAILY" | "WEEKLY";
-export const ScheduleCreateRequestFrequency = /*@__PURE__*/ S.String;
+export const ScheduleCreateRequestFrequency = S.String;
 
 export type ScheduleCreateRequestRegion =
   | "asia-east1"
@@ -307,7 +304,7 @@ export type ScheduleCreateRequestRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const ScheduleCreateRequestRegion = /*@__PURE__*/ S.String;
+export const ScheduleCreateRequestRegion = S.String;
 
 export interface CreateScheduleRequest {
   /** Identifier. */
@@ -339,7 +336,7 @@ export const CreateScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateScheduleRequest>;
 
 export type ScheduleCreateResponseScheduleFrequency = "DAILY" | "WEEKLY";
-export const ScheduleCreateResponseScheduleFrequency = /*@__PURE__*/ S.String;
+export const ScheduleCreateResponseScheduleFrequency = S.String;
 
 export type ScheduleCreateResponseScheduleRegion =
   | "asia-east1"
@@ -363,7 +360,7 @@ export type ScheduleCreateResponseScheduleRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const ScheduleCreateResponseScheduleRegion = /*@__PURE__*/ S.String;
+export const ScheduleCreateResponseScheduleRegion = S.String;
 
 export interface ScheduleCreateResponseSchedule {
   /** The frequency of the test. */
@@ -386,8 +383,7 @@ export const ScheduleCreateResponseSchedule = /*@__PURE__*/ S.suspend(() =>
 export type ScheduleCreateResponseTestDesktopReportDeviceType =
   | "DESKTOP"
   | "MOBILE";
-export const ScheduleCreateResponseTestDesktopReportDeviceType =
-  /*@__PURE__*/ S.String;
+export const ScheduleCreateResponseTestDesktopReportDeviceType = S.String;
 
 export type ScheduleCreateResponseTestDesktopReportErrorCode =
   | "NOT_REACHABLE"
@@ -395,8 +391,7 @@ export type ScheduleCreateResponseTestDesktopReportErrorCode =
   | "NOT_HTML"
   | "LIGHTHOUSE_TIMEOUT"
   | "UNKNOWN";
-export const ScheduleCreateResponseTestDesktopReportErrorCode =
-  /*@__PURE__*/ S.String;
+export const ScheduleCreateResponseTestDesktopReportErrorCode = S.String;
 
 export interface ScheduleCreateResponseTestDesktopReportError {
   /** The error code of the Lighthouse result. */
@@ -423,8 +418,7 @@ export type ScheduleCreateResponseTestDesktopReportState =
   | "RUNNING"
   | "COMPLETE"
   | "FAILED";
-export const ScheduleCreateResponseTestDesktopReportState =
-  /*@__PURE__*/ S.String;
+export const ScheduleCreateResponseTestDesktopReportState = S.String;
 
 export interface ScheduleCreateResponseTestDesktopReport {
   /** Cumulative Layout Shift. */
@@ -495,7 +489,7 @@ export type ScheduleCreateResponseTestRegionValue =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const ScheduleCreateResponseTestRegionValue = /*@__PURE__*/ S.String;
+export const ScheduleCreateResponseTestRegionValue = S.String;
 
 export interface ScheduleCreateResponseTestRegion {
   label?: string | null;
@@ -512,8 +506,7 @@ export const ScheduleCreateResponseTestRegion = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScheduleCreateResponseTestRegion>;
 
 export type ScheduleCreateResponseTestScheduleFrequency = "DAILY" | "WEEKLY";
-export const ScheduleCreateResponseTestScheduleFrequency =
-  /*@__PURE__*/ S.String;
+export const ScheduleCreateResponseTestScheduleFrequency = S.String;
 
 export interface ScheduleCreateResponseTest {
   /** UUID. */
@@ -585,7 +578,7 @@ export type PagesTestsDeleteRequestRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesTestsDeleteRequestRegion = /*@__PURE__*/ S.String;
+export const PagesTestsDeleteRequestRegion = S.String;
 
 export interface DeletePageTestRequest {
   /** Identifier. */
@@ -648,7 +641,7 @@ export type ScheduleDeleteRequestRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const ScheduleDeleteRequestRegion = /*@__PURE__*/ S.String;
+export const ScheduleDeleteRequestRegion = S.String;
 
 export interface DeleteScheduleRequest {
   /** Identifier. */
@@ -715,8 +708,7 @@ export const GetPageTestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPageTestRequest>;
 
 export type PagesTestsGetResponseDesktopReportDeviceType = "DESKTOP" | "MOBILE";
-export const PagesTestsGetResponseDesktopReportDeviceType =
-  /*@__PURE__*/ S.String;
+export const PagesTestsGetResponseDesktopReportDeviceType = S.String;
 
 export type PagesTestsGetResponseDesktopReportErrorCode =
   | "NOT_REACHABLE"
@@ -724,8 +716,7 @@ export type PagesTestsGetResponseDesktopReportErrorCode =
   | "NOT_HTML"
   | "LIGHTHOUSE_TIMEOUT"
   | "UNKNOWN";
-export const PagesTestsGetResponseDesktopReportErrorCode =
-  /*@__PURE__*/ S.String;
+export const PagesTestsGetResponseDesktopReportErrorCode = S.String;
 
 export interface PagesTestsGetResponseDesktopReportError {
   /** The error code of the Lighthouse result. */
@@ -750,7 +741,7 @@ export type PagesTestsGetResponseDesktopReportState =
   | "RUNNING"
   | "COMPLETE"
   | "FAILED";
-export const PagesTestsGetResponseDesktopReportState = /*@__PURE__*/ S.String;
+export const PagesTestsGetResponseDesktopReportState = S.String;
 
 export interface PagesTestsGetResponseDesktopReport {
   /** Cumulative Layout Shift. */
@@ -820,7 +811,7 @@ export type PagesTestsGetResponseRegionValue =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesTestsGetResponseRegionValue = /*@__PURE__*/ S.String;
+export const PagesTestsGetResponseRegionValue = S.String;
 
 export interface PagesTestsGetResponseRegion {
   label?: string | null;
@@ -837,7 +828,7 @@ export const PagesTestsGetResponseRegion = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PagesTestsGetResponseRegion>;
 
 export type PagesTestsGetResponseScheduleFrequency = "DAILY" | "WEEKLY";
-export const PagesTestsGetResponseScheduleFrequency = /*@__PURE__*/ S.String;
+export const PagesTestsGetResponseScheduleFrequency = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetPageTestResponse {
@@ -893,7 +884,7 @@ export type ScheduleGetRequestRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const ScheduleGetRequestRegion = /*@__PURE__*/ S.String;
+export const ScheduleGetRequestRegion = S.String;
 
 export interface GetScheduleRequest {
   /** Identifier. */
@@ -922,7 +913,7 @@ export const GetScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetScheduleRequest>;
 
 export type ScheduleGetResponseFrequency = "DAILY" | "WEEKLY";
-export const ScheduleGetResponseFrequency = /*@__PURE__*/ S.String;
+export const ScheduleGetResponseFrequency = S.String;
 
 export type ScheduleGetResponseRegion =
   | "asia-east1"
@@ -946,7 +937,7 @@ export type ScheduleGetResponseRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const ScheduleGetResponseRegion = /*@__PURE__*/ S.String;
+export const ScheduleGetResponseRegion = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetScheduleResponse {
@@ -1080,8 +1071,7 @@ export type AvailabilitiesListResponseRegionsItemValue =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const AvailabilitiesListResponseRegionsItemValue =
-  /*@__PURE__*/ S.String;
+export const AvailabilitiesListResponseRegionsItemValue = S.String;
 
 export interface AvailabilitiesListResponseRegionsItem {
   label?: string | null;
@@ -1249,7 +1239,7 @@ export type PagesListResultItemRegionValue =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesListResultItemRegionValue = /*@__PURE__*/ S.String;
+export const PagesListResultItemRegionValue = S.String;
 
 export interface PagesListResultItemRegion {
   label?: string | null;
@@ -1266,13 +1256,12 @@ export const PagesListResultItemRegion = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PagesListResultItemRegion>;
 
 export type PagesListResultItemScheduleFrequency = "DAILY" | "WEEKLY";
-export const PagesListResultItemScheduleFrequency = /*@__PURE__*/ S.String;
+export const PagesListResultItemScheduleFrequency = S.String;
 
 export type PagesListResultItemTestsItemDesktopReportDeviceType =
   | "DESKTOP"
   | "MOBILE";
-export const PagesListResultItemTestsItemDesktopReportDeviceType =
-  /*@__PURE__*/ S.String;
+export const PagesListResultItemTestsItemDesktopReportDeviceType = S.String;
 
 export type PagesListResultItemTestsItemDesktopReportErrorCode =
   | "NOT_REACHABLE"
@@ -1280,8 +1269,7 @@ export type PagesListResultItemTestsItemDesktopReportErrorCode =
   | "NOT_HTML"
   | "LIGHTHOUSE_TIMEOUT"
   | "UNKNOWN";
-export const PagesListResultItemTestsItemDesktopReportErrorCode =
-  /*@__PURE__*/ S.String;
+export const PagesListResultItemTestsItemDesktopReportErrorCode = S.String;
 
 export interface PagesListResultItemTestsItemDesktopReportError {
   /** The error code of the Lighthouse result. */
@@ -1308,8 +1296,7 @@ export type PagesListResultItemTestsItemDesktopReportState =
   | "RUNNING"
   | "COMPLETE"
   | "FAILED";
-export const PagesListResultItemTestsItemDesktopReportState =
-  /*@__PURE__*/ S.String;
+export const PagesListResultItemTestsItemDesktopReportState = S.String;
 
 export interface PagesListResultItemTestsItemDesktopReport {
   /** Cumulative Layout Shift. */
@@ -1363,8 +1350,7 @@ export const PagesListResultItemTestsItemDesktopReport =
   }) as any as S.Schema<PagesListResultItemTestsItemDesktopReport>;
 
 export type PagesListResultItemTestsItemScheduleFrequency = "DAILY" | "WEEKLY";
-export const PagesListResultItemTestsItemScheduleFrequency =
-  /*@__PURE__*/ S.String;
+export const PagesListResultItemTestsItemScheduleFrequency = S.String;
 
 export interface PagesListResultItemTestsItem {
   /** UUID. */
@@ -1470,7 +1456,7 @@ export type PagesTestsListRequestRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesTestsListRequestRegion = /*@__PURE__*/ S.String;
+export const PagesTestsListRequestRegion = S.String;
 
 export interface ListPageTestsRequest {
   /** Identifier. */
@@ -1505,8 +1491,7 @@ export const ListPageTestsRequest = /*@__PURE__*/ S.suspend(() =>
 export type PagesTestsListResultItemDesktopReportDeviceType =
   | "DESKTOP"
   | "MOBILE";
-export const PagesTestsListResultItemDesktopReportDeviceType =
-  /*@__PURE__*/ S.String;
+export const PagesTestsListResultItemDesktopReportDeviceType = S.String;
 
 export type PagesTestsListResultItemDesktopReportErrorCode =
   | "NOT_REACHABLE"
@@ -1514,8 +1499,7 @@ export type PagesTestsListResultItemDesktopReportErrorCode =
   | "NOT_HTML"
   | "LIGHTHOUSE_TIMEOUT"
   | "UNKNOWN";
-export const PagesTestsListResultItemDesktopReportErrorCode =
-  /*@__PURE__*/ S.String;
+export const PagesTestsListResultItemDesktopReportErrorCode = S.String;
 
 export interface PagesTestsListResultItemDesktopReportError {
   /** The error code of the Lighthouse result. */
@@ -1542,8 +1526,7 @@ export type PagesTestsListResultItemDesktopReportState =
   | "RUNNING"
   | "COMPLETE"
   | "FAILED";
-export const PagesTestsListResultItemDesktopReportState =
-  /*@__PURE__*/ S.String;
+export const PagesTestsListResultItemDesktopReportState = S.String;
 
 export interface PagesTestsListResultItemDesktopReport {
   /** Cumulative Layout Shift. */
@@ -1614,7 +1597,7 @@ export type PagesTestsListResultItemRegionValue =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesTestsListResultItemRegionValue = /*@__PURE__*/ S.String;
+export const PagesTestsListResultItemRegionValue = S.String;
 
 export interface PagesTestsListResultItemRegion {
   label?: string | null;
@@ -1631,7 +1614,7 @@ export const PagesTestsListResultItemRegion = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PagesTestsListResultItemRegion>;
 
 export type PagesTestsListResultItemScheduleFrequency = "DAILY" | "WEEKLY";
-export const PagesTestsListResultItemScheduleFrequency = /*@__PURE__*/ S.String;
+export const PagesTestsListResultItemScheduleFrequency = S.String;
 
 export interface PagesTestsListResultItem {
   /** UUID. */
@@ -1685,7 +1668,7 @@ export const ListPageTestsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPageTestsResponse>;
 
 export type PagesTrendRequestDeviceType = "DESKTOP" | "MOBILE";
-export const PagesTrendRequestDeviceType = /*@__PURE__*/ S.String;
+export const PagesTrendRequestDeviceType = S.String;
 
 export type PagesTrendRequestRegion =
   | "asia-east1"
@@ -1709,7 +1692,7 @@ export type PagesTrendRequestRegion =
   | "us-east4"
   | "us-south1"
   | "us-west1";
-export const PagesTrendRequestRegion = /*@__PURE__*/ S.String;
+export const PagesTrendRequestRegion = S.String;
 
 export interface TrendPageRequest {
   /** Identifier. */

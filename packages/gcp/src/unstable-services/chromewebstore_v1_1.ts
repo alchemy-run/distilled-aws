@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type GetItemsProjectionEnum = "DRAFT" | "PUBLISHED";
-export const GetItemsProjectionEnum = /*@__PURE__*/ S.String;
+export const GetItemsProjectionEnum = S.String;
 
 export interface GetItemsRequest {
   /** Determines which subset of the item information to return. */

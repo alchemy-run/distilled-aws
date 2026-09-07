@@ -157,7 +157,7 @@ export type SystemEventTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "USER_DELETION"
   | "TRASH_AUTO_PURGE";
-export const SystemEventTypeEnum = /*@__PURE__*/ S.String;
+export const SystemEventTypeEnum = S.String;
 
 /** Event triggered by system operations instead of end users. */
 export interface SystemEvent {
@@ -257,7 +257,7 @@ export const ActorList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ActorList>;
 
 export type DeleteTypeEnum = "TYPE_UNSPECIFIED" | "TRASH" | "PERMANENT_DELETE";
-export const DeleteTypeEnum = /*@__PURE__*/ S.String;
+export const DeleteTypeEnum = S.String;
 
 /** An object was deleted. */
 export interface Delete {
@@ -274,7 +274,7 @@ export type DataLeakPreventionChangeTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "FLAGGED"
   | "CLEARED";
-export const DataLeakPreventionChangeTypeEnum = /*@__PURE__*/ S.String;
+export const DataLeakPreventionChangeTypeEnum = S.String;
 
 /** A change in the object's data leak prevention status. */
 export interface DataLeakPreventionChange {
@@ -302,7 +302,7 @@ export type FolderTypeEnum =
   | "MY_DRIVE_ROOT"
   | "TEAM_DRIVE_ROOT"
   | "STANDARD_FOLDER";
-export const FolderTypeEnum = /*@__PURE__*/ S.String;
+export const FolderTypeEnum = S.String;
 
 /** This item is deprecated; please see `DriveFolder` instead. */
 export interface Folder {
@@ -324,7 +324,7 @@ export type DriveFolderTypeEnum =
   | "MY_DRIVE_ROOT"
   | "SHARED_DRIVE_ROOT"
   | "STANDARD_FOLDER";
-export const DriveFolderTypeEnum = /*@__PURE__*/ S.String;
+export const DriveFolderTypeEnum = S.String;
 
 /** A Drive item which is a folder. */
 export interface DriveFolder {
@@ -493,7 +493,7 @@ export type SuggestionSubtypeEnum =
   | "REJECTED"
   | "ACCEPT_DELETED"
   | "REJECT_DELETED";
-export const SuggestionSubtypeEnum = /*@__PURE__*/ S.String;
+export const SuggestionSubtypeEnum = S.String;
 
 /** A suggestion. */
 export interface Suggestion {
@@ -520,7 +520,7 @@ export type AssignmentSubtypeEnum =
   | "RESOLVED"
   | "REOPENED"
   | "REASSIGNED";
-export const AssignmentSubtypeEnum = /*@__PURE__*/ S.String;
+export const AssignmentSubtypeEnum = S.String;
 
 /** A comment with an assignment. */
 export interface Assignment {
@@ -544,7 +544,7 @@ export type PostSubtypeEnum =
   | "REPLY_DELETED"
   | "RESOLVED"
   | "REOPENED";
-export const PostSubtypeEnum = /*@__PURE__*/ S.String;
+export const PostSubtypeEnum = S.String;
 
 /** A regular posted comment. */
 export interface Post {
@@ -750,7 +750,7 @@ export type AppliedLabelChangeDetailTypesItemEnum =
   | "LABEL_REMOVED"
   | "LABEL_FIELD_VALUE_CHANGED"
   | "LABEL_APPLIED_BY_ITEM_CREATE";
-export const AppliedLabelChangeDetailTypesItemEnum = /*@__PURE__*/ S.String;
+export const AppliedLabelChangeDetailTypesItemEnum = S.String;
 
 export type AppliedLabelChangeDetailTypesItemEnumList =
   Array<AppliedLabelChangeDetailTypesItemEnum>;
@@ -802,7 +802,7 @@ export type ApplicationReferenceTypeEnum =
   | "UNSPECIFIED_REFERENCE_TYPE"
   | "LINK"
   | "DISCUSS";
-export const ApplicationReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const ApplicationReferenceTypeEnum = S.String;
 
 /** Activity in applications other than Drive. */
 export interface ApplicationReference {
@@ -818,7 +818,7 @@ export const ApplicationReference = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplicationReference>;
 
 export type RestoreTypeEnum = "TYPE_UNSPECIFIED" | "UNTRASH";
-export const RestoreTypeEnum = /*@__PURE__*/ S.String;
+export const RestoreTypeEnum = S.String;
 
 /** A deleted object was restored. */
 export interface Restore {
@@ -840,13 +840,13 @@ export type RestrictionChangeFeatureEnum =
   | "FILE_ORGANIZER_CAN_SHARE_FOLDERS"
   | "READERS_CAN_DOWNLOAD"
   | "WRITERS_CAN_DOWNLOAD";
-export const RestrictionChangeFeatureEnum = /*@__PURE__*/ S.String;
+export const RestrictionChangeFeatureEnum = S.String;
 
 export type RestrictionChangeNewRestrictionEnum =
   | "RESTRICTION_UNSPECIFIED"
   | "UNRESTRICTED"
   | "FULLY_RESTRICTED";
-export const RestrictionChangeNewRestrictionEnum = /*@__PURE__*/ S.String;
+export const RestrictionChangeNewRestrictionEnum = S.String;
 
 /** Information about restriction policy changes to a feature. */
 export interface RestrictionChange {
@@ -889,7 +889,7 @@ export type PermissionRoleEnum =
   | "COMMENTER"
   | "VIEWER"
   | "PUBLISHED_VIEWER";
-export const PermissionRoleEnum = /*@__PURE__*/ S.String;
+export const PermissionRoleEnum = S.String;
 
 /** Information about a domain. */
 export interface Domain {

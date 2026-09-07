@@ -1488,8 +1488,7 @@ export type ValidateConsumerConfigResponseValidationErrorEnum =
   | "COMPUTE_API_NOT_ENABLED"
   | "USE_PERMISSION_NOT_FOUND"
   | "SN_SERVICE_AGENT_PERMISSION_DENIED_ON_CONSUMER_PROJECT";
-export const ValidateConsumerConfigResponseValidationErrorEnum =
-  /*@__PURE__*/ S.String;
+export const ValidateConsumerConfigResponseValidationErrorEnum = S.String;
 
 export interface ValidateConsumerConfigResponse {
   /** Indicates whether all the requested validations passed. */

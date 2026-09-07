@@ -208,7 +208,7 @@ export const RulesCreateRequestPrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCreateRequestPrefixesList>;
 
 export type RulesCreateRequestType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesCreateRequestType = /*@__PURE__*/ S.String;
+export const RulesCreateRequestType = S.String;
 
 export type RulesCreateRequestDuration =
   | "1m"
@@ -219,16 +219,16 @@ export type RulesCreateRequestDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesCreateRequestDuration = /*@__PURE__*/ S.String;
+export const RulesCreateRequestDuration = S.String;
 
 export type RulesCreateRequestPrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesCreateRequestPrefixMatch = /*@__PURE__*/ S.String;
+export const RulesCreateRequestPrefixMatch = S.String;
 
 export type RulesCreateRequestZscoreSensitivity = "low" | "medium" | "high";
-export const RulesCreateRequestZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesCreateRequestZscoreSensitivity = S.String;
 
 export type RulesCreateRequestZscoreTarget = "bits" | "packets";
-export const RulesCreateRequestZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesCreateRequestZscoreTarget = S.String;
 
 export interface CreateRuleRequest {
   accountId: string;
@@ -292,7 +292,7 @@ export const RulesCreateResponsePrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesCreateResponsePrefixesList>;
 
 export type RulesCreateResponseType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesCreateResponseType = /*@__PURE__*/ S.String;
+export const RulesCreateResponseType = S.String;
 
 export type RulesCreateResponseDuration =
   | "1m"
@@ -303,16 +303,16 @@ export type RulesCreateResponseDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesCreateResponseDuration = /*@__PURE__*/ S.String;
+export const RulesCreateResponseDuration = S.String;
 
 export type RulesCreateResponsePrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesCreateResponsePrefixMatch = /*@__PURE__*/ S.String;
+export const RulesCreateResponsePrefixMatch = S.String;
 
 export type RulesCreateResponseZscoreSensitivity = "low" | "medium" | "high";
-export const RulesCreateResponseZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesCreateResponseZscoreSensitivity = S.String;
 
 export type RulesCreateResponseZscoreTarget = "bits" | "packets";
-export const RulesCreateResponseZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesCreateResponseZscoreTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateRuleResponse {
@@ -479,7 +479,7 @@ export const RulesDeleteResponsePrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesDeleteResponsePrefixesList>;
 
 export type RulesDeleteResponseType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesDeleteResponseType = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseType = S.String;
 
 export type RulesDeleteResponseDuration =
   | "1m"
@@ -490,16 +490,16 @@ export type RulesDeleteResponseDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesDeleteResponseDuration = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseDuration = S.String;
 
 export type RulesDeleteResponsePrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesDeleteResponsePrefixMatch = /*@__PURE__*/ S.String;
+export const RulesDeleteResponsePrefixMatch = S.String;
 
 export type RulesDeleteResponseZscoreSensitivity = "low" | "medium" | "high";
-export const RulesDeleteResponseZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseZscoreSensitivity = S.String;
 
 export type RulesDeleteResponseZscoreTarget = "bits" | "packets";
-export const RulesDeleteResponseZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesDeleteResponseZscoreTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteRuleResponse {
@@ -693,7 +693,7 @@ export const RulesGetResponsePrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesGetResponsePrefixesList>;
 
 export type RulesGetResponseType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesGetResponseType = /*@__PURE__*/ S.String;
+export const RulesGetResponseType = S.String;
 
 export type RulesGetResponseDuration =
   | "1m"
@@ -704,16 +704,16 @@ export type RulesGetResponseDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesGetResponseDuration = /*@__PURE__*/ S.String;
+export const RulesGetResponseDuration = S.String;
 
 export type RulesGetResponsePrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesGetResponsePrefixMatch = /*@__PURE__*/ S.String;
+export const RulesGetResponsePrefixMatch = S.String;
 
 export type RulesGetResponseZscoreSensitivity = "low" | "medium" | "high";
-export const RulesGetResponseZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesGetResponseZscoreSensitivity = S.String;
 
 export type RulesGetResponseZscoreTarget = "bits" | "packets";
-export const RulesGetResponseZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesGetResponseZscoreTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRuleResponse {
@@ -794,7 +794,7 @@ export const RulesListResultItemPrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesListResultItemPrefixesList>;
 
 export type RulesListResultItemType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesListResultItemType = /*@__PURE__*/ S.String;
+export const RulesListResultItemType = S.String;
 
 export type RulesListResultItemDuration =
   | "1m"
@@ -805,16 +805,16 @@ export type RulesListResultItemDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesListResultItemDuration = /*@__PURE__*/ S.String;
+export const RulesListResultItemDuration = S.String;
 
 export type RulesListResultItemPrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesListResultItemPrefixMatch = /*@__PURE__*/ S.String;
+export const RulesListResultItemPrefixMatch = S.String;
 
 export type RulesListResultItemZscoreSensitivity = "low" | "medium" | "high";
-export const RulesListResultItemZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesListResultItemZscoreSensitivity = S.String;
 
 export type RulesListResultItemZscoreTarget = "bits" | "packets";
-export const RulesListResultItemZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesListResultItemZscoreTarget = S.String;
 
 export interface RulesListResultItem {
   /** The id of the rule. Must be unique. */
@@ -982,7 +982,7 @@ export const RulesEditRequestPrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesEditRequestPrefixesList>;
 
 export type RulesEditRequestType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesEditRequestType = /*@__PURE__*/ S.String;
+export const RulesEditRequestType = S.String;
 
 export type RulesEditRequestDuration =
   | "1m"
@@ -993,16 +993,16 @@ export type RulesEditRequestDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesEditRequestDuration = /*@__PURE__*/ S.String;
+export const RulesEditRequestDuration = S.String;
 
 export type RulesEditRequestPrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesEditRequestPrefixMatch = /*@__PURE__*/ S.String;
+export const RulesEditRequestPrefixMatch = S.String;
 
 export type RulesEditRequestZscoreSensitivity = "low" | "medium" | "high";
-export const RulesEditRequestZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesEditRequestZscoreSensitivity = S.String;
 
 export type RulesEditRequestZscoreTarget = "bits" | "packets";
-export const RulesEditRequestZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesEditRequestZscoreTarget = S.String;
 
 export interface PatchRuleRequest {
   accountId: string;
@@ -1069,7 +1069,7 @@ export const RulesEditResponsePrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesEditResponsePrefixesList>;
 
 export type RulesEditResponseType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesEditResponseType = /*@__PURE__*/ S.String;
+export const RulesEditResponseType = S.String;
 
 export type RulesEditResponseDuration =
   | "1m"
@@ -1080,16 +1080,16 @@ export type RulesEditResponseDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesEditResponseDuration = /*@__PURE__*/ S.String;
+export const RulesEditResponseDuration = S.String;
 
 export type RulesEditResponsePrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesEditResponsePrefixMatch = /*@__PURE__*/ S.String;
+export const RulesEditResponsePrefixMatch = S.String;
 
 export type RulesEditResponseZscoreSensitivity = "low" | "medium" | "high";
-export const RulesEditResponseZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesEditResponseZscoreSensitivity = S.String;
 
 export type RulesEditResponseZscoreTarget = "bits" | "packets";
-export const RulesEditResponseZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesEditResponseZscoreTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchRuleResponse {
@@ -1273,7 +1273,7 @@ export const RulesUpdateRequestPrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesUpdateRequestPrefixesList>;
 
 export type RulesUpdateRequestType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesUpdateRequestType = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestType = S.String;
 
 export type RulesUpdateRequestDuration =
   | "1m"
@@ -1284,16 +1284,16 @@ export type RulesUpdateRequestDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesUpdateRequestDuration = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestDuration = S.String;
 
 export type RulesUpdateRequestPrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesUpdateRequestPrefixMatch = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestPrefixMatch = S.String;
 
 export type RulesUpdateRequestZscoreSensitivity = "low" | "medium" | "high";
-export const RulesUpdateRequestZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestZscoreSensitivity = S.String;
 
 export type RulesUpdateRequestZscoreTarget = "bits" | "packets";
-export const RulesUpdateRequestZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesUpdateRequestZscoreTarget = S.String;
 
 export interface UpdateRuleRequest {
   accountId: string;
@@ -1357,7 +1357,7 @@ export const RulesUpdateResponsePrefixesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RulesUpdateResponsePrefixesList>;
 
 export type RulesUpdateResponseType = "threshold" | "zscore" | "advanced_ddos";
-export const RulesUpdateResponseType = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseType = S.String;
 
 export type RulesUpdateResponseDuration =
   | "1m"
@@ -1368,16 +1368,16 @@ export type RulesUpdateResponseDuration =
   | "30m"
   | "45m"
   | "60m";
-export const RulesUpdateResponseDuration = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseDuration = S.String;
 
 export type RulesUpdateResponsePrefixMatch = "exact" | "subnet" | "supernet";
-export const RulesUpdateResponsePrefixMatch = /*@__PURE__*/ S.String;
+export const RulesUpdateResponsePrefixMatch = S.String;
 
 export type RulesUpdateResponseZscoreSensitivity = "low" | "medium" | "high";
-export const RulesUpdateResponseZscoreSensitivity = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseZscoreSensitivity = S.String;
 
 export type RulesUpdateResponseZscoreTarget = "bits" | "packets";
-export const RulesUpdateResponseZscoreTarget = /*@__PURE__*/ S.String;
+export const RulesUpdateResponseZscoreTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateRuleResponse {

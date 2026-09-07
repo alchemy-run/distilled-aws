@@ -558,8 +558,7 @@ export type GoogleFirebaseAppdistroV1AabInfoIntegrationStateEnum =
   | "ADHOC_SHARING_KEY_NOT_REGISTERED"
   | "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
   | "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND";
-export const GoogleFirebaseAppdistroV1AabInfoIntegrationStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1AabInfoIntegrationStateEnum = S.String;
 
 /** Android App Bundle (AAB) information for a Firebase app. */
 export interface GoogleFirebaseAppdistroV1AabInfo {
@@ -621,16 +620,14 @@ export type GoogleFirebaseAppdistroV1ReleaseTestStateEnum =
   | "PASSED"
   | "FAILED"
   | "INCONCLUSIVE";
-export const GoogleFirebaseAppdistroV1ReleaseTestStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1ReleaseTestStateEnum = S.String;
 
 export type GoogleFirebaseAppdistroV1ReleaseBinaryTypeEnum =
   | "BINARY_TYPE_UNSPECIFIED"
   | "IPA"
   | "APK"
   | "AAB";
-export const GoogleFirebaseAppdistroV1ReleaseBinaryTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirebaseAppdistroV1ReleaseBinaryTypeEnum = S.String;
 
 export type GoogleFirebaseAppdistroV1ReleaseAndroidPackageRegistrationStateEnum =
   | "ANDROID_PACKAGE_REGISTRATION_STATE_UNSPECIFIED"
@@ -638,7 +635,7 @@ export type GoogleFirebaseAppdistroV1ReleaseAndroidPackageRegistrationStateEnum 
   | "NOT_REGISTERED"
   | "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT";
 export const GoogleFirebaseAppdistroV1ReleaseAndroidPackageRegistrationStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A release of a Firebase app. */
 export interface GoogleFirebaseAppdistroV1Release {
@@ -1206,7 +1203,7 @@ export type GdataCompositeMediaReferenceTypeEnum =
   | "INLINE"
   | "BIGSTORE_REF"
   | "COSMO_BINARY_REFERENCE";
-export const GdataCompositeMediaReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const GdataCompositeMediaReferenceTypeEnum = S.String;
 
 /** This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763. */
 export interface GdataObjectId {
@@ -1359,7 +1356,7 @@ export type GdataMediaReferenceTypeEnum =
   | "DIFF_UPLOAD_RESPONSE"
   | "COSMO_BINARY_REFERENCE"
   | "ARBITRARY_BYTES";
-export const GdataMediaReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const GdataMediaReferenceTypeEnum = S.String;
 
 /** A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol. */
 export interface GdataDiffUploadRequest {

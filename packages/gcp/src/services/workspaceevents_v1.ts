@@ -108,10 +108,10 @@ export type TaskStatusStateEnum =
   | "TASK_STATE_INPUT_REQUIRED"
   | "TASK_STATE_REJECTED"
   | "TASK_STATE_AUTH_REQUIRED";
-export const TaskStatusStateEnum = /*@__PURE__*/ S.String;
+export const TaskStatusStateEnum = S.String;
 
 export type MessageRoleEnum = "ROLE_UNSPECIFIED" | "ROLE_USER" | "ROLE_AGENT";
-export const MessageRoleEnum = /*@__PURE__*/ S.String;
+export const MessageRoleEnum = S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -323,7 +323,7 @@ export type SubscriptionStateEnum =
   | "ACTIVE"
   | "SUSPENDED"
   | "DELETED";
-export const SubscriptionStateEnum = /*@__PURE__*/ S.String;
+export const SubscriptionStateEnum = S.String;
 
 export type SubscriptionSuspensionReasonEnum =
   | "ERROR_TYPE_UNSPECIFIED"
@@ -336,7 +336,7 @@ export type SubscriptionSuspensionReasonEnum =
   | "ENDPOINT_NOT_FOUND"
   | "ENDPOINT_RESOURCE_EXHAUSTED"
   | "OTHER";
-export const SubscriptionSuspensionReasonEnum = /*@__PURE__*/ S.String;
+export const SubscriptionSuspensionReasonEnum = S.String;
 
 /** A subscription to receive events about a Google Workspace resource. To learn more about subscriptions, see the [Google Workspace Events API overview](https://developers.google.com/workspace/events). */
 export interface Subscription {

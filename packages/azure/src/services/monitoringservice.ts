@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** The type of entity that added data to the issue */
 export type AddedByType = "Manual" | "Automatic";
-export const AddedByType = /*@__PURE__*/ S.String;
+export const AddedByType = S.String;
 
 /** Details about the origin of the entity - the source that added it to the issue */
 export interface Origin {
@@ -123,7 +123,7 @@ export const AzureMonitorWorkspaceMetricsInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or sets allow or disallow public network access to Azure Monitor Workspace */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Properties of an Azure Monitor Workspace */
 export interface AzureMonitorWorkspaceInput {
@@ -147,7 +147,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -228,7 +228,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -236,7 +236,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -298,8 +298,7 @@ export type AzureResourceManagerResourceProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerResourceProvisioningState = S.String;
 
 /** The ingestion endpoints for an Azure Monitor Workspace. */
 export interface IngestionEndpoints {
@@ -362,7 +361,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -389,8 +388,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -572,7 +570,7 @@ export const AzureMonitorWorkspacesCreateOrUpdateResponse =
 
 /** The issue status */
 export type Status = "New" | "InProgress" | "Mitigated" | "Closed" | "Canceled";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** A background details element */
 export interface BackgroundDetails {
@@ -615,7 +613,7 @@ export const Background = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of update that triggers a notification */
 export type UpdateType = "IssueCreation" | "TimeBased" | "OnChange";
-export const UpdateType = /*@__PURE__*/ S.String;
+export const UpdateType = S.String;
 
 /** Base properties for an issue notification type */
 export interface IssueNotificationType {
@@ -1243,7 +1241,7 @@ export const GetPipelineGroupResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The receiver type. */
 export type ReceiverType = "Syslog" | "OTLP";
-export const ReceiverType = /*@__PURE__*/ S.String;
+export const ReceiverType = S.String;
 
 /** Supported literals for allowed syslog and CEF parsing formats. */
 export type AllowedFormats =
@@ -1253,7 +1251,7 @@ export type AllowedFormats =
   | "cefRfc3164"
   | "cefRfc5424"
   | "rawCef";
-export const AllowedFormats = /*@__PURE__*/ S.String;
+export const AllowedFormats = S.String;
 
 /** List of allowed message formats for syslog/CEF ingestion. Default 'all'. */
 export type SyslogReceiverAllowedFormatsList = Array<
@@ -1265,7 +1263,7 @@ export const SyslogReceiverAllowedFormatsList = /*@__PURE__*/ S.Array(
 
 /** Transport protocol. Default tcp. */
 export type SyslogReceiverTransportProtocol = "tcp" | "udp";
-export const SyslogReceiverTransportProtocol = /*@__PURE__*/ S.String;
+export const SyslogReceiverTransportProtocol = S.String;
 
 /** Base receiver using TCP as transport protocol. */
 export interface SyslogReceiver {
@@ -1333,7 +1331,7 @@ export type ProcessorType =
   | "TransformLanguage"
   | "MicrosoftSyslog"
   | "MicrosoftCommonSecurityLog";
-export const ProcessorType = /*@__PURE__*/ S.String;
+export const ProcessorType = S.String;
 
 /** Batch processor. */
 export interface BatchProcessor {
@@ -1390,7 +1388,7 @@ export const PipelineGroupPropertiesProcessorsList = /*@__PURE__*/ S.Array(
 
 /** The exporter type. */
 export type ExporterType = "AzureMonitorWorkspaceLogs";
-export const ExporterType = /*@__PURE__*/ S.String;
+export const ExporterType = S.String;
 
 /** Record map for schema in azure monitor. */
 export interface RecordMap {
@@ -1548,7 +1546,7 @@ export const PipelineGroupPropertiesExportersList = /*@__PURE__*/ S.Array(
 
 /** The pipeline type. */
 export type PipelineType = "Logs";
-export const PipelineType = /*@__PURE__*/ S.String;
+export const PipelineType = S.String;
 
 /** Reference to receivers configured for the pipeline. */
 export type PipelineReceiversList = Array<string>;
@@ -1626,7 +1624,7 @@ export const Service = /*@__PURE__*/ S.suspend(() =>
 
 /** The match operator for placement constraints. */
 export type CapabilityOperator = "In" | "NotIn" | "Exists" | "DoesNotExist";
-export const CapabilityOperator = /*@__PURE__*/ S.String;
+export const CapabilityOperator = S.String;
 
 /** The values to match against. Not required for Exists/DoesNotExist. */
 export type PlacementConstraintValuesList = Array<string>;
@@ -1690,11 +1688,11 @@ export const ExecutionPlacement = /*@__PURE__*/ S.suspend(() =>
 
 /** The TLS security mode for receivers using this configuration. Default is 'mutualTls'. */
 export type TlsConfigurationMode = "disabled" | "serverOnly" | "mutualTls";
-export const TlsConfigurationMode = /*@__PURE__*/ S.String;
+export const TlsConfigurationMode = S.String;
 
 /** The type of certificate source. */
 export type CertificateSourceType = "kubernetesSecret" | "kubernetesConfigMap";
-export const CertificateSourceType = /*@__PURE__*/ S.String;
+export const CertificateSourceType = S.String;
 
 /** Configuration for certificate source location. */
 export interface CertificateSource {
@@ -1717,7 +1715,7 @@ export const CertificateSource = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of private key source. */
 export type PrivateKeySourceType = "kubernetesSecret";
-export const PrivateKeySourceType = /*@__PURE__*/ S.String;
+export const PrivateKeySourceType = S.String;
 
 /** Configuration for private key source location. */
 export interface PrivateKeySource {
@@ -1791,7 +1789,7 @@ export type ProvisioningState =
   | "Canceled"
   | "Creating"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Properties that need to be specified to create a new pipeline group instance. */
 export interface PipelineGroupProperties {
@@ -1831,8 +1829,7 @@ export const PipelineGroupProperties = /*@__PURE__*/ S.suspend(() =>
 export type AzureResourceManagerCommonTypesExtendedLocationType =
   | "EdgeZone"
   | "CustomLocation";
-export const AzureResourceManagerCommonTypesExtendedLocationType =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerCommonTypesExtendedLocationType = S.String;
 
 /** The complex type of the extended location. */
 export interface AzureResourceManagerCommonTypesExtendedLocation {
@@ -1888,7 +1885,7 @@ export const GetPipelineGroupResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The relevance status of the resource */
 export type Relevance = "None" | "Relevant" | "Irrelevant";
-export const Relevance = /*@__PURE__*/ S.String;
+export const Relevance = S.String;
 
 /** Properties of an alert which is related to the issue */
 export interface RelatedAlertInput {
@@ -2518,11 +2515,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

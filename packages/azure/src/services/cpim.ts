@@ -39,7 +39,7 @@ export const CheckB2CTenantNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 
 /** Describes the reason for the 'nameAvailable' value. */
 export type NameAvailabilityReason = "AlreadyExists" | "Invalid";
-export const NameAvailabilityReason = /*@__PURE__*/ S.String;
+export const NameAvailabilityReason = S.String;
 
 /** Response of the CheckNameAvailability operation. */
 export interface NameAvailabilityResponse {
@@ -87,11 +87,11 @@ export const CreateB2CTenantRequestProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the SKU for the tenant. */
 export type B2CResourceSKUName = "Standard" | "PremiumP1" | "PremiumP2";
-export const B2CResourceSKUName = /*@__PURE__*/ S.String;
+export const B2CResourceSKUName = S.String;
 
 /** The tier of the tenant. */
 export type B2CResourceSKUTier = "A0";
-export const B2CResourceSKUTier = /*@__PURE__*/ S.String;
+export const B2CResourceSKUTier = S.String;
 
 /** SKU properties of the Azure AD B2C tenant. Learn more about Azure AD B2C billing at [aka.ms/b2cBilling](https://aka.ms/b2cBilling). */
 export interface B2CResourceSKU {
@@ -154,14 +154,13 @@ export const CreateB2CTenantRequest = /*@__PURE__*/ S.suspend(() =>
 /** The type of the B2C tenant resource. */
 export type B2CTenantResourceType =
   "Microsoft.AzureActiveDirectory/b2cDirectories";
-export const B2CTenantResourceType = /*@__PURE__*/ S.String;
+export const B2CTenantResourceType = S.String;
 
 /** The type of billing. Will be MAU for all new customers. If 'Auths', it can be updated to 'MAU'. Cannot be changed if value is 'MAU'. Learn more about Azure AD B2C billing at [aka.ms/b2cBilling](https://aka.ms/b2cbilling). */
 export type B2CTenantResourcePropertiesBillingConfigBillingType =
   | "MAU"
   | "Auths";
-export const B2CTenantResourcePropertiesBillingConfigBillingType =
-  /*@__PURE__*/ S.String;
+export const B2CTenantResourcePropertiesBillingConfigBillingType = S.String;
 
 /** The billing configuration for the tenant. */
 export interface B2CTenantResourcePropertiesBillingConfig {
@@ -211,7 +210,7 @@ export type B2CTenantResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const B2CTenantResourceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const B2CTenantResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type B2CTenantResourceSystemDataLastModifiedByType =
@@ -219,8 +218,7 @@ export type B2CTenantResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const B2CTenantResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const B2CTenantResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface B2CTenantResourceSystemData {
@@ -353,8 +351,7 @@ export type GuestUsagesResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GuestUsagesResourceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GuestUsagesResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GuestUsagesResourceSystemDataLastModifiedByType =
@@ -362,8 +359,7 @@ export type GuestUsagesResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GuestUsagesResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GuestUsagesResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GuestUsagesResourceSystemData {
@@ -746,7 +742,7 @@ export type B2CTenantResourcePropertiesInputBillingConfigBillingType =
   | "MAU"
   | "Auths";
 export const B2CTenantResourcePropertiesInputBillingConfigBillingType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The billing configuration for the tenant. */
 export interface B2CTenantResourcePropertiesInputBillingConfig {

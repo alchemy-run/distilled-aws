@@ -19,7 +19,7 @@ export type CustomerProfileConfigScopeEnum =
   | "group_2"
   | "group_3"
   | "group_4";
-export const CustomerProfileConfigScopeEnum = /*@__PURE__*/ S.String;
+export const CustomerProfileConfigScopeEnum = S.String;
 
 export interface CreateCustomerProfileConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

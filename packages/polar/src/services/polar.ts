@@ -71,7 +71,7 @@ export type BenefitGrantsListRequestOrganizationId =
   | string
   | BenefitGrantsListRequestOrganizationIdCase1List;
 export const BenefitGrantsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitGrantsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<BenefitGrantsListRequestOrganizationId>;
 
 export type BenefitGrantsListRequestCustomerIdCase1List = Array<string>;
 export const BenefitGrantsListRequestCustomerIdCase1List =
@@ -84,7 +84,7 @@ export type BenefitGrantsListRequestCustomerId =
   | string
   | BenefitGrantsListRequestCustomerIdCase1List;
 export const BenefitGrantsListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitGrantsListRequestCustomerId>;
+  S.Unknown as any as S.Schema<BenefitGrantsListRequestCustomerId>;
 
 export type BenefitGrantsListRequestExternalCustomerIdCase1List = Array<string>;
 export const BenefitGrantsListRequestExternalCustomerIdCase1List =
@@ -97,7 +97,7 @@ export type BenefitGrantsListRequestExternalCustomerId =
   | string
   | BenefitGrantsListRequestExternalCustomerIdCase1List;
 export const BenefitGrantsListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitGrantsListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<BenefitGrantsListRequestExternalCustomerId>;
 
 export type BenefitGrantSortProperty =
   | "created_at"
@@ -106,7 +106,7 @@ export type BenefitGrantSortProperty =
   | "-granted_at"
   | "revoked_at"
   | "-revoked_at";
-export const BenefitGrantSortProperty = /*@__PURE__*/ S.String;
+export const BenefitGrantSortProperty = S.String;
 
 export type BenefitGrantsListRequestSortingList = Array<
   BenefitGrantSortProperty | (string & {})
@@ -166,7 +166,7 @@ export const BenefitGrantError = /*@__PURE__*/ S.suspend(() =>
 
 export type MetadataOutputTypeValue = string | number | number | boolean;
 export const MetadataOutputTypeValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetadataOutputTypeValue>;
+  S.Unknown as any as S.Schema<MetadataOutputTypeValue>;
 
 export type MetadataOutputType = {
   [key: string]: MetadataOutputTypeValue | undefined;
@@ -426,7 +426,7 @@ export type AddressCountry =
   | "ZA"
   | "ZM"
   | "ZW";
-export const AddressCountry = /*@__PURE__*/ S.String;
+export const AddressCountry = S.String;
 
 export interface Address {
   line1?: string | null;
@@ -574,10 +574,10 @@ export const CustomerTeam = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "CustomerTeam" }) as any as S.Schema<CustomerTeam>;
 
 export type Customer = CustomerIndividual | CustomerTeam;
-export const Customer = /*@__PURE__*/ S.Unknown as any as S.Schema<Customer>;
+export const Customer = S.Unknown as any as S.Schema<Customer>;
 
 export type MemberRole = "owner" | "billing_manager" | "member";
-export const MemberRole = /*@__PURE__*/ S.String;
+export const MemberRole = S.String;
 
 /** A member of a customer. */
 export interface Member {
@@ -612,7 +612,7 @@ export const Member = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Member" }) as any as S.Schema<Member>;
 
 export type BenefitVisibility = "draft" | "private" | "public";
-export const BenefitVisibility = /*@__PURE__*/ S.String;
+export const BenefitVisibility = S.String;
 
 /** Properties for a benefit of type `custom`. */
 export interface BenefitCustomProperties {
@@ -740,8 +740,7 @@ export type BenefitGitHubRepositoryPropertiesPermission =
   | "push"
   | "maintain"
   | "admin";
-export const BenefitGitHubRepositoryPropertiesPermission =
-  /*@__PURE__*/ S.String;
+export const BenefitGitHubRepositoryPropertiesPermission = S.String;
 
 /** Properties for a benefit of type `github_repository`. */
 export interface BenefitGitHubRepositoryProperties {
@@ -881,8 +880,7 @@ export type BenefitLicenseKeyExpirationPropertiesTimeframe =
   | "year"
   | "month"
   | "day";
-export const BenefitLicenseKeyExpirationPropertiesTimeframe =
-  /*@__PURE__*/ S.String;
+export const BenefitLicenseKeyExpirationPropertiesTimeframe = S.String;
 
 export interface BenefitLicenseKeyExpirationProperties {
   ttl: number;
@@ -1168,7 +1166,7 @@ export type Benefit =
   | BenefitMeterCredit
   | BenefitFeatureFlag
   | BenefitSlackSharedChannel;
-export const Benefit = /*@__PURE__*/ S.Unknown as any as S.Schema<Benefit>;
+export const Benefit = S.Unknown as any as S.Schema<Benefit>;
 
 export interface BenefitGrantDiscordProperties {
   account_id?: string | null;
@@ -1193,8 +1191,7 @@ export type BenefitGrantGitHubRepositoryPropertiesPermission =
   | "push"
   | "maintain"
   | "admin";
-export const BenefitGrantGitHubRepositoryPropertiesPermission =
-  /*@__PURE__*/ S.String;
+export const BenefitGrantGitHubRepositoryPropertiesPermission = S.String;
 
 export interface BenefitGrantGitHubRepositoryProperties {
   account_id?: string | null;
@@ -1278,7 +1275,7 @@ export type BenefitGrantProperties =
   | unknown
   | BenefitGrantSlackSharedChannelProperties;
 export const BenefitGrantProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitGrantProperties>;
+  S.Unknown as any as S.Schema<BenefitGrantProperties>;
 
 export interface BenefitGrant {
   /** Creation timestamp of the object. */
@@ -1369,7 +1366,7 @@ export type BenefitCustomCreateMetadataValue =
   | number
   | boolean;
 export const BenefitCustomCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitCustomCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitCustomCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitCustomCreateMetadataMap = {
@@ -1424,7 +1421,7 @@ export type BenefitDiscordCreateMetadataValue =
   | number
   | boolean;
 export const BenefitDiscordCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitDiscordCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitDiscordCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitDiscordCreateMetadataMap = {
@@ -1484,7 +1481,7 @@ export type BenefitGitHubRepositoryCreateMetadataValue =
   | number
   | boolean;
 export const BenefitGitHubRepositoryCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitGitHubRepositoryCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitGitHubRepositoryCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitGitHubRepositoryCreateMetadataMap = {
@@ -1502,8 +1499,7 @@ export type BenefitGitHubRepositoryCreatePropertiesPermission =
   | "push"
   | "maintain"
   | "admin";
-export const BenefitGitHubRepositoryCreatePropertiesPermission =
-  /*@__PURE__*/ S.String;
+export const BenefitGitHubRepositoryCreatePropertiesPermission = S.String;
 
 /** Properties to create a benefit of type `github_repository`. */
 export interface BenefitGitHubRepositoryCreateProperties {
@@ -1556,7 +1552,7 @@ export type BenefitDownloadablesCreateMetadataValue =
   | number
   | boolean;
 export const BenefitDownloadablesCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitDownloadablesCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitDownloadablesCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitDownloadablesCreateMetadataMap = {
@@ -1627,7 +1623,7 @@ export type BenefitLicenseKeysCreateMetadataValue =
   | number
   | boolean;
 export const BenefitLicenseKeysCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitLicenseKeysCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitLicenseKeysCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitLicenseKeysCreateMetadataMap = {
@@ -1691,7 +1687,7 @@ export type BenefitMeterCreditCreateMetadataValue =
   | number
   | boolean;
 export const BenefitMeterCreditCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitMeterCreditCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitMeterCreditCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitMeterCreditCreateMetadataMap = {
@@ -1738,7 +1734,7 @@ export type BenefitFeatureFlagCreateMetadataValue =
   | number
   | boolean;
 export const BenefitFeatureFlagCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitFeatureFlagCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitFeatureFlagCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitFeatureFlagCreateMetadataMap = {
@@ -1781,7 +1777,7 @@ export type BenefitSlackSharedChannelCreateMetadataValue =
   | number
   | boolean;
 export const BenefitSlackSharedChannelCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitSlackSharedChannelCreateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitSlackSharedChannelCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitSlackSharedChannelCreateMetadataMap = {
@@ -1859,8 +1855,7 @@ export type BenefitCreate =
   | BenefitMeterCreditCreate
   | BenefitFeatureFlagCreate
   | BenefitSlackSharedChannelCreate;
-export const BenefitCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitCreate>;
+export const BenefitCreate = S.Unknown as any as S.Schema<BenefitCreate>;
 
 export interface BenefitsCreateRequest {
   body: BenefitCreate;
@@ -2013,7 +2008,7 @@ export type BenefitsGrantsRequestCustomerId =
   | string
   | BenefitsGrantsRequestCustomerIdCase1List;
 export const BenefitsGrantsRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitsGrantsRequestCustomerId>;
+  S.Unknown as any as S.Schema<BenefitsGrantsRequestCustomerId>;
 
 export type BenefitsGrantsRequestMemberIdCase1List = Array<string>;
 export const BenefitsGrantsRequestMemberIdCase1List = /*@__PURE__*/ S.Array(
@@ -2025,7 +2020,7 @@ export type BenefitsGrantsRequestMemberId =
   | string
   | BenefitsGrantsRequestMemberIdCase1List;
 export const BenefitsGrantsRequestMemberId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitsGrantsRequestMemberId>;
+  S.Unknown as any as S.Schema<BenefitsGrantsRequestMemberId>;
 
 export interface BenefitsGrantsRequest {
   id: string;
@@ -2065,7 +2060,7 @@ export type BenefitsListRequestOrganizationId =
   | string
   | BenefitsListRequestOrganizationIdCase1List;
 export const BenefitsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<BenefitsListRequestOrganizationId>;
 
 export type BenefitType =
   | "custom"
@@ -2076,7 +2071,7 @@ export type BenefitType =
   | "meter_credit"
   | "feature_flag"
   | "slack_shared_channel";
-export const BenefitType = /*@__PURE__*/ S.String;
+export const BenefitType = S.String;
 
 export type BenefitsListRequestTypeCase1List = Array<
   BenefitType | (string & {})
@@ -2090,7 +2085,7 @@ export type BenefitsListRequestType =
   | BenefitType
   | BenefitsListRequestTypeCase1List;
 export const BenefitsListRequestType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitsListRequestType>;
+  S.Unknown as any as S.Schema<BenefitsListRequestType>;
 
 export type BenefitsListRequestIdCase1List = Array<string>;
 export const BenefitsListRequestIdCase1List = /*@__PURE__*/ S.Array(
@@ -2100,7 +2095,7 @@ export const BenefitsListRequestIdCase1List = /*@__PURE__*/ S.Array(
 /** Filter by benefit IDs. */
 export type BenefitsListRequestId = string | BenefitsListRequestIdCase1List;
 export const BenefitsListRequestId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitsListRequestId>;
+  S.Unknown as any as S.Schema<BenefitsListRequestId>;
 
 export type BenefitsListRequestExcludeIdCase1List = Array<string>;
 export const BenefitsListRequestExcludeIdCase1List = /*@__PURE__*/ S.Array(
@@ -2112,7 +2107,7 @@ export type BenefitsListRequestExcludeId =
   | string
   | BenefitsListRequestExcludeIdCase1List;
 export const BenefitsListRequestExcludeId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitsListRequestExcludeId>;
+  S.Unknown as any as S.Schema<BenefitsListRequestExcludeId>;
 
 export type BenefitSortProperty =
   | "created_at"
@@ -2123,7 +2118,7 @@ export type BenefitSortProperty =
   | "-type"
   | "user_order"
   | "-user_order";
-export const BenefitSortProperty = /*@__PURE__*/ S.String;
+export const BenefitSortProperty = S.String;
 
 export type BenefitsListRequestSortingList = Array<
   BenefitSortProperty | (string & {})
@@ -2155,7 +2150,7 @@ export type MetadataQueryValue =
   | MetadataQueryValueCase4List
   | MetadataQueryValueCase5List;
 export const MetadataQueryValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetadataQueryValue>;
+  S.Unknown as any as S.Schema<MetadataQueryValue>;
 
 export type MetadataQueryMap = {
   [key: string]: MetadataQueryValue | undefined;
@@ -2227,7 +2222,7 @@ export type BenefitCustomUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitCustomUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitCustomUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitCustomUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitCustomUpdateMetadataMap = {
@@ -2266,7 +2261,7 @@ export type BenefitDiscordUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitDiscordUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitDiscordUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitDiscordUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitDiscordUpdateMetadataMap = {
@@ -2302,7 +2297,7 @@ export type BenefitGitHubRepositoryUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitGitHubRepositoryUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitGitHubRepositoryUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitGitHubRepositoryUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitGitHubRepositoryUpdateMetadataMap = {
@@ -2338,7 +2333,7 @@ export type BenefitDownloadablesUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitDownloadablesUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitDownloadablesUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitDownloadablesUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitDownloadablesUpdateMetadataMap = {
@@ -2374,7 +2369,7 @@ export type BenefitLicenseKeysUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitLicenseKeysUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitLicenseKeysUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitLicenseKeysUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitLicenseKeysUpdateMetadataMap = {
@@ -2413,7 +2408,7 @@ export type BenefitMeterCreditUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitMeterCreditUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitMeterCreditUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitMeterCreditUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitMeterCreditUpdateMetadataMap = {
@@ -2452,7 +2447,7 @@ export type BenefitFeatureFlagUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitFeatureFlagUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitFeatureFlagUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitFeatureFlagUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitFeatureFlagUpdateMetadataMap = {
@@ -2491,7 +2486,7 @@ export type BenefitSlackSharedChannelUpdateMetadataValue =
   | number
   | boolean;
 export const BenefitSlackSharedChannelUpdateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitSlackSharedChannelUpdateMetadataValue>;
+  S.Unknown as any as S.Schema<BenefitSlackSharedChannelUpdateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type BenefitSlackSharedChannelUpdateMetadataMap = {
@@ -2532,7 +2527,7 @@ export type BenefitsUpdateRequestBody =
   | BenefitFeatureFlagUpdate
   | BenefitSlackSharedChannelUpdate;
 export const BenefitsUpdateRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BenefitsUpdateRequestBody>;
+  S.Unknown as any as S.Schema<BenefitsUpdateRequestBody>;
 
 export interface BenefitsUpdateRequest {
   id: string;
@@ -2560,7 +2555,7 @@ export type CheckoutLinkCreateProductPriceMetadataValue =
   | number
   | boolean;
 export const CheckoutLinkCreateProductPriceMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinkCreateProductPriceMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutLinkCreateProductPriceMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutLinkCreateProductPriceMetadataMap = {
@@ -2572,7 +2567,7 @@ export const CheckoutLinkCreateProductPriceMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CheckoutLinkCreateProductPriceMetadataMap>;
 
 export type TrialInterval = "day" | "week" | "month" | "year";
-export const TrialInterval = /*@__PURE__*/ S.String;
+export const TrialInterval = S.String;
 
 /** Schema to create a new checkout link from a a single product price. **Deprecated**: Use `CheckoutLinkCreateProducts` instead. */
 export interface CheckoutLinkCreateProductPrice {
@@ -2625,7 +2620,7 @@ export type CheckoutLinkCreateProductMetadataValue =
   | number
   | boolean;
 export const CheckoutLinkCreateProductMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinkCreateProductMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutLinkCreateProductMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutLinkCreateProductMetadataMap = {
@@ -2687,7 +2682,7 @@ export type CheckoutLinkCreateProductsMetadataValue =
   | number
   | boolean;
 export const CheckoutLinkCreateProductsMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinkCreateProductsMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutLinkCreateProductsMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutLinkCreateProductsMetadataMap = {
@@ -2755,7 +2750,7 @@ export type CheckoutLinkCreate =
   | CheckoutLinkCreateProduct
   | CheckoutLinkCreateProducts;
 export const CheckoutLinkCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinkCreate>;
+  S.Unknown as any as S.Schema<CheckoutLinkCreate>;
 
 export interface CheckoutLinksCreateRequest {
   body: CheckoutLinkCreate;
@@ -2769,19 +2764,19 @@ export const CheckoutLinksCreateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckoutLinksCreateRequest>;
 
 export type PaymentProcessor = "stripe";
-export const PaymentProcessor = /*@__PURE__*/ S.String;
+export const PaymentProcessor = S.String;
 
 export type ProductVisibility = "draft" | "private" | "public";
-export const ProductVisibility = /*@__PURE__*/ S.String;
+export const ProductVisibility = S.String;
 
 export type RecurringInterval = "day" | "week" | "month" | "year";
-export const RecurringInterval = /*@__PURE__*/ S.String;
+export const RecurringInterval = S.String;
 
 export type ProductPriceSource = "catalog" | "ad_hoc";
-export const ProductPriceSource = /*@__PURE__*/ S.String;
+export const ProductPriceSource = S.String;
 
 export type TaxBehaviorOption = "location" | "inclusive" | "exclusive";
-export const TaxBehaviorOption = /*@__PURE__*/ S.String;
+export const TaxBehaviorOption = S.String;
 
 /** A recurring price for a product, i.e. a subscription. **Deprecated**: The recurring interval should be set on the product itself. */
 export interface LegacyRecurringProductPriceFixed {
@@ -2887,7 +2882,7 @@ export type LegacyRecurringProductPrice =
   | LegacyRecurringProductPriceFixed
   | LegacyRecurringProductPriceCustom;
 export const LegacyRecurringProductPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LegacyRecurringProductPrice>;
+  S.Unknown as any as S.Schema<LegacyRecurringProductPrice>;
 
 /** A fixed price for a product. */
 export interface ProductPriceFixed {
@@ -2974,7 +2969,7 @@ export const ProductPriceCustom = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductPriceCustom>;
 
 export type SeatTierType = "volume" | "graduated";
-export const SeatTierType = /*@__PURE__*/ S.String;
+export const SeatTierType = S.String;
 
 /** A pricing tier for seat-based pricing. */
 export interface ProductPriceSeatTier {
@@ -3063,7 +3058,7 @@ export const ProductPriceSeatBased = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductPriceSeatBased>;
 
 export type MeterUnit = "scalar" | "token" | "custom";
-export const MeterUnit = /*@__PURE__*/ S.String;
+export const MeterUnit = S.String;
 
 /** A meter associated to a metered price. */
 export interface ProductPriceMeter {
@@ -3143,14 +3138,13 @@ export type ProductPrice =
   | ProductPriceCustom
   | ProductPriceSeatBased
   | ProductPriceMeteredUnit;
-export const ProductPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductPrice>;
+export const ProductPrice = S.Unknown as any as S.Schema<ProductPrice>;
 
 export type CheckoutLinkProductPricesItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CheckoutLinkProductPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinkProductPricesItem>;
+  S.Unknown as any as S.Schema<CheckoutLinkProductPricesItem>;
 
 /** List of prices for this product. */
 export type CheckoutLinkProductPricesList =
@@ -3322,10 +3316,10 @@ export const CheckoutLinkProductsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CheckoutLinkProductsList>;
 
 export type DiscountDuration = "once" | "forever" | "repeating";
-export const DiscountDuration = /*@__PURE__*/ S.String;
+export const DiscountDuration = S.String;
 
 export type DiscountType = "fixed" | "percentage";
-export const DiscountType = /*@__PURE__*/ S.String;
+export const DiscountType = S.String;
 
 /** Map of currency to fixed amount to discount from the total. */
 export type DiscountFixedOnceForeverDurationBaseAmountsMap = {
@@ -3571,7 +3565,7 @@ export type CheckoutLinkDiscount =
   | DiscountPercentageOnceForeverDurationBase
   | DiscountPercentageRepeatDurationBase;
 export const CheckoutLinkDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinkDiscount>;
+  S.Unknown as any as S.Schema<CheckoutLinkDiscount>;
 
 /** Checkout link data. */
 export interface CheckoutLink {
@@ -3678,7 +3672,7 @@ export type CheckoutLinksListRequestOrganizationId =
   | string
   | CheckoutLinksListRequestOrganizationIdCase1List;
 export const CheckoutLinksListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinksListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<CheckoutLinksListRequestOrganizationId>;
 
 export type CheckoutLinksListRequestProductIdCase1List = Array<string>;
 export const CheckoutLinksListRequestProductIdCase1List = /*@__PURE__*/ S.Array(
@@ -3690,7 +3684,7 @@ export type CheckoutLinksListRequestProductId =
   | string
   | CheckoutLinksListRequestProductIdCase1List;
 export const CheckoutLinksListRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinksListRequestProductId>;
+  S.Unknown as any as S.Schema<CheckoutLinksListRequestProductId>;
 
 export type CheckoutLinkSortProperty =
   | "created_at"
@@ -3701,7 +3695,7 @@ export type CheckoutLinkSortProperty =
   | "-success_url"
   | "allow_discount_codes"
   | "-allow_discount_codes";
-export const CheckoutLinkSortProperty = /*@__PURE__*/ S.String;
+export const CheckoutLinkSortProperty = S.String;
 
 export type CheckoutLinksListRequestSortingList = Array<
   CheckoutLinkSortProperty | (string & {})
@@ -3760,7 +3754,7 @@ export type CheckoutLinksUpdateRequestMetadataValue =
   | number
   | boolean;
 export const CheckoutLinksUpdateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutLinksUpdateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutLinksUpdateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutLinksUpdateRequestMetadataMap = {
@@ -3828,7 +3822,7 @@ export type CheckoutsCreateRequestMetadataValue =
   | number
   | boolean;
 export const CheckoutsCreateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutsCreateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutsCreateRequestMetadataMap = {
@@ -3844,7 +3838,7 @@ export type CheckoutsCreateRequestCustomFieldDataValue =
   | number
   | boolean;
 export const CheckoutsCreateRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<CheckoutsCreateRequestCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type CheckoutsCreateRequestCustomFieldDataMap = {
@@ -4100,7 +4094,7 @@ export type AddressInputCountry =
   | "ZA"
   | "ZM"
   | "ZW";
-export const AddressInputCountry = /*@__PURE__*/ S.String;
+export const AddressInputCountry = S.String;
 
 export interface AddressInput {
   line1?: string | null;
@@ -4127,7 +4121,7 @@ export type CheckoutsCreateRequestCustomerMetadataValue =
   | number
   | boolean;
 export const CheckoutsCreateRequestCustomerMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestCustomerMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutsCreateRequestCustomerMetadataValue>;
 
 /** Key-value object allowing you to store additional information that'll be copied to the created customer. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutsCreateRequestCustomerMetadataMap = {
@@ -4265,7 +4259,7 @@ export type PresentmentCurrency =
   | "yer"
   | "zar"
   | "zmw";
-export const PresentmentCurrency = /*@__PURE__*/ S.String;
+export const PresentmentCurrency = S.String;
 
 /** List of product IDs available to select at that checkout. The first one will be selected by default. */
 export type CheckoutsCreateRequestProductsList = Array<string>;
@@ -4367,7 +4361,7 @@ export const ProductPriceSeatBasedCreate = /*@__PURE__*/ S.suspend(() =>
 /** The price per unit in cents. Supports up to 12 decimal places. */
 export type ProductPriceMeteredUnitCreateUnitAmount = number | string;
 export const ProductPriceMeteredUnitCreateUnitAmount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductPriceMeteredUnitCreateUnitAmount>;
+  S.Unknown as any as S.Schema<ProductPriceMeteredUnitCreateUnitAmount>;
 
 /** Schema to create a metered price with a fixed unit price. */
 export interface ProductPriceMeteredUnitCreate {
@@ -4402,7 +4396,7 @@ export type CheckoutsCreateRequestPricesValueItem =
   | ProductPriceSeatBasedCreate
   | ProductPriceMeteredUnitCreate;
 export const CheckoutsCreateRequestPricesValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsCreateRequestPricesValueItem>;
+  S.Unknown as any as S.Schema<CheckoutsCreateRequestPricesValueItem>;
 
 /** List of prices for the product. At most one fixed price and one seat-based price may be combined (billed as `fixed + seat_charge`), or a single custom price may stand alone, plus any number of metered prices. A custom price cannot be combined with a fixed or seat-based price. */
 export type CheckoutsCreateRequestPricesValueList =
@@ -4511,7 +4505,7 @@ export const CheckoutsCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type CheckoutCustomFieldDataValue = string | number | boolean;
 export const CheckoutCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<CheckoutCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type CheckoutCustomFieldDataMap = {
@@ -4528,10 +4522,10 @@ export type CheckoutStatus =
   | "confirmed"
   | "succeeded"
   | "failed";
-export const CheckoutStatus = /*@__PURE__*/ S.String;
+export const CheckoutStatus = S.String;
 
 export type TaxBehavior = "inclusive" | "exclusive";
-export const TaxBehavior = /*@__PURE__*/ S.String;
+export const TaxBehavior = S.String;
 
 export type CheckoutPaymentProcessorMetadataMap = {
   [key: string]: string | undefined;
@@ -4542,7 +4536,7 @@ export const CheckoutPaymentProcessorMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CheckoutPaymentProcessorMetadataMap>;
 
 export type BillingAddressFieldMode = "required" | "optional" | "disabled";
-export const BillingAddressFieldMode = /*@__PURE__*/ S.String;
+export const BillingAddressFieldMode = S.String;
 
 export interface CheckoutBillingAddressFields {
   country: BillingAddressFieldMode;
@@ -4569,7 +4563,7 @@ export type CheckoutProductPricesItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CheckoutProductPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutProductPricesItem>;
+  S.Unknown as any as S.Schema<CheckoutProductPricesItem>;
 
 /** List of prices for this product. */
 export type CheckoutProductPricesList = Array<CheckoutProductPricesItem>;
@@ -4661,13 +4655,13 @@ export const CheckoutProductsList = /*@__PURE__*/ S.Array(
 
 export type CheckoutProductPrice = LegacyRecurringProductPrice | ProductPrice;
 export const CheckoutProductPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutProductPrice>;
+  S.Unknown as any as S.Schema<CheckoutProductPrice>;
 
 export type CheckoutPricesValueItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CheckoutPricesValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPricesValueItem>;
+  S.Unknown as any as S.Schema<CheckoutPricesValueItem>;
 
 /** List of prices for this product. */
 export type CheckoutPricesValueList = Array<CheckoutPricesValueItem>;
@@ -4819,8 +4813,7 @@ export type CheckoutDiscount =
   | CheckoutDiscountFixedRepeatDuration
   | CheckoutDiscountPercentageOnceForeverDuration
   | CheckoutDiscountPercentageRepeatDuration;
-export const CheckoutDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutDiscount>;
+export const CheckoutDiscount = S.Unknown as any as S.Schema<CheckoutDiscount>;
 
 export interface CustomFieldTextProperties {
   form_label?: string;
@@ -5062,8 +5055,7 @@ export type CustomField =
   | CustomFieldNumber
   | CustomFieldCheckbox
   | CustomFieldSelect;
-export const CustomField =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomField>;
+export const CustomField = S.Unknown as any as S.Schema<CustomField>;
 
 /** Schema of a custom field attached to a resource. */
 export interface AttachedCustomField {
@@ -5093,7 +5085,7 @@ export const CheckoutAttachedCustomFieldsList = /*@__PURE__*/ S.Array(
 
 export type CheckoutCustomerMetadataValue = string | number | boolean;
 export const CheckoutCustomerMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutCustomerMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutCustomerMetadataValue>;
 
 export type CheckoutCustomerMetadataMap = {
   [key: string]: CheckoutCustomerMetadataValue | undefined;
@@ -5305,7 +5297,7 @@ export type CheckoutsListRequestOrganizationId =
   | string
   | CheckoutsListRequestOrganizationIdCase1List;
 export const CheckoutsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<CheckoutsListRequestOrganizationId>;
 
 export type CheckoutsListRequestProductIdCase1List = Array<string>;
 export const CheckoutsListRequestProductIdCase1List = /*@__PURE__*/ S.Array(
@@ -5317,7 +5309,7 @@ export type CheckoutsListRequestProductId =
   | string
   | CheckoutsListRequestProductIdCase1List;
 export const CheckoutsListRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsListRequestProductId>;
+  S.Unknown as any as S.Schema<CheckoutsListRequestProductId>;
 
 export type CheckoutsListRequestCustomerIdCase1List = Array<string>;
 export const CheckoutsListRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -5329,7 +5321,7 @@ export type CheckoutsListRequestCustomerId =
   | string
   | CheckoutsListRequestCustomerIdCase1List;
 export const CheckoutsListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsListRequestCustomerId>;
+  S.Unknown as any as S.Schema<CheckoutsListRequestCustomerId>;
 
 export type CheckoutsListRequestExternalCustomerIdCase1List = Array<string>;
 export const CheckoutsListRequestExternalCustomerIdCase1List =
@@ -5342,7 +5334,7 @@ export type CheckoutsListRequestExternalCustomerId =
   | string
   | CheckoutsListRequestExternalCustomerIdCase1List;
 export const CheckoutsListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<CheckoutsListRequestExternalCustomerId>;
 
 export type CheckoutsListRequestStatusCase1List = Array<
   CheckoutStatus | (string & {})
@@ -5356,7 +5348,7 @@ export type CheckoutsListRequestStatus =
   | CheckoutStatus
   | CheckoutsListRequestStatusCase1List;
 export const CheckoutsListRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsListRequestStatus>;
+  S.Unknown as any as S.Schema<CheckoutsListRequestStatus>;
 
 export type CheckoutSortProperty =
   | "created_at"
@@ -5365,7 +5357,7 @@ export type CheckoutSortProperty =
   | "-expires_at"
   | "status"
   | "-status";
-export const CheckoutSortProperty = /*@__PURE__*/ S.String;
+export const CheckoutSortProperty = S.String;
 
 export type CheckoutsListRequestSortingList = Array<
   CheckoutSortProperty | (string & {})
@@ -5437,7 +5429,7 @@ export type CheckoutsUpdateRequestCustomFieldDataValue =
   | number
   | boolean;
 export const CheckoutsUpdateRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsUpdateRequestCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<CheckoutsUpdateRequestCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type CheckoutsUpdateRequestCustomFieldDataMap = {
@@ -5454,7 +5446,7 @@ export type CheckoutsUpdateRequestMetadataValue =
   | number
   | boolean;
 export const CheckoutsUpdateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsUpdateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutsUpdateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutsUpdateRequestMetadataMap = {
@@ -5471,7 +5463,7 @@ export type CheckoutsUpdateRequestCustomerMetadataValue =
   | number
   | boolean;
 export const CheckoutsUpdateRequestCustomerMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutsUpdateRequestCustomerMetadataValue>;
+  S.Unknown as any as S.Schema<CheckoutsUpdateRequestCustomerMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CheckoutsUpdateRequestCustomerMetadataMap = {
@@ -5609,7 +5601,7 @@ export type ConfirmCheckoutsClientRequestCustomFieldDataValue =
   | number
   | boolean;
 export const ConfirmCheckoutsClientRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfirmCheckoutsClientRequestCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<ConfirmCheckoutsClientRequestCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type ConfirmCheckoutsClientRequestCustomFieldDataMap = {
@@ -5686,7 +5678,7 @@ export type CheckoutPublicConfirmedCustomFieldDataValue =
   | number
   | boolean;
 export const CheckoutPublicConfirmedCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<CheckoutPublicConfirmedCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type CheckoutPublicConfirmedCustomFieldDataMap = {
@@ -5716,13 +5708,13 @@ export type CheckoutPublicConfirmedProductPrice =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CheckoutPublicConfirmedProductPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedProductPrice>;
+  S.Unknown as any as S.Schema<CheckoutPublicConfirmedProductPrice>;
 
 export type CheckoutPublicConfirmedPricesValueItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CheckoutPublicConfirmedPricesValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedPricesValueItem>;
+  S.Unknown as any as S.Schema<CheckoutPublicConfirmedPricesValueItem>;
 
 /** List of prices for this product. */
 export type CheckoutPublicConfirmedPricesValueList =
@@ -5745,14 +5737,14 @@ export type CheckoutPublicConfirmedDiscount =
   | CheckoutDiscountPercentageOnceForeverDuration
   | CheckoutDiscountPercentageRepeatDuration;
 export const CheckoutPublicConfirmedDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicConfirmedDiscount>;
+  S.Unknown as any as S.Schema<CheckoutPublicConfirmedDiscount>;
 
 export type SubscriptionProrationBehavior =
   | "invoice"
   | "prorate"
   | "next_period"
   | "reset";
-export const SubscriptionProrationBehavior = /*@__PURE__*/ S.String;
+export const SubscriptionProrationBehavior = S.String;
 
 export interface CheckoutOrganization {
   /** Creation timestamp of the object. */
@@ -5981,7 +5973,7 @@ export const CustomerMetersGetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomerMetersGetRequest>;
 
 export type FilterConjunction = "and" | "or";
-export const FilterConjunction = /*@__PURE__*/ S.String;
+export const FilterConjunction = S.String;
 
 export type FilterOperator =
   | "eq"
@@ -5992,11 +5984,11 @@ export type FilterOperator =
   | "lte"
   | "like"
   | "not_like";
-export const FilterOperator = /*@__PURE__*/ S.String;
+export const FilterOperator = S.String;
 
 export type FilterClauseValue = string | number | boolean;
 export const FilterClauseValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilterClauseValue>;
+  S.Unknown as any as S.Schema<FilterClauseValue>;
 
 export interface FilterClause {
   property: string;
@@ -6013,7 +6005,7 @@ export const FilterClause = /*@__PURE__*/ S.suspend(() =>
 
 export type FilterClausesItem = FilterClause | Filter;
 export const FilterClausesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilterClausesItem>;
+  S.Unknown as any as S.Schema<FilterClausesItem>;
 
 export type FilterClausesList = Array<FilterClausesItem>;
 export const FilterClausesList = /*@__PURE__*/ S.Array(
@@ -6043,7 +6035,7 @@ export const CountAggregation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CountAggregation>;
 
 export type PropertyAggregationFunc = "sum" | "max" | "min" | "avg";
-export const PropertyAggregationFunc = /*@__PURE__*/ S.String;
+export const PropertyAggregationFunc = S.String;
 
 export interface PropertyAggregation {
   func: PropertyAggregationFunc | (string & {});
@@ -6076,8 +6068,7 @@ export type MeterAggregation =
   | CountAggregation
   | PropertyAggregation
   | UniqueAggregation;
-export const MeterAggregation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MeterAggregation>;
+export const MeterAggregation = S.Unknown as any as S.Schema<MeterAggregation>;
 
 export interface Meter {
   metadata: MetadataOutputType;
@@ -6170,7 +6161,7 @@ export type CustomerMetersListRequestOrganizationId =
   | string
   | CustomerMetersListRequestOrganizationIdCase1List;
 export const CustomerMetersListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerMetersListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<CustomerMetersListRequestOrganizationId>;
 
 export type CustomerMetersListRequestCustomerIdCase1List = Array<string>;
 export const CustomerMetersListRequestCustomerIdCase1List =
@@ -6183,7 +6174,7 @@ export type CustomerMetersListRequestCustomerId =
   | string
   | CustomerMetersListRequestCustomerIdCase1List;
 export const CustomerMetersListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerMetersListRequestCustomerId>;
+  S.Unknown as any as S.Schema<CustomerMetersListRequestCustomerId>;
 
 export type CustomerMetersListRequestExternalCustomerIdCase1List =
   Array<string>;
@@ -6197,7 +6188,7 @@ export type CustomerMetersListRequestExternalCustomerId =
   | string
   | CustomerMetersListRequestExternalCustomerIdCase1List;
 export const CustomerMetersListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerMetersListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<CustomerMetersListRequestExternalCustomerId>;
 
 export type CustomerMetersListRequestMeterIdCase1List = Array<string>;
 export const CustomerMetersListRequestMeterIdCase1List = /*@__PURE__*/ S.Array(
@@ -6209,7 +6200,7 @@ export type CustomerMetersListRequestMeterId =
   | string
   | CustomerMetersListRequestMeterIdCase1List;
 export const CustomerMetersListRequestMeterId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerMetersListRequestMeterId>;
+  S.Unknown as any as S.Schema<CustomerMetersListRequestMeterId>;
 
 export type CustomerMeterSortProperty =
   | "created_at"
@@ -6230,7 +6221,7 @@ export type CustomerMeterSortProperty =
   | "-credited_units"
   | "balance"
   | "-balance";
-export const CustomerMeterSortProperty = /*@__PURE__*/ S.String;
+export const CustomerMeterSortProperty = S.String;
 
 export type CustomerMetersListRequestSortingList = Array<
   CustomerMeterSortProperty | (string & {})
@@ -6339,7 +6330,7 @@ export const CustomerPortalCustomerOauthAccountsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CustomerPortalCustomerOauthAccountsMap>;
 
 export type CustomerType = "individual" | "team";
-export const CustomerType = /*@__PURE__*/ S.String;
+export const CustomerType = S.String;
 
 export interface CustomerPortalCustomer {
   /** Creation timestamp of the object. */
@@ -7101,7 +7092,7 @@ export type CustomerBenefitGrant =
   | CustomerBenefitGrantFeatureFlag
   | CustomerBenefitGrantSlackSharedChannel;
 export const CustomerBenefitGrant =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerBenefitGrant>;
+  S.Unknown as any as S.Schema<CustomerBenefitGrant>;
 
 export type CustomerPortalBenefitGrantsGetResponse = CustomerBenefitGrant;
 export const CustomerPortalBenefitGrantsGetResponse = /*@__PURE__*/ S.suspend(
@@ -7123,7 +7114,7 @@ export type CustomerPortalBenefitGrantsListRequestType =
   | BenefitType
   | CustomerPortalBenefitGrantsListRequestTypeCase1List;
 export const CustomerPortalBenefitGrantsListRequestType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestType>;
+  S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestType>;
 
 export type CustomerPortalBenefitGrantsListRequestBenefitIdCase1List =
   Array<string>;
@@ -7137,7 +7128,7 @@ export type CustomerPortalBenefitGrantsListRequestBenefitId =
   | string
   | CustomerPortalBenefitGrantsListRequestBenefitIdCase1List;
 export const CustomerPortalBenefitGrantsListRequestBenefitId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestBenefitId>;
+  S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestBenefitId>;
 
 export type CustomerPortalBenefitGrantsListRequestCheckoutIdCase1List =
   Array<string>;
@@ -7151,7 +7142,7 @@ export type CustomerPortalBenefitGrantsListRequestCheckoutId =
   | string
   | CustomerPortalBenefitGrantsListRequestCheckoutIdCase1List;
 export const CustomerPortalBenefitGrantsListRequestCheckoutId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestCheckoutId>;
+  S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestCheckoutId>;
 
 export type CustomerPortalBenefitGrantsListRequestOrderIdCase1List =
   Array<string>;
@@ -7165,7 +7156,7 @@ export type CustomerPortalBenefitGrantsListRequestOrderId =
   | string
   | CustomerPortalBenefitGrantsListRequestOrderIdCase1List;
 export const CustomerPortalBenefitGrantsListRequestOrderId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestOrderId>;
+  S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestOrderId>;
 
 export type CustomerPortalBenefitGrantsListRequestSubscriptionIdCase1List =
   Array<string>;
@@ -7179,7 +7170,7 @@ export type CustomerPortalBenefitGrantsListRequestSubscriptionId =
   | string
   | CustomerPortalBenefitGrantsListRequestSubscriptionIdCase1List;
 export const CustomerPortalBenefitGrantsListRequestSubscriptionId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestSubscriptionId>;
+  S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestSubscriptionId>;
 
 export type CustomerPortalBenefitGrantsListRequestMemberIdCase1List =
   Array<string>;
@@ -7193,7 +7184,7 @@ export type CustomerPortalBenefitGrantsListRequestMemberId =
   | string
   | CustomerPortalBenefitGrantsListRequestMemberIdCase1List;
 export const CustomerPortalBenefitGrantsListRequestMemberId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestMemberId>;
+  S.Unknown as any as S.Schema<CustomerPortalBenefitGrantsListRequestMemberId>;
 
 export type CustomerBenefitGrantSortProperty =
   | "granted_at"
@@ -7204,7 +7195,7 @@ export type CustomerBenefitGrantSortProperty =
   | "-organization"
   | "product_benefit"
   | "-product_benefit";
-export const CustomerBenefitGrantSortProperty = /*@__PURE__*/ S.String;
+export const CustomerBenefitGrantSortProperty = S.String;
 
 export type CustomerPortalBenefitGrantsListRequestSortingList = Array<
   CustomerBenefitGrantSortProperty | (string & {})
@@ -7396,7 +7387,7 @@ export type CustomerBenefitGrantUpdate =
   | CustomerBenefitGrantDownloadablesUpdate
   | CustomerBenefitGrantSlackSharedChannelUpdate;
 export const CustomerBenefitGrantUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerBenefitGrantUpdate>;
+  S.Unknown as any as S.Schema<CustomerBenefitGrantUpdate>;
 
 export interface CustomerPortalBenefitGrantsUpdateRequest {
   /** The benefit grant ID. */
@@ -7514,7 +7505,7 @@ export type CustomerPortalCustomerMetersListRequestMeterId =
   | string
   | CustomerPortalCustomerMetersListRequestMeterIdCase1List;
 export const CustomerPortalCustomerMetersListRequestMeterId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalCustomerMetersListRequestMeterId>;
+  S.Unknown as any as S.Schema<CustomerPortalCustomerMetersListRequestMeterId>;
 
 export type CustomerCustomerMeterSortProperty =
   | "created_at"
@@ -7531,7 +7522,7 @@ export type CustomerCustomerMeterSortProperty =
   | "-credited_units"
   | "balance"
   | "-balance";
-export const CustomerCustomerMeterSortProperty = /*@__PURE__*/ S.String;
+export const CustomerCustomerMeterSortProperty = S.String;
 
 export type CustomerPortalCustomerMetersListRequestSortingList = Array<
   CustomerCustomerMeterSortProperty | (string & {})
@@ -7684,7 +7675,7 @@ export const PaymentMethodGeneric = /*@__PURE__*/ S.suspend(() =>
 
 export type CustomerPaymentMethod = PaymentMethodCard | PaymentMethodGeneric;
 export const CustomerPaymentMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPaymentMethod>;
+  S.Unknown as any as S.Schema<CustomerPaymentMethod>;
 
 export interface CustomerPaymentMethodCreateSucceededResponse {
   status: string;
@@ -7718,7 +7709,7 @@ export type CustomerPaymentMethodCreateResponse =
   | CustomerPaymentMethodCreateSucceededResponse
   | CustomerPaymentMethodCreateRequiresActionResponse;
 export const CustomerPaymentMethodCreateResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPaymentMethodCreateResponse>;
+  S.Unknown as any as S.Schema<CustomerPaymentMethodCreateResponse>;
 
 export type CustomerPortalCustomersAddPaymentMethodResponse =
   CustomerPaymentMethodCreateResponse;
@@ -7941,7 +7932,7 @@ export type CustomerPortalDownloadablesListRequestBenefitId =
   | string
   | CustomerPortalDownloadablesListRequestBenefitIdCase1List;
 export const CustomerPortalDownloadablesListRequestBenefitId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalDownloadablesListRequestBenefitId>;
+  S.Unknown as any as S.Schema<CustomerPortalDownloadablesListRequestBenefitId>;
 
 export interface CustomerPortalDownloadablesListRequest {
   /** Filter by benefit ID. */
@@ -7994,7 +7985,7 @@ export type FileServiceTypes =
   | "product_media"
   | "organization_avatar"
   | "support_case_attachment";
-export const FileServiceTypes = /*@__PURE__*/ S.String;
+export const FileServiceTypes = S.String;
 
 export interface FileDownload {
   /** The ID of the object. */
@@ -8075,7 +8066,7 @@ export type CustomerPortalLicenseKeysActivateRequestConditionsValue =
   | number
   | boolean;
 export const CustomerPortalLicenseKeysActivateRequestConditionsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalLicenseKeysActivateRequestConditionsValue>;
+  S.Unknown as any as S.Schema<CustomerPortalLicenseKeysActivateRequestConditionsValue>;
 
 /** Key-value object allowing you to set conditions that must match when validating the license key. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomerPortalLicenseKeysActivateRequestConditionsMap = {
@@ -8095,7 +8086,7 @@ export type CustomerPortalLicenseKeysActivateRequestMetaValue =
   | number
   | boolean;
 export const CustomerPortalLicenseKeysActivateRequestMetaValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalLicenseKeysActivateRequestMetaValue>;
+  S.Unknown as any as S.Schema<CustomerPortalLicenseKeysActivateRequestMetaValue>;
 
 /** Key-value object allowing you to store additional information about the activation The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomerPortalLicenseKeysActivateRequestMetaMap = {
@@ -8143,7 +8134,7 @@ export type LicenseKeyActivationReadMetaValue =
   | number
   | boolean;
 export const LicenseKeyActivationReadMetaValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeyActivationReadMetaValue>;
+  S.Unknown as any as S.Schema<LicenseKeyActivationReadMetaValue>;
 
 export type LicenseKeyActivationReadMetaMap = {
   [key: string]: LicenseKeyActivationReadMetaValue | undefined;
@@ -8217,7 +8208,7 @@ export const LicenseKeyCustomer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LicenseKeyCustomer>;
 
 export type LicenseKeyStatus = "granted" | "revoked" | "disabled";
-export const LicenseKeyStatus = /*@__PURE__*/ S.String;
+export const LicenseKeyStatus = S.String;
 
 export interface LicenseKeyRead {
   /** The ID of the object. */
@@ -8336,7 +8327,7 @@ export type LicenseKeyActivationBaseMetaValue =
   | number
   | boolean;
 export const LicenseKeyActivationBaseMetaValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeyActivationBaseMetaValue>;
+  S.Unknown as any as S.Schema<LicenseKeyActivationBaseMetaValue>;
 
 export type LicenseKeyActivationBaseMetaMap = {
   [key: string]: LicenseKeyActivationBaseMetaValue | undefined;
@@ -8469,7 +8460,7 @@ export type CustomerPortalLicenseKeysValidateRequestConditionsValue =
   | number
   | boolean;
 export const CustomerPortalLicenseKeysValidateRequestConditionsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalLicenseKeysValidateRequestConditionsValue>;
+  S.Unknown as any as S.Schema<CustomerPortalLicenseKeysValidateRequestConditionsValue>;
 
 /** Key-value object allowing you to set conditions that must match when validating the license key. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomerPortalLicenseKeysValidateRequestConditionsMap = {
@@ -8747,7 +8738,7 @@ export type OrderStatus =
   | "refunded"
   | "partially_refunded"
   | "void";
-export const OrderStatus = /*@__PURE__*/ S.String;
+export const OrderStatus = S.String;
 
 export type OrderBillingReason =
   | "purchase"
@@ -8755,13 +8746,13 @@ export type OrderBillingReason =
   | "subscription_cycle"
   | "subscription_update"
   | "subscription_meter_cycle";
-export const OrderBillingReason = /*@__PURE__*/ S.String;
+export const OrderBillingReason = S.String;
 
 export type CustomerOrderProductPricesItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CustomerOrderProductPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerOrderProductPricesItem>;
+  S.Unknown as any as S.Schema<CustomerOrderProductPricesItem>;
 
 /** List of prices for this product. */
 export type CustomerOrderProductPricesList =
@@ -8963,7 +8954,7 @@ export type SubscriptionStatus =
   | "canceled"
   | "unpaid"
   | "paused";
-export const SubscriptionStatus = /*@__PURE__*/ S.String;
+export const SubscriptionStatus = S.String;
 
 export type CustomerCancellationReason =
   | "customer_service"
@@ -8974,7 +8965,7 @@ export type CustomerCancellationReason =
   | "too_expensive"
   | "unused"
   | "other";
-export const CustomerCancellationReason = /*@__PURE__*/ S.String;
+export const CustomerCancellationReason = S.String;
 
 export interface CustomerOrderSubscription {
   /** Creation timestamp of the object. */
@@ -9287,10 +9278,10 @@ export type CustomerPortalOrdersListRequestProductId =
   | string
   | CustomerPortalOrdersListRequestProductIdCase1List;
 export const CustomerPortalOrdersListRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalOrdersListRequestProductId>;
+  S.Unknown as any as S.Schema<CustomerPortalOrdersListRequestProductId>;
 
 export type ProductBillingType = "one_time" | "recurring";
-export const ProductBillingType = /*@__PURE__*/ S.String;
+export const ProductBillingType = S.String;
 
 export type CustomerPortalOrdersListRequestProductBillingTypeCase1List = Array<
   ProductBillingType | (string & {})
@@ -9305,7 +9296,7 @@ export type CustomerPortalOrdersListRequestProductBillingType =
   | ProductBillingType
   | CustomerPortalOrdersListRequestProductBillingTypeCase1List;
 export const CustomerPortalOrdersListRequestProductBillingType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalOrdersListRequestProductBillingType>;
+  S.Unknown as any as S.Schema<CustomerPortalOrdersListRequestProductBillingType>;
 
 export type CustomerPortalOrdersListRequestSubscriptionIdCase1List =
   Array<string>;
@@ -9319,7 +9310,7 @@ export type CustomerPortalOrdersListRequestSubscriptionId =
   | string
   | CustomerPortalOrdersListRequestSubscriptionIdCase1List;
 export const CustomerPortalOrdersListRequestSubscriptionId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalOrdersListRequestSubscriptionId>;
+  S.Unknown as any as S.Schema<CustomerPortalOrdersListRequestSubscriptionId>;
 
 export type CustomerOrderSortProperty =
   | "created_at"
@@ -9332,7 +9323,7 @@ export type CustomerOrderSortProperty =
   | "-product"
   | "subscription"
   | "-subscription";
-export const CustomerOrderSortProperty = /*@__PURE__*/ S.String;
+export const CustomerOrderSortProperty = S.String;
 
 export type CustomerPortalOrdersListRequestSortingList = Array<
   CustomerOrderSortProperty | (string & {})
@@ -9477,7 +9468,7 @@ export type CustomerProductPricesItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CustomerProductPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerProductPricesItem>;
+  S.Unknown as any as S.Schema<CustomerProductPricesItem>;
 
 /** List of available prices for this product. */
 export type CustomerProductPricesList = Array<CustomerProductPricesItem>;
@@ -9634,7 +9625,7 @@ export const CustomerPortalSeatsAssignSeatRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CustomerPortalSeatsAssignSeatRequest>;
 
 export type SeatStatus = "pending" | "claimed" | "revoked";
-export const SeatStatus = /*@__PURE__*/ S.String;
+export const SeatStatus = S.String;
 
 export type CustomerSeatSeatMetadataMap = {
   [key: string]: unknown | undefined;
@@ -9722,7 +9713,7 @@ export type CustomerSubscriptionProductPricesItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CustomerSubscriptionProductPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerSubscriptionProductPricesItem>;
+  S.Unknown as any as S.Schema<CustomerSubscriptionProductPricesItem>;
 
 /** List of prices for this product. */
 export type CustomerSubscriptionProductPricesList =
@@ -9812,7 +9803,7 @@ export type CustomerSubscriptionPricesItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CustomerSubscriptionPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerSubscriptionPricesItem>;
+  S.Unknown as any as S.Schema<CustomerSubscriptionPricesItem>;
 
 /** List of enabled prices for the subscription. */
 export type CustomerSubscriptionPricesList =
@@ -10141,7 +10132,7 @@ export type CustomerPortalSubscriptionsListRequestProductId =
   | string
   | CustomerPortalSubscriptionsListRequestProductIdCase1List;
 export const CustomerPortalSubscriptionsListRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerPortalSubscriptionsListRequestProductId>;
+  S.Unknown as any as S.Schema<CustomerPortalSubscriptionsListRequestProductId>;
 
 export type CustomerSubscriptionSortProperty =
   | "started_at"
@@ -10154,7 +10145,7 @@ export type CustomerSubscriptionSortProperty =
   | "-organization"
   | "product"
   | "-product";
-export const CustomerSubscriptionSortProperty = /*@__PURE__*/ S.String;
+export const CustomerSubscriptionSortProperty = S.String;
 
 export type CustomerPortalSubscriptionsListRequestSortingList = Array<
   CustomerSubscriptionSortProperty | (string & {})
@@ -10291,7 +10282,7 @@ export type CustomerSubscriptionUpdate =
   | CustomerSubscriptionResume
   | CustomerSubscriptionUpdateClear;
 export const CustomerSubscriptionUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerSubscriptionUpdate>;
+  S.Unknown as any as S.Schema<CustomerSubscriptionUpdate>;
 
 export interface CustomerPortalSubscriptionsUpdateRequest {
   /** The subscription ID. */
@@ -10363,7 +10354,7 @@ export type CustomerWalletSortProperty =
   | "-created_at"
   | "balance"
   | "-balance";
-export const CustomerWalletSortProperty = /*@__PURE__*/ S.String;
+export const CustomerWalletSortProperty = S.String;
 
 export type CustomerPortalWalletsListRequestSortingList = Array<
   CustomerWalletSortProperty | (string & {})
@@ -10419,7 +10410,7 @@ export type CustomerIndividualCreateMetadataValue =
   | number
   | boolean;
 export const CustomerIndividualCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerIndividualCreateMetadataValue>;
+  S.Unknown as any as S.Schema<CustomerIndividualCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomerIndividualCreateMetadataMap = {
@@ -10488,7 +10479,7 @@ export type CustomerTeamCreateMetadataValue =
   | number
   | boolean;
 export const CustomerTeamCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerTeamCreateMetadataValue>;
+  S.Unknown as any as S.Schema<CustomerTeamCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomerTeamCreateMetadataMap = {
@@ -10534,8 +10525,7 @@ export const CustomerTeamCreate = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomerTeamCreate>;
 
 export type CustomerCreate = CustomerIndividualCreate | CustomerTeamCreate;
-export const CustomerCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerCreate>;
+export const CustomerCreate = S.Unknown as any as S.Schema<CustomerCreate>;
 
 export interface CustomersCreateRequest {
   body: CustomerCreate;
@@ -10776,7 +10766,7 @@ export type CustomerSessionsCreateRequestBody =
   | CustomerSessionCustomerIDCreate
   | CustomerSessionCustomerExternalIDCreate;
 export const CustomerSessionsCreateRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerSessionsCreateRequestBody>;
+  S.Unknown as any as S.Schema<CustomerSessionsCreateRequestBody>;
 
 export interface CustomerSessionsCreateRequest {
   body: CustomerSessionsCreateRequestBody;
@@ -10831,7 +10821,7 @@ export type CustomersExportRequestOrganizationId =
   | string
   | CustomersExportRequestOrganizationIdCase1List;
 export const CustomersExportRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomersExportRequestOrganizationId>;
+  S.Unknown as any as S.Schema<CustomersExportRequestOrganizationId>;
 
 export interface CustomersExportRequest {
   /** Filter by organization ID. */
@@ -10922,7 +10912,7 @@ export type CustomerStateSubscriptionCustomFieldDataValue =
   | number
   | boolean;
 export const CustomerStateSubscriptionCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerStateSubscriptionCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<CustomerStateSubscriptionCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type CustomerStateSubscriptionCustomFieldDataMap = {
@@ -10935,7 +10925,7 @@ export const CustomerStateSubscriptionCustomFieldDataMap =
   ) as any as S.Schema<CustomerStateSubscriptionCustomFieldDataMap>;
 
 export type CustomerStateSubscriptionStatus = "active" | "trialing";
-export const CustomerStateSubscriptionStatus = /*@__PURE__*/ S.String;
+export const CustomerStateSubscriptionStatus = S.String;
 
 /** Current consumption and spending for a subscription meter. */
 export interface CustomerStateSubscriptionMeter {
@@ -11059,7 +11049,7 @@ export type CustomerStateBenefitGrantProperties =
   | unknown
   | BenefitGrantSlackSharedChannelProperties;
 export const CustomerStateBenefitGrantProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerStateBenefitGrantProperties>;
+  S.Unknown as any as S.Schema<CustomerStateBenefitGrantProperties>;
 
 /** An active benefit grant for a customer. */
 export interface CustomerStateBenefitGrant {
@@ -11300,8 +11290,7 @@ export const CustomerStateTeam = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomerStateTeam>;
 
 export type CustomerState = CustomerStateIndividual | CustomerStateTeam;
-export const CustomerState =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerState>;
+export const CustomerState = S.Unknown as any as S.Schema<CustomerState>;
 
 export type CustomersGetStateResponse = CustomerState;
 export const CustomersGetStateResponse = /*@__PURE__*/ S.suspend(() =>
@@ -11346,7 +11335,7 @@ export type CustomersListRequestOrganizationId =
   | string
   | CustomersListRequestOrganizationIdCase1List;
 export const CustomersListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomersListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<CustomersListRequestOrganizationId>;
 
 export type CustomerSortProperty =
   | "created_at"
@@ -11355,7 +11344,7 @@ export type CustomerSortProperty =
   | "-email"
   | "name"
   | "-name";
-export const CustomerSortProperty = /*@__PURE__*/ S.String;
+export const CustomerSortProperty = S.String;
 
 export type CustomersListRequestSortingList = Array<
   CustomerSortProperty | (string & {})
@@ -11500,8 +11489,7 @@ export const CustomerPaymentMethodGeneric = /*@__PURE__*/ S.suspend(() =>
 export type PaymentMethod =
   | CustomerPaymentMethodCard
   | CustomerPaymentMethodGeneric;
-export const PaymentMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentMethod>;
+export const PaymentMethod = S.Unknown as any as S.Schema<PaymentMethod>;
 
 export type ListResourcePaymentMethodItemsList = Array<PaymentMethod>;
 export const ListResourcePaymentMethodItemsList = /*@__PURE__*/ S.Array(
@@ -11548,7 +11536,7 @@ export const CustomersListPaymentMethodsExternalRequest =
 
 /** The role of the member within the customer. To assign or transfer ownership, use the member update endpoint. */
 export type CustomersMembersCreateRequestRole = "member" | "billing_manager";
-export const CustomersMembersCreateRequestRole = /*@__PURE__*/ S.String;
+export const CustomersMembersCreateRequestRole = S.String;
 
 export interface CustomersMembersCreateRequest {
   /** The customer ID. */
@@ -11579,7 +11567,7 @@ export const CustomersMembersCreateRequest = /*@__PURE__*/ S.suspend(() =>
 export type CustomersMembersCreateExternalRequestRole =
   | "member"
   | "billing_manager";
-export const CustomersMembersCreateExternalRequestRole = /*@__PURE__*/ S.String;
+export const CustomersMembersCreateExternalRequestRole = S.String;
 
 export interface CustomersMembersCreateExternalRequest {
   /** The customer external ID. */
@@ -11767,7 +11755,7 @@ export type CustomersUpdateRequestMetadataValue =
   | number
   | boolean;
 export const CustomersUpdateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomersUpdateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<CustomersUpdateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomersUpdateRequestMetadataMap = {
@@ -11823,7 +11811,7 @@ export type CustomersUpdateExternalRequestMetadataValue =
   | number
   | boolean;
 export const CustomersUpdateExternalRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomersUpdateExternalRequestMetadataValue>;
+  S.Unknown as any as S.Schema<CustomersUpdateExternalRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomersUpdateExternalRequestMetadataMap = {
@@ -11879,7 +11867,7 @@ export type CustomFieldCreateTextMetadataValue =
   | number
   | boolean;
 export const CustomFieldCreateTextMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldCreateTextMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldCreateTextMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldCreateTextMetadataMap = {
@@ -11922,7 +11910,7 @@ export type CustomFieldCreateNumberMetadataValue =
   | number
   | boolean;
 export const CustomFieldCreateNumberMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldCreateNumberMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldCreateNumberMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldCreateNumberMetadataMap = {
@@ -11965,7 +11953,7 @@ export type CustomFieldCreateDateMetadataValue =
   | number
   | boolean;
 export const CustomFieldCreateDateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldCreateDateMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldCreateDateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldCreateDateMetadataMap = {
@@ -12008,7 +11996,7 @@ export type CustomFieldCreateCheckboxMetadataValue =
   | number
   | boolean;
 export const CustomFieldCreateCheckboxMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldCreateCheckboxMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldCreateCheckboxMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldCreateCheckboxMetadataMap = {
@@ -12051,7 +12039,7 @@ export type CustomFieldCreateSelectMetadataValue =
   | number
   | boolean;
 export const CustomFieldCreateSelectMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldCreateSelectMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldCreateSelectMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldCreateSelectMetadataMap = {
@@ -12095,7 +12083,7 @@ export type CustomFieldCreate =
   | CustomFieldCreateCheckbox
   | CustomFieldCreateSelect;
 export const CustomFieldCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldCreate>;
+  S.Unknown as any as S.Schema<CustomFieldCreate>;
 
 export interface CustomFieldsCreateRequest {
   body: CustomFieldCreate;
@@ -12166,7 +12154,7 @@ export type CustomFieldsListRequestOrganizationId =
   | string
   | CustomFieldsListRequestOrganizationIdCase1List;
 export const CustomFieldsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<CustomFieldsListRequestOrganizationId>;
 
 export type CustomFieldType =
   | "text"
@@ -12174,7 +12162,7 @@ export type CustomFieldType =
   | "date"
   | "checkbox"
   | "select";
-export const CustomFieldType = /*@__PURE__*/ S.String;
+export const CustomFieldType = S.String;
 
 export type CustomFieldsListRequestTypeCase1List = Array<
   CustomFieldType | (string & {})
@@ -12188,7 +12176,7 @@ export type CustomFieldsListRequestType =
   | CustomFieldType
   | CustomFieldsListRequestTypeCase1List;
 export const CustomFieldsListRequestType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldsListRequestType>;
+  S.Unknown as any as S.Schema<CustomFieldsListRequestType>;
 
 export type CustomFieldSortProperty =
   | "created_at"
@@ -12199,7 +12187,7 @@ export type CustomFieldSortProperty =
   | "-name"
   | "type"
   | "-type";
-export const CustomFieldSortProperty = /*@__PURE__*/ S.String;
+export const CustomFieldSortProperty = S.String;
 
 export type CustomFieldsListRequestSortingList = Array<
   CustomFieldSortProperty | (string & {})
@@ -12261,7 +12249,7 @@ export type CustomFieldUpdateTextMetadataValue =
   | number
   | boolean;
 export const CustomFieldUpdateTextMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldUpdateTextMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldUpdateTextMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldUpdateTextMetadataMap = {
@@ -12299,7 +12287,7 @@ export type CustomFieldUpdateNumberMetadataValue =
   | number
   | boolean;
 export const CustomFieldUpdateNumberMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldUpdateNumberMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldUpdateNumberMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldUpdateNumberMetadataMap = {
@@ -12337,7 +12325,7 @@ export type CustomFieldUpdateDateMetadataValue =
   | number
   | boolean;
 export const CustomFieldUpdateDateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldUpdateDateMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldUpdateDateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldUpdateDateMetadataMap = {
@@ -12375,7 +12363,7 @@ export type CustomFieldUpdateCheckboxMetadataValue =
   | number
   | boolean;
 export const CustomFieldUpdateCheckboxMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldUpdateCheckboxMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldUpdateCheckboxMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldUpdateCheckboxMetadataMap = {
@@ -12413,7 +12401,7 @@ export type CustomFieldUpdateSelectMetadataValue =
   | number
   | boolean;
 export const CustomFieldUpdateSelectMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldUpdateSelectMetadataValue>;
+  S.Unknown as any as S.Schema<CustomFieldUpdateSelectMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type CustomFieldUpdateSelectMetadataMap = {
@@ -12452,7 +12440,7 @@ export type CustomFieldUpdate =
   | CustomFieldUpdateCheckbox
   | CustomFieldUpdateSelect;
 export const CustomFieldUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldUpdate>;
+  S.Unknown as any as S.Schema<CustomFieldUpdate>;
 
 export interface CustomFieldsUpdateRequest {
   /** The custom field ID. */
@@ -12483,7 +12471,7 @@ export type DiscountFixedCreateMetadataValue =
   | number
   | boolean;
 export const DiscountFixedCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountFixedCreateMetadataValue>;
+  S.Unknown as any as S.Schema<DiscountFixedCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type DiscountFixedCreateMetadataMap = {
@@ -12565,7 +12553,7 @@ export type DiscountPercentageCreateMetadataValue =
   | number
   | boolean;
 export const DiscountPercentageCreateMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountPercentageCreateMetadataValue>;
+  S.Unknown as any as S.Schema<DiscountPercentageCreateMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type DiscountPercentageCreateMetadataMap = {
@@ -12630,8 +12618,7 @@ export const DiscountPercentageCreate = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiscountPercentageCreate>;
 
 export type DiscountCreate = DiscountFixedCreate | DiscountPercentageCreate;
-export const DiscountCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountCreate>;
+export const DiscountCreate = S.Unknown as any as S.Schema<DiscountCreate>;
 
 export interface DiscountsCreateRequest {
   body: DiscountCreate;
@@ -12980,7 +12967,7 @@ export type Discount =
   | DiscountFixedRepeatDuration
   | DiscountPercentageOnceForeverDuration
   | DiscountPercentageRepeatDuration;
-export const Discount = /*@__PURE__*/ S.Unknown as any as S.Schema<Discount>;
+export const Discount = S.Unknown as any as S.Schema<Discount>;
 
 export type DiscountsCreateResponse = Discount;
 export const DiscountsCreateResponse = /*@__PURE__*/ S.suspend(() =>
@@ -13038,7 +13025,7 @@ export type DiscountsListRequestOrganizationId =
   | string
   | DiscountsListRequestOrganizationIdCase1List;
 export const DiscountsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<DiscountsListRequestOrganizationId>;
 
 export type DiscountSortProperty =
   | "created_at"
@@ -13051,7 +13038,7 @@ export type DiscountSortProperty =
   | "-redemptions_count"
   | "ends_at"
   | "-ends_at";
-export const DiscountSortProperty = /*@__PURE__*/ S.String;
+export const DiscountSortProperty = S.String;
 
 export type DiscountsListRequestSortingList = Array<
   DiscountSortProperty | (string & {})
@@ -13110,7 +13097,7 @@ export type DiscountsUpdateRequestMetadataValue =
   | number
   | boolean;
 export const DiscountsUpdateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountsUpdateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<DiscountsUpdateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type DiscountsUpdateRequestMetadataMap = {
@@ -13212,7 +13199,7 @@ export type DisputeStatus =
   | "under_review"
   | "lost"
   | "won";
-export const DisputeStatus = /*@__PURE__*/ S.String;
+export const DisputeStatus = S.String;
 
 export type DisputeCustomerTaxIdList = Array<unknown>;
 export const DisputeCustomerTaxIdList = /*@__PURE__*/ S.Array(
@@ -13355,7 +13342,7 @@ export type DisputesListRequestOrganizationId =
   | string
   | DisputesListRequestOrganizationIdCase1List;
 export const DisputesListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DisputesListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<DisputesListRequestOrganizationId>;
 
 export type DisputesListRequestOrderIdCase1List = Array<string>;
 export const DisputesListRequestOrderIdCase1List = /*@__PURE__*/ S.Array(
@@ -13367,7 +13354,7 @@ export type DisputesListRequestOrderId =
   | string
   | DisputesListRequestOrderIdCase1List;
 export const DisputesListRequestOrderId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DisputesListRequestOrderId>;
+  S.Unknown as any as S.Schema<DisputesListRequestOrderId>;
 
 export type DisputesListRequestStatusCase1List = Array<
   DisputeStatus | (string & {})
@@ -13381,14 +13368,14 @@ export type DisputesListRequestStatus =
   | DisputeStatus
   | DisputesListRequestStatusCase1List;
 export const DisputesListRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DisputesListRequestStatus>;
+  S.Unknown as any as S.Schema<DisputesListRequestStatus>;
 
 export type DisputeSortProperty =
   | "created_at"
   | "-created_at"
   | "amount"
   | "-amount";
-export const DisputeSortProperty = /*@__PURE__*/ S.String;
+export const DisputeSortProperty = S.String;
 
 export type DisputesListRequestSortingList = Array<
   DisputeSortProperty | (string & {})
@@ -14860,7 +14847,7 @@ export const AddressDict = /*@__PURE__*/ S.suspend(() =>
 
 export type CustomerUpdatedFieldsMetadataValue = string | number | boolean;
 export const CustomerUpdatedFieldsMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerUpdatedFieldsMetadataValue>;
+  S.Unknown as any as S.Schema<CustomerUpdatedFieldsMetadataValue>;
 
 export type CustomerUpdatedFieldsMetadataMap = {
   [key: string]: CustomerUpdatedFieldsMetadataValue | undefined;
@@ -15362,8 +15349,7 @@ export type SystemEvent =
   | BalanceRefundEvent
   | BalanceDisputeEvent
   | BalanceDisputeEvent;
-export const SystemEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SystemEvent>;
+export const SystemEvent = S.Unknown as any as S.Schema<SystemEvent>;
 
 export interface CostMetadataOutput {
   /** The amount in cents. */
@@ -15474,7 +15460,7 @@ export const UserEvent = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserEvent" }) as any as S.Schema<UserEvent>;
 
 export type Event = SystemEvent | UserEvent;
-export const Event = /*@__PURE__*/ S.Unknown as any as S.Schema<Event>;
+export const Event = S.Unknown as any as S.Schema<Event>;
 
 export type EventsGetResponse = Event;
 export const EventsGetResponse = /*@__PURE__*/ S.suspend(() =>
@@ -15486,7 +15472,7 @@ export const EventsGetResponse = /*@__PURE__*/ S.suspend(() =>
 /** The amount in cents. */
 export type CostMetadataInputAmount = number | string;
 export const CostMetadataInputAmount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CostMetadataInputAmount>;
+  S.Unknown as any as S.Schema<CostMetadataInputAmount>;
 
 export interface CostMetadataInput {
   /** The amount in cents. */
@@ -15586,7 +15572,7 @@ export type EventsIngestRequestEventsItem =
   | EventCreateCustomer
   | EventCreateExternalCustomer;
 export const EventsIngestRequestEventsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsIngestRequestEventsItem>;
+  S.Unknown as any as S.Schema<EventsIngestRequestEventsItem>;
 
 /** List of events to ingest. */
 export type EventsIngestRequestEventsList =
@@ -15632,7 +15618,7 @@ export type EventsListRequestOrganizationId =
   | string
   | EventsListRequestOrganizationIdCase1List;
 export const EventsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<EventsListRequestOrganizationId>;
 
 export type EventsListRequestCustomerIdCase1List = Array<string>;
 export const EventsListRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -15644,7 +15630,7 @@ export type EventsListRequestCustomerId =
   | string
   | EventsListRequestCustomerIdCase1List;
 export const EventsListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListRequestCustomerId>;
+  S.Unknown as any as S.Schema<EventsListRequestCustomerId>;
 
 export type EventsListRequestExternalCustomerIdCase1List = Array<string>;
 export const EventsListRequestExternalCustomerIdCase1List =
@@ -15657,7 +15643,7 @@ export type EventsListRequestExternalCustomerId =
   | string
   | EventsListRequestExternalCustomerIdCase1List;
 export const EventsListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<EventsListRequestExternalCustomerId>;
 
 export type EventsListRequestNameCase1List = Array<string>;
 export const EventsListRequestNameCase1List = /*@__PURE__*/ S.Array(
@@ -15667,10 +15653,10 @@ export const EventsListRequestNameCase1List = /*@__PURE__*/ S.Array(
 /** Filter by event name. */
 export type EventsListRequestName = string | EventsListRequestNameCase1List;
 export const EventsListRequestName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListRequestName>;
+  S.Unknown as any as S.Schema<EventsListRequestName>;
 
 export type EventSource = "system" | "user";
-export const EventSource = /*@__PURE__*/ S.String;
+export const EventSource = S.String;
 
 export type EventsListRequestSourceCase1List = Array<
   EventSource | (string & {})
@@ -15684,10 +15670,10 @@ export type EventsListRequestSource =
   | EventSource
   | EventsListRequestSourceCase1List;
 export const EventsListRequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListRequestSource>;
+  S.Unknown as any as S.Schema<EventsListRequestSource>;
 
 export type EventSortProperty = "timestamp" | "-timestamp";
-export const EventSortProperty = /*@__PURE__*/ S.String;
+export const EventSortProperty = S.String;
 
 export type EventsListRequestSortingList = Array<
   EventSortProperty | (string & {})
@@ -15810,7 +15796,7 @@ export type EventsListResponseBody =
   | ListResourceEvent
   | ListResourceWithCursorPaginationEvent;
 export const EventsListResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListResponseBody>;
+  S.Unknown as any as S.Schema<EventsListResponseBody>;
 
 export type EventsListResponse = EventsListResponseBody;
 export const EventsListResponse = /*@__PURE__*/ S.suspend(() =>
@@ -15830,7 +15816,7 @@ export type EventsListNamesRequestOrganizationId =
   | string
   | EventsListNamesRequestOrganizationIdCase1List;
 export const EventsListNamesRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListNamesRequestOrganizationId>;
+  S.Unknown as any as S.Schema<EventsListNamesRequestOrganizationId>;
 
 export type EventsListNamesRequestCustomerIdCase1List = Array<string>;
 export const EventsListNamesRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -15842,7 +15828,7 @@ export type EventsListNamesRequestCustomerId =
   | string
   | EventsListNamesRequestCustomerIdCase1List;
 export const EventsListNamesRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListNamesRequestCustomerId>;
+  S.Unknown as any as S.Schema<EventsListNamesRequestCustomerId>;
 
 export type EventsListNamesRequestExternalCustomerIdCase1List = Array<string>;
 export const EventsListNamesRequestExternalCustomerIdCase1List =
@@ -15855,7 +15841,7 @@ export type EventsListNamesRequestExternalCustomerId =
   | string
   | EventsListNamesRequestExternalCustomerIdCase1List;
 export const EventsListNamesRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListNamesRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<EventsListNamesRequestExternalCustomerId>;
 
 export type EventsListNamesRequestSourceCase1List = Array<
   EventSource | (string & {})
@@ -15869,7 +15855,7 @@ export type EventsListNamesRequestSource =
   | EventSource
   | EventsListNamesRequestSourceCase1List;
 export const EventsListNamesRequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventsListNamesRequestSource>;
+  S.Unknown as any as S.Schema<EventsListNamesRequestSource>;
 
 export type EventNamesSortProperty =
   | "name"
@@ -15880,7 +15866,7 @@ export type EventNamesSortProperty =
   | "-first_seen"
   | "last_seen"
   | "-last_seen";
-export const EventNamesSortProperty = /*@__PURE__*/ S.String;
+export const EventNamesSortProperty = S.String;
 
 export type EventsListNamesRequestSortingList = Array<
   EventNamesSortProperty | (string & {})
@@ -15980,7 +15966,7 @@ export type EventTypesListRequestOrganizationId =
   | string
   | EventTypesListRequestOrganizationIdCase1List;
 export const EventTypesListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventTypesListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<EventTypesListRequestOrganizationId>;
 
 export type EventTypesListRequestCustomerIdCase1List = Array<string>;
 export const EventTypesListRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -15992,7 +15978,7 @@ export type EventTypesListRequestCustomerId =
   | string
   | EventTypesListRequestCustomerIdCase1List;
 export const EventTypesListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventTypesListRequestCustomerId>;
+  S.Unknown as any as S.Schema<EventTypesListRequestCustomerId>;
 
 export type EventTypesListRequestExternalCustomerIdCase1List = Array<string>;
 export const EventTypesListRequestExternalCustomerIdCase1List =
@@ -16005,7 +15991,7 @@ export type EventTypesListRequestExternalCustomerId =
   | string
   | EventTypesListRequestExternalCustomerIdCase1List;
 export const EventTypesListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventTypesListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<EventTypesListRequestExternalCustomerId>;
 
 export type EventTypesSortProperty =
   | "name"
@@ -16018,7 +16004,7 @@ export type EventTypesSortProperty =
   | "-first_seen"
   | "last_seen"
   | "-last_seen";
-export const EventTypesSortProperty = /*@__PURE__*/ S.String;
+export const EventTypesSortProperty = S.String;
 
 export type EventTypesListRequestSortingList = Array<
   EventTypesSortProperty | (string & {})
@@ -16324,8 +16310,7 @@ export type FileCreate =
   | ProductMediaFileCreate
   | OrganizationAvatarFileCreate
   | SupportCaseAttachmentFileCreate;
-export const FileCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FileCreate>;
+export const FileCreate = S.Unknown as any as S.Schema<FileCreate>;
 
 export interface FilesCreateRequest {
   body: FileCreate;
@@ -16455,7 +16440,7 @@ export type FilesListRequestOrganizationId =
   | string
   | FilesListRequestOrganizationIdCase1List;
 export const FilesListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilesListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<FilesListRequestOrganizationId>;
 
 export type FilesListRequestIdsCase1List = Array<string>;
 export const FilesListRequestIdsCase1List = /*@__PURE__*/ S.Array(
@@ -16465,7 +16450,7 @@ export const FilesListRequestIdsCase1List = /*@__PURE__*/ S.Array(
 /** Filter by file ID. */
 export type FilesListRequestIds = string | FilesListRequestIdsCase1List;
 export const FilesListRequestIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FilesListRequestIds>;
+  S.Unknown as any as S.Schema<FilesListRequestIds>;
 
 export interface FilesListRequest {
   /** Filter by organization ID. */
@@ -16585,7 +16570,7 @@ export type FileRead =
   | ProductMediaFileRead
   | ProductMediaFileRead
   | SupportCaseAttachmentFileRead;
-export const FileRead = /*@__PURE__*/ S.Unknown as any as S.Schema<FileRead>;
+export const FileRead = S.Unknown as any as S.Schema<FileRead>;
 
 export type ListResourceFileReadItemsList = Array<FileRead>;
 export const ListResourceFileReadItemsList = /*@__PURE__*/ S.Array(
@@ -16693,7 +16678,7 @@ export const GetCheckoutsClientRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type CheckoutPublicCustomFieldDataValue = string | number | boolean;
 export const CheckoutPublicCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<CheckoutPublicCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type CheckoutPublicCustomFieldDataMap = {
@@ -16722,13 +16707,13 @@ export type CheckoutPublicProductPrice =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CheckoutPublicProductPrice =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicProductPrice>;
+  S.Unknown as any as S.Schema<CheckoutPublicProductPrice>;
 
 export type CheckoutPublicPricesValueItem =
   | LegacyRecurringProductPrice
   | ProductPrice;
 export const CheckoutPublicPricesValueItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicPricesValueItem>;
+  S.Unknown as any as S.Schema<CheckoutPublicPricesValueItem>;
 
 /** List of prices for this product. */
 export type CheckoutPublicPricesValueList =
@@ -16751,7 +16736,7 @@ export type CheckoutPublicDiscount =
   | CheckoutDiscountPercentageOnceForeverDuration
   | CheckoutDiscountPercentageRepeatDuration;
 export const CheckoutPublicDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CheckoutPublicDiscount>;
+  S.Unknown as any as S.Schema<CheckoutPublicDiscount>;
 
 export type CheckoutPublicAttachedCustomFieldsList = Array<AttachedCustomField>;
 export const CheckoutPublicAttachedCustomFieldsList = /*@__PURE__*/ S.Array(
@@ -16930,7 +16915,7 @@ export type LicenseKeysActivateRequestConditionsValue =
   | number
   | boolean;
 export const LicenseKeysActivateRequestConditionsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeysActivateRequestConditionsValue>;
+  S.Unknown as any as S.Schema<LicenseKeysActivateRequestConditionsValue>;
 
 /** Key-value object allowing you to set conditions that must match when validating the license key. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type LicenseKeysActivateRequestConditionsMap = {
@@ -16947,7 +16932,7 @@ export type LicenseKeysActivateRequestMetaValue =
   | number
   | boolean;
 export const LicenseKeysActivateRequestMetaValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeysActivateRequestMetaValue>;
+  S.Unknown as any as S.Schema<LicenseKeysActivateRequestMetaValue>;
 
 /** Key-value object allowing you to store additional information about the activation The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type LicenseKeysActivateRequestMetaMap = {
@@ -17046,7 +17031,7 @@ export type LicenseKeysListRequestOrganizationId =
   | string
   | LicenseKeysListRequestOrganizationIdCase1List;
 export const LicenseKeysListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeysListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<LicenseKeysListRequestOrganizationId>;
 
 export type LicenseKeysListRequestBenefitIdCase1List = Array<string>;
 export const LicenseKeysListRequestBenefitIdCase1List = /*@__PURE__*/ S.Array(
@@ -17058,7 +17043,7 @@ export type LicenseKeysListRequestBenefitId =
   | string
   | LicenseKeysListRequestBenefitIdCase1List;
 export const LicenseKeysListRequestBenefitId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeysListRequestBenefitId>;
+  S.Unknown as any as S.Schema<LicenseKeysListRequestBenefitId>;
 
 export type LicenseKeysListRequestStatusCase1List = Array<
   LicenseKeyStatus | (string & {})
@@ -17072,7 +17057,7 @@ export type LicenseKeysListRequestStatus =
   | LicenseKeyStatus
   | LicenseKeysListRequestStatusCase1List;
 export const LicenseKeysListRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeysListRequestStatus>;
+  S.Unknown as any as S.Schema<LicenseKeysListRequestStatus>;
 
 export interface LicenseKeysListRequest {
   /** Filter by organization ID. */
@@ -17127,7 +17112,7 @@ export type LicenseKeysValidateRequestConditionsValue =
   | number
   | boolean;
 export const LicenseKeysValidateRequestConditionsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseKeysValidateRequestConditionsValue>;
+  S.Unknown as any as S.Schema<LicenseKeysValidateRequestConditionsValue>;
 
 /** Key-value object allowing you to set conditions that must match when validating the license key. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type LicenseKeysValidateRequestConditionsMap = {
@@ -17165,7 +17150,7 @@ export const LicenseKeysValidateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LicenseKeysValidateRequest>;
 
 export type MemberSortProperty = "created_at" | "-created_at";
-export const MemberSortProperty = /*@__PURE__*/ S.String;
+export const MemberSortProperty = S.String;
 
 export type MembersListMembersRequestSortingList = Array<
   MemberSortProperty | (string & {})
@@ -17225,7 +17210,7 @@ export type MetersCreateRequestMetadataValue =
   | number
   | boolean;
 export const MetersCreateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetersCreateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<MetersCreateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type MetersCreateRequestMetadataMap = {
@@ -17242,7 +17227,7 @@ export type MetersCreateRequestAggregation =
   | PropertyAggregation
   | UniqueAggregation;
 export const MetersCreateRequestAggregation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetersCreateRequestAggregation>;
+  S.Unknown as any as S.Schema<MetersCreateRequestAggregation>;
 
 export interface MetersCreateRequest {
   /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
@@ -17299,10 +17284,10 @@ export type MetersListRequestOrganizationId =
   | string
   | MetersListRequestOrganizationIdCase1List;
 export const MetersListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetersListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<MetersListRequestOrganizationId>;
 
 export type MeterSortProperty = "created_at" | "-created_at" | "name" | "-name";
-export const MeterSortProperty = /*@__PURE__*/ S.String;
+export const MeterSortProperty = S.String;
 
 export type MetersListRequestSortingList = Array<
   MeterSortProperty | (string & {})
@@ -17362,7 +17347,7 @@ export const ListResourceMeter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResourceMeter>;
 
 export type TimeInterval = "year" | "month" | "week" | "day" | "hour";
-export const TimeInterval = /*@__PURE__*/ S.String;
+export const TimeInterval = S.String;
 
 /** Timezone to use for the timestamps. Default is UTC. */
 export type MetersQuantitiesRequestTimezone =
@@ -17964,7 +17949,7 @@ export type MetersQuantitiesRequestTimezone =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const MetersQuantitiesRequestTimezone = /*@__PURE__*/ S.String;
+export const MetersQuantitiesRequestTimezone = S.String;
 
 export type MetersQuantitiesRequestCustomerIdCase1List = Array<string>;
 export const MetersQuantitiesRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -17976,7 +17961,7 @@ export type MetersQuantitiesRequestCustomerId =
   | string
   | MetersQuantitiesRequestCustomerIdCase1List;
 export const MetersQuantitiesRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetersQuantitiesRequestCustomerId>;
+  S.Unknown as any as S.Schema<MetersQuantitiesRequestCustomerId>;
 
 export type MetersQuantitiesRequestExternalCustomerIdCase1List = Array<string>;
 export const MetersQuantitiesRequestExternalCustomerIdCase1List =
@@ -17989,7 +17974,7 @@ export type MetersQuantitiesRequestExternalCustomerId =
   | string
   | MetersQuantitiesRequestExternalCustomerIdCase1List;
 export const MetersQuantitiesRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetersQuantitiesRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<MetersQuantitiesRequestExternalCustomerId>;
 
 export type AggregationFunction =
   | "count"
@@ -17998,7 +17983,7 @@ export type AggregationFunction =
   | "min"
   | "avg"
   | "unique";
-export const AggregationFunction = /*@__PURE__*/ S.String;
+export const AggregationFunction = S.String;
 
 export interface MetersQuantitiesRequest {
   /** The meter ID. */
@@ -18080,7 +18065,7 @@ export type MetersUpdateRequestMetadataValue =
   | number
   | boolean;
 export const MetersUpdateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetersUpdateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<MetersUpdateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type MetersUpdateRequestMetadataMap = {
@@ -18096,7 +18081,7 @@ export type MetersUpdateRequestAggregation =
   | PropertyAggregation
   | UniqueAggregation;
 export const MetersUpdateRequestAggregation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetersUpdateRequestAggregation>;
+  S.Unknown as any as S.Schema<MetersUpdateRequestAggregation>;
 
 export interface MetersUpdateRequest {
   /** The meter ID. */
@@ -18813,7 +18798,7 @@ export type MetricsExportRequestTimezone =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const MetricsExportRequestTimezone = /*@__PURE__*/ S.String;
+export const MetricsExportRequestTimezone = S.String;
 
 export type MetricsExportRequestOrganizationIdCase1List = Array<string>;
 export const MetricsExportRequestOrganizationIdCase1List =
@@ -18826,7 +18811,7 @@ export type MetricsExportRequestOrganizationId =
   | string
   | MetricsExportRequestOrganizationIdCase1List;
 export const MetricsExportRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsExportRequestOrganizationId>;
+  S.Unknown as any as S.Schema<MetricsExportRequestOrganizationId>;
 
 export type MetricsExportRequestProductIdCase1List = Array<string>;
 export const MetricsExportRequestProductIdCase1List = /*@__PURE__*/ S.Array(
@@ -18838,7 +18823,7 @@ export type MetricsExportRequestProductId =
   | string
   | MetricsExportRequestProductIdCase1List;
 export const MetricsExportRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsExportRequestProductId>;
+  S.Unknown as any as S.Schema<MetricsExportRequestProductId>;
 
 export type MetricsExportRequestBillingTypeCase1List = Array<
   ProductBillingType | (string & {})
@@ -18852,7 +18837,7 @@ export type MetricsExportRequestBillingType =
   | ProductBillingType
   | MetricsExportRequestBillingTypeCase1List;
 export const MetricsExportRequestBillingType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsExportRequestBillingType>;
+  S.Unknown as any as S.Schema<MetricsExportRequestBillingType>;
 
 export type MetricsExportRequestCustomerIdCase1List = Array<string>;
 export const MetricsExportRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -18864,7 +18849,7 @@ export type MetricsExportRequestCustomerId =
   | string
   | MetricsExportRequestCustomerIdCase1List;
 export const MetricsExportRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsExportRequestCustomerId>;
+  S.Unknown as any as S.Schema<MetricsExportRequestCustomerId>;
 
 export type MetricsExportRequestMetricsList = Array<string>;
 export const MetricsExportRequestMetricsList = /*@__PURE__*/ S.Array(
@@ -19516,7 +19501,7 @@ export type MetricsGetRequestTimezone =
   | "W-SU"
   | "WET"
   | "Zulu";
-export const MetricsGetRequestTimezone = /*@__PURE__*/ S.String;
+export const MetricsGetRequestTimezone = S.String;
 
 export type MetricsGetRequestOrganizationIdCase1List = Array<string>;
 export const MetricsGetRequestOrganizationIdCase1List = /*@__PURE__*/ S.Array(
@@ -19528,7 +19513,7 @@ export type MetricsGetRequestOrganizationId =
   | string
   | MetricsGetRequestOrganizationIdCase1List;
 export const MetricsGetRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsGetRequestOrganizationId>;
+  S.Unknown as any as S.Schema<MetricsGetRequestOrganizationId>;
 
 export type MetricsGetRequestProductIdCase1List = Array<string>;
 export const MetricsGetRequestProductIdCase1List = /*@__PURE__*/ S.Array(
@@ -19540,7 +19525,7 @@ export type MetricsGetRequestProductId =
   | string
   | MetricsGetRequestProductIdCase1List;
 export const MetricsGetRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsGetRequestProductId>;
+  S.Unknown as any as S.Schema<MetricsGetRequestProductId>;
 
 export type MetricsGetRequestBillingTypeCase1List = Array<
   ProductBillingType | (string & {})
@@ -19554,7 +19539,7 @@ export type MetricsGetRequestBillingType =
   | ProductBillingType
   | MetricsGetRequestBillingTypeCase1List;
 export const MetricsGetRequestBillingType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsGetRequestBillingType>;
+  S.Unknown as any as S.Schema<MetricsGetRequestBillingType>;
 
 export type MetricsGetRequestCustomerIdCase1List = Array<string>;
 export const MetricsGetRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -19566,7 +19551,7 @@ export type MetricsGetRequestCustomerId =
   | string
   | MetricsGetRequestCustomerIdCase1List;
 export const MetricsGetRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsGetRequestCustomerId>;
+  S.Unknown as any as S.Schema<MetricsGetRequestCustomerId>;
 
 export type MetricsGetRequestMetricsList = Array<string>;
 export const MetricsGetRequestMetricsList = /*@__PURE__*/ S.Array(
@@ -19613,223 +19598,222 @@ export const MetricsGetRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type MetricPeriodActiveSubscriptions = number | number;
 export const MetricPeriodActiveSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodActiveSubscriptions>;
+  S.Unknown as any as S.Schema<MetricPeriodActiveSubscriptions>;
 
 export type MetricPeriodCommittedSubscriptions = number | number;
 export const MetricPeriodCommittedSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCommittedSubscriptions>;
+  S.Unknown as any as S.Schema<MetricPeriodCommittedSubscriptions>;
 
 export type MetricPeriodMonthlyRecurringRevenue = number | number;
 export const MetricPeriodMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodMonthlyRecurringRevenue>;
 
 export type MetricPeriodTrialMonthlyRecurringRevenue = number | number;
 export const MetricPeriodTrialMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodTrialMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodTrialMonthlyRecurringRevenue>;
 
 export type MetricPeriodCommittedMonthlyRecurringRevenue = number | number;
 export const MetricPeriodCommittedMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCommittedMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodCommittedMonthlyRecurringRevenue>;
 
 export type MetricPeriodTrialCommittedMonthlyRecurringRevenue = number | number;
 export const MetricPeriodTrialCommittedMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodTrialCommittedMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodTrialCommittedMonthlyRecurringRevenue>;
 
 export type MetricPeriodAverageRevenuePerUser = number | number;
 export const MetricPeriodAverageRevenuePerUser =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodAverageRevenuePerUser>;
+  S.Unknown as any as S.Schema<MetricPeriodAverageRevenuePerUser>;
 
 export type MetricPeriodCheckouts = number | number;
 export const MetricPeriodCheckouts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCheckouts>;
+  S.Unknown as any as S.Schema<MetricPeriodCheckouts>;
 
 export type MetricPeriodSucceededCheckouts = number | number;
 export const MetricPeriodSucceededCheckouts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodSucceededCheckouts>;
+  S.Unknown as any as S.Schema<MetricPeriodSucceededCheckouts>;
 
 export type MetricPeriodChurnedSubscriptions = number | number;
 export const MetricPeriodChurnedSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodChurnedSubscriptions>;
+  S.Unknown as any as S.Schema<MetricPeriodChurnedSubscriptions>;
 
 export type MetricPeriodChurnRate = number | number;
 export const MetricPeriodChurnRate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodChurnRate>;
+  S.Unknown as any as S.Schema<MetricPeriodChurnRate>;
 
 export type MetricPeriodSeatsTotal = number | number;
 export const MetricPeriodSeatsTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodSeatsTotal>;
+  S.Unknown as any as S.Schema<MetricPeriodSeatsTotal>;
 
 export type MetricPeriodSeatsClaimed = number | number;
 export const MetricPeriodSeatsClaimed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodSeatsClaimed>;
+  S.Unknown as any as S.Schema<MetricPeriodSeatsClaimed>;
 
 export type MetricPeriodSeatsPending = number | number;
 export const MetricPeriodSeatsPending =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodSeatsPending>;
+  S.Unknown as any as S.Schema<MetricPeriodSeatsPending>;
 
 export type MetricPeriodSeatCustomers = number | number;
 export const MetricPeriodSeatCustomers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodSeatCustomers>;
+  S.Unknown as any as S.Schema<MetricPeriodSeatCustomers>;
 
 export type MetricPeriodNewSeatCustomers = number | number;
 export const MetricPeriodNewSeatCustomers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodNewSeatCustomers>;
+  S.Unknown as any as S.Schema<MetricPeriodNewSeatCustomers>;
 
 export type MetricPeriodChurnedSeatCustomers = number | number;
 export const MetricPeriodChurnedSeatCustomers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodChurnedSeatCustomers>;
+  S.Unknown as any as S.Schema<MetricPeriodChurnedSeatCustomers>;
 
 export type MetricPeriodOrders = number | number;
 export const MetricPeriodOrders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodOrders>;
+  S.Unknown as any as S.Schema<MetricPeriodOrders>;
 
 export type MetricPeriodRevenue = number | number;
 export const MetricPeriodRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodRevenue>;
 
 export type MetricPeriodNetRevenue = number | number;
 export const MetricPeriodNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodNetRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodNetRevenue>;
 
 export type MetricPeriodCumulativeRevenue = number | number;
 export const MetricPeriodCumulativeRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCumulativeRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodCumulativeRevenue>;
 
 export type MetricPeriodNetCumulativeRevenue = number | number;
 export const MetricPeriodNetCumulativeRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodNetCumulativeRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodNetCumulativeRevenue>;
 
 export type MetricPeriodCosts = number | number;
 export const MetricPeriodCosts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCosts>;
+  S.Unknown as any as S.Schema<MetricPeriodCosts>;
 
 export type MetricPeriodCumulativeCosts = number | number;
 export const MetricPeriodCumulativeCosts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCumulativeCosts>;
+  S.Unknown as any as S.Schema<MetricPeriodCumulativeCosts>;
 
 export type MetricPeriodAverageOrderValue = number | number;
 export const MetricPeriodAverageOrderValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodAverageOrderValue>;
+  S.Unknown as any as S.Schema<MetricPeriodAverageOrderValue>;
 
 export type MetricPeriodNetAverageOrderValue = number | number;
 export const MetricPeriodNetAverageOrderValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodNetAverageOrderValue>;
+  S.Unknown as any as S.Schema<MetricPeriodNetAverageOrderValue>;
 
 export type MetricPeriodCostPerUser = number | number;
 export const MetricPeriodCostPerUser =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCostPerUser>;
+  S.Unknown as any as S.Schema<MetricPeriodCostPerUser>;
 
 export type MetricPeriodActiveUserByEvent = number | number;
 export const MetricPeriodActiveUserByEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodActiveUserByEvent>;
+  S.Unknown as any as S.Schema<MetricPeriodActiveUserByEvent>;
 
 export type MetricPeriodOneTimeProducts = number | number;
 export const MetricPeriodOneTimeProducts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodOneTimeProducts>;
+  S.Unknown as any as S.Schema<MetricPeriodOneTimeProducts>;
 
 export type MetricPeriodOneTimeProductsRevenue = number | number;
 export const MetricPeriodOneTimeProductsRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodOneTimeProductsRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodOneTimeProductsRevenue>;
 
 export type MetricPeriodOneTimeProductsNetRevenue = number | number;
 export const MetricPeriodOneTimeProductsNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodOneTimeProductsNetRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodOneTimeProductsNetRevenue>;
 
 export type MetricPeriodNewSubscriptions = number | number;
 export const MetricPeriodNewSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodNewSubscriptions>;
+  S.Unknown as any as S.Schema<MetricPeriodNewSubscriptions>;
 
 export type MetricPeriodNewSubscriptionsRevenue = number | number;
 export const MetricPeriodNewSubscriptionsRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodNewSubscriptionsRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodNewSubscriptionsRevenue>;
 
 export type MetricPeriodNewSubscriptionsNetRevenue = number | number;
 export const MetricPeriodNewSubscriptionsNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodNewSubscriptionsNetRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodNewSubscriptionsNetRevenue>;
 
 export type MetricPeriodRenewedSubscriptions = number | number;
 export const MetricPeriodRenewedSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodRenewedSubscriptions>;
+  S.Unknown as any as S.Schema<MetricPeriodRenewedSubscriptions>;
 
 export type MetricPeriodRenewedSubscriptionsRevenue = number | number;
 export const MetricPeriodRenewedSubscriptionsRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodRenewedSubscriptionsRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodRenewedSubscriptionsRevenue>;
 
 export type MetricPeriodRenewedSubscriptionsNetRevenue = number | number;
 export const MetricPeriodRenewedSubscriptionsNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodRenewedSubscriptionsNetRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodRenewedSubscriptionsNetRevenue>;
 
 export type MetricPeriodCanceledSubscriptions = number | number;
 export const MetricPeriodCanceledSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptions>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptions>;
 
 export type MetricPeriodCanceledSubscriptionsCustomerService = number | number;
 export const MetricPeriodCanceledSubscriptionsCustomerService =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsCustomerService>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsCustomerService>;
 
 export type MetricPeriodCanceledSubscriptionsLowQuality = number | number;
 export const MetricPeriodCanceledSubscriptionsLowQuality =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsLowQuality>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsLowQuality>;
 
 export type MetricPeriodCanceledSubscriptionsMissingFeatures = number | number;
 export const MetricPeriodCanceledSubscriptionsMissingFeatures =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsMissingFeatures>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsMissingFeatures>;
 
 export type MetricPeriodCanceledSubscriptionsSwitchedService = number | number;
 export const MetricPeriodCanceledSubscriptionsSwitchedService =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsSwitchedService>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsSwitchedService>;
 
 export type MetricPeriodCanceledSubscriptionsTooComplex = number | number;
 export const MetricPeriodCanceledSubscriptionsTooComplex =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsTooComplex>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsTooComplex>;
 
 export type MetricPeriodCanceledSubscriptionsTooExpensive = number | number;
 export const MetricPeriodCanceledSubscriptionsTooExpensive =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsTooExpensive>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsTooExpensive>;
 
 export type MetricPeriodCanceledSubscriptionsUnused = number | number;
 export const MetricPeriodCanceledSubscriptionsUnused =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsUnused>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsUnused>;
 
 export type MetricPeriodCanceledSubscriptionsOther = number | number;
 export const MetricPeriodCanceledSubscriptionsOther =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsOther>;
+  S.Unknown as any as S.Schema<MetricPeriodCanceledSubscriptionsOther>;
 
 export type MetricPeriodAnnualRecurringRevenue = number | number;
 export const MetricPeriodAnnualRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodAnnualRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodAnnualRecurringRevenue>;
 
 export type MetricPeriodCommittedAnnualRecurringRevenue = number | number;
 export const MetricPeriodCommittedAnnualRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCommittedAnnualRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricPeriodCommittedAnnualRecurringRevenue>;
 
 export type MetricPeriodCheckoutsConversion = number | number;
 export const MetricPeriodCheckoutsConversion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCheckoutsConversion>;
+  S.Unknown as any as S.Schema<MetricPeriodCheckoutsConversion>;
 
 export type MetricPeriodLtv = number | number;
-export const MetricPeriodLtv =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodLtv>;
+export const MetricPeriodLtv = S.Unknown as any as S.Schema<MetricPeriodLtv>;
 
 export type MetricPeriodGrossMargin = number | number;
 export const MetricPeriodGrossMargin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodGrossMargin>;
+  S.Unknown as any as S.Schema<MetricPeriodGrossMargin>;
 
 export type MetricPeriodGrossMarginPercentage = number | number;
 export const MetricPeriodGrossMarginPercentage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodGrossMarginPercentage>;
+  S.Unknown as any as S.Schema<MetricPeriodGrossMarginPercentage>;
 
 export type MetricPeriodCashflow = number | number;
 export const MetricPeriodCashflow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodCashflow>;
+  S.Unknown as any as S.Schema<MetricPeriodCashflow>;
 
 export type MetricPeriodAverageSeatsPerCustomer = number | number;
 export const MetricPeriodAverageSeatsPerCustomer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodAverageSeatsPerCustomer>;
+  S.Unknown as any as S.Schema<MetricPeriodAverageSeatsPerCustomer>;
 
 export type MetricPeriodSeatUtilizationRate = number | number;
 export const MetricPeriodSeatUtilizationRate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricPeriodSeatUtilizationRate>;
+  S.Unknown as any as S.Schema<MetricPeriodSeatUtilizationRate>;
 
 export interface MetricPeriod {
   /** Timestamp of this period data. */
@@ -20021,225 +20005,224 @@ export const MetricsResponsePeriodsList = /*@__PURE__*/ S.Array(
 
 export type MetricsTotalsActiveSubscriptions = number | number;
 export const MetricsTotalsActiveSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsActiveSubscriptions>;
+  S.Unknown as any as S.Schema<MetricsTotalsActiveSubscriptions>;
 
 export type MetricsTotalsCommittedSubscriptions = number | number;
 export const MetricsTotalsCommittedSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCommittedSubscriptions>;
+  S.Unknown as any as S.Schema<MetricsTotalsCommittedSubscriptions>;
 
 export type MetricsTotalsMonthlyRecurringRevenue = number | number;
 export const MetricsTotalsMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsMonthlyRecurringRevenue>;
 
 export type MetricsTotalsTrialMonthlyRecurringRevenue = number | number;
 export const MetricsTotalsTrialMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsTrialMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsTrialMonthlyRecurringRevenue>;
 
 export type MetricsTotalsCommittedMonthlyRecurringRevenue = number | number;
 export const MetricsTotalsCommittedMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCommittedMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsCommittedMonthlyRecurringRevenue>;
 
 export type MetricsTotalsTrialCommittedMonthlyRecurringRevenue =
   | number
   | number;
 export const MetricsTotalsTrialCommittedMonthlyRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsTrialCommittedMonthlyRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsTrialCommittedMonthlyRecurringRevenue>;
 
 export type MetricsTotalsAverageRevenuePerUser = number | number;
 export const MetricsTotalsAverageRevenuePerUser =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsAverageRevenuePerUser>;
+  S.Unknown as any as S.Schema<MetricsTotalsAverageRevenuePerUser>;
 
 export type MetricsTotalsCheckouts = number | number;
 export const MetricsTotalsCheckouts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCheckouts>;
+  S.Unknown as any as S.Schema<MetricsTotalsCheckouts>;
 
 export type MetricsTotalsSucceededCheckouts = number | number;
 export const MetricsTotalsSucceededCheckouts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsSucceededCheckouts>;
+  S.Unknown as any as S.Schema<MetricsTotalsSucceededCheckouts>;
 
 export type MetricsTotalsChurnedSubscriptions = number | number;
 export const MetricsTotalsChurnedSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsChurnedSubscriptions>;
+  S.Unknown as any as S.Schema<MetricsTotalsChurnedSubscriptions>;
 
 export type MetricsTotalsChurnRate = number | number;
 export const MetricsTotalsChurnRate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsChurnRate>;
+  S.Unknown as any as S.Schema<MetricsTotalsChurnRate>;
 
 export type MetricsTotalsSeatsTotal = number | number;
 export const MetricsTotalsSeatsTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsSeatsTotal>;
+  S.Unknown as any as S.Schema<MetricsTotalsSeatsTotal>;
 
 export type MetricsTotalsSeatsClaimed = number | number;
 export const MetricsTotalsSeatsClaimed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsSeatsClaimed>;
+  S.Unknown as any as S.Schema<MetricsTotalsSeatsClaimed>;
 
 export type MetricsTotalsSeatsPending = number | number;
 export const MetricsTotalsSeatsPending =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsSeatsPending>;
+  S.Unknown as any as S.Schema<MetricsTotalsSeatsPending>;
 
 export type MetricsTotalsSeatCustomers = number | number;
 export const MetricsTotalsSeatCustomers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsSeatCustomers>;
+  S.Unknown as any as S.Schema<MetricsTotalsSeatCustomers>;
 
 export type MetricsTotalsNewSeatCustomers = number | number;
 export const MetricsTotalsNewSeatCustomers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsNewSeatCustomers>;
+  S.Unknown as any as S.Schema<MetricsTotalsNewSeatCustomers>;
 
 export type MetricsTotalsChurnedSeatCustomers = number | number;
 export const MetricsTotalsChurnedSeatCustomers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsChurnedSeatCustomers>;
+  S.Unknown as any as S.Schema<MetricsTotalsChurnedSeatCustomers>;
 
 export type MetricsTotalsOrders = number | number;
 export const MetricsTotalsOrders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsOrders>;
+  S.Unknown as any as S.Schema<MetricsTotalsOrders>;
 
 export type MetricsTotalsRevenue = number | number;
 export const MetricsTotalsRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsRevenue>;
 
 export type MetricsTotalsNetRevenue = number | number;
 export const MetricsTotalsNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsNetRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsNetRevenue>;
 
 export type MetricsTotalsCumulativeRevenue = number | number;
 export const MetricsTotalsCumulativeRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCumulativeRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsCumulativeRevenue>;
 
 export type MetricsTotalsNetCumulativeRevenue = number | number;
 export const MetricsTotalsNetCumulativeRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsNetCumulativeRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsNetCumulativeRevenue>;
 
 export type MetricsTotalsCosts = number | number;
 export const MetricsTotalsCosts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCosts>;
+  S.Unknown as any as S.Schema<MetricsTotalsCosts>;
 
 export type MetricsTotalsCumulativeCosts = number | number;
 export const MetricsTotalsCumulativeCosts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCumulativeCosts>;
+  S.Unknown as any as S.Schema<MetricsTotalsCumulativeCosts>;
 
 export type MetricsTotalsAverageOrderValue = number | number;
 export const MetricsTotalsAverageOrderValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsAverageOrderValue>;
+  S.Unknown as any as S.Schema<MetricsTotalsAverageOrderValue>;
 
 export type MetricsTotalsNetAverageOrderValue = number | number;
 export const MetricsTotalsNetAverageOrderValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsNetAverageOrderValue>;
+  S.Unknown as any as S.Schema<MetricsTotalsNetAverageOrderValue>;
 
 export type MetricsTotalsCostPerUser = number | number;
 export const MetricsTotalsCostPerUser =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCostPerUser>;
+  S.Unknown as any as S.Schema<MetricsTotalsCostPerUser>;
 
 export type MetricsTotalsActiveUserByEvent = number | number;
 export const MetricsTotalsActiveUserByEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsActiveUserByEvent>;
+  S.Unknown as any as S.Schema<MetricsTotalsActiveUserByEvent>;
 
 export type MetricsTotalsOneTimeProducts = number | number;
 export const MetricsTotalsOneTimeProducts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsOneTimeProducts>;
+  S.Unknown as any as S.Schema<MetricsTotalsOneTimeProducts>;
 
 export type MetricsTotalsOneTimeProductsRevenue = number | number;
 export const MetricsTotalsOneTimeProductsRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsOneTimeProductsRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsOneTimeProductsRevenue>;
 
 export type MetricsTotalsOneTimeProductsNetRevenue = number | number;
 export const MetricsTotalsOneTimeProductsNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsOneTimeProductsNetRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsOneTimeProductsNetRevenue>;
 
 export type MetricsTotalsNewSubscriptions = number | number;
 export const MetricsTotalsNewSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsNewSubscriptions>;
+  S.Unknown as any as S.Schema<MetricsTotalsNewSubscriptions>;
 
 export type MetricsTotalsNewSubscriptionsRevenue = number | number;
 export const MetricsTotalsNewSubscriptionsRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsNewSubscriptionsRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsNewSubscriptionsRevenue>;
 
 export type MetricsTotalsNewSubscriptionsNetRevenue = number | number;
 export const MetricsTotalsNewSubscriptionsNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsNewSubscriptionsNetRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsNewSubscriptionsNetRevenue>;
 
 export type MetricsTotalsRenewedSubscriptions = number | number;
 export const MetricsTotalsRenewedSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsRenewedSubscriptions>;
+  S.Unknown as any as S.Schema<MetricsTotalsRenewedSubscriptions>;
 
 export type MetricsTotalsRenewedSubscriptionsRevenue = number | number;
 export const MetricsTotalsRenewedSubscriptionsRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsRenewedSubscriptionsRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsRenewedSubscriptionsRevenue>;
 
 export type MetricsTotalsRenewedSubscriptionsNetRevenue = number | number;
 export const MetricsTotalsRenewedSubscriptionsNetRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsRenewedSubscriptionsNetRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsRenewedSubscriptionsNetRevenue>;
 
 export type MetricsTotalsCanceledSubscriptions = number | number;
 export const MetricsTotalsCanceledSubscriptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptions>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptions>;
 
 export type MetricsTotalsCanceledSubscriptionsCustomerService = number | number;
 export const MetricsTotalsCanceledSubscriptionsCustomerService =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsCustomerService>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsCustomerService>;
 
 export type MetricsTotalsCanceledSubscriptionsLowQuality = number | number;
 export const MetricsTotalsCanceledSubscriptionsLowQuality =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsLowQuality>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsLowQuality>;
 
 export type MetricsTotalsCanceledSubscriptionsMissingFeatures = number | number;
 export const MetricsTotalsCanceledSubscriptionsMissingFeatures =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsMissingFeatures>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsMissingFeatures>;
 
 export type MetricsTotalsCanceledSubscriptionsSwitchedService = number | number;
 export const MetricsTotalsCanceledSubscriptionsSwitchedService =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsSwitchedService>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsSwitchedService>;
 
 export type MetricsTotalsCanceledSubscriptionsTooComplex = number | number;
 export const MetricsTotalsCanceledSubscriptionsTooComplex =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsTooComplex>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsTooComplex>;
 
 export type MetricsTotalsCanceledSubscriptionsTooExpensive = number | number;
 export const MetricsTotalsCanceledSubscriptionsTooExpensive =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsTooExpensive>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsTooExpensive>;
 
 export type MetricsTotalsCanceledSubscriptionsUnused = number | number;
 export const MetricsTotalsCanceledSubscriptionsUnused =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsUnused>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsUnused>;
 
 export type MetricsTotalsCanceledSubscriptionsOther = number | number;
 export const MetricsTotalsCanceledSubscriptionsOther =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsOther>;
+  S.Unknown as any as S.Schema<MetricsTotalsCanceledSubscriptionsOther>;
 
 export type MetricsTotalsAnnualRecurringRevenue = number | number;
 export const MetricsTotalsAnnualRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsAnnualRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsAnnualRecurringRevenue>;
 
 export type MetricsTotalsCommittedAnnualRecurringRevenue = number | number;
 export const MetricsTotalsCommittedAnnualRecurringRevenue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCommittedAnnualRecurringRevenue>;
+  S.Unknown as any as S.Schema<MetricsTotalsCommittedAnnualRecurringRevenue>;
 
 export type MetricsTotalsCheckoutsConversion = number | number;
 export const MetricsTotalsCheckoutsConversion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCheckoutsConversion>;
+  S.Unknown as any as S.Schema<MetricsTotalsCheckoutsConversion>;
 
 export type MetricsTotalsLtv = number | number;
-export const MetricsTotalsLtv =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsLtv>;
+export const MetricsTotalsLtv = S.Unknown as any as S.Schema<MetricsTotalsLtv>;
 
 export type MetricsTotalsGrossMargin = number | number;
 export const MetricsTotalsGrossMargin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsGrossMargin>;
+  S.Unknown as any as S.Schema<MetricsTotalsGrossMargin>;
 
 export type MetricsTotalsGrossMarginPercentage = number | number;
 export const MetricsTotalsGrossMarginPercentage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsGrossMarginPercentage>;
+  S.Unknown as any as S.Schema<MetricsTotalsGrossMarginPercentage>;
 
 export type MetricsTotalsCashflow = number | number;
 export const MetricsTotalsCashflow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsCashflow>;
+  S.Unknown as any as S.Schema<MetricsTotalsCashflow>;
 
 export type MetricsTotalsAverageSeatsPerCustomer = number | number;
 export const MetricsTotalsAverageSeatsPerCustomer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsAverageSeatsPerCustomer>;
+  S.Unknown as any as S.Schema<MetricsTotalsAverageSeatsPerCustomer>;
 
 export type MetricsTotalsSeatUtilizationRate = number | number;
 export const MetricsTotalsSeatUtilizationRate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsTotalsSeatUtilizationRate>;
+  S.Unknown as any as S.Schema<MetricsTotalsSeatUtilizationRate>;
 
 export interface MetricsTotals {
   active_subscriptions?: MetricsTotalsActiveSubscriptions | null;
@@ -20429,7 +20412,7 @@ export type MetricType =
   | "currency"
   | "currency_sub_cent"
   | "percentage";
-export const MetricType = /*@__PURE__*/ S.String;
+export const MetricType = S.String;
 
 /** Information about a metric. */
 export interface Metric {
@@ -20673,7 +20656,7 @@ export type MetricsListDashboardsRequestOrganizationId =
   | string
   | MetricsListDashboardsRequestOrganizationIdCase1List;
 export const MetricsListDashboardsRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MetricsListDashboardsRequestOrganizationId>;
+  S.Unknown as any as S.Schema<MetricsListDashboardsRequestOrganizationId>;
 
 export interface MetricsListDashboardsRequest {
   /** Filter by organization ID. */
@@ -20841,7 +20824,7 @@ export type Scope =
   | "notification_recipients:write"
   | "organization_access_tokens:read"
   | "organization_access_tokens:write";
-export const Scope = /*@__PURE__*/ S.String;
+export const Scope = S.String;
 
 export type AuthorizeResponseUserScopesList = Array<Scope>;
 export const AuthorizeResponseUserScopesList = /*@__PURE__*/ S.Array(
@@ -20950,7 +20933,7 @@ export type Oauth2AuthorizeResponseBody =
   | AuthorizeResponseUser
   | AuthorizeResponseOrganization;
 export const Oauth2AuthorizeResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Oauth2AuthorizeResponseBody>;
+  S.Unknown as any as S.Schema<Oauth2AuthorizeResponseBody>;
 
 export type Oauth2AuthorizeResponse = Oauth2AuthorizeResponseBody;
 export const Oauth2AuthorizeResponse = /*@__PURE__*/ S.suspend(() =>
@@ -20971,13 +20954,12 @@ export type Oauth2ClientsOauth2CreateClientRequestTokenEndpointAuthMethod =
   | "client_secret_post"
   | "none";
 export const Oauth2ClientsOauth2CreateClientRequestTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type Oauth2ClientsOauth2CreateClientRequestGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const Oauth2ClientsOauth2CreateClientRequestGrantTypesItem =
-  /*@__PURE__*/ S.String;
+export const Oauth2ClientsOauth2CreateClientRequestGrantTypesItem = S.String;
 
 export type Oauth2ClientsOauth2CreateClientRequestGrantTypesList = Array<
   Oauth2ClientsOauth2CreateClientRequestGrantTypesItem | (string & {})
@@ -20995,7 +20977,7 @@ export const Oauth2ClientsOauth2CreateClientRequestResponseTypesList =
   ) as any as S.Schema<Oauth2ClientsOauth2CreateClientRequestResponseTypesList>;
 
 export type SubType = "user" | "organization";
-export const SubType = /*@__PURE__*/ S.String;
+export const SubType = S.String;
 
 export interface Oauth2ClientsOauth2CreateClientRequest {
   redirect_uris: Oauth2ClientsOauth2CreateClientRequestRedirectUrisList;
@@ -21105,13 +21087,12 @@ export type Oauth2ClientsOauth2UpdateClientRequestTokenEndpointAuthMethod =
   | "client_secret_post"
   | "none";
 export const Oauth2ClientsOauth2UpdateClientRequestTokenEndpointAuthMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type Oauth2ClientsOauth2UpdateClientRequestGrantTypesItem =
   | "authorization_code"
   | "refresh_token";
-export const Oauth2ClientsOauth2UpdateClientRequestGrantTypesItem =
-  /*@__PURE__*/ S.String;
+export const Oauth2ClientsOauth2UpdateClientRequestGrantTypesItem = S.String;
 
 export type Oauth2ClientsOauth2UpdateClientRequestGrantTypesList = Array<
   Oauth2ClientsOauth2UpdateClientRequestGrantTypesItem | (string & {})
@@ -21186,7 +21167,7 @@ export const Oauth2ClientsOauth2UpdateClientResponse = /*@__PURE__*/ S.suspend(
 export type Oauth2IntrospectTokenRequestTokenTypeHint =
   | "access_token"
   | "refresh_token";
-export const Oauth2IntrospectTokenRequestTokenTypeHint = /*@__PURE__*/ S.String;
+export const Oauth2IntrospectTokenRequestTokenTypeHint = S.String;
 
 export interface Oauth2IntrospectTokenRequest {
   token: string;
@@ -21211,7 +21192,7 @@ export const Oauth2IntrospectTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Oauth2IntrospectTokenRequest>;
 
 export type IntrospectTokenResponseTokenType = "access_token" | "refresh_token";
-export const IntrospectTokenResponseTokenType = /*@__PURE__*/ S.String;
+export const IntrospectTokenResponseTokenType = S.String;
 
 export type IntrospectTokenResponseOrganizationsList = Array<string>;
 export const IntrospectTokenResponseOrganizationsList = /*@__PURE__*/ S.Array(
@@ -21286,7 +21267,7 @@ export const RefreshTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RefreshTokenRequest>;
 
 export type WebTokenRequestSubType = "user" | "organization";
-export const WebTokenRequestSubType = /*@__PURE__*/ S.String;
+export const WebTokenRequestSubType = S.String;
 
 export interface WebTokenRequest {
   grant_type: string;
@@ -21316,7 +21297,7 @@ export type Oauth2RequestTokenRequestBody =
   | RefreshTokenRequest
   | WebTokenRequest;
 export const Oauth2RequestTokenRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Oauth2RequestTokenRequestBody>;
+  S.Unknown as any as S.Schema<Oauth2RequestTokenRequestBody>;
 
 export interface Oauth2RequestTokenRequest {
   body: Oauth2RequestTokenRequestBody;
@@ -21351,7 +21332,7 @@ export const TokenResponse = /*@__PURE__*/ S.suspend(() =>
 export type Oauth2RevokeTokenRequestTokenTypeHint =
   | "access_token"
   | "refresh_token";
-export const Oauth2RevokeTokenRequestTokenTypeHint = /*@__PURE__*/ S.String;
+export const Oauth2RevokeTokenRequestTokenTypeHint = S.String;
 
 export interface Oauth2RevokeTokenRequest {
   token: string;
@@ -21421,7 +21402,7 @@ export const UserInfoOrganization = /*@__PURE__*/ S.suspend(() =>
 
 export type Oauth2UserinfoResponseBody = UserInfoUser | UserInfoOrganization;
 export const Oauth2UserinfoResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Oauth2UserinfoResponseBody>;
+  S.Unknown as any as S.Schema<Oauth2UserinfoResponseBody>;
 
 export type Oauth2UserinfoResponse = Oauth2UserinfoResponseBody;
 export const Oauth2UserinfoResponse = /*@__PURE__*/ S.suspend(() =>
@@ -21432,7 +21413,7 @@ export const Oauth2UserinfoResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type OrdersCreateRequestCustomFieldDataValue = string | number | boolean;
 export const OrdersCreateRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersCreateRequestCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<OrdersCreateRequestCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type OrdersCreateRequestCustomFieldDataMap = {
@@ -21449,7 +21430,7 @@ export type OrdersCreateRequestMetadataValue =
   | number
   | boolean;
 export const OrdersCreateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersCreateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<OrdersCreateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type OrdersCreateRequestMetadataMap = {
@@ -21495,7 +21476,7 @@ export const OrdersCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type OrderCustomFieldDataValue = string | number | boolean;
 export const OrderCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrderCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<OrderCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type OrderCustomFieldDataMap = {
@@ -21575,8 +21556,7 @@ export type OrderDiscount =
   | DiscountFixedRepeatDurationBase
   | DiscountPercentageOnceForeverDurationBase
   | DiscountPercentageRepeatDurationBase;
-export const OrderDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrderDiscount>;
+export const OrderDiscount = S.Unknown as any as S.Schema<OrderDiscount>;
 
 export interface OrderSubscription {
   metadata: MetadataOutputType;
@@ -21805,7 +21785,7 @@ export type OrdersExportRequestOrganizationId =
   | string
   | OrdersExportRequestOrganizationIdCase1List;
 export const OrdersExportRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersExportRequestOrganizationId>;
+  S.Unknown as any as S.Schema<OrdersExportRequestOrganizationId>;
 
 export type OrdersExportRequestProductIdCase1List = Array<string>;
 export const OrdersExportRequestProductIdCase1List = /*@__PURE__*/ S.Array(
@@ -21817,7 +21797,7 @@ export type OrdersExportRequestProductId =
   | string
   | OrdersExportRequestProductIdCase1List;
 export const OrdersExportRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersExportRequestProductId>;
+  S.Unknown as any as S.Schema<OrdersExportRequestProductId>;
 
 export type OrdersExportRequestStatusCase1List = Array<
   OrderStatus | (string & {})
@@ -21831,7 +21811,7 @@ export type OrdersExportRequestStatus =
   | OrderStatus
   | OrdersExportRequestStatusCase1List;
 export const OrdersExportRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersExportRequestStatus>;
+  S.Unknown as any as S.Schema<OrdersExportRequestStatus>;
 
 export type OrderExportColumn =
   | "email"
@@ -21850,7 +21830,7 @@ export type OrderExportColumn =
   | "total_amount"
   | "refunded_amount"
   | "billing_reason";
-export const OrderExportColumn = /*@__PURE__*/ S.String;
+export const OrderExportColumn = S.String;
 
 export type OrdersExportRequestColumnsCase1List = Array<
   OrderExportColumn | (string & {})
@@ -21864,7 +21844,7 @@ export type OrdersExportRequestColumns =
   | OrderExportColumn
   | OrdersExportRequestColumnsCase1List;
 export const OrdersExportRequestColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersExportRequestColumns>;
+  S.Unknown as any as S.Schema<OrdersExportRequestColumns>;
 
 export interface OrdersExportRequest {
   /** Filter by organization ID. */
@@ -21988,7 +21968,7 @@ export type OrdersListRequestOrganizationId =
   | string
   | OrdersListRequestOrganizationIdCase1List;
 export const OrdersListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<OrdersListRequestOrganizationId>;
 
 export type OrdersListRequestProductIdCase1List = Array<string>;
 export const OrdersListRequestProductIdCase1List = /*@__PURE__*/ S.Array(
@@ -22000,7 +21980,7 @@ export type OrdersListRequestProductId =
   | string
   | OrdersListRequestProductIdCase1List;
 export const OrdersListRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestProductId>;
+  S.Unknown as any as S.Schema<OrdersListRequestProductId>;
 
 export type OrdersListRequestProductBillingTypeCase1List = Array<
   ProductBillingType | (string & {})
@@ -22015,7 +21995,7 @@ export type OrdersListRequestProductBillingType =
   | ProductBillingType
   | OrdersListRequestProductBillingTypeCase1List;
 export const OrdersListRequestProductBillingType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestProductBillingType>;
+  S.Unknown as any as S.Schema<OrdersListRequestProductBillingType>;
 
 export type OrdersListRequestDiscountIdCase1List = Array<string>;
 export const OrdersListRequestDiscountIdCase1List = /*@__PURE__*/ S.Array(
@@ -22027,7 +22007,7 @@ export type OrdersListRequestDiscountId =
   | string
   | OrdersListRequestDiscountIdCase1List;
 export const OrdersListRequestDiscountId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestDiscountId>;
+  S.Unknown as any as S.Schema<OrdersListRequestDiscountId>;
 
 export type OrdersListRequestCustomerIdCase1List = Array<string>;
 export const OrdersListRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -22039,7 +22019,7 @@ export type OrdersListRequestCustomerId =
   | string
   | OrdersListRequestCustomerIdCase1List;
 export const OrdersListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestCustomerId>;
+  S.Unknown as any as S.Schema<OrdersListRequestCustomerId>;
 
 export type OrdersListRequestExternalCustomerIdCase1List = Array<string>;
 export const OrdersListRequestExternalCustomerIdCase1List =
@@ -22052,7 +22032,7 @@ export type OrdersListRequestExternalCustomerId =
   | string
   | OrdersListRequestExternalCustomerIdCase1List;
 export const OrdersListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<OrdersListRequestExternalCustomerId>;
 
 export type OrdersListRequestCheckoutIdCase1List = Array<string>;
 export const OrdersListRequestCheckoutIdCase1List = /*@__PURE__*/ S.Array(
@@ -22064,7 +22044,7 @@ export type OrdersListRequestCheckoutId =
   | string
   | OrdersListRequestCheckoutIdCase1List;
 export const OrdersListRequestCheckoutId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestCheckoutId>;
+  S.Unknown as any as S.Schema<OrdersListRequestCheckoutId>;
 
 export type OrdersListRequestSubscriptionIdCase1List = Array<string>;
 export const OrdersListRequestSubscriptionIdCase1List = /*@__PURE__*/ S.Array(
@@ -22076,7 +22056,7 @@ export type OrdersListRequestSubscriptionId =
   | string
   | OrdersListRequestSubscriptionIdCase1List;
 export const OrdersListRequestSubscriptionId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestSubscriptionId>;
+  S.Unknown as any as S.Schema<OrdersListRequestSubscriptionId>;
 
 export type OrdersListRequestStatusCase1List = Array<
   OrderStatus | (string & {})
@@ -22090,7 +22070,7 @@ export type OrdersListRequestStatus =
   | OrderStatus
   | OrdersListRequestStatusCase1List;
 export const OrdersListRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrdersListRequestStatus>;
+  S.Unknown as any as S.Schema<OrdersListRequestStatus>;
 
 export type OrderSortProperty =
   | "created_at"
@@ -22111,7 +22091,7 @@ export type OrderSortProperty =
   | "-discount"
   | "subscription"
   | "-subscription";
-export const OrderSortProperty = /*@__PURE__*/ S.String;
+export const OrderSortProperty = S.String;
 
 export type OrdersListRequestSortingList = Array<
   OrderSortProperty | (string & {})
@@ -22271,7 +22251,7 @@ export type OrganizationsCreateRequestLegalEntity =
   | OrganizationIndividualLegalEntitySchema
   | OrganizationCompanyLegalEntitySchema;
 export const OrganizationsCreateRequestLegalEntity =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrganizationsCreateRequestLegalEntity>;
+  S.Unknown as any as S.Schema<OrganizationsCreateRequestLegalEntity>;
 
 export type OrganizationSocialPlatforms =
   | "x"
@@ -22284,7 +22264,7 @@ export type OrganizationSocialPlatforms =
   | "threads"
   | "discord"
   | "other";
-export const OrganizationSocialPlatforms = /*@__PURE__*/ S.String;
+export const OrganizationSocialPlatforms = S.String;
 
 export interface OrganizationSocialLink {
   /** The social platform of the URL */
@@ -22331,7 +22311,7 @@ export type OrganizationDetailsSwitchingFrom =
   | "gumroad"
   | "stripe"
   | "other";
-export const OrganizationDetailsSwitchingFrom = /*@__PURE__*/ S.String;
+export const OrganizationDetailsSwitchingFrom = S.String;
 
 export interface OrganizationDetails {
   /** Brief information about you and your business. */
@@ -22619,7 +22599,7 @@ export type OrganizationsCreateRequestCountry =
   | "ZA"
   | "ZM"
   | "ZW";
-export const OrganizationsCreateRequestCountry = /*@__PURE__*/ S.String;
+export const OrganizationsCreateRequestCountry = S.String;
 
 export type OrganizationFeatureSettingsUpdateOverviewMetricsList =
   Array<string>;
@@ -22656,8 +22636,7 @@ export type OrganizationSubscriptionSettingsProrationBehavior =
   | "invoice"
   | "prorate"
   | "next_period";
-export const OrganizationSubscriptionSettingsProrationBehavior =
-  /*@__PURE__*/ S.String;
+export const OrganizationSubscriptionSettingsProrationBehavior = S.String;
 
 export interface OrganizationSubscriptionSettings {
   allow_multiple_subscriptions: boolean;
@@ -22784,7 +22763,7 @@ export type OrganizationStatus =
   | "blocked"
   | "offboarding"
   | "offboarded";
-export const OrganizationStatus = /*@__PURE__*/ S.String;
+export const OrganizationStatus = S.String;
 
 export type OrganizationFeatureSettingsOverviewMetricsList = Array<string>;
 export const OrganizationFeatureSettingsOverviewMetricsList =
@@ -23119,7 +23098,7 @@ export type OrganizationCountry =
   | "ZA"
   | "ZM"
   | "ZW";
-export const OrganizationCountry = /*@__PURE__*/ S.String;
+export const OrganizationCountry = S.String;
 
 export interface OrganizationCapabilities {
   /** Whether the organization can accept new checkout payments. */
@@ -23258,7 +23237,7 @@ export type OrganizationSortProperty =
   | "-next_review_threshold"
   | "days_in_status"
   | "-days_in_status";
-export const OrganizationSortProperty = /*@__PURE__*/ S.String;
+export const OrganizationSortProperty = S.String;
 
 export type OrganizationsListRequestSortingList = Array<
   OrganizationSortProperty | (string & {})
@@ -23557,7 +23536,7 @@ export type OrganizationsUpdateRequestCountry =
   | "ZA"
   | "ZM"
   | "ZW";
-export const OrganizationsUpdateRequestCountry = /*@__PURE__*/ S.String;
+export const OrganizationsUpdateRequestCountry = S.String;
 
 export interface OrganizationDisputeSettingsUpdate {
   /** Concede disputes below this amount, in USD cents, without asking the organization. A dispute charged in another currency converts at the rate its payment settled at. `null` turns it off. The disputed amount and the processor's dispute fee are still deducted. */
@@ -23649,7 +23628,7 @@ export const PaymentsGetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaymentsGetRequest>;
 
 export type PaymentStatus = "pending" | "succeeded" | "failed";
-export const PaymentStatus = /*@__PURE__*/ S.String;
+export const PaymentStatus = S.String;
 
 export type PaymentTrigger =
   | "purchase"
@@ -23658,7 +23637,7 @@ export type PaymentTrigger =
   | "retry_customer"
   | "retry_payment_method_update"
   | "retry_admin";
-export const PaymentTrigger = /*@__PURE__*/ S.String;
+export const PaymentTrigger = S.String;
 
 /** Additional metadata from the payment processor for internal use. */
 export type CardPaymentProcessorMetadataMap = {
@@ -23804,7 +23783,7 @@ export const GenericPayment = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GenericPayment" }) as any as S.Schema<GenericPayment>;
 
 export type Payment = CardPayment | GenericPayment;
-export const Payment = /*@__PURE__*/ S.Unknown as any as S.Schema<Payment>;
+export const Payment = S.Unknown as any as S.Schema<Payment>;
 
 export type PaymentsGetResponse = Payment;
 export const PaymentsGetResponse = /*@__PURE__*/ S.suspend(() =>
@@ -23823,7 +23802,7 @@ export type PaymentsListRequestOrganizationId =
   | string
   | PaymentsListRequestOrganizationIdCase1List;
 export const PaymentsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<PaymentsListRequestOrganizationId>;
 
 export type PaymentsListRequestCheckoutIdCase1List = Array<string>;
 export const PaymentsListRequestCheckoutIdCase1List = /*@__PURE__*/ S.Array(
@@ -23835,7 +23814,7 @@ export type PaymentsListRequestCheckoutId =
   | string
   | PaymentsListRequestCheckoutIdCase1List;
 export const PaymentsListRequestCheckoutId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentsListRequestCheckoutId>;
+  S.Unknown as any as S.Schema<PaymentsListRequestCheckoutId>;
 
 export type PaymentsListRequestOrderIdCase1List = Array<string>;
 export const PaymentsListRequestOrderIdCase1List = /*@__PURE__*/ S.Array(
@@ -23847,7 +23826,7 @@ export type PaymentsListRequestOrderId =
   | string
   | PaymentsListRequestOrderIdCase1List;
 export const PaymentsListRequestOrderId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentsListRequestOrderId>;
+  S.Unknown as any as S.Schema<PaymentsListRequestOrderId>;
 
 export type PaymentsListRequestCustomerIdCase1List = Array<string>;
 export const PaymentsListRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -23859,7 +23838,7 @@ export type PaymentsListRequestCustomerId =
   | string
   | PaymentsListRequestCustomerIdCase1List;
 export const PaymentsListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentsListRequestCustomerId>;
+  S.Unknown as any as S.Schema<PaymentsListRequestCustomerId>;
 
 export type PaymentsListRequestStatusCase1List = Array<
   PaymentStatus | (string & {})
@@ -23873,7 +23852,7 @@ export type PaymentsListRequestStatus =
   | PaymentStatus
   | PaymentsListRequestStatusCase1List;
 export const PaymentsListRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentsListRequestStatus>;
+  S.Unknown as any as S.Schema<PaymentsListRequestStatus>;
 
 export type PaymentsListRequestMethodCase1List = Array<string>;
 export const PaymentsListRequestMethodCase1List = /*@__PURE__*/ S.Array(
@@ -23885,7 +23864,7 @@ export type PaymentsListRequestMethod =
   | string
   | PaymentsListRequestMethodCase1List;
 export const PaymentsListRequestMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentsListRequestMethod>;
+  S.Unknown as any as S.Schema<PaymentsListRequestMethod>;
 
 export type PaymentsListRequestCustomerEmailCase1List = Array<string>;
 export const PaymentsListRequestCustomerEmailCase1List = /*@__PURE__*/ S.Array(
@@ -23897,7 +23876,7 @@ export type PaymentsListRequestCustomerEmail =
   | string
   | PaymentsListRequestCustomerEmailCase1List;
 export const PaymentsListRequestCustomerEmail =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentsListRequestCustomerEmail>;
+  S.Unknown as any as S.Schema<PaymentsListRequestCustomerEmail>;
 
 export type PaymentSortProperty =
   | "created_at"
@@ -23908,7 +23887,7 @@ export type PaymentSortProperty =
   | "-amount"
   | "method"
   | "-method";
-export const PaymentSortProperty = /*@__PURE__*/ S.String;
+export const PaymentSortProperty = S.String;
 
 export type PaymentsListRequestSortingList = Array<
   PaymentSortProperty | (string & {})
@@ -23984,7 +23963,7 @@ export type ProductCreateRecurringMetadataValue =
   | number
   | boolean;
 export const ProductCreateRecurringMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductCreateRecurringMetadataValue>;
+  S.Unknown as any as S.Schema<ProductCreateRecurringMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type ProductCreateRecurringMetadataMap = {
@@ -24001,7 +23980,7 @@ export type ProductCreateRecurringPricesItem =
   | ProductPriceSeatBasedCreate
   | ProductPriceMeteredUnitCreate;
 export const ProductCreateRecurringPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductCreateRecurringPricesItem>;
+  S.Unknown as any as S.Schema<ProductCreateRecurringPricesItem>;
 
 /** List of available prices for this product. It may combine at most one fixed price with one seat-based price (billed as `fixed + seat_charge`), or contain a single custom or free price, plus any number of metered prices. A free price cannot be combined with other prices, and a custom price cannot be combined with a fixed or seat-based price. Metered prices are not supported on one-time purchase products. */
 export type ProductCreateRecurringPricesList =
@@ -24098,7 +24077,7 @@ export type ProductCreateOneTimeMetadataValue =
   | number
   | boolean;
 export const ProductCreateOneTimeMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductCreateOneTimeMetadataValue>;
+  S.Unknown as any as S.Schema<ProductCreateOneTimeMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type ProductCreateOneTimeMetadataMap = {
@@ -24115,7 +24094,7 @@ export type ProductCreateOneTimePricesItem =
   | ProductPriceSeatBasedCreate
   | ProductPriceMeteredUnitCreate;
 export const ProductCreateOneTimePricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductCreateOneTimePricesItem>;
+  S.Unknown as any as S.Schema<ProductCreateOneTimePricesItem>;
 
 /** List of available prices for this product. It may combine at most one fixed price with one seat-based price (billed as `fixed + seat_charge`), or contain a single custom or free price, plus any number of metered prices. A free price cannot be combined with other prices, and a custom price cannot be combined with a fixed or seat-based price. Metered prices are not supported on one-time purchase products. */
 export type ProductCreateOneTimePricesList =
@@ -24179,8 +24158,7 @@ export const ProductCreateOneTime = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductCreateOneTime>;
 
 export type ProductCreate = ProductCreateRecurring | ProductCreateOneTime;
-export const ProductCreate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductCreate>;
+export const ProductCreate = S.Unknown as any as S.Schema<ProductCreate>;
 
 export interface ProductsCreateRequest {
   body: ProductCreate;
@@ -24195,7 +24173,7 @@ export const ProductsCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ProductPricesItem = LegacyRecurringProductPrice | ProductPrice;
 export const ProductPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductPricesItem>;
+  S.Unknown as any as S.Schema<ProductPricesItem>;
 
 /** List of prices for this product. */
 export type ProductPricesList = Array<ProductPricesItem>;
@@ -24307,7 +24285,7 @@ export const ProductsListRequestIdCase1List = /*@__PURE__*/ S.Array(
 /** Filter by product ID. */
 export type ProductsListRequestId = string | ProductsListRequestIdCase1List;
 export const ProductsListRequestId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductsListRequestId>;
+  S.Unknown as any as S.Schema<ProductsListRequestId>;
 
 export type ProductsListRequestOrganizationIdCase1List = Array<string>;
 export const ProductsListRequestOrganizationIdCase1List = /*@__PURE__*/ S.Array(
@@ -24319,7 +24297,7 @@ export type ProductsListRequestOrganizationId =
   | string
   | ProductsListRequestOrganizationIdCase1List;
 export const ProductsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<ProductsListRequestOrganizationId>;
 
 export type ProductsListRequestBenefitIdCase1List = Array<string>;
 export const ProductsListRequestBenefitIdCase1List = /*@__PURE__*/ S.Array(
@@ -24331,7 +24309,7 @@ export type ProductsListRequestBenefitId =
   | string
   | ProductsListRequestBenefitIdCase1List;
 export const ProductsListRequestBenefitId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductsListRequestBenefitId>;
+  S.Unknown as any as S.Schema<ProductsListRequestBenefitId>;
 
 export type ProductsListRequestVisibilityList = Array<
   ProductVisibility | (string & {})
@@ -24349,7 +24327,7 @@ export type ProductSortProperty =
   | "-price_amount_type"
   | "price_amount"
   | "-price_amount";
-export const ProductSortProperty = /*@__PURE__*/ S.String;
+export const ProductSortProperty = S.String;
 
 export type ProductsListRequestSortingList = Array<
   ProductSortProperty | (string & {})
@@ -24426,7 +24404,7 @@ export type ProductsUpdateRequestMetadataValue =
   | number
   | boolean;
 export const ProductsUpdateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductsUpdateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<ProductsUpdateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type ProductsUpdateRequestMetadataMap = {
@@ -24455,13 +24433,13 @@ export type ProductsUpdateRequestPricesItemCase1 =
   | ProductPriceSeatBasedCreate
   | ProductPriceMeteredUnitCreate;
 export const ProductsUpdateRequestPricesItemCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductsUpdateRequestPricesItemCase1>;
+  S.Unknown as any as S.Schema<ProductsUpdateRequestPricesItemCase1>;
 
 export type ProductsUpdateRequestPricesItem =
   | ExistingProductPrice
   | ProductsUpdateRequestPricesItemCase1;
 export const ProductsUpdateRequestPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductsUpdateRequestPricesItem>;
+  S.Unknown as any as S.Schema<ProductsUpdateRequestPricesItem>;
 
 export type ProductsUpdateRequestPricesList =
   Array<ProductsUpdateRequestPricesItem>;
@@ -24557,7 +24535,7 @@ export type RefundsCreateRequestMetadataValue =
   | number
   | boolean;
 export const RefundsCreateRequestMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefundsCreateRequestMetadataValue>;
+  S.Unknown as any as S.Schema<RefundsCreateRequestMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type RefundsCreateRequestMetadataMap = {
@@ -24576,7 +24554,7 @@ export type RefundsCreateRequestReason =
   | "service_disruption"
   | "satisfaction_guarantee"
   | "other";
-export const RefundsCreateRequestReason = /*@__PURE__*/ S.String;
+export const RefundsCreateRequestReason = S.String;
 
 export interface RefundsCreateRequest {
   /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
@@ -24605,7 +24583,7 @@ export const RefundsCreateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RefundsCreateRequest>;
 
 export type RefundStatus = "pending" | "succeeded" | "failed" | "canceled";
-export const RefundStatus = /*@__PURE__*/ S.String;
+export const RefundStatus = S.String;
 
 export type RefundReason =
   | "duplicate"
@@ -24615,7 +24593,7 @@ export type RefundReason =
   | "satisfaction_guarantee"
   | "dispute_prevention"
   | "other";
-export const RefundReason = /*@__PURE__*/ S.String;
+export const RefundReason = S.String;
 
 /** Dispute associated with a refund, in case we prevented a dispute by issuing a refund. */
 export interface RefundDispute {
@@ -24715,7 +24693,7 @@ export const RefundsListRequestIdCase1List = /*@__PURE__*/ S.Array(
 /** Filter by refund ID. */
 export type RefundsListRequestId = string | RefundsListRequestIdCase1List;
 export const RefundsListRequestId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefundsListRequestId>;
+  S.Unknown as any as S.Schema<RefundsListRequestId>;
 
 export type RefundsListRequestOrganizationIdCase1List = Array<string>;
 export const RefundsListRequestOrganizationIdCase1List = /*@__PURE__*/ S.Array(
@@ -24727,7 +24705,7 @@ export type RefundsListRequestOrganizationId =
   | string
   | RefundsListRequestOrganizationIdCase1List;
 export const RefundsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefundsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<RefundsListRequestOrganizationId>;
 
 export type RefundsListRequestOrderIdCase1List = Array<string>;
 export const RefundsListRequestOrderIdCase1List = /*@__PURE__*/ S.Array(
@@ -24739,7 +24717,7 @@ export type RefundsListRequestOrderId =
   | string
   | RefundsListRequestOrderIdCase1List;
 export const RefundsListRequestOrderId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefundsListRequestOrderId>;
+  S.Unknown as any as S.Schema<RefundsListRequestOrderId>;
 
 export type RefundsListRequestSubscriptionIdCase1List = Array<string>;
 export const RefundsListRequestSubscriptionIdCase1List = /*@__PURE__*/ S.Array(
@@ -24751,7 +24729,7 @@ export type RefundsListRequestSubscriptionId =
   | string
   | RefundsListRequestSubscriptionIdCase1List;
 export const RefundsListRequestSubscriptionId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefundsListRequestSubscriptionId>;
+  S.Unknown as any as S.Schema<RefundsListRequestSubscriptionId>;
 
 export type RefundsListRequestCustomerIdCase1List = Array<string>;
 export const RefundsListRequestCustomerIdCase1List = /*@__PURE__*/ S.Array(
@@ -24763,7 +24741,7 @@ export type RefundsListRequestCustomerId =
   | string
   | RefundsListRequestCustomerIdCase1List;
 export const RefundsListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefundsListRequestCustomerId>;
+  S.Unknown as any as S.Schema<RefundsListRequestCustomerId>;
 
 export type RefundsListRequestExternalCustomerIdCase1List = Array<string>;
 export const RefundsListRequestExternalCustomerIdCase1List =
@@ -24776,14 +24754,14 @@ export type RefundsListRequestExternalCustomerId =
   | string
   | RefundsListRequestExternalCustomerIdCase1List;
 export const RefundsListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefundsListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<RefundsListRequestExternalCustomerId>;
 
 export type RefundSortProperty =
   | "created_at"
   | "-created_at"
   | "amount"
   | "-amount";
-export const RefundSortProperty = /*@__PURE__*/ S.String;
+export const RefundSortProperty = S.String;
 
 export type RefundsListRequestSortingList = Array<
   RefundSortProperty | (string & {})
@@ -24908,7 +24886,7 @@ export type SubscriptionCreateCustomerMetadataValue =
   | number
   | boolean;
 export const SubscriptionCreateCustomerMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionCreateCustomerMetadataValue>;
+  S.Unknown as any as S.Schema<SubscriptionCreateCustomerMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type SubscriptionCreateCustomerMetadataMap = {
@@ -24944,7 +24922,7 @@ export type SubscriptionCreateExternalCustomerMetadataValue =
   | number
   | boolean;
 export const SubscriptionCreateExternalCustomerMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionCreateExternalCustomerMetadataValue>;
+  S.Unknown as any as S.Schema<SubscriptionCreateExternalCustomerMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type SubscriptionCreateExternalCustomerMetadataMap = {
@@ -24979,7 +24957,7 @@ export type SubscriptionsCreateRequestBody =
   | SubscriptionCreateCustomer
   | SubscriptionCreateExternalCustomer;
 export const SubscriptionsCreateRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsCreateRequestBody>;
+  S.Unknown as any as S.Schema<SubscriptionsCreateRequestBody>;
 
 export interface SubscriptionsCreateRequest {
   body: SubscriptionsCreateRequestBody;
@@ -24994,7 +24972,7 @@ export const SubscriptionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type SubscriptionCustomFieldDataValue = string | number | boolean;
 export const SubscriptionCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<SubscriptionCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type SubscriptionCustomFieldDataMap = {
@@ -25074,11 +25052,11 @@ export type SubscriptionDiscount =
   | DiscountPercentageOnceForeverDurationBase
   | DiscountPercentageRepeatDurationBase;
 export const SubscriptionDiscount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionDiscount>;
+  S.Unknown as any as S.Schema<SubscriptionDiscount>;
 
 export type SubscriptionPricesItem = LegacyRecurringProductPrice | ProductPrice;
 export const SubscriptionPricesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionPricesItem>;
+  S.Unknown as any as S.Schema<SubscriptionPricesItem>;
 
 /** List of enabled prices for the subscription. */
 export type SubscriptionPricesList = Array<SubscriptionPricesItem>;
@@ -25251,7 +25229,7 @@ export type SubscriptionsExportRequestOrganizationId =
   | string
   | SubscriptionsExportRequestOrganizationIdCase1List;
 export const SubscriptionsExportRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsExportRequestOrganizationId>;
+  S.Unknown as any as S.Schema<SubscriptionsExportRequestOrganizationId>;
 
 export type SubscriptionsExportRequestProductIdCase1List = Array<string>;
 export const SubscriptionsExportRequestProductIdCase1List =
@@ -25264,7 +25242,7 @@ export type SubscriptionsExportRequestProductId =
   | string
   | SubscriptionsExportRequestProductIdCase1List;
 export const SubscriptionsExportRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsExportRequestProductId>;
+  S.Unknown as any as S.Schema<SubscriptionsExportRequestProductId>;
 
 export type SubscriptionsExportRequestStatusCase1List = Array<
   SubscriptionStatus | (string & {})
@@ -25278,7 +25256,7 @@ export type SubscriptionsExportRequestStatus =
   | SubscriptionStatus
   | SubscriptionsExportRequestStatusCase1List;
 export const SubscriptionsExportRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsExportRequestStatus>;
+  S.Unknown as any as S.Schema<SubscriptionsExportRequestStatus>;
 
 export type SubscriptionExportColumn =
   | "email"
@@ -25303,7 +25281,7 @@ export type SubscriptionExportColumn =
   | "cancellation_reason"
   | "trial_start"
   | "trial_end";
-export const SubscriptionExportColumn = /*@__PURE__*/ S.String;
+export const SubscriptionExportColumn = S.String;
 
 export type SubscriptionsExportRequestColumnsCase1List = Array<
   SubscriptionExportColumn | (string & {})
@@ -25317,7 +25295,7 @@ export type SubscriptionsExportRequestColumns =
   | SubscriptionExportColumn
   | SubscriptionsExportRequestColumnsCase1List;
 export const SubscriptionsExportRequestColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsExportRequestColumns>;
+  S.Unknown as any as S.Schema<SubscriptionsExportRequestColumns>;
 
 export interface SubscriptionsExportRequest {
   /** Filter by organization ID. */
@@ -25386,7 +25364,7 @@ export type SubscriptionsListRequestOrganizationId =
   | string
   | SubscriptionsListRequestOrganizationIdCase1List;
 export const SubscriptionsListRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsListRequestOrganizationId>;
+  S.Unknown as any as S.Schema<SubscriptionsListRequestOrganizationId>;
 
 export type SubscriptionsListRequestProductIdCase1List = Array<string>;
 export const SubscriptionsListRequestProductIdCase1List = /*@__PURE__*/ S.Array(
@@ -25398,7 +25376,7 @@ export type SubscriptionsListRequestProductId =
   | string
   | SubscriptionsListRequestProductIdCase1List;
 export const SubscriptionsListRequestProductId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsListRequestProductId>;
+  S.Unknown as any as S.Schema<SubscriptionsListRequestProductId>;
 
 export type SubscriptionsListRequestCustomerIdCase1List = Array<string>;
 export const SubscriptionsListRequestCustomerIdCase1List =
@@ -25411,7 +25389,7 @@ export type SubscriptionsListRequestCustomerId =
   | string
   | SubscriptionsListRequestCustomerIdCase1List;
 export const SubscriptionsListRequestCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsListRequestCustomerId>;
+  S.Unknown as any as S.Schema<SubscriptionsListRequestCustomerId>;
 
 export type SubscriptionsListRequestExternalCustomerIdCase1List = Array<string>;
 export const SubscriptionsListRequestExternalCustomerIdCase1List =
@@ -25424,7 +25402,7 @@ export type SubscriptionsListRequestExternalCustomerId =
   | string
   | SubscriptionsListRequestExternalCustomerIdCase1List;
 export const SubscriptionsListRequestExternalCustomerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsListRequestExternalCustomerId>;
+  S.Unknown as any as S.Schema<SubscriptionsListRequestExternalCustomerId>;
 
 export type SubscriptionsListRequestDiscountIdCase1List = Array<string>;
 export const SubscriptionsListRequestDiscountIdCase1List =
@@ -25437,7 +25415,7 @@ export type SubscriptionsListRequestDiscountId =
   | string
   | SubscriptionsListRequestDiscountIdCase1List;
 export const SubscriptionsListRequestDiscountId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsListRequestDiscountId>;
+  S.Unknown as any as S.Schema<SubscriptionsListRequestDiscountId>;
 
 export type SubscriptionsListRequestStatusCase1List = Array<
   SubscriptionStatus | (string & {})
@@ -25451,7 +25429,7 @@ export type SubscriptionsListRequestStatus =
   | SubscriptionStatus
   | SubscriptionsListRequestStatusCase1List;
 export const SubscriptionsListRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsListRequestStatus>;
+  S.Unknown as any as S.Schema<SubscriptionsListRequestStatus>;
 
 export type SubscriptionsListRequestCustomerCancellationReasonCase1List = Array<
   CustomerCancellationReason | (string & {})
@@ -25466,7 +25444,7 @@ export type SubscriptionsListRequestCustomerCancellationReason =
   | CustomerCancellationReason
   | SubscriptionsListRequestCustomerCancellationReasonCase1List;
 export const SubscriptionsListRequestCustomerCancellationReason =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionsListRequestCustomerCancellationReason>;
+  S.Unknown as any as S.Schema<SubscriptionsListRequestCustomerCancellationReason>;
 
 export type SubscriptionSortProperty =
   | "customer"
@@ -25487,7 +25465,7 @@ export type SubscriptionSortProperty =
   | "-product"
   | "discount"
   | "-discount";
-export const SubscriptionSortProperty = /*@__PURE__*/ S.String;
+export const SubscriptionSortProperty = S.String;
 
 export type SubscriptionsListRequestSortingList = Array<
   SubscriptionSortProperty | (string & {})
@@ -25600,7 +25578,7 @@ export type SubscriptionUpdateBaseMetadataValue =
   | number
   | boolean;
 export const SubscriptionUpdateBaseMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionUpdateBaseMetadataValue>;
+  S.Unknown as any as S.Schema<SubscriptionUpdateBaseMetadataValue>;
 
 /** Key-value object allowing you to store additional information. The key must be a string with a maximum length of **40 characters**. The value must be either: * A string with a maximum length of **500 characters** * An integer * A floating-point number * A boolean You can store up to **50 key-value pairs**. */
 export type SubscriptionUpdateBaseMetadataMap = {
@@ -25748,7 +25726,7 @@ export type SubscriptionUpdate =
   | CustomerSubscriptionResume
   | SubscriptionUpdateClear;
 export const SubscriptionUpdate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubscriptionUpdate>;
+  S.Unknown as any as S.Schema<SubscriptionUpdate>;
 
 export interface SubscriptionsUpdateRequest {
   /** The subscription ID. */
@@ -25771,7 +25749,7 @@ export type UpdateCheckoutsClientRequestCustomFieldDataValue =
   | number
   | boolean;
 export const UpdateCheckoutsClientRequestCustomFieldDataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateCheckoutsClientRequestCustomFieldDataValue>;
+  S.Unknown as any as S.Schema<UpdateCheckoutsClientRequestCustomFieldDataValue>;
 
 /** Key-value object storing custom field values. */
 export type UpdateCheckoutsClientRequestCustomFieldDataMap = {
@@ -25918,7 +25896,7 @@ export const CustomerEmailUpdateVerifyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomerEmailUpdateVerifyResponse>;
 
 export type WebhookFormat = "raw" | "discord" | "slack";
-export const WebhookFormat = /*@__PURE__*/ S.String;
+export const WebhookFormat = S.String;
 
 export type WebhookEventType =
   | "checkout.created"
@@ -25962,7 +25940,7 @@ export type WebhookEventType =
   | "benefit_grant.updated"
   | "benefit_grant.revoked"
   | "organization.updated";
-export const WebhookEventType = /*@__PURE__*/ S.String;
+export const WebhookEventType = S.String;
 
 /** The events that will trigger the webhook. */
 export type WebhooksCreateWebhookEndpointRequestEventsList = Array<
@@ -26098,15 +26076,14 @@ export type WebhooksListWebhookDeliveriesRequestEndpointId =
   | string
   | WebhooksListWebhookDeliveriesRequestEndpointIdCase1List;
 export const WebhooksListWebhookDeliveriesRequestEndpointId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebhooksListWebhookDeliveriesRequestEndpointId>;
+  S.Unknown as any as S.Schema<WebhooksListWebhookDeliveriesRequestEndpointId>;
 
 export type WebhooksListWebhookDeliveriesRequestHttpCodeClass =
   | "2xx"
   | "3xx"
   | "4xx"
   | "5xx";
-export const WebhooksListWebhookDeliveriesRequestHttpCodeClass =
-  /*@__PURE__*/ S.String;
+export const WebhooksListWebhookDeliveriesRequestHttpCodeClass = S.String;
 
 export type WebhooksListWebhookDeliveriesRequestEventTypeCase1List = Array<
   WebhookEventType | (string & {})
@@ -26121,7 +26098,7 @@ export type WebhooksListWebhookDeliveriesRequestEventType =
   | WebhookEventType
   | WebhooksListWebhookDeliveriesRequestEventTypeCase1List;
 export const WebhooksListWebhookDeliveriesRequestEventType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebhooksListWebhookDeliveriesRequestEventType>;
+  S.Unknown as any as S.Schema<WebhooksListWebhookDeliveriesRequestEventType>;
 
 export interface WebhooksListWebhookDeliveriesRequest {
   /** Filter by webhook endpoint ID. */
@@ -26266,7 +26243,7 @@ export type WebhooksListWebhookEndpointsRequestOrganizationId =
   | string
   | WebhooksListWebhookEndpointsRequestOrganizationIdCase1List;
 export const WebhooksListWebhookEndpointsRequestOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebhooksListWebhookEndpointsRequestOrganizationId>;
+  S.Unknown as any as S.Schema<WebhooksListWebhookEndpointsRequestOrganizationId>;
 
 export interface WebhooksListWebhookEndpointsRequest {
   /** Filter by organization ID. */

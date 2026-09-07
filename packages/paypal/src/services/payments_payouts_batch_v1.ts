@@ -69,7 +69,7 @@ export type TransactionEnum =
   | "BLOCKED"
   | "REFUNDED"
   | "REVERSED";
-export const TransactionEnum = /*@__PURE__*/ S.String;
+export const TransactionEnum = S.String;
 
 /** The currency and amount for a financial transaction, such as a balance or payment due. */
 export interface Currency {
@@ -87,7 +87,7 @@ export const Currency = /*@__PURE__*/ S.suspend(() =>
 
 /** The ID type that identifies the payment receiver. */
 export type RecipientEnum = "EMAIL" | "PHONE" | "PAYPAL_ID";
-export const RecipientEnum = /*@__PURE__*/ S.String;
+export const RecipientEnum = S.String;
 
 /** The name of the party. */
 export interface Name {
@@ -120,7 +120,7 @@ export const Name = /*@__PURE__*/ S.suspend(() =>
 
 /** The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number. */
 export type RecipientWalletEnum = "PAYPAL" | "VENMO";
-export const RecipientWalletEnum = /*@__PURE__*/ S.String;
+export const RecipientWalletEnum = S.String;
 
 /** The purpose of the transaction. */
 export type PurposeEnum =
@@ -133,7 +133,7 @@ export type PurposeEnum =
   | "CASHBACK"
   | "DISCOUNTS"
   | "NON_GOODS_OR_SERVICES";
-export const PurposeEnum = /*@__PURE__*/ S.String;
+export const PurposeEnum = S.String;
 
 /** The details for a sender-created payout to a single recipient. */
 export interface PayoutItemDetail {
@@ -226,7 +226,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information. */
 export interface LinkDescription {
@@ -358,7 +358,7 @@ export type BatchEnum =
   | "PROCESSING"
   | "SUCCESS"
   | "CANCELED";
-export const BatchEnum = /*@__PURE__*/ S.String;
+export const BatchEnum = S.String;
 
 /** The sender-provided header for a payout request. */
 export interface PayoutSenderBatchHeader {
@@ -383,7 +383,7 @@ export const PayoutSenderBatchHeader = /*@__PURE__*/ S.suspend(() =>
 
 /** Identifies a funding source type. */
 export type FundingSource = "BALANCE";
-export const FundingSource = /*@__PURE__*/ S.String;
+export const FundingSource = S.String;
 
 /** The payout header that is returned in response to a payout header request. Shows details for an entire payout request. */
 export interface PayoutBatchHeader {

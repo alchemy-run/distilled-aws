@@ -409,8 +409,7 @@ export type DeleteAssignedTargetingOptionsRequestTargetingTypeEnum =
   | "TARGETING_TYPE_SESSION_POSITION"
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
-export const DeleteAssignedTargetingOptionsRequestTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteAssignedTargetingOptionsRequestTargetingTypeEnum = S.String;
 
 /** A request listing which assigned targeting options of a given targeting type should be deleted. */
 export interface DeleteAssignedTargetingOptionsRequest {
@@ -491,14 +490,13 @@ export type CreateAssignedTargetingOptionsRequestTargetingTypeEnum =
   | "TARGETING_TYPE_SESSION_POSITION"
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
-export const CreateAssignedTargetingOptionsRequestTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CreateAssignedTargetingOptionsRequestTargetingTypeEnum = S.String;
 
 export type SessionPositionAssignedTargetingOptionDetailsSessionPositionEnum =
   | "SESSION_POSITION_UNSPECIFIED"
   | "SESSION_POSITION_FIRST_IMPRESSION";
 export const SessionPositionAssignedTargetingOptionDetailsSessionPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for session position assigned targeting option. This will be populated in the session_position_details field when targeting_type is `TARGETING_TYPE_SESSION_POSITION`. */
 export interface SessionPositionAssignedTargetingOptionDetails {
@@ -557,7 +555,7 @@ export type ContentStreamTypeAssignedTargetingOptionDetailsContentStreamTypeEnum
   | "CONTENT_LIVE_STREAM"
   | "CONTENT_ON_DEMAND";
 export const ContentStreamTypeAssignedTargetingOptionDetailsContentStreamTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for content stream type assigned targeting option. This will be populated in the content_stream_type_details field when targeting_type is `TARGETING_TYPE_CONTENT_STREAM_TYPE`. Explicitly targeting all options is not supported. Remove all content stream type targeting options to achieve this effect. */
 export interface ContentStreamTypeAssignedTargetingOptionDetails {
@@ -603,7 +601,7 @@ export type OnScreenPositionAssignedTargetingOptionDetailsOnScreenPositionEnum =
   | "ON_SCREEN_POSITION_ABOVE_THE_FOLD"
   | "ON_SCREEN_POSITION_BELOW_THE_FOLD";
 export const OnScreenPositionAssignedTargetingOptionDetailsOnScreenPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OnScreenPositionAssignedTargetingOptionDetailsAdTypeEnum =
   | "AD_TYPE_UNSPECIFIED"
@@ -611,7 +609,7 @@ export type OnScreenPositionAssignedTargetingOptionDetailsAdTypeEnum =
   | "AD_TYPE_VIDEO"
   | "AD_TYPE_AUDIO";
 export const OnScreenPositionAssignedTargetingOptionDetailsAdTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** On screen position targeting option details. This will be populated in the on_screen_position_details field when targeting_type is `TARGETING_TYPE_ON_SCREEN_POSITION`. */
 export interface OnScreenPositionAssignedTargetingOptionDetails {
@@ -646,7 +644,7 @@ export type BusinessChainAssignedTargetingOptionDetailsProximityRadiusUnitEnum =
   | "DISTANCE_UNIT_MILES"
   | "DISTANCE_UNIT_KILOMETERS";
 export const BusinessChainAssignedTargetingOptionDetailsProximityRadiusUnitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for assigned Business chain targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`. */
 export interface BusinessChainAssignedTargetingOptionDetails {
@@ -690,8 +688,7 @@ export type AppAssignedTargetingOptionDetailsAppPlatformEnum =
   | "APP_PLATFORM_LG_TV"
   | "APP_PLATFORM_VIZIO_TV"
   | "APP_PLATFORM_VIDAA";
-export const AppAssignedTargetingOptionDetailsAppPlatformEnum =
-  /*@__PURE__*/ S.String;
+export const AppAssignedTargetingOptionDetailsAppPlatformEnum = S.String;
 
 /** Details for assigned app targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_APP`. */
 export interface AppAssignedTargetingOptionDetails {
@@ -736,7 +733,7 @@ export type UserRewardedContentAssignedTargetingOptionDetailsUserRewardedContent
   | "USER_REWARDED_CONTENT_USER_REWARDED"
   | "USER_REWARDED_CONTENT_NOT_USER_REWARDED";
 export const UserRewardedContentAssignedTargetingOptionDetailsUserRewardedContentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** User rewarded content targeting option details. This will be populated in the user_rewarded_content_details field when targeting_type is `TARGETING_TYPE_USER_REWARDED_CONTENT`. */
 export interface UserRewardedContentAssignedTargetingOptionDetails {
@@ -765,7 +762,7 @@ export type IntegralAdScienceDisplayViewabilityEnum =
   | "PERFORMANCE_VIEWABILITY_50"
   | "PERFORMANCE_VIEWABILITY_60"
   | "PERFORMANCE_VIEWABILITY_70";
-export const IntegralAdScienceDisplayViewabilityEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceDisplayViewabilityEnum = S.String;
 
 export type IntegralAdScienceTraqScoreOptionEnum =
   | "TRAQ_UNSPECIFIED"
@@ -776,65 +773,62 @@ export type IntegralAdScienceTraqScoreOptionEnum =
   | "TRAQ_750"
   | "TRAQ_875"
   | "TRAQ_1000";
-export const IntegralAdScienceTraqScoreOptionEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceTraqScoreOptionEnum = S.String;
 
 export type IntegralAdScienceExcludedAdultRiskEnum =
   | "ADULT_UNSPECIFIED"
   | "ADULT_HR"
   | "ADULT_HMR";
-export const IntegralAdScienceExcludedAdultRiskEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedAdultRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedAdFraudRiskEnum =
   | "SUSPICIOUS_ACTIVITY_UNSPECIFIED"
   | "SUSPICIOUS_ACTIVITY_HR"
   | "SUSPICIOUS_ACTIVITY_HMR"
   | "SUSPICIOUS_ACTIVITY_FD";
-export const IntegralAdScienceExcludedAdFraudRiskEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedAdFraudRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedAlcoholRiskEnum =
   | "ALCOHOL_UNSPECIFIED"
   | "ALCOHOL_HR"
   | "ALCOHOL_HMR";
-export const IntegralAdScienceExcludedAlcoholRiskEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedAlcoholRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedViolenceRiskEnum =
   | "VIOLENCE_UNSPECIFIED"
   | "VIOLENCE_HR"
   | "VIOLENCE_HMR";
-export const IntegralAdScienceExcludedViolenceRiskEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedViolenceRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedOffensiveLanguageRiskEnum =
   | "OFFENSIVE_LANGUAGE_UNSPECIFIED"
   | "OFFENSIVE_LANGUAGE_HR"
   | "OFFENSIVE_LANGUAGE_HMR";
-export const IntegralAdScienceExcludedOffensiveLanguageRiskEnum =
-  /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedOffensiveLanguageRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedGamblingRiskEnum =
   | "GAMBLING_UNSPECIFIED"
   | "GAMBLING_HR"
   | "GAMBLING_HMR";
-export const IntegralAdScienceExcludedGamblingRiskEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedGamblingRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedDrugsRiskEnum =
   | "DRUGS_UNSPECIFIED"
   | "DRUGS_HR"
   | "DRUGS_HMR";
-export const IntegralAdScienceExcludedDrugsRiskEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedDrugsRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedHateSpeechRiskEnum =
   | "HATE_SPEECH_UNSPECIFIED"
   | "HATE_SPEECH_HR"
   | "HATE_SPEECH_HMR";
-export const IntegralAdScienceExcludedHateSpeechRiskEnum =
-  /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedHateSpeechRiskEnum = S.String;
 
 export type IntegralAdScienceExcludedIllegalDownloadsRiskEnum =
   | "ILLEGAL_DOWNLOADS_UNSPECIFIED"
   | "ILLEGAL_DOWNLOADS_HR"
   | "ILLEGAL_DOWNLOADS_HMR";
-export const IntegralAdScienceExcludedIllegalDownloadsRiskEnum =
-  /*@__PURE__*/ S.String;
+export const IntegralAdScienceExcludedIllegalDownloadsRiskEnum = S.String;
 
 export type IntegralAdScienceVideoViewabilityEnum =
   | "VIDEO_VIEWABILITY_UNSPECIFIED"
@@ -842,7 +836,7 @@ export type IntegralAdScienceVideoViewabilityEnum =
   | "VIDEO_VIEWABILITY_50"
   | "VIDEO_VIEWABILITY_60"
   | "VIDEO_VIEWABILITY_70";
-export const IntegralAdScienceVideoViewabilityEnum = /*@__PURE__*/ S.String;
+export const IntegralAdScienceVideoViewabilityEnum = S.String;
 
 /** Details of Integral Ad Science settings. */
 export interface IntegralAdScience {
@@ -925,8 +919,7 @@ export type AdlooxDebatedSensitiveSocialIssueContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxDebatedSensitiveSocialIssueContentEnum =
-  /*@__PURE__*/ S.String;
+export const AdlooxDebatedSensitiveSocialIssueContentEnum = S.String;
 
 export type AdlooxExcludedAdlooxCategoriesItemEnum =
   | "ADLOOX_UNSPECIFIED"
@@ -938,7 +931,7 @@ export type AdlooxExcludedAdlooxCategoriesItemEnum =
   | "VIOLENT_CONTENT_WEAPONS"
   | "LOW_VIEWABILITY_DOMAINS"
   | "FRAUD";
-export const AdlooxExcludedAdlooxCategoriesItemEnum = /*@__PURE__*/ S.String;
+export const AdlooxExcludedAdlooxCategoriesItemEnum = S.String;
 
 export type AdlooxExcludedAdlooxCategoriesItemEnumList = Array<
   AdlooxExcludedAdlooxCategoriesItemEnum | (string & {})
@@ -954,13 +947,12 @@ export type AdlooxIllegalDrugsTobaccoEcigarettesVapingAlcoholContentEnum =
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
 export const AdlooxIllegalDrugsTobaccoEcigarettesVapingAlcoholContentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AdlooxExcludedFraudIvtMfaCategoriesItemEnum =
   | "FRAUD_IVT_MFA_CATEGORY_UNSPECIFIED"
   | "FRAUD_IVT_MFA";
-export const AdlooxExcludedFraudIvtMfaCategoriesItemEnum =
-  /*@__PURE__*/ S.String;
+export const AdlooxExcludedFraudIvtMfaCategoriesItemEnum = S.String;
 
 export type AdlooxExcludedFraudIvtMfaCategoriesItemEnumList = Array<
   AdlooxExcludedFraudIvtMfaCategoriesItemEnum | (string & {})
@@ -976,7 +968,7 @@ export type AdlooxSpamHarmfulContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxSpamHarmfulContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxSpamHarmfulContentEnum = S.String;
 
 export type AdlooxCrimeHarmfulActsIndividualsSocietyHumanRightsViolationsContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -985,7 +977,7 @@ export type AdlooxCrimeHarmfulActsIndividualsSocietyHumanRightsViolationsContent
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
 export const AdlooxCrimeHarmfulActsIndividualsSocietyHumanRightsViolationsContentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AdlooxDisplayIabViewabilityEnum =
   | "DISPLAY_IAB_VIEWABILITY_UNSPECIFIED"
@@ -994,7 +986,7 @@ export type AdlooxDisplayIabViewabilityEnum =
   | "DISPLAY_IAB_VIEWABILITY_35"
   | "DISPLAY_IAB_VIEWABILITY_50"
   | "DISPLAY_IAB_VIEWABILITY_75";
-export const AdlooxDisplayIabViewabilityEnum = /*@__PURE__*/ S.String;
+export const AdlooxDisplayIabViewabilityEnum = S.String;
 
 export type AdlooxTerrorismContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1002,7 +994,7 @@ export type AdlooxTerrorismContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxTerrorismContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxTerrorismContentEnum = S.String;
 
 export type AdlooxMisinformationContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1010,7 +1002,7 @@ export type AdlooxMisinformationContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxMisinformationContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxMisinformationContentEnum = S.String;
 
 export type AdlooxHateSpeechActsAggressionContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1018,7 +1010,7 @@ export type AdlooxHateSpeechActsAggressionContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxHateSpeechActsAggressionContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxHateSpeechActsAggressionContentEnum = S.String;
 
 export type AdlooxArmsAmmunitionContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1026,7 +1018,7 @@ export type AdlooxArmsAmmunitionContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxArmsAmmunitionContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxArmsAmmunitionContentEnum = S.String;
 
 export type AdlooxAdultExplicitSexualContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1034,7 +1026,7 @@ export type AdlooxAdultExplicitSexualContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxAdultExplicitSexualContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxAdultExplicitSexualContentEnum = S.String;
 
 export type AdlooxDeathInjuryMilitaryConflictContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1042,8 +1034,7 @@ export type AdlooxDeathInjuryMilitaryConflictContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxDeathInjuryMilitaryConflictContentEnum =
-  /*@__PURE__*/ S.String;
+export const AdlooxDeathInjuryMilitaryConflictContentEnum = S.String;
 
 export type AdlooxVideoIabViewabilityEnum =
   | "VIDEO_IAB_VIEWABILITY_UNSPECIFIED"
@@ -1052,7 +1043,7 @@ export type AdlooxVideoIabViewabilityEnum =
   | "VIDEO_IAB_VIEWABILITY_35"
   | "VIDEO_IAB_VIEWABILITY_50"
   | "VIDEO_IAB_VIEWABILITY_75";
-export const AdlooxVideoIabViewabilityEnum = /*@__PURE__*/ S.String;
+export const AdlooxVideoIabViewabilityEnum = S.String;
 
 export type AdlooxOnlinePiracyContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1060,7 +1051,7 @@ export type AdlooxOnlinePiracyContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxOnlinePiracyContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxOnlinePiracyContentEnum = S.String;
 
 export type AdlooxObscenityProfanityContentEnum =
   | "GARM_RISK_EXCLUSION_UNSPECIFIED"
@@ -1068,7 +1059,7 @@ export type AdlooxObscenityProfanityContentEnum =
   | "GARM_RISK_EXCLUSION_HIGH"
   | "GARM_RISK_EXCLUSION_MEDIUM"
   | "GARM_RISK_EXCLUSION_LOW";
-export const AdlooxObscenityProfanityContentEnum = /*@__PURE__*/ S.String;
+export const AdlooxObscenityProfanityContentEnum = S.String;
 
 /** Details of Scope3 (previously known as Adloox) brand safety settings. */
 export interface Adloox {
@@ -1164,7 +1155,7 @@ export type DoubleVerifyAvoidedAgeRatingsItemEnum =
   | "APP_AGE_RATE_12_PLUS"
   | "APP_AGE_RATE_17_PLUS"
   | "APP_AGE_RATE_18_PLUS";
-export const DoubleVerifyAvoidedAgeRatingsItemEnum = /*@__PURE__*/ S.String;
+export const DoubleVerifyAvoidedAgeRatingsItemEnum = S.String;
 
 export type DoubleVerifyAvoidedAgeRatingsItemEnumList = Array<
   DoubleVerifyAvoidedAgeRatingsItemEnum | (string & {})
@@ -1184,15 +1175,14 @@ export type DoubleVerifyDisplayViewabilityIabEnum =
   | "IAB_VIEWED_RATE_50_PERCENT_HIGHER"
   | "IAB_VIEWED_RATE_40_PERCENT_HIGHER"
   | "IAB_VIEWED_RATE_30_PERCENT_HIGHER";
-export const DoubleVerifyDisplayViewabilityIabEnum = /*@__PURE__*/ S.String;
+export const DoubleVerifyDisplayViewabilityIabEnum = S.String;
 
 export type DoubleVerifyDisplayViewabilityViewableDuringEnum =
   | "AVERAGE_VIEW_DURATION_UNSPECIFIED"
   | "AVERAGE_VIEW_DURATION_5_SEC"
   | "AVERAGE_VIEW_DURATION_10_SEC"
   | "AVERAGE_VIEW_DURATION_15_SEC";
-export const DoubleVerifyDisplayViewabilityViewableDuringEnum =
-  /*@__PURE__*/ S.String;
+export const DoubleVerifyDisplayViewabilityViewableDuringEnum = S.String;
 
 /** Details of DoubleVerify display viewability settings. */
 export interface DoubleVerifyDisplayViewability {
@@ -1237,7 +1227,7 @@ export type DoubleVerifyBrandSafetyCategoriesAvoidedMediumSeverityCategoriesItem
   | "INFLAMMATORY_POLITICS_AND_NEWS"
   | "NEGATIVE_NEWS_PHARMACEUTICAL";
 export const DoubleVerifyBrandSafetyCategoriesAvoidedMediumSeverityCategoriesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DoubleVerifyBrandSafetyCategoriesAvoidedMediumSeverityCategoriesItemEnumList =
   Array<
@@ -1259,7 +1249,7 @@ export type DoubleVerifyBrandSafetyCategoriesAvoidedHighSeverityCategoriesItemEn
   | "CRIMINAL_SKILLS"
   | "NUISANCE_INCENTIVIZED_MALWARE_CLUTTER";
 export const DoubleVerifyBrandSafetyCategoriesAvoidedHighSeverityCategoriesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DoubleVerifyBrandSafetyCategoriesAvoidedHighSeverityCategoriesItemEnumList =
   Array<
@@ -1304,8 +1294,7 @@ export type DoubleVerifyFraudInvalidTrafficAvoidedFraudOptionEnum =
   | "AD_IMPRESSION_FRAUD_6"
   | "AD_IMPRESSION_FRAUD_4"
   | "AD_IMPRESSION_FRAUD_2";
-export const DoubleVerifyFraudInvalidTrafficAvoidedFraudOptionEnum =
-  /*@__PURE__*/ S.String;
+export const DoubleVerifyFraudInvalidTrafficAvoidedFraudOptionEnum = S.String;
 
 /** DoubleVerify Fraud & Invalid Traffic settings. */
 export interface DoubleVerifyFraudInvalidTraffic {
@@ -1336,8 +1325,7 @@ export type DoubleVerifyAppStarRatingAvoidedStarRatingEnum =
   | "APP_STAR_RATE_3_POINT_5_LESS"
   | "APP_STAR_RATE_4_LESS"
   | "APP_STAR_RATE_4_POINT_5_LESS";
-export const DoubleVerifyAppStarRatingAvoidedStarRatingEnum =
-  /*@__PURE__*/ S.String;
+export const DoubleVerifyAppStarRatingAvoidedStarRatingEnum = S.String;
 
 /** Details of DoubleVerify star ratings settings. */
 export interface DoubleVerifyAppStarRating {
@@ -1367,8 +1355,7 @@ export type DoubleVerifyVideoViewabilityVideoViewableRateEnum =
   | "VIEWED_PERFORMANCE_25_PERCENT_HIGHER"
   | "VIEWED_PERFORMANCE_20_PERCENT_HIGHER"
   | "VIEWED_PERFORMANCE_10_PERCENT_HIGHER";
-export const DoubleVerifyVideoViewabilityVideoViewableRateEnum =
-  /*@__PURE__*/ S.String;
+export const DoubleVerifyVideoViewabilityVideoViewableRateEnum = S.String;
 
 export type DoubleVerifyVideoViewabilityVideoIabEnum =
   | "VIDEO_IAB_UNSPECIFIED"
@@ -1381,7 +1368,7 @@ export type DoubleVerifyVideoViewabilityVideoIabEnum =
   | "IAB_VIEWABILITY_50_PERCENT_HIGHER"
   | "IAB_VIEWABILITY_40_PERCENT_HIHGER"
   | "IAB_VIEWABILITY_30_PERCENT_HIHGER";
-export const DoubleVerifyVideoViewabilityVideoIabEnum = /*@__PURE__*/ S.String;
+export const DoubleVerifyVideoViewabilityVideoIabEnum = S.String;
 
 export type DoubleVerifyVideoViewabilityPlayerImpressionRateEnum =
   | "PLAYER_SIZE_400X300_UNSPECIFIED"
@@ -1389,8 +1376,7 @@ export type DoubleVerifyVideoViewabilityPlayerImpressionRateEnum =
   | "PLAYER_SIZE_400X300_70"
   | "PLAYER_SIZE_400X300_25"
   | "PLAYER_SIZE_400X300_5";
-export const DoubleVerifyVideoViewabilityPlayerImpressionRateEnum =
-  /*@__PURE__*/ S.String;
+export const DoubleVerifyVideoViewabilityPlayerImpressionRateEnum = S.String;
 
 /** Details of DoubleVerify video viewability settings. */
 export interface DoubleVerifyVideoViewability {
@@ -1513,8 +1499,7 @@ export type FirstAndThirdPartyAudienceTargetingSettingRecencyEnum =
   | "RECENCY_180_DAYS"
   | "RECENCY_270_DAYS"
   | "RECENCY_365_DAYS";
-export const FirstAndThirdPartyAudienceTargetingSettingRecencyEnum =
-  /*@__PURE__*/ S.String;
+export const FirstAndThirdPartyAudienceTargetingSettingRecencyEnum = S.String;
 
 /** Details of first and third party audience targeting setting. */
 export interface FirstAndThirdPartyAudienceTargetingSetting {
@@ -1698,7 +1683,7 @@ export type ContentInstreamPositionAssignedTargetingOptionDetailsContentInstream
   | "CONTENT_INSTREAM_POSITION_POST_ROLL"
   | "CONTENT_INSTREAM_POSITION_UNKNOWN";
 export const ContentInstreamPositionAssignedTargetingOptionDetailsContentInstreamPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ContentInstreamPositionAssignedTargetingOptionDetailsAdTypeEnum =
   | "AD_TYPE_UNSPECIFIED"
@@ -1706,7 +1691,7 @@ export type ContentInstreamPositionAssignedTargetingOptionDetailsAdTypeEnum =
   | "AD_TYPE_VIDEO"
   | "AD_TYPE_AUDIO";
 export const ContentInstreamPositionAssignedTargetingOptionDetailsAdTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Assigned content instream position targeting option details. This will be populated in the content_instream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`. */
 export interface ContentInstreamPositionAssignedTargetingOptionDetails {
@@ -1738,7 +1723,7 @@ export type PoiAssignedTargetingOptionDetailsProximityRadiusUnitEnum =
   | "DISTANCE_UNIT_MILES"
   | "DISTANCE_UNIT_KILOMETERS";
 export const PoiAssignedTargetingOptionDetailsProximityRadiusUnitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for assigned POI targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_POI`. */
 export interface PoiAssignedTargetingOptionDetails {
@@ -1820,7 +1805,7 @@ export type AudioContentTypeAssignedTargetingOptionDetailsAudioContentTypeEnum =
   | "AUDIO_CONTENT_TYPE_VIDEO_GAME"
   | "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH";
 export const AudioContentTypeAssignedTargetingOptionDetailsAudioContentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for audio content type assigned targeting option. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`. Explicitly targeting all options is not supported. Remove all audio content type targeting options to achieve this effect. */
 export interface AudioContentTypeAssignedTargetingOptionDetails {
@@ -1845,7 +1830,7 @@ export type ProximityLocationListAssignedTargetingOptionDetailsProximityRadiusUn
   | "PROXIMITY_RADIUS_UNIT_MILES"
   | "PROXIMITY_RADIUS_UNIT_KILOMETERS";
 export const ProximityLocationListAssignedTargetingOptionDetailsProximityRadiusUnitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Targeting details for proximity location list. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`. */
 export interface ProximityLocationListAssignedTargetingOptionDetails {
@@ -1890,8 +1875,7 @@ export type AgeRangeAssignedTargetingOptionDetailsAgeRangeEnum =
   | "AGE_RANGE_50_54"
   | "AGE_RANGE_55_59"
   | "AGE_RANGE_60_64";
-export const AgeRangeAssignedTargetingOptionDetailsAgeRangeEnum =
-  /*@__PURE__*/ S.String;
+export const AgeRangeAssignedTargetingOptionDetailsAgeRangeEnum = S.String;
 
 /** Represents a targetable age range. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AGE_RANGE`. */
 export interface AgeRangeAssignedTargetingOptionDetails {
@@ -1919,7 +1903,7 @@ export type ContentThemeAssignedTargetingOptionDetailsContentThemeEnum =
   | "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT"
   | "CONTENT_THEME_UNPLEASANT_NEWS";
 export const ContentThemeAssignedTargetingOptionDetailsContentThemeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ContentThemeAssignedTargetingOptionDetailsExcludedContentThemeEnum =
   | "CONTENT_THEME_UNSPECIFIED"
@@ -1933,7 +1917,7 @@ export type ContentThemeAssignedTargetingOptionDetailsExcludedContentThemeEnum =
   | "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT"
   | "CONTENT_THEME_UNPLEASANT_NEWS";
 export const ContentThemeAssignedTargetingOptionDetailsExcludedContentThemeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Targeting details for content theme. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`. */
 export interface ContentThemeAssignedTargetingOptionDetails {
@@ -2026,7 +2010,7 @@ export type GeoRegionAssignedTargetingOptionDetailsGeoRegionTypeEnum =
   | "GEO_REGION_TYPE_PROVINCIAL_CITY"
   | "GEO_REGION_TYPE_RURAL_DISTRICT";
 export const GeoRegionAssignedTargetingOptionDetailsGeoRegionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for assigned geographic region targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_GEO_REGION`. */
 export interface GeoRegionAssignedTargetingOptionDetails {
@@ -2058,8 +2042,7 @@ export const GeoRegionAssignedTargetingOptionDetails = /*@__PURE__*/ S.suspend(
 export type OmidAssignedTargetingOptionDetailsOmidEnum =
   | "OMID_UNSPECIFIED"
   | "OMID_FOR_MOBILE_DISPLAY_ADS";
-export const OmidAssignedTargetingOptionDetailsOmidEnum =
-  /*@__PURE__*/ S.String;
+export const OmidAssignedTargetingOptionDetailsOmidEnum = S.String;
 
 /** Represents a targetable Open Measurement enabled inventory type. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_OMID`. */
 export interface OmidAssignedTargetingOptionDetails {
@@ -2084,7 +2067,7 @@ export type ContentDurationAssignedTargetingOptionDetailsContentDurationEnum =
   | "CONTENT_DURATION_30_TO_60_MIN"
   | "CONTENT_DURATION_OVER_60_MIN";
 export const ContentDurationAssignedTargetingOptionDetailsContentDurationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for content duration assigned targeting option. This will be populated in the content_duration_details field when targeting_type is `TARGETING_TYPE_CONTENT_DURATION`. Explicitly targeting all options is not supported. Remove all content duration targeting options to achieve this effect. */
 export interface ContentDurationAssignedTargetingOptionDetails {
@@ -2132,7 +2115,7 @@ export type DayAndTimeAssignedTargetingOptionDetailsTimeZoneResolutionEnum =
   | "TIME_ZONE_RESOLUTION_END_USER"
   | "TIME_ZONE_RESOLUTION_ADVERTISER";
 export const DayAndTimeAssignedTargetingOptionDetailsTimeZoneResolutionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DayAndTimeAssignedTargetingOptionDetailsDayOfWeekEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -2143,8 +2126,7 @@ export type DayAndTimeAssignedTargetingOptionDetailsDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const DayAndTimeAssignedTargetingOptionDetailsDayOfWeekEnum =
-  /*@__PURE__*/ S.String;
+export const DayAndTimeAssignedTargetingOptionDetailsDayOfWeekEnum = S.String;
 
 /** Representation of a segment of time defined on a specific day of the week and with a start and end time. The time represented by `start_hour` must be before the time represented by `end_hour`. */
 export interface DayAndTimeAssignedTargetingOptionDetails {
@@ -2199,7 +2181,7 @@ export type SensitiveCategoryAssignedTargetingOptionDetailsExcludedSensitiveCate
   | "SENSITIVE_CATEGORY_EMBEDDED_VIDEO"
   | "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO";
 export const SensitiveCategoryAssignedTargetingOptionDetailsExcludedSensitiveCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Targeting details for sensitive category. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. */
 export interface SensitiveCategoryAssignedTargetingOptionDetails {
@@ -2285,7 +2267,7 @@ export type AssignedTargetingOptionTargetingTypeEnum =
   | "TARGETING_TYPE_SESSION_POSITION"
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
-export const AssignedTargetingOptionTargetingTypeEnum = /*@__PURE__*/ S.String;
+export const AssignedTargetingOptionTargetingTypeEnum = S.String;
 
 export type EnvironmentAssignedTargetingOptionDetailsEnvironmentEnum =
   | "ENVIRONMENT_UNSPECIFIED"
@@ -2293,7 +2275,7 @@ export type EnvironmentAssignedTargetingOptionDetailsEnvironmentEnum =
   | "ENVIRONMENT_WEB_NOT_OPTIMIZED"
   | "ENVIRONMENT_APP";
 export const EnvironmentAssignedTargetingOptionDetailsEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Assigned environment targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_ENVIRONMENT`. */
 export interface EnvironmentAssignedTargetingOptionDetails {
@@ -2341,7 +2323,7 @@ export type ContentOutstreamPositionAssignedTargetingOptionDetailsContentOutstre
   | "CONTENT_OUTSTREAM_POSITION_IN_FEED"
   | "CONTENT_OUTSTREAM_POSITION_INTERSTITIAL";
 export const ContentOutstreamPositionAssignedTargetingOptionDetailsContentOutstreamPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ContentOutstreamPositionAssignedTargetingOptionDetailsAdTypeEnum =
   | "AD_TYPE_UNSPECIFIED"
@@ -2349,7 +2331,7 @@ export type ContentOutstreamPositionAssignedTargetingOptionDetailsAdTypeEnum =
   | "AD_TYPE_VIDEO"
   | "AD_TYPE_AUDIO";
 export const ContentOutstreamPositionAssignedTargetingOptionDetailsAdTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Assigned content outstream position targeting option details. This will be populated in the content_outstream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`. */
 export interface ContentOutstreamPositionAssignedTargetingOptionDetails {
@@ -2385,7 +2367,7 @@ export type DigitalContentLabelAssignedTargetingOptionDetailsExcludedContentRati
   | "CONTENT_RATING_TIER_MATURE"
   | "CONTENT_RATING_TIER_FAMILIES";
 export const DigitalContentLabelAssignedTargetingOptionDetailsExcludedContentRatingTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Targeting details for digital content label. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`. */
 export interface DigitalContentLabelAssignedTargetingOptionDetails {
@@ -2413,7 +2395,7 @@ export type NativeContentPositionAssignedTargetingOptionDetailsContentPositionEn
   | "NATIVE_CONTENT_POSITION_PERIPHERAL"
   | "NATIVE_CONTENT_POSITION_RECOMMENDATION";
 export const NativeContentPositionAssignedTargetingOptionDetailsContentPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for native content position assigned targeting option. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`. Explicitly targeting all options is not supported. Remove all native content position targeting options to achieve this effect. */
 export interface NativeContentPositionAssignedTargetingOptionDetails {
@@ -2460,7 +2442,7 @@ export type VideoPlayerSizeAssignedTargetingOptionDetailsVideoPlayerSizeEnum =
   | "VIDEO_PLAYER_SIZE_HD"
   | "VIDEO_PLAYER_SIZE_UNKNOWN";
 export const VideoPlayerSizeAssignedTargetingOptionDetailsVideoPlayerSizeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Video player size targeting option details. This will be populated in the video_player_size_details field when targeting_type is `TARGETING_TYPE_VIDEO_PLAYER_SIZE`. Explicitly targeting all options is not supported. Remove all video player size targeting options to achieve this effect. */
 export interface VideoPlayerSizeAssignedTargetingOptionDetails {
@@ -2612,7 +2594,7 @@ export type AuthorizedSellerStatusAssignedTargetingOptionDetailsAuthorizedSeller
   | "AUTHORIZED_SELLER_STATUS_AUTHORIZED_DIRECT_SELLERS_ONLY"
   | "AUTHORIZED_SELLER_STATUS_AUTHORIZED_AND_NON_PARTICIPATING_PUBLISHERS";
 export const AuthorizedSellerStatusAssignedTargetingOptionDetailsAuthorizedSellerStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents an assigned authorized seller status. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. If a resource does not have an `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` assigned targeting option, it is using the "Authorized Direct Sellers and Resellers" option. */
 export interface AuthorizedSellerStatusAssignedTargetingOptionDetails {
@@ -2641,7 +2623,7 @@ export type ParentalStatusAssignedTargetingOptionDetailsParentalStatusEnum =
   | "PARENTAL_STATUS_NOT_A_PARENT"
   | "PARENTAL_STATUS_UNKNOWN";
 export const ParentalStatusAssignedTargetingOptionDetailsParentalStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for assigned parental status targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`. */
 export interface ParentalStatusAssignedTargetingOptionDetails {
@@ -2666,8 +2648,7 @@ export type GenderAssignedTargetingOptionDetailsGenderEnum =
   | "GENDER_MALE"
   | "GENDER_FEMALE"
   | "GENDER_UNKNOWN";
-export const GenderAssignedTargetingOptionDetailsGenderEnum =
-  /*@__PURE__*/ S.String;
+export const GenderAssignedTargetingOptionDetailsGenderEnum = S.String;
 
 /** Details for assigned gender targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_GENDER`. */
 export interface GenderAssignedTargetingOptionDetails {
@@ -2688,7 +2669,7 @@ export type AssignedTargetingOptionInheritanceEnum =
   | "NOT_INHERITED"
   | "INHERITED_FROM_PARTNER"
   | "INHERITED_FROM_ADVERTISER";
-export const AssignedTargetingOptionInheritanceEnum = /*@__PURE__*/ S.String;
+export const AssignedTargetingOptionInheritanceEnum = S.String;
 
 /** Assigned category targeting option details. This will be populated in the category_details field when targeting_type is `TARGETING_TYPE_CATEGORY`. */
 export interface CategoryAssignedTargetingOptionDetails {
@@ -2717,8 +2698,7 @@ export type DeviceTypeAssignedTargetingOptionDetailsDeviceTypeEnum =
   | "DEVICE_TYPE_SMART_PHONE"
   | "DEVICE_TYPE_TABLET"
   | "DEVICE_TYPE_CONNECTED_DEVICE";
-export const DeviceTypeAssignedTargetingOptionDetailsDeviceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceTypeAssignedTargetingOptionDetailsDeviceTypeEnum = S.String;
 
 /** Targeting details for device type. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_DEVICE_TYPE`. */
 export interface DeviceTypeAssignedTargetingOptionDetails {
@@ -2753,7 +2733,7 @@ export type ViewabilityAssignedTargetingOptionDetailsViewabilityEnum =
   | "VIEWABILITY_80_PERCENT_OR_MORE"
   | "VIEWABILITY_90_PERCENT_OR_MORE";
 export const ViewabilityAssignedTargetingOptionDetailsViewabilityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Assigned viewability targeting option details. This will be populated in the viewability_details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_VIEWABILITY`. */
 export interface ViewabilityAssignedTargetingOptionDetails {
@@ -2783,7 +2763,7 @@ export type HouseholdIncomeAssignedTargetingOptionDetailsHouseholdIncomeEnum =
   | "HOUSEHOLD_INCOME_TOP_11_TO_20_PERCENT"
   | "HOUSEHOLD_INCOME_TOP_10_PERCENT";
 export const HouseholdIncomeAssignedTargetingOptionDetailsHouseholdIncomeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details for assigned household income targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_HOUSEHOLD_INCOME`. */
 export interface HouseholdIncomeAssignedTargetingOptionDetails {
@@ -2894,8 +2874,7 @@ export type ExchangeAssignedTargetingOptionDetailsExchangeEnum =
   | "EXCHANGE_SNAP"
   | "EXCHANGE_CADENT"
   | "EXCHANGE_EXTE";
-export const ExchangeAssignedTargetingOptionDetailsExchangeEnum =
-  /*@__PURE__*/ S.String;
+export const ExchangeAssignedTargetingOptionDetailsExchangeEnum = S.String;
 
 /** Details for assigned exchange targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_EXCHANGE`. */
 export interface ExchangeAssignedTargetingOptionDetails {
@@ -3349,7 +3328,7 @@ export type AssignedUserRoleUserRoleEnum =
   | "LIMITED_REPORTING_ONLY"
   | "CREATIVE"
   | "CREATIVE_ADMIN";
-export const AssignedUserRoleUserRoleEnum = /*@__PURE__*/ S.String;
+export const AssignedUserRoleUserRoleEnum = S.String;
 
 /** A single assigned user role, which defines a user's authorized interaction with a specified partner or advertiser. */
 export interface AssignedUserRole {
@@ -3694,7 +3673,7 @@ export type LineItemEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const LineItemEntityStatusEnum = /*@__PURE__*/ S.String;
+export const LineItemEntityStatusEnum = S.String;
 
 export type LineItemLineItemTypeEnum =
   | "LINE_ITEM_TYPE_UNSPECIFIED"
@@ -3720,7 +3699,7 @@ export type LineItemLineItemTypeEnum =
   | "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME"
   | "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME"
   | "LINE_ITEM_TYPE_DEMAND_GEN";
-export const LineItemLineItemTypeEnum = /*@__PURE__*/ S.String;
+export const LineItemLineItemTypeEnum = S.String;
 
 export type FrequencyCapTimeUnitEnum =
   | "TIME_UNIT_UNSPECIFIED"
@@ -3730,7 +3709,7 @@ export type FrequencyCapTimeUnitEnum =
   | "TIME_UNIT_DAYS"
   | "TIME_UNIT_HOURS"
   | "TIME_UNIT_MINUTES";
-export const FrequencyCapTimeUnitEnum = /*@__PURE__*/ S.String;
+export const FrequencyCapTimeUnitEnum = S.String;
 
 /** Settings that control the number of times a user may be shown with the same ad during a given time period. */
 export interface FrequencyCap {
@@ -3760,8 +3739,7 @@ export type YoutubeAndPartnersSettingsEffectiveContentCategoryEnum =
   | "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_STANDARD"
   | "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_EXPANDED"
   | "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_LIMITED";
-export const YoutubeAndPartnersSettingsEffectiveContentCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const YoutubeAndPartnersSettingsEffectiveContentCategoryEnum = S.String;
 
 /** Settings that control what YouTube related inventories the YouTube and Partners line item will target. */
 export interface YoutubeAndPartnersInventorySourceConfig {
@@ -3809,8 +3787,7 @@ export type VideoAdSequenceSettingsMinimumDurationEnum =
   | "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_UNSPECIFIED"
   | "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_WEEK"
   | "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_MONTH";
-export const VideoAdSequenceSettingsMinimumDurationEnum =
-  /*@__PURE__*/ S.String;
+export const VideoAdSequenceSettingsMinimumDurationEnum = S.String;
 
 export type VideoAdSequenceStepInteractionTypeEnum =
   | "INTERACTION_TYPE_UNSPECIFIED"
@@ -3818,7 +3795,7 @@ export type VideoAdSequenceStepInteractionTypeEnum =
   | "INTERACTION_TYPE_SKIP"
   | "INTERACTION_TYPE_IMPRESSION"
   | "INTERACTION_TYPE_ENGAGED_IMPRESSION";
-export const VideoAdSequenceStepInteractionTypeEnum = /*@__PURE__*/ S.String;
+export const VideoAdSequenceStepInteractionTypeEnum = S.String;
 
 /** The detail of a single step in a VideoAdSequence. */
 export interface VideoAdSequenceStep {
@@ -3871,7 +3848,7 @@ export type TargetFrequencyTimeUnitEnum =
   | "TIME_UNIT_DAYS"
   | "TIME_UNIT_HOURS"
   | "TIME_UNIT_MINUTES";
-export const TargetFrequencyTimeUnitEnum = /*@__PURE__*/ S.String;
+export const TargetFrequencyTimeUnitEnum = S.String;
 
 /** Setting that controls the average number of times the ads will show to the same person over a certain period of time. */
 export interface TargetFrequency {
@@ -3897,8 +3874,7 @@ export type YoutubeAndPartnersSettingsContentCategoryEnum =
   | "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_STANDARD"
   | "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_EXPANDED"
   | "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_LIMITED";
-export const YoutubeAndPartnersSettingsContentCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const YoutubeAndPartnersSettingsContentCategoryEnum = S.String;
 
 export type ThirdPartyVendorConfigVendorEnum =
   | "THIRD_PARTY_VENDOR_UNSPECIFIED"
@@ -3922,7 +3898,7 @@ export type ThirdPartyVendorConfigVendorEnum =
   | "THIRD_PARTY_VENDOR_INTAGE"
   | "THIRD_PARTY_VENDOR_MACROMILL"
   | "THIRD_PARTY_VENDOR_VIDEO_RESEARCH";
-export const ThirdPartyVendorConfigVendorEnum = /*@__PURE__*/ S.String;
+export const ThirdPartyVendorConfigVendorEnum = S.String;
 
 /** Settings that control how third-party measurement vendors are configured. */
 export interface ThirdPartyVendorConfig {
@@ -4090,8 +4066,7 @@ export type MaximizeSpendBidStrategyPerformanceGoalTypeEnum =
   | "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA"
   | "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN"
   | "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED";
-export const MaximizeSpendBidStrategyPerformanceGoalTypeEnum =
-  /*@__PURE__*/ S.String;
+export const MaximizeSpendBidStrategyPerformanceGoalTypeEnum = S.String;
 
 /** A strategy that automatically adjusts the bid to optimize a specified performance goal while spending the full budget. */
 export interface MaximizeSpendBidStrategy {
@@ -4124,7 +4099,7 @@ export type YoutubeAndPartnersBiddingStrategyAdGroupEffectiveTargetCpaSourceEnum
   | "BIDDING_SOURCE_LINE_ITEM"
   | "BIDDING_SOURCE_AD_GROUP";
 export const YoutubeAndPartnersBiddingStrategyAdGroupEffectiveTargetCpaSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type YoutubeAndPartnersBiddingStrategyTypeEnum =
   | "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_UNSPECIFIED"
@@ -4138,7 +4113,7 @@ export type YoutubeAndPartnersBiddingStrategyTypeEnum =
   | "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPV"
   | "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS"
   | "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSION_VALUE";
-export const YoutubeAndPartnersBiddingStrategyTypeEnum = /*@__PURE__*/ S.String;
+export const YoutubeAndPartnersBiddingStrategyTypeEnum = S.String;
 
 /** Settings that control the bid strategy for YouTube and Partners resources. */
 export interface YoutubeAndPartnersBiddingStrategy {
@@ -4188,8 +4163,7 @@ export type PerformanceGoalBidStrategyPerformanceGoalTypeEnum =
   | "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA"
   | "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN"
   | "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED";
-export const PerformanceGoalBidStrategyPerformanceGoalTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PerformanceGoalBidStrategyPerformanceGoalTypeEnum = S.String;
 
 /** A strategy that automatically adjusts the bid to meet or beat a specified performance goal. */
 export interface PerformanceGoalBidStrategy {
@@ -4221,8 +4195,7 @@ export type DemandGenBiddingStrategyEffectiveBiddingValueSourceEnum =
   | "BIDDING_SOURCE_UNSPECIFIED"
   | "BIDDING_SOURCE_LINE_ITEM"
   | "BIDDING_SOURCE_AD_GROUP";
-export const DemandGenBiddingStrategyEffectiveBiddingValueSourceEnum =
-  /*@__PURE__*/ S.String;
+export const DemandGenBiddingStrategyEffectiveBiddingValueSourceEnum = S.String;
 
 export type DemandGenBiddingStrategyTypeEnum =
   | "DEMAND_GEN_BIDDING_STRATEGY_TYPE_UNSPECIFIED"
@@ -4232,7 +4205,7 @@ export type DemandGenBiddingStrategyTypeEnum =
   | "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSION_VALUE"
   | "DEMAND_GEN_BIDDING_STRATEGY_TYPE_MAXIMIZE_CLICKS"
   | "DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPC";
-export const DemandGenBiddingStrategyTypeEnum = /*@__PURE__*/ S.String;
+export const DemandGenBiddingStrategyTypeEnum = S.String;
 
 /** Settings that control the bid strategy for Demand Gen resources. */
 export interface DemandGenBiddingStrategy {
@@ -4291,8 +4264,7 @@ export type TargetingExpansionConfigAudienceExpansionLevelEnum =
   | "LEAST_REACH"
   | "MID_REACH"
   | "MOST_REACH";
-export const TargetingExpansionConfigAudienceExpansionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const TargetingExpansionConfigAudienceExpansionLevelEnum = S.String;
 
 /** Settings that control the [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the line item. */
 export interface TargetingExpansionConfig {
@@ -4332,7 +4304,7 @@ export type LineItemWarningMessagesItemEnum =
   | "NO_VALID_CREATIVE"
   | "PARENT_INSERTION_ORDER_PAUSED"
   | "PARENT_INSERTION_ORDER_EXPIRED";
-export const LineItemWarningMessagesItemEnum = /*@__PURE__*/ S.String;
+export const LineItemWarningMessagesItemEnum = S.String;
 
 export type LineItemWarningMessagesItemEnumList = Array<
   LineItemWarningMessagesItemEnum | (string & {})
@@ -4345,7 +4317,7 @@ export type LineItemContainsEuPoliticalAdsEnum =
   | "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN"
   | "CONTAINS_EU_POLITICAL_ADVERTISING"
   | "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING";
-export const LineItemContainsEuPoliticalAdsEnum = /*@__PURE__*/ S.String;
+export const LineItemContainsEuPoliticalAdsEnum = S.String;
 
 export type LineItemReservationTypeEnum =
   | "RESERVATION_TYPE_UNSPECIFIED"
@@ -4354,7 +4326,7 @@ export type LineItemReservationTypeEnum =
   | "RESERVATION_TYPE_TAG_GUARANTEED"
   | "RESERVATION_TYPE_PETRA_VIRAL"
   | "RESERVATION_TYPE_INSTANT_RESERVE";
-export const LineItemReservationTypeEnum = /*@__PURE__*/ S.String;
+export const LineItemReservationTypeEnum = S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Displayvideo_Date {
@@ -4393,7 +4365,7 @@ export type LineItemFlightFlightDateTypeEnum =
   | "LINE_ITEM_FLIGHT_DATE_TYPE_UNSPECIFIED"
   | "LINE_ITEM_FLIGHT_DATE_TYPE_INHERITED"
   | "LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM";
-export const LineItemFlightFlightDateTypeEnum = /*@__PURE__*/ S.String;
+export const LineItemFlightFlightDateTypeEnum = S.String;
 
 /** Settings that control the active duration of a line item. */
 export interface LineItemFlight {
@@ -4414,7 +4386,7 @@ export type PartnerRevenueModelMarkupTypeEnum =
   | "PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM"
   | "PARTNER_REVENUE_MODEL_MARKUP_TYPE_MEDIA_COST_MARKUP"
   | "PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP";
-export const PartnerRevenueModelMarkupTypeEnum = /*@__PURE__*/ S.String;
+export const PartnerRevenueModelMarkupTypeEnum = S.String;
 
 /** Settings that control how partner revenue is calculated. */
 export interface PartnerRevenueModel {
@@ -4433,7 +4405,7 @@ export const PartnerRevenueModel = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PartnerRevenueModel>;
 
 export type MobileAppPlatformEnum = "PLATFORM_UNSPECIFIED" | "IOS" | "ANDROID";
-export const MobileAppPlatformEnum = /*@__PURE__*/ S.String;
+export const MobileAppPlatformEnum = S.String;
 
 /** A mobile app promoted by a mobile app install line item. */
 export interface MobileApp {
@@ -4476,13 +4448,13 @@ export type LineItemBudgetBudgetAllocationTypeEnum =
   | "LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC"
   | "LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED"
   | "LINE_ITEM_BUDGET_ALLOCATION_TYPE_UNLIMITED";
-export const LineItemBudgetBudgetAllocationTypeEnum = /*@__PURE__*/ S.String;
+export const LineItemBudgetBudgetAllocationTypeEnum = S.String;
 
 export type LineItemBudgetBudgetUnitEnum =
   | "BUDGET_UNIT_UNSPECIFIED"
   | "BUDGET_UNIT_CURRENCY"
   | "BUDGET_UNIT_IMPRESSIONS";
-export const LineItemBudgetBudgetUnitEnum = /*@__PURE__*/ S.String;
+export const LineItemBudgetBudgetUnitEnum = S.String;
 
 /** Settings that control how budget is allocated. */
 export interface LineItemBudget {
@@ -4506,13 +4478,13 @@ export type PacingPacingTypeEnum =
   | "PACING_TYPE_AHEAD"
   | "PACING_TYPE_ASAP"
   | "PACING_TYPE_EVEN";
-export const PacingPacingTypeEnum = /*@__PURE__*/ S.String;
+export const PacingPacingTypeEnum = S.String;
 
 export type PacingPacingPeriodEnum =
   | "PACING_PERIOD_UNSPECIFIED"
   | "PACING_PERIOD_DAILY"
   | "PACING_PERIOD_FLIGHT";
-export const PacingPacingPeriodEnum = /*@__PURE__*/ S.String;
+export const PacingPacingPeriodEnum = S.String;
 
 /** Settings that control the rate at which a budget is spent. */
 export interface Pacing {
@@ -4538,7 +4510,7 @@ export type PartnerCostInvoiceTypeEnum =
   | "PARTNER_COST_INVOICE_TYPE_UNSPECIFIED"
   | "PARTNER_COST_INVOICE_TYPE_DV360"
   | "PARTNER_COST_INVOICE_TYPE_PARTNER";
-export const PartnerCostInvoiceTypeEnum = /*@__PURE__*/ S.String;
+export const PartnerCostInvoiceTypeEnum = S.String;
 
 export type PartnerCostCostTypeEnum =
   | "PARTNER_COST_TYPE_UNSPECIFIED"
@@ -4572,13 +4544,13 @@ export type PartnerCostCostTypeEnum =
   | "PARTNER_COST_TYPE_CUSTOM_FEE_4"
   | "PARTNER_COST_TYPE_CUSTOM_FEE_5"
   | "PARTNER_COST_TYPE_SCIBIDS_FEE";
-export const PartnerCostCostTypeEnum = /*@__PURE__*/ S.String;
+export const PartnerCostCostTypeEnum = S.String;
 
 export type PartnerCostFeeTypeEnum =
   | "PARTNER_COST_FEE_TYPE_UNSPECIFIED"
   | "PARTNER_COST_FEE_TYPE_CPM_FEE"
   | "PARTNER_COST_FEE_TYPE_MEDIA_FEE";
-export const PartnerCostFeeTypeEnum = /*@__PURE__*/ S.String;
+export const PartnerCostFeeTypeEnum = S.String;
 
 /** Settings that control a partner cost. A partner cost is any type of expense involved in running a campaign, other than the costs of purchasing impressions (which is called the media cost) and using third-party audience segment data (data fee). Some examples of partner costs include the fees for using DV360, a third-party ad server, or a third-party ad serving verification service. */
 export interface PartnerCost {
@@ -4844,7 +4816,7 @@ export type AdvertiserContainsEuPoliticalAdsEnum =
   | "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN"
   | "CONTAINS_EU_POLITICAL_ADVERTISING"
   | "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING";
-export const AdvertiserContainsEuPoliticalAdsEnum = /*@__PURE__*/ S.String;
+export const AdvertiserContainsEuPoliticalAdsEnum = S.String;
 
 /** Creatives related settings of an advertiser. */
 export interface AdvertiserCreativeConfig {
@@ -4875,7 +4847,7 @@ export type AdvertiserEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const AdvertiserEntityStatusEnum = /*@__PURE__*/ S.String;
+export const AdvertiserEntityStatusEnum = S.String;
 
 /** Targeting settings related to ad serving of an advertiser. */
 export interface AdvertiserTargetingConfig {
@@ -4925,7 +4897,7 @@ export type SdfConfigVersionEnum =
   | "SDF_VERSION_9_2"
   | "SDF_VERSION_10"
   | "SDF_VERSION_10_1";
-export const SdfConfigVersionEnum = /*@__PURE__*/ S.String;
+export const SdfConfigVersionEnum = S.String;
 
 /** Structured Data File (SDF) related settings. */
 export interface SdfConfig {
@@ -5054,7 +5026,7 @@ export type AdGroupAdEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const AdGroupAdEntityStatusEnum = /*@__PURE__*/ S.String;
+export const AdGroupAdEntityStatusEnum = S.String;
 
 /** Details on the DCM tracking. */
 export interface DcmTrackingInfo {
@@ -5079,7 +5051,7 @@ export type YoutubeVideoDetailsUnavailableReasonEnum =
   | "VIDEO_UNAVAILABLE_REASON_UNSPECIFIED"
   | "VIDEO_UNAVAILABLE_REASON_PRIVATE"
   | "VIDEO_UNAVAILABLE_REASON_DELETED";
-export const YoutubeVideoDetailsUnavailableReasonEnum = /*@__PURE__*/ S.String;
+export const YoutubeVideoDetailsUnavailableReasonEnum = S.String;
 
 /** Details of a YouTube video. */
 export interface YoutubeVideoDetails {
@@ -5106,7 +5078,7 @@ export type VideoDiscoveryAdThumbnailEnum =
   | "THUMBNAIL_1"
   | "THUMBNAIL_2"
   | "THUMBNAIL_3";
-export const VideoDiscoveryAdThumbnailEnum = /*@__PURE__*/ S.String;
+export const VideoDiscoveryAdThumbnailEnum = S.String;
 
 /** Details for a video discovery ad. */
 export interface VideoDiscoveryAd {
@@ -5139,7 +5111,7 @@ export type AdPolicyAdPolicyReviewStatusEnum =
   | "REVIEWED"
   | "UNDER_APPEAL"
   | "ELIGIBLE_MAY_SERVE";
-export const AdPolicyAdPolicyReviewStatusEnum = /*@__PURE__*/ S.String;
+export const AdPolicyAdPolicyReviewStatusEnum = S.String;
 
 export type AdPolicyAdPolicyApprovalStatusEnum =
   | "AD_POLICY_APPROVAL_STATUS_UNKNOWN"
@@ -5147,7 +5119,7 @@ export type AdPolicyAdPolicyApprovalStatusEnum =
   | "APPROVED_LIMITED"
   | "APPROVED"
   | "AREA_OF_INTEREST_ONLY";
-export const AdPolicyAdPolicyApprovalStatusEnum = /*@__PURE__*/ S.String;
+export const AdPolicyAdPolicyApprovalStatusEnum = S.String;
 
 /** A list of destination text that violated the policy. */
 export interface AdPolicyTopicEvidenceDestinationTextList {
@@ -5171,7 +5143,7 @@ export type AdPolicyTopicEvidenceDestinationMismatchUriTypesItemEnum =
   | "TRACKING_URL"
   | "MOBILE_TRACKING_URL";
 export const AdPolicyTopicEvidenceDestinationMismatchUriTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AdPolicyTopicEvidenceDestinationMismatchUriTypesItemEnumList =
   Array<
@@ -5203,15 +5175,14 @@ export type AdPolicyTopicEvidenceDestinationNotWorkingDnsErrorTypeEnum =
   | "HOSTNAME_NOT_FOUND"
   | "GOOGLE_CRAWLER_DNS_ISSUE";
 export const AdPolicyTopicEvidenceDestinationNotWorkingDnsErrorTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AdPolicyTopicEvidenceDestinationNotWorkingDeviceEnum =
   | "AD_POLICY_TOPIC_EVIDENCE_DESTINATION_NOT_WORKING_DEVICE_TYPE_UNKNOWN"
   | "DESKTOP"
   | "ANDROID"
   | "IOS";
-export const AdPolicyTopicEvidenceDestinationNotWorkingDeviceEnum =
-  /*@__PURE__*/ S.String;
+export const AdPolicyTopicEvidenceDestinationNotWorkingDeviceEnum = S.String;
 
 /** Details for on HTTP or DNS errors related to the ad destination. */
 export interface AdPolicyTopicEvidenceDestinationNotWorking {
@@ -5297,8 +5268,7 @@ export type AdPolicyTopicEvidenceLegalRemovalComplaintTypeEnum =
   | "COPYRIGHT"
   | "COURT_ORDER"
   | "LOCAL_LEGAL";
-export const AdPolicyTopicEvidenceLegalRemovalComplaintTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AdPolicyTopicEvidenceLegalRemovalComplaintTypeEnum = S.String;
 
 /** DMCA complaint details. */
 export interface AdPolicyTopicEvidenceLegalRemovalDmca {
@@ -5483,8 +5453,7 @@ export type AdPolicyTopicEntryPolicyEnforcementMeansEnum =
   | "AD_POLICY_ENFORCEMENT_MEANS_UNKNOWN"
   | "AUTOMATED"
   | "HUMAN_REVIEW";
-export const AdPolicyTopicEntryPolicyEnforcementMeansEnum =
-  /*@__PURE__*/ S.String;
+export const AdPolicyTopicEntryPolicyEnforcementMeansEnum = S.String;
 
 /** A list of countries where the ad cannot serve due to policy constraints. */
 export interface AdPolicyTopicConstraintAdPolicyCountryConstraintList {
@@ -5576,19 +5545,19 @@ export type AdPolicyTopicEntryPolicyTopicTypeEnum =
   | "DESCRIPTIVE"
   | "BROADENING"
   | "AREA_OF_INTEREST_ONLY";
-export const AdPolicyTopicEntryPolicyTopicTypeEnum = /*@__PURE__*/ S.String;
+export const AdPolicyTopicEntryPolicyTopicTypeEnum = S.String;
 
 export type AdPolicyTopicEntryPolicyDecisionTypeEnum =
   | "AD_POLICY_DECISION_TYPE_UNKNOWN"
   | "PURSUANT_TO_NOTICE"
   | "GOOGLE_INVESTIGATION";
-export const AdPolicyTopicEntryPolicyDecisionTypeEnum = /*@__PURE__*/ S.String;
+export const AdPolicyTopicEntryPolicyDecisionTypeEnum = S.String;
 
 export type AdPolicyTopicAppealInfoAppealTypeEnum =
   | "AD_POLICY_APPEAL_TYPE_UNKNOWN"
   | "SELF_SERVICE_APPEAL"
   | "APPEAL_FORM";
-export const AdPolicyTopicAppealInfoAppealTypeEnum = /*@__PURE__*/ S.String;
+export const AdPolicyTopicAppealInfoAppealTypeEnum = S.String;
 
 /** Information on how to appeal a policy decision. */
 export interface AdPolicyTopicAppealInfo {
@@ -5794,7 +5763,7 @@ export type DemandGenVideoAdCallToActionEnum =
   | "START_NOW"
   | "VISIT_SITE"
   | "WATCH_NOW";
-export const DemandGenVideoAdCallToActionEnum = /*@__PURE__*/ S.String;
+export const DemandGenVideoAdCallToActionEnum = S.String;
 
 /** Details for a Demand Gen video ad. */
 export interface DemandGenVideoAd {
@@ -6008,7 +5977,7 @@ export type MastheadAdVideoAspectRatioEnum =
   | "VIDEO_ASPECT_RATIO_UNSPECIFIED"
   | "VIDEO_ASPECT_RATIO_WIDESCREEN"
   | "VIDEO_ASPECT_RATIO_FIXED_16_9";
-export const MastheadAdVideoAspectRatioEnum = /*@__PURE__*/ S.String;
+export const MastheadAdVideoAspectRatioEnum = S.String;
 
 /** Details for a Masthead Ad. */
 export interface MastheadAd {
@@ -6071,7 +6040,7 @@ export type DemandGenProductAdCallToActionEnum =
   | "START_NOW"
   | "VISIT_SITE"
   | "WATCH_NOW";
-export const DemandGenProductAdCallToActionEnum = /*@__PURE__*/ S.String;
+export const DemandGenProductAdCallToActionEnum = S.String;
 
 /** Details for a Demand Gen product ad. */
 export interface DemandGenProductAd {
@@ -6125,7 +6094,7 @@ export type AdUrlTypeEnum =
   | "AD_URL_TYPE_BEACON_EXPANDABLE_DCM_IMPRESSION"
   | "AD_URL_TYPE_BEACON_CLICK"
   | "AD_URL_TYPE_BEACON_SKIP";
-export const AdUrlTypeEnum = /*@__PURE__*/ S.String;
+export const AdUrlTypeEnum = S.String;
 
 /** Additional URLs related to the ad, including beacons. */
 export interface AdUrl {
@@ -6318,14 +6287,14 @@ export type AdGroupEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const AdGroupEntityStatusEnum = /*@__PURE__*/ S.String;
+export const AdGroupEntityStatusEnum = S.String;
 
 export type ProductFeedDataProductMatchTypeEnum =
   | "PRODUCT_MATCH_TYPE_UNSPECIFIED"
   | "PRODUCT_MATCH_TYPE_ALL_PRODUCTS"
   | "PRODUCT_MATCH_TYPE_SPECIFIC_PRODUCTS"
   | "PRODUCT_MATCH_TYPE_CUSTOM_LABEL";
-export const ProductFeedDataProductMatchTypeEnum = /*@__PURE__*/ S.String;
+export const ProductFeedDataProductMatchTypeEnum = S.String;
 
 export type CustomLabelKeyEnum =
   | "CUSTOM_LABEL_KEY_UNSPECIFIED"
@@ -6334,7 +6303,7 @@ export type CustomLabelKeyEnum =
   | "CUSTOM_LABEL_KEY_2"
   | "CUSTOM_LABEL_KEY_3"
   | "CUSTOM_LABEL_KEY_4";
-export const CustomLabelKeyEnum = /*@__PURE__*/ S.String;
+export const CustomLabelKeyEnum = S.String;
 
 /** The key and value of a custom label. */
 export interface CustomLabel {
@@ -6422,8 +6391,7 @@ export type AdGroupInventoryControlAdGroupInventoryStrategyEnum =
   | "AD_GROUP_INVENTORY_STRATEGY_UNSPECIFIED"
   | "AD_GROUP_INVENTORY_STRATEGY_ALL_GOOGLE_AND_DISPLAY_NETWORK_INVENTORY"
   | "AD_GROUP_INVENTORY_STRATEGY_ALL_GOOGLE_INVENTORY";
-export const AdGroupInventoryControlAdGroupInventoryStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const AdGroupInventoryControlAdGroupInventoryStrategyEnum = S.String;
 
 /** The inventory control of the ad group. */
 export interface AdGroupInventoryControl {
@@ -6456,7 +6424,7 @@ export type AdGroupAdGroupFormatEnum =
   | "AD_GROUP_FORMAT_REACH"
   | "AD_GROUP_FORMAT_MASTHEAD"
   | "AD_GROUP_FORMAT_DEMAND_GEN";
-export const AdGroupAdGroupFormatEnum = /*@__PURE__*/ S.String;
+export const AdGroupAdGroupFormatEnum = S.String;
 
 /** A single ad group associated with a line item. */
 export interface AdGroup {
@@ -6573,7 +6541,7 @@ export type CreateAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTarge
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const CreateAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. The ID of the ad group the assigned targeting option will belong to. */
@@ -6630,7 +6598,7 @@ export type CampaignEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const CampaignEntityStatusEnum = /*@__PURE__*/ S.String;
+export const CampaignEntityStatusEnum = S.String;
 
 export type PerformanceGoalPerformanceGoalTypeEnum =
   | "PERFORMANCE_GOAL_TYPE_UNSPECIFIED"
@@ -6649,7 +6617,7 @@ export type PerformanceGoalPerformanceGoalTypeEnum =
   | "PERFORMANCE_GOAL_TYPE_AUDIO_COMPLETION_RATE"
   | "PERFORMANCE_GOAL_TYPE_VIDEO_COMPLETION_RATE"
   | "PERFORMANCE_GOAL_TYPE_OTHER";
-export const PerformanceGoalPerformanceGoalTypeEnum = /*@__PURE__*/ S.String;
+export const PerformanceGoalPerformanceGoalTypeEnum = S.String;
 
 /** Settings that control the performance goal of a campaign. */
 export interface PerformanceGoal {
@@ -6679,7 +6647,7 @@ export type CampaignGoalCampaignGoalTypeEnum =
   | "CAMPAIGN_GOAL_TYPE_BRAND_AWARENESS"
   | "CAMPAIGN_GOAL_TYPE_OFFLINE_ACTION"
   | "CAMPAIGN_GOAL_TYPE_ONLINE_ACTION";
-export const CampaignGoalCampaignGoalTypeEnum = /*@__PURE__*/ S.String;
+export const CampaignGoalCampaignGoalTypeEnum = S.String;
 
 /** Settings that control the goal of a campaign. */
 export interface CampaignGoal {
@@ -6699,7 +6667,7 @@ export type CampaignBudgetExternalBudgetSourceEnum =
   | "EXTERNAL_BUDGET_SOURCE_UNSPECIFIED"
   | "EXTERNAL_BUDGET_SOURCE_NONE"
   | "EXTERNAL_BUDGET_SOURCE_MEDIA_OCEAN";
-export const CampaignBudgetExternalBudgetSourceEnum = /*@__PURE__*/ S.String;
+export const CampaignBudgetExternalBudgetSourceEnum = S.String;
 
 /** Google Payments Center supports searching and filtering on the component fields of this code. */
 export interface PrismaCpeCode {
@@ -6726,7 +6694,7 @@ export type PrismaConfigPrismaTypeEnum =
   | "PRISMA_TYPE_AUDIO"
   | "PRISMA_TYPE_SOCIAL"
   | "PRISMA_TYPE_FEE";
-export const PrismaConfigPrismaTypeEnum = /*@__PURE__*/ S.String;
+export const PrismaConfigPrismaTypeEnum = S.String;
 
 /** Settings specific to the Mediaocean Prisma tool. */
 export interface PrismaConfig {
@@ -6749,7 +6717,7 @@ export type CampaignBudgetBudgetUnitEnum =
   | "BUDGET_UNIT_UNSPECIFIED"
   | "BUDGET_UNIT_CURRENCY"
   | "BUDGET_UNIT_IMPRESSIONS";
-export const CampaignBudgetBudgetUnitEnum = /*@__PURE__*/ S.String;
+export const CampaignBudgetBudgetUnitEnum = S.String;
 
 /** Settings that control how the campaign budget is allocated. */
 export interface CampaignBudget {
@@ -6935,7 +6903,7 @@ export type ExitEventTypeEnum =
   | "EXIT_EVENT_TYPE_UNSPECIFIED"
   | "EXIT_EVENT_TYPE_DEFAULT"
   | "EXIT_EVENT_TYPE_BACKUP";
-export const ExitEventTypeEnum = /*@__PURE__*/ S.String;
+export const ExitEventTypeEnum = S.String;
 
 /** Exit event of the creative. */
 export interface ExitEvent {
@@ -6985,7 +6953,7 @@ export type AssetAssociationRoleEnum =
   | "ASSET_ROLE_REQUIRE_LOGO"
   | "ASSET_ROLE_REQUIRE_IMAGE"
   | "ASSET_ROLE_ENABLE_ASSET_ENHANCEMENTS";
-export const AssetAssociationRoleEnum = /*@__PURE__*/ S.String;
+export const AssetAssociationRoleEnum = S.String;
 
 /** A single asset. */
 export interface Asset {
@@ -7028,7 +6996,7 @@ export type CreativeHostingSourceEnum =
   | "HOSTING_SOURCE_THIRD_PARTY"
   | "HOSTING_SOURCE_HOSTED"
   | "HOSTING_SOURCE_RICH_MEDIA";
-export const CreativeHostingSourceEnum = /*@__PURE__*/ S.String;
+export const CreativeHostingSourceEnum = S.String;
 
 export type UniversalAdIdRegistryEnum =
   | "UNIVERSAL_AD_REGISTRY_UNSPECIFIED"
@@ -7037,7 +7005,7 @@ export type UniversalAdIdRegistryEnum =
   | "UNIVERSAL_AD_REGISTRY_CLEARCAST"
   | "UNIVERSAL_AD_REGISTRY_DV360"
   | "UNIVERSAL_AD_REGISTRY_CM";
-export const UniversalAdIdRegistryEnum = /*@__PURE__*/ S.String;
+export const UniversalAdIdRegistryEnum = S.String;
 
 /** A creative identifier provided by a registry that is unique across all platforms. This is part of the VAST 4.0 standard. */
 export interface UniversalAdId {
@@ -7076,14 +7044,13 @@ export type CreativeEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const CreativeEntityStatusEnum = /*@__PURE__*/ S.String;
+export const CreativeEntityStatusEnum = S.String;
 
 export type CreativeSyntheticContentAttestationStatusEnum =
   | "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED"
   | "NOT_SYNTHETIC"
   | "IS_SYNTHETIC";
-export const CreativeSyntheticContentAttestationStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeSyntheticContentAttestationStatusEnum = S.String;
 
 /** A Campaign Manager 360 tracking ad. */
 export interface CmTrackingAd {
@@ -7159,7 +7126,7 @@ export type CreativeExpandingDirectionEnum =
   | "EXPANDING_DIRECTION_UP_OR_DOWN"
   | "EXPANDING_DIRECTION_LEFT_OR_RIGHT"
   | "EXPANDING_DIRECTION_ANY_DIAGONAL";
-export const CreativeExpandingDirectionEnum = /*@__PURE__*/ S.String;
+export const CreativeExpandingDirectionEnum = S.String;
 
 export type ThirdPartyUrlTypeEnum =
   | "THIRD_PARTY_URL_TYPE_UNSPECIFIED"
@@ -7178,7 +7145,7 @@ export type ThirdPartyUrlTypeEnum =
   | "THIRD_PARTY_URL_TYPE_AUDIO_VIDEO_CUSTOM"
   | "THIRD_PARTY_URL_TYPE_AUDIO_VIDEO_SKIP"
   | "THIRD_PARTY_URL_TYPE_AUDIO_VIDEO_PROGRESS";
-export const ThirdPartyUrlTypeEnum = /*@__PURE__*/ S.String;
+export const ThirdPartyUrlTypeEnum = S.String;
 
 /** Tracking URLs from third parties to track interactions with an audio or a video creative. */
 export interface ThirdPartyUrl {
@@ -7205,7 +7172,7 @@ export type ObaIconPositionEnum =
   | "OBA_ICON_POSITION_UPPER_LEFT"
   | "OBA_ICON_POSITION_LOWER_RIGHT"
   | "OBA_ICON_POSITION_LOWER_LEFT";
-export const ObaIconPositionEnum = /*@__PURE__*/ S.String;
+export const ObaIconPositionEnum = S.String;
 
 /** OBA Icon for a Creative */
 export interface ObaIcon {
@@ -7244,7 +7211,7 @@ export type CreativeCreativeAttributesItemEnum =
   | "CREATIVE_ATTRIBUTE_VAST"
   | "CREATIVE_ATTRIBUTE_VPAID_LINEAR"
   | "CREATIVE_ATTRIBUTE_VPAID_NON_LINEAR";
-export const CreativeCreativeAttributesItemEnum = /*@__PURE__*/ S.String;
+export const CreativeCreativeAttributesItemEnum = S.String;
 
 export type CreativeCreativeAttributesItemEnumList = Array<
   CreativeCreativeAttributesItemEnum | (string & {})
@@ -7258,7 +7225,7 @@ export type ExchangeReviewStatusStatusEnum =
   | "REVIEW_STATUS_APPROVED"
   | "REVIEW_STATUS_REJECTED"
   | "REVIEW_STATUS_PENDING";
-export const ExchangeReviewStatusStatusEnum = /*@__PURE__*/ S.String;
+export const ExchangeReviewStatusStatusEnum = S.String;
 
 export type ExchangeReviewStatusExchangeEnum =
   | "EXCHANGE_UNSPECIFIED"
@@ -7351,7 +7318,7 @@ export type ExchangeReviewStatusExchangeEnum =
   | "EXCHANGE_SNAP"
   | "EXCHANGE_CADENT"
   | "EXCHANGE_EXTE";
-export const ExchangeReviewStatusExchangeEnum = /*@__PURE__*/ S.String;
+export const ExchangeReviewStatusExchangeEnum = S.String;
 
 /** Exchange review status for the creative. */
 export interface ExchangeReviewStatus {
@@ -7379,7 +7346,7 @@ export type PublisherReviewStatusStatusEnum =
   | "REVIEW_STATUS_APPROVED"
   | "REVIEW_STATUS_REJECTED"
   | "REVIEW_STATUS_PENDING";
-export const PublisherReviewStatusStatusEnum = /*@__PURE__*/ S.String;
+export const PublisherReviewStatusStatusEnum = S.String;
 
 /** Publisher review status for the creative. */
 export interface PublisherReviewStatus {
@@ -7408,23 +7375,21 @@ export type ReviewStatusInfoApprovalStatusEnum =
   | "APPROVAL_STATUS_PENDING_SERVABLE"
   | "APPROVAL_STATUS_APPROVED_SERVABLE"
   | "APPROVAL_STATUS_REJECTED_NOT_SERVABLE";
-export const ReviewStatusInfoApprovalStatusEnum = /*@__PURE__*/ S.String;
+export const ReviewStatusInfoApprovalStatusEnum = S.String;
 
 export type ReviewStatusInfoCreativeAndLandingPageReviewStatusEnum =
   | "REVIEW_STATUS_UNSPECIFIED"
   | "REVIEW_STATUS_APPROVED"
   | "REVIEW_STATUS_REJECTED"
   | "REVIEW_STATUS_PENDING";
-export const ReviewStatusInfoCreativeAndLandingPageReviewStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ReviewStatusInfoCreativeAndLandingPageReviewStatusEnum = S.String;
 
 export type ReviewStatusInfoContentAndPolicyReviewStatusEnum =
   | "REVIEW_STATUS_UNSPECIFIED"
   | "REVIEW_STATUS_APPROVED"
   | "REVIEW_STATUS_REJECTED"
   | "REVIEW_STATUS_PENDING";
-export const ReviewStatusInfoContentAndPolicyReviewStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ReviewStatusInfoContentAndPolicyReviewStatusEnum = S.String;
 
 /** Review statuses for the creative. */
 export interface ReviewStatusInfo {
@@ -7516,7 +7481,7 @@ export type CreativeCreativeTypeEnum =
   | "CREATIVE_TYPE_NATIVE_VIDEO"
   | "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO"
   | "CREATIVE_TYPE_ASSET_BASED_CREATIVE";
-export const CreativeCreativeTypeEnum = /*@__PURE__*/ S.String;
+export const CreativeCreativeTypeEnum = S.String;
 
 /** A single Creative. */
 export interface Creative {
@@ -7702,20 +7667,20 @@ export type InsertionOrderOptimizationObjectiveEnum =
   | "BRAND_AWARENESS"
   | "CUSTOM"
   | "NO_OBJECTIVE";
-export const InsertionOrderOptimizationObjectiveEnum = /*@__PURE__*/ S.String;
+export const InsertionOrderOptimizationObjectiveEnum = S.String;
 
 export type InsertionOrderInsertionOrderTypeEnum =
   | "INSERTION_ORDER_TYPE_UNSPECIFIED"
   | "RTB"
   | "OVER_THE_TOP";
-export const InsertionOrderInsertionOrderTypeEnum = /*@__PURE__*/ S.String;
+export const InsertionOrderInsertionOrderTypeEnum = S.String;
 
 export type InsertionOrderBudgetAutomationTypeEnum =
   | "INSERTION_ORDER_AUTOMATION_TYPE_UNSPECIFIED"
   | "INSERTION_ORDER_AUTOMATION_TYPE_BUDGET"
   | "INSERTION_ORDER_AUTOMATION_TYPE_NONE"
   | "INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET";
-export const InsertionOrderBudgetAutomationTypeEnum = /*@__PURE__*/ S.String;
+export const InsertionOrderBudgetAutomationTypeEnum = S.String;
 
 /** Settings that control the budget of a single budget segment. */
 export interface InsertionOrderBudgetSegment {
@@ -7749,7 +7714,7 @@ export type InsertionOrderBudgetBudgetUnitEnum =
   | "BUDGET_UNIT_UNSPECIFIED"
   | "BUDGET_UNIT_CURRENCY"
   | "BUDGET_UNIT_IMPRESSIONS";
-export const InsertionOrderBudgetBudgetUnitEnum = /*@__PURE__*/ S.String;
+export const InsertionOrderBudgetBudgetUnitEnum = S.String;
 
 /** Settings that control how insertion order budget is allocated. */
 export interface InsertionOrderBudget {
@@ -7777,7 +7742,7 @@ export type InsertionOrderReservationTypeEnum =
   | "RESERVATION_TYPE_TAG_GUARANTEED"
   | "RESERVATION_TYPE_PETRA_VIRAL"
   | "RESERVATION_TYPE_INSTANT_RESERVE";
-export const InsertionOrderReservationTypeEnum = /*@__PURE__*/ S.String;
+export const InsertionOrderReservationTypeEnum = S.String;
 
 export type KpiKpiTypeEnum =
   | "KPI_TYPE_UNSPECIFIED"
@@ -7801,7 +7766,7 @@ export type KpiKpiTypeEnum =
   | "KPI_TYPE_MAXIMIZE_PACING"
   | "KPI_TYPE_CUSTOM_IMPRESSION_VALUE_OVER_COST"
   | "KPI_TYPE_OTHER";
-export const KpiKpiTypeEnum = /*@__PURE__*/ S.String;
+export const KpiKpiTypeEnum = S.String;
 
 /** Settings that control the key performance indicator, or KPI, of an insertion order. */
 export interface Kpi {
@@ -7833,7 +7798,7 @@ export type InsertionOrderEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const InsertionOrderEntityStatusEnum = /*@__PURE__*/ S.String;
+export const InsertionOrderEntityStatusEnum = S.String;
 
 /** A single insertion order. */
 export interface InsertionOrder {
@@ -7992,7 +7957,7 @@ export type CreateAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTarg
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const CreateAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. The ID of the advertiser the line item belongs to. */
@@ -8032,7 +7997,7 @@ export type LocationListLocationTypeEnum =
   | "TARGETING_LOCATION_TYPE_UNSPECIFIED"
   | "TARGETING_LOCATION_TYPE_PROXIMITY"
   | "TARGETING_LOCATION_TYPE_REGIONAL";
-export const LocationListLocationTypeEnum = /*@__PURE__*/ S.String;
+export const LocationListLocationTypeEnum = S.String;
 
 /** A list of locations used for targeting. */
 export interface LocationList {
@@ -8229,7 +8194,7 @@ export type CreateAdvertisersTargetingTypesAssignedTargetingOptionsTargetingType
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const CreateAdvertisersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateAdvertisersTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. The ID of the advertiser. */
@@ -8269,7 +8234,7 @@ export type CustomBiddingAlgorithmEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const CustomBiddingAlgorithmEntityStatusEnum = /*@__PURE__*/ S.String;
+export const CustomBiddingAlgorithmEntityStatusEnum = S.String;
 
 export type CustomBiddingModelDetailsReadinessStateEnum =
   | "READINESS_STATE_UNSPECIFIED"
@@ -8278,16 +8243,14 @@ export type CustomBiddingModelDetailsReadinessStateEnum =
   | "READINESS_STATE_TRAINING"
   | "READINESS_STATE_NO_VALID_SCRIPT"
   | "READINESS_STATE_EVALUATION_FAILURE";
-export const CustomBiddingModelDetailsReadinessStateEnum =
-  /*@__PURE__*/ S.String;
+export const CustomBiddingModelDetailsReadinessStateEnum = S.String;
 
 export type CustomBiddingModelDetailsSuspensionStateEnum =
   | "SUSPENSION_STATE_UNSPECIFIED"
   | "SUSPENSION_STATE_ENABLED"
   | "SUSPENSION_STATE_DORMANT"
   | "SUSPENSION_STATE_SUSPENDED";
-export const CustomBiddingModelDetailsSuspensionStateEnum =
-  /*@__PURE__*/ S.String;
+export const CustomBiddingModelDetailsSuspensionStateEnum = S.String;
 
 /** The details of a custom bidding algorithm model for a single shared advertiser. */
 export interface CustomBiddingModelDetails {
@@ -8321,8 +8284,7 @@ export type CustomBiddingAlgorithmCustomBiddingAlgorithmTypeEnum =
   | "ADS_DATA_HUB_BASED"
   | "GOAL_BUILDER_BASED"
   | "RULE_BASED";
-export const CustomBiddingAlgorithmCustomBiddingAlgorithmTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CustomBiddingAlgorithmCustomBiddingAlgorithmTypeEnum = S.String;
 
 /** A single custom bidding algorithm. */
 export interface CustomBiddingAlgorithm {
@@ -8402,8 +8364,7 @@ export type CustomBiddingAlgorithmRulesErrorErrorCodeEnum =
   | "SYNTAX_ERROR"
   | "CONSTRAINT_VIOLATION_ERROR"
   | "INTERNAL_ERROR";
-export const CustomBiddingAlgorithmRulesErrorErrorCodeEnum =
-  /*@__PURE__*/ S.String;
+export const CustomBiddingAlgorithmRulesErrorErrorCodeEnum = S.String;
 
 /** An error message for a CustomBiddingAlgorithmRules resource. */
 export interface CustomBiddingAlgorithmRulesError {
@@ -8422,7 +8383,7 @@ export type CustomBiddingAlgorithmRulesStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACCEPTED"
   | "REJECTED";
-export const CustomBiddingAlgorithmRulesStateEnum = /*@__PURE__*/ S.String;
+export const CustomBiddingAlgorithmRulesStateEnum = S.String;
 
 /** A single custom bidding algorithm rules. */
 export interface CustomBiddingAlgorithmRules {
@@ -8491,7 +8452,7 @@ export type ScriptErrorErrorCodeEnum =
   | "SYNTAX_ERROR"
   | "DEPRECATED_SYNTAX"
   | "INTERNAL_ERROR";
-export const ScriptErrorErrorCodeEnum = /*@__PURE__*/ S.String;
+export const ScriptErrorErrorCodeEnum = S.String;
 
 /** An error message for a custom bidding script. */
 export interface ScriptError {
@@ -8536,7 +8497,7 @@ export type CustomBiddingScriptStateEnum =
   | "ACCEPTED"
   | "REJECTED"
   | "PENDING";
-export const CustomBiddingScriptStateEnum = /*@__PURE__*/ S.String;
+export const CustomBiddingScriptStateEnum = S.String;
 
 /** A single custom bidding script. */
 export interface CustomBiddingScript {
@@ -8691,7 +8652,7 @@ export type GuaranteedOrderExchangeEnum =
   | "EXCHANGE_SNAP"
   | "EXCHANGE_CADENT"
   | "EXCHANGE_EXTE";
-export const GuaranteedOrderExchangeEnum = /*@__PURE__*/ S.String;
+export const GuaranteedOrderExchangeEnum = S.String;
 
 export type GuaranteedOrderStatusEntityStatusEnum =
   | "ENTITY_STATUS_UNSPECIFIED"
@@ -8700,13 +8661,13 @@ export type GuaranteedOrderStatusEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const GuaranteedOrderStatusEntityStatusEnum = /*@__PURE__*/ S.String;
+export const GuaranteedOrderStatusEntityStatusEnum = S.String;
 
 export type GuaranteedOrderStatusConfigStatusEnum =
   | "GUARANTEED_ORDER_CONFIG_STATUS_UNSPECIFIED"
   | "PENDING"
   | "COMPLETED";
-export const GuaranteedOrderStatusConfigStatusEnum = /*@__PURE__*/ S.String;
+export const GuaranteedOrderStatusConfigStatusEnum = S.String;
 
 /** The status settings of the guaranteed order. */
 export interface GuaranteedOrderStatus {
@@ -8978,7 +8939,7 @@ export type CreatePartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnu
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const CreatePartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePartnersTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` */
@@ -9020,7 +8981,7 @@ export type ParentEntityFilterFileTypeItemEnum =
   | "FILE_TYPE_AD"
   | "FILE_TYPE_LINE_ITEM_QA"
   | "FILE_TYPE_AD_GROUP_QA";
-export const ParentEntityFilterFileTypeItemEnum = /*@__PURE__*/ S.String;
+export const ParentEntityFilterFileTypeItemEnum = S.String;
 
 export type ParentEntityFilterFileTypeItemEnumList = Array<
   ParentEntityFilterFileTypeItemEnum | (string & {})
@@ -9037,7 +8998,7 @@ export type ParentEntityFilterFilterTypeEnum =
   | "FILTER_TYPE_MEDIA_PRODUCT_ID"
   | "FILTER_TYPE_INSERTION_ORDER_ID"
   | "FILTER_TYPE_LINE_ITEM_ID";
-export const ParentEntityFilterFilterTypeEnum = /*@__PURE__*/ S.String;
+export const ParentEntityFilterFilterTypeEnum = S.String;
 
 /** A filtering option that filters on selected file types belonging to a chosen set of filter entities. */
 export interface ParentEntityFilter {
@@ -9093,7 +9054,7 @@ export type CreateSdfDownloadTaskRequestVersionEnum =
   | "SDF_VERSION_9_2"
   | "SDF_VERSION_10"
   | "SDF_VERSION_10_1";
-export const CreateSdfDownloadTaskRequestVersionEnum = /*@__PURE__*/ S.String;
+export const CreateSdfDownloadTaskRequestVersionEnum = S.String;
 
 /** A filtering option that filters entities by their entity IDs. */
 export interface IdFilter {
@@ -9359,7 +9320,7 @@ export type DeleteAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTarge
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const DeleteAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. The ID of the ad group the assigned targeting option belongs to. */
@@ -9561,7 +9522,7 @@ export type DeleteAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTarg
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const DeleteAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. The ID of the advertiser the line item belongs to. */
@@ -9722,7 +9683,7 @@ export type DeleteAdvertisersTargetingTypesAssignedTargetingOptionsTargetingType
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const DeleteAdvertisersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteAdvertisersTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_KEYWORD` */
@@ -9887,7 +9848,7 @@ export type DeletePartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnu
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const DeletePartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeletePartnersTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. The ID of the partner. */
@@ -9972,8 +9933,7 @@ export type DuplicateLineItemRequestContainsEuPoliticalAdsEnum =
   | "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN"
   | "CONTAINS_EU_POLITICAL_ADVERTISING"
   | "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING";
-export const DuplicateLineItemRequestContainsEuPoliticalAdsEnum =
-  /*@__PURE__*/ S.String;
+export const DuplicateLineItemRequestContainsEuPoliticalAdsEnum = S.String;
 
 /** Request message for LineItemService.DuplicateLineItem. */
 export interface DuplicateLineItemRequest {
@@ -10316,7 +10276,7 @@ export type GetAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTargetin
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const GetAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested. */
@@ -10514,7 +10474,7 @@ export type GetAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTargeti
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const GetAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested. */
@@ -10646,7 +10606,7 @@ export type GetAdvertisersTargetingTypesAssignedTargetingOptionsTargetingTypeEnu
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const GetAdvertisersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAdvertisersTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested. */
@@ -10865,7 +10825,7 @@ export type FloodlightGroupWebTagTypeEnum =
   | "WEB_TAG_TYPE_NONE"
   | "WEB_TAG_TYPE_IMAGE"
   | "WEB_TAG_TYPE_DYNAMIC";
-export const FloodlightGroupWebTagTypeEnum = /*@__PURE__*/ S.String;
+export const FloodlightGroupWebTagTypeEnum = S.String;
 
 export type ActiveViewVideoViewabilityMetricConfigMinimumDurationEnum =
   | "VIDEO_DURATION_UNSPECIFIED"
@@ -10890,7 +10850,7 @@ export type ActiveViewVideoViewabilityMetricConfigMinimumDurationEnum =
   | "VIDEO_DURATION_SECONDS_45"
   | "VIDEO_DURATION_SECONDS_60";
 export const ActiveViewVideoViewabilityMetricConfigMinimumDurationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ActiveViewVideoViewabilityMetricConfigMinimumQuartileEnum =
   | "VIDEO_DURATION_QUARTILE_UNSPECIFIED"
@@ -10900,7 +10860,7 @@ export type ActiveViewVideoViewabilityMetricConfigMinimumQuartileEnum =
   | "VIDEO_DURATION_QUARTILE_THIRD"
   | "VIDEO_DURATION_QUARTILE_FOURTH";
 export const ActiveViewVideoViewabilityMetricConfigMinimumQuartileEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ActiveViewVideoViewabilityMetricConfigMinimumViewabilityEnum =
   | "VIEWABILITY_PERCENT_UNSPECIFIED"
@@ -10910,14 +10870,13 @@ export type ActiveViewVideoViewabilityMetricConfigMinimumViewabilityEnum =
   | "VIEWABILITY_PERCENT_75"
   | "VIEWABILITY_PERCENT_100";
 export const ActiveViewVideoViewabilityMetricConfigMinimumViewabilityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ActiveViewVideoViewabilityMetricConfigMinimumVolumeEnum =
   | "VIDEO_VOLUME_PERCENT_UNSPECIFIED"
   | "VIDEO_VOLUME_PERCENT_0"
   | "VIDEO_VOLUME_PERCENT_10";
-export const ActiveViewVideoViewabilityMetricConfigMinimumVolumeEnum =
-  /*@__PURE__*/ S.String;
+export const ActiveViewVideoViewabilityMetricConfigMinimumVolumeEnum = S.String;
 
 /** Configuration for custom Active View video viewability metrics. */
 export interface ActiveViewVideoViewabilityMetricConfig {
@@ -11056,7 +11015,7 @@ export type FloodlightActivityServingStatusEnum =
   | "FLOODLIGHT_ACTIVITY_SERVING_STATUS_UNSPECIFIED"
   | "FLOODLIGHT_ACTIVITY_SERVING_STATUS_ENABLED"
   | "FLOODLIGHT_ACTIVITY_SERVING_STATUS_DISABLED";
-export const FloodlightActivityServingStatusEnum = /*@__PURE__*/ S.String;
+export const FloodlightActivityServingStatusEnum = S.String;
 
 /** A single Floodlight activity. */
 export interface FloodlightActivity {
@@ -11124,7 +11083,7 @@ export type GoogleAudienceGoogleAudienceTypeEnum =
   | "GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES"
   | "GOOGLE_AUDIENCE_TYPE_LIFE_EVENT"
   | "GOOGLE_AUDIENCE_TYPE_EXTENDED_DEMOGRAPHIC";
-export const GoogleAudienceGoogleAudienceTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleAudienceGoogleAudienceTypeEnum = S.String;
 
 /** Describes a Google audience resource. Includes Google audience lists. */
 export interface GoogleAudience {
@@ -11303,7 +11262,7 @@ export type ExchangeConfigEnabledExchangeExchangeEnum =
   | "EXCHANGE_SNAP"
   | "EXCHANGE_CADENT"
   | "EXCHANGE_EXTE";
-export const ExchangeConfigEnabledExchangeExchangeEnum = /*@__PURE__*/ S.String;
+export const ExchangeConfigEnabledExchangeExchangeEnum = S.String;
 
 /** An enabled exchange in the partner. */
 export interface ExchangeConfigEnabledExchange {
@@ -11409,7 +11368,7 @@ export type PartnerEntityStatusEnum =
   | "ENTITY_STATUS_DRAFT"
   | "ENTITY_STATUS_PAUSED"
   | "ENTITY_STATUS_SCHEDULED_FOR_DELETION";
-export const PartnerEntityStatusEnum = /*@__PURE__*/ S.String;
+export const PartnerEntityStatusEnum = S.String;
 
 /** Settings that control how partner related data may be accessed. */
 export interface PartnerDataAccessConfig {
@@ -11539,7 +11498,7 @@ export type GetPartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const GetPartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetPartnersTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` */
@@ -11642,8 +11601,7 @@ export type GetTargetingTypesTargetingOptionsTargetingTypeEnum =
   | "TARGETING_TYPE_SESSION_POSITION"
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
-export const GetTargetingTypesTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GetTargetingTypesTargetingOptionsTargetingTypeEnum = S.String;
 
 export interface GetTargetingTypesTargetingOptionsRequest {
   /** Required. The ID of the of targeting option to retrieve. */
@@ -11682,7 +11640,7 @@ export type ContentOutstreamPositionTargetingOptionDetailsContentOutstreamPositi
   | "CONTENT_OUTSTREAM_POSITION_IN_FEED"
   | "CONTENT_OUTSTREAM_POSITION_INTERSTITIAL";
 export const ContentOutstreamPositionTargetingOptionDetailsContentOutstreamPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable content outstream position, which could be used by display and video ads. This will be populated in the content_outstream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`. */
 export interface ContentOutstreamPositionTargetingOptionDetails {
@@ -11711,8 +11669,7 @@ export type ContentThemeTargetingOptionDetailsContentThemeEnum =
   | "CONTENT_THEME_RELIGION"
   | "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT"
   | "CONTENT_THEME_UNPLEASANT_NEWS";
-export const ContentThemeTargetingOptionDetailsContentThemeEnum =
-  /*@__PURE__*/ S.String;
+export const ContentThemeTargetingOptionDetailsContentThemeEnum = S.String;
 
 /** Represents a targetable content theme. This will be populated in the content_theme_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_CONTENT_THEME_EXCLUSION`. */
 export interface ContentThemeTargetingOptionDetails {
@@ -11747,8 +11704,7 @@ export type ParentalStatusTargetingOptionDetailsParentalStatusEnum =
   | "PARENTAL_STATUS_PARENT"
   | "PARENTAL_STATUS_NOT_A_PARENT"
   | "PARENTAL_STATUS_UNKNOWN";
-export const ParentalStatusTargetingOptionDetailsParentalStatusEnum =
-  /*@__PURE__*/ S.String;
+export const ParentalStatusTargetingOptionDetailsParentalStatusEnum = S.String;
 
 /** Represents a targetable parental status. This will be populated in the parental_status_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`. */
 export interface ParentalStatusTargetingOptionDetails {
@@ -11811,8 +11767,7 @@ export type AgeRangeTargetingOptionDetailsAgeRangeEnum =
   | "AGE_RANGE_50_54"
   | "AGE_RANGE_55_59"
   | "AGE_RANGE_60_64";
-export const AgeRangeTargetingOptionDetailsAgeRangeEnum =
-  /*@__PURE__*/ S.String;
+export const AgeRangeTargetingOptionDetailsAgeRangeEnum = S.String;
 
 /** Represents a targetable age range. This will be populated in the age_range_details field when targeting_type is `TARGETING_TYPE_AGE_RANGE`. */
 export interface AgeRangeTargetingOptionDetails {
@@ -11833,7 +11788,7 @@ export type OnScreenPositionTargetingOptionDetailsOnScreenPositionEnum =
   | "ON_SCREEN_POSITION_ABOVE_THE_FOLD"
   | "ON_SCREEN_POSITION_BELOW_THE_FOLD";
 export const OnScreenPositionTargetingOptionDetailsOnScreenPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable on screen position, which could be used by display and video ads. This will be populated in the on_screen_position_details field when targeting_type is `TARGETING_TYPE_ON_SCREEN_POSITION`. */
 export interface OnScreenPositionTargetingOptionDetails {
@@ -11942,8 +11897,7 @@ export type ExchangeTargetingOptionDetailsExchangeEnum =
   | "EXCHANGE_SNAP"
   | "EXCHANGE_CADENT"
   | "EXCHANGE_EXTE";
-export const ExchangeTargetingOptionDetailsExchangeEnum =
-  /*@__PURE__*/ S.String;
+export const ExchangeTargetingOptionDetailsExchangeEnum = S.String;
 
 /** Represents a targetable exchange. This will be populated in the exchange_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_EXCHANGE`. */
 export interface ExchangeTargetingOptionDetails {
@@ -12010,7 +11964,7 @@ export type TargetingOptionTargetingTypeEnum =
   | "TARGETING_TYPE_SESSION_POSITION"
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
-export const TargetingOptionTargetingTypeEnum = /*@__PURE__*/ S.String;
+export const TargetingOptionTargetingTypeEnum = S.String;
 
 export type NativeContentPositionTargetingOptionDetailsContentPositionEnum =
   | "NATIVE_CONTENT_POSITION_UNSPECIFIED"
@@ -12020,7 +11974,7 @@ export type NativeContentPositionTargetingOptionDetailsContentPositionEnum =
   | "NATIVE_CONTENT_POSITION_PERIPHERAL"
   | "NATIVE_CONTENT_POSITION_RECOMMENDATION";
 export const NativeContentPositionTargetingOptionDetailsContentPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable native content position. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`. */
 export interface NativeContentPositionTargetingOptionDetails {
@@ -12067,7 +12021,7 @@ export type HouseholdIncomeTargetingOptionDetailsHouseholdIncomeEnum =
   | "HOUSEHOLD_INCOME_TOP_11_TO_20_PERCENT"
   | "HOUSEHOLD_INCOME_TOP_10_PERCENT";
 export const HouseholdIncomeTargetingOptionDetailsHouseholdIncomeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable household income. This will be populated in the household_income_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_HOUSEHOLD_INCOME`. */
 export interface HouseholdIncomeTargetingOptionDetails {
@@ -12092,8 +12046,7 @@ export type DeviceTypeTargetingOptionDetailsDeviceTypeEnum =
   | "DEVICE_TYPE_SMART_PHONE"
   | "DEVICE_TYPE_TABLET"
   | "DEVICE_TYPE_CONNECTED_DEVICE";
-export const DeviceTypeTargetingOptionDetailsDeviceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DeviceTypeTargetingOptionDetailsDeviceTypeEnum = S.String;
 
 /** Represents a targetable device type. This will be populated in the device_type_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_DEVICE_TYPE`. */
 export interface DeviceTypeTargetingOptionDetails {
@@ -12118,7 +12071,7 @@ export type ContentDurationTargetingOptionDetailsContentDurationEnum =
   | "CONTENT_DURATION_30_TO_60_MIN"
   | "CONTENT_DURATION_OVER_60_MIN";
 export const ContentDurationTargetingOptionDetailsContentDurationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable content duration. This will be populated in the content_duration_details field when targeting_type is `TARGETING_TYPE_CONTENT_DURATION`. */
 export interface ContentDurationTargetingOptionDetails {
@@ -12147,8 +12100,7 @@ export type ViewabilityTargetingOptionDetailsViewabilityEnum =
   | "VIEWABILITY_70_PERCENT_OR_MORE"
   | "VIEWABILITY_80_PERCENT_OR_MORE"
   | "VIEWABILITY_90_PERCENT_OR_MORE";
-export const ViewabilityTargetingOptionDetailsViewabilityEnum =
-  /*@__PURE__*/ S.String;
+export const ViewabilityTargetingOptionDetailsViewabilityEnum = S.String;
 
 /** Represents a targetable viewability. This will be populated in the viewability_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_VIEWABILITY`. */
 export interface ViewabilityTargetingOptionDetails {
@@ -12195,7 +12147,7 @@ export type AuthorizedSellerStatusTargetingOptionDetailsAuthorizedSellerStatusEn
   | "AUTHORIZED_SELLER_STATUS_AUTHORIZED_DIRECT_SELLERS_ONLY"
   | "AUTHORIZED_SELLER_STATUS_AUTHORIZED_AND_NON_PARTICIPATING_PUBLISHERS";
 export const AuthorizedSellerStatusTargetingOptionDetailsAuthorizedSellerStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable authorized seller status. This will be populated in the authorized_seller_status_details field when targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. */
 export interface AuthorizedSellerStatusTargetingOptionDetails {
@@ -12248,7 +12200,7 @@ export type SensitiveCategoryTargetingOptionDetailsSensitiveCategoryEnum =
   | "SENSITIVE_CATEGORY_EMBEDDED_VIDEO"
   | "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO";
 export const SensitiveCategoryTargetingOptionDetailsSensitiveCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable sensitive category. This will be populated in the sensitive_category_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. */
 export interface SensitiveCategoryTargetingOptionDetails {
@@ -12271,7 +12223,7 @@ export type UserRewardedContentTargetingOptionDetailsUserRewardedContentEnum =
   | "USER_REWARDED_CONTENT_USER_REWARDED"
   | "USER_REWARDED_CONTENT_NOT_USER_REWARDED";
 export const UserRewardedContentTargetingOptionDetailsUserRewardedContentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable user rewarded content status for video ads only. This will be populated in the user_rewarded_content_details field when targeting_type is `TARGETING_TYPE_USER_REWARDED_CONTENT`. */
 export interface UserRewardedContentTargetingOptionDetails {
@@ -12351,8 +12303,7 @@ export type GeoRegionTargetingOptionDetailsGeoRegionTypeEnum =
   | "GEO_REGION_TYPE_INDUSTRIAL_AREA"
   | "GEO_REGION_TYPE_PROVINCIAL_CITY"
   | "GEO_REGION_TYPE_RURAL_DISTRICT";
-export const GeoRegionTargetingOptionDetailsGeoRegionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GeoRegionTargetingOptionDetailsGeoRegionTypeEnum = S.String;
 
 /** Represents a targetable geographic region. This will be populated in the geo_region_details field when targeting_type is `TARGETING_TYPE_GEO_REGION`. */
 export interface GeoRegionTargetingOptionDetails {
@@ -12375,7 +12326,7 @@ export type GenderTargetingOptionDetailsGenderEnum =
   | "GENDER_MALE"
   | "GENDER_FEMALE"
   | "GENDER_UNKNOWN";
-export const GenderTargetingOptionDetailsGenderEnum = /*@__PURE__*/ S.String;
+export const GenderTargetingOptionDetailsGenderEnum = S.String;
 
 /** Represents a targetable gender. This will be populated in the gender_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_GENDER`. */
 export interface GenderTargetingOptionDetails {
@@ -12413,7 +12364,7 @@ export type DigitalContentLabelTargetingOptionDetailsContentRatingTierEnum =
   | "CONTENT_RATING_TIER_MATURE"
   | "CONTENT_RATING_TIER_FAMILIES";
 export const DigitalContentLabelTargetingOptionDetailsContentRatingTierEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable digital content label rating tier. This will be populated in the digital_content_label_details field of the TargetingOption when targeting_type is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`. */
 export interface DigitalContentLabelTargetingOptionDetails {
@@ -12442,7 +12393,7 @@ export type AudioContentTypeTargetingOptionDetailsAudioContentTypeEnum =
   | "AUDIO_CONTENT_TYPE_VIDEO_GAME"
   | "AUDIO_CONTENT_TYPE_TEXT_TO_SPEECH";
 export const AudioContentTypeTargetingOptionDetailsAudioContentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable audio content type. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`. */
 export interface AudioContentTypeTargetingOptionDetails {
@@ -12480,7 +12431,7 @@ export type VideoPlayerSizeTargetingOptionDetailsVideoPlayerSizeEnum =
   | "VIDEO_PLAYER_SIZE_HD"
   | "VIDEO_PLAYER_SIZE_UNKNOWN";
 export const VideoPlayerSizeTargetingOptionDetailsVideoPlayerSizeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable video player size. This will be populated in the video_player_size_details field when targeting_type is `TARGETING_TYPE_VIDEO_PLAYER_SIZE`. */
 export interface VideoPlayerSizeTargetingOptionDetails {
@@ -12560,8 +12511,7 @@ export type BusinessChainTargetingOptionDetailsGeoRegionTypeEnum =
   | "GEO_REGION_TYPE_INDUSTRIAL_AREA"
   | "GEO_REGION_TYPE_PROVINCIAL_CITY"
   | "GEO_REGION_TYPE_RURAL_DISTRICT";
-export const BusinessChainTargetingOptionDetailsGeoRegionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const BusinessChainTargetingOptionDetailsGeoRegionTypeEnum = S.String;
 
 /** Represents a targetable business chain within a geo region. This will be populated in the business_chain_details field when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`. */
 export interface BusinessChainTargetingOptionDetails {
@@ -12587,7 +12537,7 @@ export const BusinessChainTargetingOptionDetails = /*@__PURE__*/ S.suspend(() =>
 export type OmidTargetingOptionDetailsOmidEnum =
   | "OMID_UNSPECIFIED"
   | "OMID_FOR_MOBILE_DISPLAY_ADS";
-export const OmidTargetingOptionDetailsOmidEnum = /*@__PURE__*/ S.String;
+export const OmidTargetingOptionDetailsOmidEnum = S.String;
 
 /** Represents a targetable Open Measurement enabled inventory type. This will be populated in the omid_details field when targeting_type is `TARGETING_TYPE_OMID`. */
 export interface OmidTargetingOptionDetails {
@@ -12607,8 +12557,7 @@ export type EnvironmentTargetingOptionDetailsEnvironmentEnum =
   | "ENVIRONMENT_WEB_OPTIMIZED"
   | "ENVIRONMENT_WEB_NOT_OPTIMIZED"
   | "ENVIRONMENT_APP";
-export const EnvironmentTargetingOptionDetailsEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+export const EnvironmentTargetingOptionDetailsEnvironmentEnum = S.String;
 
 /** Represents a targetable environment. This will be populated in the environment_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_ENVIRONMENT`. */
 export interface EnvironmentTargetingOptionDetails {
@@ -12630,7 +12579,7 @@ export type ContentInstreamPositionTargetingOptionDetailsContentInstreamPosition
   | "CONTENT_INSTREAM_POSITION_POST_ROLL"
   | "CONTENT_INSTREAM_POSITION_UNKNOWN";
 export const ContentInstreamPositionTargetingOptionDetailsContentInstreamPositionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable content instream position, which could be used by video and audio ads. This will be populated in the content_instream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`. */
 export interface ContentInstreamPositionTargetingOptionDetails {
@@ -12653,7 +12602,7 @@ export type ContentStreamTypeTargetingOptionDetailsContentStreamTypeEnum =
   | "CONTENT_LIVE_STREAM"
   | "CONTENT_ON_DEMAND";
 export const ContentStreamTypeTargetingOptionDetailsContentStreamTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a targetable content stream type. This will be populated in the content_stream_type_details field when targeting_type is `TARGETING_TYPE_CONTENT_STREAM_TYPE`. */
 export interface ContentStreamTypeTargetingOptionDetails {
@@ -12675,8 +12624,7 @@ export type CarrierAndIspTargetingOptionDetailsTypeEnum =
   | "CARRIER_AND_ISP_TYPE_UNSPECIFIED"
   | "CARRIER_AND_ISP_TYPE_ISP"
   | "CARRIER_AND_ISP_TYPE_CARRIER";
-export const CarrierAndIspTargetingOptionDetailsTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CarrierAndIspTargetingOptionDetailsTypeEnum = S.String;
 
 /** Represents a targetable carrier or ISP. This will be populated in the carrier_and_isp_details field of a TargetingOption when targeting_type is `TARGETING_TYPE_CARRIER_AND_ISP`. */
 export interface CarrierAndIspTargetingOptionDetails {
@@ -13052,7 +13000,7 @@ export type ListAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTargeti
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const ListAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListAdvertisersAdGroupsTargetingTypesAssignedTargetingOptionsRequest {
   /** Optional. Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified. */
@@ -13374,8 +13322,7 @@ export type ListAdvertisersInvoicesLoiSapinInvoiceTypeEnum =
   | "LOI_SAPIN_INVOICE_TYPE_UNSPECIFIED"
   | "LOI_SAPIN_INVOICE_TYPE_MEDIA"
   | "LOI_SAPIN_INVOICE_TYPE_PLATFORM";
-export const ListAdvertisersInvoicesLoiSapinInvoiceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ListAdvertisersInvoicesLoiSapinInvoiceTypeEnum = S.String;
 
 export interface ListAdvertisersInvoicesRequest {
   /** Required. The ID of the advertiser to list invoices for. */
@@ -13415,7 +13362,7 @@ export type InvoiceInvoiceTypeEnum =
   | "INVOICE_TYPE_UNSPECIFIED"
   | "INVOICE_TYPE_CREDIT"
   | "INVOICE_TYPE_INVOICE";
-export const InvoiceInvoiceTypeEnum = /*@__PURE__*/ S.String;
+export const InvoiceInvoiceTypeEnum = S.String;
 
 /** Summarized information of an individual campaign budget. */
 export interface BudgetSummary {
@@ -13636,7 +13583,7 @@ export type ListAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTarget
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const ListAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListAdvertisersLineItemsTargetingTypesAssignedTargetingOptionsRequest {
   /** A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned. */
@@ -13947,7 +13894,7 @@ export type ListAdvertisersTargetingTypesAssignedTargetingOptionsTargetingTypeEn
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const ListAdvertisersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListAdvertisersTargetingTypesAssignedTargetingOptionsRequest {
   /** Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field} {operator} {value}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` with ID 123456: `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information. */
@@ -14752,7 +14699,7 @@ export type ListPartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum 
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
 export const ListPartnersTargetingTypesAssignedTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPartnersTargetingTypesAssignedTargetingOptionsRequest {
   /** Required. The ID of the partner. */
@@ -14861,8 +14808,7 @@ export type ListTargetingTypesTargetingOptionsTargetingTypeEnum =
   | "TARGETING_TYPE_SESSION_POSITION"
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
-export const ListTargetingTypesTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ListTargetingTypesTargetingOptionsTargetingTypeEnum = S.String;
 
 export interface ListTargetingTypesTargetingOptionsRequest {
   /** Required. The type of targeting option to be listed. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID` */
@@ -15626,8 +15572,7 @@ export type SearchTargetingTypesTargetingOptionsTargetingTypeEnum =
   | "TARGETING_TYPE_SESSION_POSITION"
   | "TARGETING_TYPE_CONTENT_THEME_EXCLUSION"
   | "TARGETING_TYPE_YOUTUBE_CHANNEL_PACK";
-export const SearchTargetingTypesTargetingOptionsTargetingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SearchTargetingTypesTargetingOptionsTargetingTypeEnum = S.String;
 
 /** Search terms for POI targeting options. */
 export interface PoiSearchTerms {

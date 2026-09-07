@@ -59,7 +59,7 @@ export class UnprocessableEntity
   ) {}
 
 export type CreateEventRequestEventCase0Type = "installation.updated";
-export const CreateEventRequestEventCase0Type = /*@__PURE__*/ S.String;
+export const CreateEventRequestEventCase0Type = S.String;
 
 export interface CreateEventRequestEventCase0 {
   type: CreateEventRequestEventCase0Type;
@@ -76,7 +76,7 @@ export const CreateEventRequestEventCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEventRequestEventCase0>;
 
 export type CreateEventRequestEventCase1Type = "resource.updated";
-export const CreateEventRequestEventCase1Type = /*@__PURE__*/ S.String;
+export const CreateEventRequestEventCase1Type = S.String;
 
 export interface CreateEventRequestEventCase1 {
   type: CreateEventRequestEventCase1Type;
@@ -99,7 +99,7 @@ export type CreateEventRequestEvent =
   | CreateEventRequestEventCase0
   | CreateEventRequestEventCase1;
 export const CreateEventRequestEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEventRequestEvent>;
+  S.Unknown as any as S.Schema<CreateEventRequestEvent>;
 
 export interface CreateEventRequest {
   integrationConfigurationId: string;
@@ -131,7 +131,7 @@ export type CreateInstallationsByIntegrationConfigurationIdResourcesByResourceId
   | "experiment"
   | "flag";
 export const CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsItemCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsRequestItemsItem {
   id: string;
@@ -371,7 +371,7 @@ export type GlobalConfigItemValue =
   | GlobalConfigItemValueCase3List
   | boolean;
 export const GlobalConfigItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalConfigItemValue>;
+  S.Unknown as any as S.Schema<GlobalConfigItemValue>;
 
 export type GetInstallationResourceExperimentationGlobalConfigResponseItemsMap =
   { [key: string]: GlobalConfigItemValue | undefined };
@@ -385,7 +385,7 @@ export type GetInstallationResourceExperimentationGlobalConfigResponsePurpose =
   | "experimentation"
   | "flags";
 export const GetInstallationResourceExperimentationGlobalConfigResponsePurpose =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetInstallationResourceExperimentationGlobalConfigResponse {
   items: GetInstallationResourceExperimentationGlobalConfigResponseItemsMap;
@@ -437,7 +437,7 @@ export type GetIntegrationResourceResponseStatus =
   | "resumed"
   | "suspended"
   | "uninstalled";
-export const GetIntegrationResourceResponseStatus = /*@__PURE__*/ S.String;
+export const GetIntegrationResourceResponseStatus = S.String;
 
 export interface GetIntegrationResourceResponseProtocolSettingsExperimentation {
   edgeConfigId?: string;
@@ -458,7 +458,7 @@ export type GetIntegrationResourceResponseProtocolSettingsAuthenticationAppUrlsI
   | "preview"
   | "production";
 export const GetIntegrationResourceResponseProtocolSettingsAuthenticationAppUrlsItemTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetIntegrationResourceResponseProtocolSettingsAuthenticationAppUrlsItem {
   url: string;
@@ -520,8 +520,7 @@ export type GetIntegrationResourceResponseNotificationLevel =
   | "error"
   | "info"
   | "warn";
-export const GetIntegrationResourceResponseNotificationLevel =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationResourceResponseNotificationLevel = S.String;
 
 /** The notification, if set, displayed to the user when viewing the resource in Vercel */
 export interface GetIntegrationResourceResponseNotification {
@@ -565,7 +564,7 @@ export type GetIntegrationResourceResponseMetadataValue =
   | GetIntegrationResourceResponseMetadataValueCase3List
   | boolean;
 export const GetIntegrationResourceResponseMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetIntegrationResourceResponseMetadataValue>;
+  S.Unknown as any as S.Schema<GetIntegrationResourceResponseMetadataValue>;
 
 /** The configured metadata for the resource as defined by its product's Metadata Schema */
 export type GetIntegrationResourceResponseMetadataMap = {
@@ -640,8 +639,7 @@ export type GetIntegrationResourcesResponseResourcesItemStatus =
   | "resumed"
   | "suspended"
   | "uninstalled";
-export const GetIntegrationResourcesResponseResourcesItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationResourcesResponseResourcesItemStatus = S.String;
 
 export interface GetIntegrationResourcesResponseResourcesItemProtocolSettingsExperimentation {
   edgeConfigSyncingEnabled?: boolean;
@@ -669,7 +667,7 @@ export type GetIntegrationResourcesResponseResourcesItemProtocolSettingsAuthenti
   | "preview"
   | "production";
 export const GetIntegrationResourcesResponseResourcesItemProtocolSettingsAuthenticationAppUrlsItemTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetIntegrationResourcesResponseResourcesItemProtocolSettingsAuthenticationAppUrlsItem {
   url: string;
@@ -733,7 +731,7 @@ export type GetIntegrationResourcesResponseResourcesItemNotificationLevel =
   | "info"
   | "warn";
 export const GetIntegrationResourcesResponseResourcesItemNotificationLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The notification, if set, displayed to the user when viewing the resource in Vercel */
 export interface GetIntegrationResourcesResponseResourcesItemNotification {
@@ -777,7 +775,7 @@ export type GetIntegrationResourcesResponseResourcesItemMetadataValue =
   | GetIntegrationResourcesResponseResourcesItemMetadataValueCase3List
   | boolean;
 export const GetIntegrationResourcesResponseResourcesItemMetadataValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetIntegrationResourcesResponseResourcesItemMetadataValue>;
+  S.Unknown as any as S.Schema<GetIntegrationResourcesResponseResourcesItemMetadataValue>;
 
 /** The configured metadata for the resource as defined by its product's Metadata Schema */
 export type GetIntegrationResourcesResponseResourcesItemMetadataMap = {
@@ -882,7 +880,7 @@ export type GetInvoiceResponseState =
   | "refund_requested"
   | "refunded"
   | "scheduled";
-export const GetInvoiceResponseState = /*@__PURE__*/ S.String;
+export const GetInvoiceResponseState = S.String;
 
 /** Subscription period for this billing cycle. ISO 8601 timestamps. */
 export interface GetInvoiceResponsePeriod {
@@ -1063,7 +1061,7 @@ export const GetMemberRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** "The `ADMIN` role, by default, is provided to users capable of installing integrations, while the `USER` role can be granted to Vercel users with the Vercel `Billing` or Vercel `Viewer` role, which are considered to be Read-Only roles." */
 export type GetMemberResponseRole = "ADMIN" | "USER";
-export const GetMemberResponseRole = /*@__PURE__*/ S.String;
+export const GetMemberResponseRole = S.String;
 
 export interface GetMemberResponse {
   id: string;
@@ -1110,7 +1108,7 @@ export const HeadInstallationResourceExperimentationGlobalConfigResponse =
   }) as any as S.Schema<HeadInstallationResourceExperimentationGlobalConfigResponse>;
 
 export type ImportResourceRequestOwnership = "owned" | "linked" | "sandbox";
-export const ImportResourceRequestOwnership = /*@__PURE__*/ S.String;
+export const ImportResourceRequestOwnership = S.String;
 
 export type ImportResourceRequestStatus =
   | "ready"
@@ -1120,7 +1118,7 @@ export type ImportResourceRequestStatus =
   | "resumed"
   | "uninstalled"
   | "error";
-export const ImportResourceRequestStatus = /*@__PURE__*/ S.String;
+export const ImportResourceRequestStatus = S.String;
 
 export type ImportResourceRequestMetadataMap = {
   [key: string]: unknown | undefined;
@@ -1133,7 +1131,7 @@ export const ImportResourceRequestMetadataMap = /*@__PURE__*/ S.Record(
 export type ImportResourceRequestBillingPlanType =
   | "prepayment"
   | "subscription";
-export const ImportResourceRequestBillingPlanType = /*@__PURE__*/ S.String;
+export const ImportResourceRequestBillingPlanType = S.String;
 
 export interface ImportResourceRequestBillingPlanDetailsItem {
   label: string;
@@ -1198,7 +1196,7 @@ export const ImportResourceRequestBillingPlan = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImportResourceRequestBillingPlan>;
 
 export type ImportResourceRequestNotificationLevel = "info" | "warn" | "error";
-export const ImportResourceRequestNotificationLevel = /*@__PURE__*/ S.String;
+export const ImportResourceRequestNotificationLevel = S.String;
 
 export interface ImportResourceRequestNotification {
   level: ImportResourceRequestNotificationLevel | (string & {});
@@ -1362,7 +1360,7 @@ export type ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceI
   | "experimentation"
   | "flags";
 export const ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponsePurpose =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponse {
   items: ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfigResponseItemsMap;
@@ -1445,8 +1443,7 @@ export const RotateInstallationCredentialRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RotateInstallationCredentialRequest>;
 
 export type RotateInstallationCredentialResponseTokenType = "oauth2-token";
-export const RotateInstallationCredentialResponseTokenType =
-  /*@__PURE__*/ S.String;
+export const RotateInstallationCredentialResponseTokenType = S.String;
 
 export interface RotateInstallationCredentialResponse {
   scope: string;
@@ -1585,14 +1582,14 @@ export type SubmitBillingDataRequestBilling =
   | SubmitBillingDataRequestBillingCase0List
   | SubmitBillingDataRequestBillingCase1;
 export const SubmitBillingDataRequestBilling =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SubmitBillingDataRequestBilling>;
+  S.Unknown as any as S.Schema<SubmitBillingDataRequestBilling>;
 
 /** Type of the metric. - total: measured total value, such as Database size - interval: usage during the period, such as i/o or number of queries. - rate: rate of usage, such as queries per second. */
 export type SubmitBillingDataRequestUsageItemType =
   | "total"
   | "interval"
   | "rate";
-export const SubmitBillingDataRequestUsageItemType = /*@__PURE__*/ S.String;
+export const SubmitBillingDataRequestUsageItemType = S.String;
 
 export interface SubmitBillingDataRequestUsageItem {
   /** Partner's resource ID. */
@@ -1748,7 +1745,7 @@ export const SubmitInvoiceRequestDiscountsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SubmitInvoiceRequestDiscountsList>;
 
 export type SubmitInvoiceRequestTestResult = "paid" | "notpaid" | "overdue";
-export const SubmitInvoiceRequestTestResult = /*@__PURE__*/ S.String;
+export const SubmitInvoiceRequestTestResult = S.String;
 
 /** Test mode */
 export interface SubmitInvoiceRequestTest {
@@ -1890,12 +1887,12 @@ export type UpdateInstallationRequestStatus =
   | "resumed"
   | "uninstalled"
   | "error";
-export const UpdateInstallationRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateInstallationRequestStatus = S.String;
 
 export type UpdateInstallationRequestBillingPlanType =
   | "prepayment"
   | "subscription";
-export const UpdateInstallationRequestBillingPlanType = /*@__PURE__*/ S.String;
+export const UpdateInstallationRequestBillingPlanType = S.String;
 
 export type UpdateInstallationRequestBillingPlanDetailsItem =
   ImportResourceRequestBillingPlanDetailsItem;
@@ -1955,8 +1952,7 @@ export type UpdateInstallationRequestNotificationCase0Level =
   | "info"
   | "warn"
   | "error";
-export const UpdateInstallationRequestNotificationCase0Level =
-  /*@__PURE__*/ S.String;
+export const UpdateInstallationRequestNotificationCase0Level = S.String;
 
 export interface UpdateInstallationRequestNotificationCase0 {
   level: UpdateInstallationRequestNotificationCase0Level | (string & {});
@@ -1981,7 +1977,7 @@ export type UpdateInstallationRequestNotification =
   | UpdateInstallationRequestNotificationCase0
   | string;
 export const UpdateInstallationRequestNotification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateInstallationRequestNotification>;
+  S.Unknown as any as S.Schema<UpdateInstallationRequestNotification>;
 
 export interface UpdateInstallationRequest {
   integrationConfigurationId: string;
@@ -2020,7 +2016,7 @@ export type UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceId
   | "experiment"
   | "flag";
 export const UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequestCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdRequest {
   integrationConfigurationId: string;
@@ -2073,7 +2069,7 @@ export const UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceI
   }) as any as S.Schema<UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemIdResponse>;
 
 export type UpdateInvoiceRequestBodyAction = "refund";
-export const UpdateInvoiceRequestBodyAction = /*@__PURE__*/ S.String;
+export const UpdateInvoiceRequestBodyAction = S.String;
 
 export interface UpdateInvoiceRequestBody {
   action: UpdateInvoiceRequestBodyAction | (string & {});
@@ -2121,7 +2117,7 @@ export const UpdateInvoiceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateInvoiceResponse>;
 
 export type UpdateResourceRequestOwnership = "owned" | "linked" | "sandbox";
-export const UpdateResourceRequestOwnership = /*@__PURE__*/ S.String;
+export const UpdateResourceRequestOwnership = S.String;
 
 export type UpdateResourceRequestStatus =
   | "ready"
@@ -2131,7 +2127,7 @@ export type UpdateResourceRequestStatus =
   | "resumed"
   | "uninstalled"
   | "error";
-export const UpdateResourceRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateResourceRequestStatus = S.String;
 
 export type UpdateResourceRequestMetadataMap = {
   [key: string]: unknown | undefined;
@@ -2144,7 +2140,7 @@ export const UpdateResourceRequestMetadataMap = /*@__PURE__*/ S.Record(
 export type UpdateResourceRequestBillingPlanType =
   | "prepayment"
   | "subscription";
-export const UpdateResourceRequestBillingPlanType = /*@__PURE__*/ S.String;
+export const UpdateResourceRequestBillingPlanType = S.String;
 
 export type UpdateResourceRequestBillingPlanDetailsItem =
   ImportResourceRequestBillingPlanDetailsItem;
@@ -2203,8 +2199,7 @@ export type UpdateResourceRequestNotificationCase0Level =
   | "info"
   | "warn"
   | "error";
-export const UpdateResourceRequestNotificationCase0Level =
-  /*@__PURE__*/ S.String;
+export const UpdateResourceRequestNotificationCase0Level = S.String;
 
 export interface UpdateResourceRequestNotificationCase0 {
   level: UpdateResourceRequestNotificationCase0Level | (string & {});
@@ -2228,7 +2223,7 @@ export type UpdateResourceRequestNotification =
   | UpdateResourceRequestNotificationCase0
   | string;
 export const UpdateResourceRequestNotification =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResourceRequestNotification>;
+  S.Unknown as any as S.Schema<UpdateResourceRequestNotification>;
 
 export type UpdateResourceRequestExtrasMap = {
   [key: string]: unknown | undefined;
@@ -2291,7 +2286,7 @@ export type UpdateResourceRequestSecrets =
   | UpdateResourceRequestSecretsCase0List
   | UpdateResourceRequestSecretsCase1;
 export const UpdateResourceRequestSecrets =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResourceRequestSecrets>;
+  S.Unknown as any as S.Schema<UpdateResourceRequestSecrets>;
 
 export interface UpdateResourceRequest {
   integrationConfigurationId: string;

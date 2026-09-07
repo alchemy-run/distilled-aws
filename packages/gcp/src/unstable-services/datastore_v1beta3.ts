@@ -251,7 +251,7 @@ export const BeginTransactionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BeginTransactionResponse>;
 
 export type ValueNullValueEnum = "NULL_VALUE";
-export const ValueNullValueEnum = /*@__PURE__*/ S.String;
+export const ValueNullValueEnum = S.String;
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
@@ -353,7 +353,7 @@ export const ArrayValue = /*@__PURE__*/ S.suspend(() =>
 export type PropertyTransformSetToServerValueEnum =
   | "SERVER_VALUE_UNSPECIFIED"
   | "REQUEST_TIME";
-export const PropertyTransformSetToServerValueEnum = /*@__PURE__*/ S.String;
+export const PropertyTransformSetToServerValueEnum = S.String;
 
 /** A transformation of an entity property. */
 export interface PropertyTransform {
@@ -395,7 +395,7 @@ export type MutationConflictResolutionStrategyEnum =
   | "STRATEGY_UNSPECIFIED"
   | "SERVER_VALUE"
   | "FAIL";
-export const MutationConflictResolutionStrategyEnum = /*@__PURE__*/ S.String;
+export const MutationConflictResolutionStrategyEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -461,7 +461,7 @@ export type CommitRequestModeEnum =
   | "MODE_UNSPECIFIED"
   | "TRANSACTIONAL"
   | "NON_TRANSACTIONAL";
-export const CommitRequestModeEnum = /*@__PURE__*/ S.String;
+export const CommitRequestModeEnum = S.String;
 
 /** The request for Datastore.Commit. */
 export interface CommitRequest {
@@ -553,7 +553,7 @@ export type ReadOptionsReadConsistencyEnum =
   | "READ_CONSISTENCY_UNSPECIFIED"
   | "STRONG"
   | "EVENTUAL";
-export const ReadOptionsReadConsistencyEnum = /*@__PURE__*/ S.String;
+export const ReadOptionsReadConsistencyEnum = S.String;
 
 /** The options shared by read requests. */
 export interface ReadOptions {
@@ -812,7 +812,7 @@ export type FindNearestDistanceMeasureEnum =
   | "EUCLIDEAN"
   | "COSINE"
   | "DOT_PRODUCT";
-export const FindNearestDistanceMeasureEnum = /*@__PURE__*/ S.String;
+export const FindNearestDistanceMeasureEnum = S.String;
 
 /** Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries. */
 export interface FindNearest {
@@ -872,7 +872,7 @@ export type PropertyFilterOpEnum =
   | "NOT_EQUAL"
   | "HAS_ANCESTOR"
   | "NOT_IN";
-export const PropertyFilterOpEnum = /*@__PURE__*/ S.String;
+export const PropertyFilterOpEnum = S.String;
 
 /** A filter on a specific property. */
 export interface PropertyFilter {
@@ -892,7 +892,7 @@ export const PropertyFilter = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PropertyFilter" }) as any as S.Schema<PropertyFilter>;
 
 export type CompositeFilterOpEnum = "OPERATOR_UNSPECIFIED" | "AND" | "OR";
-export const CompositeFilterOpEnum = /*@__PURE__*/ S.String;
+export const CompositeFilterOpEnum = S.String;
 
 export type FilterList = Array<Filter>;
 export const FilterList = /*@__PURE__*/ S.Array(
@@ -949,7 +949,7 @@ export type PropertyOrderDirectionEnum =
   | "DIRECTION_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const PropertyOrderDirectionEnum = /*@__PURE__*/ S.String;
+export const PropertyOrderDirectionEnum = S.String;
 
 /** The desired order for a specific property. */
 export interface PropertyOrder {
@@ -1194,7 +1194,7 @@ export type AggregationResultBatchMoreResultsEnum =
   | "MORE_RESULTS_AFTER_LIMIT"
   | "MORE_RESULTS_AFTER_CURSOR"
   | "NO_MORE_RESULTS";
-export const AggregationResultBatchMoreResultsEnum = /*@__PURE__*/ S.String;
+export const AggregationResultBatchMoreResultsEnum = S.String;
 
 /** The result of a single bucket from a Datastore aggregation query. The keys of `aggregate_properties` are the same for all results in an aggregation query, unlike entity queries which can have different fields present for each result. */
 export interface AggregationResult {
@@ -1306,7 +1306,7 @@ export type QueryResultBatchEntityResultTypeEnum =
   | "FULL"
   | "PROJECTION"
   | "KEY_ONLY";
-export const QueryResultBatchEntityResultTypeEnum = /*@__PURE__*/ S.String;
+export const QueryResultBatchEntityResultTypeEnum = S.String;
 
 export type QueryResultBatchMoreResultsEnum =
   | "MORE_RESULTS_TYPE_UNSPECIFIED"
@@ -1314,7 +1314,7 @@ export type QueryResultBatchMoreResultsEnum =
   | "MORE_RESULTS_AFTER_LIMIT"
   | "MORE_RESULTS_AFTER_CURSOR"
   | "NO_MORE_RESULTS";
-export const QueryResultBatchMoreResultsEnum = /*@__PURE__*/ S.String;
+export const QueryResultBatchMoreResultsEnum = S.String;
 
 /** A batch of results produced by a query. */
 export interface QueryResultBatch {

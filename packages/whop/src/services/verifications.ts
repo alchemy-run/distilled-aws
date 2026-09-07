@@ -82,8 +82,7 @@ export type CreateVerificationRequestBodyCase0DocumentType =
   | "DRIVERS"
   | "RESIDENCE_PERMIT"
   | "PASSPORT";
-export const CreateVerificationRequestBodyCase0DocumentType =
-  /*@__PURE__*/ S.String;
+export const CreateVerificationRequestBodyCase0DocumentType = S.String;
 
 /** Identity document files, each value the file's raw bytes base64-encoded (JPEG, PNG, or PDF, up to 5MB per file before encoding). Sending this object verifies the person from the files in this request instead of a hosted session — individual verifications only, and the request must also carry `document_type`, `first_name`, `last_name`, `date_of_birth`, `country`, `phone`, `tax_identification_number`, and an `address` with `line1`, `city`, `state`, and `postal_code`. Send every slot for your `document_type` — a missing or rejected file fails the whole request and nothing is submitted; review starts automatically once every document is accepted. See [Identity documents](/developer/verification/identity-documents) for a full walkthrough. */
 export interface CreateVerificationRequestBodyCase0Documents {
@@ -122,7 +121,7 @@ export const CreateVerificationRequestBodyCase0Documents =
 
 /** Verification type. Defaults to `individual`. */
 export type CreateVerificationRequestBodyCase0Kind = "individual";
-export const CreateVerificationRequestBodyCase0Kind = /*@__PURE__*/ S.String;
+export const CreateVerificationRequestBodyCase0Kind = S.String;
 
 /** Request body for an individual (KYC) verification. Omit `kind` or set it to `individual`. KYC is required to pay out funds and is a prerequisite for Whop Card access. Accepting payments does not require verification until a business reaches $5000 in payments. Add `business_name` and `business_structure` if the individual operates under a business entity — this enables payouts to be received by a business bank account. `country` is always the individual's own country, and the supported `business_structure` values vary by it — see [Business structures](/developer/verification/business-structures). */
 export interface CreateVerificationRequestBodyCase0 {
@@ -186,7 +185,7 @@ export const CreateVerificationRequestBodyCase1Address =
 
 /** Must be `business` to start a KYB verification. */
 export type CreateVerificationRequestBodyCase1Kind = "business";
-export const CreateVerificationRequestBodyCase1Kind = /*@__PURE__*/ S.String;
+export const CreateVerificationRequestBodyCase1Kind = S.String;
 
 /** Request body for a business entity (KYB) verification. Set `kind` to `business`. KYB includes everything KYC provides and additionally unlocks financing options for payments and business Whop Cards. */
 export interface CreateVerificationRequestBodyCase1 {
@@ -241,7 +240,7 @@ export type CreateVerificationRequestBody =
   | CreateVerificationRequestBodyCase0
   | CreateVerificationRequestBodyCase1;
 export const CreateVerificationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateVerificationRequestBody>;
+  S.Unknown as any as S.Schema<CreateVerificationRequestBody>;
 
 export interface CreateVerificationRequest {
   /** Account or user ID whose identity you want to verify. Use a `biz_` account ID for account verifications, or the caller's `user_` ID for personal verification. */
@@ -288,7 +287,7 @@ export const CreateVerificationResponseAddress = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateVerificationResponseAddress>;
 
 export type CreateVerificationResponseKind = "individual" | "business";
-export const CreateVerificationResponseKind = /*@__PURE__*/ S.String;
+export const CreateVerificationResponseKind = S.String;
 
 export interface CreateVerificationResponseRequestedInformationItemErrorsItem {
   /** Stable error code. */
@@ -369,8 +368,7 @@ export const CreateVerificationResponseRequestedInformationList =
 export type CreateVerificationResponseRequiredDocumentsItemStatus =
   | "pending_upload"
   | "submitted";
-export const CreateVerificationResponseRequiredDocumentsItemStatus =
-  /*@__PURE__*/ S.String;
+export const CreateVerificationResponseRequiredDocumentsItemStatus = S.String;
 
 export interface CreateVerificationResponseRequiredDocumentsItem {
   /** Document slot key, such as `id_card_front`, `id_card_back`, or `selfie`. */
@@ -408,7 +406,7 @@ export type CreateVerificationResponseStatus =
   | "approved"
   | "rejected"
   | "action_required";
-export const CreateVerificationResponseStatus = /*@__PURE__*/ S.String;
+export const CreateVerificationResponseStatus = S.String;
 
 export interface CreateVerificationResponse {
   /** Address on the verification profile. `null` when no address is set. */
@@ -488,7 +486,7 @@ export type GetVerificationResponseAddress = CreateVerificationResponseAddress;
 export const GetVerificationResponseAddress = CreateVerificationResponseAddress;
 
 export type GetVerificationResponseKind = "individual" | "business";
-export const GetVerificationResponseKind = /*@__PURE__*/ S.String;
+export const GetVerificationResponseKind = S.String;
 
 export type GetVerificationResponseRequestedInformationItemErrorsItem =
   CreateVerificationResponseRequestedInformationItemErrorsItem;
@@ -558,8 +556,7 @@ export const GetVerificationResponseRequestedInformationList =
 export type GetVerificationResponseRequiredDocumentsItemStatus =
   | "pending_upload"
   | "submitted";
-export const GetVerificationResponseRequiredDocumentsItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetVerificationResponseRequiredDocumentsItemStatus = S.String;
 
 export interface GetVerificationResponseRequiredDocumentsItem {
   /** Document slot key, such as `id_card_front`, `id_card_back`, or `selfie`. */
@@ -597,7 +594,7 @@ export type GetVerificationResponseStatus =
   | "approved"
   | "rejected"
   | "action_required";
-export const GetVerificationResponseStatus = /*@__PURE__*/ S.String;
+export const GetVerificationResponseStatus = S.String;
 
 export interface GetVerificationResponse {
   /** Address on the verification profile. `null` when no address is set. */
@@ -661,10 +658,10 @@ export const GetVerificationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVerificationResponse>;
 
 export type ListVerificationsRequestOrder = "updated_at" | "created_at";
-export const ListVerificationsRequestOrder = /*@__PURE__*/ S.String;
+export const ListVerificationsRequestOrder = S.String;
 
 export type ListVerificationsRequestDirection = "asc" | "desc";
-export const ListVerificationsRequestDirection = /*@__PURE__*/ S.String;
+export const ListVerificationsRequestDirection = S.String;
 
 export interface ListVerificationsRequest {
   /** Account or user ID whose verifications you want to list. Use a `biz_` account ID, or the caller's `user_` ID for personal verifications. */
@@ -691,7 +688,7 @@ export const ListVerificationsResponseDataItemAddress =
   CreateVerificationResponseAddress;
 
 export type ListVerificationsResponseDataItemKind = "individual" | "business";
-export const ListVerificationsResponseDataItemKind = /*@__PURE__*/ S.String;
+export const ListVerificationsResponseDataItemKind = S.String;
 
 export type ListVerificationsResponseDataItemRequestedInformationItemErrorsItem =
   CreateVerificationResponseRequestedInformationItemErrorsItem;
@@ -762,7 +759,7 @@ export type ListVerificationsResponseDataItemRequiredDocumentsItemStatus =
   | "pending_upload"
   | "submitted";
 export const ListVerificationsResponseDataItemRequiredDocumentsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListVerificationsResponseDataItemRequiredDocumentsItem {
   /** Document slot key, such as `id_card_front`, `id_card_back`, or `selfie`. */
@@ -802,7 +799,7 @@ export type ListVerificationsResponseDataItemStatus =
   | "approved"
   | "rejected"
   | "action_required";
-export const ListVerificationsResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const ListVerificationsResponseDataItemStatus = S.String;
 
 export interface ListVerificationsResponseDataItem {
   /** Address on the verification profile. `null` when no address is set. */
@@ -940,7 +937,7 @@ export type UpdateVerificationRequestBodyCase0RequestedInformationItemValueType 
   | "raw"
   | "vault_token";
 export const UpdateVerificationRequestBodyCase0RequestedInformationItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateVerificationRequestBodyCase0RequestedInformationItem {
   /** Answer for `address` items. */
@@ -1057,7 +1054,7 @@ export type UpdateVerificationRequestBodyCase1RequestedInformationItemValueType 
   | "raw"
   | "vault_token";
 export const UpdateVerificationRequestBodyCase1RequestedInformationItemValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateVerificationRequestBodyCase1RequestedInformationItem {
   /** Answer for `address` items. */
@@ -1149,7 +1146,7 @@ export type UpdateVerificationRequestBody =
   | UpdateVerificationRequestBodyCase0
   | UpdateVerificationRequestBodyCase1;
 export const UpdateVerificationRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateVerificationRequestBody>;
+  S.Unknown as any as S.Schema<UpdateVerificationRequestBody>;
 
 export interface UpdateVerificationRequest {
   /** Verification profile ID, prefixed `idpf_`. */
@@ -1172,7 +1169,7 @@ export const UpdateVerificationResponseAddress =
   CreateVerificationResponseAddress;
 
 export type UpdateVerificationResponseKind = "individual" | "business";
-export const UpdateVerificationResponseKind = /*@__PURE__*/ S.String;
+export const UpdateVerificationResponseKind = S.String;
 
 export type UpdateVerificationResponseRequestedInformationItemErrorsItem =
   CreateVerificationResponseRequestedInformationItemErrorsItem;
@@ -1242,8 +1239,7 @@ export const UpdateVerificationResponseRequestedInformationList =
 export type UpdateVerificationResponseRequiredDocumentsItemStatus =
   | "pending_upload"
   | "submitted";
-export const UpdateVerificationResponseRequiredDocumentsItemStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateVerificationResponseRequiredDocumentsItemStatus = S.String;
 
 export interface UpdateVerificationResponseRequiredDocumentsItem {
   /** Document slot key, such as `id_card_front`, `id_card_back`, or `selfie`. */
@@ -1281,7 +1277,7 @@ export type UpdateVerificationResponseStatus =
   | "approved"
   | "rejected"
   | "action_required";
-export const UpdateVerificationResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateVerificationResponseStatus = S.String;
 
 export interface UpdateVerificationResponse {
   /** Address on the verification profile. `null` when no address is set. */

@@ -43,7 +43,7 @@ export const ActivateTelephonyLineNewPhoneResponse = /*@__PURE__*/ S.suspend(
 
 /** The blocking mode of line calls */
 export type TelephonyLineBlockingMode = "both" | "incoming" | "outgoing";
-export const TelephonyLineBlockingMode = /*@__PURE__*/ S.String;
+export const TelephonyLineBlockingMode = S.String;
 
 export interface BlockTelephonyLineRequest {
   /** The name of your billingAccount */
@@ -295,7 +295,7 @@ export type TelephonyOfferTaskActionEnum =
   | "termination"
   | "updateFirmware"
   | "upgrade";
-export const TelephonyOfferTaskActionEnum = /*@__PURE__*/ S.String;
+export const TelephonyOfferTaskActionEnum = S.String;
 
 /** Task status */
 export type TelephonyTaskStatusEnum =
@@ -304,11 +304,11 @@ export type TelephonyTaskStatusEnum =
   | "error"
   | "pause"
   | "todo";
-export const TelephonyTaskStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyTaskStatusEnum = S.String;
 
 /** Offer task types */
 export type TelephonyOfferTaskTypeEnum = "line" | "offer" | "option" | "phone";
-export const TelephonyOfferTaskTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyOfferTaskTypeEnum = S.String;
 
 /** Operation on a telephony offer */
 export interface TelephonyOfferTask {
@@ -720,11 +720,11 @@ export const CreateTelephonyConferenceRoomRequest = /*@__PURE__*/ S.suspend(
 
 /** Available language for your conference */
 export type TelephonyConferenceLanguageEnum = "de" | "en" | "es" | "fr" | "it";
-export const TelephonyConferenceLanguageEnum = /*@__PURE__*/ S.String;
+export const TelephonyConferenceLanguageEnum = S.String;
 
 /** Conference report receiver */
 export type TelephonyConferenceReportStatusEnum = "customer" | "none" | "other";
-export const TelephonyConferenceReportStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyConferenceReportStatusEnum = S.String;
 
 /** Conference room */
 export interface TelephonyConferenceRoom {
@@ -891,7 +891,7 @@ export const CreateTelephonyConferenceRoomParticipantUndeafRequest =
 
 /** Webaccess type for your conference */
 export type TelephonyConferenceWebAccessTypeEnum = "read" | "write";
-export const TelephonyConferenceWebAccessTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyConferenceWebAccessTypeEnum = S.String;
 
 export interface CreateTelephonyConferenceRoomWebAccessRequest {
   /** The name of your billingAccount */
@@ -992,7 +992,7 @@ export type TelephonyOvhPabxHuntingAgentStatusEnum =
   | "available"
   | "loggedOut"
   | "onBreak";
-export const TelephonyOvhPabxHuntingAgentStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxHuntingAgentStatusEnum = S.String;
 
 export interface CreateTelephonyEasyHuntingHuntingAgentRequest {
   /** The name of your billingAccount */
@@ -1035,7 +1035,7 @@ export const CreateTelephonyEasyHuntingHuntingAgentRequest =
 
 /** Type of the agent */
 export type TelephonyOvhPabxHuntingAgentTypeEnum = "external" | "internal";
-export const TelephonyOvhPabxHuntingAgentTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxHuntingAgentTypeEnum = S.String;
 
 /** Calls agent */
 export interface TelephonyOvhPabxHuntingAgent {
@@ -1228,7 +1228,7 @@ export const CreateTelephonyEasyHuntingHuntingAgentCallInterceptRequest =
 export type TelephonyOvhPabxWhisperingModeEnum =
   | "Whisper to agent only"
   | "Whisper to all participants";
-export const TelephonyOvhPabxWhisperingModeEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxWhisperingModeEnum = S.String;
 
 export interface CreateTelephonyEasyHuntingHuntingAgentCallWhisperRequest {
   /** The name of your billingAccount */
@@ -1269,7 +1269,7 @@ export type TelephonyTokenExpirationEnum =
   | "30 days"
   | "5 minutes"
   | "unlimited";
-export const TelephonyTokenExpirationEnum = /*@__PURE__*/ S.String;
+export const TelephonyTokenExpirationEnum = S.String;
 
 export interface CreateTelephonyEasyHuntingHuntingAgentEventTokenRequest {
   /** The name of your billingAccount */
@@ -1432,7 +1432,7 @@ export const CreateTelephonyEasyHuntingHuntingEventTokenResponse =
 
 /** Available actions for overflow and on closure */
 export type TelephonyOvhPabxQueueActionEnum = "playback" | "voicemail";
-export const TelephonyOvhPabxQueueActionEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxQueueActionEnum = S.String;
 
 /** Digit keys allowed to be pressed to disable call record */
 export type TelephonyOvhPabxHuntingQueueRecordDisablingDigitEnum =
@@ -1446,15 +1446,13 @@ export type TelephonyOvhPabxHuntingQueueRecordDisablingDigitEnum =
   | 7
   | 8
   | 9;
-export const TelephonyOvhPabxHuntingQueueRecordDisablingDigitEnum =
-  /*@__PURE__*/ S.Number;
+export const TelephonyOvhPabxHuntingQueueRecordDisablingDigitEnum = S.Number;
 
 /** Possible languages of the sound played to inform caller that he can disable call record */
 export type TelephonyOvhPabxHuntingQueueRecordDisablingLanguageEnum =
   | "english"
   | "french";
-export const TelephonyOvhPabxHuntingQueueRecordDisablingLanguageEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxHuntingQueueRecordDisablingLanguageEnum = S.String;
 
 /** Calls dispatching startegy */
 export type TelephonyOvhPabxHuntingQueueStrategyEnum =
@@ -1465,7 +1463,7 @@ export type TelephonyOvhPabxHuntingQueueStrategyEnum =
   | "ringAll"
   | "roundRobin"
   | "sequentiallyByAgentOrder";
-export const TelephonyOvhPabxHuntingQueueStrategyEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxHuntingQueueStrategyEnum = S.String;
 
 export interface CreateTelephonyEasyHuntingHuntingQueueRequest {
   /** The name of your billingAccount */
@@ -1549,7 +1547,7 @@ export type TelephonyOvhPabxIvrMenuKeyEnum =
   | "7"
   | "8"
   | "9";
-export const TelephonyOvhPabxIvrMenuKeyEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxIvrMenuKeyEnum = S.String;
 
 /** Calls queue */
 export interface TelephonyOvhPabxHuntingQueue {
@@ -1789,7 +1787,7 @@ export type TelephonyOvhPabxDialplanExtensionConditionScreenListTypeEnum =
   | "incomingBlackList"
   | "incomingWhiteList";
 export const TelephonyOvhPabxDialplanExtensionConditionScreenListTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateTelephonyEasyHuntingScreenListConditionConditionRequest {
   /** The name of your billingAccount */
@@ -1883,7 +1881,7 @@ export type TelephonyTimeConditionsPolicyEnum =
   | "slot1"
   | "slot2"
   | "slot3";
-export const TelephonyTimeConditionsPolicyEnum = /*@__PURE__*/ S.String;
+export const TelephonyTimeConditionsPolicyEnum = S.String;
 
 /** Day of the week */
 export type TelephonyOvhPabxDialplanExtensionConditionTimeWeekDayEnum =
@@ -1895,7 +1893,7 @@ export type TelephonyOvhPabxDialplanExtensionConditionTimeWeekDayEnum =
   | "tuesday"
   | "wednesday";
 export const TelephonyOvhPabxDialplanExtensionConditionTimeWeekDayEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateTelephonyEasyHuntingTimeConditionConditionRequest {
   /** The name of your billingAccount */
@@ -1988,7 +1986,7 @@ export const CreateTelephonyEventTokenResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Available quality for fax documents */
 export type TelephonyFaxQualityEnum = "best" | "high" | "normal";
-export const TelephonyFaxQualityEnum = /*@__PURE__*/ S.String;
+export const TelephonyFaxQualityEnum = S.String;
 
 /** If recipientsType is set to list, the list of recipients phone numbers */
 export type CreateTelephonyFaxCampaignRequestRecipientsListList = Array<string>;
@@ -1999,14 +1997,14 @@ export const CreateTelephonyFaxCampaignRequestRecipientsListList =
 
 /** Available recipients method for fax campaign */
 export type TelephonyFaxCampaignRecipientsTypeEnum = "document" | "list";
-export const TelephonyFaxCampaignRecipientsTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyFaxCampaignRecipientsTypeEnum = S.String;
 
 /** Available sending method for fax campaign */
 export type TelephonyFaxCampaignSendTypeEnum =
   | "automatic"
   | "manual"
   | "scheduled";
-export const TelephonyFaxCampaignSendTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyFaxCampaignSendTypeEnum = S.String;
 
 export interface CreateTelephonyFaxCampaignRequest {
   /** The name of your billingAccount */
@@ -2113,7 +2111,7 @@ export type TelephonyFaxScreenListTypeEnum =
   | "blacklist"
   | "no"
   | "whitelist";
-export const TelephonyFaxScreenListTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyFaxScreenListTypeEnum = S.String;
 
 /** List of numbers allowed to send a fax */
 export type CreateTelephonyFaxScreenListRequestWhitelistedNumbersList =
@@ -2303,7 +2301,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with it's currency and textual representation */
 export interface OrderPrice {
@@ -2321,7 +2319,7 @@ export const OrderPrice = /*@__PURE__*/ S.suspend(() =>
 
 /** Billing progress status */
 export type TelephonyBillStatusEnum = "doing" | "done" | "error" | "todo";
-export const TelephonyBillStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyBillStatusEnum = S.String;
 
 /** Previous repayment bill */
 export interface TelephonyHistoryRepaymentConsumption {
@@ -2403,7 +2401,7 @@ export type TelephonyAntihackActionEnum =
   | "AUTHORIZE_ONE_NUMBER"
   | "BLOCK_ALL"
   | "BLOCK_ONE_NUMBER";
-export const TelephonyAntihackActionEnum = /*@__PURE__*/ S.String;
+export const TelephonyAntihackActionEnum = S.String;
 
 export interface CreateTelephonyLineAntihackRequest {
   /** The name of your billingAccount */
@@ -2479,7 +2477,7 @@ export type TelephonyCallsGeneratorDialplanEnum =
   | "ReadText"
   | "RequestAppointmentConfirmation"
   | "RequestAppointmentConfirmationWithTransfer";
-export const TelephonyCallsGeneratorDialplanEnum = /*@__PURE__*/ S.String;
+export const TelephonyCallsGeneratorDialplanEnum = S.String;
 
 export interface CreateTelephonyLineAutomaticCallRequest {
   /** The name of your billingAccount */
@@ -2916,7 +2914,7 @@ export const CreateTelephonyLinePhonePhonebookPhonebookContactResponse =
 export type TelephonyRmaPublicTypeEnum =
   | "change to another phone/equipment (restitution first and shipping then)"
   | "restitution but keep the service enable";
-export const TelephonyRmaPublicTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaPublicTypeEnum = S.String;
 
 export interface CreateTelephonyLinePhoneRmaRequest {
   /** The name of your billingAccount */
@@ -2965,7 +2963,7 @@ export const TelephonyRmaReturn = /*@__PURE__*/ S.suspend(() =>
 
 /** Types of return merchandise authorisation you can change to */
 export type TelephonyRmaChangeTypeEnum = "resiliate" | "toSip";
-export const TelephonyRmaChangeTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaChangeTypeEnum = S.String;
 
 export interface CreateTelephonyLinePhoneRmaChangeTypeRequest {
   /** The name of your billingAccount */
@@ -3043,7 +3041,7 @@ export type TelephonyTonesTypeEnum =
   | "endCall"
   | "onHold"
   | "ringback";
-export const TelephonyTonesTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyTonesTypeEnum = S.String;
 
 export interface CreateTelephonyLineToneToneUploadRequest {
   /** The name of your billingAccount */
@@ -3151,7 +3149,7 @@ export type TelephonyTypeEnum =
   | "voicefax"
   | "voicemail"
   | "vxml";
-export const TelephonyTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyTypeEnum = S.String;
 
 export interface CreateTelephonyNumberChangeFeatureTypeRequest {
   /** The name of your billingAccount */
@@ -3184,7 +3182,7 @@ export type TelephonyOutplanNotificationBlockEnum =
   | "blockIncomingCalls"
   | "blockOutgoingCalls"
   | "none";
-export const TelephonyOutplanNotificationBlockEnum = /*@__PURE__*/ S.String;
+export const TelephonyOutplanNotificationBlockEnum = S.String;
 
 export interface CreateTelephonyOutplanNotificationRequest {
   /** The name of your billingAccount */
@@ -3241,8 +3239,7 @@ export type TelephonyOvhPabxDialplanNumberPresentationEnum =
   | "alias"
   | "both"
   | "caller";
-export const TelephonyOvhPabxDialplanNumberPresentationEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxDialplanNumberPresentationEnum = S.String;
 
 export interface CreateTelephonyOvhPabxDialplanRequest {
   /** The name of your billingAccount */
@@ -3313,7 +3310,7 @@ export type TelephonySchedulerCategoryEnum =
   | "scheduler1"
   | "scheduler2"
   | "scheduler3";
-export const TelephonySchedulerCategoryEnum = /*@__PURE__*/ S.String;
+export const TelephonySchedulerCategoryEnum = S.String;
 
 export interface CreateTelephonyOvhPabxDialplanExtensionRequest {
   /** The name of your billingAccount */
@@ -3516,8 +3513,7 @@ export type TelephonyOvhPabxDialplanExtensionRuleActionEnum =
   | "sleep"
   | "tts"
   | "voicemail";
-export const TelephonyOvhPabxDialplanExtensionRuleActionEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxDialplanExtensionRuleActionEnum = S.String;
 
 export interface CreateTelephonyOvhPabxDialplanExtensionRuleRequest {
   /** The name of your billingAccount */
@@ -4227,7 +4223,7 @@ export type TelephonyOvhPabxIvrMenuEntryActionEnum =
   | "playback"
   | "readDtmf"
   | "setCallerName";
-export const TelephonyOvhPabxIvrMenuEntryActionEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxIvrMenuEntryActionEnum = S.String;
 
 export interface CreateTelephonyOvhPabxMenuEntryRequest {
   /** The name of your billingAccount */
@@ -4324,7 +4320,7 @@ export type TelephonyOvhPabxTtsVoiceEnum =
   | "Helene"
   | "Jenny"
   | "Loic";
-export const TelephonyOvhPabxTtsVoiceEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxTtsVoiceEnum = S.String;
 
 export interface CreateTelephonyOvhPabxTtsRequest {
   /** The name of your billingAccount */
@@ -4591,7 +4587,7 @@ export type TelephonyProcedureStatusEnum =
   | "done"
   | "todo"
   | "waiting_for_customer";
-export const TelephonyProcedureStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyProcedureStatusEnum = S.String;
 
 /** Procedure linked to your account */
 export interface TelephonyProcedure {
@@ -4754,7 +4750,7 @@ export type TelephonyScreenListNatureEnum =
   | "services"
   | "special"
   | "voicemail";
-export const TelephonyScreenListNatureEnum = /*@__PURE__*/ S.String;
+export const TelephonyScreenListNatureEnum = S.String;
 
 /** Type of screen list */
 export type TelephonyScreenListTypeEnum =
@@ -4762,7 +4758,7 @@ export type TelephonyScreenListTypeEnum =
   | "incomingWhiteList"
   | "outgoingBlackList"
   | "outgoingWhiteList";
-export const TelephonyScreenListTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyScreenListTypeEnum = S.String;
 
 export interface CreateTelephonyScreenScreenListRequest {
   /** The name of your billingAccount */
@@ -4946,7 +4942,7 @@ export type TelephonyTimeConditionsDayEnum =
   | "thursday"
   | "tuesday"
   | "wednesday";
-export const TelephonyTimeConditionsDayEnum = /*@__PURE__*/ S.String;
+export const TelephonyTimeConditionsDayEnum = S.String;
 
 export interface CreateTelephonyTimeConditionConditionRequest {
   /** The name of your billingAccount */
@@ -5080,8 +5076,7 @@ export type TelephonyTrunkExternalDisplayedNumberStatusEnum =
   | "refused"
   | "toDelete"
   | "waitingValidation";
-export const TelephonyTrunkExternalDisplayedNumberStatusEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyTrunkExternalDisplayedNumberStatusEnum = S.String;
 
 /** External displayed number linked to a trunk */
 export interface TelephonyTrunkExternalDisplayedNumber {
@@ -5112,8 +5107,7 @@ export type TelephonyVoicemailMessageFolderGreetingEnum =
   | "greet"
   | "temp"
   | "unavail";
-export const TelephonyVoicemailMessageFolderGreetingEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyVoicemailMessageFolderGreetingEnum = S.String;
 
 export interface CreateTelephonyVoicemailGreetingRequest {
   /** The name of your billingAccount */
@@ -5181,7 +5175,7 @@ export const CreateTelephonyVoicemailSettingsChangePasswordResponse =
 
 /** All existing type of routing for a voicemail */
 export type TelephonyVoicefaxRoutingEnum = "fax" | "voicemail";
-export const TelephonyVoicefaxRoutingEnum = /*@__PURE__*/ S.String;
+export const TelephonyVoicefaxRoutingEnum = S.String;
 
 export interface CreateTelephonyVoicemailSettingsChangeRoutingRequest {
   /** The name of your billingAccount */
@@ -5260,7 +5254,7 @@ export type TelephonyTerminationReasonEnum =
   | "other"
   | "plugAndPhoneDifficulties"
   | "technicalDifficulties";
-export const TelephonyTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const TelephonyTerminationReasonEnum = S.String;
 
 export interface DeleteTelephonyRequest {
   /** The name of your billingAccount */
@@ -7313,7 +7307,7 @@ export type TelephonyBillingAccountStatusEnum =
   | "deleted"
   | "enabled"
   | "expired";
-export const TelephonyBillingAccountStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyBillingAccountStatusEnum = S.String;
 
 /** Billing Account */
 export interface TelephonyBillingAccountWithIAM {
@@ -7477,7 +7471,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -7486,7 +7480,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -7577,7 +7571,7 @@ export const GetTelephonyCarrierSipRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** All existing types */
 export type TelephonyTypeServiceEnum = "alias" | "line";
-export const TelephonyTypeServiceEnum = /*@__PURE__*/ S.String;
+export const TelephonyTypeServiceEnum = S.String;
 
 /** CarrierSip */
 export interface TelephonyCarrierSip {
@@ -7672,7 +7666,7 @@ export const GetTelephonyCarrierSipEndpointRequest = /*@__PURE__*/ S.suspend(
 
 /** Protocol of a carrier sip trunk customer endpoint */
 export type TelephonyCarrierSipEndpointProtocolEnum = "tcp" | "tls" | "udp";
-export const TelephonyCarrierSipEndpointProtocolEnum = /*@__PURE__*/ S.String;
+export const TelephonyCarrierSipEndpointProtocolEnum = S.String;
 
 /** Carrier SIP Endpoints */
 export interface TelephonyCarrierSipCustomerEndpoint {
@@ -8524,7 +8518,7 @@ export const GetTelephonyEasyHuntingHuntingAgentCallRequest =
 
 /** State of the call */
 export type TelephonyOvhPabxHuntingLiveCallsStateEnum = "Answered" | "Waiting";
-export const TelephonyOvhPabxHuntingLiveCallsStateEnum = /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxHuntingLiveCallsStateEnum = S.String;
 
 /** Live statistics of the queue */
 export interface TelephonyOvhPabxHuntingQueueLiveCalls {
@@ -8634,8 +8628,7 @@ export type TelephonyOvhPabxHuntingLiveAgentStatusEnum =
   | "onBreak"
   | "receiving"
   | "waiting";
-export const TelephonyOvhPabxHuntingLiveAgentStatusEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyOvhPabxHuntingLiveAgentStatusEnum = S.String;
 
 /** Live statistics of the queue */
 export interface TelephonyOvhPabxHuntingAgentLiveStatus {
@@ -9013,8 +9006,7 @@ export type TelephonyEasyHuntingScreenListsConditionsStatusEnum =
   | "disabled"
   | "incomingBlackList"
   | "incomingWhiteList";
-export const TelephonyEasyHuntingScreenListsConditionsStatusEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyEasyHuntingScreenListsConditionsStatusEnum = S.String;
 
 /** Easy hunting screen lists conditions options */
 export interface TelephonyEasyHuntingScreenListsConditionsSettings {
@@ -9114,8 +9106,7 @@ export const GetTelephonyEasyHuntingTimeConditionsRequest =
 export type TelephonyTimeConditionsSettingsForwardTypeEnum =
   | "number"
   | "voicemail";
-export const TelephonyTimeConditionsSettingsForwardTypeEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyTimeConditionsSettingsForwardTypeEnum = S.String;
 
 /** Easy hunting time conditions options */
 export interface TelephonyEasyHuntingTimeConditionsSettings {
@@ -9206,8 +9197,7 @@ export type TelephonyLineNotificationsLogsFrequencyEnum =
   | "Never"
   | "Once a day"
   | "Twice a day";
-export const TelephonyLineNotificationsLogsFrequencyEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyLineNotificationsLogsFrequencyEnum = S.String;
 
 /** Error logging notifications options */
 export interface TelephonyLineNotificationsLogsOptions {
@@ -9335,11 +9325,11 @@ export const GetTelephonyFaxSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Number of tries when sending a fax */
 export type TelephonyFaxSendingTries = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-export const TelephonyFaxSendingTries = /*@__PURE__*/ S.Number;
+export const TelephonyFaxSendingTries = S.Number;
 
 /** Format of the notification mail. "html" will include a preview image of the fax */
 export type TelephonyFaxMailFormatEnum = "html" | "text";
-export const TelephonyFaxMailFormatEnum = /*@__PURE__*/ S.String;
+export const TelephonyFaxMailFormatEnum = S.String;
 
 export type TelephonyFaxPropertiesRedirectionEmailList = Array<string>;
 export const TelephonyFaxPropertiesRedirectionEmailList = /*@__PURE__*/ S.Array(
@@ -9447,7 +9437,7 @@ export const TelephonyHistoryConsumption = /*@__PURE__*/ S.suspend(() =>
 
 /** Document suffix */
 export type TelephonyBillDocument = "csv" | "pdf" | "received.csv" | "xml";
-export const TelephonyBillDocument = /*@__PURE__*/ S.String;
+export const TelephonyBillDocument = S.String;
 
 export interface GetTelephonyHistoryConsumptionFileRequest {
   /** The name of your billingAccount */
@@ -9475,7 +9465,7 @@ export const GetTelephonyHistoryConsumptionFileRequest =
 
 /** File providing task status */
 export type TelephonyPcsFileStatusEnum = "doing" | "done" | "error" | "todo";
-export const TelephonyPcsFileStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyPcsFileStatusEnum = S.String;
 
 /** Telephony API related file hosted */
 export interface TelephonyPcsFile {
@@ -9759,7 +9749,7 @@ export type TelephonyCallsGeneratorHangupCauseEnum =
   | "UnspecifiedNoOtherCauseCodesApplicable"
   | "UserChallenge"
   | "UserNotRegistered";
-export const TelephonyCallsGeneratorHangupCauseEnum = /*@__PURE__*/ S.String;
+export const TelephonyCallsGeneratorHangupCauseEnum = S.String;
 
 /** Automatic Call made by Call Generator on this line */
 export interface TelephonyCallsGenerated {
@@ -9964,7 +9954,7 @@ export const GetTelephonyLineEventRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The call direction for a given event */
 export type TelephonyRealtimeEventDirection = "incoming" | "outgoing";
-export const TelephonyRealtimeEventDirection = /*@__PURE__*/ S.String;
+export const TelephonyRealtimeEventDirection = S.String;
 
 /** The event type */
 export type TelephonyRealtimeEventType =
@@ -9974,11 +9964,11 @@ export type TelephonyRealtimeEventType =
   | "start_calling"
   | "start_hold"
   | "start_ringing";
-export const TelephonyRealtimeEventType = /*@__PURE__*/ S.String;
+export const TelephonyRealtimeEventType = S.String;
 
 /** The event protocol */
 export type TelephonyRealtimeEventProtocol = "mgcp" | "sip";
-export const TelephonyRealtimeEventProtocol = /*@__PURE__*/ S.String;
+export const TelephonyRealtimeEventProtocol = S.String;
 
 /** Events triggered by the line */
 export interface TelephonyEvent {
@@ -10111,11 +10101,11 @@ export type TelephonyLineOptionForwardNatureTypeEnum =
   | "fax"
   | "number"
   | "voicemail";
-export const TelephonyLineOptionForwardNatureTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyLineOptionForwardNatureTypeEnum = S.String;
 
 /** Intercom configuration */
 export type TelephonyLineOptionIntercomEnum = "no" | "prefixed" | "yes";
-export const TelephonyLineOptionIntercomEnum = /*@__PURE__*/ S.String;
+export const TelephonyLineOptionIntercomEnum = S.String;
 
 /** The ip restrictions of your line */
 export type TelephonyLineOptionsIpRestrictionsList = Array<string>;
@@ -10132,7 +10122,7 @@ export type TelephonyLineOptionLanguageEnum =
   | "German"
   | "Italian"
   | "Spanish";
-export const TelephonyLineOptionLanguageEnum = /*@__PURE__*/ S.String;
+export const TelephonyLineOptionLanguageEnum = S.String;
 
 /** Line options */
 export interface TelephonyLineOptions {
@@ -10282,7 +10272,7 @@ export const TelephonyPhoneConfigurationPropertyEnumList =
 
 /** Phone Configuration level enum */
 export type TelephonyPhoneConfigurationLevelEnum = "admin" | "expert";
-export const TelephonyPhoneConfigurationLevelEnum = /*@__PURE__*/ S.String;
+export const TelephonyPhoneConfigurationLevelEnum = S.String;
 
 /** Start and end points (inclusive) of a range */
 export interface ComplexTypeRangeLong {
@@ -10306,7 +10296,7 @@ export type TelephonyPhoneConfigurationTypeEnum =
   | "ipv4"
   | "numeric"
   | "string";
-export const TelephonyPhoneConfigurationTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyPhoneConfigurationTypeEnum = S.String;
 
 /** Phone configuration property */
 export interface TelephonyPhoneConfigurationProperty {
@@ -10357,7 +10347,7 @@ export const TelephonyPhonePhoneConfigurationList = /*@__PURE__*/ S.Array(
 
 /** Phone protocol */
 export type TelephonyProtocolEnum = "mgcp" | "sip";
-export const TelephonyProtocolEnum = /*@__PURE__*/ S.String;
+export const TelephonyProtocolEnum = S.String;
 
 /** Plug & Phone */
 export interface TelephonyPhone {
@@ -10531,7 +10521,7 @@ export const TelephonyPhonebook = /*@__PURE__*/ S.suspend(() =>
 
 /** Export file format */
 export type TelephonyContactsExportFormatsEnum = "csv";
-export const TelephonyContactsExportFormatsEnum = /*@__PURE__*/ S.String;
+export const TelephonyContactsExportFormatsEnum = S.String;
 
 export interface GetTelephonyLinePhonePhonebookExportRequest {
   /** The name of your billingAccount */
@@ -10646,14 +10636,14 @@ export const GetTelephonyLinePhoneRmaRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Return merchandise authorisation offer type */
 export type TelephonyRmaOfferTypeEnum = "deposit" | "loan" | "purchase";
-export const TelephonyRmaOfferTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaOfferTypeEnum = S.String;
 
 /** Return merchandise authorisation type */
 export type TelephonyRmaReplaceTypeEnum =
   | "changePhone"
   | "phoneRestitution"
   | "undefined";
-export const TelephonyRmaReplaceTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaReplaceTypeEnum = S.String;
 
 /** ISO country codes */
 export type CoreTypesCountryEnum =
@@ -10917,7 +10907,7 @@ export type CoreTypesCountryEnum =
   | "za"
   | "zm"
   | "zw";
-export const CoreTypesCountryEnum = /*@__PURE__*/ S.String;
+export const CoreTypesCountryEnum = S.String;
 
 /** Contact informations structure */
 export interface TelephonyContact {
@@ -10957,7 +10947,7 @@ export const TelephonyContact = /*@__PURE__*/ S.suspend(() =>
 
 /** Return merchandise authorisation step */
 export type TelephonyRmaStatusEnum = "closed" | "open" | "received";
-export const TelephonyRmaStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaStatusEnum = S.String;
 
 /** RMA step names */
 export type TelephonyRmaStepNameEnum =
@@ -10968,11 +10958,11 @@ export type TelephonyRmaStepNameEnum =
   | "parcelReception"
   | "parcelValidation"
   | "validation";
-export const TelephonyRmaStepNameEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaStepNameEnum = S.String;
 
 /** Status of the RMA step */
 export type TelephonyRmaStepStatusEnum = "done" | "todo";
-export const TelephonyRmaStepStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaStepStatusEnum = S.String;
 
 /** Informations related to the current RMA step status */
 export interface TelephonyRmaStep {
@@ -11018,7 +11008,7 @@ export type TelephonyRmaTypeEnum =
   | "specific return merchandise authorisation"
   | "termination"
   | "unknown";
-export const TelephonyRmaTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyRmaTypeEnum = S.String;
 
 /** Current Return Merchandise Authorisation */
 export interface TelephonyRma {
@@ -11279,7 +11269,7 @@ export const GetTelephonyLineSoftphoneStatusRequest = /*@__PURE__*/ S.suspend(
 
 /** Softphone infrastructure */
 export type TelephonySoftphoneInfrastructureEnum = "LEGACY" | "NOWI";
-export const TelephonySoftphoneInfrastructureEnum = /*@__PURE__*/ S.String;
+export const TelephonySoftphoneInfrastructureEnum = S.String;
 
 /** Softphone status */
 export interface TelephonySoftphoneStatus {
@@ -11359,7 +11349,7 @@ export const GetTelephonyLineTonesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Tones type */
 export type TelephonyTonesEnum = "Custom sound" | "None";
-export const TelephonyTonesEnum = /*@__PURE__*/ S.String;
+export const TelephonyTonesEnum = S.String;
 
 /** Tones type */
 export type TelephonyTonesOnHoldEnum =
@@ -11367,7 +11357,7 @@ export type TelephonyTonesOnHoldEnum =
   | "None"
   | "Predefined 1"
   | "Predefined 2";
-export const TelephonyTonesOnHoldEnum = /*@__PURE__*/ S.String;
+export const TelephonyTonesOnHoldEnum = S.String;
 
 /** Line tones */
 export interface TelephonyTones {
@@ -12321,7 +12311,7 @@ export type TelephonyPortabilityCountryEnum =
   | "belgium"
   | "france"
   | "switzerland";
-export const TelephonyPortabilityCountryEnum = /*@__PURE__*/ S.String;
+export const TelephonyPortabilityCountryEnum = S.String;
 
 /** Portability informations */
 export interface TelephonyPortability {
@@ -12576,8 +12566,7 @@ export type TelephonyResellerPanelPasswordUpdateStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const TelephonyResellerPanelPasswordUpdateStatusEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyResellerPanelPasswordUpdateStatusEnum = S.String;
 
 /** Describe the status of the reseller panel, if it is activated and if there is a password update ongoing */
 export interface TelephonyResellerPanelStatus {
@@ -12629,8 +12618,7 @@ export type TelephonyPortabilitySpecialNumberCategoryEnum =
   | "linking"
   | "m2m"
   | "relationship";
-export const TelephonyPortabilitySpecialNumberCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyPortabilitySpecialNumberCategoryEnum = S.String;
 
 /** French value added services subject to the RSVA reform (Référentiel des numéros SVA) */
 export interface TelephonyRsva {
@@ -12716,7 +12704,7 @@ export type TelephonyTimeZone =
   | "Europe/Madrid"
   | "Europe/Paris"
   | "Europe/Zurich";
-export const TelephonyTimeZone = /*@__PURE__*/ S.String;
+export const TelephonyTimeZone = S.String;
 
 /** Scheduler capable services */
 export interface TelephonyScheduler {
@@ -12806,7 +12794,7 @@ export type TelephonyScreenListChoosingEnum =
   | "blacklist"
   | "disabled"
   | "whitelist";
-export const TelephonyScreenListChoosingEnum = /*@__PURE__*/ S.String;
+export const TelephonyScreenListChoosingEnum = S.String;
 
 /** ScreenList capable services */
 export interface TelephonyScreen {
@@ -12896,11 +12884,11 @@ export type TelephonyServiceNumberCountryEnum =
   | "fr"
   | "gb"
   | "uk";
-export const TelephonyServiceNumberCountryEnum = /*@__PURE__*/ S.String;
+export const TelephonyServiceNumberCountryEnum = S.String;
 
 /** Number country code */
 export type TelephonyNumberCountryCodeEnum = 32 | 33 | 34 | 41 | 44 | 49;
-export const TelephonyNumberCountryCodeEnum = /*@__PURE__*/ S.Number;
+export const TelephonyNumberCountryCodeEnum = S.Number;
 
 export type TelephonyTelephonyServiceOffersList = Array<string>;
 export const TelephonyTelephonyServiceOffersList = /*@__PURE__*/ S.Array(
@@ -12909,7 +12897,7 @@ export const TelephonyTelephonyServiceOffersList = /*@__PURE__*/ S.Array(
 
 /** All existing properties of line or alias offer */
 export type TelephonyPropertyEnum = "xdsl";
-export const TelephonyPropertyEnum = /*@__PURE__*/ S.String;
+export const TelephonyPropertyEnum = S.String;
 
 export type TelephonyTelephonyServicePropertiesList =
   Array<TelephonyPropertyEnum>;
@@ -12984,7 +12972,7 @@ export const GetTelephonyServiceDirectoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** All genders a person can choose */
 export type NichandleGenderEnum = "female" | "male";
-export const NichandleGenderEnum = /*@__PURE__*/ S.String;
+export const NichandleGenderEnum = S.String;
 
 /** Directory Informations */
 export interface TelephonyDirectoryInfo {
@@ -13155,7 +13143,7 @@ export const GetTelephonyServiceFaxConsumptionRequest = /*@__PURE__*/ S.suspend(
 
 /** Consumption way type */
 export type TelephonyFaxConsumptionWayTypeEnum = "received" | "sent";
-export const TelephonyFaxConsumptionWayTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyFaxConsumptionWayTypeEnum = S.String;
 
 /** Fax delivery record */
 export interface TelephonyFaxConsumption {
@@ -13283,19 +13271,18 @@ export type TelephonyVoiceConsumptionDestinationTypeEnum =
   | "landline"
   | "mobile"
   | "special";
-export const TelephonyVoiceConsumptionDestinationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyVoiceConsumptionDestinationTypeEnum = S.String;
 
 /** Consumption plan type */
 export type TelephonyVoiceConsumptionPlanTypeEnum = "outplan" | "priceplan";
-export const TelephonyVoiceConsumptionPlanTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyVoiceConsumptionPlanTypeEnum = S.String;
 
 /** Consumption way type */
 export type TelephonyVoiceConsumptionWayTypeEnum =
   | "incoming"
   | "outgoing"
   | "transfer";
-export const TelephonyVoiceConsumptionWayTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyVoiceConsumptionWayTypeEnum = S.String;
 
 /** Call delivery record of the previous month */
 export interface TelephonyPreviousVoiceConsumption {
@@ -13759,14 +13746,14 @@ export const GetTelephonyTimeConditionOptionsRequest = /*@__PURE__*/ S.suspend(
 
 /** Type of slot */
 export type TelephonyTimeConditionsSlotTypeEnum = "number" | "voicemail";
-export const TelephonyTimeConditionsSlotTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyTimeConditionsSlotTypeEnum = S.String;
 
 /** Time conditions global status */
 export type TelephonyTimeConditionsGlobalStatusEnum =
   | "deleted"
   | "disabled"
   | "enabled";
-export const TelephonyTimeConditionsGlobalStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyTimeConditionsGlobalStatusEnum = S.String;
 
 /** Timeout before unavailable action is triggered */
 export type TelephonyTimeConditionsTimeoutEnum =
@@ -13788,7 +13775,7 @@ export type TelephonyTimeConditionsTimeoutEnum =
   | 80
   | 85
   | 90;
-export const TelephonyTimeConditionsTimeoutEnum = /*@__PURE__*/ S.Number;
+export const TelephonyTimeConditionsTimeoutEnum = S.Number;
 
 /** Time conditions options */
 export interface TelephonyTimeConditionOptions {
@@ -14006,8 +13993,7 @@ export type TelephonyVoicemailMessageFolderDirectoryEnum =
   | "old"
   | "urgent"
   | "work";
-export const TelephonyVoicemailMessageFolderDirectoryEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyVoicemailMessageFolderDirectoryEnum = S.String;
 
 /** Voicemail message */
 export interface TelephonyVoicemailMessages {
@@ -14045,7 +14031,7 @@ export type TelephonyServiceVoicemailAudioFormatEnum =
   | "mp3"
   | "ogg"
   | "wav";
-export const TelephonyServiceVoicemailAudioFormatEnum = /*@__PURE__*/ S.String;
+export const TelephonyServiceVoicemailAudioFormatEnum = S.String;
 
 export interface GetTelephonyVoicemailDirectoryDownloadRequest {
   /** The name of your billingAccount */
@@ -14171,11 +14157,11 @@ export const GetTelephonyVoicemailSettingsRequest = /*@__PURE__*/ S.suspend(
 
 /** Greeting type */
 export type TelephonyVoicemailGreetingEnum = "default" | "full" | "short";
-export const TelephonyVoicemailGreetingEnum = /*@__PURE__*/ S.String;
+export const TelephonyVoicemailGreetingEnum = S.String;
 
 /** Voicemail configuration */
 export type TelephonyServiceVoicemailMailOptionEnum = "attachment" | "simple";
-export const TelephonyServiceVoicemailMailOptionEnum = /*@__PURE__*/ S.String;
+export const TelephonyServiceVoicemailMailOptionEnum = S.String;
 
 /** Voicemail configuration */
 export interface TelephonyServiceVoicemailNotifications {
@@ -14720,7 +14706,7 @@ export const ListTelephonyAmountSecurityDepositResponse =
 
 /** Product type */
 export type TelephonySipDomainProductTypeEnum = "sip" | "trunk";
-export const TelephonySipDomainProductTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonySipDomainProductTypeEnum = S.String;
 
 export interface ListTelephonyAvailableDefaultSipDomainsRequest {
   /** Product type */
@@ -14846,7 +14832,7 @@ export const TelephonyCarrierSipClusterZoneMediaIpsList = /*@__PURE__*/ S.Array(
 
 /** Carrier SIP Zone Regions */
 export type TelephonyCarrierSipClusterZoneRegionEnum = "rbx" | "sbg";
-export const TelephonyCarrierSipClusterZoneRegionEnum = /*@__PURE__*/ S.String;
+export const TelephonyCarrierSipClusterZoneRegionEnum = S.String;
 
 /** The information about a carrier sip cluster zone */
 export interface TelephonyCarrierSipClusterZone {
@@ -16042,7 +16028,7 @@ export const ListTelephonyFaxCampaignsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Number country */
 export type TelephonyNumberCountryEnum = "be" | "ch" | "fr" | "gb" | "uk";
-export const TelephonyNumberCountryEnum = /*@__PURE__*/ S.String;
+export const TelephonyNumberCountryEnum = S.String;
 
 export interface ListTelephonyFaxOffersRequest {
   /** The country */
@@ -17297,15 +17283,14 @@ export type TelephonyNumberDetailedZoneMatchingCriteriaEnum =
   | "internationalNumber"
   | "number"
   | "zne";
-export const TelephonyNumberDetailedZoneMatchingCriteriaEnum =
-  /*@__PURE__*/ S.String;
+export const TelephonyNumberDetailedZoneMatchingCriteriaEnum = S.String;
 
 /** A zone type */
 export type TelephonyNumberDetailedZoneTypeEnum =
   | "geographic"
   | "non-geographic"
   | "special";
-export const TelephonyNumberDetailedZoneTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyNumberDetailedZoneTypeEnum = S.String;
 
 /** The list of ZNE of this zone */
 export type TelephonyNumberDetailedZoneZneListList = Array<string>;
@@ -17400,7 +17385,7 @@ export const ListTelephonyNumberRangesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Typology of number */
 export type TelephonyNumberTypeEnum = "geographic" | "nogeographic" | "special";
-export const TelephonyNumberTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyNumberTypeEnum = S.String;
 
 export interface ListTelephonyNumberSpecificNumbersRequest {
   /** The country */
@@ -18520,7 +18505,7 @@ export type TelephonyPortabilityStepDurationUnitEnum =
   | "day"
   | "hour"
   | "openday";
-export const TelephonyPortabilityStepDurationUnitEnum = /*@__PURE__*/ S.String;
+export const TelephonyPortabilityStepDurationUnitEnum = S.String;
 
 /** Represent the delay between two portability steps */
 export interface TelephonyPortabilityStepDuration {
@@ -18574,7 +18559,7 @@ export type TelephonyPortabilityStepNameEnum =
   | "numberActivation"
   | "requestSentToOperator"
   | "sDASequenceReceivedFromOperator";
-export const TelephonyPortabilityStepNameEnum = /*@__PURE__*/ S.String;
+export const TelephonyPortabilityStepNameEnum = S.String;
 
 /** List of possible status of a step */
 export type TelephonyPortabilityStepStatusEnum =
@@ -18584,7 +18569,7 @@ export type TelephonyPortabilityStepStatusEnum =
   | "error"
   | "hold"
   | "todo";
-export const TelephonyPortabilityStepStatusEnum = /*@__PURE__*/ S.String;
+export const TelephonyPortabilityStepStatusEnum = S.String;
 
 /** A step in the portability process */
 export interface TelephonyPortabilityStep {
@@ -18934,7 +18919,7 @@ export type TelephonyTelephonySearchServiceTypeEnum =
   | "alias"
   | "line"
   | "trunk";
-export const TelephonyTelephonySearchServiceTypeEnum = /*@__PURE__*/ S.String;
+export const TelephonyTelephonySearchServiceTypeEnum = S.String;
 
 /** Informations related to a telephony service */
 export interface TelephonyTelephonySearchService {
@@ -23455,7 +23440,7 @@ export const TelephonyResetPhoneCodeInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** How the phone had been reset */
 export type TelephonyResetPhoneMethodEnum = "code" | "http";
-export const TelephonyResetPhoneMethodEnum = /*@__PURE__*/ S.String;
+export const TelephonyResetPhoneMethodEnum = S.String;
 
 /** Relevant informations of the phone reset */
 export interface TelephonyResetPhoneInfo {

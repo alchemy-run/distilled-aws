@@ -167,7 +167,7 @@ export type TransactionInfoPaypalReferenceIdType =
   | "TXN"
   | "SUB"
   | "PAP";
-export const TransactionInfoPaypalReferenceIdType = /*@__PURE__*/ S.String;
+export const TransactionInfoPaypalReferenceIdType = S.String;
 
 /** The transaction information. */
 export interface TransactionInfo {
@@ -647,7 +647,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information. */
 export interface LinkDescription {

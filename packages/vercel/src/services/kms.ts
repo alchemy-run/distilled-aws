@@ -82,7 +82,7 @@ export type ActivateKmsSigningKeyResponseStatus =
   | "active"
   | "pending"
   | "revoking";
-export const ActivateKmsSigningKeyResponseStatus = /*@__PURE__*/ S.String;
+export const ActivateKmsSigningKeyResponseStatus = S.String;
 
 export type ActivateKmsSigningKeyResponsePublicKeyKeyOpsList = Array<string>;
 export const ActivateKmsSigningKeyResponsePublicKeyKeyOpsList =
@@ -177,7 +177,7 @@ export type CreateKmsIssuerRequestAlgorithm =
   | "ES384"
   | "ES512"
   | "EdDSA";
-export const CreateKmsIssuerRequestAlgorithm = /*@__PURE__*/ S.String;
+export const CreateKmsIssuerRequestAlgorithm = S.String;
 
 /** A JSON Schema used to validate the resolved token claims when signing tokens for this issuer. */
 export type CreateKmsIssuerRequestClaimsSchemaMap = {
@@ -189,7 +189,7 @@ export const CreateKmsIssuerRequestClaimsSchemaMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateKmsIssuerRequestClaimsSchemaMap>;
 
 export type CreateKmsIssuerRequestPolicyCase0Kind = "project-grant";
-export const CreateKmsIssuerRequestPolicyCase0Kind = /*@__PURE__*/ S.String;
+export const CreateKmsIssuerRequestPolicyCase0Kind = S.String;
 
 /** The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...). */
 export type CreateKmsIssuerRequestPolicyCase0EnvironmentsList = Array<string>;
@@ -232,7 +232,7 @@ export const CreateKmsIssuerRequestPolicyCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateKmsIssuerRequestPolicyCase0>;
 
 export type CreateKmsIssuerRequestPolicyCase1Kind = "connex-grant";
-export const CreateKmsIssuerRequestPolicyCase1Kind = /*@__PURE__*/ S.String;
+export const CreateKmsIssuerRequestPolicyCase1Kind = S.String;
 
 /** The claims that KMS should include in signed JWTs for this policy. */
 export type CreateKmsIssuerRequestPolicyCase1TokenClaimsMap = {
@@ -265,7 +265,7 @@ export type CreateKmsIssuerRequestPolicy =
   | CreateKmsIssuerRequestPolicyCase0
   | CreateKmsIssuerRequestPolicyCase1;
 export const CreateKmsIssuerRequestPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateKmsIssuerRequestPolicy>;
+  S.Unknown as any as S.Schema<CreateKmsIssuerRequestPolicy>;
 
 export interface CreateKmsIssuerRequest {
   /** The Team identifier to perform the request on behalf of. */
@@ -310,10 +310,10 @@ export type CreateKmsIssuerResponseAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const CreateKmsIssuerResponseAlgorithm = /*@__PURE__*/ S.String;
+export const CreateKmsIssuerResponseAlgorithm = S.String;
 
 export type CreateKmsIssuerResponseOrigin = "external" | "vercel";
-export const CreateKmsIssuerResponseOrigin = /*@__PURE__*/ S.String;
+export const CreateKmsIssuerResponseOrigin = S.String;
 
 export type CreateKmsIssuerResponseClaimsSchemaMap = {
   [key: string]: unknown | undefined;
@@ -327,8 +327,7 @@ export type CreateKmsIssuerResponseSigningKeysItemStatus =
   | "active"
   | "pending"
   | "revoking";
-export const CreateKmsIssuerResponseSigningKeysItemStatus =
-  /*@__PURE__*/ S.String;
+export const CreateKmsIssuerResponseSigningKeysItemStatus = S.String;
 
 export type CreateKmsIssuerResponseSigningKeysItemPublicKeyKeyOpsList =
   Array<string>;
@@ -423,8 +422,7 @@ export const CreateKmsIssuerResponseSigningKeysList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateKmsIssuerResponseSigningKeysList>;
 
 export type CreateKmsIssuerResponsePoliciesItemCase0Kind = "project-grant";
-export const CreateKmsIssuerResponsePoliciesItemCase0Kind =
-  /*@__PURE__*/ S.String;
+export const CreateKmsIssuerResponsePoliciesItemCase0Kind = S.String;
 
 /** Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim. */
 export type CreateKmsIssuerResponsePoliciesItemCase0EnvironmentsList =
@@ -471,8 +469,7 @@ export const CreateKmsIssuerResponsePoliciesItemCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateKmsIssuerResponsePoliciesItemCase0>;
 
 export type CreateKmsIssuerResponsePoliciesItemCase1Kind = "connex-grant";
-export const CreateKmsIssuerResponsePoliciesItemCase1Kind =
-  /*@__PURE__*/ S.String;
+export const CreateKmsIssuerResponsePoliciesItemCase1Kind = S.String;
 
 export type CreateKmsIssuerResponsePoliciesItemCase1TokenClaimsMap = {
   [key: string]: unknown | undefined;
@@ -509,7 +506,7 @@ export type CreateKmsIssuerResponsePoliciesItem =
   | CreateKmsIssuerResponsePoliciesItemCase0
   | CreateKmsIssuerResponsePoliciesItemCase1;
 export const CreateKmsIssuerResponsePoliciesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateKmsIssuerResponsePoliciesItem>;
+  S.Unknown as any as S.Schema<CreateKmsIssuerResponsePoliciesItem>;
 
 export type CreateKmsIssuerResponsePoliciesList =
   Array<CreateKmsIssuerResponsePoliciesItem>;
@@ -549,7 +546,7 @@ export const CreateKmsIssuerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateKmsIssuerResponse>;
 
 export type CreateKmsIssuerPolicyRequestKind = "project-grant";
-export const CreateKmsIssuerPolicyRequestKind = /*@__PURE__*/ S.String;
+export const CreateKmsIssuerPolicyRequestKind = S.String;
 
 /** The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...). */
 export type CreateKmsIssuerPolicyRequestEnvironmentsList = Array<string>;
@@ -604,8 +601,7 @@ export const CreateKmsIssuerPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateKmsIssuerPolicyRequest>;
 
 export type CreateKmsIssuerPolicyResponseBodyCase0Kind = "project-grant";
-export const CreateKmsIssuerPolicyResponseBodyCase0Kind =
-  /*@__PURE__*/ S.String;
+export const CreateKmsIssuerPolicyResponseBodyCase0Kind = S.String;
 
 /** Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim. */
 export type CreateKmsIssuerPolicyResponseBodyCase0EnvironmentsList =
@@ -652,8 +648,7 @@ export const CreateKmsIssuerPolicyResponseBodyCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateKmsIssuerPolicyResponseBodyCase0>;
 
 export type CreateKmsIssuerPolicyResponseBodyCase1Kind = "connex-grant";
-export const CreateKmsIssuerPolicyResponseBodyCase1Kind =
-  /*@__PURE__*/ S.String;
+export const CreateKmsIssuerPolicyResponseBodyCase1Kind = S.String;
 
 export type CreateKmsIssuerPolicyResponseBodyCase1TokenClaimsMap = {
   [key: string]: unknown | undefined;
@@ -690,7 +685,7 @@ export type CreateKmsIssuerPolicyResponseBody =
   | CreateKmsIssuerPolicyResponseBodyCase0
   | CreateKmsIssuerPolicyResponseBodyCase1;
 export const CreateKmsIssuerPolicyResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateKmsIssuerPolicyResponseBody>;
+  S.Unknown as any as S.Schema<CreateKmsIssuerPolicyResponseBody>;
 
 export type CreateKmsIssuerPolicyResponse = CreateKmsIssuerPolicyResponseBody;
 export const CreateKmsIssuerPolicyResponse = /*@__PURE__*/ S.suspend(() =>
@@ -701,12 +696,12 @@ export const CreateKmsIssuerPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the new key is activated automatically after its public key has propagated, or manually via the activate endpoint. Defaults to `automatic`. */
 export type CreateKmsSigningKeyRequestActivation = "automatic" | "manual";
-export const CreateKmsSigningKeyRequestActivation = /*@__PURE__*/ S.String;
+export const CreateKmsSigningKeyRequestActivation = S.String;
 
 /** Deprecated. The ISO date string or timestamp when the previous signing key should stop being used. Converted to a relative grace and applied at activation, not creation. Prefer revokePreviousAfterHours. */
 export type CreateKmsSigningKeyRequestRevokePreviousAt = string | number;
 export const CreateKmsSigningKeyRequestRevokePreviousAt =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateKmsSigningKeyRequestRevokePreviousAt>;
+  S.Unknown as any as S.Schema<CreateKmsSigningKeyRequestRevokePreviousAt>;
 
 export interface CreateKmsSigningKeyRequest {
   /** The ID of the issuer. */
@@ -751,7 +746,7 @@ export type CreateKmsSigningKeyResponseStatus =
   | "active"
   | "pending"
   | "revoking";
-export const CreateKmsSigningKeyResponseStatus = /*@__PURE__*/ S.String;
+export const CreateKmsSigningKeyResponseStatus = S.String;
 
 export type CreateKmsSigningKeyResponsePublicKeyKeyOpsList = Array<string>;
 export const CreateKmsSigningKeyResponsePublicKeyKeyOpsList =
@@ -863,7 +858,7 @@ export const DeleteKmsIssuerResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The issuer policy kind. */
 export type DeleteKmsIssuerPolicyRequestKind = "project-grant" | "connex-grant";
-export const DeleteKmsIssuerPolicyRequestKind = /*@__PURE__*/ S.String;
+export const DeleteKmsIssuerPolicyRequestKind = S.String;
 
 export interface DeleteKmsIssuerPolicyRequest {
   /** The ID of the issuer. */
@@ -933,10 +928,10 @@ export type GetKmsIssuerResponseAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const GetKmsIssuerResponseAlgorithm = /*@__PURE__*/ S.String;
+export const GetKmsIssuerResponseAlgorithm = S.String;
 
 export type GetKmsIssuerResponseOrigin = "external" | "vercel";
-export const GetKmsIssuerResponseOrigin = /*@__PURE__*/ S.String;
+export const GetKmsIssuerResponseOrigin = S.String;
 
 export type GetKmsIssuerResponseClaimsSchemaMap = {
   [key: string]: unknown | undefined;
@@ -950,7 +945,7 @@ export type GetKmsIssuerResponseSigningKeysItemStatus =
   | "active"
   | "pending"
   | "revoking";
-export const GetKmsIssuerResponseSigningKeysItemStatus = /*@__PURE__*/ S.String;
+export const GetKmsIssuerResponseSigningKeysItemStatus = S.String;
 
 export type GetKmsIssuerResponseSigningKeysItemPublicKeyKeyOpsList =
   Array<string>;
@@ -1043,7 +1038,7 @@ export const GetKmsIssuerResponseSigningKeysList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetKmsIssuerResponseSigningKeysList>;
 
 export type GetKmsIssuerResponsePoliciesItemCase0Kind = "project-grant";
-export const GetKmsIssuerResponsePoliciesItemCase0Kind = /*@__PURE__*/ S.String;
+export const GetKmsIssuerResponsePoliciesItemCase0Kind = S.String;
 
 /** Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim. */
 export type GetKmsIssuerResponsePoliciesItemCase0EnvironmentsList =
@@ -1090,7 +1085,7 @@ export const GetKmsIssuerResponsePoliciesItemCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetKmsIssuerResponsePoliciesItemCase0>;
 
 export type GetKmsIssuerResponsePoliciesItemCase1Kind = "connex-grant";
-export const GetKmsIssuerResponsePoliciesItemCase1Kind = /*@__PURE__*/ S.String;
+export const GetKmsIssuerResponsePoliciesItemCase1Kind = S.String;
 
 export type GetKmsIssuerResponsePoliciesItemCase1TokenClaimsMap = {
   [key: string]: unknown | undefined;
@@ -1127,7 +1122,7 @@ export type GetKmsIssuerResponsePoliciesItem =
   | GetKmsIssuerResponsePoliciesItemCase0
   | GetKmsIssuerResponsePoliciesItemCase1;
 export const GetKmsIssuerResponsePoliciesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetKmsIssuerResponsePoliciesItem>;
+  S.Unknown as any as S.Schema<GetKmsIssuerResponsePoliciesItem>;
 
 export type GetKmsIssuerResponsePoliciesList =
   Array<GetKmsIssuerResponsePoliciesItem>;
@@ -1198,11 +1193,10 @@ export type ListKmsIssuersResponseIssuersItemAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const ListKmsIssuersResponseIssuersItemAlgorithm =
-  /*@__PURE__*/ S.String;
+export const ListKmsIssuersResponseIssuersItemAlgorithm = S.String;
 
 export type ListKmsIssuersResponseIssuersItemOrigin = "external" | "vercel";
-export const ListKmsIssuersResponseIssuersItemOrigin = /*@__PURE__*/ S.String;
+export const ListKmsIssuersResponseIssuersItemOrigin = S.String;
 
 export type ListKmsIssuersResponseIssuersItemClaimsSchemaMap = {
   [key: string]: unknown | undefined;
@@ -1217,8 +1211,7 @@ export type ListKmsIssuersResponseIssuersItemSigningKeysItemStatus =
   | "active"
   | "pending"
   | "revoking";
-export const ListKmsIssuersResponseIssuersItemSigningKeysItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListKmsIssuersResponseIssuersItemSigningKeysItemStatus = S.String;
 
 export type ListKmsIssuersResponseIssuersItemSigningKeysItemPublicKeyKeyOpsList =
   Array<string>;
@@ -1319,8 +1312,7 @@ export const ListKmsIssuersResponseIssuersItemSigningKeysList =
 
 export type ListKmsIssuersResponseIssuersItemPoliciesItemCase0Kind =
   "project-grant";
-export const ListKmsIssuersResponseIssuersItemPoliciesItemCase0Kind =
-  /*@__PURE__*/ S.String;
+export const ListKmsIssuersResponseIssuersItemPoliciesItemCase0Kind = S.String;
 
 /** Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim. */
 export type ListKmsIssuersResponseIssuersItemPoliciesItemCase0EnvironmentsList =
@@ -1369,8 +1361,7 @@ export const ListKmsIssuersResponseIssuersItemPoliciesItemCase0 =
 
 export type ListKmsIssuersResponseIssuersItemPoliciesItemCase1Kind =
   "connex-grant";
-export const ListKmsIssuersResponseIssuersItemPoliciesItemCase1Kind =
-  /*@__PURE__*/ S.String;
+export const ListKmsIssuersResponseIssuersItemPoliciesItemCase1Kind = S.String;
 
 export type ListKmsIssuersResponseIssuersItemPoliciesItemCase1TokenClaimsMap = {
   [key: string]: unknown | undefined;
@@ -1407,7 +1398,7 @@ export type ListKmsIssuersResponseIssuersItemPoliciesItem =
   | ListKmsIssuersResponseIssuersItemPoliciesItemCase0
   | ListKmsIssuersResponseIssuersItemPoliciesItemCase1;
 export const ListKmsIssuersResponseIssuersItemPoliciesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListKmsIssuersResponseIssuersItemPoliciesItem>;
+  S.Unknown as any as S.Schema<ListKmsIssuersResponseIssuersItemPoliciesItem>;
 
 export type ListKmsIssuersResponseIssuersItemPoliciesList =
   Array<ListKmsIssuersResponseIssuersItemPoliciesItem>;
@@ -1517,10 +1508,10 @@ export type RevokeKmsSigningKeyResponseAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const RevokeKmsSigningKeyResponseAlgorithm = /*@__PURE__*/ S.String;
+export const RevokeKmsSigningKeyResponseAlgorithm = S.String;
 
 export type RevokeKmsSigningKeyResponseOrigin = "external" | "vercel";
-export const RevokeKmsSigningKeyResponseOrigin = /*@__PURE__*/ S.String;
+export const RevokeKmsSigningKeyResponseOrigin = S.String;
 
 export type RevokeKmsSigningKeyResponseClaimsSchemaMap = {
   [key: string]: unknown | undefined;
@@ -1535,8 +1526,7 @@ export type RevokeKmsSigningKeyResponseSigningKeysItemStatus =
   | "active"
   | "pending"
   | "revoking";
-export const RevokeKmsSigningKeyResponseSigningKeysItemStatus =
-  /*@__PURE__*/ S.String;
+export const RevokeKmsSigningKeyResponseSigningKeysItemStatus = S.String;
 
 export type RevokeKmsSigningKeyResponseSigningKeysItemPublicKeyKeyOpsList =
   Array<string>;
@@ -1635,8 +1625,7 @@ export const RevokeKmsSigningKeyResponseSigningKeysList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RevokeKmsSigningKeyResponseSigningKeysList>;
 
 export type RevokeKmsSigningKeyResponsePoliciesItemCase0Kind = "project-grant";
-export const RevokeKmsSigningKeyResponsePoliciesItemCase0Kind =
-  /*@__PURE__*/ S.String;
+export const RevokeKmsSigningKeyResponsePoliciesItemCase0Kind = S.String;
 
 /** Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim. */
 export type RevokeKmsSigningKeyResponsePoliciesItemCase0EnvironmentsList =
@@ -1684,8 +1673,7 @@ export const RevokeKmsSigningKeyResponsePoliciesItemCase0 =
   }) as any as S.Schema<RevokeKmsSigningKeyResponsePoliciesItemCase0>;
 
 export type RevokeKmsSigningKeyResponsePoliciesItemCase1Kind = "connex-grant";
-export const RevokeKmsSigningKeyResponsePoliciesItemCase1Kind =
-  /*@__PURE__*/ S.String;
+export const RevokeKmsSigningKeyResponsePoliciesItemCase1Kind = S.String;
 
 export type RevokeKmsSigningKeyResponsePoliciesItemCase1TokenClaimsMap = {
   [key: string]: unknown | undefined;
@@ -1722,7 +1710,7 @@ export type RevokeKmsSigningKeyResponsePoliciesItem =
   | RevokeKmsSigningKeyResponsePoliciesItemCase0
   | RevokeKmsSigningKeyResponsePoliciesItemCase1;
 export const RevokeKmsSigningKeyResponsePoliciesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RevokeKmsSigningKeyResponsePoliciesItem>;
+  S.Unknown as any as S.Schema<RevokeKmsSigningKeyResponsePoliciesItem>;
 
 export type RevokeKmsSigningKeyResponsePoliciesList =
   Array<RevokeKmsSigningKeyResponsePoliciesItem>;
@@ -1991,10 +1979,10 @@ export type UpdateKmsIssuerResponseAlgorithm =
   | "RS256"
   | "RS384"
   | "RS512";
-export const UpdateKmsIssuerResponseAlgorithm = /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerResponseAlgorithm = S.String;
 
 export type UpdateKmsIssuerResponseOrigin = "external" | "vercel";
-export const UpdateKmsIssuerResponseOrigin = /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerResponseOrigin = S.String;
 
 export type UpdateKmsIssuerResponseClaimsSchemaMap = {
   [key: string]: unknown | undefined;
@@ -2008,8 +1996,7 @@ export type UpdateKmsIssuerResponseSigningKeysItemStatus =
   | "active"
   | "pending"
   | "revoking";
-export const UpdateKmsIssuerResponseSigningKeysItemStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerResponseSigningKeysItemStatus = S.String;
 
 export type UpdateKmsIssuerResponseSigningKeysItemPublicKeyKeyOpsList =
   Array<string>;
@@ -2104,8 +2091,7 @@ export const UpdateKmsIssuerResponseSigningKeysList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateKmsIssuerResponseSigningKeysList>;
 
 export type UpdateKmsIssuerResponsePoliciesItemCase0Kind = "project-grant";
-export const UpdateKmsIssuerResponsePoliciesItemCase0Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerResponsePoliciesItemCase0Kind = S.String;
 
 /** Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim. */
 export type UpdateKmsIssuerResponsePoliciesItemCase0EnvironmentsList =
@@ -2152,8 +2138,7 @@ export const UpdateKmsIssuerResponsePoliciesItemCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateKmsIssuerResponsePoliciesItemCase0>;
 
 export type UpdateKmsIssuerResponsePoliciesItemCase1Kind = "connex-grant";
-export const UpdateKmsIssuerResponsePoliciesItemCase1Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerResponsePoliciesItemCase1Kind = S.String;
 
 export type UpdateKmsIssuerResponsePoliciesItemCase1TokenClaimsMap = {
   [key: string]: unknown | undefined;
@@ -2190,7 +2175,7 @@ export type UpdateKmsIssuerResponsePoliciesItem =
   | UpdateKmsIssuerResponsePoliciesItemCase0
   | UpdateKmsIssuerResponsePoliciesItemCase1;
 export const UpdateKmsIssuerResponsePoliciesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateKmsIssuerResponsePoliciesItem>;
+  S.Unknown as any as S.Schema<UpdateKmsIssuerResponsePoliciesItem>;
 
 export type UpdateKmsIssuerResponsePoliciesList =
   Array<UpdateKmsIssuerResponsePoliciesItem>;
@@ -2231,7 +2216,7 @@ export const UpdateKmsIssuerResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The issuer policy kind. */
 export type UpdateKmsIssuerPolicyRequestKind = "project-grant";
-export const UpdateKmsIssuerPolicyRequestKind = /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerPolicyRequestKind = S.String;
 
 /** The environments for the project grant policy. Each entry is a system environment (production, preview, development) or a custom environment ID (env_...). */
 export type UpdateKmsIssuerPolicyRequestEnvironmentsList = Array<string>;
@@ -2289,8 +2274,7 @@ export const UpdateKmsIssuerPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateKmsIssuerPolicyRequest>;
 
 export type UpdateKmsIssuerPolicyResponseBodyCase0Kind = "project-grant";
-export const UpdateKmsIssuerPolicyResponseBodyCase0Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerPolicyResponseBodyCase0Kind = S.String;
 
 /** Environments whose OIDC tokens this grant authorizes. Each entry is either a system environment slug (`production`, `preview`, `development`) or a custom environment ID (prefixed `env_`). Custom environments are matched against the token's `custom_environment_id` claim (the stable ID); system environments against its `environment` claim. */
 export type UpdateKmsIssuerPolicyResponseBodyCase0EnvironmentsList =
@@ -2337,8 +2321,7 @@ export const UpdateKmsIssuerPolicyResponseBodyCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateKmsIssuerPolicyResponseBodyCase0>;
 
 export type UpdateKmsIssuerPolicyResponseBodyCase1Kind = "connex-grant";
-export const UpdateKmsIssuerPolicyResponseBodyCase1Kind =
-  /*@__PURE__*/ S.String;
+export const UpdateKmsIssuerPolicyResponseBodyCase1Kind = S.String;
 
 export type UpdateKmsIssuerPolicyResponseBodyCase1TokenClaimsMap = {
   [key: string]: unknown | undefined;
@@ -2375,7 +2358,7 @@ export type UpdateKmsIssuerPolicyResponseBody =
   | UpdateKmsIssuerPolicyResponseBodyCase0
   | UpdateKmsIssuerPolicyResponseBodyCase1;
 export const UpdateKmsIssuerPolicyResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateKmsIssuerPolicyResponseBody>;
+  S.Unknown as any as S.Schema<UpdateKmsIssuerPolicyResponseBody>;
 
 export type UpdateKmsIssuerPolicyResponse = UpdateKmsIssuerPolicyResponseBody;
 export const UpdateKmsIssuerPolicyResponse = /*@__PURE__*/ S.suspend(() =>

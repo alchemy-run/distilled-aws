@@ -148,7 +148,7 @@ export const ActivityLogsRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ActivityLogsRetrieveResponse>;
 
 export type AddWebhookRequestAuthenticationType = "None" | "Bearer" | "Basic";
-export const AddWebhookRequestAuthenticationType = /*@__PURE__*/ S.String;
+export const AddWebhookRequestAuthenticationType = S.String;
 
 export interface AddWebhookRequestAuthentication {
   type?: AddWebhookRequestAuthenticationType | (string & {});
@@ -974,15 +974,14 @@ export const ConfigsListTrustedIpsResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateChangeRequestPolicyRequestRulesItemType =
   | '"RequiredReviewer"'
   | '"DisallowSelfReview"';
-export const CreateChangeRequestPolicyRequestRulesItemType =
-  /*@__PURE__*/ S.String;
+export const CreateChangeRequestPolicyRequestRulesItemType = S.String;
 
 /** The type of the subject. */
 export type CreateChangeRequestPolicyRequestRulesItemSubjectsItemType =
   | '"WorkplaceUser"'
   | '"Group"';
 export const CreateChangeRequestPolicyRequestRulesItemSubjectsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateChangeRequestPolicyRequestRulesItemSubjectsItem {
   /** The type of the subject. */
@@ -1362,8 +1361,7 @@ export type CreateIntegrationsIntegrationMemberRequestType =
   | "invite"
   | "group"
   | "service_account";
-export const CreateIntegrationsIntegrationMemberRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateIntegrationsIntegrationMemberRequestType = S.String;
 
 export interface CreateIntegrationsIntegrationMemberRequest {
   /** Integration slug */
@@ -1395,8 +1393,7 @@ export type CreateIntegrationsIntegrationMemberResponseMemberType =
   | "invite"
   | "group"
   | "service_account";
-export const CreateIntegrationsIntegrationMemberResponseMemberType =
-  /*@__PURE__*/ S.String;
+export const CreateIntegrationsIntegrationMemberResponseMemberType = S.String;
 
 export type CreateIntegrationsIntegrationMemberResponseMemberRole =
   CreateGroupResponseGroupDefaultProjectRole;
@@ -1479,7 +1476,7 @@ export type CreateSyncRequestImportOption =
   | "none"
   | "prefer_doppler"
   | "prefer_integration";
-export const CreateSyncRequestImportOption = /*@__PURE__*/ S.String;
+export const CreateSyncRequestImportOption = S.String;
 
 export interface CreateSyncRequest {
   /** The project slug */
@@ -1781,7 +1778,7 @@ export type DeleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunit
   | "open"
   | "canceled";
 export const DeleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdReviewResponseUnitStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdReviewResponseUnit {
   id?: string;
@@ -1872,8 +1869,7 @@ export type DeleteWorkplaceIntegrationsIntegrationMemberRequestType =
   | "invite"
   | "group"
   | "service_account";
-export const DeleteWorkplaceIntegrationsIntegrationMemberRequestType =
-  /*@__PURE__*/ S.String;
+export const DeleteWorkplaceIntegrationsIntegrationMemberRequestType = S.String;
 
 export interface DeleteWorkplaceIntegrationsIntegrationMemberRequest {
   type: DeleteWorkplaceIntegrationsIntegrationMemberRequestType | (string & {});
@@ -1942,7 +1938,7 @@ export type DownloadSecretRequestFormat =
   | "yaml"
   | "docker"
   | "env-no-quotes";
-export const DownloadSecretRequestFormat = /*@__PURE__*/ S.String;
+export const DownloadSecretRequestFormat = S.String;
 
 export type DownloadSecretRequestNameTransformer =
   | "camel"
@@ -1952,7 +1948,7 @@ export type DownloadSecretRequestNameTransformer =
   | "dotnet"
   | "dotnet-env"
   | "lower-kebab";
-export const DownloadSecretRequestNameTransformer = /*@__PURE__*/ S.String;
+export const DownloadSecretRequestNameTransformer = S.String;
 
 export interface DownloadSecretRequest {
   /** Unique identifier for the project object. Not required if using a Service Token. */
@@ -2382,7 +2378,7 @@ export type GetIntegrationsIntegrationMembersResponseMembersItemType =
   | "group"
   | "service_account";
 export const GetIntegrationsIntegrationMembersResponseMembersItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetIntegrationsIntegrationMembersResponseMembersItemRole =
   CreateGroupResponseGroupDefaultProjectRole;
@@ -2427,7 +2423,7 @@ export const GetIntegrationsIntegrationMembersResponse =
   }) as any as S.Schema<GetIntegrationsIntegrationMembersResponse>;
 
 export type GetMemberRequestMemberType = "workplace_user";
-export const GetMemberRequestMemberType = /*@__PURE__*/ S.String;
+export const GetMemberRequestMemberType = S.String;
 
 export interface GetMemberRequest {
   /** The group's slug */
@@ -2721,14 +2717,13 @@ export const GetV3workplacechangeRequestsRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetV3workplacechangeRequestsResponseBodyItemStatus =
   | "open"
   | "closed";
-export const GetV3workplacechangeRequestsResponseBodyItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetV3workplacechangeRequestsResponseBodyItemStatus = S.String;
 
 export type GetV3workplacechangeRequestsResponseBodyItemCreatedByType =
   | "User"
   | "ServiceAccount";
 export const GetV3workplacechangeRequestsResponseBodyItemCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetV3workplacechangeRequestsResponseBodyItemCreatedBy {
   slug?: string;
@@ -2758,7 +2753,7 @@ export type GetV3workplacechangeRequestsResponseBodyItemUnitsItemStatus =
   | "applied"
   | "canceled";
 export const GetV3workplacechangeRequestsResponseBodyItemUnitsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetV3workplacechangeRequestsResponseBodyItemUnitsItemTargetProject =
   AuthMeResponseWorkplace;
@@ -2822,7 +2817,7 @@ export type GetV3workplacechangeRequestsResponseBodyItemAssignedItemType =
   | "WorkplaceUser"
   | "ServiceAccount";
 export const GetV3workplacechangeRequestsResponseBodyItemAssignedItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetV3workplacechangeRequestsResponseBodyItemAssignedItem {
   type?: GetV3workplacechangeRequestsResponseBodyItemAssignedItemType;
@@ -2922,13 +2917,13 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChan
   | "open"
   | "closed";
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestCreatedByType =
   | "User"
   | "ServiceAccount";
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestCreatedBy {
   slug?: string;
@@ -2959,7 +2954,7 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChan
   | "canceled"
   | "applied";
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemTargetProject =
   AuthMeResponseWorkplace;
@@ -3022,7 +3017,7 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChan
   | "User"
   | "ServiceAccount";
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemCreatedBy {
   slug?: string;
@@ -3053,7 +3048,7 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChan
   | 1
   | 2;
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemUpdatesItemVisType =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemUpdatesItemValueType {
   type?: string;
@@ -3149,7 +3144,7 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChan
   | "WorkplaceUser"
   | "ServiceAccount";
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestAssignedItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestAssignedItem {
   type?: GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestAssignedItemType;
@@ -3261,7 +3256,7 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUni
   | "canceled"
   | "applied";
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponseUnitStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponseUnitTargetProject =
   AuthMeResponseWorkplace;
@@ -3302,7 +3297,7 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUni
   | "User"
   | "ServiceAccount";
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponseUnitCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponseUnitCreatedBy {
   slug?: string;
@@ -3333,7 +3328,7 @@ export type GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUni
   | 1
   | 2;
 export const GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponseUnitUpdatesItemVisType =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type GetV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdResponseUnitUpdatesItemValueType =
   GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemUpdatesItemValueType;
@@ -3452,7 +3447,7 @@ export type GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesR
   | "wildcard"
   | "exact";
 export const GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesResponseIdentitiesItemConfigClaimsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesResponseIdentitiesItemConfigClaimsAudList =
   Array<string>;
@@ -3583,13 +3578,13 @@ export const GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentities
 export type GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityMethod =
   "oidc";
 export const GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityConfigClaimsType =
   | "exact"
   | "wildcard";
 export const GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityConfigClaimsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityConfigClaimsAudList =
   Array<string>;
@@ -3753,8 +3748,7 @@ export type GetWorkplaceIntegrationsIntegrationMemberRequestType =
   | "invite"
   | "group"
   | "service_account";
-export const GetWorkplaceIntegrationsIntegrationMemberRequestType =
-  /*@__PURE__*/ S.String;
+export const GetWorkplaceIntegrationsIntegrationMemberRequestType = S.String;
 
 export interface GetWorkplaceIntegrationsIntegrationMemberRequest {
   type: GetWorkplaceIntegrationsIntegrationMemberRequestType | (string & {});
@@ -3788,7 +3782,7 @@ export type GetWorkplaceIntegrationsIntegrationMemberResponseMemberType =
   | "group"
   | "service_account";
 export const GetWorkplaceIntegrationsIntegrationMemberResponseMemberType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetWorkplaceIntegrationsIntegrationMemberResponseMemberRole =
   CreateGroupResponseGroupDefaultProjectRole;
@@ -3828,7 +3822,7 @@ export const GetWorkplaceIntegrationsIntegrationMemberResponse =
   }) as any as S.Schema<GetWorkplaceIntegrationsIntegrationMemberResponse>;
 
 export type GroupsAddMemberRequestType = "workplace_user";
-export const GroupsAddMemberRequestType = /*@__PURE__*/ S.String;
+export const GroupsAddMemberRequestType = S.String;
 
 export interface GroupsAddMemberRequest {
   /** The group's slug */
@@ -3858,7 +3852,7 @@ export const GroupsAddMemberResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GroupsAddMemberResponse>;
 
 export type GroupsDeleteMemberRequestType = "workplace_user";
-export const GroupsDeleteMemberRequestType = /*@__PURE__*/ S.String;
+export const GroupsDeleteMemberRequestType = S.String;
 
 export interface GroupsDeleteMemberRequest {
   /** The group's slug */
@@ -4465,8 +4459,7 @@ export const LockConfigResponse = /*@__PURE__*/ S.suspend(() =>
 export type PostV3workplacechangeRequestsRequestAssignedItemType =
   | "WorkplaceUser"
   | "ServiceAccount";
-export const PostV3workplacechangeRequestsRequestAssignedItemType =
-  /*@__PURE__*/ S.String;
+export const PostV3workplacechangeRequestsRequestAssignedItemType = S.String;
 
 export interface PostV3workplacechangeRequestsRequestAssignedItem {
   type: PostV3workplacechangeRequestsRequestAssignedItemType | (string & {});
@@ -4490,8 +4483,7 @@ export const PostV3workplacechangeRequestsRequestAssignedList =
   ) as any as S.Schema<PostV3workplacechangeRequestsRequestAssignedList>;
 
 export type PostV3workplacechangeRequestsRequestUnitsItemAction = "create";
-export const PostV3workplacechangeRequestsRequestUnitsItemAction =
-  /*@__PURE__*/ S.String;
+export const PostV3workplacechangeRequestsRequestUnitsItemAction = S.String;
 
 export interface PostV3workplacechangeRequestsRequestUnitsItemTarget {
   project: string;
@@ -4510,8 +4502,7 @@ export const PostV3workplacechangeRequestsRequestUnitsItemTarget =
 export type PostV3workplacechangeRequestsRequestUnitsItemStatus =
   | "draft"
   | "open";
-export const PostV3workplacechangeRequestsRequestUnitsItemStatus =
-  /*@__PURE__*/ S.String;
+export const PostV3workplacechangeRequestsRequestUnitsItemStatus = S.String;
 
 /** 0 = masked, 1 = unmasked, 2 = restricted */
 export type PostV3workplacechangeRequestsRequestUnitsItemUpdatesItemVisType =
@@ -4519,7 +4510,7 @@ export type PostV3workplacechangeRequestsRequestUnitsItemUpdatesItemVisType =
   | 1
   | 2;
 export const PostV3workplacechangeRequestsRequestUnitsItemUpdatesItemVisType =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type PostV3workplacechangeRequestsRequestUnitsItemUpdatesItemValueType =
   GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemUpdatesItemValueType;
@@ -4646,7 +4637,7 @@ export type PostV3workplacechangeRequestschangeRequestChangeRequestIdRequestAssi
   | "WorkplaceUser"
   | "ServiceAccount";
 export const PostV3workplacechangeRequestschangeRequestChangeRequestIdRequestAssignedItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostV3workplacechangeRequestschangeRequestChangeRequestIdRequestAssignedItem {
   type:
@@ -4698,7 +4689,7 @@ export type PostV3workplacechangeRequestschangeRequestChangeRequestIdResponseAss
   | "WorkplaceUser"
   | "ServiceAccount";
 export const PostV3workplacechangeRequestschangeRequestChangeRequestIdResponseAssignedItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostV3workplacechangeRequestschangeRequestChangeRequestIdResponseAssignedItem {
   type?: PostV3workplacechangeRequestschangeRequestChangeRequestIdResponseAssignedItemType;
@@ -4801,7 +4792,7 @@ export const PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitU
 export type PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdApplyResponseUnitStatus =
   "applied";
 export const PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdApplyResponseUnitStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdApplyResponseUnit {
   id?: string;
@@ -4861,7 +4852,7 @@ export type PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUn
   | "open"
   | "canceled";
 export const PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdReviewResponseUnitStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdReviewResponseUnit {
   id?: string;
@@ -4900,7 +4891,7 @@ export type PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUn
   | "open"
   | "canceled";
 export const PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdStatusRequestStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdStatusRequest {
   change_request_id: string;
@@ -4933,7 +4924,7 @@ export type PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUn
   | "open"
   | "canceled";
 export const PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdStatusResponseUnitStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitUnitIdStatusResponseUnit {
   id?: string;
@@ -4970,13 +4961,13 @@ export const PostV3workplacechangeRequestschangeRequestChangeRequestIdUnitsunitU
 export type PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesRequestMethod =
   "oidc";
 export const PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesRequestMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesRequestConfigClaimsType =
   | "exact"
   | "wildcard";
 export const PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesRequestConfigClaimsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesRequestConfigClaimsAudList =
   Array<string>;
@@ -5062,7 +5053,7 @@ export const PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitie
 export type PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesResponseIdentityMethod =
   "oidc";
 export const PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesResponseIdentityMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PostV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesResponseIdentityConfigClaimsAudList =
   Array<string>;
@@ -5165,7 +5156,7 @@ export type ProjectMembersAddRequestType =
   | "group"
   | "invite"
   | "service_account";
-export const ProjectMembersAddRequestType = /*@__PURE__*/ S.String;
+export const ProjectMembersAddRequestType = S.String;
 
 /** Environment slugs to grant the member access to */
 export type ProjectMembersAddRequestEnvironmentsList = Array<string>;
@@ -5244,7 +5235,7 @@ export type ProjectMembersDeleteRequestType =
   | "group"
   | "invite"
   | "service_account";
-export const ProjectMembersDeleteRequestType = /*@__PURE__*/ S.String;
+export const ProjectMembersDeleteRequestType = S.String;
 
 export interface ProjectMembersDeleteRequest {
   type: ProjectMembersDeleteRequestType | (string & {});
@@ -5281,7 +5272,7 @@ export type ProjectMembersGetRequestType =
   | "group"
   | "invite"
   | "service_account";
-export const ProjectMembersGetRequestType = /*@__PURE__*/ S.String;
+export const ProjectMembersGetRequestType = S.String;
 
 export interface ProjectMembersGetRequest {
   type: ProjectMembersGetRequestType | (string & {});
@@ -5421,7 +5412,7 @@ export type ProjectMembersUpdateRequestType =
   | "group"
   | "invite"
   | "service_account";
-export const ProjectMembersUpdateRequestType = /*@__PURE__*/ S.String;
+export const ProjectMembersUpdateRequestType = S.String;
 
 /** Environment slugs to grant the member access to */
 export type ProjectMembersUpdateRequestEnvironmentsList = Array<string>;
@@ -5780,7 +5771,7 @@ export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestAssig
   | "WorkplaceUser"
   | "ServiceAccount";
 export const PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestAssignedItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestAssignedItem {
   type:
@@ -5810,19 +5801,19 @@ export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnits
   | "create"
   | "update";
 export const PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemStatus =
   | "draft"
   | "open";
 export const PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemUpdatesItemAction =
   | "upsert"
   | "delete";
 export const PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemUpdatesItemAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** 0 = masked, 1 = unmasked, 2 = restricted */
 export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemUpdatesItemVisType =
@@ -5830,7 +5821,7 @@ export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnits
   | 1
   | 2;
 export const PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemUpdatesItemVisType =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type PutV3workplacechangeRequestschangeRequestChangeRequestIdRequestUnitsItemUpdatesItemValueType =
   GetV3workplacechangeRequestschangeRequestChangeRequestIdResponseChangeRequestUnitsItemUpdatesItemValueType;
@@ -5971,13 +5962,13 @@ export const PutV3workplacechangeRequestschangeRequestChangeRequestIdResponse =
 export type PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityRequestMethod =
   "oidc";
 export const PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityRequestMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityRequestConfigClaimsType =
   | "exact"
   | "wildcard";
 export const PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityRequestConfigClaimsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityRequestConfigClaimsAudList =
   Array<string>;
@@ -6065,13 +6056,13 @@ export const PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentities
 export type PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityMethod =
   "oidc";
 export const PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityConfigClaimsType =
   | "wildcard"
   | "exact";
 export const PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityConfigClaimsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutV3workplaceserviceAccountsserviceAccountServiceAccountIdentitiesidentityIdentityResponseIdentityConfigClaimsAudList =
   Array<string>;
@@ -6909,7 +6900,7 @@ export const ServiceAccountTokensListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Token's capabilities. */
 export type ServiceTokensCreateRequestAccess = "read" | "read/write";
-export const ServiceTokensCreateRequestAccess = /*@__PURE__*/ S.String;
+export const ServiceTokensCreateRequestAccess = S.String;
 
 export interface ServiceTokensCreateRequest {
   /** Unique identifier for the project object. */
@@ -7183,15 +7174,14 @@ export const UnlockConfigResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateChangeRequestPolicyRequestRulesItemType =
   | '"RequiredReviewer"'
   | '"DisallowSelfReview"';
-export const UpdateChangeRequestPolicyRequestRulesItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateChangeRequestPolicyRequestRulesItemType = S.String;
 
 /** The type of the subject. */
 export type UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType =
   | '"WorkplaceUser"'
   | '"Group"';
 export const UpdateChangeRequestPolicyRequestRulesItemSubjectsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateChangeRequestPolicyRequestRulesItemSubjectsItem {
   /** The type of the subject. */
@@ -7477,8 +7467,7 @@ export type UpdateIntegrationsIntegrationMemberRequestType =
   | "invite"
   | "group"
   | "service_account";
-export const UpdateIntegrationsIntegrationMemberRequestType =
-  /*@__PURE__*/ S.String;
+export const UpdateIntegrationsIntegrationMemberRequestType = S.String;
 
 export interface UpdateIntegrationsIntegrationMemberRequest {
   type: UpdateIntegrationsIntegrationMemberRequestType | (string & {});
@@ -7511,8 +7500,7 @@ export type UpdateIntegrationsIntegrationMemberResponseMemberType =
   | "invite"
   | "group"
   | "service_account";
-export const UpdateIntegrationsIntegrationMemberResponseMemberType =
-  /*@__PURE__*/ S.String;
+export const UpdateIntegrationsIntegrationMemberResponseMemberType = S.String;
 
 export type UpdateIntegrationsIntegrationMemberResponseMemberRole =
   CreateGroupResponseGroupDefaultProjectRole;
@@ -7610,8 +7598,7 @@ export type UpdateSecretRequestChangeRequestsItemValueTypeType =
   | "datetime8601"
   | "date8601"
   | "yaml";
-export const UpdateSecretRequestChangeRequestsItemValueTypeType =
-  /*@__PURE__*/ S.String;
+export const UpdateSecretRequestChangeRequestsItemValueTypeType = S.String;
 
 /** The default valueType (string) will result in no validations being applied. */
 export interface UpdateSecretRequestChangeRequestsItemValueType {
@@ -7642,7 +7629,7 @@ export type UpdateSecretRequestChangeRequestsItemOriginalValueTypeType =
   | "date8601"
   | "yaml";
 export const UpdateSecretRequestChangeRequestsItemOriginalValueTypeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The valueType you expect the secret to have before `valueType` is applied. If specified, the request will only be processed if the provided valueType matches what's found in Doppler. */
 export interface UpdateSecretRequestChangeRequestsItemOriginalValueType {
@@ -7811,7 +7798,7 @@ export type UpdateWebhookRequestAuthenticationType =
   | "None"
   | "Bearer"
   | "Basic";
-export const UpdateWebhookRequestAuthenticationType = /*@__PURE__*/ S.String;
+export const UpdateWebhookRequestAuthenticationType = S.String;
 
 export interface UpdateWebhookRequestAuthentication {
   type?: UpdateWebhookRequestAuthenticationType | (string & {});

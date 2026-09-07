@@ -41,11 +41,11 @@ export class UnprocessableEntity
 
 /** The type of actor (user or team). */
 export type AddCollaboratorForOrgRequestActorType = "User" | "Team";
-export const AddCollaboratorForOrgRequestActorType = /*@__PURE__*/ S.String;
+export const AddCollaboratorForOrgRequestActorType = S.String;
 
 /** The role to grant to the collaborator. */
 export type AddCollaboratorForOrgRequestRole = "reader" | "writer" | "admin";
-export const AddCollaboratorForOrgRequestRole = /*@__PURE__*/ S.String;
+export const AddCollaboratorForOrgRequestRole = S.String;
 
 export interface AddCollaboratorForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -79,11 +79,11 @@ export const AddCollaboratorForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The collaborator actor type. */
 export type CopilotSpaceCollaboratorCase0ActorType = "User";
-export const CopilotSpaceCollaboratorCase0ActorType = /*@__PURE__*/ S.String;
+export const CopilotSpaceCollaboratorCase0ActorType = S.String;
 
 /** The role granted to the collaborator */
 export type CopilotSpaceCollaboratorCase0Role = "reader" | "writer" | "admin";
-export const CopilotSpaceCollaboratorCase0Role = /*@__PURE__*/ S.String;
+export const CopilotSpaceCollaboratorCase0Role = S.String;
 
 export interface CopilotSpaceCollaboratorCase0 {
   name?: string | null;
@@ -146,14 +146,14 @@ export const CopilotSpaceCollaboratorCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** The collaborator actor type. */
 export type CopilotSpaceCollaboratorCase1ActorType = "Team";
-export const CopilotSpaceCollaboratorCase1ActorType = /*@__PURE__*/ S.String;
+export const CopilotSpaceCollaboratorCase1ActorType = S.String;
 
 /** The role granted to the collaborator */
 export type CopilotSpaceCollaboratorCase1Role = "reader" | "writer" | "admin";
-export const CopilotSpaceCollaboratorCase1Role = /*@__PURE__*/ S.String;
+export const CopilotSpaceCollaboratorCase1Role = S.String;
 
 export type CopilotSpaceCollaboratorCase1Type = "Team";
-export const CopilotSpaceCollaboratorCase1Type = /*@__PURE__*/ S.String;
+export const CopilotSpaceCollaboratorCase1Type = S.String;
 
 export interface CopilotSpaceCollaboratorCase1 {
   /** The collaborator actor type. */
@@ -203,7 +203,7 @@ export type CopilotSpaceCollaborator =
   | CopilotSpaceCollaboratorCase0
   | CopilotSpaceCollaboratorCase1;
 export const CopilotSpaceCollaborator =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CopilotSpaceCollaborator>;
+  S.Unknown as any as S.Schema<CopilotSpaceCollaborator>;
 
 export type AddCollaboratorForOrgResponse = CopilotSpaceCollaborator;
 export const AddCollaboratorForOrgResponse = /*@__PURE__*/ S.suspend(() =>
@@ -214,11 +214,11 @@ export const AddCollaboratorForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of actor (must be `User` for user-owned spaces; `Team` will be rejected). */
 export type AddCollaboratorForUserRequestActorType = "User" | "Team";
-export const AddCollaboratorForUserRequestActorType = /*@__PURE__*/ S.String;
+export const AddCollaboratorForUserRequestActorType = S.String;
 
 /** The role to grant to the collaborator. */
 export type AddCollaboratorForUserRequestRole = "reader" | "writer" | "admin";
-export const AddCollaboratorForUserRequestRole = /*@__PURE__*/ S.String;
+export const AddCollaboratorForUserRequestRole = S.String;
 
 export interface AddCollaboratorForUserRequest {
   /** The handle for the GitHub user account. */
@@ -263,7 +263,7 @@ export type CreateForOrgRequestBaseRole =
   | "writer"
   | "admin"
   | "no_access";
-export const CreateForOrgRequestBaseRole = /*@__PURE__*/ S.String;
+export const CreateForOrgRequestBaseRole = S.String;
 
 /** The type of resource. */
 export type CreateForOrgRequestResourcesAttributesItemResourceType =
@@ -274,8 +274,7 @@ export type CreateForOrgRequestResourcesAttributesItemResourceType =
   | "github_pull_request"
   | "media_content"
   | "uploaded_text_file";
-export const CreateForOrgRequestResourcesAttributesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const CreateForOrgRequestResourcesAttributesItemResourceType = S.String;
 
 /** Metadata specific to the resource type. */
 export interface CreateForOrgRequestResourcesAttributesItemMetadata {
@@ -363,7 +362,7 @@ export const CreateForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The base role that determines default permissions. - `no_access`: No default access - `reader`: Default read permissions - `writer`: Default write permissions (organization spaces only) - `admin`: Default admin permissions (organization spaces only) */
 export type CopilotSpaceBaseRole = "reader" | "writer" | "admin" | "no_access";
-export const CopilotSpaceBaseRole = /*@__PURE__*/ S.String;
+export const CopilotSpaceBaseRole = S.String;
 
 /** A GitHub user. */
 export interface SimpleUser {
@@ -454,7 +453,7 @@ export const OrganizationSimple = /*@__PURE__*/ S.suspend(() =>
 /** The user or organization that owns this space. */
 export type CopilotSpaceOwner = SimpleUser | OrganizationSimple;
 export const CopilotSpaceOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CopilotSpaceOwner>;
+  S.Unknown as any as S.Schema<CopilotSpaceOwner>;
 
 /** The type of resource. */
 export type CopilotSpaceResourcesAttributesItemResourceType =
@@ -465,8 +464,7 @@ export type CopilotSpaceResourcesAttributesItemResourceType =
   | "github_pull_request"
   | "media_content"
   | "uploaded_text_file";
-export const CopilotSpaceResourcesAttributesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const CopilotSpaceResourcesAttributesItemResourceType = S.String;
 
 /** Metadata specific to the resource type. */
 export interface CopilotSpaceResourcesAttributesItemMetadata {
@@ -591,7 +589,7 @@ export const CopilotSpace = /*@__PURE__*/ S.suspend(() =>
 
 /** The base role that determines default permissions for the space. - `no_access`: No default access (default) - `reader`: Makes the space publicly readable Note: User spaces do not support writer or admin base roles. */
 export type CreateForUserRequestBaseRole = "reader" | "no_access";
-export const CreateForUserRequestBaseRole = /*@__PURE__*/ S.String;
+export const CreateForUserRequestBaseRole = S.String;
 
 /** The type of resource. */
 export type CreateForUserRequestResourcesAttributesItemResourceType =
@@ -602,8 +600,7 @@ export type CreateForUserRequestResourcesAttributesItemResourceType =
   | "github_pull_request"
   | "media_content"
   | "uploaded_text_file";
-export const CreateForUserRequestResourcesAttributesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const CreateForUserRequestResourcesAttributesItemResourceType = S.String;
 
 /** Metadata specific to the resource type. */
 export type CreateForUserRequestResourcesAttributesItemMetadata =
@@ -681,7 +678,7 @@ export type CreateResourceForOrgRequestResourceType =
   | "free_text"
   | "github_issue"
   | "github_pull_request";
-export const CreateResourceForOrgRequestResourceType = /*@__PURE__*/ S.String;
+export const CreateResourceForOrgRequestResourceType = S.String;
 
 /** Resource-specific metadata. */
 export type CreateResourceForOrgRequestMetadataMap = {
@@ -728,7 +725,7 @@ export type CopilotSpaceResourceResourceType =
   | "github_pull_request"
   | "media_content"
   | "uploaded_text_file";
-export const CopilotSpaceResourceResourceType = /*@__PURE__*/ S.String;
+export const CopilotSpaceResourceResourceType = S.String;
 
 /** Resource-specific metadata. The keys and values depend on the resource type. */
 export type CopilotSpaceResourceMetadataMap = {
@@ -774,7 +771,7 @@ export type CreateResourceForUserRequestResourceType =
   | "free_text"
   | "github_issue"
   | "github_pull_request";
-export const CreateResourceForUserRequestResourceType = /*@__PURE__*/ S.String;
+export const CreateResourceForUserRequestResourceType = S.String;
 
 /** Resource-specific metadata. */
 export type CreateResourceForUserRequestMetadataMap = {
@@ -1269,7 +1266,7 @@ export const ListResourcesForUserResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResourcesForUserResponse>;
 
 export type RemoveCollaboratorForOrgRequestActorType = "User" | "Team";
-export const RemoveCollaboratorForOrgRequestActorType = /*@__PURE__*/ S.String;
+export const RemoveCollaboratorForOrgRequestActorType = S.String;
 
 export interface RemoveCollaboratorForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1306,7 +1303,7 @@ export const RemoveCollaboratorForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RemoveCollaboratorForOrgResponse>;
 
 export type RemoveCollaboratorForUserRequestActorType = "User" | "Team";
-export const RemoveCollaboratorForUserRequestActorType = /*@__PURE__*/ S.String;
+export const RemoveCollaboratorForUserRequestActorType = S.String;
 
 export interface RemoveCollaboratorForUserRequest {
   /** The handle for the GitHub user account. */
@@ -1343,7 +1340,7 @@ export const RemoveCollaboratorForUserResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RemoveCollaboratorForUserResponse>;
 
 export type UpdateCollaboratorForOrgRequestActorType = "User" | "Team";
-export const UpdateCollaboratorForOrgRequestActorType = /*@__PURE__*/ S.String;
+export const UpdateCollaboratorForOrgRequestActorType = S.String;
 
 /** The new role to grant to the collaborator. Use `no_access` to remove the collaborator. */
 export type UpdateCollaboratorForOrgRequestRole =
@@ -1351,7 +1348,7 @@ export type UpdateCollaboratorForOrgRequestRole =
   | "writer"
   | "admin"
   | "no_access";
-export const UpdateCollaboratorForOrgRequestRole = /*@__PURE__*/ S.String;
+export const UpdateCollaboratorForOrgRequestRole = S.String;
 
 export interface UpdateCollaboratorForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1391,7 +1388,7 @@ export const UpdateCollaboratorForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCollaboratorForOrgResponse>;
 
 export type UpdateCollaboratorForUserRequestActorType = "User" | "Team";
-export const UpdateCollaboratorForUserRequestActorType = /*@__PURE__*/ S.String;
+export const UpdateCollaboratorForUserRequestActorType = S.String;
 
 /** The new role to grant to the collaborator. Use `no_access` to remove the collaborator. */
 export type UpdateCollaboratorForUserRequestRole =
@@ -1399,7 +1396,7 @@ export type UpdateCollaboratorForUserRequestRole =
   | "writer"
   | "admin"
   | "no_access";
-export const UpdateCollaboratorForUserRequestRole = /*@__PURE__*/ S.String;
+export const UpdateCollaboratorForUserRequestRole = S.String;
 
 export interface UpdateCollaboratorForUserRequest {
   /** The handle for the GitHub user account. */
@@ -1444,7 +1441,7 @@ export type UpdateForOrgRequestBaseRole =
   | "writer"
   | "admin"
   | "no_access";
-export const UpdateForOrgRequestBaseRole = /*@__PURE__*/ S.String;
+export const UpdateForOrgRequestBaseRole = S.String;
 
 /** The type of resource. */
 export type UpdateForOrgRequestResourcesAttributesItemResourceType =
@@ -1455,8 +1452,7 @@ export type UpdateForOrgRequestResourcesAttributesItemResourceType =
   | "github_pull_request"
   | "media_content"
   | "uploaded_text_file";
-export const UpdateForOrgRequestResourcesAttributesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const UpdateForOrgRequestResourcesAttributesItemResourceType = S.String;
 
 /** Metadata specific to the resource type. */
 export type UpdateForOrgRequestResourcesAttributesItemMetadata =
@@ -1531,7 +1527,7 @@ export const UpdateForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The base role that determines default permissions for the space. Changing this field requires admin permissions. - `no_access`: No default access (default) - `reader`: Makes the space publicly readable Note: User spaces do not support writer or admin base roles. */
 export type UpdateForUserRequestBaseRole = "reader" | "no_access";
-export const UpdateForUserRequestBaseRole = /*@__PURE__*/ S.String;
+export const UpdateForUserRequestBaseRole = S.String;
 
 /** The type of resource. */
 export type UpdateForUserRequestResourcesAttributesItemResourceType =
@@ -1542,8 +1538,7 @@ export type UpdateForUserRequestResourcesAttributesItemResourceType =
   | "github_pull_request"
   | "media_content"
   | "uploaded_text_file";
-export const UpdateForUserRequestResourcesAttributesItemResourceType =
-  /*@__PURE__*/ S.String;
+export const UpdateForUserRequestResourcesAttributesItemResourceType = S.String;
 
 /** Metadata specific to the resource type. */
 export type UpdateForUserRequestResourcesAttributesItemMetadata =

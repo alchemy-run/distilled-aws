@@ -64,7 +64,7 @@ export const CreateAiGatewayRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAiGatewayRuleRequest>;
 
 export type AiGatewayRuleType = "deny" | "rewrite";
-export const AiGatewayRuleType = /*@__PURE__*/ S.String;
+export const AiGatewayRuleType = S.String;
 
 export interface AiGatewayRuleMatch {
   model?: string;
@@ -147,7 +147,7 @@ export const DeleteAiGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteAiGatewayRuleResponse>;
 
 export type ListAiGatewayRulesRequestIncludeDisabled = "true" | "false";
-export const ListAiGatewayRulesRequestIncludeDisabled = /*@__PURE__*/ S.String;
+export const ListAiGatewayRulesRequestIncludeDisabled = S.String;
 
 export interface ListAiGatewayRulesRequest {
   includeDisabled?: ListAiGatewayRulesRequestIncludeDisabled | (string & {});

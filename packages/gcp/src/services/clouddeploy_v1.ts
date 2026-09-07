@@ -1258,7 +1258,7 @@ export type Clouddeploy_RetryBackoffModeEnum =
   | "BACKOFF_MODE_UNSPECIFIED"
   | "BACKOFF_MODE_LINEAR"
   | "BACKOFF_MODE_EXPONENTIAL";
-export const Clouddeploy_RetryBackoffModeEnum = /*@__PURE__*/ S.String;
+export const Clouddeploy_RetryBackoffModeEnum = S.String;
 
 /** Retries the failed job. */
 export interface Clouddeploy_Retry {
@@ -1541,7 +1541,7 @@ export type TargetRenderRenderingStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "IN_PROGRESS";
-export const TargetRenderRenderingStateEnum = /*@__PURE__*/ S.String;
+export const TargetRenderRenderingStateEnum = S.String;
 
 export type TargetRenderFailureCauseEnum =
   | "FAILURE_CAUSE_UNSPECIFIED"
@@ -1552,7 +1552,7 @@ export type TargetRenderFailureCauseEnum =
   | "CUSTOM_ACTION_NOT_FOUND"
   | "DEPLOYMENT_STRATEGY_NOT_SUPPORTED"
   | "RENDER_FEATURE_NOT_SUPPORTED";
-export const TargetRenderFailureCauseEnum = /*@__PURE__*/ S.String;
+export const TargetRenderFailureCauseEnum = S.String;
 
 /** CloudRunRenderMetadata contains Cloud Run information associated with a `Release` render. */
 export interface CloudRunRenderMetadata {
@@ -1691,7 +1691,7 @@ export type ExecutionConfigUsagesItemEnum =
   | "PREDEPLOY"
   | "POSTDEPLOY"
   | "ANALYSIS";
-export const ExecutionConfigUsagesItemEnum = /*@__PURE__*/ S.String;
+export const ExecutionConfigUsagesItemEnum = S.String;
 
 export type ExecutionConfigUsagesItemEnumList = Array<
   ExecutionConfigUsagesItemEnum | (string & {})
@@ -1960,8 +1960,7 @@ export type SkaffoldSupportedConditionSkaffoldSupportStateEnum =
   | "SKAFFOLD_SUPPORT_STATE_SUPPORTED"
   | "SKAFFOLD_SUPPORT_STATE_MAINTENANCE_MODE"
   | "SKAFFOLD_SUPPORT_STATE_UNSUPPORTED";
-export const SkaffoldSupportedConditionSkaffoldSupportStateEnum =
-  /*@__PURE__*/ S.String;
+export const SkaffoldSupportedConditionSkaffoldSupportStateEnum = S.String;
 
 /** SkaffoldSupportedCondition contains information about when support for the release's version of Skaffold ends. */
 export interface SkaffoldSupportedCondition {
@@ -1995,7 +1994,7 @@ export type ToolVersionSupportedConditionToolVersionSupportStateEnum =
   | "TOOL_VERSION_SUPPORT_STATE_MAINTENANCE_MODE"
   | "TOOL_VERSION_SUPPORT_STATE_UNSUPPORTED";
 export const ToolVersionSupportedConditionToolVersionSupportStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** ToolVersionSupportedCondition contains information about when support for the release's version of a tool ends. */
 export interface ToolVersionSupportedCondition {
@@ -2105,7 +2104,7 @@ export type ReleaseRenderStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "IN_PROGRESS";
-export const ReleaseRenderStateEnum = /*@__PURE__*/ S.String;
+export const ReleaseRenderStateEnum = S.String;
 
 /** A `Release` resource in the Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed. */
 export interface Release {
@@ -2288,7 +2287,7 @@ export type RolloutApprovalStateEnum =
   | "DOES_NOT_NEED_APPROVAL"
   | "APPROVED"
   | "REJECTED";
-export const RolloutApprovalStateEnum = /*@__PURE__*/ S.String;
+export const RolloutApprovalStateEnum = S.String;
 
 /** A predeploy Job. */
 export interface PredeployJob {
@@ -2314,7 +2313,7 @@ export type JobStateEnum =
   | "ABORTED"
   | "SKIPPED"
   | "IGNORED";
-export const JobStateEnum = /*@__PURE__*/ S.String;
+export const JobStateEnum = S.String;
 
 /** An advanceChildRollout Job. */
 export type AdvanceChildRolloutJob = AbandonReleaseRequest;
@@ -2442,7 +2441,7 @@ export type PhaseStateEnum =
   | "FAILED"
   | "ABORTED"
   | "SKIPPED";
-export const PhaseStateEnum = /*@__PURE__*/ S.String;
+export const PhaseStateEnum = S.String;
 
 export type JobList = Array<Job>;
 export const JobList = /*@__PURE__*/ S.Array(Job) as any as S.Schema<JobList>;
@@ -2503,7 +2502,7 @@ export type RolloutStateEnum =
   | "CANCELLING"
   | "CANCELLED"
   | "HALTED";
-export const RolloutStateEnum = /*@__PURE__*/ S.String;
+export const RolloutStateEnum = S.String;
 
 export type RolloutDeployFailureCauseEnum =
   | "FAILURE_CAUSE_UNSPECIFIED"
@@ -2515,7 +2514,7 @@ export type RolloutDeployFailureCauseEnum =
   | "VERIFICATION_CONFIG_NOT_FOUND"
   | "CLOUD_BUILD_REQUEST_FAILED"
   | "OPERATION_FEATURE_NOT_SUPPORTED";
-export const RolloutDeployFailureCauseEnum = /*@__PURE__*/ S.String;
+export const RolloutDeployFailureCauseEnum = S.String;
 
 /** A `Rollout` resource in the Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`. */
 export interface Rollout {
@@ -2705,7 +2704,7 @@ export type WeeklyWindowDaysOfWeekItemEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeeklyWindowDaysOfWeekItemEnum = /*@__PURE__*/ S.String;
+export const WeeklyWindowDaysOfWeekItemEnum = S.String;
 
 export type WeeklyWindowDaysOfWeekItemEnumList = Array<
   WeeklyWindowDaysOfWeekItemEnum | (string & {})
@@ -2763,7 +2762,7 @@ export type RolloutRestrictionActionsItemEnum =
   | "RETRY_JOB"
   | "ROLLBACK"
   | "TERMINATE_JOBRUN";
-export const RolloutRestrictionActionsItemEnum = /*@__PURE__*/ S.String;
+export const RolloutRestrictionActionsItemEnum = S.String;
 
 export type RolloutRestrictionActionsItemEnumList = Array<
   RolloutRestrictionActionsItemEnum | (string & {})
@@ -2776,7 +2775,7 @@ export type RolloutRestrictionInvokersItemEnum =
   | "INVOKER_UNSPECIFIED"
   | "USER"
   | "DEPLOY_AUTOMATION";
-export const RolloutRestrictionInvokersItemEnum = /*@__PURE__*/ S.String;
+export const RolloutRestrictionInvokersItemEnum = S.String;
 
 export type RolloutRestrictionInvokersItemEnumList = Array<
   RolloutRestrictionInvokersItemEnum | (string & {})
@@ -3275,7 +3274,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -3585,7 +3584,7 @@ export type RollbackAttemptStateEnum =
   | "REPAIR_STATE_IN_PROGRESS"
   | "REPAIR_STATE_PENDING"
   | "REPAIR_STATE_ABORTED";
-export const RollbackAttemptStateEnum = /*@__PURE__*/ S.String;
+export const RollbackAttemptStateEnum = S.String;
 
 /** RollbackAttempt represents an action of rolling back a Cloud Deploy 'Target'. */
 export interface RollbackAttempt {
@@ -3616,7 +3615,7 @@ export type RetryPhaseBackoffModeEnum =
   | "BACKOFF_MODE_UNSPECIFIED"
   | "BACKOFF_MODE_LINEAR"
   | "BACKOFF_MODE_EXPONENTIAL";
-export const RetryPhaseBackoffModeEnum = /*@__PURE__*/ S.String;
+export const RetryPhaseBackoffModeEnum = S.String;
 
 export type RetryAttemptStateEnum =
   | "REPAIR_STATE_UNSPECIFIED"
@@ -3626,7 +3625,7 @@ export type RetryAttemptStateEnum =
   | "REPAIR_STATE_IN_PROGRESS"
   | "REPAIR_STATE_PENDING"
   | "REPAIR_STATE_ABORTED";
-export const RetryAttemptStateEnum = /*@__PURE__*/ S.String;
+export const RetryAttemptStateEnum = S.String;
 
 /** RetryAttempt represents an action of retrying the failed Cloud Deploy job. */
 export interface RetryAttempt {
@@ -3744,7 +3743,7 @@ export type AutomationRunStateEnum =
   | "IN_PROGRESS"
   | "PENDING"
   | "ABORTED";
-export const AutomationRunStateEnum = /*@__PURE__*/ S.String;
+export const AutomationRunStateEnum = S.String;
 
 /** An `AutomationRun` resource in the Cloud Deploy API. An `AutomationRun` represents an execution instance of an automation rule. */
 export interface AutomationRun {
@@ -3910,7 +3909,7 @@ export type DeployJobRunFailureCauseEnum =
   | "MISSING_RESOURCES_FOR_CANARY"
   | "CLOUD_BUILD_REQUEST_FAILED"
   | "DEPLOY_FEATURE_NOT_SUPPORTED";
-export const DeployJobRunFailureCauseEnum = /*@__PURE__*/ S.String;
+export const DeployJobRunFailureCauseEnum = S.String;
 
 /** CustomTargetDeployMetadata contains information from a Custom Target deploy operation. */
 export interface CustomTargetDeployMetadata {
@@ -3990,7 +3989,7 @@ export type JobRunStateEnum =
   | "FAILED"
   | "TERMINATING"
   | "TERMINATED";
-export const JobRunStateEnum = /*@__PURE__*/ S.String;
+export const JobRunStateEnum = S.String;
 
 export type VerifyJobRunFailureCauseEnum =
   | "FAILURE_CAUSE_UNSPECIFIED"
@@ -3999,7 +3998,7 @@ export type VerifyJobRunFailureCauseEnum =
   | "DEADLINE_EXCEEDED"
   | "VERIFICATION_CONFIG_NOT_FOUND"
   | "CLOUD_BUILD_REQUEST_FAILED";
-export const VerifyJobRunFailureCauseEnum = /*@__PURE__*/ S.String;
+export const VerifyJobRunFailureCauseEnum = S.String;
 
 /** VerifyJobRunMetadata contains metadata about the verify `JobRun`. */
 export interface VerifyJobRunMetadata {
@@ -4046,7 +4045,7 @@ export type PostdeployJobRunFailureCauseEnum =
   | "EXECUTION_FAILED"
   | "DEADLINE_EXCEEDED"
   | "CLOUD_BUILD_REQUEST_FAILED";
-export const PostdeployJobRunFailureCauseEnum = /*@__PURE__*/ S.String;
+export const PostdeployJobRunFailureCauseEnum = S.String;
 
 /** PostdeployJobRunMetadata contains metadata about the postdeploy `JobRun`. */
 export interface PostdeployJobRunMetadata {
@@ -4102,7 +4101,7 @@ export type PredeployJobRunFailureCauseEnum =
   | "EXECUTION_FAILED"
   | "DEADLINE_EXCEEDED"
   | "CLOUD_BUILD_REQUEST_FAILED";
-export const PredeployJobRunFailureCauseEnum = /*@__PURE__*/ S.String;
+export const PredeployJobRunFailureCauseEnum = S.String;
 
 /** PredeployJobRun contains information specific to a predeploy `JobRun`. */
 export interface PredeployJobRun {
@@ -4183,7 +4182,7 @@ export type CustomCheckStatusFailureCauseEnum =
   | "EXECUTION_FAILED"
   | "DEADLINE_EXCEEDED"
   | "CLOUD_BUILD_REQUEST_FAILED";
-export const CustomCheckStatusFailureCauseEnum = /*@__PURE__*/ S.String;
+export const CustomCheckStatusFailureCauseEnum = S.String;
 
 /** CustomCheckStatus contains information specific to a single iteration of a custom analysis job. */
 export interface CustomCheckStatus {

@@ -121,7 +121,7 @@ export const GetRecordsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRecordsInput",
 }) as any as S.Schema<GetRecordsInput>;
 export type OriginType = "USER" | "REPLICATION" | "TTL" | (string & {});
-export const OriginType = /*@__PURE__*/ S.String;
+export const OriginType = S.String;
 
 export interface KeyspacesMetadata {
   expirationTime?: string;
@@ -1021,7 +1021,7 @@ export const Record = /*@__PURE__*/ S.suspend(() =>
 export type RecordList = Record[];
 export const RecordList = /*@__PURE__*/ S.Array(Record);
 export type IteratorPosition = "AT_TIP" | "BEHIND_TIP" | (string & {});
-export const IteratorPosition = /*@__PURE__*/ S.String;
+export const IteratorPosition = S.String;
 
 export interface IteratorDescription {
   iteratorPosition?: IteratorPosition;
@@ -1053,7 +1053,7 @@ export type ShardIteratorType =
   | "AT_SEQUENCE_NUMBER"
   | "AFTER_SEQUENCE_NUMBER"
   | (string & {});
-export const ShardIteratorType = /*@__PURE__*/ S.String;
+export const ShardIteratorType = S.String;
 
 export interface GetShardIteratorInput {
   streamArn: string;
@@ -1082,7 +1082,7 @@ export const GetShardIteratorOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetShardIteratorOutput",
 }) as any as S.Schema<GetShardIteratorOutput>;
 export type ShardFilterType = "CHILD_SHARDS" | (string & {});
-export const ShardFilterType = /*@__PURE__*/ S.String;
+export const ShardFilterType = S.String;
 
 export interface ShardFilter {
   type?: ShardFilterType;
@@ -1117,7 +1117,7 @@ export type StreamStatus =
   | "DISABLING"
   | "DISABLED"
   | (string & {});
-export const StreamStatus = /*@__PURE__*/ S.String;
+export const StreamStatus = S.String;
 
 export type StreamViewType =
   | "NEW_IMAGE"
@@ -1125,7 +1125,7 @@ export type StreamViewType =
   | "NEW_AND_OLD_IMAGES"
   | "KEYS_ONLY"
   | (string & {});
-export const StreamViewType = /*@__PURE__*/ S.String;
+export const StreamViewType = S.String;
 
 export type KeyspaceName = string;
 export type TableName = string;
@@ -1236,7 +1236,7 @@ export type ValidationExceptionType =
   | "ExpiredIterator"
   | "ExpiredNextToken"
   | (string & {});
-export const ValidationExceptionType = /*@__PURE__*/ S.String;
+export const ValidationExceptionType = S.String;
 
 export type GetRecordsError =
   | AccessDeniedException

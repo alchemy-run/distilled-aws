@@ -230,7 +230,7 @@ export const AddTagsToCertificateResponse = /*@__PURE__*/ S.suspend(() =>
 export type AcmeEndpointArn = string;
 export type DomainName = string;
 export type DomainScopeOption = "ENABLED" | "DISABLED" | (string & {});
-export const DomainScopeOption = /*@__PURE__*/ S.String;
+export const DomainScopeOption = S.String;
 
 export interface DomainScope {
   ExactDomain?: DomainScopeOption;
@@ -301,17 +301,17 @@ export const CreateAcmeDomainValidationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateAcmeDomainValidationResponse",
 }) as any as S.Schema<CreateAcmeDomainValidationResponse>;
 export type AcmeAuthorizationBehavior = "PRE_APPROVED" | (string & {});
-export const AcmeAuthorizationBehavior = /*@__PURE__*/ S.String;
+export const AcmeAuthorizationBehavior = S.String;
 
 export type AcmeContact = "REQUIRED" | "NOT_REQUIRED" | (string & {});
-export const AcmeContact = /*@__PURE__*/ S.String;
+export const AcmeContact = S.String;
 
 export type PublicKeyAlgorithm =
   | "RSA_2048"
   | "EC_prime256v1"
   | "EC_secp384r1"
   | (string & {});
-export const PublicKeyAlgorithm = /*@__PURE__*/ S.String;
+export const PublicKeyAlgorithm = S.String;
 
 export type PublicKeyAlgorithmList = PublicKeyAlgorithm[];
 export const PublicKeyAlgorithmList = /*@__PURE__*/ S.Array(PublicKeyAlgorithm);
@@ -369,7 +369,7 @@ export const CreateAcmeEndpointResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAcmeEndpointResponse>;
 export type RoleArn = string;
 export type TimeType = "MINUTES" | "HOURS" | "DAYS" | (string & {});
-export const TimeType = /*@__PURE__*/ S.String;
+export const TimeType = S.String;
 
 export interface Expiration {
   Value: number;
@@ -564,7 +564,7 @@ export type AcmeAccountStatus =
   | "DEACTIVATED"
   | "REVOKED"
   | (string & {});
-export const AcmeAccountStatus = /*@__PURE__*/ S.String;
+export const AcmeAccountStatus = S.String;
 
 export type ContactList = string[];
 export const ContactList = /*@__PURE__*/ S.Array(S.String);
@@ -613,10 +613,10 @@ export const DescribeAcmeDomainValidationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeAcmeDomainValidationRequest",
 }) as any as S.Schema<DescribeAcmeDomainValidationRequest>;
 export type PrevalidationType = "DNS_PREVALIDATION" | (string & {});
-export const PrevalidationType = /*@__PURE__*/ S.String;
+export const PrevalidationType = S.String;
 
 export type RecordType = "CNAME" | (string & {});
-export const RecordType = /*@__PURE__*/ S.String;
+export const RecordType = S.String;
 
 export interface ResourceRecord {
   Name: string;
@@ -652,7 +652,7 @@ export type AcmeDomainValidationStatus =
   | "INVALID"
   | "DELETING"
   | (string & {});
-export const AcmeDomainValidationStatus = /*@__PURE__*/ S.String;
+export const AcmeDomainValidationStatus = S.String;
 
 export type AcmeDomainValidationFailureReason =
   | "ACCESS_DENIED"
@@ -665,7 +665,7 @@ export type AcmeDomainValidationFailureReason =
   | "INVALID_PUBLIC_DOMAIN"
   | "TIMED_OUT"
   | (string & {});
-export const AcmeDomainValidationFailureReason = /*@__PURE__*/ S.String;
+export const AcmeDomainValidationFailureReason = S.String;
 
 export interface FailureDetails {
   Reason?: AcmeDomainValidationFailureReason;
@@ -735,7 +735,7 @@ export type AcmeEndpointStatus =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const AcmeEndpointStatus = /*@__PURE__*/ S.String;
+export const AcmeEndpointStatus = S.String;
 
 export interface AcmeEndpoint {
   AcmeEndpointArn?: string;
@@ -823,7 +823,7 @@ export type DomainNameString = string;
 export type DomainList = string[];
 export const DomainList = /*@__PURE__*/ S.Array(S.String);
 export type CertificateManagedBy = "CLOUDFRONT" | (string & {});
-export const CertificateManagedBy = /*@__PURE__*/ S.String;
+export const CertificateManagedBy = S.String;
 
 export type ValidationEmailList = string[];
 export const ValidationEmailList = /*@__PURE__*/ S.Array(S.String);
@@ -832,7 +832,7 @@ export type DomainStatus =
   | "SUCCESS"
   | "FAILED"
   | (string & {});
-export const DomainStatus = /*@__PURE__*/ S.String;
+export const DomainStatus = S.String;
 
 export interface HttpRedirect {
   RedirectFrom?: string;
@@ -845,7 +845,7 @@ export const HttpRedirect = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "HttpRedirect" }) as any as S.Schema<HttpRedirect>;
 export type ValidationMethod = "EMAIL" | "DNS" | "HTTP" | (string & {});
-export const ValidationMethod = /*@__PURE__*/ S.String;
+export const ValidationMethod = S.String;
 
 export interface DomainValidation {
   DomainName: string;
@@ -880,7 +880,7 @@ export type CertificateStatus =
   | "REVOKED"
   | "FAILED"
   | (string & {});
-export const CertificateStatus = /*@__PURE__*/ S.String;
+export const CertificateStatus = S.String;
 
 export type RevocationReason =
   | "UNSPECIFIED"
@@ -895,7 +895,7 @@ export type RevocationReason =
   | "PRIVILEGE_WITHDRAWN"
   | "A_A_COMPROMISE"
   | (string & {});
-export const RevocationReason = /*@__PURE__*/ S.String;
+export const RevocationReason = S.String;
 
 export type KeyAlgorithm =
   | "RSA_1024"
@@ -906,7 +906,7 @@ export type KeyAlgorithm =
   | "EC_secp384r1"
   | "EC_secp521r1"
   | (string & {});
-export const KeyAlgorithm = /*@__PURE__*/ S.String;
+export const KeyAlgorithm = S.String;
 
 export type InUseList = string[];
 export const InUseList = /*@__PURE__*/ S.Array(S.String);
@@ -929,14 +929,14 @@ export type FailureReason =
   | "SLR_NOT_FOUND"
   | "OTHER"
   | (string & {});
-export const FailureReason = /*@__PURE__*/ S.String;
+export const FailureReason = S.String;
 
 export type CertificateType =
   | "IMPORTED"
   | "AMAZON_ISSUED"
   | "PRIVATE"
   | (string & {});
-export const CertificateType = /*@__PURE__*/ S.String;
+export const CertificateType = S.String;
 
 export type RenewalStatus =
   | "PENDING_AUTO_RENEWAL"
@@ -944,7 +944,7 @@ export type RenewalStatus =
   | "SUCCESS"
   | "FAILED"
   | (string & {});
-export const RenewalStatus = /*@__PURE__*/ S.String;
+export const RenewalStatus = S.String;
 
 export interface RenewalSummary {
   RenewalStatus: RenewalStatus;
@@ -973,7 +973,7 @@ export type KeyUsageName =
   | "ANY"
   | "CUSTOM"
   | (string & {});
-export const KeyUsageName = /*@__PURE__*/ S.String;
+export const KeyUsageName = S.String;
 
 export interface KeyUsage {
   Name?: KeyUsageName;
@@ -997,7 +997,7 @@ export type ExtendedKeyUsageName =
   | "NONE"
   | "CUSTOM"
   | (string & {});
-export const ExtendedKeyUsageName = /*@__PURE__*/ S.String;
+export const ExtendedKeyUsageName = S.String;
 
 export interface ExtendedKeyUsage {
   Name?: ExtendedKeyUsageName;
@@ -1014,16 +1014,16 @@ export const ExtendedKeyUsage = /*@__PURE__*/ S.suspend(() =>
 export type ExtendedKeyUsageList = ExtendedKeyUsage[];
 export const ExtendedKeyUsageList = /*@__PURE__*/ S.Array(ExtendedKeyUsage);
 export type RenewalEligibility = "ELIGIBLE" | "INELIGIBLE" | (string & {});
-export const RenewalEligibility = /*@__PURE__*/ S.String;
+export const RenewalEligibility = S.String;
 
 export type CertificateTransparencyLoggingPreference =
   | "ENABLED"
   | "DISABLED"
   | (string & {});
-export const CertificateTransparencyLoggingPreference = /*@__PURE__*/ S.String;
+export const CertificateTransparencyLoggingPreference = S.String;
 
 export type CertificateExport = "ENABLED" | "DISABLED" | (string & {});
-export const CertificateExport = /*@__PURE__*/ S.String;
+export const CertificateExport = S.String;
 
 export interface CertificateOptions {
   CertificateTransparencyLoggingPreference?: CertificateTransparencyLoggingPreference;
@@ -1046,10 +1046,10 @@ export type UpdateStatus =
   | "SUCCESS"
   | "FAILED"
   | (string & {});
-export const UpdateStatus = /*@__PURE__*/ S.String;
+export const UpdateStatus = S.String;
 
 export type UpdateType = "DOMAIN_VALIDATION_METHOD" | (string & {});
-export const UpdateType = /*@__PURE__*/ S.String;
+export const UpdateType = S.String;
 
 export interface DomainValidationMethodUpdateSummary {
   From?: ValidationMethod;
@@ -1086,7 +1086,7 @@ export type CertificateKeyPairOrigin =
   | "ACME"
   | "CUSTOMER_PROVIDED"
   | (string & {});
-export const CertificateKeyPairOrigin = /*@__PURE__*/ S.String;
+export const CertificateKeyPairOrigin = S.String;
 
 export type AcmeAccountId = string;
 export interface CertificateDetail {
@@ -1730,10 +1730,10 @@ export const Filters = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Filters" }) as any as S.Schema<Filters>;
 export type SortBy = "CREATED_AT" | (string & {});
-export const SortBy = /*@__PURE__*/ S.String;
+export const SortBy = S.String;
 
 export type SortOrder = "ASCENDING" | "DESCENDING" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface ListCertificatesRequest {
   CertificateStatuses?: CertificateStatus[];
@@ -2144,7 +2144,7 @@ export const CertificateFilterStatementList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CertificateFilterStatementList>;
 export type FilterString = string;
 export type ComparisonOperator = "CONTAINS" | "EQUALS" | (string & {});
-export const ComparisonOperator = /*@__PURE__*/ S.String;
+export const ComparisonOperator = S.String;
 
 export interface CommonNameFilter {
   Value: string;
@@ -2507,13 +2507,13 @@ export type SearchCertificatesSortBy =
   | "ACME_ACCOUNT_ID"
   | "CERTIFICATE_KEY_PAIR_ORIGIN"
   | (string & {});
-export const SearchCertificatesSortBy = /*@__PURE__*/ S.String;
+export const SearchCertificatesSortBy = S.String;
 
 export type SearchCertificatesSortOrder =
   | "ASCENDING"
   | "DESCENDING"
   | (string & {});
-export const SearchCertificatesSortOrder = /*@__PURE__*/ S.String;
+export const SearchCertificatesSortOrder = S.String;
 
 export interface SearchCertificatesRequest {
   FilterStatement?: CertificateFilterStatement;

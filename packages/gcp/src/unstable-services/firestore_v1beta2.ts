@@ -69,21 +69,18 @@ export type GoogleFirestoreAdminV1beta2IndexQueryScopeEnum =
   | "QUERY_SCOPE_UNSPECIFIED"
   | "COLLECTION"
   | "COLLECTION_GROUP";
-export const GoogleFirestoreAdminV1beta2IndexQueryScopeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1beta2IndexQueryScopeEnum = S.String;
 
 export type GoogleFirestoreAdminV1beta2IndexFieldOrderEnum =
   | "ORDER_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const GoogleFirestoreAdminV1beta2IndexFieldOrderEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1beta2IndexFieldOrderEnum = S.String;
 
 export type GoogleFirestoreAdminV1beta2IndexFieldArrayConfigEnum =
   | "ARRAY_CONFIG_UNSPECIFIED"
   | "CONTAINS";
-export const GoogleFirestoreAdminV1beta2IndexFieldArrayConfigEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1beta2IndexFieldArrayConfigEnum = S.String;
 
 /** A field in an index. The field_path describes which field is indexed, the value_mode describes how the field value is indexed. */
 export interface GoogleFirestoreAdminV1beta2IndexField {
@@ -120,7 +117,7 @@ export type GoogleFirestoreAdminV1beta2IndexStateEnum =
   | "CREATING"
   | "READY"
   | "NEEDS_REPAIR";
-export const GoogleFirestoreAdminV1beta2IndexStateEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1beta2IndexStateEnum = S.String;
 
 /** Cloud Firestore indexes enable simple and complex queries against documents in a database. */
 export interface GoogleFirestoreAdminV1beta2Index {

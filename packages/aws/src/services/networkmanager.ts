@@ -275,7 +275,7 @@ export type AttachmentType =
   | "DIRECT_CONNECT_GATEWAY"
   | "TRANSIT_GATEWAY_ROUTE_TABLE"
   | (string & {});
-export const AttachmentType = /*@__PURE__*/ S.String;
+export const AttachmentType = S.String;
 
 export type AttachmentState =
   | "REJECTED"
@@ -288,7 +288,7 @@ export type AttachmentState =
   | "PENDING_TAG_ACCEPTANCE"
   | "DELETING"
   | (string & {});
-export const AttachmentState = /*@__PURE__*/ S.String;
+export const AttachmentState = S.String;
 
 export type ExternalRegionCode = string;
 export type ExternalRegionCodeList = string[];
@@ -350,7 +350,7 @@ export type AttachmentErrorCode =
   | "VPN_EXISTING_ASSOCIATIONS"
   | "VPC_UNSUPPORTED_FEATURES"
   | (string & {});
-export const AttachmentErrorCode = /*@__PURE__*/ S.String;
+export const AttachmentErrorCode = S.String;
 
 export type ServerSideString = string;
 export interface AttachmentError {
@@ -461,7 +461,7 @@ export type ConnectPeerAssociationState =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const ConnectPeerAssociationState = /*@__PURE__*/ S.String;
+export const ConnectPeerAssociationState = S.String;
 
 export interface ConnectPeerAssociation {
   ConnectPeerId?: string;
@@ -524,7 +524,7 @@ export type CustomerGatewayAssociationState =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const CustomerGatewayAssociationState = /*@__PURE__*/ S.String;
+export const CustomerGatewayAssociationState = S.String;
 
 export interface CustomerGatewayAssociation {
   CustomerGatewayArn?: string;
@@ -586,7 +586,7 @@ export type LinkAssociationState =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const LinkAssociationState = /*@__PURE__*/ S.String;
+export const LinkAssociationState = S.String;
 
 export interface LinkAssociation {
   GlobalNetworkId?: string;
@@ -648,7 +648,7 @@ export type TransitGatewayConnectPeerAssociationState =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const TransitGatewayConnectPeerAssociationState = /*@__PURE__*/ S.String;
+export const TransitGatewayConnectPeerAssociationState = S.String;
 
 export interface TransitGatewayConnectPeerAssociation {
   TransitGatewayConnectPeerArn?: string;
@@ -683,7 +683,7 @@ export const AssociateTransitGatewayConnectPeerResponse =
     identifier: "AssociateTransitGatewayConnectPeerResponse",
   }) as any as S.Schema<AssociateTransitGatewayConnectPeerResponse>;
 export type TunnelProtocol = "GRE" | "NO_ENCAP" | (string & {});
-export const TunnelProtocol = /*@__PURE__*/ S.String;
+export const TunnelProtocol = S.String;
 
 export interface ConnectAttachmentOptions {
   Protocol?: TunnelProtocol;
@@ -789,7 +789,7 @@ export type ConnectionState =
   | "DELETING"
   | "UPDATING"
   | (string & {});
-export const ConnectionState = /*@__PURE__*/ S.String;
+export const ConnectionState = S.String;
 
 export interface Connection {
   ConnectionId?: string;
@@ -876,7 +876,7 @@ export type ConnectPeerState =
   | "AVAILABLE"
   | "DELETING"
   | (string & {});
-export const ConnectPeerState = /*@__PURE__*/ S.String;
+export const ConnectPeerState = S.String;
 
 export interface ConnectPeerBgpConfiguration {
   CoreNetworkAsn?: number;
@@ -924,7 +924,7 @@ export type ConnectPeerErrorCode =
   | "INVALID_INSIDE_CIDR_BLOCK"
   | "NO_ASSOCIATED_CIDR_BLOCK"
   | (string & {});
-export const ConnectPeerErrorCode = /*@__PURE__*/ S.String;
+export const ConnectPeerErrorCode = S.String;
 
 export interface ConnectPeerError {
   Code?: ConnectPeerErrorCode;
@@ -1012,7 +1012,7 @@ export type CoreNetworkState =
   | "AVAILABLE"
   | "DELETING"
   | (string & {});
-export const CoreNetworkState = /*@__PURE__*/ S.String;
+export const CoreNetworkState = S.String;
 
 export interface CoreNetworkSegment {
   Name?: string;
@@ -1220,7 +1220,7 @@ export type DeviceState =
   | "DELETING"
   | "UPDATING"
   | (string & {});
-export const DeviceState = /*@__PURE__*/ S.String;
+export const DeviceState = S.String;
 
 export interface Device {
   DeviceId?: string;
@@ -1348,7 +1348,7 @@ export type GlobalNetworkState =
   | "DELETING"
   | "UPDATING"
   | (string & {});
-export const GlobalNetworkState = /*@__PURE__*/ S.String;
+export const GlobalNetworkState = S.String;
 
 export interface GlobalNetwork {
   GlobalNetworkId?: string;
@@ -1427,7 +1427,7 @@ export type LinkState =
   | "DELETING"
   | "UPDATING"
   | (string & {});
-export const LinkState = /*@__PURE__*/ S.String;
+export const LinkState = S.String;
 
 export interface Link {
   LinkId?: string;
@@ -1500,7 +1500,7 @@ export type SiteState =
   | "DELETING"
   | "UPDATING"
   | (string & {});
-export const SiteState = /*@__PURE__*/ S.String;
+export const SiteState = S.String;
 
 export interface Site {
   SiteId?: string;
@@ -1610,7 +1610,7 @@ export const CreateTransitGatewayPeeringRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateTransitGatewayPeeringRequest>;
 export type PeeringId = string;
 export type PeeringType = "TRANSIT_GATEWAY" | (string & {});
-export const PeeringType = /*@__PURE__*/ S.String;
+export const PeeringType = S.String;
 
 export type PeeringState =
   | "CREATING"
@@ -1618,7 +1618,7 @@ export type PeeringState =
   | "AVAILABLE"
   | "DELETING"
   | (string & {});
-export const PeeringState = /*@__PURE__*/ S.String;
+export const PeeringState = S.String;
 
 export type PeeringErrorCode =
   | "TRANSIT_GATEWAY_NOT_FOUND"
@@ -1628,7 +1628,7 @@ export type PeeringErrorCode =
   | "EDGE_LOCATION_PEER_DUPLICATE"
   | "INVALID_TRANSIT_GATEWAY_STATE"
   | (string & {});
-export const PeeringErrorCode = /*@__PURE__*/ S.String;
+export const PeeringErrorCode = S.String;
 
 export interface PermissionsErrorContext {
   MissingPermission?: string;
@@ -1967,7 +1967,7 @@ export const DeleteCoreNetworkPolicyVersionRequest = /*@__PURE__*/ S.suspend(
   identifier: "DeleteCoreNetworkPolicyVersionRequest",
 }) as any as S.Schema<DeleteCoreNetworkPolicyVersionRequest>;
 export type CoreNetworkPolicyAlias = "LIVE" | "LATEST" | (string & {});
-export const CoreNetworkPolicyAlias = /*@__PURE__*/ S.String;
+export const CoreNetworkPolicyAlias = S.String;
 
 export type ChangeSetState =
   | "PENDING_GENERATION"
@@ -1977,7 +1977,7 @@ export type ChangeSetState =
   | "EXECUTION_SUCCEEDED"
   | "OUT_OF_DATE"
   | (string & {});
-export const ChangeSetState = /*@__PURE__*/ S.String;
+export const ChangeSetState = S.String;
 
 export interface CoreNetworkPolicyError {
   ErrorCode: string;
@@ -2270,7 +2270,7 @@ export type TransitGatewayRegistrationState =
   | "DELETED"
   | "FAILED"
   | (string & {});
-export const TransitGatewayRegistrationState = /*@__PURE__*/ S.String;
+export const TransitGatewayRegistrationState = S.String;
 
 export interface TransitGatewayRegistrationStateReason {
   Code?: TransitGatewayRegistrationState;
@@ -2737,10 +2737,10 @@ export type ChangeType =
   | "SEGMENT_ACTIONS_CONFIGURATION"
   | "ATTACHMENT_POLICIES_CONFIGURATION"
   | (string & {});
-export const ChangeType = /*@__PURE__*/ S.String;
+export const ChangeType = S.String;
 
 export type ChangeAction = "ADD" | "MODIFY" | "REMOVE" | (string & {});
-export const ChangeAction = /*@__PURE__*/ S.String;
+export const ChangeAction = S.String;
 
 export type ChangeStatus =
   | "NOT_STARTED"
@@ -2748,10 +2748,10 @@ export type ChangeStatus =
   | "COMPLETE"
   | "FAILED"
   | (string & {});
-export const ChangeStatus = /*@__PURE__*/ S.String;
+export const ChangeStatus = S.String;
 
 export type RoutingPolicyDirection = "inbound" | "outbound" | (string & {});
-export const RoutingPolicyDirection = /*@__PURE__*/ S.String;
+export const RoutingPolicyDirection = S.String;
 
 export interface RoutingPolicyAssociationDetail {
   RoutingPolicyNames?: string[];
@@ -2864,10 +2864,10 @@ export type SegmentActionServiceInsertion =
   | "send-via"
   | "send-to"
   | (string & {});
-export const SegmentActionServiceInsertion = /*@__PURE__*/ S.String;
+export const SegmentActionServiceInsertion = S.String;
 
 export type SendViaMode = "dual-hop" | "single-hop" | (string & {});
-export const SendViaMode = /*@__PURE__*/ S.String;
+export const SendViaMode = S.String;
 
 export type WhenSentToSegmentsList = string[];
 export const WhenSentToSegmentsList = /*@__PURE__*/ S.Array(S.String);
@@ -3519,12 +3519,12 @@ export const RouteTableIdentifier = /*@__PURE__*/ S.suspend(() =>
   identifier: "RouteTableIdentifier",
 }) as any as S.Schema<RouteTableIdentifier>;
 export type RouteState = "ACTIVE" | "BLACKHOLE" | (string & {});
-export const RouteState = /*@__PURE__*/ S.String;
+export const RouteState = S.String;
 
 export type RouteStateList = RouteState[];
 export const RouteStateList = /*@__PURE__*/ S.Array(RouteState);
 export type RouteType = "PROPAGATED" | "STATIC" | (string & {});
-export const RouteType = /*@__PURE__*/ S.String;
+export const RouteType = S.String;
 
 export type RouteTypeList = RouteType[];
 export const RouteTypeList = /*@__PURE__*/ S.Array(RouteType);
@@ -3582,7 +3582,7 @@ export type RouteTableType =
   | "CORE_NETWORK_SEGMENT"
   | "NETWORK_FUNCTION_GROUP"
   | (string & {});
-export const RouteTableType = /*@__PURE__*/ S.String;
+export const RouteTableType = S.String;
 
 export type TransitGatewayAttachmentId = string;
 export interface NetworkRouteDestination {
@@ -3690,10 +3690,10 @@ export const GetNetworkTelemetryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetNetworkTelemetryRequest",
 }) as any as S.Schema<GetNetworkTelemetryRequest>;
 export type ConnectionType = "BGP" | "IPSEC" | (string & {});
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 export type ConnectionStatus = "UP" | "DOWN" | (string & {});
-export const ConnectionStatus = /*@__PURE__*/ S.String;
+export const ConnectionStatus = S.String;
 
 export interface ConnectionHealth {
   Type?: ConnectionType;
@@ -3804,7 +3804,7 @@ export type RouteAnalysisStatus =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const RouteAnalysisStatus = /*@__PURE__*/ S.String;
+export const RouteAnalysisStatus = S.String;
 
 export type TransitGatewayAttachmentArn = string;
 export interface RouteAnalysisEndpointOptions {
@@ -3825,7 +3825,7 @@ export type RouteAnalysisCompletionResultCode =
   | "CONNECTED"
   | "NOT_CONNECTED"
   | (string & {});
-export const RouteAnalysisCompletionResultCode = /*@__PURE__*/ S.String;
+export const RouteAnalysisCompletionResultCode = S.String;
 
 export type RouteAnalysisCompletionReasonCode =
   | "TRANSIT_GATEWAY_ATTACHMENT_NOT_FOUND"
@@ -3840,7 +3840,7 @@ export type RouteAnalysisCompletionReasonCode =
   | "POSSIBLE_MIDDLEBOX"
   | "NO_DESTINATION_ARN_PROVIDED"
   | (string & {});
-export const RouteAnalysisCompletionReasonCode = /*@__PURE__*/ S.String;
+export const RouteAnalysisCompletionReasonCode = S.String;
 
 export type ReasonContextKey = string;
 export type ReasonContextValue = string;
@@ -5513,7 +5513,7 @@ export type ValidationExceptionReason =
   | "FieldValidationFailed"
   | "Other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

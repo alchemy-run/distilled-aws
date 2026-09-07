@@ -88,7 +88,7 @@ export const TaskUserBasicInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** * `personal` - Personal * `general` - General */
 export type ChannelSystemRoleEnum = "personal" | "general";
-export const ChannelSystemRoleEnum = /*@__PURE__*/ S.String;
+export const ChannelSystemRoleEnum = S.String;
 
 /** Response shape for a task channel, read from a frozen ``ChannelDTO``. */
 export interface ChannelDTO {
@@ -121,7 +121,7 @@ export const ChannelDTO = /*@__PURE__*/ S.suspend(() =>
 
 /** * `context_created` - context_created * `context_md_building` - context_md_building */
 export type EventEnum = "context_created" | "context_md_building";
-export const EventEnum = /*@__PURE__*/ S.String;
+export const EventEnum = S.String;
 
 export interface CreateTaskChannelsFeedRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

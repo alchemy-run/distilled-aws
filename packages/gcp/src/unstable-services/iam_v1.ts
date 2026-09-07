@@ -221,7 +221,7 @@ export const AccessRestrictions = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccessRestrictions>;
 
 export type WorkforcePoolStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const WorkforcePoolStateEnum = /*@__PURE__*/ S.String;
+export const WorkforcePoolStateEnum = S.String;
 
 /** Represents a collection of external workforces. Provides namespaces for federated users that can be referenced in IAM policies. */
 export interface WorkforcePool {
@@ -286,13 +286,13 @@ export const CreateLocationsWorkforcePoolsRequest = /*@__PURE__*/ S.suspend(
 export type WorkforcePoolProviderScimUsageEnum =
   | "SCIM_USAGE_UNSPECIFIED"
   | "ENABLED_FOR_GROUPS";
-export const WorkforcePoolProviderScimUsageEnum = /*@__PURE__*/ S.String;
+export const WorkforcePoolProviderScimUsageEnum = S.String;
 
 export type WorkforcePoolProviderStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkforcePoolProviderStateEnum = /*@__PURE__*/ S.String;
+export const WorkforcePoolProviderStateEnum = S.String;
 
 export type GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2ClientAttributesTypeEnum =
   | "ATTRIBUTES_TYPE_UNSPECIFIED"
@@ -300,7 +300,7 @@ export type GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2ClientAttr
   | "AZURE_AD_GROUPS_ID"
   | "AZURE_AD_GROUPS_DISPLAY_NAME";
 export const GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2ClientAttributesTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Representation of the value of the client secret. */
 export interface GoogleIamAdminV1WorkforcePoolProviderOidcClientSecretValue {
@@ -409,14 +409,14 @@ export type GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfigResponseTypeEnu
   | "CODE"
   | "ID_TOKEN";
 export const GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfigResponseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehaviorEnum =
   | "ASSERTION_CLAIMS_BEHAVIOR_UNSPECIFIED"
   | "MERGE_USER_INFO_OVER_ID_TOKEN_CLAIMS"
   | "ONLY_ID_TOKEN_CLAIMS";
 export const GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfigAssertionClaimsBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for web single sign-on for the OIDC provider. */
 export interface GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig {
@@ -566,17 +566,17 @@ export const CreateLocationsWorkforcePoolsProvidersRequest =
 export type WorkforcePoolProviderKeyUseEnum =
   | "KEY_USE_UNSPECIFIED"
   | "ENCRYPTION";
-export const WorkforcePoolProviderKeyUseEnum = /*@__PURE__*/ S.String;
+export const WorkforcePoolProviderKeyUseEnum = S.String;
 
 export type KeyDataKeySpecEnum =
   | "KEY_SPEC_UNSPECIFIED"
   | "RSA_2048"
   | "RSA_3072"
   | "RSA_4096";
-export const KeyDataKeySpecEnum = /*@__PURE__*/ S.String;
+export const KeyDataKeySpecEnum = S.String;
 
 export type KeyDataFormatEnum = "KEY_FORMAT_UNSPECIFIED" | "RSA_X509_PEM";
-export const KeyDataFormatEnum = /*@__PURE__*/ S.String;
+export const KeyDataFormatEnum = S.String;
 
 /** Represents a public key data along with its format. */
 export interface KeyData {
@@ -605,7 +605,7 @@ export type WorkforcePoolProviderKeyStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkforcePoolProviderKeyStateEnum = /*@__PURE__*/ S.String;
+export const WorkforcePoolProviderKeyStateEnum = S.String;
 
 /** Represents a public key configuration for a Workforce Pool Provider. The key can be configured in your identity provider to encrypt SAML assertions. Google holds the corresponding private key, which it uses to decrypt encrypted tokens. */
 export interface WorkforcePoolProviderKey {
@@ -661,7 +661,7 @@ export type WorkforcePoolProviderScimTenantStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkforcePoolProviderScimTenantStateEnum = /*@__PURE__*/ S.String;
+export const WorkforcePoolProviderScimTenantStateEnum = S.String;
 
 /** Gemini Enterprise only. Represents a SCIM tenant. Used for provisioning and managing identity data (such as Users and Groups) in cross-domain environments. */
 export interface WorkforcePoolProviderScimTenant {
@@ -726,7 +726,7 @@ export type WorkforcePoolProviderScimTokenStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkforcePoolProviderScimTokenStateEnum = /*@__PURE__*/ S.String;
+export const WorkforcePoolProviderScimTokenStateEnum = S.String;
 
 /** Gemini Enterprise only. Represents a token for the WorkforcePoolProviderScimTenant. Used for authenticating SCIM provisioning requests. */
 export interface WorkforcePoolProviderScimToken {
@@ -783,7 +783,7 @@ export type RoleStageEnum =
   | "DEPRECATED"
   | "DISABLED"
   | "EAP";
-export const RoleStageEnum = /*@__PURE__*/ S.String;
+export const RoleStageEnum = S.String;
 
 /** A role in the Identity and Access Management API. */
 export interface Role {
@@ -855,16 +855,16 @@ export type OauthClientClientTypeEnum =
   | "CLIENT_TYPE_UNSPECIFIED"
   | "PUBLIC_CLIENT"
   | "CONFIDENTIAL_CLIENT";
-export const OauthClientClientTypeEnum = /*@__PURE__*/ S.String;
+export const OauthClientClientTypeEnum = S.String;
 
 export type OauthClientStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "DELETED";
-export const OauthClientStateEnum = /*@__PURE__*/ S.String;
+export const OauthClientStateEnum = S.String;
 
 export type OauthClientAllowedGrantTypesItemEnum =
   | "GRANT_TYPE_UNSPECIFIED"
   | "AUTHORIZATION_CODE_GRANT"
   | "REFRESH_TOKEN_GRANT";
-export const OauthClientAllowedGrantTypesItemEnum = /*@__PURE__*/ S.String;
+export const OauthClientAllowedGrantTypesItemEnum = S.String;
 
 export type OauthClientAllowedGrantTypesItemEnumList = Array<
   OauthClientAllowedGrantTypesItemEnum | (string & {})
@@ -993,8 +993,7 @@ export type InlineCertificateIssuanceConfigKeyAlgorithmEnum =
   | "RSA_4096"
   | "ECDSA_P256"
   | "ECDSA_P384";
-export const InlineCertificateIssuanceConfigKeyAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const InlineCertificateIssuanceConfigKeyAlgorithmEnum = S.String;
 
 /** Represents configuration for generating mutual TLS (mTLS) certificates for the identities within this pool. */
 export interface InlineCertificateIssuanceConfig {
@@ -1095,14 +1094,14 @@ export type WorkloadIdentityPoolStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkloadIdentityPoolStateEnum = /*@__PURE__*/ S.String;
+export const WorkloadIdentityPoolStateEnum = S.String;
 
 export type WorkloadIdentityPoolModeEnum =
   | "MODE_UNSPECIFIED"
   | "FEDERATION_ONLY"
   | "TRUST_DOMAIN"
   | "SYSTEM_TRUST_DOMAIN";
-export const WorkloadIdentityPoolModeEnum = /*@__PURE__*/ S.String;
+export const WorkloadIdentityPoolModeEnum = S.String;
 
 /** Represents a collection of workload identities. You can define IAM policies to grant these identities access to Google Cloud resources. */
 export interface WorkloadIdentityPool {
@@ -1183,7 +1182,7 @@ export type WorkloadIdentityPoolNamespaceStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkloadIdentityPoolNamespaceStateEnum = /*@__PURE__*/ S.String;
+export const WorkloadIdentityPoolNamespaceStateEnum = S.String;
 
 /** Represents a namespace for a workload identity pool. Namespaces are used to segment identities within the pool. */
 export interface WorkloadIdentityPoolNamespace {
@@ -1242,8 +1241,7 @@ export type WorkloadIdentityPoolManagedIdentityStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkloadIdentityPoolManagedIdentityStateEnum =
-  /*@__PURE__*/ S.String;
+export const WorkloadIdentityPoolManagedIdentityStateEnum = S.String;
 
 /** Represents a managed identity for a workload identity pool namespace. */
 export interface WorkloadIdentityPoolManagedIdentity {
@@ -1330,7 +1328,7 @@ export type WorkloadIdentityPoolProviderStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkloadIdentityPoolProviderStateEnum = /*@__PURE__*/ S.String;
+export const WorkloadIdentityPoolProviderStateEnum = S.String;
 
 /** Represents an Amazon Web Services identity provider. */
 export interface Aws {
@@ -1429,12 +1427,12 @@ export type WorkloadIdentityPoolProviderKeyStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "DELETED";
-export const WorkloadIdentityPoolProviderKeyStateEnum = /*@__PURE__*/ S.String;
+export const WorkloadIdentityPoolProviderKeyStateEnum = S.String;
 
 export type WorkloadIdentityPoolProviderKeyUseEnum =
   | "KEY_USE_UNSPECIFIED"
   | "ENCRYPTION";
-export const WorkloadIdentityPoolProviderKeyUseEnum = /*@__PURE__*/ S.String;
+export const WorkloadIdentityPoolProviderKeyUseEnum = S.String;
 
 /** Represents a public key configuration for your workload identity pool provider. The key can be configured in your identity provider to encrypt the SAML assertions. Google holds the corresponding private key which it uses to decrypt encrypted tokens. */
 export interface WorkloadIdentityPoolProviderKey {
@@ -1585,15 +1583,13 @@ export type CreateServiceAccountKeyRequestPrivateKeyTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_PKCS12_FILE"
   | "TYPE_GOOGLE_CREDENTIALS_FILE";
-export const CreateServiceAccountKeyRequestPrivateKeyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CreateServiceAccountKeyRequestPrivateKeyTypeEnum = S.String;
 
 export type CreateServiceAccountKeyRequestKeyAlgorithmEnum =
   | "KEY_ALG_UNSPECIFIED"
   | "KEY_ALG_RSA_1024"
   | "KEY_ALG_RSA_2048";
-export const CreateServiceAccountKeyRequestKeyAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const CreateServiceAccountKeyRequestKeyAlgorithmEnum = S.String;
 
 /** The service account key create request. */
 export interface CreateServiceAccountKeyRequest {
@@ -1642,25 +1638,25 @@ export type ServiceAccountKeyDisableReasonEnum =
   | "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED"
   | "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED"
   | "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED";
-export const ServiceAccountKeyDisableReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceAccountKeyDisableReasonEnum = S.String;
 
 export type ServiceAccountKeyKeyTypeEnum =
   | "KEY_TYPE_UNSPECIFIED"
   | "USER_MANAGED"
   | "SYSTEM_MANAGED";
-export const ServiceAccountKeyKeyTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceAccountKeyKeyTypeEnum = S.String;
 
 export type ServiceAccountKeyPrivateKeyTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "TYPE_PKCS12_FILE"
   | "TYPE_GOOGLE_CREDENTIALS_FILE";
-export const ServiceAccountKeyPrivateKeyTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceAccountKeyPrivateKeyTypeEnum = S.String;
 
 export type ExtendedStatusKeyEnum =
   | "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_UNSPECIFIED"
   | "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_EXPOSED"
   | "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_COMPROMISE_DETECTED";
-export const ExtendedStatusKeyEnum = /*@__PURE__*/ S.String;
+export const ExtendedStatusKeyEnum = S.String;
 
 /** Extended status can store additional metadata. For example, for keys disabled due to their private key data being expoesed we may include a message with more information about the exposure. */
 export interface ExtendedStatus {
@@ -1685,13 +1681,13 @@ export type ServiceAccountKeyKeyOriginEnum =
   | "ORIGIN_UNSPECIFIED"
   | "USER_PROVIDED"
   | "GOOGLE_PROVIDED";
-export const ServiceAccountKeyKeyOriginEnum = /*@__PURE__*/ S.String;
+export const ServiceAccountKeyKeyOriginEnum = S.String;
 
 export type ServiceAccountKeyKeyAlgorithmEnum =
   | "KEY_ALG_UNSPECIFIED"
   | "KEY_ALG_RSA_1024"
   | "KEY_ALG_RSA_2048";
-export const ServiceAccountKeyKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const ServiceAccountKeyKeyAlgorithmEnum = S.String;
 
 /** Represents a service account key. A service account has two sets of key-pairs: user-managed and system-managed. System-managed keys are also called _Google-owned and managed keys_. User-managed key-pairs can be created and deleted by users. Users are responsible for rotating these keys periodically to ensure security of their service accounts. Users retain the private key of these key-pairs, and Google retains ONLY the public key. System-managed keys that are actively used for signing are rotated regularly according to [security best practices](https://docs.cloud.google.com/iam/docs/key-rotation#timing). The rotation process is probabilistic, and usage of the new key will gradually ramp up and down over the key's lifetime. If you cache the public key set for a service account, we recommend that you update the cache every 15 minutes. User-managed keys can be added and removed at any time, so it is important to update the cache frequently. For Google-managed keys, Google will publish a key at least 6 hours before it is first used for signing and will keep publishing it for at least 6 hours after it was last used for signing. Public keys for all service accounts are also published at the OAuth2 Service Account API. */
 export interface ServiceAccountKey {
@@ -2281,7 +2277,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -2866,8 +2862,7 @@ export type GetProjectsServiceAccountsKeysPublicKeyTypeEnum =
   | "TYPE_NONE"
   | "TYPE_X509_PEM_FILE"
   | "TYPE_RAW_PUBLIC_KEY";
-export const GetProjectsServiceAccountsKeysPublicKeyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsServiceAccountsKeysPublicKeyTypeEnum = S.String;
 
 export interface GetProjectsServiceAccountsKeysRequest {
   /** Optional. The output format of the public key. The default is `TYPE_NONE`, which means that the public key is not returned. */
@@ -2948,7 +2943,7 @@ export const LintPolicyIamPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LintPolicyIamPoliciesRequest>;
 
 export type LintResultLevelEnum = "LEVEL_UNSPECIFIED" | "CONDITION";
-export const LintResultLevelEnum = /*@__PURE__*/ S.String;
+export const LintResultLevelEnum = S.String;
 
 export type LintResultSeverityEnum =
   | "SEVERITY_UNSPECIFIED"
@@ -2957,7 +2952,7 @@ export type LintResultSeverityEnum =
   | "NOTICE"
   | "INFO"
   | "DEPRECATED";
-export const LintResultSeverityEnum = /*@__PURE__*/ S.String;
+export const LintResultSeverityEnum = S.String;
 
 /** Structured response of a single validation unit. */
 export interface LintResult {
@@ -3339,7 +3334,7 @@ export const ListWorkforcePoolProviderScimTokensResponse =
   }) as any as S.Schema<ListWorkforcePoolProviderScimTokensResponse>;
 
 export type ListOrganizationsRolesViewEnum = "BASIC" | "FULL";
-export const ListOrganizationsRolesViewEnum = /*@__PURE__*/ S.String;
+export const ListOrganizationsRolesViewEnum = S.String;
 
 export interface ListOrganizationsRolesRequest {
   /** Include Roles that have been deleted. */
@@ -3742,7 +3737,7 @@ export const ListWorkloadIdentityPoolProviderKeysResponse =
   }) as any as S.Schema<ListWorkloadIdentityPoolProviderKeysResponse>;
 
 export type ListProjectsRolesViewEnum = "BASIC" | "FULL";
-export const ListProjectsRolesViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsRolesViewEnum = S.String;
 
 export interface ListProjectsRolesRequest {
   /** Optional pagination token returned in an earlier ListRolesResponse. */
@@ -3823,8 +3818,7 @@ export type ListProjectsServiceAccountsKeysKeyTypesEnum =
   | "KEY_TYPE_UNSPECIFIED"
   | "USER_MANAGED"
   | "SYSTEM_MANAGED";
-export const ListProjectsServiceAccountsKeysKeyTypesEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsServiceAccountsKeysKeyTypesEnum = S.String;
 
 export type ListProjectsServiceAccountsKeysKeyTypesEnumList = Array<
   ListProjectsServiceAccountsKeysKeyTypesEnum | (string & {})
@@ -3877,7 +3871,7 @@ export const ListServiceAccountKeysResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListServiceAccountKeysResponse>;
 
 export type ListRolesViewEnum = "BASIC" | "FULL";
-export const ListRolesViewEnum = /*@__PURE__*/ S.String;
+export const ListRolesViewEnum = S.String;
 
 export interface ListRolesRequest {
   /** Optional view for the returned Role objects. When `FULL` is specified, the `includedPermissions` field is returned, which includes a list of all permissions in the role. The default value is `BASIC`, which does not return the `includedPermissions` field. */
@@ -4306,7 +4300,7 @@ export const QueryAuditableServicesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QueryAuditableServicesResponse>;
 
 export type QueryGrantableRolesRequestViewEnum = "BASIC" | "FULL";
-export const QueryGrantableRolesRequestViewEnum = /*@__PURE__*/ S.String;
+export const QueryGrantableRolesRequestViewEnum = S.String;
 
 /** The grantable role query request. */
 export interface QueryGrantableRolesRequest {
@@ -4402,13 +4396,13 @@ export const QueryTestablePermissionsPermissionsRequest =
   }) as any as S.Schema<QueryTestablePermissionsPermissionsRequest>;
 
 export type PermissionStageEnum = "ALPHA" | "BETA" | "GA" | "DEPRECATED";
-export const PermissionStageEnum = /*@__PURE__*/ S.String;
+export const PermissionStageEnum = S.String;
 
 export type PermissionCustomRolesSupportLevelEnum =
   | "SUPPORTED"
   | "TESTING"
   | "NOT_SUPPORTED";
-export const PermissionCustomRolesSupportLevelEnum = /*@__PURE__*/ S.String;
+export const PermissionCustomRolesSupportLevelEnum = S.String;
 
 /** A permission which can be included by a role. */
 export interface Permission {

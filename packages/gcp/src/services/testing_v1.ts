@@ -133,7 +133,7 @@ export type CancelTestMatrixResponseTestStateEnum =
   | "INCOMPATIBLE_ARCHITECTURE"
   | "CANCELLED"
   | "INVALID";
-export const CancelTestMatrixResponseTestStateEnum = /*@__PURE__*/ S.String;
+export const CancelTestMatrixResponseTestStateEnum = S.String;
 
 /** Response containing the current state of the specified test matrix. */
 export interface CancelTestMatrixResponse {
@@ -157,7 +157,7 @@ export type SessionStateEventSessionStateEnum =
   | "FINISHED"
   | "UNAVAILABLE"
   | "ERROR";
-export const SessionStateEventSessionStateEnum = /*@__PURE__*/ S.String;
+export const SessionStateEventSessionStateEnum = S.String;
 
 /** A message encapsulating a series of Session states and the time that the DeviceSession first entered those states. */
 export interface SessionStateEvent {
@@ -192,7 +192,7 @@ export type DeviceSessionStateEnum =
   | "FINISHED"
   | "UNAVAILABLE"
   | "ERROR";
-export const DeviceSessionStateEnum = /*@__PURE__*/ S.String;
+export const DeviceSessionStateEnum = S.String;
 
 /** A single Android device. */
 export interface AndroidDevice {
@@ -353,7 +353,7 @@ export type TestMatrixStateEnum =
   | "INCOMPATIBLE_ARCHITECTURE"
   | "CANCELLED"
   | "INVALID";
-export const TestMatrixStateEnum = /*@__PURE__*/ S.String;
+export const TestMatrixStateEnum = S.String;
 
 export type TestMatrixInvalidMatrixDetailsEnum =
   | "INVALID_MATRIX_DETAILS_UNSPECIFIED"
@@ -395,7 +395,7 @@ export type TestMatrixInvalidMatrixDetailsEnum =
   | "TEST_QUOTA_EXCEEDED"
   | "SERVICE_NOT_ACTIVATED"
   | "UNKNOWN_PERMISSION_ERROR";
-export const TestMatrixInvalidMatrixDetailsEnum = /*@__PURE__*/ S.String;
+export const TestMatrixInvalidMatrixDetailsEnum = S.String;
 
 /** Describes a single error or issue with a matrix. */
 export interface MatrixErrorDetail {
@@ -522,7 +522,7 @@ export type TestMatrixOutcomeSummaryEnum =
   | "FAILURE"
   | "INCONCLUSIVE"
   | "SKIPPED";
-export const TestMatrixOutcomeSummaryEnum = /*@__PURE__*/ S.String;
+export const TestMatrixOutcomeSummaryEnum = S.String;
 
 /** Test targets for a shard. */
 export interface TestTargetsForShard {
@@ -569,7 +569,7 @@ export type TestExecutionStateEnum =
   | "INCOMPATIBLE_ARCHITECTURE"
   | "CANCELLED"
   | "INVALID";
-export const TestExecutionStateEnum = /*@__PURE__*/ S.String;
+export const TestExecutionStateEnum = S.String;
 
 /** Additional details about the progress of the running test. */
 export interface TestDetails {
@@ -811,8 +811,7 @@ export type AndroidInstrumentationTestOrchestratorOptionEnum =
   | "ORCHESTRATOR_OPTION_UNSPECIFIED"
   | "USE_ORCHESTRATOR"
   | "DO_NOT_USE_ORCHESTRATOR";
-export const AndroidInstrumentationTestOrchestratorOptionEnum =
-  /*@__PURE__*/ S.String;
+export const AndroidInstrumentationTestOrchestratorOptionEnum = S.String;
 
 /** Shards test based on previous test case timing records. */
 export interface SmartSharding {
@@ -1045,14 +1044,14 @@ export type AndroidRoboTestRoboModeEnum =
   | "ROBO_MODE_UNSPECIFIED"
   | "ROBO_VERSION_1"
   | "ROBO_VERSION_2";
-export const AndroidRoboTestRoboModeEnum = /*@__PURE__*/ S.String;
+export const AndroidRoboTestRoboModeEnum = S.String;
 
 export type RoboDirectiveActionTypeEnum =
   | "ACTION_TYPE_UNSPECIFIED"
   | "SINGLE_CLICK"
   | "ENTER_TEXT"
   | "IGNORE";
-export const RoboDirectiveActionTypeEnum = /*@__PURE__*/ S.String;
+export const RoboDirectiveActionTypeEnum = S.String;
 
 /** Directs Robo to interact with a specific UI element if it is encountered during the crawl. Currently, Robo can perform text entry or element click. */
 export interface RoboDirective {
@@ -1601,8 +1600,7 @@ export type GetTestEnvironmentCatalogEnvironmentTypeEnum =
   | "NETWORK_CONFIGURATION"
   | "PROVIDED_SOFTWARE"
   | "DEVICE_IP_BLOCKS";
-export const GetTestEnvironmentCatalogEnvironmentTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GetTestEnvironmentCatalogEnvironmentTypeEnum = S.String;
 
 export interface GetTestEnvironmentCatalogRequest {
   /** Optional. Whether to include viewable only models in the response. This is only applicable for Android models. */
@@ -1692,7 +1690,7 @@ export type DeviceIpBlockFormEnum =
   | "VIRTUAL"
   | "PHYSICAL"
   | "EMULATOR";
-export const DeviceIpBlockFormEnum = /*@__PURE__*/ S.String;
+export const DeviceIpBlockFormEnum = S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Testing_Date {
@@ -1785,19 +1783,19 @@ export type AndroidModelFormFactorEnum =
   | "AUTOMOTIVE"
   | "DESKTOP"
   | "XR";
-export const AndroidModelFormFactorEnum = /*@__PURE__*/ S.String;
+export const AndroidModelFormFactorEnum = S.String;
 
 export type AndroidModelFormEnum =
   | "DEVICE_FORM_UNSPECIFIED"
   | "VIRTUAL"
   | "PHYSICAL"
   | "EMULATOR";
-export const AndroidModelFormEnum = /*@__PURE__*/ S.String;
+export const AndroidModelFormEnum = S.String;
 
 export type AndroidModelAccessDeniedReasonsItemEnum =
   | "ACCESS_DENIED_REASON_UNSPECIFIED"
   | "EULA_NOT_ACCEPTED";
-export const AndroidModelAccessDeniedReasonsItemEnum = /*@__PURE__*/ S.String;
+export const AndroidModelAccessDeniedReasonsItemEnum = S.String;
 
 export type AndroidModelAccessDeniedReasonsItemEnumList =
   Array<AndroidModelAccessDeniedReasonsItemEnum>;
@@ -1812,7 +1810,7 @@ export type PerAndroidVersionInfoDeviceCapacityEnum =
   | "DEVICE_CAPACITY_MEDIUM"
   | "DEVICE_CAPACITY_LOW"
   | "DEVICE_CAPACITY_NONE";
-export const PerAndroidVersionInfoDeviceCapacityEnum = /*@__PURE__*/ S.String;
+export const PerAndroidVersionInfoDeviceCapacityEnum = S.String;
 
 /** Denotes whether Direct Access is supported, and by which client versions. DirectAccessService is currently available as a preview to select developers. You can register today on behalf of you and your team at https://developer.android.com/studio/preview/android-device-streaming */
 export interface DirectAccessVersionInfo {
@@ -2106,7 +2104,7 @@ export type PerIosVersionInfoDeviceCapacityEnum =
   | "DEVICE_CAPACITY_MEDIUM"
   | "DEVICE_CAPACITY_LOW"
   | "DEVICE_CAPACITY_NONE";
-export const PerIosVersionInfoDeviceCapacityEnum = /*@__PURE__*/ S.String;
+export const PerIosVersionInfoDeviceCapacityEnum = S.String;
 
 /** A version-specific information of an iOS model. */
 export interface PerIosVersionInfo {
@@ -2138,7 +2136,7 @@ export type IosModelFormFactorEnum =
   | "AUTOMOTIVE"
   | "DESKTOP"
   | "XR";
-export const IosModelFormFactorEnum = /*@__PURE__*/ S.String;
+export const IosModelFormFactorEnum = S.String;
 
 /** A description of an iOS device tests may be run on. */
 export interface IosModel {

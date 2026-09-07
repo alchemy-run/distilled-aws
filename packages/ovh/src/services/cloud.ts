@@ -88,7 +88,7 @@ export type CloudOperationStatusEnum =
   | "in-error"
   | "in-progress"
   | "unknown";
-export const CloudOperationStatusEnum = /*@__PURE__*/ S.String;
+export const CloudOperationStatusEnum = S.String;
 
 /** Affected regions of the sub-operation */
 export type CloudSubOperationRegionsList = Array<string>;
@@ -227,7 +227,7 @@ export type CloudFlavorCapabilityNameEnum =
   | "resize"
   | "snapshot"
   | "volume";
-export const CloudFlavorCapabilityNameEnum = /*@__PURE__*/ S.String;
+export const CloudFlavorCapabilityNameEnum = S.String;
 
 /** Flavor capability */
 export interface CloudFlavorCapability {
@@ -414,7 +414,7 @@ export const CloudInstanceInstanceIpAddressesList = /*@__PURE__*/ S.Array(
 
 /** MonthlyBillingStatusEnum */
 export type CloudInstanceMonthlyBillingStatusEnum = "activationPending" | "ok";
-export const CloudInstanceMonthlyBillingStatusEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceMonthlyBillingStatusEnum = S.String;
 
 /** MonthlyBilling */
 export interface CloudInstanceMonthlyBilling {
@@ -502,7 +502,7 @@ export type CloudInstanceInstanceStatusEnum =
   | "UNRESCUING"
   | "UNSHELVING"
   | "VERIFY_RESIZE";
-export const CloudInstanceInstanceStatusEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceInstanceStatusEnum = S.String;
 
 /** Instance */
 export interface CloudInstanceInstance {
@@ -604,7 +604,7 @@ export type CloudAlertingServiceEnum =
   | "objet_storage"
   | "rancher"
   | "snapshot";
-export const CloudAlertingServiceEnum = /*@__PURE__*/ S.String;
+export const CloudAlertingServiceEnum = S.String;
 
 export interface AddAlertingRequest {
   /** Service name */
@@ -665,7 +665,7 @@ export type OrderCurrencyCodeEnum =
   | "USD"
   | "XOF"
   | "points";
-export const OrderCurrencyCodeEnum = /*@__PURE__*/ S.String;
+export const OrderCurrencyCodeEnum = S.String;
 
 /** Price with its currency and textual representation */
 export interface OrderPrice {
@@ -689,7 +689,7 @@ export const OrderPrice = /*@__PURE__*/ S.suspend(() =>
 
 /** alert status */
 export type CloudAlertingStatusEnum = "deleted" | "disabled" | "ok";
-export const CloudAlertingStatusEnum = /*@__PURE__*/ S.String;
+export const CloudAlertingStatusEnum = S.String;
 
 /** Billing Alert Configuration */
 export interface CloudAlertingAlerting {
@@ -776,7 +776,7 @@ export const AddCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Certificate kind */
 export type CloudProjectCertificateKindEnum = "IMPORTED";
-export const CloudProjectCertificateKindEnum = /*@__PURE__*/ S.String;
+export const CloudProjectCertificateKindEnum = S.String;
 
 /** SAN kind */
 export type CloudProjectCertificateServerAlternativeNameKindEnum =
@@ -784,8 +784,7 @@ export type CloudProjectCertificateServerAlternativeNameKindEnum =
   | "EMAIL"
   | "IP"
   | "URI";
-export const CloudProjectCertificateServerAlternativeNameKindEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectCertificateServerAlternativeNameKindEnum = S.String;
 
 /** Certificate SAN */
 export interface CloudProjectCertificateServerAlternativeName {
@@ -818,7 +817,7 @@ export type CloudProjectCertificateStatusEnum =
   | "NOT_YET_VALID"
   | "OK"
   | "REVOKED";
-export const CloudProjectCertificateStatusEnum = /*@__PURE__*/ S.String;
+export const CloudProjectCertificateStatusEnum = S.String;
 
 /** A Certificate to use in your NFVs */
 export interface CloudProjectCertificate {
@@ -925,8 +924,7 @@ export type CloudProjectLoadbalancerActionRedirectStatusCodeEnum =
   | "303"
   | "307"
   | "308";
-export const CloudProjectLoadbalancerActionRedirectStatusCodeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerActionRedirectStatusCodeEnum = S.String;
 
 /** HTTP load balancer redirect action */
 export interface CloudProjectLoadbalancerActionRedirect {
@@ -970,8 +968,7 @@ export type CloudProjectLoadbalancerActionRejectStatusCodeEnum =
   | "502"
   | "503"
   | "504";
-export const CloudProjectLoadbalancerActionRejectStatusCodeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerActionRejectStatusCodeEnum = S.String;
 
 /** HTTP load balancer reject action */
 export interface CloudProjectLoadbalancerActionReject {
@@ -1060,8 +1057,7 @@ export type CloudProjectLoadbalancerConditionMatchEnum =
   | "is"
   | "regex"
   | "start-with";
-export const CloudProjectLoadbalancerConditionMatchEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerConditionMatchEnum = S.String;
 
 /** Matching field */
 export type CloudProjectLoadbalancerConditionTypeEnum =
@@ -1072,7 +1068,7 @@ export type CloudProjectLoadbalancerConditionTypeEnum =
   | "path"
   | "query-param"
   | "source";
-export const CloudProjectLoadbalancerConditionTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerConditionTypeEnum = S.String;
 
 /** The list of values to match */
 export type CloudProjectLoadbalancerConditionValuesList = Array<string>;
@@ -1224,8 +1220,7 @@ export const CloudProjectLoadbalancerApplicationConfigurationEntryPointsList =
 export type CloudProjectLoadbalancerNetworkingEgressKindEnum =
   | "public"
   | "vrack";
-export const CloudProjectLoadbalancerNetworkingEgressKindEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerNetworkingEgressKindEnum = S.String;
 
 /** Networking configuration egress definition */
 export interface CloudProjectLoadbalancerConfigurationNetworkingEgress {
@@ -1246,8 +1241,7 @@ export const CloudProjectLoadbalancerConfigurationNetworkingEgress =
 
 /** Networking kind */
 export type CloudProjectLoadbalancerNetworkingIngressKindEnum = "public";
-export const CloudProjectLoadbalancerNetworkingIngressKindEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerNetworkingIngressKindEnum = S.String;
 
 /** Networking configuration ingress definition */
 export interface CloudProjectLoadbalancerConfigurationNetworkingIngress {
@@ -1291,8 +1285,7 @@ export type CloudProjectLoadbalancerTargetBalancerAlgorithmEnum =
   | "roundrobin"
   | "source"
   | "static-rr";
-export const CloudProjectLoadbalancerTargetBalancerAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerTargetBalancerAlgorithmEnum = S.String;
 
 /** Available load balancer target proxy-protocol */
 export type CloudProjectLoadbalancerTargetProxyProtocolEnum =
@@ -1300,8 +1293,7 @@ export type CloudProjectLoadbalancerTargetProxyProtocolEnum =
   | "v2"
   | "v2-cn"
   | "v2-ssl";
-export const CloudProjectLoadbalancerTargetProxyProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerTargetProxyProtocolEnum = S.String;
 
 /** A load balancer backend server */
 export interface CloudProjectLoadbalancerServer {
@@ -1454,8 +1446,7 @@ export type CloudProjectDatabaseServiceMaintenanceStatusEnum =
   | "ERROR"
   | "PENDING"
   | "SCHEDULED";
-export const CloudProjectDatabaseServiceMaintenanceStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceMaintenanceStatusEnum = S.String;
 
 /** Cloud database service maintenance definition */
 export interface CloudProjectDatabaseServiceMaintenance {
@@ -1840,8 +1831,7 @@ export type CloudProjectLoadbalancerBackendBalancerAlgorithmEnum =
   | "roundrobin"
   | "source"
   | "static-rr";
-export const CloudProjectLoadbalancerBackendBalancerAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerBackendBalancerAlgorithmEnum = S.String;
 
 /** Available load balancer backend proxy-protocol */
 export type CloudProjectLoadbalancerBackendProxyProtocolEnum =
@@ -1849,8 +1839,7 @@ export type CloudProjectLoadbalancerBackendProxyProtocolEnum =
   | "v2"
   | "v2-cn"
   | "v2-ssl";
-export const CloudProjectLoadbalancerBackendProxyProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerBackendProxyProtocolEnum = S.String;
 
 /** List of server in backend */
 export type CloudProjectLoadbalancerBackendServersList =
@@ -1934,7 +1923,7 @@ export const CloudProjectLoadbalancerFrontendBackendsList =
 
 /** Available load balancer frontend mode */
 export type CloudProjectLoadbalancerFrontendModeEnum = "TCP";
-export const CloudProjectLoadbalancerFrontendModeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerFrontendModeEnum = S.String;
 
 /** Port ranges to listen */
 export type CloudProjectLoadbalancerFrontendPortRangesList =
@@ -2067,8 +2056,7 @@ export const CloudProjectNetworkloadbalancerActionsDispatchList =
 export type CloudProjectNetworkloadbalancerActionRejectTypeEnum =
   | "deny"
   | "drop";
-export const CloudProjectNetworkloadbalancerActionRejectTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectNetworkloadbalancerActionRejectTypeEnum = S.String;
 
 /** network load balancer reject action */
 export interface CloudProjectNetworkloadbalancerActionReject {
@@ -2118,8 +2106,7 @@ export const CloudProjectNetworkloadbalancerActions = /*@__PURE__*/ S.suspend(
 
 /** Matching field */
 export type CloudProjectNetworkloadbalancerConditionTypeEnum = "source";
-export const CloudProjectNetworkloadbalancerConditionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectNetworkloadbalancerConditionTypeEnum = S.String;
 
 /** The list of values to match */
 export type CloudProjectNetworkloadbalancerConditionValuesList = Array<string>;
@@ -2313,7 +2300,7 @@ export type CloudNetworkGatewayModelEnum =
   | "m"
   | "s"
   | "xl";
-export const CloudNetworkGatewayModelEnum = /*@__PURE__*/ S.String;
+export const CloudNetworkGatewayModelEnum = S.String;
 
 /** Parameters to create a gateway from another resource creation */
 export interface CloudNetworkCreateGatewaySummary {
@@ -2391,11 +2378,11 @@ export const AttachCloudProjectIpFailoverRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** IpStatusEnum */
 export type CloudIpIpStatusEnum = "ok" | "operationPending";
-export const CloudIpIpStatusEnum = /*@__PURE__*/ S.String;
+export const CloudIpIpStatusEnum = S.String;
 
 /** IpSubTypeEnum */
 export type CloudIpIpSubTypeEnum = "cloud" | "ovh";
-export const CloudIpIpSubTypeEnum = /*@__PURE__*/ S.String;
+export const CloudIpIpSubTypeEnum = S.String;
 
 /** FailoverIp */
 export interface CloudIpFailoverIp {
@@ -2488,7 +2475,7 @@ export type CloudVolumeVolumeStatusEnum =
   | "retyping"
   | "snapshotting"
   | "uploading";
-export const CloudVolumeVolumeStatusEnum = /*@__PURE__*/ S.String;
+export const CloudVolumeVolumeStatusEnum = S.String;
 
 /** VolumeTypeEnum */
 export type CloudVolumeVolumeTypeEnum =
@@ -2499,7 +2486,7 @@ export type CloudVolumeVolumeTypeEnum =
   | "high-speed-gen2"
   | "high-speed-gen2-luks"
   | "high-speed-luks";
-export const CloudVolumeVolumeTypeEnum = /*@__PURE__*/ S.String;
+export const CloudVolumeVolumeTypeEnum = S.String;
 
 /** Volume */
 export interface CloudVolumeVolume {
@@ -2994,8 +2981,7 @@ export type CloudProjectDatabaseMysqlMigrationStatusEnum =
   | "running"
   | "syncing"
   | "waiting";
-export const CloudProjectDatabaseMysqlMigrationStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseMysqlMigrationStatusEnum = S.String;
 
 /** Cloud database MySQL migration check result definition */
 export interface CloudProjectDatabaseMysqlMigrationCheckResult {
@@ -3024,7 +3010,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -3042,7 +3028,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmCloudProjectTerminationRequest {
   /** The project id */
@@ -3089,7 +3075,7 @@ export type CloudStorageStorageClassEnum =
   | "HIGH_PERF"
   | "STANDARD"
   | "STANDARD_IA";
-export const CloudStorageStorageClassEnum = /*@__PURE__*/ S.String;
+export const CloudStorageStorageClassEnum = S.String;
 
 export interface CopyCloudProjectRegionStorageObjectRequest {
   /** Service name */
@@ -3235,7 +3221,7 @@ export const CloudProjectLoadbalancerNetworkingNetworkingCreation =
 
 /** Size of the load balancer */
 export type CloudProjectLoadbalancerSizeEnum = "L" | "M" | "S";
-export const CloudProjectLoadbalancerSizeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerSizeEnum = S.String;
 
 export interface CreateApplicationLoadBalancerRequest {
   /** Service name */
@@ -3345,7 +3331,7 @@ export type CloudProjectLoadbalancerStatusEnum =
   | "ERROR"
   | "FROZEN"
   | "RUNNING";
-export const CloudProjectLoadbalancerStatusEnum = /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerStatusEnum = S.String;
 
 /** A load balancer to handle application workload */
 export interface CloudProjectApplicationLoadBalancer {
@@ -3476,7 +3462,7 @@ export const CreateApplicationLoadBalancerConfigurationRequest =
 
 /** Possible values for ACL type */
 export type CloudAclTypeEnum = "readOnly" | "readWrite";
-export const CloudAclTypeEnum = /*@__PURE__*/ S.String;
+export const CloudAclTypeEnum = S.String;
 
 export interface CreateCloudProjectAclRequest {
   /** The project id */
@@ -3656,8 +3642,7 @@ export type CloudProjectAiAppCustomMetricsAggregationTypeEnum =
   | "MAX"
   | "MIN"
   | "SUM";
-export const CloudProjectAiAppCustomMetricsAggregationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectAiAppCustomMetricsAggregationTypeEnum = S.String;
 
 /** format of the custom metric used to scaled an AI Deploy App */
 export type CloudProjectAiAppCustomMetricsFormatEnum =
@@ -3665,7 +3650,7 @@ export type CloudProjectAiAppCustomMetricsFormatEnum =
   | "PROMETHEUS"
   | "XML"
   | "YAML";
-export const CloudProjectAiAppCustomMetricsFormatEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiAppCustomMetricsFormatEnum = S.String;
 
 /** Scale an AI Deploy App based on a custom metric provided by a customer-exposed API */
 export interface CloudProjectAiAppAutomaticScalingStrategyCustomMetricsInput {
@@ -3702,7 +3687,7 @@ export type CloudProjectAiAppScalingAutomaticStrategyResourceTypeEnum =
   | "CPU"
   | "RAM";
 export const CloudProjectAiAppScalingAutomaticStrategyResourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** AI Solutions App automatic scaling strategy object */
 export interface CloudProjectAiAppScalingAutomaticStrategyInput {
@@ -3806,7 +3791,7 @@ export const CloudProjectAiVolumeDataStore = /*@__PURE__*/ S.suspend(() =>
 
 /** Permissions to apply on a volume */
 export type CloudProjectAiVolumePermissionEnum = "RO" | "RW" | "RWD";
-export const CloudProjectAiVolumePermissionEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiVolumePermissionEnum = S.String;
 
 /** AI Solutions public Git repository Volume Object */
 export interface CloudProjectAiVolumePublicGit {
@@ -4287,7 +4272,7 @@ export const CloudProjectAiAppAppSpec = /*@__PURE__*/ S.suspend(() =>
 
 /** Data Sync Direction */
 export type CloudProjectAiVolumeDataSyncEnum = "pull" | "push";
-export const CloudProjectAiVolumeDataSyncEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiVolumeDataSyncEnum = S.String;
 
 /** AI Solutions Data Sync Spec */
 export interface CloudProjectAiVolumeDataSyncSpec {
@@ -4369,7 +4354,7 @@ export type CloudProjectAiInfoCodeEnum =
   | "NOTEBOOK_STOPPED"
   | "NOTEBOOK_STOPPING"
   | "NOTEBOOK_SYNC_FAILED";
-export const CloudProjectAiInfoCodeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiInfoCodeEnum = S.String;
 
 /** Information about the state of this entity */
 export interface CloudProjectAiInfo {
@@ -4400,8 +4385,7 @@ export type CloudProjectAiVolumeDataSyncProgressStateEnum =
   | "RUNNING"
   | "TRANSIENT_ERROR"
   | "UNKNOWN_ERROR";
-export const CloudProjectAiVolumeDataSyncProgressStateEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectAiVolumeDataSyncProgressStateEnum = S.String;
 
 /** AI Solutions Progress Object */
 export interface CloudProjectAiVolumeProgress {
@@ -4471,7 +4455,7 @@ export type CloudProjectAiVolumeDataSyncStateEnum =
   | "INTERRUPTED"
   | "QUEUED"
   | "RUNNING";
-export const CloudProjectAiVolumeDataSyncStateEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiVolumeDataSyncStateEnum = S.String;
 
 /** AI Solutions Data Sync Status */
 export interface CloudProjectAiVolumeDataSyncStatus {
@@ -4546,7 +4530,7 @@ export type CloudProjectAiAppAppStateEnum =
   | "STANDBY"
   | "STOPPED"
   | "STOPPING";
-export const CloudProjectAiAppAppStateEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiAppAppStateEnum = S.String;
 
 /** AI Solutions App State History Object */
 export interface CloudProjectAiAppAppStateHistory {
@@ -4936,11 +4920,11 @@ export const CloudProjectAiDataStoreCredentialsInput = /*@__PURE__*/ S.suspend(
 
 /** Data Store Owner */
 export type CloudProjectAiDataStoreOwnerEnum = "customer" | "ovhcloud";
-export const CloudProjectAiDataStoreOwnerEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiDataStoreOwnerEnum = S.String;
 
 /** Data Store Type */
 export type CloudProjectAiDataStoreTypeEnum = "git" | "s3" | "swift";
-export const CloudProjectAiDataStoreTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiDataStoreTypeEnum = S.String;
 
 export interface CreateCloudProjectAiDataRegionAliasRequest {
   /** Service name */
@@ -5135,7 +5119,7 @@ export const CloudProjectAiJobJobSpecLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Shutdown strategy of an instance */
 export type CloudProjectAiShutdownStrategyEnum = "Restart" | "Stop";
-export const CloudProjectAiShutdownStrategyEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiShutdownStrategyEnum = S.String;
 
 /** SSH keys authorized to access to the job container */
 export type CloudProjectAiJobJobSpecSshPublicKeysList = Array<string>;
@@ -5235,7 +5219,7 @@ export type CloudProjectAiJobJobStateEnum =
   | "RUNNING"
   | "SYNC_FAILED"
   | "TIMEOUT";
-export const CloudProjectAiJobJobStateEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiJobJobStateEnum = S.String;
 
 /** AI Solutions Job Status History Object */
 export interface CloudProjectAiJobJobStatusHistory {
@@ -5753,7 +5737,7 @@ export type CloudProjectAiNotebookNotebookStateEnum =
   | "STOPPED"
   | "STOPPING"
   | "SYNC_FAILED";
-export const CloudProjectAiNotebookNotebookStateEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiNotebookNotebookStateEnum = S.String;
 
 /** Notebook Data linked */
 export type CloudProjectAiNotebookNotebookStatusVolumesList =
@@ -6057,7 +6041,7 @@ export type CloudProjectAiTokenRoleEnum =
   | "ai_training_read"
   | "quantum_operator"
   | "quantum_reader";
-export const CloudProjectAiTokenRoleEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiTokenRoleEnum = S.String;
 
 export interface CreateCloudProjectAiTokenRequest {
   /** Service name */
@@ -6234,7 +6218,7 @@ export type CloudContainerRegistryStatusEnum =
   | "SUSPENDED"
   | "SUSPENDING"
   | "UPDATING";
-export const CloudContainerRegistryStatusEnum = /*@__PURE__*/ S.String;
+export const CloudContainerRegistryStatusEnum = S.String;
 
 /** Managed docker registry */
 export interface CloudContainerRegistryRegistry {
@@ -6571,7 +6555,7 @@ export const CreateCloudProjectDatabaseCassandraRequestIpRestrictionsList =
 
 /** Node role values */
 export type CloudProjectDatabaseServiceNodeRoleEnum = "ANALYTICS" | "STANDARD";
-export const CloudProjectDatabaseServiceNodeRoleEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceNodeRoleEnum = S.String;
 
 /** Cloud databases cluster new node definition */
 export interface CloudProjectDatabaseServiceNodeCreationInput {
@@ -6725,8 +6709,7 @@ export const CloudProjectDatabaseServiceBackup = /*@__PURE__*/ S.suspend(() =>
 export type CloudProjectDatabaseServiceCapabilityStateEnum =
   | "disabled"
   | "enabled";
-export const CloudProjectDatabaseServiceCapabilityStateEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceCapabilityStateEnum = S.String;
 
 /** Cloud database service capability actions definition */
 export interface CloudProjectDatabaseServiceCapabilityActions {
@@ -6774,7 +6757,7 @@ export type CloudProjectDatabaseEngineCategoryEnum =
   | "analysis"
   | "operational"
   | "streaming";
-export const CloudProjectDatabaseEngineCategoryEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseEngineCategoryEnum = S.String;
 
 /** Defines the disk attributes of a service */
 export interface CloudProjectDatabaseServiceDisk {
@@ -6823,8 +6806,7 @@ export type CloudProjectDatabaseServiceEndpointComponentEnum =
   | "prometheusWrite"
   | "redis"
   | "valkey";
-export const CloudProjectDatabaseServiceEndpointComponentEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceEndpointComponentEnum = S.String;
 
 /** Defines the endpoint object in a cluster */
 export interface CloudProjectDatabaseServiceEndpoint {
@@ -6883,7 +6865,7 @@ export type CloudProjectDatabaseEngineEnum =
   | "postgresql"
   | "redis"
   | "valkey";
-export const CloudProjectDatabaseEngineEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseEngineEnum = S.String;
 
 /** Possible state of the job */
 export type CloudProjectDatabaseStatusEnum =
@@ -6899,7 +6881,7 @@ export type CloudProjectDatabaseStatusEnum =
   | "SHELVED"
   | "TO_DRAIN"
   | "UPDATING";
-export const CloudProjectDatabaseStatusEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseStatusEnum = S.String;
 
 /** Ip Restriction definition for cloud project databases */
 export interface CloudProjectDatabaseServiceIpRestriction {
@@ -6931,7 +6913,7 @@ export const CloudProjectDatabaseServiceIpRestrictionsList =
 
 /** Type of network in which the databases cluster are */
 export type CloudProjectDatabaseNetworkTypeEnum = "private" | "public";
-export const CloudProjectDatabaseNetworkTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseNetworkTypeEnum = S.String;
 
 /** Cloud databases cluster node definition */
 export interface CloudProjectDatabaseServiceNode {
@@ -7107,8 +7089,7 @@ export type CloudProjectDatabaseServiceIntegrationTypeEnum =
   | "m3dbMetrics"
   | "opensearchLogs"
   | "postgresqlMetrics";
-export const CloudProjectDatabaseServiceIntegrationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceIntegrationTypeEnum = S.String;
 
 export interface CreateCloudProjectDatabaseCassandraIntegrationRequest {
   /** Service name */
@@ -7160,8 +7141,7 @@ export const CloudProjectDatabaseServiceIntegrationParametersMap =
 
 /** Possible state of the integration */
 export type CloudProjectDatabaseServiceIntegrationStatusEnum = "READY";
-export const CloudProjectDatabaseServiceIntegrationStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceIntegrationStatusEnum = S.String;
 
 /** Cloud database service integration definition */
 export interface CloudProjectDatabaseServiceIntegration {
@@ -8301,8 +8281,7 @@ export type CloudProjectDatabaseKafkaConnectConnectorStatusEnum =
   | "PAUSED"
   | "RUNNING"
   | "UNASSIGNED";
-export const CloudProjectDatabaseKafkaConnectConnectorStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseKafkaConnectConnectorStatusEnum = S.String;
 
 /** KafkaConnect connector definition */
 export interface CloudProjectDatabaseKafkaConnectConnector {
@@ -8750,8 +8729,7 @@ export const CreateCloudProjectDatabaseKafkaMirrorMakerLogUrlRequest =
 export type CloudProjectDatabaseServiceReplicationPolicyClassEnum =
   | "org.apache.kafka.connect.mirror.DefaultReplicationPolicy"
   | "org.apache.kafka.connect.mirror.IdentityReplicationPolicy";
-export const CloudProjectDatabaseServiceReplicationPolicyClassEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceReplicationPolicyClassEnum = S.String;
 
 /** Patterns of the topics to exclude from the replication */
 export type CreateCloudProjectDatabaseKafkaMirrorMakerReplicationRequestTopicExcludeListList =
@@ -9492,7 +9470,7 @@ export const CloudProjectDatabaseM3dbNamespaceRetentionCreation =
 export type CloudProjectDatabaseM3dbNamespaceTypeEnum =
   | "aggregated"
   | "unaggregated";
-export const CloudProjectDatabaseM3dbNamespaceTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseM3dbNamespaceTypeEnum = S.String;
 
 export interface CreateCloudProjectDatabaseM3dbNamespaceRequest {
   /** Service name */
@@ -9791,7 +9769,7 @@ export type CloudProjectDatabaseBackupTypeEnum =
   | "none"
   | "pitr"
   | "snapshot";
-export const CloudProjectDatabaseBackupTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseBackupTypeEnum = S.String;
 
 /** Cloud database backup definition */
 export interface CloudProjectDatabaseBackup {
@@ -10786,8 +10764,7 @@ export type CloudProjectDatabasePostgresqlConnectionpoolModeEnum =
   | "session"
   | "statement"
   | "transaction";
-export const CloudProjectDatabasePostgresqlConnectionpoolModeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabasePostgresqlConnectionpoolModeEnum = S.String;
 
 export interface CreateCloudProjectDatabasePostgresqlConnectionPoolRequest {
   /** Service name */
@@ -10828,8 +10805,7 @@ export const CreateCloudProjectDatabasePostgresqlConnectionPoolRequest =
 
 /** Possible ssl modes for the connection pools */
 export type CloudProjectDatabasePostgresqlConnectionpoolSslModeEnum = "require";
-export const CloudProjectDatabasePostgresqlConnectionpoolSslModeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabasePostgresqlConnectionpoolSslModeEnum = S.String;
 
 /** Cloud database postgresql connection pool response body definition */
 export interface CloudProjectDatabasePostgresqlConnectionPool {
@@ -11788,7 +11764,7 @@ export const CloudInstanceApplicationAccessAccessesList = /*@__PURE__*/ S.Array(
 
 /** ApplicationAccessStateEnum */
 export type CloudInstanceApplicationAccessStateEnum = "installing" | "ok";
-export const CloudInstanceApplicationAccessStateEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceApplicationAccessStateEnum = S.String;
 
 /** ApplicationAccess */
 export interface CloudInstanceApplicationAccess {
@@ -11810,7 +11786,7 @@ export const CloudInstanceApplicationAccess = /*@__PURE__*/ S.suspend(() =>
 export type CloudInstancegroupInstanceGroupTypeEnum =
   | "affinity"
   | "anti-affinity";
-export const CloudInstancegroupInstanceGroupTypeEnum = /*@__PURE__*/ S.String;
+export const CloudInstancegroupInstanceGroupTypeEnum = S.String;
 
 export interface CreateCloudProjectInstanceGroupRequest {
   /** Service name */
@@ -12156,7 +12132,7 @@ export type CloudProjectKubeCustomizationAPIServerAdmissionPluginsEnum =
   | "AlwaysPullImages"
   | "NodeRestriction";
 export const CloudProjectKubeCustomizationAPIServerAdmissionPluginsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Array of disabled admission plugins */
 export type CloudProjectKubeCustomizationAPIServerAdmissionPluginsDisabledList =
@@ -12224,7 +12200,7 @@ export type CloudProjectKubeCustomizationCiliumClusterMeshApiServerServiceTypeEn
   | "LoadBalancer"
   | "NodePort";
 export const CloudProjectKubeCustomizationCiliumClusterMeshApiServerServiceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** ClusterMesh customization */
 export interface CloudProjectKubeCustomizationCiliumClusterMeshApiServer {
@@ -12408,7 +12384,7 @@ export type CloudKubeKubeProxyIpvsSchedulerEnum =
   | "rr"
   | "sed"
   | "sh";
-export const CloudKubeKubeProxyIpvsSchedulerEnum = /*@__PURE__*/ S.String;
+export const CloudKubeKubeProxyIpvsSchedulerEnum = S.String;
 
 /** Configuration used when kube-proxy is configured with ipvs mode (durations format is RFC3339 duration, e.g. 'PT60S') */
 export interface CloudProjectKubeCustomizationKubeProxyIpvs {
@@ -12495,7 +12471,7 @@ export const CloudProjectKubeIpAllocationPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum values for cluster kubeProxyMode */
 export type CloudKubeKubeProxyModeEnum = "iptables" | "ipvs";
-export const CloudKubeKubeProxyModeEnum = /*@__PURE__*/ S.String;
+export const CloudKubeKubeProxyModeEnum = S.String;
 
 /** Parameters for optional node exposition via a floating IP per node */
 export interface CloudProjectKubeNodePoolAttachFloatingIpsParams {
@@ -12590,7 +12566,7 @@ export type CloudKubeTaintEffectEnum =
   | "NoExecute"
   | "NoSchedule"
   | "PreferNoSchedule";
-export const CloudKubeTaintEffectEnum = /*@__PURE__*/ S.String;
+export const CloudKubeTaintEffectEnum = S.String;
 
 /** Kubernetes taint object */
 export interface CloudKubeTaint {
@@ -12726,11 +12702,11 @@ export type CloudKubeUpdatePolicyEnum =
   | "ALWAYS_UPDATE"
   | "MINIMAL_DOWNTIME"
   | "NEVER_UPDATE";
-export const CloudKubeUpdatePolicyEnum = /*@__PURE__*/ S.String;
+export const CloudKubeUpdatePolicyEnum = S.String;
 
 /** List of available versions for installation */
 export type CloudKubeVersionEnum = "1.31" | "1.32" | "1.33" | "1.34" | "1.35";
-export const CloudKubeVersionEnum = /*@__PURE__*/ S.String;
+export const CloudKubeVersionEnum = S.String;
 
 export interface CreateCloudProjectKubeRequest {
   /** Service name */
@@ -12820,7 +12796,7 @@ export type CloudKubeClusterStatusEnum =
   | "USER_ERROR"
   | "USER_QUOTA_ERROR"
   | "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR";
-export const CloudKubeClusterStatusEnum = /*@__PURE__*/ S.String;
+export const CloudKubeClusterStatusEnum = S.String;
 
 /** Managed Kubernetes cluster description */
 export interface CloudKubeCluster {
@@ -13133,7 +13109,7 @@ export type CloudKubeNodePoolSizeStatusEnum =
   | "CAPACITY_OK"
   | "OVER_CAPACITY"
   | "UNDER_CAPACITY";
-export const CloudKubeNodePoolSizeStatusEnum = /*@__PURE__*/ S.String;
+export const CloudKubeNodePoolSizeStatusEnum = S.String;
 
 /** Enum values for NodePool Status */
 export type CloudKubeNodePoolStatusEnum =
@@ -13157,7 +13133,7 @@ export type CloudKubeNodePoolStatusEnum =
   | "USER_NODE_SUSPENDED_SERVICE"
   | "USER_QUOTA_ERROR"
   | "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR";
-export const CloudKubeNodePoolStatusEnum = /*@__PURE__*/ S.String;
+export const CloudKubeNodePoolStatusEnum = S.String;
 
 /** NodePool created on your cluster to manage your nodes */
 export interface CloudKubeNodePool {
@@ -13263,8 +13239,7 @@ export type CloudKubeOpenIdConnectSigningAlgorithmsEnum =
   | "RS256"
   | "RS384"
   | "RS512";
-export const CloudKubeOpenIdConnectSigningAlgorithmsEnum =
-  /*@__PURE__*/ S.String;
+export const CloudKubeOpenIdConnectSigningAlgorithmsEnum = S.String;
 
 /** The signing algorithms accepted. Default is "RS256". */
 export type CreateCloudProjectKubeOpenIdConnectRequestSigningAlgorithmsList =
@@ -13431,7 +13406,7 @@ export const CreateCloudProjectNetworkPrivateRequest = /*@__PURE__*/ S.suspend(
 
 /** NetworkRegionStatusEnum */
 export type CloudNetworkNetworkRegionStatusEnum = "ACTIVE" | "BUILDING";
-export const CloudNetworkNetworkRegionStatusEnum = /*@__PURE__*/ S.String;
+export const CloudNetworkNetworkRegionStatusEnum = S.String;
 
 /** NetworkRegion */
 export interface CloudNetworkNetworkRegion {
@@ -13464,11 +13439,11 @@ export type CloudNetworkNetworkStatusEnum =
   | "BUILDING"
   | "DELETING"
   | "ERROR";
-export const CloudNetworkNetworkStatusEnum = /*@__PURE__*/ S.String;
+export const CloudNetworkNetworkStatusEnum = S.String;
 
 /** NetworkTypeEnum */
 export type CloudNetworkNetworkTypeEnum = "private" | "public";
-export const CloudNetworkNetworkTypeEnum = /*@__PURE__*/ S.String;
+export const CloudNetworkNetworkTypeEnum = S.String;
 
 /** Network */
 export interface CloudNetworkNetwork {
@@ -13648,7 +13623,7 @@ export const CloudRegionAvailabilityZonesList = /*@__PURE__*/ S.Array(
 
 /** Enum values for ContinentCode */
 export type CloudRegionContinentEnum = "AF" | "ASIA" | "EU" | "NA" | "US";
-export const CloudRegionContinentEnum = /*@__PURE__*/ S.String;
+export const CloudRegionContinentEnum = S.String;
 
 /** 2 letters country codes (ISO 3166-1 A-2) */
 export type CountryCode2LettersEnum =
@@ -13902,7 +13877,7 @@ export type CountryCode2LettersEnum =
   | "za"
   | "zm"
   | "zw";
-export const CountryCode2LettersEnum = /*@__PURE__*/ S.String;
+export const CountryCode2LettersEnum = S.String;
 
 /** Enum values for IpCountry */
 export type CloudIpCountryEnum =
@@ -13924,7 +13899,7 @@ export type CloudIpCountryEnum =
   | "sg"
   | "uk"
   | "us";
-export const CloudIpCountryEnum = /*@__PURE__*/ S.String;
+export const CloudIpCountryEnum = S.String;
 
 /** Allowed countries for failover ip */
 export type CloudRegionIpCountriesList = Array<CloudIpCountryEnum>;
@@ -13934,7 +13909,7 @@ export const CloudRegionIpCountriesList = /*@__PURE__*/ S.Array(
 
 /** Enum values for Status */
 export type CloudServiceStatusEnum = "DOWN" | "UP";
-export const CloudServiceStatusEnum = /*@__PURE__*/ S.String;
+export const CloudServiceStatusEnum = S.String;
 
 /** Information about the different components available in the region */
 export interface CloudComponent {
@@ -13961,11 +13936,11 @@ export const CloudRegionServicesList = /*@__PURE__*/ S.Array(
 
 /** Enum values for Status */
 export type CloudRegionStatusEnum = "DOWN" | "MAINTENANCE" | "UP";
-export const CloudRegionStatusEnum = /*@__PURE__*/ S.String;
+export const CloudRegionStatusEnum = S.String;
 
 /** Enum values for region type */
 export type CloudRegionTypeEnum = "localzone" | "region" | "region-3-az";
-export const CloudRegionTypeEnum = /*@__PURE__*/ S.String;
+export const CloudRegionTypeEnum = S.String;
 
 /** Details about your region */
 export interface CloudRegion {
@@ -14310,11 +14285,11 @@ export type CloudNetworkGatewayStatusEnum =
   | "building"
   | "down"
   | "error";
-export const CloudNetworkGatewayStatusEnum = /*@__PURE__*/ S.String;
+export const CloudNetworkGatewayStatusEnum = S.String;
 
 /** Type of the gateway */
 export type CloudProjectGatewayTypeEnum = "private" | "public";
-export const CloudProjectGatewayTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectGatewayTypeEnum = S.String;
 
 /** Gateway */
 export interface CloudNetworkGateway {
@@ -14561,14 +14536,14 @@ export type CloudLoadbalancingLoadBalancerHealthMonitorHTTPMethodEnum =
   | "PUT"
   | "TRACE";
 export const CloudLoadbalancingLoadBalancerHealthMonitorHTTPMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Load balancer Healthmonitor HTTP Version */
 export type CloudLoadbalancingLoadBalancerHealthMonitorHTTPVersionEnum =
   | "1.0"
   | "1.1";
 export const CloudLoadbalancingLoadBalancerHealthMonitorHTTPVersionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** HTTP configuration for loadbalancer health monitor */
 export interface CloudLoadbalancingHealthMonitorHTTPConfiguration {
@@ -14612,8 +14587,7 @@ export type CloudLoadbalancingLoadBalancerHealthMonitorTypeEnum =
   | "tcp"
   | "tls-hello"
   | "udp-connect";
-export const CloudLoadbalancingLoadBalancerHealthMonitorTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudLoadbalancingLoadBalancerHealthMonitorTypeEnum = S.String;
 
 export interface CreateCloudProjectRegionLoadbalancingHealthMonitorRequest {
   /** Service name */
@@ -14673,8 +14647,7 @@ export type CloudLoadbalancingLoadBalancerOperatingStatusEnum =
   | "noMonitor"
   | "offline"
   | "online";
-export const CloudLoadbalancingLoadBalancerOperatingStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudLoadbalancingLoadBalancerOperatingStatusEnum = S.String;
 
 /** Load balancer provisioning status */
 export type CloudLoadbalancingLoadBalancerProvisioningStatusEnum =
@@ -14684,8 +14657,7 @@ export type CloudLoadbalancingLoadBalancerProvisioningStatusEnum =
   | "deleting"
   | "error"
   | "updating";
-export const CloudLoadbalancingLoadBalancerProvisioningStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudLoadbalancingLoadBalancerProvisioningStatusEnum = S.String;
 
 /** HealthMonitor */
 export interface CloudLoadbalancingHealthMonitor {
@@ -14742,7 +14714,7 @@ export type CloudLoadbalancingL7PolicyActionEnum =
   | "redirectToPool"
   | "redirectToURL"
   | "reject";
-export const CloudLoadbalancingL7PolicyActionEnum = /*@__PURE__*/ S.String;
+export const CloudLoadbalancingL7PolicyActionEnum = S.String;
 
 /** Loadbalancer L7 policy redirect HTTP code */
 export type CloudLoadbalancingL7PolicyRedirectHTTPCodeEnum =
@@ -14751,8 +14723,7 @@ export type CloudLoadbalancingL7PolicyRedirectHTTPCodeEnum =
   | 303
   | 307
   | 308;
-export const CloudLoadbalancingL7PolicyRedirectHTTPCodeEnum =
-  /*@__PURE__*/ S.Number;
+export const CloudLoadbalancingL7PolicyRedirectHTTPCodeEnum = S.Number;
 
 export interface CreateCloudProjectRegionLoadbalancingL7PolicyRequest {
   /** Service name */
@@ -14866,7 +14837,7 @@ export type CloudLoadbalancingL7RuleCompareTypeEnum =
   | "equalTo"
   | "regex"
   | "startsWith";
-export const CloudLoadbalancingL7RuleCompareTypeEnum = /*@__PURE__*/ S.String;
+export const CloudLoadbalancingL7RuleCompareTypeEnum = S.String;
 
 /** Loadbalancer L7 rule type */
 export type CloudLoadbalancingL7RuleTypeEnum =
@@ -14878,7 +14849,7 @@ export type CloudLoadbalancingL7RuleTypeEnum =
   | "sslConnHasCert"
   | "sslDNField"
   | "sslVerifyResult";
-export const CloudLoadbalancingL7RuleTypeEnum = /*@__PURE__*/ S.String;
+export const CloudLoadbalancingL7RuleTypeEnum = S.String;
 
 export interface CreateCloudProjectRegionLoadbalancingL7PolicyL7RuleRequest {
   /** Service name */
@@ -14975,7 +14946,7 @@ export type CloudLoadbalancingListenerProtocolEnum =
   | "tcp"
   | "terminatedHTTPS"
   | "udp";
-export const CloudLoadbalancingListenerProtocolEnum = /*@__PURE__*/ S.String;
+export const CloudLoadbalancingListenerProtocolEnum = S.String;
 
 /** Loadbalancer listener TLS versions */
 export type CloudLoadbalancingListenerTlsVersionEnum =
@@ -14984,7 +14955,7 @@ export type CloudLoadbalancingListenerTlsVersionEnum =
   | "TLSv1.1"
   | "TLSv1.2"
   | "TLSv1.3";
-export const CloudLoadbalancingListenerTlsVersionEnum = /*@__PURE__*/ S.String;
+export const CloudLoadbalancingListenerTlsVersionEnum = S.String;
 
 /** TLS versions of the listener */
 export type CreateCloudProjectRegionLoadbalancingListenerRequestTlsVersionsList =
@@ -15146,7 +15117,7 @@ export type CloudLoadbalancingPoolAlgorithmEnum =
   | "leastConnections"
   | "roundRobin"
   | "sourceIP";
-export const CloudLoadbalancingPoolAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CloudLoadbalancingPoolAlgorithmEnum = S.String;
 
 /** Create a health monitor on loadbalancer creation */
 export interface CloudLoadbalancingHealthMonitorCreateInput {
@@ -15224,7 +15195,7 @@ export type CloudLoadbalancingPoolProtocolEnum =
   | "sctp"
   | "tcp"
   | "udp";
-export const CloudLoadbalancingPoolProtocolEnum = /*@__PURE__*/ S.String;
+export const CloudLoadbalancingPoolProtocolEnum = S.String;
 
 /** Pool session persistence type */
 export type CloudLoadbalancingPoolSessionPersistenceTypeEnum =
@@ -15232,8 +15203,7 @@ export type CloudLoadbalancingPoolSessionPersistenceTypeEnum =
   | "disabled"
   | "httpCookie"
   | "sourceIP";
-export const CloudLoadbalancingPoolSessionPersistenceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudLoadbalancingPoolSessionPersistenceTypeEnum = S.String;
 
 /** PoolSessionPersistence */
 export interface CloudLoadbalancingPoolSessionPersistence {
@@ -16190,7 +16160,7 @@ export const CreateCloudProjectRegionQuotaRequest = /*@__PURE__*/ S.suspend(
 
 /** ACL Access Level */
 export type CloudShareAclAccessLevelEnum = "ro" | "rw";
-export const CloudShareAclAccessLevelEnum = /*@__PURE__*/ S.String;
+export const CloudShareAclAccessLevelEnum = S.String;
 
 export interface CreateCloudProjectRegionShareAclRequest {
   /** Service name */
@@ -16225,7 +16195,7 @@ export const CreateCloudProjectRegionShareAclRequest = /*@__PURE__*/ S.suspend(
 
 /** ACL Access Type */
 export type CloudShareAclAccessTypeEnum = "ip";
-export const CloudShareAclAccessTypeEnum = /*@__PURE__*/ S.String;
+export const CloudShareAclAccessTypeEnum = S.String;
 
 /** ACL Status */
 export type CloudShareAclStatusEnum =
@@ -16235,7 +16205,7 @@ export type CloudShareAclStatusEnum =
   | "error"
   | "queued_to_apply"
   | "queued_to_deny";
-export const CloudShareAclStatusEnum = /*@__PURE__*/ S.String;
+export const CloudShareAclStatusEnum = S.String;
 
 /** Share ACL */
 export interface CloudShareAclACL {
@@ -16301,7 +16271,7 @@ export const CreateCloudProjectRegionShareSnapshotRequest =
 
 /** Share protocol */
 export type CloudShareProtocolEnum = "NFS";
-export const CloudShareProtocolEnum = /*@__PURE__*/ S.String;
+export const CloudShareProtocolEnum = S.String;
 
 /** Snapshot Status */
 export type CloudShareSnapshotStatusEnum =
@@ -16315,7 +16285,7 @@ export type CloudShareSnapshotStatusEnum =
   | "restoring"
   | "unmanage_error"
   | "unmanage_starting";
-export const CloudShareSnapshotStatusEnum = /*@__PURE__*/ S.String;
+export const CloudShareSnapshotStatusEnum = S.String;
 
 /** Share snapshot */
 export interface CloudShareSnapshotSnapshot {
@@ -16510,7 +16480,7 @@ export type CloudVolumeBackupVolumeBackupStatusEnum =
   | "error"
   | "ok"
   | "restoring";
-export const CloudVolumeBackupVolumeBackupStatusEnum = /*@__PURE__*/ S.String;
+export const CloudVolumeBackupVolumeBackupStatusEnum = S.String;
 
 /** A volume backup */
 export interface CloudVolumeBackupVolumeBackup {
@@ -16616,7 +16586,7 @@ export type CloudExecutionStateEnum =
   | "PAUSED"
   | "RUNNING"
   | "SUCCESS";
-export const CloudExecutionStateEnum = /*@__PURE__*/ S.String;
+export const CloudExecutionStateEnum = S.String;
 
 /** An execution of the backup workflow */
 export interface CloudExecution {
@@ -16766,7 +16736,7 @@ export const CreateCloudProjectStorageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** TypeEnum */
 export type CloudStorageTypeEnum = "private" | "public" | "static";
-export const CloudStorageTypeEnum = /*@__PURE__*/ S.String;
+export const CloudStorageTypeEnum = S.String;
 
 /** Container */
 export interface CloudStorageContainer2 {
@@ -16963,7 +16933,7 @@ export const CreateCloudProjectStorageStaticResponse = /*@__PURE__*/ S.suspend(
 
 /** RightEnum */
 export type CloudStorageRightEnum = "all" | "read" | "write";
-export const CloudStorageRightEnum = /*@__PURE__*/ S.String;
+export const CloudStorageRightEnum = S.String;
 
 export interface CreateCloudProjectStorageUserRequest {
   /** Service name */
@@ -17033,7 +17003,7 @@ export type CloudUserUserStatusEnum =
   | "disabled"
   | "ok"
   | "updating";
-export const CloudUserUserStatusEnum = /*@__PURE__*/ S.String;
+export const CloudUserUserStatusEnum = S.String;
 
 /** UserDetail */
 export interface CloudUserUserDetail {
@@ -17114,7 +17084,7 @@ export type CloudUserRoleEnum =
   | "quantum_reader"
   | "share_operator"
   | "volume_operator";
-export const CloudUserRoleEnum = /*@__PURE__*/ S.String;
+export const CloudUserRoleEnum = S.String;
 
 /** Openstack keystone roles names */
 export type CreateCloudProjectUserRequestRolesList = Array<
@@ -17533,7 +17503,7 @@ export type CloudVolumeSnapshotStatusEnum =
   | "deleting"
   | "error"
   | "error_deleting";
-export const CloudVolumeSnapshotStatusEnum = /*@__PURE__*/ S.String;
+export const CloudVolumeSnapshotStatusEnum = S.String;
 
 /** Snapshot */
 export interface CloudVolumeSnapshot {
@@ -17617,7 +17587,7 @@ export const CreateCloudProjectVrackRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Encryption algorithm */
 export type CloudStorageEncryptionAlgorithmEnum = "AES256" | "plaintext";
-export const CloudStorageEncryptionAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CloudStorageEncryptionAlgorithmEnum = S.String;
 
 /** Encryption configuration. */
 export interface CloudStorageEncryptionObject {
@@ -17743,7 +17713,7 @@ export const CloudStorageLifecycleRuleNoncurrentVersionTransitionsList =
 
 /** Lifecycle rule status */
 export type CloudStorageLifecycleRuleStatusEnum = "disabled" | "enabled";
-export const CloudStorageLifecycleRuleStatusEnum = /*@__PURE__*/ S.String;
+export const CloudStorageLifecycleRuleStatusEnum = S.String;
 
 /** Storage class */
 export type CloudStorageLifecycleRuleTransitionStorageClassEnum =
@@ -17751,8 +17721,7 @@ export type CloudStorageLifecycleRuleTransitionStorageClassEnum =
   | "GLACIER_IR"
   | "STANDARD"
   | "STANDARD_IA";
-export const CloudStorageLifecycleRuleTransitionStorageClassEnum =
-  /*@__PURE__*/ S.String;
+export const CloudStorageLifecycleRuleTransitionStorageClassEnum = S.String;
 
 /** Specifies when an object transitions to a specified storage class. */
 export interface CloudStorageLifecycleRuleTransition {
@@ -17847,7 +17816,7 @@ export const CloudStorageLifecycleConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Object lock mode */
 export type CloudStorageObjectLockModeEnum = "compliance" | "governance";
-export const CloudStorageObjectLockModeEnum = /*@__PURE__*/ S.String;
+export const CloudStorageObjectLockModeEnum = S.String;
 
 /** Object lock default configuration rule. */
 export interface CloudStorageLockConfigurationRule {
@@ -17867,7 +17836,7 @@ export const CloudStorageLockConfigurationRule = /*@__PURE__*/ S.suspend(() =>
 
 /** Object lock status */
 export type CloudStorageObjectLockStatusEnum = "disabled" | "enabled";
-export const CloudStorageObjectLockStatusEnum = /*@__PURE__*/ S.String;
+export const CloudStorageObjectLockStatusEnum = S.String;
 
 /** Object lock configuration. */
 export interface CloudStorageLockConfiguration {
@@ -17890,7 +17859,7 @@ export type CloudStorageReplicationRuleDeleteMarkerReplicationStatusEnum =
   | "disabled"
   | "enabled";
 export const CloudStorageReplicationRuleDeleteMarkerReplicationStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Storage class */
 export type CloudStorageStorageClassReplicationEnum =
@@ -17902,7 +17871,7 @@ export type CloudStorageStorageClassReplicationEnum =
   | "ONEZONE_IA"
   | "STANDARD"
   | "STANDARD_IA";
-export const CloudStorageStorageClassReplicationEnum = /*@__PURE__*/ S.String;
+export const CloudStorageStorageClassReplicationEnum = S.String;
 
 /** Object Storage replication configuration rule destination. */
 export interface CloudStorageReplicationRuleDestinationIn {
@@ -17953,7 +17922,7 @@ export const CloudStorageReplicationRuleFilter = /*@__PURE__*/ S.suspend(() =>
 
 /** Replication rule status */
 export type CloudStorageReplicationRuleStatusEnum = "disabled" | "enabled";
-export const CloudStorageReplicationRuleStatusEnum = /*@__PURE__*/ S.String;
+export const CloudStorageReplicationRuleStatusEnum = S.String;
 
 /** Object Storage replication configuration rule. */
 export interface CloudStorageReplicationRuleIn {
@@ -18022,7 +17991,7 @@ export type CloudStorageVersioningStatusEnum =
   | "disabled"
   | "enabled"
   | "suspended";
-export const CloudStorageVersioningStatusEnum = /*@__PURE__*/ S.String;
+export const CloudStorageVersioningStatusEnum = S.String;
 
 /** Versioning configuration. */
 export interface CloudStorageVersioningObject {
@@ -18157,7 +18126,7 @@ export type CloudColdArchiveContainerStatusEnum =
   | "none"
   | "restored"
   | "restoring";
-export const CloudColdArchiveContainerStatusEnum = /*@__PURE__*/ S.String;
+export const CloudColdArchiveContainerStatusEnum = S.String;
 
 /** Container */
 export interface CloudColdArchiveContainer {
@@ -18260,7 +18229,7 @@ export const CloudInstanceAutoBackup2 = /*@__PURE__*/ S.suspend(() =>
 
 /** Billing period */
 export type CloudInstanceCreateInputBillingPeriodEnum = "hourly" | "monthly";
-export const CloudInstanceCreateInputBillingPeriodEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceCreateInputBillingPeriodEnum = S.String;
 
 /** Boot the instance from an image or a volume. Both cannot be null. */
 export interface CloudInstanceCreateInputBootFrom {
@@ -18355,7 +18324,7 @@ export type CloudInstanceCreateInputNetworkPrivateGatewayCreateModelEnum =
   | "m"
   | "s";
 export const CloudInstanceCreateInputNetworkPrivateGatewayCreateModelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information to create a new gateway */
 export interface CloudInstanceCreateInputNetworkPrivateGatewayCreate {
@@ -18935,7 +18904,7 @@ export const CreateNetworkLoadBalancerConfigurationRequest =
 
 /** Presigned URL method */
 export type CloudStoragePresignedURLMethodEnum = "DELETE" | "GET" | "PUT";
-export const CloudStoragePresignedURLMethodEnum = /*@__PURE__*/ S.String;
+export const CloudStoragePresignedURLMethodEnum = S.String;
 
 export interface CreatePresignedUrlOnRegionRequest {
   /** Service name */
@@ -19036,8 +19005,7 @@ export type CloudStorageStorageJobReplicationStatusEnum =
   | "Created"
   | "Failed"
   | "Preparing";
-export const CloudStorageStorageJobReplicationStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudStorageStorageJobReplicationStatusEnum = S.String;
 
 /** Replication storage job */
 export interface CloudStorageJobReplication {
@@ -19271,7 +19239,7 @@ export type CloudStoragePolicyRoleEnum =
   | "deny"
   | "readOnly"
   | "readWrite";
-export const CloudStoragePolicyRoleEnum = /*@__PURE__*/ S.String;
+export const CloudStoragePolicyRoleEnum = S.String;
 
 export interface CreateStorageContainerPolicyOnRegionRequest {
   /** Service name */
@@ -23686,7 +23654,7 @@ export const GetApplicationLoadBalancerStatsRequest = /*@__PURE__*/ S.suspend(
 export type CloudProjectLoadbalancerStatsStatusEnum =
   | "HEALTHY"
   | "NOT_AVAILABLE";
-export const CloudProjectLoadbalancerStatsStatusEnum = /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerStatsStatusEnum = S.String;
 
 /** Status of target's server */
 export type CloudProjectLoadbalancerStatsTargetServerStatusEnum =
@@ -23699,8 +23667,7 @@ export type CloudProjectLoadbalancerStatsTargetServerStatusEnum =
   | "L7_RESPONSE_ERROR"
   | "L7_TIMEOUT"
   | "UNKNOWN";
-export const CloudProjectLoadbalancerStatsTargetServerStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectLoadbalancerStatsTargetServerStatusEnum = S.String;
 
 /** Loadbalancer target server stats */
 export interface CloudProjectLoadbalancerStatsTargetServer {
@@ -24096,7 +24063,7 @@ export const CloudProjectAiCapabilitiesFlavorResourcesPerUnit =
 
 /** Flavor Type */
 export type CloudProjectAiCapabilitiesFlavorTypeEnum = "cpu" | "gpu";
-export const CloudProjectAiCapabilitiesFlavorTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiCapabilitiesFlavorTypeEnum = S.String;
 
 /** AI Solutions Flavor */
 export interface CloudProjectAiCapabilitiesFlavor {
@@ -24466,7 +24433,7 @@ export type CloudProjectAiCapabilitiesPresetTypeEnum =
   | "app"
   | "job"
   | "notebook";
-export const CloudProjectAiCapabilitiesPresetTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiCapabilitiesPresetTypeEnum = S.String;
 
 /** AI Solutions Preset image */
 export interface CloudProjectAiCapabilitiesPreset {
@@ -24911,7 +24878,7 @@ export type GetCloudProjectCapabilityApplicationloadbalancerSizeRequestSize =
   | "M"
   | "S";
 export const GetCloudProjectCapabilityApplicationloadbalancerSizeRequestSize =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCloudProjectCapabilityApplicationloadbalancerSizeRequest {
   /** Service name */
@@ -25048,8 +25015,7 @@ export type GetCloudProjectCapabilityLoadbalancerSizeRequestSize =
   | "L"
   | "M"
   | "S";
-export const GetCloudProjectCapabilityLoadbalancerSizeRequestSize =
-  /*@__PURE__*/ S.String;
+export const GetCloudProjectCapabilityLoadbalancerSizeRequestSize = S.String;
 
 export interface GetCloudProjectCapabilityLoadbalancerSizeRequest {
   /** Service name */
@@ -25126,7 +25092,7 @@ export type GetCloudProjectCapabilityNetworkloadbalancerSizeRequestSize =
   | "M"
   | "S";
 export const GetCloudProjectCapabilityNetworkloadbalancerSizeRequestSize =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetCloudProjectCapabilityNetworkloadbalancerSizeRequest {
   /** Service name */
@@ -25229,7 +25195,7 @@ export type CloudContainerRegistryOIDCStatusEnum =
   | "PATCHING"
   | "READY"
   | "UPDATING";
-export const CloudContainerRegistryOIDCStatusEnum = /*@__PURE__*/ S.String;
+export const CloudContainerRegistryOIDCStatusEnum = S.String;
 
 /** Docker registry OIDC Configuration */
 export interface CloudContainerRegistryOIDCConfiguration {
@@ -25750,8 +25716,7 @@ export type CloudProjectDatabaseServiceMetricPeriodEnum =
   | "lastMonth"
   | "lastWeek"
   | "lastYear";
-export const CloudProjectDatabaseServiceMetricPeriodEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceMetricPeriodEnum = S.String;
 
 export interface GetCloudProjectDatabaseCassandraMetricRequest {
   /** Service name */
@@ -25847,7 +25812,7 @@ export type CloudProjectDatabaseServiceMetricUnitEnum =
   | "SCALAR_PER_SECOND"
   | "SECONDS"
   | "UNKNOWN";
-export const CloudProjectDatabaseServiceMetricUnitEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceMetricUnitEnum = S.String;
 
 /** Metric definition for cloud project databases */
 export interface CloudProjectDatabaseServiceMetric {
@@ -26691,7 +26656,7 @@ export type CloudProjectDatabaseKafkaConnectCapabilitiesConnectorTypeEnum =
   | "sink"
   | "source";
 export const CloudProjectDatabaseKafkaConnectCapabilitiesConnectorTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** KafkaConnect connector capability definition */
 export interface CloudProjectDatabaseKafkaConnectCapabilitiesConnector {
@@ -26788,8 +26753,7 @@ export type CloudProjectDatabaseKafkaConnectConnectorTaskStatusEnum =
   | "FAILED"
   | "PAUSED"
   | "RUNNING";
-export const CloudProjectDatabaseKafkaConnectConnectorTaskStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseKafkaConnectConnectorTaskStatusEnum = S.String;
 
 /** KafkaConnect connector definition */
 export interface CloudProjectDatabaseKafkaConnectConnectorTask {
@@ -30167,7 +30131,7 @@ export type CloudKubeNodeStatusEnum =
   | "USER_NODE_SUSPENDED_SERVICE"
   | "USER_QUOTA_ERROR"
   | "USER_WEBHOOK_PREVENTING_OPERATIONS_ERROR";
-export const CloudKubeNodeStatusEnum = /*@__PURE__*/ S.String;
+export const CloudKubeNodeStatusEnum = S.String;
 
 /** Node installed on your cluster */
 export interface CloudKubeNode {
@@ -30307,7 +30271,7 @@ export const GetCloudProjectLabRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum values for Status */
 export type CloudLabStatusEnum = "activated" | "activating" | "closed" | "open";
-export const CloudLabStatusEnum = /*@__PURE__*/ S.String;
+export const CloudLabStatusEnum = S.String;
 
 /** A public cloud lab permits to activate a feature in beta */
 export interface CloudLab {
@@ -31165,7 +31129,7 @@ export const CloudProjectNetworkSubnetIdsList = /*@__PURE__*/ S.Array(
 
 /** NetworkVisibilityEnum */
 export type CloudNetworkNetworkVisibilityEnum = "private" | "public";
-export const CloudNetworkNetworkVisibilityEnum = /*@__PURE__*/ S.String;
+export const CloudNetworkNetworkVisibilityEnum = S.String;
 
 /** Network */
 export interface CloudProjectNetwork {
@@ -31628,11 +31592,11 @@ export type CloudShareStatusEnum =
   | "unmanage_error"
   | "unmanage_starting"
   | "unmanaged";
-export const CloudShareStatusEnum = /*@__PURE__*/ S.String;
+export const CloudShareStatusEnum = S.String;
 
 /** Share type */
 export type CloudShareTypeEnum = "standard-1az";
-export const CloudShareTypeEnum = /*@__PURE__*/ S.String;
+export const CloudShareTypeEnum = S.String;
 
 /** Share */
 export interface CloudShareShare {
@@ -31981,7 +31945,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -31990,7 +31954,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -32113,7 +32077,7 @@ export type CloudStorageRetrievalStateEnum =
   | "sealed"
   | "unsealed"
   | "unsealing";
-export const CloudStorageRetrievalStateEnum = /*@__PURE__*/ S.String;
+export const CloudStorageRetrievalStateEnum = S.String;
 
 /** ContainerObject */
 export interface CloudStorageContainerObject {
@@ -32244,7 +32208,7 @@ export const GetCloudProjectUsageCurrentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Typology of the region */
 export type CommonRegionTypeEnum = "LOCAL-ZONE" | "REGION-1-AZ" | "REGION-3-AZ";
-export const CommonRegionTypeEnum = /*@__PURE__*/ S.String;
+export const CommonRegionTypeEnum = S.String;
 
 /** UnitQuantity */
 export type CloudBillingViewUnitQuantityEnum =
@@ -32254,7 +32218,7 @@ export type CloudBillingViewUnitQuantityEnum =
   | "Minute"
   | "Second"
   | "Unit";
-export const CloudBillingViewUnitQuantityEnum = /*@__PURE__*/ S.String;
+export const CloudBillingViewUnitQuantityEnum = S.String;
 
 /** Quantity */
 export interface CloudBillingViewQuantity {
@@ -32861,7 +32825,7 @@ export type CloudBillingViewStorageTypeEnum =
   | "storage-high-perf"
   | "storage-standard"
   | "storage-standard-ia";
-export const CloudBillingViewStorageTypeEnum = /*@__PURE__*/ S.String;
+export const CloudBillingViewStorageTypeEnum = S.String;
 
 /** HourlyStorage */
 export interface CloudBillingViewHourlyStorage {
@@ -33681,7 +33645,7 @@ export const CloudUserConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** OpenrcVersionEnum */
 export type CloudUserOpenrcVersionEnum = "v2.0" | "v3";
-export const CloudUserOpenrcVersionEnum = /*@__PURE__*/ S.String;
+export const CloudUserOpenrcVersionEnum = S.String;
 
 export interface GetCloudProjectUserOpenrcRequest {
   /** Service name */
@@ -33759,7 +33723,7 @@ export const CloudStoragePolicyRaw = /*@__PURE__*/ S.suspend(() =>
 
 /** RCloneServiceEnum */
 export type CloudUserRCloneServiceEnum = "storage" | "storage-s3";
-export const CloudUserRCloneServiceEnum = /*@__PURE__*/ S.String;
+export const CloudUserRCloneServiceEnum = S.String;
 
 export interface GetCloudProjectUserRcloneRequest {
   /** Service name */
@@ -34214,8 +34178,7 @@ export type CloudProjectFloatingIpAssociatedEntityTypeEnum =
   | "loadbalancer"
   | "routerInterface"
   | "unknown";
-export const CloudProjectFloatingIpAssociatedEntityTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectFloatingIpAssociatedEntityTypeEnum = S.String;
 
 /** Associated entity with a floating ip */
 export interface CloudProjectFloatingIpAssociatedEntity {
@@ -34242,7 +34205,7 @@ export const CloudProjectFloatingIpAssociatedEntity = /*@__PURE__*/ S.suspend(
 
 /** Status of a floating ip */
 export type CloudProjectFloatingIpStatusEnum = "active" | "down" | "error";
-export const CloudProjectFloatingIpStatusEnum = /*@__PURE__*/ S.String;
+export const CloudProjectFloatingIpStatusEnum = S.String;
 
 /** A floating ip */
 export interface CloudProjectFloatingIp {
@@ -34355,7 +34318,7 @@ export type CloudAggregatedInstanceActionGroupEnum =
   | "details"
   | "lifecycle"
   | "shelve";
-export const CloudAggregatedInstanceActionGroupEnum = /*@__PURE__*/ S.String;
+export const CloudAggregatedInstanceActionGroupEnum = S.String;
 
 /** Action */
 export interface CloudInstanceAction {
@@ -34420,7 +34383,7 @@ export const CloudInstanceInstanceAddressSubnet = /*@__PURE__*/ S.suspend(() =>
 
 /** IPAddressTypeEnum */
 export type CloudInstanceIPAddressTypeEnum = "floating" | "private" | "public";
-export const CloudInstanceIPAddressTypeEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceIPAddressTypeEnum = S.String;
 
 /** IP address */
 export interface CloudInstanceInstanceAddress {
@@ -34598,7 +34561,7 @@ export const CloudInstanceInstanceImage = /*@__PURE__*/ S.suspend(() =>
 
 /** Instance price status */
 export type CloudInstanceInstancePriceStatusEnum = "available" | "enabled";
-export const CloudInstanceInstancePriceStatusEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceInstancePriceStatusEnum = S.String;
 
 /** Instance price type */
 export type CloudInstanceInstancePriceTypeEnum =
@@ -34606,7 +34569,7 @@ export type CloudInstanceInstancePriceTypeEnum =
   | "licence"
   | "licenceMonth"
   | "month";
-export const CloudInstanceInstancePriceTypeEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceInstancePriceTypeEnum = S.String;
 
 /** Price of the instance */
 export interface CloudInstanceInstancePrice {
@@ -34688,7 +34651,7 @@ export type CloudInstanceInstanceSummaryTaskStateEnum =
   | "unrescuing"
   | "unshelving"
   | "updating_password";
-export const CloudInstanceInstanceSummaryTaskStateEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceInstanceSummaryTaskStateEnum = S.String;
 
 /** Volumes attached to your instance */
 export interface CloudInstanceInstanceVolume {
@@ -34965,7 +34928,7 @@ export const GetObjectInformationOnContainerOnRegionRequest =
 
 /** Object lock mode */
 export type CloudStorageObjectLegalHoldStatusEnum = "off" | "on";
-export const CloudStorageObjectLegalHoldStatusEnum = /*@__PURE__*/ S.String;
+export const CloudStorageObjectLegalHoldStatusEnum = S.String;
 
 /** Object retention configuration. */
 export interface CloudStorageObjectRetentionConfiguration {
@@ -34990,7 +34953,7 @@ export type CloudStorageObjectReplicationStatusEnum =
   | "FAILED"
   | "NONE"
   | "REPLICA";
-export const CloudStorageObjectReplicationStatusEnum = /*@__PURE__*/ S.String;
+export const CloudStorageObjectReplicationStatusEnum = S.String;
 
 /** Object */
 export interface CloudStorageObject {
@@ -35243,7 +35206,7 @@ export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for project access type */
 export type CloudAccessTypeEnum = "full" | "restricted";
-export const CloudAccessTypeEnum = /*@__PURE__*/ S.String;
+export const CloudAccessTypeEnum = S.String;
 
 /** Resource state */
 export type IamResourceMetadataStateEnum =
@@ -35251,7 +35214,7 @@ export type IamResourceMetadataStateEnum =
   | "IN_CREATION"
   | "OK"
   | "SUSPENDED";
-export const IamResourceMetadataStateEnum = /*@__PURE__*/ S.String;
+export const IamResourceMetadataStateEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -35292,7 +35255,7 @@ export type CloudProjectProjectStatusEnum =
   | "deleting"
   | "ok"
   | "suspended";
-export const CloudProjectProjectStatusEnum = /*@__PURE__*/ S.String;
+export const CloudProjectProjectStatusEnum = S.String;
 
 /** Project */
 export interface CloudProjectWithIAM {
@@ -35395,7 +35358,7 @@ export type CloudQuotaCategoryEnum =
   | "network"
   | "share"
   | "volume";
-export const CloudQuotaCategoryEnum = /*@__PURE__*/ S.String;
+export const CloudQuotaCategoryEnum = S.String;
 
 export type GetQuotasRequestCategoriesList = Array<
   CloudQuotaCategoryEnum | (string & {})
@@ -35697,7 +35660,7 @@ export const ListCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for cloud project product name */
 export type CloudProjectProductNameEnum = "registry";
-export const CloudProjectProductNameEnum = /*@__PURE__*/ S.String;
+export const CloudProjectProductNameEnum = S.String;
 
 export interface ListCloudAgreementsRequest {
   /** Name of a product supported by cloud projects */
@@ -35765,7 +35728,7 @@ export type CloudProjectEligibilityAction =
   | "askIncreaseProjectsQuota"
   | "challengePaymentMethod"
   | "verifyPaypal";
-export const CloudProjectEligibilityAction = /*@__PURE__*/ S.String;
+export const CloudProjectEligibilityAction = S.String;
 
 /** Actions to perform to be eligible */
 export type CloudProjectEligibilityInfoActionsRequiredList =
@@ -35783,7 +35746,7 @@ export type CloudProjectPaymentMethodAuthorized =
   | "paypal"
   | "rupay"
   | "sepaDirectDebit";
-export const CloudProjectPaymentMethodAuthorized = /*@__PURE__*/ S.String;
+export const CloudProjectPaymentMethodAuthorized = S.String;
 
 /** Payment method accepted to order Public Cloud project */
 export type CloudProjectEligibilityInfoPaymentMethodsAuthorizedList =
@@ -35853,7 +35816,7 @@ export type CloudOrderStatusEnum =
   | "delivering"
   | "unknown"
   | "unpaid";
-export const CloudOrderStatusEnum = /*@__PURE__*/ S.String;
+export const CloudOrderStatusEnum = S.String;
 
 /** Cloud Order */
 export interface CloudOrderOrder {
@@ -35909,7 +35872,7 @@ export type NichandleOvhSubsidiaryEnum =
   | "PT"
   | "SN"
   | "TN";
-export const NichandleOvhSubsidiaryEnum = /*@__PURE__*/ S.String;
+export const NichandleOvhSubsidiaryEnum = S.String;
 
 export interface ListCloudOrderRuleAvailabilityRequest {
   /** Addon family filter */
@@ -36046,7 +36009,7 @@ export const ListCloudProjectAclResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible value to order result */
 export type CloudProjectAiOrderEnum = "asc" | "desc";
-export const CloudProjectAiOrderEnum = /*@__PURE__*/ S.String;
+export const CloudProjectAiOrderEnum = S.String;
 
 export type ListCloudProjectAiAppRequestStatusStateList = Array<
   CloudProjectAiAppAppStateEnum | (string & {})
@@ -36249,8 +36212,7 @@ export type CloudProjectAiCapabilitiesLicensingTypeEnum =
   | "per-replica"
   | "per-resource"
   | "per-second-bracket";
-export const CloudProjectAiCapabilitiesLicensingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectAiCapabilitiesLicensingTypeEnum = S.String;
 
 /** List of available versions of this image */
 export type CloudProjectAiCapabilitiesAppImageVersionsList = Array<string>;
@@ -37293,7 +37255,7 @@ export type CloudProjectBillTypeEnum =
   | "creditPurchased"
   | "monthlyConsumption"
   | "monthlyInstanceActivation";
-export const CloudProjectBillTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectBillTypeEnum = S.String;
 
 /** Project bill */
 export interface CloudProjectBill {
@@ -37533,11 +37495,11 @@ export type CloudKubeFlavorCategoryEnum =
   | "l"
   | "r"
   | "t";
-export const CloudKubeFlavorCategoryEnum = /*@__PURE__*/ S.String;
+export const CloudKubeFlavorCategoryEnum = S.String;
 
 /** Enum values for State */
 export type CloudKubeFlavorStateEnum = "available" | "unavailable";
-export const CloudKubeFlavorStateEnum = /*@__PURE__*/ S.String;
+export const CloudKubeFlavorStateEnum = S.String;
 
 /** a flavor kind */
 export interface CloudKubeFlavor {
@@ -38218,8 +38180,7 @@ export type CloudProjectDatabaseAvailabilityActionEnum =
   | "fork"
   | "read"
   | "update";
-export const CloudProjectDatabaseAvailabilityActionEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseAvailabilityActionEnum = S.String;
 
 /** Possible target to restrict availabilities */
 export type CloudProjectDatabaseAvailabilityTargetEnum =
@@ -38227,8 +38188,7 @@ export type CloudProjectDatabaseAvailabilityTargetEnum =
   | "plan"
   | "self"
   | "version";
-export const CloudProjectDatabaseAvailabilityTargetEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseAvailabilityTargetEnum = S.String;
 
 export interface ListCloudProjectDatabaseAvailabilityRequest {
   /** Service name */
@@ -38287,8 +38247,7 @@ export type CloudProjectDatabaseAvailabilityStatusEnum =
   | "END_OF_SALE"
   | "STABLE"
   | "UNAVAILABLE";
-export const CloudProjectDatabaseAvailabilityStatusEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseAvailabilityStatusEnum = S.String;
 
 /** Availability of databases engines on cloud projects */
 export interface CloudProjectDatabaseAvailabilityLifecycle {
@@ -38513,7 +38472,7 @@ export type CloudProjectDatabaseCapabilitiesEngineStorageStrategyEnum =
   | "n/a"
   | "replicated";
 export const CloudProjectDatabaseCapabilitiesEngineStorageStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Versions available for this engine */
 export type CloudProjectDatabaseCapabilitiesEngineVersionsList = Array<string>;
@@ -38643,7 +38602,7 @@ export type CloudProjectDatabaseTypeEnum =
   | "duration"
   | "long"
   | "string";
-export const CloudProjectDatabaseTypeEnum = /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseTypeEnum = S.String;
 
 /** Cloud Database option definition */
 export interface CloudProjectDatabaseCapabilitiesOption {
@@ -38852,7 +38811,7 @@ export type CloudProjectDatabaseCapabilitiesAdvancedConfigurationPropertyTypeEnu
   | "long"
   | "string";
 export const CloudProjectDatabaseCapabilitiesAdvancedConfigurationPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Possible values for the property if string and applicable */
 export type CloudProjectDatabaseCapabilitiesAdvancedConfigurationPropertyValuesList =
@@ -38943,7 +38902,7 @@ export type CloudProjectDatabaseCapabilitiesIntegrationParameterTypeEnum =
   | "integer"
   | "string";
 export const CloudProjectDatabaseCapabilitiesIntegrationParameterTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Integration capability parameter */
 export interface CloudProjectDatabaseCapabilitiesIntegrationParameter {
@@ -39623,8 +39582,7 @@ export type CloudProjectDatabaseServiceCurrentqueriesStateEnum =
   | "IDLE"
   | "IDLE_IN_TRANSACTION"
   | "IDLE_IN_TRANSACTION_ABORTED";
-export const CloudProjectDatabaseServiceCurrentqueriesStateEnum =
-  /*@__PURE__*/ S.String;
+export const CloudProjectDatabaseServiceCurrentqueriesStateEnum = S.String;
 
 /** Possible event type on which the backend is waiting */
 export type CloudProjectDatabaseServiceCurrentqueriesWaitEventTypeEnum =
@@ -39638,7 +39596,7 @@ export type CloudProjectDatabaseServiceCurrentqueriesWaitEventTypeEnum =
   | "LWLOCK"
   | "TIMEOUT";
 export const CloudProjectDatabaseServiceCurrentqueriesWaitEventTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Cloud database service current queries query definition */
 export interface CloudProjectDatabaseServiceCurrentqueriesQuery {
@@ -41093,7 +41051,7 @@ export type CloudProjectDatabaseKafkaConnectCapabilitiesConnectorPropertyImporta
   | "low"
   | "medium";
 export const CloudProjectDatabaseKafkaConnectCapabilitiesConnectorPropertyImportanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Possible types for the kafka connectors properties */
 export type CloudProjectDatabaseKafkaConnectConnectorPropertyTypeEnum =
@@ -41108,7 +41066,7 @@ export type CloudProjectDatabaseKafkaConnectConnectorPropertyTypeEnum =
   | "string"
   | "transform";
 export const CloudProjectDatabaseKafkaConnectConnectorPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Possible values for the property if string and applicable */
 export type CloudProjectDatabaseKafkaConnectCapabilitiesConnectorConfigurationPropertyValuesList =
@@ -47508,7 +47466,7 @@ export type CloudImageOSTypeEnum =
   | "bsd"
   | "linux"
   | "windows";
-export const CloudImageOSTypeEnum = /*@__PURE__*/ S.String;
+export const CloudImageOSTypeEnum = S.String;
 
 export interface ListCloudProjectImageRequest {
   /** Service name */
@@ -54664,7 +54622,7 @@ export const PutCloudProjectVolumeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** RebootTypeEnum */
 export type CloudInstanceRebootTypeEnum = "hard" | "soft";
-export const CloudInstanceRebootTypeEnum = /*@__PURE__*/ S.String;
+export const CloudInstanceRebootTypeEnum = S.String;
 
 export interface RebootCloudProjectInstanceRequest {
   /** Service name */
@@ -55393,7 +55351,7 @@ export const ResetCloudProjectDatabaseValkeyUserCredentialsRequest =
 
 /** Enum values for worker nodes reset policy */
 export type CloudKubeResetWorkerNodesPolicyEnum = "delete" | "reinstall";
-export const CloudKubeResetWorkerNodesPolicyEnum = /*@__PURE__*/ S.String;
+export const CloudKubeResetWorkerNodesPolicyEnum = S.String;
 
 export interface ResetCloudProjectKubeRequest {
   /** Service name */
@@ -56149,7 +56107,7 @@ export const UpdateApplicationLoadBalancerRequest = /*@__PURE__*/ S.suspend(
 
 /** Enum values for UpdateStrategy */
 export type CloudKubeUpdateStrategyEnum = "LATEST_PATCH" | "NEXT_MINOR";
-export const CloudKubeUpdateStrategyEnum = /*@__PURE__*/ S.String;
+export const CloudKubeUpdateStrategyEnum = S.String;
 
 export interface UpdateCloudProjectKubeRequest {
   /** Service name */

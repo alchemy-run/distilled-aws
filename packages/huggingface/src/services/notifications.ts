@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 export type { HuggingFaceOpError, HuggingFaceOpContext };
 
 export type ChangeReadStatusRequestReadStatus = "all" | "unread";
-export const ChangeReadStatusRequestReadStatus = /*@__PURE__*/ S.String;
+export const ChangeReadStatusRequestReadStatus = S.String;
 
 export type ChangeReadStatusRequestRepoType =
   | "dataset"
@@ -20,13 +20,13 @@ export type ChangeReadStatusRequestRepoType =
   | "space"
   | "bucket"
   | "kernel";
-export const ChangeReadStatusRequestRepoType = /*@__PURE__*/ S.String;
+export const ChangeReadStatusRequestRepoType = S.String;
 
 export type ChangeReadStatusRequestMention =
   | "all"
   | "participating"
   | "mentions";
-export const ChangeReadStatusRequestMention = /*@__PURE__*/ S.String;
+export const ChangeReadStatusRequestMention = S.String;
 
 export type ChangeReadStatusRequestDiscussionIdsList = Array<string>;
 export const ChangeReadStatusRequestDiscussionIdsList = /*@__PURE__*/ S.Array(
@@ -80,7 +80,7 @@ export const ChangeReadStatusResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ChangeReadStatusResponse>;
 
 export type DeleteNotificationsRequestReadStatus = "all" | "unread";
-export const DeleteNotificationsRequestReadStatus = /*@__PURE__*/ S.String;
+export const DeleteNotificationsRequestReadStatus = S.String;
 
 export type DeleteNotificationsRequestRepoType =
   | "dataset"
@@ -88,13 +88,13 @@ export type DeleteNotificationsRequestRepoType =
   | "space"
   | "bucket"
   | "kernel";
-export const DeleteNotificationsRequestRepoType = /*@__PURE__*/ S.String;
+export const DeleteNotificationsRequestRepoType = S.String;
 
 export type DeleteNotificationsRequestMention =
   | "all"
   | "participating"
   | "mentions";
-export const DeleteNotificationsRequestMention = /*@__PURE__*/ S.String;
+export const DeleteNotificationsRequestMention = S.String;
 
 export type DeleteNotificationsRequestDiscussionIdsList = Array<string>;
 export const DeleteNotificationsRequestDiscussionIdsList =
@@ -143,7 +143,7 @@ export const DeleteNotificationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteNotificationsResponse>;
 
 export type ListNotificationsRequestReadStatus = "all" | "unread";
-export const ListNotificationsRequestReadStatus = /*@__PURE__*/ S.String;
+export const ListNotificationsRequestReadStatus = S.String;
 
 export type ListNotificationsRequestRepoType =
   | "dataset"
@@ -151,13 +151,13 @@ export type ListNotificationsRequestRepoType =
   | "space"
   | "bucket"
   | "kernel";
-export const ListNotificationsRequestRepoType = /*@__PURE__*/ S.String;
+export const ListNotificationsRequestRepoType = S.String;
 
 export type ListNotificationsRequestMention =
   | "all"
   | "participating"
   | "mentions";
-export const ListNotificationsRequestMention = /*@__PURE__*/ S.String;
+export const ListNotificationsRequestMention = S.String;
 
 export interface ListNotificationsRequest {
   p?: number;
@@ -266,7 +266,7 @@ export const ListNotificationsResponseNotificationsItemCase0 =
   }) as any as S.Schema<ListNotificationsResponseNotificationsItemCase0>;
 
 export type RepoIdType = "dataset" | "model" | "space" | "bucket" | "kernel";
-export const RepoIdType = /*@__PURE__*/ S.String;
+export const RepoIdType = S.String;
 
 export interface RepoId {
   name: string;
@@ -285,7 +285,7 @@ export type ListNotificationsResponseNotificationsItemCase1DiscussionStatus =
   | "closed"
   | "merged";
 export const ListNotificationsResponseNotificationsItemCase1DiscussionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListNotificationsResponseNotificationsItemCase1DiscussionParticipatingItem =
   ListNotificationsResponseNotificationsItemCase0PaperDiscussionParticipatingItem;
@@ -458,7 +458,7 @@ export type ListNotificationsResponseNotificationsItem =
   | ListNotificationsResponseNotificationsItemCase2
   | ListNotificationsResponseNotificationsItemCase3;
 export const ListNotificationsResponseNotificationsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListNotificationsResponseNotificationsItem>;
+  S.Unknown as any as S.Schema<ListNotificationsResponseNotificationsItem>;
 
 export type ListNotificationsResponseNotificationsList =
   Array<ListNotificationsResponseNotificationsItem>;
@@ -582,7 +582,7 @@ export const UpdateNotificationSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNotificationSettingsResponse>;
 
 export type UpdateWatchSettingsRequestDeleteItemType = "org" | "user" | "repo";
-export const UpdateWatchSettingsRequestDeleteItemType = /*@__PURE__*/ S.String;
+export const UpdateWatchSettingsRequestDeleteItemType = S.String;
 
 export interface UpdateWatchSettingsRequestDeleteItem {
   id: string;
@@ -605,7 +605,7 @@ export const UpdateWatchSettingsRequestDeleteList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateWatchSettingsRequestDeleteList>;
 
 export type UpdateWatchSettingsRequestAddItemType = "org" | "user" | "repo";
-export const UpdateWatchSettingsRequestAddItemType = /*@__PURE__*/ S.String;
+export const UpdateWatchSettingsRequestAddItemType = S.String;
 
 export interface UpdateWatchSettingsRequestAddItem {
   id: string;

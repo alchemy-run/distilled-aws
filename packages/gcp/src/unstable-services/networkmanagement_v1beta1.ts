@@ -127,7 +127,7 @@ export type VpcFlowLogsConfigTargetResourceStateEnum =
   | "TARGET_RESOURCE_STATE_UNSPECIFIED"
   | "TARGET_RESOURCE_EXISTS"
   | "TARGET_RESOURCE_DOES_NOT_EXIST";
-export const VpcFlowLogsConfigTargetResourceStateEnum = /*@__PURE__*/ S.String;
+export const VpcFlowLogsConfigTargetResourceStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -142,7 +142,7 @@ export type VpcFlowLogsConfigAggregationIntervalEnum =
   | "INTERVAL_5_MIN"
   | "INTERVAL_10_MIN"
   | "INTERVAL_15_MIN";
-export const VpcFlowLogsConfigAggregationIntervalEnum = /*@__PURE__*/ S.String;
+export const VpcFlowLogsConfigAggregationIntervalEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -154,20 +154,20 @@ export type VpcFlowLogsConfigStateEnum =
   | "STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const VpcFlowLogsConfigStateEnum = /*@__PURE__*/ S.String;
+export const VpcFlowLogsConfigStateEnum = S.String;
 
 export type VpcFlowLogsConfigCrossProjectMetadataEnum =
   | "CROSS_PROJECT_METADATA_UNSPECIFIED"
   | "CROSS_PROJECT_METADATA_ENABLED"
   | "CROSS_PROJECT_METADATA_DISABLED";
-export const VpcFlowLogsConfigCrossProjectMetadataEnum = /*@__PURE__*/ S.String;
+export const VpcFlowLogsConfigCrossProjectMetadataEnum = S.String;
 
 export type VpcFlowLogsConfigMetadataEnum =
   | "METADATA_UNSPECIFIED"
   | "INCLUDE_ALL_METADATA"
   | "EXCLUDE_ALL_METADATA"
   | "CUSTOM_METADATA";
-export const VpcFlowLogsConfigMetadataEnum = /*@__PURE__*/ S.String;
+export const VpcFlowLogsConfigMetadataEnum = S.String;
 
 /** A configuration to generate VPC Flow Logs. */
 export interface VpcFlowLogsConfig {
@@ -318,7 +318,7 @@ export type ReachabilityDetailsResultEnum =
   | "UNREACHABLE"
   | "AMBIGUOUS"
   | "UNDETERMINED";
-export const ReachabilityDetailsResultEnum = /*@__PURE__*/ S.String;
+export const ReachabilityDetailsResultEnum = S.String;
 
 /** For display only. Metadata associated with a Cloud Redis Instance. */
 export interface RedisInstanceInfo {
@@ -449,7 +449,7 @@ export type GkeNetworkPolicySkippedInfoReasonEnum =
   | "EGRESS_FROM_NODE_NETWORK_NAMESPACE_POD"
   | "NETWORK_POLICY_NOT_APPLIED_TO_RESPONSE_TRAFFIC"
   | "NETWORK_POLICY_ANALYSIS_UNSUPPORTED";
-export const GkeNetworkPolicySkippedInfoReasonEnum = /*@__PURE__*/ S.String;
+export const GkeNetworkPolicySkippedInfoReasonEnum = S.String;
 
 /** For display only. Contains information about why GKE Network Policy evaluation was skipped. */
 export interface GkeNetworkPolicySkippedInfo {
@@ -469,7 +469,7 @@ export type VpnTunnelInfoRoutingTypeEnum =
   | "ROUTE_BASED"
   | "POLICY_BASED"
   | "DYNAMIC";
-export const VpnTunnelInfoRoutingTypeEnum = /*@__PURE__*/ S.String;
+export const VpnTunnelInfoRoutingTypeEnum = S.String;
 
 /** For display only. Metadata associated with a Compute Engine VPN tunnel. */
 export interface VpnTunnelInfo {
@@ -532,7 +532,7 @@ export type LoadBalancerBackendInfoHealthCheckFirewallsConfigStateEnum =
   | "FIREWALLS_NOT_CONFIGURED"
   | "FIREWALLS_UNSUPPORTED";
 export const LoadBalancerBackendInfoHealthCheckFirewallsConfigStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** For display only. Metadata associated with the load balancer backend. */
 export interface LoadBalancerBackendInfo {
@@ -595,7 +595,7 @@ export type RouteInfoRouteScopeEnum =
   | "ROUTE_SCOPE_UNSPECIFIED"
   | "NETWORK"
   | "NCC_HUB";
-export const RouteInfoRouteScopeEnum = /*@__PURE__*/ S.String;
+export const RouteInfoRouteScopeEnum = S.String;
 
 export type RouteInfoRouteTypeEnum =
   | "ROUTE_TYPE_UNSPECIFIED"
@@ -607,7 +607,7 @@ export type RouteInfoRouteTypeEnum =
   | "PEERING_DYNAMIC"
   | "POLICY_BASED"
   | "ADVERTISED";
-export const RouteInfoRouteTypeEnum = /*@__PURE__*/ S.String;
+export const RouteInfoRouteTypeEnum = S.String;
 
 export type RouteInfoNextHopTypeEnum =
   | "NEXT_HOP_TYPE_UNSPECIFIED"
@@ -624,7 +624,7 @@ export type RouteInfoNextHopTypeEnum =
   | "NEXT_HOP_ROUTER_APPLIANCE"
   | "NEXT_HOP_NCC_HUB"
   | "SECURE_WEB_PROXY_GATEWAY";
-export const RouteInfoNextHopTypeEnum = /*@__PURE__*/ S.String;
+export const RouteInfoNextHopTypeEnum = S.String;
 
 /** For display only. Metadata associated with a Compute Engine route. */
 export interface RouteInfo {
@@ -762,13 +762,13 @@ export type FirewallInfoFirewallRuleTypeEnum =
   | "UNSUPPORTED_FIREWALL_POLICY_RULE"
   | "TRACKING_STATE"
   | "ANALYSIS_SKIPPED";
-export const FirewallInfoFirewallRuleTypeEnum = /*@__PURE__*/ S.String;
+export const FirewallInfoFirewallRuleTypeEnum = S.String;
 
 export type FirewallInfoTargetTypeEnum =
   | "TARGET_TYPE_UNSPECIFIED"
   | "INSTANCES"
   | "INTERNAL_MANAGED_LB";
-export const FirewallInfoTargetTypeEnum = /*@__PURE__*/ S.String;
+export const FirewallInfoTargetTypeEnum = S.String;
 
 /** For display only. Metadata associated with a VPC firewall rule, an implied VPC firewall rule, or a firewall policy rule. */
 export interface FirewallInfo {
@@ -826,7 +826,7 @@ export type IpMasqueradingSkippedInfoReasonEnum =
   | "NO_MASQUERADING_FOR_IPV6"
   | "POD_USES_NODE_NETWORK_NAMESPACE"
   | "NO_MASQUERADING_FOR_RETURN_PACKET";
-export const IpMasqueradingSkippedInfoReasonEnum = /*@__PURE__*/ S.String;
+export const IpMasqueradingSkippedInfoReasonEnum = S.String;
 
 /** For display only. Contains information about why IP masquerading was skipped for the packet. */
 export interface IpMasqueradingSkippedInfo {
@@ -848,7 +848,7 @@ export type InstanceInfoStatusEnum =
   | "STATUS_UNSPECIFIED"
   | "RUNNING"
   | "NOT_RUNNING";
-export const InstanceInfoStatusEnum = /*@__PURE__*/ S.String;
+export const InstanceInfoStatusEnum = S.String;
 
 /** For display only. Metadata associated with a Compute Engine instance. */
 export interface InstanceInfo {
@@ -921,7 +921,7 @@ export type ForwardingRuleInfoEnvoyHealthCheckFirewallsConfigStateEnum =
   | "FIREWALLS_NOT_CONFIGURED"
   | "FIREWALLS_UNSUPPORTED";
 export const ForwardingRuleInfoEnvoyHealthCheckFirewallsConfigStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** For display only. Metadata associated with a Compute Engine forwarding rule. */
 export interface ForwardingRuleInfo {
@@ -990,8 +990,7 @@ export type LoadBalancerBackendHealthCheckFirewallStateEnum =
   | "HEALTH_CHECK_FIREWALL_STATE_UNSPECIFIED"
   | "CONFIGURED"
   | "MISCONFIGURED";
-export const LoadBalancerBackendHealthCheckFirewallStateEnum =
-  /*@__PURE__*/ S.String;
+export const LoadBalancerBackendHealthCheckFirewallStateEnum = S.String;
 
 /** For display only. Metadata associated with a specific load balancer backend. */
 export interface LoadBalancerBackend {
@@ -1032,7 +1031,7 @@ export type LoadBalancerInfoBackendTypeEnum =
   | "BACKEND_SERVICE"
   | "TARGET_POOL"
   | "TARGET_INSTANCE";
-export const LoadBalancerInfoBackendTypeEnum = /*@__PURE__*/ S.String;
+export const LoadBalancerInfoBackendTypeEnum = S.String;
 
 export type LoadBalancerInfoLoadBalancerTypeEnum =
   | "LOAD_BALANCER_TYPE_UNSPECIFIED"
@@ -1041,7 +1040,7 @@ export type LoadBalancerInfoLoadBalancerTypeEnum =
   | "HTTP_PROXY"
   | "TCP_PROXY"
   | "SSL_PROXY";
-export const LoadBalancerInfoLoadBalancerTypeEnum = /*@__PURE__*/ S.String;
+export const LoadBalancerInfoLoadBalancerTypeEnum = S.String;
 
 /** For display only. Metadata associated with a load balancer. */
 export interface LoadBalancerInfo {
@@ -1112,7 +1111,7 @@ export type ForwardInfoTargetEnum =
   | "NCC_HUB"
   | "ROUTER_APPLIANCE"
   | "SECURE_WEB_PROXY_GATEWAY";
-export const ForwardInfoTargetEnum = /*@__PURE__*/ S.String;
+export const ForwardInfoTargetEnum = S.String;
 
 /** Details of the final state "forward" and associated resource. */
 export interface ForwardInfo {
@@ -1244,7 +1243,7 @@ export type DropInfoCauseEnum =
   | "GKE_NETWORK_POLICY"
   | "NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION"
   | "PRIVATE_CONNECTION_NO_RUNNING_INSTANCE";
-export const DropInfoCauseEnum = /*@__PURE__*/ S.String;
+export const DropInfoCauseEnum = S.String;
 
 /** Details of the final state "drop" and associated resource. */
 export interface DropInfo {
@@ -1325,7 +1324,7 @@ export type StepStateEnum =
   | "FORWARD"
   | "ABORT"
   | "VIEWER_PERMISSION_MISSING";
-export const StepStateEnum = /*@__PURE__*/ S.String;
+export const StepStateEnum = S.String;
 
 /** For display only. Metadata associated with a Cloud Function. */
 export interface CloudFunctionInfo {
@@ -1369,7 +1368,7 @@ export type DeliverInfoGoogleServiceTypeEnum =
   | "CLOUD_DNS"
   | "PRIVATE_GOOGLE_ACCESS"
   | "SERVERLESS_VPC_ACCESS";
-export const DeliverInfoGoogleServiceTypeEnum = /*@__PURE__*/ S.String;
+export const DeliverInfoGoogleServiceTypeEnum = S.String;
 
 export type DeliverInfoTargetEnum =
   | "TARGET_UNSPECIFIED"
@@ -1394,7 +1393,7 @@ export type DeliverInfoTargetEnum =
   | "CLOUD_RUN_JOB"
   | "DMS_PRIVATE_CONNECTION"
   | "DATASTREAM_PRIVATE_CONNECTION";
-export const DeliverInfoTargetEnum = /*@__PURE__*/ S.String;
+export const DeliverInfoTargetEnum = S.String;
 
 /** Details of the final state "deliver" and associated resource. */
 export interface DeliverInfo {
@@ -1453,8 +1452,7 @@ export type ViewerPermissionMissingInfoResourceTypesItemEnum =
   | "FIREWALL"
   | "INSTANCE"
   | "FORWARDING_RULE";
-export const ViewerPermissionMissingInfoResourceTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const ViewerPermissionMissingInfoResourceTypesItemEnum = S.String;
 
 export type ViewerPermissionMissingInfoResourceTypesItemEnumList = Array<
   ViewerPermissionMissingInfoResourceTypesItemEnum | (string & {})
@@ -1550,7 +1548,7 @@ export type GoogleServiceInfoGoogleServiceTypeEnum =
   | "GOOGLE_API_PSC"
   | "GOOGLE_API_VPC_SC"
   | "SERVERLESS_VPC_ACCESS";
-export const GoogleServiceInfoGoogleServiceTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleServiceInfoGoogleServiceTypeEnum = S.String;
 
 /** For display only. Details of a Google Service sending packets to a VPC network. Although the source IP might be a publicly routable address, some Google Services use special routes within Google production infrastructure to reach Compute Engine Instances. https://cloud.google.com/vpc/docs/routes#special_return_paths */
 export interface GoogleServiceInfo {
@@ -1686,7 +1684,7 @@ export type AbortInfoCauseEnum =
   | "IP_VERSION_PROTOCOL_MISMATCH"
   | "GKE_POD_UNKNOWN_ENDPOINT_LOCATION"
   | "RESPONSE_TOO_LARGE";
-export const AbortInfoCauseEnum = /*@__PURE__*/ S.String;
+export const AbortInfoCauseEnum = S.String;
 
 /** Details of the final state "abort" and associated resource. */
 export interface AbortInfo {
@@ -1715,7 +1713,7 @@ export type NatInfoTypeEnum =
   | "CLOUD_NAT"
   | "PRIVATE_SERVICE_CONNECT"
   | "GKE_POD_IP_MASQUERADING";
-export const NatInfoTypeEnum = /*@__PURE__*/ S.String;
+export const NatInfoTypeEnum = S.String;
 
 export type NatInfoCloudNatGatewayTypeEnum =
   | "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED"
@@ -1724,7 +1722,7 @@ export type NatInfoCloudNatGatewayTypeEnum =
   | "PRIVATE_NAT_NCC"
   | "PRIVATE_NAT_HYBRID"
   | "PRIVATE_NAT64";
-export const NatInfoCloudNatGatewayTypeEnum = /*@__PURE__*/ S.String;
+export const NatInfoCloudNatGatewayTypeEnum = S.String;
 
 /** For display only. Metadata associated with NAT. */
 export interface NatInfo {
@@ -1785,7 +1783,7 @@ export type InterconnectAttachmentInfoTypeEnum =
   | "PARTNER"
   | "PARTNER_PROVIDER"
   | "L2_DEDICATED";
-export const InterconnectAttachmentInfoTypeEnum = /*@__PURE__*/ S.String;
+export const InterconnectAttachmentInfoTypeEnum = S.String;
 
 /** For display only. Metadata associated with an Interconnect attachment. */
 export interface InterconnectAttachmentInfo {
@@ -2064,7 +2062,7 @@ export type EndpointLoadBalancerTypeEnum =
   | "NETWORK_LOAD_BALANCER"
   | "LEGACY_NETWORK_LOAD_BALANCER"
   | "TCP_UDP_INTERNAL_LOAD_BALANCER";
-export const EndpointLoadBalancerTypeEnum = /*@__PURE__*/ S.String;
+export const EndpointLoadBalancerTypeEnum = S.String;
 
 /** Wrapper for Cloud Function attributes. */
 export interface CloudFunctionEndpoint {
@@ -2098,14 +2096,14 @@ export type EndpointForwardingRuleTargetEnum =
   | "LOAD_BALANCER"
   | "VPN_GATEWAY"
   | "PSC";
-export const EndpointForwardingRuleTargetEnum = /*@__PURE__*/ S.String;
+export const EndpointForwardingRuleTargetEnum = S.String;
 
 export type EndpointNetworkTypeEnum =
   | "NETWORK_TYPE_UNSPECIFIED"
   | "GCP_NETWORK"
   | "NON_GCP_NETWORK"
   | "INTERNET";
-export const EndpointNetworkTypeEnum = /*@__PURE__*/ S.String;
+export const EndpointNetworkTypeEnum = S.String;
 
 /** Source or destination of the Connectivity Test. */
 export interface Endpoint {
@@ -2221,7 +2219,7 @@ export type SingleEdgeResponseResultEnum =
   | "UNREACHABLE"
   | "REACHABILITY_INCONSISTENT"
   | "UNDETERMINED";
-export const SingleEdgeResponseResultEnum = /*@__PURE__*/ S.String;
+export const SingleEdgeResponseResultEnum = S.String;
 
 /** Representation of a network edge location as per https://cloud.google.com/vpc/docs/edge-locations. */
 export interface EdgeLocation {
@@ -2273,13 +2271,13 @@ export type ProbingDetailsResultEnum =
   | "UNREACHABLE"
   | "REACHABILITY_INCONSISTENT"
   | "UNDETERMINED";
-export const ProbingDetailsResultEnum = /*@__PURE__*/ S.String;
+export const ProbingDetailsResultEnum = S.String;
 
 export type ProbingDetailsAbortCauseEnum =
   | "PROBING_ABORT_CAUSE_UNSPECIFIED"
   | "PERMISSION_DENIED"
   | "NO_SOURCE_LOCATION";
-export const ProbingDetailsAbortCauseEnum = /*@__PURE__*/ S.String;
+export const ProbingDetailsAbortCauseEnum = S.String;
 
 /** Results of active probing from the last run of the test. */
 export interface ProbingDetails {
@@ -2591,7 +2589,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -3336,7 +3334,7 @@ export type EffectiveVpcFlowLogsConfigStateEnum =
   | "STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const EffectiveVpcFlowLogsConfigStateEnum = /*@__PURE__*/ S.String;
+export const EffectiveVpcFlowLogsConfigStateEnum = S.String;
 
 export type EffectiveVpcFlowLogsConfigScopeEnum =
   | "SCOPE_UNSPECIFIED"
@@ -3346,14 +3344,14 @@ export type EffectiveVpcFlowLogsConfigScopeEnum =
   | "VPN_TUNNEL"
   | "INTERCONNECT_ATTACHMENT"
   | "ORGANIZATION";
-export const EffectiveVpcFlowLogsConfigScopeEnum = /*@__PURE__*/ S.String;
+export const EffectiveVpcFlowLogsConfigScopeEnum = S.String;
 
 export type EffectiveVpcFlowLogsConfigMetadataEnum =
   | "METADATA_UNSPECIFIED"
   | "INCLUDE_ALL_METADATA"
   | "EXCLUDE_ALL_METADATA"
   | "CUSTOM_METADATA";
-export const EffectiveVpcFlowLogsConfigMetadataEnum = /*@__PURE__*/ S.String;
+export const EffectiveVpcFlowLogsConfigMetadataEnum = S.String;
 
 export type EffectiveVpcFlowLogsConfigAggregationIntervalEnum =
   | "AGGREGATION_INTERVAL_UNSPECIFIED"
@@ -3363,15 +3361,13 @@ export type EffectiveVpcFlowLogsConfigAggregationIntervalEnum =
   | "INTERVAL_5_MIN"
   | "INTERVAL_10_MIN"
   | "INTERVAL_15_MIN";
-export const EffectiveVpcFlowLogsConfigAggregationIntervalEnum =
-  /*@__PURE__*/ S.String;
+export const EffectiveVpcFlowLogsConfigAggregationIntervalEnum = S.String;
 
 export type EffectiveVpcFlowLogsConfigCrossProjectMetadataEnum =
   | "CROSS_PROJECT_METADATA_UNSPECIFIED"
   | "CROSS_PROJECT_METADATA_ENABLED"
   | "CROSS_PROJECT_METADATA_DISABLED";
-export const EffectiveVpcFlowLogsConfigCrossProjectMetadataEnum =
-  /*@__PURE__*/ S.String;
+export const EffectiveVpcFlowLogsConfigCrossProjectMetadataEnum = S.String;
 
 /** A configuration to generate a response for GetEffectiveVpcFlowLogsConfig request. */
 export interface EffectiveVpcFlowLogsConfig {

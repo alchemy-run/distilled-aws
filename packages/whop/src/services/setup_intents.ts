@@ -142,7 +142,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** Custom metadata to attach to the setup intent. */
 export type CreateSetupIntentRequestBodyCase0MetadataMap = {
@@ -229,7 +229,7 @@ export type CreateSetupIntentRequestBody =
   | CreateSetupIntentRequestBodyCase0
   | CreateSetupIntentRequestBodyCase1;
 export const CreateSetupIntentRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSetupIntentRequestBody>;
+  S.Unknown as any as S.Schema<CreateSetupIntentRequestBody>;
 
 export interface CreateSetupIntentRequest {
   body: CreateSetupIntentRequestBody;
@@ -364,7 +364,7 @@ export type CardBrands =
   | "pulse"
   | "star"
   | "unknown";
-export const CardBrands = /*@__PURE__*/ S.String;
+export const CardBrands = S.String;
 
 /** The card data associated with the payment method, if its a debit or credit card. */
 export interface CreateSetupIntentResponsePaymentMethodCard {
@@ -540,7 +540,7 @@ export type PaymentMethodTypes =
   | "zip"
   | "coinflow"
   | "unknown";
-export const PaymentMethodTypes = /*@__PURE__*/ S.String;
+export const PaymentMethodTypes = S.String;
 
 /** The saved payment method created by this setup intent. Null if the setup has not completed successfully. */
 export interface CreateSetupIntentResponsePaymentMethod {
@@ -576,7 +576,7 @@ export type SetupIntentStatuses =
   | "succeeded"
   | "canceled"
   | "requires_action";
-export const SetupIntentStatuses = /*@__PURE__*/ S.String;
+export const SetupIntentStatuses = S.String;
 
 export interface CreateSetupIntentResponse {
   /** The checkout session configuration associated with this setup intent. Null if no checkout session was used. */
@@ -765,7 +765,7 @@ export const PaymentNextActionRedirectData = /*@__PURE__*/ S.suspend(() =>
 
 /** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
 export type PaymentNextActionRedirectRenderItem = "inline" | "full_page";
-export const PaymentNextActionRedirectRenderItem = /*@__PURE__*/ S.String;
+export const PaymentNextActionRedirectRenderItem = S.String;
 
 export type PaymentNextActionRedirectRenderList =
   Array<PaymentNextActionRedirectRenderItem>;
@@ -775,7 +775,7 @@ export const PaymentNextActionRedirectRenderList = /*@__PURE__*/ S.Array(
 
 /** Always `redirect`: send the buyer to `data.url`. The provider hands them back to `return_url` when they are done. */
 export type PaymentNextActionRedirectType = "redirect";
-export const PaymentNextActionRedirectType = /*@__PURE__*/ S.String;
+export const PaymentNextActionRedirectType = S.String;
 
 export interface PaymentNextActionRedirect {
   /** Where to send the buyer. */
@@ -796,7 +796,7 @@ export const PaymentNextActionRedirect = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `voucher`: a code the buyer pays in person, at a convenience store or bank counter. */
 export type PaymentVoucherInstructionsKind = "voucher";
-export const PaymentVoucherInstructionsKind = /*@__PURE__*/ S.String;
+export const PaymentVoucherInstructionsKind = S.String;
 
 export interface Money {
   /** The amount in major units, as an exact decimal string — `"10.00"` is ten dollars. A string so no float rounds it in transit. */
@@ -868,7 +868,7 @@ export const PaymentVoucherInstructions = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `qr`: a code the buyer scans with their banking app. */
 export type PaymentQrInstructionsKind = "qr";
-export const PaymentQrInstructionsKind = /*@__PURE__*/ S.String;
+export const PaymentQrInstructionsKind = S.String;
 
 export interface PaymentQr {
   /** Exactly what the buyer must pay, in the charged currency. */
@@ -975,7 +975,7 @@ export const PaymentBankTransfer = /*@__PURE__*/ S.suspend(() =>
 
 /** Always `bank_transfer`: account details the buyer sends money to from their own bank. */
 export type PaymentBankTransferInstructionsKind = "bank_transfer";
-export const PaymentBankTransferInstructionsKind = /*@__PURE__*/ S.String;
+export const PaymentBankTransferInstructionsKind = S.String;
 
 export interface PaymentBankTransferInstructions {
   /** The account details to show. */
@@ -998,14 +998,13 @@ export type PaymentInstructions =
   | PaymentQrInstructions
   | PaymentBankTransferInstructions;
 export const PaymentInstructions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentInstructions>;
+  S.Unknown as any as S.Schema<PaymentInstructions>;
 
 /** Where this step can be presented: `inline` inside your own page, `full_page` as a top-level navigation. Pick whichever listed mode suits your surface. */
 export type PaymentNextActionDisplayInstructionsRenderItem =
   | "inline"
   | "full_page";
-export const PaymentNextActionDisplayInstructionsRenderItem =
-  /*@__PURE__*/ S.String;
+export const PaymentNextActionDisplayInstructionsRenderItem = S.String;
 
 export type PaymentNextActionDisplayInstructionsRenderList =
   Array<PaymentNextActionDisplayInstructionsRenderItem>;
@@ -1016,7 +1015,7 @@ export const PaymentNextActionDisplayInstructionsRenderList =
 
 /** Always `display_instructions`: show the buyer `data` — what to pay, where, and by when. The payment completes once they pay and the rail confirms it, so keep polling `status`. */
 export type PaymentNextActionDisplayInstructionsType = "display_instructions";
-export const PaymentNextActionDisplayInstructionsType = /*@__PURE__*/ S.String;
+export const PaymentNextActionDisplayInstructionsType = S.String;
 
 export interface PaymentNextActionDisplayInstructions {
   /** The instructions. `kind` picks the shape, and the details sit under the key named for it: `voucher`, `qr`, or `bank_transfer`. */
@@ -1053,8 +1052,7 @@ export const PaymentNextActionAwaitConfirmationData = /*@__PURE__*/ S.suspend(
 export type PaymentNextActionAwaitConfirmationRenderItem =
   | "inline"
   | "full_page";
-export const PaymentNextActionAwaitConfirmationRenderItem =
-  /*@__PURE__*/ S.String;
+export const PaymentNextActionAwaitConfirmationRenderItem = S.String;
 
 export type PaymentNextActionAwaitConfirmationRenderList =
   Array<PaymentNextActionAwaitConfirmationRenderItem>;
@@ -1065,7 +1063,7 @@ export const PaymentNextActionAwaitConfirmationRenderList =
 
 /** Always `await_confirmation`: nothing to show — the buyer has done their part and the rail settles out of band. Poll `status` until it moves. */
 export type PaymentNextActionAwaitConfirmationType = "await_confirmation";
-export const PaymentNextActionAwaitConfirmationType = /*@__PURE__*/ S.String;
+export const PaymentNextActionAwaitConfirmationType = S.String;
 
 export interface PaymentNextActionAwaitConfirmation {
   /** How long the wait can last. */
@@ -1090,7 +1088,7 @@ export type PaymentNextAction =
   | PaymentNextActionDisplayInstructions
   | PaymentNextActionAwaitConfirmation;
 export const PaymentNextAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentNextAction>;
+  S.Unknown as any as S.Schema<PaymentNextAction>;
 
 /** How far the setup has got. **A 200 means we answered, not that the method was saved — always branch on this.** `requires_action` — the buyer has a step outstanding; see `next_action`. `processing` — the buyer has done their part and the processor is deciding. `succeeded` — the payment method is saved, and only this one means saved. `canceled` — abandoned or refused; see `last_setup_error` to tell which. */
 export type SetupStatusStatus =
@@ -1098,7 +1096,7 @@ export type SetupStatusStatus =
   | "succeeded"
   | "canceled"
   | "requires_action";
-export const SetupStatusStatus = /*@__PURE__*/ S.String;
+export const SetupStatusStatus = S.String;
 
 export interface SetupStatus {
   /** The setup this status describes, prefixed `sint_`. */
@@ -1127,7 +1125,7 @@ export const SetupStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 export interface ListSetupIntentRequest {
   after?: string;

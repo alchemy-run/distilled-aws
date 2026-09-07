@@ -109,7 +109,7 @@ export type MercuryCategory =
   | "Taxes"
   | "Utilities"
   | "VehicleExpenses";
-export const MercuryCategory = /*@__PURE__*/ S.String;
+export const MercuryCategory = S.String;
 
 /** Mercury spend-category locks applied to this card, in no particular order. Empty when the card has no category restrictions. */
 export type CardCategoryLocksList = Array<MercuryCategory>;
@@ -424,7 +424,7 @@ export const CreateInternalTransferRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInternalTransferRequest>;
 
 export type TransactionAttachmentType = "checkImage" | "receipt" | "other";
-export const TransactionAttachmentType = /*@__PURE__*/ S.String;
+export const TransactionAttachmentType = S.String;
 
 export interface TransactionAttachment {
   attachmentType: TransactionAttachmentType;
@@ -524,7 +524,7 @@ export type USState =
   | "WV"
   | "WI"
   | "WY";
-export const USState = /*@__PURE__*/ S.String;
+export const USState = S.String;
 
 export interface AddressData {
   address1: string;
@@ -608,7 +608,7 @@ export type ElectronicAccountType =
   | "businessSavings"
   | "personalChecking"
   | "personalSavings";
-export const ElectronicAccountType = /*@__PURE__*/ S.String;
+export const ElectronicAccountType = S.String;
 
 export interface ElectronicRoutingInfo {
   accountNumber: string;
@@ -704,7 +704,7 @@ export const InternationalWireColombiaSpecificData =
   InternationalWireBrazilSpecificData;
 
 export type SwiftBankAccountType = "checking" | "savings";
-export const SwiftBankAccountType = /*@__PURE__*/ S.String;
+export const SwiftBankAccountType = S.String;
 
 export interface InternationalWireDominicanRepublicSpecificData {
   accountType: SwiftBankAccountType;
@@ -742,7 +742,7 @@ export const InternationalWireKazakhstanSpecificData =
   InternationalWireBrazilSpecificData;
 
 export type PakistaniLegalIdType = "CNIC" | "SNIC" | "Passport" | "NTN";
-export const PakistaniLegalIdType = /*@__PURE__*/ S.String;
+export const PakistaniLegalIdType = S.String;
 
 export interface InternationalWirePakistanSpecificData {
   legalId: string;
@@ -939,7 +939,7 @@ export type TransactionKind =
   | "exogenousWireDrawdown"
   | "interestPayment"
   | "other";
-export const TransactionKind = /*@__PURE__*/ S.String;
+export const TransactionKind = S.String;
 
 export interface TransactionMerchant {
   /** The transaction amount in the smallest unit of the merchant's currency (e.g., cents for USD/EUR, yen for JPY, fils for BHD). For debits this is negative, for credits positive. Use 'merchantCurrency' to determine the appropriate decimal scaling: most currencies use 2 decimal places (divide by 100), but JPY uses 0 (no division needed) and BHD/KWD/OMR use 3 (divide by 1000). This is useful for international transactions where the merchant charges in a currency different from the account currency. Nothing if not available. */
@@ -992,7 +992,7 @@ export type TransactionRelationKind =
   | "ReversalToProvisionalCredit"
   | "MerchantRefundToOriginalCharge"
   | "OriginalChargeToMerchantRefund";
-export const TransactionRelationKind = /*@__PURE__*/ S.String;
+export const TransactionRelationKind = S.String;
 
 /** A Public API version of RelatedTransactionData. */
 export interface RelatedTransactionData {
@@ -1024,7 +1024,7 @@ export type TransactionStatus =
   | "failed"
   | "reversed"
   | "blocked";
-export const TransactionStatus = /*@__PURE__*/ S.String;
+export const TransactionStatus = S.String;
 
 export interface Transaction {
   accountId: unknown;
@@ -1428,7 +1428,7 @@ export type PaymentMethod =
   | "domesticWire"
   | "internationalWire"
   | "realTimePayment";
-export const PaymentMethod = /*@__PURE__*/ S.String;
+export const PaymentMethod = S.String;
 
 export type RecipientInfoEmailsList = Array<string>;
 export const RecipientInfoEmailsList = /*@__PURE__*/ S.Array(
@@ -1439,7 +1439,7 @@ export type RealTimePaymentRoutingInfo = DomesticWireRoutingInfo;
 export const RealTimePaymentRoutingInfo = DomesticWireRoutingInfo;
 
 export type RecipientStatus = "active" | "deleted";
-export const RecipientStatus = /*@__PURE__*/ S.String;
+export const RecipientStatus = S.String;
 
 export interface RecipientInfo {
   address?: Address | null;
@@ -1570,7 +1570,7 @@ export const RecipientInviteApiResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RecipientInviteApiResponse>;
 
 export type PostTransactionPaymentMethod = "ach" | "check" | "domesticWire";
-export const PostTransactionPaymentMethod = /*@__PURE__*/ S.String;
+export const PostTransactionPaymentMethod = S.String;
 
 /** Payment category. */
 export type SimplePurposeCategory =
@@ -1587,7 +1587,7 @@ export type SimplePurposeCategory =
   | "expenses"
   | "travel"
   | "other";
-export const SimplePurposeCategory = /*@__PURE__*/ S.String;
+export const SimplePurposeCategory = S.String;
 
 export interface SimplePurpose {
   /** Additional information. Required for: Vendor (vendor name), Contractor (contractor name), Other (payment description). Optional for Subsidiary (subsidiary name). Not accepted for any other categories. */
@@ -1660,7 +1660,7 @@ export type WebhookEventType =
   | "treasuryAccount.balance.updated"
   | "investmentAccount.balance.updated"
   | "creditAccount.balance.updated";
-export const WebhookEventType = /*@__PURE__*/ S.String;
+export const WebhookEventType = S.String;
 
 /** Optional array of event types to subscribe to. Nothing means subscribe to all event types. */
 export type CreateWebhookRequestEventTypesList = Array<
@@ -1700,7 +1700,7 @@ export type ResourceField =
   | "creditAccount.availableBalance"
   | "creditAccount.currentBalance"
   | "creditAccount.inFlightBalance";
-export const ResourceField = /*@__PURE__*/ S.String;
+export const ResourceField = S.String;
 
 /** Optional array of resource field paths to filter events by. When specified, webhook events will only be sent when one of these fields changes. Nothing means no filtering (all events are sent). */
 export type CreateWebhookRequestFilterPathsList = Array<
@@ -1935,10 +1935,10 @@ export const GetAccountCardsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountCardsRequest>;
 
 export type CardNetwork = "visa" | "mastercard";
-export const CardNetwork = /*@__PURE__*/ S.String;
+export const CardNetwork = S.String;
 
 export type PhysicalCardStatus = "inactive" | "active" | "locked";
-export const PhysicalCardStatus = /*@__PURE__*/ S.String;
+export const PhysicalCardStatus = S.String;
 
 /** Spending controls applied to a card */
 export type SpendLimit = CardSpendLimit;
@@ -1951,10 +1951,10 @@ export type CardStatus =
   | "inactive"
   | "expired"
   | "suspended";
-export const CardStatus = /*@__PURE__*/ S.String;
+export const CardStatus = S.String;
 
 export type CardType = "virtual" | "physical";
-export const CardType = /*@__PURE__*/ S.String;
+export const CardType = S.String;
 
 /** Deprecated account card representation, used by the @/v1/account\/:id\/cards@ endpoint. */
 export interface AccountCard {
@@ -2004,7 +2004,7 @@ export const AccountCardsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetAccountsRequestOrder = "asc" | "desc";
-export const GetAccountsRequestOrder = /*@__PURE__*/ S.String;
+export const GetAccountsRequestOrder = S.String;
 
 export interface GetAccountsRequest {
   limit?: number;
@@ -2024,10 +2024,10 @@ export const GetAccountsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountsRequest>;
 
 export type AccountStatus = "active" | "deleted" | "pending" | "archived";
-export const AccountStatus = /*@__PURE__*/ S.String;
+export const AccountStatus = S.String;
 
 export type AccountType = "mercury" | "external" | "recipient";
-export const AccountType = /*@__PURE__*/ S.String;
+export const AccountType = S.String;
 
 export interface Account {
   accountNumber: string;
@@ -2102,7 +2102,7 @@ export const AccountsPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'desc' */
 export type GetAccountStatementsRequestOrder = "asc" | "desc";
-export const GetAccountStatementsRequestOrder = /*@__PURE__*/ S.String;
+export const GetAccountStatementsRequestOrder = S.String;
 
 export interface GetAccountStatementsRequest {
   accountId: string;
@@ -2315,7 +2315,7 @@ export const ApiEventResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetEventsRequestOrder = "asc" | "desc";
-export const GetEventsRequestOrder = /*@__PURE__*/ S.String;
+export const GetEventsRequestOrder = S.String;
 
 export type GetEventsRequestResourceType =
   | "transaction"
@@ -2324,7 +2324,7 @@ export type GetEventsRequestResourceType =
   | "treasuryAccount"
   | "investmentAccount"
   | "creditAccount";
-export const GetEventsRequestResourceType = /*@__PURE__*/ S.String;
+export const GetEventsRequestResourceType = S.String;
 
 export interface GetEventsRequest {
   limit?: number;
@@ -2501,7 +2501,7 @@ export const GetRecipientInviteRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetRecipientsRequestOrder = "asc" | "desc";
-export const GetRecipientsRequestOrder = /*@__PURE__*/ S.String;
+export const GetRecipientsRequestOrder = S.String;
 
 export interface GetRecipientsRequest {
   limit?: number;
@@ -2562,7 +2562,7 @@ export type SafeRequestInvestorType =
   | "SafeRequestInvestorTypeIndividual"
   | "SafeRequestInvestorTypeVentureFund"
   | "SafeRequestInvestorTypeOther";
-export const SafeRequestInvestorType = /*@__PURE__*/ S.String;
+export const SafeRequestInvestorType = S.String;
 
 /** Details about the investor buying the equity. */
 export interface APISafeRequestInvestor {
@@ -2607,7 +2607,7 @@ export const APISafeRequestOrganization = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<APISafeRequestOrganization>;
 
 export type ValuationType = "PreMoney" | "PostMoney" | "NoValuation";
-export const ValuationType = /*@__PURE__*/ S.String;
+export const ValuationType = S.String;
 
 /** A summary of a SAFE request. */
 export interface APISafeRequest {
@@ -2716,10 +2716,10 @@ export type RequestSendMoneyPaymentMethod =
   | "check"
   | "domesticWire"
   | "internationalWire";
-export const RequestSendMoneyPaymentMethod = /*@__PURE__*/ S.String;
+export const RequestSendMoneyPaymentMethod = S.String;
 
 export type PaymentApprovalReviewStatus = "approved" | "rejected";
-export const PaymentApprovalReviewStatus = /*@__PURE__*/ S.String;
+export const PaymentApprovalReviewStatus = S.String;
 
 export interface PaymentApprovalReview {
   reviewedAt: string;
@@ -2749,7 +2749,7 @@ export type ReviewRequestStatus =
   | "approved"
   | "rejected"
   | "cancelled";
-export const ReviewRequestStatus = /*@__PURE__*/ S.String;
+export const ReviewRequestStatus = S.String;
 
 /** A pending or completed approval request for a Mercury payment. */
 export interface SendMoneyApprovalRequestResponse {
@@ -2845,7 +2845,7 @@ export const GetTransactionByTransactionIdRequest = /*@__PURE__*/ S.suspend(
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetTreasuryRequestOrder = "asc" | "desc";
-export const GetTreasuryRequestOrder = /*@__PURE__*/ S.String;
+export const GetTreasuryRequestOrder = S.String;
 
 export interface GetTreasuryRequest {
   limit?: number;
@@ -2974,7 +2974,7 @@ export const TreasuryAccountsPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetTreasuryStatementsRequestOrder = "asc" | "desc";
-export const GetTreasuryStatementsRequestOrder = /*@__PURE__*/ S.String;
+export const GetTreasuryStatementsRequestOrder = S.String;
 
 /** Filter statements by document type. */
 export type GetTreasuryStatementsRequestDocumentType =
@@ -2988,7 +2988,7 @@ export type GetTreasuryStatementsRequestDocumentType =
   | "1099Q"
   | "FMV"
   | "SDIRA";
-export const GetTreasuryStatementsRequestDocumentType = /*@__PURE__*/ S.String;
+export const GetTreasuryStatementsRequestDocumentType = S.String;
 
 export interface GetTreasuryStatementsRequest {
   treasuryId: string;
@@ -3079,7 +3079,7 @@ export const TreasuryStatementsPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order for transactions. Can be 'asc' or 'desc'. Defaults to 'desc' */
 export type GetTreasuryTransactionsRequestOrder = "asc" | "desc";
-export const GetTreasuryTransactionsRequestOrder = /*@__PURE__*/ S.String;
+export const GetTreasuryTransactionsRequestOrder = S.String;
 
 export interface GetTreasuryTransactionsRequest {
   treasuryId: string;
@@ -3163,7 +3163,7 @@ export type TreasuryTransactionType =
   | "oemsFixedIncomeOrderSettled"
   | "oemsFixedIncomeOrderCanceled"
   | "oemsFixedIncomeOrderRejected";
-export const TreasuryTransactionType = /*@__PURE__*/ S.String;
+export const TreasuryTransactionType = S.String;
 
 /** Treasury transaction data for external API consumption */
 export interface TreasuryTxn {
@@ -3247,7 +3247,7 @@ export const UserDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetUsersRequestOrder = "asc" | "desc";
-export const GetUsersRequestOrder = /*@__PURE__*/ S.String;
+export const GetUsersRequestOrder = S.String;
 
 export interface GetUsersRequest {
   limit?: number;
@@ -3310,7 +3310,7 @@ export type GetWebhooksRequestStatusItem =
   | "paused"
   | "disabled"
   | "deleted";
-export const GetWebhooksRequestStatusItem = /*@__PURE__*/ S.String;
+export const GetWebhooksRequestStatusItem = S.String;
 
 export type GetWebhooksRequestStatusList = Array<
   GetWebhooksRequestStatusItem | (string & {})
@@ -3321,7 +3321,7 @@ export const GetWebhooksRequestStatusList = /*@__PURE__*/ S.Array(
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type GetWebhooksRequestOrder = "asc" | "desc";
-export const GetWebhooksRequestOrder = /*@__PURE__*/ S.String;
+export const GetWebhooksRequestOrder = S.String;
 
 export interface GetWebhooksRequest {
   status?: GetWebhooksRequestStatusList;
@@ -3376,11 +3376,11 @@ export type ListAccountTransactionsRequestStatus =
   | "failed"
   | "reversed"
   | "blocked";
-export const ListAccountTransactionsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAccountTransactionsRequestStatus = S.String;
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'desc' */
 export type ListAccountTransactionsRequestOrder = "asc" | "desc";
-export const ListAccountTransactionsRequestOrder = /*@__PURE__*/ S.String;
+export const ListAccountTransactionsRequestOrder = S.String;
 
 export interface ListAccountTransactionsRequest {
   accountId: string;
@@ -3450,7 +3450,7 @@ export type ListCardsRequestStatusItem =
   | "inactive"
   | "expired"
   | "suspended";
-export const ListCardsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListCardsRequestStatusItem = S.String;
 
 /** Filter cards by one or more statuses. */
 export type ListCardsRequestStatusList = Array<
@@ -3461,7 +3461,7 @@ export const ListCardsRequestStatusList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListCardsRequestStatusList>;
 
 export type ListCardsRequestTypeItem = "virtual" | "physical";
-export const ListCardsRequestTypeItem = /*@__PURE__*/ S.String;
+export const ListCardsRequestTypeItem = S.String;
 
 /** Filter cards by type (virtual or physical). */
 export type ListCardsRequestTypeList = Array<
@@ -3472,7 +3472,7 @@ export const ListCardsRequestTypeList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListCardsRequestTypeList>;
 
 export type ListCardsRequestKindItem = "debit" | "credit";
-export const ListCardsRequestKindItem = /*@__PURE__*/ S.String;
+export const ListCardsRequestKindItem = S.String;
 
 /** Filter cards by kind (debit or credit). */
 export type ListCardsRequestKindList = Array<
@@ -3484,7 +3484,7 @@ export const ListCardsRequestKindList = /*@__PURE__*/ S.Array(
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListCardsRequestOrder = "asc" | "desc";
-export const ListCardsRequestOrder = /*@__PURE__*/ S.String;
+export const ListCardsRequestOrder = S.String;
 
 export interface ListCardsRequest {
   accountId?: ListCardsRequestAccountIdList;
@@ -3554,7 +3554,7 @@ export const CardListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListCategoriesRequestOrder = "asc" | "desc";
-export const ListCategoriesRequestOrder = /*@__PURE__*/ S.String;
+export const ListCategoriesRequestOrder = S.String;
 
 export interface ListCategoriesRequest {
   limit?: number;
@@ -3641,7 +3641,7 @@ export const CreditAccountsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListCustomersRequestOrder = "asc" | "desc";
-export const ListCustomersRequestOrder = /*@__PURE__*/ S.String;
+export const ListCustomersRequestOrder = S.String;
 
 export interface ListCustomersRequest {
   limit?: number;
@@ -3731,7 +3731,7 @@ export const ApiV1ArAttachmentsResponseData = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListInvoicesRequestOrder = "asc" | "desc";
-export const ListInvoicesRequestOrder = /*@__PURE__*/ S.String;
+export const ListInvoicesRequestOrder = S.String;
 
 export interface ListInvoicesRequest {
   limit?: number;
@@ -3848,7 +3848,7 @@ export const ApiV1ArInvoicesPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListMerchantsRequestOrder = "asc" | "desc";
-export const ListMerchantsRequestOrder = /*@__PURE__*/ S.String;
+export const ListMerchantsRequestOrder = S.String;
 
 export interface ListMerchantsRequest {
   limit?: number;
@@ -3897,13 +3897,13 @@ export const MerchantsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListRecipientInvitesRequestOrder = "asc" | "desc";
-export const ListRecipientInvitesRequestOrder = /*@__PURE__*/ S.String;
+export const ListRecipientInvitesRequestOrder = S.String;
 
 export type ListRecipientInvitesRequestStatus =
   | "created"
   | "completed"
   | "expired";
-export const ListRecipientInvitesRequestStatus = /*@__PURE__*/ S.String;
+export const ListRecipientInvitesRequestStatus = S.String;
 
 export interface ListRecipientInvitesRequest {
   limit?: number;
@@ -3956,7 +3956,7 @@ export const RecipientInviteApiPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListRecipientsAttachmentsRequestOrder = "asc" | "desc";
-export const ListRecipientsAttachmentsRequestOrder = /*@__PURE__*/ S.String;
+export const ListRecipientsAttachmentsRequestOrder = S.String;
 
 export interface ListRecipientsAttachmentsRequest {
   limit?: number;
@@ -4035,8 +4035,7 @@ export type ListSendMoneyApprovalRequestsRequestStatus =
   | "approved"
   | "rejected"
   | "cancelled";
-export const ListSendMoneyApprovalRequestsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const ListSendMoneyApprovalRequestsRequestStatus = S.String;
 
 export interface ListSendMoneyApprovalRequestsRequest {
   accountId?: string;
@@ -4093,7 +4092,7 @@ export type ListTransactionsRequestStatusItem =
   | "failed"
   | "reversed"
   | "blocked";
-export const ListTransactionsRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListTransactionsRequestStatusItem = S.String;
 
 export type ListTransactionsRequestStatusList = Array<
   ListTransactionsRequestStatusItem | (string & {})
@@ -4114,7 +4113,7 @@ export const ListTransactionsRequestCardIdList = /*@__PURE__*/ S.Array(
 
 /** Sort order. Can be 'asc' or 'desc'. Defaults to 'asc' */
 export type ListTransactionsRequestOrder = "asc" | "desc";
-export const ListTransactionsRequestOrder = /*@__PURE__*/ S.String;
+export const ListTransactionsRequestOrder = S.String;
 
 export interface ListTransactionsRequest {
   status?: ListTransactionsRequestStatusList;
@@ -4181,7 +4180,7 @@ export const TransactionsPaginatedResponse = /*@__PURE__*/ S.suspend(() =>
 export type ObtainAccessTokenRequestGrantType =
   | "authorization_code"
   | "refresh_token";
-export const ObtainAccessTokenRequestGrantType = /*@__PURE__*/ S.String;
+export const ObtainAccessTokenRequestGrantType = S.String;
 
 export interface ObtainAccessTokenRequest {
   /** The authorization code received from the authorization server. Required when grant_type is "authorization_code". */
@@ -4588,8 +4587,7 @@ export type UploadTransactionAttachmentRequestAttachmentType =
   | "receipt"
   | "bill"
   | "other";
-export const UploadTransactionAttachmentRequestAttachmentType =
-  /*@__PURE__*/ S.String;
+export const UploadTransactionAttachmentRequestAttachmentType = S.String;
 
 export interface UploadTransactionAttachmentRequest {
   /** ID of the transaction to attach the file to */

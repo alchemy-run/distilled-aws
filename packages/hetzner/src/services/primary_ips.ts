@@ -37,16 +37,16 @@ export const CreatePrimaryIpRequestLabelsMap = /*@__PURE__*/ S.Record(
 
 /** [Primary IP](#tag/primary-ips) type. */
 export type CreatePrimaryIpRequestType = "ipv4" | "ipv6";
-export const CreatePrimaryIpRequestType = /*@__PURE__*/ S.String;
+export const CreatePrimaryIpRequestType = S.String;
 
 /** [Location](#tag/locations) ID or name the [Primary IP](#tag/primary-ips) will be bound to. Omit if `assignee_id`/`assignee_type` or `datacenter` are provided. */
 export type CreatePrimaryIpRequestLocation = string | number;
 export const CreatePrimaryIpRequestLocation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreatePrimaryIpRequestLocation>;
+  S.Unknown as any as S.Schema<CreatePrimaryIpRequestLocation>;
 
 /** Type of resource to assign the [Primary IP](#tag/primary-ips) to. Omitted if the [Primary IP](#tag/primary-ips) should not get assigned. */
 export type CreatePrimaryIpRequestAssigneeType = "server";
-export const CreatePrimaryIpRequestAssigneeType = /*@__PURE__*/ S.String;
+export const CreatePrimaryIpRequestAssigneeType = S.String;
 
 export interface CreatePrimaryIpRequest {
   /** Name of the Resource. Must be unique per Project. */
@@ -161,12 +161,11 @@ export const CreatePrimaryIpResponsePrimaryIpProtection =
 
 /** [Primary IP](#tag/primary-ips) type. */
 export type CreatePrimaryIpResponsePrimaryIpType = "ipv4" | "ipv6";
-export const CreatePrimaryIpResponsePrimaryIpType = /*@__PURE__*/ S.String;
+export const CreatePrimaryIpResponsePrimaryIpType = S.String;
 
 /** Type of resource the [Primary IP](#tag/primary-ips) is assigned to. As of 01 August 2026 `unassigned` will be returned if the [Primary IP](#tag/primary-ips) is not assigned. */
 export type CreatePrimaryIpResponsePrimaryIpAssigneeType = "server";
-export const CreatePrimaryIpResponsePrimaryIpAssigneeType =
-  /*@__PURE__*/ S.String;
+export const CreatePrimaryIpResponsePrimaryIpAssigneeType = S.String;
 
 export interface CreatePrimaryIpResponsePrimaryIp {
   /** ID of the [Primary IP](#tag/primary-ips). */
@@ -221,7 +220,7 @@ export type CreatePrimaryIpResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const CreatePrimaryIpResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreatePrimaryIpResponseActionStatus = S.String;
 
 export interface CreatePrimaryIpResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -376,11 +375,11 @@ export const GetPrimaryIpResponsePrimaryIpProtection =
 
 /** [Primary IP](#tag/primary-ips) type. */
 export type GetPrimaryIpResponsePrimaryIpType = "ipv4" | "ipv6";
-export const GetPrimaryIpResponsePrimaryIpType = /*@__PURE__*/ S.String;
+export const GetPrimaryIpResponsePrimaryIpType = S.String;
 
 /** Type of resource the [Primary IP](#tag/primary-ips) is assigned to. As of 01 August 2026 `unassigned` will be returned if the [Primary IP](#tag/primary-ips) is not assigned. */
 export type GetPrimaryIpResponsePrimaryIpAssigneeType = "server";
-export const GetPrimaryIpResponsePrimaryIpAssigneeType = /*@__PURE__*/ S.String;
+export const GetPrimaryIpResponsePrimaryIpAssigneeType = S.String;
 
 export interface GetPrimaryIpResponsePrimaryIp {
   /** ID of the [Primary IP](#tag/primary-ips). */
@@ -448,7 +447,7 @@ export type ListPrimaryIpsRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListPrimaryIpsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListPrimaryIpsRequestSortItem = S.String;
 
 export type ListPrimaryIpsRequestSortList = Array<
   ListPrimaryIpsRequestSortItem | (string & {})
@@ -521,12 +520,11 @@ export const ListPrimaryIpsResponsePrimaryIpsItemProtection =
 
 /** [Primary IP](#tag/primary-ips) type. */
 export type ListPrimaryIpsResponsePrimaryIpsItemType = "ipv4" | "ipv6";
-export const ListPrimaryIpsResponsePrimaryIpsItemType = /*@__PURE__*/ S.String;
+export const ListPrimaryIpsResponsePrimaryIpsItemType = S.String;
 
 /** Type of resource the [Primary IP](#tag/primary-ips) is assigned to. As of 01 August 2026 `unassigned` will be returned if the [Primary IP](#tag/primary-ips) is not assigned. */
 export type ListPrimaryIpsResponsePrimaryIpsItemAssigneeType = "server";
-export const ListPrimaryIpsResponsePrimaryIpsItemAssigneeType =
-  /*@__PURE__*/ S.String;
+export const ListPrimaryIpsResponsePrimaryIpsItemAssigneeType = S.String;
 
 export interface ListPrimaryIpsResponsePrimaryIpsItem {
   /** ID of the [Primary IP](#tag/primary-ips). */
@@ -702,12 +700,11 @@ export const UpdatePrimaryIpResponsePrimaryIpProtection =
 
 /** [Primary IP](#tag/primary-ips) type. */
 export type UpdatePrimaryIpResponsePrimaryIpType = "ipv4" | "ipv6";
-export const UpdatePrimaryIpResponsePrimaryIpType = /*@__PURE__*/ S.String;
+export const UpdatePrimaryIpResponsePrimaryIpType = S.String;
 
 /** Type of resource the [Primary IP](#tag/primary-ips) is assigned to. As of 01 August 2026 `unassigned` will be returned if the [Primary IP](#tag/primary-ips) is not assigned. */
 export type UpdatePrimaryIpResponsePrimaryIpAssigneeType = "server";
-export const UpdatePrimaryIpResponsePrimaryIpAssigneeType =
-  /*@__PURE__*/ S.String;
+export const UpdatePrimaryIpResponsePrimaryIpAssigneeType = S.String;
 
 export interface UpdatePrimaryIpResponsePrimaryIp {
   /** ID of the [Primary IP](#tag/primary-ips). */

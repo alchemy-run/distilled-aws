@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** The status of a firmware analysis job. */
 export type Status = "Pending" | "Extracting" | "Analyzing" | "Ready" | "Error";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Error and status message */
 export interface StatusMessage {
@@ -108,7 +108,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -116,7 +116,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -158,7 +158,7 @@ export type ProvisioningState =
   | "Pending"
   | "Extracting"
   | "Analyzing";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Firmware properties. */
 export interface FirmwareProperties {
@@ -240,7 +240,7 @@ export const WorkspacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface CreateWorkspaceRequestSku {
@@ -507,7 +507,7 @@ export type GetSummaryRequestSummaryType =
   | "BinaryHardening"
   | "CryptoCertificate"
   | "CryptoKey";
-export const GetSummaryRequestSummaryType = /*@__PURE__*/ S.String;
+export const GetSummaryRequestSummaryType = S.String;
 
 export interface GetSummaryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -547,7 +547,7 @@ export type SummaryType =
   | "BinaryHardening"
   | "CryptoCertificate"
   | "CryptoKey";
-export const SummaryType = /*@__PURE__*/ S.String;
+export const SummaryType = S.String;
 
 /** Properties of an analysis summary. */
 export interface SummaryResourceProperties {
@@ -785,7 +785,7 @@ export const BinaryHardeningFeatures = /*@__PURE__*/ S.suspend(() =>
 
 /** String to indicate if the executable is 32 or 64 bit. */
 export type ExecutableClass = "x86" | "x64";
-export const ExecutableClass = /*@__PURE__*/ S.String;
+export const ExecutableClass = S.String;
 
 /** Binary hardening of a firmware. */
 export interface BinaryHardeningResult {
@@ -941,7 +941,7 @@ export type CertificateUsage =
   | "emailProtection"
   | "timeStamping"
   | "ocspSigning";
-export const CertificateUsage = /*@__PURE__*/ S.String;
+export const CertificateUsage = S.String;
 
 /** List of functions the certificate can fulfill. */
 export type CryptoCertificateCertificateUsageList = Array<CertificateUsage>;
@@ -1121,7 +1121,7 @@ export const ListCryptoKeyByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Different types of cryptographic keys. */
 export type CryptoKeyType = "Public" | "Private";
-export const CryptoKeyType = /*@__PURE__*/ S.String;
+export const CryptoKeyType = S.String;
 
 /** Functions the key can fulfill. */
 export type CryptoKeyUsageList = Array<string>;
@@ -1514,11 +1514,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2092,8 +2092,7 @@ export type AzureResourceManagerCommonTypesSkuUpdateTier =
   | "Basic"
   | "Standard"
   | "Premium";
-export const AzureResourceManagerCommonTypesSkuUpdateTier =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerCommonTypesSkuUpdateTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface AzureResourceManagerCommonTypesSkuUpdate {

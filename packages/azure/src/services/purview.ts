@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Identity Type */
 export type IdentityInputType = "None" | "SystemAssigned" | "UserAssigned";
-export const IdentityInputType = /*@__PURE__*/ S.String;
+export const IdentityInputType = S.String;
 
 /** Uses client ID and Principal ID */
 export interface UserAssignedIdentityInput {}
@@ -65,8 +65,7 @@ export type AccountPropertiesInputManagedEventHubState =
   | "NotSpecified"
   | "Disabled"
   | "Enabled";
-export const AccountPropertiesInputManagedEventHubState =
-  /*@__PURE__*/ S.String;
+export const AccountPropertiesInputManagedEventHubState = S.String;
 
 /** Gets or sets the public network access for managed resources. */
 export type AccountPropertiesInputManagedResourcesPublicNetworkAccess =
@@ -74,14 +73,14 @@ export type AccountPropertiesInputManagedResourcesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
 export const AccountPropertiesInputManagedResourcesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Gets or sets the public network access. */
 export type AccountPropertiesInputPublicNetworkAccess =
   | "NotSpecified"
   | "Enabled"
   | "Disabled";
-export const AccountPropertiesInputPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const AccountPropertiesInputPublicNetworkAccess = S.String;
 
 /** The account properties */
 export interface AccountPropertiesInput {
@@ -157,7 +156,7 @@ export const AccountsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Identity Type */
 export type IdentityType = "None" | "SystemAssigned" | "UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Uses client ID and Principal ID */
 export interface UserAssignedIdentity {
@@ -210,7 +209,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -218,7 +217,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -267,7 +266,7 @@ export type AccountStatusAccountProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Canceled";
-export const AccountStatusAccountProvisioningState = /*@__PURE__*/ S.String;
+export const AccountStatusAccountProvisioningState = S.String;
 
 /** Gets or sets the details. */
 export type ErrorModelDetailsList = Array<ErrorModel>;
@@ -346,7 +345,7 @@ export type AccountPropertiesManagedEventHubState =
   | "NotSpecified"
   | "Disabled"
   | "Enabled";
-export const AccountPropertiesManagedEventHubState = /*@__PURE__*/ S.String;
+export const AccountPropertiesManagedEventHubState = S.String;
 
 /** The managed resources in customer subscription. */
 export interface ManagedResources {
@@ -372,8 +371,7 @@ export type AccountPropertiesManagedResourcesPublicNetworkAccess =
   | "NotSpecified"
   | "Enabled"
   | "Disabled";
-export const AccountPropertiesManagedResourcesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const AccountPropertiesManagedResourcesPublicNetworkAccess = S.String;
 
 /** A private endpoint class. */
 export interface PrivateEndpoint {
@@ -395,7 +393,7 @@ export type PrivateLinkServiceConnectionStateStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateLinkServiceConnectionStateStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkServiceConnectionStateStatus = S.String;
 
 /** The private link service connection state. */
 export interface PrivateLinkServiceConnectionState {
@@ -481,14 +479,14 @@ export type AccountPropertiesProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Canceled";
-export const AccountPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const AccountPropertiesProvisioningState = S.String;
 
 /** Gets or sets the public network access. */
 export type AccountPropertiesPublicNetworkAccess =
   | "NotSpecified"
   | "Enabled"
   | "Disabled";
-export const AccountPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const AccountPropertiesPublicNetworkAccess = S.String;
 
 /** The account properties */
 export interface AccountProperties {
@@ -548,7 +546,7 @@ export const AccountProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or sets the sku name. */
 export type AccountSkuName = "Standard";
-export const AccountSkuName = /*@__PURE__*/ S.String;
+export const AccountSkuName = S.String;
 
 /** The Sku */
 export interface AccountSku {
@@ -663,7 +661,7 @@ export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason the name is not available. */
 export type CheckNameAvailabilityResultReason = "Invalid" | "AlreadyExists";
-export const CheckNameAvailabilityResultReason = /*@__PURE__*/ S.String;
+export const CheckNameAvailabilityResultReason = S.String;
 
 /** The response payload for CheckNameAvailability API */
 export interface CheckNameAvailabilityResult {
@@ -856,7 +854,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountResponse>;
 
 export type GetDefaultAccountRequestScopeType = "Tenant" | "Subscription";
-export const GetDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
+export const GetDefaultAccountRequestScopeType = S.String;
 
 export interface GetDefaultAccountRequest {
   /** The tenant ID. */
@@ -885,7 +883,7 @@ export const GetDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The scope where the default account is set. */
 export type DefaultAccountPayloadScopeType = "Tenant" | "Subscription";
-export const DefaultAccountPayloadScopeType = /*@__PURE__*/ S.String;
+export const DefaultAccountPayloadScopeType = S.String;
 
 /** Payload to get and set the default account in the given scope */
 export interface DefaultAccountPayload {
@@ -1032,7 +1030,7 @@ export const GetKafkaConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Identity Type. */
 export type CredentialsType = "None" | "SystemAssigned" | "UserAssigned";
-export const CredentialsType = /*@__PURE__*/ S.String;
+export const CredentialsType = S.String;
 
 /** Credentials to access the event streaming service attached to the purview account. */
 export interface Credentials {
@@ -1050,22 +1048,20 @@ export const Credentials = /*@__PURE__*/ S.suspend(() =>
 
 /** The event hub type. */
 export type KafkaConfigurationPropertiesEventHubType = "Notification" | "Hook";
-export const KafkaConfigurationPropertiesEventHubType = /*@__PURE__*/ S.String;
+export const KafkaConfigurationPropertiesEventHubType = S.String;
 
 /** The state of the event streaming service */
 export type KafkaConfigurationPropertiesEventStreamingState =
   | "Disabled"
   | "Enabled";
-export const KafkaConfigurationPropertiesEventStreamingState =
-  /*@__PURE__*/ S.String;
+export const KafkaConfigurationPropertiesEventStreamingState = S.String;
 
 /** The event streaming service type */
 export type KafkaConfigurationPropertiesEventStreamingType =
   | "None"
   | "Managed"
   | "Azure";
-export const KafkaConfigurationPropertiesEventStreamingType =
-  /*@__PURE__*/ S.String;
+export const KafkaConfigurationPropertiesEventStreamingType = S.String;
 
 /** The kafka configuration properties of the event streaming service attached to the Purview account for kafka notifications. */
 export interface KafkaConfigurationProperties {
@@ -2052,7 +2048,7 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
 export type RemoveDefaultAccountRequestScopeType = "Tenant" | "Subscription";
-export const RemoveDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
+export const RemoveDefaultAccountRequestScopeType = S.String;
 
 export interface RemoveDefaultAccountRequest {
   /** The tenant ID. */
@@ -2088,7 +2084,7 @@ export const RemoveDefaultAccountResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The scope where the default account is set. */
 export type SetDefaultAccountRequestScopeType = "Tenant" | "Subscription";
-export const SetDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
+export const SetDefaultAccountRequestScopeType = S.String;
 
 export interface SetDefaultAccountRequest {
   /** The name of the account that is set as the default. */

@@ -85,7 +85,7 @@ export type ConfigurationProfileAssignmentsCreateOrUpdateResponseSystemDataCreat
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfileAssignmentsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfigurationProfileAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -94,7 +94,7 @@ export type ConfigurationProfileAssignmentsCreateOrUpdateResponseSystemDataLastM
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfileAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfigurationProfileAssignmentsCreateOrUpdateResponseSystemData {
@@ -199,7 +199,7 @@ export type ConfigurationProfileHCIAssignmentsCreateOrUpdateResponseSystemDataCr
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfileHCIAssignmentsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfigurationProfileHCIAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -208,7 +208,7 @@ export type ConfigurationProfileHCIAssignmentsCreateOrUpdateResponseSystemDataLa
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfileHCIAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfigurationProfileHCIAssignmentsCreateOrUpdateResponseSystemData {
@@ -313,7 +313,7 @@ export type ConfigurationProfileHCRPAssignmentsCreateOrUpdateResponseSystemDataC
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfileHCRPAssignmentsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfigurationProfileHCRPAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -322,7 +322,7 @@ export type ConfigurationProfileHCRPAssignmentsCreateOrUpdateResponseSystemDataL
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfileHCRPAssignmentsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfigurationProfileHCRPAssignmentsCreateOrUpdateResponseSystemData {
@@ -463,7 +463,7 @@ export type ConfigurationProfilesCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfilesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfigurationProfilesCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -472,7 +472,7 @@ export type ConfigurationProfilesCreateOrUpdateResponseSystemDataLastModifiedByT
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfilesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfigurationProfilesCreateOrUpdateResponseSystemData {
@@ -607,7 +607,7 @@ export type ConfigurationProfilesVersionsCreateOrUpdateResponseSystemDataCreated
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfilesVersionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfigurationProfilesVersionsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -616,7 +616,7 @@ export type ConfigurationProfilesVersionsCreateOrUpdateResponseSystemDataLastMod
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfilesVersionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfigurationProfilesVersionsCreateOrUpdateResponseSystemData {
@@ -883,7 +883,7 @@ export type BestPracticeSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const BestPracticeSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const BestPracticeSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type BestPracticeSystemDataLastModifiedByType =
@@ -891,7 +891,7 @@ export type BestPracticeSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const BestPracticeSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const BestPracticeSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface BestPracticeSystemData {
@@ -1006,8 +1006,7 @@ export type GetConfigurationProfileResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetConfigurationProfileResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetConfigurationProfileResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetConfigurationProfileResponseSystemDataLastModifiedByType =
@@ -1016,7 +1015,7 @@ export type GetConfigurationProfileResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfileResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetConfigurationProfileResponseSystemData {
@@ -1117,7 +1116,7 @@ export type GetConfigurationProfileAssignmentResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfileAssignmentResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType =
@@ -1126,7 +1125,7 @@ export type GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByTyp
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetConfigurationProfileAssignmentResponseSystemData {
@@ -1227,7 +1226,7 @@ export type GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType 
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType =
@@ -1236,7 +1235,7 @@ export type GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedBy
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetConfigurationProfileHCIAssignmentResponseSystemData {
@@ -1337,7 +1336,7 @@ export type GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType =
@@ -1346,7 +1345,7 @@ export type GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedB
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetConfigurationProfileHCRPAssignmentResponseSystemData {
@@ -1457,7 +1456,7 @@ export type GetConfigurationProfilesVersionResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfilesVersionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType =
@@ -1466,7 +1465,7 @@ export type GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType 
   | "ManagedIdentity"
   | "Key";
 export const GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetConfigurationProfilesVersionResponseSystemData {
@@ -1767,8 +1766,7 @@ export type GetHCIReportResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetHCIReportResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetHCIReportResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetHCIReportResponseSystemDataLastModifiedByType =
@@ -1776,8 +1774,7 @@ export type GetHCIReportResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetHCIReportResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetHCIReportResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetHCIReportResponseSystemData {
@@ -1870,8 +1867,7 @@ export type GetHCRPReportResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetHCRPReportResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetHCRPReportResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetHCRPReportResponseSystemDataLastModifiedByType =
@@ -1879,8 +1875,7 @@ export type GetHCRPReportResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetHCRPReportResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetHCRPReportResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetHCRPReportResponseSystemData {
@@ -1973,7 +1968,7 @@ export type GetReportResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetReportResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetReportResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetReportResponseSystemDataLastModifiedByType =
@@ -1981,8 +1976,7 @@ export type GetReportResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetReportResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetReportResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetReportResponseSystemData {
@@ -2079,8 +2073,7 @@ export type GetServicePrincipalResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServicePrincipalResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetServicePrincipalResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetServicePrincipalResponseSystemDataLastModifiedByType =
@@ -2088,8 +2081,7 @@ export type GetServicePrincipalResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServicePrincipalResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetServicePrincipalResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetServicePrincipalResponseSystemData {
@@ -2233,8 +2225,7 @@ export type ConfigurationProfileAssignmentSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileAssignmentSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ConfigurationProfileAssignmentSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfigurationProfileAssignmentSystemDataLastModifiedByType =
@@ -2243,7 +2234,7 @@ export type ConfigurationProfileAssignmentSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ConfigurationProfileAssignmentSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfigurationProfileAssignmentSystemData {
@@ -2458,8 +2449,7 @@ export type ConfigurationProfileSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ConfigurationProfileSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ConfigurationProfileSystemDataLastModifiedByType =
@@ -2467,8 +2457,7 @@ export type ConfigurationProfileSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ConfigurationProfileSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ConfigurationProfileSystemData {
@@ -2631,7 +2620,7 @@ export type ReportSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReportSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ReportSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ReportSystemDataLastModifiedByType =
@@ -2639,7 +2628,7 @@ export type ReportSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReportSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const ReportSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ReportSystemData {
@@ -2776,11 +2765,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2881,7 +2870,7 @@ export type ServicePrincipalSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServicePrincipalSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ServicePrincipalSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ServicePrincipalSystemDataLastModifiedByType =
@@ -2889,8 +2878,7 @@ export type ServicePrincipalSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServicePrincipalSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ServicePrincipalSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ServicePrincipalSystemData {
@@ -3022,7 +3010,7 @@ export type UpdateConfigurationProfileResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateConfigurationProfileResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateConfigurationProfileResponseSystemDataLastModifiedByType =
@@ -3031,7 +3019,7 @@ export type UpdateConfigurationProfileResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateConfigurationProfileResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateConfigurationProfileResponseSystemData {

@@ -36,7 +36,7 @@ export const CheckDomainAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Valid values are Regular domain: Azure will charge the full price of domain registration, SoftDeleted: Purchasing this domain will simply restore it and this operation will not cost anything. */
 export type DomainType = "Regular" | "SoftDeleted";
-export const DomainType = /*@__PURE__*/ S.String;
+export const DomainType = S.String;
 
 /** Domain availability check result. */
 export interface DomainAvailabilityCheckResult {
@@ -225,7 +225,7 @@ export const DomainPurchaseConsent = /*@__PURE__*/ S.suspend(() =>
 
 /** Current DNS type */
 export type DnsType = "AzureDns" | "DefaultDomainRegistrarDns";
-export const DnsType = /*@__PURE__*/ S.String;
+export const DnsType = S.String;
 
 /** Domain resource specific properties */
 export interface DomainPropertiesInput {
@@ -313,7 +313,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -321,7 +321,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -381,7 +381,7 @@ export type DomainStatus =
   | "Unparked"
   | "Updated"
   | "JsonConverterFailed";
-export const DomainStatus = /*@__PURE__*/ S.String;
+export const DomainStatus = S.String;
 
 /** Domain provisioning state. */
 export type ProvisioningState =
@@ -390,7 +390,7 @@ export type ProvisioningState =
   | "Canceled"
   | "InProgress"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Name servers. */
 export type DomainPropertiesNameServersList = Array<string>;
@@ -406,15 +406,15 @@ export const HostNameSiteNamesList = /*@__PURE__*/ S.Array(
 
 /** Type of the Azure resource the hostname is assigned to. */
 export type AzureResourceType = "Website" | "TrafficManager";
-export const AzureResourceType = /*@__PURE__*/ S.String;
+export const AzureResourceType = S.String;
 
 /** Type of the DNS record. */
 export type CustomHostNameDnsRecordType = "CName" | "A";
-export const CustomHostNameDnsRecordType = /*@__PURE__*/ S.String;
+export const CustomHostNameDnsRecordType = S.String;
 
 /** Type of the hostname. */
 export type HostNameType = "Verified" | "Managed";
-export const HostNameType = /*@__PURE__*/ S.String;
+export const HostNameType = S.String;
 
 /** Details of a hostname derived from a domain. */
 export interface HostName {
@@ -453,7 +453,7 @@ export type ResourceNotRenewableReason =
   | "RegistrationStatusNotSupportedForRenewal"
   | "ExpirationNotInRenewalTimeRange"
   | "SubscriptionNotActive";
-export const ResourceNotRenewableReason = /*@__PURE__*/ S.String;
+export const ResourceNotRenewableReason = S.String;
 
 /** Reasons why domain is not renewable. */
 export type DomainPropertiesDomainNotRenewableReasonsList =

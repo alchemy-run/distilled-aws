@@ -58,14 +58,14 @@ export type MemberRole =
   | "MEMBER_ROLE_USER"
   | "MEMBER_ROLE_MANAGER"
   | "MEMBER_ROLE_OWNER";
-export const MemberRole = /*@__PURE__*/ S.String;
+export const MemberRole = S.String;
 
 export type IdentityProviderType =
   | "IDENTITY_PROVIDER_TYPE_UNSPECIFIED"
   | "IDENTITY_PROVIDER_TYPE_GITHUB"
   | "IDENTITY_PROVIDER_TYPE_OKTA"
   | "IDENTITY_PROVIDER_TYPE_GOOGLE_OAUTH";
-export const IdentityProviderType = /*@__PURE__*/ S.String;
+export const IdentityProviderType = S.String;
 
 export interface WorkspaceMembersListItem {
   memberId?: string;

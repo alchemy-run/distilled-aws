@@ -196,7 +196,7 @@ export type GenericResultGenericStatus =
   | "GENERIC_STATUS_INTERNAL_FAILURE"
   | "GENERIC_STATUS_IDLE_TIMEOUT"
   | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
-export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
+export const GenericResultGenericStatus = S.String;
 
 /** sub-type for generic types like lists */
 export interface GenericResult {
@@ -238,7 +238,7 @@ export type TaskSnapshotBehavior =
   | "TASK_SNAPSHOT_BEHAVIOR_SNAPSHOT"
   | "TASK_SNAPSHOT_BEHAVIOR_RESTORE"
   | "TASK_SNAPSHOT_BEHAVIOR_NONE";
-export const TaskSnapshotBehavior = /*@__PURE__*/ S.String;
+export const TaskSnapshotBehavior = S.String;
 
 export type GPUType =
   | "GPU_TYPE_UNSPECIFIED"
@@ -251,7 +251,7 @@ export type GPUType =
   | "GPU_TYPE_H100"
   | "GPU_TYPE_L40S"
   | "GPU_TYPE_H200";
-export const GPUType = /*@__PURE__*/ S.String;
+export const GPUType = S.String;
 
 export interface GPUConfig {
   type?: GPUType;

@@ -22,7 +22,7 @@ export const CreateBotRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The name of SKU. */
 export type SkuName = "F0" | "S1";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The SKU of the cognitive services account. */
 export interface SkuInput {
@@ -37,7 +37,7 @@ export const SkuInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of bot service */
 export type Kind = "sdk" | "designer" | "bot" | "function" | "azurebot";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 /** Contains resource all settings defined as key/value pairs. */
 export type BotPropertiesInputAllSettingsMap = {
@@ -62,7 +62,7 @@ export type BotPropertiesInputMsaAppType =
   | "UserAssignedMSI"
   | "SingleTenant"
   | "MultiTenant";
-export const BotPropertiesInputMsaAppType = /*@__PURE__*/ S.String;
+export const BotPropertiesInputMsaAppType = S.String;
 
 /** Collection of LUIS App Ids */
 export type BotPropertiesInputLuisAppIdsList = Array<string>;
@@ -72,7 +72,7 @@ export const BotPropertiesInputLuisAppIdsList = /*@__PURE__*/ S.Array(
 
 /** Whether the bot is in an isolated network */
 export type BotPropertiesInputPublicNetworkAccess = "Enabled" | "Disabled";
-export const BotPropertiesInputPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const BotPropertiesInputPublicNetworkAccess = S.String;
 
 /** The parameters to provide for the Bot. */
 export interface BotPropertiesInput {
@@ -217,7 +217,7 @@ export const CreateBotResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Gets the sku tier. This is based on the SKU name. */
 export type SkuTier = "Free" | "Standard";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The SKU of the cognitive services account. */
 export interface Sku {
@@ -258,7 +258,7 @@ export type BotPropertiesMsaAppType =
   | "UserAssignedMSI"
   | "SingleTenant"
   | "MultiTenant";
-export const BotPropertiesMsaAppType = /*@__PURE__*/ S.String;
+export const BotPropertiesMsaAppType = S.String;
 
 /** Collection of channels for which the bot is configured */
 export type BotPropertiesConfiguredChannelsList = Array<string>;
@@ -280,7 +280,7 @@ export const BotPropertiesLuisAppIdsList = /*@__PURE__*/ S.Array(
 
 /** Whether the bot is in an isolated network */
 export type BotPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const BotPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const BotPropertiesPublicNetworkAccess = S.String;
 
 /** The Private Endpoint resource. */
 export interface PrivateEndpoint {
@@ -300,7 +300,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -327,8 +327,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Group ids */
 export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
@@ -781,7 +780,7 @@ export type CreateChannelRequestChannelName =
   | "AcsChatChannel"
   | "SearchAssistant"
   | "M365Extensions";
-export const CreateChannelRequestChannelName = /*@__PURE__*/ S.String;
+export const CreateChannelRequestChannelName = S.String;
 
 /** Contains resource tags defined as key/value pairs. */
 export type CreateChannelRequestTagsMap = { [key: string]: string | undefined };
@@ -1573,7 +1572,7 @@ export type OperationResultsDescriptionStatus =
   | "Failed"
   | "Requested"
   | "Running";
-export const OperationResultsDescriptionStatus = /*@__PURE__*/ S.String;
+export const OperationResultsDescriptionStatus = S.String;
 
 /** The properties indicating the operation result of an operation on a service. */
 export interface OperationResultsDescription {
@@ -2260,7 +2259,7 @@ export type ListChannelWithKeysRequestChannelName =
   | "AcsChatChannel"
   | "SearchAssistant"
   | "M365Extensions";
-export const ListChannelWithKeysRequestChannelName = /*@__PURE__*/ S.String;
+export const ListChannelWithKeysRequestChannelName = S.String;
 
 export interface ListChannelWithKeysRequest {
   /** Azure Subscription ID. */
@@ -2718,12 +2717,11 @@ export const ListPrivateLinkResourceByBotResourceResponse =
 export type RegenerateDirectLineKeysRequestChannelName =
   | "WebChatChannel"
   | "DirectLineChannel";
-export const RegenerateDirectLineKeysRequestChannelName =
-  /*@__PURE__*/ S.String;
+export const RegenerateDirectLineKeysRequestChannelName = S.String;
 
 /** Determines which key is to be regenerated */
 export type RegenerateDirectLineKeysRequestKey = "key1" | "key2";
-export const RegenerateDirectLineKeysRequestKey = /*@__PURE__*/ S.String;
+export const RegenerateDirectLineKeysRequestKey = S.String;
 
 export interface RegenerateDirectLineKeysRequest {
   /** Azure Subscription ID. */
@@ -3044,7 +3042,7 @@ export type UpdateChannelRequestChannelName =
   | "AcsChatChannel"
   | "SearchAssistant"
   | "M365Extensions";
-export const UpdateChannelRequestChannelName = /*@__PURE__*/ S.String;
+export const UpdateChannelRequestChannelName = S.String;
 
 /** Contains resource tags defined as key/value pairs. */
 export type UpdateChannelRequestTagsMap = { [key: string]: string | undefined };

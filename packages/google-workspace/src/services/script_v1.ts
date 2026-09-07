@@ -199,15 +199,13 @@ export type GoogleAppsScriptTypeWebAppConfigAccessEnum =
   | "DOMAIN"
   | "ANYONE"
   | "ANYONE_ANONYMOUS";
-export const GoogleAppsScriptTypeWebAppConfigAccessEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeWebAppConfigAccessEnum = S.String;
 
 export type GoogleAppsScriptTypeWebAppConfigExecuteAsEnum =
   | "UNKNOWN_EXECUTE_AS"
   | "USER_ACCESSING"
   | "USER_DEPLOYING";
-export const GoogleAppsScriptTypeWebAppConfigExecuteAsEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeWebAppConfigExecuteAsEnum = S.String;
 
 /** Web app entry point configuration. */
 export interface GoogleAppsScriptTypeWebAppConfig {
@@ -247,7 +245,7 @@ export type EntryPointEntryPointTypeEnum =
   | "WEB_APP"
   | "EXECUTION_API"
   | "ADD_ON";
-export const EntryPointEntryPointTypeEnum = /*@__PURE__*/ S.String;
+export const EntryPointEntryPointTypeEnum = S.String;
 
 export type GoogleAppsScriptTypeExecutionApiConfigAccessEnum =
   | "UNKNOWN_ACCESS"
@@ -255,8 +253,7 @@ export type GoogleAppsScriptTypeExecutionApiConfigAccessEnum =
   | "DOMAIN"
   | "ANYONE"
   | "ANYONE_ANONYMOUS";
-export const GoogleAppsScriptTypeExecutionApiConfigAccessEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeExecutionApiConfigAccessEnum = S.String;
 
 /** API executable entry point configuration. */
 export interface GoogleAppsScriptTypeExecutionApiConfig {
@@ -290,8 +287,7 @@ export type GoogleAppsScriptTypeAddOnEntryPointAddOnTypeEnum =
   | "UNKNOWN_ADDON_TYPE"
   | "GMAIL"
   | "DATA_STUDIO";
-export const GoogleAppsScriptTypeAddOnEntryPointAddOnTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeAddOnEntryPointAddOnTypeEnum = S.String;
 
 /** An add-on entry point. */
 export interface GoogleAppsScriptTypeAddOnEntryPoint {
@@ -460,7 +456,7 @@ export type FileTypeEnum =
   | "SERVER_JS"
   | "HTML"
   | "JSON";
-export const FileTypeEnum = /*@__PURE__*/ S.String;
+export const FileTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -554,7 +550,7 @@ export type GetMetricsProjectsMetricsGranularityEnum =
   | "UNSPECIFIED_GRANULARITY"
   | "WEEKLY"
   | "DAILY";
-export const GetMetricsProjectsMetricsGranularityEnum = /*@__PURE__*/ S.String;
+export const GetMetricsProjectsMetricsGranularityEnum = S.String;
 
 export interface GetMetricsProjectsRequest {
   /** Required field indicating the script to get metrics for. */
@@ -692,7 +688,7 @@ export type ListProcessesUserProcessFilter_typesEnum =
   | "SIMPLE_TRIGGER"
   | "MENU"
   | "BATCH_TASK";
-export const ListProcessesUserProcessFilter_typesEnum = /*@__PURE__*/ S.String;
+export const ListProcessesUserProcessFilter_typesEnum = S.String;
 
 export type ListProcessesUserProcessFilter_typesEnumList = Array<
   ListProcessesUserProcessFilter_typesEnum | (string & {})
@@ -708,8 +704,7 @@ export type ListProcessesUserProcessFilter_userAccessLevelsEnum =
   | "READ"
   | "WRITE"
   | "OWNER";
-export const ListProcessesUserProcessFilter_userAccessLevelsEnum =
-  /*@__PURE__*/ S.String;
+export const ListProcessesUserProcessFilter_userAccessLevelsEnum = S.String;
 
 export type ListProcessesUserProcessFilter_userAccessLevelsEnumList = Array<
   ListProcessesUserProcessFilter_userAccessLevelsEnum | (string & {})
@@ -730,8 +725,7 @@ export type ListProcessesUserProcessFilter_statusesEnum =
   | "UNKNOWN"
   | "DELAYED"
   | "EXECUTION_DISABLED";
-export const ListProcessesUserProcessFilter_statusesEnum =
-  /*@__PURE__*/ S.String;
+export const ListProcessesUserProcessFilter_statusesEnum = S.String;
 
 export type ListProcessesUserProcessFilter_statusesEnumList = Array<
   ListProcessesUserProcessFilter_statusesEnum | (string & {})
@@ -806,15 +800,13 @@ export type GoogleAppsScriptTypeProcessProcessTypeEnum =
   | "SIMPLE_TRIGGER"
   | "MENU"
   | "BATCH_TASK";
-export const GoogleAppsScriptTypeProcessProcessTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeProcessProcessTypeEnum = S.String;
 
 export type GoogleAppsScriptTypeProcessRuntimeVersionEnum =
   | "RUNTIME_VERSION_UNSPECIFIED"
   | "DEPRECATED_ES5"
   | "V8";
-export const GoogleAppsScriptTypeProcessRuntimeVersionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeProcessRuntimeVersionEnum = S.String;
 
 export type GoogleAppsScriptTypeProcessProcessStatusEnum =
   | "PROCESS_STATUS_UNSPECIFIED"
@@ -827,8 +819,7 @@ export type GoogleAppsScriptTypeProcessProcessStatusEnum =
   | "UNKNOWN"
   | "DELAYED"
   | "EXECUTION_DISABLED";
-export const GoogleAppsScriptTypeProcessProcessStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeProcessProcessStatusEnum = S.String;
 
 export type GoogleAppsScriptTypeProcessUserAccessLevelEnum =
   | "USER_ACCESS_LEVEL_UNSPECIFIED"
@@ -836,8 +827,7 @@ export type GoogleAppsScriptTypeProcessUserAccessLevelEnum =
   | "READ"
   | "WRITE"
   | "OWNER";
-export const GoogleAppsScriptTypeProcessUserAccessLevelEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAppsScriptTypeProcessUserAccessLevelEnum = S.String;
 
 /** Representation of a single script process execution that was started from the script editor, a trigger, an application, or using the Apps Script API. This is distinct from the `Operation` resource, which only represents executions started via the Apps Script API. */
 export interface GoogleAppsScriptTypeProcess {
@@ -992,7 +982,7 @@ export type ListScriptProcessesProcessesScriptProcessFilter_userAccessLevelsEnum
   | "WRITE"
   | "OWNER";
 export const ListScriptProcessesProcessesScriptProcessFilter_userAccessLevelsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListScriptProcessesProcessesScriptProcessFilter_userAccessLevelsEnumList =
   Array<
@@ -1016,7 +1006,7 @@ export type ListScriptProcessesProcessesScriptProcessFilter_typesEnum =
   | "MENU"
   | "BATCH_TASK";
 export const ListScriptProcessesProcessesScriptProcessFilter_typesEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListScriptProcessesProcessesScriptProcessFilter_typesEnumList =
   Array<
@@ -1039,7 +1029,7 @@ export type ListScriptProcessesProcessesScriptProcessFilter_statusesEnum =
   | "DELAYED"
   | "EXECUTION_DISABLED";
 export const ListScriptProcessesProcessesScriptProcessFilter_statusesEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListScriptProcessesProcessesScriptProcessFilter_statusesEnumList =
   Array<

@@ -310,7 +310,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -318,7 +318,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -376,7 +376,7 @@ export const AvailabilitySetPropertiesProximityPlacementGroup =
 
 /** The level code. */
 export type StatusLevelTypes = "Info" | "Warning" | "Error";
-export const StatusLevelTypes = /*@__PURE__*/ S.String;
+export const StatusLevelTypes = S.String;
 
 /** Instance view status. */
 export interface InstanceViewStatus {
@@ -531,7 +531,7 @@ export type ResourceOperationType =
   | "Hibernate"
   | "Create"
   | "Delete";
-export const ResourceOperationType = /*@__PURE__*/ S.String;
+export const ResourceOperationType = S.String;
 
 /** The retry policy for the user request */
 export interface RetryPolicy {
@@ -620,14 +620,14 @@ export type ResourceOperationDetailsOpType =
   | "Hibernate"
   | "Create"
   | "Delete";
-export const ResourceOperationDetailsOpType = /*@__PURE__*/ S.String;
+export const ResourceOperationDetailsOpType = S.String;
 
 /** Type of deadline of the operation */
 export type ResourceOperationDetailsDeadlineType =
   | "Unknown"
   | "InitiateAt"
   | "CompleteBy";
-export const ResourceOperationDetailsDeadlineType = /*@__PURE__*/ S.String;
+export const ResourceOperationDetailsDeadlineType = S.String;
 
 /** Current state of the operation */
 export type ResourceOperationDetailsState =
@@ -640,7 +640,7 @@ export type ResourceOperationDetailsState =
   | "Failed"
   | "Cancelled"
   | "Blocked";
-export const ResourceOperationDetailsState = /*@__PURE__*/ S.String;
+export const ResourceOperationDetailsState = S.String;
 
 /** These describe errors that occur at the resource level */
 export interface ResourceOperationError {
@@ -938,7 +938,7 @@ export const ResourceSharingProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of capacity reservation. Allowed values are 'Block' for block capacity reservations that enable a VM to consume capacity only from this capacity block when it is associated using a capacity reservation group, 'Targeted' for reservations that enable a VM to consume capacity from an explicitly associated capacity reservation group and fall back to the publicly available capacity if the reservation is full, and 'Open' for reservations that a VM consumes when it is eligible from an implicitly associated capacity reservation group with the matching VM size and zone without associating that capacity reservation group and fall back to the publicly available capacity if the reservation is full. Future capacity reservations can be created in 'Targeted' or 'Open' capacity reservation groups. The reservation type is immutable and cannot be changed after the capacity reservation group is created. */
 export type ReservationType = "Targeted" | "Block" | "Open";
-export const ReservationType = /*@__PURE__*/ S.String;
+export const ReservationType = S.String;
 
 /** capacity reservation group Properties. */
 export interface CapacityReservationGroupPropertiesInput {
@@ -1104,7 +1104,7 @@ export type ReservationState =
   | "Committed"
   | "Live"
   | "PartiallyFulfilled";
-export const ReservationState = /*@__PURE__*/ S.String;
+export const ReservationState = S.String;
 
 /** Details related to the current state for a Future capacity reservation. */
 export interface CapacityReservationStateInfo {
@@ -1581,8 +1581,7 @@ export type ContainerServiceOrchestratorProfileOrchestratorType =
   | "DCOS"
   | "Custom"
   | "Kubernetes";
-export const ContainerServiceOrchestratorProfileOrchestratorType =
-  /*@__PURE__*/ S.String;
+export const ContainerServiceOrchestratorProfileOrchestratorType = S.String;
 
 /** Profile for the container service orchestrator. */
 export interface ContainerServiceOrchestratorProfile {
@@ -1631,7 +1630,7 @@ export const ContainerServiceServicePrincipalProfile = /*@__PURE__*/ S.suspend(
 
 /** Number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1. */
 export type ContainerServiceMasterProfileInputCount = 1 | 3 | 5;
-export const ContainerServiceMasterProfileInputCount = /*@__PURE__*/ S.Number;
+export const ContainerServiceMasterProfileInputCount = S.Number;
 
 /** Profile for the container service master. */
 export interface ContainerServiceMasterProfileInput {
@@ -1698,8 +1697,7 @@ export type ContainerServiceAgentPoolProfileInputVmSize =
   | "Standard_GS3"
   | "Standard_GS4"
   | "Standard_GS5";
-export const ContainerServiceAgentPoolProfileInputVmSize =
-  /*@__PURE__*/ S.String;
+export const ContainerServiceAgentPoolProfileInputVmSize = S.String;
 
 /** Profile for the container service agent pool. */
 export interface ContainerServiceAgentPoolProfileInput {
@@ -1906,7 +1904,7 @@ export const ContainerServicesCreateOrUpdateResponseTagsMap =
 
 /** Number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1. */
 export type ContainerServiceMasterProfileCount = 1 | 3 | 5;
-export const ContainerServiceMasterProfileCount = /*@__PURE__*/ S.Number;
+export const ContainerServiceMasterProfileCount = S.Number;
 
 /** Profile for the container service master. */
 export interface ContainerServiceMasterProfile {
@@ -1976,7 +1974,7 @@ export type ContainerServiceAgentPoolProfileVmSize =
   | "Standard_GS3"
   | "Standard_GS4"
   | "Standard_GS5";
-export const ContainerServiceAgentPoolProfileVmSize = /*@__PURE__*/ S.String;
+export const ContainerServiceAgentPoolProfileVmSize = S.String;
 
 /** Profile for the container service agent pool. */
 export interface ContainerServiceAgentPoolProfile {
@@ -2237,7 +2235,7 @@ export type StorageAccountTypes =
   | "Premium_ZRS"
   | "StandardSSD_ZRS"
   | "PremiumV2_LRS";
-export const StorageAccountTypes = /*@__PURE__*/ S.String;
+export const StorageAccountTypes = S.String;
 
 export type DiskEncryptionSetParameters =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
@@ -2249,7 +2247,7 @@ export type SecurityEncryptionTypes =
   | "VMGuestStateOnly"
   | "DiskWithVMGuestState"
   | "NonPersistedTPM";
-export const SecurityEncryptionTypes = /*@__PURE__*/ S.String;
+export const SecurityEncryptionTypes = S.String;
 
 /** Specifies the security profile settings for the managed disk. **Note:** It can only be set for Confidential VMs. */
 export interface VMDiskSecurityProfile {
@@ -2271,7 +2269,7 @@ export const VMDiskSecurityProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines how to handle disks with slow I/O. */
 export type AvailabilityPolicyDiskDelay = "None" | "AutomaticReattach";
-export const AvailabilityPolicyDiskDelay = /*@__PURE__*/ S.String;
+export const AvailabilityPolicyDiskDelay = S.String;
 
 /** In the case of an availability or connectivity issue with the disk, specify the behavior of your VM. */
 export interface DiskAvailabilityPolicy {
@@ -2288,7 +2286,7 @@ export const DiskAvailabilityPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Policy for accessing the disk via network. */
 export type NetworkAccessPolicy = "AllowAll" | "AllowPrivate" | "DenyAll";
-export const NetworkAccessPolicy = /*@__PURE__*/ S.String;
+export const NetworkAccessPolicy = S.String;
 
 /** Specifies the properties of a managed disk that can be set at the time of implicit creation of the disk. */
 export interface ManagedDiskProperties {
@@ -2378,7 +2376,7 @@ export type RestorePointEncryptionType =
   | "EncryptionAtRestWithPlatformKey"
   | "EncryptionAtRestWithCustomerKey"
   | "EncryptionAtRestWithPlatformAndCustomerKeys";
-export const RestorePointEncryptionType = /*@__PURE__*/ S.String;
+export const RestorePointEncryptionType = S.String;
 
 /** Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point. */
 export interface RestorePointEncryption {
@@ -2491,7 +2489,7 @@ export type ConsistencyModeTypes =
   | "CrashConsistent"
   | "FileSystemConsistent"
   | "ApplicationConsistent";
-export const ConsistencyModeTypes = /*@__PURE__*/ S.String;
+export const ConsistencyModeTypes = S.String;
 
 /** The restore point properties. */
 export interface RestorePointPropertiesInput {
@@ -2726,7 +2724,7 @@ export type VirtualMachineSizeTypes =
   | "Standard_NV6"
   | "Standard_NV12"
   | "Standard_NV24";
-export const VirtualMachineSizeTypes = /*@__PURE__*/ S.String;
+export const VirtualMachineSizeTypes = S.String;
 
 /** Specifies VM Size Property settings on the virtual machine. */
 export interface VMSizeProperties {
@@ -2746,7 +2744,7 @@ export const VMSizeProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the processor frequency behavior for the virtual machine. See each member for the behavior it controls. */
 export type ProcessorMode = "Deterministic" | "Opportunistic";
-export const ProcessorMode = /*@__PURE__*/ S.String;
+export const ProcessorMode = S.String;
 
 /** Specifies the hardware settings for the virtual machine. */
 export interface HardwareProfile {
@@ -2769,7 +2767,7 @@ export const HardwareProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets the Operating System type. */
 export type OperatingSystemType = "Windows" | "Linux";
-export const OperatingSystemType = /*@__PURE__*/ S.String;
+export const OperatingSystemType = S.String;
 
 export type KeyVaultSecretReferenceSourceVault =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
@@ -2832,7 +2830,7 @@ export const DiskEncryptionSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the caching requirements. Possible values are: **None,** **ReadOnly,** **ReadWrite.** The default values are: **None for Standard storage. ReadOnly for Premium storage** */
 export type CachingTypes = "None" | "ReadOnly" | "ReadWrite";
-export const CachingTypes = /*@__PURE__*/ S.String;
+export const CachingTypes = S.String;
 
 /** Disk Restore Point details. */
 export interface DiskRestorePointAttributes {
@@ -2928,7 +2926,7 @@ export const RestorePointSourceVMStorageProfileDataDisksList =
 
 /** Specifies the disk controller type configured for the VM and VirtualMachineScaleSet. This property is only supported for virtual machines whose operating system disk and VM sku supports Generation 2 (https://docs.microsoft.com/en-us/azure/virtual-machines/generation-2), please check the HyperVGenerations capability returned as part of VM sku capabilities in the response of Microsoft.Compute SKUs api for the region contains V2 (https://docs.microsoft.com/rest/api/compute/resourceskus/list). For more information about Disk Controller Types supported please refer to https://aka.ms/azure-diskcontrollertypes. */
 export type DiskControllerTypes = "SCSI" | "NVMe";
-export const DiskControllerTypes = /*@__PURE__*/ S.String;
+export const DiskControllerTypes = S.String;
 
 /** Describes the storage profile. */
 export interface RestorePointSourceVMStorageProfile {
@@ -2950,14 +2948,14 @@ export const RestorePointSourceVMStorageProfile = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestorePointSourceVMStorageProfile>;
 
 export type PassNames = "OobeSystem";
-export const PassNames = /*@__PURE__*/ S.String;
+export const PassNames = S.String;
 
 export type ComponentNames = "Microsoft-Windows-Shell-Setup";
-export const ComponentNames = /*@__PURE__*/ S.String;
+export const ComponentNames = S.String;
 
 /** Specifies the name of the setting to which the content applies. Possible values are: FirstLogonCommands and AutoLogon. */
 export type SettingNames = "AutoLogon" | "FirstLogonCommands";
-export const SettingNames = /*@__PURE__*/ S.String;
+export const SettingNames = S.String;
 
 /** Specifies additional XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. Contents are defined by setting name, component name, and the pass in which the content is applied. */
 export interface AdditionalUnattendContent {
@@ -2994,11 +2992,11 @@ export type WindowsVMGuestPatchMode =
   | "Manual"
   | "AutomaticByOS"
   | "AutomaticByPlatform";
-export const WindowsVMGuestPatchMode = /*@__PURE__*/ S.String;
+export const WindowsVMGuestPatchMode = S.String;
 
 /** Specifies the mode of VM Guest patch assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine.<br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
 export type WindowsPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
-export const WindowsPatchAssessmentMode = /*@__PURE__*/ S.String;
+export const WindowsPatchAssessmentMode = S.String;
 
 /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
 export type WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
@@ -3006,8 +3004,7 @@ export type WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
   | "IfRequired"
   | "Never"
   | "Always";
-export const WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
-  /*@__PURE__*/ S.String;
+export const WindowsVMGuestPatchAutomaticByPlatformRebootSetting = S.String;
 
 /** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Windows patch settings. */
 export interface WindowsVMGuestPatchAutomaticByPlatformSettings {
@@ -3054,7 +3051,7 @@ export const PatchSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the protocol of WinRM listener. Possible values are: **http,** **https.** */
 export type ProtocolTypes = "Http" | "Https";
-export const ProtocolTypes = /*@__PURE__*/ S.String;
+export const ProtocolTypes = S.String;
 
 /** Describes Protocol and thumbprint of Windows Remote Management listener */
 export interface WinRMListener {
@@ -3157,11 +3154,11 @@ export const SshConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - The virtual machine's default patching configuration is used. <br /><br /> **AutomaticByPlatform** - The virtual machine will be automatically updated by the platform. The property provisionVMAgent must be true */
 export type LinuxVMGuestPatchMode = "ImageDefault" | "AutomaticByPlatform";
-export const LinuxVMGuestPatchMode = /*@__PURE__*/ S.String;
+export const LinuxVMGuestPatchMode = S.String;
 
 /** Specifies the mode of VM Guest Patch Assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine. <br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
 export type LinuxPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
-export const LinuxPatchAssessmentMode = /*@__PURE__*/ S.String;
+export const LinuxPatchAssessmentMode = S.String;
 
 /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
 export type LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
@@ -3169,8 +3166,7 @@ export type LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
   | "IfRequired"
   | "Never"
   | "Always";
-export const LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
-  /*@__PURE__*/ S.String;
+export const LinuxVMGuestPatchAutomaticByPlatformRebootSetting = S.String;
 
 /** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Linux patch settings. */
 export interface LinuxVMGuestPatchAutomaticByPlatformSettings {
@@ -3367,7 +3363,7 @@ export const UefiSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the VM securityType; UefiSettings are enabled only when set to TrustedLaunch or ConfidentialVM, and returns a Standard value starting API version 2025-11-01. */
 export type SecurityTypes = "Standard" | "TrustedLaunch" | "ConfidentialVM";
-export const SecurityTypes = /*@__PURE__*/ S.String;
+export const SecurityTypes = S.String;
 
 /** Specifies the Managed Identity used by ADE to get access token for keyvault operations. */
 export interface EncryptionIdentity {
@@ -3384,11 +3380,11 @@ export const EncryptionIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the mode that ProxyAgent will execute on if the feature is enabled. ProxyAgent will start to audit or monitor but not enforce access control over requests to host endpoints in Audit mode, while in Enforce mode it will enforce access control. The default value is Enforce mode. */
 export type Mode = "Audit" | "Enforce";
-export const Mode = /*@__PURE__*/ S.String;
+export const Mode = S.String;
 
 /** Specifies the execution mode. In Audit mode, the system acts as if it is enforcing the access control policy, including emitting access denial entries in the logs but it does not actually deny any requests to host endpoints. In Enforce mode, the system will enforce the access control and it is the recommended mode of operation. */
 export type Modes = "Audit" | "Enforce" | "Disabled";
-export const Modes = /*@__PURE__*/ S.String;
+export const Modes = S.String;
 
 /** Specifies particular host endpoint settings. */
 export interface HostEndpointSettings {
@@ -3464,7 +3460,7 @@ export const SecurityProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the HyperVGeneration Type */
 export type HyperVGenerationTypes = "V1" | "V2";
-export const HyperVGenerationTypes = /*@__PURE__*/ S.String;
+export const HyperVGenerationTypes = S.String;
 
 /** Describes the properties of the Virtual Machine for which the restore point was created. The properties provided are a subset and the snapshot of the overall Virtual Machine properties captured at the time of the restore point creation. */
 export interface RestorePointSourceMetadata {
@@ -3513,7 +3509,7 @@ export type CommonSnapshotAccessState =
   | "Available"
   | "InstantAccess"
   | "AvailableWithInstantAccess";
-export const CommonSnapshotAccessState = /*@__PURE__*/ S.String;
+export const CommonSnapshotAccessState = S.String;
 
 /** The instance view of a disk restore point. */
 export interface DiskRestorePointReplicationStatus {
@@ -4018,7 +4014,7 @@ export type DedicatedHostLicenseTypes =
   | "None"
   | "Windows_Server_Hybrid"
   | "Windows_Server_Perpetual";
-export const DedicatedHostLicenseTypes = /*@__PURE__*/ S.String;
+export const DedicatedHostLicenseTypes = S.String;
 
 /** Properties of the dedicated host. */
 export interface DedicatedHostPropertiesInput {
@@ -5009,7 +5005,7 @@ export type IntervalInMins =
   | "FiveMins"
   | "ThirtyMins"
   | "SixtyMins";
-export const IntervalInMins = /*@__PURE__*/ S.String;
+export const IntervalInMins = S.String;
 
 export interface ExportLogAnalyticsRequestRateByIntervalRequest {
   /** The ID of the target subscription. */
@@ -5136,7 +5132,7 @@ export const ExportLogAnalyticsThrottledRequestsRequest =
 
 /** The encryption type of the SSH keys to be generated. See SshEncryptionTypes for possible set of values. If not provided, will default to RSA */
 export type SshEncryptionTypes = "RSA" | "Ed25519";
-export const SshEncryptionTypes = /*@__PURE__*/ S.String;
+export const SshEncryptionTypes = S.String;
 
 export interface GenerateSshPublicKeyKeyPairRequest {
   /** The ID of the target subscription. */
@@ -5253,7 +5249,7 @@ export const GetAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAvailabilitySetResponse>;
 
 export type GetCapacityReservationRequestExpand = "instanceView";
-export const GetCapacityReservationRequestExpand = /*@__PURE__*/ S.String;
+export const GetCapacityReservationRequestExpand = S.String;
 
 export interface GetCapacityReservationRequest {
   /** The ID of the target subscription. */
@@ -5340,7 +5336,7 @@ export const GetCapacityReservationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCapacityReservationResponse>;
 
 export type GetCapacityReservationGroupRequestExpand = "instanceView";
-export const GetCapacityReservationGroupRequestExpand = /*@__PURE__*/ S.String;
+export const GetCapacityReservationGroupRequestExpand = S.String;
 
 export interface GetCapacityReservationGroupRequest {
   /** The ID of the target subscription. */
@@ -5486,7 +5482,7 @@ export type GetDedicatedHostRequestExpand =
   | "instanceView"
   | "userData"
   | "resiliencyView";
-export const GetDedicatedHostRequestExpand = /*@__PURE__*/ S.String;
+export const GetDedicatedHostRequestExpand = S.String;
 
 export interface GetDedicatedHostRequest {
   /** The ID of the target subscription. */
@@ -5565,7 +5561,7 @@ export type GetDedicatedHostGroupRequestExpand =
   | "instanceView"
   | "userData"
   | "resiliencyView";
-export const GetDedicatedHostGroupRequestExpand = /*@__PURE__*/ S.String;
+export const GetDedicatedHostGroupRequestExpand = S.String;
 
 export interface GetDedicatedHostGroupRequest {
   /** The ID of the target subscription. */
@@ -5697,11 +5693,11 @@ export const ImageOSDiskManagedDisk =
 
 /** This property allows you to specify the type of the OS that is included in the disk if creating a VM from user-image or a specialized VHD. Possible values are: **Windows,** **Linux.** */
 export type CommonOperatingSystemTypes = "Windows" | "Linux";
-export const CommonOperatingSystemTypes = /*@__PURE__*/ S.String;
+export const CommonOperatingSystemTypes = S.String;
 
 /** The OS State. For managed images, use Generalized. */
 export type CommonOperatingSystemStateTypes = "Generalized" | "Specialized";
-export const CommonOperatingSystemStateTypes = /*@__PURE__*/ S.String;
+export const CommonOperatingSystemStateTypes = S.String;
 
 /** Describes an Operating System disk. */
 export interface ImageOSDisk {
@@ -5830,7 +5826,7 @@ export const ImageProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of extendedLocation. */
 export type ExtendedLocationType = "EdgeZone";
-export const ExtendedLocationType = /*@__PURE__*/ S.String;
+export const ExtendedLocationType = S.String;
 
 /** The complex type of the extended location. */
 export interface GetImageResponseExtendedLocation {
@@ -5882,7 +5878,7 @@ export const GetImageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetImageResponse>;
 
 export type GetInterconnectBlockRequestExpand = "instanceView";
-export const GetInterconnectBlockRequestExpand = /*@__PURE__*/ S.String;
+export const GetInterconnectBlockRequestExpand = S.String;
 
 export interface GetInterconnectBlockRequest {
   /** The ID of the target subscription. */
@@ -6000,7 +5996,7 @@ export const GetInterconnectBlockResponseZonesList = /*@__PURE__*/ S.Array(
 
 /** Specifies the policy for resource's placement in availability zone. Possible values are: **Any** (used for Virtual Machines), **Auto** (used for Virtual Machine Scale Sets) - An availability zone will be automatically picked by system as part of resource creation. */
 export type ZonePlacementPolicyType = "Any" | "Auto";
-export const ZonePlacementPolicyType = /*@__PURE__*/ S.String;
+export const ZonePlacementPolicyType = S.String;
 
 /** This property supplements the 'zonePlacementPolicy' property. If 'zonePlacementPolicy' is set to 'Any'/'Auto', availability zone selected by the system must be present in the list of availability zones passed with 'includeZones'. If 'includeZones' is not provided, all availability zones in region will be considered for selection. */
 export type PlacementIncludeZonesList = Array<string>;
@@ -6109,7 +6105,7 @@ export const GetProximityPlacementGroupResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Specifies the type of the proximity placement group. Possible values are: **Standard** : Co-locate resources within an Azure region or Availability Zone. **Ultra** : For future use. */
 export type ProximityPlacementGroupType = "Standard" | "Ultra";
-export const ProximityPlacementGroupType = /*@__PURE__*/ S.String;
+export const ProximityPlacementGroupType = S.String;
 
 export interface SubResourceWithColocationStatus {
   /** Resource Id */
@@ -6246,7 +6242,7 @@ export const GetProximityPlacementGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProximityPlacementGroupResponse>;
 
 export type GetRestorePointRequestExpand = "instanceView";
-export const GetRestorePointRequestExpand = /*@__PURE__*/ S.String;
+export const GetRestorePointRequestExpand = S.String;
 
 export interface GetRestorePointRequest {
   /** The ID of the target subscription. */
@@ -6304,7 +6300,7 @@ export const GetRestorePointResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRestorePointResponse>;
 
 export type GetRestorePointCollectionRequestExpand = "restorePoints";
-export const GetRestorePointCollectionRequestExpand = /*@__PURE__*/ S.String;
+export const GetRestorePointCollectionRequestExpand = S.String;
 
 export interface GetRestorePointCollectionRequest {
   /** The ID of the target subscription. */
@@ -6586,7 +6582,7 @@ export type GetVirtualMachineRequestExpand =
   | "instanceView"
   | "userData"
   | "resiliencyView";
-export const GetVirtualMachineRequestExpand = /*@__PURE__*/ S.String;
+export const GetVirtualMachineRequestExpand = S.String;
 
 export interface GetVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -6674,11 +6670,11 @@ export const VirtualHardDisk = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the ephemeral disk option for operating system disk. */
 export type DiffDiskOptions = "Local";
-export const DiffDiskOptions = /*@__PURE__*/ S.String;
+export const DiffDiskOptions = S.String;
 
 /** Specifies the ephemeral disk placement for operating system disk. This property can be used by user in the request to choose the location i.e, cache disk, resource disk or nvme disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer Ephemeral OS disk size requirements for Windows VM at https://docs.microsoft.com/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VM at https://docs.microsoft.com/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. Minimum api-version for NvmeDisk: 2024-03-01. */
 export type DiffDiskPlacement = "CacheDisk" | "ResourceDisk" | "NvmeDisk";
-export const DiffDiskPlacement = /*@__PURE__*/ S.String;
+export const DiffDiskPlacement = S.String;
 
 /** Describes the parameters of ephemeral disk settings that can be specified for operating system disk. **Note:** The ephemeral disk settings can only be specified for managed disk. */
 export interface DiffDiskSettings {
@@ -6706,15 +6702,15 @@ export type DiskCreateOptionTypes =
   | "Attach"
   | "Copy"
   | "Restore";
-export const DiskCreateOptionTypes = /*@__PURE__*/ S.String;
+export const DiskCreateOptionTypes = S.String;
 
 /** Specifies the storage fault domain alignment type for the disk. */
 export type StorageFaultDomainAlignmentType = "Aligned" | "BestEffortAligned";
-export const StorageFaultDomainAlignmentType = /*@__PURE__*/ S.String;
+export const StorageFaultDomainAlignmentType = S.String;
 
 /** Specifies the behavior of the managed disk when the VM gets deleted, for example whether the managed disk is deleted or detached. Supported values are: **Delete.** If this value is used, the managed disk is deleted when VM gets deleted. **Detach.** If this value is used, the managed disk is retained after VM gets deleted. Minimum api-version: 2021-03-01. */
 export type DiskDeleteOptionTypes = "Delete" | "Detach";
-export const DiskDeleteOptionTypes = /*@__PURE__*/ S.String;
+export const DiskDeleteOptionTypes = S.String;
 
 /** Specifies information about the operating system disk used by the virtual machine. For more information about disks, see [About disks and VHDs for Azure virtual machines](https://docs.microsoft.com/azure/virtual-machines/managed-disks-overview). */
 export interface OSDisk {
@@ -6765,7 +6761,7 @@ export const OSDisk = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the detach behavior to be used while detaching a disk or which is already in the process of detachment from the virtual machine. Supported values are: **ForceDetach.** detachOption: **ForceDetach** is applicable only for managed data disks. If a previous detachment attempt of the data disk did not complete due to an unexpected failure from the virtual machine and the disk is still not released then use force-detach as a last resort option to detach the disk forcibly from the VM. All writes might not have been flushed when using this detach behavior. **This feature is still in preview**. To force-detach a data disk update toBeDetached to 'true' along with setting detachOption: 'ForceDetach'. */
 export type DiskDetachOptionTypes = "ForceDetach";
-export const DiskDetachOptionTypes = /*@__PURE__*/ S.String;
+export const DiskDetachOptionTypes = S.String;
 
 /** Describes a data disk. */
 export interface DataDisk {
@@ -6831,7 +6827,7 @@ export const StorageProfileDataDisksList = /*@__PURE__*/ S.Array(
 
 /** Specifies the Disk API version used when applying additionalDiskProperties to managed disks. The value must be in the format YYYY-MM-DD. */
 export type DiskApiVersion = "2025-01-02" | "2026-03-02";
-export const DiskApiVersion = /*@__PURE__*/ S.String;
+export const DiskApiVersion = S.String;
 
 /** Specifies the storage settings for the virtual machine disks. */
 export interface StorageProfile {
@@ -6880,7 +6876,7 @@ export const AdditionalCapabilities = /*@__PURE__*/ S.suspend(() =>
 
 /** Specify what happens to the network interface when the VM is deleted */
 export type DeleteOptions = "Delete" | "Detach";
-export const DeleteOptions = /*@__PURE__*/ S.String;
+export const DeleteOptions = S.String;
 
 /** Describes a network interface reference properties. */
 export interface NetworkInterfaceReferenceProperties {
@@ -6923,7 +6919,7 @@ export const NetworkProfileNetworkInterfacesList = /*@__PURE__*/ S.Array(
 
 /** specifies the Microsoft.Network API version used when creating networking resources in the Network Interface Configurations */
 export type NetworkApiVersion = "2020-11-01" | "2022-11-01";
-export const NetworkApiVersion = /*@__PURE__*/ S.String;
+export const NetworkApiVersion = S.String;
 
 export type VirtualMachineNetworkInterfaceConfigurationPropertiesNetworkSecurityGroup =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
@@ -6965,7 +6961,7 @@ export type DomainNameLabelScopeTypes =
   | "SubscriptionReuse"
   | "ResourceGroupReuse"
   | "NoReuse";
-export const DomainNameLabelScopeTypes = /*@__PURE__*/ S.String;
+export const DomainNameLabelScopeTypes = S.String;
 
 /** Describes a virtual machines network configuration's DNS settings. */
 export interface VirtualMachinePublicIPAddressDnsSettingsConfiguration {
@@ -7018,11 +7014,11 @@ export const VirtualMachinePublicIPAddressConfigurationPropertiesPublicIPPrefix 
 
 /** Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4. Possible values are: 'IPv4' and 'IPv6'. */
 export type IPVersions = "IPv4" | "IPv6";
-export const IPVersions = /*@__PURE__*/ S.String;
+export const IPVersions = S.String;
 
 /** Specify the public IP allocation type */
 export type PublicIPAllocationMethod = "Dynamic" | "Static";
-export const PublicIPAllocationMethod = /*@__PURE__*/ S.String;
+export const PublicIPAllocationMethod = S.String;
 
 /** Describes a virtual machines IP Configuration's PublicIPAddress configuration */
 export interface VirtualMachinePublicIPAddressConfigurationProperties {
@@ -7063,11 +7059,11 @@ export const VirtualMachinePublicIPAddressConfigurationProperties =
 
 /** Specify public IP sku name */
 export type PublicIPAddressSkuName = "Basic" | "Standard";
-export const PublicIPAddressSkuName = /*@__PURE__*/ S.String;
+export const PublicIPAddressSkuName = S.String;
 
 /** Specify public IP sku tier */
 export type PublicIPAddressSkuTier = "Regional" | "Global";
-export const PublicIPAddressSkuTier = /*@__PURE__*/ S.String;
+export const PublicIPAddressSkuTier = S.String;
 
 /** Describes the public IP Sku. It can only be set with OrchestrationMode as Flexible. */
 export interface PublicIPAddressSku {
@@ -7235,11 +7231,11 @@ export type NetworkInterfaceAuxiliaryMode =
   | "None"
   | "AcceleratedConnections"
   | "Floating";
-export const NetworkInterfaceAuxiliaryMode = /*@__PURE__*/ S.String;
+export const NetworkInterfaceAuxiliaryMode = S.String;
 
 /** Specifies whether the Auxiliary sku is enabled for the Network Interface resource. */
 export type NetworkInterfaceAuxiliarySku = "None" | "A1" | "A2" | "A4" | "A8";
-export const NetworkInterfaceAuxiliarySku = /*@__PURE__*/ S.String;
+export const NetworkInterfaceAuxiliarySku = S.String;
 
 /** Describes a virtual machine network profile's IP configuration. */
 export interface VirtualMachineNetworkInterfaceConfigurationProperties {
@@ -7410,11 +7406,11 @@ export type VirtualMachinePriorityTypes =
   | "Low"
   | "Spot"
   | "SpotPlus";
-export const VirtualMachinePriorityTypes = /*@__PURE__*/ S.String;
+export const VirtualMachinePriorityTypes = S.String;
 
 /** Specifies the eviction policy for the Azure Spot VM/VMSS */
 export type VirtualMachineEvictionPolicyTypes = "Deallocate" | "Delete";
-export const VirtualMachineEvictionPolicyTypes = /*@__PURE__*/ S.String;
+export const VirtualMachineEvictionPolicyTypes = S.String;
 
 /** Specifies the billing related details of a Azure Spot VM or VMSS. Minimum api-version: 2019-03-01. */
 export interface BillingProfile {
@@ -7439,7 +7435,7 @@ export const VirtualMachinePropertiesHostGroup =
 
 /** Specifies the HyperVGeneration Type associated with a resource */
 export type HyperVGenerationType = "V1" | "V2";
-export const HyperVGenerationType = /*@__PURE__*/ S.String;
+export const HyperVGenerationType = S.String;
 
 /** The instance view of a virtual machine extension handler. */
 export interface VirtualMachineExtensionHandlerInstanceView {
@@ -7504,7 +7500,7 @@ export type MaintenanceOperationResultCodeTypes =
   | "RetryLater"
   | "MaintenanceAborted"
   | "MaintenanceCompleted";
-export const MaintenanceOperationResultCodeTypes = /*@__PURE__*/ S.String;
+export const MaintenanceOperationResultCodeTypes = S.String;
 
 /** Maintenance Operation Status. */
 export interface MaintenanceRedeployStatus {
@@ -7552,7 +7548,7 @@ export const DiskInstanceViewStatusesList = /*@__PURE__*/ S.Array(
 
 /** Specifies the storage alignment status for the disk. */
 export type StorageAlignmentStatus = "Unaligned" | "Aligned";
-export const StorageAlignmentStatus = /*@__PURE__*/ S.String;
+export const StorageAlignmentStatus = S.String;
 
 /** The instance view of the disk. */
 export interface DiskInstanceView {
@@ -7675,7 +7671,7 @@ export type PatchOperationStatus =
   | "Failed"
   | "Succeeded"
   | "CompletedWithWarnings";
-export const PatchOperationStatus = /*@__PURE__*/ S.String;
+export const PatchOperationStatus = S.String;
 
 /** Api error base. */
 export interface ApiErrorBase {
@@ -7897,7 +7893,7 @@ export type CapacityReservationType =
   | "Open"
   | "Disabled"
   | "Block";
-export const CapacityReservationType = /*@__PURE__*/ S.String;
+export const CapacityReservationType = S.String;
 
 /** The instance view of a virtual machine. */
 export interface VirtualMachineInstanceView {
@@ -8348,7 +8344,7 @@ export type CommonResourceIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const CommonResourceIdentityType = /*@__PURE__*/ S.String;
+export const CommonResourceIdentityType = S.String;
 
 export interface CommonUserAssignedIdentitiesValue {
   /** The principal id of user assigned identity. */
@@ -8569,7 +8565,7 @@ export const RunCommandManagedIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** Script shell types. */
 export type ScriptShellTypes = "Default" | "Powershell7";
-export const ScriptShellTypes = /*@__PURE__*/ S.String;
+export const ScriptShellTypes = S.String;
 
 /** Describes the script sources for run command. Use only one of these script sources: script, scriptUri, commandId, galleryScriptReferenceId. */
 export interface VirtualMachineRunCommandScriptSource {
@@ -8641,7 +8637,7 @@ export type ExecutionState =
   | "Succeeded"
   | "TimedOut"
   | "Canceled";
-export const ExecutionState = /*@__PURE__*/ S.String;
+export const ExecutionState = S.String;
 
 /** The resource status information. */
 export type VirtualMachineRunCommandInstanceViewStatusesList =
@@ -8889,15 +8885,15 @@ export type ReleaseCategory =
   | "SecurityFix"
   | "CompatibilityUpdate"
   | "NewFeature";
-export const ReleaseCategory = /*@__PURE__*/ S.String;
+export const ReleaseCategory = S.String;
 
 /** Defines urgency levels for extension updates. */
 export type UrgencyLevel = "Regular" | "Expedited" | "Emergency";
-export const UrgencyLevel = /*@__PURE__*/ S.String;
+export const UrgencyLevel = S.String;
 
 /** Specifies the execution profile for the extension. */
 export type RunProfile = "Other" | "RunOnce" | "LongRunning" | "Hybrid";
-export const RunProfile = /*@__PURE__*/ S.String;
+export const RunProfile = S.String;
 
 /** Represents a key-value pair for extension feature metadata. */
 export interface ExtensionFeatureTag {
@@ -9121,7 +9117,7 @@ export const AutomaticOSUpgradeProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** VM disk types which are disallowed. */
 export type VmDiskTypes = "None" | "Unmanaged";
-export const VmDiskTypes = /*@__PURE__*/ S.String;
+export const VmDiskTypes = S.String;
 
 /** Specifies the disallowed configuration for a virtual machine image. */
 export interface DisallowedConfiguration {
@@ -9160,15 +9156,15 @@ export const VirtualMachineImagePropertiesFeaturesList = /*@__PURE__*/ S.Array(
 
 /** Specifies the Architecture Type */
 export type ArchitectureTypes = "x64" | "Arm64";
-export const ArchitectureTypes = /*@__PURE__*/ S.String;
+export const ArchitectureTypes = S.String;
 
 /** Describes the state of the image. */
 export type ImageState = "Active" | "ScheduledForDeprecation" | "Deprecated";
-export const ImageState = /*@__PURE__*/ S.String;
+export const ImageState = S.String;
 
 /** Describes the type of the alternative option. */
 export type AlternativeType = "None" | "Offer" | "Plan";
-export const AlternativeType = /*@__PURE__*/ S.String;
+export const AlternativeType = S.String;
 
 /** Describes the alternative option specified by the Publisher for this image when this image is deprecated. */
 export interface AlternativeOption {
@@ -9518,7 +9514,7 @@ export const GetVirtualMachineRunCommandByVirtualMachineResponse =
   }) as any as S.Schema<GetVirtualMachineRunCommandByVirtualMachineResponse>;
 
 export type GetVirtualMachineScaleSetRequestExpand = "userData";
-export const GetVirtualMachineScaleSetRequestExpand = /*@__PURE__*/ S.String;
+export const GetVirtualMachineScaleSetRequestExpand = S.String;
 
 export interface GetVirtualMachineScaleSetRequest {
   /** The ID of the target subscription. */
@@ -9561,7 +9557,7 @@ export const GetVirtualMachineScaleSetResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Specifies the mode of an upgrade to virtual machines in the scale set.<br /><br /> Possible values are:<br /><br /> **Manual** - You control the application of updates to virtual machines in the scale set. You do this by using the manualUpgrade action.<br /><br /> **Automatic** - All virtual machines in the scale set are automatically updated at the same time. */
 export type UpgradeMode = "Automatic" | "Manual" | "Rolling";
-export const UpgradeMode = /*@__PURE__*/ S.String;
+export const UpgradeMode = S.String;
 
 /** The configuration parameters used while performing a rolling upgrade. */
 export interface RollingUpgradePolicy {
@@ -9638,7 +9634,7 @@ export const UpgradePolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of repair action (replace, restart, reimage) that will be used for repairing unhealthy virtual machines in the scale set. Default value is replace. */
 export type RepairAction = "Replace" | "Restart" | "Reimage";
-export const RepairAction = /*@__PURE__*/ S.String;
+export const RepairAction = S.String;
 
 /** Specifies the configuration parameters for automatic repairs on the virtual machine scale set. */
 export interface AutomaticRepairsPolicy {
@@ -9923,7 +9919,7 @@ export const VirtualMachineScaleSetPublicIPAddressConfigurationPropertiesPublicI
 
 /** Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4. Possible values are: 'IPv4' and 'IPv6'. */
 export type IPVersion = "IPv4" | "IPv6";
-export const IPVersion = /*@__PURE__*/ S.String;
+export const IPVersion = S.String;
 
 /** Describes a virtual machines scale set IP Configuration's PublicIPAddress configuration */
 export interface VirtualMachineScaleSetPublicIPAddressConfigurationProperties {
@@ -10476,7 +10472,7 @@ export type VirtualMachineScaleSetScaleInRules =
   | "Default"
   | "OldestVM"
   | "NewestVM";
-export const VirtualMachineScaleSetScaleInRules = /*@__PURE__*/ S.String;
+export const VirtualMachineScaleSetScaleInRules = S.String;
 
 /** The rules to be followed when scaling-in a virtual machine scale set. <br><br> Possible values are: <br><br> **Default** When a virtual machine scale set is scaled in, the scale set will first be balanced across zones if it is a zonal scale set. Then, it will be balanced across Fault Domains as far as possible. Within each Fault Domain, the virtual machines chosen for removal will be the newest ones that are not protected from scale-in. <br><br> **OldestVM** When a virtual machine scale set is being scaled-in, the oldest virtual machines that are not protected from scale-in will be chosen for removal. For zonal virtual machine scale sets, the scale set will first be balanced across zones. Within each zone, the oldest virtual machines that are not protected will be chosen for removal. <br><br> **NewestVM** When a virtual machine scale set is being scaled-in, the newest virtual machines that are not protected from scale-in will be chosen for removal. For zonal virtual machine scale sets, the scale set will first be balanced across zones. Within each zone, the newest virtual machines that are not protected will be chosen for removal. <br><br> */
 export type ScaleInPolicyRulesList = Array<
@@ -10505,7 +10501,7 @@ export const ScaleInPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the orchestration mode for the virtual machine scale set. */
 export type OrchestrationMode = "Uniform" | "Flexible";
-export const OrchestrationMode = /*@__PURE__*/ S.String;
+export const OrchestrationMode = S.String;
 
 /** Specifies the Spot-Try-Restore properties for the virtual machine scale set. With this property customer can enable or disable automatic restore of the evicted Spot VMSS VM instances opportunistically based on capacity availability and pricing constraint. */
 export interface SpotRestorePolicy {
@@ -10567,11 +10563,11 @@ export const ResilientVMDeletionPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of rebalance strategy that will be used for rebalancing virtual machines in the scale set across availability zones. Default and only supported value for now is Recreate. */
 export type RebalanceStrategy = "Recreate";
-export const RebalanceStrategy = /*@__PURE__*/ S.String;
+export const RebalanceStrategy = S.String;
 
 /** Type of rebalance behavior that will be used for recreating virtual machines in the scale set across availability zones. Default and only supported value for now is CreateBeforeDelete. */
 export type RebalanceBehavior = "CreateBeforeDelete";
-export const RebalanceBehavior = /*@__PURE__*/ S.String;
+export const RebalanceBehavior = S.String;
 
 /** The configuration parameters used while performing automatic AZ balancing. */
 export interface AutomaticZoneRebalancingPolicy {
@@ -10714,7 +10710,7 @@ export type ZonalPlatformFaultDomainAlignMode =
   | "Aligned"
   | "Unaligned"
   | "BestEffortAligned";
-export const ZonalPlatformFaultDomainAlignMode = /*@__PURE__*/ S.String;
+export const ZonalPlatformFaultDomainAlignMode = S.String;
 
 /** Specifies the VM Size. */
 export interface SkuProfileVMSize {
@@ -10743,7 +10739,7 @@ export type AllocationStrategy =
   | "LowestPrice"
   | "CapacityOptimized"
   | "Prioritized";
-export const AllocationStrategy = /*@__PURE__*/ S.String;
+export const AllocationStrategy = S.String;
 
 /** Specifies the configuration parameters used to control automatic SKU migration for the virtual machine scale set. When enabled, the platform may migrate instances to a different VM size from the SKU profile depending on platform demands. */
 export interface AutomaticSkuMigrationPolicy {
@@ -10777,17 +10773,17 @@ export const SkuProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the high speed interconnect placement for the virtual machine scale set. */
 export type HighSpeedInterconnectPlacement = "None" | "Trunk";
-export const HighSpeedInterconnectPlacement = /*@__PURE__*/ S.String;
+export const HighSpeedInterconnectPlacement = S.String;
 
 /** Specifies the scenario for which the customer is interested in receiving virtual machine scale set lifecycle hook events. */
 export type VMScaleSetLifecycleHookEventType =
   | "UpgradeAutoOSScheduling"
   | "UpgradeAutoOSRollingBatchStarting";
-export const VMScaleSetLifecycleHookEventType = /*@__PURE__*/ S.String;
+export const VMScaleSetLifecycleHookEventType = S.String;
 
 /** The action that will be applied to a target resource in the virtual machine scale set lifecycle hook event if the platform does not receive a response from the customer for the target resource before waitUntil. */
 export type LifecycleHookAction = "Approve" | "Reject";
-export const LifecycleHookAction = /*@__PURE__*/ S.String;
+export const LifecycleHookAction = S.String;
 
 /** Describes a lifecycle hook. */
 export interface LifecycleHook {
@@ -11198,15 +11194,15 @@ export const VirtualMachineScaleSetInstanceViewStatusesList =
 export type OrchestrationServiceNames =
   | "AutomaticRepairs"
   | "AutomaticZoneRebalancing";
-export const OrchestrationServiceNames = /*@__PURE__*/ S.String;
+export const OrchestrationServiceNames = S.String;
 
 /** The current state of the service. */
 export type OrchestrationServiceState = "NotRunning" | "Running" | "Suspended";
-export const OrchestrationServiceState = /*@__PURE__*/ S.String;
+export const OrchestrationServiceState = S.String;
 
 /** The latest operation status of the service. */
 export type OrchestrationServiceOperationStatus = "InProgress" | "Completed";
-export const OrchestrationServiceOperationStatus = /*@__PURE__*/ S.String;
+export const OrchestrationServiceOperationStatus = S.String;
 
 /** Summary for an orchestration service of a virtual machine scale set. */
 export interface OrchestrationServiceSummary {
@@ -11295,7 +11291,7 @@ export const GetVirtualMachineScaleSetLifeCycleHookEventRequest =
 
 /** Approval status of a target resource in a virtual machine scale set lifecycle hook event. */
 export type LifecycleHookActionState = "Waiting" | "Approved" | "Rejected";
-export const LifecycleHookActionState = /*@__PURE__*/ S.String;
+export const LifecycleHookActionState = S.String;
 
 /** Define a single target ARM resource in a virtual machine scale set lifecycle hook event. Currently, this can be a virtual machine scale set resource or an individual virtual machine resource within a VMScaleSet. */
 export interface VMScaleSetLifecycleHookEventTargetResource {
@@ -11338,7 +11334,7 @@ export const VMScaleSetLifecycleHookEventAdditionalContext =
 
 /** The states that a virtual machine scale set lifecycle hook event can be in. This is not settable by the customer. It is set only by the platform. */
 export type VMScaleSetLifecycleHookEventState = "Active" | "Completed";
-export const VMScaleSetLifecycleHookEventState = /*@__PURE__*/ S.String;
+export const VMScaleSetLifecycleHookEventState = S.String;
 
 /** Defines the virtual machine scale set lifecycle hook event properties. */
 export interface VMScaleSetLifecycleHookEventProperties {
@@ -11437,7 +11433,7 @@ export type UpgradeState =
   | "Cancelled"
   | "Completed"
   | "Faulted";
-export const UpgradeState = /*@__PURE__*/ S.String;
+export const UpgradeState = S.String;
 
 /** Information about the current running state of the overall upgrade. */
 export interface UpgradeOperationHistoryStatus {
@@ -11518,7 +11514,7 @@ export const UpgradeOperationHistoricalStatusInfoPropertiesError =
 
 /** Invoker of the Upgrade Operation */
 export type UpgradeOperationInvoker = "Unknown" | "User" | "Platform";
-export const UpgradeOperationInvoker = /*@__PURE__*/ S.String;
+export const UpgradeOperationInvoker = S.String;
 
 /** The Api error details */
 export type RollbackStatusInfoRollbackErrorDetailsList = Array<ApiErrorBase>;
@@ -11687,11 +11683,11 @@ export type RollingUpgradeStatusCode =
   | "Cancelled"
   | "Completed"
   | "Faulted";
-export const RollingUpgradeStatusCode = /*@__PURE__*/ S.String;
+export const RollingUpgradeStatusCode = S.String;
 
 /** The last action performed on the rolling upgrade. */
 export type RollingUpgradeActionType = "Start" | "Cancel";
-export const RollingUpgradeActionType = /*@__PURE__*/ S.String;
+export const RollingUpgradeActionType = S.String;
 
 /** Information about the current running state of the overall upgrade. */
 export interface RollingUpgradeRunningStatus {
@@ -11808,7 +11804,7 @@ export type GetVirtualMachineScaleSetVMRequestExpand =
   | "instanceView"
   | "userData"
   | "resiliencyView";
-export const GetVirtualMachineScaleSetVMRequestExpand = /*@__PURE__*/ S.String;
+export const GetVirtualMachineScaleSetVMRequestExpand = S.String;
 
 export interface GetVirtualMachineScaleSetVMRequest {
   /** The ID of the target subscription. */
@@ -11879,7 +11875,7 @@ export const VirtualMachineScaleSetVMInstanceViewStatusesList =
 
 /** The hypervisor generation of the Virtual Machine. */
 export type CommonHyperVGeneration = "V1" | "V2";
-export const CommonHyperVGeneration = /*@__PURE__*/ S.String;
+export const CommonHyperVGeneration = S.String;
 
 /** The instance view of a virtual machine scale set VM. */
 export interface VirtualMachineScaleSetVMInstanceView {
@@ -11954,7 +11950,7 @@ export type ResilientVMDeletionStatus =
   | "Disabled"
   | "InProgress"
   | "Failed";
-export const ResilientVMDeletionStatus = /*@__PURE__*/ S.String;
+export const ResilientVMDeletionStatus = S.String;
 
 /** The list of network configurations. */
 export type VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList =
@@ -12563,7 +12559,7 @@ export const ImagesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines when it is acceptable to reboot a VM during a software update operation. */
 export type VMGuestPatchRebootSetting = "IfRequired" | "Never" | "Always";
-export const VMGuestPatchRebootSetting = /*@__PURE__*/ S.String;
+export const VMGuestPatchRebootSetting = S.String;
 
 export type VMGuestPatchClassificationWindows =
   | "Critical"
@@ -12574,7 +12570,7 @@ export type VMGuestPatchClassificationWindows =
   | "Definition"
   | "Tools"
   | "Updates";
-export const VMGuestPatchClassificationWindows = /*@__PURE__*/ S.String;
+export const VMGuestPatchClassificationWindows = S.String;
 
 /** The update classifications to select when installing patches for Windows. */
 export type WindowsParametersClassificationsToIncludeList = Array<
@@ -12649,7 +12645,7 @@ export const WindowsParameters = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WindowsParameters>;
 
 export type VMGuestPatchClassificationLinux = "Critical" | "Security" | "Other";
-export const VMGuestPatchClassificationLinux = /*@__PURE__*/ S.String;
+export const VMGuestPatchClassificationLinux = S.String;
 
 /** The update classifications to select when installing patches for Linux. */
 export type LinuxParametersClassificationsToIncludeList = Array<
@@ -12747,7 +12743,7 @@ export type VMGuestPatchRebootStatus =
   | "Started"
   | "Failed"
   | "Completed";
-export const VMGuestPatchRebootStatus = /*@__PURE__*/ S.String;
+export const VMGuestPatchRebootStatus = S.String;
 
 /** The classification(s) of the patch as provided by the patch publisher. */
 export type PatchInstallationDetailClassificationsList = Array<string>;
@@ -12763,7 +12759,7 @@ export type PatchInstallationState =
   | "Excluded"
   | "NotSelected"
   | "Pending";
-export const PatchInstallationState = /*@__PURE__*/ S.String;
+export const PatchInstallationState = S.String;
 
 /** Information about a specific patch that was encountered during an installation action. */
 export interface PatchInstallationDetail {
@@ -13200,7 +13196,7 @@ export type ListCapacityReservationByCapacityReservationGroupRequestExpand =
   | "virtualMachineScaleSetVMs/$ref"
   | "virtualMachines/$ref";
 export const ListCapacityReservationByCapacityReservationGroupRequestExpand =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListCapacityReservationByCapacityReservationGroupRequest {
   /** The ID of the target subscription. */
@@ -13313,7 +13309,7 @@ export type ListCapacityReservationGroupByResourceGroupRequestExpand =
   | "virtualMachineScaleSetVMs/$ref"
   | "virtualMachines/$ref";
 export const ListCapacityReservationGroupByResourceGroupRequestExpand =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListCapacityReservationGroupByResourceGroupRequest {
   /** The ID of the target subscription. */
@@ -13423,15 +13419,14 @@ export const CapacityReservationGroupListResult = /*@__PURE__*/ S.suspend(() =>
 export type ListCapacityReservationGroupBySubscriptionRequestExpand =
   | "virtualMachineScaleSetVMs/$ref"
   | "virtualMachines/$ref";
-export const ListCapacityReservationGroupBySubscriptionRequestExpand =
-  /*@__PURE__*/ S.String;
+export const ListCapacityReservationGroupBySubscriptionRequestExpand = S.String;
 
 export type ListCapacityReservationGroupBySubscriptionRequestResourceIdsOnly =
   | "CreatedInSubscription"
   | "SharedWithSubscription"
   | "All";
 export const ListCapacityReservationGroupBySubscriptionRequestResourceIdsOnly =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListCapacityReservationGroupBySubscriptionRequest {
   /** The ID of the target subscription. */
@@ -14080,11 +14075,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -14477,7 +14472,7 @@ export const ListUsageRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** An enum describing the unit of usage measurement. */
 export type UsageUnit = "Count";
-export const UsageUnit = /*@__PURE__*/ S.String;
+export const UsageUnit = S.String;
 
 /** The Usage Names. */
 export interface UsageName {
@@ -14536,7 +14531,7 @@ export const ListUsagesResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUsagesResult>;
 
 export type ListVirtualMachineAllRequestExpand = "instanceView";
-export const ListVirtualMachineAllRequestExpand = /*@__PURE__*/ S.String;
+export const ListVirtualMachineAllRequestExpand = S.String;
 
 export interface ListVirtualMachineAllRequest {
   /** The ID of the target subscription. */
@@ -14799,8 +14794,7 @@ export const ListVirtualMachineExtensionImageTypesResponse =
 
 export type ListVirtualMachineExtensionImageVersionsRequestExpand =
   "properties";
-export const ListVirtualMachineExtensionImageVersionsRequestExpand =
-  /*@__PURE__*/ S.String;
+export const ListVirtualMachineExtensionImageVersionsRequestExpand = S.String;
 
 export interface ListVirtualMachineExtensionImageVersionsRequest {
   /** The ID of the target subscription. */
@@ -15541,7 +15535,7 @@ export const RunCommandListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RunCommandListResult>;
 
 export type ListVirtualMachinesRequestExpand = "instanceView";
-export const ListVirtualMachinesRequestExpand = /*@__PURE__*/ S.String;
+export const ListVirtualMachinesRequestExpand = S.String;
 
 export interface ListVirtualMachinesRequest {
   /** The ID of the target subscription. */
@@ -15914,7 +15908,7 @@ export const ListVirtualMachineScaleSetSkusRequest = /*@__PURE__*/ S.suspend(
 
 /** The scale type applicable to the sku. */
 export type VirtualMachineScaleSetSkuScaleType = "Automatic" | "None";
-export const VirtualMachineScaleSetSkuScaleType = /*@__PURE__*/ S.String;
+export const VirtualMachineScaleSetSkuScaleType = S.String;
 
 /** Describes scaling information of a sku. */
 export interface VirtualMachineScaleSetSkuCapacity {
@@ -17285,7 +17279,7 @@ export const ScaleVirtualMachineScaleSetOutResponse = /*@__PURE__*/ S.suspend(
 
 /** The action to be performed. */
 export type OrchestrationServiceStateAction = "Resume" | "Suspend";
-export const OrchestrationServiceStateAction = /*@__PURE__*/ S.String;
+export const OrchestrationServiceStateAction = S.String;
 
 export interface SetVirtualMachineScaleSetOrchestrationServiceStateRequest {
   /** The ID of the target subscription. */
@@ -21364,11 +21358,11 @@ export type VMGuestPatchRebootBehavior =
   | "NeverReboots"
   | "AlwaysRequiresReboot"
   | "CanRequestReboot";
-export const VMGuestPatchRebootBehavior = /*@__PURE__*/ S.String;
+export const VMGuestPatchRebootBehavior = S.String;
 
 /** Describes the availability of a given patch. */
 export type PatchAssessmentState = "Unknown" | "Available";
-export const PatchAssessmentState = /*@__PURE__*/ S.String;
+export const PatchAssessmentState = S.String;
 
 /** Describes the properties of a Virtual Machine software patch. */
 export interface VirtualMachineSoftwarePatchProperties {

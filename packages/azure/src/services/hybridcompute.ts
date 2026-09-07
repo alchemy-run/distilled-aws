@@ -78,8 +78,7 @@ export const DeleteLicenseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteLicenseResponse>;
 
 export type DeleteLicenseProfileRequestLicenseProfileName = "default";
-export const DeleteLicenseProfileRequestLicenseProfileName =
-  /*@__PURE__*/ S.String;
+export const DeleteLicenseProfileRequestLicenseProfileName = S.String;
 
 export interface DeleteLicenseProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -301,7 +300,7 @@ export const GatewaysCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The type of the Gateway resource. */
 export type GatewayType = "Public";
-export const GatewayType = /*@__PURE__*/ S.String;
+export const GatewayType = S.String;
 
 /** Specifies the list of features that are enabled for this Gateway. */
 export type GatewayPropertiesInputAllowedFeaturesList = Array<string>;
@@ -374,7 +373,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -382,7 +381,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -429,7 +428,7 @@ export type ProvisioningState =
   | "Accepted"
   | "Canceled"
   | "Deleted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Specifies the list of features that are enabled for this Gateway. */
 export type GatewayPropertiesAllowedFeaturesList = Array<string>;
@@ -767,30 +766,30 @@ export const GetLicenseResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The type of the license resource. */
 export type LicenseType = "ESU";
-export const LicenseType = /*@__PURE__*/ S.String;
+export const LicenseType = S.String;
 
 /** Describes the state of the license. */
 export type LicenseState = "Activated" | "Deactivated";
-export const LicenseState = /*@__PURE__*/ S.String;
+export const LicenseState = S.String;
 
 /** Describes the license target server. */
 export type LicenseTarget =
   | "Windows Server 2012"
   | "Windows Server 2012 R2"
   | "Windows Server 2016";
-export const LicenseTarget = /*@__PURE__*/ S.String;
+export const LicenseTarget = S.String;
 
 /** Describes the edition of the license. The values are either Standard or Datacenter. */
 export type LicenseEdition = "Standard" | "Datacenter";
-export const LicenseEdition = /*@__PURE__*/ S.String;
+export const LicenseEdition = S.String;
 
 /** Describes the license core type (pCore or vCore). */
 export type LicenseCoreType = "pCore" | "vCore";
-export const LicenseCoreType = /*@__PURE__*/ S.String;
+export const LicenseCoreType = S.String;
 
 /** Describes the program year the volume license is for. */
 export type ProgramYear = "Year 1" | "Year 2" | "Year 3";
-export const ProgramYear = /*@__PURE__*/ S.String;
+export const ProgramYear = S.String;
 
 export interface VolumeLicenseDetails {
   /** Describes the program year the volume license is for. */
@@ -899,8 +898,7 @@ export const GetLicenseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLicenseResponse>;
 
 export type GetLicenseProfileRequestLicenseProfileName = "default";
-export const GetLicenseProfileRequestLicenseProfileName =
-  /*@__PURE__*/ S.String;
+export const GetLicenseProfileRequestLicenseProfileName = S.String;
 
 export interface GetLicenseProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -978,15 +976,15 @@ export const LicenseProfileArmEsuPropertiesEsuKeysList = /*@__PURE__*/ S.Array(
 
 /** The server types for Esu. */
 export type EsuServerType = "Standard" | "Datacenter";
-export const EsuServerType = /*@__PURE__*/ S.String;
+export const EsuServerType = S.String;
 
 /** The ESU eligibility. */
 export type EsuEligibility = "Eligible" | "Ineligible" | "Unknown";
-export const EsuEligibility = /*@__PURE__*/ S.String;
+export const EsuEligibility = S.String;
 
 /** The ESU key state. */
 export type EsuKeyState = "Inactive" | "Active";
-export const EsuKeyState = /*@__PURE__*/ S.String;
+export const EsuKeyState = S.String;
 
 /** Describes the properties of a License Profile ARM model. */
 export interface LicenseProfileArmEsuProperties {
@@ -1024,13 +1022,13 @@ export type LicenseProfileSubscriptionStatus =
   | "Disabled"
   | "Disabling"
   | "Failed";
-export const LicenseProfileSubscriptionStatus = /*@__PURE__*/ S.String;
+export const LicenseProfileSubscriptionStatus = S.String;
 
 /** The product type of the license. */
 export type LicenseProfileProductType =
   | "WindowsServer"
   | "WindowsIoTEnterprise";
-export const LicenseProfileProductType = /*@__PURE__*/ S.String;
+export const LicenseProfileProductType = S.String;
 
 /** The error details. */
 export type ErrorDetailDetailsList = Array<ErrorDetail>;
@@ -1292,7 +1290,7 @@ export const GetLicenseProfileResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLicenseProfileResponse>;
 
 export type GetMachineRequestExpand = "instanceView";
-export const GetMachineRequestExpand = /*@__PURE__*/ S.String;
+export const GetMachineRequestExpand = S.String;
 
 export interface GetMachineRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1396,7 +1394,7 @@ export const AgentConfigurationProxyBypassList = /*@__PURE__*/ S.Array(
 
 /** Name of configuration mode to use. Modes are pre-defined configurations of security controls, extension allowlists and guest configuration, maintained by Microsoft. */
 export type AgentConfigurationMode = "full" | "monitor";
-export const AgentConfigurationMode = /*@__PURE__*/ S.String;
+export const AgentConfigurationMode = S.String;
 
 /** Configurable properties that the user can set locally via the azcmagent config command, or remotely via ARM. */
 export interface AgentConfiguration {
@@ -1578,7 +1576,7 @@ export const CloudMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the status of Agent Upgrade. */
 export type LastAttemptStatusEnum = "Success" | "Failed";
-export const LastAttemptStatusEnum = /*@__PURE__*/ S.String;
+export const LastAttemptStatusEnum = S.String;
 
 /** The info w.r.t Agent Upgrade. */
 export interface AgentUpgrade {
@@ -1611,7 +1609,7 @@ export const AgentUpgrade = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the assessment mode. */
 export type AssessmentModeTypes = "ImageDefault" | "AutomaticByPlatform";
-export const AssessmentModeTypes = /*@__PURE__*/ S.String;
+export const AssessmentModeTypes = S.String;
 
 /** Specifies the patch mode. */
 export type PatchModeTypes =
@@ -1619,7 +1617,7 @@ export type PatchModeTypes =
   | "AutomaticByPlatform"
   | "AutomaticByOS"
   | "Manual";
-export const PatchModeTypes = /*@__PURE__*/ S.String;
+export const PatchModeTypes = S.String;
 
 /** Status of hotpatch enablement or disablement. */
 export type HotpatchEnablementStatus =
@@ -1628,7 +1626,7 @@ export type HotpatchEnablementStatus =
   | "Disabled"
   | "ActionRequired"
   | "Enabled";
-export const HotpatchEnablementStatus = /*@__PURE__*/ S.String;
+export const HotpatchEnablementStatus = S.String;
 
 /** The error details. */
 export type PatchSettingsStatusErrorDetailsList = Array<ErrorDetail>;
@@ -1747,7 +1745,7 @@ export type LicenseStatus =
   | "NonGenuineGrace"
   | "Notification"
   | "ExtendedGrace";
-export const LicenseStatus = /*@__PURE__*/ S.String;
+export const LicenseStatus = S.String;
 
 export type LicenseProfileMachineInstanceViewSoftwareAssurance =
   LicenseProfilePropertiesSoftwareAssurance;
@@ -1800,7 +1798,7 @@ export const License = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes the license assignment state (Assigned or NotAssigned). */
 export type LicenseAssignmentState = "Assigned" | "NotAssigned";
-export const LicenseAssignmentState = /*@__PURE__*/ S.String;
+export const LicenseAssignmentState = S.String;
 
 /** Properties for the Machine ESU profile. */
 export interface LicenseProfileMachineInstanceViewEsuProperties {
@@ -1862,7 +1860,7 @@ export const LicenseProfileMachineInstanceView = /*@__PURE__*/ S.suspend(() =>
 
 /** The reason describing why the service set the machine status to a particular value. */
 export type MachineStatusReason = "Cloned";
-export const MachineStatusReason = /*@__PURE__*/ S.String;
+export const MachineStatusReason = S.String;
 
 /** The status of the hybrid machine agent. */
 export type StatusTypes =
@@ -1870,7 +1868,7 @@ export type StatusTypes =
   | "Disconnected"
   | "Error"
   | "AwaitingConnection";
-export const StatusTypes = /*@__PURE__*/ S.String;
+export const StatusTypes = S.String;
 
 /** The error details. */
 export type MachinePropertiesErrorDetailsItemDetailsList = Array<ErrorDetail>;
@@ -1923,11 +1921,11 @@ export const MachinePropertiesErrorDetailsList = /*@__PURE__*/ S.Array(
 
 /** Specifies the identity key store a machine is using. */
 export type IdentityKeyStore = "TPM" | "Default";
-export const IdentityKeyStore = /*@__PURE__*/ S.String;
+export const IdentityKeyStore = S.String;
 
 /** The level code. */
 export type StatusLevelTypes = "Info" | "Warning" | "Error";
-export const StatusLevelTypes = /*@__PURE__*/ S.String;
+export const StatusLevelTypes = S.String;
 
 /** Instance view status. */
 export interface MachineExtensionInstanceViewStatus {
@@ -2300,7 +2298,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -2360,7 +2358,7 @@ export type ArcKindEnum =
   | "EPS"
   | "GCP"
   | "AWS";
-export const ArcKindEnum = /*@__PURE__*/ S.String;
+export const ArcKindEnum = S.String;
 
 export interface GetMachineResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2583,11 +2581,11 @@ export type ExecutionState =
   | "Succeeded"
   | "TimedOut"
   | "Canceled";
-export const ExecutionState = /*@__PURE__*/ S.String;
+export const ExecutionState = S.String;
 
 /** The level code. */
 export type ExtensionsStatusLevelTypes = "Info" | "Warning" | "Error";
-export const ExtensionsStatusLevelTypes = /*@__PURE__*/ S.String;
+export const ExtensionsStatusLevelTypes = S.String;
 
 /** Instance view status. */
 export interface ExtensionsResourceStatus {
@@ -2797,11 +2795,11 @@ export type ProvisioningIssueType =
   | "MissingIdentityConfiguration"
   | "ConfigurationPropagationFailure"
   | "Other";
-export const ProvisioningIssueType = /*@__PURE__*/ S.String;
+export const ProvisioningIssueType = S.String;
 
 /** Severity of the provisioning issue. */
 export type ProvisioningIssueSeverity = "Warning" | "Error";
-export const ProvisioningIssueSeverity = /*@__PURE__*/ S.String;
+export const ProvisioningIssueSeverity = S.String;
 
 /** ARM Ids of the resources that can be associated to the same perimeter to remediate the issue */
 export type ProvisioningIssuePropertiesSuggestedResourceIdsList = Array<string>;
@@ -2812,7 +2810,7 @@ export const ProvisioningIssuePropertiesSuggestedResourceIdsList =
 
 /** Indicates direction of an access rule. */
 export type AccessRuleDirection = "Inbound" | "Outbound";
-export const AccessRuleDirection = /*@__PURE__*/ S.String;
+export const AccessRuleDirection = S.String;
 
 /** Address prefixes that are allowed access. */
 export type AccessRulePropertiesAddressPrefixesList = Array<string>;
@@ -2932,7 +2930,7 @@ export const NetworkSecurityPerimeter = /*@__PURE__*/ S.suspend(() =>
 
 /** Property that impacts a resource's logging behavior and its connectivity with other resources and public networks. */
 export type AccessMode = "enforced" | "audit" | "learning";
-export const AccessMode = /*@__PURE__*/ S.String;
+export const AccessMode = S.String;
 
 /** Properties that define a Resource Association. */
 export interface ResourceAssociation {
@@ -3291,7 +3289,7 @@ export type HybridComputePrivateLinkScopePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
 export const HybridComputePrivateLinkScopePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Data Model for a Private Endpoint Connection associated with a Private Link Scope */
 export interface PrivateEndpointConnectionDataModel {
@@ -3325,7 +3323,7 @@ export const HybridComputePrivateLinkScopePropertiesPrivateEndpointConnectionsLi
 
 /** The network access policy to determine if the specified Azure Arc Extension can use public Azure Arc Extension service endpoints. */
 export type ServiceExtensionPublicNetworkAccess = "Enabled" | "Disabled";
-export const ServiceExtensionPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const ServiceExtensionPublicNetworkAccess = S.String;
 
 /** Enable private link validation for an Azure Arc Extension */
 export interface ServiceExtension {
@@ -3447,8 +3445,7 @@ export const GetPrivateLinkScopeValidationDetailsRequest =
 export type PrivateLinkScopeValidationDetailsPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkScopeValidationDetailsPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkScopeValidationDetailsPublicNetworkAccess = S.String;
 
 export interface ConnectionDetail {
   /** Azure resource Id */
@@ -3619,7 +3616,7 @@ export const GetSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines when it is acceptable to reboot a VM during a software update operation. */
 export type VMGuestPatchRebootSetting = "IfRequired" | "Never" | "Always";
-export const VMGuestPatchRebootSetting = /*@__PURE__*/ S.String;
+export const VMGuestPatchRebootSetting = S.String;
 
 export type VMGuestPatchClassificationWindows =
   | "Critical"
@@ -3630,7 +3627,7 @@ export type VMGuestPatchClassificationWindows =
   | "Definition"
   | "Tools"
   | "Updates";
-export const VMGuestPatchClassificationWindows = /*@__PURE__*/ S.String;
+export const VMGuestPatchClassificationWindows = S.String;
 
 /** The update classifications to select when installing patches for Windows. */
 export type WindowsParametersClassificationsToIncludeList = Array<
@@ -3705,7 +3702,7 @@ export const WindowsParameters = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WindowsParameters>;
 
 export type VMGuestPatchClassificationLinux = "Critical" | "Security" | "Other";
-export const VMGuestPatchClassificationLinux = /*@__PURE__*/ S.String;
+export const VMGuestPatchClassificationLinux = S.String;
 
 /** The update classifications to select when installing patches for Linux. */
 export type LinuxParametersClassificationsToIncludeList = Array<
@@ -3799,7 +3796,7 @@ export type PatchOperationStatus =
   | "Failed"
   | "Succeeded"
   | "CompletedWithWarnings";
-export const PatchOperationStatus = /*@__PURE__*/ S.String;
+export const PatchOperationStatus = S.String;
 
 /** The reboot state of the VM following completion of the operation. */
 export type VMGuestPatchRebootStatus =
@@ -3809,11 +3806,11 @@ export type VMGuestPatchRebootStatus =
   | "Started"
   | "Failed"
   | "Completed";
-export const VMGuestPatchRebootStatus = /*@__PURE__*/ S.String;
+export const VMGuestPatchRebootStatus = S.String;
 
 /** Indicates if operation was triggered by user or by platform. */
 export type PatchOperationStartedBy = "User" | "Platform";
-export const PatchOperationStartedBy = /*@__PURE__*/ S.String;
+export const PatchOperationStartedBy = S.String;
 
 /** Specifies the patch service used for the operation. */
 export type PatchServiceUsed =
@@ -3823,11 +3820,11 @@ export type PatchServiceUsed =
   | "YUM"
   | "APT"
   | "Zypper";
-export const PatchServiceUsed = /*@__PURE__*/ S.String;
+export const PatchServiceUsed = S.String;
 
 /** The operating system type of the machine. */
 export type OsType = "Windows" | "Linux";
-export const OsType = /*@__PURE__*/ S.String;
+export const OsType = S.String;
 
 /** The error details. */
 export type MachineInstallPatchesResultErrorDetailsDetailsList =
@@ -3929,8 +3926,7 @@ export const MachineInstallPatchesResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MachineInstallPatchesResult>;
 
 export type LicenseProfilesCreateOrUpdateRequestLicenseProfileName = "default";
-export const LicenseProfilesCreateOrUpdateRequestLicenseProfileName =
-  /*@__PURE__*/ S.String;
+export const LicenseProfilesCreateOrUpdateRequestLicenseProfileName = S.String;
 
 /** Resource tags. */
 export type LicenseProfilesCreateOrUpdateRequestTagsMap = {
@@ -6517,7 +6513,7 @@ export type HybridComputePrivateLinkScopePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
 export const HybridComputePrivateLinkScopePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Enable private link validation for an Azure Arc Extension. */
 export type HybridComputePrivateLinkScopePropertiesInputServiceExtensionsList =
@@ -6903,8 +6899,7 @@ export const UpdateLicenseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLicenseResponse>;
 
 export type UpdateLicenseProfileRequestLicenseProfileName = "default";
-export const UpdateLicenseProfileRequestLicenseProfileName =
-  /*@__PURE__*/ S.String;
+export const UpdateLicenseProfileRequestLicenseProfileName = S.String;
 
 /** Resource tags */
 export type UpdateLicenseProfileRequestTagsMap = {
@@ -6926,7 +6921,7 @@ export const EsuProfileUpdateProperties = LicenseProfileArmEsuPropertiesInput;
 
 /** Indicates the new subscription status of the OS or Product Features. */
 export type LicenseProfileSubscriptionStatusUpdate = "Enable" | "Disable";
-export const LicenseProfileSubscriptionStatusUpdate = /*@__PURE__*/ S.String;
+export const LicenseProfileSubscriptionStatusUpdate = S.String;
 
 /** Product Feature */
 export interface ProductFeatureUpdate {

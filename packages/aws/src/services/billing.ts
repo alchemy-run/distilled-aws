@@ -242,7 +242,7 @@ export const AssociateSourceViewsResponse = /*@__PURE__*/ S.suspend(() =>
 export type BillingViewName = string | redacted.Redacted<string>;
 export type BillingViewDescription = string | redacted.Redacted<string>;
 export type Dimension = "LINKED_ACCOUNT" | (string & {});
-export const Dimension = /*@__PURE__*/ S.String;
+export const Dimension = S.String;
 
 export type Value = string;
 export type Values = string[];
@@ -399,12 +399,12 @@ export type BillingFeature =
   | "BILLING_ALERTS"
   | "CREDIT_PREFERENCE_OPTIONS"
   | (string & {});
-export const BillingFeature = /*@__PURE__*/ S.String;
+export const BillingFeature = S.String;
 
 export type BillingFeatures = BillingFeature[];
 export const BillingFeatures = /*@__PURE__*/ S.Array(BillingFeature);
 export type BillingFeatureFilterName = "PREFERENCE_KEY" | (string & {});
-export const BillingFeatureFilterName = /*@__PURE__*/ S.String;
+export const BillingFeatureFilterName = S.String;
 
 export type BillingFeatureFilterValue = string;
 export type BillingFeatureFilterValues = string[];
@@ -444,7 +444,7 @@ export const GetBillingPreferencesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBillingPreferencesRequest>;
 export type PreferenceKey = string;
 export type PreferenceValue = "ENABLED" | "DISABLED" | (string & {});
-export const PreferenceValue = /*@__PURE__*/ S.String;
+export const PreferenceValue = S.String;
 
 export type AccountName = string;
 export type AccountId = string;
@@ -510,7 +510,7 @@ export type BillingViewType =
   | "BILLING_TRANSFER"
   | "BILLING_TRANSFER_SHOWBACK"
   | (string & {});
-export const BillingViewType = /*@__PURE__*/ S.String;
+export const BillingViewType = S.String;
 
 export type BillingViewStatus =
   | "HEALTHY"
@@ -518,7 +518,7 @@ export type BillingViewStatus =
   | "CREATING"
   | "UPDATING"
   | (string & {});
-export const BillingViewStatus = /*@__PURE__*/ S.String;
+export const BillingViewStatus = S.String;
 
 export type BillingViewStatusReason =
   | "SOURCE_VIEW_UNHEALTHY"
@@ -530,7 +530,7 @@ export type BillingViewStatusReason =
   | "AGGREGATE_SOURCE"
   | "VIEW_OWNER_NOT_MANAGEMENT_ACCOUNT"
   | (string & {});
-export const BillingViewStatusReason = /*@__PURE__*/ S.String;
+export const BillingViewStatusReason = S.String;
 
 export type BillingViewStatusReasons = BillingViewStatusReason[];
 export const BillingViewStatusReasons = /*@__PURE__*/ S.Array(
@@ -694,7 +694,7 @@ export type ApplicationType =
   | "BEFORE_CROSS_SERVICE_DISCOUNTS"
   | "AFTER_DISCOUNTS"
   | (string & {});
-export const ApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationType = S.String;
 
 export type ShareableAccountIds = string[];
 export const ShareableAccountIds = /*@__PURE__*/ S.Array(S.String);
@@ -704,10 +704,10 @@ export type CreditSharingType =
   | "CUSTOM"
   | "COST_CATEGORY_RULE"
   | (string & {});
-export const CreditSharingType = /*@__PURE__*/ S.String;
+export const CreditSharingType = S.String;
 
 export type CreditStatus = "ENABLED" | "DISABLED" | (string & {});
-export const CreditStatus = /*@__PURE__*/ S.String;
+export const CreditStatus = S.String;
 
 export type PurchaseType = string;
 export type PurchaseTypeApplications = string[];
@@ -997,7 +997,7 @@ export const BillingViewArnList = /*@__PURE__*/ S.Array(S.String);
 export type BillingViewTypeList = BillingViewType[];
 export const BillingViewTypeList = /*@__PURE__*/ S.Array(BillingViewType);
 export type SearchOption = "STARTS_WITH" | (string & {});
-export const SearchOption = /*@__PURE__*/ S.String;
+export const SearchOption = S.String;
 
 export type SearchValue = string;
 export interface StringSearch {
@@ -1343,7 +1343,7 @@ export type ValidationExceptionReason =
   | "fieldValidationFailed"
   | "other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type FieldName = string;
 export interface ValidationExceptionField {

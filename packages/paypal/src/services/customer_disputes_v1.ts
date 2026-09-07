@@ -74,7 +74,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information. */
 export interface LinkDescription {
@@ -161,8 +161,7 @@ export const DisputesAcknowledgeReturnItemRequest = /*@__PURE__*/ S.suspend(
 export type DisputesAdjudicateRequestAdjudicationOutcome =
   | "BUYER_FAVOR"
   | "SELLER_FAVOR";
-export const DisputesAdjudicateRequestAdjudicationOutcome =
-  /*@__PURE__*/ S.String;
+export const DisputesAdjudicateRequestAdjudicationOutcome = S.String;
 
 export interface DisputesAdjudicateRequest {
   /** The ID of the dispute for which to provide the supporting information. */
@@ -348,7 +347,7 @@ export type OfferType =
   | "REFUND_WITH_RETURN"
   | "REFUND_WITH_REPLACEMENT"
   | "REPLACEMENT_WITHOUT_REFUND";
-export const OfferType = /*@__PURE__*/ S.String;
+export const OfferType = S.String;
 
 export interface DisputesMakeOfferRequest {
   /** The ID of the dispute for which to provide the supporting information. */
@@ -433,7 +432,7 @@ export const DisputesProvideSupportingInfoRequest = /*@__PURE__*/ S.suspend(
 export type DisputesRequireEvidenceRequestAction =
   | "BUYER_EVIDENCE"
   | "SELLER_EVIDENCE";
-export const DisputesRequireEvidenceRequestAction = /*@__PURE__*/ S.String;
+export const DisputesRequireEvidenceRequestAction = S.String;
 
 export interface DisputesRequireEvidenceRequest {
   /** The ID of the dispute for which to provide the supporting information. */
@@ -504,7 +503,7 @@ export type TransactionInfoTransactionStatus =
   | "REFUNDED"
   | "REVERSED"
   | "CANCELLED";
-export const TransactionInfoTransactionStatus = /*@__PURE__*/ S.String;
+export const TransactionInfoTransactionStatus = S.String;
 
 /** The cryptocurrency symbol or code ticker options. Assigned by liquidity providers and exchanges. */
 export type CryptocurrencySymbol =
@@ -516,7 +515,7 @@ export type CryptocurrencySymbol =
   | "LINK"
   | "SOL"
   | "MATIC";
-export const CryptocurrencySymbol = /*@__PURE__*/ S.String;
+export const CryptocurrencySymbol = S.String;
 
 /** The details needed to represent a specific cryptocurrency balance, such as its symbol and quantity. */
 export interface Cryptocurrency {
@@ -574,11 +573,11 @@ export type DisputeReason =
   | "CANCELED_RECURRING_BILLING"
   | "PROBLEM_WITH_REMITTANCE"
   | "OTHER";
-export const DisputeReason = /*@__PURE__*/ S.String;
+export const DisputeReason = S.String;
 
 /** The type of the item which has the issue. */
 export type ItemType = "PRODUCT" | "SERVICE" | "BOOKING" | "DIGITAL_DOWNLOAD";
-export const ItemType = /*@__PURE__*/ S.String;
+export const ItemType = S.String;
 
 /** The information for a purchased item in a disputed transaction. */
 export interface ItemInfo {
@@ -690,7 +689,7 @@ export type Status =
   | "UNDER_REVIEW"
   | "RESOLVED"
   | "OTHER";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** The outcome of a resolved dispute. */
 export type DisputeOutcomeOutcomeCode =
@@ -701,7 +700,7 @@ export type DisputeOutcomeOutcomeCode =
   | "ACCEPTED"
   | "DENIED"
   | "NONE";
-export const DisputeOutcomeOutcomeCode = /*@__PURE__*/ S.String;
+export const DisputeOutcomeOutcomeCode = S.String;
 
 /** The reason for the adjudication type. */
 export type AdjudicationReason =
@@ -823,7 +822,7 @@ export type AdjudicationReason =
   | "PROTECTION_POLICY_APPLIES"
   | "SNAD_DELAYED_FILING"
   | "FUNDS_TRANSFERRED_TO_INCORRECT_RECIPIENT";
-export const AdjudicationReason = /*@__PURE__*/ S.String;
+export const AdjudicationReason = S.String;
 
 /** The outcome of a dispute. */
 export interface DisputeOutcome {
@@ -851,7 +850,7 @@ export type AdjudicationType =
   | "PAYOUT_TO_BUYER"
   | "PAYOUT_TO_SELLER"
   | "RECOVER_FROM_SELLER";
-export const AdjudicationType = /*@__PURE__*/ S.String;
+export const AdjudicationType = S.String;
 
 /** The stage in the dispute lifecycle. */
 export type DisputeLifecycleStage =
@@ -859,7 +858,7 @@ export type DisputeLifecycleStage =
   | "CHARGEBACK"
   | "PRE_ARBITRATION"
   | "ARBITRATION";
-export const DisputeLifecycleStage = /*@__PURE__*/ S.String;
+export const DisputeLifecycleStage = S.String;
 
 /** The Adjudication details for the dispute. */
 export interface Adjudication {
@@ -892,11 +891,11 @@ export type MoneyMovementAffectedParty =
   | "SELLER"
   | "BUYER"
   | "PAYMENT_PROCESSOR";
-export const MoneyMovementAffectedParty = /*@__PURE__*/ S.String;
+export const MoneyMovementAffectedParty = S.String;
 
 /** The type of the money movement. */
 export type MoneyMovementType = "DEBIT" | "CREDIT";
-export const MoneyMovementType = /*@__PURE__*/ S.String;
+export const MoneyMovementType = S.String;
 
 /** The reason for the money movement. */
 export type MoneyMovementReason =
@@ -904,7 +903,7 @@ export type MoneyMovementReason =
   | "DISPUTE_SETTLEMENT"
   | "DISPUTE_FEE"
   | "CHARGEBACK_FEE";
-export const MoneyMovementReason = /*@__PURE__*/ S.String;
+export const MoneyMovementReason = S.String;
 
 /** The Money movement details with party. */
 export interface MoneyMovement {
@@ -940,11 +939,11 @@ export const MoneyMovementList = /*@__PURE__*/ S.Array(
 
 /** The affected party in the money movement. */
 export type FundMovementParty = "SELLER" | "BUYER" | "PAYMENT_PROCESSOR";
-export const FundMovementParty = /*@__PURE__*/ S.String;
+export const FundMovementParty = S.String;
 
 /** The type of the money movement. */
 export type FundMovementType = "DEBIT" | "CREDIT";
-export const FundMovementType = /*@__PURE__*/ S.String;
+export const FundMovementType = S.String;
 
 /** The reason for the fund movement. */
 export type FundMovementReason =
@@ -952,7 +951,7 @@ export type FundMovementReason =
   | "DISPUTE_SETTLEMENT"
   | "DISPUTE_FEE"
   | "CHARGEBACK_FEE";
-export const FundMovementReason = /*@__PURE__*/ S.String;
+export const FundMovementReason = S.String;
 
 /** This section contains the details about the fund movement of the parties ,time , direction and the reason for it. */
 export interface FundMovement {
@@ -988,11 +987,11 @@ export const FundMovementList = /*@__PURE__*/ S.Array(
 
 /** The channel where the customer created the dispute. */
 export type DisputeChannel = "INTERNAL" | "EXTERNAL" | "ALERT";
-export const DisputeChannel = /*@__PURE__*/ S.String;
+export const DisputeChannel = S.String;
 
 /** Indicates whether the customer, merchant, or dispute arbiter posted the message. */
 export type MessagePostedBy = "BUYER" | "SELLER" | "ARBITER";
-export const MessagePostedBy = /*@__PURE__*/ S.String;
+export const MessagePostedBy = S.String;
 
 /** An uploaded document as a binary object that supports a dispute. */
 export interface Document {
@@ -1041,7 +1040,7 @@ export const MessageList = /*@__PURE__*/ S.Array(
 
 /** The outcome when the customer has contacted the merchant. */
 export type MerchantContactedOutcome = "NO_RESPONSE" | "FIXED" | "NOT_FIXED";
-export const MerchantContactedOutcome = /*@__PURE__*/ S.String;
+export const MerchantContactedOutcome = S.String;
 
 /** The method used to contact the merchant. */
 export type MerchantContactedMode =
@@ -1050,7 +1049,7 @@ export type MerchantContactedMode =
   | "EMAIL"
   | "WRITTEN"
   | "IN_PERSON";
-export const MerchantContactedMode = /*@__PURE__*/ S.String;
+export const MerchantContactedMode = S.String;
 
 /** The duplicate transaction details. */
 export interface DuplicateTransaction {
@@ -1095,7 +1094,7 @@ export type PaymentByOtherMeansPaymentMethod =
   | "DEBIT_CARD"
   | "GIFT_CARD"
   | "BANK_TRANSFER";
-export const PaymentByOtherMeansPaymentMethod = /*@__PURE__*/ S.String;
+export const PaymentByOtherMeansPaymentMethod = S.String;
 
 /** The payment by other means details. */
 export interface PaymentByOtherMeans {
@@ -1121,7 +1120,7 @@ export const PaymentByOtherMeans = /*@__PURE__*/ S.suspend(() =>
 
 /** The issue type. */
 export type CreditNotProcessedIssueType = "PRODUCT" | "SERVICE";
-export const CreditNotProcessedIssueType = /*@__PURE__*/ S.String;
+export const CreditNotProcessedIssueType = S.String;
 
 /** Indicates the mode used for order cancellation. */
 export type CancellationDetailsCancellationMode =
@@ -1131,7 +1130,7 @@ export type CancellationDetailsCancellationMode =
   | "EMAIL"
   | "WRITTEN"
   | "IN_PERSON";
-export const CancellationDetailsCancellationMode = /*@__PURE__*/ S.String;
+export const CancellationDetailsCancellationMode = S.String;
 
 /** The cancellation details. */
 export interface CancellationDetails {
@@ -1157,11 +1156,11 @@ export const CancellationDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the product was, or was not, received or returned. */
 export type ProductDetailsProductReceived = "YES" | "NO" | "RETURNED";
-export const ProductDetailsProductReceived = /*@__PURE__*/ S.String;
+export const ProductDetailsProductReceived = S.String;
 
 /** The sub-reason for the product issue. */
 export type SubReasons = "DAMAGED" | "DIFFERENT" | "MISSING_PARTS" | "OTHER";
-export const SubReasons = /*@__PURE__*/ S.String;
+export const SubReasons = S.String;
 
 /** An array of sub-reasons for the product issue. */
 export type SubReasonsList = Array<SubReasons>;
@@ -1171,7 +1170,7 @@ export const SubReasonsList = /*@__PURE__*/ S.Array(
 
 /** The method that the customer used to return the product. */
 export type ReturnDetailsMode = "SHIPPED" | "IN_PERSON";
-export const ReturnDetailsMode = /*@__PURE__*/ S.String;
+export const ReturnDetailsMode = S.String;
 
 /** The return details for the product. */
 export interface ReturnDetails {
@@ -1225,7 +1224,7 @@ export const ProductDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the service was started or cancelled. */
 export type ServiceDetailsServiceStarted = "YES" | "NO" | "CANCELLED";
-export const ServiceDetailsServiceStarted = /*@__PURE__*/ S.String;
+export const ServiceDetailsServiceStarted = S.String;
 
 /** The sub-reason for the service issue. */
 export type DefinitionsSubReasons =
@@ -1233,7 +1232,7 @@ export type DefinitionsSubReasons =
   | "DIFFERENT"
   | "INCOMPLETE"
   | "OTHER";
-export const DefinitionsSubReasons = /*@__PURE__*/ S.String;
+export const DefinitionsSubReasons = S.String;
 
 /** An array of sub-reasons for the service issue. */
 export type DefinitionsSubReasonsList = Array<DefinitionsSubReasons>;
@@ -1338,7 +1337,7 @@ export const BillingDisputesProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The issue type. */
 export type MerchandizeDisputePropertiesIssueType = "PRODUCT" | "SERVICE";
-export const MerchandizeDisputePropertiesIssueType = /*@__PURE__*/ S.String;
+export const MerchandizeDisputePropertiesIssueType = S.String;
 
 /** The customer-provided merchandise issue details for the dispute. */
 export interface MerchandizeDisputeProperties {
@@ -1372,7 +1371,7 @@ export type DisputeSource =
   | "MOBILE_APP"
   | "MOBILE_WEB"
   | "API";
-export const DisputeSource = /*@__PURE__*/ S.String;
+export const DisputeSource = S.String;
 
 /** The extended properties for the dispute. Includes additional information for a dispute category, such as billing disputes, the original transaction ID, and the correct amount. */
 export interface Extensions {
@@ -1483,7 +1482,7 @@ export type EvidenceEvidenceType =
   | "ITEM_DETAILS"
   | "CORRECT_RECIPIENT_INFORMATION"
   | "EXPLANATION_OF_FUNDS_NOT_DELIVERED";
-export const EvidenceEvidenceType = /*@__PURE__*/ S.String;
+export const EvidenceEvidenceType = S.String;
 
 /** The name of the shipment carrier for the transaction for this dispute. */
 export type TrackingInfoCarrierName =
@@ -2744,7 +2743,7 @@ export type TrackingInfoCarrierName =
   | "NOX_NIGHT_TIME_EXPRESS"
   | "SENDING"
   | "HUODULL";
-export const TrackingInfoCarrierName = /*@__PURE__*/ S.String;
+export const TrackingInfoCarrierName = S.String;
 
 /** The tracking information. */
 export interface TrackingInfo {
@@ -2803,7 +2802,7 @@ export type EvidenceSource =
   | "SUBMITTED_BY_BUYER"
   | "SUBMITTED_BY_SELLER"
   | "SUBMITTED_BY_PARTNER";
-export const EvidenceSource = /*@__PURE__*/ S.String;
+export const EvidenceSource = S.String;
 
 /** The action for which the evidence was requested or submitted. */
 export type ActionInfoAction =
@@ -2814,7 +2813,7 @@ export type ActionInfoAction =
   | "CANCEL"
   | "CHANGE_REASON"
   | "ESCALATE";
-export const ActionInfoAction = /*@__PURE__*/ S.String;
+export const ActionInfoAction = S.String;
 
 /** The extended properties for a evidence. Includes additional information such as the action for which the evidence was requested/submitted, and whether the evidence is mandatory. */
 export interface ActionInfo {
@@ -2877,11 +2876,11 @@ export const EvidenceList = /*@__PURE__*/ S.Array(
 
 /** The event-related actor. */
 export type OfferHistoryActor = "BUYER" | "SELLER";
-export const OfferHistoryActor = /*@__PURE__*/ S.String;
+export const OfferHistoryActor = S.String;
 
 /** The type of the history event. */
 export type OfferHistoryEventType = "PROPOSED" | "ACCEPTED" | "DENIED";
-export const OfferHistoryEventType = /*@__PURE__*/ S.String;
+export const OfferHistoryEventType = S.String;
 
 /** The offer history. */
 export interface OfferHistory {
@@ -2976,7 +2975,7 @@ export type SupportingInfoSource =
   | "SUBMITTED_BY_BUYER"
   | "SUBMITTED_BY_SELLER"
   | "SUBMITTED_BY_PARTNER";
-export const SupportingInfoSource = /*@__PURE__*/ S.String;
+export const SupportingInfoSource = S.String;
 
 /** A merchant- or customer-submitted supporting information. */
 export interface SupportingInfo {
@@ -3013,7 +3012,7 @@ export type AcknowledgementType =
   | "DAMAGED"
   | "EMPTY_PACKAGE_OR_DIFFERENT"
   | "MISSING_ITEMS";
-export const AcknowledgementType = /*@__PURE__*/ S.String;
+export const AcknowledgementType = S.String;
 
 /** The types of response when the merchant acknowledges a returned item. */
 export type AcknowledgementTypeList = Array<AcknowledgementType>;
@@ -3040,7 +3039,7 @@ export type AcceptClaimType =
   | "REFUND_WITH_RETURN"
   | "PARTIAL_REFUND"
   | "REFUND_WITH_RETURN_SHIPMENT_LABEL";
-export const AcceptClaimType = /*@__PURE__*/ S.String;
+export const AcceptClaimType = S.String;
 
 /** The types of refund the merchant can provide the customer. */
 export type AcceptClaimTypeList = Array<AcceptClaimType>;
@@ -3203,7 +3202,7 @@ export type DisputeState =
   | "UNDER_PAYPAL_REVIEW"
   | "APPEALABLE"
   | "RESOLVED";
-export const DisputeState = /*@__PURE__*/ S.String;
+export const DisputeState = S.String;
 
 /** The dispute summary information. */
 export interface DisputeInfo {
@@ -3266,7 +3265,7 @@ export const DisputeSearch = /*@__PURE__*/ S.suspend(() =>
 
 /** The operation. */
 export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
-export const PatchOp = /*@__PURE__*/ S.String;
+export const PatchOp = S.String;
 
 /** The JSON patch object to apply partial updates to resources. */
 export interface Patch {

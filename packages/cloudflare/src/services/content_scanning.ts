@@ -48,7 +48,7 @@ export class Forbidden
   ) {}
 
 export type CreateRequestValue = "enabled" | "disabled";
-export const CreateRequestValue = /*@__PURE__*/ S.String;
+export const CreateRequestValue = S.String;
 
 export interface CreateContentScanningRequest {
   /** Defines an identifier. */
@@ -364,7 +364,7 @@ export const ListPayloadsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPayloadsResponse>;
 
 export type UpdateRequestValue = "enabled" | "disabled";
-export const UpdateRequestValue = /*@__PURE__*/ S.String;
+export const UpdateRequestValue = S.String;
 
 export interface UpdateRequest {
   /** Defines an identifier. */

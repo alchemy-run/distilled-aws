@@ -218,7 +218,7 @@ export type MessageContentType =
   | "PlainText"
   | "SSML"
   | (string & {});
-export const MessageContentType = /*@__PURE__*/ S.String;
+export const MessageContentType = S.String;
 
 export type AttachmentTitle = string;
 export type AttachmentUrl = string;
@@ -277,7 +277,7 @@ export type SentimentType =
   | "NEUTRAL"
   | "POSITIVE"
   | (string & {});
-export const SentimentType = /*@__PURE__*/ S.String;
+export const SentimentType = S.String;
 
 export interface SentimentScore {
   positive?: number;
@@ -320,7 +320,7 @@ export const Value = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Value" }) as any as S.Schema<Value>;
 export type Shape = "Scalar" | "List" | "Composite" | (string & {});
-export const Shape = /*@__PURE__*/ S.String;
+export const Shape = S.String;
 
 export type Values = Slot[];
 export const Values = /*@__PURE__*/ S.Array(
@@ -359,10 +359,10 @@ export type IntentState =
   | "Waiting"
   | "FulfillmentInProgress"
   | (string & {});
-export const IntentState = /*@__PURE__*/ S.String;
+export const IntentState = S.String;
 
 export type ConfirmationState = "Confirmed" | "Denied" | "None" | (string & {});
-export const ConfirmationState = /*@__PURE__*/ S.String;
+export const ConfirmationState = S.String;
 
 export interface Intent {
   name: string;
@@ -379,7 +379,7 @@ export const Intent = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Intent" }) as any as S.Schema<Intent>;
 export type InterpretationSource = "Bedrock" | "Lex" | (string & {});
-export const InterpretationSource = /*@__PURE__*/ S.String;
+export const InterpretationSource = S.String;
 
 export interface Interpretation {
   nluConfidence?: ConfidenceScore;
@@ -405,14 +405,14 @@ export type DialogActionType =
   | "ElicitSlot"
   | "None"
   | (string & {});
-export const DialogActionType = /*@__PURE__*/ S.String;
+export const DialogActionType = S.String;
 
 export type StyleType =
   | "Default"
   | "SpellByLetter"
   | "SpellByWord"
   | (string & {});
-export const StyleType = /*@__PURE__*/ S.String;
+export const StyleType = S.String;
 
 export interface ElicitSubSlot {
   name: string;
@@ -782,7 +782,7 @@ export const RecognizeUtteranceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecognizeUtteranceResponse",
 }) as any as S.Schema<RecognizeUtteranceResponse>;
 export type ConversationMode = "AUDIO" | "TEXT" | (string & {});
-export const ConversationMode = /*@__PURE__*/ S.String;
+export const ConversationMode = S.String;
 
 export type EventId = string;
 export type EpochMillis = number;
@@ -981,7 +981,7 @@ export type PlaybackInterruptionReason =
   | "TEXT_DETECTED"
   | "VOICE_START_DETECTED"
   | (string & {});
-export const PlaybackInterruptionReason = /*@__PURE__*/ S.String;
+export const PlaybackInterruptionReason = S.String;
 
 export interface PlaybackInterruptionEvent {
   eventReason?: PlaybackInterruptionReason;
@@ -1007,7 +1007,7 @@ export const TranscriptEvent = /*@__PURE__*/ S.suspend(() =>
   identifier: "TranscriptEvent",
 }) as any as S.Schema<TranscriptEvent>;
 export type InputMode = "Text" | "Speech" | "DTMF" | (string & {});
-export const InputMode = /*@__PURE__*/ S.String;
+export const InputMode = S.String;
 
 export interface IntentResultEvent {
   inputMode?: InputMode;

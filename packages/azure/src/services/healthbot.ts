@@ -56,7 +56,7 @@ export const HealthBotPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the Azure Health Bot SKU */
 export type SkuName = "F0" | "C0" | "PES" | "C1";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The resource model definition representing SKU */
 export interface Sku {
@@ -75,7 +75,7 @@ export type ResourceIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 /** The details of the user assigned managed identity used by the Video Analyzer resource. */
 export interface UserAssignedIdentityInput {}
@@ -154,7 +154,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -162,7 +162,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {

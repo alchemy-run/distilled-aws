@@ -172,7 +172,7 @@ export const CreateAssertionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAssertionRequest>;
 export type Uuid = string;
 export type AssertionSource = "AI_GENERATED" | "USER" | (string & {});
-export const AssertionSource = /*@__PURE__*/ S.String;
+export const AssertionSource = S.String;
 
 export interface Assertion {
   serviceArn: string;
@@ -317,7 +317,7 @@ export type MultiAzDisasterRecoveryApproach =
   | "PILOT_LIGHT"
   | "BACKUP_AND_RESTORE"
   | (string & {});
-export const MultiAzDisasterRecoveryApproach = /*@__PURE__*/ S.String;
+export const MultiAzDisasterRecoveryApproach = S.String;
 
 export interface MultiAzTargets {
   rtoInMinutes?: number;
@@ -338,7 +338,7 @@ export type MultiRegionDisasterRecoveryApproach =
   | "PILOT_LIGHT"
   | "BACKUP_AND_RESTORE"
   | (string & {});
-export const MultiRegionDisasterRecoveryApproach = /*@__PURE__*/ S.String;
+export const MultiRegionDisasterRecoveryApproach = S.String;
 
 export interface MultiRegionTargets {
   rtoInMinutes?: number;
@@ -442,7 +442,7 @@ export const CreatePolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreatePolicyResponse",
 }) as any as S.Schema<CreatePolicyResponse>;
 export type ReportType = "FAILURE_MODE" | "TESTING" | (string & {});
-export const ReportType = /*@__PURE__*/ S.String;
+export const ReportType = S.String;
 
 export interface CreateReportRequest {
   serviceArn: string;
@@ -472,7 +472,7 @@ export type ReportGenerationStatus =
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const ReportGenerationStatus = /*@__PURE__*/ S.String;
+export const ReportGenerationStatus = S.String;
 
 export type TestRunId = string;
 export type ServiceOwnedArn = string;
@@ -487,7 +487,7 @@ export type ReportGenerationErrorCode =
   | "CONFIGURATION_ERROR"
   | "INTERNAL_ERROR"
   | (string & {});
-export const ReportGenerationErrorCode = /*@__PURE__*/ S.String;
+export const ReportGenerationErrorCode = S.String;
 
 export interface FailedReportOutput {
   errorCode: ReportGenerationErrorCode;
@@ -588,7 +588,7 @@ export const PermissionModel = /*@__PURE__*/ S.suspend(() =>
   identifier: "PermissionModel",
 }) as any as S.Schema<PermissionModel>;
 export type DependencyDiscoveryInput = "ENABLED" | "DISABLED" | (string & {});
-export const DependencyDiscoveryInput = /*@__PURE__*/ S.String;
+export const DependencyDiscoveryInput = S.String;
 
 export type S3BucketPath = string;
 export type AwsAccountId = string;
@@ -661,7 +661,7 @@ export type DependencyDiscoveryStatus =
   | "INITIALIZING"
   | "DISABLED"
   | (string & {});
-export const DependencyDiscoveryStatus = /*@__PURE__*/ S.String;
+export const DependencyDiscoveryStatus = S.String;
 
 export interface DependencyDiscoveryConfig {
   status: DependencyDiscoveryStatus;
@@ -680,7 +680,7 @@ export const DependencyDiscoveryConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "DependencyDiscoveryConfig",
 }) as any as S.Schema<DependencyDiscoveryConfig>;
 export type PolicyValueSource = "SELF" | "CROSS_ACCOUNT" | (string & {});
-export const PolicyValueSource = /*@__PURE__*/ S.String;
+export const PolicyValueSource = S.String;
 
 export interface SloSource {
   value?: number;
@@ -748,7 +748,7 @@ export type AchievabilityStatus =
   | "ACHIEVABLE"
   | "NOT_ACHIEVABLE"
   | (string & {});
-export const AchievabilityStatus = /*@__PURE__*/ S.String;
+export const AchievabilityStatus = S.String;
 
 export interface Achievability {
   availabilitySlo?: AchievabilityStatus;
@@ -765,7 +765,7 @@ export const Achievability = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Achievability" }) as any as S.Schema<Achievability>;
 export type CostCurrency = "USD" | (string & {});
-export const CostCurrency = /*@__PURE__*/ S.String;
+export const CostCurrency = S.String;
 
 export interface AssessmentCost {
   amount?: number;
@@ -784,7 +784,7 @@ export type ResourceDiscoveryRunStatus =
   | "COMPLETED_WITH_FAILURES"
   | "NOT_STARTED"
   | (string & {});
-export const ResourceDiscoveryRunStatus = /*@__PURE__*/ S.String;
+export const ResourceDiscoveryRunStatus = S.String;
 
 export type ResourceDiscoveryErrorCode =
   | "INVALID_PERMISSIONS"
@@ -795,7 +795,7 @@ export type ResourceDiscoveryErrorCode =
   | "UNSUPPORTED_CLUSTER"
   | "INTERNAL_ERROR"
   | (string & {});
-export const ResourceDiscoveryErrorCode = /*@__PURE__*/ S.String;
+export const ResourceDiscoveryErrorCode = S.String;
 
 export interface ResourceDiscoveryStatus {
   status?: ResourceDiscoveryRunStatus;
@@ -820,7 +820,7 @@ export type AssessmentStatus =
   | "FAILED"
   | "SUCCESS"
   | (string & {});
-export const AssessmentStatus = /*@__PURE__*/ S.String;
+export const AssessmentStatus = S.String;
 
 export type OrganizationId = string;
 export type OuId = string;
@@ -893,7 +893,7 @@ export type ServiceFunctionCriticality =
   | "PRIMARY"
   | "SUPPLEMENTAL"
   | (string & {});
-export const ServiceFunctionCriticality = /*@__PURE__*/ S.String;
+export const ServiceFunctionCriticality = S.String;
 
 export interface CreateServiceFunctionRequest {
   name: string;
@@ -924,7 +924,7 @@ export const CreateServiceFunctionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateServiceFunctionRequest>;
 export type EntityId = string;
 export type ServiceFunctionSource = "AI_GENERATED" | "USER" | (string & {});
-export const ServiceFunctionSource = /*@__PURE__*/ S.String;
+export const ServiceFunctionSource = S.String;
 
 export interface ServiceFunction {
   serviceArn: string;
@@ -1088,7 +1088,7 @@ export type StopConditionSource =
   | "aws:cloudwatch:alarm"
   | "none"
   | (string & {});
-export const StopConditionSource = /*@__PURE__*/ S.String;
+export const StopConditionSource = S.String;
 
 export interface StopCondition {
   source: StopConditionSource;
@@ -1580,13 +1580,13 @@ export type FailureCategory =
   | "MISCONFIGURATION_AND_BUGS"
   | "SINGLE_POINT_OF_FAILURE"
   | (string & {});
-export const FailureCategory = /*@__PURE__*/ S.String;
+export const FailureCategory = S.String;
 
 export type FindingStatus = "OPEN" | "RESOLVED" | "IRRELEVANT" | (string & {});
-export const FindingStatus = /*@__PURE__*/ S.String;
+export const FindingStatus = S.String;
 
 export type FindingSeverity = "LOW" | "MEDIUM" | "HIGH" | (string & {});
-export const FindingSeverity = /*@__PURE__*/ S.String;
+export const FindingSeverity = S.String;
 
 export type FunctionsList = string[];
 export const FunctionsList = /*@__PURE__*/ S.Array(S.String);
@@ -1596,7 +1596,7 @@ export type PolicyComponent =
   | "MULTI_REGION_DISASTER_RECOVERY"
   | "DATA_RECOVERY"
   | (string & {});
-export const PolicyComponent = /*@__PURE__*/ S.String;
+export const PolicyComponent = S.String;
 
 export type SuggestedChangesList = string[];
 export const SuggestedChangesList = /*@__PURE__*/ S.Array(S.String);
@@ -1813,7 +1813,7 @@ export type TestRunStatus =
   | "STOPPED"
   | "ERROR"
   | (string & {});
-export const TestRunStatus = /*@__PURE__*/ S.String;
+export const TestRunStatus = S.String;
 
 export interface ExperimentDetails {
   experimentArn: string;
@@ -1859,7 +1859,7 @@ export type AccountTargeting =
   | "SINGLE_ACCOUNT"
   | "MULTI_ACCOUNT"
   | (string & {});
-export const AccountTargeting = /*@__PURE__*/ S.String;
+export const AccountTargeting = S.String;
 
 export interface TestRun {
   testRunId: string;
@@ -1943,7 +1943,7 @@ export type ParameterType =
   | "STRING_LIST"
   | "INTEGER"
   | (string & {});
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 export interface TestTemplateParameter {
   name: string;
@@ -2143,7 +2143,7 @@ export const ListAssertionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAssertionsResponse",
 }) as any as S.Schema<ListAssertionsResponse>;
 export type QueryGranularity = "HOURLY" | "DAILY" | (string & {});
-export const QueryGranularity = /*@__PURE__*/ S.String;
+export const QueryGranularity = S.String;
 
 export interface ListDependenciesRequest {
   serviceArn?: string;
@@ -2207,7 +2207,7 @@ export const QueryRange = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "QueryRange" }) as any as S.Schema<QueryRange>;
 export type DependencyCriticality = "HARD" | "SOFT" | "UNKNOWN" | (string & {});
-export const DependencyCriticality = /*@__PURE__*/ S.String;
+export const DependencyCriticality = S.String;
 
 export interface DependencySummary {
   dependencyId: string;
@@ -2256,10 +2256,10 @@ export const ListDependenciesResponse = /*@__PURE__*/ S.suspend(() =>
 export type AssessmentStatusList = AssessmentStatus[];
 export const AssessmentStatusList = /*@__PURE__*/ S.Array(AssessmentStatus);
 export type AssessmentSortField = "STARTED_AT" | (string & {});
-export const AssessmentSortField = /*@__PURE__*/ S.String;
+export const AssessmentSortField = S.String;
 
 export type SortOrder = "ASC" | "DESC" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface ListFailureModeAssessmentsRequest {
   serviceArn: string;
@@ -2311,7 +2311,7 @@ export type AssessmentStep =
   | "FAILURE_MODE_FINDINGS_CONSOLIDATION"
   | "FAILURE_MODE_FINDINGS_ENRICHMENT"
   | (string & {});
-export const AssessmentStep = /*@__PURE__*/ S.String;
+export const AssessmentStep = S.String;
 
 export type AssessmentErrorCode =
   | "INVALID_PERMISSIONS"
@@ -2320,7 +2320,7 @@ export type AssessmentErrorCode =
   | "INTERNAL_ERROR"
   | "DESIGN_FILE_ACCESS_DENIED"
   | (string & {});
-export const AssessmentErrorCode = /*@__PURE__*/ S.String;
+export const AssessmentErrorCode = S.String;
 
 export interface AssessmentSummary {
   assessmentId: string;
@@ -2442,7 +2442,7 @@ export type InputSourceType =
   | "DESIGN_FILE"
   | "MONITORING"
   | (string & {});
-export const InputSourceType = /*@__PURE__*/ S.String;
+export const InputSourceType = S.String;
 
 export interface ListInputSourcesRequest {
   serviceArn: string;
@@ -2786,7 +2786,7 @@ export type ServiceEventType =
   | "ASSERTION_UPDATED"
   | "ASSERTION_DELETED"
   | (string & {});
-export const ServiceEventType = /*@__PURE__*/ S.String;
+export const ServiceEventType = S.String;
 
 export type ServiceEventTypeList = ServiceEventType[];
 export const ServiceEventTypeList = /*@__PURE__*/ S.Array(ServiceEventType);
@@ -2826,7 +2826,7 @@ export const ListServiceEventsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListServiceEventsRequest",
 }) as any as S.Schema<ListServiceEventsRequest>;
 export type ActorType = "USER" | "SYSTEM" | (string & {});
-export const ActorType = /*@__PURE__*/ S.String;
+export const ActorType = S.String;
 
 export interface EventActor {
   type: ActorType;
@@ -3696,7 +3696,7 @@ export type TopologyType =
   | "OBSERVABILITY"
   | "PERMISSIONS"
   | (string & {});
-export const TopologyType = /*@__PURE__*/ S.String;
+export const TopologyType = S.String;
 
 export interface EdgePropertySummary {
   topologyType?: TopologyType;
@@ -3761,7 +3761,7 @@ export type SystemEventType =
   | "SYSTEM_POLICY_ASSOCIATED"
   | "SYSTEM_POLICY_DISASSOCIATED"
   | (string & {});
-export const SystemEventType = /*@__PURE__*/ S.String;
+export const SystemEventType = S.String;
 
 export type SystemEventTypeList = SystemEventType[];
 export const SystemEventTypeList = /*@__PURE__*/ S.Array(SystemEventType);
@@ -4316,7 +4316,7 @@ export type TestRunSourceType =
   | "SUCCESS_CRITERIA"
   | "OBSERVABILITY"
   | (string & {});
-export const TestRunSourceType = /*@__PURE__*/ S.String;
+export const TestRunSourceType = S.String;
 
 export interface ListTestRunSourcesRequest {
   testRunId: string;
@@ -4346,7 +4346,7 @@ export const ListTestRunSourcesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTestRunSourcesRequest",
 }) as any as S.Schema<ListTestRunSourcesRequest>;
 export type TestSourceOutcome = "PASSED" | "FAILED" | "ERROR" | (string & {});
-export const TestSourceOutcome = /*@__PURE__*/ S.String;
+export const TestSourceOutcome = S.String;
 
 export interface TestRunSuccessCriteriaAlarmSummary {
   alarmArn: string;
@@ -4468,7 +4468,7 @@ export type TestSourceType =
   | "SUCCESS_CRITERIA"
   | "OBSERVABILITY"
   | (string & {});
-export const TestSourceType = /*@__PURE__*/ S.String;
+export const TestSourceType = S.String;
 
 export interface ListTestSourcesRequest {
   testId: string;
@@ -5169,7 +5169,7 @@ export type ValidationExceptionReason =
   | "MISSING_REQUIRED_FIELD"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

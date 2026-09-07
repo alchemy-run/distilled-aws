@@ -40,7 +40,7 @@ export class NotFound
   ) {}
 
 export type GetEventRequestFormat = "csv" | "json";
-export const GetEventRequestFormat = /*@__PURE__*/ S.String;
+export const GetEventRequestFormat = S.String;
 
 export interface GetEventRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -81,7 +81,7 @@ export const GetEventResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEventResponse>;
 
 export type GetEventsValueRequestFormat = "csv" | "json";
-export const GetEventsValueRequestFormat = /*@__PURE__*/ S.String;
+export const GetEventsValueRequestFormat = S.String;
 
 export interface GetEventsValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -111,14 +111,14 @@ export const GetEventsValueResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEventsValueResponse>;
 
 export type ListEventsRequestFormat = "csv" | "json";
-export const ListEventsRequestFormat = /*@__PURE__*/ S.String;
+export const ListEventsRequestFormat = S.String;
 
 export type PropertyGroupOperatorEnum = "AND" | "OR";
-export const PropertyGroupOperatorEnum = /*@__PURE__*/ S.String;
+export const PropertyGroupOperatorEnum = S.String;
 
 export type PropertyItemValueCase3Item = string | number;
 export const PropertyItemValueCase3Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemValueCase3Item>;
+  S.Unknown as any as S.Schema<PropertyItemValueCase3Item>;
 
 export type PropertyItemValueCase3List = Array<PropertyItemValueCase3Item>;
 export const PropertyItemValueCase3List = /*@__PURE__*/ S.Array(
@@ -132,7 +132,7 @@ export type PropertyItemValue =
   | boolean
   | PropertyItemValueCase3List;
 export const PropertyItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemValue>;
+  S.Unknown as any as S.Schema<PropertyItemValue>;
 
 /** * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains * `starts_with` - starts_with * `not_starts_with` - not_starts_with * `ends_with` - ends_with * `not_ends_with` - not_ends_with * `regex` - regex * `not_regex` - not_regex * `gt` - gt * `lt` - lt * `gte` - gte * `lte` - lte * `is_set` - is_set * `is_not_set` - is_not_set * `is_date_exact` - is_date_exact * `is_date_after` - is_date_after * `is_date_before` - is_date_before * `in` - in * `not_in` - not_in */
 export type PropertyItemOperatorEnum =
@@ -157,14 +157,14 @@ export type PropertyItemOperatorEnum =
   | "is_date_before"
   | "in"
   | "not_in";
-export const PropertyItemOperatorEnum = /*@__PURE__*/ S.String;
+export const PropertyItemOperatorEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type PropertyItemOperator = PropertyItemOperatorEnum | BlankEnum;
 export const PropertyItemOperator =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemOperator>;
+  S.Unknown as any as S.Schema<PropertyItemOperator>;
 
 /** * `event` - event * `event_metadata` - event_metadata * `feature` - feature * `person` - person * `person_metadata` - person_metadata * `cohort` - cohort * `element` - element * `static-cohort` - static-cohort * `dynamic-cohort` - dynamic-cohort * `precalculated-cohort` - precalculated-cohort * `group` - group * `recording` - recording * `log_entry` - log_entry * `behavioral` - behavioral * `session` - session * `hogql` - hogql * `data_warehouse` - data_warehouse * `data_warehouse_person_property` - data_warehouse_person_property * `error_tracking_issue` - error_tracking_issue * `log` - log * `log_attribute` - log_attribute * `log_resource_attribute` - log_resource_attribute * `metric_attribute` - metric_attribute * `span` - span * `span_attribute` - span_attribute * `span_resource_attribute` - span_resource_attribute * `revenue_analytics` - revenue_analytics * `account_custom_property` - account_custom_property * `flag` - flag * `workflow_variable` - workflow_variable */
 export type PropertyFilterTypeEnum =
@@ -198,11 +198,10 @@ export type PropertyFilterTypeEnum =
   | "account_custom_property"
   | "flag"
   | "workflow_variable";
-export const PropertyFilterTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyFilterTypeEnum = S.String;
 
 export type PropertyItemType = PropertyFilterTypeEnum | BlankEnum;
-export const PropertyItemType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemType>;
+export const PropertyItemType = S.Unknown as any as S.Schema<PropertyItemType>;
 
 export interface PropertyItem {
   /** Key of the property you're filtering on. For example `email` or `$current_url` */

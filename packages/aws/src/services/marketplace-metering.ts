@@ -283,7 +283,7 @@ export type UsageRecordResultStatus =
   | "CustomerNotSubscribed"
   | "DuplicateRecord"
   | (string & {});
-export const UsageRecordResultStatus = /*@__PURE__*/ S.String;
+export const UsageRecordResultStatus = S.String;
 
 export interface UsageRecordResult {
   UsageRecord?: UsageRecord;

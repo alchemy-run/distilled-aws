@@ -51,7 +51,7 @@ export class UnprocessableEntity
 
 /** The type of embed for a lesson */
 export type EmbedTypes = "youtube" | "loom";
-export const EmbedTypes = /*@__PURE__*/ S.String;
+export const EmbedTypes = S.String;
 
 /** The available types for a lesson */
 export type LessonTypes =
@@ -61,7 +61,7 @@ export type LessonTypes =
   | "multi"
   | "quiz"
   | "knowledge_check";
-export const LessonTypes = /*@__PURE__*/ S.String;
+export const LessonTypes = S.String;
 
 /** The thumbnail image for the lesson in PNG, JPEG, or GIF format. */
 export interface CreateCourseLessonRequestThumbnail {
@@ -169,7 +169,7 @@ export type CoursesAssessmentQuestionTypes =
   | "true_false"
   | "multiple_choice"
   | "multiple_select";
-export const CoursesAssessmentQuestionTypes = /*@__PURE__*/ S.String;
+export const CoursesAssessmentQuestionTypes = S.String;
 
 /** An assessment question in a course quiz or knowledge check */
 export interface CourseLessonAssessmentQuestionsItem {
@@ -244,7 +244,7 @@ export const CourseLessonThumbnail = /*@__PURE__*/ S.suspend(() =>
 
 /** Mux asset statuses */
 export type MuxAssetStatuses = "uploading" | "created" | "ready";
-export const MuxAssetStatuses = /*@__PURE__*/ S.String;
+export const MuxAssetStatuses = S.String;
 
 /** The Mux video asset for video-type lessons, used for streaming playback. Null if this lesson has no hosted video. */
 export interface CourseLessonVideoAsset {
@@ -297,7 +297,7 @@ export const CourseLessonVideoAsset = /*@__PURE__*/ S.suspend(() =>
 
 /** The available visibilities for a lesson. Determines how / whether a lesson is visible to users. */
 export type LessonVisibilities = "visible" | "hidden";
-export const LessonVisibilities = /*@__PURE__*/ S.String;
+export const LessonVisibilities = S.String;
 
 /** An individual learning unit within a chapter, which can contain text, video, PDF, or assessment content. */
 export interface CourseLesson {

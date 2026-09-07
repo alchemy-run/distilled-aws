@@ -226,7 +226,7 @@ export type GPUType =
   | "GPU_TYPE_H100"
   | "GPU_TYPE_L40S"
   | "GPU_TYPE_H200";
-export const GPUType = /*@__PURE__*/ S.String;
+export const GPUType = S.String;
 
 export interface GPUConfig {
   type?: GPUType | (string & {});
@@ -248,7 +248,7 @@ export type RegistryAuthType =
   | "REGISTRY_AUTH_TYPE_GCP"
   | "REGISTRY_AUTH_TYPE_PUBLIC"
   | "REGISTRY_AUTH_TYPE_STATIC_CREDS";
-export const RegistryAuthType = /*@__PURE__*/ S.String;
+export const RegistryAuthType = S.String;
 
 export interface ImageRegistryConfig {
   registryAuthType?: RegistryAuthType | (string & {});
@@ -270,7 +270,7 @@ export type DataFormat =
   | "DATA_FORMAT_ASGI"
   | "DATA_FORMAT_GENERATOR_DONE"
   | "DATA_FORMAT_CBOR";
-export const DataFormat = /*@__PURE__*/ S.String;
+export const DataFormat = S.String;
 
 export interface FunctionInput {
   /** serialized (args, kwargs). */
@@ -328,7 +328,7 @@ export const VolumeMountList = /*@__PURE__*/ S.Array(
 
 /** CPU architecture an image is built for and must run on. */
 export type Arch = "ARCH_UNSPECIFIED" | "ARCH_X86_64" | "ARCH_AARCH64";
-export const Arch = /*@__PURE__*/ S.String;
+export const Arch = S.String;
 
 export interface Image {
   baseImages?: BaseImageList;
@@ -380,7 +380,7 @@ export type DeploymentNamespace =
   | "DEPLOYMENT_NAMESPACE_UNSPECIFIED"
   | "DEPLOYMENT_NAMESPACE_WORKSPACE"
   | "DEPLOYMENT_NAMESPACE_GLOBAL";
-export const DeploymentNamespace = /*@__PURE__*/ S.String;
+export const DeploymentNamespace = S.String;
 
 export interface ImageGetOrCreateRequest {
   image?: Image;
@@ -429,7 +429,7 @@ export type GenericResultGenericStatus =
   | "GENERIC_STATUS_INTERNAL_FAILURE"
   | "GENERIC_STATUS_IDLE_TIMEOUT"
   | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
-export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
+export const GenericResultGenericStatus = S.String;
 
 /** sub-type for generic types like lists */
 export interface GenericResult {

@@ -295,7 +295,7 @@ export type GroupMigrationTargetTypeEnum =
   | "MIGRATION_TARGET_TYPE_UNSPECIFIED"
   | "MIGRATION_TARGET_TYPE_GCE"
   | "MIGRATION_TARGET_TYPE_DISKS";
-export const GroupMigrationTargetTypeEnum = /*@__PURE__*/ S.String;
+export const GroupMigrationTargetTypeEnum = S.String;
 
 /** Describes message for 'Group' resource. The Group is a collections of several MigratingVms. */
 export interface Group {
@@ -390,15 +390,13 @@ export type ImageImportOsAdaptationParametersLicenseTypeEnum =
   | "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT"
   | "COMPUTE_ENGINE_LICENSE_TYPE_PAYG"
   | "COMPUTE_ENGINE_LICENSE_TYPE_BYOL";
-export const ImageImportOsAdaptationParametersLicenseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ImageImportOsAdaptationParametersLicenseTypeEnum = S.String;
 
 export type ImageImportOsAdaptationParametersBootConversionEnum =
   | "BOOT_CONVERSION_UNSPECIFIED"
   | "NONE"
   | "BIOS_TO_EFI";
-export const ImageImportOsAdaptationParametersBootConversionEnum =
-  /*@__PURE__*/ S.String;
+export const ImageImportOsAdaptationParametersBootConversionEnum = S.String;
 
 /** AdaptationModifier a modifier to be used for configuration of the OS adaptation process. */
 export interface AdaptationModifier {
@@ -507,7 +505,7 @@ export type ShieldedInstanceConfigSecureBootEnum =
   | "SECURE_BOOT_UNSPECIFIED"
   | "TRUE"
   | "FALSE";
-export const ShieldedInstanceConfigSecureBootEnum = /*@__PURE__*/ S.String;
+export const ShieldedInstanceConfigSecureBootEnum = S.String;
 
 /** Shielded instance configuration. */
 export interface ShieldedInstanceConfig {
@@ -545,7 +543,7 @@ export type NetworkInterfaceNetworkTierEnum =
   | "COMPUTE_ENGINE_NETWORK_TIER_UNSPECIFIED"
   | "NETWORK_TIER_STANDARD"
   | "NETWORK_TIER_PREMIUM";
-export const NetworkInterfaceNetworkTierEnum = /*@__PURE__*/ S.String;
+export const NetworkInterfaceNetworkTierEnum = S.String;
 
 /** NetworkInterface represents a NIC of a VM. */
 export interface NetworkInterface {
@@ -697,7 +695,7 @@ export type ImageImportJobStateEnum =
   | "FAILED"
   | "CANCELLING"
   | "CANCELLED";
-export const ImageImportJobStateEnum = /*@__PURE__*/ S.String;
+export const ImageImportJobStateEnum = S.String;
 
 /** Provides a localized error message that is safe to return to the user which can be attached to an RPC error. */
 export interface LocalizedMessage {
@@ -737,7 +735,7 @@ export const LinkList = /*@__PURE__*/ S.Array(
 export type MigrationWarningCodeEnum =
   | "WARNING_CODE_UNSPECIFIED"
   | "ADAPTATION_WARNING";
-export const MigrationWarningCodeEnum = /*@__PURE__*/ S.String;
+export const MigrationWarningCodeEnum = S.String;
 
 /** Represents migration resource warning information that can be used with google.rpc.Status message. MigrationWarning is used to present the user with warning information in migration operations. */
 export interface MigrationWarning {
@@ -877,7 +875,7 @@ export type AzureSourceDetailsStateEnum =
   | "PENDING"
   | "FAILED"
   | "ACTIVE";
-export const AzureSourceDetailsStateEnum = /*@__PURE__*/ S.String;
+export const AzureSourceDetailsStateEnum = S.String;
 
 /** Message describing Azure Credentials using tenant ID, client ID and secret. */
 export interface ClientSecretCredentials {
@@ -959,7 +957,7 @@ export type AwsSourceDetailsStateEnum =
   | "PENDING"
   | "FAILED"
   | "ACTIVE";
-export const AwsSourceDetailsStateEnum = /*@__PURE__*/ S.String;
+export const AwsSourceDetailsStateEnum = S.String;
 
 /** Tag is an AWS tag representation. */
 export interface Tag {
@@ -1140,7 +1138,7 @@ export type UpgradeStatusStateEnum =
   | "RUNNING"
   | "FAILED"
   | "SUCCEEDED";
-export const UpgradeStatusStateEnum = /*@__PURE__*/ S.String;
+export const UpgradeStatusStateEnum = S.String;
 
 /** UpgradeStatus contains information about upgradeAppliance operation. */
 export interface UpgradeStatus {
@@ -1171,7 +1169,7 @@ export type DatacenterConnectorStateEnum =
   | "OFFLINE"
   | "FAILED"
   | "ACTIVE";
-export const DatacenterConnectorStateEnum = /*@__PURE__*/ S.String;
+export const DatacenterConnectorStateEnum = S.String;
 
 /** DatacenterConnector message describes a connector between the Source and Google Cloud, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to Google Cloud and support vm migration data transfer. */
 export interface DatacenterConnector {
@@ -1303,7 +1301,7 @@ export type DiskMigrationJobStateEnum =
   | "CANCELLING"
   | "CANCELLED"
   | "FAILED";
-export const DiskMigrationJobStateEnum = /*@__PURE__*/ S.String;
+export const DiskMigrationJobStateEnum = S.String;
 
 export type ComputeEngineDiskDiskTypeEnum =
   | "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED"
@@ -1312,7 +1310,7 @@ export type ComputeEngineDiskDiskTypeEnum =
   | "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY";
-export const ComputeEngineDiskDiskTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeEngineDiskDiskTypeEnum = S.String;
 
 /** Compute Engine disk target details. */
 export interface ComputeEngineDisk {
@@ -1367,7 +1365,7 @@ export type AwsSourceDiskDetailsDiskTypeEnum =
   | "ST1"
   | "SC1"
   | "STANDARD";
-export const AwsSourceDiskDetailsDiskTypeEnum = /*@__PURE__*/ S.String;
+export const AwsSourceDiskDetailsDiskTypeEnum = S.String;
 
 /** Represents the source AWS Disk details. */
 export interface AwsSourceDiskDetails {
@@ -1458,7 +1456,7 @@ export type AppliedLicenseTypeEnum =
   | "NONE"
   | "PAYG"
   | "BYOL";
-export const AppliedLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const AppliedLicenseTypeEnum = S.String;
 
 /** AppliedLicense holds the license data returned by adaptation module report. */
 export interface AppliedLicense {
@@ -1481,22 +1479,22 @@ export type TargetVMDetailsDiskTypeEnum =
   | "SSD"
   | "HYPERDISK_BALANCED"
   | "HYPERDISK_BALANCED_HIGH_AVAILABILITY";
-export const TargetVMDetailsDiskTypeEnum = /*@__PURE__*/ S.String;
+export const TargetVMDetailsDiskTypeEnum = S.String;
 
 export type TargetVMDetailsBootOptionEnum =
   | "BOOT_OPTION_UNSPECIFIED"
   | "EFI"
   | "BIOS";
-export const TargetVMDetailsBootOptionEnum = /*@__PURE__*/ S.String;
+export const TargetVMDetailsBootOptionEnum = S.String;
 
 export type TargetVMDetailsLicenseTypeEnum = "DEFAULT" | "PAYG" | "BYOL";
-export const TargetVMDetailsLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const TargetVMDetailsLicenseTypeEnum = S.String;
 
 export type SchedulingNodeAffinityOperatorEnum =
   | "OPERATOR_UNSPECIFIED"
   | "IN"
   | "NOT_IN";
-export const SchedulingNodeAffinityOperatorEnum = /*@__PURE__*/ S.String;
+export const SchedulingNodeAffinityOperatorEnum = S.String;
 
 /** Node Affinity: the configuration of desired nodes onto which this Instance could be scheduled. Based on https://cloud.google.com/compute/docs/reference/rest/v1/instances/setScheduling */
 export interface SchedulingNodeAffinity {
@@ -1526,13 +1524,13 @@ export type ComputeSchedulingOnHostMaintenanceEnum =
   | "ON_HOST_MAINTENANCE_UNSPECIFIED"
   | "TERMINATE"
   | "MIGRATE";
-export const ComputeSchedulingOnHostMaintenanceEnum = /*@__PURE__*/ S.String;
+export const ComputeSchedulingOnHostMaintenanceEnum = S.String;
 
 export type ComputeSchedulingRestartTypeEnum =
   | "RESTART_TYPE_UNSPECIFIED"
   | "AUTOMATIC_RESTART"
   | "NO_AUTOMATIC_RESTART";
-export const ComputeSchedulingRestartTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeSchedulingRestartTypeEnum = S.String;
 
 /** Scheduling information for VM on maintenance/restart behaviour and node allocation in sole tenant nodes. Options for instance behavior when the host machine undergoes maintenance that may temporarily impact instance performance. */
 export interface ComputeScheduling {
@@ -1638,26 +1636,25 @@ export type ComputeEngineTargetDetailsDiskTypeEnum =
   | "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY";
-export const ComputeEngineTargetDetailsDiskTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDetailsDiskTypeEnum = S.String;
 
 export type ComputeEngineTargetDetailsBootOptionEnum =
   | "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED"
   | "COMPUTE_ENGINE_BOOT_OPTION_EFI"
   | "COMPUTE_ENGINE_BOOT_OPTION_BIOS";
-export const ComputeEngineTargetDetailsBootOptionEnum = /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDetailsBootOptionEnum = S.String;
 
 export type ComputeEngineTargetDetailsLicenseTypeEnum =
   | "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT"
   | "COMPUTE_ENGINE_LICENSE_TYPE_PAYG"
   | "COMPUTE_ENGINE_LICENSE_TYPE_BYOL";
-export const ComputeEngineTargetDetailsLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDetailsLicenseTypeEnum = S.String;
 
 export type ComputeEngineTargetDetailsBootConversionEnum =
   | "BOOT_CONVERSION_UNSPECIFIED"
   | "NONE"
   | "BIOS_TO_EFI";
-export const ComputeEngineTargetDetailsBootConversionEnum =
-  /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDetailsBootConversionEnum = S.String;
 
 /** ComputeEngineTargetDetails is a collection of details for creating a VM in a target Compute Engine project. */
 export interface ComputeEngineTargetDetails {
@@ -1753,7 +1750,7 @@ export type CloneJobStateEnum =
   | "CANCELLED"
   | "CANCELLING"
   | "ADAPTING_OS";
-export const CloneJobStateEnum = /*@__PURE__*/ S.String;
+export const CloneJobStateEnum = S.String;
 
 /** Details for the VM created VM as part of disks migration. */
 export interface DisksMigrationVmTargetDetails {
@@ -1909,7 +1906,7 @@ export type MigratingVmStateEnum =
   | "ERROR"
   | "EXPIRED"
   | "FINALIZED_EXPIRED";
-export const MigratingVmStateEnum = /*@__PURE__*/ S.String;
+export const MigratingVmStateEnum = S.String;
 
 export type ReplicationCycleStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1917,7 +1914,7 @@ export type ReplicationCycleStateEnum =
   | "PAUSED"
   | "FAILED"
   | "SUCCEEDED";
-export const ReplicationCycleStateEnum = /*@__PURE__*/ S.String;
+export const ReplicationCycleStateEnum = S.String;
 
 /** ReplicatingStep contains specific step details. */
 export interface ReplicatingStep {
@@ -2027,21 +2024,19 @@ export type ComputeEngineTargetDefaultsDiskTypeEnum =
   | "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY";
-export const ComputeEngineTargetDefaultsDiskTypeEnum = /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDefaultsDiskTypeEnum = S.String;
 
 export type ComputeEngineTargetDefaultsLicenseTypeEnum =
   | "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT"
   | "COMPUTE_ENGINE_LICENSE_TYPE_PAYG"
   | "COMPUTE_ENGINE_LICENSE_TYPE_BYOL";
-export const ComputeEngineTargetDefaultsLicenseTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDefaultsLicenseTypeEnum = S.String;
 
 export type ComputeEngineTargetDefaultsBootConversionEnum =
   | "BOOT_CONVERSION_UNSPECIFIED"
   | "NONE"
   | "BIOS_TO_EFI";
-export const ComputeEngineTargetDefaultsBootConversionEnum =
-  /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDefaultsBootConversionEnum = S.String;
 
 /** Details for attachment of the disk to a VM. */
 export interface VmAttachmentDetails {
@@ -2063,7 +2058,7 @@ export type PersistentDiskDefaultsDiskTypeEnum =
   | "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY";
-export const PersistentDiskDefaultsDiskTypeEnum = /*@__PURE__*/ S.String;
+export const PersistentDiskDefaultsDiskTypeEnum = S.String;
 
 /** Details for creation of a Persistent Disk. */
 export interface PersistentDiskDefaults {
@@ -2102,7 +2097,7 @@ export type ComputeEngineTargetDefaultsBootOptionEnum =
   | "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED"
   | "COMPUTE_ENGINE_BOOT_OPTION_EFI"
   | "COMPUTE_ENGINE_BOOT_OPTION_BIOS";
-export const ComputeEngineTargetDefaultsBootOptionEnum = /*@__PURE__*/ S.String;
+export const ComputeEngineTargetDefaultsBootOptionEnum = S.String;
 
 /** ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project. */
 export interface ComputeEngineTargetDefaults {
@@ -2218,7 +2213,7 @@ export type BootDiskDefaultsDiskTypeEnum =
   | "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
   | "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY";
-export const BootDiskDefaultsDiskTypeEnum = /*@__PURE__*/ S.String;
+export const BootDiskDefaultsDiskTypeEnum = S.String;
 
 /** BootDiskDefaults hold information about the boot disk of a VM. */
 export interface BootDiskDefaults {
@@ -2332,7 +2327,7 @@ export type AwsSourceVmDetailsArchitectureEnum =
   | "VM_ARCHITECTURE_UNSPECIFIED"
   | "VM_ARCHITECTURE_X86_FAMILY"
   | "VM_ARCHITECTURE_ARM64";
-export const AwsSourceVmDetailsArchitectureEnum = /*@__PURE__*/ S.String;
+export const AwsSourceVmDetailsArchitectureEnum = S.String;
 
 /** The details of an AWS instance disk. */
 export interface AwsDiskDetails {
@@ -2361,7 +2356,7 @@ export type VmCapabilitiesOsCapabilitiesItemEnum =
   | "OS_CAPABILITY_NVME_STORAGE_ACCESS"
   | "OS_CAPABILITY_GVNIC_NETWORK_INTERFACE"
   | "OS_CAPABILITY_IDPF_NETWORK_INTERFACE";
-export const VmCapabilitiesOsCapabilitiesItemEnum = /*@__PURE__*/ S.String;
+export const VmCapabilitiesOsCapabilitiesItemEnum = S.String;
 
 export type VmCapabilitiesOsCapabilitiesItemEnumList = Array<
   VmCapabilitiesOsCapabilitiesItemEnum | (string & {})
@@ -2388,7 +2383,7 @@ export type AwsSourceVmDetailsFirmwareEnum =
   | "FIRMWARE_UNSPECIFIED"
   | "EFI"
   | "BIOS";
-export const AwsSourceVmDetailsFirmwareEnum = /*@__PURE__*/ S.String;
+export const AwsSourceVmDetailsFirmwareEnum = S.String;
 
 /** Represent the source AWS VM details. */
 export interface AwsSourceVmDetails {
@@ -2437,7 +2432,7 @@ export type CutoverJobStateEnum =
   | "CANCELLING"
   | "ACTIVE"
   | "ADAPTING_OS";
-export const CutoverJobStateEnum = /*@__PURE__*/ S.String;
+export const CutoverJobStateEnum = S.String;
 
 /** ShuttingDownSourceVMStep contains specific step details. */
 export type ShuttingDownSourceVMStep = CancelImageImportJobRequest;
@@ -2538,13 +2533,13 @@ export type AzureSourceVmDetailsFirmwareEnum =
   | "FIRMWARE_UNSPECIFIED"
   | "EFI"
   | "BIOS";
-export const AzureSourceVmDetailsFirmwareEnum = /*@__PURE__*/ S.String;
+export const AzureSourceVmDetailsFirmwareEnum = S.String;
 
 export type AzureSourceVmDetailsArchitectureEnum =
   | "VM_ARCHITECTURE_UNSPECIFIED"
   | "VM_ARCHITECTURE_X86_FAMILY"
   | "VM_ARCHITECTURE_ARM64";
-export const AzureSourceVmDetailsArchitectureEnum = /*@__PURE__*/ S.String;
+export const AzureSourceVmDetailsArchitectureEnum = S.String;
 
 /** The details of an Azure VM disk. */
 export interface AzureDiskDetails {
@@ -2616,7 +2611,7 @@ export type VmwareSourceVmDetailsFirmwareEnum =
   | "FIRMWARE_UNSPECIFIED"
   | "EFI"
   | "BIOS";
-export const VmwareSourceVmDetailsFirmwareEnum = /*@__PURE__*/ S.String;
+export const VmwareSourceVmDetailsFirmwareEnum = S.String;
 
 /** The details of a Vmware VM disk. */
 export interface VmwareDiskDetails {
@@ -2646,7 +2641,7 @@ export type VmwareSourceVmDetailsArchitectureEnum =
   | "VM_ARCHITECTURE_UNSPECIFIED"
   | "VM_ARCHITECTURE_X86_FAMILY"
   | "VM_ARCHITECTURE_ARM64";
-export const VmwareSourceVmDetailsArchitectureEnum = /*@__PURE__*/ S.String;
+export const VmwareSourceVmDetailsArchitectureEnum = S.String;
 
 /** Represent the source Vmware VM details. */
 export interface VmwareSourceVmDetails {
@@ -2877,7 +2872,7 @@ export type UtilizationReportStateEnum =
   | "CREATING"
   | "SUCCEEDED"
   | "FAILED";
-export const UtilizationReportStateEnum = /*@__PURE__*/ S.String;
+export const UtilizationReportStateEnum = S.String;
 
 /** Utilization metrics values for a single VM. */
 export interface VmUtilizationMetrics {
@@ -2942,19 +2937,19 @@ export type VmwareVmDetailsPowerStateEnum =
   | "ON"
   | "OFF"
   | "SUSPENDED";
-export const VmwareVmDetailsPowerStateEnum = /*@__PURE__*/ S.String;
+export const VmwareVmDetailsPowerStateEnum = S.String;
 
 export type VmwareVmDetailsBootOptionEnum =
   | "BOOT_OPTION_UNSPECIFIED"
   | "EFI"
   | "BIOS";
-export const VmwareVmDetailsBootOptionEnum = /*@__PURE__*/ S.String;
+export const VmwareVmDetailsBootOptionEnum = S.String;
 
 export type VmwareVmDetailsArchitectureEnum =
   | "VM_ARCHITECTURE_UNSPECIFIED"
   | "VM_ARCHITECTURE_X86_FAMILY"
   | "VM_ARCHITECTURE_ARM64";
-export const VmwareVmDetailsArchitectureEnum = /*@__PURE__*/ S.String;
+export const VmwareVmDetailsArchitectureEnum = S.String;
 
 /** VmwareVmDetails describes a VM in vCenter. */
 export interface VmwareVmDetails {
@@ -3037,7 +3032,7 @@ export type UtilizationReportTimeFrameEnum =
   | "WEEK"
   | "MONTH"
   | "YEAR";
-export const UtilizationReportTimeFrameEnum = /*@__PURE__*/ S.String;
+export const UtilizationReportTimeFrameEnum = S.String;
 
 /** Utilization report details the utilization (CPU, memory, etc.) of selected source VMs. */
 export interface UtilizationReport {
@@ -3485,13 +3480,13 @@ export type AzureVmDetailsBootOptionEnum =
   | "BOOT_OPTION_UNSPECIFIED"
   | "EFI"
   | "BIOS";
-export const AzureVmDetailsBootOptionEnum = /*@__PURE__*/ S.String;
+export const AzureVmDetailsBootOptionEnum = S.String;
 
 export type AzureVmDetailsArchitectureEnum =
   | "VM_ARCHITECTURE_UNSPECIFIED"
   | "VM_ARCHITECTURE_X86_FAMILY"
   | "VM_ARCHITECTURE_ARM64";
-export const AzureVmDetailsArchitectureEnum = /*@__PURE__*/ S.String;
+export const AzureVmDetailsArchitectureEnum = S.String;
 
 export type AzureVmDetailsPowerStateEnum =
   | "POWER_STATE_UNSPECIFIED"
@@ -3502,7 +3497,7 @@ export type AzureVmDetailsPowerStateEnum =
   | "DEALLOCATING"
   | "DEALLOCATED"
   | "UNKNOWN";
-export const AzureVmDetailsPowerStateEnum = /*@__PURE__*/ S.String;
+export const AzureVmDetailsPowerStateEnum = S.String;
 
 /** AzureVmDetails describes a VM in Azure. */
 export interface AzureVmDetails {
@@ -3576,7 +3571,7 @@ export type AwsVmDetailsBootOptionEnum =
   | "BOOT_OPTION_UNSPECIFIED"
   | "EFI"
   | "BIOS";
-export const AwsVmDetailsBootOptionEnum = /*@__PURE__*/ S.String;
+export const AwsVmDetailsBootOptionEnum = S.String;
 
 export type AwsVmDetailsPowerStateEnum =
   | "POWER_STATE_UNSPECIFIED"
@@ -3584,7 +3579,7 @@ export type AwsVmDetailsPowerStateEnum =
   | "OFF"
   | "SUSPENDED"
   | "PENDING";
-export const AwsVmDetailsPowerStateEnum = /*@__PURE__*/ S.String;
+export const AwsVmDetailsPowerStateEnum = S.String;
 
 /** AwsSecurityGroup describes a security group of an AWS VM. */
 export interface AwsSecurityGroup {
@@ -3611,7 +3606,7 @@ export type AwsVmDetailsVirtualizationTypeEnum =
   | "VM_VIRTUALIZATION_TYPE_UNSPECIFIED"
   | "HVM"
   | "PARAVIRTUAL";
-export const AwsVmDetailsVirtualizationTypeEnum = /*@__PURE__*/ S.String;
+export const AwsVmDetailsVirtualizationTypeEnum = S.String;
 
 export type AwsVmDetailsArchitectureEnum =
   | "VM_ARCHITECTURE_UNSPECIFIED"
@@ -3619,7 +3614,7 @@ export type AwsVmDetailsArchitectureEnum =
   | "X86_64"
   | "ARM64"
   | "X86_64_MAC";
-export const AwsVmDetailsArchitectureEnum = /*@__PURE__*/ S.String;
+export const AwsVmDetailsArchitectureEnum = S.String;
 
 /** AwsVmDetails describes a VM in AWS. */
 export interface AwsVmDetails {
@@ -3731,8 +3726,7 @@ export type FetchStorageInventoryProjectsLocationsSourcesTypeEnum =
   | "STORAGE_TYPE_UNSPECIFIED"
   | "DISKS"
   | "SNAPSHOTS";
-export const FetchStorageInventoryProjectsLocationsSourcesTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FetchStorageInventoryProjectsLocationsSourcesTypeEnum = S.String;
 
 export interface FetchStorageInventoryProjectsLocationsSourcesRequest {
   /** Required. The type of the storage inventory to fetch. */
@@ -4006,8 +4000,7 @@ export type GetProjectsLocationsSourcesMigratingVmsViewEnum =
   | "MIGRATING_VM_VIEW_UNSPECIFIED"
   | "MIGRATING_VM_VIEW_BASIC"
   | "MIGRATING_VM_VIEW_FULL";
-export const GetProjectsLocationsSourcesMigratingVmsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsSourcesMigratingVmsViewEnum = S.String;
 
 export interface GetProjectsLocationsSourcesMigratingVmsRequest {
   /** Required. The name of the MigratingVm. */
@@ -4095,8 +4088,7 @@ export type GetProjectsLocationsSourcesUtilizationReportsViewEnum =
   | "UTILIZATION_REPORT_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsSourcesUtilizationReportsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsSourcesUtilizationReportsViewEnum = S.String;
 
 export interface GetProjectsLocationsSourcesUtilizationReportsRequest {
   /** Required. The Utilization Report name. */
@@ -4574,8 +4566,7 @@ export type ListProjectsLocationsSourcesMigratingVmsViewEnum =
   | "MIGRATING_VM_VIEW_UNSPECIFIED"
   | "MIGRATING_VM_VIEW_BASIC"
   | "MIGRATING_VM_VIEW_FULL";
-export const ListProjectsLocationsSourcesMigratingVmsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsSourcesMigratingVmsViewEnum = S.String;
 
 export interface ListProjectsLocationsSourcesMigratingVmsRequest {
   /** Required. The parent, which owns this collection of MigratingVms. */
@@ -4797,8 +4788,7 @@ export type ListProjectsLocationsSourcesUtilizationReportsViewEnum =
   | "UTILIZATION_REPORT_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsSourcesUtilizationReportsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsSourcesUtilizationReportsViewEnum = S.String;
 
 export interface ListProjectsLocationsSourcesUtilizationReportsRequest {
   /** Optional. the order by fields for the result. */

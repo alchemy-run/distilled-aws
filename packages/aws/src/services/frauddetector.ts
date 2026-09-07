@@ -235,14 +235,14 @@ export type DataType =
   | "BOOLEAN"
   | "DATETIME"
   | (string & {});
-export const DataType = /*@__PURE__*/ S.String;
+export const DataType = S.String;
 
 export type DataSource =
   | "EVENT"
   | "MODEL_SCORE"
   | "EXTERNAL_MODEL_SCORE"
   | (string & {});
-export const DataSource = /*@__PURE__*/ S.String;
+export const DataSource = S.String;
 
 export type FraudDetectorArn = string;
 export interface Variable {
@@ -448,7 +448,7 @@ export type ModelTypeEnum =
   | "TRANSACTION_FRAUD_INSIGHTS"
   | "ACCOUNT_TAKEOVER_INSIGHTS"
   | (string & {});
-export const ModelTypeEnum = /*@__PURE__*/ S.String;
+export const ModelTypeEnum = S.String;
 
 export type FloatVersionString = string;
 export interface ModelVersion {
@@ -468,7 +468,7 @@ export const ModelVersion = /*@__PURE__*/ S.suspend(() =>
 export type ListOfModelVersions = ModelVersion[];
 export const ListOfModelVersions = /*@__PURE__*/ S.Array(ModelVersion);
 export type RuleExecutionMode = "ALL_MATCHED" | "FIRST_MATCHED" | (string & {});
-export const RuleExecutionMode = /*@__PURE__*/ S.String;
+export const RuleExecutionMode = S.String;
 
 export interface CreateDetectorVersionRequest {
   detectorId: string;
@@ -507,7 +507,7 @@ export type DetectorVersionStatus =
   | "ACTIVE"
   | "INACTIVE"
   | (string & {});
-export const DetectorVersionStatus = /*@__PURE__*/ S.String;
+export const DetectorVersionStatus = S.String;
 
 export interface CreateDetectorVersionResult {
   detectorId?: string;
@@ -600,7 +600,7 @@ export type TrainingDataSourceEnum =
   | "EXTERNAL_EVENTS"
   | "INGESTED_EVENTS"
   | (string & {});
-export const TrainingDataSourceEnum = /*@__PURE__*/ S.String;
+export const TrainingDataSourceEnum = S.String;
 
 export type LabelMapper = { [key: string]: string[] | undefined };
 export const LabelMapper = /*@__PURE__*/ S.Record(
@@ -613,7 +613,7 @@ export type UnlabeledEventsTreatment =
   | "LEGIT"
   | "AUTO"
   | (string & {});
-export const UnlabeledEventsTreatment = /*@__PURE__*/ S.String;
+export const UnlabeledEventsTreatment = S.String;
 
 export interface LabelSchema {
   labelMapper?: { [key: string]: string[] | undefined };
@@ -713,7 +713,7 @@ export const CreateModelVersionResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateModelVersionResult>;
 export type RuleExpression = string | redacted.Redacted<string>;
 export type Language = "DETECTORPL" | (string & {});
-export const Language = /*@__PURE__*/ S.String;
+export const Language = S.String;
 
 export type NonEmptyListOfStrings = string[];
 export const NonEmptyListOfStrings = /*@__PURE__*/ S.Array(S.String);
@@ -1679,7 +1679,7 @@ export type AsyncJobStatus =
   | "COMPLETE"
   | "FAILED"
   | (string & {});
-export const AsyncJobStatus = /*@__PURE__*/ S.String;
+export const AsyncJobStatus = S.String;
 
 export interface BatchImport {
   jobId?: string;
@@ -2163,7 +2163,7 @@ export const RuleResult = /*@__PURE__*/ S.suspend(() =>
 export type ListOfRuleResults = RuleResult[];
 export const ListOfRuleResults = /*@__PURE__*/ S.Array(RuleResult);
 export type ModelSource = "SAGEMAKER" | (string & {});
-export const ModelSource = /*@__PURE__*/ S.String;
+export const ModelSource = S.String;
 
 export interface ExternalModelSummary {
   modelEndpoint?: string;
@@ -2457,7 +2457,7 @@ export const GetEventTypesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEventTypesRequest",
 }) as any as S.Schema<GetEventTypesRequest>;
 export type EventIngestion = "ENABLED" | "DISABLED" | (string & {});
-export const EventIngestion = /*@__PURE__*/ S.String;
+export const EventIngestion = S.String;
 
 export interface IngestedEventStatistics {
   numberOfEvents?: number;
@@ -2556,7 +2556,7 @@ export type ModelInputDataFormat =
   | "TEXT_CSV"
   | "APPLICATION_JSON"
   | (string & {});
-export const ModelInputDataFormat = /*@__PURE__*/ S.String;
+export const ModelInputDataFormat = S.String;
 
 export type UseEventVariables = boolean;
 export type ModelInputTemplate = string;
@@ -2582,7 +2582,7 @@ export type ModelOutputDataFormat =
   | "TEXT_CSV"
   | "APPLICATION_JSONLINES"
   | (string & {});
-export const ModelOutputDataFormat = /*@__PURE__*/ S.String;
+export const ModelOutputDataFormat = S.String;
 
 export type JsonKeyToVariableMap = { [key: string]: string | undefined };
 export const JsonKeyToVariableMap = /*@__PURE__*/ S.Record(
@@ -2609,7 +2609,7 @@ export const ModelOutputConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ModelOutputConfiguration",
 }) as any as S.Schema<ModelOutputConfiguration>;
 export type ModelEndpointStatus = "ASSOCIATED" | "DISSOCIATED" | (string & {});
-export const ModelEndpointStatus = /*@__PURE__*/ S.String;
+export const ModelEndpointStatus = S.String;
 
 export interface ExternalModel {
   modelEndpoint?: string;
@@ -3668,7 +3668,7 @@ export const UpdateEventLabelResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateEventLabelResult",
 }) as any as S.Schema<UpdateEventLabelResult>;
 export type ListUpdateMode = "REPLACE" | "APPEND" | "REMOVE" | (string & {});
-export const ListUpdateMode = /*@__PURE__*/ S.String;
+export const ListUpdateMode = S.String;
 
 export interface UpdateListRequest {
   name: string;
@@ -3785,7 +3785,7 @@ export type ModelVersionStatus =
   | "INACTIVE"
   | "TRAINING_CANCELLED"
   | (string & {});
-export const ModelVersionStatus = /*@__PURE__*/ S.String;
+export const ModelVersionStatus = S.String;
 
 export interface UpdateModelVersionStatusRequest {
   modelId: string;

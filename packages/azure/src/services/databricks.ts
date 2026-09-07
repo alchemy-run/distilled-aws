@@ -35,7 +35,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export type UserAssignedIdentityInput = AccessConnectorPropertiesInput;
@@ -126,7 +126,7 @@ export type ProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** List of workspaces referring this Access Connector. */
 export type AccessConnectorPropertiesReferedByList = Array<string>;
@@ -244,7 +244,7 @@ export type PrivateLinkServiceConnectionStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const PrivateLinkServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkServiceConnectionStatus = S.String;
 
 /** The current state of a private endpoint connection. */
 export interface PrivateLinkServiceConnectionState {
@@ -346,8 +346,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Updating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** The properties of a private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -812,7 +811,7 @@ export const VirtualNetworkPeeringPropertiesFormatRemoteVirtualNetwork =
 
 /** The status of the virtual network peering. */
 export type PeeringState = "Initiated" | "Connected" | "Disconnected";
-export const PeeringState = /*@__PURE__*/ S.String;
+export const PeeringState = S.String;
 
 /** The current provisioning state. */
 export type PeeringProvisioningState =
@@ -820,7 +819,7 @@ export type PeeringProvisioningState =
   | "Updating"
   | "Deleting"
   | "Failed";
-export const PeeringProvisioningState = /*@__PURE__*/ S.String;
+export const PeeringProvisioningState = S.String;
 
 /** Properties of the virtual network peering. */
 export interface VirtualNetworkPeeringPropertiesFormat {
@@ -921,11 +920,11 @@ export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid' */
 export type ComputeMode = "Serverless" | "Hybrid";
-export const ComputeMode = /*@__PURE__*/ S.String;
+export const ComputeMode = S.String;
 
 /** The workspace's custom parameters. */
 export type CustomParameterType = "Bool" | "Object" | "String";
-export const CustomParameterType = /*@__PURE__*/ S.String;
+export const CustomParameterType = S.String;
 
 /** The Value. */
 export interface WorkspaceCustomStringParameter {
@@ -967,7 +966,7 @@ export const WorkspaceCustomBooleanParameter =
 
 /** The encryption keySource (provider). Possible values (case-insensitive): Default, Microsoft.Keyvault */
 export type EncryptionKeySource = "Default" | "Microsoft.Keyvault";
-export const EncryptionKeySource = /*@__PURE__*/ S.String;
+export const EncryptionKeySource = S.String;
 
 /** The object that contains details of encryption used on the workspace. */
 export interface Encryption {
@@ -1142,7 +1141,7 @@ export const ManagedIdentityConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** The encryption keySource (provider). Possible values (case-insensitive): Microsoft.Keyvault */
 export type EncryptionKeySource2 = "Microsoft.Keyvault";
-export const EncryptionKeySource2 = /*@__PURE__*/ S.String;
+export const EncryptionKeySource2 = S.String;
 
 /** Key Vault input properties for encryption. */
 export interface EncryptionV2KeyVaultProperties {
@@ -1246,7 +1245,7 @@ export const WorkspacePropertiesEncryption = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkspacePropertiesEncryption>;
 
 export type AutomaticClusterUpdateValue = "Enabled" | "Disabled";
-export const AutomaticClusterUpdateValue = /*@__PURE__*/ S.String;
+export const AutomaticClusterUpdateValue = S.String;
 
 /** Status of automated cluster updates feature. */
 export interface AutomaticClusterUpdateDefinition {
@@ -1269,7 +1268,7 @@ export const ComplianceSecurityProfileDefinitionComplianceStandardsList =
   ) as any as S.Schema<ComplianceSecurityProfileDefinitionComplianceStandardsList>;
 
 export type ComplianceSecurityProfileValue = "Enabled" | "Disabled";
-export const ComplianceSecurityProfileValue = /*@__PURE__*/ S.String;
+export const ComplianceSecurityProfileValue = S.String;
 
 /** Status of Compliance Security Profile feature. */
 export interface ComplianceSecurityProfileDefinition {
@@ -1289,7 +1288,7 @@ export const ComplianceSecurityProfileDefinition = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ComplianceSecurityProfileDefinition>;
 
 export type EnhancedSecurityMonitoringValue = "Enabled" | "Disabled";
-export const EnhancedSecurityMonitoringValue = /*@__PURE__*/ S.String;
+export const EnhancedSecurityMonitoringValue = S.String;
 
 /** Status of Enhanced Security Monitoring feature. */
 export interface EnhancedSecurityMonitoringDefinition {
@@ -1360,20 +1359,20 @@ export const WorkspacePropertiesPrivateEndpointConnectionsList =
 
 /** The network access type for accessing workspace. Set value to disabled to access workspace only via private link. Used to configure front-end only private link for Serverless ComputeMode workspace. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only. Not allowed in Serverless ComputeMode workspace. */
 export type RequiredNsgRules =
   | "AllRules"
   | "NoAzureDatabricksRules"
   | "NoAzureServiceRules";
-export const RequiredNsgRules = /*@__PURE__*/ S.String;
+export const RequiredNsgRules = S.String;
 
 /** Defines the initial type of the default catalog. Possible values (case-insensitive): HiveMetastore, UnityCatalog */
 export type DefaultCatalogPropertiesInitialType =
   | "HiveMetastore"
   | "UnityCatalog";
-export const DefaultCatalogPropertiesInitialType = /*@__PURE__*/ S.String;
+export const DefaultCatalogPropertiesInitialType = S.String;
 
 /** These properties lets user specify default catalog properties during workspace creation. Not allowed in Serverless ComputeMode workspace. */
 export interface DefaultCatalogProperties {
@@ -1393,7 +1392,7 @@ export const DefaultCatalogProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type of the Access Connector Resource. */
 export type IdentityType = "SystemAssigned" | "UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Access Connector Resource that is going to be associated with Databricks Workspace. Not allowed in Serverless ComputeMode workspace. */
 export interface WorkspacePropertiesAccessConnector {
@@ -1416,7 +1415,7 @@ export const WorkspacePropertiesAccessConnector = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets or Sets Default Storage Firewall configuration information. Not allowed in Serverless ComputeMode workspace. */
 export type DefaultStorageFirewall = "Disabled" | "Enabled";
-export const DefaultStorageFirewall = /*@__PURE__*/ S.String;
+export const DefaultStorageFirewall = S.String;
 
 /** The workspace properties. */
 export interface WorkspaceProperties {

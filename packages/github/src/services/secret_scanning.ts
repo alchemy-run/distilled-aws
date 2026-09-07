@@ -133,7 +133,7 @@ export const BulkCreateOrgCustomPatternsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the custom pattern. */
 export type SecretScanningCustomPatternState = "published" | "unpublished";
-export const SecretScanningCustomPatternState = /*@__PURE__*/ S.String;
+export const SecretScanningCustomPatternState = S.String;
 
 /** List of regexes that the secret must match. */
 export type SecretScanningCustomPatternMustMatchList = Array<string>;
@@ -302,8 +302,7 @@ export const BulkDeleteOrgCustomPatternsRequestPatternsList =
 export type BulkDeleteOrgCustomPatternsRequestPostDeleteAction =
   | "delete_alerts"
   | "resolve_alerts";
-export const BulkDeleteOrgCustomPatternsRequestPostDeleteAction =
-  /*@__PURE__*/ S.String;
+export const BulkDeleteOrgCustomPatternsRequestPostDeleteAction = S.String;
 
 export interface BulkDeleteOrgCustomPatternsRequest {
   /** The organization name. The name is not case sensitive. */
@@ -352,8 +351,7 @@ export const BulkDeleteRepoCustomPatternsRequestPatternsList =
 export type BulkDeleteRepoCustomPatternsRequestPostDeleteAction =
   | "delete_alerts"
   | "resolve_alerts";
-export const BulkDeleteRepoCustomPatternsRequestPostDeleteAction =
-  /*@__PURE__*/ S.String;
+export const BulkDeleteRepoCustomPatternsRequestPostDeleteAction = S.String;
 
 export interface BulkDeleteRepoCustomPatternsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -398,7 +396,7 @@ export type SecretScanningPushProtectionBypassReason =
   | "false_positive"
   | "used_in_tests"
   | "will_fix_later";
-export const SecretScanningPushProtectionBypassReason = /*@__PURE__*/ S.String;
+export const SecretScanningPushProtectionBypassReason = S.String;
 
 export interface CreatePushProtectionBypassRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -471,7 +469,7 @@ export const GetAlertRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Sets the state of the secret scanning alert. You must provide `resolution` when you set the state to `resolved`. */
 export type SecretScanningAlertState = "open" | "resolved";
-export const SecretScanningAlertState = /*@__PURE__*/ S.String;
+export const SecretScanningAlertState = S.String;
 
 /** **Required when the `state` is `resolved`.** The reason for resolving the alert. */
 export type SecretScanningAlertResolution =
@@ -479,7 +477,7 @@ export type SecretScanningAlertResolution =
   | "wont_fix"
   | "revoked"
   | "used_in_tests";
-export const SecretScanningAlertResolution = /*@__PURE__*/ S.String;
+export const SecretScanningAlertResolution = S.String;
 
 /** A GitHub user. */
 export interface NullableSimpleUser {
@@ -540,7 +538,7 @@ export type SecretScanningAlertWithMetadataValidity =
   | "active"
   | "inactive"
   | "unknown";
-export const SecretScanningAlertWithMetadataValidity = /*@__PURE__*/ S.String;
+export const SecretScanningAlertWithMetadataValidity = S.String;
 
 /** Represents a 'commit' secret scanning location type. This location type shows that a secret was detected inside a commit to a repository. */
 export interface SecretScanningLocationCommit {
@@ -810,7 +808,7 @@ export type NullableSecretScanningFirstDetectedLocation =
   | SecretScanningLocationPullRequestReview
   | SecretScanningLocationPullRequestReviewComment;
 export const NullableSecretScanningFirstDetectedLocation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableSecretScanningFirstDetectedLocation>;
+  S.Unknown as any as S.Schema<NullableSecretScanningFirstDetectedLocation>;
 
 export interface SecretScanningAlertMetadataItem {
   /** The metadata key. */
@@ -1070,13 +1068,13 @@ export const SecretScanningScanHistory = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecretScanningScanHistory>;
 
 export type ListAlertsForOrgRequestState = "open" | "resolved";
-export const ListAlertsForOrgRequestState = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestState = S.String;
 
 export type ListAlertsForOrgRequestSort = "created" | "updated";
-export const ListAlertsForOrgRequestSort = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestSort = S.String;
 
 export type ListAlertsForOrgRequestDirection = "asc" | "desc";
-export const ListAlertsForOrgRequestDirection = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestDirection = S.String;
 
 export interface ListAlertsForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1312,7 +1310,7 @@ export type OrganizationSecretScanningAlertValidity =
   | "active"
   | "inactive"
   | "unknown";
-export const OrganizationSecretScanningAlertValidity = /*@__PURE__*/ S.String;
+export const OrganizationSecretScanningAlertValidity = S.String;
 
 export interface OrganizationSecretScanningAlert {
   number?: number;
@@ -1431,13 +1429,13 @@ export const ListAlertsForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAlertsForOrgResponse>;
 
 export type ListAlertsForRepoRequestState = "open" | "resolved";
-export const ListAlertsForRepoRequestState = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestState = S.String;
 
 export type ListAlertsForRepoRequestSort = "created" | "updated";
-export const ListAlertsForRepoRequestSort = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestSort = S.String;
 
 export type ListAlertsForRepoRequestDirection = "asc" | "desc";
-export const ListAlertsForRepoRequestDirection = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestDirection = S.String;
 
 export interface ListAlertsForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1522,7 +1520,7 @@ export const ListAlertsForRepoRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The token status as of the latest validity check. */
 export type SecretScanningAlertValidity = "active" | "inactive" | "unknown";
-export const SecretScanningAlertValidity = /*@__PURE__*/ S.String;
+export const SecretScanningAlertValidity = S.String;
 
 export interface SecretScanningAlert {
   number?: number;
@@ -1682,7 +1680,7 @@ export type SecretScanningLocationType =
   | "pull_request_comment"
   | "pull_request_review"
   | "pull_request_review_comment";
-export const SecretScanningLocationType = /*@__PURE__*/ S.String;
+export const SecretScanningLocationType = S.String;
 
 export type SecretScanningLocationDetails =
   | SecretScanningLocationCommit
@@ -1699,7 +1697,7 @@ export type SecretScanningLocationDetails =
   | SecretScanningLocationPullRequestReview
   | SecretScanningLocationPullRequestReviewComment;
 export const SecretScanningLocationDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecretScanningLocationDetails>;
+  S.Unknown as any as S.Schema<SecretScanningLocationDetails>;
 
 export interface SecretScanningLocation {
   /** The location type. Because secrets may be found in different types of resources (ie. code, comments, issues, pull requests, discussions), this field identifies the type of resource where the secret was found. */
@@ -1731,17 +1729,16 @@ export const ListLocationsForAlertResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLocationsForAlertResponse>;
 
 export type ListOrgCustomPatternsRequestState = "published" | "unpublished";
-export const ListOrgCustomPatternsRequestState = /*@__PURE__*/ S.String;
+export const ListOrgCustomPatternsRequestState = S.String;
 
 export type ListOrgCustomPatternsRequestPushProtection = "enabled" | "disabled";
-export const ListOrgCustomPatternsRequestPushProtection =
-  /*@__PURE__*/ S.String;
+export const ListOrgCustomPatternsRequestPushProtection = S.String;
 
 export type ListOrgCustomPatternsRequestSort = "created" | "updated" | "name";
-export const ListOrgCustomPatternsRequestSort = /*@__PURE__*/ S.String;
+export const ListOrgCustomPatternsRequestSort = S.String;
 
 export type ListOrgCustomPatternsRequestDirection = "asc" | "desc";
-export const ListOrgCustomPatternsRequestDirection = /*@__PURE__*/ S.String;
+export const ListOrgCustomPatternsRequestDirection = S.String;
 
 export interface ListOrgCustomPatternsRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1819,23 +1816,21 @@ export const ListOrgPatternConfigsRequest = /*@__PURE__*/ S.suspend(() =>
 export type SecretScanningPatternOverrideDefaultSetting =
   | "disabled"
   | "enabled";
-export const SecretScanningPatternOverrideDefaultSetting =
-  /*@__PURE__*/ S.String;
+export const SecretScanningPatternOverrideDefaultSetting = S.String;
 
 /** The push protection setting for this pattern set at the enterprise level. Only present for partner patterns when the organization has a parent enterprise. */
 export type SecretScanningPatternOverrideEnterpriseSetting =
   | "not-set"
   | "disabled"
   | "enabled";
-export const SecretScanningPatternOverrideEnterpriseSetting =
-  /*@__PURE__*/ S.String;
+export const SecretScanningPatternOverrideEnterpriseSetting = S.String;
 
 /** The current push protection setting for this pattern. If this is `not-set`, then it inherits either the enterprise setting if it exists or the default setting. */
 export type SecretScanningPatternOverrideSetting =
   | "not-set"
   | "disabled"
   | "enabled";
-export const SecretScanningPatternOverrideSetting = /*@__PURE__*/ S.String;
+export const SecretScanningPatternOverrideSetting = S.String;
 
 export interface SecretScanningPatternOverride {
   /** The ID of the pattern. */
@@ -1923,19 +1918,18 @@ export const SecretScanningPatternConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecretScanningPatternConfiguration>;
 
 export type ListRepoCustomPatternsRequestState = "published" | "unpublished";
-export const ListRepoCustomPatternsRequestState = /*@__PURE__*/ S.String;
+export const ListRepoCustomPatternsRequestState = S.String;
 
 export type ListRepoCustomPatternsRequestPushProtection =
   | "enabled"
   | "disabled";
-export const ListRepoCustomPatternsRequestPushProtection =
-  /*@__PURE__*/ S.String;
+export const ListRepoCustomPatternsRequestPushProtection = S.String;
 
 export type ListRepoCustomPatternsRequestSort = "created" | "updated" | "name";
-export const ListRepoCustomPatternsRequestSort = /*@__PURE__*/ S.String;
+export const ListRepoCustomPatternsRequestSort = S.String;
 
 export type ListRepoCustomPatternsRequestDirection = "asc" | "desc";
-export const ListRepoCustomPatternsRequestDirection = /*@__PURE__*/ S.String;
+export const ListRepoCustomPatternsRequestDirection = S.String;
 
 export interface ListRepoCustomPatternsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1996,7 +1990,7 @@ export const ListRepoCustomPatternsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Sets the validity of the secret scanning alert. Can be `active`, `inactive`, or `null` to clear the override. */
 export type UpdateAlertRequestValidity = "active" | "inactive";
-export const UpdateAlertRequestValidity = /*@__PURE__*/ S.String;
+export const UpdateAlertRequestValidity = S.String;
 
 export interface UpdateAlertRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2090,7 +2084,7 @@ export type UpdateOrgPatternConfigsRequestProviderPatternSettingsItemPushProtect
   | "disabled"
   | "enabled";
 export const UpdateOrgPatternConfigsRequestProviderPatternSettingsItemPushProtectionSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateOrgPatternConfigsRequestProviderPatternSettingsItem {
   /** The ID of the pattern to configure. */
@@ -2125,7 +2119,7 @@ export type UpdateOrgPatternConfigsRequestCustomPatternSettingsItemPushProtectio
   | "disabled"
   | "enabled";
 export const UpdateOrgPatternConfigsRequestCustomPatternSettingsItemPushProtectionSetting =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateOrgPatternConfigsRequestCustomPatternSettingsItem {
   /** The ID of the pattern to configure. */

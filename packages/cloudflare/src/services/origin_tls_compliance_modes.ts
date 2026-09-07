@@ -39,7 +39,7 @@ export const DeleteOriginTlsComplianceModeRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteOriginTlsComplianceModeRequest>;
 
 export type DeleteResponseId = "origin_tls_compliance_modes";
-export const DeleteResponseId = /*@__PURE__*/ S.String;
+export const DeleteResponseId = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteOriginTlsComplianceModeResponse {
@@ -82,7 +82,7 @@ export const GetOriginTlsComplianceModeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOriginTlsComplianceModeRequest>;
 
 export type GetResponseId = "origin_tls_compliance_modes";
-export const GetResponseId = /*@__PURE__*/ S.String;
+export const GetResponseId = S.String;
 
 export type GetResponseValueList = Array<string>;
 export const GetResponseValueList = /*@__PURE__*/ S.Array(
@@ -140,7 +140,7 @@ export const PatchOriginTlsComplianceModeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchOriginTlsComplianceModeRequest>;
 
 export type EditResponseId = "origin_tls_compliance_modes";
-export const EditResponseId = /*@__PURE__*/ S.String;
+export const EditResponseId = S.String;
 
 export type EditResponseValueList = Array<string>;
 export const EditResponseValueList = /*@__PURE__*/ S.Array(
@@ -199,7 +199,7 @@ export const PutOriginTlsComplianceModeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutOriginTlsComplianceModeRequest>;
 
 export type UpdateResponseId = "origin_tls_compliance_modes";
-export const UpdateResponseId = /*@__PURE__*/ S.String;
+export const UpdateResponseId = S.String;
 
 export type UpdateResponseValueList = Array<string>;
 export const UpdateResponseValueList = /*@__PURE__*/ S.Array(

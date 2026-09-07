@@ -298,7 +298,7 @@ export type GoogleAdsHomeservicesLocalservicesV1DetailedLeadReportChargeStatusEn
   | "CHARGED"
   | "NOT_CHARGED";
 export const GoogleAdsHomeservicesLocalservicesV1DetailedLeadReportChargeStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAdsHomeservicesLocalservicesV1DetailedLeadReportLeadTypeEnum =
   | "LEAD_TYPE_UNSPECIFIED"
@@ -306,7 +306,7 @@ export type GoogleAdsHomeservicesLocalservicesV1DetailedLeadReportLeadTypeEnum =
   | "PHONE_CALL"
   | "BOOKING";
 export const GoogleAdsHomeservicesLocalservicesV1DetailedLeadReportLeadTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Container for phone lead specific information. */
 export interface GoogleAdsHomeservicesLocalservicesV1PhoneLead {

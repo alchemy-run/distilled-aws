@@ -14,11 +14,11 @@ export type { AzureOpError, AzureOpContext };
 
 /** OSType to be used to specify OS type for the VMs. Choose from Linux and Windows. Default to Linux. Possible values include: 'Linux', 'Windows' */
 export type OSType = "Linux" | "Windows";
-export const OSType = /*@__PURE__*/ S.String;
+export const OSType = S.String;
 
 /** Specifies the OS SKU used by the agent pool. The default is CBLMariner if OSType is Linux. The default is Windows2019 when OSType is Windows. */
 export type OSSKU = "CBLMariner" | "Windows2019" | "Windows2022";
-export const OSSKU = /*@__PURE__*/ S.String;
+export const OSSKU = S.String;
 
 /** The node labels to be persisted across all nodes in agent pool. */
 export type AgentPoolPropertiesInputNodeLabelsMap = {
@@ -125,7 +125,7 @@ export const AgentPoolCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The extended location type. Allowed value: 'CustomLocation' */
 export type ExtendedLocationType = "CustomLocation";
-export const ExtendedLocationType = /*@__PURE__*/ S.String;
+export const ExtendedLocationType = S.String;
 
 /** Extended location pointing to the underlying infrastructure */
 export interface ExtendedLocation {
@@ -178,7 +178,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -186,7 +186,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -240,7 +240,7 @@ export type ProvisioningState =
   | "Updating"
   | "Upgrading"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Profile for agent pool properties that can be updated */
 export interface AgentPoolUpdateProfile {
@@ -674,7 +674,7 @@ export const GetKubernetesVersionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The particular KubernetesVersion Image OS Type (Linux, Windows) */
 export type KubernetesVersionReadinessOsType = "Windows" | "Linux";
-export const KubernetesVersionReadinessOsType = /*@__PURE__*/ S.String;
+export const KubernetesVersionReadinessOsType = S.String;
 
 /** Indicates whether the kubernetes version image is ready or not */
 export interface KubernetesVersionReadiness {
@@ -917,7 +917,7 @@ export const NetworkProfileLoadBalancerProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Network policy used for building Kubernetes network. Possible values include: 'calico'. */
 export type NetworkProfileNetworkPolicy = "calico";
-export const NetworkProfileNetworkPolicy = /*@__PURE__*/ S.String;
+export const NetworkProfileNetworkPolicy = S.String;
 
 /** The network configuration profile for the provisioned cluster. */
 export interface NetworkProfile {
@@ -1103,7 +1103,7 @@ export type AddonStatusProfilePhase =
   | "deleting"
   | "failed"
   | "upgrading";
-export const AddonStatusProfilePhase = /*@__PURE__*/ S.String;
+export const AddonStatusProfilePhase = S.String;
 
 /** The status profile of the addons and other kubernetes components */
 export interface AddonStatusProfile {
@@ -1161,8 +1161,7 @@ export type ProvisionedClusterLicenseProfileAzureHybridBenefit =
   | "True"
   | "False"
   | "NotApplicable";
-export const ProvisionedClusterLicenseProfileAzureHybridBenefit =
-  /*@__PURE__*/ S.String;
+export const ProvisionedClusterLicenseProfileAzureHybridBenefit = S.String;
 
 /** The license profile of the provisioned cluster. */
 export interface ProvisionedClusterLicenseProfile {
@@ -1187,8 +1186,7 @@ export type ProvisionedClusterPropertiesAutoScalerProfileExpander =
   | "most-pods"
   | "priority"
   | "random";
-export const ProvisionedClusterPropertiesAutoScalerProfileExpander =
-  /*@__PURE__*/ S.String;
+export const ProvisionedClusterPropertiesAutoScalerProfileExpander = S.String;
 
 /** Parameters to be applied to the cluster-autoscaler when auto scaling is enabled for the provisioned cluster. */
 export interface ProvisionedClusterPropertiesAutoScalerProfile {
@@ -1581,7 +1579,7 @@ export type VirtualNetworkPropertiesProvisioningState =
   | "Deleting"
   | "Updating"
   | "Accepted";
-export const VirtualNetworkPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const VirtualNetworkPropertiesProvisioningState = S.String;
 
 /** The error if any from the operation. */
 export interface VirtualNetworkPropertiesStatusOperationStatusError {
@@ -1670,8 +1668,7 @@ export const VirtualNetworkProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The extended location type. Allowed value: 'CustomLocation' */
 export type GetVirtualNetworkResponseExtendedLocationType = "CustomLocation";
-export const GetVirtualNetworkResponseExtendedLocationType =
-  /*@__PURE__*/ S.String;
+export const GetVirtualNetworkResponseExtendedLocationType = S.String;
 
 /** Extended location pointing to the underlying infrastructure */
 export interface GetVirtualNetworkResponseExtendedLocation {
@@ -2098,11 +2095,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2359,7 +2356,7 @@ export const VirtualNetworkTagsMap = /*@__PURE__*/ S.Record(
 
 /** The extended location type. Allowed value: 'CustomLocation' */
 export type VirtualNetworkExtendedLocationType = "CustomLocation";
-export const VirtualNetworkExtendedLocationType = /*@__PURE__*/ S.String;
+export const VirtualNetworkExtendedLocationType = S.String;
 
 /** Extended location pointing to the underlying infrastructure */
 export interface VirtualNetworkExtendedLocation {
@@ -2600,7 +2597,7 @@ export type ProvisionedClusterPropertiesInputAutoScalerProfileExpander =
   | "priority"
   | "random";
 export const ProvisionedClusterPropertiesInputAutoScalerProfileExpander =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Parameters to be applied to the cluster-autoscaler when auto scaling is enabled for the provisioned cluster. */
 export interface ProvisionedClusterPropertiesInputAutoScalerProfile {
@@ -3038,8 +3035,7 @@ export const UpdateVirtualNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The extended location type. Allowed value: 'CustomLocation' */
 export type UpdateVirtualNetworkResponseExtendedLocationType = "CustomLocation";
-export const UpdateVirtualNetworkResponseExtendedLocationType =
-  /*@__PURE__*/ S.String;
+export const UpdateVirtualNetworkResponseExtendedLocationType = S.String;
 
 /** Extended location pointing to the underlying infrastructure */
 export interface UpdateVirtualNetworkResponseExtendedLocation {
@@ -3176,7 +3172,7 @@ export const VirtualNetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 export type VirtualNetworksCreateOrUpdateRequestExtendedLocationType =
   "CustomLocation";
 export const VirtualNetworksCreateOrUpdateRequestExtendedLocationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Extended location pointing to the underlying infrastructure */
 export interface VirtualNetworksCreateOrUpdateRequestExtendedLocation {
@@ -3252,7 +3248,7 @@ export const VirtualNetworksCreateOrUpdateResponseTagsMap =
 export type VirtualNetworksCreateOrUpdateResponseExtendedLocationType =
   "CustomLocation";
 export const VirtualNetworksCreateOrUpdateResponseExtendedLocationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Extended location pointing to the underlying infrastructure */
 export interface VirtualNetworksCreateOrUpdateResponseExtendedLocation {

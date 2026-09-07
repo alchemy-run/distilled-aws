@@ -212,7 +212,7 @@ export const CreateAddressListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAddressListResponse>;
 export type JobName = string;
 export type ImportDataType = "CSV" | "JSON" | (string & {});
-export const ImportDataType = /*@__PURE__*/ S.String;
+export const ImportDataType = S.String;
 
 export interface ImportDataFormat {
   ImportDataType: ImportDataType;
@@ -270,7 +270,7 @@ export type RetentionPeriod =
   | "TEN_YEARS"
   | "PERMANENT"
   | (string & {});
-export const RetentionPeriod = /*@__PURE__*/ S.String;
+export const RetentionPeriod = S.String;
 
 export type ArchiveRetention = { RetentionPeriod: RetentionPeriod };
 export const ArchiveRetention = /*@__PURE__*/ S.Union([
@@ -308,7 +308,7 @@ export const CreateArchiveResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateArchiveResponse>;
 export type IngressPointName = string;
 export type IngressPointType = "OPEN" | "AUTH" | "MTLS" | (string & {});
-export const IngressPointType = /*@__PURE__*/ S.String;
+export const IngressPointType = S.String;
 
 export type RuleSetId = string;
 export type TrafficPolicyId = string;
@@ -354,7 +354,7 @@ export const IngressPointConfiguration = /*@__PURE__*/ S.Union([
   S.Struct({ TlsAuthConfiguration: TlsAuthConfiguration }),
 ]);
 export type IpType = "IPV4" | "DUAL_STACK" | (string & {});
-export const IpType = /*@__PURE__*/ S.String;
+export const IpType = S.String;
 
 export interface PublicNetworkConfiguration {
   IpType: IpType;
@@ -387,7 +387,7 @@ export const NetworkConfiguration = /*@__PURE__*/ S.Union([
   S.Struct({ PrivateNetworkConfiguration: PrivateNetworkConfiguration }),
 ]);
 export type TlsPolicy = "REQUIRED" | "OPTIONAL" | "FIPS" | (string & {});
-export const TlsPolicy = /*@__PURE__*/ S.String;
+export const TlsPolicy = S.String;
 
 export interface CreateIngressPointRequest {
   ClientToken?: string;
@@ -480,7 +480,7 @@ export type RuleBooleanEmailAttribute =
   | "TLS"
   | "TLS_WRAPPED"
   | (string & {});
-export const RuleBooleanEmailAttribute = /*@__PURE__*/ S.String;
+export const RuleBooleanEmailAttribute = S.String;
 
 export type AnalyzerArn = string;
 export type ResultField = string;
@@ -499,7 +499,7 @@ export type RuleAddressListEmailAttribute =
   | "TO"
   | "CC"
   | (string & {});
-export const RuleAddressListEmailAttribute = /*@__PURE__*/ S.String;
+export const RuleAddressListEmailAttribute = S.String;
 
 export type AddressListArn = string;
 export type RuleAddressListArnList = string[];
@@ -534,7 +534,7 @@ export const RuleBooleanToEvaluate = /*@__PURE__*/ S.Union([
   S.Struct({ IsInAddressList: RuleIsInAddressList }),
 ]);
 export type RuleBooleanOperator = "IS_TRUE" | "IS_FALSE" | (string & {});
-export const RuleBooleanOperator = /*@__PURE__*/ S.String;
+export const RuleBooleanOperator = S.String;
 
 export interface RuleBooleanExpression {
   Evaluate: RuleBooleanToEvaluate;
@@ -555,7 +555,7 @@ export type RuleStringEmailAttribute =
   | "TO"
   | "CC"
   | (string & {});
-export const RuleStringEmailAttribute = /*@__PURE__*/ S.String;
+export const RuleStringEmailAttribute = S.String;
 
 export type MimeHeaderAttribute = string;
 export type RuleClientCertificateAttribute =
@@ -568,7 +568,7 @@ export type RuleClientCertificateAttribute =
   | "SAN_REGISTERED_ID"
   | "SERIAL_NUMBER"
   | (string & {});
-export const RuleClientCertificateAttribute = /*@__PURE__*/ S.String;
+export const RuleClientCertificateAttribute = S.String;
 
 export type RuleStringToEvaluate =
   | {
@@ -608,7 +608,7 @@ export type RuleStringOperator =
   | "ENDS_WITH"
   | "CONTAINS"
   | (string & {});
-export const RuleStringOperator = /*@__PURE__*/ S.String;
+export const RuleStringOperator = S.String;
 
 export type RuleStringValue = string | redacted.Redacted<string>;
 export type RuleStringList = (string | redacted.Redacted<string>)[];
@@ -628,7 +628,7 @@ export const RuleStringExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "RuleStringExpression",
 }) as any as S.Schema<RuleStringExpression>;
 export type RuleNumberEmailAttribute = "MESSAGE_SIZE" | (string & {});
-export const RuleNumberEmailAttribute = /*@__PURE__*/ S.String;
+export const RuleNumberEmailAttribute = S.String;
 
 export type RuleNumberToEvaluate = { Attribute: RuleNumberEmailAttribute };
 export const RuleNumberToEvaluate = /*@__PURE__*/ S.Union([
@@ -642,7 +642,7 @@ export type RuleNumberOperator =
   | "LESS_THAN_OR_EQUAL"
   | "GREATER_THAN_OR_EQUAL"
   | (string & {});
-export const RuleNumberOperator = /*@__PURE__*/ S.String;
+export const RuleNumberOperator = S.String;
 
 export interface RuleNumberExpression {
   Evaluate: RuleNumberToEvaluate;
@@ -659,7 +659,7 @@ export const RuleNumberExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "RuleNumberExpression",
 }) as any as S.Schema<RuleNumberExpression>;
 export type RuleIpEmailAttribute = "SOURCE_IP" | (string & {});
-export const RuleIpEmailAttribute = /*@__PURE__*/ S.String;
+export const RuleIpEmailAttribute = S.String;
 
 export type RuleIpToEvaluate = { Attribute: RuleIpEmailAttribute };
 export const RuleIpToEvaluate = /*@__PURE__*/ S.Union([
@@ -669,7 +669,7 @@ export type RuleIpOperator =
   | "CIDR_MATCHES"
   | "NOT_CIDR_MATCHES"
   | (string & {});
-export const RuleIpOperator = /*@__PURE__*/ S.String;
+export const RuleIpOperator = S.String;
 
 export type RuleIpStringValue = string;
 export type RuleIpValueList = string[];
@@ -689,7 +689,7 @@ export const RuleIpExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "RuleIpExpression",
 }) as any as S.Schema<RuleIpExpression>;
 export type RuleVerdictAttribute = "SPF" | "DKIM" | (string & {});
-export const RuleVerdictAttribute = /*@__PURE__*/ S.String;
+export const RuleVerdictAttribute = S.String;
 
 export type RuleVerdictToEvaluate =
   | { Attribute: RuleVerdictAttribute; Analysis?: never }
@@ -699,7 +699,7 @@ export const RuleVerdictToEvaluate = /*@__PURE__*/ S.Union([
   S.Struct({ Analysis: Analysis }),
 ]);
 export type RuleVerdictOperator = "EQUALS" | "NOT_EQUALS" | (string & {});
-export const RuleVerdictOperator = /*@__PURE__*/ S.String;
+export const RuleVerdictOperator = S.String;
 
 export type RuleVerdict =
   | "PASS"
@@ -707,7 +707,7 @@ export type RuleVerdict =
   | "GRAY"
   | "PROCESSING_FAILED"
   | (string & {});
-export const RuleVerdict = /*@__PURE__*/ S.String;
+export const RuleVerdict = S.String;
 
 export type RuleVerdictValueList = RuleVerdict[];
 export const RuleVerdictValueList = /*@__PURE__*/ S.Array(RuleVerdict);
@@ -726,10 +726,10 @@ export const RuleVerdictExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "RuleVerdictExpression",
 }) as any as S.Schema<RuleVerdictExpression>;
 export type RuleDmarcOperator = "EQUALS" | "NOT_EQUALS" | (string & {});
-export const RuleDmarcOperator = /*@__PURE__*/ S.String;
+export const RuleDmarcOperator = S.String;
 
 export type RuleDmarcPolicy = "NONE" | "QUARANTINE" | "REJECT" | (string & {});
-export const RuleDmarcPolicy = /*@__PURE__*/ S.String;
+export const RuleDmarcPolicy = S.String;
 
 export type RuleDmarcValueList = RuleDmarcPolicy[];
 export const RuleDmarcValueList = /*@__PURE__*/ S.Array(RuleDmarcPolicy);
@@ -806,11 +806,11 @@ export const DropAction = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "DropAction",
 }) as any as S.Schema<DropAction>;
 export type ActionFailurePolicy = "CONTINUE" | "DROP" | (string & {});
-export const ActionFailurePolicy = /*@__PURE__*/ S.String;
+export const ActionFailurePolicy = S.String;
 
 export type IdOrArn = string;
 export type MailFrom = "REPLACE" | "PRESERVE" | (string & {});
-export const MailFrom = /*@__PURE__*/ S.String;
+export const MailFrom = S.String;
 
 export interface RelayAction {
   ActionFailurePolicy?: ActionFailurePolicy;
@@ -921,10 +921,10 @@ export const DeliverToQBusinessAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeliverToQBusinessAction>;
 export type SnsTopicArn = string;
 export type SnsNotificationEncoding = "UTF-8" | "BASE64" | (string & {});
-export const SnsNotificationEncoding = /*@__PURE__*/ S.String;
+export const SnsNotificationEncoding = S.String;
 
 export type SnsNotificationPayloadType = "HEADERS" | "CONTENT" | (string & {});
-export const SnsNotificationPayloadType = /*@__PURE__*/ S.String;
+export const SnsNotificationPayloadType = S.String;
 
 export interface SnsAction {
   ActionFailurePolicy?: ActionFailurePolicy;
@@ -968,7 +968,7 @@ export const BounceAction = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "BounceAction" }) as any as S.Schema<BounceAction>;
 export type LambdaFunctionArn = string;
 export type LambdaInvocationType = "EVENT" | "REQUEST_RESPONSE" | (string & {});
-export const LambdaInvocationType = /*@__PURE__*/ S.String;
+export const LambdaInvocationType = S.String;
 
 export type LambdaRetryTimeMinutes = number;
 export interface InvokeLambdaAction {
@@ -1218,7 +1218,7 @@ export const CreateRuleSetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRuleSetResponse>;
 export type TrafficPolicyName = string;
 export type IngressStringEmailAttribute = "RECIPIENT" | (string & {});
-export const IngressStringEmailAttribute = /*@__PURE__*/ S.String;
+export const IngressStringEmailAttribute = S.String;
 
 export interface IngressAnalysis {
   Analyzer: string;
@@ -1243,7 +1243,7 @@ export type IngressStringOperator =
   | "ENDS_WITH"
   | "CONTAINS"
   | (string & {});
-export const IngressStringOperator = /*@__PURE__*/ S.String;
+export const IngressStringOperator = S.String;
 
 export type StringList = string[];
 export const StringList = /*@__PURE__*/ S.Array(S.String);
@@ -1262,7 +1262,7 @@ export const IngressStringExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "IngressStringExpression",
 }) as any as S.Schema<IngressStringExpression>;
 export type IngressIpv4Attribute = "SENDER_IP" | (string & {});
-export const IngressIpv4Attribute = /*@__PURE__*/ S.String;
+export const IngressIpv4Attribute = S.String;
 
 export type IngressIpToEvaluate = { Attribute: IngressIpv4Attribute };
 export const IngressIpToEvaluate = /*@__PURE__*/ S.Union([
@@ -1272,7 +1272,7 @@ export type IngressIpOperator =
   | "CIDR_MATCHES"
   | "NOT_CIDR_MATCHES"
   | (string & {});
-export const IngressIpOperator = /*@__PURE__*/ S.String;
+export const IngressIpOperator = S.String;
 
 export type Ipv4Cidr = string;
 export type Ipv4Cidrs = string[];
@@ -1292,7 +1292,7 @@ export const IngressIpv4Expression = /*@__PURE__*/ S.suspend(() =>
   identifier: "IngressIpv4Expression",
 }) as any as S.Schema<IngressIpv4Expression>;
 export type IngressIpv6Attribute = "SENDER_IPV6" | (string & {});
-export const IngressIpv6Attribute = /*@__PURE__*/ S.String;
+export const IngressIpv6Attribute = S.String;
 
 export type IngressIpv6ToEvaluate = { Attribute: IngressIpv6Attribute };
 export const IngressIpv6ToEvaluate = /*@__PURE__*/ S.Union([
@@ -1316,7 +1316,7 @@ export const IngressIpv6Expression = /*@__PURE__*/ S.suspend(() =>
   identifier: "IngressIpv6Expression",
 }) as any as S.Schema<IngressIpv6Expression>;
 export type IngressTlsAttribute = "TLS_PROTOCOL" | (string & {});
-export const IngressTlsAttribute = /*@__PURE__*/ S.String;
+export const IngressTlsAttribute = S.String;
 
 export type IngressTlsProtocolToEvaluate = { Attribute: IngressTlsAttribute };
 export const IngressTlsProtocolToEvaluate = /*@__PURE__*/ S.Union([
@@ -1326,10 +1326,10 @@ export type IngressTlsProtocolOperator =
   | "MINIMUM_TLS_VERSION"
   | "IS"
   | (string & {});
-export const IngressTlsProtocolOperator = /*@__PURE__*/ S.String;
+export const IngressTlsProtocolOperator = S.String;
 
 export type IngressTlsProtocolAttribute = "TLS1_2" | "TLS1_3" | (string & {});
-export const IngressTlsProtocolAttribute = /*@__PURE__*/ S.String;
+export const IngressTlsProtocolAttribute = S.String;
 
 export interface IngressTlsProtocolExpression {
   Evaluate: IngressTlsProtocolToEvaluate;
@@ -1346,7 +1346,7 @@ export const IngressTlsProtocolExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "IngressTlsProtocolExpression",
 }) as any as S.Schema<IngressTlsProtocolExpression>;
 export type IngressAddressListEmailAttribute = "RECIPIENT" | (string & {});
-export const IngressAddressListEmailAttribute = /*@__PURE__*/ S.String;
+export const IngressAddressListEmailAttribute = S.String;
 
 export type IngressAddressListArnList = string[];
 export const IngressAddressListArnList = /*@__PURE__*/ S.Array(S.String);
@@ -1370,7 +1370,7 @@ export const IngressBooleanToEvaluate = /*@__PURE__*/ S.Union([
   S.Struct({ IsInAddressList: IngressIsInAddressList }),
 ]);
 export type IngressBooleanOperator = "IS_TRUE" | "IS_FALSE" | (string & {});
-export const IngressBooleanOperator = /*@__PURE__*/ S.String;
+export const IngressBooleanOperator = S.String;
 
 export interface IngressBooleanExpression {
   Evaluate: IngressBooleanToEvaluate;
@@ -1430,7 +1430,7 @@ export const PolicyCondition = /*@__PURE__*/ S.Union([
 export type PolicyConditions = PolicyCondition[];
 export const PolicyConditions = /*@__PURE__*/ S.Array(PolicyCondition);
 export type AcceptAction = "ALLOW" | "DENY" | (string & {});
-export const AcceptAction = /*@__PURE__*/ S.String;
+export const AcceptAction = S.String;
 
 export interface PolicyStatement {
   Conditions: PolicyCondition[];
@@ -1722,7 +1722,7 @@ export type ImportJobStatus =
   | "FAILED"
   | "STOPPED"
   | (string & {});
-export const ImportJobStatus = /*@__PURE__*/ S.String;
+export const ImportJobStatus = S.String;
 
 export type JobItemsCount = number;
 export type ErrorMessage = string;
@@ -1772,7 +1772,7 @@ export const GetArchiveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetArchiveRequest>;
 export type ArchiveArn = string;
 export type ArchiveState = "ACTIVE" | "PENDING_DELETION" | (string & {});
-export const ArchiveState = /*@__PURE__*/ S.String;
+export const ArchiveState = S.String;
 
 export interface GetArchiveResponse {
   ArchiveId: string;
@@ -1822,7 +1822,7 @@ export type ArchiveStringEmailAttribute =
   | "ENVELOPE_TO"
   | "ENVELOPE_FROM"
   | (string & {});
-export const ArchiveStringEmailAttribute = /*@__PURE__*/ S.String;
+export const ArchiveStringEmailAttribute = S.String;
 
 export type ArchiveStringToEvaluate = {
   Attribute: ArchiveStringEmailAttribute;
@@ -1831,7 +1831,7 @@ export const ArchiveStringToEvaluate = /*@__PURE__*/ S.Union([
   S.Struct({ Attribute: ArchiveStringEmailAttribute }),
 ]);
 export type ArchiveStringOperator = "CONTAINS" | (string & {});
-export const ArchiveStringOperator = /*@__PURE__*/ S.String;
+export const ArchiveStringOperator = S.String;
 
 export type StringValue = string;
 export type StringValueList = string[];
@@ -1851,7 +1851,7 @@ export const ArchiveStringExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "ArchiveStringExpression",
 }) as any as S.Schema<ArchiveStringExpression>;
 export type ArchiveBooleanEmailAttribute = "HAS_ATTACHMENTS" | (string & {});
-export const ArchiveBooleanEmailAttribute = /*@__PURE__*/ S.String;
+export const ArchiveBooleanEmailAttribute = S.String;
 
 export type ArchiveBooleanToEvaluate = {
   Attribute: ArchiveBooleanEmailAttribute;
@@ -1860,7 +1860,7 @@ export const ArchiveBooleanToEvaluate = /*@__PURE__*/ S.Union([
   S.Struct({ Attribute: ArchiveBooleanEmailAttribute }),
 ]);
 export type ArchiveBooleanOperator = "IS_TRUE" | "IS_FALSE" | (string & {});
-export const ArchiveBooleanOperator = /*@__PURE__*/ S.String;
+export const ArchiveBooleanOperator = S.String;
 
 export interface ArchiveBooleanExpression {
   Evaluate: ArchiveBooleanToEvaluate;
@@ -1919,7 +1919,7 @@ export type ExportState =
   | "FAILED"
   | "CANCELLED"
   | (string & {});
-export const ExportState = /*@__PURE__*/ S.String;
+export const ExportState = S.String;
 
 export interface ExportStatus {
   SubmissionTimestamp?: Date;
@@ -2081,7 +2081,7 @@ export type SearchState =
   | "FAILED"
   | "CANCELLED"
   | (string & {});
-export const SearchState = /*@__PURE__*/ S.String;
+export const SearchState = S.String;
 
 export interface SearchStatus {
   SubmissionTimestamp?: Date;
@@ -2190,7 +2190,7 @@ export const GetArchiveSearchResultsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetArchiveSearchResultsResponse",
 }) as any as S.Schema<GetArchiveSearchResultsResponse>;
 export type TrustStoreResponseOption = "EXCLUDE" | "INCLUDE" | (string & {});
-export const TrustStoreResponseOption = /*@__PURE__*/ S.String;
+export const TrustStoreResponseOption = S.String;
 
 export interface GetIngressPointRequest {
   IngressPointId: string;
@@ -2216,7 +2216,7 @@ export type IngressPointStatus =
   | "FAILED"
   | "ASSOCIATED_VPC_ENDPOINT_DOES_NOT_EXIST"
   | (string & {});
-export const IngressPointStatus = /*@__PURE__*/ S.String;
+export const IngressPointStatus = S.String;
 
 export type IngressPointARecord = string;
 export interface IngressPointPasswordConfiguration {
@@ -3164,7 +3164,7 @@ export const UpdateArchiveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateArchiveResponse",
 }) as any as S.Schema<UpdateArchiveResponse>;
 export type IngressPointStatusToUpdate = "ACTIVE" | "CLOSED" | (string & {});
-export const IngressPointStatusToUpdate = /*@__PURE__*/ S.String;
+export const IngressPointStatusToUpdate = S.String;
 
 export interface UpdateIngressPointRequest {
   IngressPointId: string;

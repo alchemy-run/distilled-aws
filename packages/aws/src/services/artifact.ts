@@ -196,7 +196,7 @@ export const InquiryContent = /*@__PURE__*/ S.Union([
 ]);
 export type IdempotentClientToken = string;
 export type InquirySupportMode = "AI_ONLY" | "FULL_SUPPORT" | (string & {});
-export const InquirySupportMode = /*@__PURE__*/ S.String;
+export const InquirySupportMode = S.String;
 
 export type TagKey = string;
 export type TagValue = string;
@@ -239,7 +239,7 @@ export type InquiryStatus =
   | "COMPLETED"
   | "FAILED"
   | (string & {});
-export const InquiryStatus = /*@__PURE__*/ S.String;
+export const InquiryStatus = S.String;
 
 export type InquiryStatusMessage =
   | "Compliance inquiry processing is complete."
@@ -249,10 +249,10 @@ export type InquiryStatusMessage =
   | "Human review is in progress."
   | "Compliance inquiry processing is complete. One or more queries encountered errors during processing."
   | (string & {});
-export const InquiryStatusMessage = /*@__PURE__*/ S.String;
+export const InquiryStatusMessage = S.String;
 
 export type InputSource = "TEXT" | "FILE" | (string & {});
-export const InputSource = /*@__PURE__*/ S.String;
+export const InputSource = S.String;
 
 export type TimestampAttribute = Date;
 export interface InquirySummary {
@@ -344,7 +344,7 @@ export type NotificationSubscriptionStatus =
   | "SUBSCRIBED"
   | "NOT_SUBSCRIBED"
   | (string & {});
-export const NotificationSubscriptionStatus = /*@__PURE__*/ S.String;
+export const NotificationSubscriptionStatus = S.String;
 
 export interface AccountSettings {
   notificationSubscriptionStatus?: NotificationSubscriptionStatus;
@@ -477,10 +477,10 @@ export const GetReportMetadataRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetReportMetadataRequest",
 }) as any as S.Schema<GetReportMetadataRequest>;
 export type PublishedState = "PUBLISHED" | "UNPUBLISHED" | (string & {});
-export const PublishedState = /*@__PURE__*/ S.String;
+export const PublishedState = S.String;
 
 export type AcceptanceType = "PASSTHROUGH" | "EXPLICIT" | (string & {});
-export const AcceptanceType = /*@__PURE__*/ S.String;
+export const AcceptanceType = S.String;
 
 export type SequenceNumberAttribute = number;
 export type UploadState =
@@ -489,7 +489,7 @@ export type UploadState =
   | "FAILED"
   | "FAULT"
   | (string & {});
-export const UploadState = /*@__PURE__*/ S.String;
+export const UploadState = S.String;
 
 export type StatusMessage = string;
 export interface ReportDetail {
@@ -650,7 +650,7 @@ export const ListComplianceInquiryQueriesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListComplianceInquiryQueriesRequest",
 }) as any as S.Schema<ListComplianceInquiryQueriesRequest>;
 export type ReviewType = "HUMAN" | "AI" | (string & {});
-export const ReviewType = /*@__PURE__*/ S.String;
+export const ReviewType = S.String;
 
 export interface Citation {
   sourceLabel?: string;
@@ -667,7 +667,7 @@ export const Citation = /*@__PURE__*/ S.suspend(() =>
 export type CitationList = Citation[];
 export const CitationList = /*@__PURE__*/ S.Array(Citation);
 export type QueryStatus = "PROCESSING" | "COMPLETED" | "FAILED" | (string & {});
-export const QueryStatus = /*@__PURE__*/ S.String;
+export const QueryStatus = S.String;
 
 export type QueryStatusMessage =
   | "Query processing is complete."
@@ -676,7 +676,7 @@ export type QueryStatusMessage =
   | "Query is pending human review."
   | "Query contains restricted or unsupported content."
   | (string & {});
-export const QueryStatusMessage = /*@__PURE__*/ S.String;
+export const QueryStatusMessage = S.String;
 
 export interface ResponseVersion {
   responseText: string;
@@ -758,12 +758,12 @@ export type CustomerAgreementState =
   | "CUSTOMER_TERMINATED"
   | "AWS_TERMINATED"
   | (string & {});
-export const CustomerAgreementState = /*@__PURE__*/ S.String;
+export const CustomerAgreementState = S.String;
 
 export type AgreementTerms = string[];
 export const AgreementTerms = /*@__PURE__*/ S.Array(S.String);
 export type AgreementType = "CUSTOM" | "DEFAULT" | "MODIFIED" | (string & {});
-export const AgreementType = /*@__PURE__*/ S.String;
+export const AgreementType = S.String;
 
 export interface CustomerAgreementSummary {
   name?: string;
@@ -979,14 +979,14 @@ export const PutAccountSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutAccountSettingsResponse",
 }) as any as S.Schema<PutAccountSettingsResponse>;
 export type FeedbackRating = "THUMBS_UP" | "THUMBS_DOWN" | (string & {});
-export const FeedbackRating = /*@__PURE__*/ S.String;
+export const FeedbackRating = S.String;
 
 export type FeedbackReasonCode =
   | "OTHER"
   | "PARTIAL_RESPONSE"
   | "IRRELEVANT_RESPONSE"
   | (string & {});
-export const FeedbackReasonCode = /*@__PURE__*/ S.String;
+export const FeedbackReasonCode = S.String;
 
 export type FeedbackReasonCodeList = FeedbackReasonCode[];
 export const FeedbackReasonCodeList = /*@__PURE__*/ S.Array(FeedbackReasonCode);

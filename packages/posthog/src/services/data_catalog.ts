@@ -23,7 +23,7 @@ export class BadRequest
 
 /** * `certified` - certified * `deprecated` - deprecated */
 export type ProposedStatusEnum = "certified" | "deprecated";
-export const ProposedStatusEnum = /*@__PURE__*/ S.String;
+export const ProposedStatusEnum = S.String;
 
 export interface CreateDataCatalogCertificationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -79,14 +79,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -210,7 +210,7 @@ export const CreateDataCatalogMetricsRequestDefinitionMap =
 
 /** * `user` - user * `ai_generated` - ai_generated */
 export type CreatedSourceEnum = "user" | "ai_generated";
-export const CreatedSourceEnum = /*@__PURE__*/ S.String;
+export const CreatedSourceEnum = S.String;
 
 export interface CreateDataCatalogMetricsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -349,7 +349,7 @@ export type CreateDataCatalogMetricsRunRequestRefresh =
   | "force_blocking"
   | "force_async"
   | "force_cache";
-export const CreateDataCatalogMetricsRunRequestRefresh = /*@__PURE__*/ S.String;
+export const CreateDataCatalogMetricsRunRequestRefresh = S.String;
 
 /** * `second` - second * `minute` - minute * `hour` - hour * `day` - day * `week` - week * `month` - month * `quarter` - quarter * `year` - year */
 export type DataCatalogMetricRunRequestIntervalEnum =
@@ -361,7 +361,7 @@ export type DataCatalogMetricRunRequestIntervalEnum =
   | "month"
   | "quarter"
   | "year";
-export const DataCatalogMetricRunRequestIntervalEnum = /*@__PURE__*/ S.String;
+export const DataCatalogMetricRunRequestIntervalEnum = S.String;
 
 export interface CreateDataCatalogMetricsRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

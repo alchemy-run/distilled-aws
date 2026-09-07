@@ -61,8 +61,7 @@ export type CivicinfoSchemaV2ElectionShapeLookupBehaviorEnum =
   | "shapeLookupDefault"
   | "shapeLookupDisabled"
   | "shapeLookupEnabled";
-export const CivicinfoSchemaV2ElectionShapeLookupBehaviorEnum =
-  /*@__PURE__*/ S.String;
+export const CivicinfoSchemaV2ElectionShapeLookupBehaviorEnum = S.String;
 
 /** Information about the election that was queried. */
 export interface CivicinfoSchemaV2Election {
@@ -321,8 +320,7 @@ export type CivicinfoSchemaV2ElectoralDistrictScopeEnum =
   | "ward"
   | "cityCouncil"
   | "national";
-export const CivicinfoSchemaV2ElectoralDistrictScopeEnum =
-  /*@__PURE__*/ S.String;
+export const CivicinfoSchemaV2ElectoralDistrictScopeEnum = S.String;
 
 /** Describes the geographic scope of a contest. */
 export interface CivicinfoSchemaV2ElectoralDistrict {
@@ -353,7 +351,7 @@ export type CivicinfoSchemaV2ContestLevelItemEnum =
   | "subLocality1"
   | "subLocality2"
   | "special";
-export const CivicinfoSchemaV2ContestLevelItemEnum = /*@__PURE__*/ S.String;
+export const CivicinfoSchemaV2ContestLevelItemEnum = S.String;
 
 export type CivicinfoSchemaV2ContestLevelItemEnumList =
   Array<CivicinfoSchemaV2ContestLevelItemEnum>;
@@ -374,7 +372,7 @@ export type CivicinfoSchemaV2ContestRolesItemEnum =
   | "schoolBoard"
   | "specialPurposeOfficer"
   | "otherRole";
-export const CivicinfoSchemaV2ContestRolesItemEnum = /*@__PURE__*/ S.String;
+export const CivicinfoSchemaV2ContestRolesItemEnum = S.String;
 
 export type CivicinfoSchemaV2ContestRolesItemEnumList =
   Array<CivicinfoSchemaV2ContestRolesItemEnum>;

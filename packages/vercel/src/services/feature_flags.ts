@@ -59,7 +59,7 @@ export class PaymentRequired
 
 /** The kind of flag */
 export type CreateFlagRequestKind = "boolean" | "string" | "number" | "json";
-export const CreateFlagRequestKind = /*@__PURE__*/ S.String;
+export const CreateFlagRequestKind = S.String;
 
 export type CreateFlagRequestVariantsItemValueCase4List = Array<unknown>;
 export const CreateFlagRequestVariantsItemValueCase4List =
@@ -74,7 +74,7 @@ export type CreateFlagRequestVariantsItemValue =
   | unknown
   | CreateFlagRequestVariantsItemValueCase4List;
 export const CreateFlagRequestVariantsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagRequestVariantsItemValue>;
+  S.Unknown as any as S.Schema<CreateFlagRequestVariantsItemValue>;
 
 export interface CreateFlagRequestVariantsItem {
   /** The id of the variant */
@@ -221,7 +221,7 @@ export type CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs>;
 
 export type CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmp =
   | "eq"
@@ -248,13 +248,13 @@ export type CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmp =
   | "before"
   | "after";
 export const CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0Type =
   | "list/inline"
   | "list";
 export const CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0 {
   label?: string;
@@ -294,7 +294,7 @@ export type CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0Ite
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem>;
+  S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem>;
 
 export type CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsList =
   Array<CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem>;
@@ -345,7 +345,7 @@ export type CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs =
   | number
   | boolean;
 export const CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs>;
 
 export interface CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions {
   ignoreCase?: boolean;
@@ -495,7 +495,7 @@ export type CreateFlagRequestEnvironmentsValueRulesItemOutcome =
   | CreateFlagRequestEnvironmentsValueRulesItemOutcomeCase1
   | CreateFlagRequestEnvironmentsValueRulesItemOutcomeCase2;
 export const CreateFlagRequestEnvironmentsValueRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemOutcome>;
+  S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueRulesItemOutcome>;
 
 export interface CreateFlagRequestEnvironmentsValueRulesItem {
   id: string;
@@ -612,7 +612,7 @@ export type CreateFlagRequestEnvironmentsValueFallthrough =
   | CreateFlagRequestEnvironmentsValueFallthroughCase1
   | CreateFlagRequestEnvironmentsValueFallthroughCase2;
 export const CreateFlagRequestEnvironmentsValueFallthrough =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueFallthrough>;
+  S.Unknown as any as S.Schema<CreateFlagRequestEnvironmentsValueFallthrough>;
 
 export interface CreateFlagRequestEnvironmentsValue {
   active: boolean;
@@ -650,7 +650,7 @@ export const CreateFlagRequestEnvironmentsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateFlagRequestEnvironmentsMap>;
 
 export type CreateFlagRequestState = "active" | "archived";
-export const CreateFlagRequestState = /*@__PURE__*/ S.String;
+export const CreateFlagRequestState = S.String;
 
 /** The user ids of the maintainers of the flag */
 export type CreateFlagRequestMaintainerIdsList = Array<string>;
@@ -777,8 +777,7 @@ export const CreateFlagResponseEnvironmentsValueTargetsMap =
   ) as any as S.Schema<CreateFlagResponseEnvironmentsValueTargetsMap>;
 
 export type CreateFlagResponseEnvironmentsValuePausedOutcomeType = "variant";
-export const CreateFlagResponseEnvironmentsValuePausedOutcomeType =
-  /*@__PURE__*/ S.String;
+export const CreateFlagResponseEnvironmentsValuePausedOutcomeType = S.String;
 
 export interface CreateFlagResponseEnvironmentsValuePausedOutcome {
   type: CreateFlagResponseEnvironmentsValuePausedOutcomeType;
@@ -795,8 +794,7 @@ export const CreateFlagResponseEnvironmentsValuePausedOutcome =
   }) as any as S.Schema<CreateFlagResponseEnvironmentsValuePausedOutcome>;
 
 export type CreateFlagResponseEnvironmentsValueFallthroughCase0Type = "variant";
-export const CreateFlagResponseEnvironmentsValueFallthroughCase0Type =
-  /*@__PURE__*/ S.String;
+export const CreateFlagResponseEnvironmentsValueFallthroughCase0Type = S.String;
 
 export interface CreateFlagResponseEnvironmentsValueFallthroughCase0 {
   type: CreateFlagResponseEnvironmentsValueFallthroughCase0Type;
@@ -813,13 +811,12 @@ export const CreateFlagResponseEnvironmentsValueFallthroughCase0 =
   }) as any as S.Schema<CreateFlagResponseEnvironmentsValueFallthroughCase0>;
 
 export type CreateFlagResponseEnvironmentsValueFallthroughCase1Type = "split";
-export const CreateFlagResponseEnvironmentsValueFallthroughCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateFlagResponseEnvironmentsValueFallthroughCase1Type = S.String;
 
 export type CreateFlagResponseEnvironmentsValueFallthroughCase1BaseType =
   "entity";
 export const CreateFlagResponseEnvironmentsValueFallthroughCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueFallthroughCase1Base {
   type: CreateFlagResponseEnvironmentsValueFallthroughCase1BaseType;
@@ -865,13 +862,12 @@ export const CreateFlagResponseEnvironmentsValueFallthroughCase1 =
   }) as any as S.Schema<CreateFlagResponseEnvironmentsValueFallthroughCase1>;
 
 export type CreateFlagResponseEnvironmentsValueFallthroughCase2Type = "rollout";
-export const CreateFlagResponseEnvironmentsValueFallthroughCase2Type =
-  /*@__PURE__*/ S.String;
+export const CreateFlagResponseEnvironmentsValueFallthroughCase2Type = S.String;
 
 export type CreateFlagResponseEnvironmentsValueFallthroughCase2BaseType =
   "entity";
 export const CreateFlagResponseEnvironmentsValueFallthroughCase2BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueFallthroughCase2Base {
   type: CreateFlagResponseEnvironmentsValueFallthroughCase2BaseType;
@@ -936,8 +932,7 @@ export const CreateFlagResponseEnvironmentsValueFallthroughCase2 =
 
 export type CreateFlagResponseEnvironmentsValueFallthroughCase3Type =
   "experiment";
-export const CreateFlagResponseEnvironmentsValueFallthroughCase3Type =
-  /*@__PURE__*/ S.String;
+export const CreateFlagResponseEnvironmentsValueFallthroughCase3Type = S.String;
 
 export interface CreateFlagResponseEnvironmentsValueFallthroughCase3 {
   type: CreateFlagResponseEnvironmentsValueFallthroughCase3Type;
@@ -957,12 +952,12 @@ export type CreateFlagResponseEnvironmentsValueFallthrough =
   | CreateFlagResponseEnvironmentsValueFallthroughCase2
   | CreateFlagResponseEnvironmentsValueFallthroughCase3;
 export const CreateFlagResponseEnvironmentsValueFallthrough =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueFallthrough>;
+  S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueFallthrough>;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase0Type =
   "variant";
 export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase0 {
   type: CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase0Type;
@@ -981,12 +976,12 @@ export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase0 =
 export type CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase1Type =
   "split";
 export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase1BaseType =
   "entity";
 export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase1Base {
   type: CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase1BaseType;
@@ -1034,12 +1029,12 @@ export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase1 =
 export type CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2Type =
   "rollout";
 export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2BaseType =
   "entity";
 export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2Base {
   type: CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2BaseType;
@@ -1096,7 +1091,7 @@ export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2 =
 export type CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase3Type =
   "experiment";
 export const CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase3 {
   type: CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase3Type;
@@ -1116,13 +1111,13 @@ export type CreateFlagResponseEnvironmentsValueRulesItemOutcome =
   | CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase2
   | CreateFlagResponseEnvironmentsValueRulesItemOutcomeCase3;
 export const CreateFlagResponseEnvironmentsValueRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemOutcome>;
+  S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemOutcome>;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2Type =
   | "list"
   | "list/inline";
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -1138,7 +1133,7 @@ export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2It
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
+  S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsList =
   Array<CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
@@ -1166,7 +1161,7 @@ export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase2 
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase3Type =
   "regex";
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase3 {
   type: CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase3Type;
@@ -1192,7 +1187,7 @@ export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhs =
   | CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhsCase3
   | boolean;
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhs>;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -1202,7 +1197,7 @@ export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemCmpOption
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase0Type =
   "segment";
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase0 {
   type: CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase0Type;
@@ -1220,7 +1215,7 @@ export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase0 
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase1Type =
   "entity";
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase1 {
   type: CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase1Type;
@@ -1243,7 +1238,7 @@ export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhs =
   | CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase0
   | CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<CreateFlagResponseEnvironmentsValueRulesItemConditionsItemLhs>;
 
 export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemCmp =
   | "!contains"
@@ -1270,7 +1265,7 @@ export type CreateFlagResponseEnvironmentsValueRulesItemConditionsItemCmp =
   | "regex"
   | "startsWith";
 export const CreateFlagResponseEnvironmentsValueRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagResponseEnvironmentsValueRulesItemConditionsItem {
   rhs?: CreateFlagResponseEnvironmentsValueRulesItemConditionsItemRhs;
@@ -1356,10 +1351,10 @@ export const CreateFlagResponseEnvironmentsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateFlagResponseEnvironmentsMap>;
 
 export type CreateFlagResponseKind = "boolean" | "json" | "number" | "string";
-export const CreateFlagResponseKind = /*@__PURE__*/ S.String;
+export const CreateFlagResponseKind = S.String;
 
 export type CreateFlagResponseState = "active" | "archived";
-export const CreateFlagResponseState = /*@__PURE__*/ S.String;
+export const CreateFlagResponseState = S.String;
 
 export type CreateFlagResponseMaintainerIdsList = Array<string>;
 export const CreateFlagResponseMaintainerIdsList = /*@__PURE__*/ S.Array(
@@ -1372,7 +1367,7 @@ export const CreateFlagResponseTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateFlagResponseTagsList>;
 
 export type CreateFlagResponseTypeName = "flag";
-export const CreateFlagResponseTypeName = /*@__PURE__*/ S.String;
+export const CreateFlagResponseTypeName = S.String;
 
 export interface CreateFlagResponse {
   description?: string;
@@ -1435,7 +1430,7 @@ export type CreateFlagSegmentRequestDataRulesItemConditionsItemLhs =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const CreateFlagSegmentRequestDataRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemConditionsItemLhs>;
 
 export type CreateFlagSegmentRequestDataRulesItemConditionsItemCmp =
   | "eq"
@@ -1461,14 +1456,13 @@ export type CreateFlagSegmentRequestDataRulesItemConditionsItemCmp =
   | "!regex"
   | "before"
   | "after";
-export const CreateFlagSegmentRequestDataRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+export const CreateFlagSegmentRequestDataRulesItemConditionsItemCmp = S.String;
 
 export type CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0Type =
   | "list/inline"
   | "list";
 export const CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -1484,7 +1478,7 @@ export type CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem>;
 
 export type CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsList =
   Array<CreateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem>;
@@ -1522,7 +1516,7 @@ export type CreateFlagSegmentRequestDataRulesItemConditionsItemRhs =
   | number
   | boolean;
 export const CreateFlagSegmentRequestDataRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemConditionsItemRhs>;
 
 export type CreateFlagSegmentRequestDataRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -1586,7 +1580,7 @@ export type CreateFlagSegmentRequestDataRulesItemOutcome =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase0
   | CreateFlagSegmentRequestDataRulesItemOutcomeCase1;
 export const CreateFlagSegmentRequestDataRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemOutcome>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentRequestDataRulesItemOutcome>;
 
 export interface CreateFlagSegmentRequestDataRulesItem {
   id: string;
@@ -1732,8 +1726,7 @@ export const CreateFlagSegmentResponseUsedBySegmentsList =
   ) as any as S.Schema<CreateFlagSegmentResponseUsedBySegmentsList>;
 
 export type CreateFlagSegmentResponseDataRulesItemOutcomeCase0Type = "all";
-export const CreateFlagSegmentResponseDataRulesItemOutcomeCase0Type =
-  /*@__PURE__*/ S.String;
+export const CreateFlagSegmentResponseDataRulesItemOutcomeCase0Type = S.String;
 
 export interface CreateFlagSegmentResponseDataRulesItemOutcomeCase0 {
   type: CreateFlagSegmentResponseDataRulesItemOutcomeCase0Type;
@@ -1748,13 +1741,12 @@ export const CreateFlagSegmentResponseDataRulesItemOutcomeCase0 =
   }) as any as S.Schema<CreateFlagSegmentResponseDataRulesItemOutcomeCase0>;
 
 export type CreateFlagSegmentResponseDataRulesItemOutcomeCase1Type = "split";
-export const CreateFlagSegmentResponseDataRulesItemOutcomeCase1Type =
-  /*@__PURE__*/ S.String;
+export const CreateFlagSegmentResponseDataRulesItemOutcomeCase1Type = S.String;
 
 export type CreateFlagSegmentResponseDataRulesItemOutcomeCase1BaseType =
   "entity";
 export const CreateFlagSegmentResponseDataRulesItemOutcomeCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagSegmentResponseDataRulesItemOutcomeCase1Base {
   type: CreateFlagSegmentResponseDataRulesItemOutcomeCase1BaseType;
@@ -1792,13 +1784,13 @@ export type CreateFlagSegmentResponseDataRulesItemOutcome =
   | CreateFlagSegmentResponseDataRulesItemOutcomeCase0
   | CreateFlagSegmentResponseDataRulesItemOutcomeCase1;
 export const CreateFlagSegmentResponseDataRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemOutcome>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemOutcome>;
 
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2Type =
   | "list"
   | "list/inline";
 export const CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -1814,7 +1806,7 @@ export type CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2ItemsIte
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2ItemsItem>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2ItemsItem>;
 
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2ItemsList =
   Array<CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2ItemsItem>;
@@ -1841,7 +1833,7 @@ export const CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase2 =
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase3Type =
   "regex";
 export const CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase3 {
   type: CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase3Type;
@@ -1866,7 +1858,7 @@ export type CreateFlagSegmentResponseDataRulesItemConditionsItemRhs =
   | CreateFlagSegmentResponseDataRulesItemConditionsItemRhsCase3
   | boolean;
 export const CreateFlagSegmentResponseDataRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemConditionsItemRhs>;
 
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -1876,7 +1868,7 @@ export const CreateFlagSegmentResponseDataRulesItemConditionsItemCmpOptions =
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase0Type =
   "segment";
 export const CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase0 {
   type: CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase0Type;
@@ -1893,7 +1885,7 @@ export const CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase0 =
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase1Type =
   "entity";
 export const CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase1 {
   type: CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase1Type;
@@ -1915,7 +1907,7 @@ export type CreateFlagSegmentResponseDataRulesItemConditionsItemLhs =
   | CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase0
   | CreateFlagSegmentResponseDataRulesItemConditionsItemLhsCase1;
 export const CreateFlagSegmentResponseDataRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<CreateFlagSegmentResponseDataRulesItemConditionsItemLhs>;
 
 export type CreateFlagSegmentResponseDataRulesItemConditionsItemCmp =
   | "!contains"
@@ -1941,8 +1933,7 @@ export type CreateFlagSegmentResponseDataRulesItemConditionsItemCmp =
   | "oneOf"
   | "regex"
   | "startsWith";
-export const CreateFlagSegmentResponseDataRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+export const CreateFlagSegmentResponseDataRulesItemConditionsItemCmp = S.String;
 
 export interface CreateFlagSegmentResponseDataRulesItemConditionsItem {
   rhs?: CreateFlagSegmentResponseDataRulesItemConditionsItemRhs;
@@ -2067,7 +2058,7 @@ export const CreateFlagSegmentResponseData = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateFlagSegmentResponseData>;
 
 export type CreateFlagSegmentResponseTypeName = "segment";
-export const CreateFlagSegmentResponseTypeName = /*@__PURE__*/ S.String;
+export const CreateFlagSegmentResponseTypeName = S.String;
 
 export interface CreateFlagSegmentResponse {
   description?: string;
@@ -2105,7 +2096,7 @@ export const CreateFlagSegmentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateFlagSegmentResponse>;
 
 export type CreateSdkKeyRequestSdkKeyType = "server" | "mobile" | "client";
-export const CreateSdkKeyRequestSdkKeyType = /*@__PURE__*/ S.String;
+export const CreateSdkKeyRequestSdkKeyType = S.String;
 
 export interface CreateSdkKeyRequest {
   /** The project id or name */
@@ -2138,7 +2129,7 @@ export const CreateSdkKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSdkKeyRequest>;
 
 export type FlagsSdkKeyWithSecretsType = "client" | "mobile" | "server";
-export const FlagsSdkKeyWithSecretsType = /*@__PURE__*/ S.String;
+export const FlagsSdkKeyWithSecretsType = S.String;
 
 /** Representation of a Flags SDK key returned by CREATE. Includes cleartext secrets (`keyValue`, `tokenValue`, `connectionString`) which are only ever disclosed once, on creation. */
 export interface FlagsSdkKeyWithSecrets {
@@ -2429,7 +2420,7 @@ export const FlagEnvironmentsValueTargetsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<FlagEnvironmentsValueTargetsMap>;
 
 export type FlagEnvironmentsValuePausedOutcomeType = "variant";
-export const FlagEnvironmentsValuePausedOutcomeType = /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValuePausedOutcomeType = S.String;
 
 export interface FlagEnvironmentsValuePausedOutcome {
   type: FlagEnvironmentsValuePausedOutcomeType;
@@ -2445,7 +2436,7 @@ export const FlagEnvironmentsValuePausedOutcome = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlagEnvironmentsValuePausedOutcome>;
 
 export type FlagEnvironmentsValueFallthroughCase0Type = "variant";
-export const FlagEnvironmentsValueFallthroughCase0Type = /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueFallthroughCase0Type = S.String;
 
 export interface FlagEnvironmentsValueFallthroughCase0 {
   type: FlagEnvironmentsValueFallthroughCase0Type;
@@ -2462,11 +2453,10 @@ export const FlagEnvironmentsValueFallthroughCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<FlagEnvironmentsValueFallthroughCase0>;
 
 export type FlagEnvironmentsValueFallthroughCase1Type = "split";
-export const FlagEnvironmentsValueFallthroughCase1Type = /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueFallthroughCase1Type = S.String;
 
 export type FlagEnvironmentsValueFallthroughCase1BaseType = "entity";
-export const FlagEnvironmentsValueFallthroughCase1BaseType =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueFallthroughCase1BaseType = S.String;
 
 export interface FlagEnvironmentsValueFallthroughCase1Base {
   type: FlagEnvironmentsValueFallthroughCase1BaseType;
@@ -2512,11 +2502,10 @@ export const FlagEnvironmentsValueFallthroughCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<FlagEnvironmentsValueFallthroughCase1>;
 
 export type FlagEnvironmentsValueFallthroughCase2Type = "rollout";
-export const FlagEnvironmentsValueFallthroughCase2Type = /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueFallthroughCase2Type = S.String;
 
 export type FlagEnvironmentsValueFallthroughCase2BaseType = "entity";
-export const FlagEnvironmentsValueFallthroughCase2BaseType =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueFallthroughCase2BaseType = S.String;
 
 export interface FlagEnvironmentsValueFallthroughCase2Base {
   type: FlagEnvironmentsValueFallthroughCase2BaseType;
@@ -2571,7 +2560,7 @@ export const FlagEnvironmentsValueFallthroughCase2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<FlagEnvironmentsValueFallthroughCase2>;
 
 export type FlagEnvironmentsValueFallthroughCase3Type = "experiment";
-export const FlagEnvironmentsValueFallthroughCase3Type = /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueFallthroughCase3Type = S.String;
 
 export interface FlagEnvironmentsValueFallthroughCase3 {
   type: FlagEnvironmentsValueFallthroughCase3Type;
@@ -2591,11 +2580,10 @@ export type FlagEnvironmentsValueFallthrough =
   | FlagEnvironmentsValueFallthroughCase2
   | FlagEnvironmentsValueFallthroughCase3;
 export const FlagEnvironmentsValueFallthrough =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlagEnvironmentsValueFallthrough>;
+  S.Unknown as any as S.Schema<FlagEnvironmentsValueFallthrough>;
 
 export type FlagEnvironmentsValueRulesItemOutcomeCase0Type = "variant";
-export const FlagEnvironmentsValueRulesItemOutcomeCase0Type =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueRulesItemOutcomeCase0Type = S.String;
 
 export interface FlagEnvironmentsValueRulesItemOutcomeCase0 {
   type: FlagEnvironmentsValueRulesItemOutcomeCase0Type;
@@ -2612,12 +2600,10 @@ export const FlagEnvironmentsValueRulesItemOutcomeCase0 =
   }) as any as S.Schema<FlagEnvironmentsValueRulesItemOutcomeCase0>;
 
 export type FlagEnvironmentsValueRulesItemOutcomeCase1Type = "split";
-export const FlagEnvironmentsValueRulesItemOutcomeCase1Type =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueRulesItemOutcomeCase1Type = S.String;
 
 export type FlagEnvironmentsValueRulesItemOutcomeCase1BaseType = "entity";
-export const FlagEnvironmentsValueRulesItemOutcomeCase1BaseType =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueRulesItemOutcomeCase1BaseType = S.String;
 
 export interface FlagEnvironmentsValueRulesItemOutcomeCase1Base {
   type: FlagEnvironmentsValueRulesItemOutcomeCase1BaseType;
@@ -2663,12 +2649,10 @@ export const FlagEnvironmentsValueRulesItemOutcomeCase1 =
   }) as any as S.Schema<FlagEnvironmentsValueRulesItemOutcomeCase1>;
 
 export type FlagEnvironmentsValueRulesItemOutcomeCase2Type = "rollout";
-export const FlagEnvironmentsValueRulesItemOutcomeCase2Type =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueRulesItemOutcomeCase2Type = S.String;
 
 export type FlagEnvironmentsValueRulesItemOutcomeCase2BaseType = "entity";
-export const FlagEnvironmentsValueRulesItemOutcomeCase2BaseType =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueRulesItemOutcomeCase2BaseType = S.String;
 
 export interface FlagEnvironmentsValueRulesItemOutcomeCase2Base {
   type: FlagEnvironmentsValueRulesItemOutcomeCase2BaseType;
@@ -2723,8 +2707,7 @@ export const FlagEnvironmentsValueRulesItemOutcomeCase2 =
   }) as any as S.Schema<FlagEnvironmentsValueRulesItemOutcomeCase2>;
 
 export type FlagEnvironmentsValueRulesItemOutcomeCase3Type = "experiment";
-export const FlagEnvironmentsValueRulesItemOutcomeCase3Type =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueRulesItemOutcomeCase3Type = S.String;
 
 export interface FlagEnvironmentsValueRulesItemOutcomeCase3 {
   type: FlagEnvironmentsValueRulesItemOutcomeCase3Type;
@@ -2744,13 +2727,13 @@ export type FlagEnvironmentsValueRulesItemOutcome =
   | FlagEnvironmentsValueRulesItemOutcomeCase2
   | FlagEnvironmentsValueRulesItemOutcomeCase3;
 export const FlagEnvironmentsValueRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemOutcome>;
+  S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemOutcome>;
 
 export type FlagEnvironmentsValueRulesItemConditionsItemRhsCase2Type =
   | "list"
   | "list/inline";
 export const FlagEnvironmentsValueRulesItemConditionsItemRhsCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FlagEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -2766,7 +2749,7 @@ export type FlagEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const FlagEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
+  S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
 
 export type FlagEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsList =
   Array<FlagEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
@@ -2791,7 +2774,7 @@ export const FlagEnvironmentsValueRulesItemConditionsItemRhsCase2 =
 
 export type FlagEnvironmentsValueRulesItemConditionsItemRhsCase3Type = "regex";
 export const FlagEnvironmentsValueRulesItemConditionsItemRhsCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FlagEnvironmentsValueRulesItemConditionsItemRhsCase3 {
   type: FlagEnvironmentsValueRulesItemConditionsItemRhsCase3Type;
@@ -2816,7 +2799,7 @@ export type FlagEnvironmentsValueRulesItemConditionsItemRhs =
   | FlagEnvironmentsValueRulesItemConditionsItemRhsCase3
   | boolean;
 export const FlagEnvironmentsValueRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemConditionsItemRhs>;
 
 export type FlagEnvironmentsValueRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -2826,7 +2809,7 @@ export const FlagEnvironmentsValueRulesItemConditionsItemCmpOptions =
 export type FlagEnvironmentsValueRulesItemConditionsItemLhsCase0Type =
   "segment";
 export const FlagEnvironmentsValueRulesItemConditionsItemLhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FlagEnvironmentsValueRulesItemConditionsItemLhsCase0 {
   type: FlagEnvironmentsValueRulesItemConditionsItemLhsCase0Type;
@@ -2842,7 +2825,7 @@ export const FlagEnvironmentsValueRulesItemConditionsItemLhsCase0 =
 
 export type FlagEnvironmentsValueRulesItemConditionsItemLhsCase1Type = "entity";
 export const FlagEnvironmentsValueRulesItemConditionsItemLhsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FlagEnvironmentsValueRulesItemConditionsItemLhsCase1 {
   type: FlagEnvironmentsValueRulesItemConditionsItemLhsCase1Type;
@@ -2864,7 +2847,7 @@ export type FlagEnvironmentsValueRulesItemConditionsItemLhs =
   | FlagEnvironmentsValueRulesItemConditionsItemLhsCase0
   | FlagEnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const FlagEnvironmentsValueRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<FlagEnvironmentsValueRulesItemConditionsItemLhs>;
 
 export type FlagEnvironmentsValueRulesItemConditionsItemCmp =
   | "!contains"
@@ -2890,8 +2873,7 @@ export type FlagEnvironmentsValueRulesItemConditionsItemCmp =
   | "oneOf"
   | "regex"
   | "startsWith";
-export const FlagEnvironmentsValueRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+export const FlagEnvironmentsValueRulesItemConditionsItemCmp = S.String;
 
 export interface FlagEnvironmentsValueRulesItemConditionsItem {
   rhs?: FlagEnvironmentsValueRulesItemConditionsItemRhs;
@@ -2973,10 +2955,10 @@ export const FlagEnvironmentsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<FlagEnvironmentsMap>;
 
 export type FlagKind = "boolean" | "json" | "number" | "string";
-export const FlagKind = /*@__PURE__*/ S.String;
+export const FlagKind = S.String;
 
 export type FlagState = "active" | "archived";
-export const FlagState = /*@__PURE__*/ S.String;
+export const FlagState = S.String;
 
 export type FlagMaintainerIdsList = Array<string>;
 export const FlagMaintainerIdsList = /*@__PURE__*/ S.Array(
@@ -2989,7 +2971,7 @@ export const FlagTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FlagTagsList>;
 
 export type FlagTypeName = "flag";
-export const FlagTypeName = /*@__PURE__*/ S.String;
+export const FlagTypeName = S.String;
 
 export interface FlagMetadataCreator {
   id: string;
@@ -3101,7 +3083,7 @@ export const SegmentUsedBySegmentsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SegmentUsedBySegmentsList>;
 
 export type SegmentDataRulesItemOutcomeCase0Type = "all";
-export const SegmentDataRulesItemOutcomeCase0Type = /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemOutcomeCase0Type = S.String;
 
 export interface SegmentDataRulesItemOutcomeCase0 {
   type: SegmentDataRulesItemOutcomeCase0Type;
@@ -3115,10 +3097,10 @@ export const SegmentDataRulesItemOutcomeCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SegmentDataRulesItemOutcomeCase0>;
 
 export type SegmentDataRulesItemOutcomeCase1Type = "split";
-export const SegmentDataRulesItemOutcomeCase1Type = /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemOutcomeCase1Type = S.String;
 
 export type SegmentDataRulesItemOutcomeCase1BaseType = "entity";
-export const SegmentDataRulesItemOutcomeCase1BaseType = /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemOutcomeCase1BaseType = S.String;
 
 export interface SegmentDataRulesItemOutcomeCase1Base {
   type: SegmentDataRulesItemOutcomeCase1BaseType;
@@ -3155,13 +3137,12 @@ export type SegmentDataRulesItemOutcome =
   | SegmentDataRulesItemOutcomeCase0
   | SegmentDataRulesItemOutcomeCase1;
 export const SegmentDataRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SegmentDataRulesItemOutcome>;
+  S.Unknown as any as S.Schema<SegmentDataRulesItemOutcome>;
 
 export type SegmentDataRulesItemConditionsItemRhsCase2Type =
   | "list"
   | "list/inline";
-export const SegmentDataRulesItemConditionsItemRhsCase2Type =
-  /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemConditionsItemRhsCase2Type = S.String;
 
 export type SegmentDataRulesItemConditionsItemRhsCase2ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -3177,7 +3158,7 @@ export type SegmentDataRulesItemConditionsItemRhsCase2ItemsItem =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const SegmentDataRulesItemConditionsItemRhsCase2ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SegmentDataRulesItemConditionsItemRhsCase2ItemsItem>;
+  S.Unknown as any as S.Schema<SegmentDataRulesItemConditionsItemRhsCase2ItemsItem>;
 
 export type SegmentDataRulesItemConditionsItemRhsCase2ItemsList =
   Array<SegmentDataRulesItemConditionsItemRhsCase2ItemsItem>;
@@ -3201,8 +3182,7 @@ export const SegmentDataRulesItemConditionsItemRhsCase2 =
   }) as any as S.Schema<SegmentDataRulesItemConditionsItemRhsCase2>;
 
 export type SegmentDataRulesItemConditionsItemRhsCase3Type = "regex";
-export const SegmentDataRulesItemConditionsItemRhsCase3Type =
-  /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemConditionsItemRhsCase3Type = S.String;
 
 export interface SegmentDataRulesItemConditionsItemRhsCase3 {
   type: SegmentDataRulesItemConditionsItemRhsCase3Type;
@@ -3227,7 +3207,7 @@ export type SegmentDataRulesItemConditionsItemRhs =
   | SegmentDataRulesItemConditionsItemRhsCase3
   | boolean;
 export const SegmentDataRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SegmentDataRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<SegmentDataRulesItemConditionsItemRhs>;
 
 export type SegmentDataRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -3235,8 +3215,7 @@ export const SegmentDataRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
 
 export type SegmentDataRulesItemConditionsItemLhsCase0Type = "segment";
-export const SegmentDataRulesItemConditionsItemLhsCase0Type =
-  /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemConditionsItemLhsCase0Type = S.String;
 
 export interface SegmentDataRulesItemConditionsItemLhsCase0 {
   type: SegmentDataRulesItemConditionsItemLhsCase0Type;
@@ -3251,8 +3230,7 @@ export const SegmentDataRulesItemConditionsItemLhsCase0 =
   }) as any as S.Schema<SegmentDataRulesItemConditionsItemLhsCase0>;
 
 export type SegmentDataRulesItemConditionsItemLhsCase1Type = "entity";
-export const SegmentDataRulesItemConditionsItemLhsCase1Type =
-  /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemConditionsItemLhsCase1Type = S.String;
 
 export interface SegmentDataRulesItemConditionsItemLhsCase1 {
   type: SegmentDataRulesItemConditionsItemLhsCase1Type;
@@ -3274,7 +3252,7 @@ export type SegmentDataRulesItemConditionsItemLhs =
   | SegmentDataRulesItemConditionsItemLhsCase0
   | SegmentDataRulesItemConditionsItemLhsCase1;
 export const SegmentDataRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SegmentDataRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<SegmentDataRulesItemConditionsItemLhs>;
 
 export type SegmentDataRulesItemConditionsItemCmp =
   | "!contains"
@@ -3300,7 +3278,7 @@ export type SegmentDataRulesItemConditionsItemCmp =
   | "oneOf"
   | "regex"
   | "startsWith";
-export const SegmentDataRulesItemConditionsItemCmp = /*@__PURE__*/ S.String;
+export const SegmentDataRulesItemConditionsItemCmp = S.String;
 
 export interface SegmentDataRulesItemConditionsItem {
   rhs?: SegmentDataRulesItemConditionsItemRhs;
@@ -3415,7 +3393,7 @@ export const SegmentData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SegmentData" }) as any as S.Schema<SegmentData>;
 
 export type SegmentTypeName = "segment";
-export const SegmentTypeName = /*@__PURE__*/ S.String;
+export const SegmentTypeName = S.String;
 
 export type SegmentMetadataCreator = FlagMetadataCreator;
 export const SegmentMetadataCreator = FlagMetadataCreator;
@@ -3483,7 +3461,7 @@ export const GetFlagSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFlagSettingsRequest>;
 
 export type GetFlagSettingsResponseTypeName = "settings";
-export const GetFlagSettingsResponseTypeName = /*@__PURE__*/ S.String;
+export const GetFlagSettingsResponseTypeName = S.String;
 
 export type GetFlagSettingsResponseEnvironmentsList = Array<string>;
 export const GetFlagSettingsResponseEnvironmentsList = /*@__PURE__*/ S.Array(
@@ -3630,7 +3608,7 @@ export const GetSdkKeysRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSdkKeysRequest>;
 
 export type GetSdkKeysResponseDataItemType = "client" | "mobile" | "server";
-export const GetSdkKeysResponseDataItemType = /*@__PURE__*/ S.String;
+export const GetSdkKeysResponseDataItemType = S.String;
 
 /** Shared metadata for a Flags SDK key, safe to return on both LIST and CREATE. Never contains cleartext secrets. */
 export interface GetSdkKeysResponseDataItem {
@@ -3681,7 +3659,7 @@ export const GetSdkKeysResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the flags to retrieve. Defaults to `active`. */
 export type ListFlagsRequestState = "active" | "archived";
-export const ListFlagsRequestState = /*@__PURE__*/ S.String;
+export const ListFlagsRequestState = S.String;
 
 /** Filter flags by tag. Repeat the parameter for multiple tags (all must match). */
 export type ListFlagsRequestTagsList = Array<string>;
@@ -3805,7 +3783,7 @@ export const ListFlagSegmentsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the flags to retrieve. Defaults to `active`. */
 export type ListFlagsV2RequestState = "active" | "archived";
-export const ListFlagsV2RequestState = /*@__PURE__*/ S.String;
+export const ListFlagsV2RequestState = S.String;
 
 /** Filter flags by tag. Repeat the parameter for multiple tags (all must match). */
 export type ListFlagsV2RequestTagsList = Array<string>;
@@ -3873,13 +3851,13 @@ export type ListFlagsV2ResponsePagination = ListFlagsResponsePagination;
 export const ListFlagsV2ResponsePagination = ListFlagsResponsePagination;
 
 export type MarketplaceFlagTypeName = "marketplaceFlag";
-export const MarketplaceFlagTypeName = /*@__PURE__*/ S.String;
+export const MarketplaceFlagTypeName = S.String;
 
 export type MarketplaceFlagState = "active" | "archived";
-export const MarketplaceFlagState = /*@__PURE__*/ S.String;
+export const MarketplaceFlagState = S.String;
 
 export type MarketplaceFlagCategory = "experiment" | "flag";
-export const MarketplaceFlagCategory = /*@__PURE__*/ S.String;
+export const MarketplaceFlagCategory = S.String;
 
 export interface MarketplaceFlag {
   typeName: MarketplaceFlagTypeName;
@@ -3922,7 +3900,7 @@ export const MarketplaceFlag = /*@__PURE__*/ S.suspend(() =>
 
 export type ListFlagsV2ResponseDataItem = Flag | MarketplaceFlag;
 export const ListFlagsV2ResponseDataItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlagsV2ResponseDataItem>;
+  S.Unknown as any as S.Schema<ListFlagsV2ResponseDataItem>;
 
 export type ListFlagsV2ResponseDataList = Array<ListFlagsV2ResponseDataItem>;
 export const ListFlagsV2ResponseDataList = /*@__PURE__*/ S.Array(
@@ -4048,7 +4026,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueTargetsMap
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValuePausedOutcomeType =
   "variant";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValuePausedOutcomeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValuePausedOutcome {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValuePausedOutcomeType;
@@ -4068,7 +4046,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValuePausedOutc
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase0Type =
   "variant";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase0 {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase0Type;
@@ -4088,12 +4066,12 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroug
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase1Type =
   "split";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase1BaseType =
   "entity";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase1Base {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase1BaseType;
@@ -4143,12 +4121,12 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroug
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase2Type =
   "rollout";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase2BaseType =
   "entity";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase2BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase2Base {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase2BaseType;
@@ -4208,7 +4186,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroug
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase3Type =
   "experiment";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase3 {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase3Type;
@@ -4229,12 +4207,12 @@ export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthrough
   | ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase2
   | ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthroughCase3;
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthrough =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthrough>;
+  S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueFallthrough>;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase0Type =
   "variant";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase0 {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase0Type;
@@ -4254,12 +4232,12 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemO
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase1Type =
   "split";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase1BaseType =
   "entity";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase1Base {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase1BaseType;
@@ -4309,12 +4287,12 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemO
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase2Type =
   "rollout";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase2BaseType =
   "entity";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase2BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase2Base {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase2BaseType;
@@ -4374,7 +4352,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemO
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase3Type =
   "experiment";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase3 {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase3Type;
@@ -4395,13 +4373,13 @@ export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOu
   | ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase2
   | ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcomeCase3;
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcome>;
+  S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemOutcome>;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2Type =
   | "list"
   | "list/inline";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -4417,7 +4395,7 @@ export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemCo
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
+  S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsList =
   Array<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
@@ -4445,7 +4423,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemC
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase3Type =
   "regex";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase3 {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase3Type;
@@ -4471,7 +4449,7 @@ export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemCo
   | ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhsCase3
   | boolean;
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhs>;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -4481,7 +4459,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemC
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase0Type =
   "segment";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase0 {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase0Type;
@@ -4499,7 +4477,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemC
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase1Type =
   "entity";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase1 {
   type: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase1Type;
@@ -4522,7 +4500,7 @@ export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemCo
   | ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase0
   | ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemLhs>;
 
 export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemCmp =
   | "!contains"
@@ -4549,7 +4527,7 @@ export type ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemCo
   | "regex"
   | "startsWith";
 export const ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItem {
   rhs?: ListFlagVersionsResponseVersionsItemDataEnvironmentsValueRulesItemConditionsItemRhs;
@@ -4649,8 +4627,7 @@ export const ListFlagVersionsResponseVersionsItemDataEnvironmentsMap =
 export type ListFlagVersionsResponseVersionsItemDataState =
   | "active"
   | "archived";
-export const ListFlagVersionsResponseVersionsItemDataState =
-  /*@__PURE__*/ S.String;
+export const ListFlagVersionsResponseVersionsItemDataState = S.String;
 
 export type ListFlagVersionsResponseVersionsItemDataMaintainerIdsList =
   Array<string>;
@@ -4751,11 +4728,11 @@ export const ListFlagVersionsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the flags to retrieve. Defaults to `active`. */
 export type ListTeamFlagsRequestState = "active" | "archived";
-export const ListTeamFlagsRequestState = /*@__PURE__*/ S.String;
+export const ListTeamFlagsRequestState = S.String;
 
 /** The kind of flags to retrieve. */
 export type ListTeamFlagsRequestKind = "boolean" | "string" | "number" | "json";
-export const ListTeamFlagsRequestKind = /*@__PURE__*/ S.String;
+export const ListTeamFlagsRequestKind = S.String;
 
 /** Filter flags by tag. Repeat the parameter for multiple tags (all must match). */
 export type ListTeamFlagsRequestTagsList = Array<string>;
@@ -4854,8 +4831,7 @@ export const ListTeamFlagSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTeamFlagSettingsRequest>;
 
 export type ListTeamFlagSettingsResponseBodyCase1DataItemTypeName = "settings";
-export const ListTeamFlagSettingsResponseBodyCase1DataItemTypeName =
-  /*@__PURE__*/ S.String;
+export const ListTeamFlagSettingsResponseBodyCase1DataItemTypeName = S.String;
 
 export type ListTeamFlagSettingsResponseBodyCase1DataItemEnvironmentsList =
   Array<string>;
@@ -4990,7 +4966,7 @@ export type ListTeamFlagSettingsResponseBody =
   | unknown
   | ListTeamFlagSettingsResponseBodyCase1;
 export const ListTeamFlagSettingsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTeamFlagSettingsResponseBody>;
+  S.Unknown as any as S.Schema<ListTeamFlagSettingsResponseBody>;
 
 export type ListTeamFlagSettingsResponse = ListTeamFlagSettingsResponseBody;
 export const ListTeamFlagSettingsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -5001,7 +4977,7 @@ export const ListTeamFlagSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of the flags to retrieve. Defaults to `active`. */
 export type ListTeamFlagsV2RequestState = "active" | "archived";
-export const ListTeamFlagsV2RequestState = /*@__PURE__*/ S.String;
+export const ListTeamFlagsV2RequestState = S.String;
 
 /** The kind of flags to retrieve. */
 export type ListTeamFlagsV2RequestKind =
@@ -5009,7 +4985,7 @@ export type ListTeamFlagsV2RequestKind =
   | "string"
   | "number"
   | "json";
-export const ListTeamFlagsV2RequestKind = /*@__PURE__*/ S.String;
+export const ListTeamFlagsV2RequestKind = S.String;
 
 /** Filter flags by tag. Repeat the parameter for multiple tags (all must match). */
 export type ListTeamFlagsV2RequestTagsList = Array<string>;
@@ -5078,7 +5054,7 @@ export const ListTeamFlagsV2ResponsePagination = ListFlagsResponsePagination;
 
 export type ListTeamFlagsV2ResponseDataItem = Flag | MarketplaceFlag;
 export const ListTeamFlagsV2ResponseDataItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTeamFlagsV2ResponseDataItem>;
+  S.Unknown as any as S.Schema<ListTeamFlagsV2ResponseDataItem>;
 
 export type ListTeamFlagsV2ResponseDataList =
   Array<ListTeamFlagsV2ResponseDataItem>;
@@ -5112,7 +5088,7 @@ export type UpdateFlagRequestVariantsItemValue =
   | unknown
   | UpdateFlagRequestVariantsItemValueCase4List;
 export const UpdateFlagRequestVariantsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagRequestVariantsItemValue>;
+  S.Unknown as any as S.Schema<UpdateFlagRequestVariantsItemValue>;
 
 export interface UpdateFlagRequestVariantsItem {
   /** The id of the variant */
@@ -5210,7 +5186,7 @@ export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemLhs>;
 
 export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemCmp =
   | "eq"
@@ -5237,13 +5213,13 @@ export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemCmp =
   | "before"
   | "after";
 export const UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0Type =
   | "list/inline"
   | "list";
 export const UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -5259,7 +5235,7 @@ export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0Ite
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem>;
+  S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem>;
 
 export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsList =
   Array<UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItem>;
@@ -5298,7 +5274,7 @@ export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs =
   | number
   | boolean;
 export const UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemRhs>;
 
 export type UpdateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -5428,7 +5404,7 @@ export type UpdateFlagRequestEnvironmentsValueRulesItemOutcome =
   | UpdateFlagRequestEnvironmentsValueRulesItemOutcomeCase1
   | UpdateFlagRequestEnvironmentsValueRulesItemOutcomeCase2;
 export const UpdateFlagRequestEnvironmentsValueRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemOutcome>;
+  S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueRulesItemOutcome>;
 
 export interface UpdateFlagRequestEnvironmentsValueRulesItem {
   id: string;
@@ -5545,7 +5521,7 @@ export type UpdateFlagRequestEnvironmentsValueFallthrough =
   | UpdateFlagRequestEnvironmentsValueFallthroughCase1
   | UpdateFlagRequestEnvironmentsValueFallthroughCase2;
 export const UpdateFlagRequestEnvironmentsValueFallthrough =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueFallthrough>;
+  S.Unknown as any as S.Schema<UpdateFlagRequestEnvironmentsValueFallthrough>;
 
 export interface UpdateFlagRequestEnvironmentsValue {
   active: boolean;
@@ -5583,7 +5559,7 @@ export const UpdateFlagRequestEnvironmentsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UpdateFlagRequestEnvironmentsMap>;
 
 export type UpdateFlagRequestState = "active" | "archived";
-export const UpdateFlagRequestState = /*@__PURE__*/ S.String;
+export const UpdateFlagRequestState = S.String;
 
 /** The user ids of the maintainers of the flag */
 export type UpdateFlagRequestMaintainerIdsList = Array<string>;
@@ -5717,7 +5693,7 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueTargetsMap =
 export type UpdateFlagResponseBodyCase0EnvironmentsValuePausedOutcomeType =
   "variant";
 export const UpdateFlagResponseBodyCase0EnvironmentsValuePausedOutcomeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValuePausedOutcome {
   type: UpdateFlagResponseBodyCase0EnvironmentsValuePausedOutcomeType;
@@ -5736,7 +5712,7 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValuePausedOutcome =
 export type UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase0Type =
   "variant";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase0 {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase0Type;
@@ -5755,12 +5731,12 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase0 =
 export type UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase1Type =
   "split";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase1BaseType =
   "entity";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase1Base {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase1BaseType;
@@ -5809,12 +5785,12 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase1 =
 export type UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2Type =
   "rollout";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2BaseType =
   "entity";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2Base {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2BaseType;
@@ -5873,7 +5849,7 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2 =
 export type UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase3Type =
   "experiment";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase3 {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase3Type;
@@ -5893,12 +5869,12 @@ export type UpdateFlagResponseBodyCase0EnvironmentsValueFallthrough =
   | UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase2
   | UpdateFlagResponseBodyCase0EnvironmentsValueFallthroughCase3;
 export const UpdateFlagResponseBodyCase0EnvironmentsValueFallthrough =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueFallthrough>;
+  S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueFallthrough>;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase0Type =
   "variant";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase0 {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase0Type;
@@ -5918,12 +5894,12 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase0 =
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase1Type =
   "split";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase1BaseType =
   "entity";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase1Base {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase1BaseType;
@@ -5973,12 +5949,12 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase1 =
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2Type =
   "rollout";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2BaseType =
   "entity";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2Base {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2BaseType;
@@ -6038,7 +6014,7 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2 =
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase3Type =
   "experiment";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase3 {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase3Type;
@@ -6059,13 +6035,13 @@ export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcome =
   | UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase2
   | UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcomeCase3;
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcome>;
+  S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemOutcome>;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2Type =
   | "list"
   | "list/inline";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -6081,7 +6057,7 @@ export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemR
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
+  S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2ItemsList =
   Array<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase2ItemsItem>;
@@ -6109,7 +6085,7 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItem
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase3Type =
   "regex";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase3 {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase3Type;
@@ -6135,7 +6111,7 @@ export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemR
   | UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhsCase3
   | boolean;
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhs>;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -6145,7 +6121,7 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItem
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase0Type =
   "segment";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase0 {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase0Type;
@@ -6163,7 +6139,7 @@ export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItem
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase1Type =
   "entity";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase1 {
   type: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase1Type;
@@ -6186,7 +6162,7 @@ export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemL
   | UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase0
   | UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemLhs>;
 
 export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemCmp =
   | "!contains"
@@ -6213,7 +6189,7 @@ export type UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemC
   | "regex"
   | "startsWith";
 export const UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItem {
   rhs?: UpdateFlagResponseBodyCase0EnvironmentsValueRulesItemConditionsItemRhs;
@@ -6309,10 +6285,10 @@ export type UpdateFlagResponseBodyCase0Kind =
   | "json"
   | "number"
   | "string";
-export const UpdateFlagResponseBodyCase0Kind = /*@__PURE__*/ S.String;
+export const UpdateFlagResponseBodyCase0Kind = S.String;
 
 export type UpdateFlagResponseBodyCase0State = "active" | "archived";
-export const UpdateFlagResponseBodyCase0State = /*@__PURE__*/ S.String;
+export const UpdateFlagResponseBodyCase0State = S.String;
 
 export type UpdateFlagResponseBodyCase0MaintainerIdsList = Array<string>;
 export const UpdateFlagResponseBodyCase0MaintainerIdsList =
@@ -6326,7 +6302,7 @@ export const UpdateFlagResponseBodyCase0TagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateFlagResponseBodyCase0TagsList>;
 
 export type UpdateFlagResponseBodyCase0TypeName = "flag";
-export const UpdateFlagResponseBodyCase0TypeName = /*@__PURE__*/ S.String;
+export const UpdateFlagResponseBodyCase0TypeName = S.String;
 
 export interface UpdateFlagResponseBodyCase0 {
   description?: string;
@@ -6377,7 +6353,7 @@ export const UpdateFlagResponseBodyCase0 = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateFlagResponseBody = UpdateFlagResponseBodyCase0 | Flag;
 export const UpdateFlagResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagResponseBody>;
+  S.Unknown as any as S.Schema<UpdateFlagResponseBody>;
 
 export type UpdateFlagResponse = UpdateFlagResponseBody;
 export const UpdateFlagResponse = /*@__PURE__*/ S.suspend(() =>
@@ -6387,12 +6363,10 @@ export const UpdateFlagResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFlagResponse>;
 
 export type UpdateFlagSegmentRequestOperationsItemAction = "add" | "remove";
-export const UpdateFlagSegmentRequestOperationsItemAction =
-  /*@__PURE__*/ S.String;
+export const UpdateFlagSegmentRequestOperationsItemAction = S.String;
 
 export type UpdateFlagSegmentRequestOperationsItemField = "include" | "exclude";
-export const UpdateFlagSegmentRequestOperationsItemField =
-  /*@__PURE__*/ S.String;
+export const UpdateFlagSegmentRequestOperationsItemField = S.String;
 
 export type UpdateFlagSegmentRequestOperationsItemValue =
   CreateFlagRequestEnvironmentsValueTargetsValueValueValueItem;
@@ -6439,7 +6413,7 @@ export type UpdateFlagSegmentRequestDataRulesItemConditionsItemLhs =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase1;
 export const UpdateFlagSegmentRequestDataRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemConditionsItemLhs>;
 
 export type UpdateFlagSegmentRequestDataRulesItemConditionsItemCmp =
   | "eq"
@@ -6465,14 +6439,13 @@ export type UpdateFlagSegmentRequestDataRulesItemConditionsItemCmp =
   | "!regex"
   | "before"
   | "after";
-export const UpdateFlagSegmentRequestDataRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+export const UpdateFlagSegmentRequestDataRulesItemConditionsItemCmp = S.String;
 
 export type UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0Type =
   | "list/inline"
   | "list";
 export const UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -6488,7 +6461,7 @@ export type UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem>;
 
 export type UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsList =
   Array<UpdateFlagSegmentRequestDataRulesItemConditionsItemRhsCase0ItemsItem>;
@@ -6526,7 +6499,7 @@ export type UpdateFlagSegmentRequestDataRulesItemConditionsItemRhs =
   | number
   | boolean;
 export const UpdateFlagSegmentRequestDataRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemConditionsItemRhs>;
 
 export type UpdateFlagSegmentRequestDataRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -6579,7 +6552,7 @@ export type UpdateFlagSegmentRequestDataRulesItemOutcome =
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemLhsCase0
   | CreateFlagSegmentRequestDataRulesItemOutcomeCase1;
 export const UpdateFlagSegmentRequestDataRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemOutcome>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentRequestDataRulesItemOutcome>;
 
 export interface UpdateFlagSegmentRequestDataRulesItem {
   id: string;
@@ -6734,7 +6707,7 @@ export const UpdateFlagSegmentResponseBodyCase0UsedBySegmentsList =
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase0Type =
   "all";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase0 {
   type: UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase0Type;
@@ -6751,12 +6724,12 @@ export const UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase0 =
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase1Type =
   "split";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase1BaseType =
   "entity";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase1BaseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase1Base {
   type: UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase1BaseType;
@@ -6795,13 +6768,13 @@ export type UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcome =
   | UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase0
   | UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcomeCase1;
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcome =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcome>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemOutcome>;
 
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2Type =
   | "list"
   | "list/inline";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2ItemsItemCase0 =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0;
@@ -6817,7 +6790,7 @@ export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase0
   | CreateFlagRequestEnvironmentsValueRulesItemConditionsItemRhsCase0ItemsItemCase1;
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2ItemsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2ItemsItem>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2ItemsItem>;
 
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2ItemsList =
   Array<UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase2ItemsItem>;
@@ -6845,7 +6818,7 @@ export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCas
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase3Type =
   "regex";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase3 {
   type: UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase3Type;
@@ -6871,7 +6844,7 @@ export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhs =
   | UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhsCase3
   | boolean;
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhs>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhs>;
 
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemCmpOptions =
   CreateFlagRequestEnvironmentsValueRulesItemConditionsItemCmpOptions;
@@ -6881,7 +6854,7 @@ export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemCmpOpt
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase0Type =
   "segment";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase0 {
   type: UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase0Type;
@@ -6899,7 +6872,7 @@ export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCas
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase1Type =
   "entity";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase1 {
   type: UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase1Type;
@@ -6922,7 +6895,7 @@ export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhs =
   | UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase0
   | UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhsCase1;
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhs =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhs>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemLhs>;
 
 export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemCmp =
   | "!contains"
@@ -6949,7 +6922,7 @@ export type UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemCmp =
   | "regex"
   | "startsWith";
 export const UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemCmp =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItem {
   rhs?: UpdateFlagSegmentResponseBodyCase0DataRulesItemConditionsItemRhs;
@@ -7088,8 +7061,7 @@ export const UpdateFlagSegmentResponseBodyCase0Data = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateFlagSegmentResponseBodyCase0Data>;
 
 export type UpdateFlagSegmentResponseBodyCase0TypeName = "segment";
-export const UpdateFlagSegmentResponseBodyCase0TypeName =
-  /*@__PURE__*/ S.String;
+export const UpdateFlagSegmentResponseBodyCase0TypeName = S.String;
 
 export interface UpdateFlagSegmentResponseBodyCase0 {
   description?: string;
@@ -7132,7 +7104,7 @@ export type UpdateFlagSegmentResponseBody =
   | UpdateFlagSegmentResponseBodyCase0
   | Segment;
 export const UpdateFlagSegmentResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBody>;
+  S.Unknown as any as S.Schema<UpdateFlagSegmentResponseBody>;
 
 export type UpdateFlagSegmentResponse = UpdateFlagSegmentResponseBody;
 export const UpdateFlagSegmentResponse = /*@__PURE__*/ S.suspend(() =>
@@ -7238,7 +7210,7 @@ export const UpdateFlagSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFlagSettingsRequest>;
 
 export type UpdateFlagSettingsResponseTypeName = "settings";
-export const UpdateFlagSettingsResponseTypeName = /*@__PURE__*/ S.String;
+export const UpdateFlagSettingsResponseTypeName = S.String;
 
 export type UpdateFlagSettingsResponseEnvironmentsList = Array<string>;
 export const UpdateFlagSettingsResponseEnvironmentsList = /*@__PURE__*/ S.Array(

@@ -461,11 +461,11 @@ export const AgentResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** Buttons style */
 export type BrandingThemeBordersButtonsStyleEnum = "pill" | "rounded" | "sharp";
-export const BrandingThemeBordersButtonsStyleEnum = /*@__PURE__*/ S.String;
+export const BrandingThemeBordersButtonsStyleEnum = S.String;
 
 /** Inputs style */
 export type BrandingThemeBordersInputsStyleEnum = "pill" | "rounded" | "sharp";
-export const BrandingThemeBordersInputsStyleEnum = /*@__PURE__*/ S.String;
+export const BrandingThemeBordersInputsStyleEnum = S.String;
 
 export interface BrandingThemeBorders {
   /** Button border radius */
@@ -506,7 +506,7 @@ export type BrandingThemeColorsCaptchaWidgetThemeEnum =
   | "auto"
   | "dark"
   | "light";
-export const BrandingThemeColorsCaptchaWidgetThemeEnum = /*@__PURE__*/ S.String;
+export const BrandingThemeColorsCaptchaWidgetThemeEnum = S.String;
 
 export interface BrandingThemeColors {
   /** Base Focus Color */
@@ -644,7 +644,7 @@ export const BrandingThemeFontLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** Links style */
 export type BrandingThemeFontLinksStyleEnum = "normal" | "underlined";
-export const BrandingThemeFontLinksStyleEnum = /*@__PURE__*/ S.String;
+export const BrandingThemeFontLinksStyleEnum = S.String;
 
 /** Subtitle */
 export interface BrandingThemeFontSubtitle {
@@ -709,22 +709,20 @@ export const BrandingThemeFonts = /*@__PURE__*/ S.suspend(() =>
 
 /** Login display */
 export type BrandingThemeIdentifiersLoginDisplayEnum = "separate" | "unified";
-export const BrandingThemeIdentifiersLoginDisplayEnum = /*@__PURE__*/ S.String;
+export const BrandingThemeIdentifiersLoginDisplayEnum = S.String;
 
 /** Phone number formatting style */
 export type BrandingThemeIdentifiersPhoneDisplayFormattingEnum =
   | "international"
   | "regional";
-export const BrandingThemeIdentifiersPhoneDisplayFormattingEnum =
-  /*@__PURE__*/ S.String;
+export const BrandingThemeIdentifiersPhoneDisplayFormattingEnum = S.String;
 
 /** Phone number masking strategy */
 export type BrandingThemeIdentifiersPhoneDisplayMaskingEnum =
   | "hide_country_code"
   | "mask_digits"
   | "show_all";
-export const BrandingThemeIdentifiersPhoneDisplayMaskingEnum =
-  /*@__PURE__*/ S.String;
+export const BrandingThemeIdentifiersPhoneDisplayMaskingEnum = S.String;
 
 /** Phone display */
 export interface BrandingThemeIdentifiersPhoneDisplay {
@@ -764,7 +762,7 @@ export type BrandingThemePageBackgroundPageLayoutEnum =
   | "center"
   | "left"
   | "right";
-export const BrandingThemePageBackgroundPageLayoutEnum = /*@__PURE__*/ S.String;
+export const BrandingThemePageBackgroundPageLayoutEnum = S.String;
 
 export interface BrandingThemePageBackground {
   /** Background color */
@@ -788,8 +786,7 @@ export type BrandingThemeWidgetHeaderTextAlignmentEnum =
   | "center"
   | "left"
   | "right";
-export const BrandingThemeWidgetHeaderTextAlignmentEnum =
-  /*@__PURE__*/ S.String;
+export const BrandingThemeWidgetHeaderTextAlignmentEnum = S.String;
 
 /** Logo position */
 export type BrandingThemeWidgetLogoPositionEnum =
@@ -797,12 +794,11 @@ export type BrandingThemeWidgetLogoPositionEnum =
   | "left"
   | "none"
   | "right";
-export const BrandingThemeWidgetLogoPositionEnum = /*@__PURE__*/ S.String;
+export const BrandingThemeWidgetLogoPositionEnum = S.String;
 
 /** Social buttons layout */
 export type BrandingThemeWidgetSocialButtonsLayoutEnum = "bottom" | "top";
-export const BrandingThemeWidgetSocialButtonsLayoutEnum =
-  /*@__PURE__*/ S.String;
+export const BrandingThemeWidgetSocialButtonsLayoutEnum = S.String;
 
 export interface BrandingThemeWidget {
   header_text_alignment:
@@ -896,8 +892,7 @@ export const ClientOIDCBackchannelLogoutSettingsBackchannelLogoutUrlsList =
 
 /** The `mode` property determines the configuration method for enabling initiators. `custom` enables only the initiators listed in the selected_initiators array, `all` enables all current and future initiators. */
 export type ClientOIDCBackchannelLogoutInitiatorsModeEnum = "custom" | "all";
-export const ClientOIDCBackchannelLogoutInitiatorsModeEnum =
-  /*@__PURE__*/ S.String;
+export const ClientOIDCBackchannelLogoutInitiatorsModeEnum = S.String;
 
 /** The `selected_initiators` property contains the list of initiators to be enabled for the given application. */
 export type ClientOIDCBackchannelLogoutInitiatorsEnum =
@@ -910,7 +905,7 @@ export type ClientOIDCBackchannelLogoutInitiatorsEnum =
   | "email-identifier-changed"
   | "mfa-phone-unenrolled"
   | "account-deactivated";
-export const ClientOIDCBackchannelLogoutInitiatorsEnum = /*@__PURE__*/ S.String;
+export const ClientOIDCBackchannelLogoutInitiatorsEnum = S.String;
 
 export type ClientOIDCBackchannelLogoutInitiatorsSelectedInitiatorsList = Array<
   ClientOIDCBackchannelLogoutInitiatorsEnum | (string & {})
@@ -977,8 +972,7 @@ export const ClientOIDCBackchannelLogoutSettings = /*@__PURE__*/ S.suspend(() =>
 export type ClientSessionTransferAllowedAuthenticationMethodsEnum =
   | "cookie"
   | "query";
-export const ClientSessionTransferAllowedAuthenticationMethodsEnum =
-  /*@__PURE__*/ S.String;
+export const ClientSessionTransferAllowedAuthenticationMethodsEnum = S.String;
 
 /** Indicates whether an app can create a session from a Session Transfer Token received via indicated methods. Can include `cookie` and/or `query`. Usually configured in the web application. Default value is an empty array []. */
 export type ClientSessionTransferConfigurationAllowedAuthenticationMethodsList =
@@ -990,12 +984,11 @@ export const ClientSessionTransferConfigurationAllowedAuthenticationMethodsList 
 
 /** Indicates whether device binding security should be enforced for the app. If set to 'ip', the app will enforce device binding by IP, meaning that consumption of Session Transfer Token must be done from the same IP of the issuer. Likewise, if set to 'asn', device binding is enforced by ASN, meaning consumption of Session Transfer Token must be done from the same ASN as the issuer. If set to 'none', device binding is not enforced. Usually configured in the web application. Default value is `ip`. */
 export type ClientSessionTransferDeviceBindingEnum = "ip" | "asn" | "none";
-export const ClientSessionTransferDeviceBindingEnum = /*@__PURE__*/ S.String;
+export const ClientSessionTransferDeviceBindingEnum = S.String;
 
 /** Indicates the device binding enforcement for delegation (impersonation) access. The only supported value is `ip`, which enforces device binding by IP, meaning consumption of the Session Transfer Token must be done from the same IP as the issuer. */
 export type ClientSessionTransferDelegationDeviceBindingEnum = "ip";
-export const ClientSessionTransferDelegationDeviceBindingEnum =
-  /*@__PURE__*/ S.String;
+export const ClientSessionTransferDelegationDeviceBindingEnum = S.String;
 
 /** Configuration for delegation (impersonation) access using Session Transfer Tokens */
 export interface ClientSessionTransferDelegationConfiguration {
@@ -1095,7 +1088,7 @@ export type ClientTokenEndpointAuthMethodEnum =
   | "none"
   | "client_secret_post"
   | "client_secret_basic";
-export const ClientTokenEndpointAuthMethodEnum = /*@__PURE__*/ S.String;
+export const ClientTokenEndpointAuthMethodEnum = S.String;
 
 /** The type of application this client represents */
 export type ClientAppTypeEnum =
@@ -1125,7 +1118,7 @@ export type ClientAppTypeEnum =
   | "zoom"
   | "sso_integration"
   | "oag";
-export const ClientAppTypeEnum = /*@__PURE__*/ S.String;
+export const ClientAppTypeEnum = S.String;
 
 /** Configuration related to id token claims for the client. */
 export type ClientJwtConfigurationScopes = {
@@ -1138,7 +1131,7 @@ export const ClientJwtConfigurationScopes = /*@__PURE__*/ S.Record(
 
 /** Algorithm used to sign JWTs. Can be `HS256` (default) or `RS256`. `PS256` available via addon. */
 export type SigningAlgorithmEnum = "HS256" | "RS256" | "RS512" | "PS256";
-export const SigningAlgorithmEnum = /*@__PURE__*/ S.String;
+export const SigningAlgorithmEnum = S.String;
 
 /** Configuration related to JWTs for the client. */
 export interface ClientJwtConfiguration {
@@ -1586,7 +1579,7 @@ export type ClientAddonSharePointExternalURL =
   | ClientAddonSharePointExternalURLCase0List
   | string;
 export const ClientAddonSharePointExternalURL =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClientAddonSharePointExternalURL>;
+  S.Unknown as any as S.Schema<ClientAddonSharePointExternalURL>;
 
 /** SharePoint SSO configuration. */
 export interface ClientAddonSharePoint {
@@ -1885,11 +1878,11 @@ export const FedCMLogin = /*@__PURE__*/ S.suspend(() =>
 
 /** Refresh token rotation types, one of: rotating, non-rotating */
 export type RefreshTokenRotationTypeEnum = "rotating" | "non-rotating";
-export const RefreshTokenRotationTypeEnum = /*@__PURE__*/ S.String;
+export const RefreshTokenRotationTypeEnum = S.String;
 
 /** Refresh token expiration types, one of: expiring, non-expiring */
 export type RefreshTokenExpirationTypeEnum = "expiring" | "non-expiring";
-export const RefreshTokenExpirationTypeEnum = /*@__PURE__*/ S.String;
+export const RefreshTokenExpirationTypeEnum = S.String;
 
 /** The resource server permissions granted under the Multi Resource Refresh Token Policy, defining the context in which an access token can be used */
 export type ClientRefreshTokenPolicyScopeList = Array<string>;
@@ -1953,7 +1946,7 @@ export const ClientRefreshTokenConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClientRefreshTokenConfiguration>;
 
 export type ClientDefaultOrganizationFlowsEnum = "client_credentials";
-export const ClientDefaultOrganizationFlowsEnum = /*@__PURE__*/ S.String;
+export const ClientDefaultOrganizationFlowsEnum = S.String;
 
 /** The default Organization usage */
 export type ClientDefaultOrganizationFlowsList = Array<
@@ -1981,18 +1974,18 @@ export const ClientDefaultOrganization = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines how to proceed during an authentication transaction with regards an organization. Can be `deny` (default), `allow` or `require`. */
 export type ClientOrganizationUsageEnum = "deny" | "allow" | "require";
-export const ClientOrganizationUsageEnum = /*@__PURE__*/ S.String;
+export const ClientOrganizationUsageEnum = S.String;
 
 /** Defines how to proceed during an authentication transaction when `client.organization_usage: 'require'`. Can be `no_prompt` (default), `pre_login_prompt` or `post_login_prompt`. `post_login_prompt` requires `oidc_conformant: true`. */
 export type ClientOrganizationRequireBehaviorEnum =
   | "no_prompt"
   | "pre_login_prompt"
   | "post_login_prompt";
-export const ClientOrganizationRequireBehaviorEnum = /*@__PURE__*/ S.String;
+export const ClientOrganizationRequireBehaviorEnum = S.String;
 
 /** Method for discovering organizations during the `pre_login_prompt`. `email` allows users to find their organization by entering their email address and performing domain matching, while `organization_name` requires users to enter the organization name directly. These methods can be combined. */
 export type ClientOrganizationDiscoveryEnum = "email" | "organization_name";
-export const ClientOrganizationDiscoveryEnum = /*@__PURE__*/ S.String;
+export const ClientOrganizationDiscoveryEnum = S.String;
 
 /** Defines the available methods for organization discovery during the `pre_login_prompt`. Users can discover their organization either by `email`, `organization_name` or both. */
 export type CreateClientRequestOrganizationDiscoveryMethodsList = Array<
@@ -2005,11 +1998,11 @@ export const CreateClientRequestOrganizationDiscoveryMethodsList =
 
 /** Credential type. Supported types: public_key. */
 export type PublicKeyCredentialTypeEnum = "public_key";
-export const PublicKeyCredentialTypeEnum = /*@__PURE__*/ S.String;
+export const PublicKeyCredentialTypeEnum = S.String;
 
 /** Algorithm which will be used with the credential. Can be one of RS256, RS384, PS256. If not specified, RS256 will be used. Applies to `public_key` credential type. */
 export type PublicKeyCredentialAlgorithmEnum = "RS256" | "RS384" | "PS256";
-export const PublicKeyCredentialAlgorithmEnum = /*@__PURE__*/ S.String;
+export const PublicKeyCredentialAlgorithmEnum = S.String;
 
 export interface PublicKeyCredential {
   credential_type: PublicKeyCredentialTypeEnum | (string & {});
@@ -2061,7 +2054,7 @@ export const ClientCreateAuthenticationMethodPrivateKeyJWT =
   }) as any as S.Schema<ClientCreateAuthenticationMethodPrivateKeyJWT>;
 
 export type CertificateSubjectDNCredentialTypeEnum = "cert_subject_dn";
-export const CertificateSubjectDNCredentialTypeEnum = /*@__PURE__*/ S.String;
+export const CertificateSubjectDNCredentialTypeEnum = S.String;
 
 export interface CertificateSubjectDNCredential {
   credential_type: CertificateSubjectDNCredentialTypeEnum | (string & {});
@@ -2105,7 +2098,7 @@ export const ClientCreateAuthenticationMethodTLSClientAuth =
   }) as any as S.Schema<ClientCreateAuthenticationMethodTLSClientAuth>;
 
 export type X509CertificateCredentialTypeEnum = "x509_cert";
-export const X509CertificateCredentialTypeEnum = /*@__PURE__*/ S.String;
+export const X509CertificateCredentialTypeEnum = S.String;
 
 export interface X509CertificateCredential {
   credential_type: X509CertificateCredentialTypeEnum | (string & {});
@@ -2256,13 +2249,13 @@ export type ClientComplianceLevelEnum =
   | "fapi1_adv_mtls_par"
   | "fapi2_sp_pkj_mtls"
   | "fapi2_sp_mtls_mtls";
-export const ClientComplianceLevelEnum = /*@__PURE__*/ S.String;
+export const ClientComplianceLevelEnum = S.String;
 
 /** Token exchange type. `on_behalf_of_token_exchange`: enables On-Behalf-Of token exchange (Generally Available). `custom_authentication`: enables custom token exchange profiles (Early Access, requires entitlement). */
 export type ClientTokenExchangeTypeEnum =
   | "custom_authentication"
   | "on_behalf_of_token_exchange";
-export const ClientTokenExchangeTypeEnum = /*@__PURE__*/ S.String;
+export const ClientTokenExchangeTypeEnum = S.String;
 
 /** List the enabled token exchange types for this client. */
 export type ClientTokenExchangeConfigurationAllowAnyProfileOfTypeList = Array<
@@ -2334,13 +2327,13 @@ export const CreateIdentityAssertionAuthorizationGrant =
 
 /** Security mode for third-party clients. `strict` enforces <a href="https://auth0.com/docs/get-started/applications/third-party-applications/security-controls">enhanced security controls</a>: OAuth 2.1 alignment, explicit API authorization, and a curated set of supported features. `permissive` preserves <a href="https://auth0.com/docs/get-started/applications/third-party-applications/permissive-mode">pre-existing behavior</a> and is only available to tenants with prior third-party client usage. Set on creation and cannot be modified. */
 export type ClientThirdPartySecurityModeEnum = "strict" | "permissive";
-export const ClientThirdPartySecurityModeEnum = /*@__PURE__*/ S.String;
+export const ClientThirdPartySecurityModeEnum = S.String;
 
 /** Controls whether Auth0 redirects users to the application's callback URL on authentication errors or in email verification flows. `open_redirect_protection` shows an error page instead of redirecting, and hides the callback domain from email templates. `allow_always` enables standard redirect behavior. Defaults to `open_redirect_protection` for third-party clients. Only applies when `is_first_party` is `false` and `third_party_security_mode` is `strict`. To learn more, read <a href="https://auth0.com/docs/get-started/applications/third-party-applications/security-controls#redirect-protection">Redirect protection</a>. */
 export type ClientRedirectionPolicyEnum =
   | "allow_always"
   | "open_redirect_protection";
-export const ClientRedirectionPolicyEnum = /*@__PURE__*/ S.String;
+export const ClientRedirectionPolicyEnum = S.String;
 
 /** Configuration for linked clients in the OIN Express Configuration feature. */
 export interface LinkedClientConfiguration {
@@ -2410,8 +2403,7 @@ export type B2bIntegrationConfigurationIntegrationTypeEnum =
   | "custom_auth_server"
   | "third_party"
   | "application";
-export const B2bIntegrationConfigurationIntegrationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const B2bIntegrationConfigurationIntegrationTypeEnum = S.String;
 
 /** Configuration for B2B Integration clients. */
 export interface B2bIntegrationConfiguration {
@@ -2441,8 +2433,7 @@ export type ClientMyOrganizationConfigurationAllowedStrategiesEnum =
   | "okta"
   | "oidc"
   | "samlp";
-export const ClientMyOrganizationConfigurationAllowedStrategiesEnum =
-  /*@__PURE__*/ S.String;
+export const ClientMyOrganizationConfigurationAllowedStrategiesEnum = S.String;
 
 /** The allowed connection strategies for the My Organization Configuration. */
 export type ClientMyOrganizationPostConfigurationAllowedStrategiesList = Array<
@@ -2457,14 +2448,14 @@ export const ClientMyOrganizationPostConfigurationAllowedStrategiesList =
 export type ClientMyOrganizationConfigurationThirdPartyClientAccessDefaultValueEnum =
   "block";
 export const ClientMyOrganizationConfigurationThirdPartyClientAccessDefaultValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A valid third-party client access value for the My Organization Configuration. */
 export type ClientMyOrganizationConfigurationThirdPartyClientAccessAllowedValuesEnum =
   | "allow"
   | "block";
 export const ClientMyOrganizationConfigurationThirdPartyClientAccessAllowedValuesEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The allowed third-party client access values for the My Organization Configuration. */
 export type ClientMyOrganizationThirdPartyClientAccessConfigurationAllowedValuesList =
@@ -2501,7 +2492,7 @@ export const ClientMyOrganizationThirdPartyClientAccessConfiguration =
 export type ClientMyOrganizationDeletionBehaviorEnum =
   | "allow"
   | "allow_if_empty";
-export const ClientMyOrganizationDeletionBehaviorEnum = /*@__PURE__*/ S.String;
+export const ClientMyOrganizationDeletionBehaviorEnum = S.String;
 
 /** Configuration related to the My Organization Configuration for the client. */
 export interface ClientMyOrganizationPostConfiguration {
@@ -2536,7 +2527,7 @@ export const ClientMyOrganizationPostConfiguration = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ClientMyOrganizationPostConfiguration>;
 
 export type AsyncApprovalNotificationsChannelsEnum = "guardian-push" | "email";
-export const AsyncApprovalNotificationsChannelsEnum = /*@__PURE__*/ S.String;
+export const AsyncApprovalNotificationsChannelsEnum = S.String;
 
 /** Array of notification channels for contacting the user when their approval is required. Valid values are `guardian-push`, `email`. */
 export type ClientAsyncApprovalNotificationsChannelsAPIPostConfiguration =
@@ -3000,11 +2991,11 @@ export const IdentityAssertionAuthorizationGrant =
 
 /** Indicates the type of external metadata used to register the client. This field is omitted for regular clients. The value <code>cimd</code> identifies clients registered via a Client ID Metadata Document. The value <code>dcr</code> identifies clients registered via Dynamic Client Registration. */
 export type ClientExternalMetadataTypeEnum = "cimd" | "dcr";
-export const ClientExternalMetadataTypeEnum = /*@__PURE__*/ S.String;
+export const ClientExternalMetadataTypeEnum = S.String;
 
 /** Indicates who created the external metadata client. The value <code>admin</code> indicates the client was registered via the Management API. The value <code>client</code> indicates the client was registered dynamically. This field is only present when external_metadata_type is set. */
 export type ClientExternalMetadataCreatedByEnum = "admin" | "client";
-export const ClientExternalMetadataCreatedByEnum = /*@__PURE__*/ S.String;
+export const ClientExternalMetadataCreatedByEnum = S.String;
 
 export interface CreateClientResponseContent {
   /** ID of this client. */
@@ -3201,11 +3192,11 @@ export const CreateClientResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** Applies this client grant as the default for all clients in the specified group. The only accepted value is <a href="https://auth0.com/docs/get-started/applications/application-access-to-apis-client-grants#default-permissions-for-third-party-applications">`third_party_clients`</a>, which applies the grant to all third-party clients. Per-client grants for the same audience take precedence. Mutually exclusive with `client_id`. */
 export type ClientGrantDefaultForEnum = "third_party_clients";
-export const ClientGrantDefaultForEnum = /*@__PURE__*/ S.String;
+export const ClientGrantDefaultForEnum = S.String;
 
 /** Defines whether organizations can be used with client credentials exchanges for this grant. */
 export type ClientGrantOrganizationUsageEnum = "deny" | "allow" | "require";
-export const ClientGrantOrganizationUsageEnum = /*@__PURE__*/ S.String;
+export const ClientGrantOrganizationUsageEnum = S.String;
 
 /** Scopes allowed for this client grant. */
 export type CreateClientGrantRequestScopeList = Array<string>;
@@ -3215,7 +3206,7 @@ export const CreateClientGrantRequestScopeList = /*@__PURE__*/ S.Array(
 
 /** The type of application access the client grant allows. */
 export type ClientGrantSubjectTypeEnum = "client" | "user" | "anonymous_user";
-export const ClientGrantSubjectTypeEnum = /*@__PURE__*/ S.String;
+export const ClientGrantSubjectTypeEnum = S.String;
 
 /** Types of authorization_details allowed for this client grant. */
 export type CreateClientGrantRequestAuthorizationDetailsTypesList =
@@ -3597,7 +3588,7 @@ export type ConnectionIdentityProviderEnum =
   | "supabase-mcp"
   | "vercel-mcp"
   | "xero-mcp";
-export const ConnectionIdentityProviderEnum = /*@__PURE__*/ S.String;
+export const ConnectionIdentityProviderEnum = S.String;
 
 export interface ConnectionUsernameValidationOptions {
   min: number;
@@ -3636,7 +3627,7 @@ export type ConnectionIdentifierPrecedenceEnum =
   | "email"
   | "phone_number"
   | "username";
-export const ConnectionIdentifierPrecedenceEnum = /*@__PURE__*/ S.String;
+export const ConnectionIdentifierPrecedenceEnum = S.String;
 
 /** Order of precedence for attribute types. If the property is not specified, the default precedence of attributes will be used. */
 export type ConnectionPropertiesOptionsPrecedenceList = Array<
@@ -3648,7 +3639,7 @@ export const ConnectionPropertiesOptionsPrecedenceList = /*@__PURE__*/ S.Array(
 
 /** Default authentication method for email identifier */
 export type DefaultMethodEmailIdentifierEnum = "password" | "email_otp";
-export const DefaultMethodEmailIdentifierEnum = /*@__PURE__*/ S.String;
+export const DefaultMethodEmailIdentifierEnum = S.String;
 
 export interface EmailAttributeIdentifier {
   /** Determines if the attribute is used for identification */
@@ -3665,10 +3656,10 @@ export const EmailAttributeIdentifier = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EmailAttributeIdentifier>;
 
 export type VerificationMethodEnum = "link" | "otp";
-export const VerificationMethodEnum = /*@__PURE__*/ S.String;
+export const VerificationMethodEnum = S.String;
 
 export type SignupStatusEnum = "required" | "optional" | "inactive";
-export const SignupStatusEnum = /*@__PURE__*/ S.String;
+export const SignupStatusEnum = S.String;
 
 export interface SignupVerification {
   active?: boolean;
@@ -3714,7 +3705,7 @@ export const EmailAttribute = /*@__PURE__*/ S.suspend(() =>
 
 /** Default authentication method for phone_number identifier */
 export type DefaultMethodPhoneNumberIdentifierEnum = "password" | "phone_otp";
-export const DefaultMethodPhoneNumberIdentifierEnum = /*@__PURE__*/ S.String;
+export const DefaultMethodPhoneNumberIdentifierEnum = S.String;
 
 export interface PhoneAttributeIdentifier {
   /** Determines if the attribute is used for identification */
@@ -3871,11 +3862,11 @@ export const ConnectionCustomScripts = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the API behavior for password authentication */
 export type ConnectionApiBehaviorEnum = "required" | "optional";
-export const ConnectionApiBehaviorEnum = /*@__PURE__*/ S.String;
+export const ConnectionApiBehaviorEnum = S.String;
 
 /** Specifies the signup behavior for password authentication */
 export type ConnectionSignupBehaviorEnum = "allow" | "block";
-export const ConnectionSignupBehaviorEnum = /*@__PURE__*/ S.String;
+export const ConnectionSignupBehaviorEnum = S.String;
 
 /** Password authentication enablement */
 export interface ConnectionPasswordAuthenticationMethod {
@@ -3957,7 +3948,7 @@ export const ConnectionAuthenticationMethods = /*@__PURE__*/ S.suspend(() =>
 
 /** Controls the UI used to challenge the user for their passkey. */
 export type ConnectionPasskeyChallengeUIEnum = "both" | "autofill" | "button";
-export const ConnectionPasskeyChallengeUIEnum = /*@__PURE__*/ S.String;
+export const ConnectionPasskeyChallengeUIEnum = S.String;
 
 /** Options for the passkey authentication method */
 export interface ConnectionPasskeyOptions {
@@ -3984,7 +3975,7 @@ export type ConnectionPasswordPolicyEnum =
   | "fair"
   | "good"
   | "excellent";
-export const ConnectionPasswordPolicyEnum = /*@__PURE__*/ S.String;
+export const ConnectionPasswordPolicyEnum = S.String;
 
 /** Password complexity options */
 export interface ConnectionPasswordComplexityOptions {
@@ -4061,7 +4052,7 @@ export type ConnectionUpstreamAliasEnum =
   | "response_mode"
   | "response_type"
   | "ui_locales";
-export const ConnectionUpstreamAliasEnum = /*@__PURE__*/ S.String;
+export const ConnectionUpstreamAliasEnum = S.String;
 
 export interface ConnectionUpstreamAlias {
   alias?: ConnectionUpstreamAliasEnum | (string & {});
@@ -4089,7 +4080,7 @@ export type ConnectionUpstreamAdditionalProperties =
   | ConnectionUpstreamAlias
   | ConnectionUpstreamValue;
 export const ConnectionUpstreamAdditionalProperties =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectionUpstreamAdditionalProperties>;
+  S.Unknown as any as S.Schema<ConnectionUpstreamAdditionalProperties>;
 
 /** Options for adding parameters in the request to the upstream IdP */
 export type ConnectionUpstreamParams = {
@@ -4105,7 +4096,7 @@ export type ConnectionSetUserRootAttributesEnum =
   | "on_each_login"
   | "on_first_login"
   | "never_on_login";
-export const ConnectionSetUserRootAttributesEnum = /*@__PURE__*/ S.String;
+export const ConnectionSetUserRootAttributesEnum = S.String;
 
 /** Token-based authentication settings to be applied when connection is using an sms strategy. */
 export interface ConnectionGatewayAuthentication {
@@ -4137,7 +4128,7 @@ export type PasswordCharacterTypeEnum =
   | "lowercase"
   | "number"
   | "special";
-export const PasswordCharacterTypeEnum = /*@__PURE__*/ S.String;
+export const PasswordCharacterTypeEnum = S.String;
 
 /** Required character types that must be present in passwords. Valid options: uppercase, lowercase, number, special */
 export type ConnectionPasswordOptionsComplexityCharacterTypesList = Array<
@@ -4150,19 +4141,19 @@ export const ConnectionPasswordOptionsComplexityCharacterTypesList =
 
 /** When enabled, passwords must contain at least 3 out of 4 character types. Can only be enabled when all 4 character types are specified */
 export type PasswordCharacterTypeRulePolicyEnum = "all" | "three_of_four";
-export const PasswordCharacterTypeRulePolicyEnum = /*@__PURE__*/ S.String;
+export const PasswordCharacterTypeRulePolicyEnum = S.String;
 
 /** Controls whether identical consecutive characters are allowed in passwords */
 export type PasswordIdenticalCharactersPolicyEnum = "allow" | "block";
-export const PasswordIdenticalCharactersPolicyEnum = /*@__PURE__*/ S.String;
+export const PasswordIdenticalCharactersPolicyEnum = S.String;
 
 /** Controls whether sequential characters are allowed in passwords */
 export type PasswordSequentialCharactersPolicyEnum = "allow" | "block";
-export const PasswordSequentialCharactersPolicyEnum = /*@__PURE__*/ S.String;
+export const PasswordSequentialCharactersPolicyEnum = S.String;
 
 /** Controls whether passwords that exceed the maximum length are truncated or rejected */
 export type PasswordMaxLengthExceededPolicyEnum = "truncate" | "error";
-export const PasswordMaxLengthExceededPolicyEnum = /*@__PURE__*/ S.String;
+export const PasswordMaxLengthExceededPolicyEnum = S.String;
 
 /** Password complexity requirements configuration */
 export interface ConnectionPasswordOptionsComplexity {
@@ -4201,7 +4192,7 @@ export const ConnectionPasswordOptionsDictionaryCustomList =
 
 /** Default dictionary to use for password validation. Options: "en_10k" (10,000 common words) or "en_100k" (100,000 common words) */
 export type PasswordDefaultDictionariesEnum = "en_10k" | "en_100k";
-export const PasswordDefaultDictionariesEnum = /*@__PURE__*/ S.String;
+export const PasswordDefaultDictionariesEnum = S.String;
 
 /** Dictionary-based password restriction policy to prevent common passwords */
 export interface ConnectionPasswordOptionsDictionary {
@@ -4284,8 +4275,7 @@ export const ConnectionPasswordOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** The algorithm profile to use for decrypting SAML assertions. */
 export type ConnectionAssertionDecryptionAlgorithmProfileEnum = "v2026-1";
-export const ConnectionAssertionDecryptionAlgorithmProfileEnum =
-  /*@__PURE__*/ S.String;
+export const ConnectionAssertionDecryptionAlgorithmProfileEnum = S.String;
 
 /** A list of insecure algorithms to allow for SAML assertion decryption. */
 export type ConnectionAssertionDecryptionSettingsAlgorithmExceptionsList =
@@ -4324,7 +4314,7 @@ export type ConnectionIdTokenSignedResponseAlgEnum =
   | "RS256"
   | "RS384"
   | "RS512";
-export const ConnectionIdTokenSignedResponseAlgEnum = /*@__PURE__*/ S.String;
+export const ConnectionIdTokenSignedResponseAlgEnum = S.String;
 
 /** List of algorithms allowed to verify the ID tokens. */
 export type ConnectionIdTokenSignedResponseAlgs = Array<
@@ -4340,13 +4330,13 @@ export type ConnectionDpopSigningAlgEnum =
   | "ES384"
   | "ES512"
   | "Ed25519";
-export const ConnectionDpopSigningAlgEnum = /*@__PURE__*/ S.String;
+export const ConnectionDpopSigningAlgEnum = S.String;
 
 /** Authentication method used at the identity provider's token endpoint. 'client_secret_post' sends credentials in the request body; 'private_key_jwt' uses a signed JWT assertion for enhanced security. */
 export type ConnectionTokenEndpointAuthMethodEnum =
   | "client_secret_post"
   | "private_key_jwt";
-export const ConnectionTokenEndpointAuthMethodEnum = /*@__PURE__*/ S.String;
+export const ConnectionTokenEndpointAuthMethodEnum = S.String;
 
 /** Algorithm used to sign client_assertions. */
 export type ConnectionTokenEndpointAuthSigningAlgEnum =
@@ -4357,14 +4347,13 @@ export type ConnectionTokenEndpointAuthSigningAlgEnum =
   | "RS256"
   | "RS384"
   | "RS512";
-export const ConnectionTokenEndpointAuthSigningAlgEnum = /*@__PURE__*/ S.String;
+export const ConnectionTokenEndpointAuthSigningAlgEnum = S.String;
 
 /** Specifies the format of the aud (audience) claim included in the JWT used for client authentication at the token endpoint. Accepted values are: 'issuer' (the aud claim is set to the OIDC issuer URL) or 'token_endpoint' (the aud claim is set to the token endpoint URL). */
 export type ConnectionTokenEndpointJwtcaAudFormatEnumOIDC =
   | "issuer"
   | "token_endpoint";
-export const ConnectionTokenEndpointJwtcaAudFormatEnumOIDC =
-  /*@__PURE__*/ S.String;
+export const ConnectionTokenEndpointJwtcaAudFormatEnumOIDC = S.String;
 
 /** A list of the OAuth 2.0 [RFC6749] scope values that this server supports. The server MUST support the openid scope value. Servers MAY choose not to advertise some supported scope values even when this parameter is used, although those defined in [OpenID.Core] SHOULD be listed, if supported. RECOMMENDED but not REQUIRED */
 export type ConnectionsOIDCMetadataScopesSupportedList = Array<string>;
@@ -4895,7 +4884,7 @@ export const CrossAppAccessRequestingApp = /*@__PURE__*/ S.suspend(() =>
 
 /** Set to `enabled` to accept ID-JAGs from this connection's identity provider to issue access tokens to other connected applications. */
 export type CrossAppAccessResourceAppStatusEnum = "enabled" | "disabled";
-export const CrossAppAccessResourceAppStatusEnum = /*@__PURE__*/ S.String;
+export const CrossAppAccessResourceAppStatusEnum = S.String;
 
 /** Cross App Access - Resource App settings that apply to this connection. */
 export interface CreateCrossAppAccessResourceApp {
@@ -5034,8 +5023,7 @@ export type ConnectionProfileOrganizationShowAsButtonEnum =
   | "none"
   | "optional"
   | "required";
-export const ConnectionProfileOrganizationShowAsButtonEnum =
-  /*@__PURE__*/ S.String;
+export const ConnectionProfileOrganizationShowAsButtonEnum = S.String;
 
 /** Indicates if membership should be assigned on login. */
 export type ConnectionProfileOrganizationAssignMembershipOnLoginEnum =
@@ -5043,7 +5031,7 @@ export type ConnectionProfileOrganizationAssignMembershipOnLoginEnum =
   | "optional"
   | "required";
 export const ConnectionProfileOrganizationAssignMembershipOnLoginEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The organization of the connection profile. */
 export interface ConnectionProfileOrganization {
@@ -5067,7 +5055,7 @@ export const ConnectionProfileOrganization = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum for enabled features. */
 export type EnabledFeaturesEnum = "scim" | "universal_logout";
-export const EnabledFeaturesEnum = /*@__PURE__*/ S.String;
+export const EnabledFeaturesEnum = S.String;
 
 /** Enabled features for the connection profile. */
 export type ConnectionProfileEnabledFeatures = Array<
@@ -5135,14 +5123,14 @@ export type ConnectionProfileCrossAppAccessResourceAppStatusDefaultValueEnum =
   | "enabled"
   | "disabled";
 export const ConnectionProfileCrossAppAccessResourceAppStatusDefaultValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A Cross App Access resource app status value. */
 export type ConnectionProfileCrossAppAccessResourceAppStatusValueEnum =
   | "enabled"
   | "disabled";
 export const ConnectionProfileCrossAppAccessResourceAppStatusValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The allowed Cross App Access resource app status values. */
 export type ConnectionProfileCrossAppAccessResourceAppStatusAllowedValuesEnum =
@@ -5244,15 +5232,15 @@ export const CreateConnectionProfileResponseContent = /*@__PURE__*/ S.suspend(
 export type CustomDomainProvisioningTypeEnum =
   | "auth0_managed_certs"
   | "self_managed_certs";
-export const CustomDomainProvisioningTypeEnum = /*@__PURE__*/ S.String;
+export const CustomDomainProvisioningTypeEnum = S.String;
 
 /** Custom domain verification method. Must be `txt`. */
 export type CustomDomainVerificationMethodEnum = "txt";
-export const CustomDomainVerificationMethodEnum = /*@__PURE__*/ S.String;
+export const CustomDomainVerificationMethodEnum = S.String;
 
 /** Custom domain TLS policy. Must be `recommended`, includes TLS 1.2. */
 export type CustomDomainTlsPolicyEnum = "recommended";
-export const CustomDomainTlsPolicyEnum = /*@__PURE__*/ S.String;
+export const CustomDomainTlsPolicyEnum = S.String;
 
 /** The HTTP header to fetch the client's IP address */
 export type CustomDomainCustomClientIpHeaderEnum =
@@ -5261,7 +5249,7 @@ export type CustomDomainCustomClientIpHeaderEnum =
   | "x-forwarded-for"
   | "x-azure-clientip"
   | "";
-export const CustomDomainCustomClientIpHeaderEnum = /*@__PURE__*/ S.String;
+export const CustomDomainCustomClientIpHeaderEnum = S.String;
 
 /** Domain metadata associated with the custom domain, in the form of an object with string values (max 255 chars). Maximum of 10 domain metadata properties allowed. */
 export type DomainMetadata = { [key: string]: string | undefined };
@@ -5305,15 +5293,15 @@ export type CustomDomainStatusFilterEnum =
   | "pending_verification"
   | "ready"
   | "failed";
-export const CustomDomainStatusFilterEnum = /*@__PURE__*/ S.String;
+export const CustomDomainStatusFilterEnum = S.String;
 
 /** Custom domain provisioning type. Can be `auth0_managed_certs` or `self_managed_certs`. */
 export type CustomDomainTypeEnum = "auth0_managed_certs" | "self_managed_certs";
-export const CustomDomainTypeEnum = /*@__PURE__*/ S.String;
+export const CustomDomainTypeEnum = S.String;
 
 /** Domain verification method. */
 export type DomainVerificationMethodNameEnum = "cname" | "txt";
-export const DomainVerificationMethodNameEnum = /*@__PURE__*/ S.String;
+export const DomainVerificationMethodNameEnum = S.String;
 
 export interface DomainVerificationMethod {
   name: DomainVerificationMethodNameEnum;
@@ -5340,7 +5328,7 @@ export const DomainVerificationMethodsList = /*@__PURE__*/ S.Array(
 
 /** The DNS record verification status. This field is relevant only for Custom Domains with Auth0-Managed Certificates. */
 export type DomainVerificationStatusEnum = "verified" | "pending" | "failed";
-export const DomainVerificationStatusEnum = /*@__PURE__*/ S.String;
+export const DomainVerificationStatusEnum = S.String;
 
 /** Domain verification settings. */
 export interface DomainVerification {
@@ -5369,11 +5357,11 @@ export type DomainCertificateStatusEnum =
   | "provisioning_failed"
   | "provisioned"
   | "renewing_failed";
-export const DomainCertificateStatusEnum = /*@__PURE__*/ S.String;
+export const DomainCertificateStatusEnum = S.String;
 
 /** The Certificate Authority issued the certificate. */
 export type DomainCertificateAuthorityEnum = "letsencrypt" | "googletrust";
-export const DomainCertificateAuthorityEnum = /*@__PURE__*/ S.String;
+export const DomainCertificateAuthorityEnum = S.String;
 
 /** Certificate information. This object is relevant only for Custom Domains with Auth0-Managed Certificates. */
 export interface DomainCertificate {
@@ -5437,7 +5425,7 @@ export const CreateCustomDomainResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of credential. Must be `public_key`. */
 export type DeviceCredentialPublicKeyTypeEnum = "public_key";
-export const DeviceCredentialPublicKeyTypeEnum = /*@__PURE__*/ S.String;
+export const DeviceCredentialPublicKeyTypeEnum = S.String;
 
 export interface CreateDeviceCredentialsRequest {
   /** Name for this device easily recognized by owner. */
@@ -5491,7 +5479,7 @@ export type EmailTemplateNameEnum =
   | "change_password"
   | "password_reset"
   | "async_approval";
-export const EmailTemplateNameEnum = /*@__PURE__*/ S.String;
+export const EmailTemplateNameEnum = S.String;
 
 export interface CreateEmailTemplateRequest {
   template: EmailTemplateNameEnum | (string & {});
@@ -5584,11 +5572,11 @@ export const CreateEventStreamWebHookRequestContentSubscriptionsList =
   ) as any as S.Schema<CreateEventStreamWebHookRequestContentSubscriptionsList>;
 
 export type EventStreamWebhookDestinationTypeEnum = "webhook";
-export const EventStreamWebhookDestinationTypeEnum = /*@__PURE__*/ S.String;
+export const EventStreamWebhookDestinationTypeEnum = S.String;
 
 /** Type of authorization. */
 export type EventStreamWebhookBasicAuthMethodEnum = "basic";
-export const EventStreamWebhookBasicAuthMethodEnum = /*@__PURE__*/ S.String;
+export const EventStreamWebhookBasicAuthMethodEnum = S.String;
 
 /** Basic Authorization for HTTP requests (e.g., 'Basic credentials'). */
 export interface EventStreamWebhookBasicAuth {
@@ -5607,7 +5595,7 @@ export const EventStreamWebhookBasicAuth = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of authorization. */
 export type EventStreamWebhookBearerAuthMethodEnum = "bearer";
-export const EventStreamWebhookBearerAuthMethodEnum = /*@__PURE__*/ S.String;
+export const EventStreamWebhookBearerAuthMethodEnum = S.String;
 
 /** Bearer Authorization for HTTP requests (e.g., 'Bearer token'). */
 export interface EventStreamWebhookBearerAuth {
@@ -5623,8 +5611,7 @@ export const EventStreamWebhookBearerAuth = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of authorization. */
 export type EventStreamWebhookCustomHeaderAuthMethodEnum = "custom_header";
-export const EventStreamWebhookCustomHeaderAuthMethodEnum =
-  /*@__PURE__*/ S.String;
+export const EventStreamWebhookCustomHeaderAuthMethodEnum = S.String;
 
 /** Custom header authorization for HTTP requests. */
 export interface EventStreamWebhookCustomHeaderAuth {
@@ -5646,7 +5633,7 @@ export type EventStreamWebhookAuthorizationResponse =
   | EventStreamWebhookBearerAuth
   | EventStreamWebhookCustomHeaderAuth;
 export const EventStreamWebhookAuthorizationResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventStreamWebhookAuthorizationResponse>;
+  S.Unknown as any as S.Schema<EventStreamWebhookAuthorizationResponse>;
 
 /** Configuration specific to a webhook destination. */
 export interface EventStreamWebhookConfiguration {
@@ -5678,7 +5665,7 @@ export const EventStreamWebhookDestination = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates whether the event stream is actively forwarding events. */
 export type EventStreamStatusEnum = "enabled" | "disabled";
-export const EventStreamStatusEnum = /*@__PURE__*/ S.String;
+export const EventStreamStatusEnum = S.String;
 
 export interface CreateEventStreamWebHookRequestContent {
   /** Name of the event stream. */
@@ -5711,7 +5698,7 @@ export const CreateEventStreamEventBridgeRequestContentSubscriptionsList =
   ) as any as S.Schema<CreateEventStreamEventBridgeRequestContentSubscriptionsList>;
 
 export type EventStreamEventBridgeDestinationTypeEnum = "eventbridge";
-export const EventStreamEventBridgeDestinationTypeEnum = /*@__PURE__*/ S.String;
+export const EventStreamEventBridgeDestinationTypeEnum = S.String;
 
 /** AWS Region for EventBridge destination. */
 export type EventStreamEventBridgeAWSRegionEnum =
@@ -5751,7 +5738,7 @@ export type EventStreamEventBridgeAWSRegionEnum =
   | "us-east-2"
   | "us-west-1"
   | "us-west-2";
-export const EventStreamEventBridgeAWSRegionEnum = /*@__PURE__*/ S.String;
+export const EventStreamEventBridgeAWSRegionEnum = S.String;
 
 /** Configuration specific to an eventbridge destination. */
 export interface EventStreamEventBridgeConfiguration {
@@ -5815,7 +5802,7 @@ export const CreateEventStreamActionRequestContentSubscriptionsList =
   ) as any as S.Schema<CreateEventStreamActionRequestContentSubscriptionsList>;
 
 export type EventStreamActionDestinationTypeEnum = "action";
-export const EventStreamActionDestinationTypeEnum = /*@__PURE__*/ S.String;
+export const EventStreamActionDestinationTypeEnum = S.String;
 
 /** Configuration specific to an action destination. */
 export interface EventStreamActionConfiguration {
@@ -5870,7 +5857,7 @@ export type CreateEventStreamRequestBody =
   | CreateEventStreamEventBridgeRequestContent
   | CreateEventStreamActionRequestContent;
 export const CreateEventStreamRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEventStreamRequestBody>;
+  S.Unknown as any as S.Schema<CreateEventStreamRequestBody>;
 
 export interface CreateEventStreamRequest {
   body?: CreateEventStreamRequestBody;
@@ -6003,7 +5990,7 @@ export type CreateEventStreamResponseContent =
   | EventStreamEventBridgeResponseContent
   | EventStreamActionResponseContent;
 export const CreateEventStreamResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEventStreamResponseContent>;
+  S.Unknown as any as S.Schema<CreateEventStreamResponseContent>;
 
 export type CreateEventStreamResponse = CreateEventStreamResponseContent;
 export const CreateEventStreamResponse = /*@__PURE__*/ S.suspend(() =>
@@ -6021,13 +6008,13 @@ export type AuthenticationFlowEnum =
   | "passkey_enrollment"
   | "organization_selection"
   | "email_verification";
-export const AuthenticationFlowEnum = /*@__PURE__*/ S.String;
+export const AuthenticationFlowEnum = S.String;
 
 export type AllocationStrategyEnum = "percentage" | "segment";
-export const AllocationStrategyEnum = /*@__PURE__*/ S.String;
+export const AllocationStrategyEnum = S.String;
 
 export type SubjectEnum = "device";
-export const SubjectEnum = /*@__PURE__*/ S.String;
+export const SubjectEnum = S.String;
 
 export interface AssignmentConfig {
   subject: SubjectEnum | (string & {});
@@ -6124,7 +6111,7 @@ export type ExperimentStatusEnum =
   | "paused"
   | "completed"
   | "archived";
-export const ExperimentStatusEnum = /*@__PURE__*/ S.String;
+export const ExperimentStatusEnum = S.String;
 
 export type CreateExperimentResponseContentFeatureFlagSnapshotMap = {
   [key: string]: unknown | undefined;
@@ -6252,7 +6239,7 @@ export type FeatureFlagConfigParamTypeEnum =
   | "number"
   | "array"
   | "object";
-export const FeatureFlagConfigParamTypeEnum = /*@__PURE__*/ S.String;
+export const FeatureFlagConfigParamTypeEnum = S.String;
 
 export interface FeatureFlagConfigParam {
   type: FeatureFlagConfigParamTypeEnum | (string & {});
@@ -6305,11 +6292,11 @@ export const CreateFeatureFlagRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Filter by type. Exact match. */
 export type FeatureFlagTypeEnum = "auth0" | "self";
-export const FeatureFlagTypeEnum = /*@__PURE__*/ S.String;
+export const FeatureFlagTypeEnum = S.String;
 
 /** Filter by status. Exact match. */
 export type FeatureFlagStatusEnum = "draft" | "active" | "archived";
-export const FeatureFlagStatusEnum = /*@__PURE__*/ S.String;
+export const FeatureFlagStatusEnum = S.String;
 
 /** Configuration parameters for this feature flag */
 export type FeatureFlagConfigParams = {
@@ -6346,11 +6333,10 @@ export const CreateFeatureFlagResponseContent = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateFeatureFlagResponseContent>;
 
 export type FlowActionActivecampaignListContactsType = "ACTIVECAMPAIGN";
-export const FlowActionActivecampaignListContactsType = /*@__PURE__*/ S.String;
+export const FlowActionActivecampaignListContactsType = S.String;
 
 export type FlowActionActivecampaignListContactsAction = "LIST_CONTACTS";
-export const FlowActionActivecampaignListContactsAction =
-  /*@__PURE__*/ S.String;
+export const FlowActionActivecampaignListContactsAction = S.String;
 
 export interface FlowActionActivecampaignListContactsParams {
   connection_id: string;
@@ -6391,11 +6377,10 @@ export const FlowActionActivecampaignListContacts = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<FlowActionActivecampaignListContacts>;
 
 export type FlowActionActivecampaignUpsertContactType = "ACTIVECAMPAIGN";
-export const FlowActionActivecampaignUpsertContactType = /*@__PURE__*/ S.String;
+export const FlowActionActivecampaignUpsertContactType = S.String;
 
 export type FlowActionActivecampaignUpsertContactAction = "UPSERT_CONTACT";
-export const FlowActionActivecampaignUpsertContactAction =
-  /*@__PURE__*/ S.String;
+export const FlowActionActivecampaignUpsertContactAction = S.String;
 
 export type FlowActionActivecampaignUpsertContactParamsCustomFields = {
   [key: string]: unknown | undefined;
@@ -6458,13 +6443,13 @@ export type FlowActionActivecampaign =
   | FlowActionActivecampaignListContacts
   | FlowActionActivecampaignUpsertContact;
 export const FlowActionActivecampaign =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionActivecampaign>;
+  S.Unknown as any as S.Schema<FlowActionActivecampaign>;
 
 export type FlowActionAirtableCreateRecordType = "AIRTABLE";
-export const FlowActionAirtableCreateRecordType = /*@__PURE__*/ S.String;
+export const FlowActionAirtableCreateRecordType = S.String;
 
 export type FlowActionAirtableCreateRecordAction = "CREATE_RECORD";
-export const FlowActionAirtableCreateRecordAction = /*@__PURE__*/ S.String;
+export const FlowActionAirtableCreateRecordAction = S.String;
 
 export type FlowActionAirtableCreateRecordParamsFields = {
   [key: string]: unknown | undefined;
@@ -6517,10 +6502,10 @@ export const FlowActionAirtableCreateRecord = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAirtableCreateRecord>;
 
 export type FlowActionAirtableListRecordsType = "AIRTABLE";
-export const FlowActionAirtableListRecordsType = /*@__PURE__*/ S.String;
+export const FlowActionAirtableListRecordsType = S.String;
 
 export type FlowActionAirtableListRecordsAction = "LIST_RECORDS";
-export const FlowActionAirtableListRecordsAction = /*@__PURE__*/ S.String;
+export const FlowActionAirtableListRecordsAction = S.String;
 
 export interface FlowActionAirtableListRecordsParams {
   connection_id: string;
@@ -6565,10 +6550,10 @@ export const FlowActionAirtableListRecords = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAirtableListRecords>;
 
 export type FlowActionAirtableUpdateRecordType = "AIRTABLE";
-export const FlowActionAirtableUpdateRecordType = /*@__PURE__*/ S.String;
+export const FlowActionAirtableUpdateRecordType = S.String;
 
 export type FlowActionAirtableUpdateRecordAction = "UPDATE_RECORD";
-export const FlowActionAirtableUpdateRecordAction = /*@__PURE__*/ S.String;
+export const FlowActionAirtableUpdateRecordAction = S.String;
 
 export type FlowActionAirtableUpdateRecordParamsFields = {
   [key: string]: unknown | undefined;
@@ -6627,13 +6612,13 @@ export type FlowActionAirtable =
   | FlowActionAirtableListRecords
   | FlowActionAirtableUpdateRecord;
 export const FlowActionAirtable =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionAirtable>;
+  S.Unknown as any as S.Schema<FlowActionAirtable>;
 
 export type FlowActionAuth0CreateUserType = "AUTH0";
-export const FlowActionAuth0CreateUserType = /*@__PURE__*/ S.String;
+export const FlowActionAuth0CreateUserType = S.String;
 
 export type FlowActionAuth0CreateUserAction = "CREATE_USER";
-export const FlowActionAuth0CreateUserAction = /*@__PURE__*/ S.String;
+export const FlowActionAuth0CreateUserAction = S.String;
 
 export type FlowActionAuth0CreateUserParamsPayload = {
   [key: string]: unknown | undefined;
@@ -6680,10 +6665,10 @@ export const FlowActionAuth0CreateUser = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAuth0CreateUser>;
 
 export type FlowActionAuth0GetUserType = "AUTH0";
-export const FlowActionAuth0GetUserType = /*@__PURE__*/ S.String;
+export const FlowActionAuth0GetUserType = S.String;
 
 export type FlowActionAuth0GetUserAction = "GET_USER";
-export const FlowActionAuth0GetUserAction = /*@__PURE__*/ S.String;
+export const FlowActionAuth0GetUserAction = S.String;
 
 export interface FlowActionAuth0GetUserParams {
   connection_id: string;
@@ -6722,10 +6707,10 @@ export const FlowActionAuth0GetUser = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAuth0GetUser>;
 
 export type FlowActionAuth0UpdateUserType = "AUTH0";
-export const FlowActionAuth0UpdateUserType = /*@__PURE__*/ S.String;
+export const FlowActionAuth0UpdateUserType = S.String;
 
 export type FlowActionAuth0UpdateUserAction = "UPDATE_USER";
-export const FlowActionAuth0UpdateUserAction = /*@__PURE__*/ S.String;
+export const FlowActionAuth0UpdateUserAction = S.String;
 
 export type FlowActionAuth0UpdateUserParamsChanges = {
   [key: string]: unknown | undefined;
@@ -6774,10 +6759,10 @@ export const FlowActionAuth0UpdateUser = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAuth0UpdateUser>;
 
 export type FlowActionAuth0SendRequestType = "AUTH0";
-export const FlowActionAuth0SendRequestType = /*@__PURE__*/ S.String;
+export const FlowActionAuth0SendRequestType = S.String;
 
 export type FlowActionAuth0SendRequestAction = "SEND_REQUEST";
-export const FlowActionAuth0SendRequestAction = /*@__PURE__*/ S.String;
+export const FlowActionAuth0SendRequestAction = S.String;
 
 export type FlowActionAuth0SendRequestParamsMethod =
   | "GET"
@@ -6785,7 +6770,7 @@ export type FlowActionAuth0SendRequestParamsMethod =
   | "PUT"
   | "PATCH"
   | "DELETE";
-export const FlowActionAuth0SendRequestParamsMethod = /*@__PURE__*/ S.String;
+export const FlowActionAuth0SendRequestParamsMethod = S.String;
 
 export type FlowActionAuth0SendRequestParamsHeaders = {
   [key: string]: unknown | undefined;
@@ -6797,7 +6782,7 @@ export const FlowActionAuth0SendRequestParamsHeaders = /*@__PURE__*/ S.Record(
 
 export type FlowActionAuth0SendRequestParamsQueryParamsValue = number | string;
 export const FlowActionAuth0SendRequestParamsQueryParamsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionAuth0SendRequestParamsQueryParamsValue>;
+  S.Unknown as any as S.Schema<FlowActionAuth0SendRequestParamsQueryParamsValue>;
 
 export type FlowActionAuth0SendRequestParamsQueryParams = {
   [key: string]: FlowActionAuth0SendRequestParamsQueryParamsValue | undefined;
@@ -6828,7 +6813,7 @@ export type FlowActionAuth0SendRequestParamsPayload =
   | FlowActionAuth0SendRequestParamsPayloadCase1List
   | FlowActionAuth0SendRequestParamsPayloadObject;
 export const FlowActionAuth0SendRequestParamsPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionAuth0SendRequestParamsPayload>;
+  S.Unknown as any as S.Schema<FlowActionAuth0SendRequestParamsPayload>;
 
 export interface FlowActionAuth0SendRequestParams {
   connection_id: string;
@@ -6875,10 +6860,10 @@ export const FlowActionAuth0SendRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAuth0SendRequest>;
 
 export type FlowActionAuth0SendEmailType = "AUTH0";
-export const FlowActionAuth0SendEmailType = /*@__PURE__*/ S.String;
+export const FlowActionAuth0SendEmailType = S.String;
 
 export type FlowActionAuth0SendEmailAction = "SEND_EMAIL";
-export const FlowActionAuth0SendEmailAction = /*@__PURE__*/ S.String;
+export const FlowActionAuth0SendEmailAction = S.String;
 
 export interface FlowActionAuth0SendEmailParamsFrom {
   name?: string;
@@ -6945,10 +6930,10 @@ export const FlowActionAuth0SendEmail = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAuth0SendEmail>;
 
 export type FlowActionAuth0SendSmsType = "AUTH0";
-export const FlowActionAuth0SendSmsType = /*@__PURE__*/ S.String;
+export const FlowActionAuth0SendSmsType = S.String;
 
 export type FlowActionAuth0SendSmsAction = "SEND_SMS";
-export const FlowActionAuth0SendSmsAction = /*@__PURE__*/ S.String;
+export const FlowActionAuth0SendSmsAction = S.String;
 
 export type FlowActionAuth0SendSmsParamsCustomVars = {
   [key: string]: unknown | undefined;
@@ -6999,10 +6984,10 @@ export const FlowActionAuth0SendSms = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionAuth0SendSms>;
 
 export type FlowActionAuth0MakeCallType = "AUTH0";
-export const FlowActionAuth0MakeCallType = /*@__PURE__*/ S.String;
+export const FlowActionAuth0MakeCallType = S.String;
 
 export type FlowActionAuth0MakeCallAction = "MAKE_CALL";
-export const FlowActionAuth0MakeCallAction = /*@__PURE__*/ S.String;
+export const FlowActionAuth0MakeCallAction = S.String;
 
 export type FlowActionAuth0MakeCallParamsCustomVars = {
   [key: string]: unknown | undefined;
@@ -7060,14 +7045,13 @@ export type FlowActionAuth0 =
   | FlowActionAuth0SendEmail
   | FlowActionAuth0SendSms
   | FlowActionAuth0MakeCall;
-export const FlowActionAuth0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionAuth0>;
+export const FlowActionAuth0 = S.Unknown as any as S.Schema<FlowActionAuth0>;
 
 export type FlowActionBigqueryInsertRowsType = "BIGQUERY";
-export const FlowActionBigqueryInsertRowsType = /*@__PURE__*/ S.String;
+export const FlowActionBigqueryInsertRowsType = S.String;
 
 export type FlowActionBigqueryInsertRowsAction = "INSERT_ROWS";
-export const FlowActionBigqueryInsertRowsAction = /*@__PURE__*/ S.String;
+export const FlowActionBigqueryInsertRowsAction = S.String;
 
 export type FlowActionBigqueryInsertRowsParamsData = {
   [key: string]: unknown | undefined;
@@ -7118,10 +7102,10 @@ export const FlowActionBigqueryInsertRows = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionBigqueryInsertRows>;
 
 export type FlowActionClearbitFindPersonType = "CLEARBIT";
-export const FlowActionClearbitFindPersonType = /*@__PURE__*/ S.String;
+export const FlowActionClearbitFindPersonType = S.String;
 
 export type FlowActionClearbitFindPersonAction = "FIND_PERSON";
-export const FlowActionClearbitFindPersonAction = /*@__PURE__*/ S.String;
+export const FlowActionClearbitFindPersonAction = S.String;
 
 export type FlowActionClearbitFindPersonParams =
   FlowActionActivecampaignListContactsParams;
@@ -7152,10 +7136,10 @@ export const FlowActionClearbitFindPerson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionClearbitFindPerson>;
 
 export type FlowActionClearbitFindCompanyType = "CLEARBIT";
-export const FlowActionClearbitFindCompanyType = /*@__PURE__*/ S.String;
+export const FlowActionClearbitFindCompanyType = S.String;
 
 export type FlowActionClearbitFindCompanyAction = "FIND_COMPANY";
-export const FlowActionClearbitFindCompanyAction = /*@__PURE__*/ S.String;
+export const FlowActionClearbitFindCompanyAction = S.String;
 
 export interface FlowActionClearbitFindCompanyParams {
   connection_id: string;
@@ -7197,13 +7181,13 @@ export type FlowActionClearbit =
   | FlowActionClearbitFindPerson
   | FlowActionClearbitFindCompany;
 export const FlowActionClearbit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionClearbit>;
+  S.Unknown as any as S.Schema<FlowActionClearbit>;
 
 export type FlowActionEmailVerifyEmailType = "EMAIL";
-export const FlowActionEmailVerifyEmailType = /*@__PURE__*/ S.String;
+export const FlowActionEmailVerifyEmailType = S.String;
 
 export type FlowActionEmailVerifyEmailAction = "VERIFY_EMAIL";
-export const FlowActionEmailVerifyEmailAction = /*@__PURE__*/ S.String;
+export const FlowActionEmailVerifyEmailAction = S.String;
 
 export type FlowActionEmailVerifyEmailParamsRulesBlocklistList = Array<string>;
 export const FlowActionEmailVerifyEmailParamsRulesBlocklistList =
@@ -7276,10 +7260,10 @@ export const FlowActionEmailVerifyEmail = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionEmailVerifyEmail>;
 
 export type FlowActionFlowBooleanConditionType = "FLOW";
-export const FlowActionFlowBooleanConditionType = /*@__PURE__*/ S.String;
+export const FlowActionFlowBooleanConditionType = S.String;
 
 export type FlowActionFlowBooleanConditionAction = "BOOLEAN_CONDITION";
-export const FlowActionFlowBooleanConditionAction = /*@__PURE__*/ S.String;
+export const FlowActionFlowBooleanConditionAction = S.String;
 
 export type FlowActionFlowBooleanConditionParamsThenList = Array<FlowAction>;
 export const FlowActionFlowBooleanConditionParamsThenList =
@@ -7333,21 +7317,21 @@ export const FlowActionFlowBooleanCondition = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionFlowBooleanCondition>;
 
 export type FlowActionFlowDelayFlowType = "FLOW";
-export const FlowActionFlowDelayFlowType = /*@__PURE__*/ S.String;
+export const FlowActionFlowDelayFlowType = S.String;
 
 export type FlowActionFlowDelayFlowAction = "DELAY_FLOW";
-export const FlowActionFlowDelayFlowAction = /*@__PURE__*/ S.String;
+export const FlowActionFlowDelayFlowAction = S.String;
 
 export type FlowActionFlowDelayFlowParamsNumber = number | string;
 export const FlowActionFlowDelayFlowParamsNumber =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionFlowDelayFlowParamsNumber>;
+  S.Unknown as any as S.Schema<FlowActionFlowDelayFlowParamsNumber>;
 
 export type FlowActionFlowDelayFlowParamsUnits =
   | "SECONDS"
   | "MINUTES"
   | "HOURS"
   | "DAYS";
-export const FlowActionFlowDelayFlowParamsUnits = /*@__PURE__*/ S.String;
+export const FlowActionFlowDelayFlowParamsUnits = S.String;
 
 export interface FlowActionFlowDelayFlowParams {
   number: FlowActionFlowDelayFlowParamsNumber;
@@ -7386,10 +7370,10 @@ export const FlowActionFlowDelayFlow = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionFlowDelayFlow>;
 
 export type FlowActionFlowDoNothingType = "FLOW";
-export const FlowActionFlowDoNothingType = /*@__PURE__*/ S.String;
+export const FlowActionFlowDoNothingType = S.String;
 
 export type FlowActionFlowDoNothingAction = "DO_NOTHING";
-export const FlowActionFlowDoNothingAction = /*@__PURE__*/ S.String;
+export const FlowActionFlowDoNothingAction = S.String;
 
 export interface FlowActionFlowDoNothing {
   id: string;
@@ -7415,10 +7399,10 @@ export const FlowActionFlowDoNothing = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionFlowDoNothing>;
 
 export type FlowActionFlowErrorMessageType = "FLOW";
-export const FlowActionFlowErrorMessageType = /*@__PURE__*/ S.String;
+export const FlowActionFlowErrorMessageType = S.String;
 
 export type FlowActionFlowErrorMessageAction = "ERROR_MESSAGE";
-export const FlowActionFlowErrorMessageAction = /*@__PURE__*/ S.String;
+export const FlowActionFlowErrorMessageAction = S.String;
 
 export interface FlowActionFlowErrorMessageParams {
   message: string;
@@ -7455,14 +7439,14 @@ export const FlowActionFlowErrorMessage = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionFlowErrorMessage>;
 
 export type FlowActionFlowMapValueType = "FLOW";
-export const FlowActionFlowMapValueType = /*@__PURE__*/ S.String;
+export const FlowActionFlowMapValueType = S.String;
 
 export type FlowActionFlowMapValueAction = "MAP_VALUE";
-export const FlowActionFlowMapValueAction = /*@__PURE__*/ S.String;
+export const FlowActionFlowMapValueAction = S.String;
 
 export type FlowActionFlowMapValueParamsInput = string | number;
 export const FlowActionFlowMapValueParamsInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionFlowMapValueParamsInput>;
+  S.Unknown as any as S.Schema<FlowActionFlowMapValueParamsInput>;
 
 export type FlowActionFlowMapValueParamsCases = {
   [key: string]: unknown | undefined;
@@ -7493,7 +7477,7 @@ export type FlowActionFlowMapValueParamsFallback =
   | FlowActionFlowMapValueParamsFallbackObject
   | FlowActionFlowMapValueParamsFallbackCase3List;
 export const FlowActionFlowMapValueParamsFallback =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionFlowMapValueParamsFallback>;
+  S.Unknown as any as S.Schema<FlowActionFlowMapValueParamsFallback>;
 
 export interface FlowActionFlowMapValueParams {
   input: FlowActionFlowMapValueParamsInput;
@@ -7534,10 +7518,10 @@ export const FlowActionFlowMapValue = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionFlowMapValue>;
 
 export type FlowActionFlowReturnJsonType = "FLOW";
-export const FlowActionFlowReturnJsonType = /*@__PURE__*/ S.String;
+export const FlowActionFlowReturnJsonType = S.String;
 
 export type FlowActionFlowReturnJsonAction = "RETURN_JSON";
-export const FlowActionFlowReturnJsonAction = /*@__PURE__*/ S.String;
+export const FlowActionFlowReturnJsonAction = S.String;
 
 export type FlowActionFlowReturnJsonParamsPayloadObject = {
   [key: string]: unknown | undefined;
@@ -7552,7 +7536,7 @@ export type FlowActionFlowReturnJsonParamsPayload =
   | FlowActionFlowReturnJsonParamsPayloadObject
   | string;
 export const FlowActionFlowReturnJsonParamsPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionFlowReturnJsonParamsPayload>;
+  S.Unknown as any as S.Schema<FlowActionFlowReturnJsonParamsPayload>;
 
 export interface FlowActionFlowReturnJsonParams {
   payload: FlowActionFlowReturnJsonParamsPayload;
@@ -7589,10 +7573,10 @@ export const FlowActionFlowReturnJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionFlowReturnJson>;
 
 export type FlowActionFlowStoreVarsType = "FLOW";
-export const FlowActionFlowStoreVarsType = /*@__PURE__*/ S.String;
+export const FlowActionFlowStoreVarsType = S.String;
 
 export type FlowActionFlowStoreVarsAction = "STORE_VARS";
-export const FlowActionFlowStoreVarsAction = /*@__PURE__*/ S.String;
+export const FlowActionFlowStoreVarsAction = S.String;
 
 export type FlowActionFlowStoreVarsParamsVars = {
   [key: string]: unknown | undefined;
@@ -7644,18 +7628,17 @@ export type FlowActionFlow =
   | FlowActionFlowMapValue
   | FlowActionFlowReturnJson
   | FlowActionFlowStoreVars;
-export const FlowActionFlow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionFlow>;
+export const FlowActionFlow = S.Unknown as any as S.Schema<FlowActionFlow>;
 
 export type FlowActionGoogleSheetsAddRowType = "GOOGLE_SHEETS";
-export const FlowActionGoogleSheetsAddRowType = /*@__PURE__*/ S.String;
+export const FlowActionGoogleSheetsAddRowType = S.String;
 
 export type FlowActionGoogleSheetsAddRowAction = "ADD_ROW";
-export const FlowActionGoogleSheetsAddRowAction = /*@__PURE__*/ S.String;
+export const FlowActionGoogleSheetsAddRowAction = S.String;
 
 export type FlowActionGoogleSheetsAddRowParamsSheetId = number | string;
 export const FlowActionGoogleSheetsAddRowParamsSheetId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionGoogleSheetsAddRowParamsSheetId>;
+  S.Unknown as any as S.Schema<FlowActionGoogleSheetsAddRowParamsSheetId>;
 
 export type FlowActionGoogleSheetsAddRowParamsValues = Array<string>;
 export const FlowActionGoogleSheetsAddRowParamsValues = /*@__PURE__*/ S.Array(
@@ -7703,10 +7686,10 @@ export const FlowActionGoogleSheetsAddRow = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionGoogleSheetsAddRow>;
 
 export type FlowActionHttpSendRequestType = "HTTP";
-export const FlowActionHttpSendRequestType = /*@__PURE__*/ S.String;
+export const FlowActionHttpSendRequestType = S.String;
 
 export type FlowActionHttpSendRequestAction = "SEND_REQUEST";
-export const FlowActionHttpSendRequestAction = /*@__PURE__*/ S.String;
+export const FlowActionHttpSendRequestAction = S.String;
 
 export type FlowActionHttpSendRequestParamsMethod =
   | "GET"
@@ -7714,7 +7697,7 @@ export type FlowActionHttpSendRequestParamsMethod =
   | "PUT"
   | "PATCH"
   | "DELETE";
-export const FlowActionHttpSendRequestParamsMethod = /*@__PURE__*/ S.String;
+export const FlowActionHttpSendRequestParamsMethod = S.String;
 
 export type FlowActionHttpSendRequestParamsHeaders = {
   [key: string]: unknown | undefined;
@@ -7740,7 +7723,7 @@ export const FlowActionHttpSendRequestParamsBasicAuth = /*@__PURE__*/ S.suspend(
 
 export type FlowActionHttpSendRequestParamsQueryParamsValue = number | string;
 export const FlowActionHttpSendRequestParamsQueryParamsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionHttpSendRequestParamsQueryParamsValue>;
+  S.Unknown as any as S.Schema<FlowActionHttpSendRequestParamsQueryParamsValue>;
 
 export type FlowActionHttpSendRequestParamsQueryParams = {
   [key: string]: FlowActionHttpSendRequestParamsQueryParamsValue | undefined;
@@ -7771,14 +7754,13 @@ export type FlowActionHttpSendRequestParamsPayload =
   | FlowActionHttpSendRequestParamsPayloadCase1List
   | FlowActionHttpSendRequestParamsPayloadObject;
 export const FlowActionHttpSendRequestParamsPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionHttpSendRequestParamsPayload>;
+  S.Unknown as any as S.Schema<FlowActionHttpSendRequestParamsPayload>;
 
 export type FlowActionHttpSendRequestParamsContentType =
   | "JSON"
   | "FORM"
   | "XML";
-export const FlowActionHttpSendRequestParamsContentType =
-  /*@__PURE__*/ S.String;
+export const FlowActionHttpSendRequestParamsContentType = S.String;
 
 export interface FlowActionHttpSendRequestParams {
   connection_id?: string;
@@ -7829,14 +7811,14 @@ export const FlowActionHttpSendRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionHttpSendRequest>;
 
 export type FlowActionHubspotEnrollContactType = "HUBSPOT";
-export const FlowActionHubspotEnrollContactType = /*@__PURE__*/ S.String;
+export const FlowActionHubspotEnrollContactType = S.String;
 
 export type FlowActionHubspotEnrollContactAction = "ENROLL_CONTACT";
-export const FlowActionHubspotEnrollContactAction = /*@__PURE__*/ S.String;
+export const FlowActionHubspotEnrollContactAction = S.String;
 
 export type FlowActionHubspotEnrollContactParamsWorkflowId = string | number;
 export const FlowActionHubspotEnrollContactParamsWorkflowId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionHubspotEnrollContactParamsWorkflowId>;
+  S.Unknown as any as S.Schema<FlowActionHubspotEnrollContactParamsWorkflowId>;
 
 export interface FlowActionHubspotEnrollContactParams {
   connection_id: string;
@@ -7878,10 +7860,10 @@ export const FlowActionHubspotEnrollContact = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionHubspotEnrollContact>;
 
 export type FlowActionHubspotGetContactType = "HUBSPOT";
-export const FlowActionHubspotGetContactType = /*@__PURE__*/ S.String;
+export const FlowActionHubspotGetContactType = S.String;
 
 export type FlowActionHubspotGetContactAction = "GET_CONTACT";
-export const FlowActionHubspotGetContactAction = /*@__PURE__*/ S.String;
+export const FlowActionHubspotGetContactAction = S.String;
 
 export type FlowActionHubspotGetContactParams =
   FlowActionActivecampaignListContactsParams;
@@ -7912,10 +7894,10 @@ export const FlowActionHubspotGetContact = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionHubspotGetContact>;
 
 export type FlowActionHubspotUpsertContactType = "HUBSPOT";
-export const FlowActionHubspotUpsertContactType = /*@__PURE__*/ S.String;
+export const FlowActionHubspotUpsertContactType = S.String;
 
 export type FlowActionHubspotUpsertContactAction = "UPSERT_CONTACT";
-export const FlowActionHubspotUpsertContactAction = /*@__PURE__*/ S.String;
+export const FlowActionHubspotUpsertContactAction = S.String;
 
 export interface FlowActionHubspotUpsertContactParamsProperty {
   property: string;
@@ -7984,13 +7966,13 @@ export type FlowActionHubspot =
   | FlowActionHubspotGetContact
   | FlowActionHubspotUpsertContact;
 export const FlowActionHubspot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionHubspot>;
+  S.Unknown as any as S.Schema<FlowActionHubspot>;
 
 export type FlowActionJsonCreateJsonType = "JSON";
-export const FlowActionJsonCreateJsonType = /*@__PURE__*/ S.String;
+export const FlowActionJsonCreateJsonType = S.String;
 
 export type FlowActionJsonCreateJsonAction = "CREATE_JSON";
-export const FlowActionJsonCreateJsonAction = /*@__PURE__*/ S.String;
+export const FlowActionJsonCreateJsonAction = S.String;
 
 export type FlowActionJsonCreateJsonParamsObject = {
   [key: string]: unknown | undefined;
@@ -8035,10 +8017,10 @@ export const FlowActionJsonCreateJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionJsonCreateJson>;
 
 export type FlowActionJsonParseJsonType = "JSON";
-export const FlowActionJsonParseJsonType = /*@__PURE__*/ S.String;
+export const FlowActionJsonParseJsonType = S.String;
 
 export type FlowActionJsonParseJsonAction = "PARSE_JSON";
-export const FlowActionJsonParseJsonAction = /*@__PURE__*/ S.String;
+export const FlowActionJsonParseJsonAction = S.String;
 
 export interface FlowActionJsonParseJsonParams {
   json: string;
@@ -8075,10 +8057,10 @@ export const FlowActionJsonParseJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionJsonParseJson>;
 
 export type FlowActionJsonSerializeJsonType = "JSON";
-export const FlowActionJsonSerializeJsonType = /*@__PURE__*/ S.String;
+export const FlowActionJsonSerializeJsonType = S.String;
 
 export type FlowActionJsonSerializeJsonAction = "SERIALIZE_JSON";
-export const FlowActionJsonSerializeJsonAction = /*@__PURE__*/ S.String;
+export const FlowActionJsonSerializeJsonAction = S.String;
 
 export type FlowActionJsonSerializeJsonParamsObjectObject = {
   [key: string]: unknown | undefined;
@@ -8093,7 +8075,7 @@ export type FlowActionJsonSerializeJsonParamsObject =
   | string
   | FlowActionJsonSerializeJsonParamsObjectObject;
 export const FlowActionJsonSerializeJsonParamsObject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionJsonSerializeJsonParamsObject>;
+  S.Unknown as any as S.Schema<FlowActionJsonSerializeJsonParamsObject>;
 
 export interface FlowActionJsonSerializeJsonParams {
   object: FlowActionJsonSerializeJsonParamsObject;
@@ -8133,14 +8115,13 @@ export type FlowActionJson =
   | FlowActionJsonCreateJson
   | FlowActionJsonParseJson
   | FlowActionJsonSerializeJson;
-export const FlowActionJson =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionJson>;
+export const FlowActionJson = S.Unknown as any as S.Schema<FlowActionJson>;
 
 export type FlowActionJwtDecodeJwtType = "JWT";
-export const FlowActionJwtDecodeJwtType = /*@__PURE__*/ S.String;
+export const FlowActionJwtDecodeJwtType = S.String;
 
 export type FlowActionJwtDecodeJwtAction = "DECODE_JWT";
-export const FlowActionJwtDecodeJwtAction = /*@__PURE__*/ S.String;
+export const FlowActionJwtDecodeJwtAction = S.String;
 
 export interface FlowActionJwtDecodeJwtParams {
   token: string;
@@ -8177,10 +8158,10 @@ export const FlowActionJwtDecodeJwt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionJwtDecodeJwt>;
 
 export type FlowActionJwtSignJwtType = "JWT";
-export const FlowActionJwtSignJwtType = /*@__PURE__*/ S.String;
+export const FlowActionJwtSignJwtType = S.String;
 
 export type FlowActionJwtSignJwtAction = "SIGN_JWT";
-export const FlowActionJwtSignJwtAction = /*@__PURE__*/ S.String;
+export const FlowActionJwtSignJwtAction = S.String;
 
 export type FlowActionJwtSignJwtParamsPayload = {
   [key: string]: unknown | undefined;
@@ -8235,10 +8216,10 @@ export const FlowActionJwtSignJwt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionJwtSignJwt>;
 
 export type FlowActionJwtVerifyJwtType = "JWT";
-export const FlowActionJwtVerifyJwtType = /*@__PURE__*/ S.String;
+export const FlowActionJwtVerifyJwtType = S.String;
 
 export type FlowActionJwtVerifyJwtAction = "VERIFY_JWT";
-export const FlowActionJwtVerifyJwtAction = /*@__PURE__*/ S.String;
+export const FlowActionJwtVerifyJwtAction = S.String;
 
 export interface FlowActionJwtVerifyJwtParams {
   connection_id: string;
@@ -8284,14 +8265,13 @@ export type FlowActionJwt =
   | FlowActionJwtDecodeJwt
   | FlowActionJwtSignJwt
   | FlowActionJwtVerifyJwt;
-export const FlowActionJwt =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionJwt>;
+export const FlowActionJwt = S.Unknown as any as S.Schema<FlowActionJwt>;
 
 export type FlowActionMailchimpUpsertMemberType = "MAILCHIMP";
-export const FlowActionMailchimpUpsertMemberType = /*@__PURE__*/ S.String;
+export const FlowActionMailchimpUpsertMemberType = S.String;
 
 export type FlowActionMailchimpUpsertMemberAction = "UPSERT_MEMBER";
-export const FlowActionMailchimpUpsertMemberAction = /*@__PURE__*/ S.String;
+export const FlowActionMailchimpUpsertMemberAction = S.String;
 
 export type FlowActionMailchimpUpsertMemberParamsMemberMergeFields = {
   [key: string]: unknown | undefined;
@@ -8360,10 +8340,10 @@ export const FlowActionMailchimpUpsertMember = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionMailchimpUpsertMember>;
 
 export type FlowActionMailjetSendEmailType = "MAILJET";
-export const FlowActionMailjetSendEmailType = /*@__PURE__*/ S.String;
+export const FlowActionMailjetSendEmailType = S.String;
 
 export type FlowActionMailjetSendEmailAction = "SEND_EMAIL";
-export const FlowActionMailjetSendEmailAction = /*@__PURE__*/ S.String;
+export const FlowActionMailjetSendEmailAction = S.String;
 
 export interface FlowActionMailjetSendEmailParamsCase0 {
   content: string;
@@ -8404,7 +8384,7 @@ export type FlowActionMailjetSendEmailParams =
   | FlowActionMailjetSendEmailParamsCase0
   | FlowActionMailjetSendEmailParamsCase1;
 export const FlowActionMailjetSendEmailParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionMailjetSendEmailParams>;
+  S.Unknown as any as S.Schema<FlowActionMailjetSendEmailParams>;
 
 export interface FlowActionMailjetSendEmail {
   id: string;
@@ -8430,10 +8410,10 @@ export const FlowActionMailjetSendEmail = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionMailjetSendEmail>;
 
 export type FlowActionOtpGenerateCodeType = "OTP";
-export const FlowActionOtpGenerateCodeType = /*@__PURE__*/ S.String;
+export const FlowActionOtpGenerateCodeType = S.String;
 
 export type FlowActionOtpGenerateCodeAction = "GENERATE_CODE";
-export const FlowActionOtpGenerateCodeAction = /*@__PURE__*/ S.String;
+export const FlowActionOtpGenerateCodeAction = S.String;
 
 export interface FlowActionOtpGenerateCodeParams {
   reference: string;
@@ -8472,14 +8452,14 @@ export const FlowActionOtpGenerateCode = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionOtpGenerateCode>;
 
 export type FlowActionOtpVerifyCodeType = "OTP";
-export const FlowActionOtpVerifyCodeType = /*@__PURE__*/ S.String;
+export const FlowActionOtpVerifyCodeType = S.String;
 
 export type FlowActionOtpVerifyCodeAction = "VERIFY_CODE";
-export const FlowActionOtpVerifyCodeAction = /*@__PURE__*/ S.String;
+export const FlowActionOtpVerifyCodeAction = S.String;
 
 export type FlowActionOtpVerifyCodeParamsCode = number | string;
 export const FlowActionOtpVerifyCodeParamsCode =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionOtpVerifyCodeParamsCode>;
+  S.Unknown as any as S.Schema<FlowActionOtpVerifyCodeParamsCode>;
 
 export interface FlowActionOtpVerifyCodeParams {
   reference: string;
@@ -8518,30 +8498,29 @@ export const FlowActionOtpVerifyCode = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionOtpVerifyCode>;
 
 export type FlowActionOtp = FlowActionOtpGenerateCode | FlowActionOtpVerifyCode;
-export const FlowActionOtp =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionOtp>;
+export const FlowActionOtp = S.Unknown as any as S.Schema<FlowActionOtp>;
 
 export type FlowActionPipedriveAddDealType = "PIPEDRIVE";
-export const FlowActionPipedriveAddDealType = /*@__PURE__*/ S.String;
+export const FlowActionPipedriveAddDealType = S.String;
 
 export type FlowActionPipedriveAddDealAction = "ADD_DEAL";
-export const FlowActionPipedriveAddDealAction = /*@__PURE__*/ S.String;
+export const FlowActionPipedriveAddDealAction = S.String;
 
 export type FlowActionPipedriveAddDealParamsUserId = string | number;
 export const FlowActionPipedriveAddDealParamsUserId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsUserId>;
+  S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsUserId>;
 
 export type FlowActionPipedriveAddDealParamsPersonId = string | number;
 export const FlowActionPipedriveAddDealParamsPersonId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsPersonId>;
+  S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsPersonId>;
 
 export type FlowActionPipedriveAddDealParamsOrganizationId = string | number;
 export const FlowActionPipedriveAddDealParamsOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsOrganizationId>;
+  S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsOrganizationId>;
 
 export type FlowActionPipedriveAddDealParamsStageId = string | number;
 export const FlowActionPipedriveAddDealParamsStageId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsStageId>;
+  S.Unknown as any as S.Schema<FlowActionPipedriveAddDealParamsStageId>;
 
 export type FlowActionPipedriveAddDealParamsFields = {
   [key: string]: unknown | undefined;
@@ -8600,14 +8579,14 @@ export const FlowActionPipedriveAddDeal = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionPipedriveAddDeal>;
 
 export type FlowActionPipedriveAddOrganizationType = "PIPEDRIVE";
-export const FlowActionPipedriveAddOrganizationType = /*@__PURE__*/ S.String;
+export const FlowActionPipedriveAddOrganizationType = S.String;
 
 export type FlowActionPipedriveAddOrganizationAction = "ADD_ORGANIZATION";
-export const FlowActionPipedriveAddOrganizationAction = /*@__PURE__*/ S.String;
+export const FlowActionPipedriveAddOrganizationAction = S.String;
 
 export type FlowActionPipedriveAddOrganizationParamsOwnerId = string | number;
 export const FlowActionPipedriveAddOrganizationParamsOwnerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedriveAddOrganizationParamsOwnerId>;
+  S.Unknown as any as S.Schema<FlowActionPipedriveAddOrganizationParamsOwnerId>;
 
 export type FlowActionPipedriveAddOrganizationParamsFields = {
   [key: string]: unknown | undefined;
@@ -8660,18 +8639,18 @@ export const FlowActionPipedriveAddOrganization = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionPipedriveAddOrganization>;
 
 export type FlowActionPipedriveAddPersonType = "PIPEDRIVE";
-export const FlowActionPipedriveAddPersonType = /*@__PURE__*/ S.String;
+export const FlowActionPipedriveAddPersonType = S.String;
 
 export type FlowActionPipedriveAddPersonAction = "ADD_PERSON";
-export const FlowActionPipedriveAddPersonAction = /*@__PURE__*/ S.String;
+export const FlowActionPipedriveAddPersonAction = S.String;
 
 export type FlowActionPipedriveAddPersonParamsOwnerId = string | number;
 export const FlowActionPipedriveAddPersonParamsOwnerId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedriveAddPersonParamsOwnerId>;
+  S.Unknown as any as S.Schema<FlowActionPipedriveAddPersonParamsOwnerId>;
 
 export type FlowActionPipedriveAddPersonParamsOrganizationId = string | number;
 export const FlowActionPipedriveAddPersonParamsOrganizationId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedriveAddPersonParamsOrganizationId>;
+  S.Unknown as any as S.Schema<FlowActionPipedriveAddPersonParamsOrganizationId>;
 
 export type FlowActionPipedriveAddPersonParamsFields = {
   [key: string]: unknown | undefined;
@@ -8734,13 +8713,13 @@ export type FlowActionPipedrive =
   | FlowActionPipedriveAddOrganization
   | FlowActionPipedriveAddPerson;
 export const FlowActionPipedrive =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionPipedrive>;
+  S.Unknown as any as S.Schema<FlowActionPipedrive>;
 
 export type FlowActionSalesforceCreateLeadType = "SALESFORCE";
-export const FlowActionSalesforceCreateLeadType = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceCreateLeadType = S.String;
 
 export type FlowActionSalesforceCreateLeadAction = "CREATE_LEAD";
-export const FlowActionSalesforceCreateLeadAction = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceCreateLeadAction = S.String;
 
 export type FlowActionSalesforceCreateLeadParamsPayload = {
   [key: string]: unknown | undefined;
@@ -8799,10 +8778,10 @@ export const FlowActionSalesforceCreateLead = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionSalesforceCreateLead>;
 
 export type FlowActionSalesforceGetLeadType = "SALESFORCE";
-export const FlowActionSalesforceGetLeadType = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceGetLeadType = S.String;
 
 export type FlowActionSalesforceGetLeadAction = "GET_LEAD";
-export const FlowActionSalesforceGetLeadAction = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceGetLeadAction = S.String;
 
 export interface FlowActionSalesforceGetLeadParams {
   connection_id: string;
@@ -8841,18 +8820,17 @@ export const FlowActionSalesforceGetLead = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionSalesforceGetLead>;
 
 export type FlowActionSalesforceSearchLeadsType = "SALESFORCE";
-export const FlowActionSalesforceSearchLeadsType = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceSearchLeadsType = S.String;
 
 export type FlowActionSalesforceSearchLeadsAction = "SEARCH_LEADS";
-export const FlowActionSalesforceSearchLeadsAction = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceSearchLeadsAction = S.String;
 
 export type FlowActionSalesforceSearchLeadsParamsSearchField =
   | "email"
   | "name"
   | "phone"
   | "all";
-export const FlowActionSalesforceSearchLeadsParamsSearchField =
-  /*@__PURE__*/ S.String;
+export const FlowActionSalesforceSearchLeadsParamsSearchField = S.String;
 
 export type FlowActionSalesforceSearchLeadsParamsLeadFieldsList = Array<string>;
 export const FlowActionSalesforceSearchLeadsParamsLeadFieldsList =
@@ -8904,10 +8882,10 @@ export const FlowActionSalesforceSearchLeads = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionSalesforceSearchLeads>;
 
 export type FlowActionSalesforceUpdateLeadType = "SALESFORCE";
-export const FlowActionSalesforceUpdateLeadType = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceUpdateLeadType = S.String;
 
 export type FlowActionSalesforceUpdateLeadAction = "UPDATE_LEAD";
-export const FlowActionSalesforceUpdateLeadAction = /*@__PURE__*/ S.String;
+export const FlowActionSalesforceUpdateLeadAction = S.String;
 
 export type FlowActionSalesforceUpdateLeadParamsPayload = {
   [key: string]: unknown | undefined;
@@ -8963,13 +8941,13 @@ export type FlowActionSalesforce =
   | FlowActionSalesforceSearchLeads
   | FlowActionSalesforceUpdateLead;
 export const FlowActionSalesforce =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionSalesforce>;
+  S.Unknown as any as S.Schema<FlowActionSalesforce>;
 
 export type FlowActionSendgridSendEmailType = "SENDGRID";
-export const FlowActionSendgridSendEmailType = /*@__PURE__*/ S.String;
+export const FlowActionSendgridSendEmailType = S.String;
 
 export type FlowActionSendgridSendEmailAction = "SEND_EMAIL";
-export const FlowActionSendgridSendEmailAction = /*@__PURE__*/ S.String;
+export const FlowActionSendgridSendEmailAction = S.String;
 
 export type FlowActionSendgridSendEmailParamsPerson =
   FlowActionAuth0SendEmailParamsFrom;
@@ -9022,17 +9000,16 @@ export const FlowActionSendgridSendEmail = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionSendgridSendEmail>;
 
 export type FlowActionSlackPostMessageType = "SLACK";
-export const FlowActionSlackPostMessageType = /*@__PURE__*/ S.String;
+export const FlowActionSlackPostMessageType = S.String;
 
 export type FlowActionSlackPostMessageAction = "POST_MESSAGE";
-export const FlowActionSlackPostMessageAction = /*@__PURE__*/ S.String;
+export const FlowActionSlackPostMessageAction = S.String;
 
 export type FlowActionSlackPostMessageParamsAttachmentColor =
   | "GOOD"
   | "WARNING"
   | "DANGER";
-export const FlowActionSlackPostMessageParamsAttachmentColor =
-  /*@__PURE__*/ S.String;
+export const FlowActionSlackPostMessageParamsAttachmentColor = S.String;
 
 export interface FlowActionSlackPostMessageParamsAttachmentField {
   title: string;
@@ -9121,10 +9098,10 @@ export const FlowActionSlackPostMessage = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionSlackPostMessage>;
 
 export type FlowActionStripeAddTaxIdType = "STRIPE";
-export const FlowActionStripeAddTaxIdType = /*@__PURE__*/ S.String;
+export const FlowActionStripeAddTaxIdType = S.String;
 
 export type FlowActionStripeAddTaxIdAction = "ADD_TAX_ID";
-export const FlowActionStripeAddTaxIdAction = /*@__PURE__*/ S.String;
+export const FlowActionStripeAddTaxIdAction = S.String;
 
 export interface FlowActionStripeAddTaxIdParams {
   connection_id: string;
@@ -9167,10 +9144,10 @@ export const FlowActionStripeAddTaxId = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionStripeAddTaxId>;
 
 export type FlowActionStripeCreateCustomerType = "STRIPE";
-export const FlowActionStripeCreateCustomerType = /*@__PURE__*/ S.String;
+export const FlowActionStripeCreateCustomerType = S.String;
 
 export type FlowActionStripeCreateCustomerAction = "CREATE_CUSTOMER";
-export const FlowActionStripeCreateCustomerAction = /*@__PURE__*/ S.String;
+export const FlowActionStripeCreateCustomerAction = S.String;
 
 export interface FlowActionStripeTaxId {
   type: string;
@@ -9264,10 +9241,10 @@ export const FlowActionStripeCreateCustomer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionStripeCreateCustomer>;
 
 export type FlowActionStripeCreatePortalSessionType = "STRIPE";
-export const FlowActionStripeCreatePortalSessionType = /*@__PURE__*/ S.String;
+export const FlowActionStripeCreatePortalSessionType = S.String;
 
 export type FlowActionStripeCreatePortalSessionAction = "CREATE_PORTAL_SESSION";
-export const FlowActionStripeCreatePortalSessionAction = /*@__PURE__*/ S.String;
+export const FlowActionStripeCreatePortalSessionAction = S.String;
 
 export interface FlowActionStripeCreatePortalSessionParams {
   connection_id: string;
@@ -9309,10 +9286,10 @@ export const FlowActionStripeCreatePortalSession = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionStripeCreatePortalSession>;
 
 export type FlowActionStripeDeleteTaxIdType = "STRIPE";
-export const FlowActionStripeDeleteTaxIdType = /*@__PURE__*/ S.String;
+export const FlowActionStripeDeleteTaxIdType = S.String;
 
 export type FlowActionStripeDeleteTaxIdAction = "DELETE_TAX_ID";
-export const FlowActionStripeDeleteTaxIdAction = /*@__PURE__*/ S.String;
+export const FlowActionStripeDeleteTaxIdAction = S.String;
 
 export interface FlowActionStripeDeleteTaxIdParams {
   connection_id: string;
@@ -9353,10 +9330,10 @@ export const FlowActionStripeDeleteTaxId = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionStripeDeleteTaxId>;
 
 export type FlowActionStripeFindCustomersType = "STRIPE";
-export const FlowActionStripeFindCustomersType = /*@__PURE__*/ S.String;
+export const FlowActionStripeFindCustomersType = S.String;
 
 export type FlowActionStripeFindCustomersAction = "FIND_CUSTOMERS";
-export const FlowActionStripeFindCustomersAction = /*@__PURE__*/ S.String;
+export const FlowActionStripeFindCustomersAction = S.String;
 
 export type FlowActionStripeFindCustomersParams =
   FlowActionActivecampaignListContactsParams;
@@ -9387,10 +9364,10 @@ export const FlowActionStripeFindCustomers = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionStripeFindCustomers>;
 
 export type FlowActionStripeGetCustomerType = "STRIPE";
-export const FlowActionStripeGetCustomerType = /*@__PURE__*/ S.String;
+export const FlowActionStripeGetCustomerType = S.String;
 
 export type FlowActionStripeGetCustomerAction = "GET_CUSTOMER";
-export const FlowActionStripeGetCustomerAction = /*@__PURE__*/ S.String;
+export const FlowActionStripeGetCustomerAction = S.String;
 
 export interface FlowActionStripeGetCustomerParams {
   connection_id: string;
@@ -9429,10 +9406,10 @@ export const FlowActionStripeGetCustomer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionStripeGetCustomer>;
 
 export type FlowActionStripeUpdateCustomerType = "STRIPE";
-export const FlowActionStripeUpdateCustomerType = /*@__PURE__*/ S.String;
+export const FlowActionStripeUpdateCustomerType = S.String;
 
 export type FlowActionStripeUpdateCustomerAction = "UPDATE_CUSTOMER";
-export const FlowActionStripeUpdateCustomerAction = /*@__PURE__*/ S.String;
+export const FlowActionStripeUpdateCustomerAction = S.String;
 
 export interface FlowActionStripeUpdateCustomerParams {
   connection_id: string;
@@ -9493,14 +9470,13 @@ export type FlowActionStripe =
   | FlowActionStripeFindCustomers
   | FlowActionStripeGetCustomer
   | FlowActionStripeUpdateCustomer;
-export const FlowActionStripe =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionStripe>;
+export const FlowActionStripe = S.Unknown as any as S.Schema<FlowActionStripe>;
 
 export type FlowActionTelegramSendMessageType = "TELEGRAM";
-export const FlowActionTelegramSendMessageType = /*@__PURE__*/ S.String;
+export const FlowActionTelegramSendMessageType = S.String;
 
 export type FlowActionTelegramSendMessageAction = "SEND_MESSAGE";
-export const FlowActionTelegramSendMessageAction = /*@__PURE__*/ S.String;
+export const FlowActionTelegramSendMessageAction = S.String;
 
 export interface FlowActionTelegramSendMessageParams {
   connection_id: string;
@@ -9541,10 +9517,10 @@ export const FlowActionTelegramSendMessage = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionTelegramSendMessage>;
 
 export type FlowActionTwilioMakeCallType = "TWILIO";
-export const FlowActionTwilioMakeCallType = /*@__PURE__*/ S.String;
+export const FlowActionTwilioMakeCallType = S.String;
 
 export type FlowActionTwilioMakeCallAction = "MAKE_CALL";
-export const FlowActionTwilioMakeCallAction = /*@__PURE__*/ S.String;
+export const FlowActionTwilioMakeCallAction = S.String;
 
 export interface FlowActionTwilioMakeCallParams {
   connection_id: string;
@@ -9587,10 +9563,10 @@ export const FlowActionTwilioMakeCall = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionTwilioMakeCall>;
 
 export type FlowActionTwilioSendSmsType = "TWILIO";
-export const FlowActionTwilioSendSmsType = /*@__PURE__*/ S.String;
+export const FlowActionTwilioSendSmsType = S.String;
 
 export type FlowActionTwilioSendSmsAction = "SEND_SMS";
-export const FlowActionTwilioSendSmsAction = /*@__PURE__*/ S.String;
+export const FlowActionTwilioSendSmsAction = S.String;
 
 export interface FlowActionTwilioSendSmsParams {
   connection_id: string;
@@ -9635,14 +9611,13 @@ export const FlowActionTwilioSendSms = /*@__PURE__*/ S.suspend(() =>
 export type FlowActionTwilio =
   | FlowActionTwilioMakeCall
   | FlowActionTwilioSendSms;
-export const FlowActionTwilio =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionTwilio>;
+export const FlowActionTwilio = S.Unknown as any as S.Schema<FlowActionTwilio>;
 
 export type FlowActionWhatsappSendMessageType = "WHATSAPP";
-export const FlowActionWhatsappSendMessageType = /*@__PURE__*/ S.String;
+export const FlowActionWhatsappSendMessageType = S.String;
 
 export type FlowActionWhatsappSendMessageAction = "SEND_MESSAGE";
-export const FlowActionWhatsappSendMessageAction = /*@__PURE__*/ S.String;
+export const FlowActionWhatsappSendMessageAction = S.String;
 
 export type FlowActionWhatsappSendMessageParamsType =
   | "AUDIO"
@@ -9654,7 +9629,7 @@ export type FlowActionWhatsappSendMessageParamsType =
   | "STICKER"
   | "TEMPLATE"
   | "TEXT";
-export const FlowActionWhatsappSendMessageParamsType = /*@__PURE__*/ S.String;
+export const FlowActionWhatsappSendMessageParamsType = S.String;
 
 export type FlowActionWhatsappSendMessageParamsPayloadObject = {
   [key: string]: unknown | undefined;
@@ -9669,7 +9644,7 @@ export type FlowActionWhatsappSendMessageParamsPayload =
   | FlowActionWhatsappSendMessageParamsPayloadObject
   | string;
 export const FlowActionWhatsappSendMessageParamsPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionWhatsappSendMessageParamsPayload>;
+  S.Unknown as any as S.Schema<FlowActionWhatsappSendMessageParamsPayload>;
 
 export interface FlowActionWhatsappSendMessageParams {
   connection_id: string;
@@ -9714,10 +9689,10 @@ export const FlowActionWhatsappSendMessage = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionWhatsappSendMessage>;
 
 export type FlowActionXmlParseXmlType = "XML";
-export const FlowActionXmlParseXmlType = /*@__PURE__*/ S.String;
+export const FlowActionXmlParseXmlType = S.String;
 
 export type FlowActionXmlParseXmlAction = "PARSE_XML";
-export const FlowActionXmlParseXmlAction = /*@__PURE__*/ S.String;
+export const FlowActionXmlParseXmlAction = S.String;
 
 export interface FlowActionXmlParseXmlParams {
   xml: string;
@@ -9754,10 +9729,10 @@ export const FlowActionXmlParseXml = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionXmlParseXml>;
 
 export type FlowActionXmlSerializeXmlType = "XML";
-export const FlowActionXmlSerializeXmlType = /*@__PURE__*/ S.String;
+export const FlowActionXmlSerializeXmlType = S.String;
 
 export type FlowActionXmlSerializeXmlAction = "SERIALIZE_XML";
-export const FlowActionXmlSerializeXmlAction = /*@__PURE__*/ S.String;
+export const FlowActionXmlSerializeXmlAction = S.String;
 
 export type FlowActionXmlSerializeXmlParamsObjectObject = {
   [key: string]: unknown | undefined;
@@ -9772,7 +9747,7 @@ export type FlowActionXmlSerializeXmlParamsObject =
   | string
   | FlowActionXmlSerializeXmlParamsObjectObject;
 export const FlowActionXmlSerializeXmlParamsObject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionXmlSerializeXmlParamsObject>;
+  S.Unknown as any as S.Schema<FlowActionXmlSerializeXmlParamsObject>;
 
 export interface FlowActionXmlSerializeXmlParams {
   object: FlowActionXmlSerializeXmlParamsObject;
@@ -9809,18 +9784,16 @@ export const FlowActionXmlSerializeXml = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FlowActionXmlSerializeXml>;
 
 export type FlowActionXml = FlowActionXmlParseXml | FlowActionXmlSerializeXml;
-export const FlowActionXml =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowActionXml>;
+export const FlowActionXml = S.Unknown as any as S.Schema<FlowActionXml>;
 
 export type FlowActionZapierTriggerWebhookType = "ZAPIER";
-export const FlowActionZapierTriggerWebhookType = /*@__PURE__*/ S.String;
+export const FlowActionZapierTriggerWebhookType = S.String;
 
 export type FlowActionZapierTriggerWebhookAction = "TRIGGER_WEBHOOK";
-export const FlowActionZapierTriggerWebhookAction = /*@__PURE__*/ S.String;
+export const FlowActionZapierTriggerWebhookAction = S.String;
 
 export type FlowActionZapierTriggerWebhookParamsMethod = "GET" | "POST" | "PUT";
-export const FlowActionZapierTriggerWebhookParamsMethod =
-  /*@__PURE__*/ S.String;
+export const FlowActionZapierTriggerWebhookParamsMethod = S.String;
 
 export interface FlowActionZapierTriggerWebhookParams {
   connection_id: string;
@@ -9885,8 +9858,7 @@ export type FlowAction =
   | FlowActionWhatsappSendMessage
   | FlowActionXml
   | FlowActionZapierTriggerWebhook;
-export const FlowAction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlowAction>;
+export const FlowAction = S.Unknown as any as S.Schema<FlowAction>;
 
 export type CreateFlowRequestActionsList = Array<FlowAction>;
 export const CreateFlowRequestActionsList = /*@__PURE__*/ S.Array(
@@ -9934,11 +9906,10 @@ export const CreateFlowResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdActivecampaignEnum = "ACTIVECAMPAIGN";
-export const FlowsVaultConnectionAppIdActivecampaignEnum =
-  /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdActivecampaignEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeApiKeyEnum = "API_KEY";
-export const FlowsVaultConnectioSetupTypeApiKeyEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeApiKeyEnum = S.String;
 
 export interface FlowsVaultConnectioSetupApiKeyWithBaseUrl {
   type: FlowsVaultConnectioSetupTypeApiKeyEnum;
@@ -9992,11 +9963,11 @@ export type CreateFlowsVaultConnectionActivecampaign =
   | CreateFlowsVaultConnectionActivecampaignApiKey
   | CreateFlowsVaultConnectionActivecampaignUninitialized;
 export const CreateFlowsVaultConnectionActivecampaign =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionActivecampaign>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionActivecampaign>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdAirtableEnum = "AIRTABLE";
-export const FlowsVaultConnectionAppIdAirtableEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdAirtableEnum = S.String;
 
 export interface FlowsVaultConnectioSetupApiKey {
   type: FlowsVaultConnectioSetupTypeApiKeyEnum;
@@ -10047,14 +10018,14 @@ export type CreateFlowsVaultConnectionAirtable =
   | CreateFlowsVaultConnectionAirtableApiKey
   | CreateFlowsVaultConnectionAirtableUninitialized;
 export const CreateFlowsVaultConnectionAirtable =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionAirtable>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionAirtable>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdAuth0Enum = "AUTH0";
-export const FlowsVaultConnectionAppIdAuth0Enum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdAuth0Enum = S.String;
 
 export type FlowsVaultConnectioSetupTypeOauthAppEnum = "OAUTH_APP";
-export const FlowsVaultConnectioSetupTypeOauthAppEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeOauthAppEnum = S.String;
 
 export interface FlowsVaultConnectioSetupOauthApp {
   type: FlowsVaultConnectioSetupTypeOauthAppEnum;
@@ -10111,14 +10082,14 @@ export type CreateFlowsVaultConnectionAuth0 =
   | CreateFlowsVaultConnectionAuth0OauthApp
   | CreateFlowsVaultConnectionAuth0Uninitialized;
 export const CreateFlowsVaultConnectionAuth0 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionAuth0>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionAuth0>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdBigqueryEnum = "BIGQUERY";
-export const FlowsVaultConnectionAppIdBigqueryEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdBigqueryEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeOauthJwtEnum = "OAUTH_JWT";
-export const FlowsVaultConnectioSetupTypeOauthJwtEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeOauthJwtEnum = S.String;
 
 export interface FlowsVaultConnectioSetupBigqueryOauthJwt {
   type?: FlowsVaultConnectioSetupTypeOauthJwtEnum | (string & {});
@@ -10174,11 +10145,11 @@ export type CreateFlowsVaultConnectionBigquery =
   | CreateFlowsVaultConnectionBigqueryJwt
   | CreateFlowsVaultConnectionBigqueryUninitialized;
 export const CreateFlowsVaultConnectionBigquery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionBigquery>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionBigquery>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdClearbitEnum = "CLEARBIT";
-export const FlowsVaultConnectionAppIdClearbitEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdClearbitEnum = S.String;
 
 export interface FlowsVaultConnectioSetupSecretApiKey {
   type: FlowsVaultConnectioSetupTypeApiKeyEnum;
@@ -10230,14 +10201,14 @@ export type CreateFlowsVaultConnectionClearbit =
   | CreateFlowsVaultConnectionClearbitApiKey
   | CreateFlowsVaultConnectionClearbitUninitialized;
 export const CreateFlowsVaultConnectionClearbit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionClearbit>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionClearbit>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdDocusignEnum = "DOCUSIGN";
-export const FlowsVaultConnectionAppIdDocusignEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdDocusignEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeOauthCodeEnum = "OAUTH_CODE";
-export const FlowsVaultConnectioSetupTypeOauthCodeEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeOauthCodeEnum = S.String;
 
 export interface FlowsVaultConnectioSetupOauthCode {
   type?: FlowsVaultConnectioSetupTypeOauthCodeEnum | (string & {});
@@ -10288,11 +10259,11 @@ export type CreateFlowsVaultConnectionDocusign =
   | CreateFlowsVaultConnectionDocusignOauthCode
   | CreateFlowsVaultConnectionDocusignUninitialized;
 export const CreateFlowsVaultConnectionDocusign =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionDocusign>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionDocusign>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdGoogleSheetsEnum = "GOOGLE_SHEETS";
-export const FlowsVaultConnectionAppIdGoogleSheetsEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdGoogleSheetsEnum = S.String;
 
 export interface CreateFlowsVaultConnectionGoogleSheetsOauthCode {
   /** Flows Vault Connection name. */
@@ -10330,14 +10301,14 @@ export type CreateFlowsVaultConnectionGoogleSheets =
   | CreateFlowsVaultConnectionGoogleSheetsOauthCode
   | CreateFlowsVaultConnectionGoogleSheetsUninitialized;
 export const CreateFlowsVaultConnectionGoogleSheets =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionGoogleSheets>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionGoogleSheets>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdHttpEnum = "HTTP";
-export const FlowsVaultConnectionAppIdHttpEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdHttpEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeBearerEnum = "BEARER";
-export const FlowsVaultConnectioSetupTypeBearerEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeBearerEnum = S.String;
 
 export interface FlowsVaultConnectioSetupHttpBearer {
   type: FlowsVaultConnectioSetupTypeBearerEnum;
@@ -10370,8 +10341,7 @@ export const CreateFlowsVaultConnectionHttpBearer = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateFlowsVaultConnectionHttpBearer>;
 
 export type FlowsVaultConnectionSetupTypeBasicAuthEnum = "BASIC_AUTH";
-export const FlowsVaultConnectionSetupTypeBasicAuthEnum =
-  /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionSetupTypeBasicAuthEnum = S.String;
 
 export interface FlowsVaultConnectionHttpBasicAuthSetup {
   type: FlowsVaultConnectionSetupTypeBasicAuthEnum;
@@ -10407,10 +10377,10 @@ export const CreateFlowsVaultConnectionHttpBasicAuth = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateFlowsVaultConnectionHttpBasicAuth>;
 
 export type FlowsVaultConnectionSetupTypeApiKeyEnum = "API_KEY";
-export const FlowsVaultConnectionSetupTypeApiKeyEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionSetupTypeApiKeyEnum = S.String;
 
 export type FlowsVaultConnectionHttpApiKeySetupInEnum = "HEADER" | "QUERY";
-export const FlowsVaultConnectionHttpApiKeySetupInEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionHttpApiKeySetupInEnum = S.String;
 
 export interface FlowsVaultConnectionHttpApiKeySetup {
   type: FlowsVaultConnectionSetupTypeApiKeyEnum;
@@ -10448,8 +10418,7 @@ export const CreateFlowsVaultConnectionHttpApiKey = /*@__PURE__*/ S.suspend(
 
 export type FlowsVaultConnectionSetupTypeOauthClientCredentialsEnum =
   "OAUTH_CLIENT_CREDENTIALS";
-export const FlowsVaultConnectionSetupTypeOauthClientCredentialsEnum =
-  /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionSetupTypeOauthClientCredentialsEnum = S.String;
 
 export interface FlowsVaultConnectionHttpOauthClientCredentialsSetup {
   type: FlowsVaultConnectionSetupTypeOauthClientCredentialsEnum;
@@ -10514,11 +10483,11 @@ export type CreateFlowsVaultConnectionHttp =
   | CreateFlowsVaultConnectionHttpOauthClientCredentials
   | CreateFlowsVaultConnectionHttpUninitialized;
 export const CreateFlowsVaultConnectionHttp =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionHttp>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionHttp>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdHubspotEnum = "HUBSPOT";
-export const FlowsVaultConnectionAppIdHubspotEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdHubspotEnum = S.String;
 
 export interface CreateFlowsVaultConnectionHubspotApiKey {
   /** Flows Vault Connection name. */
@@ -10574,14 +10543,14 @@ export type CreateFlowsVaultConnectionHubspot =
   | CreateFlowsVaultConnectionHubspotOauthCode
   | CreateFlowsVaultConnectionHubspotUninitialized;
 export const CreateFlowsVaultConnectionHubspot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionHubspot>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionHubspot>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdJwtEnum = "JWT";
-export const FlowsVaultConnectionAppIdJwtEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdJwtEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeJwtEnum = "JWT";
-export const FlowsVaultConnectioSetupTypeJwtEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeJwtEnum = S.String;
 
 export type FlowsVaultConnectioSetupJwtAlgorithmEnum =
   | "HS256"
@@ -10596,7 +10565,7 @@ export type FlowsVaultConnectioSetupJwtAlgorithmEnum =
   | "PS256"
   | "PS384"
   | "PS512";
-export const FlowsVaultConnectioSetupJwtAlgorithmEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupJwtAlgorithmEnum = S.String;
 
 export interface FlowsVaultConnectioSetupJwt {
   type: FlowsVaultConnectioSetupTypeJwtEnum;
@@ -10646,11 +10615,11 @@ export type CreateFlowsVaultConnectionJwt =
   | CreateFlowsVaultConnectionJwtJwt
   | CreateFlowsVaultConnectionJwtUninitialized;
 export const CreateFlowsVaultConnectionJwt =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionJwt>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionJwt>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdMailchimpEnum = "MAILCHIMP";
-export const FlowsVaultConnectionAppIdMailchimpEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdMailchimpEnum = S.String;
 
 export interface CreateFlowsVaultConnectionMailchimpApiKey {
   /** Flows Vault Connection name. */
@@ -10706,11 +10675,11 @@ export type CreateFlowsVaultConnectionMailchimp =
   | CreateFlowsVaultConnectionMailchimpOauthCode
   | CreateFlowsVaultConnectionMailchimpUninitialized;
 export const CreateFlowsVaultConnectionMailchimp =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionMailchimp>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionMailchimp>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdMailjetEnum = "MAILJET";
-export const FlowsVaultConnectionAppIdMailjetEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdMailjetEnum = S.String;
 
 export interface FlowsVaultConnectioSetupMailjetApiKey {
   type: FlowsVaultConnectioSetupTypeApiKeyEnum;
@@ -10764,14 +10733,14 @@ export type CreateFlowsVaultConnectionMailjet =
   | CreateFlowsVaultConnectionMailjetApiKey
   | CreateFlowsVaultConnectionMailjetUninitialized;
 export const CreateFlowsVaultConnectionMailjet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionMailjet>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionMailjet>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdPipedriveEnum = "PIPEDRIVE";
-export const FlowsVaultConnectionAppIdPipedriveEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdPipedriveEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeTokenEnum = "TOKEN";
-export const FlowsVaultConnectioSetupTypeTokenEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeTokenEnum = S.String;
 
 export interface FlowsVaultConnectioSetupToken {
   type: FlowsVaultConnectioSetupTypeTokenEnum;
@@ -10840,11 +10809,11 @@ export type CreateFlowsVaultConnectionPipedrive =
   | CreateFlowsVaultConnectionPipedriveOauthCode
   | CreateFlowsVaultConnectionPipedriveUninitialized;
 export const CreateFlowsVaultConnectionPipedrive =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionPipedrive>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionPipedrive>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdSalesforceEnum = "SALESFORCE";
-export const FlowsVaultConnectionAppIdSalesforceEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdSalesforceEnum = S.String;
 
 export interface CreateFlowsVaultConnectionSalesforceOauthCode {
   /** Flows Vault Connection name. */
@@ -10882,11 +10851,11 @@ export type CreateFlowsVaultConnectionSalesforce =
   | CreateFlowsVaultConnectionSalesforceOauthCode
   | CreateFlowsVaultConnectionSalesforceUninitialized;
 export const CreateFlowsVaultConnectionSalesforce =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionSalesforce>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionSalesforce>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdSendgridEnum = "SENDGRID";
-export const FlowsVaultConnectionAppIdSendgridEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdSendgridEnum = S.String;
 
 export interface CreateFlowsVaultConnectionSendgridApiKey {
   /** Flows Vault Connection name. */
@@ -10924,14 +10893,14 @@ export type CreateFlowsVaultConnectionSendgrid =
   | CreateFlowsVaultConnectionSendgridApiKey
   | CreateFlowsVaultConnectionSendgridUninitialized;
 export const CreateFlowsVaultConnectionSendgrid =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionSendgrid>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionSendgrid>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdSlackEnum = "SLACK";
-export const FlowsVaultConnectionAppIdSlackEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdSlackEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeWebhookEnum = "WEBHOOK";
-export const FlowsVaultConnectioSetupTypeWebhookEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeWebhookEnum = S.String;
 
 export interface FlowsVaultConnectioSetupWebhook {
   type: FlowsVaultConnectioSetupTypeWebhookEnum;
@@ -11000,14 +10969,14 @@ export type CreateFlowsVaultConnectionSlack =
   | CreateFlowsVaultConnectionSlackOauthCode
   | CreateFlowsVaultConnectionSlackUninitialized;
 export const CreateFlowsVaultConnectionSlack =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionSlack>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionSlack>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdStripeEnum = "STRIPE";
-export const FlowsVaultConnectionAppIdStripeEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdStripeEnum = S.String;
 
 export type FlowsVaultConnectioSetupTypeKeyPairEnum = "KEY_PAIR";
-export const FlowsVaultConnectioSetupTypeKeyPairEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectioSetupTypeKeyPairEnum = S.String;
 
 export interface FlowsVaultConnectioSetupStripeKeyPair {
   type: FlowsVaultConnectioSetupTypeKeyPairEnum;
@@ -11079,11 +11048,11 @@ export type CreateFlowsVaultConnectionStripe =
   | CreateFlowsVaultConnectionStripeOauthCode
   | CreateFlowsVaultConnectionStripeUninitialized;
 export const CreateFlowsVaultConnectionStripe =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionStripe>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionStripe>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdTelegramEnum = "TELEGRAM";
-export const FlowsVaultConnectionAppIdTelegramEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdTelegramEnum = S.String;
 
 export interface CreateFlowsVaultConnectionTelegramToken {
   /** Flows Vault Connection name. */
@@ -11121,11 +11090,11 @@ export type CreateFlowsVaultConnectionTelegram =
   | CreateFlowsVaultConnectionTelegramToken
   | CreateFlowsVaultConnectionTelegramUninitialized;
 export const CreateFlowsVaultConnectionTelegram =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionTelegram>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionTelegram>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdTwilioEnum = "TWILIO";
-export const FlowsVaultConnectionAppIdTwilioEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdTwilioEnum = S.String;
 
 export interface FlowsVaultConnectioSetupTwilioApiKey {
   type: FlowsVaultConnectioSetupTypeApiKeyEnum;
@@ -11179,11 +11148,11 @@ export type CreateFlowsVaultConnectionTwilio =
   | CreateFlowsVaultConnectionTwilioApiKey
   | CreateFlowsVaultConnectionTwilioUninitialized;
 export const CreateFlowsVaultConnectionTwilio =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionTwilio>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionTwilio>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdWhatsappEnum = "WHATSAPP";
-export const FlowsVaultConnectionAppIdWhatsappEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdWhatsappEnum = S.String;
 
 export interface CreateFlowsVaultConnectionWhatsappToken {
   /** Flows Vault Connection name. */
@@ -11221,11 +11190,11 @@ export type CreateFlowsVaultConnectionWhatsapp =
   | CreateFlowsVaultConnectionWhatsappToken
   | CreateFlowsVaultConnectionWhatsappUninitialized;
 export const CreateFlowsVaultConnectionWhatsapp =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionWhatsapp>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionWhatsapp>;
 
 /** Flows Vault Connection app identifier. */
 export type FlowsVaultConnectionAppIdZapierEnum = "ZAPIER";
-export const FlowsVaultConnectionAppIdZapierEnum = /*@__PURE__*/ S.String;
+export const FlowsVaultConnectionAppIdZapierEnum = S.String;
 
 export interface CreateFlowsVaultConnectionZapierWebhook {
   /** Flows Vault Connection name. */
@@ -11263,7 +11232,7 @@ export type CreateFlowsVaultConnectionZapier =
   | CreateFlowsVaultConnectionZapierWebhook
   | CreateFlowsVaultConnectionZapierUninitialized;
 export const CreateFlowsVaultConnectionZapier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionZapier>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionZapier>;
 
 export type CreateFlowsVaultConnectionRequestContent =
   | CreateFlowsVaultConnectionActivecampaign
@@ -11288,7 +11257,7 @@ export type CreateFlowsVaultConnectionRequestContent =
   | CreateFlowsVaultConnectionWhatsapp
   | CreateFlowsVaultConnectionZapier;
 export const CreateFlowsVaultConnectionRequestContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateFlowsVaultConnectionRequestContent>;
+  S.Unknown as any as S.Schema<CreateFlowsVaultConnectionRequestContent>;
 
 export interface CreateFlowsVaultConnectionRequest {
   body?: CreateFlowsVaultConnectionRequestContent;
@@ -11393,7 +11362,7 @@ export const FormTranslations = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<FormTranslations>;
 
 export type FormNodeTypeFlowConst = "FLOW";
-export const FormNodeTypeFlowConst = /*@__PURE__*/ S.String;
+export const FormNodeTypeFlowConst = S.String;
 
 export interface FormNodeCoordinates {
   x: number;
@@ -11409,11 +11378,10 @@ export const FormNodeCoordinates = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormNodeCoordinates>;
 
 export type FormEndingNodeId = "$ending";
-export const FormEndingNodeId = /*@__PURE__*/ S.String;
+export const FormEndingNodeId = S.String;
 
 export type FormNodePointer = string | FormEndingNodeId;
-export const FormNodePointer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FormNodePointer>;
+export const FormNodePointer = S.Unknown as any as S.Schema<FormNodePointer>;
 
 export interface FormFlowConfig {
   flow_id: string;
@@ -11444,7 +11412,7 @@ export const FormFlow = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFlow" }) as any as S.Schema<FormFlow>;
 
 export type FormNodeTypeRouterConst = "ROUTER";
-export const FormNodeTypeRouterConst = /*@__PURE__*/ S.String;
+export const FormNodeTypeRouterConst = S.String;
 
 export interface FormRouterRule {
   id: string;
@@ -11497,13 +11465,13 @@ export const FormRouter = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormRouter" }) as any as S.Schema<FormRouter>;
 
 export type FormNodeTypeStepConst = "STEP";
-export const FormNodeTypeStepConst = /*@__PURE__*/ S.String;
+export const FormNodeTypeStepConst = S.String;
 
 export type FormComponentCategoryBlockConst = "BLOCK";
-export const FormComponentCategoryBlockConst = /*@__PURE__*/ S.String;
+export const FormComponentCategoryBlockConst = S.String;
 
 export type FormBlockTypeDividerConst = "DIVIDER";
-export const FormBlockTypeDividerConst = /*@__PURE__*/ S.String;
+export const FormBlockTypeDividerConst = S.String;
 
 export interface FormBlockDividerConfig {
   text?: string;
@@ -11534,7 +11502,7 @@ export const FormBlockDivider = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormBlockDivider>;
 
 export type FormBlockTypeHtmlConst = "HTML";
-export const FormBlockTypeHtmlConst = /*@__PURE__*/ S.String;
+export const FormBlockTypeHtmlConst = S.String;
 
 export interface FormBlockHtmlConfig {
   content?: string;
@@ -11563,10 +11531,10 @@ export const FormBlockHtml = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormBlockHtml" }) as any as S.Schema<FormBlockHtml>;
 
 export type FormBlockTypeImageConst = "IMAGE";
-export const FormBlockTypeImageConst = /*@__PURE__*/ S.String;
+export const FormBlockTypeImageConst = S.String;
 
 export type FormBlockImageConfigPositionEnum = "LEFT" | "CENTER" | "RIGHT";
-export const FormBlockImageConfigPositionEnum = /*@__PURE__*/ S.String;
+export const FormBlockImageConfigPositionEnum = S.String;
 
 export interface FormBlockImageConfig {
   src: string;
@@ -11599,7 +11567,7 @@ export const FormBlockImage = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormBlockImage" }) as any as S.Schema<FormBlockImage>;
 
 export type FormBlockTypeJumpButtonConst = "JUMP_BUTTON";
-export const FormBlockTypeJumpButtonConst = /*@__PURE__*/ S.String;
+export const FormBlockTypeJumpButtonConst = S.String;
 
 export interface FormBlockJumpButtonConfigStyle {
   background_color?: string;
@@ -11645,14 +11613,13 @@ export const FormBlockJumpButton = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormBlockJumpButton>;
 
 export type FormBlockTypeResendButtonConst = "RESEND_BUTTON";
-export const FormBlockTypeResendButtonConst = /*@__PURE__*/ S.String;
+export const FormBlockTypeResendButtonConst = S.String;
 
 export type FormBlockResendButtonConfigTextAlignmentEnum =
   | "LEFT"
   | "CENTER"
   | "RIGHT";
-export const FormBlockResendButtonConfigTextAlignmentEnum =
-  /*@__PURE__*/ S.String;
+export const FormBlockResendButtonConfigTextAlignmentEnum = S.String;
 
 export interface FormBlockResendButtonConfig {
   active_text: string;
@@ -11695,7 +11662,7 @@ export const FormBlockResendButton = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormBlockResendButton>;
 
 export type FormBlockTypeNextButtonConst = "NEXT_BUTTON";
-export const FormBlockTypeNextButtonConst = /*@__PURE__*/ S.String;
+export const FormBlockTypeNextButtonConst = S.String;
 
 export interface FormBlockNextButtonConfig {
   text: string;
@@ -11726,7 +11693,7 @@ export const FormBlockNextButton = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormBlockNextButton>;
 
 export type FormBlockTypePreviousButtonConst = "PREVIOUS_BUTTON";
-export const FormBlockTypePreviousButtonConst = /*@__PURE__*/ S.String;
+export const FormBlockTypePreviousButtonConst = S.String;
 
 export type FormBlockPreviousButtonConfig = FormBlockNextButtonConfig;
 export const FormBlockPreviousButtonConfig = FormBlockNextButtonConfig;
@@ -11749,7 +11716,7 @@ export const FormBlockPreviousButton = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormBlockPreviousButton>;
 
 export type FormBlockTypeRichTextConst = "RICH_TEXT";
-export const FormBlockTypeRichTextConst = /*@__PURE__*/ S.String;
+export const FormBlockTypeRichTextConst = S.String;
 
 export type FormBlockRichTextConfig = FormBlockHtmlConfig;
 export const FormBlockRichTextConfig = FormBlockHtmlConfig;
@@ -11780,15 +11747,14 @@ export type FormBlock =
   | FormBlockNextButton
   | FormBlockPreviousButton
   | FormBlockRichText;
-export const FormBlock = /*@__PURE__*/ S.Unknown as any as S.Schema<FormBlock>;
+export const FormBlock = S.Unknown as any as S.Schema<FormBlock>;
 
 export type FormComponentCategoryWidgetConst = "WIDGET";
-export const FormComponentCategoryWidgetConst = /*@__PURE__*/ S.String;
+export const FormComponentCategoryWidgetConst = S.String;
 
 export type FormWidgetTypeAuth0VerifiableCredentialsConst =
   "AUTH0_VERIFIABLE_CREDENTIALS";
-export const FormWidgetTypeAuth0VerifiableCredentialsConst =
-  /*@__PURE__*/ S.String;
+export const FormWidgetTypeAuth0VerifiableCredentialsConst = S.String;
 
 export interface FormWidgetAuth0VerifiableCredentialsConfig {
   url: string;
@@ -11839,7 +11805,7 @@ export const FormWidgetAuth0VerifiableCredentials = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<FormWidgetAuth0VerifiableCredentials>;
 
 export type FormWidgetTypeGMapsAddressConst = "GMAPS_ADDRESS";
-export const FormWidgetTypeGMapsAddressConst = /*@__PURE__*/ S.String;
+export const FormWidgetTypeGMapsAddressConst = S.String;
 
 export interface FormWidgetGMapsAddressConfig {
   api_key: string | Redacted.Redacted<string>;
@@ -11878,7 +11844,7 @@ export const FormWidgetGMapsAddress = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormWidgetGMapsAddress>;
 
 export type FormWidgetTypeRecaptchaConst = "RECAPTCHA";
-export const FormWidgetTypeRecaptchaConst = /*@__PURE__*/ S.String;
+export const FormWidgetTypeRecaptchaConst = S.String;
 
 export interface FormWidgetRecaptchaConfig {
   site_key: string;
@@ -11922,14 +11888,13 @@ export type FormWidget =
   | FormWidgetAuth0VerifiableCredentials
   | FormWidgetGMapsAddress
   | FormWidgetRecaptcha;
-export const FormWidget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FormWidget>;
+export const FormWidget = S.Unknown as any as S.Schema<FormWidget>;
 
 export type FormComponentCategoryFieldConst = "FIELD";
-export const FormComponentCategoryFieldConst = /*@__PURE__*/ S.String;
+export const FormComponentCategoryFieldConst = S.String;
 
 export type FormFieldTypeBooleanConst = "BOOLEAN";
-export const FormFieldTypeBooleanConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeBooleanConst = S.String;
 
 export interface FormFieldBooleanConfigOptions {
   true?: string;
@@ -11983,7 +11948,7 @@ export const FormFieldBoolean = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldBoolean>;
 
 export type FormFieldTypeCardsConst = "CARDS";
-export const FormFieldTypeCardsConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeCardsConst = S.String;
 
 export interface FormFieldCardsConfigOption {
   value: string;
@@ -12046,7 +12011,7 @@ export const FormFieldCards = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFieldCards" }) as any as S.Schema<FormFieldCards>;
 
 export type FormFieldTypeChoiceConst = "CHOICE";
-export const FormFieldTypeChoiceConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeChoiceConst = S.String;
 
 export interface FormFieldChoiceConfigOption {
   value: string;
@@ -12125,7 +12090,7 @@ export const FormFieldChoice = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldChoice>;
 
 export type FormFieldTypeCustomConst = "CUSTOM";
-export const FormFieldTypeCustomConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeCustomConst = S.String;
 
 export type FormFieldCustomConfigSchema = {
   [key: string]: unknown | undefined;
@@ -12184,10 +12149,10 @@ export const FormFieldCustom = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldCustom>;
 
 export type FormFieldTypeDateConst = "DATE";
-export const FormFieldTypeDateConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeDateConst = S.String;
 
 export type FormFieldDateConfigFormatEnum = "DATE" | "TIME";
-export const FormFieldDateConfigFormatEnum = /*@__PURE__*/ S.String;
+export const FormFieldDateConfigFormatEnum = S.String;
 
 export interface FormFieldDateConfig {
   format?: FormFieldDateConfigFormatEnum | (string & {});
@@ -12226,7 +12191,7 @@ export const FormFieldDate = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFieldDate" }) as any as S.Schema<FormFieldDate>;
 
 export type FormFieldTypeDropdownConst = "DROPDOWN";
-export const FormFieldTypeDropdownConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeDropdownConst = S.String;
 
 export type FormFieldDropdownConfigOption = FormFieldChoiceConfigOption;
 export const FormFieldDropdownConfigOption = FormFieldChoiceConfigOption;
@@ -12280,7 +12245,7 @@ export const FormFieldDropdown = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldDropdown>;
 
 export type FormFieldTypeEmailConst = "EMAIL";
-export const FormFieldTypeEmailConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeEmailConst = S.String;
 
 export interface FormFieldEmailConfig {
   default_value?: string;
@@ -12319,10 +12284,10 @@ export const FormFieldEmail = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFieldEmail" }) as any as S.Schema<FormFieldEmail>;
 
 export type FormFieldTypeFileConst = "FILE";
-export const FormFieldTypeFileConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeFileConst = S.String;
 
 export type FormFieldFileConfigStorageTypeEnum = "MANAGED" | "CUSTOM";
-export const FormFieldFileConfigStorageTypeEnum = /*@__PURE__*/ S.String;
+export const FormFieldFileConfigStorageTypeEnum = S.String;
 
 export interface FormFieldFileConfigStorage {
   type: FormFieldFileConfigStorageTypeEnum | (string & {});
@@ -12341,7 +12306,7 @@ export type FormFieldFileConfigCategoryEnum =
   | "IMAGE"
   | "DOCUMENT"
   | "ARCHIVE";
-export const FormFieldFileConfigCategoryEnum = /*@__PURE__*/ S.String;
+export const FormFieldFileConfigCategoryEnum = S.String;
 
 export type FormFieldFileConfigCategoriesList = Array<
   FormFieldFileConfigCategoryEnum | (string & {})
@@ -12400,7 +12365,7 @@ export const FormFieldFile = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFieldFile" }) as any as S.Schema<FormFieldFile>;
 
 export type FormFieldTypeLegalConst = "LEGAL";
-export const FormFieldTypeLegalConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeLegalConst = S.String;
 
 export type FormFieldLegalConfig = FormBlockDividerConfig;
 export const FormFieldLegalConfig = FormBlockDividerConfig;
@@ -12429,7 +12394,7 @@ export const FormFieldLegal = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFieldLegal" }) as any as S.Schema<FormFieldLegal>;
 
 export type FormFieldTypeNumberConst = "NUMBER";
-export const FormFieldTypeNumberConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeNumberConst = S.String;
 
 export interface FormFieldNumberConfig {
   default_value?: number;
@@ -12474,7 +12439,7 @@ export const FormFieldNumber = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldNumber>;
 
 export type FormFieldTypePasswordConst = "PASSWORD";
-export const FormFieldTypePasswordConst = /*@__PURE__*/ S.String;
+export const FormFieldTypePasswordConst = S.String;
 
 export type FormFieldPasswordConfigHashEnum =
   | "NONE"
@@ -12482,7 +12447,7 @@ export type FormFieldPasswordConfigHashEnum =
   | "SHA1"
   | "SHA256"
   | "SHA512";
-export const FormFieldPasswordConfigHashEnum = /*@__PURE__*/ S.String;
+export const FormFieldPasswordConfigHashEnum = S.String;
 
 export interface FormFieldPasswordConfig {
   hash?: FormFieldPasswordConfigHashEnum | (string & {});
@@ -12533,18 +12498,17 @@ export const FormFieldPassword = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldPassword>;
 
 export type FormFieldTypePaymentConst = "PAYMENT";
-export const FormFieldTypePaymentConst = /*@__PURE__*/ S.String;
+export const FormFieldTypePaymentConst = S.String;
 
 export type FormFieldPaymentConfigProviderEnum = "STRIPE";
-export const FormFieldPaymentConfigProviderEnum = /*@__PURE__*/ S.String;
+export const FormFieldPaymentConfigProviderEnum = S.String;
 
 export type FormFieldPaymentConfigChargeTypeOneOffConst = "ONE_OFF";
-export const FormFieldPaymentConfigChargeTypeOneOffConst =
-  /*@__PURE__*/ S.String;
+export const FormFieldPaymentConfigChargeTypeOneOffConst = S.String;
 
 export type FormFieldPaymentConfigChargeOneOffOneOffAmount = string | number;
 export const FormFieldPaymentConfigChargeOneOffOneOffAmount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FormFieldPaymentConfigChargeOneOffOneOffAmount>;
+  S.Unknown as any as S.Schema<FormFieldPaymentConfigChargeOneOffOneOffAmount>;
 
 export type FormFieldPaymentConfigChargeOneOffCurrencyEnum =
   | "AUD"
@@ -12556,8 +12520,7 @@ export type FormFieldPaymentConfigChargeOneOffCurrencyEnum =
   | "MXN"
   | "SEK"
   | "USD";
-export const FormFieldPaymentConfigChargeOneOffCurrencyEnum =
-  /*@__PURE__*/ S.String;
+export const FormFieldPaymentConfigChargeOneOffCurrencyEnum = S.String;
 
 export interface FormFieldPaymentConfigChargeOneOffOneOff {
   amount: FormFieldPaymentConfigChargeOneOffOneOffAmount;
@@ -12587,8 +12550,7 @@ export const FormFieldPaymentConfigChargeOneOff = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldPaymentConfigChargeOneOff>;
 
 export type FormFieldPaymentConfigChargeTypeSubscriptionConst = "SUBSCRIPTION";
-export const FormFieldPaymentConfigChargeTypeSubscriptionConst =
-  /*@__PURE__*/ S.String;
+export const FormFieldPaymentConfigChargeTypeSubscriptionConst = S.String;
 
 export type FormFieldPaymentConfigSubscription = {
   [key: string]: unknown | undefined;
@@ -12615,7 +12577,7 @@ export type FormFieldPaymentConfigCharge =
   | FormFieldPaymentConfigChargeOneOff
   | FormFieldPaymentConfigChargeCase1;
 export const FormFieldPaymentConfigCharge =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FormFieldPaymentConfigCharge>;
+  S.Unknown as any as S.Schema<FormFieldPaymentConfigCharge>;
 
 export interface FormFieldPaymentConfigCredentials {
   public_key: string;
@@ -12714,7 +12676,7 @@ export const FormFieldPayment = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldPayment>;
 
 export type FormFieldTypeSocialConst = "SOCIAL";
-export const FormFieldTypeSocialConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeSocialConst = S.String;
 
 export interface FormFieldSocial {
   id: string;
@@ -12742,7 +12704,7 @@ export const FormFieldSocial = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FormFieldSocial>;
 
 export type FormFieldTypeTelConst = "TEL";
-export const FormFieldTypeTelConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeTelConst = S.String;
 
 export interface FormFieldTelConfigStrings {
   filter_placeholder?: string;
@@ -12800,7 +12762,7 @@ export const FormFieldTel = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFieldTel" }) as any as S.Schema<FormFieldTel>;
 
 export type FormFieldTypeTextConst = "TEXT";
-export const FormFieldTypeTextConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeTextConst = S.String;
 
 export interface FormFieldTextConfig {
   multiline?: boolean;
@@ -12845,7 +12807,7 @@ export const FormFieldText = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormFieldText" }) as any as S.Schema<FormFieldText>;
 
 export type FormFieldTypeUrlConst = "URL";
-export const FormFieldTypeUrlConst = /*@__PURE__*/ S.String;
+export const FormFieldTypeUrlConst = S.String;
 
 export type FormFieldUrlConfig = FormFieldEmailConfig;
 export const FormFieldUrlConfig = FormFieldEmailConfig;
@@ -12890,11 +12852,10 @@ export type FormField =
   | FormFieldTel
   | FormFieldText
   | FormFieldUrl;
-export const FormField = /*@__PURE__*/ S.Unknown as any as S.Schema<FormField>;
+export const FormField = S.Unknown as any as S.Schema<FormField>;
 
 export type FormComponent = FormBlock | FormWidget | FormField;
-export const FormComponent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FormComponent>;
+export const FormComponent = S.Unknown as any as S.Schema<FormComponent>;
 
 export type FormStepComponentList = Array<FormComponent>;
 export const FormStepComponentList = /*@__PURE__*/ S.Array(
@@ -12930,7 +12891,7 @@ export const FormStep = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FormStep" }) as any as S.Schema<FormStep>;
 
 export type FormNode = FormFlow | FormRouter | FormStep;
-export const FormNode = /*@__PURE__*/ S.Unknown as any as S.Schema<FormNode>;
+export const FormNode = S.Unknown as any as S.Schema<FormNode>;
 
 export type FormNodeList = Array<FormNode>;
 export const FormNodeList = /*@__PURE__*/ S.Array(
@@ -13118,7 +13079,7 @@ export type HookTriggerIdEnum =
   | "post-user-registration"
   | "post-change-password"
   | "send-phone-message";
-export const HookTriggerIdEnum = /*@__PURE__*/ S.String;
+export const HookTriggerIdEnum = S.String;
 
 export interface CreateHookRequest {
   /** Name of this hook. */
@@ -13171,7 +13132,7 @@ export const CreateHookResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** Signing algorithm used to verify the signature. Currently only HMAC-SHA256 is supported. */
 export type NetworkAclKeyAlgorithmEnum = "hmac-sha256";
-export const NetworkAclKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const NetworkAclKeyAlgorithmEnum = S.String;
 
 export interface CreateKeysNetworkAclsRequest {
   /** Customer-supplied label with no cryptographic meaning. Must be unique across all Network ACL keys for the tenant. */
@@ -13218,11 +13179,11 @@ export const CreateKeysNetworkAclsResponseContent = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateKeysNetworkAclsResponseContent>;
 
 export type LogStreamHttpEnum = "http";
-export const LogStreamHttpEnum = /*@__PURE__*/ S.String;
+export const LogStreamHttpEnum = S.String;
 
 /** Filter type. Currently `category` is the only valid type. */
 export type LogStreamFilterTypeEnum = "category";
-export const LogStreamFilterTypeEnum = /*@__PURE__*/ S.String;
+export const LogStreamFilterTypeEnum = S.String;
 
 /** Category group name */
 export type LogStreamFilterGroupNameEnum =
@@ -13246,7 +13207,7 @@ export type LogStreamFilterGroupNameEnum =
   | "user.success"
   | "actions"
   | "other";
-export const LogStreamFilterGroupNameEnum = /*@__PURE__*/ S.String;
+export const LogStreamFilterGroupNameEnum = S.String;
 
 export interface LogStreamFilter {
   type?: LogStreamFilterTypeEnum | (string & {});
@@ -13274,7 +13235,7 @@ export type LogStreamPiiLogFieldsEnum =
   | "email"
   | "phone"
   | "address";
-export const LogStreamPiiLogFieldsEnum = /*@__PURE__*/ S.String;
+export const LogStreamPiiLogFieldsEnum = S.String;
 
 export type LogStreamPiiConfigLogFieldsList = Array<
   LogStreamPiiLogFieldsEnum | (string & {})
@@ -13284,10 +13245,10 @@ export const LogStreamPiiConfigLogFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LogStreamPiiConfigLogFieldsList>;
 
 export type LogStreamPiiMethodEnum = "mask" | "hash";
-export const LogStreamPiiMethodEnum = /*@__PURE__*/ S.String;
+export const LogStreamPiiMethodEnum = S.String;
 
 export type LogStreamPiiAlgorithmEnum = "xxhash";
-export const LogStreamPiiAlgorithmEnum = /*@__PURE__*/ S.String;
+export const LogStreamPiiAlgorithmEnum = S.String;
 
 export interface LogStreamPiiConfig {
   log_fields: LogStreamPiiConfigLogFieldsList;
@@ -13309,7 +13270,7 @@ export type LogStreamHttpContentFormatEnum =
   | "JSONARRAY"
   | "JSONLINES"
   | "JSONOBJECT";
-export const LogStreamHttpContentFormatEnum = /*@__PURE__*/ S.String;
+export const LogStreamHttpContentFormatEnum = S.String;
 
 export interface HttpCustomHeader {
   /** HTTP header name */
@@ -13383,7 +13344,7 @@ export const CreateLogStreamHttpRequestBody = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLogStreamHttpRequestBody>;
 
 export type LogStreamEventBridgeEnum = "eventbridge";
-export const LogStreamEventBridgeEnum = /*@__PURE__*/ S.String;
+export const LogStreamEventBridgeEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type CreateLogStreamEventBridgeRequestBodyFiltersList =
@@ -13431,7 +13392,7 @@ export type LogStreamEventBridgeSinkRegionEnum =
   | "us-east-2"
   | "us-west-1"
   | "us-west-2";
-export const LogStreamEventBridgeSinkRegionEnum = /*@__PURE__*/ S.String;
+export const LogStreamEventBridgeSinkRegionEnum = S.String;
 
 export interface LogStreamEventBridgeSink {
   /** AWS account ID */
@@ -13479,7 +13440,7 @@ export const CreateLogStreamEventBridgeRequestBody = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateLogStreamEventBridgeRequestBody>;
 
 export type LogStreamEventGridEnum = "eventgrid";
-export const LogStreamEventGridEnum = /*@__PURE__*/ S.String;
+export const LogStreamEventGridEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type CreateLogStreamEventGridRequestBodyFiltersList =
@@ -13525,7 +13486,7 @@ export type LogStreamEventGridRegionEnum =
   | "westindia"
   | "westus"
   | "westus2";
-export const LogStreamEventGridRegionEnum = /*@__PURE__*/ S.String;
+export const LogStreamEventGridRegionEnum = S.String;
 
 export interface LogStreamEventGridSink {
   /** Subscription ID */
@@ -13575,7 +13536,7 @@ export const CreateLogStreamEventGridRequestBody = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLogStreamEventGridRequestBody>;
 
 export type LogStreamDatadogEnum = "datadog";
-export const LogStreamDatadogEnum = /*@__PURE__*/ S.String;
+export const LogStreamDatadogEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type CreateLogStreamDatadogRequestBodyFiltersList =
@@ -13587,7 +13548,7 @@ export const CreateLogStreamDatadogRequestBodyFiltersList =
 
 /** Datadog region */
 export type LogStreamDatadogRegionEnum = "us" | "eu" | "us3" | "us5";
-export const LogStreamDatadogRegionEnum = /*@__PURE__*/ S.String;
+export const LogStreamDatadogRegionEnum = S.String;
 
 export interface LogStreamDatadogSink {
   /** Datadog API Key */
@@ -13631,7 +13592,7 @@ export const CreateLogStreamDatadogRequestBody = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLogStreamDatadogRequestBody>;
 
 export type LogStreamSplunkEnum = "splunk";
-export const LogStreamSplunkEnum = /*@__PURE__*/ S.String;
+export const LogStreamSplunkEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type CreateLogStreamSplunkRequestBodyFiltersList =
@@ -13690,7 +13651,7 @@ export const CreateLogStreamSplunkRequestBody = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLogStreamSplunkRequestBody>;
 
 export type LogStreamSumoEnum = "sumo";
-export const LogStreamSumoEnum = /*@__PURE__*/ S.String;
+export const LogStreamSumoEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type CreateLogStreamSumoRequestBodyFiltersList = Array<LogStreamFilter>;
@@ -13738,7 +13699,7 @@ export const CreateLogStreamSumoRequestBody = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLogStreamSumoRequestBody>;
 
 export type LogStreamSegmentEnum = "segment";
-export const LogStreamSegmentEnum = /*@__PURE__*/ S.String;
+export const LogStreamSegmentEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type CreateLogStreamSegmentRequestBodyFiltersList =
@@ -13788,7 +13749,7 @@ export const CreateLogStreamSegmentRequestBody = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLogStreamSegmentRequestBody>;
 
 export type LogStreamMixpanelEnum = "mixpanel";
-export const LogStreamMixpanelEnum = /*@__PURE__*/ S.String;
+export const LogStreamMixpanelEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type CreateLogStreamMixpanelRequestBodyFiltersList =
@@ -13800,7 +13761,7 @@ export const CreateLogStreamMixpanelRequestBodyFiltersList =
 
 /** Mixpanel Region */
 export type LogStreamMixpanelRegionEnum = "us" | "eu";
-export const LogStreamMixpanelRegionEnum = /*@__PURE__*/ S.String;
+export const LogStreamMixpanelRegionEnum = S.String;
 
 export interface LogStreamMixpanelSink {
   mixpanelRegion: LogStreamMixpanelRegionEnum | (string & {});
@@ -13859,7 +13820,7 @@ export type CreateLogStreamRequestContent =
   | CreateLogStreamSegmentRequestBody
   | CreateLogStreamMixpanelRequestBody;
 export const CreateLogStreamRequestContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateLogStreamRequestContent>;
+  S.Unknown as any as S.Schema<CreateLogStreamRequestContent>;
 
 export interface CreateLogStreamRequest {
   body?: CreateLogStreamRequestContent;
@@ -13874,7 +13835,7 @@ export const CreateLogStreamRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the log stream. Possible values: `active`, `paused`, `suspended` */
 export type LogStreamStatusEnum = "active" | "paused" | "suspended";
-export const LogStreamStatusEnum = /*@__PURE__*/ S.String;
+export const LogStreamStatusEnum = S.String;
 
 /** Only logs events matching these filters will be delivered by the stream. If omitted or empty, all events will be delivered. */
 export type LogStreamHttpResponseSchemaFiltersList = Array<LogStreamFilter>;
@@ -14170,7 +14131,7 @@ export type CreateLogStreamResponseContent =
   | LogStreamSegmentResponseSchema
   | LogStreamMixpanelResponseSchema;
 export const CreateLogStreamResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateLogStreamResponseContent>;
+  S.Unknown as any as S.Schema<CreateLogStreamResponseContent>;
 
 export type CreateLogStreamResponse = CreateLogStreamResponseContent;
 export const CreateLogStreamResponse = /*@__PURE__*/ S.suspend(() =>
@@ -14298,7 +14259,7 @@ export type NetworkAclRuleScopeEnum =
   | "authentication"
   | "tenant"
   | "dynamic_client_registration";
-export const NetworkAclRuleScopeEnum = /*@__PURE__*/ S.String;
+export const NetworkAclRuleScopeEnum = S.String;
 
 export interface NetworkAclRule {
   action: NetworkAclAction;
@@ -14413,7 +14374,7 @@ export const CreateOrganizationRequestEnabledConnectionsList =
 
 /** Controls whether this organization can be used in user flows with third-party clients. Defaults to `block`. */
 export type OrganizationThirdPartyClientAccessEnum = "block" | "allow";
-export const OrganizationThirdPartyClientAccessEnum = /*@__PURE__*/ S.String;
+export const OrganizationThirdPartyClientAccessEnum = S.String;
 
 export interface CreateOrganizationRequest {
   /** The name of this organization. */
@@ -14595,8 +14556,7 @@ export type OrganizationClientMetadataOrganizationUsageEnum =
   | "deny"
   | "allow"
   | "require";
-export const OrganizationClientMetadataOrganizationUsageEnum =
-  /*@__PURE__*/ S.String;
+export const OrganizationClientMetadataOrganizationUsageEnum = S.String;
 
 /** Metadata about the associated client. */
 export interface OrganizationClientMetadata {
@@ -14690,7 +14650,7 @@ export const AssociateOrganizationClientGrantResponseContentScopeList =
 
 /** Defines whether organizations can be used with client credentials exchanges for this grant. */
 export type OrganizationUsageEnum = "deny" | "allow" | "require";
-export const OrganizationUsageEnum = /*@__PURE__*/ S.String;
+export const OrganizationUsageEnum = S.String;
 
 export interface AssociateOrganizationClientGrantResponseContent {
   /** ID of the client grant. */
@@ -14727,7 +14687,7 @@ export type OrganizationAccessLevelEnum =
   | "readonly"
   | "limited"
   | "full";
-export const OrganizationAccessLevelEnum = /*@__PURE__*/ S.String;
+export const OrganizationAccessLevelEnum = S.String;
 
 export interface CreateOrganizationConnectionRequest {
   /** Organization identifier. */
@@ -14877,11 +14837,11 @@ export const CreateOrganizationMemberRoleResponse = /*@__PURE__*/ S.suspend(
 
 /** Controls whether organizations using this template can be deleted. */
 export type OrganizationDeletionBehaviorEnum = "allow" | "allow_if_empty";
-export const OrganizationDeletionBehaviorEnum = /*@__PURE__*/ S.String;
+export const OrganizationDeletionBehaviorEnum = S.String;
 
 /** Controls whether connections created from this template can be deleted. */
 export type ConnectionDeletionBehaviorEnum = "allow" | "allow_if_empty";
-export const ConnectionDeletionBehaviorEnum = /*@__PURE__*/ S.String;
+export const ConnectionDeletionBehaviorEnum = S.String;
 
 /** An allowed enterprise connection strategy. */
 export type OrganizationTemplateAllowedStrategyEnum =
@@ -14892,7 +14852,7 @@ export type OrganizationTemplateAllowedStrategyEnum =
   | "pingfederate"
   | "samlp"
   | "waad";
-export const OrganizationTemplateAllowedStrategyEnum = /*@__PURE__*/ S.String;
+export const OrganizationTemplateAllowedStrategyEnum = S.String;
 
 /** List of allowed connection strategies for this template. */
 export type CreateOrganizationTemplateRequestAllowedStrategiesList = Array<
@@ -14943,7 +14903,7 @@ export type OrganizationTemplateRoleVisibilityEnum =
   | "write"
   | "read_only"
   | "hidden";
-export const OrganizationTemplateRoleVisibilityEnum = /*@__PURE__*/ S.String;
+export const OrganizationTemplateRoleVisibilityEnum = S.String;
 
 /** A role visibility override. */
 export interface OrganizationTemplateRoleVisibilityOverride {
@@ -15120,10 +15080,10 @@ export const OrganizationTemplate = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of the phone notification provider */
 export type PhoneProviderNameEnum = "twilio" | "custom";
-export const PhoneProviderNameEnum = /*@__PURE__*/ S.String;
+export const PhoneProviderNameEnum = S.String;
 
 export type TwilioProviderDeliveryMethodEnum = "text" | "voice";
-export const TwilioProviderDeliveryMethodEnum = /*@__PURE__*/ S.String;
+export const TwilioProviderDeliveryMethodEnum = S.String;
 
 export type TwilioProviderConfigurationDeliveryMethodsList = Array<
   TwilioProviderDeliveryMethodEnum | (string & {})
@@ -15151,7 +15111,7 @@ export const TwilioProviderConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TwilioProviderConfiguration>;
 
 export type CustomProviderDeliveryMethodEnum = "text" | "voice";
-export const CustomProviderDeliveryMethodEnum = /*@__PURE__*/ S.String;
+export const CustomProviderDeliveryMethodEnum = S.String;
 
 export type CustomProviderConfigurationDeliveryMethodsList = Array<
   CustomProviderDeliveryMethodEnum | (string & {})
@@ -15176,7 +15136,7 @@ export type PhoneProviderConfiguration =
   | TwilioProviderConfiguration
   | CustomProviderConfiguration;
 export const PhoneProviderConfiguration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PhoneProviderConfiguration>;
+  S.Unknown as any as S.Schema<PhoneProviderConfiguration>;
 
 export interface TwilioProviderCredentials {
   auth_token: string;
@@ -15192,7 +15152,7 @@ export const TwilioProviderCredentials = /*@__PURE__*/ S.suspend(() =>
 /** Provider credentials required to use authenticate to the provider. */
 export type PhoneProviderCredentials = TwilioProviderCredentials | unknown;
 export const PhoneProviderCredentials =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PhoneProviderCredentials>;
+  S.Unknown as any as S.Schema<PhoneProviderCredentials>;
 
 export interface CreatePhoneProviderRequest {
   name: PhoneProviderNameEnum | (string & {});
@@ -15216,7 +15176,7 @@ export const CreatePhoneProviderRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** This depicts the type of notifications this provider can receive. */
 export type PhoneProviderChannelEnum = "phone";
-export const PhoneProviderChannelEnum = /*@__PURE__*/ S.String;
+export const PhoneProviderChannelEnum = S.String;
 
 /** Phone provider configuration schema */
 export interface CreateBrandingPhoneProviderResponseContent {
@@ -15255,7 +15215,7 @@ export type PhoneTemplateNotificationTypeEnum =
   | "change_password"
   | "blocked_account"
   | "password_breach";
-export const PhoneTemplateNotificationTypeEnum = /*@__PURE__*/ S.String;
+export const PhoneTemplateNotificationTypeEnum = S.String;
 
 export interface PhoneTemplateBody {
   /** Content of the phone template for text notifications */
@@ -15332,15 +15292,15 @@ export const CreatePhoneTemplateResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** The API protected by the Rate Limit Policy. */
 export type RateLimitPolicyResourceEnum = "oauth_authentication_api";
-export const RateLimitPolicyResourceEnum = /*@__PURE__*/ S.String;
+export const RateLimitPolicyResourceEnum = S.String;
 
 /** The consumer to which the rate limit policy applies. */
 export type RateLimitPolicyConsumerEnum = "client";
-export const RateLimitPolicyConsumerEnum = /*@__PURE__*/ S.String;
+export const RateLimitPolicyConsumerEnum = S.String;
 
 /** Determines the action to take when the rate limit is exceeded. */
 export type RateLimitPolicyConfigurationCase0Action = "allow";
-export const RateLimitPolicyConfigurationCase0Action = /*@__PURE__*/ S.String;
+export const RateLimitPolicyConfigurationCase0Action = S.String;
 
 export interface RateLimitPolicyConfigurationCase0 {
   /** Determines the action to take when the rate limit is exceeded. */
@@ -15356,7 +15316,7 @@ export const RateLimitPolicyConfigurationCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines the action to take when the rate limit is exceeded. */
 export type RateLimitPolicyConfigurationCase1Action = "block" | "log";
-export const RateLimitPolicyConfigurationCase1Action = /*@__PURE__*/ S.String;
+export const RateLimitPolicyConfigurationCase1Action = S.String;
 
 export interface RateLimitPolicyConfigurationCase1 {
   /** Determines the action to take when the rate limit is exceeded. */
@@ -15375,7 +15335,7 @@ export const RateLimitPolicyConfigurationCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** Determines the action to take when the rate limit is exceeded. */
 export type RateLimitPolicyConfigurationCase2Action = "redirect";
-export const RateLimitPolicyConfigurationCase2Action = /*@__PURE__*/ S.String;
+export const RateLimitPolicyConfigurationCase2Action = S.String;
 
 export interface RateLimitPolicyConfigurationCase2 {
   /** Determines the action to take when the rate limit is exceeded. */
@@ -15401,7 +15361,7 @@ export type RateLimitPolicyConfiguration =
   | RateLimitPolicyConfigurationCase1
   | RateLimitPolicyConfigurationCase2;
 export const RateLimitPolicyConfiguration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RateLimitPolicyConfiguration>;
+  S.Unknown as any as S.Schema<RateLimitPolicyConfiguration>;
 
 export interface CreateRateLimitPolicyRequest {
   resource: RateLimitPolicyResourceEnum | (string & {});
@@ -15476,19 +15436,18 @@ export type ResourceServerTokenDialectSchemaEnum =
   | "access_token_authz"
   | "rfc9068_profile"
   | "rfc9068_profile_authz";
-export const ResourceServerTokenDialectSchemaEnum = /*@__PURE__*/ S.String;
+export const ResourceServerTokenDialectSchemaEnum = S.String;
 
 /** Format of the encrypted JWT payload. */
 export type ResourceServerTokenEncryptionFormatEnum = "compact-nested-jwe";
-export const ResourceServerTokenEncryptionFormatEnum = /*@__PURE__*/ S.String;
+export const ResourceServerTokenEncryptionFormatEnum = S.String;
 
 /** Algorithm used to encrypt the token. */
 export type ResourceServerTokenEncryptionAlgorithmEnum =
   | "RSA-OAEP-256"
   | "RSA-OAEP-384"
   | "RSA-OAEP-512";
-export const ResourceServerTokenEncryptionAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceServerTokenEncryptionAlgorithmEnum = S.String;
 
 export interface ResourceServerTokenEncryptionKey {
   /** Name of the encryption key. */
@@ -15525,7 +15484,7 @@ export const ResourceServerTokenEncryption = /*@__PURE__*/ S.suspend(() =>
 
 export type ResourceServerConsentPolicyEnum =
   "transactional-authorization-with-mfa";
-export const ResourceServerConsentPolicyEnum = /*@__PURE__*/ S.String;
+export const ResourceServerConsentPolicyEnum = S.String;
 
 export type CreateResourceServerRequestAuthorizationDetailsList =
   Array<unknown>;
@@ -15536,15 +15495,13 @@ export const CreateResourceServerRequestAuthorizationDetailsList =
 
 /** Intended mechanism for Proof-of-Possession */
 export type ResourceServerProofOfPossessionMechanismEnum = "mtls" | "dpop";
-export const ResourceServerProofOfPossessionMechanismEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceServerProofOfPossessionMechanismEnum = S.String;
 
 /** Specifies which client types require Proof-of-Possession */
 export type ResourceServerProofOfPossessionRequiredForEnum =
   | "public_clients"
   | "all_clients";
-export const ResourceServerProofOfPossessionRequiredForEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceServerProofOfPossessionRequiredForEnum = S.String;
 
 /** Proof-of-Possession configuration for access tokens */
 export interface ResourceServerProofOfPossession {
@@ -15568,8 +15525,7 @@ export type ResourceServerSubjectTypeAuthorizationUserPolicyEnum =
   | "allow_all"
   | "deny_all"
   | "require_client_grant";
-export const ResourceServerSubjectTypeAuthorizationUserPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceServerSubjectTypeAuthorizationUserPolicyEnum = S.String;
 
 /** Access Permissions for user flows */
 export interface ResourceServerSubjectTypeAuthorizationUser {
@@ -15588,8 +15544,7 @@ export const ResourceServerSubjectTypeAuthorizationUser =
 export type ResourceServerSubjectTypeAuthorizationClientPolicyEnum =
   | "deny_all"
   | "require_client_grant";
-export const ResourceServerSubjectTypeAuthorizationClientPolicyEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceServerSubjectTypeAuthorizationClientPolicyEnum = S.String;
 
 /** Access Permissions for client flows */
 export interface ResourceServerSubjectTypeAuthorizationClient {
@@ -15711,7 +15666,7 @@ export type ResourceServerTokenDialectResponseEnum =
   | "access_token_authz"
   | "rfc9068_profile"
   | "rfc9068_profile_authz";
-export const ResourceServerTokenDialectResponseEnum = /*@__PURE__*/ S.String;
+export const ResourceServerTokenDialectResponseEnum = S.String;
 
 export type CreateResourceServerResponseContentAuthorizationDetailsList =
   Array<unknown>;
@@ -15795,7 +15750,7 @@ export const CreateResourceServerResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the role */
 export type RoleTypeEnum = "tenant" | "organization";
-export const RoleTypeEnum = /*@__PURE__*/ S.String;
+export const RoleTypeEnum = S.String;
 
 export interface CreateRoleRequest {
   /** Name of the role. */
@@ -16016,7 +15971,7 @@ export type SegmentMatchExpression =
   | SegmentEndsWithExpression
   | SegmentExistsExpression;
 export const SegmentMatchExpression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SegmentMatchExpression>;
+  S.Unknown as any as S.Schema<SegmentMatchExpression>;
 
 /** Attribute conditions that must match. */
 export interface SegmentMatchConditions {
@@ -16092,7 +16047,7 @@ export const CreateSegmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSegmentRequest>;
 
 export type SegmentTypeEnum = "self" | "auth0";
-export const SegmentTypeEnum = /*@__PURE__*/ S.String;
+export const SegmentTypeEnum = S.String;
 
 export type CreateSegmentResponseContentRulesList = Array<SegmentRule>;
 export const CreateSegmentResponseContentRulesList = /*@__PURE__*/ S.Array(
@@ -16158,7 +16113,7 @@ export type SelfServiceProfileAllowedStrategyEnum =
   | "okta-samlp"
   | "keycloak-samlp"
   | "pingfederate";
-export const SelfServiceProfileAllowedStrategyEnum = /*@__PURE__*/ S.String;
+export const SelfServiceProfileAllowedStrategyEnum = S.String;
 
 /** List of IdP strategies that will be shown to users during the Self-Service Enterprise Configuration flow. Possible values: [`oidc`, `samlp`, `waad`, `google-apps`, `adfs`, `okta`, `auth0-samlp`, `okta-samlp`, `keycloak-samlp`, `pingfederate`] */
 export type CreateSelfServiceProfileRequestAllowedStrategiesList = Array<
@@ -16283,7 +16238,7 @@ export const CreateSelfServiceProfileResponseContent = /*@__PURE__*/ S.suspend(
 
 /** The type of the profile, which controls how the profile will be executed when receiving a token exchange request. */
 export type TokenExchangeProfileTypeEnum = "custom_authentication";
-export const TokenExchangeProfileTypeEnum = /*@__PURE__*/ S.String;
+export const TokenExchangeProfileTypeEnum = S.String;
 
 export interface CreateTokenExchangeProfileRequest {
   /** Friendly name of this profile. */
@@ -16411,7 +16366,7 @@ export const CreateUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Unique identifier of the user for this identity. */
 export type UserId = string | number;
-export const UserId = /*@__PURE__*/ S.Unknown as any as S.Schema<UserId>;
+export const UserId = S.Unknown as any as S.Schema<UserId>;
 
 /** The type of identity provider */
 export type UserIdentityProviderEnum =
@@ -16470,7 +16425,7 @@ export type UserIdentityProviderEnum =
   | "wordpress"
   | "yahoo"
   | "yandex";
-export const UserIdentityProviderEnum = /*@__PURE__*/ S.String;
+export const UserIdentityProviderEnum = S.String;
 
 export interface UserProfileData {
   /** Email address of this user. */
@@ -16639,7 +16594,7 @@ export const CreateUserResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** OIDC mapping for user ID */
 export type UserAttributeProfileUserIdOidcMappingEnum = "sub";
-export const UserAttributeProfileUserIdOidcMappingEnum = /*@__PURE__*/ S.String;
+export const UserAttributeProfileUserIdOidcMappingEnum = S.String;
 
 /** SAML mapping for user ID */
 export type UserAttributeProfileUserIdSamlMapping = Array<string>;
@@ -16652,8 +16607,7 @@ export type UserAttributeProfileUserIdOidcStrategyOverrideMapping =
   | "sub"
   | "oid"
   | "email";
-export const UserAttributeProfileUserIdOidcStrategyOverrideMapping =
-  /*@__PURE__*/ S.String;
+export const UserAttributeProfileUserIdOidcStrategyOverrideMapping = S.String;
 
 /** SAML mapping override for this strategy */
 export type UserAttributeProfileSamlMapping = Array<string>;
@@ -17837,8 +17791,7 @@ export const DeleteMembersResponse = /*@__PURE__*/ S.suspend(() =>
 export type DeleteMultifactorByProviderRequestProvider =
   | "duo"
   | "google-authenticator";
-export const DeleteMultifactorByProviderRequestProvider =
-  /*@__PURE__*/ S.String;
+export const DeleteMultifactorByProviderRequestProvider = S.String;
 
 export interface DeleteMultifactorByProviderRequest {
   /** ID of the user to remove a multifactor configuration from. */
@@ -18781,7 +18734,7 @@ export type DeleteUserIdentityRequestProvider =
   | "wordpress"
   | "yahoo"
   | "yandex";
-export const DeleteUserIdentityRequestProvider = /*@__PURE__*/ S.String;
+export const DeleteUserIdentityRequestProvider = S.String;
 
 export interface DeleteUserIdentityRequest {
   /** ID of the primary user account. */
@@ -18987,7 +18940,7 @@ export type ActionTriggerTypeEnum =
   | "password-hash-migration"
   | "login-post-identifier"
   | "signup-post-identifier";
-export const ActionTriggerTypeEnum = /*@__PURE__*/ S.String;
+export const ActionTriggerTypeEnum = S.String;
 
 /** runtimes supported by this trigger. */
 export type ActionTriggerRuntimesList = Array<string>;
@@ -19018,7 +18971,7 @@ export const ActionTriggerCompatibleTriggersList = /*@__PURE__*/ S.Array(
 
 /** In order to execute an Action, it must be bound to a trigger using a binding. `trigger-bound` means that bindings are managed by the tenant. `entity-bound` means that the bindings are automatically managed by Auth0 and other internal resouces will control those bindings. Tenants cannot manage `entity-bound` bindings. */
 export type ActionBindingTypeEnum = "trigger-bound" | "entity-bound";
-export const ActionBindingTypeEnum = /*@__PURE__*/ S.String;
+export const ActionBindingTypeEnum = S.String;
 
 export interface ActionTrigger {
   id: ActionTriggerTypeEnum | (string & {});
@@ -19122,7 +19075,7 @@ export type ActionVersionBuildStatusEnum =
   | "built"
   | "retrying"
   | "failed";
-export const ActionVersionBuildStatusEnum = /*@__PURE__*/ S.String;
+export const ActionVersionBuildStatusEnum = S.String;
 
 /** Error is a generic error with a human readable id which should be easily referenced in support tickets. */
 export interface ActionError {
@@ -19274,7 +19227,7 @@ export type IntegrationFeatureTypeEnum =
   | "log_stream"
   | "sso_integration"
   | "sms_provider";
-export const IntegrationFeatureTypeEnum = /*@__PURE__*/ S.String;
+export const IntegrationFeatureTypeEnum = S.String;
 
 /** Semver denotes the major.minor version of an integration release */
 export interface IntegrationSemVer {
@@ -19293,7 +19246,7 @@ export const IntegrationSemVer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IntegrationSemVer>;
 
 export type IntegrationRequiredParamTypeEnum = "UNSPECIFIED" | "STRING";
-export const IntegrationRequiredParamTypeEnum = /*@__PURE__*/ S.String;
+export const IntegrationRequiredParamTypeEnum = S.String;
 
 export interface IntegrationRequiredParamOption {
   /** The value of an option that will be used within the application. */
@@ -19445,7 +19398,7 @@ export type ActionBuildStatusEnum =
   | "built"
   | "retrying"
   | "failed";
-export const ActionBuildStatusEnum = /*@__PURE__*/ S.String;
+export const ActionBuildStatusEnum = S.String;
 
 /** The list of action modules and their versions used by this action. */
 export type GetActionResponseContentModulesList = Array<ActionModuleReference>;
@@ -20419,7 +20372,7 @@ export const GetAllKeysNetworkAclsResponseContent = /*@__PURE__*/ S.suspend(
 
 /** Rendering mode to filter by */
 export type AculRenderingModeEnum = "advanced" | "standard";
-export const AculRenderingModeEnum = /*@__PURE__*/ S.String;
+export const AculRenderingModeEnum = S.String;
 
 export interface GetAllRenderingRequest {
   /** Comma-separated list of fields to include or exclude (based on value provided for include_fields) in the result. Leave empty to retrieve all fields. */
@@ -20475,11 +20428,11 @@ export type AculContextEnum =
   | "user.organizations"
   | "transaction.custom_domain.domain"
   | "experiment";
-export const AculContextEnum = /*@__PURE__*/ S.String;
+export const AculContextEnum = S.String;
 
 export type AculContextConfigurationItem = AculContextEnum | string;
 export const AculContextConfigurationItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AculContextConfigurationItem>;
+  S.Unknown as any as S.Schema<AculContextConfigurationItem>;
 
 /** Context values to make available */
 export type AculContextConfiguration = Array<AculContextConfigurationItem>;
@@ -20516,7 +20469,7 @@ export const ListAculsResponseContentItemHeadTagsList = /*@__PURE__*/ S.Array(
 
 /** Type of match to apply */
 export type AculMatchTypeEnum = "includes_any" | "excludes_any";
-export const AculMatchTypeEnum = /*@__PURE__*/ S.String;
+export const AculMatchTypeEnum = S.String;
 
 export interface AculClientFilterById {
   /** Client ID */
@@ -20552,8 +20505,7 @@ export const AculClientFilterByMetadata = /*@__PURE__*/ S.suspend(() =>
 export type AculClientFilter =
   | AculClientFilterById
   | AculClientFilterByMetadata;
-export const AculClientFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AculClientFilter>;
+export const AculClientFilter = S.Unknown as any as S.Schema<AculClientFilter>;
 
 /** Clients filter */
 export type AculFiltersClientsList = Array<AculClientFilter>;
@@ -20596,7 +20548,7 @@ export type AculOrganizationFilter =
   | AculOrganizationFilterById
   | AculOrganizationFilterByMetadata;
 export const AculOrganizationFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AculOrganizationFilter>;
+  S.Unknown as any as S.Schema<AculOrganizationFilter>;
 
 /** Organizations filter */
 export type AculFiltersOrganizationsList = Array<AculOrganizationFilter>;
@@ -20638,8 +20590,7 @@ export const AculDomainFilterByMetadata = /*@__PURE__*/ S.suspend(() =>
 export type AculDomainFilter =
   | AculDomainFilterById
   | AculDomainFilterByMetadata;
-export const AculDomainFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AculDomainFilter>;
+export const AculDomainFilter = S.Unknown as any as S.Schema<AculDomainFilter>;
 
 /** Domains filter */
 export type AculFiltersDomainsList = Array<AculDomainFilter>;
@@ -20738,7 +20689,7 @@ export type ListAculsResponseContent =
   | ListAculsResponseContentCase0List
   | ListAculsOffsetPaginatedResponseContent;
 export const ListAculsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAculsResponseContent>;
+  S.Unknown as any as S.Schema<ListAculsResponseContent>;
 
 export type GetAllRenderingResponse = ListAculsResponseContent;
 export const GetAllRenderingResponse = /*@__PURE__*/ S.suspend(() =>
@@ -20813,14 +20764,14 @@ export type AuthenticationMethodTypeEnum =
   | "guardian"
   | "passkey"
   | "password";
-export const AuthenticationMethodTypeEnum = /*@__PURE__*/ S.String;
+export const AuthenticationMethodTypeEnum = S.String;
 
 export type UserAuthenticationMethodPropertiesEnum =
   | "totp"
   | "push"
   | "sms"
   | "voice";
-export const UserAuthenticationMethodPropertiesEnum = /*@__PURE__*/ S.String;
+export const UserAuthenticationMethodPropertiesEnum = S.String;
 
 export interface UserAuthenticationMethodProperties {
   type?: UserAuthenticationMethodPropertiesEnum;
@@ -20844,7 +20795,7 @@ export const UserAuthenticationMethodAuthenticationMethodsList =
 
 /** Applies to phone authentication methods only. The preferred communication method. */
 export type PreferredAuthenticationMethodEnum = "voice" | "sms";
-export const PreferredAuthenticationMethodEnum = /*@__PURE__*/ S.String;
+export const PreferredAuthenticationMethodEnum = S.String;
 
 /** Applies to passkeys only. The transports used by clients to communicate with the authenticator. */
 export type UserAuthenticationMethodTransportsList = Array<string>;
@@ -20972,7 +20923,7 @@ export type ListUserAuthenticationMethodsResponseContent =
   | ListUserAuthenticationMethodsResponseContentCase0List
   | ListUserAuthenticationMethodsOffsetPaginatedResponseContent;
 export const ListUserAuthenticationMethodsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserAuthenticationMethodsResponseContent>;
+  S.Unknown as any as S.Schema<ListUserAuthenticationMethodsResponseContent>;
 
 export type GetAuthenticationMethodsResponse =
   ListUserAuthenticationMethodsResponseContent;
@@ -21114,7 +21065,7 @@ export type GetBindingsRequestTriggerId =
   | "password-hash-migration"
   | "login-post-identifier"
   | "signup-post-identifier";
-export const GetBindingsRequestTriggerId = /*@__PURE__*/ S.String;
+export const GetBindingsRequestTriggerId = S.String;
 
 export interface GetBindingsRequest {
   /** An actions extensibility point. */
@@ -21211,31 +21162,28 @@ export const GetBotDetectionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The level of bot detection sensitivity */
 export type BotDetectionLevelEnum = "low" | "medium" | "high";
-export const BotDetectionLevelEnum = /*@__PURE__*/ S.String;
+export const BotDetectionLevelEnum = S.String;
 
 /** The policy that defines how often to show CAPTCHA */
 export type BotDetectionChallengePolicyPasswordFlowEnum =
   | "never"
   | "when_risky"
   | "always";
-export const BotDetectionChallengePolicyPasswordFlowEnum =
-  /*@__PURE__*/ S.String;
+export const BotDetectionChallengePolicyPasswordFlowEnum = S.String;
 
 /** The policy that defines how often to show CAPTCHA */
 export type BotDetectionChallengePolicyPasswordlessFlowEnum =
   | "never"
   | "when_risky"
   | "always";
-export const BotDetectionChallengePolicyPasswordlessFlowEnum =
-  /*@__PURE__*/ S.String;
+export const BotDetectionChallengePolicyPasswordlessFlowEnum = S.String;
 
 /** The policy that defines how often to show CAPTCHA */
 export type BotDetectionChallengePolicyPasswordResetFlowEnum =
   | "never"
   | "when_risky"
   | "always";
-export const BotDetectionChallengePolicyPasswordResetFlowEnum =
-  /*@__PURE__*/ S.String;
+export const BotDetectionChallengePolicyPasswordResetFlowEnum = S.String;
 
 /** List of IP addresses or CIDR blocks to allowlist */
 export type BotDetectionAllowlist = Array<string>;
@@ -21285,7 +21233,7 @@ export const BrandingPageBackgroundCase1Map = /*@__PURE__*/ S.Record(
 /** Page Background Color or Gradient. Property contains either `null` to unset, a solid color as a string value `#FFFFFF`, or a gradient as an object. ```js { type: 'linear-gradient', start: '#FFFFFF', end: '#000000', angle_deg: 35 } ``` */
 export type BrandingPageBackground = string | BrandingPageBackgroundCase1Map;
 export const BrandingPageBackground =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BrandingPageBackground>;
+  S.Unknown as any as S.Schema<BrandingPageBackground>;
 
 /** Custom color settings. */
 export interface BrandingColors {
@@ -21453,7 +21401,7 @@ export type BreachedPasswordDetectionShieldsEnum =
   | "block"
   | "user_notification"
   | "admin_notification";
-export const BreachedPasswordDetectionShieldsEnum = /*@__PURE__*/ S.String;
+export const BreachedPasswordDetectionShieldsEnum = S.String;
 
 /** Action to take when a breached password is detected during a login. Possible values: <code>block</code>, <code>user_notification</code>, <code>admin_notification</code>. */
 export type GetBreachedPasswordDetectionSettingsResponseContentShieldsList =
@@ -21468,8 +21416,7 @@ export type BreachedPasswordDetectionAdminNotificationFrequencyEnum =
   | "daily"
   | "weekly"
   | "monthly";
-export const BreachedPasswordDetectionAdminNotificationFrequencyEnum =
-  /*@__PURE__*/ S.String;
+export const BreachedPasswordDetectionAdminNotificationFrequencyEnum = S.String;
 
 /** When "admin_notification" is enabled, determines how often email notifications are sent. Possible values: <code>immediately</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code>. */
 export type GetBreachedPasswordDetectionSettingsResponseContentAdminNotificationFrequencyList =
@@ -21481,13 +21428,12 @@ export const GetBreachedPasswordDetectionSettingsResponseContentAdminNotificatio
 
 /** The subscription level for breached password detection methods. Use "enhanced" to enable Credential Guard. Possible values: <code>standard</code>, <code>enhanced</code>. */
 export type BreachedPasswordDetectionMethodEnum = "standard" | "enhanced";
-export const BreachedPasswordDetectionMethodEnum = /*@__PURE__*/ S.String;
+export const BreachedPasswordDetectionMethodEnum = S.String;
 
 export type BreachedPasswordDetectionPreUserRegistrationShieldsEnum =
   | "block"
   | "admin_notification";
-export const BreachedPasswordDetectionPreUserRegistrationShieldsEnum =
-  /*@__PURE__*/ S.String;
+export const BreachedPasswordDetectionPreUserRegistrationShieldsEnum = S.String;
 
 /** Action to take when a breached password is detected during a signup. Possible values: <code>block</code>, <code>admin_notification</code>. */
 export type BreachedPasswordDetectionPreUserRegistrationStageShieldsList =
@@ -21517,8 +21463,7 @@ export const BreachedPasswordDetectionPreUserRegistrationStage =
 export type BreachedPasswordDetectionPreChangePasswordShieldsEnum =
   | "block"
   | "admin_notification";
-export const BreachedPasswordDetectionPreChangePasswordShieldsEnum =
-  /*@__PURE__*/ S.String;
+export const BreachedPasswordDetectionPreChangePasswordShieldsEnum = S.String;
 
 /** Action to take when a breached password is detected during a password reset. Possible values: <code>block</code>, <code>admin_notification</code>. */
 export type BreachedPasswordDetectionPreChangePasswordStageShieldsList = Array<
@@ -21606,7 +21551,7 @@ export const GetBruteForceProtectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBruteForceProtectionRequest>;
 
 export type BruteForceProtectionShieldsEnum = "block" | "user_notification";
-export const BruteForceProtectionShieldsEnum = /*@__PURE__*/ S.String;
+export const BruteForceProtectionShieldsEnum = S.String;
 
 /** Action to take when a brute force protection threshold is violated. Possible values: <code>block</code>, <code>user_notification</code>. */
 export type GetBruteForceSettingsResponseContentShieldsList =
@@ -21627,7 +21572,7 @@ export const GetBruteForceSettingsResponseContentAllowlistList =
 export type BruteForceProtectionModeEnum =
   | "count_per_identifier_and_ip"
   | "count_per_identifier";
-export const BruteForceProtectionModeEnum = /*@__PURE__*/ S.String;
+export const BruteForceProtectionModeEnum = S.String;
 
 export interface GetBruteForceSettingsResponseContent {
   /** Whether or not brute force attack protections are active. */
@@ -22134,7 +22079,7 @@ export type ConnectionStrategyEnum =
   | "vercel-mcp"
   | "xero-mcp"
   | "auth0-adldap";
-export const ConnectionStrategyEnum = /*@__PURE__*/ S.String;
+export const ConnectionStrategyEnum = S.String;
 
 export type GetClientConnectionsRequestStrategyList = Array<
   ConnectionStrategyEnum | (string & {})
@@ -22438,7 +22383,7 @@ export type ListClientGrantOrganizationsResponseContent =
   | ListClientGrantOrganizationsOffsetPaginatedResponseContent
   | ListClientGrantOrganizationsPaginatedResponseContent;
 export const ListClientGrantOrganizationsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListClientGrantOrganizationsResponseContent>;
+  S.Unknown as any as S.Schema<ListClientGrantOrganizationsResponseContent>;
 
 export type GetClientGrantOrganizationsResponse =
   ListClientGrantOrganizationsResponseContent;
@@ -22604,7 +22549,7 @@ export type ListClientGrantResponseContent =
   | ListClientGrantOffsetPaginatedResponseContent
   | ListClientGrantPaginatedResponseContent;
 export const ListClientGrantResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListClientGrantResponseContent>;
+  S.Unknown as any as S.Schema<ListClientGrantResponseContent>;
 
 export type GetClientGrantsResponse = ListClientGrantResponseContent;
 export const GetClientGrantsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -22951,7 +22896,7 @@ export type GetClientsResponseBody =
   | ListClientsOffsetPaginatedResponseContent
   | ListClientsPaginatedResponseContent;
 export const GetClientsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetClientsResponseBody>;
+  S.Unknown as any as S.Schema<GetClientsResponseBody>;
 
 export type GetClientsResponse = GetClientsResponseBody;
 export const GetClientsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -22962,11 +22907,11 @@ export const GetClientsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Query parser to use for the filter expression. Use "scim" for SCIM filter syntax or "lucene" for Lucene query syntax (default). */
 export type SearchParserEnum = "scim" | "lucene";
-export const SearchParserEnum = /*@__PURE__*/ S.String;
+export const SearchParserEnum = S.String;
 
 /** Field name to sort results by in ascending order. Defaults to insertion order (oldest first) if not provided. */
 export type ClientSortFieldEnum = "name" | "updated_at";
-export const ClientSortFieldEnum = /*@__PURE__*/ S.String;
+export const ClientSortFieldEnum = S.String;
 
 export interface GetClientsSearchRequest {
   /** Filter expression in SCIM or Lucene syntax (depending on parser parameter). SCIM examples: `name eq "Auth0"`, `name sw "auth" and app_type eq "spa"`. SCIM operators: eq, ne, sw, ew, co, pr, gt, ge, lt, le, and, or. <br /><br /><b>Supported Fields</b>:<br /><ul><li><i>client_id</i> - Auth0 client ID (case-sensitive, exact match)</li><li><i>external_client_id</i> - URL of the Client ID Metadata Document (CIMD); case-sensitive, exact match</li><li><i>name</i> - Client name (supports contains, starts-with, ends-with operators; sortable)</li><li><i>app_type</i> - Application type (e.g. "spa", "native", "non_interactive")</li><li><i>is_first_party</i> - Whether the client is first-party (boolean)</li><li><i>updated_at</i> - Last update timestamp (supports date range operators; sortable)</li><li><i>metadata.{key}</i> - Filter by client metadata key-value pairs (max 2-level key depth, values indexed up to 64 characters)</li><li><i>client_grant.organization_id</i> - Filter by associated organization ID</li><li><i>client_grant.allow_any_organization</i> - Filter by allow any organization setting</li></ul>Maximum 5 filter operations per query. Results are eventually consistent and may not reflect recent updates. */
@@ -23274,7 +23219,7 @@ export const GetConnectedAccountsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The access type for the connected account. */
 export type ConnectedAccountAccessTypeEnum = "offline";
-export const ConnectedAccountAccessTypeEnum = /*@__PURE__*/ S.String;
+export const ConnectedAccountAccessTypeEnum = S.String;
 
 /** The scopes granted for this connected account. */
 export type ConnectedAccountScopesList = Array<string>;
@@ -23793,7 +23738,7 @@ export type ListConnectionsResponseContent =
   | ListConnectionsOffsetPaginatedResponseContent
   | ListConnectionsCheckpointPaginatedResponseContent;
 export const ListConnectionsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListConnectionsResponseContent>;
+  S.Unknown as any as S.Schema<ListConnectionsResponseContent>;
 
 export type GetConnectionsResponse = ListConnectionsResponseContent;
 export const GetConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -23848,7 +23793,7 @@ export const DirectoryProvisioningMappingList = /*@__PURE__*/ S.Array(
 
 /** Group synchronization configuration */
 export type SynchronizeGroupsEnum = "all" | "off" | "selected";
-export const SynchronizeGroupsEnum = /*@__PURE__*/ S.String;
+export const SynchronizeGroupsEnum = S.String;
 
 export interface DirectoryProvisioning {
   /** The connection's identifier */
@@ -24037,14 +23982,14 @@ export const GetCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Algorithm which will be used with the credential. Supported algorithms: RS256,RS384,PS256 */
 export type ClientCredentialAlgorithmEnum = "RS256" | "RS384" | "PS256";
-export const ClientCredentialAlgorithmEnum = /*@__PURE__*/ S.String;
+export const ClientCredentialAlgorithmEnum = S.String;
 
 /** The type of credential. */
 export type ClientCredentialTypeEnum =
   | "public_key"
   | "cert_subject_dn"
   | "x509_cert";
-export const ClientCredentialTypeEnum = /*@__PURE__*/ S.String;
+export const ClientCredentialTypeEnum = S.String;
 
 export interface ClientCredential {
   /** ID of the credential. Generated on creation. */
@@ -24308,7 +24253,7 @@ export type ListCustomDomainsResponseContent =
   | ListCustomDomainsResponseContentCase0List
   | ListCustomDomainsPaginatedResponseContent;
 export const ListCustomDomainsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListCustomDomainsResponseContent>;
+  S.Unknown as any as S.Schema<ListCustomDomainsResponseContent>;
 
 export type GetCustomDomainsResponse = ListCustomDomainsResponseContent;
 export const GetCustomDomainsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -24328,14 +24273,14 @@ export const GetCustomSigningKeysRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Key type */
 export type CustomSigningKeyTypeEnum = "EC" | "RSA";
-export const CustomSigningKeyTypeEnum = /*@__PURE__*/ S.String;
+export const CustomSigningKeyTypeEnum = S.String;
 
 /** Key use */
 export type CustomSigningKeyUseEnum = "sig";
-export const CustomSigningKeyUseEnum = /*@__PURE__*/ S.String;
+export const CustomSigningKeyUseEnum = S.String;
 
 export type CustomSigningKeyOperationEnum = "verify";
-export const CustomSigningKeyOperationEnum = /*@__PURE__*/ S.String;
+export const CustomSigningKeyOperationEnum = S.String;
 
 /** Key operations */
 export type CustomSigningKeyJWKKeyOpsList = Array<
@@ -24356,11 +24301,11 @@ export type CustomSigningKeyAlgorithmEnum =
   | "PS256"
   | "PS384"
   | "PS512";
-export const CustomSigningKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CustomSigningKeyAlgorithmEnum = S.String;
 
 /** Curve */
 export type CustomSigningKeyCurveEnum = "P-256" | "P-384" | "P-521";
-export const CustomSigningKeyCurveEnum = /*@__PURE__*/ S.String;
+export const CustomSigningKeyCurveEnum = S.String;
 
 /** X.509 certificate chain */
 export type CustomSigningKeyJWKX5cList = Array<string>;
@@ -24476,7 +24421,7 @@ export type GetCustomTextByLanguageRequestPrompt =
   | "brute-force-protection"
   | "async-approval-flow"
   | "confirmation";
-export const GetCustomTextByLanguageRequestPrompt = /*@__PURE__*/ S.String;
+export const GetCustomTextByLanguageRequestPrompt = S.String;
 
 /** Language to update. */
 export type GetCustomTextByLanguageRequestLanguage =
@@ -24562,7 +24507,7 @@ export type GetCustomTextByLanguageRequestLanguage =
   | "zh-HK"
   | "zh-MO"
   | "zh-TW";
-export const GetCustomTextByLanguageRequestLanguage = /*@__PURE__*/ S.String;
+export const GetCustomTextByLanguageRequestLanguage = S.String;
 
 export interface GetCustomTextByLanguageRequest {
   /** Name of the prompt. */
@@ -24683,7 +24628,7 @@ export type GetDefaultDomainResponseContent =
   | CustomDomain
   | GetDefaultCanonicalDomainResponseContent;
 export const GetDefaultDomainResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDefaultDomainResponseContent>;
+  S.Unknown as any as S.Schema<GetDefaultDomainResponseContent>;
 
 export type GetDefaultResponse = GetDefaultDomainResponseContent;
 export const GetDefaultResponse = /*@__PURE__*/ S.suspend(() =>
@@ -24793,7 +24738,7 @@ export const GetDeliveriesByEventIdRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Delivery status */
 export type EventStreamDeliveryStatusEnum = "failed";
-export const EventStreamDeliveryStatusEnum = /*@__PURE__*/ S.String;
+export const EventStreamDeliveryStatusEnum = S.String;
 
 /** Type of event */
 export type EventStreamDeliveryEventTypeEnum =
@@ -24822,7 +24767,7 @@ export type EventStreamDeliveryEventTypeEnum =
   | "user.created"
   | "user.deleted"
   | "user.updated";
-export const EventStreamDeliveryEventTypeEnum = /*@__PURE__*/ S.String;
+export const EventStreamDeliveryEventTypeEnum = S.String;
 
 export interface EventStreamDeliveryAttempt {
   status: EventStreamDeliveryStatusEnum;
@@ -24917,7 +24862,7 @@ export type DeviceCredentialTypeEnum =
   | "public_key"
   | "refresh_token"
   | "rotating_refresh_token";
-export const DeviceCredentialTypeEnum = /*@__PURE__*/ S.String;
+export const DeviceCredentialTypeEnum = S.String;
 
 export interface GetDeviceCredentialsRequest {
   /** Page index of the results to return. First page is 0. */
@@ -25017,7 +24962,7 @@ export type ListDeviceCredentialsResponseContent =
   | ListDeviceCredentialsResponseContentCase0List
   | ListDeviceCredentialsOffsetPaginatedResponseContent;
 export const ListDeviceCredentialsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeviceCredentialsResponseContent>;
+  S.Unknown as any as S.Schema<ListDeviceCredentialsResponseContent>;
 
 export type GetDeviceCredentialsResponse = ListDeviceCredentialsResponseContent;
 export const GetDeviceCredentialsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -25162,7 +25107,7 @@ export const GetDiscoveryDomainsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The verification status of the discovery domain. */
 export type OrganizationDiscoveryDomainStatus = "pending" | "verified";
-export const OrganizationDiscoveryDomainStatus = /*@__PURE__*/ S.String;
+export const OrganizationDiscoveryDomainStatus = S.String;
 
 export interface OrganizationDiscoveryDomain {
   /** Organization discovery domain identifier. */
@@ -25276,7 +25221,7 @@ export type GetEmailTemplateRequestTemplateName =
   | "change_password"
   | "password_reset"
   | "async_approval";
-export const GetEmailTemplateRequestTemplateName = /*@__PURE__*/ S.String;
+export const GetEmailTemplateRequestTemplateName = S.String;
 
 export interface GetEmailTemplateRequest {
   /** Template name. Can be `verify_email`, `verify_email_by_code`, `auth_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `async_approval`, `change_password` (legacy), or `password_reset` (legacy). */
@@ -25399,7 +25344,7 @@ export type ListOrganizationConnectionsResponseContent =
   | ListOrganizationConnectionsResponseContentCase0List
   | ListOrganizationConnectionsOffsetPaginatedResponseContent;
 export const ListOrganizationConnectionsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationConnectionsResponseContent>;
+  S.Unknown as any as S.Schema<ListOrganizationConnectionsResponseContent>;
 
 export type GetEnabledConnectionsResponse =
   ListOrganizationConnectionsResponseContent;
@@ -25473,7 +25418,7 @@ export type EncryptionKeyType =
   | "environment-root-key"
   | "tenant-master-key"
   | "tenant-encryption-key";
-export const EncryptionKeyType = /*@__PURE__*/ S.String;
+export const EncryptionKeyType = S.String;
 
 /** Key state */
 export type EncryptionKeyState =
@@ -25481,7 +25426,7 @@ export type EncryptionKeyState =
   | "active"
   | "deactivated"
   | "destroyed";
-export const EncryptionKeyState = /*@__PURE__*/ S.String;
+export const EncryptionKeyState = S.String;
 
 /** Encryption key */
 export interface GetEncryptionKeyResponseContent {
@@ -25597,7 +25542,7 @@ export type ListEncryptionKeysResponseContent =
   | ListEncryptionKeysResponseContentCase0List
   | ListEncryptionKeyOffsetPaginatedResponseContent;
 export const ListEncryptionKeysResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListEncryptionKeysResponseContent>;
+  S.Unknown as any as S.Schema<ListEncryptionKeysResponseContent>;
 
 export type GetEncryptionKeysResponse = ListEncryptionKeysResponseContent;
 export const GetEncryptionKeysResponse = /*@__PURE__*/ S.suspend(() =>
@@ -25620,7 +25565,7 @@ export const GetEnrollmentsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of this enrollment. Can be `pending` or `confirmed`. */
 export type UserEnrollmentStatusEnum = "pending" | "confirmed";
-export const UserEnrollmentStatusEnum = /*@__PURE__*/ S.String;
+export const UserEnrollmentStatusEnum = S.String;
 
 /** Authentication method for this enrollment. Can be `authenticator`, `guardian`, `sms`, `webauthn-roaming`, or `webauthn-platform`. */
 export type UserEnrollmentAuthMethodEnum =
@@ -25629,7 +25574,7 @@ export type UserEnrollmentAuthMethodEnum =
   | "sms"
   | "webauthn-platform"
   | "webauthn-roaming";
-export const UserEnrollmentAuthMethodEnum = /*@__PURE__*/ S.String;
+export const UserEnrollmentAuthMethodEnum = S.String;
 
 export interface UsersEnrollment {
   /** ID of this enrollment. */
@@ -25693,7 +25638,7 @@ export const GetEnrollmentsByIdRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of this enrollment. Can be `pending` or `confirmed`. */
 export type GuardianEnrollmentStatus = "pending" | "confirmed";
-export const GuardianEnrollmentStatus = /*@__PURE__*/ S.String;
+export const GuardianEnrollmentStatus = S.String;
 
 export interface GetGuardianEnrollmentResponseContent {
   /** ID for this enrollment. */
@@ -25816,7 +25761,7 @@ export type GetErrorsResponseBody =
   | GetErrorsResponseBodyCase0List
   | GetJobGenericErrorResponseContent;
 export const GetErrorsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetErrorsResponseBody>;
+  S.Unknown as any as S.Schema<GetErrorsResponseBody>;
 
 export type GetErrorsResponse = GetErrorsResponseBody;
 export const GetErrorsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -25929,7 +25874,7 @@ export type GetEventStreamResponseContent =
   | EventStreamEventBridgeResponseContent
   | EventStreamActionResponseContent;
 export const GetEventStreamResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEventStreamResponseContent>;
+  S.Unknown as any as S.Schema<GetEventStreamResponseContent>;
 
 export type GetEventStreamResponse = GetEventStreamResponseContent;
 export const GetEventStreamResponse = /*@__PURE__*/ S.suspend(() =>
@@ -25958,7 +25903,7 @@ export type EventStreamResponseContent =
   | EventStreamEventBridgeResponseContent
   | EventStreamActionResponseContent;
 export const EventStreamResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventStreamResponseContent>;
+  S.Unknown as any as S.Schema<EventStreamResponseContent>;
 
 export type ListEventStreamsResponseContentEventStreamsList =
   Array<EventStreamResponseContent>;
@@ -26003,7 +25948,7 @@ export type ActionExecutionStatusEnum =
   | "partial"
   | "canceled"
   | "suspended";
-export const ActionExecutionStatusEnum = /*@__PURE__*/ S.String;
+export const ActionExecutionStatusEnum = S.String;
 
 /** Captures the results of a single action being executed. */
 export interface ActionExecutionResult {
@@ -26347,7 +26292,7 @@ export type GuardianFactorNameEnum =
   | "webauthn-roaming"
   | "webauthn-platform"
   | "recovery-code";
-export const GuardianFactorNameEnum = /*@__PURE__*/ S.String;
+export const GuardianFactorNameEnum = S.String;
 
 /** Factor-specific settings. Only returned when include_settings=true. */
 export interface GuardianFactorSettings {
@@ -26534,7 +26479,7 @@ export const ListFeatureFlagsResponseContent = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListFeatureFlagsResponseContent>;
 
 export type GetFlowRequestParametersHydrateEnum = "form_count" | "forms";
-export const GetFlowRequestParametersHydrateEnum = /*@__PURE__*/ S.String;
+export const GetFlowRequestParametersHydrateEnum = S.String;
 
 export type GetFlowRequestHydrateList = Array<
   GetFlowRequestParametersHydrateEnum | (string & {})
@@ -26583,7 +26528,7 @@ export const GetFlowResponseContent = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFlowResponseContent>;
 
 export type ListFlowsRequestParametersHydrateEnum = "form_count";
-export const ListFlowsRequestParametersHydrateEnum = /*@__PURE__*/ S.String;
+export const ListFlowsRequestParametersHydrateEnum = S.String;
 
 export type GetFlowsRequestHydrateList = Array<
   ListFlowsRequestParametersHydrateEnum | (string & {})
@@ -26667,7 +26612,7 @@ export type ListFlowsResponseContent =
   | ListFlowsResponseContentCase0List
   | ListFlowsOffsetPaginatedResponseContent;
 export const ListFlowsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlowsResponseContent>;
+  S.Unknown as any as S.Schema<ListFlowsResponseContent>;
 
 export type GetFlowsResponse = ListFlowsResponseContent;
 export const GetFlowsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -26677,8 +26622,7 @@ export const GetFlowsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFlowsResponse>;
 
 export type GetFlowExecutionRequestParametersHydrateEnum = "debug";
-export const GetFlowExecutionRequestParametersHydrateEnum =
-  /*@__PURE__*/ S.String;
+export const GetFlowExecutionRequestParametersHydrateEnum = S.String;
 
 export type GetFlowsExecutionRequestHydrateList = Array<
   GetFlowExecutionRequestParametersHydrateEnum | (string & {})
@@ -26876,7 +26820,7 @@ export type GetFlowsExecutionsResponseContent =
   | ListFlowExecutionsOffsetPaginatedResponseContent
   | ListFlowExecutionsPaginatedResponseContent;
 export const GetFlowsExecutionsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetFlowsExecutionsResponseContent>;
+  S.Unknown as any as S.Schema<GetFlowsExecutionsResponseContent>;
 
 export type GetFlowsExecutionsResponse = GetFlowsExecutionsResponseContent;
 export const GetFlowsExecutionsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -27031,7 +26975,7 @@ export type ListFlowsVaultConnectionsResponseContent =
   | ListFlowsVaultConnectionsResponseContentCase0List
   | ListFlowsVaultConnectionsOffsetPaginatedResponseContent;
 export const ListFlowsVaultConnectionsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFlowsVaultConnectionsResponseContent>;
+  S.Unknown as any as S.Schema<ListFlowsVaultConnectionsResponseContent>;
 
 export type GetFlowsVaultConnectionsResponse =
   ListFlowsVaultConnectionsResponseContent;
@@ -27042,7 +26986,7 @@ export const GetFlowsVaultConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFlowsVaultConnectionsResponse>;
 
 export type FormsRequestParametersHydrateEnum = "flow_count" | "links";
-export const FormsRequestParametersHydrateEnum = /*@__PURE__*/ S.String;
+export const FormsRequestParametersHydrateEnum = S.String;
 
 export type GetFormRequestHydrateList = Array<
   FormsRequestParametersHydrateEnum | (string & {})
@@ -27180,7 +27124,7 @@ export type ListFormsResponseContent =
   | ListFormsResponseContentCase0List
   | ListFormsOffsetPaginatedResponseContent;
 export const ListFormsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListFormsResponseContent>;
+  S.Unknown as any as S.Schema<ListFormsResponseContent>;
 
 export type GetFormsResponse = ListFormsResponseContent;
 export const GetFormsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -27283,7 +27227,7 @@ export type ListUserGrantsResponseContent =
   | ListUserGrantsResponseContentCase0List
   | ListUserGrantsOffsetPaginatedResponseContent;
 export const ListUserGrantsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserGrantsResponseContent>;
+  S.Unknown as any as S.Schema<ListUserGrantsResponseContent>;
 
 export type GetGrantsResponse = ListUserGrantsResponseContent;
 export const GetGrantsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -27361,11 +27305,11 @@ export const GetGroupMembersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the member. */
 export type GroupMemberTypeEnum = "user" | "group";
-export const GroupMemberTypeEnum = /*@__PURE__*/ S.String;
+export const GroupMemberTypeEnum = S.String;
 
 /** Type of the group. */
 export type GroupTypeEnum = "connection" | "organization" | "tenant";
-export const GroupTypeEnum = /*@__PURE__*/ S.String;
+export const GroupTypeEnum = S.String;
 
 /** Represents the metadata of a group membership. */
 export interface GroupMember {
@@ -27571,7 +27515,7 @@ export type ListGroupsResponseContent =
   | ListGroupsResponseContentCase0List
   | ListGroupsPaginatedResponseContent;
 export const ListGroupsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListGroupsResponseContent>;
+  S.Unknown as any as S.Schema<ListGroupsResponseContent>;
 
 export type GetGroupsResponse = ListGroupsResponseContent;
 export const GetGroupsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -27597,7 +27541,7 @@ export type GuardianFactorsProviderSmsProviderEnum =
   | "auth0"
   | "twilio"
   | "phone-message-hook";
-export const GuardianFactorsProviderSmsProviderEnum = /*@__PURE__*/ S.String;
+export const GuardianFactorsProviderSmsProviderEnum = S.String;
 
 export interface GetGuardianFactorsProviderPhoneResponseContent {
   provider?: GuardianFactorsProviderSmsProviderEnum;
@@ -27734,7 +27678,7 @@ export type ListHooksResponseContent =
   | ListHooksResponseContentCase0List
   | ListHooksOffsetPaginatedResponseContent;
 export const ListHooksResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListHooksResponseContent>;
+  S.Unknown as any as S.Schema<ListHooksResponseContent>;
 
 export type GetHooksResponse = ListHooksResponseContent;
 export const GetHooksResponse = /*@__PURE__*/ S.suspend(() =>
@@ -27889,7 +27833,7 @@ export type ListOrganizationInvitationsResponseContent =
   | ListOrganizationInvitationsResponseContentCase0List
   | ListOrganizationInvitationsOffsetPaginatedResponseContent;
 export const ListOrganizationInvitationsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationInvitationsResponseContent>;
+  S.Unknown as any as S.Schema<ListOrganizationInvitationsResponseContent>;
 
 export type GetInvitationsResponse = ListOrganizationInvitationsResponseContent;
 export const GetInvitationsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -28010,7 +27954,7 @@ export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Format of the file. Must be `json` or `csv`. */
 export type JobFileFormatEnum = "json" | "csv";
-export const JobFileFormatEnum = /*@__PURE__*/ S.String;
+export const JobFileFormatEnum = S.String;
 
 /** Job execution summary. */
 export interface GetJobSummary {
@@ -28084,7 +28028,7 @@ export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Signing key use, whether for encryption or signing */
 export type ConnectionKeyUseEnum = "encryption" | "signing";
-export const ConnectionKeyUseEnum = /*@__PURE__*/ S.String;
+export const ConnectionKeyUseEnum = S.String;
 
 export interface ConnectionKey {
   /** The key id of the signing key */
@@ -28169,7 +28113,7 @@ export const LogDateObject = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<LogDateObject>;
 
 export type LogDate = string | LogDateObject;
-export const LogDate = /*@__PURE__*/ S.Unknown as any as S.Schema<LogDate>;
+export const LogDate = S.Unknown as any as S.Schema<LogDate>;
 
 /** Additional useful details about this event (structure is dependent upon event type). */
 export type LogDetails = { [key: string]: unknown | undefined };
@@ -28431,7 +28375,7 @@ export type ListLogResponseContent =
   | ListLogResponseContentCase0List
   | ListLogOffsetPaginatedResponseContent;
 export const ListLogResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListLogResponseContent>;
+  S.Unknown as any as S.Schema<ListLogResponseContent>;
 
 export type GetLogsResponse = ListLogResponseContent;
 export const GetLogsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -28499,7 +28443,7 @@ export type UserListLogResponseContent =
   | UserListLogResponseContentCase0List
   | UserListLogOffsetPaginatedResponseContent;
 export const UserListLogResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserListLogResponseContent>;
+  S.Unknown as any as S.Schema<UserListLogResponseContent>;
 
 export type GetLogsByUserResponse = UserListLogResponseContent;
 export const GetLogsByUserResponse = /*@__PURE__*/ S.suspend(() =>
@@ -28530,7 +28474,7 @@ export type GetLogStreamResponseContent =
   | LogStreamSegmentResponseSchema
   | LogStreamMixpanelResponseSchema;
 export const GetLogStreamResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetLogStreamResponseContent>;
+  S.Unknown as any as S.Schema<GetLogStreamResponseContent>;
 
 export type GetLogStreamResponse = GetLogStreamResponseContent;
 export const GetLogStreamResponse = /*@__PURE__*/ S.suspend(() =>
@@ -28556,7 +28500,7 @@ export type LogStreamResponseSchema =
   | LogStreamSegmentResponseSchema
   | LogStreamMixpanelResponseSchema;
 export const LogStreamResponseSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogStreamResponseSchema>;
+  S.Unknown as any as S.Schema<LogStreamResponseSchema>;
 
 export type GetLogStreamsResponseBodyList = Array<LogStreamResponseSchema>;
 export const GetLogStreamsResponseBodyList = /*@__PURE__*/ S.Array(
@@ -28584,7 +28528,7 @@ export const GetMessageTypesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMessageTypesRequest>;
 
 export type GuardianFactorPhoneFactorMessageTypeEnum = "sms" | "voice";
-export const GuardianFactorPhoneFactorMessageTypeEnum = /*@__PURE__*/ S.String;
+export const GuardianFactorPhoneFactorMessageTypeEnum = S.String;
 
 /** The list of phone factors to enable on the tenant. Can include `sms` and `voice`. */
 export type GetGuardianFactorPhoneMessageTypesResponseContentMessageTypesList =
@@ -28822,7 +28766,7 @@ export type ListNetworkAclsResponseContent =
   | ListNetworkAclsOffsetPaginatedResponseContent
   | ListNetworkAclsResponseContentCase1List;
 export const ListNetworkAclsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListNetworkAclsResponseContent>;
+  S.Unknown as any as S.Schema<ListNetworkAclsResponseContent>;
 
 export type GetNetworkAclsResponse = ListNetworkAclsResponseContent;
 export const GetNetworkAclsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -29055,7 +28999,7 @@ export type ListOrganizationClientGrantsResponseContent =
   | ListOrganizationClientGrantsResponseContentCase0List
   | ListOrganizationClientGrantsOffsetPaginatedResponseContent;
 export const ListOrganizationClientGrantsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationClientGrantsResponseContent>;
+  S.Unknown as any as S.Schema<ListOrganizationClientGrantsResponseContent>;
 
 export type GetOrganizationClientGrantsResponse =
   ListOrganizationClientGrantsResponseContent;
@@ -29261,7 +29205,7 @@ export type ListOrganizationAllConnectionsResponseContent =
   | ListOrganizationAllConnectionsResponseContentCase0List
   | ListOrganizationAllConnectionsOffsetPaginatedResponseContent;
 export const ListOrganizationAllConnectionsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationAllConnectionsResponseContent>;
+  S.Unknown as any as S.Schema<ListOrganizationAllConnectionsResponseContent>;
 
 export type GetOrganizationConnectionsResponse =
   ListOrganizationAllConnectionsResponseContent;
@@ -29393,7 +29337,7 @@ export const GetOrganizationMemberEffectiveRolesRequest =
   }) as any as S.Schema<GetOrganizationMemberEffectiveRolesRequest>;
 
 export type OrganizationMemberEffectiveRoleSource = "direct" | "groups";
-export const OrganizationMemberEffectiveRoleSource = /*@__PURE__*/ S.String;
+export const OrganizationMemberEffectiveRoleSource = S.String;
 
 /** Sources of the role assignment (direct or through group membership) */
 export type OrganizationMemberEffectiveRoleSourcesList =
@@ -29512,7 +29456,7 @@ export type ListOrganizationMemberRolesResponseContent =
   | ListOrganizationMemberRolesResponseContentCase0List
   | ListOrganizationMemberRolesOffsetPaginatedResponseContent;
 export const ListOrganizationMemberRolesResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationMemberRolesResponseContent>;
+  S.Unknown as any as S.Schema<ListOrganizationMemberRolesResponseContent>;
 
 export type GetOrganizationMemberRolesResponse =
   ListOrganizationMemberRolesResponseContent;
@@ -29715,7 +29659,7 @@ export type ListOrganizationMembersResponseContent =
   | ListOrganizationMembersOffsetPaginatedResponseContent
   | ListOrganizationMembersPaginatedResponseContent;
 export const ListOrganizationMembersResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationMembersResponseContent>;
+  S.Unknown as any as S.Schema<ListOrganizationMembersResponseContent>;
 
 export type GetOrganizationMembersResponse =
   ListOrganizationMembersResponseContent;
@@ -29995,7 +29939,7 @@ export type ListOrganizationsResponseContent =
   | ListOrganizationsOffsetPaginatedResponseContent
   | ListOrganizationsPaginatedResponseContent;
 export const ListOrganizationsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationsResponseContent>;
+  S.Unknown as any as S.Schema<ListOrganizationsResponseContent>;
 
 export type GetOrganizationsResponse = ListOrganizationsResponseContent;
 export const GetOrganizationsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -30133,7 +30077,7 @@ export type GetPartialsRequestPrompt =
   | "customized-consent"
   | "passkeys"
   | "confirmation";
-export const GetPartialsRequestPrompt = /*@__PURE__*/ S.String;
+export const GetPartialsRequestPrompt = S.String;
 
 export interface GetPartialsRequest {
   /** Name of the prompt. */
@@ -30245,7 +30189,7 @@ export type ListUserPermissionsResponseContent =
   | ListUserPermissionsResponseContentCase0List
   | ListUserPermissionsOffsetPaginatedResponseContent;
 export const ListUserPermissionsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserPermissionsResponseContent>;
+  S.Unknown as any as S.Schema<ListUserPermissionsResponseContent>;
 
 export type GetPermissionsResponse = ListUserPermissionsResponseContent;
 export const GetPermissionsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -30315,8 +30259,7 @@ export const GetPhoneProviderProtectionRequest = /*@__PURE__*/ S.suspend(() =>
 export type PhoneProviderProtectionBackoffStrategyEnum =
   | "exponential"
   | "default";
-export const PhoneProviderProtectionBackoffStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const PhoneProviderProtectionBackoffStrategyEnum = S.String;
 
 export interface GetPhoneProviderProtectionResponseContent {
   type: PhoneProviderProtectionBackoffStrategyEnum;
@@ -30473,8 +30416,7 @@ export type GuardianFactorsProviderPushNotificationProviderDataEnum =
   | "guardian"
   | "sns"
   | "direct";
-export const GuardianFactorsProviderPushNotificationProviderDataEnum =
-  /*@__PURE__*/ S.String;
+export const GuardianFactorsProviderPushNotificationProviderDataEnum = S.String;
 
 export interface GetGuardianFactorsProviderPushNotificationResponseContent {
   provider?: GuardianFactorsProviderPushNotificationProviderDataEnum;
@@ -30501,7 +30443,7 @@ export const GetPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The MFA policy */
 export type MFAPolicyEnum = "all-applications" | "confidence-score";
-export const MFAPolicyEnum = /*@__PURE__*/ S.String;
+export const MFAPolicyEnum = S.String;
 
 export type ListGuardianPoliciesResponseContent = Array<MFAPolicyEnum>;
 export const ListGuardianPoliciesResponseContent = /*@__PURE__*/ S.Array(
@@ -30524,7 +30466,7 @@ export const GetPromptsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Which login experience to use. Can be `new` or `classic`. */
 export type UniversalLoginExperienceEnum = "new" | "classic";
-export const UniversalLoginExperienceEnum = /*@__PURE__*/ S.String;
+export const UniversalLoginExperienceEnum = S.String;
 
 export interface GetSettingsResponseContent {
   universal_login_experience?: UniversalLoginExperienceEnum;
@@ -30748,8 +30690,7 @@ export const RefreshTokenDateObject = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<RefreshTokenDateObject>;
 
 export type RefreshTokenDate = string | RefreshTokenDateObject;
-export const RefreshTokenDate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RefreshTokenDate>;
+export const RefreshTokenDate = S.Unknown as any as S.Schema<RefreshTokenDate>;
 
 /** Device used while issuing/exchanging the refresh token */
 export interface RefreshTokenDevice {
@@ -31036,7 +30977,7 @@ export type GetRenderingRequestPrompt =
   | "brute-force-protection"
   | "async-approval-flow"
   | "confirmation";
-export const GetRenderingRequestPrompt = /*@__PURE__*/ S.String;
+export const GetRenderingRequestPrompt = S.String;
 
 /** Name of the screen */
 export type GetRenderingRequestScreen =
@@ -31130,7 +31071,7 @@ export type GetRenderingRequestScreen =
   | "async-approval-denied"
   | "confirmation"
   | "async-approval-wrong-user";
-export const GetRenderingRequestScreen = /*@__PURE__*/ S.String;
+export const GetRenderingRequestScreen = S.String;
 
 export interface GetRenderingRequest {
   /** Name of the prompt */
@@ -31444,7 +31385,7 @@ export type ListResourceServerResponseContent =
   | ListResourceServerResponseContentCase0List
   | ListResourceServerOffsetPaginatedResponseContent;
 export const ListResourceServerResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListResourceServerResponseContent>;
+  S.Unknown as any as S.Schema<ListResourceServerResponseContent>;
 
 export type GetResourceServersResponse = ListResourceServerResponseContent;
 export const GetResourceServersResponse = /*@__PURE__*/ S.suspend(() =>
@@ -31625,7 +31566,7 @@ export type ListRolePermissionsResponseContent =
   | ListRolePermissionsResponseContentCase0List
   | ListRolePermissionsOffsetPaginatedResponseContent;
 export const ListRolePermissionsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRolePermissionsResponseContent>;
+  S.Unknown as any as S.Schema<ListRolePermissionsResponseContent>;
 
 export type GetRolePermissionResponse = ListRolePermissionsResponseContent;
 export const GetRolePermissionResponse = /*@__PURE__*/ S.suspend(() =>
@@ -31721,7 +31662,7 @@ export type ListRolesResponseContent =
   | ListRolesOffsetPaginatedResponseContent
   | ListRolesCheckpointPaginatedResponseContent;
 export const ListRolesResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRolesResponseContent>;
+  S.Unknown as any as S.Schema<ListRolesResponseContent>;
 
 export type GetRolesResponse = ListRolesResponseContent;
 export const GetRolesResponse = /*@__PURE__*/ S.suspend(() =>
@@ -31815,7 +31756,7 @@ export type ListRoleUsersResponseContent =
   | ListRoleUsersOffsetPaginatedResponseContent
   | ListRoleUsersPaginatedResponseContent;
 export const ListRoleUsersResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRoleUsersResponseContent>;
+  S.Unknown as any as S.Schema<ListRoleUsersResponseContent>;
 
 export type GetRoleUserResponse = ListRoleUsersResponseContent;
 export const GetRoleUserResponse = /*@__PURE__*/ S.suspend(() =>
@@ -31952,7 +31893,7 @@ export type ListRulesResponseContent =
   | ListRulesResponseContentCase0List
   | ListRulesOffsetPaginatedResponseContent;
 export const ListRulesResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRulesResponseContent>;
+  S.Unknown as any as S.Schema<ListRulesResponseContent>;
 
 export type GetRulesResponse = ListRulesResponseContent;
 export const GetRulesResponse = /*@__PURE__*/ S.suspend(() =>
@@ -32182,7 +32123,7 @@ export const GetSegmentResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** Filter by type. Exact match. */
 export type SegmentTypeFilterEnum = "auth0" | "self";
-export const SegmentTypeFilterEnum = /*@__PURE__*/ S.String;
+export const SegmentTypeFilterEnum = S.String;
 
 export interface GetSegmentsRequest {
   /** Optional Id from which to start selection. */
@@ -32321,13 +32262,11 @@ export const GetSelfServiceProfileResponseContent = /*@__PURE__*/ S.suspend(
 
 /** The language of the custom text. */
 export type GetSelfServiceProfileCustomTextRequestLanguage = "en";
-export const GetSelfServiceProfileCustomTextRequestLanguage =
-  /*@__PURE__*/ S.String;
+export const GetSelfServiceProfileCustomTextRequestLanguage = S.String;
 
 /** The page where the custom text is shown. */
 export type GetSelfServiceProfileCustomTextRequestPage = "get-started";
-export const GetSelfServiceProfileCustomTextRequestPage =
-  /*@__PURE__*/ S.String;
+export const GetSelfServiceProfileCustomTextRequestPage = S.String;
 
 export interface GetSelfServiceProfileCustomTextRequest {
   /** The id of the self-service profile. */
@@ -32478,7 +32417,7 @@ export type ListSelfServiceProfilesResponseContent =
   | ListSelfServiceProfilesResponseContentCase0List
   | ListSelfServiceProfilesPaginatedResponseContent;
 export const ListSelfServiceProfilesResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSelfServiceProfilesResponseContent>;
+  S.Unknown as any as S.Schema<ListSelfServiceProfilesResponseContent>;
 
 export type GetSelfServiceProfilesResponse =
   ListSelfServiceProfilesResponseContent;
@@ -32508,8 +32447,7 @@ export const SessionDateCase1Map = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<SessionDateCase1Map>;
 
 export type SessionDate = string | SessionDateCase1Map;
-export const SessionDate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SessionDate>;
+export const SessionDate = S.Unknown as any as S.Schema<SessionDate>;
 
 /** Metadata related to the device used in the session */
 export interface SessionDeviceMetadata {
@@ -32596,7 +32534,7 @@ export const SessionAuthenticationSignals = /*@__PURE__*/ S.suspend(() =>
 
 /** [Private Early Access] The persistence mode of the session cookie. When set to "non-persistent" (ephemeral), the cookie will be deleted when the browser is closed. When set to "persistent", the cookie will be stored until it expires or is deleted by the user. */
 export type SessionCookieMetadataModeEnum = "non-persistent" | "persistent";
-export const SessionCookieMetadataModeEnum = /*@__PURE__*/ S.String;
+export const SessionCookieMetadataModeEnum = S.String;
 
 /** [Private Early Access] Session cookie configuration. */
 export interface SessionCookieMetadata {
@@ -32783,8 +32721,7 @@ export const SigningKeysDateCase1Map = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<SigningKeysDateCase1Map>;
 
 export type SigningKeysDate = string | SigningKeysDateCase1Map;
-export const SigningKeysDate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SigningKeysDate>;
+export const SigningKeysDate = S.Unknown as any as S.Schema<SigningKeysDate>;
 
 export interface GetSigningKeysResponseContent {
   /** The key id of the signing key */
@@ -33035,7 +32972,7 @@ export const GetSuspiciousIpThrottlingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSuspiciousIpThrottlingRequest>;
 
 export type SuspiciousIPThrottlingShieldsEnum = "block" | "admin_notification";
-export const SuspiciousIPThrottlingShieldsEnum = /*@__PURE__*/ S.String;
+export const SuspiciousIPThrottlingShieldsEnum = S.String;
 
 /** Action to take when a suspicious IP throttling threshold is violated. Possible values: <code>block</code>, <code>admin_notification</code>. */
 export type GetSuspiciousIPThrottlingSettingsResponseContentShieldsList =
@@ -33380,7 +33317,7 @@ export type GetUniversalLoginTemplateResponseContent =
   | GetUniversalLoginTemplate
   | string;
 export const GetUniversalLoginTemplateResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetUniversalLoginTemplateResponseContent>;
+  S.Unknown as any as S.Schema<GetUniversalLoginTemplateResponseContent>;
 
 export type GetUniversalLoginResponse =
   GetUniversalLoginTemplateResponseContent;
@@ -33813,7 +33750,7 @@ export const GetUserEffectivePermissionRoleSourcesRequest =
 
 /** The source type of a user effective permission roles. */
 export type UserEffectivePermissionRoleSourceEnum = "direct" | "groups";
-export const UserEffectivePermissionRoleSourceEnum = /*@__PURE__*/ S.String;
+export const UserEffectivePermissionRoleSourceEnum = S.String;
 
 /** List of sources where this role is coming from. */
 export type UserEffectivePermissionRoleSourceResponseContentSourcesList =
@@ -33905,7 +33842,7 @@ export const GetUserEffectivePermissionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The source type of a user effective permission. */
 export type UserEffectivePermissionSourceEnum = "direct" | "roles";
-export const UserEffectivePermissionSourceEnum = /*@__PURE__*/ S.String;
+export const UserEffectivePermissionSourceEnum = S.String;
 
 /** List of sources where this permission is coming from. */
 export type UserEffectivePermissionResponseContentSourcesList =
@@ -33985,7 +33922,7 @@ export const GetUserEffectiveRolesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUserEffectiveRolesRequest>;
 
 export type UserEffectiveRoleSource = "direct" | "groups";
-export const UserEffectiveRoleSource = /*@__PURE__*/ S.String;
+export const UserEffectiveRoleSource = S.String;
 
 /** Sources of the role assignment (direct or through group membership) */
 export type UserEffectiveRoleSourcesList = Array<UserEffectiveRoleSource>;
@@ -34140,7 +34077,7 @@ export type GetUserGroupsResponseContent =
   | GetUserGroupsResponseContentCase0List
   | GetUserGroupsPaginatedResponseContent;
 export const GetUserGroupsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetUserGroupsResponseContent>;
+  S.Unknown as any as S.Schema<GetUserGroupsResponseContent>;
 
 export type GetUserGroupsResponse = GetUserGroupsResponseContent;
 export const GetUserGroupsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -34240,7 +34177,7 @@ export type ListUserOrganizationsResponseContent =
   | ListUserOrganizationsOffsetPaginatedResponseContent
   | ListUserOrganizationsPaginatedResponseContent;
 export const ListUserOrganizationsResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserOrganizationsResponseContent>;
+  S.Unknown as any as S.Schema<ListUserOrganizationsResponseContent>;
 
 export type GetUserOrganizationsResponse = ListUserOrganizationsResponseContent;
 export const GetUserOrganizationsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -34303,7 +34240,7 @@ export type ListUserRolesResponseContent =
   | ListUserRolesResponseContentCase0List
   | ListUserRolesOffsetPaginatedResponseContent;
 export const ListUserRolesResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUserRolesResponseContent>;
+  S.Unknown as any as S.Schema<ListUserRolesResponseContent>;
 
 export type GetUserRolesResponse = ListUserRolesResponseContent;
 export const GetUserRolesResponse = /*@__PURE__*/ S.suspend(() =>
@@ -34362,7 +34299,7 @@ export const ListUserRoleSourceGroupsResponseContent = /*@__PURE__*/ S.suspend(
 
 /** The version of the search engine */
 export type SearchEngineVersionsEnum = "v1" | "v2" | "v3";
-export const SearchEngineVersionsEnum = /*@__PURE__*/ S.String;
+export const SearchEngineVersionsEnum = S.String;
 
 export interface GetUsersRequest {
   /** Page index of the results to return. First page is 0. */
@@ -34527,7 +34464,7 @@ export type ListUsersResponseContent =
   | ListUsersResponseContentCase0List
   | ListUsersOffsetPaginatedResponseContent;
 export const ListUsersResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListUsersResponseContent>;
+  S.Unknown as any as S.Schema<ListUsersResponseContent>;
 
 export type GetUsersResponse = ListUsersResponseContent;
 export const GetUsersResponse = /*@__PURE__*/ S.suspend(() =>
@@ -35134,7 +35071,7 @@ export type CreatedAuthenticationMethodTypeEnum =
   | "email"
   | "totp"
   | "webauthn-roaming";
-export const CreatedAuthenticationMethodTypeEnum = /*@__PURE__*/ S.String;
+export const CreatedAuthenticationMethodTypeEnum = S.String;
 
 export type UpdateUserAuthenticationMethodResponseContentAuthenticationMethodsList =
   Array<UserAuthenticationMethodProperties>;
@@ -35213,14 +35150,14 @@ export type PatchBindingsRequestTriggerId =
   | "password-hash-migration"
   | "login-post-identifier"
   | "signup-post-identifier";
-export const PatchBindingsRequestTriggerId = /*@__PURE__*/ S.String;
+export const PatchBindingsRequestTriggerId = S.String;
 
 /** How the action is being referred to: `action_id` or `action_name`. */
 export type ActionBindingRefTypeEnum =
   | "binding_id"
   | "action_id"
   | "action_name";
-export const ActionBindingRefTypeEnum = /*@__PURE__*/ S.String;
+export const ActionBindingRefTypeEnum = S.String;
 
 /** A reference to an action. An action can be referred to by ID or by Name. */
 export interface ActionBindingRef {
@@ -35591,7 +35528,7 @@ export type PromptGroupNameEnum =
   | "brute-force-protection"
   | "async-approval-flow"
   | "confirmation";
-export const PromptGroupNameEnum = /*@__PURE__*/ S.String;
+export const PromptGroupNameEnum = S.String;
 
 /** Name of the screen */
 export type ScreenGroupNameEnum =
@@ -35685,7 +35622,7 @@ export type ScreenGroupNameEnum =
   | "async-approval-denied"
   | "confirmation"
   | "async-approval-wrong-user";
-export const ScreenGroupNameEnum = /*@__PURE__*/ S.String;
+export const ScreenGroupNameEnum = S.String;
 
 /** An array of head tags */
 export type AculConfigsItemHeadTagsList = Array<AculHeadTag>;
@@ -35759,7 +35696,7 @@ export type AttackProtectionCaptchaProviderId =
   | "recaptcha_v2"
   | "recaptcha_enterprise"
   | "simple_captcha";
-export const AttackProtectionCaptchaProviderId = /*@__PURE__*/ S.String;
+export const AttackProtectionCaptchaProviderId = S.String;
 
 export interface AttackProtectionUpdateCaptchaArkose {
   /** The site key for the Arkose captcha provider. */
@@ -36069,7 +36006,7 @@ export type UpdateDefaultDomainResponseContent =
   | CustomDomain
   | GetDefaultCanonicalDomainResponseContent;
 export const UpdateDefaultDomainResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDefaultDomainResponseContent>;
+  S.Unknown as any as S.Schema<UpdateDefaultDomainResponseContent>;
 
 export type PatchDefaultResponse = UpdateDefaultDomainResponseContent;
 export const PatchDefaultResponse = /*@__PURE__*/ S.suspend(() =>
@@ -36451,7 +36388,7 @@ export type EmailProviderNameEnum =
   | "azure_cs"
   | "ms365"
   | "custom";
-export const EmailProviderNameEnum = /*@__PURE__*/ S.String;
+export const EmailProviderNameEnum = S.String;
 
 export interface EmailProviderCredentialsSchemaCase0 {
   /** API Key */
@@ -36505,7 +36442,7 @@ export const EmailProviderCredentialsSchemaCase2 = /*@__PURE__*/ S.suspend(() =>
 
 /** Set to <code>eu</code> to use SparkPost service hosted in Western Europe. To use SparkPost hosted in North America, set it to <code>null</code>. */
 export type EmailSparkPostRegionEnum = "eu";
-export const EmailSparkPostRegionEnum = /*@__PURE__*/ S.String;
+export const EmailSparkPostRegionEnum = S.String;
 
 export interface EmailProviderCredentialsSchemaCase3 {
   /** API Key */
@@ -36523,7 +36460,7 @@ export const EmailProviderCredentialsSchemaCase3 = /*@__PURE__*/ S.suspend(() =>
 
 /** Set to <code>eu</code> if your domain is provisioned to use Mailgun's EU region. Otherwise, set to <code>null</code>. */
 export type EmailMailgunRegionEnum = "eu";
-export const EmailMailgunRegionEnum = /*@__PURE__*/ S.String;
+export const EmailMailgunRegionEnum = S.String;
 
 export interface EmailProviderCredentialsSchemaCase4 {
   /** API Key */
@@ -36583,7 +36520,7 @@ export type EmailProviderCredentialsSchema =
   | EmailProviderCredentialsSchemaCase6
   | unknown;
 export const EmailProviderCredentialsSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmailProviderCredentialsSchema>;
+  S.Unknown as any as S.Schema<EmailProviderCredentialsSchema>;
 
 /** Specific provider setting */
 export type EmailSpecificProviderSettingsWithAdditionalProperties = {
@@ -36679,7 +36616,7 @@ export type PatchRenderingRequestPrompt =
   | "brute-force-protection"
   | "async-approval-flow"
   | "confirmation";
-export const PatchRenderingRequestPrompt = /*@__PURE__*/ S.String;
+export const PatchRenderingRequestPrompt = S.String;
 
 /** Name of the screen */
 export type PatchRenderingRequestScreen =
@@ -36773,7 +36710,7 @@ export type PatchRenderingRequestScreen =
   | "async-approval-denied"
   | "confirmation"
   | "async-approval-wrong-user";
-export const PatchRenderingRequestScreen = /*@__PURE__*/ S.String;
+export const PatchRenderingRequestScreen = S.String;
 
 /** An array of head tags */
 export type PatchRenderingRequestHeadTagsList = Array<AculHeadTag>;
@@ -36969,7 +36906,7 @@ export const TenantSettingsPasswordPage = /*@__PURE__*/ S.suspend(() =>
 
 /** Character set used to generate a User Code. Can be `base20` or `digits`. */
 export type TenantSettingsDeviceFlowCharset = "base20" | "digits";
-export const TenantSettingsDeviceFlowCharset = /*@__PURE__*/ S.String;
+export const TenantSettingsDeviceFlowCharset = S.String;
 
 /** Device Flow configuration */
 export interface TenantSettingsDeviceFlow {
@@ -37224,7 +37161,7 @@ export type TenantSettingsSupportedLocalesEnum =
   | "zh-HK"
   | "zh-MO"
   | "zh-TW";
-export const TenantSettingsSupportedLocalesEnum = /*@__PURE__*/ S.String;
+export const TenantSettingsSupportedLocalesEnum = S.String;
 
 /** Supported locales for the user interface */
 export type PatchSettingsRequestEnabledLocalesList = Array<
@@ -37236,7 +37173,7 @@ export const PatchSettingsRequestEnabledLocalesList = /*@__PURE__*/ S.Array(
 
 /** Policy mode: enforcing or reporting. */
 export type CspPolicyMode = "enforcing" | "reporting";
-export const CspPolicyMode = /*@__PURE__*/ S.String;
+export const CspPolicyMode = S.String;
 
 export type CspDirectivesValueList = Array<string>;
 export const CspDirectivesValueList = /*@__PURE__*/ S.Array(
@@ -37253,7 +37190,7 @@ export const CspDirectives = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CspDirectives>;
 
 export type CspFlag = "upgrade-insecure-requests" | "block-all-mixed-content";
-export const CspFlag = /*@__PURE__*/ S.String;
+export const CspFlag = S.String;
 
 /** CSP flags (bare directives without values). */
 export type CspFlags = Array<CspFlag | (string & {})>;
@@ -37374,7 +37311,7 @@ export const ContentSecurityPolicyConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** X-XSS-Protection mode: block. */
 export type XssProtectionMode = "block";
-export const XssProtectionMode = /*@__PURE__*/ S.String;
+export const XssProtectionMode = S.String;
 
 /** X-XSS-Protection header configuration (deprecated header, use CSP instead). */
 export interface XssProtectionConfig {
@@ -37413,7 +37350,7 @@ export const TenantSettingsNullableSecurityHeaders = /*@__PURE__*/ S.suspend(
 
 /** Behavior of the session cookie */
 export type SessionCookieModeEnum = "persistent" | "non-persistent";
-export const SessionCookieModeEnum = /*@__PURE__*/ S.String;
+export const SessionCookieModeEnum = S.String;
 
 /** Session cookie configuration */
 export interface SessionCookieSchema {
@@ -37476,14 +37413,13 @@ export const TenantSettingsMTLS = /*@__PURE__*/ S.suspend(() =>
 export type TenantSettingsResourceParameterProfile =
   | "audience"
   | "compatibility";
-export const TenantSettingsResourceParameterProfile = /*@__PURE__*/ S.String;
+export const TenantSettingsResourceParameterProfile = S.String;
 
 /** Sets the `third_party_security_mode` assigned to clients created via Dynamic Client Registration. `strict` applies enhanced security controls. `permissive` preserves <a href="https://auth0.com/docs/get-started/applications/third-party-applications/permissive-mode#dynamic-client-registration-in-permissive-mode">pre-existing behavior</a> and is only available to tenants with prior third-party client usage. */
 export type TenantSettingsDynamicClientRegistrationSecurityMode =
   | "strict"
   | "permissive";
-export const TenantSettingsDynamicClientRegistrationSecurityMode =
-  /*@__PURE__*/ S.String;
+export const TenantSettingsDynamicClientRegistrationSecurityMode = S.String;
 
 /** Array of ISO 3166-1 alpha-2 country codes. */
 export type TenantSettingsCountryCodesListList = Array<string>;
@@ -37493,7 +37429,7 @@ export const TenantSettingsCountryCodesListList = /*@__PURE__*/ S.Array(
 
 /** Whether the list is an allowlist or denylist. */
 export type TenantSettingsCountryCodesMode = "allow" | "deny";
-export const TenantSettingsCountryCodesMode = /*@__PURE__*/ S.String;
+export const TenantSettingsCountryCodesMode = S.String;
 
 /** Phone country code configuration for identifier input. */
 export interface TenantSettingsCountryCodes {
@@ -37752,7 +37688,7 @@ export type SupportedLocales =
   | "zh-HK"
   | "zh-MO"
   | "zh-TW";
-export const SupportedLocales = /*@__PURE__*/ S.String;
+export const SupportedLocales = S.String;
 
 /** Supported locales for the user interface. */
 export type UpdateTenantSettingsResponseContentEnabledLocalesList =
@@ -37778,7 +37714,7 @@ export const TenantSettingsCountryCodesResponseListList = /*@__PURE__*/ S.Array(
 
 /** Whether the list is an allowlist or denylist. */
 export type TenantSettingsCountryCodesModeResponse = "allow" | "deny";
-export const TenantSettingsCountryCodesModeResponse = /*@__PURE__*/ S.String;
+export const TenantSettingsCountryCodesModeResponse = S.String;
 
 /** Phone country code configuration for identifier input. */
 export interface TenantSettingsCountryCodesResponse {
@@ -38256,11 +38192,11 @@ export type CreatedUserAuthenticationMethodTypeEnum =
   | "totp"
   | "webauthn-roaming"
   | "passkey";
-export const CreatedUserAuthenticationMethodTypeEnum = /*@__PURE__*/ S.String;
+export const CreatedUserAuthenticationMethodTypeEnum = S.String;
 
 /** Applies to passkeys only. The kind of device the credential is stored on as defined by backup eligibility. "single_device" credentials cannot be backed up and synced to another device, "multi_device" credentials can be backed up if enabled by the end-user. */
 export type CredentialDeviceTypeEnum = "single_device" | "multi_device";
-export const CredentialDeviceTypeEnum = /*@__PURE__*/ S.String;
+export const CredentialDeviceTypeEnum = S.String;
 
 /** Applies to passkeys only. The transports used by clients to communicate with the authenticator. */
 export type PostAuthenticationMethodsRequestTransportsList = Array<string>;
@@ -38424,7 +38360,7 @@ export const CreateUserAuthenticationMethodResponseContent =
 
 /** Assessors to clear. */
 export type AssessorsTypeEnum = "new-device";
-export const AssessorsTypeEnum = /*@__PURE__*/ S.String;
+export const AssessorsTypeEnum = S.String;
 
 /** List of assessors to clear. */
 export type PostClearAssessorsRequestAssessorsList = Array<
@@ -38788,7 +38724,7 @@ export type IdentityProviderEnum =
   | "wordpress"
   | "yahoo"
   | "yandex";
-export const IdentityProviderEnum = /*@__PURE__*/ S.String;
+export const IdentityProviderEnum = S.String;
 
 /** This must be provided to verify primary social, enterprise and passwordless email identities. Also, is needed to verify secondary identities. */
 export interface Identity {
@@ -38907,7 +38843,7 @@ export const AddOrganizationConnectionResponseContent = /*@__PURE__*/ S.suspend(
 export type CreateEncryptionKeyType =
   | "customer-provided-root-key"
   | "tenant-encryption-key";
-export const CreateEncryptionKeyType = /*@__PURE__*/ S.String;
+export const CreateEncryptionKeyType = S.String;
 
 export interface PostEncryptionRequest {
   type: CreateEncryptionKeyType | (string & {});
@@ -39029,7 +38965,7 @@ export const PostEncryptionWrappingKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Encryption algorithm that shall be used to wrap your key material */
 export type EncryptionKeyPublicWrappingAlgorithm = "CKM_RSA_AES_KEY_WRAP";
-export const EncryptionKeyPublicWrappingAlgorithm = /*@__PURE__*/ S.String;
+export const EncryptionKeyPublicWrappingAlgorithm = S.String;
 
 export interface CreateEncryptionKeyPublicWrappingResponseContent {
   /** Public wrapping key in PEM format */
@@ -39248,7 +39184,7 @@ export type PostConnectionKeysAlgEnum =
   | "PS384"
   | "ES256"
   | "ES384";
-export const PostConnectionKeysAlgEnum = /*@__PURE__*/ S.String;
+export const PostConnectionKeysAlgEnum = S.String;
 
 export interface PostKeysRequest {
   /** ID of the connection */
@@ -39350,7 +39286,7 @@ export const PostMembersResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Identity provider name of the identity. Only `auth0` is supported */
 export type IdentityProviderOnlyAuth0Enum = "auth0";
-export const IdentityProviderOnlyAuth0Enum = /*@__PURE__*/ S.String;
+export const IdentityProviderOnlyAuth0Enum = S.String;
 
 /** The user's identity. If you set this value, you must also send the user_id parameter. */
 export interface ChangePasswordTicketIdentity {
@@ -39563,7 +39499,7 @@ export type EventStreamEventTypeEnum =
   | "user.created"
   | "user.deleted"
   | "user.updated";
-export const EventStreamEventTypeEnum = /*@__PURE__*/ S.String;
+export const EventStreamEventTypeEnum = S.String;
 
 /** Filter by event type */
 export type PostRedeliverRequestEventTypesList = Array<
@@ -39703,7 +39639,7 @@ export type RotateConnectionKeysSigningAlgEnum =
   | "PS384"
   | "ES256"
   | "ES384";
-export const RotateConnectionKeysSigningAlgEnum = /*@__PURE__*/ S.String;
+export const RotateConnectionKeysSigningAlgEnum = S.String;
 
 export interface PostRotateRequest {
   /** ID of the connection */
@@ -40227,7 +40163,7 @@ export type SelfServiceProfileSsoTicketIdpInitiatedClientProtocolEnum =
   | "wsfed"
   | "oauth2";
 export const SelfServiceProfileSsoTicketIdpInitiatedClientProtocolEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allows IdP-initiated login */
 export interface SelfServiceProfileSsoTicketIdpInitiatedOptions {
@@ -40345,8 +40281,7 @@ export type SelfServiceProfileSsoTicketDomainVerificationEnum =
   | "none"
   | "optional"
   | "required";
-export const SelfServiceProfileSsoTicketDomainVerificationEnum =
-  /*@__PURE__*/ S.String;
+export const SelfServiceProfileSsoTicketDomainVerificationEnum = S.String;
 
 /** List of domains that will be submitted for verification during the Self-Service Enterprise Configuration flow. */
 export type SelfServiceProfileSsoTicketDomainAliasesConfigPendingDomainsList =
@@ -40387,8 +40322,7 @@ export type SelfServiceProfileSsoTicketProvisioningScopeEnum =
   | "put:groups"
   | "patch:groups"
   | "delete:groups";
-export const SelfServiceProfileSsoTicketProvisioningScopeEnum =
-  /*@__PURE__*/ S.String;
+export const SelfServiceProfileSsoTicketProvisioningScopeEnum = S.String;
 
 /** The scopes of the SCIM tokens generated during the self-service flow. */
 export type SelfServiceProfileSsoTicketProvisioningConfigScopesList = Array<
@@ -40703,7 +40637,7 @@ export type EventStreamTestEventTypeEnum =
   | "user.created"
   | "user.deleted"
   | "user.updated";
-export const EventStreamTestEventTypeEnum = /*@__PURE__*/ S.String;
+export const EventStreamTestEventTypeEnum = S.String;
 
 /** The raw payload of the test event. */
 export type TestEventDataContent = { [key: string]: unknown | undefined };
@@ -40745,7 +40679,7 @@ export type GuardianEnrollmentFactorEnum =
   | "otp"
   | "webauthn-roaming"
   | "webauthn-platform";
-export const GuardianEnrollmentFactorEnum = /*@__PURE__*/ S.String;
+export const GuardianEnrollmentFactorEnum = S.String;
 
 export interface PostTicketRequest {
   /** user_id for the enrollment ticket */
@@ -41103,7 +41037,7 @@ export const SetGuardianFactorsProviderPushNotificationApnsResponseContent =
   }) as any as S.Schema<SetGuardianFactorsProviderPushNotificationApnsResponseContent>;
 
 export type AuthenticationTypeEnum = "phone" | "email" | "totp";
-export const AuthenticationTypeEnum = /*@__PURE__*/ S.String;
+export const AuthenticationTypeEnum = S.String;
 
 export interface SetUserAuthenticationMethods {
   type: AuthenticationTypeEnum | (string & {});
@@ -41313,7 +41247,7 @@ export type PutCustomTextByLanguageRequestPrompt =
   | "brute-force-protection"
   | "async-approval-flow"
   | "confirmation";
-export const PutCustomTextByLanguageRequestPrompt = /*@__PURE__*/ S.String;
+export const PutCustomTextByLanguageRequestPrompt = S.String;
 
 /** Language to update. */
 export type PutCustomTextByLanguageRequestLanguage =
@@ -41399,7 +41333,7 @@ export type PutCustomTextByLanguageRequestLanguage =
   | "zh-HK"
   | "zh-MO"
   | "zh-TW";
-export const PutCustomTextByLanguageRequestLanguage = /*@__PURE__*/ S.String;
+export const PutCustomTextByLanguageRequestLanguage = S.String;
 
 /** An object containing custom dictionaries for a group of screens. */
 export type SetsCustomTextsByLanguageRequestContent = {
@@ -41458,7 +41392,7 @@ export type PutEmailTemplateRequestTemplateName =
   | "change_password"
   | "password_reset"
   | "async_approval";
-export const PutEmailTemplateRequestTemplateName = /*@__PURE__*/ S.String;
+export const PutEmailTemplateRequestTemplateName = S.String;
 
 export interface PutEmailTemplateRequest {
   /** Template name. Can be `verify_email`, `verify_email_by_code`, `auth_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `async_approval`, `change_password` (legacy), or `password_reset` (legacy). */
@@ -41619,7 +41553,7 @@ export type PutFactorsByNameRequestName =
   | "webauthn-roaming"
   | "webauthn-platform"
   | "recovery-code";
-export const PutFactorsByNameRequestName = /*@__PURE__*/ S.String;
+export const PutFactorsByNameRequestName = S.String;
 
 export interface PutFactorsByNameRequest {
   /** Factor name. Can be `sms`, `push-notification`, `email`, `duo` `otp` `webauthn-roaming`, `webauthn-platform`, or `recovery-code`. */
@@ -41891,7 +41825,7 @@ export type PutPartialsRequestPrompt =
   | "customized-consent"
   | "passkeys"
   | "confirmation";
-export const PutPartialsRequestPrompt = /*@__PURE__*/ S.String;
+export const PutPartialsRequestPrompt = S.String;
 
 /** An object containing template partials for a group of screens. */
 export type SetPartialsRequestContent = { [key: string]: unknown | undefined };
@@ -42047,13 +41981,11 @@ export const SetRulesConfigResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** The language of the custom text. */
 export type PutSelfServiceProfileCustomTextRequestLanguage = "en";
-export const PutSelfServiceProfileCustomTextRequestLanguage =
-  /*@__PURE__*/ S.String;
+export const PutSelfServiceProfileCustomTextRequestLanguage = S.String;
 
 /** The page where the custom text is shown. */
 export type PutSelfServiceProfileCustomTextRequestPage = "get-started";
-export const PutSelfServiceProfileCustomTextRequestPage =
-  /*@__PURE__*/ S.String;
+export const PutSelfServiceProfileCustomTextRequestPage = S.String;
 
 /** The list of text keys and values to customize the Self-Service Enterprise Configuration flow page. Values can be plain text or rich HTML content limited to basic styling tags and hyperlinks. */
 export type SetSelfServiceProfileCustomTextRequestContent = {
@@ -42363,7 +42295,7 @@ export type UpdateUniversalLoginTemplateRequestContent =
   | string
   | UpdateUniversalLoginTemplateRequestContentCase1;
 export const UpdateUniversalLoginTemplateRequestContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateUniversalLoginTemplateRequestContent>;
+  S.Unknown as any as S.Schema<UpdateUniversalLoginTemplateRequestContent>;
 
 export interface PutUniversalLoginRequest {
   body?: UpdateUniversalLoginTemplateRequestContent;
@@ -42538,7 +42470,7 @@ export type EventStreamSubscribeEventsEventTypeEnum =
   | "user.created"
   | "user.deleted"
   | "user.updated";
-export const EventStreamSubscribeEventsEventTypeEnum = /*@__PURE__*/ S.String;
+export const EventStreamSubscribeEventsEventTypeEnum = S.String;
 
 /** Event type(s) to listen for. Specify multiple times for multiple types (e.g., ?event_type=user.created&event_type=user.updated). If not provided, all event types will be streamed. */
 export type EventStreamSubscribeEventsEventTypeParam = Array<
@@ -42757,7 +42689,7 @@ export const GetTenantSettingsResponseContent = /*@__PURE__*/ S.suspend(() =>
 
 /** The delivery method for the notification */
 export type PhoneProviderDeliveryMethodEnum = "text" | "voice";
-export const PhoneProviderDeliveryMethodEnum = /*@__PURE__*/ S.String;
+export const PhoneProviderDeliveryMethodEnum = S.String;
 
 export interface TryPhoneProviderRequest {
   id: string;
@@ -42950,7 +42882,7 @@ export type UpdateBrandingPageBackground =
   | string
   | UpdateBrandingPageBackgroundCase1Map;
 export const UpdateBrandingPageBackground =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBrandingPageBackground>;
+  S.Unknown as any as S.Schema<UpdateBrandingPageBackground>;
 
 /** Custom color settings. */
 export interface UpdateBrandingColors {
@@ -43121,7 +43053,7 @@ export type ClientTokenEndpointAuthMethodOrNullEnum =
   | "none"
   | "client_secret_post"
   | "client_secret_basic";
-export const ClientTokenEndpointAuthMethodOrNullEnum = /*@__PURE__*/ S.String;
+export const ClientTokenEndpointAuthMethodOrNullEnum = S.String;
 
 export type UpdateTokenQuota = CreateTokenQuota;
 export const UpdateTokenQuota = CreateTokenQuota;
@@ -43178,15 +43110,14 @@ export const FedCMLoginPatch = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines how to proceed during an authentication transaction with regards an organization. Can be `deny` (default), `allow` or `require`. */
 export type ClientOrganizationUsagePatchEnum = "deny" | "allow" | "require";
-export const ClientOrganizationUsagePatchEnum = /*@__PURE__*/ S.String;
+export const ClientOrganizationUsagePatchEnum = S.String;
 
 /** Defines how to proceed during an authentication transaction when `client.organization_usage: 'require'`. Can be `no_prompt` (default), `pre_login_prompt` or `post_login_prompt`. `post_login_prompt` requires `oidc_conformant: true`. */
 export type ClientOrganizationRequireBehaviorPatchEnum =
   | "no_prompt"
   | "pre_login_prompt"
   | "post_login_prompt";
-export const ClientOrganizationRequireBehaviorPatchEnum =
-  /*@__PURE__*/ S.String;
+export const ClientOrganizationRequireBehaviorPatchEnum = S.String;
 
 /** Defines the available methods for organization discovery during the `pre_login_prompt`. Users can discover their organization either by `email`, `organization_name` or both. */
 export type UpdateClientRequestOrganizationDiscoveryMethodsList = Array<
@@ -43758,7 +43689,7 @@ export type ClientGrantOrganizationNullableUsageEnum =
   | "deny"
   | "allow"
   | "require";
-export const ClientGrantOrganizationNullableUsageEnum = /*@__PURE__*/ S.String;
+export const ClientGrantOrganizationNullableUsageEnum = S.String;
 
 /** Types of authorization_details allowed for this client grant. */
 export type UpdateClientGrantRequestAuthorizationDetailsTypesList =
@@ -44270,7 +44201,7 @@ export type UpdateEmailTemplateRequestTemplateName =
   | "change_password"
   | "password_reset"
   | "async_approval";
-export const UpdateEmailTemplateRequestTemplateName = /*@__PURE__*/ S.String;
+export const UpdateEmailTemplateRequestTemplateName = S.String;
 
 export interface UpdateEmailTemplateRequest {
   /** Template name. Can be `verify_email`, `verify_email_by_code`, `auth_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `async_approval`, `change_password` (legacy), or `password_reset` (legacy). */
@@ -44362,7 +44293,7 @@ export type EventStreamDestinationPatch =
   | EventStreamWebhookDestination
   | EventStreamActionDestination;
 export const EventStreamDestinationPatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventStreamDestinationPatch>;
+  S.Unknown as any as S.Schema<EventStreamDestinationPatch>;
 
 export interface UpdateEventStreamRequest {
   /** Unique identifier for the event stream. */
@@ -44391,7 +44322,7 @@ export type UpdateEventStreamResponseContent =
   | EventStreamEventBridgeResponseContent
   | EventStreamActionResponseContent;
 export const UpdateEventStreamResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEventStreamResponseContent>;
+  S.Unknown as any as S.Schema<UpdateEventStreamResponseContent>;
 
 export type UpdateEventStreamResponse = UpdateEventStreamResponseContent;
 export const UpdateEventStreamResponse = /*@__PURE__*/ S.suspend(() =>
@@ -44533,7 +44464,7 @@ export type ExperimentTransitionStatusEnum =
   | "paused"
   | "completed"
   | "archived";
-export const ExperimentTransitionStatusEnum = /*@__PURE__*/ S.String;
+export const ExperimentTransitionStatusEnum = S.String;
 
 export interface UpdateExperimentStatusRequest {
   /** The ID of the experiment to transition. */
@@ -44809,7 +44740,7 @@ export type UpdateFlowsVaultConnectionSetup =
   | FlowsVaultConnectioSetupStripeKeyPair
   | FlowsVaultConnectioSetupTwilioApiKey;
 export const UpdateFlowsVaultConnectionSetup =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateFlowsVaultConnectionSetup>;
+  S.Unknown as any as S.Schema<UpdateFlowsVaultConnectionSetup>;
 
 export interface UpdateFlowsVaultConnectionRequest {
   /** Flows Vault connection ID */
@@ -45033,7 +44964,7 @@ export type LogStreamSinkPatch =
   | LogStreamSegmentSink
   | LogStreamMixpanelSinkPatch;
 export const LogStreamSinkPatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogStreamSinkPatch>;
+  S.Unknown as any as S.Schema<LogStreamSinkPatch>;
 
 export interface UpdateLogStreamRequest {
   /** The id of the log stream to get */
@@ -45072,7 +45003,7 @@ export type UpdateLogStreamResponseContent =
   | LogStreamSegmentResponseSchema
   | LogStreamMixpanelResponseSchema;
 export const UpdateLogStreamResponseContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateLogStreamResponseContent>;
+  S.Unknown as any as S.Schema<UpdateLogStreamResponseContent>;
 
 export type UpdateLogStreamResponse = UpdateLogStreamResponseContent;
 export const UpdateLogStreamResponse = /*@__PURE__*/ S.suspend(() =>
@@ -45242,7 +45173,7 @@ export type OrganizationAccessLevelEnumWithNull =
   | "readonly"
   | "limited"
   | "full";
-export const OrganizationAccessLevelEnumWithNull = /*@__PURE__*/ S.String;
+export const OrganizationAccessLevelEnumWithNull = S.String;
 
 export interface UpdateOrganizationConnectionRequest {
   /** Organization identifier. */
@@ -45552,7 +45483,7 @@ export const UpdateSettingsResponseContent = /*@__PURE__*/ S.suspend(() =>
 export type PatchRateLimitPolicyConfigurationRequestContentCase0Action =
   "allow";
 export const PatchRateLimitPolicyConfigurationRequestContentCase0Action =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchRateLimitPolicyConfigurationRequestContentCase0 {
   /** Determines the action to take when the rate limit is exceeded. */
@@ -45572,7 +45503,7 @@ export type PatchRateLimitPolicyConfigurationRequestContentCase1Action =
   | "block"
   | "log";
 export const PatchRateLimitPolicyConfigurationRequestContentCase1Action =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchRateLimitPolicyConfigurationRequestContentCase1 {
   /** Determines the action to take when the rate limit is exceeded. */
@@ -45596,7 +45527,7 @@ export const PatchRateLimitPolicyConfigurationRequestContentCase1 =
 export type PatchRateLimitPolicyConfigurationRequestContentCase2Action =
   "redirect";
 export const PatchRateLimitPolicyConfigurationRequestContentCase2Action =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PatchRateLimitPolicyConfigurationRequestContentCase2 {
   /** Determines the action to take when the rate limit is exceeded. */
@@ -45622,7 +45553,7 @@ export type PatchRateLimitPolicyConfigurationRequestContent =
   | PatchRateLimitPolicyConfigurationRequestContentCase1
   | PatchRateLimitPolicyConfigurationRequestContentCase2;
 export const PatchRateLimitPolicyConfigurationRequestContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchRateLimitPolicyConfigurationRequestContent>;
+  S.Unknown as any as S.Schema<PatchRateLimitPolicyConfigurationRequestContent>;
 
 export interface UpdateRateLimitPolicyRequest {
   /** Unique identifier for the Rate Limit Policy. */

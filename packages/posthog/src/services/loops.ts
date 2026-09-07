@@ -32,11 +32,11 @@ export class NotFound
 
 /** * `personal` - personal * `team` - team */
 export type VisibilityEnum = "personal" | "team";
-export const VisibilityEnum = /*@__PURE__*/ S.String;
+export const VisibilityEnum = S.String;
 
 /** * `claude` - claude * `codex` - codex */
 export type RuntimeAdapterEnum = "claude" | "codex";
-export const RuntimeAdapterEnum = /*@__PURE__*/ S.String;
+export const RuntimeAdapterEnum = S.String;
 
 /** * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
 export type ReasoningEffortEnum =
@@ -46,7 +46,7 @@ export type ReasoningEffortEnum =
   | "xhigh"
   | "max"
   | "ultracode";
-export const ReasoningEffortEnum = /*@__PURE__*/ S.String;
+export const ReasoningEffortEnum = S.String;
 
 export interface LoopRepositoryEntry {
   /** GitHub integration id this repository is accessed through. */
@@ -71,7 +71,7 @@ export const CreateLoopRequestRepositoriesList = /*@__PURE__*/ S.Array(
 
 /** * `skip` - skip * `allow` - allow * `cancel_previous` - cancel_previous */
 export type OverlapPolicyEnum = "skip" | "allow" | "cancel_previous";
-export const OverlapPolicyEnum = /*@__PURE__*/ S.String;
+export const OverlapPolicyEnum = S.String;
 
 export interface LoopBehaviors {
   /** Whether the agent may push branches and open PRs. False makes this a report-only loop. */
@@ -100,7 +100,7 @@ export const LoopConnectorsMcpInstallationIdsList = /*@__PURE__*/ S.Array(
 
 /** * `read_only` - read_only * `full` - full */
 export type PosthogMcpScopesEnum = "read_only" | "full";
-export const PosthogMcpScopesEnum = /*@__PURE__*/ S.String;
+export const PosthogMcpScopesEnum = S.String;
 
 export interface LoopConnectors {
   /** MCP Store installation ids (Slack, Linear, etc.) available to this loop's runs. */
@@ -121,7 +121,7 @@ export type EventsEnum =
   | "run_failed"
   | "pr_created"
   | "needs_attention";
-export const EventsEnum = /*@__PURE__*/ S.String;
+export const EventsEnum = S.String;
 
 /** Event kinds this channel notifies on. One or more of: run_completed, run_failed, pr_created, needs_attention. */
 export type LoopNotificationChannelEventsList = Array<
@@ -214,7 +214,7 @@ export const LoopContextTargetWrite = /*@__PURE__*/ S.suspend(() =>
 
 /** * `schedule` - schedule * `github` - github * `api` - api */
 export type LoopTriggerTypeEnum = "schedule" | "github" | "api";
-export const LoopTriggerTypeEnum = /*@__PURE__*/ S.String;
+export const LoopTriggerTypeEnum = S.String;
 
 export interface LoopTriggerWrite {
   /** Existing trigger id to update in place. Omit to create a new trigger. */
@@ -648,7 +648,7 @@ export type LoopFireResultReasonEnum =
   | "gate_blocked"
   | "owner_inactive"
   | "owner_changed";
-export const LoopFireResultReasonEnum = /*@__PURE__*/ S.String;
+export const LoopFireResultReasonEnum = S.String;
 
 /** Response for a manual (`run/`) or external (`trigger/`) fire. */
 export interface LoopFireResult {
@@ -961,11 +961,11 @@ export const UpdateLoopsPartialRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `user` - user * `repo` - repo * `marketplace` - marketplace * `codex` - codex */
 export type SkillSourceEnum = "user" | "repo" | "marketplace" | "codex";
-export const SkillSourceEnum = /*@__PURE__*/ S.String;
+export const SkillSourceEnum = S.String;
 
 /** * `zip` - zip */
 export type BundleFormatEnum = "zip";
-export const BundleFormatEnum = /*@__PURE__*/ S.String;
+export const BundleFormatEnum = S.String;
 
 /** One zipped local skill in a skill-bundle replace request. */
 export interface LoopSkillBundleUpload {

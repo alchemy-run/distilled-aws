@@ -44,18 +44,18 @@ export const AddAudiencePeopleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** `custom` = a customer list (uploaded, or built from saved People filters); `lookalike` = Meta lookalike built from a custom audience. */
 export type AudienceAudienceType = "custom" | "lookalike";
-export const AudienceAudienceType = /*@__PURE__*/ S.String;
+export const AudienceAudienceType = S.String;
 
 /** The ad platform that provided the match-rate estimate. */
 export type AudienceMatchRatePlatform = "meta";
-export const AudienceMatchRatePlatform = /*@__PURE__*/ S.String;
+export const AudienceMatchRatePlatform = S.String;
 
 /** Availability of the estimated match rate. */
 export type AudienceMatchRateStatus =
   | "calculating"
   | "available"
   | "unavailable";
-export const AudienceMatchRateStatus = /*@__PURE__*/ S.String;
+export const AudienceMatchRateStatus = S.String;
 
 export interface AudienceMatchRate {
   /** Lower bound of the estimated match rate percentage. `null` until available. */
@@ -90,7 +90,7 @@ export const AudiencePlatformAudienceIdsList = /*@__PURE__*/ S.Array(
 
 /** Where members come from. `csv_upload` = an uploaded customer list; `people_filter` = built from saved People filters. See `auto_refresh` for whether a `people_filter` audience keeps updating. */
 export type AudienceSourceType = "csv_upload" | "people_filter";
-export const AudienceSourceType = /*@__PURE__*/ S.String;
+export const AudienceSourceType = S.String;
 
 /** Current state of the audience import. `syncing` means Whop is sending matched rows to connected ad accounts. When status is `partial` or `failed`, `error_message` explains what went wrong. */
 export type AudienceStatus =
@@ -100,7 +100,7 @@ export type AudienceStatus =
   | "ready"
   | "partial"
   | "failed";
-export const AudienceStatus = /*@__PURE__*/ S.String;
+export const AudienceStatus = S.String;
 
 export interface Audience {
   /** `custom` = a customer list (uploaded, or built from saved People filters); `lookalike` = Meta lookalike built from a custom audience. */
@@ -169,7 +169,7 @@ export const Audience = /*@__PURE__*/ S.suspend(() =>
 
 /** What to create. Defaults to `custom` (CSV upload). */
 export type CreateAudienceRequestAudienceType = "custom" | "lookalike";
-export const CreateAudienceRequestAudienceType = /*@__PURE__*/ S.String;
+export const CreateAudienceRequestAudienceType = S.String;
 
 /** Custom audiences only. Maps supported identity fields to CSV column headers. Map at least one of `email` or `phone`. */
 export interface CreateAudienceRequestColumnMapping {
@@ -261,7 +261,7 @@ export type CreateAudienceResponseBody =
   | Audience
   | CreateAudienceResponseBodyCase1;
 export const CreateAudienceResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAudienceResponseBody>;
+  S.Unknown as any as S.Schema<CreateAudienceResponseBody>;
 
 export type CreateAudienceResponse = CreateAudienceResponseBody;
 export const CreateAudienceResponse = /*@__PURE__*/ S.suspend(() =>
@@ -294,10 +294,10 @@ export const DeleteAudienceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteAudienceResponse>;
 
 export type ListAudiencesRequestAudienceType = "custom" | "lookalike";
-export const ListAudiencesRequestAudienceType = /*@__PURE__*/ S.String;
+export const ListAudiencesRequestAudienceType = S.String;
 
 export type ListAudiencesRequestSourceType = "csv_upload" | "people_filter";
-export const ListAudiencesRequestSourceType = /*@__PURE__*/ S.String;
+export const ListAudiencesRequestSourceType = S.String;
 
 export interface ListAudiencesRequest {
   /** Account ID, prefixed `biz_`. */

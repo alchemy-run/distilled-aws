@@ -56,8 +56,7 @@ export const CreateObservabilityQueryRequestGroupByList = /*@__PURE__*/ S.Array(
 
 /** Direction to order grouped results by. Defaults to desc. */
 export type CreateObservabilityQueryRequestOrderDirection = "asc" | "desc";
-export const CreateObservabilityQueryRequestOrderDirection =
-  /*@__PURE__*/ S.String;
+export const CreateObservabilityQueryRequestOrderDirection = S.String;
 
 export interface CreateObservabilityQueryRequest {
   /** Metric id */

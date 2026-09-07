@@ -92,13 +92,13 @@ export type CreateOrUpdateOrgSecretRequestVisibility =
   | "all"
   | "private"
   | "selected";
-export const CreateOrUpdateOrgSecretRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateOrUpdateOrgSecretRequestVisibility = S.String;
 
 export type CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsItem =
   | number
   | string;
 export const CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsItem>;
+  S.Unknown as any as S.Schema<CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsItem>;
 
 /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/dependabot/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
 export type CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsList =
@@ -276,7 +276,7 @@ export type DependabotAlertState =
   | "dismissed"
   | "fixed"
   | "open";
-export const DependabotAlertState = /*@__PURE__*/ S.String;
+export const DependabotAlertState = S.String;
 
 /** Details for the vulnerable package. */
 export interface DependabotAlertPackage {
@@ -296,7 +296,7 @@ export const DependabotAlertPackage = /*@__PURE__*/ S.suspend(() =>
 
 /** The execution scope of the vulnerable dependency. */
 export type DependabotAlertDependencyScope = "development" | "runtime";
-export const DependabotAlertDependencyScope = /*@__PURE__*/ S.String;
+export const DependabotAlertDependencyScope = S.String;
 
 /** The vulnerable dependency's relationship to your project. > [!NOTE] > We are rolling out support for dependency relationship across ecosystems. This value will be "unknown" for all dependencies in unsupported ecosystems. */
 export type DependabotAlertDependencyRelationship =
@@ -304,7 +304,7 @@ export type DependabotAlertDependencyRelationship =
   | "direct"
   | "transitive"
   | "inconclusive";
-export const DependabotAlertDependencyRelationship = /*@__PURE__*/ S.String;
+export const DependabotAlertDependencyRelationship = S.String;
 
 /** Details for the vulnerable dependency. */
 export interface DependabotAlertDependency {
@@ -333,8 +333,7 @@ export type DependabotAlertSecurityVulnerabilitySeverity =
   | "medium"
   | "high"
   | "critical";
-export const DependabotAlertSecurityVulnerabilitySeverity =
-  /*@__PURE__*/ S.String;
+export const DependabotAlertSecurityVulnerabilitySeverity = S.String;
 
 /** Details pertaining to the package version that patches this vulnerability. */
 export interface DependabotAlertSecurityVulnerabilityFirstPatchedVersion {
@@ -388,14 +387,13 @@ export type DependabotAlertSecurityAdvisorySeverity =
   | "medium"
   | "high"
   | "critical";
-export const DependabotAlertSecurityAdvisorySeverity = /*@__PURE__*/ S.String;
+export const DependabotAlertSecurityAdvisorySeverity = S.String;
 
 /** The classification of the advisory. */
 export type DependabotAlertSecurityAdvisoryClassification =
   | "general"
   | "malware";
-export const DependabotAlertSecurityAdvisoryClassification =
-  /*@__PURE__*/ S.String;
+export const DependabotAlertSecurityAdvisoryClassification = S.String;
 
 /** Details for the advisory pertaining to the Common Vulnerability Scoring System. */
 export interface DependabotAlertSecurityAdvisoryCvss {
@@ -494,8 +492,7 @@ export const DependabotAlertSecurityAdvisoryCwesList = /*@__PURE__*/ S.Array(
 
 /** The type of advisory identifier. */
 export type DependabotAlertSecurityAdvisoryIdentifiersItemType = "CVE" | "GHSA";
-export const DependabotAlertSecurityAdvisoryIdentifiersItemType =
-  /*@__PURE__*/ S.String;
+export const DependabotAlertSecurityAdvisoryIdentifiersItemType = S.String;
 
 /** An advisory identifier. */
 export interface DependabotAlertSecurityAdvisoryIdentifiersItem {
@@ -661,7 +658,7 @@ export type DependabotAlertDismissedReason =
   | "no_bandwidth"
   | "not_used"
   | "tolerable_risk";
-export const DependabotAlertDismissedReason = /*@__PURE__*/ S.String;
+export const DependabotAlertDismissedReason = S.String;
 
 /** The current status of the dismissal request. */
 export type DependabotAlertDismissalRequestSimpleStatus =
@@ -669,8 +666,7 @@ export type DependabotAlertDismissalRequestSimpleStatus =
   | "approved"
   | "rejected"
   | "cancelled";
-export const DependabotAlertDismissalRequestSimpleStatus =
-  /*@__PURE__*/ S.String;
+export const DependabotAlertDismissalRequestSimpleStatus = S.String;
 
 /** The user who requested the dismissal. */
 export interface DependabotAlertDismissalRequestSimpleRequester {
@@ -836,7 +832,7 @@ export type OrganizationDependabotSecretVisibility =
   | "all"
   | "private"
   | "selected";
-export const OrganizationDependabotSecretVisibility = /*@__PURE__*/ S.String;
+export const OrganizationDependabotSecretVisibility = S.String;
 
 /** Secrets for GitHub Dependabot for an organization. */
 export interface OrganizationDependabotSecret {
@@ -923,8 +919,7 @@ export const DependabotSecret = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DependabotSecret>;
 
 export type ListAlertsForEnterpriseRequestHasCase1Item = "patch";
-export const ListAlertsForEnterpriseRequestHasCase1Item =
-  /*@__PURE__*/ S.String;
+export const ListAlertsForEnterpriseRequestHasCase1Item = S.String;
 
 export type ListAlertsForEnterpriseRequestHasCase1List = Array<
   ListAlertsForEnterpriseRequestHasCase1Item | (string & {})
@@ -937,19 +932,19 @@ export type ListAlertsForEnterpriseRequestHas =
   | string
   | ListAlertsForEnterpriseRequestHasCase1List;
 export const ListAlertsForEnterpriseRequestHas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAlertsForEnterpriseRequestHas>;
+  S.Unknown as any as S.Schema<ListAlertsForEnterpriseRequestHas>;
 
 export type ListAlertsForEnterpriseRequestScope = "development" | "runtime";
-export const ListAlertsForEnterpriseRequestScope = /*@__PURE__*/ S.String;
+export const ListAlertsForEnterpriseRequestScope = S.String;
 
 export type ListAlertsForEnterpriseRequestSort =
   | "created"
   | "updated"
   | "epss_percentage";
-export const ListAlertsForEnterpriseRequestSort = /*@__PURE__*/ S.String;
+export const ListAlertsForEnterpriseRequestSort = S.String;
 
 export type ListAlertsForEnterpriseRequestDirection = "asc" | "desc";
-export const ListAlertsForEnterpriseRequestDirection = /*@__PURE__*/ S.String;
+export const ListAlertsForEnterpriseRequestDirection = S.String;
 
 export interface ListAlertsForEnterpriseRequest {
   /** The slug version of the enterprise name. */
@@ -1022,14 +1017,13 @@ export type DependabotAlertWithRepositoryState =
   | "dismissed"
   | "fixed"
   | "open";
-export const DependabotAlertWithRepositoryState = /*@__PURE__*/ S.String;
+export const DependabotAlertWithRepositoryState = S.String;
 
 /** The execution scope of the vulnerable dependency. */
 export type DependabotAlertWithRepositoryDependencyScope =
   | "development"
   | "runtime";
-export const DependabotAlertWithRepositoryDependencyScope =
-  /*@__PURE__*/ S.String;
+export const DependabotAlertWithRepositoryDependencyScope = S.String;
 
 /** The vulnerable dependency's relationship to your project. > [!NOTE] > We are rolling out support for dependency relationship across ecosystems. This value will be "unknown" for all dependencies in unsupported ecosystems. */
 export type DependabotAlertWithRepositoryDependencyRelationship =
@@ -1037,8 +1031,7 @@ export type DependabotAlertWithRepositoryDependencyRelationship =
   | "direct"
   | "transitive"
   | "inconclusive";
-export const DependabotAlertWithRepositoryDependencyRelationship =
-  /*@__PURE__*/ S.String;
+export const DependabotAlertWithRepositoryDependencyRelationship = S.String;
 
 /** Details for the vulnerable dependency. */
 export interface DependabotAlertWithRepositoryDependency {
@@ -1071,8 +1064,7 @@ export type DependabotAlertWithRepositoryDismissedReason =
   | "no_bandwidth"
   | "not_used"
   | "tolerable_risk";
-export const DependabotAlertWithRepositoryDismissedReason =
-  /*@__PURE__*/ S.String;
+export const DependabotAlertWithRepositoryDismissedReason = S.String;
 
 /** The users assigned to this alert. */
 export type DependabotAlertWithRepositoryAssigneesList =
@@ -1296,7 +1288,7 @@ export const ListAlertsForEnterpriseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAlertsForEnterpriseResponse>;
 
 export type ListAlertsForOrgRequestHasCase1Item = "patch" | "deployment";
-export const ListAlertsForOrgRequestHasCase1Item = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestHasCase1Item = S.String;
 
 export type ListAlertsForOrgRequestHasCase1List = Array<
   ListAlertsForOrgRequestHasCase1Item | (string & {})
@@ -1309,19 +1301,19 @@ export type ListAlertsForOrgRequestHas =
   | string
   | ListAlertsForOrgRequestHasCase1List;
 export const ListAlertsForOrgRequestHas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAlertsForOrgRequestHas>;
+  S.Unknown as any as S.Schema<ListAlertsForOrgRequestHas>;
 
 export type ListAlertsForOrgRequestScope = "development" | "runtime";
-export const ListAlertsForOrgRequestScope = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestScope = S.String;
 
 export type ListAlertsForOrgRequestSort =
   | "created"
   | "updated"
   | "epss_percentage";
-export const ListAlertsForOrgRequestSort = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestSort = S.String;
 
 export type ListAlertsForOrgRequestDirection = "asc" | "desc";
-export const ListAlertsForOrgRequestDirection = /*@__PURE__*/ S.String;
+export const ListAlertsForOrgRequestDirection = S.String;
 
 export interface ListAlertsForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1405,7 +1397,7 @@ export const ListAlertsForOrgResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAlertsForOrgResponse>;
 
 export type ListAlertsForRepoRequestHasCase1Item = "patch";
-export const ListAlertsForRepoRequestHasCase1Item = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestHasCase1Item = S.String;
 
 export type ListAlertsForRepoRequestHasCase1List = Array<
   ListAlertsForRepoRequestHasCase1Item | (string & {})
@@ -1418,19 +1410,19 @@ export type ListAlertsForRepoRequestHas =
   | string
   | ListAlertsForRepoRequestHasCase1List;
 export const ListAlertsForRepoRequestHas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAlertsForRepoRequestHas>;
+  S.Unknown as any as S.Schema<ListAlertsForRepoRequestHas>;
 
 export type ListAlertsForRepoRequestScope = "development" | "runtime";
-export const ListAlertsForRepoRequestScope = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestScope = S.String;
 
 export type ListAlertsForRepoRequestSort =
   | "created"
   | "updated"
   | "epss_percentage";
-export const ListAlertsForRepoRequestSort = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestSort = S.String;
 
 export type ListAlertsForRepoRequestDirection = "asc" | "desc";
-export const ListAlertsForRepoRequestDirection = /*@__PURE__*/ S.String;
+export const ListAlertsForRepoRequestDirection = S.String;
 
 export interface ListAlertsForRepoRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1634,8 +1626,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -1694,7 +1685,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -1709,7 +1700,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -1726,8 +1717,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -1744,7 +1734,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -1760,8 +1750,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -1779,7 +1768,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -1798,8 +1787,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -1817,7 +1805,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -1836,8 +1824,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -1858,14 +1845,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -2243,8 +2230,7 @@ export const RepositoryAccessForEnterpriseRequest = /*@__PURE__*/ S.suspend(
 export type DependabotRepositoryAccessDetailsDefaultLevel =
   | "public"
   | "internal";
-export const DependabotRepositoryAccessDetailsDefaultLevel =
-  /*@__PURE__*/ S.String;
+export const DependabotRepositoryAccessDetailsDefaultLevel = S.String;
 
 /** A GitHub repository. */
 export type NullableSimpleRepository = SimpleRepository;
@@ -2304,8 +2290,7 @@ export const RepositoryAccessForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 export type SetRepositoryAccessDefaultLevelRequestDefaultLevel =
   | "public"
   | "internal";
-export const SetRepositoryAccessDefaultLevelRequestDefaultLevel =
-  /*@__PURE__*/ S.String;
+export const SetRepositoryAccessDefaultLevelRequestDefaultLevel = S.String;
 
 export interface SetRepositoryAccessDefaultLevelRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2343,7 +2328,7 @@ export type SetRepositoryAccessDefaultLevelForEnterpriseRequestDefaultLevel =
   | "public"
   | "internal";
 export const SetRepositoryAccessDefaultLevelForEnterpriseRequestDefaultLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SetRepositoryAccessDefaultLevelForEnterpriseRequest {
   /** The slug version of the enterprise name. */
@@ -2418,7 +2403,7 @@ export const SetSelectedReposForOrgSecretResponse = /*@__PURE__*/ S.suspend(
 
 /** The state of the Dependabot alert. A `dismissed_reason` must be provided when setting the state to `dismissed`. */
 export type UpdateAlertRequestState = "dismissed" | "open";
-export const UpdateAlertRequestState = /*@__PURE__*/ S.String;
+export const UpdateAlertRequestState = S.String;
 
 /** **Required when `state` is `dismissed`.** A reason for dismissing the alert. */
 export type UpdateAlertRequestDismissedReason =
@@ -2427,7 +2412,7 @@ export type UpdateAlertRequestDismissedReason =
   | "no_bandwidth"
   | "not_used"
   | "tolerable_risk";
-export const UpdateAlertRequestDismissedReason = /*@__PURE__*/ S.String;
+export const UpdateAlertRequestDismissedReason = S.String;
 
 /** Usernames to assign to this Dependabot Alert. Pass one or more user logins to _replace_ the set of assignees on this alert. Send an empty array (`[]`) to clear all assignees from the alert. To assign an AI agent, include the bot login (for example, `copilot-swe-agent[bot]`). */
 export type UpdateAlertRequestAssigneesList = Array<string>;

@@ -227,10 +227,10 @@ export type InstanceTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "PRODUCTION"
   | "DEVELOPMENT";
-export const InstanceTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceTypeEnum = S.String;
 
 export type InstanceStateEnum = "STATE_NOT_KNOWN" | "READY" | "CREATING";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -242,7 +242,7 @@ export type InstanceEditionEnum =
   | "EDITION_UNSPECIFIED"
   | "ENTERPRISE"
   | "ENTERPRISE_PLUS";
-export const InstanceEditionEnum = /*@__PURE__*/ S.String;
+export const InstanceEditionEnum = S.String;
 
 /** A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance. */
 export interface Instance {
@@ -289,7 +289,7 @@ export type ClusterNodeScalingFactorEnum =
   | "NODE_SCALING_FACTOR_UNSPECIFIED"
   | "NODE_SCALING_FACTOR_1X"
   | "NODE_SCALING_FACTOR_2X";
-export const ClusterNodeScalingFactorEnum = /*@__PURE__*/ S.String;
+export const ClusterNodeScalingFactorEnum = S.String;
 
 /** Limits for the number of nodes a Cluster can autoscale up/down to. */
 export interface AutoscalingLimits {
@@ -354,7 +354,7 @@ export type ClusterDefaultStorageTypeEnum =
   | "STORAGE_TYPE_UNSPECIFIED"
   | "SSD"
   | "HDD";
-export const ClusterDefaultStorageTypeEnum = /*@__PURE__*/ S.String;
+export const ClusterDefaultStorageTypeEnum = S.String;
 
 export type ClusterStateEnum =
   | "STATE_NOT_KNOWN"
@@ -362,7 +362,7 @@ export type ClusterStateEnum =
   | "CREATING"
   | "RESIZING"
   | "DISABLED";
-export const ClusterStateEnum = /*@__PURE__*/ S.String;
+export const ClusterStateEnum = S.String;
 
 /** Cloud Key Management Service (Cloud KMS) settings for a CMEK-protected cluster. */
 export interface EncryptionConfig {
@@ -463,7 +463,7 @@ export type StandardIsolationPriorityEnum =
   | "PRIORITY_LOW"
   | "PRIORITY_MEDIUM"
   | "PRIORITY_HIGH";
-export const StandardIsolationPriorityEnum = /*@__PURE__*/ S.String;
+export const StandardIsolationPriorityEnum = S.String;
 
 /** If set, eligible single-row requests (currently limited to ReadRows) using this app profile will be routed to the memory layer. All eligible writes populate the memory layer. MemoryConfig can only be set if the AppProfile uses single cluster routing and the configured cluster has a memory layer enabled. */
 export type MemoryConfig = StandardReadRemoteWrites;
@@ -490,13 +490,12 @@ export type AppProfilePriorityEnum =
   | "PRIORITY_LOW"
   | "PRIORITY_MEDIUM"
   | "PRIORITY_HIGH";
-export const AppProfilePriorityEnum = /*@__PURE__*/ S.String;
+export const AppProfilePriorityEnum = S.String;
 
 export type DataBoostIsolationReadOnlyComputeBillingOwnerEnum =
   | "COMPUTE_BILLING_OWNER_UNSPECIFIED"
   | "HOST_PAYS";
-export const DataBoostIsolationReadOnlyComputeBillingOwnerEnum =
-  /*@__PURE__*/ S.String;
+export const DataBoostIsolationReadOnlyComputeBillingOwnerEnum = S.String;
 
 /** Data Boost is a serverless compute capability that lets you run high-throughput read jobs and queries on your Bigtable data, without impacting the performance of the clusters that handle your application traffic. Data Boost supports read-only use cases with single-cluster routing. */
 export interface DataBoostIsolationReadOnly {
@@ -642,19 +641,19 @@ export const CreateProjectsInstancesClustersRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateProjectsInstancesClustersRequest>;
 
 export type BackupStateEnum = "STATE_UNSPECIFIED" | "CREATING" | "READY";
-export const BackupStateEnum = /*@__PURE__*/ S.String;
+export const BackupStateEnum = S.String;
 
 export type BackupBackupTypeEnum =
   | "BACKUP_TYPE_UNSPECIFIED"
   | "STANDARD"
   | "HOT";
-export const BackupBackupTypeEnum = /*@__PURE__*/ S.String;
+export const BackupBackupTypeEnum = S.String;
 
 export type EncryptionInfoEncryptionTypeEnum =
   | "ENCRYPTION_TYPE_UNSPECIFIED"
   | "GOOGLE_DEFAULT_ENCRYPTION"
   | "CUSTOMER_MANAGED_ENCRYPTION";
-export const EncryptionInfoEncryptionTypeEnum = /*@__PURE__*/ S.String;
+export const EncryptionInfoEncryptionTypeEnum = S.String;
 
 /** Encryption information for a given resource. If this resource is protected with customer managed encryption, the in-use Cloud Key Management Service (Cloud KMS) key version is specified along with its status. */
 export interface EncryptionInfo {
@@ -789,7 +788,7 @@ export type GoogleBigtableAdminV2MaterializedViewClusterStateReplicationStateEnu
   | "INITIALIZING"
   | "READY";
 export const GoogleBigtableAdminV2MaterializedViewClusterStateReplicationStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The state of a materialized view's data in a particular cluster. */
 export interface GoogleBigtableAdminV2MaterializedViewClusterState {
@@ -877,7 +876,7 @@ export type TableGranularityEnum =
   | "TIMESTAMP_GRANULARITY_UNSPECIFIED"
   | "MILLIS"
   | "MICROS";
-export const TableGranularityEnum = /*@__PURE__*/ S.String;
+export const TableGranularityEnum = S.String;
 
 export type ClusterStateReplicationStateEnum =
   | "STATE_NOT_KNOWN"
@@ -886,7 +885,7 @@ export type ClusterStateReplicationStateEnum =
   | "UNPLANNED_MAINTENANCE"
   | "READY"
   | "READY_OPTIMIZING";
-export const ClusterStateReplicationStateEnum = /*@__PURE__*/ S.String;
+export const ClusterStateReplicationStateEnum = S.String;
 
 export type EncryptionInfoList = Array<EncryptionInfo>;
 export const EncryptionInfoList = /*@__PURE__*/ S.Array(
@@ -1552,7 +1551,7 @@ export const TieredStorageConfig = /*@__PURE__*/ S.suspend(() =>
 export type RestoreInfoSourceTypeEnum =
   | "RESTORE_SOURCE_TYPE_UNSPECIFIED"
   | "BACKUP";
-export const RestoreInfoSourceTypeEnum = /*@__PURE__*/ S.String;
+export const RestoreInfoSourceTypeEnum = S.String;
 
 /** Information about a backup. */
 export interface BackupInfo {
@@ -2227,7 +2226,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -2444,7 +2443,7 @@ export type MemoryLayerStateEnum =
   | "ENABLING"
   | "RESIZING"
   | "DISABLED";
-export const MemoryLayerStateEnum = /*@__PURE__*/ S.String;
+export const MemoryLayerStateEnum = S.String;
 
 /** Configuration of a memory layer. */
 export interface GoogleBigtableAdminV2MemoryLayerMemoryConfig {
@@ -2596,8 +2595,7 @@ export type GetProjectsInstancesMaterializedViewsViewEnum =
   | "SCHEMA_VIEW"
   | "REPLICATION_VIEW"
   | "FULL";
-export const GetProjectsInstancesMaterializedViewsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsInstancesMaterializedViewsViewEnum = S.String;
 
 export interface GetProjectsInstancesMaterializedViewsRequest {
   /** Required. The unique name of the requested materialized view. Values are of the form `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`. */
@@ -2631,7 +2629,7 @@ export type GetProjectsInstancesTablesViewEnum =
   | "ENCRYPTION_VIEW"
   | "STATS_VIEW"
   | "FULL";
-export const GetProjectsInstancesTablesViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsInstancesTablesViewEnum = S.String;
 
 export interface GetProjectsInstancesTablesRequest {
   /** Required. The unique name of the requested table. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`. */
@@ -2659,8 +2657,7 @@ export type GetProjectsInstancesTablesAuthorizedViewsViewEnum =
   | "NAME_ONLY"
   | "BASIC"
   | "FULL";
-export const GetProjectsInstancesTablesAuthorizedViewsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsInstancesTablesAuthorizedViewsViewEnum = S.String;
 
 export interface GetProjectsInstancesTablesAuthorizedViewsRequest {
   /** Required. The unique name of the requested AuthorizedView. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`. */
@@ -3133,8 +3130,7 @@ export type ListProjectsInstancesMaterializedViewsViewEnum =
   | "SCHEMA_VIEW"
   | "REPLICATION_VIEW"
   | "FULL";
-export const ListProjectsInstancesMaterializedViewsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsInstancesMaterializedViewsViewEnum = S.String;
 
 export interface ListProjectsInstancesMaterializedViewsRequest {
   /** Optional. A page token, received from a previous `ListMaterializedViews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMaterializedViews` must match the call that provided the page token. */
@@ -3195,7 +3191,7 @@ export type ListProjectsInstancesTablesViewEnum =
   | "ENCRYPTION_VIEW"
   | "STATS_VIEW"
   | "FULL";
-export const ListProjectsInstancesTablesViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsInstancesTablesViewEnum = S.String;
 
 export interface ListProjectsInstancesTablesRequest {
   /** The view to be applied to the returned tables' fields. Only NAME_ONLY view (default), REPLICATION_VIEW and ENCRYPTION_VIEW are supported. */
@@ -3250,8 +3246,7 @@ export type ListProjectsInstancesTablesAuthorizedViewsViewEnum =
   | "NAME_ONLY"
   | "BASIC"
   | "FULL";
-export const ListProjectsInstancesTablesAuthorizedViewsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsInstancesTablesAuthorizedViewsViewEnum = S.String;
 
 export interface ListProjectsInstancesTablesAuthorizedViewsRequest {
   /** Optional. The resource_view to be applied to the returned AuthorizedViews' fields. Default to NAME_ONLY. */
@@ -3309,8 +3304,7 @@ export type ListProjectsInstancesTablesSchemaBundlesViewEnum =
   | "NAME_ONLY"
   | "BASIC"
   | "FULL";
-export const ListProjectsInstancesTablesSchemaBundlesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsInstancesTablesSchemaBundlesViewEnum = S.String;
 
 export interface ListProjectsInstancesTablesSchemaBundlesRequest {
   /** A page token, received from a previous `ListSchemaBundles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSchemaBundles` must match the call that provided the page token. */

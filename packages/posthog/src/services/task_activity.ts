@@ -47,7 +47,7 @@ export type ActivityKindEnum =
   | "owned_item_comment"
   | "message"
   | "created";
-export const ActivityKindEnum = /*@__PURE__*/ S.String;
+export const ActivityKindEnum = S.String;
 
 export type TaskUserBasicInfoHedgehogConfigMap = {
   [key: string]: unknown | undefined;

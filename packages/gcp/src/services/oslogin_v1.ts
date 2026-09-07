@@ -182,7 +182,7 @@ export type PosixAccountOperatingSystemTypeEnum =
   | "OPERATING_SYSTEM_TYPE_UNSPECIFIED"
   | "LINUX"
   | "WINDOWS";
-export const PosixAccountOperatingSystemTypeEnum = /*@__PURE__*/ S.String;
+export const PosixAccountOperatingSystemTypeEnum = S.String;
 
 /** The POSIX account information associated with a Google account. */
 export interface PosixAccount {

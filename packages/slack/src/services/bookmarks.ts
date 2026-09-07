@@ -14,7 +14,7 @@ export type { SlackOpError, SlackOpContext };
 
 /** The level that we are setting the file's permission to (read or write) */
 export type AddBookmarkRequestAccessLevel = "read" | "write";
-export const AddBookmarkRequestAccessLevel = /*@__PURE__*/ S.String;
+export const AddBookmarkRequestAccessLevel = S.String;
 
 export interface AddBookmarkRequest {
   /** Channel to add bookmark in. Required for public channels. */

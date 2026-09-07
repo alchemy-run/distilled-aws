@@ -45,7 +45,7 @@ export const ClaimPaperAuthorshipResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClaimPaperAuthorshipResponse>;
 
 export type GetDailyPapersRequestSort = "publishedAt" | "trending";
-export const GetDailyPapersRequestSort = /*@__PURE__*/ S.String;
+export const GetDailyPapersRequestSort = S.String;
 
 export interface GetDailyPapersRequest {
   p?: number;
@@ -255,10 +255,10 @@ export const GetDailyPapersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDailyPapersResponse>;
 
 export type GetPaperRequestFieldCase0 = "submissionDeadline" | "comments";
-export const GetPaperRequestFieldCase0 = /*@__PURE__*/ S.String;
+export const GetPaperRequestFieldCase0 = S.String;
 
 export type GetPaperRequestFieldCase1Item = "submissionDeadline" | "comments";
-export const GetPaperRequestFieldCase1Item = /*@__PURE__*/ S.String;
+export const GetPaperRequestFieldCase1Item = S.String;
 
 export type GetPaperRequestFieldCase1List = Array<
   GetPaperRequestFieldCase1Item | (string & {})
@@ -271,7 +271,7 @@ export type GetPaperRequestField =
   | GetPaperRequestFieldCase0
   | GetPaperRequestFieldCase1List;
 export const GetPaperRequestField =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPaperRequestField>;
+  S.Unknown as any as S.Schema<GetPaperRequestField>;
 
 export interface GetPaperRequest {
   paperId: string;
@@ -341,21 +341,21 @@ export type GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProvi
   | "wavespeed"
   | "zai-org";
 export const GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -417,7 +417,7 @@ export type GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemTask 
   | "other"
   | "conversational";
 export const GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetPaperResponseLinkedModelsItemAvailableInferenceProvidersItemFeatures {
   toolCalling?: boolean;
@@ -484,14 +484,13 @@ export const GetPaperResponseLinkedModelsItemAvailableInferenceProvidersList =
   ) as any as S.Schema<GetPaperResponseLinkedModelsItemAvailableInferenceProvidersList>;
 
 export type GetPaperResponseLinkedModelsItemGatedCase1 = "auto" | "manual";
-export const GetPaperResponseLinkedModelsItemGatedCase1 =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseLinkedModelsItemGatedCase1 = S.String;
 
 export type GetPaperResponseLinkedModelsItemGated =
   | unknown
   | GetPaperResponseLinkedModelsItemGatedCase1;
 export const GetPaperResponseLinkedModelsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPaperResponseLinkedModelsItemGated>;
+  S.Unknown as any as S.Schema<GetPaperResponseLinkedModelsItemGated>;
 
 export interface GetPaperResponseLinkedModelsItemResourceGroup {
   id: string;
@@ -514,8 +513,7 @@ export type GetPaperResponseLinkedModelsItemAuthorDataCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetPaperResponseLinkedModelsItemAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseLinkedModelsItemAuthorDataCase0Plan = S.String;
 
 export interface GetPaperResponseLinkedModelsItemAuthorDataCase0 {
   _id: string;
@@ -555,7 +553,7 @@ export type GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -564,7 +562,7 @@ export type GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetPaperResponseLinkedModelsItemAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -642,7 +640,7 @@ export type GetPaperResponseLinkedModelsItemAuthorData =
   | GetPaperResponseLinkedModelsItemAuthorDataCase0
   | GetPaperResponseLinkedModelsItemAuthorDataCase1;
 export const GetPaperResponseLinkedModelsItemAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPaperResponseLinkedModelsItemAuthorData>;
+  S.Unknown as any as S.Schema<GetPaperResponseLinkedModelsItemAuthorData>;
 
 export type GetPaperResponseLinkedModelsItemWidgetOutputUrlsList =
   Array<string>;
@@ -706,7 +704,7 @@ export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoViewer =
   | "viewer-partial"
   | "viewer";
 export const GetPaperResponseLinkedDatasetsItemDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -722,7 +720,7 @@ export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesItem =
   | "duckdb"
   | "datadesigner";
 export const GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesList =
   Array<GetPaperResponseLinkedDatasetsItemDatasetsServerInfoLibrariesItem>;
@@ -743,7 +741,7 @@ export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsItem =
   | "optimized-parquet"
   | "agent-traces";
 export const GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsList =
   Array<GetPaperResponseLinkedDatasetsItemDatasetsServerInfoFormatsItem>;
@@ -763,7 +761,7 @@ export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesItem =
   | "timeseries"
   | "video";
 export const GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesList =
   Array<GetPaperResponseLinkedDatasetsItemDatasetsServerInfoModalitiesItem>;
@@ -795,14 +793,13 @@ export const GetPaperResponseLinkedDatasetsItemDatasetsServerInfo =
   }) as any as S.Schema<GetPaperResponseLinkedDatasetsItemDatasetsServerInfo>;
 
 export type GetPaperResponseLinkedDatasetsItemGatedCase1 = "auto" | "manual";
-export const GetPaperResponseLinkedDatasetsItemGatedCase1 =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseLinkedDatasetsItemGatedCase1 = S.String;
 
 export type GetPaperResponseLinkedDatasetsItemGated =
   | unknown
   | GetPaperResponseLinkedDatasetsItemGatedCase1;
 export const GetPaperResponseLinkedDatasetsItemGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPaperResponseLinkedDatasetsItemGated>;
+  S.Unknown as any as S.Schema<GetPaperResponseLinkedDatasetsItemGated>;
 
 export type GetPaperResponseLinkedDatasetsItemResourceGroup =
   GetPaperResponseLinkedModelsItemResourceGroup;
@@ -882,15 +879,14 @@ export type GetPaperResponseCommentsItemAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetPaperResponseCommentsItemAuthorPlan = /*@__PURE__*/ S.String;
+export const GetPaperResponseCommentsItemAuthorPlan = S.String;
 
 export type GetPaperResponseCommentsItemAuthorPrimaryOrgPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetPaperResponseCommentsItemAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseCommentsItemAuthorPrimaryOrgPlan = S.String;
 
 export type GetPaperResponseCommentsItemAuthorPrimaryOrgUserRole =
   | "admin"
@@ -898,8 +894,7 @@ export type GetPaperResponseCommentsItemAuthorPrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const GetPaperResponseCommentsItemAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseCommentsItemAuthorPrimaryOrgUserRole = S.String;
 
 export interface GetPaperResponseCommentsItemAuthorPrimaryOrg {
   avatarUrl: string;
@@ -1021,16 +1016,14 @@ export type GetPaperResponseCommentsItemDataHiddenReason =
   | "Resolved"
   | "Off-Topic"
   | "Low Quality";
-export const GetPaperResponseCommentsItemDataHiddenReason =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseCommentsItemDataHiddenReason = S.String;
 
 export type GetPaperResponseCommentsItemDataLatestAuthorCase0Plan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetPaperResponseCommentsItemDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseCommentsItemDataLatestAuthorCase0Plan = S.String;
 
 export interface GetPaperResponseCommentsItemDataLatestAuthorCase0 {
   _id: string;
@@ -1070,7 +1063,7 @@ export type GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -1079,7 +1072,7 @@ export type GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetPaperResponseCommentsItemDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -1157,7 +1150,7 @@ export type GetPaperResponseCommentsItemDataLatestAuthor =
   | GetPaperResponseCommentsItemDataLatestAuthorCase0
   | GetPaperResponseCommentsItemDataLatestAuthorCase1;
 export const GetPaperResponseCommentsItemDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetPaperResponseCommentsItemDataLatestAuthor>;
+  S.Unknown as any as S.Schema<GetPaperResponseCommentsItemDataLatestAuthor>;
 
 export interface GetPaperResponseCommentsItemDataLatest {
   raw: string;
@@ -1203,8 +1196,7 @@ export type GetPaperResponseCommentsItemDataReactionsItemReaction =
   | "🤝"
   | "😔"
   | "🤯";
-export const GetPaperResponseCommentsItemDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+export const GetPaperResponseCommentsItemDataReactionsItemReaction = S.String;
 
 export type GetPaperResponseCommentsItemDataReactionsItemUsersList =
   Array<string>;

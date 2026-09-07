@@ -69,7 +69,7 @@ export type HostnamesCreateRequestTarget =
   | "ethereum"
   | "ipfs"
   | "ipfs_universal_path";
-export const HostnamesCreateRequestTarget = /*@__PURE__*/ S.String;
+export const HostnamesCreateRequestTarget = S.String;
 
 export interface CreateHostnameRequest {
   /** Specify the identifier of the hostname. */
@@ -108,13 +108,13 @@ export type HostnamesCreateResponseStatus =
   | "pending"
   | "deleting"
   | "error";
-export const HostnamesCreateResponseStatus = /*@__PURE__*/ S.String;
+export const HostnamesCreateResponseStatus = S.String;
 
 export type HostnamesCreateResponseTarget =
   | "ethereum"
   | "ipfs"
   | "ipfs_universal_path";
-export const HostnamesCreateResponseTarget = /*@__PURE__*/ S.String;
+export const HostnamesCreateResponseTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateHostnameResponse {
@@ -152,7 +152,7 @@ export type HostnamesIpfsUniversalPathsContentListsEntriesCreateRequestType =
   | "cid"
   | "content_path";
 export const HostnamesIpfsUniversalPathsContentListsEntriesCreateRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateHostnameIpfsUniversalPathContentListEntryRequest {
   /** Specify the identifier of the hostname. */
@@ -193,7 +193,7 @@ export type HostnamesIpfsUniversalPathsContentListsEntriesCreateResponseType =
   | "cid"
   | "content_path";
 export const HostnamesIpfsUniversalPathsContentListsEntriesCreateResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateHostnameIpfsUniversalPathContentListEntryResponse {
@@ -333,13 +333,13 @@ export type HostnamesGetResponseStatus =
   | "pending"
   | "deleting"
   | "error";
-export const HostnamesGetResponseStatus = /*@__PURE__*/ S.String;
+export const HostnamesGetResponseStatus = S.String;
 
 export type HostnamesGetResponseTarget =
   | "ethereum"
   | "ipfs"
   | "ipfs_universal_path";
-export const HostnamesGetResponseTarget = /*@__PURE__*/ S.String;
+export const HostnamesGetResponseTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetHostnameResponse {
@@ -399,7 +399,7 @@ export const GetHostnameIpfsUniversalPathContentListRequest =
 
 export type HostnamesIpfsUniversalPathsContentListsGetResponseAction = "block";
 export const HostnamesIpfsUniversalPathsContentListsGetResponseAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetHostnameIpfsUniversalPathContentListResponse {
@@ -450,7 +450,7 @@ export type HostnamesIpfsUniversalPathsContentListsEntriesGetResponseType =
   | "cid"
   | "content_path";
 export const HostnamesIpfsUniversalPathsContentListsEntriesGetResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetHostnameIpfsUniversalPathContentListEntryResponse {
@@ -509,7 +509,7 @@ export type HostnamesIpfsUniversalPathsContentListsEntriesListResponseEntriesIte
   | "cid"
   | "content_path";
 export const HostnamesIpfsUniversalPathsContentListsEntriesListResponseEntriesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface HostnamesIpfsUniversalPathsContentListsEntriesListResponseEntriesItem {
   /** Specify the identifier of the hostname. */
@@ -592,13 +592,13 @@ export type HostnamesListResultItemStatus =
   | "pending"
   | "deleting"
   | "error";
-export const HostnamesListResultItemStatus = /*@__PURE__*/ S.String;
+export const HostnamesListResultItemStatus = S.String;
 
 export type HostnamesListResultItemTarget =
   | "ethereum"
   | "ipfs"
   | "ipfs_universal_path";
-export const HostnamesListResultItemTarget = /*@__PURE__*/ S.String;
+export const HostnamesListResultItemTarget = S.String;
 
 export interface HostnamesListResultItem {
   /** Specify the identifier of the hostname. */
@@ -685,13 +685,13 @@ export type HostnamesEditResponseStatus =
   | "pending"
   | "deleting"
   | "error";
-export const HostnamesEditResponseStatus = /*@__PURE__*/ S.String;
+export const HostnamesEditResponseStatus = S.String;
 
 export type HostnamesEditResponseTarget =
   | "ethereum"
   | "ipfs"
   | "ipfs_universal_path";
-export const HostnamesEditResponseTarget = /*@__PURE__*/ S.String;
+export const HostnamesEditResponseTarget = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchHostnameResponse {
@@ -728,13 +728,13 @@ export const PatchHostnameResponse = /*@__PURE__*/ S.suspend(() =>
 export type HostnamesIpfsUniversalPathsContentListsUpdateRequestAction =
   "block";
 export const HostnamesIpfsUniversalPathsContentListsUpdateRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type HostnamesIpfsUniversalPathsContentListsUpdateRequestEntriesItemType =
   | "cid"
   | "content_path";
 export const HostnamesIpfsUniversalPathsContentListsUpdateRequestEntriesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface HostnamesIpfsUniversalPathsContentListsUpdateRequestEntriesItem {
   /** Specify the identifier of the hostname. */
@@ -809,7 +809,7 @@ export const PutHostnameIpfsUniversalPathContentListRequest =
 export type HostnamesIpfsUniversalPathsContentListsUpdateResponseAction =
   "block";
 export const HostnamesIpfsUniversalPathsContentListsUpdateResponseAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutHostnameIpfsUniversalPathContentListResponse {
@@ -831,7 +831,7 @@ export type HostnamesIpfsUniversalPathsContentListsEntriesUpdateRequestType =
   | "cid"
   | "content_path";
 export const HostnamesIpfsUniversalPathsContentListsEntriesUpdateRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateHostnameIpfsUniversalPathContentListEntryRequest {
   /** Specify the identifier of the hostname. */
@@ -877,7 +877,7 @@ export type HostnamesIpfsUniversalPathsContentListsEntriesUpdateResponseType =
   | "cid"
   | "content_path";
 export const HostnamesIpfsUniversalPathsContentListsEntriesUpdateResponseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateHostnameIpfsUniversalPathContentListEntryResponse {

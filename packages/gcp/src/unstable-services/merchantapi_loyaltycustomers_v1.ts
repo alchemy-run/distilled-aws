@@ -118,7 +118,7 @@ export type LoyaltyCustomerLoyaltyTierEnum =
   | "TIER6"
   | "TIER7"
   | "NON_MEMBER";
-export const LoyaltyCustomerLoyaltyTierEnum = /*@__PURE__*/ S.String;
+export const LoyaltyCustomerLoyaltyTierEnum = S.String;
 
 /** Represents a customer’s loyalty information. Represents loyalty customer data in `ManageLoyaltyCustomerMatch` API, but is not a resource that can be retrieved or listed by other methods. */
 export interface LoyaltyCustomer {

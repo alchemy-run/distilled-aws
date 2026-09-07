@@ -196,7 +196,7 @@ export const DirectoryServicesCreateRequestHost = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type DirectoryServicesCreateRequestType = "tcp" | "http";
-export const DirectoryServicesCreateRequestType = /*@__PURE__*/ S.String;
+export const DirectoryServicesCreateRequestType = S.String;
 
 export interface DirectoryServicesCreateRequestTlsSettings {
   /** TLS certificate verification mode for the connection to the origin. */
@@ -212,7 +212,7 @@ export const DirectoryServicesCreateRequestTlsSettings =
   }) as any as S.Schema<DirectoryServicesCreateRequestTlsSettings>;
 
 export type DirectoryServicesCreateRequestAppProtocol = "postgresql" | "mysql";
-export const DirectoryServicesCreateRequestAppProtocol = /*@__PURE__*/ S.String;
+export const DirectoryServicesCreateRequestAppProtocol = S.String;
 
 export interface CreateDirectoryServiceRequest {
   /** Account identifier */
@@ -351,7 +351,7 @@ export const DirectoryServicesCreateResultInfraHTTPServiceConfigHost =
   );
 
 export type DirectoryServicesCreateResultType = "tcp" | "http";
-export const DirectoryServicesCreateResultType = /*@__PURE__*/ S.String;
+export const DirectoryServicesCreateResultType = S.String;
 
 export type DirectoryServicesCreateResultInfraHTTPServiceConfigTlsSettings =
   DirectoryServicesCreateRequestTlsSettings;
@@ -362,7 +362,7 @@ export type DirectoryServicesCreateResultInfraTCPServiceConfigAppProtocol =
   | "postgresql"
   | "mysql";
 export const DirectoryServicesCreateResultInfraTCPServiceConfigAppProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DirectoryServicesCreateResult {
   host: DirectoryServicesCreateResultInfraHTTPServiceConfigHost;
@@ -553,7 +553,7 @@ export const DirectoryServicesGetResultInfraHTTPServiceConfigHost =
   );
 
 export type DirectoryServicesGetResultType = "tcp" | "http";
-export const DirectoryServicesGetResultType = /*@__PURE__*/ S.String;
+export const DirectoryServicesGetResultType = S.String;
 
 export type DirectoryServicesGetResultInfraHTTPServiceConfigTlsSettings =
   DirectoryServicesCreateRequestTlsSettings;
@@ -564,7 +564,7 @@ export type DirectoryServicesGetResultInfraTCPServiceConfigAppProtocol =
   | "postgresql"
   | "mysql";
 export const DirectoryServicesGetResultInfraTCPServiceConfigAppProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DirectoryServicesGetResult {
   host: DirectoryServicesGetResultInfraHTTPServiceConfigHost;
@@ -617,7 +617,7 @@ export const GetDirectoryServiceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDirectoryServiceResponse>;
 
 export type DirectoryServicesListRequestType = "tcp" | "http";
-export const DirectoryServicesListRequestType = /*@__PURE__*/ S.String;
+export const DirectoryServicesListRequestType = S.String;
 
 export interface ListDirectoryServicesRequest {
   /** Account identifier */
@@ -737,7 +737,7 @@ export const DirectoryServicesListResultItemInfraHTTPServiceConfigHost =
   );
 
 export type DirectoryServicesListResultItemType = "tcp" | "http";
-export const DirectoryServicesListResultItemType = /*@__PURE__*/ S.String;
+export const DirectoryServicesListResultItemType = S.String;
 
 export type DirectoryServicesListResultItemInfraHTTPServiceConfigTlsSettings =
   DirectoryServicesCreateRequestTlsSettings;
@@ -748,7 +748,7 @@ export type DirectoryServicesListResultItemInfraTCPServiceConfigAppProtocol =
   | "postgresql"
   | "mysql";
 export const DirectoryServicesListResultItemInfraTCPServiceConfigAppProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DirectoryServicesListResultItem {
   host: DirectoryServicesListResultItemInfraHTTPServiceConfigHost;
@@ -899,7 +899,7 @@ export const DirectoryServicesUpdateRequestHost = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type DirectoryServicesUpdateRequestType = "tcp" | "http";
-export const DirectoryServicesUpdateRequestType = /*@__PURE__*/ S.String;
+export const DirectoryServicesUpdateRequestType = S.String;
 
 export type DirectoryServicesUpdateRequestTlsSettings =
   DirectoryServicesCreateRequestTlsSettings;
@@ -907,7 +907,7 @@ export const DirectoryServicesUpdateRequestTlsSettings =
   DirectoryServicesCreateRequestTlsSettings;
 
 export type DirectoryServicesUpdateRequestAppProtocol = "postgresql" | "mysql";
-export const DirectoryServicesUpdateRequestAppProtocol = /*@__PURE__*/ S.String;
+export const DirectoryServicesUpdateRequestAppProtocol = S.String;
 
 export interface UpdateDirectoryServiceRequest {
   accountId: string;
@@ -1045,7 +1045,7 @@ export const DirectoryServicesUpdateResultInfraHTTPServiceConfigHost =
   );
 
 export type DirectoryServicesUpdateResultType = "tcp" | "http";
-export const DirectoryServicesUpdateResultType = /*@__PURE__*/ S.String;
+export const DirectoryServicesUpdateResultType = S.String;
 
 export type DirectoryServicesUpdateResultInfraHTTPServiceConfigTlsSettings =
   DirectoryServicesCreateRequestTlsSettings;
@@ -1056,7 +1056,7 @@ export type DirectoryServicesUpdateResultInfraTCPServiceConfigAppProtocol =
   | "postgresql"
   | "mysql";
 export const DirectoryServicesUpdateResultInfraTCPServiceConfigAppProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DirectoryServicesUpdateResult {
   host: DirectoryServicesUpdateResultInfraHTTPServiceConfigHost;

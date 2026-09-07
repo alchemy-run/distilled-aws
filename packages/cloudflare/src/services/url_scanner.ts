@@ -37,7 +37,7 @@ export type ScansBulkCreateRequestBodyItemScreenshotsResolutionsItem =
   | "mobile"
   | "tablet";
 export const ScansBulkCreateRequestBodyItemScreenshotsResolutionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ScansBulkCreateRequestBodyItemScreenshotsResolutionsList = Array<
   ScansBulkCreateRequestBodyItemScreenshotsResolutionsItem | (string & {})
@@ -48,7 +48,7 @@ export const ScansBulkCreateRequestBodyItemScreenshotsResolutionsList =
   ) as any as S.Schema<ScansBulkCreateRequestBodyItemScreenshotsResolutionsList>;
 
 export type ScansBulkCreateRequestBodyItemVisibility = "Public" | "Unlisted";
-export const ScansBulkCreateRequestBodyItemVisibility = /*@__PURE__*/ S.String;
+export const ScansBulkCreateRequestBodyItemVisibility = S.String;
 
 export interface ScansBulkCreateRequestBodyItem {
   url: string;
@@ -311,7 +311,7 @@ export type ScansCreateRequestCountry =
   | "YE"
   | "ZM"
   | "ZW";
-export const ScansCreateRequestCountry = /*@__PURE__*/ S.String;
+export const ScansCreateRequestCountry = S.String;
 
 export type ScansCreateRequestCustomHeadersMap = {
   [key: string]: string | undefined;
@@ -325,8 +325,7 @@ export type ScansCreateRequestScreenshotsResolutionsItem =
   | "desktop"
   | "mobile"
   | "tablet";
-export const ScansCreateRequestScreenshotsResolutionsItem =
-  /*@__PURE__*/ S.String;
+export const ScansCreateRequestScreenshotsResolutionsItem = S.String;
 
 export type ScansCreateRequestScreenshotsResolutionsList = Array<
   ScansCreateRequestScreenshotsResolutionsItem | (string & {})
@@ -337,7 +336,7 @@ export const ScansCreateRequestScreenshotsResolutionsList =
   ) as any as S.Schema<ScansCreateRequestScreenshotsResolutionsList>;
 
 export type ScansCreateRequestVisibility = "Public" | "Unlisted";
-export const ScansCreateRequestVisibility = /*@__PURE__*/ S.String;
+export const ScansCreateRequestVisibility = S.String;
 
 export interface CreateScanRequest {
   /** Account ID. */
@@ -3906,7 +3905,7 @@ export const ListScansResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListScansResponse>;
 
 export type ScansScreenshotRequestResolution = "desktop" | "mobile" | "tablet";
-export const ScansScreenshotRequestResolution = /*@__PURE__*/ S.String;
+export const ScansScreenshotRequestResolution = S.String;
 
 export interface ScreenshotScanRequest {
   /** Account ID. */

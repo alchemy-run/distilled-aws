@@ -33,7 +33,7 @@ export class NotFound
 
 /** * `api_key` - API Key * `oauth` - OAuth */
 export type MCPAuthTypeEnum = "api_key" | "oauth";
-export const MCPAuthTypeEnum = /*@__PURE__*/ S.String;
+export const MCPAuthTypeEnum = S.String;
 
 export interface CreateMcpServerInstallationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -63,7 +63,7 @@ export const CreateMcpServerInstallationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `personal` - Personal * `shared` - Shared */
 export type MCPServerInstallationScopeEnum = "personal" | "shared";
-export const MCPServerInstallationScopeEnum = /*@__PURE__*/ S.String;
+export const MCPServerInstallationScopeEnum = S.String;
 
 export interface MCPServerInstallation {
   id?: string;
@@ -319,7 +319,7 @@ export type MCPToolApprovalStateEnum =
   | "approved"
   | "needs_approval"
   | "do_not_use";
-export const MCPToolApprovalStateEnum = /*@__PURE__*/ S.String;
+export const MCPToolApprovalStateEnum = S.String;
 
 export interface AvailableTool {
   /** Tool name as the upstream server reports it. */
@@ -526,7 +526,7 @@ export type McpServerInstallationsAuthorizeRetrieveRequestInstallSource =
   | "posthog"
   | "posthog-code";
 export const McpServerInstallationsAuthorizeRetrieveRequestInstallSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface McpServerInstallationsAuthorizeRetrieveRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -602,19 +602,19 @@ export const McpServerInstallationsDestroyResponse = /*@__PURE__*/ S.suspend(
 
 /** * `api_key` - api_key * `oauth` - oauth */
 export type InstallCustomAuthTypeEnum = "api_key" | "oauth";
-export const InstallCustomAuthTypeEnum = /*@__PURE__*/ S.String;
+export const InstallCustomAuthTypeEnum = S.String;
 
 /** * `posthog` - posthog * `posthog-code` - posthog-code */
 export type InstallSourceEnum = "posthog" | "posthog-code";
-export const InstallSourceEnum = /*@__PURE__*/ S.String;
+export const InstallSourceEnum = S.String;
 
 /** * `personal` - personal * `shared` - shared */
 export type MCPInstallationScopeEnum = "personal" | "shared";
-export const MCPInstallationScopeEnum = /*@__PURE__*/ S.String;
+export const MCPInstallationScopeEnum = S.String;
 
 /** * `personal` - Personal * `team` - Team */
 export type MCPAgentGrantScopeEnum = "personal" | "team";
-export const MCPAgentGrantScopeEnum = /*@__PURE__*/ S.String;
+export const MCPAgentGrantScopeEnum = S.String;
 
 export interface McpServerInstallationsInstallCustomCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -829,7 +829,7 @@ export type ToolApprovalUpdateApprovalStateEnum =
   | "approved"
   | "needs_approval"
   | "do_not_use";
-export const ToolApprovalUpdateApprovalStateEnum = /*@__PURE__*/ S.String;
+export const ToolApprovalUpdateApprovalStateEnum = S.String;
 
 export interface UpdateMcpServerInstallationsToolsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

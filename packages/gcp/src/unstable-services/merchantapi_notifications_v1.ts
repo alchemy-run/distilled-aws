@@ -69,8 +69,7 @@ export type NotificationSubscriptionRegisteredEventEnum =
   | "NOTIFICATION_EVENT_TYPE_UNSPECIFIED"
   | "PRODUCT_STATUS_CHANGE"
   | "ACCOUNT_SERVICE_CHANGE";
-export const NotificationSubscriptionRegisteredEventEnum =
-  /*@__PURE__*/ S.String;
+export const NotificationSubscriptionRegisteredEventEnum = S.String;
 
 /** Represents a notification subscription owned by a Merchant account. See [Decode notifications](/merchant/api/guides/accounts/notifications#decode_notifications) for information on how to decode the notification payload and how to interpret its contents. */
 export interface NotificationSubscription {

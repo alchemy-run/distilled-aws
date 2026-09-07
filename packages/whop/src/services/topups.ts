@@ -140,7 +140,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 export interface CreateTopupRequest {
   /** The amount to add to the balance in the specified currency. For example, 50.00 for $50.00 USD. */
@@ -172,7 +172,7 @@ export type ReceiptStatus =
   | "uncollectible"
   | "unresolved"
   | "void";
-export const ReceiptStatus = /*@__PURE__*/ S.String;
+export const ReceiptStatus = S.String;
 
 /** A payment represents a completed or attempted charge. Payments track the amount, status, currency, and payment method used. */
 export interface Topup {

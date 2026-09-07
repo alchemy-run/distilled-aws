@@ -623,7 +623,7 @@ export type WorkflowState =
   | "Disabled"
   | "Deleted"
   | "Suspended";
-export const WorkflowState = /*@__PURE__*/ S.String;
+export const WorkflowState = S.String;
 
 /** The integration account properties. */
 export interface IntegrationAccountProperties {
@@ -647,7 +647,7 @@ export type IntegrationAccountSkuName =
   | "Free"
   | "Basic"
   | "Standard";
-export const IntegrationAccountSkuName = /*@__PURE__*/ S.String;
+export const IntegrationAccountSkuName = S.String;
 
 /** The integration account sku. */
 export interface IntegrationAccountSku {
@@ -733,7 +733,7 @@ export const GetIntegrationAccountAgreementResponseTagsMap =
 
 /** The agreement type. */
 export type AgreementType = "NotSpecified" | "AS2" | "X12" | "Edifact";
-export const AgreementType = /*@__PURE__*/ S.String;
+export const AgreementType = S.String;
 
 /** The integration account partner's business identity. */
 export interface BusinessIdentity {
@@ -805,7 +805,7 @@ export type HashingAlgorithm =
   | "SHA2256"
   | "SHA2384"
   | "SHA2512";
-export const HashingAlgorithm = /*@__PURE__*/ S.String;
+export const HashingAlgorithm = S.String;
 
 /** The AS2 agreement mdn settings. */
 export interface AS2MdnSettings {
@@ -891,7 +891,7 @@ export type EncryptionAlgorithm =
   | "AES128"
   | "AES192"
   | "AES256";
-export const EncryptionAlgorithm = /*@__PURE__*/ S.String;
+export const EncryptionAlgorithm = S.String;
 
 /** The signing or hashing algorithm. */
 export type SigningAlgorithm =
@@ -901,7 +901,7 @@ export type SigningAlgorithm =
   | "SHA2256"
   | "SHA2384"
   | "SHA2512";
-export const SigningAlgorithm = /*@__PURE__*/ S.String;
+export const SigningAlgorithm = S.String;
 
 /** The AS2 agreement validation settings. */
 export interface AS2ValidationSettings {
@@ -1056,7 +1056,7 @@ export type TrailingSeparatorPolicy =
   | "NotAllowed"
   | "Optional"
   | "Mandatory";
-export const TrailingSeparatorPolicy = /*@__PURE__*/ S.String;
+export const TrailingSeparatorPolicy = S.String;
 
 /** The X12 agreement validation settings. */
 export interface X12ValidationSettings {
@@ -1100,7 +1100,7 @@ export const X12ValidationSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** The X12 character set. */
 export type X12CharacterSet = "NotSpecified" | "Basic" | "Extended" | "UTF8";
-export const X12CharacterSet = /*@__PURE__*/ S.String;
+export const X12CharacterSet = S.String;
 
 /** The segment terminator suffix. */
 export type SegmentTerminatorSuffix =
@@ -1109,7 +1109,7 @@ export type SegmentTerminatorSuffix =
   | "CR"
   | "LF"
   | "CRLF";
-export const SegmentTerminatorSuffix = /*@__PURE__*/ S.String;
+export const SegmentTerminatorSuffix = S.String;
 
 /** The X12 agreement framing settings. */
 export interface X12FramingSettings {
@@ -1144,7 +1144,7 @@ export const X12FramingSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** The x12 date format. */
 export type X12DateFormat = "NotSpecified" | "CCYYMMDD" | "YYMMDD";
-export const X12DateFormat = /*@__PURE__*/ S.String;
+export const X12DateFormat = S.String;
 
 /** The x12 time format. */
 export type X12TimeFormat =
@@ -1153,7 +1153,7 @@ export type X12TimeFormat =
   | "HHMMSS"
   | "HHMMSSdd"
   | "HHMMSSd";
-export const X12TimeFormat = /*@__PURE__*/ S.String;
+export const X12TimeFormat = S.String;
 
 /** The usage indicator. */
 export type UsageIndicator =
@@ -1161,7 +1161,7 @@ export type UsageIndicator =
   | "Test"
   | "Information"
   | "Production";
-export const UsageIndicator = /*@__PURE__*/ S.String;
+export const UsageIndicator = S.String;
 
 /** The X12 agreement envelope settings. */
 export interface X12EnvelopeSettings {
@@ -1302,7 +1302,7 @@ export const X12AcknowledgementSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** The message filter type. */
 export type MessageFilterType = "NotSpecified" | "Include" | "Exclude";
-export const MessageFilterType = /*@__PURE__*/ S.String;
+export const MessageFilterType = S.String;
 
 /** The X12 message filter for odata query. */
 export interface X12MessageFilter {
@@ -1649,11 +1649,11 @@ export type EdifactCharacterSet =
   | "UNOX"
   | "UNOY"
   | "KECA";
-export const EdifactCharacterSet = /*@__PURE__*/ S.String;
+export const EdifactCharacterSet = S.String;
 
 /** The edifact decimal indicator. */
 export type EdifactDecimalIndicator = "NotSpecified" | "Comma" | "Decimal";
-export const EdifactDecimalIndicator = /*@__PURE__*/ S.String;
+export const EdifactDecimalIndicator = S.String;
 
 /** The Edifact agreement framing settings. */
 export interface EdifactFramingSettings {
@@ -2481,7 +2481,7 @@ export type RecurrenceFrequency =
   | "Week"
   | "Month"
   | "Year";
-export const RecurrenceFrequency = /*@__PURE__*/ S.String;
+export const RecurrenceFrequency = S.String;
 
 /** The minutes. */
 export type RecurrenceScheduleMinutesList = Array<number>;
@@ -2503,7 +2503,7 @@ export type RecurrenceScheduleWeekDaysItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const RecurrenceScheduleWeekDaysItem = /*@__PURE__*/ S.String;
+export const RecurrenceScheduleWeekDaysItem = S.String;
 
 /** The days of the week. */
 export type RecurrenceScheduleWeekDaysList = Array<
@@ -2528,7 +2528,7 @@ export type DayOfWeek =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 /** The recurrence schedule occurrence. */
 export interface RecurrenceScheduleOccurrence {
@@ -2847,7 +2847,7 @@ export const GetIntegrationAccountMapResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The map type. */
 export type MapType = "NotSpecified" | "Xslt" | "Xslt20" | "Xslt30" | "Liquid";
-export const MapType = /*@__PURE__*/ S.String;
+export const MapType = S.String;
 
 /** The parameters schema of integration account map. */
 export interface IntegrationAccountMapPropertiesParametersSchema {
@@ -2966,7 +2966,7 @@ export const GetIntegrationAccountPartnerResponseTagsMap =
 
 /** The partner type. */
 export type PartnerType = "NotSpecified" | "B2B";
-export const PartnerType = /*@__PURE__*/ S.String;
+export const PartnerType = S.String;
 
 /** The list of partner business identities. */
 export type B2BPartnerContentBusinessIdentitiesList = Array<BusinessIdentity>;
@@ -3091,7 +3091,7 @@ export const GetIntegrationAccountSchemaResponseTagsMap =
 
 /** The schema type. */
 export type SchemaType = "NotSpecified" | "Xml";
-export const SchemaType = /*@__PURE__*/ S.String;
+export const SchemaType = S.String;
 
 /** The integration account schema properties. */
 export interface IntegrationAccountSchemaProperties {
@@ -3305,7 +3305,7 @@ export type WorkflowProvisioningState =
   | "Pending"
   | "Waiting"
   | "InProgress";
-export const WorkflowProvisioningState = /*@__PURE__*/ S.String;
+export const WorkflowProvisioningState = S.String;
 
 /** The ip address. */
 export interface IpAddress {
@@ -3367,8 +3367,7 @@ export type IntegrationServiceEnvironmentAccessEndpointType =
   | "NotSpecified"
   | "External"
   | "Internal";
-export const IntegrationServiceEnvironmentAccessEndpointType =
-  /*@__PURE__*/ S.String;
+export const IntegrationServiceEnvironmentAccessEndpointType = S.String;
 
 /** The integration service environment access endpoint. */
 export interface IntegrationServiceEnvironmentAccessEndpoint {
@@ -3481,7 +3480,7 @@ export type IntegrationServiceEnvironmentSkuName =
   | "NotSpecified"
   | "Premium"
   | "Developer";
-export const IntegrationServiceEnvironmentSkuName = /*@__PURE__*/ S.String;
+export const IntegrationServiceEnvironmentSkuName = S.String;
 
 /** The integration service environment sku. */
 export interface IntegrationServiceEnvironmentSku {
@@ -3504,7 +3503,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "None";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User Assigned identity properties. */
 export interface UserAssignedIdentity {
@@ -3645,7 +3644,7 @@ export const ApiResourceMetadataTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ApiResourceMetadataTagsMap>;
 
 export type ApiType = "NotSpecified" | "Rest" | "Soap";
-export const ApiType = /*@__PURE__*/ S.String;
+export const ApiType = S.String;
 
 /** The list of endpoints' qualified names. */
 export type WsdlServiceEndpointQualifiedNamesList = Array<string>;
@@ -3672,14 +3671,14 @@ export type WsdlImportMethod =
   | "NotSpecified"
   | "SoapToRest"
   | "SoapPassThrough";
-export const WsdlImportMethod = /*@__PURE__*/ S.String;
+export const WsdlImportMethod = S.String;
 
 /** The Api deployment parameter visibility. */
 export type ApiDeploymentParameterVisibility =
   | "NotSpecified"
   | "Default"
   | "Internal";
-export const ApiDeploymentParameterVisibility = /*@__PURE__*/ S.String;
+export const ApiDeploymentParameterVisibility = S.String;
 
 /** The API deployment parameter metadata. */
 export interface ApiDeploymentParameterMetadata {
@@ -3772,7 +3771,7 @@ export const IntegrationServiceEnvironmentManagedApiPropertiesRuntimeUrlsList =
 
 /** The Api tier. */
 export type ApiTier = "NotSpecified" | "Enterprise" | "Standard" | "Premium";
-export const ApiTier = /*@__PURE__*/ S.String;
+export const ApiTier = S.String;
 
 /** The API general information. */
 export interface ApiResourceGeneralInformation {
@@ -4001,7 +4000,7 @@ export type IntegrationServiceEnvironmentNetworkDependencyCategoryType =
   | "SQL"
   | "RegionalService";
 export const IntegrationServiceEnvironmentNetworkDependencyCategoryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The integration service environment network endpoint accessibility state. */
 export type IntegrationServiceEnvironmentNetworkEndPointAccessibilityState =
@@ -4010,7 +4009,7 @@ export type IntegrationServiceEnvironmentNetworkEndPointAccessibilityState =
   | "Available"
   | "NotAvailable";
 export const IntegrationServiceEnvironmentNetworkEndPointAccessibilityState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The ports. */
 export type IntegrationServiceEnvironmentNetworkEndpointPortsList =
@@ -4088,7 +4087,7 @@ export type ErrorResponseCode =
   | "IntegrationServiceEnvironmentNotFound"
   | "InternalServerError"
   | "InvalidOperationId";
-export const ErrorResponseCode = /*@__PURE__*/ S.String;
+export const ErrorResponseCode = S.String;
 
 /** The error message details. */
 export type ExtendedErrorInfoDetailsList = Array<ExtendedErrorInfo>;
@@ -4125,7 +4124,7 @@ export type IntegrationServiceEnvironmentNetworkDependencyHealthState =
   | "Unhealthy"
   | "Unknown";
 export const IntegrationServiceEnvironmentNetworkDependencyHealthState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The integration service environment subnet network health. */
 export interface IntegrationServiceEnvironmentNetworkDependencyHealth {
@@ -4243,7 +4242,7 @@ export const FlowAccessControlConfigurationPolicyAllowedCallerIpAddressesList =
 
 /** Open authentication policy provider type. */
 export type OpenAuthenticationProviderType = "AAD";
-export const OpenAuthenticationProviderType = /*@__PURE__*/ S.String;
+export const OpenAuthenticationProviderType = S.String;
 
 /** Open authentication policy claim. */
 export interface OpenAuthenticationPolicyClaim {
@@ -4356,7 +4355,7 @@ export type SkuName =
   | "Basic"
   | "Standard"
   | "Premium";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The sku type. */
 export interface Sku {
@@ -4383,7 +4382,7 @@ export type ParameterType =
   | "Array"
   | "Object"
   | "SecureObject";
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 /** The workflow parameters. */
 export interface WorkflowParameter {
@@ -4537,7 +4536,7 @@ export type WorkflowStatus =
   | "TimedOut"
   | "Aborted"
   | "Ignored";
-export const WorkflowStatus = /*@__PURE__*/ S.String;
+export const WorkflowStatus = S.String;
 
 /** The correlation property. */
 export interface Correlation {
@@ -5426,7 +5425,7 @@ export type WorkflowTriggerProvisioningState =
   | "Unregistering"
   | "Unregistered"
   | "Completed";
-export const WorkflowTriggerProvisioningState = /*@__PURE__*/ S.String;
+export const WorkflowTriggerProvisioningState = S.String;
 
 /** The workflow trigger properties. */
 export interface WorkflowTriggerProperties {
@@ -6795,7 +6794,7 @@ export const IntegrationAccountSessionsCreateOrUpdateResponse =
 
 /** The track events operation options. */
 export type TrackEventsOperationOptions = "None" | "DisableSourceInfoEnrich";
-export const TrackEventsOperationOptions = /*@__PURE__*/ S.String;
+export const TrackEventsOperationOptions = S.String;
 
 /** The event level. */
 export type EventLevel =
@@ -6805,7 +6804,7 @@ export type EventLevel =
   | "Warning"
   | "Informational"
   | "Verbose";
-export const EventLevel = /*@__PURE__*/ S.String;
+export const EventLevel = S.String;
 
 /** The tracking record type. */
 export type TrackingRecordType =
@@ -6825,7 +6824,7 @@ export type TrackingRecordType =
   | "EdifactInterchangeAcknowledgment"
   | "EdifactFunctionalGroupAcknowledgment"
   | "EdifactTransactionSetAcknowledgment";
-export const TrackingRecordType = /*@__PURE__*/ S.String;
+export const TrackingRecordType = S.String;
 
 /** The tracking event error info. */
 export interface TrackingEventErrorInfo {
@@ -7023,7 +7022,7 @@ export type ManagedServiceIdentityInputType =
   | "SystemAssigned"
   | "UserAssigned"
   | "None";
-export const ManagedServiceIdentityInputType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityInputType = S.String;
 
 /** User Assigned identity properties. */
 export interface UserAssignedIdentityInput {}
@@ -7150,7 +7149,7 @@ export const IntegrationServiceEnvironmentsCreateOrUpdateResponse =
 
 /** The key type. */
 export type KeyType = "NotSpecified" | "Primary" | "Secondary";
-export const KeyType = /*@__PURE__*/ S.String;
+export const KeyType = S.String;
 
 export interface ListIntegrationAccountAgreementContentCallbackUrlRequest {
   /** The subscription id. */
@@ -8491,7 +8490,7 @@ export const ApiOperationTagsMap = /*@__PURE__*/ S.Record(
 
 /** The status annotation. */
 export type StatusAnnotation = "NotSpecified" | "Preview" | "Production";
-export const StatusAnnotation = /*@__PURE__*/ S.String;
+export const StatusAnnotation = S.String;
 
 /** The Api Operation Annotation. */
 export interface ApiOperationAnnotation {
@@ -8559,7 +8558,7 @@ export type SwaggerSchemaType =
   | "File"
   | "Object"
   | "Null";
-export const SwaggerSchemaType = /*@__PURE__*/ S.String;
+export const SwaggerSchemaType = S.String;
 
 /** The object properties */
 export type SwaggerSchemaPropertiesMap = {
@@ -9149,7 +9148,7 @@ export type IntegrationServiceEnvironmentSkuScaleType =
   | "Manual"
   | "Automatic"
   | "None";
-export const IntegrationServiceEnvironmentSkuScaleType = /*@__PURE__*/ S.String;
+export const IntegrationServiceEnvironmentSkuScaleType = S.String;
 
 /** The integration service environment sku capacity. */
 export interface IntegrationServiceEnvironmentSkuCapacity {

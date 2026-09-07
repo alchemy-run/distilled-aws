@@ -20,7 +20,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -38,7 +38,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmHostingPrivateDatabaseTerminationRequest {
   /** Service name */
@@ -105,8 +105,7 @@ export type HostingPrivateDatabaseDatabaseCopyStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const HostingPrivateDatabaseDatabaseCopyStatusEnum =
-  /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseDatabaseCopyStatusEnum = S.String;
 
 /** Database copy */
 export interface HostingPrivateDatabaseDatabaseCopy {
@@ -202,7 +201,7 @@ export type HostingPrivateDatabaseTaskFunctionEnum =
   | "whitelist/create"
   | "whitelist/delete"
   | "whitelist/update";
-export const HostingPrivateDatabaseTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseTaskFunctionEnum = S.String;
 
 /** Task's status */
 export type HostingPrivateDatabaseTaskStatusEnum =
@@ -211,7 +210,7 @@ export type HostingPrivateDatabaseTaskStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const HostingPrivateDatabaseTaskStatusEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseTaskStatusEnum = S.String;
 
 /** Web Cloud Database task */
 export interface HostingPrivateDatabaseTask {
@@ -333,8 +332,7 @@ export type HostingPrivateDatabaseAvailableVersionEnum =
   | "postgresql_17"
   | "redis_7.0"
   | "valkey_7.2";
-export const HostingPrivateDatabaseAvailableVersionEnum =
-  /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseAvailableVersionEnum = S.String;
 
 export interface CreateHostingPrivateDatabaseChangeVersionRequest {
   /** Service name */
@@ -411,7 +409,7 @@ export type HostingPrivateDatabaseGrantGrantEnum =
   | "none"
   | "ro"
   | "rw";
-export const HostingPrivateDatabaseGrantGrantEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseGrantGrantEnum = S.String;
 
 export interface CreateHostingPrivateDatabaseDatabaseWizardRequest {
   /** Service name */
@@ -1020,7 +1018,7 @@ export type HostingPrivateDatabaseDatacenterEnum =
   | "gra1"
   | "gra2"
   | "gra3";
-export const HostingPrivateDatabaseDatacenterEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseDatacenterEnum = S.String;
 
 /** Parameters required to query metrics from OpenTSDB */
 export interface HostingPrivateDatabaseGraphEndpoint {
@@ -1072,11 +1070,11 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Private database infrastructure */
 export type HostingPrivateDatabaseInfrastructureEnum = "docker";
-export const HostingPrivateDatabaseInfrastructureEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseInfrastructureEnum = S.String;
 
 /** Available offers */
 export type HostingPrivateDatabaseOfferEnum = "classic" | "public";
-export const HostingPrivateDatabaseOfferEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseOfferEnum = S.String;
 
 /** A numeric value tagged with its unit */
 export interface ComplexTypeUnitAndValueLong {
@@ -1101,7 +1099,7 @@ export type HostingPrivateDatabaseStateEnum =
   | "started"
   | "stopPending"
   | "stopped";
-export const HostingPrivateDatabaseStateEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseStateEnum = S.String;
 
 /** Private database type */
 export type HostingPrivateDatabaseTypeEnum =
@@ -1109,7 +1107,7 @@ export type HostingPrivateDatabaseTypeEnum =
   | "mysql"
   | "postgresql"
   | "redis";
-export const HostingPrivateDatabaseTypeEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseTypeEnum = S.String;
 
 /** Private database version */
 export type HostingPrivateDatabaseVersionEnum =
@@ -1126,7 +1124,7 @@ export type HostingPrivateDatabaseVersionEnum =
   | "postgresql_17"
   | "redis_7.0"
   | "valkey_7.2";
-export const HostingPrivateDatabaseVersionEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseVersionEnum = S.String;
 
 /** Web Cloud Database */
 export interface HostingPrivateDatabaseServiceWithIAM {
@@ -1406,7 +1404,7 @@ export type HostingPrivateDatabaseExtensionStatusEnum =
   | "disabling"
   | "enabled"
   | "enabling";
-export const HostingPrivateDatabaseExtensionStatusEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseExtensionStatusEnum = S.String;
 
 /** Webcloud Database extension */
 export interface HostingPrivateDatabaseExtension {
@@ -1704,7 +1702,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -1714,7 +1712,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -1915,8 +1913,7 @@ export type HostingPrivateDatabaseWebhostingNetworkStatusEnum =
   | "disabling"
   | "enabled"
   | "enabling";
-export const HostingPrivateDatabaseWebhostingNetworkStatusEnum =
-  /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseWebhostingNetworkStatusEnum = S.String;
 
 /** webhosting Network */
 export interface HostingPrivateDatabaseWebhostingNetwork {
@@ -1960,7 +1957,7 @@ export type HostingPrivateDatabaseWhitelistStatusEnum =
   | "creating"
   | "deleting"
   | "updating";
-export const HostingPrivateDatabaseWhitelistStatusEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseWhitelistStatusEnum = S.String;
 
 /** Whitelist */
 export interface HostingPrivateDatabaseWhitelist {
@@ -2112,8 +2109,7 @@ export type HostingPrivateDatabaseAvailableRamSizeEnum =
   | "2048"
   | "4096"
   | "512";
-export const HostingPrivateDatabaseAvailableRamSizeEnum =
-  /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseAvailableRamSizeEnum = S.String;
 
 /** A list of ram size available for this offer */
 export type HostingPrivateDatabaseAvailableOrderCapacitiesRamList =
@@ -2227,7 +2223,7 @@ export type HostingPrivateDatabaseConfigTypeEnum =
   | "boolean"
   | "number"
   | "string";
-export const HostingPrivateDatabaseConfigTypeEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseConfigTypeEnum = S.String;
 
 /** Config detail */
 export interface HostingPrivateDatabaseConfigDetail {
@@ -2274,7 +2270,7 @@ export const HostingPrivateDatabaseConfigsDetailsList = /*@__PURE__*/ S.Array(
 
 /** Web Cloud Database config status */
 export type HostingPrivateDatabaseConfigStatusEnum = "applied" | "updating";
-export const HostingPrivateDatabaseConfigStatusEnum = /*@__PURE__*/ S.String;
+export const HostingPrivateDatabaseConfigStatusEnum = S.String;
 
 /** Configs */
 export interface HostingPrivateDatabaseConfigs {

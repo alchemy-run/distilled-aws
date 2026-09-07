@@ -227,7 +227,7 @@ export type AssociationResultStatusCode =
   | "RESOURCE_NOT_FOUND"
   | "QUOTA_EXCEEDED"
   | (string & {});
-export const AssociationResultStatusCode = /*@__PURE__*/ S.String;
+export const AssociationResultStatusCode = S.String;
 
 export type AssociationResultStatusMessage = string;
 export interface FailedAssociationResult {
@@ -914,7 +914,7 @@ export const CancelSbomExportResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CancelSbomExportResponse>;
 export type CisScanName = string;
 export type CisSecurityLevel = "LEVEL_1" | "LEVEL_2" | (string & {});
-export const CisSecurityLevel = /*@__PURE__*/ S.String;
+export const CisSecurityLevel = S.String;
 
 export interface OneTimeSchedule {}
 export const OneTimeSchedule = /*@__PURE__*/ S.suspend(() =>
@@ -946,7 +946,7 @@ export type Day =
   | "FRI"
   | "SAT"
   | (string & {});
-export const Day = /*@__PURE__*/ S.String;
+export const Day = S.String;
 
 export type DaysList = Day[];
 export const DaysList = /*@__PURE__*/ S.Array(Day);
@@ -1051,7 +1051,7 @@ export const CreateCisScanConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCisScanConfigurationResponse>;
 export type IntegrationName = string;
 export type IntegrationType = "GITLAB_SELF_MANAGED" | "GITHUB" | (string & {});
-export const IntegrationType = /*@__PURE__*/ S.String;
+export const IntegrationType = S.String;
 
 export type InstanceUrl = string | redacted.Redacted<string>;
 export type GitLabAccessToken = string | redacted.Redacted<string>;
@@ -1110,7 +1110,7 @@ export type IntegrationStatus =
   | "INACTIVE"
   | "DISABLING"
   | (string & {});
-export const IntegrationStatus = /*@__PURE__*/ S.String;
+export const IntegrationStatus = S.String;
 
 export type AuthorizationUrl = string | redacted.Redacted<string>;
 export interface CreateCodeSecurityIntegrationResponse {
@@ -1130,14 +1130,14 @@ export const CreateCodeSecurityIntegrationResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateCodeSecurityIntegrationResponse>;
 export type ScanConfigurationName = string;
 export type ConfigurationLevel = "ORGANIZATION" | "ACCOUNT" | (string & {});
-export const ConfigurationLevel = /*@__PURE__*/ S.String;
+export const ConfigurationLevel = S.String;
 
 export type PeriodicScanFrequency =
   | "WEEKLY"
   | "MONTHLY"
   | "NEVER"
   | (string & {});
-export const PeriodicScanFrequency = /*@__PURE__*/ S.String;
+export const PeriodicScanFrequency = S.String;
 
 export type FrequencyExpression = string;
 export interface PeriodicScanConfiguration {
@@ -1156,7 +1156,7 @@ export type ContinuousIntegrationScanEvent =
   | "PULL_REQUEST"
   | "PUSH"
   | (string & {});
-export const ContinuousIntegrationScanEvent = /*@__PURE__*/ S.String;
+export const ContinuousIntegrationScanEvent = S.String;
 
 export type ContinuousIntegrationScanSupportedEvents =
   ContinuousIntegrationScanEvent[];
@@ -1172,7 +1172,7 @@ export const ContinuousIntegrationScanConfiguration = /*@__PURE__*/ S.suspend(
   identifier: "ContinuousIntegrationScanConfiguration",
 }) as any as S.Schema<ContinuousIntegrationScanConfiguration>;
 export type RuleSetCategory = "SAST" | "IAC" | "SCA" | (string & {});
-export const RuleSetCategory = /*@__PURE__*/ S.String;
+export const RuleSetCategory = S.String;
 
 export type RuleSetCategories = RuleSetCategory[];
 export const RuleSetCategories = /*@__PURE__*/ S.Array(RuleSetCategory);
@@ -1193,7 +1193,7 @@ export const CodeSecurityScanConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "CodeSecurityScanConfiguration",
 }) as any as S.Schema<CodeSecurityScanConfiguration>;
 export type ProjectSelectionScope = "ALL" | (string & {});
-export const ProjectSelectionScope = /*@__PURE__*/ S.String;
+export const ProjectSelectionScope = S.String;
 
 export interface ScopeSettings {
   projectSelectionScope?: ProjectSelectionScope;
@@ -1243,12 +1243,12 @@ export const CreateCodeSecurityScanConfigurationResponse =
   }) as any as S.Schema<CreateCodeSecurityScanConfigurationResponse>;
 export type ConnectorName = string;
 export type ConnectorCloudProvider = "AZURE" | (string & {});
-export const ConnectorCloudProvider = /*@__PURE__*/ S.String;
+export const ConnectorCloudProvider = S.String;
 
 export type ConnectorDescription = string;
 export type AwsConfigConnectorArn = string;
 export type ScopeType = "TENANT" | "SUBSCRIPTION" | (string & {});
-export const ScopeType = /*@__PURE__*/ S.String;
+export const ScopeType = S.String;
 
 export type ScopeValue = string;
 export type ScopeValueList = string[];
@@ -2103,7 +2103,7 @@ export type CisScanArn = string;
 export type ReportTargetAccounts = string[];
 export const ReportTargetAccounts = /*@__PURE__*/ S.Array(S.String);
 export type CisReportFormat = "PDF" | "CSV" | (string & {});
-export const CisReportFormat = /*@__PURE__*/ S.String;
+export const CisReportFormat = S.String;
 
 export interface GetCisScanReportRequest {
   scanArn: string;
@@ -2133,7 +2133,7 @@ export type CisReportStatus =
   | "FAILED"
   | "IN_PROGRESS"
   | (string & {});
-export const CisReportStatus = /*@__PURE__*/ S.String;
+export const CisReportStatus = S.String;
 
 export interface GetCisScanReportResponse {
   url?: string;
@@ -2146,10 +2146,10 @@ export const GetCisScanReportResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCisScanReportResponse>;
 export type ResourceId = string;
 export type CisFindingStatusComparison = "EQUALS" | (string & {});
-export const CisFindingStatusComparison = /*@__PURE__*/ S.String;
+export const CisFindingStatusComparison = S.String;
 
 export type CisFindingStatus = "PASSED" | "FAILED" | "SKIPPED" | (string & {});
-export const CisFindingStatus = /*@__PURE__*/ S.String;
+export const CisFindingStatus = S.String;
 
 export interface CisFindingStatusFilter {
   comparison: CisFindingStatusComparison;
@@ -2169,7 +2169,7 @@ export type CisStringComparison =
   | "PREFIX"
   | "NOT_EQUALS"
   | (string & {});
-export const CisStringComparison = /*@__PURE__*/ S.String;
+export const CisStringComparison = S.String;
 
 export interface CisStringFilter {
   comparison: CisStringComparison;
@@ -2185,7 +2185,7 @@ export const CheckIdFilterList = /*@__PURE__*/ S.Array(CisStringFilter);
 export type TitleFilterList = CisStringFilter[];
 export const TitleFilterList = /*@__PURE__*/ S.Array(CisStringFilter);
 export type CisSecurityLevelComparison = "EQUALS" | (string & {});
-export const CisSecurityLevelComparison = /*@__PURE__*/ S.String;
+export const CisSecurityLevelComparison = S.String;
 
 export interface CisSecurityLevelFilter {
   comparison: CisSecurityLevelComparison;
@@ -2221,10 +2221,10 @@ export const CisScanResultDetailsFilterCriteria = /*@__PURE__*/ S.suspend(() =>
   identifier: "CisScanResultDetailsFilterCriteria",
 }) as any as S.Schema<CisScanResultDetailsFilterCriteria>;
 export type CisScanResultDetailsSortBy = "CHECK_ID" | "STATUS" | (string & {});
-export const CisScanResultDetailsSortBy = /*@__PURE__*/ S.String;
+export const CisScanResultDetailsSortBy = S.String;
 
 export type CisSortOrder = "ASC" | "DESC" | (string & {});
-export const CisSortOrder = /*@__PURE__*/ S.String;
+export const CisSortOrder = S.String;
 
 export type NextToken = string;
 export type GetCisScanResultDetailsMaxResults = number;
@@ -2497,7 +2497,7 @@ export type CodeScanStatus =
   | "FAILED"
   | "SKIPPED"
   | (string & {});
-export const CodeScanStatus = /*@__PURE__*/ S.String;
+export const CodeScanStatus = S.String;
 
 export interface GetCodeSecurityScanResponse {
   scanId?: string;
@@ -2934,7 +2934,7 @@ export const ListAccountPermissionsResponse = /*@__PURE__*/ S.suspend(() =>
 export type CisScanNameFilterList = CisStringFilter[];
 export const CisScanNameFilterList = /*@__PURE__*/ S.Array(CisStringFilter);
 export type TagComparison = "EQUALS" | (string & {});
-export const TagComparison = /*@__PURE__*/ S.String;
+export const TagComparison = S.String;
 
 export interface TagFilter {
   comparison: TagComparison;
@@ -2970,7 +2970,7 @@ export type CisScanConfigurationsSortBy =
   | "SCAN_NAME"
   | "SCAN_CONFIGURATION_ARN"
   | (string & {});
-export const CisScanConfigurationsSortBy = /*@__PURE__*/ S.String;
+export const CisScanConfigurationsSortBy = S.String;
 
 export type ListCisScanConfigurationsMaxResults = number;
 export interface ListCisScanConfigurationsRequest {
@@ -3096,7 +3096,7 @@ export type CisScanResultsAggregatedByChecksSortBy =
   | "FAILED_COUNTS"
   | "SECURITY_LEVEL"
   | (string & {});
-export const CisScanResultsAggregatedByChecksSortBy = /*@__PURE__*/ S.String;
+export const CisScanResultsAggregatedByChecksSortBy = S.String;
 
 export type CisScanResultsMaxResults = number;
 export interface ListCisScanResultsAggregatedByChecksRequest {
@@ -3186,10 +3186,10 @@ export const ListCisScanResultsAggregatedByChecksResponse =
 export type AccountIdFilterList = CisStringFilter[];
 export const AccountIdFilterList = /*@__PURE__*/ S.Array(CisStringFilter);
 export type CisResultStatusComparison = "EQUALS" | (string & {});
-export const CisResultStatusComparison = /*@__PURE__*/ S.String;
+export const CisResultStatusComparison = S.String;
 
 export type CisResultStatus = "PASSED" | "FAILED" | "SKIPPED" | (string & {});
-export const CisResultStatus = /*@__PURE__*/ S.String;
+export const CisResultStatus = S.String;
 
 export interface CisResultStatusFilter {
   comparison: CisResultStatusComparison;
@@ -3207,14 +3207,14 @@ export const CisResultStatusFilterList = /*@__PURE__*/ S.Array(
 export type ResourceIdFilterList = CisStringFilter[];
 export const ResourceIdFilterList = /*@__PURE__*/ S.Array(CisStringFilter);
 export type CisTargetStatusComparison = "EQUALS" | (string & {});
-export const CisTargetStatusComparison = /*@__PURE__*/ S.String;
+export const CisTargetStatusComparison = S.String;
 
 export type CisTargetStatus =
   | "TIMED_OUT"
   | "CANCELLED"
   | "COMPLETED"
   | (string & {});
-export const CisTargetStatus = /*@__PURE__*/ S.String;
+export const CisTargetStatus = S.String;
 
 export interface CisTargetStatusFilter {
   comparison: CisTargetStatusComparison;
@@ -3234,7 +3234,7 @@ export type CisTargetStatusReason =
   | "UNSUPPORTED_OS"
   | "SSM_UNMANAGED"
   | (string & {});
-export const CisTargetStatusReason = /*@__PURE__*/ S.String;
+export const CisTargetStatusReason = S.String;
 
 export interface CisTargetStatusReasonFilter {
   comparison: CisTargetStatusComparison;
@@ -3287,8 +3287,7 @@ export type CisScanResultsAggregatedByTargetResourceSortBy =
   | "TARGET_STATUS"
   | "TARGET_STATUS_REASON"
   | (string & {});
-export const CisScanResultsAggregatedByTargetResourceSortBy =
-  /*@__PURE__*/ S.String;
+export const CisScanResultsAggregatedByTargetResourceSortBy = S.String;
 
 export interface ListCisScanResultsAggregatedByTargetResourceRequest {
   scanArn: string;
@@ -3364,7 +3363,7 @@ export const ListCisScanResultsAggregatedByTargetResourceResponse =
     identifier: "ListCisScanResultsAggregatedByTargetResourceResponse",
   }) as any as S.Schema<ListCisScanResultsAggregatedByTargetResourceResponse>;
 export type CisScanStatusComparison = "EQUALS" | (string & {});
-export const CisScanStatusComparison = /*@__PURE__*/ S.String;
+export const CisScanStatusComparison = S.String;
 
 export type CisScanStatus =
   | "FAILED"
@@ -3372,7 +3371,7 @@ export type CisScanStatus =
   | "CANCELLED"
   | "IN_PROGRESS"
   | (string & {});
-export const CisScanStatus = /*@__PURE__*/ S.String;
+export const CisScanStatus = S.String;
 
 export interface CisScanStatusFilter {
   comparison: CisScanStatusComparison;
@@ -3435,7 +3434,7 @@ export const ListCisScansFilterCriteria = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCisScansFilterCriteria",
 }) as any as S.Schema<ListCisScansFilterCriteria>;
 export type ListCisScansDetailLevel = "ORGANIZATION" | "MEMBER" | (string & {});
-export const ListCisScansDetailLevel = /*@__PURE__*/ S.String;
+export const ListCisScansDetailLevel = S.String;
 
 export type ListCisScansSortBy =
   | "STATUS"
@@ -3443,7 +3442,7 @@ export type ListCisScansSortBy =
   | "SCAN_START_DATE"
   | "FAILED_CHECKS"
   | (string & {});
-export const ListCisScansSortBy = /*@__PURE__*/ S.String;
+export const ListCisScansSortBy = S.String;
 
 export type ListCisScansMaxResults = number;
 export interface ListCisScansRequest {
@@ -3700,7 +3699,7 @@ export const ListCodeSecurityScanConfigurationsResponse =
   }) as any as S.Schema<ListCodeSecurityScanConfigurationsResponse>;
 export type ConnectorNextToken = string | redacted.Redacted<string>;
 export type ConnectorArnComparison = "EQUALS" | (string & {});
-export const ConnectorArnComparison = /*@__PURE__*/ S.String;
+export const ConnectorArnComparison = S.String;
 
 export interface ConnectorArnFilter {
   comparison: ConnectorArnComparison;
@@ -3714,7 +3713,7 @@ export const ConnectorArnFilter = /*@__PURE__*/ S.suspend(() =>
 export type ConnectorArnFilterList = ConnectorArnFilter[];
 export const ConnectorArnFilterList = /*@__PURE__*/ S.Array(ConnectorArnFilter);
 export type AwsConfigConnectorArnComparison = "EQUALS" | (string & {});
-export const AwsConfigConnectorArnComparison = /*@__PURE__*/ S.String;
+export const AwsConfigConnectorArnComparison = S.String;
 
 export interface AwsConfigConnectorArnFilter {
   comparison: AwsConfigConnectorArnComparison;
@@ -3730,13 +3729,13 @@ export const AwsConfigConnectorArnFilterList = /*@__PURE__*/ S.Array(
   AwsConfigConnectorArnFilter,
 );
 export type ConnectorTypeComparison = "EQUALS" | (string & {});
-export const ConnectorTypeComparison = /*@__PURE__*/ S.String;
+export const ConnectorTypeComparison = S.String;
 
 export type ConnectorType =
   | "CUSTOMER_MANAGED"
   | "SERVICE_LINKED"
   | (string & {});
-export const ConnectorType = /*@__PURE__*/ S.String;
+export const ConnectorType = S.String;
 
 export interface ConnectorTypeFilter {
   comparison: ConnectorTypeComparison;
@@ -3751,7 +3750,7 @@ export type ConnectorTypeFilterList = ConnectorTypeFilter[];
 export const ConnectorTypeFilterList =
   /*@__PURE__*/ S.Array(ConnectorTypeFilter);
 export type ProviderComparison = "EQUALS" | (string & {});
-export const ProviderComparison = /*@__PURE__*/ S.String;
+export const ProviderComparison = S.String;
 
 export interface ProviderFilter {
   comparison: ProviderComparison;
@@ -3813,7 +3812,7 @@ export type EnablementStatus =
   | "DELETED"
   | "FAILED_TO_DELETE"
   | (string & {});
-export const EnablementStatus = /*@__PURE__*/ S.String;
+export const EnablementStatus = S.String;
 
 export type ConnectorHealthStatus =
   | "CONNECTED"
@@ -3823,7 +3822,7 @@ export type ConnectorHealthStatus =
   | "PENDING_CONFIGURATION"
   | "UNKNOWN"
   | (string & {});
-export const ConnectorHealthStatus = /*@__PURE__*/ S.String;
+export const ConnectorHealthStatus = S.String;
 
 export interface ConnectorHealth {
   connectorStatus: ConnectorHealthStatus;
@@ -3845,7 +3844,7 @@ export type ScopeState =
   | "ERROR"
   | "DISABLED"
   | (string & {});
-export const ScopeState = /*@__PURE__*/ S.String;
+export const ScopeState = S.String;
 
 export interface ScopeConfiguration {
   scopeType: ScopeType;
@@ -6955,7 +6954,7 @@ export type CisRuleStatus =
   | "NOT_APPLICABLE"
   | "ERROR"
   | (string & {});
-export const CisRuleStatus = /*@__PURE__*/ S.String;
+export const CisRuleStatus = S.String;
 
 export type CisRuleDetails = Uint8Array;
 export interface CisSessionMessage {
@@ -7071,7 +7070,7 @@ export type StopCisSessionStatus =
   | "INTERRUPTED"
   | "UNSUPPORTED_OS"
   | (string & {});
-export const StopCisSessionStatus = /*@__PURE__*/ S.String;
+export const StopCisSessionStatus = S.String;
 
 export type Reason = string;
 export type CheckCount = number;

@@ -150,7 +150,7 @@ export type SecretVersionStateEnum =
   | "ENABLED"
   | "DISABLED"
   | "DESTROYED";
-export const SecretVersionStateEnum = /*@__PURE__*/ S.String;
+export const SecretVersionStateEnum = S.String;
 
 /** A secret version resource in the Secret Manager API. */
 export interface SecretVersion {
@@ -400,7 +400,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

@@ -206,19 +206,19 @@ export const DataQuery = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DataQuery" }) as any as S.Schema<DataQuery>;
 export type AccountId = string;
 export type S3OutputType = "CUSTOM" | "ATHENA" | "REDSHIFT" | (string & {});
-export const S3OutputType = /*@__PURE__*/ S.String;
+export const S3OutputType = S.String;
 
 export type FormatOption = "TEXT_OR_CSV" | "PARQUET" | (string & {});
-export const FormatOption = /*@__PURE__*/ S.String;
+export const FormatOption = S.String;
 
 export type CompressionOption = "GZIP" | "PARQUET" | "ZIP" | (string & {});
-export const CompressionOption = /*@__PURE__*/ S.String;
+export const CompressionOption = S.String;
 
 export type OverwriteOption =
   | "CREATE_NEW_REPORT"
   | "OVERWRITE_REPORT"
   | (string & {});
-export const OverwriteOption = /*@__PURE__*/ S.String;
+export const OverwriteOption = S.String;
 
 export interface S3OutputConfigurations {
   OutputType: S3OutputType;
@@ -261,7 +261,7 @@ export const DestinationConfigurations = /*@__PURE__*/ S.suspend(() =>
   identifier: "DestinationConfigurations",
 }) as any as S.Schema<DestinationConfigurations>;
 export type FrequencyOption = "SYNCHRONOUS" | (string & {});
-export const FrequencyOption = /*@__PURE__*/ S.String;
+export const FrequencyOption = S.String;
 
 export interface RefreshCadence {
   Frequency: FrequencyOption;
@@ -355,7 +355,7 @@ export type ExecutionStatusCode =
   | "DELIVERY_SUCCESS"
   | "DELIVERY_FAILURE"
   | (string & {});
-export const ExecutionStatusCode = /*@__PURE__*/ S.String;
+export const ExecutionStatusCode = S.String;
 
 export type ExecutionStatusReason =
   | "INSUFFICIENT_PERMISSION"
@@ -363,7 +363,7 @@ export type ExecutionStatusReason =
   | "INTERNAL_FAILURE"
   | "DEPRECATED"
   | (string & {});
-export const ExecutionStatusReason = /*@__PURE__*/ S.String;
+export const ExecutionStatusReason = S.String;
 
 export interface ExecutionStatus {
   StatusCode?: ExecutionStatusCode;
@@ -414,7 +414,7 @@ export const GetExportRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetExportRequest",
 }) as any as S.Schema<GetExportRequest>;
 export type ExportStatusCode = "HEALTHY" | "UNHEALTHY" | (string & {});
-export const ExportStatusCode = /*@__PURE__*/ S.String;
+export const ExportStatusCode = S.String;
 
 export interface ExportStatus {
   StatusCode?: ExportStatusCode;
@@ -725,7 +725,7 @@ export type ValidationExceptionReason =
   | "fieldValidationFailed"
   | "other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   Name: string;

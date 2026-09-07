@@ -58,8 +58,7 @@ export const OpenAiServicesForPutRequest = /*@__PURE__*/ S.suspend(() =>
 export type AccountPropertiesForPutRequestInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const AccountPropertiesForPutRequestInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const AccountPropertiesForPutRequestInputPublicNetworkAccess = S.String;
 
 /** The private endpoint resource. */
 export interface PrivateEndpointInput {}
@@ -74,7 +73,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -172,7 +171,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export type UserAssignedIdentityInput = PrivateEndpointInput;
@@ -245,7 +244,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -253,7 +252,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -294,8 +293,7 @@ export const AccountsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 export type AccountPropertiesForPutRequestPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const AccountPropertiesForPutRequestPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const AccountPropertiesForPutRequestPublicNetworkAccess = S.String;
 
 /** The group ids for the private endpoint resource. */
 export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
@@ -323,8 +321,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -390,8 +387,7 @@ export type AccountPropertiesForPutRequestProvisioningState =
   | "Accepted"
   | "Provisioning"
   | "Deleting";
-export const AccountPropertiesForPutRequestProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AccountPropertiesForPutRequestProvisioningState = S.String;
 
 /** Azure Video Indexer account properties */
 export interface AccountPropertiesForPutRequest {
@@ -521,7 +517,7 @@ export const AccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 /** The type of resource, Microsoft.VideoIndexer/accounts */
 export type CheckAccountNameAvailabilityRequestType =
   "Microsoft.VideoIndexer/accounts";
-export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityRequestType = S.String;
 
 export interface CheckAccountNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -550,7 +546,7 @@ export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets the reason that a Video Indexer account name could not be used. The Reason element is only returned if NameAvailable is false. */
 export type CheckNameAvailabilityResultReason = "AlreadyExists";
-export const CheckNameAvailabilityResultReason = /*@__PURE__*/ S.String;
+export const CheckNameAvailabilityResultReason = S.String;
 
 /** The CheckNameAvailability operation response. */
 export interface CheckNameAvailabilityResult {
@@ -641,11 +637,11 @@ export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
 
 /** The requested permission */
 export type GenerateAccessTokenRequestPermissionType = "Contributor" | "Reader";
-export const GenerateAccessTokenRequestPermissionType = /*@__PURE__*/ S.String;
+export const GenerateAccessTokenRequestPermissionType = S.String;
 
 /** The requested media type */
 export type GenerateAccessTokenRequestScope = "Video" | "Account" | "Project";
-export const GenerateAccessTokenRequestScope = /*@__PURE__*/ S.String;
+export const GenerateAccessTokenRequestScope = S.String;
 
 export interface GenerateAccessTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -699,15 +695,14 @@ export const AccessToken = /*@__PURE__*/ S.suspend(() =>
 export type GenerateExtensionAccessTokenRequestPermissionType =
   | "Contributor"
   | "Reader";
-export const GenerateExtensionAccessTokenRequestPermissionType =
-  /*@__PURE__*/ S.String;
+export const GenerateExtensionAccessTokenRequestPermissionType = S.String;
 
 /** The requested media type */
 export type GenerateExtensionAccessTokenRequestScope =
   | "Video"
   | "Account"
   | "Project";
-export const GenerateExtensionAccessTokenRequestScope = /*@__PURE__*/ S.String;
+export const GenerateExtensionAccessTokenRequestScope = S.String;
 
 export interface GenerateExtensionAccessTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -757,7 +752,7 @@ export type GenerateExtensionRestrictedViewerAccessTokenRequestScope =
   | "Account"
   | "Project";
 export const GenerateExtensionRestrictedViewerAccessTokenRequestScope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GenerateExtensionRestrictedViewerAccessTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -804,8 +799,7 @@ export type GenerateRestrictedViewerAccessTokenRequestScope =
   | "Video"
   | "Account"
   | "Project";
-export const GenerateRestrictedViewerAccessTokenRequestScope =
-  /*@__PURE__*/ S.String;
+export const GenerateRestrictedViewerAccessTokenRequestScope = S.String;
 
 export interface GenerateRestrictedViewerAccessTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1458,7 +1452,7 @@ export type AccountPropertiesForPatchRequestInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
 export const AccountPropertiesForPatchRequestInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The private endpoint connection resource. */
 export type AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsItem =

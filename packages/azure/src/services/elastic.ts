@@ -139,7 +139,7 @@ export const CreateMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Flag specifying if the resource monitoring is enabled or disabled. */
 export type MonitoringStatus = "Enabled" | "Disabled";
-export const MonitoringStatus = /*@__PURE__*/ S.String;
+export const MonitoringStatus = S.String;
 
 /** Details of the user's elastic account. */
 export interface ElasticCloudUserInput {}
@@ -240,7 +240,7 @@ export const PlanDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Hosting type of the monitor resource - either Hosted deployments or Serverless Projects. */
 export type HostingType = "Hosted" | "Serverless";
-export const HostingType = /*@__PURE__*/ S.String;
+export const HostingType = S.String;
 
 /** Project type; ex: Elasticsearch / Observability / Security */
 export type ProjectType =
@@ -248,7 +248,7 @@ export type ProjectType =
   | "Observability"
   | "Security"
   | "NotApplicable";
-export const ProjectType = /*@__PURE__*/ S.String;
+export const ProjectType = S.String;
 
 /** Configuration type of the Elasticsearch project */
 export type ConfigurationType =
@@ -256,7 +256,7 @@ export type ConfigurationType =
   | "Vector"
   | "TimeSeries"
   | "NotApplicable";
-export const ConfigurationType = /*@__PURE__*/ S.String;
+export const ConfigurationType = S.String;
 
 /** Project details of the monitor resource IF it belongs to Serverless offer kind. */
 export interface ProjectDetails {
@@ -331,7 +331,7 @@ export const ResourceSku = /*@__PURE__*/ S.suspend(() =>
 
 /** Managed Identity types. */
 export type ManagedIdentityTypes = "SystemAssigned";
-export const ManagedIdentityTypes = /*@__PURE__*/ S.String;
+export const ManagedIdentityTypes = S.String;
 
 /** Identity properties. */
 export interface IdentityPropertiesInput {
@@ -394,7 +394,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -402,7 +402,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -450,7 +450,7 @@ export type ProvisioningState =
   | "Canceled"
   | "Deleted"
   | "NotSpecified";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Details of the user's elastic account. */
 export interface ElasticCloudUser {
@@ -519,7 +519,7 @@ export const ElasticProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ElasticProperties>;
 
 export type LiftrResourceCategories = "Unknown" | "MonitorLogs";
-export const LiftrResourceCategories = /*@__PURE__*/ S.String;
+export const LiftrResourceCategories = S.String;
 
 /** Properties specific to the monitor resource. */
 export interface MonitorProperties {
@@ -1115,15 +1115,15 @@ export type Operation =
   | "DeleteBegin"
   | "DeleteComplete"
   | "Active";
-export const Operation = /*@__PURE__*/ S.String;
+export const Operation = S.String;
 
 /** The state of monitoring. */
 export type Status = "InProgress" | "Active" | "Failed" | "Deleting";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Valid actions for a filtering tag. Exclusion takes priority over inclusion. */
 export type TagAction = "Include" | "Exclude";
-export const TagAction = /*@__PURE__*/ S.String;
+export const TagAction = S.String;
 
 /** The definition of a filtering tag. Filtering tags are used for capturing resources and include/exclude them from being monitored. */
 export interface FilteringTag {
@@ -1576,7 +1576,7 @@ export const ListAllTrafficFiltersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the elastic filter */
 export type Type = "ip" | "azure_private_endpoint";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 /** Elastic traffic filter rule object */
 export interface ElasticTrafficFilterRule {
@@ -1776,7 +1776,7 @@ export const ListDeploymentInfoRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Flag specifying if the Elastic deployment status is healthy or not. */
 export type ElasticDeploymentStatus = "Healthy" | "Unhealthy";
-export const ElasticDeploymentStatus = /*@__PURE__*/ S.String;
+export const ElasticDeploymentStatus = S.String;
 
 /** The properties of deployment in Elastic cloud corresponding to the Elastic monitor resource. */
 export interface DeploymentInfoResponse {
@@ -2034,7 +2034,7 @@ export const ListMonitoredResourcesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Flag indicating the status of the resource for sending logs operation to Elastic. */
 export type SendingLogs = "True" | "False";
-export const SendingLogs = /*@__PURE__*/ S.String;
+export const SendingLogs = S.String;
 
 /** The properties of a resource currently being monitored by the Elastic monitor resource. */
 export interface MonitoredResource {
@@ -2930,7 +2930,7 @@ export const UpdateMonitoredSubscriptionsCreateorResponse =
 
 /** Operation to be performed on the given vm resource id. */
 export type OperationName = "Add" | "Delete";
-export const OperationName = /*@__PURE__*/ S.String;
+export const OperationName = S.String;
 
 export interface UpdateVMCollectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */

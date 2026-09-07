@@ -248,7 +248,7 @@ export const RelaysGetResponseConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RelaysGetResponseConfig>;
 
 export type RelaysGetResponseStatus = "connected";
-export const RelaysGetResponseStatus = /*@__PURE__*/ S.String;
+export const RelaysGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRelayResponse {
@@ -344,7 +344,7 @@ export const ListRelaysResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRelaysResponse>;
 
 export type RelaysTokensRotateRequestType = "publish_subscribe" | "subscribe";
-export const RelaysTokensRotateRequestType = /*@__PURE__*/ S.String;
+export const RelaysTokensRotateRequestType = S.String;
 
 export interface RotateRelayTokenRequest {
   /** Cloudflare account identifier. */
@@ -372,7 +372,7 @@ export const RotateRelayTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RotateRelayTokenRequest>;
 
 export type RelaysTokensRotateResponseType = "publish_subscribe" | "subscribe";
-export const RelaysTokensRotateResponseType = /*@__PURE__*/ S.String;
+export const RelaysTokensRotateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface RotateRelayTokenResponse {
@@ -535,7 +535,7 @@ export const RelaysUpdateResponseConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RelaysUpdateResponseConfig>;
 
 export type RelaysUpdateResponseStatus = "connected";
-export const RelaysUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const RelaysUpdateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateRelayResponse {

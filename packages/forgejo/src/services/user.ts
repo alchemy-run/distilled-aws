@@ -280,7 +280,7 @@ export const ActionRunnerLabelsList = /*@__PURE__*/ S.Array(
 
 /** Status indicates whether this runner is offline, or active, for example. */
 export type ActionRunnerStatus = "offline" | "idle" | "active";
-export const ActionRunnerStatus = /*@__PURE__*/ S.String;
+export const ActionRunnerStatus = S.String;
 
 /** ActionRunner represents a runner */
 export interface ActionRunner {
@@ -513,7 +513,7 @@ export type SearchUserRequestSort =
   | "reversealphabetically"
   | "recentupdate"
   | "leastupdate";
-export const SearchUserRequestSort = /*@__PURE__*/ S.String;
+export const SearchUserRequestSort = S.String;
 
 export interface SearchUserRequest {
   /** keyword */
@@ -809,7 +809,7 @@ export type UserCreateHookRequestType =
   | "feishu"
   | "wechatwork"
   | "packagist";
-export const UserCreateHookRequestType = /*@__PURE__*/ S.String;
+export const UserCreateHookRequestType = S.String;
 
 export interface UserCreateHookRequest {
   active?: boolean;
@@ -1401,7 +1401,7 @@ export type UserCurrentListReposRequestOrderBy =
   | "feweststars"
   | "mostforks"
   | "fewestforks";
-export const UserCurrentListReposRequestOrderBy = /*@__PURE__*/ S.String;
+export const UserCurrentListReposRequestOrderBy = S.String;
 
 export interface UserCurrentListReposRequest {
   /** page number of results to return (1-based) */
@@ -1475,7 +1475,7 @@ export const InternalTracker = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type RepositoryObjectFormatName = "sha1" | "sha256";
-export const RepositoryObjectFormatName = /*@__PURE__*/ S.String;
+export const RepositoryObjectFormatName = S.String;
 
 /** Permission represents a set of permissions */
 export interface Permission {
@@ -1525,7 +1525,7 @@ export const Organization = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
 
 export type TeamPermission = "none" | "read" | "write" | "admin" | "owner";
-export const TeamPermission = /*@__PURE__*/ S.String;
+export const TeamPermission = S.String;
 
 export type TeamUnitsList = Array<string>;
 export const TeamUnitsList = /*@__PURE__*/ S.Array(
@@ -1899,7 +1899,7 @@ export const UserCurrentTrackedTimesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserCurrentTrackedTimesRequest>;
 
 export type AttachmentType = "attachment" | "external";
-export const AttachmentType = /*@__PURE__*/ S.String;
+export const AttachmentType = S.String;
 
 /** Attachment a generic attachment */
 export interface Attachment {
@@ -2709,7 +2709,7 @@ export type ActivityOpType =
   | "pull_review_dismissed"
   | "pull_request_ready_for_review"
   | "auto_merge_pull_request";
-export const ActivityOpType = /*@__PURE__*/ S.String;
+export const ActivityOpType = S.String;
 
 export interface Activity {
   act_user?: User;

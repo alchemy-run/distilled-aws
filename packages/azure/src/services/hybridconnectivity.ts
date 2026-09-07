@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Name of the service. */
 export type ServiceName = "SSH" | "WAC";
-export const ServiceName = /*@__PURE__*/ S.String;
+export const ServiceName = S.String;
 
 /** Service configuration details */
 export interface ServiceConfigurationPropertiesInput {
@@ -70,7 +70,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -78,7 +78,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -113,7 +113,7 @@ export type ProvisioningState =
   | "Updating"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Service configuration details */
 export interface ServiceConfigurationProperties {
@@ -286,7 +286,7 @@ export const DeleteSolutionConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of endpoint. */
 export type Type = "default" | "custom";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 /** Endpoint details */
 export interface EndpointPropertiesInput {
@@ -445,7 +445,7 @@ export const GetInventoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Cloud Native Type enum. */
 export type CloudNativeType = "ec2";
-export const CloudNativeType = /*@__PURE__*/ S.String;
+export const CloudNativeType = S.String;
 
 /** Solution Configuration Status. */
 export type SolutionConfigurationStatus =
@@ -453,15 +453,14 @@ export type SolutionConfigurationStatus =
   | "InProgress"
   | "Completed"
   | "Failed";
-export const SolutionConfigurationStatus = /*@__PURE__*/ S.String;
+export const SolutionConfigurationStatus = S.String;
 
 /** The provisioning state of a resource type. */
 export type AzureResourceManagerResourceProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerResourceProvisioningState = S.String;
 
 /** Definition of inventory. */
 export interface InventoryProperties {
@@ -653,7 +652,7 @@ export const GcpCloudProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum of host cloud the public cloud connector is referencing. */
 export type HostType = "AWS" | "GCP";
-export const HostType = /*@__PURE__*/ S.String;
+export const HostType = S.String;
 
 /** Properties of public cloud connectors. */
 export interface PublicCloudConnectorProperties {
@@ -1354,11 +1353,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -1806,7 +1805,7 @@ export const PostGenerateGcpTemplateRequestSolutionTypesList =
 
 /** GCP template format. */
 export type GcpTemplateFormat = "terraform" | "shellscript";
-export const GcpTemplateFormat = /*@__PURE__*/ S.String;
+export const GcpTemplateFormat = S.String;
 
 export interface PostGenerateGcpTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */

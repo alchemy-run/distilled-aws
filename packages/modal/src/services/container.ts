@@ -194,17 +194,17 @@ export type TaskState =
   | "TASK_STATE_PREEMPTIBLE"
   | "TASK_STATE_PREEMPTED"
   | "TASK_STATE_LOADING_CHECKPOINT_IMAGE";
-export const TaskState = /*@__PURE__*/ S.String;
+export const TaskState = S.String;
 
 export type FileDescriptor =
   | "FILE_DESCRIPTOR_UNSPECIFIED"
   | "FILE_DESCRIPTOR_STDOUT"
   | "FILE_DESCRIPTOR_STDERR"
   | "FILE_DESCRIPTOR_INFO";
-export const FileDescriptor = /*@__PURE__*/ S.String;
+export const FileDescriptor = S.String;
 
 export type ProgressType = "IMAGE_SNAPSHOT_UPLOAD" | "FUNCTION_QUEUED";
-export const ProgressType = /*@__PURE__*/ S.String;
+export const ProgressType = S.String;
 
 export interface TaskProgress {
   len?: string;
@@ -326,7 +326,7 @@ export type PTYInfoPTYType =
   | "PTY_TYPE_UNSPECIFIED"
   | "PTY_TYPE_FUNCTION"
   | "PTY_TYPE_SHELL";
-export const PTYInfoPTYType = /*@__PURE__*/ S.String;
+export const PTYInfoPTYType = S.String;
 
 export interface PTYInfo {
   enabled?: boolean;
@@ -358,7 +358,7 @@ export type ExecOutputOption =
   | "EXEC_OUTPUT_OPTION_DEVNULL"
   | "EXEC_OUTPUT_OPTION_PIPE"
   | "EXEC_OUTPUT_OPTION_STDOUT";
-export const ExecOutputOption = /*@__PURE__*/ S.String;
+export const ExecOutputOption = S.String;
 
 export interface ExecContainerRequest {
   taskId?: string;
@@ -466,7 +466,7 @@ export type ContainerFileReadLineRequest = ContainerFileFlushRequest;
 export const ContainerFileReadLineRequest = ContainerFileFlushRequest;
 
 export type SeekWhence = "SEEK_SET" | "SEEK_CUR" | "SEEK_END";
-export const SeekWhence = /*@__PURE__*/ S.String;
+export const SeekWhence = S.String;
 
 export interface ContainerFileSeekRequest {
   fileDescriptor?: string;

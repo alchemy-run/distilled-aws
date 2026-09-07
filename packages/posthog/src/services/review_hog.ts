@@ -78,7 +78,7 @@ export type ReviewStageEnum =
   | "deduplicating"
   | "validating"
   | "finalizing";
-export const ReviewStageEnum = /*@__PURE__*/ S.String;
+export const ReviewStageEnum = S.String;
 
 export interface ReviewProgress {
   /** How far the in-flight review turn has come: fetching the diff, chunking, picking each chunk's perspectives, reviewing chunks, merging overlapping findings, validating them, or finalizing (building and publishing the review). * `fetching` - fetching * `chunking` - chunking * `selecting` - selecting * `reviewing` - reviewing * `deduplicating` - deduplicating * `validating` - validating * `finalizing` - finalizing */
@@ -98,7 +98,7 @@ export const ReviewProgress = /*@__PURE__*/ S.suspend(() =>
 
 /** * `resolving` - resolving * `stopped` - stopped */
 export type ResolutionStatusEnum = "resolving" | "stopped";
-export const ResolutionStatusEnum = /*@__PURE__*/ S.String;
+export const ResolutionStatusEnum = S.String;
 
 export interface ReviewResolutionStatus {
   /** Where the run stands: `resolving` while threads are being settled, `stopped` when the run died partway (went quiet with no closing summary). * `resolving` - resolving * `stopped` - stopped */
@@ -198,7 +198,7 @@ export const ReviewPerspectiveSelection = /*@__PURE__*/ S.suspend(() =>
 
 /** * `must_fix` - must_fix * `should_fix` - should_fix * `consider` - consider */
 export type ReviewIssuePriorityEnum = "must_fix" | "should_fix" | "consider";
-export const ReviewIssuePriorityEnum = /*@__PURE__*/ S.String;
+export const ReviewIssuePriorityEnum = S.String;
 
 export interface ReviewFindingLineRange {
   /** First affected line. */
@@ -232,7 +232,7 @@ export type ValidatorCategoryEnum =
   | "testing"
   | "accessibility"
   | "compatibility";
-export const ValidatorCategoryEnum = /*@__PURE__*/ S.String;
+export const ValidatorCategoryEnum = S.String;
 
 export interface ReviewFinding {
   /** One-line summary of the finding. */
@@ -389,8 +389,7 @@ export const ReviewDetail = /*@__PURE__*/ S.suspend(() =>
 export type GetReviewHogReviewsPerspectiveStatRequestScope =
   | "mine"
   | "everyone";
-export const GetReviewHogReviewsPerspectiveStatRequestScope =
-  /*@__PURE__*/ S.String;
+export const GetReviewHogReviewsPerspectiveStatRequestScope = S.String;
 
 export interface GetReviewHogReviewsPerspectiveStatRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -619,7 +618,7 @@ export const ListReviewHogResolutionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReviewHogResolutionResponse>;
 
 export type ListReviewHogReviewsRequestScope = "mine" | "everyone";
-export const ListReviewHogReviewsRequestScope = /*@__PURE__*/ S.String;
+export const ListReviewHogReviewsRequestScope = S.String;
 
 export interface ListReviewHogReviewsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -811,7 +810,7 @@ export type ReviewTriggerRequestRunModeEnum =
   | "review"
   | "review_only"
   | "resolve_only";
-export const ReviewTriggerRequestRunModeEnum = /*@__PURE__*/ S.String;
+export const ReviewTriggerRequestRunModeEnum = S.String;
 
 export interface ReviewHogReviewsTriggerCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

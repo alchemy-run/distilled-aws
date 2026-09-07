@@ -169,7 +169,7 @@ export type CopyFeatureFlagRequestIncludedActionsItem =
   | "updatePrerequisites"
   | "updateTargets"
   | "updateFlagConfigMigrationSettings";
-export const CopyFeatureFlagRequestIncludedActionsItem = /*@__PURE__*/ S.String;
+export const CopyFeatureFlagRequestIncludedActionsItem = S.String;
 
 /** Optional list of the flag changes to copy from the source environment to the target environment. You may include either <code>includedActions</code> or <code>excludedActions</code>, but not both. If you include neither, then all flag changes will be copied. */
 export type CopyFeatureFlagRequestIncludedActionsList = Array<
@@ -187,7 +187,7 @@ export type CopyFeatureFlagRequestExcludedActionsItem =
   | "updatePrerequisites"
   | "updateTargets"
   | "updateFlagConfigMigrationSettings";
-export const CopyFeatureFlagRequestExcludedActionsItem = /*@__PURE__*/ S.String;
+export const CopyFeatureFlagRequestExcludedActionsItem = S.String;
 
 /** Optional list of the flag changes NOT to copy from the source environment to the target environment. You may include either <code>includedActions</code> or <code>excludedActions</code>, but not both. If you include neither, then all flag changes will be copied. */
 export type CopyFeatureFlagRequestExcludedActionsList = Array<
@@ -235,7 +235,7 @@ export const CopyFeatureFlagRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of feature flag */
 export type FeatureFlagKind = "boolean" | "multivariate";
-export const FeatureFlagKind = /*@__PURE__*/ S.String;
+export const FeatureFlagKind = S.String;
 
 export interface ClientSideAvailability {
   usingMobileKey?: boolean;
@@ -354,7 +354,7 @@ export const FeatureFlagGoalIdsList = /*@__PURE__*/ S.Array(
 
 /** The kind of event the metric tracks */
 export type MetricListingRepKind = "pageview" | "click" | "custom" | "trace";
-export const MetricListingRepKind = /*@__PURE__*/ S.String;
+export const MetricListingRepKind = S.String;
 
 /** The location and content type of related resources */
 export type MetricListingRepLinksMap = { [key: string]: Link | undefined };
@@ -389,7 +389,7 @@ export const AccessDeniedReasonNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type AccessDeniedReasonEffect = "allow" | "deny";
-export const AccessDeniedReasonEffect = /*@__PURE__*/ S.String;
+export const AccessDeniedReasonEffect = S.String;
 
 export interface AccessDeniedReason {
   /** Resource specifier strings */
@@ -459,7 +459,7 @@ export const AccessAllowedReasonNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type AccessAllowedReasonEffect = "allow" | "deny";
-export const AccessAllowedReasonEffect = /*@__PURE__*/ S.String;
+export const AccessAllowedReasonEffect = S.String;
 
 export interface AccessAllowedReason {
   /** Resource specifier strings */
@@ -535,7 +535,7 @@ export const Modification = /*@__PURE__*/ S.suspend(() =>
 export type MetricListingRepSuccessCriteria =
   | "HigherThanBaseline"
   | "LowerThanBaseline";
-export const MetricListingRepSuccessCriteria = /*@__PURE__*/ S.String;
+export const MetricListingRepSuccessCriteria = S.String;
 
 /** Deprecated, use <code>analysisUnits</code> instead. */
 export type MetricListingRepRandomizationUnitsList = Array<string>;
@@ -551,7 +551,7 @@ export const MetricListingRepAnalysisUnitsList = /*@__PURE__*/ S.Array(
 
 /** Filter type. One of [contextAttribute, eventProperty, group] */
 export type FilterType = "group" | "contextAttribute" | "eventProperty";
-export const FilterType = /*@__PURE__*/ S.String;
+export const FilterType = S.String;
 
 /** The context attribute / event property values or group member nodes */
 export type FilterValuesList = Array<unknown>;
@@ -589,11 +589,11 @@ export type MetricListingRepUnitAggregationType =
   | "average"
   | "sum"
   | "count_distinct";
-export const MetricListingRepUnitAggregationType = /*@__PURE__*/ S.String;
+export const MetricListingRepUnitAggregationType = S.String;
 
 /** The method for analyzing metric events */
 export type MetricListingRepAnalysisType = "mean" | "percentile";
-export const MetricListingRepAnalysisType = /*@__PURE__*/ S.String;
+export const MetricListingRepAnalysisType = S.String;
 
 export interface MetricEventDefaultRep {
   /** Whether to disable defaulting missing unit events when calculating results. Defaults to false */
@@ -1412,7 +1412,7 @@ export type CreateAnnouncementPublicRequestSeverity =
   | "info"
   | "warning"
   | "critical";
-export const CreateAnnouncementPublicRequestSeverity = /*@__PURE__*/ S.String;
+export const CreateAnnouncementPublicRequestSeverity = S.String;
 
 export interface CreateAnnouncementPublicRequest {
   /** true if the announcement is dismissible */
@@ -1443,11 +1443,11 @@ export const CreateAnnouncementPublicRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The severity of the announcement */
 export type AnnouncementResponseSeverity = "info" | "warning" | "critical";
-export const AnnouncementResponseSeverity = /*@__PURE__*/ S.String;
+export const AnnouncementResponseSeverity = S.String;
 
 /** The status of the announcement */
 export type AnnouncementResponseStatus = "active" | "inactive" | "scheduled";
-export const AnnouncementResponseStatus = /*@__PURE__*/ S.String;
+export const AnnouncementResponseStatus = S.String;
 
 /** Resource specifier strings */
 export type AnnouncementAccessDeniedReasonResourcesList = Array<string>;
@@ -1478,7 +1478,7 @@ export const AnnouncementAccessDeniedReasonNotActionsList =
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type AnnouncementAccessDeniedReasonEffect = "allow" | "deny";
-export const AnnouncementAccessDeniedReasonEffect = /*@__PURE__*/ S.String;
+export const AnnouncementAccessDeniedReasonEffect = S.String;
 
 export interface AnnouncementAccessDeniedReason {
   /** Resource specifier strings */
@@ -1553,7 +1553,7 @@ export const AnnouncementAccessAllowedReasonNotActionsList =
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type AnnouncementAccessAllowedReasonEffect = "allow" | "deny";
-export const AnnouncementAccessAllowedReasonEffect = /*@__PURE__*/ S.String;
+export const AnnouncementAccessAllowedReasonEffect = S.String;
 
 export interface AnnouncementAccessAllowedReason {
   /** Resource specifier strings */
@@ -1734,11 +1734,11 @@ export type ApprovalRequestResponseReviewStatus =
   | "approved"
   | "declined"
   | "pending";
-export const ApprovalRequestResponseReviewStatus = /*@__PURE__*/ S.String;
+export const ApprovalRequestResponseReviewStatus = S.String;
 
 /** The type of review action to take */
 export type ReviewResponseKind = "approve" | "decline" | "comment";
-export const ReviewResponseKind = /*@__PURE__*/ S.String;
+export const ReviewResponseKind = S.String;
 
 export interface ReviewResponse {
   /** The approval request ID */
@@ -1783,7 +1783,7 @@ export type ApprovalRequestResponseStatus =
   | "completed"
   | "failed"
   | "scheduled";
-export const ApprovalRequestResponseStatus = /*@__PURE__*/ S.String;
+export const ApprovalRequestResponseStatus = S.String;
 
 export interface Conflict2 {
   /** Instruction in semantic patch format to be applied to the feature flag */
@@ -2042,7 +2042,7 @@ export type CreateApprovalRequestReviewRequestKind =
   | "approve"
   | "comment"
   | "decline";
-export const CreateApprovalRequestReviewRequestKind = /*@__PURE__*/ S.String;
+export const CreateApprovalRequestReviewRequestKind = S.String;
 
 export interface CreateApprovalRequestReviewRequest {
   /** The approval request ID */
@@ -2203,7 +2203,7 @@ export const BigSegmentStoreIntegrationLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The integration key */
 export type BigSegmentStoreIntegrationIntegrationKey = "redis" | "dynamodb";
-export const BigSegmentStoreIntegrationIntegrationKey = /*@__PURE__*/ S.String;
+export const BigSegmentStoreIntegrationIntegrationKey = S.String;
 
 /** List of tags for this configuration */
 export type BigSegmentStoreIntegrationTagsList = Array<string>;
@@ -2304,8 +2304,7 @@ export type CreateDeploymentEventRequestApplicationKind =
   | "server"
   | "browser"
   | "mobile";
-export const CreateDeploymentEventRequestApplicationKind =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentEventRequestApplicationKind = S.String;
 
 /** The event type */
 export type CreateDeploymentEventRequestEventType =
@@ -2313,7 +2312,7 @@ export type CreateDeploymentEventRequestEventType =
   | "failed"
   | "finished"
   | "custom";
-export const CreateDeploymentEventRequestEventType = /*@__PURE__*/ S.String;
+export const CreateDeploymentEventRequestEventType = S.String;
 
 /** A JSON object containing metadata about the event */
 export type CreateDeploymentEventRequestEventMetadataMap = {
@@ -2540,22 +2539,20 @@ export type CreateExperimentRequestMethodology =
   | "bayesian"
   | "frequentist"
   | "export_only";
-export const CreateExperimentRequestMethodology = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestMethodology = S.String;
 
 /** The method to use for multiple comparison correction. */
 export type AnalysisConfigInputMultipleComparisonCorrectionMethod =
   | "bonferroni"
   | "benjamini-hochberg";
-export const AnalysisConfigInputMultipleComparisonCorrectionMethod =
-  /*@__PURE__*/ S.String;
+export const AnalysisConfigInputMultipleComparisonCorrectionMethod = S.String;
 
 /** The scope of the multiple comparison correction. */
 export type AnalysisConfigInputMultipleComparisonCorrectionScope =
   | "variations"
   | "variations-and-metrics"
   | "metrics";
-export const AnalysisConfigInputMultipleComparisonCorrectionScope =
-  /*@__PURE__*/ S.String;
+export const AnalysisConfigInputMultipleComparisonCorrectionScope = S.String;
 
 export interface AnalysisConfigInput {
   /** The threshold for the Probability to Beat Baseline (PBBL) and Probability to Be Best (PBB) comparisons for the Bayesian results analysis approach. */
@@ -2594,11 +2591,11 @@ export const AnalysisConfigInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The source of metric data in order to analyze results. Defaults to "launchdarkly" when not provided. */
 export type CreateExperimentRequestDataSource = "launchdarkly" | "snowflake";
-export const CreateExperimentRequestDataSource = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestDataSource = S.String;
 
 /** The type of experiment. */
 export type CreateExperimentRequestType = "experiment" | "mab" | "holdout";
-export const CreateExperimentRequestType = /*@__PURE__*/ S.String;
+export const CreateExperimentRequestType = S.String;
 
 export interface CreateExperimentRequest {
   /** The project key */
@@ -2656,11 +2653,11 @@ export const CreateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The results analysis approach. */
 export type ExperimentMethodology = "bayesian" | "frequentist" | "export_only";
-export const ExperimentMethodology = /*@__PURE__*/ S.String;
+export const ExperimentMethodology = S.String;
 
 /** The source of metric data in order to analyze results. Defaults to "launchdarkly" when not provided. */
 export type ExperimentDataSource = "launchdarkly" | "snowflake";
-export const ExperimentDataSource = /*@__PURE__*/ S.String;
+export const ExperimentDataSource = S.String;
 
 /** Tags for the experiment */
 export type ExperimentTagsList = Array<string>;
@@ -2677,7 +2674,7 @@ export const ExperimentLinksMap = /*@__PURE__*/ S.Record(
 
 /** The status of the iteration: <code>not_started</code>, <code>running</code>, <code>stopped</code> */
 export type IterationRepStatus = "not_started" | "running" | "stopped";
-export const IterationRepStatus = /*@__PURE__*/ S.String;
+export const IterationRepStatus = S.String;
 
 /** An array of clauses used for individual targeting based on attributes */
 export type FlagRepTargetingRuleClausesList = Array<unknown>;
@@ -2732,7 +2729,7 @@ export type DependentMetricOrMetricGroupRepKind =
   | "trace"
   | "funnel"
   | "standard";
-export const DependentMetricOrMetricGroupRepKind = /*@__PURE__*/ S.String;
+export const DependentMetricOrMetricGroupRepKind = S.String;
 
 /** The location and content type of related resources */
 export type DependentMetricOrMetricGroupRepLinksMap = {
@@ -2745,18 +2742,18 @@ export const DependentMetricOrMetricGroupRepLinksMap = /*@__PURE__*/ S.Record(
 
 /** The kind of event the metric tracks */
 export type MetricInGroupRepKind = "pageview" | "click" | "custom" | "trace";
-export const MetricInGroupRepKind = /*@__PURE__*/ S.String;
+export const MetricInGroupRepKind = S.String;
 
 /** The type of unit aggregation to use for the metric */
 export type MetricInGroupRepUnitAggregationType =
   | "sum"
   | "average"
   | "count_distinct";
-export const MetricInGroupRepUnitAggregationType = /*@__PURE__*/ S.String;
+export const MetricInGroupRepUnitAggregationType = S.String;
 
 /** The method for analyzing metric events */
 export type MetricInGroupRepAnalysisType = "mean" | "percentile";
-export const MetricInGroupRepAnalysisType = /*@__PURE__*/ S.String;
+export const MetricInGroupRepAnalysisType = S.String;
 
 /** The location and content type of related resources */
 export type MetricInGroupRepLinksMap = { [key: string]: Link | undefined };
@@ -2834,8 +2831,7 @@ export const DependentMetricOrMetricGroupRepMetricsList = /*@__PURE__*/ S.Array(
 
 /** The method for analyzing metric events. Only set for individual metrics, not metric groups. */
 export type DependentMetricOrMetricGroupRepAnalysisType = "mean" | "percentile";
-export const DependentMetricOrMetricGroupRepAnalysisType =
-  /*@__PURE__*/ S.String;
+export const DependentMetricOrMetricGroupRepAnalysisType = S.String;
 
 export interface DependentMetricOrMetricGroupRep {
   /** A unique key to reference the metric or metric group */
@@ -2881,18 +2877,18 @@ export const DependentMetricOrMetricGroupRep = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of event the metric tracks */
 export type MetricV2RepKind = "pageview" | "click" | "custom" | "trace";
-export const MetricV2RepKind = /*@__PURE__*/ S.String;
+export const MetricV2RepKind = S.String;
 
 /** The type of unit aggregation to use for the metric */
 export type MetricV2RepUnitAggregationType =
   | "sum"
   | "average"
   | "count_distinct";
-export const MetricV2RepUnitAggregationType = /*@__PURE__*/ S.String;
+export const MetricV2RepUnitAggregationType = S.String;
 
 /** The method for analyzing metric events */
 export type MetricV2RepAnalysisType = "mean" | "percentile";
-export const MetricV2RepAnalysisType = /*@__PURE__*/ S.String;
+export const MetricV2RepAnalysisType = S.String;
 
 /** The location and content type of related resources */
 export type MetricV2RepLinksMap = { [key: string]: Link | undefined };
@@ -2940,7 +2936,7 @@ export const MetricV2Rep = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the metric group */
 export type DependentMetricGroupRepWithMetricsKind = "funnel" | "standard";
-export const DependentMetricGroupRepWithMetricsKind = /*@__PURE__*/ S.String;
+export const DependentMetricGroupRepWithMetricsKind = S.String;
 
 /** The location and content type of related resources */
 export type DependentMetricGroupRepWithMetricsLinksMap = {
@@ -3169,16 +3165,14 @@ export const ExperimentPreviousIterationsList = /*@__PURE__*/ S.Array(
 export type AnalysisConfigRepMultipleComparisonCorrectionMethod =
   | "bonferroni"
   | "benjamini-hochberg";
-export const AnalysisConfigRepMultipleComparisonCorrectionMethod =
-  /*@__PURE__*/ S.String;
+export const AnalysisConfigRepMultipleComparisonCorrectionMethod = S.String;
 
 /** The scope for multiple comparison correction. */
 export type AnalysisConfigRepMultipleComparisonCorrectionScope =
   | "variations"
   | "variations-and-metrics"
   | "metrics";
-export const AnalysisConfigRepMultipleComparisonCorrectionScope =
-  /*@__PURE__*/ S.String;
+export const AnalysisConfigRepMultipleComparisonCorrectionScope = S.String;
 
 export interface AnalysisConfigRep {
   /** The threshold for the Probability to Beat Baseline (PBBL) and Probability to Be Best (PBB) comparisons for the Bayesian results analysis approach. Value should be between 0-100 inclusive. */
@@ -3387,7 +3381,7 @@ export const FlagImportIntegrationLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The integration key */
 export type FlagImportIntegrationIntegrationKey = "split" | "unleash";
-export const FlagImportIntegrationIntegrationKey = /*@__PURE__*/ S.String;
+export const FlagImportIntegrationIntegrationKey = S.String;
 
 /** List of tags for this configuration */
 export type FlagImportIntegrationTagsList = Array<string>;
@@ -3402,7 +3396,7 @@ export type FlagImportStatusStatus =
   | "pending"
   | "failed"
   | "partial";
-export const FlagImportStatusStatus = /*@__PURE__*/ S.String;
+export const FlagImportStatusStatus = S.String;
 
 export interface StatusResponse {
   integrationId?: string;
@@ -4071,7 +4065,7 @@ export const StatementPostNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type StatementPostEffect = "allow" | "deny";
-export const StatementPostEffect = /*@__PURE__*/ S.String;
+export const StatementPostEffect = S.String;
 
 export interface StatementPost {
   /** Resource specifier strings */
@@ -4213,7 +4207,7 @@ export const StatementNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type StatementEffect = "allow" | "deny";
-export const StatementEffect = /*@__PURE__*/ S.String;
+export const StatementEffect = S.String;
 
 export interface Statement {
   /** Resource specifier strings */
@@ -4574,7 +4568,7 @@ export const LayerRep = /*@__PURE__*/ S.suspend(() =>
 
 /** The member's initial role, if you are using a base role for the initial role */
 export type NewMemberFormRole = "reader" | "writer" | "admin" | "no_access";
-export const NewMemberFormRole = /*@__PURE__*/ S.String;
+export const NewMemberFormRole = S.String;
 
 /** An array of the member's initial roles, if you are using custom roles or preset roles provided by LaunchDarkly */
 export type NewMemberFormCustomRolesList = Array<string>;
@@ -4884,7 +4878,7 @@ export const CreateMemberTeamRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the metric group */
 export type CreateMetricGroupRequestKind = "funnel" | "standard";
-export const CreateMetricGroupRequestKind = /*@__PURE__*/ S.String;
+export const CreateMetricGroupRequestKind = S.String;
 
 /** Tags for the metric group */
 export type CreateMetricGroupRequestTagsList = Array<string>;
@@ -4955,7 +4949,7 @@ export const CreateMetricGroupRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the metric group */
 export type MetricGroupRepKind = "funnel" | "standard";
-export const MetricGroupRepKind = /*@__PURE__*/ S.String;
+export const MetricGroupRepKind = S.String;
 
 /** The location and content type of related resources */
 export type MetricGroupRepLinksMap = { [key: string]: Link | undefined };
@@ -4972,7 +4966,7 @@ export const MetricGroupRepTagsList = /*@__PURE__*/ S.Array(
 
 /** The type of the maintainer */
 export type MaintainerRepKind = "member" | "team";
-export const MaintainerRepKind = /*@__PURE__*/ S.String;
+export const MaintainerRepKind = S.String;
 
 export interface MaintainerRep {
   /** The ID of the maintainer member, or the key of the maintainer team */
@@ -5252,7 +5246,7 @@ export type NamingConventionCase =
   | "snakeCase"
   | "kebabCase"
   | "constantCase";
-export const NamingConventionCase = /*@__PURE__*/ S.String;
+export const NamingConventionCase = S.String;
 
 export interface NamingConvention {
   /** The casing convention to enforce for new flag keys in this project */
@@ -5829,7 +5823,7 @@ export const CreateTeamRequestMemberIDsList = /*@__PURE__*/ S.Array(
 
 /** A group of related actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. Use <code>maintainTeam</code> to add team maintainers. */
 export type PermissionGrantInputActionSet = "maintainTeam";
-export const PermissionGrantInputActionSet = /*@__PURE__*/ S.String;
+export const PermissionGrantInputActionSet = S.String;
 
 /** A list of actions to allow. Specify either <code>actionSet</code> or <code>actions</code>. To learn more, read [Role actions](https://launchdarkly.com/docs/ld-docs/home/account/role-actions). */
 export type PermissionGrantInputActionsList = Array<string>;
@@ -6149,7 +6143,7 @@ export const TeamImportsRep = /*@__PURE__*/ S.suspend(() =>
 
 /** Base role for the token */
 export type CreateTokenRequestRole = "reader" | "writer" | "admin";
-export const CreateTokenRequestRole = /*@__PURE__*/ S.String;
+export const CreateTokenRequestRole = S.String;
 
 /** A list of custom role IDs to use as access limits for the access token */
 export type CreateTokenRequestCustomRoleIdsList = Array<string>;
@@ -6312,7 +6306,7 @@ export const CreateTriggerWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The trigger state: active, inactive, or failed */
 export type TriggerWorkflowRepStatus = "active" | "inactive" | "failed";
-export const TriggerWorkflowRepStatus = /*@__PURE__*/ S.String;
+export const TriggerWorkflowRepStatus = S.String;
 
 /** The marshalled JSON request body for the incoming trigger webhook. If this is empty or contains invalid JSON, the timestamp is recorded but this field will be empty. */
 export type RecentTriggerBodyJsonBodyMap = {
@@ -6473,7 +6467,7 @@ export const ViewsAccessDeniedReasonNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type ViewsAccessDeniedReasonEffect = "allow" | "deny";
-export const ViewsAccessDeniedReasonEffect = /*@__PURE__*/ S.String;
+export const ViewsAccessDeniedReasonEffect = S.String;
 
 export interface ViewsAccessDeniedReason {
   /** Resource specifier strings */
@@ -6545,7 +6539,7 @@ export const ViewsAccessAllowedReasonNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type ViewsAccessAllowedReasonEffect = "allow" | "deny";
-export const ViewsAccessAllowedReasonEffect = /*@__PURE__*/ S.String;
+export const ViewsAccessAllowedReasonEffect = S.String;
 
 export interface ViewsAccessAllowedReason {
   /** Resource specifier strings */
@@ -6820,7 +6814,7 @@ export const ExpandedFlagTagsList = /*@__PURE__*/ S.Array(
 
 /** The type of the maintainer */
 export type ExpandedFlagMaintainerKind = "member" | "team";
-export const ExpandedFlagMaintainerKind = /*@__PURE__*/ S.String;
+export const ExpandedFlagMaintainerKind = S.String;
 
 export type ViewsLink = Link;
 export const ViewsLink = Link;
@@ -9268,10 +9262,10 @@ export const GetAdaptiveTriggerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAdaptiveTriggerRequest>;
 
 export type AdaptiveTriggerResourceKind = "flag" | "ai-config";
-export const AdaptiveTriggerResourceKind = /*@__PURE__*/ S.String;
+export const AdaptiveTriggerResourceKind = S.String;
 
 export type ObservabilityAlertSourceType = "observabilityAlert";
-export const ObservabilityAlertSourceType = /*@__PURE__*/ S.String;
+export const ObservabilityAlertSourceType = S.String;
 
 export interface ObservabilityAlertSource {
   type: ObservabilityAlertSourceType | (string & {});
@@ -9289,7 +9283,7 @@ export const ObservabilityAlertSource = /*@__PURE__*/ S.suspend(() =>
 export type AdaptiveTriggerInstructionKind =
   | "updateFallthroughVariationOrRollout"
   | "updateRuleVariationOrRollout";
-export const AdaptiveTriggerInstructionKind = /*@__PURE__*/ S.String;
+export const AdaptiveTriggerInstructionKind = S.String;
 
 export interface AdaptiveTriggerInstruction {
   kind: AdaptiveTriggerInstructionKind | (string & {});
@@ -9397,7 +9391,7 @@ export const AiConfigsAccessDeniedReasonNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type AiConfigsAccessDeniedReasonEffect = "allow" | "deny";
-export const AiConfigsAccessDeniedReasonEffect = /*@__PURE__*/ S.String;
+export const AiConfigsAccessDeniedReasonEffect = S.String;
 
 export interface AiConfigsAccessDeniedReason {
   /** Resource specifier strings */
@@ -9470,7 +9464,7 @@ export const AiConfigsAccessAllowedReasonNotActionsList = /*@__PURE__*/ S.Array(
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type AiConfigsAccessAllowedReasonEffect = "allow" | "deny";
-export const AiConfigsAccessAllowedReasonEffect = /*@__PURE__*/ S.String;
+export const AiConfigsAccessAllowedReasonEffect = S.String;
 
 export interface AiConfigsAccessAllowedReason {
   /** Resource specifier strings */
@@ -9563,7 +9557,7 @@ export const AiConfigsMaintainerTeam = /*@__PURE__*/ S.suspend(() =>
 
 export type AgentGraphMaintainer = MaintainerMember | AiConfigsMaintainerTeam;
 export const AgentGraphMaintainer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AgentGraphMaintainer>;
+  S.Unknown as any as S.Schema<AgentGraphMaintainer>;
 
 /** An edge in an agent graph connecting two configs */
 export interface AgentGraphEdge {
@@ -9784,7 +9778,7 @@ export const GetAgentSkillRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type AIConfigMaintainer = MaintainerMember | AiConfigsMaintainerTeam;
 export const AIConfigMaintainer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AIConfigMaintainer>;
+  S.Unknown as any as S.Schema<AIConfigMaintainer>;
 
 export type AgentSkillTagsList = Array<string>;
 export const AgentSkillTagsList = /*@__PURE__*/ S.Array(
@@ -9839,7 +9833,7 @@ export const GetAIConfigRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAIConfigRequest>;
 
 export type AIConfigMode = "agent" | "completion" | "judge";
-export const AIConfigMode = /*@__PURE__*/ S.String;
+export const AIConfigMode = S.String;
 
 export type AIConfigTagsList = Array<string>;
 export const AIConfigTagsList = /*@__PURE__*/ S.Array(
@@ -10036,7 +10030,7 @@ export const AIConfigEvaluationMetricKeysList = /*@__PURE__*/ S.Array(
 
 /** The type of the dependent resource */
 export type AIConfigDependencyType = "agent-graph";
-export const AIConfigDependencyType = /*@__PURE__*/ S.String;
+export const AIConfigDependencyType = S.String;
 
 /** A resource that depends on this config */
 export interface AIConfigDependency {
@@ -10588,7 +10582,7 @@ export type AiConfigsMetricListingRepKind =
   | "click"
   | "custom"
   | "trace";
-export const AiConfigsMetricListingRepKind = /*@__PURE__*/ S.String;
+export const AiConfigsMetricListingRepKind = S.String;
 
 /** The location and content type of related resources */
 export type AiConfigsMetricListingRepLinksMap = {
@@ -10648,7 +10642,7 @@ export const AiConfigsMemberSummary = /*@__PURE__*/ S.suspend(() =>
 export type AiConfigsMetricListingRepSuccessCriteria =
   | "HigherThanBaseline"
   | "LowerThanBaseline";
-export const AiConfigsMetricListingRepSuccessCriteria = /*@__PURE__*/ S.String;
+export const AiConfigsMetricListingRepSuccessCriteria = S.String;
 
 /** Deprecated, use <code>analysisUnits</code> instead. */
 export type AiConfigsMetricListingRepRandomizationUnitsList = Array<string>;
@@ -10668,7 +10662,7 @@ export type AiConfigsFilterType =
   | "group"
   | "contextAttribute"
   | "eventProperty";
-export const AiConfigsFilterType = /*@__PURE__*/ S.String;
+export const AiConfigsFilterType = S.String;
 
 /** The context attribute / event property values or group member nodes */
 export type AiConfigsFilterValuesList = Array<unknown>;
@@ -10707,12 +10701,11 @@ export type AiConfigsMetricListingRepUnitAggregationType =
   | "average"
   | "sum"
   | "count_distinct";
-export const AiConfigsMetricListingRepUnitAggregationType =
-  /*@__PURE__*/ S.String;
+export const AiConfigsMetricListingRepUnitAggregationType = S.String;
 
 /** The method for analyzing metric events */
 export type AiConfigsMetricListingRepAnalysisType = "mean" | "percentile";
-export const AiConfigsMetricListingRepAnalysisType = /*@__PURE__*/ S.String;
+export const AiConfigsMetricListingRepAnalysisType = S.String;
 
 export type AiConfigsMetricEventDefaultRep = MetricEventDefaultRep;
 export const AiConfigsMetricEventDefaultRep = MetricEventDefaultRep;
@@ -11008,7 +11001,7 @@ export type AIConfigTargetingVariationValue =
   | number
   | string;
 export const AIConfigTargetingVariationValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AIConfigTargetingVariationValue>;
+  S.Unknown as any as S.Schema<AIConfigTargetingVariationValue>;
 
 export interface AIConfigTargetingVariation {
   _id: string;
@@ -11708,7 +11701,7 @@ export type GetAnnouncementsPublicRequestStatus =
   | "active"
   | "inactive"
   | "scheduled";
-export const GetAnnouncementsPublicRequestStatus = /*@__PURE__*/ S.String;
+export const GetAnnouncementsPublicRequestStatus = S.String;
 
 export interface GetAnnouncementsPublicRequest {
   /** Filter announcements by status. */
@@ -11836,7 +11829,7 @@ export const ApplicationRepLinksMap = /*@__PURE__*/ S.Record(
 
 /** To distinguish the kind of application */
 export type ApplicationRepKind = "browser" | "mobile" | "server";
-export const ApplicationRepKind = /*@__PURE__*/ S.String;
+export const ApplicationRepKind = S.String;
 
 export interface ApplicationMaintainerRep {
   /** Details on the member who maintains this resource */
@@ -12086,8 +12079,7 @@ export type FlagConfigApprovalRequestResponseReviewStatus =
   | "approved"
   | "declined"
   | "pending";
-export const FlagConfigApprovalRequestResponseReviewStatus =
-  /*@__PURE__*/ S.String;
+export const FlagConfigApprovalRequestResponseReviewStatus = S.String;
 
 /** An array of individual reviews of this approval request */
 export type FlagConfigApprovalRequestResponseAllReviewsList =
@@ -12111,7 +12103,7 @@ export type FlagConfigApprovalRequestResponseStatus =
   | "completed"
   | "failed"
   | "scheduled";
-export const FlagConfigApprovalRequestResponseStatus = /*@__PURE__*/ S.String;
+export const FlagConfigApprovalRequestResponseStatus = S.String;
 
 /** Details on any conflicting approval requests */
 export type FlagConfigApprovalRequestResponseConflictsList = Array<Conflict2>;
@@ -12223,8 +12215,7 @@ export type ExpandableApprovalRequestResponseReviewStatus =
   | "approved"
   | "declined"
   | "pending";
-export const ExpandableApprovalRequestResponseReviewStatus =
-  /*@__PURE__*/ S.String;
+export const ExpandableApprovalRequestResponseReviewStatus = S.String;
 
 /** An array of individual reviews of this approval request */
 export type ExpandableApprovalRequestResponseAllReviewsList =
@@ -12248,7 +12239,7 @@ export type ExpandableApprovalRequestResponseStatus =
   | "completed"
   | "failed"
   | "scheduled";
-export const ExpandableApprovalRequestResponseStatus = /*@__PURE__*/ S.String;
+export const ExpandableApprovalRequestResponseStatus = S.String;
 
 /** Details on any conflicting approval requests */
 export type ExpandableApprovalRequestResponseConflictsList = Array<Conflict2>;
@@ -12355,7 +12346,7 @@ export const ExpandableApprovalRequestResponseEnvironmentsList =
 
 /** Kind of feature flag */
 export type ExpandedFlagRepKind = "boolean" | "multivariate";
-export const ExpandedFlagRepKind = /*@__PURE__*/ S.String;
+export const ExpandedFlagRepKind = S.String;
 
 /** An array of possible variations for the flag */
 export type ExpandedFlagRepVariationsList = Array<Variation>;
@@ -13536,7 +13527,7 @@ export type ImportStatus =
   | "in_progress"
   | "complete"
   | "stopped";
-export const ImportStatus = /*@__PURE__*/ S.String;
+export const ImportStatus = S.String;
 
 export interface FileRep {
   /** The imported file name, including the extension */
@@ -14844,7 +14835,7 @@ export type RuleClauseOp =
   | "semVerEqual"
   | "semVerLessThan"
   | "semVerGreaterThan";
-export const RuleClauseOp = /*@__PURE__*/ S.String;
+export const RuleClauseOp = S.String;
 
 export interface RuleClause {
   /** The attribute the rule applies to, for example, last name or email address */
@@ -15852,7 +15843,7 @@ export type DestinationKind =
   | "databricks"
   | "bigquery"
   | "redshift";
-export const DestinationKind = /*@__PURE__*/ S.String;
+export const DestinationKind = S.String;
 
 export interface RedshiftDataExportCompletedArtifactsRep {
   /** The SQL setup script originally run against the Redshift cluster, rehydrated from the destination's persisted custom names. */
@@ -16891,7 +16882,7 @@ export const GetFeatureFlagStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the flag */
 export type FlagStatusRepName = "new" | "inactive" | "active" | "launched";
-export const FlagStatusRepName = /*@__PURE__*/ S.String;
+export const FlagStatusRepName = S.String;
 
 export type FlagStatusRepLinksMap = { [key: string]: Link | undefined };
 export const FlagStatusRepLinksMap = /*@__PURE__*/ S.Record(
@@ -16944,7 +16935,7 @@ export const GetFeatureFlagStatusAcrossEnvironmentsRequest =
 
 /** Status of the flag */
 export type FeatureFlagStatusName = "new" | "inactive" | "active" | "launched";
-export const FeatureFlagStatusName = /*@__PURE__*/ S.String;
+export const FeatureFlagStatusName = S.String;
 
 export interface FeatureFlagStatus {
   /** Status of the flag */
@@ -17269,7 +17260,7 @@ export const FlagEventRepActionsList = /*@__PURE__*/ S.Array(
 
 /** The size of the flag event impact. Sizes are defined as: none (0%), small (0-20%), medium (20-80%), large (>80%) */
 export type FlagEventImpactRepSize = "none" | "small" | "medium" | "large";
-export const FlagEventImpactRepSize = /*@__PURE__*/ S.String;
+export const FlagEventImpactRepSize = S.String;
 
 export interface VariationEvalSummary {
   /** The variation value */
@@ -17819,7 +17810,7 @@ export type HoldoutDetailRepStatus =
   | "enabled"
   | "running"
   | "ended";
-export const HoldoutDetailRepStatus = /*@__PURE__*/ S.String;
+export const HoldoutDetailRepStatus = S.String;
 
 export type HoldoutDetailRepRelatedExperimentsList = Array<Experiment>;
 export const HoldoutDetailRepRelatedExperimentsList = /*@__PURE__*/ S.Array(
@@ -17880,7 +17871,7 @@ export const GetHoldoutByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHoldoutByIdRequest>;
 
 export type HoldoutRepStatus = "created" | "enabled" | "running" | "ended";
-export const HoldoutRepStatus = /*@__PURE__*/ S.String;
+export const HoldoutRepStatus = S.String;
 
 export type HoldoutRepExperimentsList = Array<RelatedExperimentRep>;
 export const HoldoutRepExperimentsList = /*@__PURE__*/ S.Array(
@@ -18489,15 +18480,15 @@ export type GetLinkedResourcesRequestResourceType =
   | "flags"
   | "segments"
   | "aiConfigs";
-export const GetLinkedResourcesRequestResourceType = /*@__PURE__*/ S.String;
+export const GetLinkedResourcesRequestResourceType = S.String;
 
 export type GetLinkedResourcesRequestSort = "linkedAt" | "name";
-export const GetLinkedResourcesRequestSort = /*@__PURE__*/ S.String;
+export const GetLinkedResourcesRequestSort = S.String;
 
 export type GetLinkedResourcesRequestExpandItem =
   | "maintainer"
   | "resourceDetails";
-export const GetLinkedResourcesRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetLinkedResourcesRequestExpandItem = S.String;
 
 export type GetLinkedResourcesRequestExpandList = Array<
   GetLinkedResourcesRequestExpandItem | (string & {})
@@ -18549,7 +18540,7 @@ export type ViewsPaginatedLinks = PaginatedLinks;
 export const ViewsPaginatedLinks = PaginatedLinks;
 
 export type ViewLinkedResourceResourceType = "flag" | "segment" | "aiConfig";
-export const ViewLinkedResourceResourceType = /*@__PURE__*/ S.String;
+export const ViewLinkedResourceResourceType = S.String;
 
 export interface ViewLinkedResourceDetails {
   view?: View;
@@ -18620,7 +18611,7 @@ export type GetLinkedViewsRequestResourceType =
   | "flags"
   | "segments"
   | "aiConfigs";
-export const GetLinkedViewsRequestResourceType = /*@__PURE__*/ S.String;
+export const GetLinkedViewsRequestResourceType = S.String;
 
 export interface GetLinkedViewsRequest {
   projectKey: string;
@@ -18859,7 +18850,7 @@ export const GetMetricRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of event the metric tracks */
 export type MetricRepKind = "pageview" | "click" | "custom" | "trace";
-export const MetricRepKind = /*@__PURE__*/ S.String;
+export const MetricRepKind = S.String;
 
 /** The location and content type of related resources */
 export type MetricRepLinksMap = { [key: string]: Link | undefined };
@@ -18878,7 +18869,7 @@ export const MetricRepTagsList = /*@__PURE__*/ S.Array(
 export type MetricRepSuccessCriteria =
   | "HigherThanBaseline"
   | "LowerThanBaseline";
-export const MetricRepSuccessCriteria = /*@__PURE__*/ S.String;
+export const MetricRepSuccessCriteria = S.String;
 
 /** Deprecated, use <code>analysisUnits</code> instead. */
 export type MetricRepRandomizationUnitsList = Array<string>;
@@ -18894,15 +18885,15 @@ export const MetricRepAnalysisUnitsList = /*@__PURE__*/ S.Array(
 
 /** The method by which multiple unit event values are aggregated */
 export type MetricRepUnitAggregationType = "average" | "sum" | "count_distinct";
-export const MetricRepUnitAggregationType = /*@__PURE__*/ S.String;
+export const MetricRepUnitAggregationType = S.String;
 
 /** The method for analyzing metric events */
 export type MetricRepAnalysisType = "mean" | "percentile";
-export const MetricRepAnalysisType = /*@__PURE__*/ S.String;
+export const MetricRepAnalysisType = S.String;
 
 /** The type of the metric group */
 export type DependentMetricGroupRepKind = "funnel" | "standard";
-export const DependentMetricGroupRepKind = /*@__PURE__*/ S.String;
+export const DependentMetricGroupRepKind = S.String;
 
 /** The location and content type of related resources */
 export type DependentMetricGroupRepLinksMap = {
@@ -20009,7 +20000,7 @@ export const ReleasePoliciesAccessDeniedReasonNotActionsList =
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type ReleasePoliciesAccessDeniedReasonEffect = "allow" | "deny";
-export const ReleasePoliciesAccessDeniedReasonEffect = /*@__PURE__*/ S.String;
+export const ReleasePoliciesAccessDeniedReasonEffect = S.String;
 
 export interface ReleasePoliciesAccessDeniedReason {
   /** Resource specifier strings */
@@ -20086,7 +20077,7 @@ export const ReleasePoliciesAccessAllowedReasonNotActionsList =
 
 /** Whether this statement should allow or deny actions on the resources. */
 export type ReleasePoliciesAccessAllowedReasonEffect = "allow" | "deny";
-export const ReleasePoliciesAccessAllowedReasonEffect = /*@__PURE__*/ S.String;
+export const ReleasePoliciesAccessAllowedReasonEffect = S.String;
 
 export interface ReleasePoliciesAccessAllowedReason {
   /** Resource specifier strings */
@@ -20180,7 +20171,7 @@ export type ReleaseMethod =
   | "guarded-release"
   | "immediate-release"
   | "progressive-release";
-export const ReleaseMethod = /*@__PURE__*/ S.String;
+export const ReleaseMethod = S.String;
 
 /** List of metric keys */
 export type GuardedReleaseConfigMetricKeysList = Array<string>;
@@ -20367,7 +20358,7 @@ export const RepositoryCollectionRepLinksMap = /*@__PURE__*/ S.Record(
 
 /** The type of repository */
 export type RepositoryRepType = "bitbucket" | "custom" | "github" | "gitlab";
-export const RepositoryRepType = /*@__PURE__*/ S.String;
+export const RepositoryRepType = S.String;
 
 /** An array of the repository's branches that have been scanned for code references */
 export type RepositoryRepBranchesList = Array<BranchRep>;
@@ -20617,7 +20608,7 @@ export const GetSdkKeyByKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of SDK key. Can be either "sdk" (server-side) or "mobile" (mobile). */
 export type SdkKeyKind = "sdk" | "mobile";
-export const SdkKeyKind = /*@__PURE__*/ S.String;
+export const SdkKeyKind = S.String;
 
 export interface SdkKey {
   _links?: ParentAndSelfLinks;
@@ -20658,7 +20649,7 @@ export const SdkKey = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SdkKey" }) as any as S.Schema<SdkKey>;
 
 export type GetSdkKeysRequestSort = "createdAt" | "-createdAt";
-export const GetSdkKeysRequestSort = /*@__PURE__*/ S.String;
+export const GetSdkKeysRequestSort = S.String;
 
 export interface GetSdkKeysRequest {
   projectKey: string;
@@ -21066,7 +21057,7 @@ export const GetStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of repository */
 export type StatisticRepType = "bitbucket" | "custom" | "github" | "gitlab";
-export const StatisticRepType = /*@__PURE__*/ S.String;
+export const StatisticRepType = S.String;
 
 /** The location and content type of related resources */
 export type StatisticRepLinksMap = { [key: string]: Link | undefined };
@@ -21692,7 +21683,7 @@ export const VersionsRep = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "VersionsRep" }) as any as S.Schema<VersionsRep>;
 
 export type GetViewRequestSort = "key" | "name" | "updatedAt";
-export const GetViewRequestSort = /*@__PURE__*/ S.String;
+export const GetViewRequestSort = S.String;
 
 export type GetViewRequestExpandItem =
   | "allFlags"
@@ -21706,7 +21697,7 @@ export type GetViewRequestExpandItem =
   | "metricsSummary"
   | "aiConfigsSummary"
   | "resourceSummary";
-export const GetViewRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetViewRequestExpandItem = S.String;
 
 export type GetViewRequestExpandList = Array<
   GetViewRequestExpandItem | (string & {})
@@ -21748,7 +21739,7 @@ export const GetViewRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetViewRequest" }) as any as S.Schema<GetViewRequest>;
 
 export type GetViewsRequestSort = "key" | "name" | "updatedAt";
-export const GetViewsRequestSort = /*@__PURE__*/ S.String;
+export const GetViewsRequestSort = S.String;
 
 export type GetViewsRequestExpandItem =
   | "flagsSummary"
@@ -21756,7 +21747,7 @@ export type GetViewsRequestExpandItem =
   | "metricsSummary"
   | "aiConfigsSummary"
   | "resourceSummary";
-export const GetViewsRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetViewsRequestExpandItem = S.String;
 
 export type GetViewsRequestExpandList = Array<
   GetViewsRequestExpandItem | (string & {})
@@ -21949,7 +21940,7 @@ export type LinkResourceRequestResourceType =
   | "flags"
   | "segments"
   | "aiConfigs";
-export const LinkResourceRequestResourceType = /*@__PURE__*/ S.String;
+export const LinkResourceRequestResourceType = S.String;
 
 /** Keys of the resources (flags, segments) to link/unlink */
 export type ViewLinkRequestKeysKeysList = Array<string>;
@@ -22039,8 +22030,7 @@ export type ViewLinkRequest =
   | ViewLinkRequestKeys
   | ViewLinkRequestSegmentIdentifiers
   | ViewLinkRequestFilter;
-export const ViewLinkRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ViewLinkRequest>;
+export const ViewLinkRequest = S.Unknown as any as S.Schema<ViewLinkRequest>;
 
 export interface LinkResourceRequest {
   projectKey: string;
@@ -22067,7 +22057,7 @@ export const LinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the resource that failed to link. */
 export type FailedResourceLinkResourceType = "flag" | "segment" | "aiConfig";
-export const FailedResourceLinkResourceType = /*@__PURE__*/ S.String;
+export const FailedResourceLinkResourceType = S.String;
 
 export interface FailedResourceLink {
   /** The key of the resource that failed to link. */
@@ -22248,7 +22238,7 @@ export type AgentOptimizationResultStatus =
   | "PASSED"
   | "FAILED"
   | "ERRORED";
-export const AgentOptimizationResultStatus = /*@__PURE__*/ S.String;
+export const AgentOptimizationResultStatus = S.String;
 
 export type AgentOptimizationResultActivity =
   | "PENDING"
@@ -22257,7 +22247,7 @@ export type AgentOptimizationResultActivity =
   | "GENERATING_VARIATION"
   | "VALIDATING"
   | "COMPLETED";
-export const AgentOptimizationResultActivity = /*@__PURE__*/ S.String;
+export const AgentOptimizationResultActivity = S.String;
 
 export type AgentOptimizationResultParametersMap = {
   [key: string]: unknown | undefined;
@@ -23936,14 +23926,13 @@ export type PatchSegmentExpiringTargetInstructionKind =
   | "addExpiringTarget"
   | "updateExpiringTarget"
   | "removeExpiringTarget";
-export const PatchSegmentExpiringTargetInstructionKind = /*@__PURE__*/ S.String;
+export const PatchSegmentExpiringTargetInstructionKind = S.String;
 
 /** The segment's target type */
 export type PatchSegmentExpiringTargetInstructionTargetType =
   | "included"
   | "excluded";
-export const PatchSegmentExpiringTargetInstructionTargetType =
-  /*@__PURE__*/ S.String;
+export const PatchSegmentExpiringTargetInstructionTargetType = S.String;
 
 export interface PatchSegmentExpiringTargetInstruction {
   /** The type of change to make to the context's removal date from this segment */
@@ -24105,11 +24094,11 @@ export type PatchSegmentInstructionKind =
   | "addExpireUserTargetDate"
   | "updateExpireUserTargetDate"
   | "removeExpireUserTargetDate";
-export const PatchSegmentInstructionKind = /*@__PURE__*/ S.String;
+export const PatchSegmentInstructionKind = S.String;
 
 /** The segment's target type */
 export type PatchSegmentInstructionTargetType = "included" | "excluded";
-export const PatchSegmentInstructionTargetType = /*@__PURE__*/ S.String;
+export const PatchSegmentInstructionTargetType = S.String;
 
 export interface PatchSegmentInstruction {
   /** The type of change to make to the user's removal date from this segment */
@@ -25070,7 +25059,7 @@ export const PostAgentSkillRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PostAgentSkillRequest>;
 
 export type PostAIConfigRequestMode = "agent" | "completion" | "judge";
-export const PostAIConfigRequestMode = /*@__PURE__*/ S.String;
+export const PostAIConfigRequestMode = S.String;
 
 export type PostAIConfigRequestTagsList = Array<string>;
 export const PostAIConfigRequestTagsList = /*@__PURE__*/ S.Array(
@@ -25429,8 +25418,7 @@ export type PostApprovalRequestReviewForFlagRequestKind =
   | "approve"
   | "comment"
   | "decline";
-export const PostApprovalRequestReviewForFlagRequestKind =
-  /*@__PURE__*/ S.String;
+export const PostApprovalRequestReviewForFlagRequestKind = S.String;
 
 export interface PostApprovalRequestReviewForFlagRequest {
   /** The project key */
@@ -25785,7 +25773,7 @@ export const PostFeatureFlagRequestTagsList = /*@__PURE__*/ S.Array(
 
 /** Purpose of the flag */
 export type PostFeatureFlagRequestPurpose = "migration" | "holdout";
-export const PostFeatureFlagRequestPurpose = /*@__PURE__*/ S.String;
+export const PostFeatureFlagRequestPurpose = S.String;
 
 export interface MigrationSettingsPost {
   /** Context kind for a migration with 6 stages, where data is being moved */
@@ -25965,7 +25953,7 @@ export type PostFlagCopyConfigApprovalRequestRequestIncludedActionsItem =
   | "updateTargets"
   | "updatePrerequisites";
 export const PostFlagCopyConfigApprovalRequestRequestIncludedActionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Optional list of the flag changes to copy from the source environment to the target environment. You may include either <code>includedActions</code> or <code>excludedActions</code>, but not both. If neither are included, then all flag changes will be copied. */
 export type PostFlagCopyConfigApprovalRequestRequestIncludedActionsList = Array<
@@ -25984,7 +25972,7 @@ export type PostFlagCopyConfigApprovalRequestRequestExcludedActionsItem =
   | "updateTargets"
   | "updatePrerequisites";
 export const PostFlagCopyConfigApprovalRequestRequestExcludedActionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Optional list of the flag changes NOT to copy from the source environment to the target environment. You may include either <code>includedActions</code> or <code>excludedActions</code>, but not both. If neither are included, then all flag changes will be copied. */
 export type PostFlagCopyConfigApprovalRequestRequestExcludedActionsList = Array<
@@ -26337,10 +26325,10 @@ export const PostHoldoutRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of event your metric will track */
 export type PostMetricRequestKind = "pageview" | "click" | "custom" | "trace";
-export const PostMetricRequestKind = /*@__PURE__*/ S.String;
+export const PostMetricRequestKind = S.String;
 
 export type UrlPostKind = "exact" | "canonical" | "substring" | "regex";
-export const UrlPostKind = /*@__PURE__*/ S.String;
+export const UrlPostKind = S.String;
 
 export interface UrlPost {
   kind?: UrlPostKind | (string & {});
@@ -26367,7 +26355,7 @@ export const PostMetricRequestUrlsList = /*@__PURE__*/ S.Array(
 export type PostMetricRequestSuccessCriteria =
   | "HigherThanBaseline"
   | "LowerThanBaseline";
-export const PostMetricRequestSuccessCriteria = /*@__PURE__*/ S.String;
+export const PostMetricRequestSuccessCriteria = S.String;
 
 /** Tags for the metric */
 export type PostMetricRequestTagsList = Array<string>;
@@ -26392,7 +26380,7 @@ export type PostMetricRequestUnitAggregationType =
   | "average"
   | "sum"
   | "count_distinct";
-export const PostMetricRequestUnitAggregationType = /*@__PURE__*/ S.String;
+export const PostMetricRequestUnitAggregationType = S.String;
 
 /** The context attribute / event property values or group member nodes. Numeric values must not exceed 14 decimal places. */
 export type EventFilterValuesList = Array<unknown>;
@@ -26939,7 +26927,7 @@ export type PostRepositoryRequestType =
   | "custom"
   | "github"
   | "gitlab";
-export const PostRepositoryRequestType = /*@__PURE__*/ S.String;
+export const PostRepositoryRequestType = S.String;
 
 export interface PostRepositoryRequest {
   /** The repository name */
@@ -27038,7 +27026,7 @@ export const RestrictedModelsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of SDK key. Can be either "sdk" (server-side) or "mobile" (mobile). Defaults to "sdk" when not explicitly defined. */
 export type PostSdkKeyRequestKind = "sdk" | "mobile";
-export const PostSdkKeyRequestKind = /*@__PURE__*/ S.String;
+export const PostSdkKeyRequestKind = S.String;
 
 export interface PostSdkKeyRequest {
   projectKey: string;
@@ -27640,7 +27628,7 @@ export type UnlinkResourceRequestResourceType =
   | "flags"
   | "segments"
   | "aiConfigs";
-export const UnlinkResourceRequestResourceType = /*@__PURE__*/ S.String;
+export const UnlinkResourceRequestResourceType = S.String;
 
 export interface UnlinkResourceRequest {
   projectKey: string;
@@ -27912,7 +27900,7 @@ export type UpdateDestinationRequestKind =
   | "databricks"
   | "bigquery"
   | "redshift";
-export const UpdateDestinationRequestKind = /*@__PURE__*/ S.String;
+export const UpdateDestinationRequestKind = S.String;
 
 export interface UpdateDestinationRequest {
   /** The project key */

@@ -189,7 +189,7 @@ export type TranscriptionLanguage =
   | "spa"
   | "por"
   | (string & {});
-export const TranscriptionLanguage = /*@__PURE__*/ S.String;
+export const TranscriptionLanguage = S.String;
 
 export interface AspectRatio {
   width: number;
@@ -204,7 +204,7 @@ export type ProfanityFilterMode =
   | "CENSOR"
   | "DROP"
   | (string & {});
-export const ProfanityFilterMode = /*@__PURE__*/ S.String;
+export const ProfanityFilterMode = S.String;
 
 export interface SubtitlingConfig {
   language: TranscriptionLanguage;
@@ -232,7 +232,7 @@ export const OutputConfig = /*@__PURE__*/ S.Union([
   S.Struct({ subtitling: SubtitlingConfig }),
 ]);
 export type OutputStatus = "ENABLED" | "DISABLED" | (string & {});
-export const OutputStatus = /*@__PURE__*/ S.String;
+export const OutputStatus = S.String;
 
 export interface CreateOutput {
   name: string;
@@ -293,7 +293,7 @@ export type DictionaryLanguage =
   | "spa"
   | "por"
   | (string & {});
-export const DictionaryLanguage = /*@__PURE__*/ S.String;
+export const DictionaryLanguage = S.String;
 
 export type DictionaryEntriesPayload = string;
 export type TagKey = string;
@@ -336,7 +336,7 @@ export type DictionaryStatus =
   | "DELETING"
   | "DELETED"
   | (string & {});
-export const DictionaryStatus = /*@__PURE__*/ S.String;
+export const DictionaryStatus = S.String;
 
 export type FeedReferences = string[];
 export const FeedReferences = /*@__PURE__*/ S.Array(S.String);
@@ -417,7 +417,7 @@ export type FeedStatus =
   | "DELETED"
   | "ARCHIVED"
   | (string & {});
-export const FeedStatus = /*@__PURE__*/ S.String;
+export const FeedStatus = S.String;
 
 export interface FeedAssociation {
   associatedResourceName: string;
@@ -823,11 +823,11 @@ export type DataSourceSport =
   | "basketball"
   | "american-football"
   | (string & {});
-export const DataSourceSport = /*@__PURE__*/ S.String;
+export const DataSourceSport = S.String;
 
 export type FixtureDate = string;
 export type FilterName = "COMPETITOR" | (string & {});
-export const FilterName = /*@__PURE__*/ S.String;
+export const FilterName = S.String;
 
 export type FilterValue = string;
 export type FilterValueList = string[];

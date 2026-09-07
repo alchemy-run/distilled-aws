@@ -309,7 +309,7 @@ export type PresetSpeke20Audio =
   | "SHARED"
   | "UNENCRYPTED"
   | (string & {});
-export const PresetSpeke20Audio = /*@__PURE__*/ S.String;
+export const PresetSpeke20Audio = S.String;
 
 export type PresetSpeke20Video =
   | "PRESET-VIDEO-1"
@@ -323,7 +323,7 @@ export type PresetSpeke20Video =
   | "SHARED"
   | "UNENCRYPTED"
   | (string & {});
-export const PresetSpeke20Video = /*@__PURE__*/ S.String;
+export const PresetSpeke20Video = S.String;
 
 export interface EncryptionContractConfiguration {
   PresetSpeke20Audio?: PresetSpeke20Audio;
@@ -389,14 +389,14 @@ export type AdMarkers =
   | "SCTE35_ENHANCED"
   | "PASSTHROUGH"
   | (string & {});
-export const AdMarkers = /*@__PURE__*/ S.String;
+export const AdMarkers = S.String;
 
 export type StreamOrder =
   | "ORIGINAL"
   | "VIDEO_BITRATE_ASCENDING"
   | "VIDEO_BITRATE_DESCENDING"
   | (string & {});
-export const StreamOrder = /*@__PURE__*/ S.String;
+export const StreamOrder = S.String;
 
 export interface StreamSelection {
   MaxVideoBitsPerSecond?: number;
@@ -470,13 +470,13 @@ export const CmafPackage = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "CmafPackage" }) as any as S.Schema<CmafPackage>;
 export type ManifestLayout = "FULL" | "COMPACT" | (string & {});
-export const ManifestLayout = /*@__PURE__*/ S.String;
+export const ManifestLayout = S.String;
 
 export type Profile = "NONE" | "HBBTV_1_5" | (string & {});
-export const Profile = /*@__PURE__*/ S.String;
+export const Profile = S.String;
 
 export type ScteMarkersSource = "SEGMENTS" | "MANIFEST" | (string & {});
-export const ScteMarkersSource = /*@__PURE__*/ S.String;
+export const ScteMarkersSource = S.String;
 
 export interface DashManifest {
   ManifestLayout?: ManifestLayout;
@@ -516,7 +516,7 @@ export const DashEncryption = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "DashEncryption" }) as any as S.Schema<DashEncryption>;
 export type __PeriodTriggersElement = "ADS" | (string & {});
-export const __PeriodTriggersElement = /*@__PURE__*/ S.String;
+export const __PeriodTriggersElement = S.String;
 
 export type __listOf__PeriodTriggersElement = __PeriodTriggersElement[];
 export const __listOf__PeriodTriggersElement = /*@__PURE__*/ S.Array(
@@ -527,7 +527,7 @@ export type SegmentTemplateFormat =
   | "TIME_WITH_TIMELINE"
   | "NUMBER_WITH_DURATION"
   | (string & {});
-export const SegmentTemplateFormat = /*@__PURE__*/ S.String;
+export const SegmentTemplateFormat = S.String;
 
 export interface DashPackage {
   DashManifests?: DashManifest[];
@@ -561,7 +561,7 @@ export const DashPackage = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "DashPackage" }) as any as S.Schema<DashPackage>;
 export type EncryptionMethod = "AES_128" | "SAMPLE_AES" | (string & {});
-export const EncryptionMethod = /*@__PURE__*/ S.String;
+export const EncryptionMethod = S.String;
 
 export interface HlsEncryption {
   ConstantInitializationVector?: string;

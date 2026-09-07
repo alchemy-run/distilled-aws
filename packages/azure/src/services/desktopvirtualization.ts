@@ -93,8 +93,7 @@ export const AppAttachPackageInfoPropertiesPackageApplicationsList =
 export type AppAttachPackageInfoPropertiesIsPackageTimestamped =
   | "Timestamped"
   | "NotTimestamped";
-export const AppAttachPackageInfoPropertiesIsPackageTimestamped =
-  /*@__PURE__*/ S.String;
+export const AppAttachPackageInfoPropertiesIsPackageTimestamped = S.String;
 
 /** Schema for Import Package Information properties. */
 export interface AppAttachPackageInfoProperties {
@@ -176,7 +175,7 @@ export type FailHealthCheckOnStagingFailureEnum =
   | "Unhealthy"
   | "NeedsAssistance"
   | "DoNotFail";
-export const FailHealthCheckOnStagingFailureEnum = /*@__PURE__*/ S.String;
+export const FailHealthCheckOnStagingFailureEnum = S.String;
 
 /** Schema for App Attach Package properties. */
 export interface AppAttachPackagePropertiesInput {
@@ -247,7 +246,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -255,7 +254,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -299,7 +298,7 @@ export type ProvisioningState =
   | "Provisioning"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** List of Hostpool resource Ids. */
 export type AppAttachPackagePropertiesHostPoolReferencesList = Array<string>;
@@ -380,7 +379,7 @@ export const ApplicationGroupsCreateOrUpdateRequestTagsMap =
 
 /** Type of managed service identity (either system assigned, or none). */
 export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
-export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
+export const SystemAssignedServiceIdentityType = S.String;
 
 /** Managed service identity (either system assigned, or none) */
 export interface ApplicationGroupsCreateOrUpdateRequestIdentity {
@@ -397,7 +396,7 @@ export const ApplicationGroupsCreateOrUpdateRequestIdentity =
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface ApplicationGroupsCreateOrUpdateRequestSku {
@@ -454,8 +453,7 @@ export const ApplicationGroupsCreateOrUpdateRequestPlan =
 export type ApplicationGroupPropertiesInputApplicationGroupType =
   | "RemoteApp"
   | "Desktop";
-export const ApplicationGroupPropertiesInputApplicationGroupType =
-  /*@__PURE__*/ S.String;
+export const ApplicationGroupPropertiesInputApplicationGroupType = S.String;
 
 /** Schema for ApplicationGroup properties. */
 export interface ApplicationGroupPropertiesInput {
@@ -598,8 +596,7 @@ export const ApplicationGroupsCreateOrUpdateResponsePlan =
 export type ApplicationGroupPropertiesApplicationGroupType =
   | "RemoteApp"
   | "Desktop";
-export const ApplicationGroupPropertiesApplicationGroupType =
-  /*@__PURE__*/ S.String;
+export const ApplicationGroupPropertiesApplicationGroupType = S.String;
 
 /** Schema for ApplicationGroup properties. */
 export interface ApplicationGroupProperties {
@@ -688,15 +685,14 @@ export const ApplicationGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 export type ApplicationPropertiesInputApplicationType =
   | "InBuilt"
   | "MsixApplication";
-export const ApplicationPropertiesInputApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationPropertiesInputApplicationType = S.String;
 
 /** Specifies whether this published application can be launched with command line arguments provided by the client, command line arguments specified at publish time, or no command line arguments at all. */
 export type ApplicationPropertiesInputCommandLineSetting =
   | "DoNotAllow"
   | "Allow"
   | "Require";
-export const ApplicationPropertiesInputCommandLineSetting =
-  /*@__PURE__*/ S.String;
+export const ApplicationPropertiesInputCommandLineSetting = S.String;
 
 /** Schema for Application properties. */
 export interface ApplicationPropertiesInput {
@@ -778,14 +774,14 @@ export const ApplicationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 export type ApplicationPropertiesApplicationType =
   | "InBuilt"
   | "MsixApplication";
-export const ApplicationPropertiesApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationPropertiesApplicationType = S.String;
 
 /** Specifies whether this published application can be launched with command line arguments provided by the client, command line arguments specified at publish time, or no command line arguments at all. */
 export type ApplicationPropertiesCommandLineSetting =
   | "DoNotAllow"
   | "Allow"
   | "Require";
-export const ApplicationPropertiesCommandLineSetting = /*@__PURE__*/ S.String;
+export const ApplicationPropertiesCommandLineSetting = S.String;
 
 /** Schema for Application properties. */
 export interface ApplicationProperties {
@@ -892,7 +888,7 @@ export const CreateScalingPlanRequestPlan =
 
 /** HostPool type for desktop. */
 export type ScalingPlanPropertiesInputHostPoolType = "Pooled";
-export const ScalingPlanPropertiesInputHostPoolType = /*@__PURE__*/ S.String;
+export const ScalingPlanPropertiesInputHostPoolType = S.String;
 
 export type ScalingScheduleDaysOfWeekItem =
   | "Sunday"
@@ -902,7 +898,7 @@ export type ScalingScheduleDaysOfWeekItem =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const ScalingScheduleDaysOfWeekItem = /*@__PURE__*/ S.String;
+export const ScalingScheduleDaysOfWeekItem = S.String;
 
 /** Set of days of the week on which this schedule is active. */
 export type ScalingScheduleDaysOfWeekList = Array<
@@ -930,34 +926,31 @@ export const Time = /*@__PURE__*/ S.suspend(() =>
 export type ScalingScheduleRampUpLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
-export const ScalingScheduleRampUpLoadBalancingAlgorithm =
-  /*@__PURE__*/ S.String;
+export const ScalingScheduleRampUpLoadBalancingAlgorithm = S.String;
 
 /** Load balancing algorithm for peak period. */
 export type ScalingSchedulePeakLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
-export const ScalingSchedulePeakLoadBalancingAlgorithm = /*@__PURE__*/ S.String;
+export const ScalingSchedulePeakLoadBalancingAlgorithm = S.String;
 
 /** Load balancing algorithm for ramp down period. */
 export type ScalingScheduleRampDownLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
-export const ScalingScheduleRampDownLoadBalancingAlgorithm =
-  /*@__PURE__*/ S.String;
+export const ScalingScheduleRampDownLoadBalancingAlgorithm = S.String;
 
 /** Specifies when to stop hosts during ramp down period. */
 export type ScalingScheduleRampDownStopHostsWhen =
   | "ZeroSessions"
   | "ZeroActiveSessions";
-export const ScalingScheduleRampDownStopHostsWhen = /*@__PURE__*/ S.String;
+export const ScalingScheduleRampDownStopHostsWhen = S.String;
 
 /** Load balancing algorithm for off-peak period. */
 export type ScalingScheduleOffPeakLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
-export const ScalingScheduleOffPeakLoadBalancingAlgorithm =
-  /*@__PURE__*/ S.String;
+export const ScalingScheduleOffPeakLoadBalancingAlgorithm = S.String;
 
 /** A ScalingPlanPooledSchedule. */
 export interface ScalingSchedule {
@@ -1180,7 +1173,7 @@ export const CreateScalingPlanResponsePlan =
 
 /** HostPool type for desktop. */
 export type ScalingPlanPropertiesHostPoolType = "Pooled";
-export const ScalingPlanPropertiesHostPoolType = /*@__PURE__*/ S.String;
+export const ScalingPlanPropertiesHostPoolType = S.String;
 
 /** List of ScalingPlanPooledSchedule definitions. */
 export type ScalingPlanPropertiesSchedulesList = Array<ScalingSchedule>;
@@ -1286,8 +1279,7 @@ export type ScalingPlanPersonalSchedulePropertiesDaysOfWeekItem =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const ScalingPlanPersonalSchedulePropertiesDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ScalingPlanPersonalSchedulePropertiesDaysOfWeekItem = S.String;
 
 /** Set of days of the week on which this schedule is active. */
 export type ScalingPlanPersonalSchedulePropertiesDaysOfWeekList = Array<
@@ -1304,63 +1296,62 @@ export type ScalingPlanPersonalSchedulePropertiesRampUpAutoStartHosts =
   | "WithAssignedUser"
   | "All";
 export const ScalingPlanPersonalSchedulePropertiesRampUpAutoStartHosts =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The desired configuration of Start VM On Connect for the hostpool during the ramp up phase. If this is disabled, session hosts must be turned on using rampUpAutoStartHosts or by turning them on manually. */
 export type ScalingPlanPersonalSchedulePropertiesRampUpStartVMOnConnect =
   | "Enable"
   | "Disable";
 export const ScalingPlanPersonalSchedulePropertiesRampUpStartVMOnConnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a user disconnect during the ramp up period. */
 export type ScalingPlanPersonalSchedulePropertiesRampUpActionOnDisconnect =
   | "None"
   | "Deallocate";
 export const ScalingPlanPersonalSchedulePropertiesRampUpActionOnDisconnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a logoff during the ramp up period. */
 export type ScalingPlanPersonalSchedulePropertiesRampUpActionOnLogoff =
   | "None"
   | "Deallocate";
 export const ScalingPlanPersonalSchedulePropertiesRampUpActionOnLogoff =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The desired configuration of Start VM On Connect for the hostpool during the peak phase. */
 export type ScalingPlanPersonalSchedulePropertiesPeakStartVMOnConnect =
   | "Enable"
   | "Disable";
 export const ScalingPlanPersonalSchedulePropertiesPeakStartVMOnConnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a user disconnect during the peak period. */
 export type ScalingPlanPersonalSchedulePropertiesPeakActionOnDisconnect =
   | "None"
   | "Deallocate";
 export const ScalingPlanPersonalSchedulePropertiesPeakActionOnDisconnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a logoff during the peak period. */
 export type ScalingPlanPersonalSchedulePropertiesPeakActionOnLogoff =
   | "None"
   | "Deallocate";
-export const ScalingPlanPersonalSchedulePropertiesPeakActionOnLogoff =
-  /*@__PURE__*/ S.String;
+export const ScalingPlanPersonalSchedulePropertiesPeakActionOnLogoff = S.String;
 
 /** The desired configuration of Start VM On Connect for the hostpool during the ramp down phase. */
 export type ScalingPlanPersonalSchedulePropertiesRampDownStartVMOnConnect =
   | "Enable"
   | "Disable";
 export const ScalingPlanPersonalSchedulePropertiesRampDownStartVMOnConnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a user disconnect during the ramp down period. */
 export type ScalingPlanPersonalSchedulePropertiesRampDownActionOnDisconnect =
   | "None"
   | "Deallocate";
 export const ScalingPlanPersonalSchedulePropertiesRampDownActionOnDisconnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a logoff during the ramp down period. */
 export type ScalingPlanPersonalSchedulePropertiesRampDownActionOnLogoff =
@@ -1368,14 +1359,14 @@ export type ScalingPlanPersonalSchedulePropertiesRampDownActionOnLogoff =
   | "Deallocate"
   | "Hibernate";
 export const ScalingPlanPersonalSchedulePropertiesRampDownActionOnLogoff =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The desired configuration of Start VM On Connect for the hostpool during the off-peak phase. */
 export type ScalingPlanPersonalSchedulePropertiesOffPeakStartVMOnConnect =
   | "Enable"
   | "Disable";
 export const ScalingPlanPersonalSchedulePropertiesOffPeakStartVMOnConnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a user disconnect during the off-peak period. */
 export type ScalingPlanPersonalSchedulePropertiesOffPeakActionOnDisconnect =
@@ -1383,7 +1374,7 @@ export type ScalingPlanPersonalSchedulePropertiesOffPeakActionOnDisconnect =
   | "Deallocate"
   | "Hibernate";
 export const ScalingPlanPersonalSchedulePropertiesOffPeakActionOnDisconnect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Action to be taken after a logoff during the off-peak period. */
 export type ScalingPlanPersonalSchedulePropertiesOffPeakActionOnLogoff =
@@ -1391,7 +1382,7 @@ export type ScalingPlanPersonalSchedulePropertiesOffPeakActionOnLogoff =
   | "Deallocate"
   | "Hibernate";
 export const ScalingPlanPersonalSchedulePropertiesOffPeakActionOnLogoff =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A ScalingPlanPersonalSchedule. */
 export interface ScalingPlanPersonalScheduleProperties {
@@ -1601,8 +1592,7 @@ export type ScalingPlanPooledSchedulePropertiesDaysOfWeekItem =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const ScalingPlanPooledSchedulePropertiesDaysOfWeekItem =
-  /*@__PURE__*/ S.String;
+export const ScalingPlanPooledSchedulePropertiesDaysOfWeekItem = S.String;
 
 /** Set of days of the week on which this schedule is active. */
 export type ScalingPlanPooledSchedulePropertiesDaysOfWeekList = Array<
@@ -1618,35 +1608,35 @@ export type ScalingPlanPooledSchedulePropertiesRampUpLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
 export const ScalingPlanPooledSchedulePropertiesRampUpLoadBalancingAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Load balancing algorithm for peak period. */
 export type ScalingPlanPooledSchedulePropertiesPeakLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
 export const ScalingPlanPooledSchedulePropertiesPeakLoadBalancingAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Load balancing algorithm for ramp down period. */
 export type ScalingPlanPooledSchedulePropertiesRampDownLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
 export const ScalingPlanPooledSchedulePropertiesRampDownLoadBalancingAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies when to stop hosts during ramp down period. */
 export type ScalingPlanPooledSchedulePropertiesRampDownStopHostsWhen =
   | "ZeroSessions"
   | "ZeroActiveSessions";
 export const ScalingPlanPooledSchedulePropertiesRampDownStopHostsWhen =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Load balancing algorithm for off-peak period. */
 export type ScalingPlanPooledSchedulePropertiesOffPeakLoadBalancingAlgorithm =
   | "BreadthFirst"
   | "DepthFirst";
 export const ScalingPlanPooledSchedulePropertiesOffPeakLoadBalancingAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A ScalingPlanPooledSchedule. */
 export interface ScalingPlanPooledScheduleProperties {
@@ -2624,14 +2614,13 @@ export type HostPoolPropertiesHostPoolType =
   | "Personal"
   | "Pooled"
   | "BYODesktop";
-export const HostPoolPropertiesHostPoolType = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesHostPoolType = S.String;
 
 /** PersonalDesktopAssignment type for HostPool. */
 export type HostPoolPropertiesPersonalDesktopAssignmentType =
   | "Automatic"
   | "Direct";
-export const HostPoolPropertiesPersonalDesktopAssignmentType =
-  /*@__PURE__*/ S.String;
+export const HostPoolPropertiesPersonalDesktopAssignmentType = S.String;
 
 /** The type of the load balancer. */
 export type HostPoolPropertiesLoadBalancerType =
@@ -2639,15 +2628,14 @@ export type HostPoolPropertiesLoadBalancerType =
   | "DepthFirst"
   | "Persistent"
   | "MultiplePersistent";
-export const HostPoolPropertiesLoadBalancerType = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesLoadBalancerType = S.String;
 
 /** The type of resetting the token. */
 export type RegistrationInfoRegistrationTokenOperation =
   | "Delete"
   | "None"
   | "Update";
-export const RegistrationInfoRegistrationTokenOperation =
-  /*@__PURE__*/ S.String;
+export const RegistrationInfoRegistrationTokenOperation = S.String;
 
 /** Represents a RegistrationInfo definition. */
 export interface RegistrationInfo {
@@ -2692,14 +2680,14 @@ export type HostPoolPropertiesSsoSecretType =
   | "Certificate"
   | "SharedKeyInKeyVault"
   | "CertificateInKeyVault";
-export const HostPoolPropertiesSsoSecretType = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesSsoSecretType = S.String;
 
 /** The type of preferred application group type, default to Desktop Application Group */
 export type HostPoolPropertiesPreferredAppGroupType =
   | "None"
   | "Desktop"
   | "RailApplications";
-export const HostPoolPropertiesPreferredAppGroupType = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesPreferredAppGroupType = S.String;
 
 /** Enabled allows this resource to be accessed from both public and private networks, Disabled allows this resource to only be accessed via private endpoints */
 export type HostPoolPropertiesPublicNetworkAccess =
@@ -2707,11 +2695,11 @@ export type HostPoolPropertiesPublicNetworkAccess =
   | "Disabled"
   | "EnabledForSessionHostsOnly"
   | "EnabledForClientsOnly";
-export const HostPoolPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesPublicNetworkAccess = S.String;
 
 /** The type of maintenance for session host components. */
 export type AgentUpdatePropertiesType = "Default" | "Scheduled";
-export const AgentUpdatePropertiesType = /*@__PURE__*/ S.String;
+export const AgentUpdatePropertiesType = S.String;
 
 /** Day of the week. */
 export type MaintenanceWindowPropertiesDayOfWeek =
@@ -2722,7 +2710,7 @@ export type MaintenanceWindowPropertiesDayOfWeek =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const MaintenanceWindowPropertiesDayOfWeek = /*@__PURE__*/ S.String;
+export const MaintenanceWindowPropertiesDayOfWeek = S.String;
 
 /** Maintenance window starting hour and day of week. */
 export interface MaintenanceWindowProperties {
@@ -2797,7 +2785,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -2824,8 +2812,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -3592,7 +3579,7 @@ export type SessionHostPropertiesStatus =
   | "SxSStackListenerNotReady"
   | "FSLogixNotHealthy"
   | "NeedsAssistance";
-export const SessionHostPropertiesStatus = /*@__PURE__*/ S.String;
+export const SessionHostPropertiesStatus = S.String;
 
 /** Update state of a SessionHost. */
 export type SessionHostPropertiesUpdateState =
@@ -3601,7 +3588,7 @@ export type SessionHostPropertiesUpdateState =
   | "Started"
   | "Succeeded"
   | "Failed";
-export const SessionHostPropertiesUpdateState = /*@__PURE__*/ S.String;
+export const SessionHostPropertiesUpdateState = S.String;
 
 /** Represents the name of the health check operation performed. */
 export type SessionHostHealthCheckReportHealthCheckName =
@@ -3616,8 +3603,7 @@ export type SessionHostHealthCheckReportHealthCheckName =
   | "SupportedEncryptionCheck"
   | "MetaDataServiceCheck"
   | "AppAttachHealthCheck";
-export const SessionHostHealthCheckReportHealthCheckName =
-  /*@__PURE__*/ S.String;
+export const SessionHostHealthCheckReportHealthCheckName = S.String;
 
 /** Represents the Health state of the health check we performed. */
 export type SessionHostHealthCheckReportHealthCheckResult =
@@ -3625,8 +3611,7 @@ export type SessionHostHealthCheckReportHealthCheckResult =
   | "HealthCheckSucceeded"
   | "HealthCheckFailed"
   | "SessionHostShutdown";
-export const SessionHostHealthCheckReportHealthCheckResult =
-  /*@__PURE__*/ S.String;
+export const SessionHostHealthCheckReportHealthCheckResult = S.String;
 
 /** Contains details on the failure. */
 export interface SessionHostHealthCheckFailureDetails {
@@ -3797,7 +3782,7 @@ export const GetUserSessionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Application type of application. */
 export type UserSessionPropertiesApplicationType = "RemoteApp" | "Desktop";
-export const UserSessionPropertiesApplicationType = /*@__PURE__*/ S.String;
+export const UserSessionPropertiesApplicationType = S.String;
 
 /** State of user session. */
 export type UserSessionPropertiesSessionState =
@@ -3807,7 +3792,7 @@ export type UserSessionPropertiesSessionState =
   | "Pending"
   | "LogOff"
   | "UserProfileDiskMounted";
-export const UserSessionPropertiesSessionState = /*@__PURE__*/ S.String;
+export const UserSessionPropertiesSessionState = S.String;
 
 /** Schema for UserSession properties. */
 export interface UserSessionProperties {
@@ -3920,7 +3905,7 @@ export const WorkspacePropertiesApplicationGroupReferencesList =
 
 /** Enabled allows this resource to be accessed from both public and private networks, Disabled allows this resource to only be accessed via private endpoints */
 export type WorkspacePropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const WorkspacePropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
+export const WorkspacePropertiesPublicNetworkAccess = S.String;
 
 /** The private endpoint connection resource. */
 export type WorkspacePropertiesPrivateEndpointConnectionsItem =
@@ -4053,14 +4038,13 @@ export type HostPoolPropertiesInputHostPoolType =
   | "Personal"
   | "Pooled"
   | "BYODesktop";
-export const HostPoolPropertiesInputHostPoolType = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesInputHostPoolType = S.String;
 
 /** PersonalDesktopAssignment type for HostPool. */
 export type HostPoolPropertiesInputPersonalDesktopAssignmentType =
   | "Automatic"
   | "Direct";
-export const HostPoolPropertiesInputPersonalDesktopAssignmentType =
-  /*@__PURE__*/ S.String;
+export const HostPoolPropertiesInputPersonalDesktopAssignmentType = S.String;
 
 /** The type of the load balancer. */
 export type HostPoolPropertiesInputLoadBalancerType =
@@ -4068,7 +4052,7 @@ export type HostPoolPropertiesInputLoadBalancerType =
   | "DepthFirst"
   | "Persistent"
   | "MultiplePersistent";
-export const HostPoolPropertiesInputLoadBalancerType = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesInputLoadBalancerType = S.String;
 
 /** The type of single sign on Secret Type. */
 export type HostPoolPropertiesInputSsoSecretType =
@@ -4076,15 +4060,14 @@ export type HostPoolPropertiesInputSsoSecretType =
   | "Certificate"
   | "SharedKeyInKeyVault"
   | "CertificateInKeyVault";
-export const HostPoolPropertiesInputSsoSecretType = /*@__PURE__*/ S.String;
+export const HostPoolPropertiesInputSsoSecretType = S.String;
 
 /** The type of preferred application group type, default to Desktop Application Group */
 export type HostPoolPropertiesInputPreferredAppGroupType =
   | "None"
   | "Desktop"
   | "RailApplications";
-export const HostPoolPropertiesInputPreferredAppGroupType =
-  /*@__PURE__*/ S.String;
+export const HostPoolPropertiesInputPreferredAppGroupType = S.String;
 
 /** Enabled allows this resource to be accessed from both public and private networks, Disabled allows this resource to only be accessed via private endpoints */
 export type HostPoolPropertiesInputPublicNetworkAccess =
@@ -4092,8 +4075,7 @@ export type HostPoolPropertiesInputPublicNetworkAccess =
   | "Disabled"
   | "EnabledForSessionHostsOnly"
   | "EnabledForClientsOnly";
-export const HostPoolPropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const HostPoolPropertiesInputPublicNetworkAccess = S.String;
 
 /** Properties of HostPool. */
 export interface HostPoolPropertiesInput {
@@ -4309,8 +4291,7 @@ export type ImportAppAttachPackageInfoRequestPackageArchitecture =
   | "Neutral"
   | "x86a64"
   | "ALL";
-export const ImportAppAttachPackageInfoRequestPackageArchitecture =
-  /*@__PURE__*/ S.String;
+export const ImportAppAttachPackageInfoRequestPackageArchitecture = S.String;
 
 export interface ImportAppAttachPackageInfoRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6630,14 +6611,13 @@ export type ApplicationPatchPropertiesCommandLineSetting =
   | "DoNotAllow"
   | "Allow"
   | "Require";
-export const ApplicationPatchPropertiesCommandLineSetting =
-  /*@__PURE__*/ S.String;
+export const ApplicationPatchPropertiesCommandLineSetting = S.String;
 
 /** Resource Type of Application. */
 export type ApplicationPatchPropertiesApplicationType =
   | "InBuilt"
   | "MsixApplication";
-export const ApplicationPatchPropertiesApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationPatchPropertiesApplicationType = S.String;
 
 /** Application properties that can be patched. */
 export interface ApplicationPatchProperties {
@@ -6959,8 +6939,7 @@ export const UpdateHostPoolRequestTagsMap = /*@__PURE__*/ S.Record(
 export type HostPoolPatchPropertiesPersonalDesktopAssignmentType =
   | "Automatic"
   | "Direct";
-export const HostPoolPatchPropertiesPersonalDesktopAssignmentType =
-  /*@__PURE__*/ S.String;
+export const HostPoolPatchPropertiesPersonalDesktopAssignmentType = S.String;
 
 /** The type of the load balancer. */
 export type HostPoolPatchPropertiesLoadBalancerType =
@@ -6968,15 +6947,14 @@ export type HostPoolPatchPropertiesLoadBalancerType =
   | "DepthFirst"
   | "Persistent"
   | "MultiplePersistent";
-export const HostPoolPatchPropertiesLoadBalancerType = /*@__PURE__*/ S.String;
+export const HostPoolPatchPropertiesLoadBalancerType = S.String;
 
 /** The type of resetting the token. */
 export type RegistrationInfoPatchRegistrationTokenOperation =
   | "Delete"
   | "None"
   | "Update";
-export const RegistrationInfoPatchRegistrationTokenOperation =
-  /*@__PURE__*/ S.String;
+export const RegistrationInfoPatchRegistrationTokenOperation = S.String;
 
 /** Represents a RegistrationInfo definition. */
 export interface RegistrationInfoPatch {
@@ -7004,15 +6982,14 @@ export type HostPoolPatchPropertiesSsoSecretType =
   | "Certificate"
   | "SharedKeyInKeyVault"
   | "CertificateInKeyVault";
-export const HostPoolPatchPropertiesSsoSecretType = /*@__PURE__*/ S.String;
+export const HostPoolPatchPropertiesSsoSecretType = S.String;
 
 /** The type of preferred application group type, default to Desktop Application Group */
 export type HostPoolPatchPropertiesPreferredAppGroupType =
   | "None"
   | "Desktop"
   | "RailApplications";
-export const HostPoolPatchPropertiesPreferredAppGroupType =
-  /*@__PURE__*/ S.String;
+export const HostPoolPatchPropertiesPreferredAppGroupType = S.String;
 
 /** Enabled to allow this resource to be access from the public network */
 export type HostPoolPatchPropertiesPublicNetworkAccess =
@@ -7020,12 +6997,11 @@ export type HostPoolPatchPropertiesPublicNetworkAccess =
   | "Disabled"
   | "EnabledForSessionHostsOnly"
   | "EnabledForClientsOnly";
-export const HostPoolPatchPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const HostPoolPatchPropertiesPublicNetworkAccess = S.String;
 
 /** The type of maintenance for session host components. */
 export type AgentUpdatePatchPropertiesType = "Default" | "Scheduled";
-export const AgentUpdatePatchPropertiesType = /*@__PURE__*/ S.String;
+export const AgentUpdatePatchPropertiesType = S.String;
 
 /** Day of the week. */
 export type MaintenanceWindowPatchPropertiesDayOfWeek =
@@ -7036,7 +7012,7 @@ export type MaintenanceWindowPatchPropertiesDayOfWeek =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const MaintenanceWindowPatchPropertiesDayOfWeek = /*@__PURE__*/ S.String;
+export const MaintenanceWindowPatchPropertiesDayOfWeek = S.String;
 
 /** Maintenance window starting hour and day of week. */
 export interface MaintenanceWindowPatchProperties {
@@ -7945,8 +7921,7 @@ export const WorkspacePatchPropertiesApplicationGroupReferencesList =
 export type WorkspacePatchPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const WorkspacePatchPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const WorkspacePatchPropertiesPublicNetworkAccess = S.String;
 
 /** Workspace properties that can be patched. */
 export interface WorkspacePatchProperties {
@@ -8122,8 +8097,7 @@ export const WorkspacePropertiesInputApplicationGroupReferencesList =
 export type WorkspacePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const WorkspacePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const WorkspacePropertiesInputPublicNetworkAccess = S.String;
 
 /** Schema for Workspace properties. */
 export interface WorkspacePropertiesInput {

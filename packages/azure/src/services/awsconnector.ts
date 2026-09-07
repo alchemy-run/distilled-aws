@@ -242,7 +242,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -250,7 +250,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -307,7 +307,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Definition of AccessAnalyzerAnalyzer */
 export interface AccessAnalyzerAnalyzerProperties {
@@ -401,7 +401,7 @@ export type ExtendedKeyUsageName =
   | "TIME_STAMPING"
   | "TLS_WEB_CLIENT_AUTHENTICATION"
   | "TLS_WEB_SERVER_AUTHENTICATION";
-export const ExtendedKeyUsageName = /*@__PURE__*/ S.String;
+export const ExtendedKeyUsageName = S.String;
 
 /** <p>Contains a list of Extended Key Usage X.509 v3 extension objects. Each object specifies a purpose for which the certificate public key can be used and consists of a name and an object identifier (OID). </p> */
 export type AwsAcmCertificateSummaryPropertiesExtendedKeyUsagesList = Array<
@@ -421,7 +421,7 @@ export type KeyAlgorithm =
   | "RSA_2048"
   | "RSA_3072"
   | "RSA_4096";
-export const KeyAlgorithm = /*@__PURE__*/ S.String;
+export const KeyAlgorithm = S.String;
 
 /** Definition of KeyAlgorithmEnumValue */
 export interface KeyAlgorithmEnumValue {
@@ -449,7 +449,7 @@ export type KeyUsageName =
   | "KEY_AGREEMENT"
   | "KEY_ENCIPHERMENT"
   | "NON_REPUDIATION";
-export const KeyUsageName = /*@__PURE__*/ S.String;
+export const KeyUsageName = S.String;
 
 /** <p>A list of Key Usage X.509 v3 extension objects. Each object is a string value that identifies the purpose of the public key contained in the certificate. Possible extension values include DIGITAL_SIGNATURE, KEY_ENCHIPHERMENT, NON_REPUDIATION, and more.</p> */
 export type AwsAcmCertificateSummaryPropertiesKeyUsagesList = Array<
@@ -462,7 +462,7 @@ export const AwsAcmCertificateSummaryPropertiesKeyUsagesList =
 
 /** RenewalEligibility enum */
 export type RenewalEligibility = "ELIGIBLE" | "INELIGIBLE";
-export const RenewalEligibility = /*@__PURE__*/ S.String;
+export const RenewalEligibility = S.String;
 
 /** Definition of RenewalEligibilityEnumValue */
 export interface RenewalEligibilityEnumValue {
@@ -486,7 +486,7 @@ export type CertificateStatus =
   | "PENDING_VALIDATION"
   | "REVOKED"
   | "VALIDATION_TIMED_OUT";
-export const CertificateStatus = /*@__PURE__*/ S.String;
+export const CertificateStatus = S.String;
 
 /** Definition of CertificateStatusEnumValue */
 export interface CertificateStatusEnumValue {
@@ -511,7 +511,7 @@ export const AwsAcmCertificateSummaryPropertiesSubjectAlternativeNameSummariesLi
 
 /** CertificateType enum */
 export type CertificateType = "AMAZON_ISSUED" | "IMPORTED" | "PRIVATE";
-export const CertificateType = /*@__PURE__*/ S.String;
+export const CertificateType = S.String;
 
 /** Definition of CertificateTypeEnumValue */
 export interface CertificateTypeEnumValue {
@@ -1458,7 +1458,7 @@ export type AuthenticationType =
   | "AWS_IAM"
   | "AWS_LAMBDA"
   | "OPENID_CONNECT";
-export const AuthenticationType = /*@__PURE__*/ S.String;
+export const AuthenticationType = S.String;
 
 /** Definition of AuthenticationTypeEnumValue */
 export interface AuthenticationTypeEnumValue {
@@ -1565,7 +1565,7 @@ export const AwsAppSyncGraphqlApiPropertiesAdditionalAuthenticationProvidersList
 
 /** GraphQLApiType enum */
 export type GraphQLApiType = "GRAPHQL" | "MERGED";
-export const GraphQLApiType = /*@__PURE__*/ S.String;
+export const GraphQLApiType = S.String;
 
 /** Definition of GraphQLApiTypeEnumValue */
 export interface GraphQLApiTypeEnumValue {
@@ -1593,7 +1593,7 @@ export const AwsAppSyncGraphqlApiPropertiesDnsMap = /*@__PURE__*/ S.Record(
 export type DataSourceLevelMetricsBehavior =
   | "FULL_REQUEST_DATA_SOURCE_METRICS"
   | "PER_DATA_SOURCE_METRICS";
-export const DataSourceLevelMetricsBehavior = /*@__PURE__*/ S.String;
+export const DataSourceLevelMetricsBehavior = S.String;
 
 /** Definition of DataSourceLevelMetricsBehaviorEnumValue */
 export interface DataSourceLevelMetricsBehaviorEnumValue {
@@ -1611,7 +1611,7 @@ export const DataSourceLevelMetricsBehaviorEnumValue = /*@__PURE__*/ S.suspend(
 
 /** OperationLevelMetricsConfig enum */
 export type OperationLevelMetricsConfig = "DISABLED" | "ENABLED";
-export const OperationLevelMetricsConfig = /*@__PURE__*/ S.String;
+export const OperationLevelMetricsConfig = S.String;
 
 /** Definition of OperationLevelMetricsConfigEnumValue */
 export interface OperationLevelMetricsConfigEnumValue {
@@ -1631,7 +1631,7 @@ export const OperationLevelMetricsConfigEnumValue = /*@__PURE__*/ S.suspend(
 export type ResolverLevelMetricsBehavior =
   | "FULL_REQUEST_RESOLVER_METRICS"
   | "PER_RESOLVER_METRICS";
-export const ResolverLevelMetricsBehavior = /*@__PURE__*/ S.String;
+export const ResolverLevelMetricsBehavior = S.String;
 
 /** Definition of ResolverLevelMetricsBehaviorEnumValue */
 export interface ResolverLevelMetricsBehaviorEnumValue {
@@ -1674,7 +1674,7 @@ export const EnhancedMetricsConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** GraphQLApiIntrospectionConfig enum */
 export type GraphQLApiIntrospectionConfig = "DISABLED" | "ENABLED";
-export const GraphQLApiIntrospectionConfig = /*@__PURE__*/ S.String;
+export const GraphQLApiIntrospectionConfig = S.String;
 
 /** Definition of GraphQLApiIntrospectionConfigEnumValue */
 export interface GraphQLApiIntrospectionConfigEnumValue {
@@ -1692,7 +1692,7 @@ export const GraphQLApiIntrospectionConfigEnumValue = /*@__PURE__*/ S.suspend(
 
 /** FieldLogLevel enum */
 export type FieldLogLevel = "ALL" | "ERROR" | "NONE";
-export const FieldLogLevel = /*@__PURE__*/ S.String;
+export const FieldLogLevel = S.String;
 
 /** Definition of FieldLogLevelEnumValue */
 export interface FieldLogLevelEnumValue {
@@ -1744,7 +1744,7 @@ export const AwsAppSyncGraphqlApiPropertiesUrisMap = /*@__PURE__*/ S.Record(
 
 /** DefaultAction enum */
 export type DefaultAction = "ALLOW" | "DENY";
-export const DefaultAction = /*@__PURE__*/ S.String;
+export const DefaultAction = S.String;
 
 /** Definition of DefaultActionEnumValue */
 export interface DefaultActionEnumValue {
@@ -1781,7 +1781,7 @@ export const UserPoolConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** GraphQLApiVisibility enum */
 export type GraphQLApiVisibility = "GLOBAL" | "PRIVATE";
-export const GraphQLApiVisibility = /*@__PURE__*/ S.String;
+export const GraphQLApiVisibility = S.String;
 
 /** Definition of GraphQLApiVisibilityEnumValue */
 export interface GraphQLApiVisibilityEnumValue {
@@ -2920,7 +2920,7 @@ export type Capabilities =
   | "CAPABILITY_AUTO_EXPAND"
   | "CAPABILITY_IAM"
   | "CAPABILITY_NAMED_IAM";
-export const Capabilities = /*@__PURE__*/ S.String;
+export const Capabilities = S.String;
 
 /** Property capabilities */
 export type AwsCloudFormationStackPropertiesCapabilitiesList = Array<
@@ -3001,7 +3001,7 @@ export type StackStatus =
   | "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS"
   | "UPDATE_ROLLBACK_FAILED"
   | "UPDATE_ROLLBACK_IN_PROGRESS";
-export const StackStatus = /*@__PURE__*/ S.String;
+export const StackStatus = S.String;
 
 /** Definition of Tag */
 export type Tag_4 = Tag_2;
@@ -3286,7 +3286,7 @@ export const AutoDeployment = /*@__PURE__*/ S.suspend(() =>
 
 /** CallAs enum */
 export type CallAs = "DELEGATED_ADMIN" | "SELF";
-export const CallAs = /*@__PURE__*/ S.String;
+export const CallAs = S.String;
 
 /** In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for AWS CloudFormation to create the stack set and related stack instances. */
 export type AwsCloudFormationStackSetPropertiesCapabilitiesList = Array<string>;
@@ -3310,7 +3310,7 @@ export const ActiveModel = /*@__PURE__*/ S.suspend(() =>
 export type OperationPreferencesRegionConcurrencyType =
   | "PARALLEL"
   | "SEQUENTIAL";
-export const OperationPreferencesRegionConcurrencyType = /*@__PURE__*/ S.String;
+export const OperationPreferencesRegionConcurrencyType = S.String;
 
 /** Property regionOrder */
 export type OperationPreferencesRegionOrderList = Array<string>;
@@ -3374,7 +3374,7 @@ export const AwsCloudFormationStackSetPropertiesParametersList =
 
 /** PermissionModel enum */
 export type PermissionModel = "SELF_MANAGED" | "SERVICE_MANAGED";
-export const PermissionModel = /*@__PURE__*/ S.String;
+export const PermissionModel = S.String;
 
 /** DeploymentTargetsAccountFilterType enum */
 export type DeploymentTargetsAccountFilterType =
@@ -3382,7 +3382,7 @@ export type DeploymentTargetsAccountFilterType =
   | "INTERSECTION"
   | "NONE"
   | "UNION";
-export const DeploymentTargetsAccountFilterType = /*@__PURE__*/ S.String;
+export const DeploymentTargetsAccountFilterType = S.String;
 
 /** AWS accounts that you want to create stack instances in the specified Region(s) for. */
 export type DeploymentTargetsAccountsList = Array<string>;
@@ -4850,7 +4850,7 @@ export const EventSelectorExcludeManagementEventSourcesList =
 
 /** EventSelectorReadWriteType enum */
 export type EventSelectorReadWriteType = "All" | "ReadOnly" | "WriteOnly";
-export const EventSelectorReadWriteType = /*@__PURE__*/ S.String;
+export const EventSelectorReadWriteType = S.String;
 
 /** Definition of EventSelector */
 export interface EventSelector {
@@ -5551,7 +5551,7 @@ export const CodeBuildProjectsCreateOrReplaceRequestTagsMap =
 
 /** BucketOwnerAccess enum */
 export type BucketOwnerAccess = "FULL" | "NONE" | "READ_ONLY";
-export const BucketOwnerAccess = /*@__PURE__*/ S.String;
+export const BucketOwnerAccess = S.String;
 
 /** Definition of BucketOwnerAccessEnumValue */
 export interface BucketOwnerAccessEnumValue {
@@ -5568,7 +5568,7 @@ export const BucketOwnerAccessEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ArtifactNamespace enum */
 export type ArtifactNamespace = "BUILD_ID" | "NONE";
-export const ArtifactNamespace = /*@__PURE__*/ S.String;
+export const ArtifactNamespace = S.String;
 
 /** Definition of ArtifactNamespaceEnumValue */
 export interface ArtifactNamespaceEnumValue {
@@ -5585,7 +5585,7 @@ export const ArtifactNamespaceEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ArtifactPackaging enum */
 export type ArtifactPackaging = "NONE" | "ZIP";
-export const ArtifactPackaging = /*@__PURE__*/ S.String;
+export const ArtifactPackaging = S.String;
 
 /** Definition of ArtifactPackagingEnumValue */
 export interface ArtifactPackagingEnumValue {
@@ -5602,7 +5602,7 @@ export const ArtifactPackagingEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ArtifactsType enum */
 export type ArtifactsType = "CODEPIPELINE" | "NO_ARTIFACTS" | "S3";
-export const ArtifactsType = /*@__PURE__*/ S.String;
+export const ArtifactsType = S.String;
 
 /** Definition of ArtifactsTypeEnumValue */
 export interface ArtifactsTypeEnumValue {
@@ -5675,7 +5675,7 @@ export const ProjectBadge = /*@__PURE__*/ S.suspend(() =>
 export type BatchReportModeType =
   | "REPORT_AGGREGATED_BATCH"
   | "REPORT_INDIVIDUAL_BUILDS";
-export const BatchReportModeType = /*@__PURE__*/ S.String;
+export const BatchReportModeType = S.String;
 
 /** Definition of BatchReportModeTypeEnumValue */
 export interface BatchReportModeTypeEnumValue {
@@ -5742,7 +5742,7 @@ export type CacheMode =
   | "LOCAL_CUSTOM_CACHE"
   | "LOCAL_DOCKER_LAYER_CACHE"
   | "LOCAL_SOURCE_CACHE";
-export const CacheMode = /*@__PURE__*/ S.String;
+export const CacheMode = S.String;
 
 /** <p>An array of strings that specify the local cache modes. You can use one or more local cache modes at the same time. This is only used for <code>LOCAL</code> cache types.</p> <p>Possible values are:</p> <dl> <dt>LOCAL_SOURCE_CACHE</dt> <dd> <p>Caches Git metadata for primary and secondary sources. After the cache is created, subsequent builds pull only the change between commits. This mode is a good choice for projects with a clean working directory and a source that is a large Git repository. If you choose this option and your project does not use a Git repository (GitHub, GitHub Enterprise, or Bitbucket), the option is ignored. </p> </dd> <dt>LOCAL_DOCKER_LAYER_CACHE</dt> <dd> <p>Caches existing Docker layers. This mode is a good choice for projects that build or pull large Docker images. It can prevent the performance issues caused by pulling large Docker images down from the network. </p> <note> <ul> <li> <p>You can use a Docker layer cache in the Linux environment only. </p> </li> <li> <p>The <code>privileged</code> flag must be set so that your project has the required Docker permissions. </p> </li> <li> <p>You should consider the security implications before you use a Docker layer cache. </p> </li> </ul> </note> </dd> <dt>LOCAL_CUSTOM_CACHE</dt> <dd> <p>Caches directories you specify in the buildspec file. This mode is a good choice if your build scenario is not suited to one of the other three local cache modes. If you use a custom cache: </p> <ul> <li> <p>Only directories can be specified for caching. You cannot specify individual files. </p> </li> <li> <p>Symlinks are used to reference cached directories. </p> </li> <li> <p>Cached directories are linked to your build before it downloads its project sources. Cached items are overridden if a source item has the same name. Directories are specified using cache paths in the buildspec file. </p> </li> </ul> </dd> </dl> */
 export type ProjectCacheModesList = Array<CacheMode | (string & {})>;
@@ -5752,7 +5752,7 @@ export const ProjectCacheModesList = /*@__PURE__*/ S.Array(
 
 /** CacheType enum */
 export type CacheType = "LOCAL" | "NO_CACHE" | "S3";
-export const CacheType = /*@__PURE__*/ S.String;
+export const CacheType = S.String;
 
 /** Definition of CacheTypeEnumValue */
 export interface CacheTypeEnumValue {
@@ -5796,7 +5796,7 @@ export type ComputeType =
   | "BUILD_LAMBDA_2GB"
   | "BUILD_LAMBDA_4GB"
   | "BUILD_LAMBDA_8GB";
-export const ComputeType = /*@__PURE__*/ S.String;
+export const ComputeType = S.String;
 
 /** Definition of ComputeTypeEnumValue */
 export interface ComputeTypeEnumValue {
@@ -5816,7 +5816,7 @@ export type EnvironmentVariableType =
   | "PARAMETER_STORE"
   | "PLAINTEXT"
   | "SECRETS_MANAGER";
-export const EnvironmentVariableType = /*@__PURE__*/ S.String;
+export const EnvironmentVariableType = S.String;
 
 /** Definition of EnvironmentVariableTypeEnumValue */
 export interface EnvironmentVariableTypeEnumValue {
@@ -5870,7 +5870,7 @@ export const ProjectFleet = /*@__PURE__*/ S.suspend(() =>
 
 /** ImagePullCredentialsType enum */
 export type ImagePullCredentialsType = "CODEBUILD" | "SERVICE_ROLE";
-export const ImagePullCredentialsType = /*@__PURE__*/ S.String;
+export const ImagePullCredentialsType = S.String;
 
 /** Definition of ImagePullCredentialsTypeEnumValue */
 export interface ImagePullCredentialsTypeEnumValue {
@@ -5887,7 +5887,7 @@ export const ImagePullCredentialsTypeEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** CredentialProviderType enum */
 export type CredentialProviderType = "SECRETS_MANAGER";
-export const CredentialProviderType = /*@__PURE__*/ S.String;
+export const CredentialProviderType = S.String;
 
 /** Definition of CredentialProviderTypeEnumValue */
 export interface CredentialProviderTypeEnumValue {
@@ -5927,7 +5927,7 @@ export type EnvironmentType =
   | "LINUX_LAMBDA_CONTAINER"
   | "WINDOWS_CONTAINER"
   | "WINDOWS_SERVER_2019_CONTAINER";
-export const EnvironmentType = /*@__PURE__*/ S.String;
+export const EnvironmentType = S.String;
 
 /** Definition of EnvironmentTypeEnumValue */
 export interface EnvironmentTypeEnumValue {
@@ -5983,7 +5983,7 @@ export const ProjectEnvironment = /*@__PURE__*/ S.suspend(() =>
 
 /** FileSystemType enum */
 export type FileSystemType = "EFS";
-export const FileSystemType = /*@__PURE__*/ S.String;
+export const FileSystemType = S.String;
 
 /** Definition of FileSystemTypeEnumValue */
 export interface FileSystemTypeEnumValue {
@@ -6033,7 +6033,7 @@ export const AwsCodeBuildProjectPropertiesFileSystemLocationsList =
 
 /** LogsConfigStatusType enum */
 export type LogsConfigStatusType = "DISABLED" | "ENABLED";
-export const LogsConfigStatusType = /*@__PURE__*/ S.String;
+export const LogsConfigStatusType = S.String;
 
 /** Definition of LogsConfigStatusTypeEnumValue */
 export interface LogsConfigStatusTypeEnumValue {
@@ -6103,7 +6103,7 @@ export const LogsConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** ProjectVisibilityType enum */
 export type ProjectVisibilityType = "PRIVATE" | "PUBLIC_READ";
-export const ProjectVisibilityType = /*@__PURE__*/ S.String;
+export const ProjectVisibilityType = S.String;
 
 /** Definition of ProjectVisibilityTypeEnumValue */
 export interface ProjectVisibilityTypeEnumValue {
@@ -6152,7 +6152,7 @@ export const AwsCodeBuildProjectPropertiesSecondarySourceVersionsList =
 
 /** SourceAuthType enum */
 export type SourceAuthType = "CODECONNECTIONS" | "OAUTH";
-export const SourceAuthType = /*@__PURE__*/ S.String;
+export const SourceAuthType = S.String;
 
 /** Definition of SourceAuthTypeEnumValue */
 export interface SourceAuthTypeEnumValue {
@@ -6221,7 +6221,7 @@ export type SourceType =
   | "GITLAB_SELF_MANAGED"
   | "NO_SOURCE"
   | "S3";
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 /** Definition of SourceTypeEnumValue */
 export interface SourceTypeEnumValue {
@@ -6333,7 +6333,7 @@ export const VpcConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** WebhookBuildType enum */
 export type WebhookBuildType = "BUILD" | "BUILD_BATCH";
-export const WebhookBuildType = /*@__PURE__*/ S.String;
+export const WebhookBuildType = S.String;
 
 /** Definition of WebhookBuildTypeEnumValue */
 export interface WebhookBuildTypeEnumValue {
@@ -6359,7 +6359,7 @@ export type WebhookFilterType =
   | "RELEASE_NAME"
   | "TAG_NAME"
   | "WORKFLOW_NAME";
-export const WebhookFilterType = /*@__PURE__*/ S.String;
+export const WebhookFilterType = S.String;
 
 /** Definition of WebhookFilterTypeEnumValue */
 export interface WebhookFilterTypeEnumValue {
@@ -6720,7 +6720,7 @@ export type AuthType =
   | "CODECONNECTIONS"
   | "OAUTH"
   | "PERSONAL_ACCESS_TOKEN";
-export const AuthType = /*@__PURE__*/ S.String;
+export const AuthType = S.String;
 
 /** Definition of AuthTypeEnumValue */
 export interface AuthTypeEnumValue {
@@ -6742,7 +6742,7 @@ export type ServerType =
   | "GITHUB_ENTERPRISE"
   | "GITLAB"
   | "GITLAB_SELF_MANAGED";
-export const ServerType = /*@__PURE__*/ S.String;
+export const ServerType = S.String;
 
 /** Definition of ServerTypeEnumValue */
 export interface ServerTypeEnumValue {
@@ -7374,7 +7374,7 @@ export type ResourceType =
   | "AWS::WorkSpaces::ConnectionAlias"
   | "AWS::WorkSpaces::Workspace"
   | "AWS::XRay::EncryptionConfig";
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 /** <p>A comma-separated list of resource types to exclude from recording by the configuration recorder.</p> */
 export type ExclusionByResourceTypesResourceTypesList = Array<
@@ -7402,7 +7402,7 @@ export type RecordingStrategyType =
   | "ALL_SUPPORTED_RESOURCE_TYPES"
   | "EXCLUSION_BY_RESOURCE_TYPES"
   | "INCLUSION_BY_RESOURCE_TYPES";
-export const RecordingStrategyType = /*@__PURE__*/ S.String;
+export const RecordingStrategyType = S.String;
 
 /** Definition of RecordingStrategyTypeEnumValue */
 export interface RecordingStrategyTypeEnumValue {
@@ -7463,7 +7463,7 @@ export const RecordingGroup = /*@__PURE__*/ S.suspend(() =>
 
 /** RecordingFrequency enum */
 export type RecordingFrequency = "CONTINUOUS" | "DAILY";
-export const RecordingFrequency = /*@__PURE__*/ S.String;
+export const RecordingFrequency = S.String;
 
 /** Definition of RecordingFrequencyEnumValue */
 export interface RecordingFrequencyEnumValue {
@@ -7740,7 +7740,7 @@ export const ConfigServiceConfigurationRecorderStatusesCreateOrReplaceRequestTag
 
 /** RecorderStatus enum */
 export type RecorderStatus = "Failure" | "Pending" | "Success";
-export const RecorderStatus = /*@__PURE__*/ S.String;
+export const RecorderStatus = S.String;
 
 /** Definition of RecorderStatusEnumValue */
 export interface RecorderStatusEnumValue {
@@ -7992,7 +7992,7 @@ export type MaximumExecutionFrequency =
   | "Three_Hours"
   | "Twelve_Hours"
   | "TwentyFour_Hours";
-export const MaximumExecutionFrequency = /*@__PURE__*/ S.String;
+export const MaximumExecutionFrequency = S.String;
 
 /** Definition of MaximumExecutionFrequencyEnumValue */
 export interface MaximumExecutionFrequencyEnumValue {
@@ -8688,7 +8688,7 @@ export const Endpoint = /*@__PURE__*/ S.suspend(() =>
 
 /** ClusterEndpointEncryptionType enum */
 export type ClusterEndpointEncryptionType = "NONE" | "TLS";
-export const ClusterEndpointEncryptionType = /*@__PURE__*/ S.String;
+export const ClusterEndpointEncryptionType = S.String;
 
 /** Definition of ClusterEndpointEncryptionTypeEnumValue */
 export interface ClusterEndpointEncryptionTypeEnumValue {
@@ -8785,7 +8785,7 @@ export const ParameterGroupStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** SSEStatus enum */
 export type SSEStatus = "DISABLED" | "DISABLING" | "ENABLED" | "ENABLING";
-export const SSEStatus = /*@__PURE__*/ S.String;
+export const SSEStatus = S.String;
 
 /** Definition of SSEStatusEnumValue */
 export interface SSEStatusEnumValue {
@@ -12653,7 +12653,7 @@ export const DynamoDbContinuousBackupsDescriptionsCreateOrReplaceRequestTagsMap 
 
 /** ContinuousBackupsStatus enum */
 export type ContinuousBackupsStatus = "DISABLED" | "ENABLED";
-export const ContinuousBackupsStatus = /*@__PURE__*/ S.String;
+export const ContinuousBackupsStatus = S.String;
 
 /** Definition of ContinuousBackupsStatusEnumValue */
 export interface ContinuousBackupsStatusEnumValue {
@@ -12670,7 +12670,7 @@ export const ContinuousBackupsStatusEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** PointInTimeRecoveryStatus enum */
 export type PointInTimeRecoveryStatus = "DISABLED" | "ENABLED";
-export const PointInTimeRecoveryStatus = /*@__PURE__*/ S.String;
+export const PointInTimeRecoveryStatus = S.String;
 
 /** Definition of PointInTimeRecoveryStatusEnumValue */
 export interface PointInTimeRecoveryStatusEnumValue {
@@ -13126,7 +13126,7 @@ export type KinesisStreamSpecificationApproximateCreationDateTimePrecision =
   | "MICROSECOND"
   | "MILLISECOND";
 export const KinesisStreamSpecificationApproximateCreationDateTimePrecision =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Definition of KinesisStreamSpecification */
 export interface KinesisStreamSpecification {
@@ -13747,7 +13747,7 @@ export const Ec2AddressesCreateOrReplaceRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** DomainType enum */
 export type DomainType = "standard" | "vpc";
-export const DomainType = /*@__PURE__*/ S.String;
+export const DomainType = S.String;
 
 /** Definition of DomainTypeEnumValue */
 export interface DomainTypeEnumValue {
@@ -14008,7 +14008,7 @@ export const Ec2FlowLogsCreateOrReplaceRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** FileFormat enum */
 export type FileFormat = "parquet" | "plain-text";
-export const FileFormat = /*@__PURE__*/ S.String;
+export const FileFormat = S.String;
 
 /** Definition of DestinationOptionsModelProperties */
 export interface DestinationOptionsModelProperties {
@@ -14034,7 +14034,7 @@ export type LogDestinationType =
   | "cloud-watch-logs"
   | "kinesis-data-firehose"
   | "s3";
-export const LogDestinationType = /*@__PURE__*/ S.String;
+export const LogDestinationType = S.String;
 
 /** ResourceType enum */
 export type ResourceType_2 =
@@ -14043,7 +14043,7 @@ export type ResourceType_2 =
   | "TransitGateway"
   | "TransitGatewayAttachment"
   | "VPC";
-export const ResourceType_2 = /*@__PURE__*/ S.String;
+export const ResourceType_2 = S.String;
 
 /** Definition of Tag */
 export type Tag_11 = Tag_2;
@@ -14057,7 +14057,7 @@ export const AwsEc2FlowLogPropertiesTagsList = /*@__PURE__*/ S.Array(
 
 /** TrafficType enum */
 export type TrafficType = "ACCEPT" | "ALL" | "REJECT";
-export const TrafficType = /*@__PURE__*/ S.String;
+export const TrafficType = S.String;
 
 /** Definition of awsEc2FlowLog */
 export interface AwsEc2FlowLogProperties {
@@ -14286,7 +14286,7 @@ export type ArchitectureValues =
   | "i386"
   | "x86_64"
   | "x86_64_mac";
-export const ArchitectureValues = /*@__PURE__*/ S.String;
+export const ArchitectureValues = S.String;
 
 /** Definition of ArchitectureValuesEnumValue */
 export interface ArchitectureValuesEnumValue {
@@ -14310,7 +14310,7 @@ export type VolumeType =
   | "sc1"
   | "st1"
   | "standard";
-export const VolumeType = /*@__PURE__*/ S.String;
+export const VolumeType = S.String;
 
 /** Definition of VolumeTypeEnumValue */
 export interface VolumeTypeEnumValue {
@@ -14392,7 +14392,7 @@ export const AwsEc2ImagePropertiesBlockDeviceMappingsList =
 
 /** BootModeValues enum */
 export type BootModeValues = "legacy-bios" | "uefi" | "uefi-preferred";
-export const BootModeValues = /*@__PURE__*/ S.String;
+export const BootModeValues = S.String;
 
 /** Definition of BootModeValuesEnumValue */
 export interface BootModeValuesEnumValue {
@@ -14409,7 +14409,7 @@ export const BootModeValuesEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** HypervisorType enum */
 export type HypervisorType = "ovm" | "xen";
-export const HypervisorType = /*@__PURE__*/ S.String;
+export const HypervisorType = S.String;
 
 /** Definition of HypervisorTypeEnumValue */
 export interface HypervisorTypeEnumValue {
@@ -14426,7 +14426,7 @@ export const HypervisorTypeEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ImageTypeValues enum */
 export type ImageTypeValues = "kernel" | "machine" | "ramdisk";
-export const ImageTypeValues = /*@__PURE__*/ S.String;
+export const ImageTypeValues = S.String;
 
 /** Definition of ImageTypeValuesEnumValue */
 export interface ImageTypeValuesEnumValue {
@@ -14443,7 +14443,7 @@ export const ImageTypeValuesEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ImdsSupportValues enum */
 export type ImdsSupportValues = "v2.0";
-export const ImdsSupportValues = /*@__PURE__*/ S.String;
+export const ImdsSupportValues = S.String;
 
 /** Definition of ImdsSupportValuesEnumValue */
 export interface ImdsSupportValuesEnumValue {
@@ -14460,7 +14460,7 @@ export const ImdsSupportValuesEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** PlatformValues enum */
 export type PlatformValues = "Windows";
-export const PlatformValues = /*@__PURE__*/ S.String;
+export const PlatformValues = S.String;
 
 /** Definition of PlatformValuesEnumValue */
 export interface PlatformValuesEnumValue {
@@ -14477,7 +14477,7 @@ export const PlatformValuesEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ProductCodeValues enum */
 export type ProductCodeValues = "devpay" | "marketplace";
-export const ProductCodeValues = /*@__PURE__*/ S.String;
+export const ProductCodeValues = S.String;
 
 /** Definition of ProductCodeValuesEnumValue */
 export interface ProductCodeValuesEnumValue {
@@ -14514,7 +14514,7 @@ export const AwsEc2ImagePropertiesProductCodesList = /*@__PURE__*/ S.Array(
 
 /** DeviceType enum */
 export type DeviceType = "ebs" | "instance-store";
-export const DeviceType = /*@__PURE__*/ S.String;
+export const DeviceType = S.String;
 
 /** Definition of DeviceTypeEnumValue */
 export interface DeviceTypeEnumValue {
@@ -14539,7 +14539,7 @@ export type ImageState =
   | "invalid"
   | "pending"
   | "transient";
-export const ImageState = /*@__PURE__*/ S.String;
+export const ImageState = S.String;
 
 /** Definition of ImageStateEnumValue */
 export interface ImageStateEnumValue {
@@ -14580,7 +14580,7 @@ export const AwsEc2ImagePropertiesTagsList = /*@__PURE__*/ S.Array(
 
 /** TpmSupportValues enum */
 export type TpmSupportValues = "v2.0";
-export const TpmSupportValues = /*@__PURE__*/ S.String;
+export const TpmSupportValues = S.String;
 
 /** Definition of TpmSupportValuesEnumValue */
 export interface TpmSupportValuesEnumValue {
@@ -14597,7 +14597,7 @@ export const TpmSupportValuesEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** VirtualizationType enum */
 export type VirtualizationType = "hvm" | "paravirtual";
-export const VirtualizationType = /*@__PURE__*/ S.String;
+export const VirtualizationType = S.String;
 
 /** Definition of VirtualizationTypeEnumValue */
 export interface VirtualizationTypeEnumValue {
@@ -14891,7 +14891,7 @@ export type AttachmentStatus =
   | "attaching"
   | "detached"
   | "detaching";
-export const AttachmentStatus = /*@__PURE__*/ S.String;
+export const AttachmentStatus = S.String;
 
 /** Definition of AttachmentStatusEnumValue */
 export interface AttachmentStatusEnumValue {
@@ -14960,7 +14960,7 @@ export const AwsEc2InstancePropertiesBlockDeviceMappingsList =
 
 /** CapacityReservationPreference enum */
 export type CapacityReservationPreference = "none" | "open";
-export const CapacityReservationPreference = /*@__PURE__*/ S.String;
+export const CapacityReservationPreference = S.String;
 
 /** Definition of CapacityReservationPreferenceEnumValue */
 export interface CapacityReservationPreferenceEnumValue {
@@ -15013,7 +15013,7 @@ export const CapacityReservationSpecificationResponse = /*@__PURE__*/ S.suspend(
 
 /** AmdSevSnpSpecification enum */
 export type AmdSevSnpSpecification = "disabled" | "enabled";
-export const AmdSevSnpSpecification = /*@__PURE__*/ S.String;
+export const AmdSevSnpSpecification = S.String;
 
 /** Definition of AmdSevSnpSpecificationEnumValue */
 export interface AmdSevSnpSpecificationEnumValue {
@@ -15047,7 +15047,7 @@ export const CpuOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** InstanceBootModeValues enum */
 export type InstanceBootModeValues = "legacy-bios" | "uefi";
-export const InstanceBootModeValues = /*@__PURE__*/ S.String;
+export const InstanceBootModeValues = S.String;
 
 /** Definition of InstanceBootModeValuesEnumValue */
 export interface InstanceBootModeValuesEnumValue {
@@ -15165,7 +15165,7 @@ export const IamInstanceProfile = /*@__PURE__*/ S.suspend(() =>
 
 /** InstanceLifecycleType enum */
 export type InstanceLifecycleType = "capacity-block" | "scheduled" | "spot";
-export const InstanceLifecycleType = /*@__PURE__*/ S.String;
+export const InstanceLifecycleType = S.String;
 
 /** Definition of InstanceLifecycleTypeEnumValue */
 export interface InstanceLifecycleTypeEnumValue {
@@ -15978,7 +15978,7 @@ export type InstanceType =
   | "z1d.large"
   | "z1d.metal"
   | "z1d.xlarge";
-export const InstanceType = /*@__PURE__*/ S.String;
+export const InstanceType = S.String;
 
 /** Definition of InstanceTypeEnumValue */
 export interface InstanceTypeEnumValue {
@@ -16014,7 +16014,7 @@ export const AwsEc2InstancePropertiesLicensesList = /*@__PURE__*/ S.Array(
 
 /** InstanceAutoRecoveryState enum */
 export type InstanceAutoRecoveryState = "default" | "disabled";
-export const InstanceAutoRecoveryState = /*@__PURE__*/ S.String;
+export const InstanceAutoRecoveryState = S.String;
 
 /** Definition of InstanceAutoRecoveryStateEnumValue */
 export interface InstanceAutoRecoveryStateEnumValue {
@@ -16044,7 +16044,7 @@ export const InstanceMaintenanceOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** InstanceMetadataEndpointState enum */
 export type InstanceMetadataEndpointState = "disabled" | "enabled";
-export const InstanceMetadataEndpointState = /*@__PURE__*/ S.String;
+export const InstanceMetadataEndpointState = S.String;
 
 /** Definition of InstanceMetadataEndpointStateEnumValue */
 export interface InstanceMetadataEndpointStateEnumValue {
@@ -16064,8 +16064,7 @@ export const InstanceMetadataEndpointStateEnumValue = /*@__PURE__*/ S.suspend(
 export type InstanceMetadataProtocolStateEnumValueValue =
   | "disabled"
   | "enabled";
-export const InstanceMetadataProtocolStateEnumValueValue =
-  /*@__PURE__*/ S.String;
+export const InstanceMetadataProtocolStateEnumValueValue = S.String;
 
 /** Definition of InstanceMetadataProtocolStateEnumValue */
 export interface InstanceMetadataProtocolStateEnumValue {
@@ -16083,7 +16082,7 @@ export const InstanceMetadataProtocolStateEnumValue = /*@__PURE__*/ S.suspend(
 
 /** HttpTokensState enum */
 export type HttpTokensState = "optional" | "required";
-export const HttpTokensState = /*@__PURE__*/ S.String;
+export const HttpTokensState = S.String;
 
 /** Definition of HttpTokensStateEnumValue */
 export interface HttpTokensStateEnumValue {
@@ -16100,7 +16099,7 @@ export const HttpTokensStateEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** InstanceMetadataTagsState enum */
 export type InstanceMetadataTagsState = "disabled" | "enabled";
-export const InstanceMetadataTagsState = /*@__PURE__*/ S.String;
+export const InstanceMetadataTagsState = S.String;
 
 /** Definition of InstanceMetadataTagsStateEnumValue */
 export interface InstanceMetadataTagsStateEnumValue {
@@ -16117,7 +16116,7 @@ export const InstanceMetadataTagsStateEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** InstanceMetadataOptionsState enum */
 export type InstanceMetadataOptionsState = "applied" | "pending";
-export const InstanceMetadataOptionsState = /*@__PURE__*/ S.String;
+export const InstanceMetadataOptionsState = S.String;
 
 /** Definition of InstanceMetadataOptionsStateEnumValue */
 export interface InstanceMetadataOptionsStateEnumValue {
@@ -16163,7 +16162,7 @@ export const InstanceMetadataOptionsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** MonitoringState enum */
 export type MonitoringState = "disabled" | "disabling" | "enabled" | "pending";
-export const MonitoringState = /*@__PURE__*/ S.String;
+export const MonitoringState = S.String;
 
 /** Definition of MonitoringStateEnumValue */
 export interface MonitoringStateEnumValue {
@@ -16420,7 +16419,7 @@ export type NetworkInterfaceStatus =
   | "available"
   | "detaching"
   | "in-use";
-export const NetworkInterfaceStatus = /*@__PURE__*/ S.String;
+export const NetworkInterfaceStatus = S.String;
 
 /** Definition of NetworkInterfaceStatusEnumValue */
 export interface NetworkInterfaceStatusEnumValue {
@@ -16516,7 +16515,7 @@ export const AwsEc2InstancePropertiesNetworkInterfacesList =
 
 /** Tenancy enum */
 export type Tenancy = "dedicated" | "default" | "host";
-export const Tenancy = /*@__PURE__*/ S.String;
+export const Tenancy = S.String;
 
 /** Definition of TenancyEnumValue */
 export interface TenancyEnumValue {
@@ -16568,7 +16567,7 @@ export const Placement = /*@__PURE__*/ S.suspend(() =>
 
 /** HostnameType enum */
 export type HostnameType = "ip-name" | "resource-name";
-export const HostnameType = /*@__PURE__*/ S.String;
+export const HostnameType = S.String;
 
 /** Definition of HostnameTypeEnumValue */
 export interface HostnameTypeEnumValue {
@@ -16622,7 +16621,7 @@ export type InstanceStateName =
   | "stopped"
   | "stopping"
   | "terminated";
-export const InstanceStateName = /*@__PURE__*/ S.String;
+export const InstanceStateName = S.String;
 
 /** Definition of InstanceStateNameEnumValue */
 export interface InstanceStateNameEnumValue {
@@ -17004,7 +17003,7 @@ export type EventCode =
   | "instance-stop"
   | "system-maintenance"
   | "system-reboot";
-export const EventCode = /*@__PURE__*/ S.String;
+export const EventCode = S.String;
 
 /** Definition of EventCodeEnumValue */
 export interface EventCodeEnumValue {
@@ -17056,7 +17055,7 @@ export const AwsEc2InstanceStatusPropertiesEventsList = /*@__PURE__*/ S.Array(
 
 /** StatusName enum */
 export type StatusName = "reachability";
-export const StatusName = /*@__PURE__*/ S.String;
+export const StatusName = S.String;
 
 /** Definition of StatusNameEnumValue */
 export interface StatusNameEnumValue {
@@ -17077,7 +17076,7 @@ export type StatusType =
   | "initializing"
   | "insufficient-data"
   | "passed";
-export const StatusType = /*@__PURE__*/ S.String;
+export const StatusType = S.String;
 
 /** Definition of StatusTypeEnumValue */
 export interface StatusTypeEnumValue {
@@ -17124,7 +17123,7 @@ export type SummaryStatus =
   | "insufficient-data"
   | "not-applicable"
   | "ok";
-export const SummaryStatus = /*@__PURE__*/ S.String;
+export const SummaryStatus = S.String;
 
 /** Definition of SummaryStatusEnumValue */
 export interface SummaryStatusEnumValue {
@@ -17395,7 +17394,7 @@ export type IpamState =
   | "modify-failed"
   | "modify-in-progress"
   | "restore-in-progress";
-export const IpamState = /*@__PURE__*/ S.String;
+export const IpamState = S.String;
 
 /** Definition of IpamStateEnumValue */
 export interface IpamStateEnumValue {
@@ -17422,7 +17421,7 @@ export const AwsEc2IpamPropertiesTagsList = /*@__PURE__*/ S.Array(
 
 /** IpamTier enum */
 export type IpamTier = "advanced" | "free";
-export const IpamTier = /*@__PURE__*/ S.String;
+export const IpamTier = S.String;
 
 /** Definition of IpamTierEnumValue */
 export interface IpamTierEnumValue {
@@ -17666,11 +17665,11 @@ export const Ec2KeyPairsCreateOrReplaceRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The format of the key pair. Default: ``pem`` */
 export type AwsEc2KeyPairPropertiesKeyFormat = "pem" | "ppk";
-export const AwsEc2KeyPairPropertiesKeyFormat = /*@__PURE__*/ S.String;
+export const AwsEc2KeyPairPropertiesKeyFormat = S.String;
 
 /** The type of key pair. Note that ED25519 keys are not supported for Windows instances. If the ``PublicKeyMaterial`` property is specified, the ``KeyType`` property is ignored, and the key type is inferred from the ``PublicKeyMaterial`` value. Default: ``rsa`` */
 export type AwsEc2KeyPairPropertiesKeyType = "ed25519" | "rsa";
-export const AwsEc2KeyPairPropertiesKeyType = /*@__PURE__*/ S.String;
+export const AwsEc2KeyPairPropertiesKeyType = S.String;
 
 /** Definition of Tag */
 export interface Tag_15 {
@@ -19058,7 +19057,7 @@ export const Ec2SnapshotsCreateOrReplaceRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** SSEType enum */
 export type SSEType = "none" | "sse-ebs" | "sse-kms";
-export const SSEType = /*@__PURE__*/ S.String;
+export const SSEType = S.String;
 
 /** Definition of SSETypeEnumValue */
 export interface SSETypeEnumValue {
@@ -19080,7 +19079,7 @@ export type SnapshotState =
   | "pending"
   | "recoverable"
   | "recovering";
-export const SnapshotState = /*@__PURE__*/ S.String;
+export const SnapshotState = S.String;
 
 /** Definition of SnapshotStateEnumValue */
 export interface SnapshotStateEnumValue {
@@ -19097,7 +19096,7 @@ export const SnapshotStateEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** StorageTier enum */
 export type StorageTier = "archive" | "standard";
-export const StorageTier = /*@__PURE__*/ S.String;
+export const StorageTier = S.String;
 
 /** Definition of StorageTierEnumValue */
 export interface StorageTierEnumValue {
@@ -19913,7 +19912,7 @@ export const AwsEc2VPCEndpointPropertiesSubnetIdsList = /*@__PURE__*/ S.Array(
 
 /** VpcEndpointType enum */
 export type VpcEndpointType = "Gateway" | "GatewayLoadBalancer" | "Interface";
-export const VpcEndpointType = /*@__PURE__*/ S.String;
+export const VpcEndpointType = S.String;
 
 /** Definition of awsEc2VPCEndpoint */
 export interface AwsEc2VPCEndpointProperties {
@@ -20652,7 +20651,7 @@ export type ScanStatus =
   | "PENDING"
   | "SCAN_ELIGIBILITY_EXPIRED"
   | "UNSUPPORTED_IMAGE";
-export const ScanStatus = /*@__PURE__*/ S.String;
+export const ScanStatus = S.String;
 
 /** Definition of ScanStatusEnumValue */
 export interface ScanStatusEnumValue {
@@ -20909,7 +20908,7 @@ export const EcrRepositoriesCreateOrReplaceRequestTagsMap =
 
 /** EncryptionConfigurationEncryptionType enum */
 export type EncryptionConfigurationEncryptionType = "AES256" | "KMS";
-export const EncryptionConfigurationEncryptionType = /*@__PURE__*/ S.String;
+export const EncryptionConfigurationEncryptionType = S.String;
 
 /** Definition of EncryptionConfiguration */
 export interface EncryptionConfiguration {
@@ -20942,7 +20941,7 @@ export const ImageScanningConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** ImageTagMutability enum */
 export type ImageTagMutability = "IMMUTABLE" | "MUTABLE";
-export const ImageTagMutability = /*@__PURE__*/ S.String;
+export const ImageTagMutability = S.String;
 
 /** Definition of LifecyclePolicy */
 export interface LifecyclePolicy {
@@ -21632,7 +21631,7 @@ export const DeploymentConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** DeploymentControllerType enum */
 export type DeploymentControllerType = "CODE_DEPLOY" | "ECS" | "EXTERNAL";
-export const DeploymentControllerType = /*@__PURE__*/ S.String;
+export const DeploymentControllerType = S.String;
 
 /** Definition of DeploymentController */
 export interface DeploymentController {
@@ -21649,7 +21648,7 @@ export const DeploymentController = /*@__PURE__*/ S.suspend(() =>
 
 /** LaunchType enum */
 export type LaunchType = "EC2" | "EXTERNAL" | "FARGATE";
-export const LaunchType = /*@__PURE__*/ S.String;
+export const LaunchType = S.String;
 
 /** Definition of LoadBalancer */
 export interface LoadBalancer {
@@ -21679,7 +21678,7 @@ export const AwsEcsServicePropertiesLoadBalancersList = /*@__PURE__*/ S.Array(
 
 /** AwsVpcConfigurationAssignPublicIp enum */
 export type AwsVpcConfigurationAssignPublicIp = "DISABLED" | "ENABLED";
-export const AwsVpcConfigurationAssignPublicIp = /*@__PURE__*/ S.String;
+export const AwsVpcConfigurationAssignPublicIp = S.String;
 
 /** The IDs of the security groups associated with the task or service. If you don't specify a security group, the default security group for the VPC is used. There's a limit of 5 security groups that can be specified per ``AwsVpcConfiguration``. All specified security groups must be from the same VPC. */
 export type AwsVpcConfigurationSecurityGroupsList = Array<string>;
@@ -21727,7 +21726,7 @@ export const NetworkConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** PlacementConstraintType enum */
 export type PlacementConstraintType = "distinctInstance" | "memberOf";
-export const PlacementConstraintType = /*@__PURE__*/ S.String;
+export const PlacementConstraintType = S.String;
 
 /** Definition of PlacementConstraint */
 export interface PlacementConstraint {
@@ -21755,7 +21754,7 @@ export const AwsEcsServicePropertiesPlacementConstraintsList =
 
 /** PlacementStrategyType enum */
 export type PlacementStrategyType = "binpack" | "random" | "spread";
-export const PlacementStrategyType = /*@__PURE__*/ S.String;
+export const PlacementStrategyType = S.String;
 
 /** Definition of PlacementStrategy */
 export interface PlacementStrategy {
@@ -21783,11 +21782,11 @@ export const AwsEcsServicePropertiesPlacementStrategiesList =
 
 /** PropagateTags enum */
 export type PropagateTags = "SERVICE" | "TASK_DEFINITION";
-export const PropagateTags = /*@__PURE__*/ S.String;
+export const PropagateTags = S.String;
 
 /** SchedulingStrategy enum */
 export type SchedulingStrategy = "DAEMON" | "REPLICA";
-export const SchedulingStrategy = /*@__PURE__*/ S.String;
+export const SchedulingStrategy = S.String;
 
 /** Definition of Secret */
 export interface Secret {
@@ -22001,7 +22000,7 @@ export const AwsEcsServicePropertiesTagsList = /*@__PURE__*/ S.Array(
 
 /** EBSTagSpecificationPropagateTags enum */
 export type EBSTagSpecificationPropagateTags = "SERVICE" | "TASK_DEFINITION";
-export const EBSTagSpecificationPropagateTags = /*@__PURE__*/ S.String;
+export const EBSTagSpecificationPropagateTags = S.String;
 
 /** The tags applied to this Amazon EBS volume. ``AmazonECSCreated`` and ``AmazonECSManaged`` are reserved tags that can't be used. */
 export type EBSTagSpecificationTagsList = Array<Tag_26>;
@@ -22682,7 +22681,7 @@ export const ContainerDefinitionMountPointsList = /*@__PURE__*/ S.Array(
 
 /** PortMappingAppProtocol enum */
 export type PortMappingAppProtocol = "grpc" | "http" | "http2";
-export const PortMappingAppProtocol = /*@__PURE__*/ S.String;
+export const PortMappingAppProtocol = S.String;
 
 /** Definition of PortMapping */
 export interface PortMapping {
@@ -23115,7 +23114,7 @@ export const DockerVolumeConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** AuthorizationConfigIAM enum */
 export type AuthorizationConfigIAM = "DISABLED" | "ENABLED";
-export const AuthorizationConfigIAM = /*@__PURE__*/ S.String;
+export const AuthorizationConfigIAM = S.String;
 
 /** Definition of AuthorizationConfig */
 export interface AuthorizationConfig {
@@ -23135,7 +23134,7 @@ export const AuthorizationConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** EFSVolumeConfigurationTransitEncryption enum */
 export type EFSVolumeConfigurationTransitEncryption = "DISABLED" | "ENABLED";
-export const EFSVolumeConfigurationTransitEncryption = /*@__PURE__*/ S.String;
+export const EFSVolumeConfigurationTransitEncryption = S.String;
 
 /** Definition of EFSVolumeConfiguration */
 export interface EFSVolumeConfiguration {
@@ -23495,7 +23494,7 @@ export const EfsFileSystemsCreateOrReplaceRequestTagsMap =
 
 /** BackupPolicyStatus enum */
 export type BackupPolicyStatus = "DISABLED" | "ENABLED";
-export const BackupPolicyStatus = /*@__PURE__*/ S.String;
+export const BackupPolicyStatus = S.String;
 
 /** Definition of BackupPolicy */
 export interface BackupPolicy {
@@ -23512,8 +23511,7 @@ export const BackupPolicy = /*@__PURE__*/ S.suspend(() =>
 export type FileSystemProtectionReplicationOverwriteProtection =
   | "DISABLED"
   | "ENABLED";
-export const FileSystemProtectionReplicationOverwriteProtection =
-  /*@__PURE__*/ S.String;
+export const FileSystemProtectionReplicationOverwriteProtection = S.String;
 
 /** Definition of FileSystemProtection */
 export interface FileSystemProtection {
@@ -24056,7 +24054,7 @@ export const EfsMountTargetsCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
 
 /** AuthenticationMode enum */
 export type AuthenticationMode = "API" | "API_AND_CONFIG_MAP" | "CONFIG_MAP";
-export const AuthenticationMode = /*@__PURE__*/ S.String;
+export const AuthenticationMode = S.String;
 
 /** Definition of AuthenticationModeEnumValue */
 export interface AuthenticationModeEnumValue {
@@ -24185,7 +24183,7 @@ export type ClusterIssueCode =
   | "StsRegionalEndpointDisabled"
   | "UnsupportedVersion"
   | "VpcNotFound";
-export const ClusterIssueCode = /*@__PURE__*/ S.String;
+export const ClusterIssueCode = S.String;
 
 /** Definition of ClusterIssueCodeEnumValue */
 export interface ClusterIssueCodeEnumValue {
@@ -24264,7 +24262,7 @@ export const Identity = /*@__PURE__*/ S.suspend(() =>
 
 /** IpFamily enum */
 export type IpFamily = "ipv4" | "ipv6";
-export const IpFamily = /*@__PURE__*/ S.String;
+export const IpFamily = S.String;
 
 /** Definition of IpFamilyEnumValue */
 export interface IpFamilyEnumValue {
@@ -24305,7 +24303,7 @@ export type LogType =
   | "authenticator"
   | "controllerManager"
   | "scheduler";
-export const LogType = /*@__PURE__*/ S.String;
+export const LogType = S.String;
 
 /** <p>The available cluster control plane log types.</p> */
 export type LogSetupTypesList = Array<LogType | (string & {})>;
@@ -24439,7 +24437,7 @@ export type ClusterStatus =
   | "FAILED"
   | "PENDING"
   | "UPDATING";
-export const ClusterStatus = /*@__PURE__*/ S.String;
+export const ClusterStatus = S.String;
 
 /** Definition of ClusterStatusEnumValue */
 export interface ClusterStatusEnumValue {
@@ -27107,7 +27105,7 @@ export const ElasticLoadBalancingv2TargetHealthDescriptionsCreateOrReplaceReques
 
 /** MitigationInEffectEnum enum */
 export type MitigationInEffectEnum = "no" | "yes";
-export const MitigationInEffectEnum = /*@__PURE__*/ S.String;
+export const MitigationInEffectEnum = S.String;
 
 /** Definition of MitigationInEffectEnumEnumValue */
 export interface MitigationInEffectEnumEnumValue {
@@ -27124,7 +27122,7 @@ export const MitigationInEffectEnumEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** AnomalyResultEnum enum */
 export type AnomalyResultEnum = "anomalous" | "normal";
-export const AnomalyResultEnum = /*@__PURE__*/ S.String;
+export const AnomalyResultEnum = S.String;
 
 /** Definition of AnomalyResultEnumEnumValue */
 export interface AnomalyResultEnumEnumValue {
@@ -27188,7 +27186,7 @@ export type TargetHealthReasonEnum =
   | "Target.NotRegistered"
   | "Target.ResponseCodeMismatch"
   | "Target.Timeout";
-export const TargetHealthReasonEnum = /*@__PURE__*/ S.String;
+export const TargetHealthReasonEnum = S.String;
 
 /** Definition of TargetHealthReasonEnumEnumValue */
 export interface TargetHealthReasonEnumEnumValue {
@@ -27212,7 +27210,7 @@ export type TargetHealthStateEnum =
   | "unhealthy"
   | "unhealthy.draining"
   | "unused";
-export const TargetHealthStateEnum = /*@__PURE__*/ S.String;
+export const TargetHealthStateEnum = S.String;
 
 /** Definition of TargetHealthStateEnumEnumValue */
 export interface TargetHealthStateEnumEnumValue {
@@ -27621,7 +27619,7 @@ export const Ec2InstanceAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** InstanceCollectionType enum */
 export type InstanceCollectionType = "INSTANCE_FLEET" | "INSTANCE_GROUP";
-export const InstanceCollectionType = /*@__PURE__*/ S.String;
+export const InstanceCollectionType = S.String;
 
 /** Definition of InstanceCollectionTypeEnumValue */
 export interface InstanceCollectionTypeEnumValue {
@@ -27665,7 +27663,7 @@ export const KerberosAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** InstanceRoleType enum */
 export type InstanceRoleType = "CORE" | "MASTER" | "TASK";
-export const InstanceRoleType = /*@__PURE__*/ S.String;
+export const InstanceRoleType = S.String;
 
 /** Definition of InstanceRoleTypeEnumValue */
 export interface InstanceRoleTypeEnumValue {
@@ -27686,7 +27684,7 @@ export type PlacementGroupStrategy =
   | "NONE"
   | "PARTITION"
   | "SPREAD";
-export const PlacementGroupStrategy = /*@__PURE__*/ S.String;
+export const PlacementGroupStrategy = S.String;
 
 /** Definition of PlacementGroupStrategyEnumValue */
 export interface PlacementGroupStrategyEnumValue {
@@ -27726,7 +27724,7 @@ export const AwsEmrClusterPropertiesPlacementGroupsList = /*@__PURE__*/ S.Array(
 
 /** RepoUpgradeOnBoot enum */
 export type RepoUpgradeOnBoot = "NONE" | "SECURITY";
-export const RepoUpgradeOnBoot = /*@__PURE__*/ S.String;
+export const RepoUpgradeOnBoot = S.String;
 
 /** Definition of RepoUpgradeOnBootEnumValue */
 export interface RepoUpgradeOnBootEnumValue {
@@ -27745,7 +27743,7 @@ export const RepoUpgradeOnBootEnumValue = /*@__PURE__*/ S.suspend(() =>
 export type ScaleDownBehavior =
   | "TERMINATE_AT_INSTANCE_HOUR"
   | "TERMINATE_AT_TASK_COMPLETION";
-export const ScaleDownBehavior = /*@__PURE__*/ S.String;
+export const ScaleDownBehavior = S.String;
 
 /** Definition of ScaleDownBehaviorEnumValue */
 export interface ScaleDownBehaviorEnumValue {
@@ -27798,7 +27796,7 @@ export type ClusterState =
   | "TERMINATED_WITH_ERRORS"
   | "TERMINATING"
   | "WAITING";
-export const ClusterState = /*@__PURE__*/ S.String;
+export const ClusterState = S.String;
 
 /** Definition of ClusterStateEnumValue */
 export interface ClusterStateEnumValue {
@@ -27823,7 +27821,7 @@ export type ClusterStateChangeReasonCode =
   | "STEP_FAILURE"
   | "USER_REQUEST"
   | "VALIDATION_ERROR";
-export const ClusterStateChangeReasonCode = /*@__PURE__*/ S.String;
+export const ClusterStateChangeReasonCode = S.String;
 
 /** Definition of ClusterStateChangeReasonCodeEnumValue */
 export interface ClusterStateChangeReasonCodeEnumValue {
@@ -31850,7 +31848,7 @@ export const CFNFeatureConfigurationAdditionalConfigurationList =
 
 /** CFNFeatureConfigurationStatus enum */
 export type CFNFeatureConfigurationStatus = "DISABLED" | "ENABLED";
-export const CFNFeatureConfigurationStatus = /*@__PURE__*/ S.String;
+export const CFNFeatureConfigurationStatus = S.String;
 
 /** Definition of CFNFeatureConfiguration */
 export interface CFNFeatureConfiguration {
@@ -32160,7 +32158,7 @@ export const GetIamAccessKeyMetadataInfoResponseTagsMap =
 
 /** statusType enum */
 export type StatusType_2 = "Active" | "Inactive";
-export const StatusType_2 = /*@__PURE__*/ S.String;
+export const StatusType_2 = S.String;
 
 /** Definition of statusTypeEnumValue */
 export interface StatusTypeEnumValue_2 {
@@ -33684,18 +33682,18 @@ export type AwsKmsKeyPropertiesKeySpec =
   | "RSA_4096"
   | "SM2"
   | "SYMMETRIC_DEFAULT";
-export const AwsKmsKeyPropertiesKeySpec = /*@__PURE__*/ S.String;
+export const AwsKmsKeyPropertiesKeySpec = S.String;
 
 /** Determines the [cryptographic operations](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations) for which you can use the KMS key. The default value is ``ENCRYPT_DECRYPT``. This property is required for asymmetric KMS keys and HMAC KMS keys. You can't change the ``KeyUsage`` value after the KMS key is created. If you change the value of the ``KeyUsage`` property on an existing KMS key, the update request fails, regardless of the value of the [UpdateReplacePolicy attribute](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-updatereplacepolicy.html). This prevents you from accidentally deleting a KMS key by changing an immutable property value. Select only one valid value. + For symmetric encryption KMS keys, omit the property or specify ``ENCRYPT_DECRYPT``. + For asymmetric KMS keys with RSA key material, specify ``ENCRYPT_DECRYPT`` or ``SIGN_VERIFY``. + For asymmetric KMS keys with ECC key material, specify ``SIGN_VERIFY``. + For asymmetric KMS keys with SM2 (China Regions only) key material, specify ``ENCRYPT_DECRYPT`` or ``SIGN_VERIFY``. + For HMAC KMS keys, specify ``GENERATE_VERIFY_MAC``. */
 export type AwsKmsKeyPropertiesKeyUsage =
   | "ENCRYPT_DECRYPT"
   | "GENERATE_VERIFY_MAC"
   | "SIGN_VERIFY";
-export const AwsKmsKeyPropertiesKeyUsage = /*@__PURE__*/ S.String;
+export const AwsKmsKeyPropertiesKeyUsage = S.String;
 
 /** The source of the key material for the KMS key. You cannot change the origin after you create the KMS key. The default is ``AWS_KMS``, which means that KMS creates the key material. To [create a KMS key with no key material](https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-create-cmk.html) (for imported key material), set this value to ``EXTERNAL``. For more information about importing key material into KMS, see [Importing Key Material](https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html) in the *Developer Guide*. You can ignore ``ENABLED`` when Origin is ``EXTERNAL``. When a KMS key with Origin ``EXTERNAL`` is created, the key state is ``PENDING_IMPORT`` and ``ENABLED`` is ``false``. After you import the key material, ``ENABLED`` updated to ``true``. The KMS key can then be used for Cryptographic Operations. CFN doesn't support creating an ``Origin`` parameter of the ``AWS_CLOUDHSM`` or ``EXTERNAL_KEY_STORE`` values. */
 export type AwsKmsKeyPropertiesOrigin = "AWS_KMS" | "EXTERNAL";
-export const AwsKmsKeyPropertiesOrigin = /*@__PURE__*/ S.String;
+export const AwsKmsKeyPropertiesOrigin = S.String;
 
 /** Definition of Tag */
 export type Tag_36 = Tag_2;
@@ -33869,7 +33867,7 @@ export const GetLambdaFunctionResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Architectures enum */
 export type Architectures = "arm64" | "x86_64";
-export const Architectures = /*@__PURE__*/ S.String;
+export const Architectures = S.String;
 
 /** The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is ``x86_64``. */
 export type AwsLambdaFunctionPropertiesArchitecturesList = Array<
@@ -34014,15 +34012,15 @@ export type LoggingConfigApplicationLogLevel =
   | "INFO"
   | "TRACE"
   | "WARN";
-export const LoggingConfigApplicationLogLevel = /*@__PURE__*/ S.String;
+export const LoggingConfigApplicationLogLevel = S.String;
 
 /** LoggingConfigLogFormat enum */
 export type LoggingConfigLogFormat = "JSON" | "Text";
-export const LoggingConfigLogFormat = /*@__PURE__*/ S.String;
+export const LoggingConfigLogFormat = S.String;
 
 /** LoggingConfigSystemLogLevel enum */
 export type LoggingConfigSystemLogLevel = "DEBUG" | "INFO" | "WARN";
-export const LoggingConfigSystemLogLevel = /*@__PURE__*/ S.String;
+export const LoggingConfigSystemLogLevel = S.String;
 
 /** Definition of LoggingConfig */
 export interface LoggingConfig {
@@ -34046,14 +34044,14 @@ export const LoggingConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** PackageType enum */
 export type PackageType = "Image" | "Zip";
-export const PackageType = /*@__PURE__*/ S.String;
+export const PackageType = S.String;
 
 /** RuntimeManagementConfigUpdateRuntimeOn enum */
 export type RuntimeManagementConfigUpdateRuntimeOn =
   | "Auto"
   | "FunctionUpdate"
   | "Manual";
-export const RuntimeManagementConfigUpdateRuntimeOn = /*@__PURE__*/ S.String;
+export const RuntimeManagementConfigUpdateRuntimeOn = S.String;
 
 /** Definition of RuntimeManagementConfig */
 export interface RuntimeManagementConfig {
@@ -34073,7 +34071,7 @@ export const RuntimeManagementConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** SnapStartApplyOn enum */
 export type SnapStartApplyOn = "None" | "PublishedVersions";
-export const SnapStartApplyOn = /*@__PURE__*/ S.String;
+export const SnapStartApplyOn = S.String;
 
 /** Definition of SnapStart */
 export interface SnapStart {
@@ -34088,11 +34086,11 @@ export const SnapStart = /*@__PURE__*/ S.suspend(() =>
 
 /** SnapStartResponseApplyOn enum */
 export type SnapStartResponseApplyOn = "None" | "PublishedVersions";
-export const SnapStartResponseApplyOn = /*@__PURE__*/ S.String;
+export const SnapStartResponseApplyOn = S.String;
 
 /** SnapStartResponseOptimizationStatus enum */
 export type SnapStartResponseOptimizationStatus = "Off" | "On";
-export const SnapStartResponseOptimizationStatus = /*@__PURE__*/ S.String;
+export const SnapStartResponseOptimizationStatus = S.String;
 
 /** Definition of SnapStartResponse */
 export interface SnapStartResponse {
@@ -34122,7 +34120,7 @@ export const AwsLambdaFunctionPropertiesTagsList = /*@__PURE__*/ S.Array(
 
 /** TracingConfigMode enum */
 export type TracingConfigMode = "Active" | "PassThrough";
-export const TracingConfigMode = /*@__PURE__*/ S.String;
+export const TracingConfigMode = S.String;
 
 /** Definition of TracingConfig */
 export interface TracingConfig {
@@ -34721,7 +34719,7 @@ export type AddOnStatus =
   | "Failed"
   | "Terminated"
   | "Terminating";
-export const AddOnStatus = /*@__PURE__*/ S.String;
+export const AddOnStatus = S.String;
 
 /** Definition of AddOn */
 export interface AddOn {
@@ -35109,7 +35107,7 @@ export const GetLogsLogGroupResponseTagsMap = /*@__PURE__*/ S.Record(
 export type AwsLogsLogGroupPropertiesLogGroupClass =
   | "INFREQUENT_ACCESS"
   | "STANDARD";
-export const AwsLogsLogGroupPropertiesLogGroupClass = /*@__PURE__*/ S.String;
+export const AwsLogsLogGroupPropertiesLogGroupClass = S.String;
 
 /** Definition of Tag */
 export type Tag_40 = Tag_2;
@@ -35437,7 +35435,7 @@ export type MetricTransformationUnit =
   | "Terabits/Second"
   | "Terabytes"
   | "Terabytes/Second";
-export const MetricTransformationUnit = /*@__PURE__*/ S.String;
+export const MetricTransformationUnit = S.String;
 
 /** Definition of MetricTransformation */
 export interface MetricTransformation {
@@ -35611,7 +35609,7 @@ export const GetLogsSubscriptionFilterResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Distribution enum */
 export type Distribution = "ByLogStream" | "Random";
-export const Distribution = /*@__PURE__*/ S.String;
+export const Distribution = S.String;
 
 /** Definition of awsLogsSubscriptionFilter */
 export interface AwsLogsSubscriptionFilterProperties {
@@ -35762,7 +35760,7 @@ export type JobComparator =
   | "LTE"
   | "NE"
   | "STARTS_WITH";
-export const JobComparator = /*@__PURE__*/ S.String;
+export const JobComparator = S.String;
 
 /** Definition of JobComparatorEnumValue */
 export interface JobComparatorEnumValue {
@@ -35783,7 +35781,7 @@ export type SimpleCriterionKeyForJob =
   | "S3_BUCKET_EFFECTIVE_PERMISSION"
   | "S3_BUCKET_NAME"
   | "S3_BUCKET_SHARED_ACCESS";
-export const SimpleCriterionKeyForJob = /*@__PURE__*/ S.String;
+export const SimpleCriterionKeyForJob = S.String;
 
 /** Definition of SimpleCriterionKeyForJobEnumValue */
 export interface SimpleCriterionKeyForJobEnumValue {
@@ -35948,7 +35946,7 @@ export type JobStatus =
   | "PAUSED"
   | "RUNNING"
   | "USER_PAUSED";
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 /** Definition of JobStatusEnumValue */
 export interface JobStatusEnumValue {
@@ -35965,7 +35963,7 @@ export const JobStatusEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** JobType enum */
 export type JobType = "ONE_TIME" | "SCHEDULED";
-export const JobType = /*@__PURE__*/ S.String;
+export const JobType = S.String;
 
 /** Definition of JobTypeEnumValue */
 export interface JobTypeEnumValue {
@@ -35982,7 +35980,7 @@ export const JobTypeEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** LastRunErrorStatusCode enum */
 export type LastRunErrorStatusCode = "ERROR" | "NONE";
-export const LastRunErrorStatusCode = /*@__PURE__*/ S.String;
+export const LastRunErrorStatusCode = S.String;
 
 /** Definition of LastRunErrorStatusCodeEnumValue */
 export interface LastRunErrorStatusCodeEnumValue {
@@ -36216,7 +36214,7 @@ export type Status =
   | "S3_THROTTLED"
   | "S3_USER_ACCESS_DENIED"
   | "UNKNOWN_ERROR";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Definition of Tag */
 export interface Tag_41 {
@@ -36634,15 +36632,14 @@ export const FirewallPolicyStatefulDefaultActionsList = /*@__PURE__*/ S.Array(
 export type StatefulEngineOptionsRuleOrder =
   | "DEFAULT_ACTION_ORDER"
   | "STRICT_ORDER";
-export const StatefulEngineOptionsRuleOrder = /*@__PURE__*/ S.String;
+export const StatefulEngineOptionsRuleOrder = S.String;
 
 /** StatefulEngineOptionsStreamExceptionPolicy enum */
 export type StatefulEngineOptionsStreamExceptionPolicy =
   | "CONTINUE"
   | "DROP"
   | "REJECT";
-export const StatefulEngineOptionsStreamExceptionPolicy =
-  /*@__PURE__*/ S.String;
+export const StatefulEngineOptionsStreamExceptionPolicy = S.String;
 
 /** Definition of StatefulEngineOptions */
 export interface StatefulEngineOptions {
@@ -36666,7 +36663,7 @@ export const StatefulEngineOptions = /*@__PURE__*/ S.suspend(() =>
 
 /** StatefulRuleGroupOverrideAction enum */
 export type StatefulRuleGroupOverrideAction = "DROP_TO_ALERT";
-export const StatefulRuleGroupOverrideAction = /*@__PURE__*/ S.String;
+export const StatefulRuleGroupOverrideAction = S.String;
 
 /** Definition of StatefulRuleGroupOverride */
 export interface StatefulRuleGroupOverride {
@@ -37087,7 +37084,7 @@ export const RuleVariables = /*@__PURE__*/ S.suspend(() =>
 
 /** RulesSourceListGeneratedRulesType enum */
 export type RulesSourceListGeneratedRulesType = "ALLOWLIST" | "DENYLIST";
-export const RulesSourceListGeneratedRulesType = /*@__PURE__*/ S.String;
+export const RulesSourceListGeneratedRulesType = S.String;
 
 /** Property targetTypes */
 export type RulesSourceListTargetTypesList = Array<string>;
@@ -37122,11 +37119,11 @@ export const RulesSourceList = /*@__PURE__*/ S.suspend(() =>
 
 /** StatefulRuleAction enum */
 export type StatefulRuleAction = "ALERT" | "DROP" | "PASS" | "REJECT";
-export const StatefulRuleAction = /*@__PURE__*/ S.String;
+export const StatefulRuleAction = S.String;
 
 /** HeaderDirection enum */
 export type HeaderDirection = "ANY" | "FORWARD";
-export const HeaderDirection = /*@__PURE__*/ S.String;
+export const HeaderDirection = S.String;
 
 /** HeaderProtocol enum */
 export type HeaderProtocol =
@@ -37149,7 +37146,7 @@ export type HeaderProtocol =
   | "TFTP"
   | "TLS"
   | "UDP";
-export const HeaderProtocol = /*@__PURE__*/ S.String;
+export const HeaderProtocol = S.String;
 
 /** Definition of Header */
 export interface Header {
@@ -37433,7 +37430,7 @@ export const RulesSource = /*@__PURE__*/ S.suspend(() =>
 export type StatefulRuleOptionsRuleOrder =
   | "DEFAULT_ACTION_ORDER"
   | "STRICT_ORDER";
-export const StatefulRuleOptionsRuleOrder = /*@__PURE__*/ S.String;
+export const StatefulRuleOptionsRuleOrder = S.String;
 
 /** Definition of StatefulRuleOptions */
 export interface StatefulRuleOptions {
@@ -37481,7 +37478,7 @@ export const AwsNetworkFirewallRuleGroupPropertiesTagsList =
 
 /** Type enum */
 export type Type = "STATEFUL" | "STATELESS";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 /** Definition of awsNetworkFirewallRuleGroup */
 export interface AwsNetworkFirewallRuleGroupProperties {
@@ -37714,7 +37711,7 @@ export type AutoTuneState =
   | "ENABLED"
   | "ENABLE_IN_PROGRESS"
   | "ERROR";
-export const AutoTuneState = /*@__PURE__*/ S.String;
+export const AutoTuneState = S.String;
 
 /** Definition of AutoTuneStateEnumValue */
 export interface AutoTuneStateEnumValue {
@@ -37758,7 +37755,7 @@ export type ConfigChangeStatus =
   | "PendingUserInput"
   | "Validating"
   | "ValidationFailed";
-export const ConfigChangeStatus = /*@__PURE__*/ S.String;
+export const ConfigChangeStatus = S.String;
 
 /** Definition of ConfigChangeStatusEnumValue */
 export interface ConfigChangeStatusEnumValue {
@@ -37775,7 +37772,7 @@ export const ConfigChangeStatusEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** InitiatedBy enum */
 export type InitiatedBy = "CUSTOMER" | "SERVICE";
-export const InitiatedBy = /*@__PURE__*/ S.String;
+export const InitiatedBy = S.String;
 
 /** Definition of InitiatedByEnumValue */
 export interface InitiatedByEnumValue {
@@ -37936,7 +37933,7 @@ export type OpenSearchPartitionInstanceType =
   | "ultrawarm1.large.search"
   | "ultrawarm1.medium.search"
   | "ultrawarm1.xlarge.search";
-export const OpenSearchPartitionInstanceType = /*@__PURE__*/ S.String;
+export const OpenSearchPartitionInstanceType = S.String;
 
 /** Definition of OpenSearchPartitionInstanceTypeEnumValue */
 export interface OpenSearchPartitionInstanceTypeEnumValue {
@@ -37957,7 +37954,7 @@ export type OpenSearchWarmPartitionInstanceType =
   | "ultrawarm1.large.search"
   | "ultrawarm1.medium.search"
   | "ultrawarm1.xlarge.search";
-export const OpenSearchWarmPartitionInstanceType = /*@__PURE__*/ S.String;
+export const OpenSearchWarmPartitionInstanceType = S.String;
 
 /** Definition of OpenSearchWarmPartitionInstanceTypeEnumValue */
 export interface OpenSearchWarmPartitionInstanceTypeEnumValue {
@@ -38055,7 +38052,7 @@ export type TLSSecurityPolicy =
   | "Policy-Min-TLS-1-0-2019-07"
   | "Policy-Min-TLS-1-2-2019-07"
   | "Policy-Min-TLS-1-2-PFS-2023-10";
-export const TLSSecurityPolicy = /*@__PURE__*/ S.String;
+export const TLSSecurityPolicy = S.String;
 
 /** Definition of TLSSecurityPolicyEnumValue */
 export interface TLSSecurityPolicyEnumValue {
@@ -38104,7 +38101,7 @@ export type DomainProcessingStatusType =
   | "Modifying"
   | "UpdatingServiceSoftware"
   | "UpgradingEngineVersion";
-export const DomainProcessingStatusType = /*@__PURE__*/ S.String;
+export const DomainProcessingStatusType = S.String;
 
 /** Definition of DomainProcessingStatusTypeEnumValue */
 export interface DomainProcessingStatusTypeEnumValue {
@@ -38121,7 +38118,7 @@ export const DomainProcessingStatusTypeEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** VolumeType enum */
 export type VolumeType_2 = "gp2" | "gp3" | "io1" | "standard";
-export const VolumeType_2 = /*@__PURE__*/ S.String;
+export const VolumeType_2 = S.String;
 
 /** Definition of VolumeTypeEnumValue */
 export interface VolumeTypeEnumValue_2 {
@@ -38187,7 +38184,7 @@ export const AwsOpenSearchDomainStatusPropertiesEndpointsMap =
 
 /** IPAddressType enum */
 export type IPAddressType = "dualstack" | "ipv4";
-export const IPAddressType = /*@__PURE__*/ S.String;
+export const IPAddressType = S.String;
 
 /** Definition of IPAddressTypeEnumValue */
 export interface IPAddressTypeEnumValue {
@@ -38230,7 +38227,7 @@ export const AwsOpenSearchDomainStatusPropertiesLogPublishingOptionsMap =
 
 /** PropertyValueType enum */
 export type PropertyValueType = "PLAIN_TEXT" | "STRINGIFIED_JSON";
-export const PropertyValueType = /*@__PURE__*/ S.String;
+export const PropertyValueType = S.String;
 
 /** Definition of PropertyValueTypeEnumValue */
 export interface PropertyValueTypeEnumValue {
@@ -38338,7 +38335,7 @@ export type DeploymentStatus =
   | "IN_PROGRESS"
   | "NOT_ELIGIBLE"
   | "PENDING_UPDATE";
-export const DeploymentStatus = /*@__PURE__*/ S.String;
+export const DeploymentStatus = S.String;
 
 /** Definition of DeploymentStatusEnumValue */
 export interface DeploymentStatusEnumValue {
@@ -38673,7 +38670,7 @@ export const GetOrganizationsAccountResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** JoinedMethod enum */
 export type JoinedMethod = "CREATED" | "INVITED";
-export const JoinedMethod = /*@__PURE__*/ S.String;
+export const JoinedMethod = S.String;
 
 /** List of parent nodes for the member account. Currently only one parent at a time is supported. Default is root. */
 export type AwsOrganizationsAccountPropertiesParentIdsList = Array<string>;
@@ -38684,7 +38681,7 @@ export const AwsOrganizationsAccountPropertiesParentIdsList =
 
 /** Status enum */
 export type Status_2 = "ACTIVE" | "PENDING_CLOSURE" | "SUSPENDED";
-export const Status_2 = /*@__PURE__*/ S.String;
+export const Status_2 = S.String;
 
 /** Definition of Tag */
 export interface Tag_45 {
@@ -38861,8 +38858,7 @@ export const GetOrganizationsOrganizationResponseTagsMap =
 export type AwsOrganizationsOrganizationPropertiesFeatureSet =
   | "ALL"
   | "CONSOLIDATED_BILLING";
-export const AwsOrganizationsOrganizationPropertiesFeatureSet =
-  /*@__PURE__*/ S.String;
+export const AwsOrganizationsOrganizationPropertiesFeatureSet = S.String;
 
 /** Definition of awsOrganizationsOrganization */
 export interface AwsOrganizationsOrganizationProperties {
@@ -39529,7 +39525,7 @@ export const Endpoint_3 = /*@__PURE__*/ S.suspend(() =>
 
 /** ProcessorFeatureName enum */
 export type ProcessorFeatureName = "coreCount" | "threadsPerCore";
-export const ProcessorFeatureName = /*@__PURE__*/ S.String;
+export const ProcessorFeatureName = S.String;
 
 /** Definition of ProcessorFeature */
 export interface ProcessorFeature {
@@ -40564,7 +40560,7 @@ export const AwsRdsExportTaskPropertiesExportOnlyList = /*@__PURE__*/ S.Array(
 
 /** ExportSourceType enum */
 export type ExportSourceType = "CLUSTER" | "SNAPSHOT";
-export const ExportSourceType = /*@__PURE__*/ S.String;
+export const ExportSourceType = S.String;
 
 /** Definition of ExportSourceTypeEnumValue */
 export interface ExportSourceTypeEnumValue {
@@ -41663,7 +41659,7 @@ export const CidrRoutingConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** ResourceRecordSetFailover enum */
 export type ResourceRecordSetFailover = "PRIMARY" | "SECONDARY";
-export const ResourceRecordSetFailover = /*@__PURE__*/ S.String;
+export const ResourceRecordSetFailover = S.String;
 
 /** Definition of ResourceRecordSetFailoverEnumValue */
 export interface ResourceRecordSetFailoverEnumValue {
@@ -41764,7 +41760,7 @@ export type ResourceRecordSetRegion =
   | "us-east-2"
   | "us-west-1"
   | "us-west-2";
-export const ResourceRecordSetRegion = /*@__PURE__*/ S.String;
+export const ResourceRecordSetRegion = S.String;
 
 /** Definition of ResourceRecordSetRegionEnumValue */
 export interface ResourceRecordSetRegionEnumValue {
@@ -41813,7 +41809,7 @@ export type RRType =
   | "SPF"
   | "SRV"
   | "TXT";
-export const RRType = /*@__PURE__*/ S.String;
+export const RRType = S.String;
 
 /** Definition of RRTypeEnumValue */
 export interface RRTypeEnumValue {
@@ -41999,7 +41995,7 @@ export const GetS3AccessControlPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Type enum */
 export type Type_2 = "AmazonCustomerByEmail" | "CanonicalUser" | "Group";
-export const Type_2 = /*@__PURE__*/ S.String;
+export const Type_2 = S.String;
 
 /** Definition of TypeEnumValue */
 export interface TypeEnumValue {
@@ -42042,7 +42038,7 @@ export type Permission =
   | "READ_ACP"
   | "WRITE"
   | "WRITE_ACP";
-export const Permission = /*@__PURE__*/ S.String;
+export const Permission = S.String;
 
 /** Definition of PermissionEnumValue */
 export interface PermissionEnumValue {
@@ -42220,7 +42216,7 @@ export const GetS3AccessPointResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** NetworkOrigin enum */
 export type NetworkOrigin = "Internet" | "VPC";
-export const NetworkOrigin = /*@__PURE__*/ S.String;
+export const NetworkOrigin = S.String;
 
 /** Definition of PublicAccessBlockConfiguration */
 export interface PublicAccessBlockConfiguration {
@@ -42404,7 +42400,7 @@ export const GetS3BucketResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** AccelerateConfigurationAccelerationStatus enum */
 export type AccelerateConfigurationAccelerationStatus = "Enabled" | "Suspended";
-export const AccelerateConfigurationAccelerationStatus = /*@__PURE__*/ S.String;
+export const AccelerateConfigurationAccelerationStatus = S.String;
 
 /** Definition of AccelerateConfiguration */
 export interface AccelerateConfiguration {
@@ -42431,11 +42427,11 @@ export type AccessControl =
   | "Private"
   | "PublicRead"
   | "PublicReadWrite";
-export const AccessControl = /*@__PURE__*/ S.String;
+export const AccessControl = S.String;
 
 /** DestinationFormat enum */
 export type DestinationFormat = "CSV" | "ORC" | "Parquet";
-export const DestinationFormat = /*@__PURE__*/ S.String;
+export const DestinationFormat = S.String;
 
 /** Definition of Destination */
 export interface Destination {
@@ -42529,7 +42525,7 @@ export type ServerSideEncryptionByDefaultSSEAlgorithm =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
-export const ServerSideEncryptionByDefaultSSEAlgorithm = /*@__PURE__*/ S.String;
+export const ServerSideEncryptionByDefaultSSEAlgorithm = S.String;
 
 /** Definition of ServerSideEncryptionByDefault */
 export interface ServerSideEncryptionByDefault {
@@ -42594,7 +42590,7 @@ export const CorsRuleAllowedHeadersList = /*@__PURE__*/ S.Array(
 
 /** CorsRuleAllowedMethods enum */
 export type CorsRuleAllowedMethods = "DELETE" | "GET" | "HEAD" | "POST" | "PUT";
-export const CorsRuleAllowedMethods = /*@__PURE__*/ S.String;
+export const CorsRuleAllowedMethods = S.String;
 
 /** An HTTP method that you allow the origin to run. *Allowed values*: ``GET`` | ``PUT`` | ``HEAD`` | ``POST`` | ``DELETE`` */
 export type CorsRuleAllowedMethodsList = Array<
@@ -42663,7 +42659,7 @@ export const CorsConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** IntelligentTieringConfigurationStatus enum */
 export type IntelligentTieringConfigurationStatus = "Disabled" | "Enabled";
-export const IntelligentTieringConfigurationStatus = /*@__PURE__*/ S.String;
+export const IntelligentTieringConfigurationStatus = S.String;
 
 /** A container for a key-value pair. */
 export type IntelligentTieringConfigurationTagFiltersList = Array<Tag_15>;
@@ -42674,7 +42670,7 @@ export const IntelligentTieringConfigurationTagFiltersList =
 
 /** TieringAccessTier enum */
 export type TieringAccessTier = "ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS";
-export const TieringAccessTier = /*@__PURE__*/ S.String;
+export const TieringAccessTier = S.String;
 
 /** Definition of Tiering */
 export interface Tiering {
@@ -42732,8 +42728,7 @@ export const AwsS3BucketPropertiesIntelligentTieringConfigurationsList =
 
 /** InventoryConfigurationIncludedObjectVersions enum */
 export type InventoryConfigurationIncludedObjectVersions = "All" | "Current";
-export const InventoryConfigurationIncludedObjectVersions =
-  /*@__PURE__*/ S.String;
+export const InventoryConfigurationIncludedObjectVersions = S.String;
 
 /** InventoryConfigurationOptionalFields enum */
 export type InventoryConfigurationOptionalFields =
@@ -42752,7 +42747,7 @@ export type InventoryConfigurationOptionalFields =
   | "ReplicationStatus"
   | "Size"
   | "StorageClass";
-export const InventoryConfigurationOptionalFields = /*@__PURE__*/ S.String;
+export const InventoryConfigurationOptionalFields = S.String;
 
 /** Contains the optional fields that are included in the inventory results. */
 export type InventoryConfigurationOptionalFieldsList = Array<
@@ -42764,7 +42759,7 @@ export const InventoryConfigurationOptionalFieldsList = /*@__PURE__*/ S.Array(
 
 /** InventoryConfigurationScheduleFrequency enum */
 export type InventoryConfigurationScheduleFrequency = "Daily" | "Weekly";
-export const InventoryConfigurationScheduleFrequency = /*@__PURE__*/ S.String;
+export const InventoryConfigurationScheduleFrequency = S.String;
 
 /** Definition of InventoryConfiguration */
 export interface InventoryConfiguration {
@@ -42846,7 +42841,7 @@ export type NoncurrentVersionTransitionStorageClass =
   | "INTELLIGENT_TIERING"
   | "ONEZONE_IA"
   | "STANDARD_IA";
-export const NoncurrentVersionTransitionStorageClass = /*@__PURE__*/ S.String;
+export const NoncurrentVersionTransitionStorageClass = S.String;
 
 /** Definition of NoncurrentVersionTransition */
 export interface NoncurrentVersionTransition {
@@ -42876,7 +42871,7 @@ export const RuleNoncurrentVersionTransitionsList = /*@__PURE__*/ S.Array(
 
 /** RuleStatus enum */
 export type RuleStatus = "Disabled" | "Enabled";
-export const RuleStatus = /*@__PURE__*/ S.String;
+export const RuleStatus = S.String;
 
 /** Tags to use to identify a subset of objects to which the lifecycle rule applies. */
 export type RuleTagFiltersList = Array<Tag_15>;
@@ -42892,7 +42887,7 @@ export type TransitionStorageClass =
   | "INTELLIGENT_TIERING"
   | "ONEZONE_IA"
   | "STANDARD_IA";
-export const TransitionStorageClass = /*@__PURE__*/ S.String;
+export const TransitionStorageClass = S.String;
 
 /** Definition of Transition */
 export interface Transition {
@@ -42996,7 +42991,7 @@ export const LifecycleConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** PartitionedPrefixPartitionDateSource enum */
 export type PartitionedPrefixPartitionDateSource = "DeliveryTime" | "EventTime";
-export const PartitionedPrefixPartitionDateSource = /*@__PURE__*/ S.String;
+export const PartitionedPrefixPartitionDateSource = S.String;
 
 /** Definition of PartitionedPrefix */
 export interface PartitionedPrefix {
@@ -43250,7 +43245,7 @@ export const NotificationConfiguration_3 = /*@__PURE__*/ S.suspend(() =>
 
 /** DefaultRetentionMode enum */
 export type DefaultRetentionMode = "COMPLIANCE" | "GOVERNANCE";
-export const DefaultRetentionMode = /*@__PURE__*/ S.String;
+export const DefaultRetentionMode = S.String;
 
 /** Definition of DefaultRetention */
 export interface DefaultRetention {
@@ -43303,7 +43298,7 @@ export type OwnershipControlsRuleObjectOwnership =
   | "BucketOwnerEnforced"
   | "BucketOwnerPreferred"
   | "ObjectWriter";
-export const OwnershipControlsRuleObjectOwnership = /*@__PURE__*/ S.String;
+export const OwnershipControlsRuleObjectOwnership = S.String;
 
 /** Definition of OwnershipControlsRule */
 export interface OwnershipControlsRule {
@@ -43361,7 +43356,7 @@ export const PublicAccessBlockConfiguration_2 = /*@__PURE__*/ S.suspend(() =>
 
 /** DeleteMarkerReplicationStatus enum */
 export type DeleteMarkerReplicationStatus = "Disabled" | "Enabled";
-export const DeleteMarkerReplicationStatus = /*@__PURE__*/ S.String;
+export const DeleteMarkerReplicationStatus = S.String;
 
 /** Definition of DeleteMarkerReplication */
 export interface DeleteMarkerReplication {
@@ -43417,7 +43412,7 @@ export const ReplicationTimeValue = /*@__PURE__*/ S.suspend(() =>
 
 /** MetricsStatus enum */
 export type MetricsStatus = "Disabled" | "Enabled";
-export const MetricsStatus = /*@__PURE__*/ S.String;
+export const MetricsStatus = S.String;
 
 /** Definition of Metrics */
 export interface Metrics {
@@ -43435,7 +43430,7 @@ export const Metrics = /*@__PURE__*/ S.suspend(() =>
 
 /** ReplicationTimeStatus enum */
 export type ReplicationTimeStatus = "Disabled" | "Enabled";
-export const ReplicationTimeStatus = /*@__PURE__*/ S.String;
+export const ReplicationTimeStatus = S.String;
 
 /** Definition of ReplicationTime */
 export interface ReplicationTime {
@@ -43463,7 +43458,7 @@ export type ReplicationDestinationStorageClass =
   | "REDUCED_REDUNDANCY"
   | "STANDARD"
   | "STANDARD_IA";
-export const ReplicationDestinationStorageClass = /*@__PURE__*/ S.String;
+export const ReplicationDestinationStorageClass = S.String;
 
 /** Definition of ReplicationDestination */
 export interface ReplicationDestination_2 {
@@ -43539,7 +43534,7 @@ export const ReplicationRuleFilter = /*@__PURE__*/ S.suspend(() =>
 
 /** ReplicaModificationsStatus enum */
 export type ReplicaModificationsStatus = "Disabled" | "Enabled";
-export const ReplicaModificationsStatus = /*@__PURE__*/ S.String;
+export const ReplicaModificationsStatus = S.String;
 
 /** Definition of ReplicaModifications */
 export interface ReplicaModifications {
@@ -43556,7 +43551,7 @@ export const ReplicaModifications = /*@__PURE__*/ S.suspend(() =>
 
 /** SseKmsEncryptedObjectsStatus enum */
 export type SseKmsEncryptedObjectsStatus = "Disabled" | "Enabled";
-export const SseKmsEncryptedObjectsStatus = /*@__PURE__*/ S.String;
+export const SseKmsEncryptedObjectsStatus = S.String;
 
 /** Definition of SseKmsEncryptedObjects */
 export interface SseKmsEncryptedObjects {
@@ -43589,7 +43584,7 @@ export const SourceSelectionCriteria = /*@__PURE__*/ S.suspend(() =>
 
 /** ReplicationRuleStatus enum */
 export type ReplicationRuleStatus = "Disabled" | "Enabled";
-export const ReplicationRuleStatus = /*@__PURE__*/ S.String;
+export const ReplicationRuleStatus = S.String;
 
 /** Definition of ReplicationRule */
 export interface ReplicationRule {
@@ -43669,7 +43664,7 @@ export const AwsS3BucketPropertiesTagsList = /*@__PURE__*/ S.Array(
 
 /** The versioning state of the bucket. */
 export type VersioningConfigurationStatus = "Enabled" | "Suspended";
-export const VersioningConfigurationStatus = /*@__PURE__*/ S.String;
+export const VersioningConfigurationStatus = S.String;
 
 /** Definition of VersioningConfiguration */
 export interface VersioningConfiguration {
@@ -43686,7 +43681,7 @@ export const VersioningConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** RedirectAllRequestsToProtocol enum */
 export type RedirectAllRequestsToProtocol = "http" | "https";
-export const RedirectAllRequestsToProtocol = /*@__PURE__*/ S.String;
+export const RedirectAllRequestsToProtocol = S.String;
 
 /** Definition of RedirectAllRequestsTo */
 export interface RedirectAllRequestsTo {
@@ -43706,7 +43701,7 @@ export const RedirectAllRequestsTo = /*@__PURE__*/ S.suspend(() =>
 
 /** RedirectRuleProtocol enum */
 export type RedirectRuleProtocol = "http" | "https";
-export const RedirectRuleProtocol = /*@__PURE__*/ S.String;
+export const RedirectRuleProtocol = S.String;
 
 /** Definition of RedirectRule */
 export interface RedirectRule {
@@ -44291,7 +44286,7 @@ export type AppType =
   | "KernelGateway"
   | "RSessionGateway"
   | "RStudioServerPro";
-export const AppType = /*@__PURE__*/ S.String;
+export const AppType = S.String;
 
 /** ResourceSpecInstanceType enum */
 export type ResourceSpecInstanceType =
@@ -44358,7 +44353,7 @@ export type ResourceSpecInstanceType =
   | "ml.trn1.32xlarge"
   | "ml.trn1n.32xlarge"
   | "system";
-export const ResourceSpecInstanceType = /*@__PURE__*/ S.String;
+export const ResourceSpecInstanceType = S.String;
 
 /** Definition of ResourceSpec */
 export interface ResourceSpec {
@@ -44697,7 +44692,7 @@ export type InstanceType_2 =
   | "ml.t3.large"
   | "ml.t3.medium"
   | "ml.t3.xlarge";
-export const InstanceType_2 = /*@__PURE__*/ S.String;
+export const InstanceType_2 = S.String;
 
 /** Definition of InstanceTypeEnumValue */
 export interface InstanceTypeEnumValue_2 {
@@ -44721,7 +44716,7 @@ export type NotebookInstanceStatus =
   | "Stopped"
   | "Stopping"
   | "Updating";
-export const NotebookInstanceStatus = /*@__PURE__*/ S.String;
+export const NotebookInstanceStatus = S.String;
 
 /** Definition of NotebookInstanceStatusEnumValue */
 export interface NotebookInstanceStatusEnumValue {
@@ -45398,7 +45393,7 @@ export type LoggingConfigProtocol =
   | "http/s"
   | "lambda"
   | "sqs";
-export const LoggingConfigProtocol = /*@__PURE__*/ S.String;
+export const LoggingConfigProtocol = S.String;
 
 /** Definition of LoggingConfig */
 export interface LoggingConfig_2 {
@@ -45862,7 +45857,7 @@ export const InstanceAggregatedAssociationOverview = /*@__PURE__*/ S.suspend(
 
 /** PingStatus enum */
 export type PingStatus = "ConnectionLost" | "Inactive" | "Online";
-export const PingStatus = /*@__PURE__*/ S.String;
+export const PingStatus = S.String;
 
 /** Definition of PingStatusEnumValue */
 export interface PingStatusEnumValue {
@@ -45879,7 +45874,7 @@ export const PingStatusEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** PlatformType enum */
 export type PlatformType = "Linux" | "MacOS" | "Windows";
-export const PlatformType = /*@__PURE__*/ S.String;
+export const PlatformType = S.String;
 
 /** Definition of PlatformTypeEnumValue */
 export interface PlatformTypeEnumValue {
@@ -45896,7 +45891,7 @@ export const PlatformTypeEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ResourceType enum */
 export type ResourceType_3 = "EC2Instance" | "ManagedInstance";
-export const ResourceType_3 = /*@__PURE__*/ S.String;
+export const ResourceType_3 = S.String;
 
 /** Definition of ResourceTypeEnumValue */
 export interface ResourceTypeEnumValue {
@@ -45916,7 +45911,7 @@ export type SourceType_2 =
   | "AWS::EC2::Instance"
   | "AWS::IoT::Thing"
   | "AWS::SSM::ManagedInstance";
-export const SourceType_2 = /*@__PURE__*/ S.String;
+export const SourceType_2 = S.String;
 
 /** Definition of SourceTypeEnumValue */
 export interface SourceTypeEnumValue_2 {
@@ -46117,15 +46112,15 @@ export const GetSsmParameterResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** DataType enum */
 export type DataType = "aws:ec2:image" | "text";
-export const DataType = /*@__PURE__*/ S.String;
+export const DataType = S.String;
 
 /** Tier enum */
 export type Tier_2 = "Advanced" | "Intelligent-Tiering" | "Standard";
-export const Tier_2 = /*@__PURE__*/ S.String;
+export const Tier_2 = S.String;
 
 /** Type enum */
 export type Type_3 = "String" | "StringList";
-export const Type_3 = /*@__PURE__*/ S.String;
+export const Type_3 = S.String;
 
 /** Definition of awsSsmParameter */
 export interface AwsSsmParameterProperties {
@@ -46363,7 +46358,7 @@ export type ComplianceSeverity =
   | "LOW"
   | "MEDIUM"
   | "UNSPECIFIED";
-export const ComplianceSeverity = /*@__PURE__*/ S.String;
+export const ComplianceSeverity = S.String;
 
 /** Definition of ComplianceSeverityEnumValue */
 export interface ComplianceSeverityEnumValue {
@@ -46380,7 +46375,7 @@ export const ComplianceSeverityEnumValue = /*@__PURE__*/ S.suspend(() =>
 
 /** ComplianceStatus enum */
 export type ComplianceStatus = "COMPLIANT" | "NON_COMPLIANT";
-export const ComplianceStatus = /*@__PURE__*/ S.String;
+export const ComplianceStatus = S.String;
 
 /** Definition of ComplianceStatusEnumValue */
 export interface ComplianceStatusEnumValue {
@@ -46554,11 +46549,11 @@ export const AwsWafv2LoggingConfigurationPropertiesLogDestinationConfigsList =
 
 /** DefaultBehavior enum */
 export type DefaultBehavior = "DROP" | "KEEP";
-export const DefaultBehavior = /*@__PURE__*/ S.String;
+export const DefaultBehavior = S.String;
 
 /** FilterBehavior enum */
 export type FilterBehavior = "DROP" | "KEEP";
-export const FilterBehavior = /*@__PURE__*/ S.String;
+export const FilterBehavior = S.String;
 
 /** Action enum */
 export type Action_2 =
@@ -46568,7 +46563,7 @@ export type Action_2 =
   | "CHALLENGE"
   | "COUNT"
   | "EXCLUDED_AS_COUNT";
-export const Action_2 = /*@__PURE__*/ S.String;
+export const Action_2 = S.String;
 
 /** Definition of ActionConditionModelProperties */
 export interface ActionConditionModelProperties {
@@ -46618,7 +46613,7 @@ export const FilterConditionsList = /*@__PURE__*/ S.Array(
 
 /** FilterRequirement enum */
 export type FilterRequirement = "MEETS_ALL" | "MEETS_ANY";
-export const FilterRequirement = /*@__PURE__*/ S.String;
+export const FilterRequirement = S.String;
 
 /** Definition of Filter */
 export interface Filter_2 {
@@ -57579,11 +57574,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

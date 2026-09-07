@@ -61,7 +61,7 @@ export class UnprocessableEntity
 
 /** The Authorization flow */
 export type AuthorizationCodeParamsGrantType = "authorization_code";
-export const AuthorizationCodeParamsGrantType = /*@__PURE__*/ S.String;
+export const AuthorizationCodeParamsGrantType = S.String;
 
 export interface AuthorizationCodeParams {
   /** The authorization code generated in Authorization Code flow */
@@ -80,7 +80,7 @@ export const AuthorizationCodeParams = /*@__PURE__*/ S.suspend(() =>
 
 /** The Authorization flow */
 export type ClientCredentialsParamsGrantType = "client_credentials";
-export const ClientCredentialsParamsGrantType = /*@__PURE__*/ S.String;
+export const ClientCredentialsParamsGrantType = S.String;
 
 export interface ClientCredentialsParams {
   /** The client id generated during registration */
@@ -99,7 +99,7 @@ export const ClientCredentialsParams = /*@__PURE__*/ S.suspend(() =>
 
 /** The Authorization flow */
 export type RefreshTokenParamsGrantType = "refresh_token";
-export const RefreshTokenParamsGrantType = /*@__PURE__*/ S.String;
+export const RefreshTokenParamsGrantType = S.String;
 
 export interface RefreshTokenParams {
   /** The Authorization flow */
@@ -119,7 +119,7 @@ export const RefreshTokenParams = /*@__PURE__*/ S.suspend(() =>
 /** The Assertion flow grant type */
 export type AssertionTokenParamsGrantType =
   "urn:ietf:params:oauth:grant-type:jwt-bearer";
-export const AssertionTokenParamsGrantType = /*@__PURE__*/ S.String;
+export const AssertionTokenParamsGrantType = S.String;
 
 /** The assertion token is a JWT token that contains the following claims: - `sub`: The subject of the token, in one of the following formats: - `urn:remote-api:employment:<employment_id>` — mints an **employee-role** access token whose `sub` is the employment owner's user slug. Scopes are restricted to those valid for the employee role (e.g. `personal_detail:read`, `timeoff:write`). - `urn:remote-api:employee:employment:<employment_id>` — same as above; the recommended format for new integrations. Use this when issuing a token on behalf of an employee so they can submit their own onboarding data (e.g. `PUT /v1/employee/address`). - `urn:remote-api:company-manager:user:<user_id>` — mints a **company_manager-role** access token. Scopes are restricted to those valid for the company-manager role. - `iss`: The issuer of the token, which is the client ID - `aud`: The audience of the token, which is the OAuth audience - `exp`: The expiration time of the token (max 10 minutes in the future) - `iat`: The issued at time of the token - `scope`: The scope of the token (space-separated). Optional. If omitted, the minted access token defaults to `all:write` for the subject's role. If provided, every scope must be valid for the subject's role or the assertion is rejected. The assertion must be signed with the client secret (HS256). **Example — minting an employee token to submit a residential address:** ``` sub: urn:remote-api:employee:employment:emp_2t3h9 iss: <your client_id> aud: <configured OAuth audience> exp: <now + 300 seconds> iat: <now> scope: address:write ``` The resulting access token can be used at `PUT /v1/employee/address` to submit the address for that employment. */
 export interface AssertionTokenParams {
@@ -143,7 +143,7 @@ export type OAuth2TokenParams =
   | RefreshTokenParams
   | AssertionTokenParams;
 export const OAuth2TokenParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OAuth2TokenParams>;
+  S.Unknown as any as S.Schema<OAuth2TokenParams>;
 
 export interface CreateAuthOauth2TokenRequest {
   body?: OAuth2TokenParams;
@@ -226,8 +226,7 @@ export type OAuth2Tokens =
   | AuthorizationCodeResponse
   | BaseTokenResponse
   | RefreshTokenResponse;
-export const OAuth2Tokens =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OAuth2Tokens>;
+export const OAuth2Tokens = S.Unknown as any as S.Schema<OAuth2Tokens>;
 
 export type CreateAuthOauth2TokenResponse = OAuth2Tokens;
 export const CreateAuthOauth2TokenResponse = /*@__PURE__*/ S.suspend(() =>
@@ -286,25 +285,25 @@ export const CreateBulkEmploymentJobResponse = /*@__PURE__*/ S.suspend(() =>
 /** Use latest version */
 export type CreateCompanyRequestAddressDetailsJsonSchemaVersionCase1 = "latest";
 export const CreateCompanyRequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCompanyRequestAddressDetailsJsonSchemaVersion =
   | number
   | CreateCompanyRequestAddressDetailsJsonSchemaVersionCase1;
 export const CreateCompanyRequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCompanyRequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<CreateCompanyRequestAddressDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type CreateCompanyRequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const CreateCompanyRequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCompanyRequestBankAccountDetailsJsonSchemaVersion =
   | number
   | CreateCompanyRequestBankAccountDetailsJsonSchemaVersionCase1;
 export const CreateCompanyRequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCompanyRequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<CreateCompanyRequestBankAccountDetailsJsonSchemaVersion>;
 
 /** Desired currency for invoicing and displaying converted salaries in Remote UI regardless of the employee's country. */
 export type CreateCompanyRequestDesiredCurrency =
@@ -320,7 +319,7 @@ export type CreateCompanyRequestDesiredCurrency =
   | "SEK"
   | "SGD"
   | "USD";
-export const CreateCompanyRequestDesiredCurrency = /*@__PURE__*/ S.String;
+export const CreateCompanyRequestDesiredCurrency = S.String;
 
 export interface CreateCompanyRequest {
   /** Version of the address_details form schema */
@@ -398,11 +397,11 @@ export type CompanyDefaultLegalEntityCreditRiskStatus =
   | "fail"
   | "deposit_required"
   | "no_deposit_required";
-export const CompanyDefaultLegalEntityCreditRiskStatus = /*@__PURE__*/ S.String;
+export const CompanyDefaultLegalEntityCreditRiskStatus = S.String;
 
 /** The company status determines what a company is allowed to do: - `pending`: The company has been created and the company owner invited. Remote is waiting for the company owner to complete onboarding. - `review`: The company is under review. In rare occasions, a company may not automatically get created in `active` status because Remote needs to manually review the company that was created. The company will become `active` once the review is completed and no further action is necessary through the Remote API. - `active`: The company owner has completed onboarding and the company is ready to employ. - `archived`: The company is no longer active on the Remote platform and no changes can be made to the company. */
 export type CompanyStatus = "pending" | "review" | "active" | "archived";
-export const CompanyStatus = /*@__PURE__*/ S.String;
+export const CompanyStatus = S.String;
 
 export interface Company {
   /** Fields can vary depending on the country. Please, check the required fields structure using the [Show form schema endpoint](#operation/get_show_form_country). Use the desired country and `address_details` as the form name for the placeholders. The response complies with the [JSON Schema](https://developer.remote.com/docs/how-json-schemas-work) specification. */
@@ -507,7 +506,7 @@ export type CompanyCreationResponseData =
   | CompanyResponse
   | CompanyWithTokensResponse;
 export const CompanyCreationResponseData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CompanyCreationResponseData>;
+  S.Unknown as any as S.Schema<CompanyCreationResponseData>;
 
 export interface CompanyCreationResponse {
   data?: CompanyCreationResponseData;
@@ -733,7 +732,7 @@ export type CreatePricingPlanParams =
   | CreatePricingPlanWithoutPartnerTemplateParams
   | CreatePricingPlanWithPartnerTemplateParams;
 export const CreatePricingPlanParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreatePricingPlanParams>;
+  S.Unknown as any as S.Schema<CreatePricingPlanParams>;
 
 export interface CreateCompanyPricingPlanRequest {
   /** Company ID */
@@ -870,14 +869,13 @@ export const CreatePricingPlanResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Use latest version */
 export type CreateContractAmendmentRequestJsonSchemaVersionCase1 = "latest";
-export const CreateContractAmendmentRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+export const CreateContractAmendmentRequestJsonSchemaVersionCase1 = S.String;
 
 export type CreateContractAmendmentRequestJsonSchemaVersion =
   | number
   | CreateContractAmendmentRequestJsonSchemaVersionCase1;
 export const CreateContractAmendmentRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateContractAmendmentRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<CreateContractAmendmentRequestJsonSchemaVersion>;
 
 export interface CreateContractAmendmentRequest {
   /** Version of the form schema */
@@ -911,7 +909,7 @@ export type RequestDetailsReasonForChange =
   | "job_change_reevaluation"
   | "promotion"
   | "other";
-export const RequestDetailsReasonForChange = /*@__PURE__*/ S.String;
+export const RequestDetailsReasonForChange = S.String;
 
 export type SalaryDecreaseDetailsSalaryDecreaseReason =
   | "change_in_working_hours"
@@ -920,7 +918,7 @@ export type SalaryDecreaseDetailsSalaryDecreaseReason =
   | "role_change_or_demotion"
   | "compensation_restructure"
   | "other";
-export const SalaryDecreaseDetailsSalaryDecreaseReason = /*@__PURE__*/ S.String;
+export const SalaryDecreaseDetailsSalaryDecreaseReason = S.String;
 
 /** The details of the salary decrease request if there is one */
 export interface SalaryDecreaseDetails {
@@ -966,7 +964,7 @@ export type ContractAmendmentStatus =
   | "done"
   | "canceled"
   | "deleted";
-export const ContractAmendmentStatus = /*@__PURE__*/ S.String;
+export const ContractAmendmentStatus = S.String;
 
 /** A full contract amendment record, including the requested changes with their previous and current values. */
 export interface ContractAmendment {
@@ -1030,13 +1028,13 @@ export const ContractAmendmentResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateContractAmendmentsAutomatableRequestJsonSchemaVersionCase1 =
   "latest";
 export const CreateContractAmendmentsAutomatableRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateContractAmendmentsAutomatableRequestJsonSchemaVersion =
   | number
   | CreateContractAmendmentsAutomatableRequestJsonSchemaVersionCase1;
 export const CreateContractAmendmentsAutomatableRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateContractAmendmentsAutomatableRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<CreateContractAmendmentsAutomatableRequestJsonSchemaVersion>;
 
 export interface CreateContractAmendmentsAutomatableRequest {
   /** Version of the form schema */
@@ -1129,7 +1127,7 @@ export type ContractorInvoiceSchedulePeriodicity =
   | "monthly"
   | "semi_monthly"
   | "weekly";
-export const ContractorInvoiceSchedulePeriodicity = /*@__PURE__*/ S.String;
+export const ContractorInvoiceSchedulePeriodicity = S.String;
 
 /** Payload shape used to create invoice schedules. */
 export interface ContractorInvoiceScheduleCreateParams {
@@ -1452,13 +1450,13 @@ export const CreateContractorInvoiceScheduleResponse = /*@__PURE__*/ S.suspend(
 export type CreateContractorsEligibilityQuestionnaireRequestJsonSchemaVersionCase1 =
   "latest";
 export const CreateContractorsEligibilityQuestionnaireRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateContractorsEligibilityQuestionnaireRequestJsonSchemaVersion =
   | number
   | CreateContractorsEligibilityQuestionnaireRequestJsonSchemaVersionCase1;
 export const CreateContractorsEligibilityQuestionnaireRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateContractorsEligibilityQuestionnaireRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<CreateContractorsEligibilityQuestionnaireRequestJsonSchemaVersion>;
 
 /** Responses to the questionnaire questions */
 export type CreateContractorsEligibilityQuestionnaireRequestResponsesMap = {
@@ -1472,8 +1470,7 @@ export const CreateContractorsEligibilityQuestionnaireRequestResponsesMap =
 
 export type CreateContractorsEligibilityQuestionnaireRequestType =
   "contractor_of_record";
-export const CreateContractorsEligibilityQuestionnaireRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateContractorsEligibilityQuestionnaireRequestType = S.String;
 
 export interface CreateContractorsEligibilityQuestionnaireRequest {
   /** Version of the form schema */
@@ -1507,7 +1504,7 @@ export const CreateContractorsEligibilityQuestionnaireRequest =
   }) as any as S.Schema<CreateContractorsEligibilityQuestionnaireRequest>;
 
 export type EligibilityQuestionnaireType = "contractor_of_record";
-export const EligibilityQuestionnaireType = /*@__PURE__*/ S.String;
+export const EligibilityQuestionnaireType = S.String;
 
 export interface EligibilityQuestionnaire {
   /** Whether the questionnaire blocks further progress if failed */
@@ -1574,7 +1571,7 @@ export type ContractorContractDocumentStatus =
   | "draft"
   | "awaiting_signatures"
   | "finished";
-export const ContractorContractDocumentStatus = /*@__PURE__*/ S.String;
+export const ContractorContractDocumentStatus = S.String;
 
 /** A contract document for a contractor employment, tracking its signing status. */
 export interface ContractDocument {
@@ -1686,7 +1683,7 @@ export type CreateContractorsEmploymentContractorPlusSubscriptionRequestOperatio
   | "upgrade"
   | "downgrade";
 export const CreateContractorsEmploymentContractorPlusSubscriptionRequestOperation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateContractorsEmploymentContractorPlusSubscriptionRequest {
   /** Employment ID */
@@ -1736,8 +1733,7 @@ export type CorTerminationRequestCreatedResponseDataStatus =
   | "initiated"
   | "executed"
   | "cancelled";
-export const CorTerminationRequestCreatedResponseDataStatus =
-  /*@__PURE__*/ S.String;
+export const CorTerminationRequestCreatedResponseDataStatus = S.String;
 
 export interface CorTerminationRequestCreatedResponseData {
   /** The date on which the contractor employment will be deactivated. */
@@ -1778,7 +1774,7 @@ export type ContractorTimeTrackingParamsType =
   | "regular_hours"
   | "on_call"
   | "break";
-export const ContractorTimeTrackingParamsType = /*@__PURE__*/ S.String;
+export const ContractorTimeTrackingParamsType = S.String;
 
 /** Parameters for a single time tracking entry on a contractor timesheet. Allowed `type` values are restricted to the contractor subset. */
 export interface ContractorTimeTrackingParams {
@@ -1855,7 +1851,7 @@ export const HoursAndMinutes = /*@__PURE__*/ S.suspend(() =>
 
 /** The category of time being tracked. One of `regular_hours`, `on_call`, `break`. */
 export type ContractorTimeTrackingType = "regular_hours" | "on_call" | "break";
-export const ContractorTimeTrackingType = /*@__PURE__*/ S.String;
+export const ContractorTimeTrackingType = S.String;
 
 /** A single time tracking entry on a contractor timesheet. */
 export interface ContractorTimeTracking {
@@ -1996,7 +1992,7 @@ export const CostCalculatorDiscount = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CostCalculatorDiscount>;
 
 export type EmploymentTermType = "fixed" | "indefinite";
-export const EmploymentTermType = /*@__PURE__*/ S.String;
+export const EmploymentTermType = S.String;
 
 /** Parameters for a single employment to include in the cost estimate. Provide the region and salary (or total cost) — the calculator will compute all employer costs, contributions, and benefits. */
 export interface CostCalculatorEmploymentParam {
@@ -2336,7 +2332,7 @@ export const MinimalRegionChildRegionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MinimalRegionChildRegionsList>;
 
 export type RegionStatus = "active" | "inactive";
-export const RegionStatus = /*@__PURE__*/ S.String;
+export const RegionStatus = S.String;
 
 export interface MinimalRegion {
   child_regions?: MinimalRegionChildRegionsList;
@@ -2646,7 +2642,7 @@ export type CustomFieldDataEntryAccess =
   | "company_admin_only"
   | "employee_only"
   | "everyone";
-export const CustomFieldDataEntryAccess = /*@__PURE__*/ S.String;
+export const CustomFieldDataEntryAccess = S.String;
 
 /** The datatype of the custom field */
 export type CustomFieldSimpleDataType =
@@ -2658,11 +2654,11 @@ export type CustomFieldSimpleDataType =
   | "percentage"
   | "decimal"
   | "link";
-export const CustomFieldSimpleDataType = /*@__PURE__*/ S.String;
+export const CustomFieldSimpleDataType = S.String;
 
 /** Who can see this custom field and its values. Controls visibility across different user roles. */
 export type CustomFieldVisibilityScope = "company_admin_only" | "everyone";
-export const CustomFieldVisibilityScope = /*@__PURE__*/ S.String;
+export const CustomFieldVisibilityScope = S.String;
 
 /** Schema for creating a general custom field definition */
 export interface CreateGeneralCustomFieldDefinitionParams {
@@ -2703,8 +2699,7 @@ export const SingleSelectMetadata = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SingleSelectMetadata>;
 
 export type CreateSingleSelectCustomFieldDefinitionParamsType = "single_select";
-export const CreateSingleSelectCustomFieldDefinitionParamsType =
-  /*@__PURE__*/ S.String;
+export const CreateSingleSelectCustomFieldDefinitionParamsType = S.String;
 
 /** Schema for creating a single select custom field definition */
 export interface CreateSingleSelectCustomFieldDefinitionParams {
@@ -2742,8 +2737,7 @@ export const CreateCurrencyCustomFieldDefinitionParamsMetadata =
   }) as any as S.Schema<CreateCurrencyCustomFieldDefinitionParamsMetadata>;
 
 export type CreateCurrencyCustomFieldDefinitionParamsType = "currency";
-export const CreateCurrencyCustomFieldDefinitionParamsType =
-  /*@__PURE__*/ S.String;
+export const CreateCurrencyCustomFieldDefinitionParamsType = S.String;
 
 /** Schema for creating a currency custom field definition */
 export interface CreateCurrencyCustomFieldDefinitionParams {
@@ -2774,7 +2768,7 @@ export type CreateCustomFieldDefinitionParams =
   | CreateSingleSelectCustomFieldDefinitionParams
   | CreateCurrencyCustomFieldDefinitionParams;
 export const CreateCustomFieldDefinitionParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCustomFieldDefinitionParams>;
+  S.Unknown as any as S.Schema<CreateCustomFieldDefinitionParams>;
 
 export interface CreateCustomFieldRequest {
   body: CreateCustomFieldDefinitionParams;
@@ -2799,7 +2793,7 @@ export type CustomFieldDataType =
   | "link"
   | "currency"
   | "single_select";
-export const CustomFieldDataType = /*@__PURE__*/ S.String;
+export const CustomFieldDataType = S.String;
 
 /** A custom field definition that can be applied to employments within a company. Custom fields allow you to store additional structured data on employments beyond the standard fields. */
 export interface EmploymentCustomField {
@@ -2977,7 +2971,7 @@ export type CreateEmployeeExpensRequestCategory =
   | "home_office"
   | "phone_utilities"
   | "travel";
-export const CreateEmployeeExpensRequestCategory = /*@__PURE__*/ S.String;
+export const CreateEmployeeExpensRequestCategory = S.String;
 
 /** All the params needed upload a base64 file. */
 export interface Base64File {
@@ -3113,7 +3107,7 @@ export type TimeoffType =
   | "casual_leave"
   | "rol"
   | "ex_festivita";
-export const TimeoffType = /*@__PURE__*/ S.String;
+export const TimeoffType = S.String;
 
 /** The leave policy associated with a time off request. Policies define the rules and entitlements for specific types of leave. */
 export interface LeavePolicy {
@@ -3139,7 +3133,7 @@ export type TimeoffStatus =
   | "declined"
   | "taken"
   | "cancel_requested";
-export const TimeoffStatus = /*@__PURE__*/ S.String;
+export const TimeoffStatus = S.String;
 
 /** A single day within a time off request, specifying the date and the number of hours taken off that day. */
 export interface TimeoffDay {
@@ -3264,14 +3258,13 @@ export const CreateEmployeeTimeoffCancelRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Use latest version */
 export type CreateEmploymentRequestJsonSchemaVersionCase1 = "latest";
-export const CreateEmploymentRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+export const CreateEmploymentRequestJsonSchemaVersionCase1 = S.String;
 
 export type CreateEmploymentRequestJsonSchemaVersion =
   | number
   | CreateEmploymentRequestJsonSchemaVersionCase1;
 export const CreateEmploymentRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateEmploymentRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<CreateEmploymentRequestJsonSchemaVersion>;
 
 /** If not provided, it will default to `employee`. */
 export type CreateEmploymentRequestType =
@@ -3279,7 +3272,7 @@ export type CreateEmploymentRequestType =
   | "contractor"
   | "global_payroll_employee"
   | "hris";
-export const CreateEmploymentRequestType = /*@__PURE__*/ S.String;
+export const CreateEmploymentRequestType = S.String;
 
 export interface CreateEmploymentRequest {
   /** Version of the form schema */
@@ -3331,11 +3324,11 @@ export type EmploymentLifecycleStage =
   | "remote_enrollment"
   | "onboarded"
   | "offboarded";
-export const EmploymentLifecycleStage = /*@__PURE__*/ S.String;
+export const EmploymentLifecycleStage = S.String;
 
 /** The type of employment. */
 export type EmploymentBasicResponseType = "employee" | "contractor";
-export const EmploymentBasicResponseType = /*@__PURE__*/ S.String;
+export const EmploymentBasicResponseType = S.String;
 
 /** A lightweight employment representation returned after creation. Contains basic identification, country, and status fields but not the full onboarding details or country-specific form data. */
 export interface EmploymentBasicResponse {
@@ -3415,7 +3408,7 @@ export type CreateEmploymentContractEligibilityRequestEligibleToWorkInResidingCo
   | "permanent_resident"
   | "temporary_resident";
 export const CreateEmploymentContractEligibilityRequestEligibleToWorkInResidingCountry =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateEmploymentContractEligibilityRequest {
   /** Employment ID */
@@ -3449,8 +3442,7 @@ export type CreateEmploymentContractOriginRequestContractOrigin =
   | "remote_contract"
   | "custom_remote_contract"
   | "provided_by_customer";
-export const CreateEmploymentContractOriginRequestContractOrigin =
-  /*@__PURE__*/ S.String;
+export const CreateEmploymentContractOriginRequestContractOrigin = S.String;
 
 /** Required when contract_origin is remote_contract or custom_remote_contract, ignored when provided_by_customer */
 export type CreateEmploymentContractOriginRequestTemplateType =
@@ -3459,8 +3451,7 @@ export type CreateEmploymentContractOriginRequestTemplateType =
   | "contractor_statement_of_work"
   | "custom_contractor_agreement"
   | "custom_contractor_agreement_v2";
-export const CreateEmploymentContractOriginRequestTemplateType =
-  /*@__PURE__*/ S.String;
+export const CreateEmploymentContractOriginRequestTemplateType = S.String;
 
 export interface CreateEmploymentContractOriginRequest {
   /** Employment ID */
@@ -3919,7 +3910,7 @@ export type CreateExpensRequestCategory =
   | "home_office"
   | "phone_utilities"
   | "travel";
-export const CreateExpensRequestCategory = /*@__PURE__*/ S.String;
+export const CreateExpensRequestCategory = S.String;
 
 export type CreateExpensRequestReceiptsList = Array<Base64File>;
 export const CreateExpensRequestReceiptsList = /*@__PURE__*/ S.Array(
@@ -3999,7 +3990,7 @@ export type ExpenseCategory =
   | "home_office"
   | "phone_utilities"
   | "travel";
-export const ExpenseCategory = /*@__PURE__*/ S.String;
+export const ExpenseCategory = S.String;
 
 /** New hierarchical expense category (recommended) */
 export interface ExpenseExpenseCategory {
@@ -4053,7 +4044,7 @@ export type ExpenseStatus =
   | "approved"
   | "processing"
   | "reimbursed";
-export const ExpenseStatus = /*@__PURE__*/ S.String;
+export const ExpenseStatus = S.String;
 
 /** A submitted expense record with complete data. All monetary amounts are integers in the currency's minor unit (cents). */
 export interface Expense {
@@ -4146,7 +4137,7 @@ export type DraftExpenseCategory =
   | "home_office"
   | "phone_utilities"
   | "travel";
-export const DraftExpenseCategory = /*@__PURE__*/ S.String;
+export const DraftExpenseCategory = S.String;
 
 /** New hierarchical expense category (recommended) */
 export type DraftExpenseExpenseCategory = ExpenseExpenseCategory;
@@ -4164,7 +4155,7 @@ export const DraftExpenseReviewer = ExpenseReviewer;
 
 /** The draft status. - `draft`: The expense is saved as a draft by the employee and not submitted for approval. - `archived`: The draft was soft-deleted by the employee. */
 export type DraftExpenseStatus = "draft" | "archived";
-export const DraftExpenseStatus = /*@__PURE__*/ S.String;
+export const DraftExpenseStatus = S.String;
 
 /** A draft expense that the employee has saved but not yet submitted for approval. Draft expenses may have incomplete (null) data since the employee hasn't finalized them yet. All monetary amounts are integers in the currency's minor unit (cents) when present. */
 export interface DraftExpense {
@@ -4231,8 +4222,7 @@ export const DraftExpense = /*@__PURE__*/ S.suspend(() =>
 
 /** An expense or a draft object, depending on the status. Drafts (status `draft` or `archived`) may have incomplete(null) data. The expense status `draft` occurs when users want to save expenses but don't want them to be considered for approval just yet. Only expenses in `pending` status can be approved or declined. It is possible to update a pending expense to status draft, or vice versa. There are no flows that change the status of an expense to `draft` automatically. This is purely a manual action by the employee. */
 export type ExpenseOrDraft = Expense | DraftExpense;
-export const ExpenseOrDraft =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ExpenseOrDraft>;
+export const ExpenseOrDraft = S.Unknown as any as S.Schema<ExpenseOrDraft>;
 
 export interface ExpenseResponseData {
   expense: ExpenseOrDraft;
@@ -4297,7 +4287,7 @@ export const CreateIdentityVerificationVerifyRequest = /*@__PURE__*/ S.suspend(
 
 /** Whether the amount given accounts for taxes or not. `gross` indicates that the amount given is the amount to be paid before taxes are subtracted. `net` indicates that the amount given is the amount which will be paid to the employee after taxes. Remote will gross this up to ensure the taxes are included and employee receives the amount requested without further reduction. */
 export type AmountTaxType = "gross" | "net";
-export const AmountTaxType = /*@__PURE__*/ S.String;
+export const AmountTaxType = S.String;
 
 export type CreateIncentiveRequestType =
   | "acting_up_allowance"
@@ -4321,7 +4311,7 @@ export type CreateIncentiveRequestType =
   | "overtime"
   | "stipend"
   | "signing_bonus";
-export const CreateIncentiveRequestType = /*@__PURE__*/ S.String;
+export const CreateIncentiveRequestType = S.String;
 
 export interface CreateIncentiveRequest {
   /** The amount (in the currency of the employment) to be given to the employee. This field accepts fractional amounts as well. However to avoid precision issues and errors that can arise from storing fractional amounts, the Remote API only accepts currencies and their fractional amounts as integers. This means you should append fractional amounts to the end of the amount you're passing in with this field. For example, if the incentive you're offering is EUR 500.25, you would specify `50025` as the amount for this field. */
@@ -4443,7 +4433,7 @@ export type CreateIncentivesRecurringRequestType =
   | "other"
   | "overtime"
   | "stipend";
-export const CreateIncentivesRecurringRequestType = /*@__PURE__*/ S.String;
+export const CreateIncentivesRecurringRequestType = S.String;
 
 export interface CreateIncentivesRecurringRequest {
   /** The amount (in the currency of the employment) to be given to the employee. This field accepts fractional amounts as well. However to avoid precision issues and errors that can arise from storing fractional amounts, the Remote API only accepts currencies and their fractional amounts as integers. This means you should append fractional amounts to the end of the amount you're passing in with this field. For example, if the incentive you're offering is EUR 500.25, you would specify `50025` as the amount for this field. */
@@ -4475,7 +4465,7 @@ export const CreateIncentivesRecurringRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether this recurring incentive is currently active and generating payments, or inactive (paused/ended). */
 export type RecurringIncentiveStatus = "active" | "inactive";
-export const RecurringIncentiveStatus = /*@__PURE__*/ S.String;
+export const RecurringIncentiveStatus = S.String;
 
 /** The type of recurring incentive (e.g., "meal_allowance", "housing_allowance"). */
 export type RecurringIncentiveType =
@@ -4499,7 +4489,7 @@ export type RecurringIncentiveType =
   | "other"
   | "overtime"
   | "stipend";
-export const RecurringIncentiveType = /*@__PURE__*/ S.String;
+export const RecurringIncentiveType = S.String;
 
 /** A recurring incentive (e.g., monthly meal allowance, housing stipend) that automatically generates individual incentive payments on a monthly schedule. */
 export interface RecurringIncentive {
@@ -4590,8 +4580,7 @@ export const MagicLinkParamsCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** Magic link params */
 export type MagicLinkParams = MagicLinkParamsCase0 | MagicLinkParamsCase1;
-export const MagicLinkParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MagicLinkParams>;
+export const MagicLinkParams = S.Unknown as any as S.Schema<MagicLinkParams>;
 
 export interface CreateMagicLinkRequest {
   body: MagicLinkParams;
@@ -4653,8 +4642,7 @@ export type TerminationDetailsParamsRiskAssessmentReasonsItem =
   | "reported_concerns_with_workplace"
   | "requested_medical_or_family_leave"
   | "sick_leave";
-export const TerminationDetailsParamsRiskAssessmentReasonsItem =
-  /*@__PURE__*/ S.String;
+export const TerminationDetailsParamsRiskAssessmentReasonsItem = S.String;
 
 /** Possible reasons for offboarding risk assessment */
 export type TerminationDetailsParamsRiskAssessmentReasonsList = Array<
@@ -4688,7 +4676,7 @@ export type TerminationDetailsParamsTerminationReason =
   | "performance"
   | "values"
   | "workforce_reduction";
-export const TerminationDetailsParamsTerminationReason = /*@__PURE__*/ S.String;
+export const TerminationDetailsParamsTerminationReason = S.String;
 
 export interface OffboardingFile {
   /** The content in base64 encoding */
@@ -4774,7 +4762,7 @@ export const TerminationDetailsParams = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the offboarding request. For now, only `termination` is allowed. */
 export type CreateOffboardingRequestType = "termination";
-export const CreateOffboardingRequestType = /*@__PURE__*/ S.String;
+export const CreateOffboardingRequestType = S.String;
 
 export interface CreateOffboardingRequest {
   /** The unique identifier (UUID) of the employment to be terminated. */
@@ -4819,7 +4807,7 @@ export type ResignationOffboardingResignationReason =
   | "transfer_between_remote_customer"
   | "transfer_from_remote_to_customer"
   | "transfer_from_remote_to_other_eor";
-export const ResignationOffboardingResignationReason = /*@__PURE__*/ S.String;
+export const ResignationOffboardingResignationReason = S.String;
 
 /** The current status of the offboarding request. - `submitted`: The resignation has been submitted and is awaiting review. - `in_review`: Remote is processing the resignation. - `done`: The offboarding has been completed. - `canceled`: The resignation was withdrawn or canceled. */
 export type ResignationOffboardingStatus =
@@ -4827,11 +4815,11 @@ export type ResignationOffboardingStatus =
   | "in_review"
   | "done"
   | "canceled";
-export const ResignationOffboardingStatus = /*@__PURE__*/ S.String;
+export const ResignationOffboardingStatus = S.String;
 
 /** The type of offboarding. Always `"resignation"` for employee-initiated resignations. */
 export type ResignationOffboardingType = "resignation";
-export const ResignationOffboardingType = /*@__PURE__*/ S.String;
+export const ResignationOffboardingType = S.String;
 
 /** An offboarding request initiated by the employee (a resignation). Includes the employee's proposed last working day, reason, and status tracking through Remote's process. */
 export interface ResignationOffboarding {
@@ -4912,8 +4900,7 @@ export type TerminationOffboardingRiskAssessmentReasonsItem =
   | "reported_concerns_with_workplace"
   | "requested_medical_or_family_leave"
   | "sick_leave";
-export const TerminationOffboardingRiskAssessmentReasonsItem =
-  /*@__PURE__*/ S.String;
+export const TerminationOffboardingRiskAssessmentReasonsItem = S.String;
 
 /** Reasons that may increase the legal risk of this termination (e.g., the employee is pregnant, on family leave, etc.). */
 export type TerminationOffboardingRiskAssessmentReasonsList =
@@ -4929,7 +4916,7 @@ export type TerminationOffboardingStatus =
   | "in_review"
   | "done"
   | "canceled";
-export const TerminationOffboardingStatus = /*@__PURE__*/ S.String;
+export const TerminationOffboardingStatus = S.String;
 
 /** The reason for the termination, as submitted by the employer. */
 export type TerminationOffboardingTerminationReason =
@@ -4954,11 +4941,11 @@ export type TerminationOffboardingTerminationReason =
   | "performance"
   | "values"
   | "workforce_reduction";
-export const TerminationOffboardingTerminationReason = /*@__PURE__*/ S.String;
+export const TerminationOffboardingTerminationReason = S.String;
 
 /** The type of offboarding. Always `"termination"` for employer-initiated terminations. */
 export type TerminationOffboardingType = "termination";
-export const TerminationOffboardingType = /*@__PURE__*/ S.String;
+export const TerminationOffboardingType = S.String;
 
 /** An offboarding request initiated by the employer to terminate an employment. Includes termination details, risk assessment, and status tracking through Remote's review process. */
 export interface TerminationOffboarding {
@@ -5031,7 +5018,7 @@ export type ResignationOrTerminationOffboarding =
   | ResignationOffboarding
   | TerminationOffboarding;
 export const ResignationOrTerminationOffboarding =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ResignationOrTerminationOffboarding>;
+  S.Unknown as any as S.Schema<ResignationOrTerminationOffboarding>;
 
 /** A wrapper containing an offboarding record, which can be either a termination (employer-initiated) or a resignation (employee-initiated). */
 export interface Offboarding {
@@ -5335,7 +5322,7 @@ export type UnprocessableEntityResponseCase1Message =
   | ActionError
   | UnprocessableEntityResponseCase1MessageCase4List;
 export const UnprocessableEntityResponseCase1Message =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UnprocessableEntityResponseCase1Message>;
+  S.Unknown as any as S.Schema<UnprocessableEntityResponseCase1Message>;
 
 export interface UnprocessableEntityResponseCase1 {
   message: UnprocessableEntityResponseCase1Message;
@@ -5352,14 +5339,14 @@ export type UnprocessableEntityResponse =
   | UnprocessableEntityResponseCase0
   | UnprocessableEntityResponseCase1;
 export const UnprocessableEntityResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UnprocessableEntityResponse>;
+  S.Unknown as any as S.Schema<UnprocessableEntityResponse>;
 
 /** Failure reason. Includes `employment_not_global_payroll` when the provided employment is not Global Payroll, and `pay_item_code_not_allowed` / `pay_item_external_import_code_not_allowed` when the given identifier does not resolve to an allowed pay element. */
 export type PayItemBulkCreateFailuresError =
   | string
   | UnprocessableEntityResponse;
 export const PayItemBulkCreateFailuresError =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PayItemBulkCreateFailuresError>;
+  S.Unknown as any as S.Schema<PayItemBulkCreateFailuresError>;
 
 export interface PayItemBulkCreateFailures {
   /** Failure reason. Includes `employment_not_global_payroll` when the provided employment is not Global Payroll, and `pay_item_code_not_allowed` / `pay_item_external_import_code_not_allowed` when the given identifier does not resolve to an allowed pay element. */
@@ -5463,7 +5450,7 @@ export type CreatePayrollRunGlReportRequestType =
   | "summary"
   | "by_department"
   | "employee_detail";
-export const CreatePayrollRunGlReportRequestType = /*@__PURE__*/ S.String;
+export const CreatePayrollRunGlReportRequestType = S.String;
 
 export interface CreatePayrollRunGlReportRequest {
   /** The payroll run's ID */
@@ -5488,11 +5475,11 @@ export const CreatePayrollRunGlReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Current generation status of the report. */
 export type GLReportStatus = "pending" | "completed" | "failed";
-export const GLReportStatus = /*@__PURE__*/ S.String;
+export const GLReportStatus = S.String;
 
 /** The type of GL report. */
 export type GLReportType = "summary" | "by_department" | "employee_detail";
-export const GLReportType = /*@__PURE__*/ S.String;
+export const GLReportType = S.String;
 
 /** A General Ledger report generation request and its current status. */
 export interface GLReport {
@@ -5565,7 +5552,7 @@ export type ProbationCompletionLetterStatus =
   | "done"
   | "canceled"
   | "deleted";
-export const ProbationCompletionLetterStatus = /*@__PURE__*/ S.String;
+export const ProbationCompletionLetterStatus = S.String;
 
 /** Probation completion letter request */
 export interface ProbationCompletionLetter {
@@ -5667,7 +5654,7 @@ export type ProbationExtensionStatus =
   | "done"
   | "canceled"
   | "deleted";
-export const ProbationExtensionStatus = /*@__PURE__*/ S.String;
+export const ProbationExtensionStatus = S.String;
 
 /** A request to extend an employee's probation period. Requires Remote's review for compliance with local labor laws. */
 export interface ProbationExtension {
@@ -5991,7 +5978,7 @@ export type CreateSandboxContractorsEmploymentRateRequestPayFrequency =
   | "semi_monthly"
   | "monthly";
 export const CreateSandboxContractorsEmploymentRateRequestPayFrequency =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The unit the amount is paid per. */
 export type CreateSandboxContractorsEmploymentRateRequestType =
@@ -6000,8 +5987,7 @@ export type CreateSandboxContractorsEmploymentRateRequestType =
   | "weekly"
   | "monthly"
   | "one_off";
-export const CreateSandboxContractorsEmploymentRateRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateSandboxContractorsEmploymentRateRequestType = S.String;
 
 export interface CreateSandboxContractorsEmploymentRateRequest {
   /** Contractor employment ID */
@@ -6058,7 +6044,7 @@ export type ContractorRatePayFrequency =
   | "bi_weekly"
   | "semi_monthly"
   | "monthly";
-export const ContractorRatePayFrequency = /*@__PURE__*/ S.String;
+export const ContractorRatePayFrequency = S.String;
 
 /** The unit the amount is paid per. */
 export type ContractorRateType =
@@ -6067,7 +6053,7 @@ export type ContractorRateType =
   | "weekly"
   | "monthly"
   | "one_off";
-export const ContractorRateType = /*@__PURE__*/ S.String;
+export const ContractorRateType = S.String;
 
 /** A rate configured for a contractor, with the dates of the contract it is paid under. `type` discriminates the payment mode: `one_off` is a single payment on completion of services; any other value is paid per pay period, where `type` is the calculation unit and `pay_frequency` the invoicing cadence. `type` and `pay_frequency` are open enums: new values may be added, so treat an unrecognised value as opaque rather than an error. */
 export interface ContractorRate {
@@ -6112,7 +6098,7 @@ export type CreateSandboxEmploymentRequestType =
   | "contractor"
   | "global_payroll_employee"
   | "hris";
-export const CreateSandboxEmploymentRequestType = /*@__PURE__*/ S.String;
+export const CreateSandboxEmploymentRequestType = S.String;
 
 export interface CreateSandboxEmploymentRequest {
   /** Employment basic information. As its properties may vary depending on the country, you must query the [Show form schema](#tag/Countries/operation/get_show_form_country) endpoint passing the country code and `employment_basic_information` as path parameters. */
@@ -6265,7 +6251,7 @@ export type WebhookTriggerEmploymentParamsEventType =
   | "work_authorization.declined_by_manager"
   | "work_authorization.declined_by_remote"
   | "work_authorization.requested";
-export const WebhookTriggerEmploymentParamsEventType = /*@__PURE__*/ S.String;
+export const WebhookTriggerEmploymentParamsEventType = S.String;
 
 export interface WebhookTriggerEmploymentParams {
   employment_id: string;
@@ -6287,10 +6273,10 @@ export type WebhookTriggerBillingParamsDocumentType =
   | "supplemental_service_credit_note"
   | "prefunding_credit_note"
   | "reconciliation_credit_note";
-export const WebhookTriggerBillingParamsDocumentType = /*@__PURE__*/ S.String;
+export const WebhookTriggerBillingParamsDocumentType = S.String;
 
 export type WebhookTriggerBillingParamsEventType = "billing_document.issued";
-export const WebhookTriggerBillingParamsEventType = /*@__PURE__*/ S.String;
+export const WebhookTriggerBillingParamsEventType = S.String;
 
 export interface WebhookTriggerBillingParams {
   document_type: WebhookTriggerBillingParamsDocumentType | (string & {});
@@ -6310,7 +6296,7 @@ export type WebhookTriggerParams =
   | WebhookTriggerEmploymentParams
   | WebhookTriggerBillingParams;
 export const WebhookTriggerParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WebhookTriggerParams>;
+  S.Unknown as any as S.Schema<WebhookTriggerParams>;
 
 export interface CreateSandboxWebhookCallbacksTriggerRequest {
   body?: WebhookTriggerParams;
@@ -6339,8 +6325,7 @@ export type CreateSdkTelemetryErrorRequestErrorCategory =
   | "HOOK_ERROR"
   | "RUNTIME_ERROR"
   | "UNKNOWN_ERROR";
-export const CreateSdkTelemetryErrorRequestErrorCategory =
-  /*@__PURE__*/ S.String;
+export const CreateSdkTelemetryErrorRequestErrorCategory = S.String;
 
 /** Component Stack */
 export type CreateSdkTelemetryErrorRequestErrorComponentStackList =
@@ -6356,8 +6341,7 @@ export type CreateSdkTelemetryErrorRequestErrorSeverity =
   | "error"
   | "warning"
   | "info";
-export const CreateSdkTelemetryErrorRequestErrorSeverity =
-  /*@__PURE__*/ S.String;
+export const CreateSdkTelemetryErrorRequestErrorSeverity = S.String;
 
 export interface CreateSdkTelemetryErrorRequestError {
   /** Error category */
@@ -6395,8 +6379,7 @@ export type CreateSdkTelemetryErrorRequestMetadataEnvironment =
   | "local"
   | "partners"
   | "sandbox";
-export const CreateSdkTelemetryErrorRequestMetadataEnvironment =
-  /*@__PURE__*/ S.String;
+export const CreateSdkTelemetryErrorRequestMetadataEnvironment = S.String;
 
 export interface CreateSdkTelemetryErrorRequestMetadata {
   /** SDK runtime environment */
@@ -6504,7 +6487,7 @@ export const CreateTimeoffRequestTimeoffDaysList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateTimeoffRequestTimeoffDaysList>;
 
 export type CreateTimeoffRequestStatus = "approved";
-export const CreateTimeoffRequestStatus = /*@__PURE__*/ S.String;
+export const CreateTimeoffRequestStatus = S.String;
 
 export interface CreateTimeoffRequest {
   document?: TimeoffDocumentParams;
@@ -6665,7 +6648,7 @@ export type TimesheetStatus =
   | "approved"
   | "in_calibration"
   | "processed";
-export const TimesheetStatus = /*@__PURE__*/ S.String;
+export const TimesheetStatus = S.String;
 
 /** A lightweight timesheet representation returned after create and approve operations. Contains basic identification and status fields but not the detailed hours breakdown or time tracking entries. */
 export interface MinimalTimesheet {
@@ -6899,8 +6882,7 @@ export type CreateWebhookCallbackRequestSubscribedEventsItem =
   | "work_authorization.declined_by_manager"
   | "work_authorization.declined_by_remote"
   | "work_authorization.requested";
-export const CreateWebhookCallbackRequestSubscribedEventsItem =
-  /*@__PURE__*/ S.String;
+export const CreateWebhookCallbackRequestSubscribedEventsItem = S.String;
 
 export type CreateWebhookCallbackRequestSubscribedEventsList = Array<
   CreateWebhookCallbackRequestSubscribedEventsItem | (string & {})
@@ -7042,7 +7024,7 @@ export type WebhookCallbackSubscribedEventsItem =
   | "work_authorization.declined_by_manager"
   | "work_authorization.declined_by_remote"
   | "work_authorization.requested";
-export const WebhookCallbackSubscribedEventsItem = /*@__PURE__*/ S.String;
+export const WebhookCallbackSubscribedEventsItem = S.String;
 
 export type WebhookCallbackSubscribedEventsList =
   Array<WebhookCallbackSubscribedEventsItem>;
@@ -7144,7 +7126,7 @@ export type ReplayWebhookEventsParams =
   | IdsRequiredParams
   | BeforeAfterRequiredParams;
 export const ReplayWebhookEventsParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplayWebhookEventsParams>;
+  S.Unknown as any as S.Schema<ReplayWebhookEventsParams>;
 
 export interface CreateWebhookEventsReplayRequest {
   body: ReplayWebhookEventsParams;
@@ -7420,7 +7402,7 @@ export const Costs = /*@__PURE__*/ S.suspend(() =>
 
 /** The enrollment status of this benefit for the employee. - `offered`: The benefit has been offered but the employee has not yet enrolled. - `enrolled`: The employee is actively enrolled in this benefit. - `waived`: The employee declined or opted out of this benefit. */
 export type BenefitStatus = "offered" | "enrolled" | "waived";
-export const BenefitStatus = /*@__PURE__*/ S.String;
+export const BenefitStatus = S.String;
 
 /** Benefits with status enrolled have their summed costs in costs. Benefits with status offered have their summed costs in projected_costs. Benefit-offers where the employer opted-out have benefit_tier: null in the response. */
 export interface Benefit {
@@ -7483,7 +7465,7 @@ export type CountryContractorProductsAvailableItem =
   | "standard"
   | "plus"
   | "cor";
-export const CountryContractorProductsAvailableItem = /*@__PURE__*/ S.String;
+export const CountryContractorProductsAvailableItem = S.String;
 
 /** Contractor product names available for this country */
 export type CountryContractorProductsAvailableList = Array<
@@ -7866,13 +7848,13 @@ export const BenefitRenewalRequestsListBenefitRenewalRequestResponse =
 export type GetBenefitRenewalRequestSchemaRequestJsonSchemaVersionCase1 =
   "latest";
 export const GetBenefitRenewalRequestSchemaRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetBenefitRenewalRequestSchemaRequestJsonSchemaVersion =
   | number
   | GetBenefitRenewalRequestSchemaRequestJsonSchemaVersionCase1;
 export const GetBenefitRenewalRequestSchemaRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetBenefitRenewalRequestSchemaRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetBenefitRenewalRequestSchemaRequestJsonSchemaVersion>;
 
 export interface GetBenefitRenewalRequestSchemaRequest {
   /** Benefit Renewal Request Id */
@@ -8175,7 +8157,7 @@ export type BillingDocumentsResponseDataBillingDocumentsItemBillingDocumentType 
   | "supplemental_service_invoice"
   | "reconciliation_credit_note";
 export const BillingDocumentsResponseDataBillingDocumentsItemBillingDocumentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BillingDocumentsResponseDataBillingDocumentsItem {
   /** The entity issuing the billing document. Null if not applicable. */
@@ -8337,7 +8319,7 @@ export const PersonalDetailsRedactedFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PersonalDetailsRedactedFieldsList>;
 
 export type PersonalDetailsTitle = "mr" | "mrs" | "miss" | "ms" | "mx";
-export const PersonalDetailsTitle = /*@__PURE__*/ S.String;
+export const PersonalDetailsTitle = S.String;
 
 /** Personal details for a user, includes sensitive information */
 export interface PersonalDetails {
@@ -8388,7 +8370,7 @@ export type MinimalUserStatus =
   | "draft"
   | "created"
   | "initiated";
-export const MinimalUserStatus = /*@__PURE__*/ S.String;
+export const MinimalUserStatus = S.String;
 
 export interface MinimalUser {
   /** The email used for authentication. It may be hidden in case no permission is given to see sensible data. */
@@ -8411,10 +8393,10 @@ export const MinimalUser = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MinimalUser" }) as any as S.Schema<MinimalUser>;
 
 export type EmailStatus = "pending" | "confirmed" | "deleted";
-export const EmailStatus = /*@__PURE__*/ S.String;
+export const EmailStatus = S.String;
 
 export type EmailType = "login" | "personal" | "work";
-export const EmailType = /*@__PURE__*/ S.String;
+export const EmailType = S.String;
 
 export interface Email {
   address: string;
@@ -8437,14 +8419,14 @@ export const Email = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates which email type the account login is synchronized with. */
 export type AccountsLoginSyncedWith = "none" | "personal" | "work";
-export const AccountsLoginSyncedWith = /*@__PURE__*/ S.String;
+export const AccountsLoginSyncedWith = S.String;
 
 export type AccountsAccountPersonalEmail = string | Email;
 export const AccountsAccountPersonalEmail =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsAccountPersonalEmail>;
+  S.Unknown as any as S.Schema<AccountsAccountPersonalEmail>;
 
 export type AccountsAccountStatus = "created" | "active" | "deleted" | "locked";
-export const AccountsAccountStatus = /*@__PURE__*/ S.String;
+export const AccountsAccountStatus = S.String;
 
 /** An Account */
 export interface AccountsAccount {
@@ -8480,14 +8462,14 @@ export type AccountsAssignedRolesItemDataScope =
   | "direct_and_indirect_reports"
   | "employment_company_structure_nodes"
   | "onboarding_reports";
-export const AccountsAssignedRolesItemDataScope = /*@__PURE__*/ S.String;
+export const AccountsAssignedRolesItemDataScope = S.String;
 
 export type AccountsAssignedRolesItemType =
   | "default"
   | "custom"
   | "template"
   | "owner";
-export const AccountsAssignedRolesItemType = /*@__PURE__*/ S.String;
+export const AccountsAssignedRolesItemType = S.String;
 
 export interface AccountsAssignedRolesItem {
   data_scope?: AccountsAssignedRolesItemDataScope;
@@ -8525,7 +8507,7 @@ export const AccountUserIntegrationUserIntegration = /*@__PURE__*/ S.suspend(
 
 /** Whether this mapping represents a synced employee or a company admin */
 export type AccountUserIntegrationUserRole = "employee" | "employer";
-export const AccountUserIntegrationUserRole = /*@__PURE__*/ S.String;
+export const AccountUserIntegrationUserRole = S.String;
 
 export interface AccountUserIntegrationUser {
   external_user_id: string;
@@ -8572,8 +8554,7 @@ export type BulkEmploymentImportJobInsertedByCase1Role =
   | "freelancer"
   | "service_provider"
   | "candidate";
-export const BulkEmploymentImportJobInsertedByCase1Role =
-  /*@__PURE__*/ S.String;
+export const BulkEmploymentImportJobInsertedByCase1Role = S.String;
 
 export interface BulkEmploymentImportJobInsertedByCase1 {
   account?: AccountsAccount | null;
@@ -8610,7 +8591,7 @@ export type BulkEmploymentImportJobInsertedBy =
   | MinimalUser
   | BulkEmploymentImportJobInsertedByCase1;
 export const BulkEmploymentImportJobInsertedBy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkEmploymentImportJobInsertedBy>;
+  S.Unknown as any as S.Schema<BulkEmploymentImportJobInsertedBy>;
 
 export interface BulkEmploymentImportJobLegalEntity {
   name?: string;
@@ -8631,7 +8612,7 @@ export type BulkEmploymentImportJobStage =
   | "column_mapping"
   | "validation"
   | "submission";
-export const BulkEmploymentImportJobStage = /*@__PURE__*/ S.String;
+export const BulkEmploymentImportJobStage = S.String;
 
 /** * `draft` - **Deprecated**, the import job data has been uploaded and the job created, but not yet started * `uploaded` - **Deprecated**, replaced by the `draft` status * `in_progress` - Data is actively being imported * `finished` - The import job has finished processing * `failed` - The import job has failed completely, nothing has been imported */
 export type BulkEmploymentImportJobStatus =
@@ -8640,7 +8621,7 @@ export type BulkEmploymentImportJobStatus =
   | "in_progress"
   | "finished"
   | "failed";
-export const BulkEmploymentImportJobStatus = /*@__PURE__*/ S.String;
+export const BulkEmploymentImportJobStatus = S.String;
 
 export interface BulkEmploymentImportJob {
   /** The column mapping for the import job. For times when imported data columns do not match the schema fields and need to be manually mapped to the correct schema fields. */
@@ -8801,7 +8782,7 @@ export type ImportJobRowErrorsValue =
   | ImportJobRowErrorsValueCase0List
   | unknown;
 export const ImportJobRowErrorsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ImportJobRowErrorsValue>;
+  S.Unknown as any as S.Schema<ImportJobRowErrorsValue>;
 
 /** Fields with their error messages */
 export type ImportJobRowErrorsMap = {
@@ -8927,7 +8908,7 @@ export type ImportJobRowStatus =
   | "deleted"
   | "skipped"
   | "retryable";
-export const ImportJobRowStatus = /*@__PURE__*/ S.String;
+export const ImportJobRowStatus = S.String;
 
 export type ImportJobRowErrorMessagesList = Array<string>;
 export const ImportJobRowErrorMessagesList = /*@__PURE__*/ S.Array(
@@ -9104,18 +9085,17 @@ export const CompaniesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CompaniesResponse>;
 
 export type GetCompaniesSchemaRequestForm = "address_details";
-export const GetCompaniesSchemaRequestForm = /*@__PURE__*/ S.String;
+export const GetCompaniesSchemaRequestForm = S.String;
 
 /** Use latest version */
 export type GetCompaniesSchemaRequestJsonSchemaVersionCase1 = "latest";
-export const GetCompaniesSchemaRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+export const GetCompaniesSchemaRequestJsonSchemaVersionCase1 = S.String;
 
 export type GetCompaniesSchemaRequestJsonSchemaVersion =
   | number
   | GetCompaniesSchemaRequestJsonSchemaVersionCase1;
 export const GetCompaniesSchemaRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCompaniesSchemaRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetCompaniesSchemaRequestJsonSchemaVersion>;
 
 export interface GetCompaniesSchemaRequest {
   /** Country code according to ISO 3-digit alphabetic codes. */
@@ -9183,7 +9163,7 @@ export const GetCompanyActionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The action the company still needs to complete. */
 export type CompanyActionType = "verify_company" | "setup_remote_payments";
-export const CompanyActionType = /*@__PURE__*/ S.String;
+export const CompanyActionType = S.String;
 
 /** A pending company-level action (e.g. for Contractor Management Review-step banners). */
 export interface CompanyAction {
@@ -9257,7 +9237,7 @@ export type CompanyComplianceProfileCreditRiskStatus =
   | "fail"
   | "deposit_required"
   | "no_deposit_required";
-export const CompanyComplianceProfileCreditRiskStatus = /*@__PURE__*/ S.String;
+export const CompanyComplianceProfileCreditRiskStatus = S.String;
 
 /** Status of the LegalEntity's internal KYB/BOC process */
 export type CompanyComplianceProfileKybStatus =
@@ -9268,7 +9248,7 @@ export type CompanyComplianceProfileKybStatus =
   | "pass"
   | "fail"
   | "unresponsive";
-export const CompanyComplianceProfileKybStatus = /*@__PURE__*/ S.String;
+export const CompanyComplianceProfileKybStatus = S.String;
 
 export interface CompanyComplianceProfile {
   /** Credit risk status of the LegalEntity */
@@ -9312,8 +9292,7 @@ export type GetCompanyCostCenterAllocationsRequestStatus =
   | "active"
   | "scheduled"
   | "expired";
-export const GetCompanyCostCenterAllocationsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const GetCompanyCostCenterAllocationsRequestStatus = S.String;
 
 export interface GetCompanyCostCenterAllocationsRequest {
   /** Company ID */
@@ -9364,7 +9343,7 @@ export const CostCenter = /*@__PURE__*/ S.suspend(() =>
 
 /** Allocation status, derived from the effective period. */
 export type CostCenterAllocationStatus = "active" | "scheduled" | "expired";
-export const CostCenterAllocationStatus = /*@__PURE__*/ S.String;
+export const CostCenterAllocationStatus = S.String;
 
 /** A cost center allocation for an employment, including the allocated percentage and effective period. */
 export interface CostCenterAllocation {
@@ -9618,7 +9597,7 @@ export type OnboardingReservesStatusStatus =
   | "fail"
   | "deposit_required"
   | "no_deposit_required";
-export const OnboardingReservesStatusStatus = /*@__PURE__*/ S.String;
+export const OnboardingReservesStatusStatus = S.String;
 
 export interface OnboardingReservesStatus {
   /** List of applicable onboarding reserves policies */
@@ -10252,7 +10231,7 @@ export type MinimalContractAmendmentReasonForChange =
   | "job_change_reevaluation"
   | "promotion"
   | "other";
-export const MinimalContractAmendmentReasonForChange = /*@__PURE__*/ S.String;
+export const MinimalContractAmendmentReasonForChange = S.String;
 
 /** A lightweight contract amendment representation used in list responses. */
 export interface MinimalContractAmendment {
@@ -10328,18 +10307,18 @@ export const ListContractAmendmentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListContractAmendmentResponse>;
 
 export type GetContractAmendmentsSchemaRequestForm = "contract_amendment";
-export const GetContractAmendmentsSchemaRequestForm = /*@__PURE__*/ S.String;
+export const GetContractAmendmentsSchemaRequestForm = S.String;
 
 /** Use latest version */
 export type GetContractAmendmentsSchemaRequestJsonSchemaVersionCase1 = "latest";
 export const GetContractAmendmentsSchemaRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetContractAmendmentsSchemaRequestJsonSchemaVersion =
   | number
   | GetContractAmendmentsSchemaRequestJsonSchemaVersionCase1;
 export const GetContractAmendmentsSchemaRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetContractAmendmentsSchemaRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetContractAmendmentsSchemaRequestJsonSchemaVersion>;
 
 export interface GetContractAmendmentsSchemaRequest {
   /** The ID of the employment concerned by the contract amendment request. */
@@ -10394,7 +10373,7 @@ export const GetContractorInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Current types. - `manual`: Item manually entered when creating invoice. - `time_tracking`: Item generated by time tracking. - `expense`: Item that represents an expense included in the invoice. */
 export type ContractorInvoiceItemType = "manual" | "time_tracking" | "expense";
-export const ContractorInvoiceItemType = /*@__PURE__*/ S.String;
+export const ContractorInvoiceItemType = S.String;
 
 /** Line Item schema for a Contractor Invoice. */
 export interface ContractorInvoiceItem {
@@ -10422,11 +10401,11 @@ export const ContractorInvoiceItemsList = /*@__PURE__*/ S.Array(
 
 /** Payment method used for the payout: local (e.g. bank transfer), swift (SHA), or swift_our (OUR). Only present for guaranteed payout invoices. */
 export type ContractorInvoicePayOutMethod = "local" | "swift" | "swift_our";
-export const ContractorInvoicePayOutMethod = /*@__PURE__*/ S.String;
+export const ContractorInvoicePayOutMethod = S.String;
 
 /** Entity responsible for paying the SWIFT fee. Only present when processing_fee is set. */
 export type ContractorInvoiceProcessingFeePayer = "company" | "contractor";
-export const ContractorInvoiceProcessingFeePayer = /*@__PURE__*/ S.String;
+export const ContractorInvoiceProcessingFeePayer = S.String;
 
 /** Current record state. - `enqueued`: An outstanding payment is enqueued to complete the invoice payment. - `externally_paid`: The invoice was paid outside the platform and the employer reported that the contractor was paid. - `issued`: This invoice has been uploaded by the contractor. - `in_review`: This invoice has been uploaded by the contractor and is in the process of review by Remote. This is only expected for Contractor of Record invoices. - `paid_out`: This invoice has been paid out to contractor. This is the final expected stage of a contractor invoice. - `pay_out_failed`: There were issues paying out to the contractor. This is usually caused by a balance issue, an issue with the contractor's bank account, or another type error that comes from payment partner. - `pending_payment`: An outstanding payment has been created for this invoice and is awaiting the company payment before payout begins. - `processing`: The invoice is being processed for pay out. This status should only exist for a few seconds. - `rejected`: This invoice has been rejected by the the company or Remote support team, when requested by customers. It cannot be rejected if it's already paid. - `rejected_by_remote`: This invoice has been rejected by Remote during the Contractor of Record approval process. - `funds_returned`: A pay out was successfully attempted for the invoice, but the funds were rejected by the contractor's bank, either due to incorrect details or some other reason. - `manual_payout`: The invoice is not supported by our automated systems and must instead be manually paid by internal Remote teams. - `blocked`: The invoice is marked as blocked. It will not be paid out. */
 export type ContractorInvoiceStatus =
@@ -10448,7 +10427,7 @@ export type ContractorInvoiceStatus =
   | "paid_out"
   | "pay_out_failed"
   | "funds_returned";
-export const ContractorInvoiceStatus = /*@__PURE__*/ S.String;
+export const ContractorInvoiceStatus = S.String;
 
 /** Contractor Invoice */
 export interface ContractorInvoice {
@@ -10553,10 +10532,10 @@ export type GetContractorInvoicesRequestSortBy =
   | "due_date"
   | "approved_at"
   | "paid_out_at";
-export const GetContractorInvoicesRequestSortBy = /*@__PURE__*/ S.String;
+export const GetContractorInvoicesRequestSortBy = S.String;
 
 export type GetContractorInvoicesRequestOrder = "asc" | "desc";
-export const GetContractorInvoicesRequestOrder = /*@__PURE__*/ S.String;
+export const GetContractorInvoicesRequestOrder = S.String;
 
 export interface GetContractorInvoicesRequest {
   /** Filters contractor invoices by status matching the value. */
@@ -10685,7 +10664,7 @@ export type ContractorInvoiceScheduleStatus =
   | "pending_company_action"
   | "pending_contractor_action"
   | "generation_failed_unrelated_to_withdrawal_method";
-export const ContractorInvoiceScheduleStatus = /*@__PURE__*/ S.String;
+export const ContractorInvoiceScheduleStatus = S.String;
 
 /** Contractor Invoice Schedule. */
 export interface ContractorInvoiceSchedule {
@@ -10763,7 +10742,7 @@ export type ContractorInvoiceScheduleStatusFilter =
   | "pending_company_action"
   | "pending_contractor_action"
   | "generation_failed_unrelated_to_withdrawal_method";
-export const ContractorInvoiceScheduleStatusFilter = /*@__PURE__*/ S.String;
+export const ContractorInvoiceScheduleStatusFilter = S.String;
 
 export type GetContractorInvoiceSchedulesRequestSortBy =
   | "number"
@@ -10771,11 +10750,10 @@ export type GetContractorInvoiceSchedulesRequestSortBy =
   | "next_invoice_at"
   | "start_date"
   | "nr_occurrences";
-export const GetContractorInvoiceSchedulesRequestSortBy =
-  /*@__PURE__*/ S.String;
+export const GetContractorInvoiceSchedulesRequestSortBy = S.String;
 
 export type GetContractorInvoiceSchedulesRequestOrder = "asc" | "desc";
-export const GetContractorInvoiceSchedulesRequestOrder = /*@__PURE__*/ S.String;
+export const GetContractorInvoiceSchedulesRequestOrder = S.String;
 
 export interface GetContractorInvoiceSchedulesRequest {
   /** Filters contractor invoice schedules by start date greater than or equal to the value. */
@@ -10882,8 +10860,7 @@ export type GetContractorsCorTerminationRequestsRequestStatus =
   | "initiated"
   | "executed"
   | "cancelled";
-export const GetContractorsCorTerminationRequestsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const GetContractorsCorTerminationRequestsRequestStatus = S.String;
 
 export interface GetContractorsCorTerminationRequestsRequest {
   /** Filter termination requests by employment ID. */
@@ -10920,7 +10897,7 @@ export type CorTerminationRequestStatus =
   | "initiated"
   | "executed"
   | "cancelled";
-export const CorTerminationRequestStatus = /*@__PURE__*/ S.String;
+export const CorTerminationRequestStatus = S.String;
 
 export interface CorTerminationRequest {
   /** Timestamp of when the termination was cancelled. Null if not cancelled. */
@@ -11021,15 +10998,15 @@ export const GetContractorsEmploymentContractDocumentRequest =
 
 /** Signing method used by this signatory */
 export type SignatorySignatureMethod = "in_platform" | "docusign";
-export const SignatorySignatureMethod = /*@__PURE__*/ S.String;
+export const SignatorySignatureMethod = S.String;
 
 /** Legal signature level applied when signing */
 export type SignatorySignatureType = "standard" | "qes" | "aes" | "ses";
-export const SignatorySignatureType = /*@__PURE__*/ S.String;
+export const SignatorySignatureType = S.String;
 
 /** Current signing status of this signatory */
 export type SignatoryStatus = "pending" | "signed" | "unassigned";
-export const SignatoryStatus = /*@__PURE__*/ S.String;
+export const SignatoryStatus = S.String;
 
 /** The role of this signatory in the contract signing process */
 export type SignatoryType =
@@ -11038,7 +11015,7 @@ export type SignatoryType =
   | "admin"
   | "external"
   | "unknown";
-export const SignatoryType = /*@__PURE__*/ S.String;
+export const SignatoryType = S.String;
 
 /** A signatory on a contract document. For company and employee signatories, `user_id` is provided. For other signatory types, `user_id` is null. */
 export interface Signatory {
@@ -11369,19 +11346,19 @@ export const ListContractorRatesResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetContractorsSchemasEligibilityQuestionnaireRequestType =
   "contractor_of_record";
 export const GetContractorsSchemasEligibilityQuestionnaireRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Use latest version */
 export type GetContractorsSchemasEligibilityQuestionnaireRequestJsonSchemaVersionCase1 =
   "latest";
 export const GetContractorsSchemasEligibilityQuestionnaireRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetContractorsSchemasEligibilityQuestionnaireRequestJsonSchemaVersion =
   | number
   | GetContractorsSchemasEligibilityQuestionnaireRequestJsonSchemaVersionCase1;
 export const GetContractorsSchemasEligibilityQuestionnaireRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetContractorsSchemasEligibilityQuestionnaireRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetContractorsSchemasEligibilityQuestionnaireRequestJsonSchemaVersion>;
 
 export interface GetContractorsSchemasEligibilityQuestionnaireRequest {
   /** Type of eligibility questionnaire */
@@ -11461,7 +11438,7 @@ export const GetCostCalculatorCountriesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** - active: country is ready to onboard employee - coming_soon: country is in process of getting ready */
 export type CostCalculatorCountryAvailability = "active" | "coming_soon";
-export const CostCalculatorCountryAvailability = /*@__PURE__*/ S.String;
+export const CostCalculatorCountryAvailability = S.String;
 
 export type CostCalculatorCountryLevelRegionChildRegionsList =
   Array<MinimalRegion>;
@@ -11623,13 +11600,13 @@ export const CountriesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Use latest version */
 export type GetCountryRequestJsonSchemaVersionCase1 = "latest";
-export const GetCountryRequestJsonSchemaVersionCase1 = /*@__PURE__*/ S.String;
+export const GetCountryRequestJsonSchemaVersionCase1 = S.String;
 
 export type GetCountryRequestJsonSchemaVersion =
   | number
   | GetCountryRequestJsonSchemaVersionCase1;
 export const GetCountryRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCountryRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetCountryRequestJsonSchemaVersion>;
 
 export interface GetCountryRequest {
   /** Country code according to ISO 3-digit alphabetic codes */
@@ -11687,13 +11664,13 @@ export const CountryFormResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetCountryContractorContractDetailsRequestJsonSchemaVersionCase1 =
   "latest";
 export const GetCountryContractorContractDetailsRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetCountryContractorContractDetailsRequestJsonSchemaVersion =
   | number
   | GetCountryContractorContractDetailsRequestJsonSchemaVersionCase1;
 export const GetCountryContractorContractDetailsRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCountryContractorContractDetailsRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetCountryContractorContractDetailsRequestJsonSchemaVersion>;
 
 export interface GetCountryContractorContractDetailsRequest {
   /** Country code according to ISO 3-digit alphabetic codes */
@@ -11887,19 +11864,17 @@ export type GetCountryLegalEntityFormRequestProductType =
   | "peo"
   | "global_payroll"
   | "e2e_payroll";
-export const GetCountryLegalEntityFormRequestProductType =
-  /*@__PURE__*/ S.String;
+export const GetCountryLegalEntityFormRequestProductType = S.String;
 
 /** Use latest version */
 export type GetCountryLegalEntityFormRequestJsonSchemaVersionCase1 = "latest";
-export const GetCountryLegalEntityFormRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+export const GetCountryLegalEntityFormRequestJsonSchemaVersionCase1 = S.String;
 
 export type GetCountryLegalEntityFormRequestJsonSchemaVersion =
   | number
   | GetCountryLegalEntityFormRequestJsonSchemaVersionCase1;
 export const GetCountryLegalEntityFormRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetCountryLegalEntityFormRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetCountryLegalEntityFormRequestJsonSchemaVersion>;
 
 export interface GetCountryLegalEntityFormRequest {
   /** Country code according to ISO 3-digit alphabetic codes */
@@ -12036,7 +12011,7 @@ export type EmploymentCustomFieldValueValue =
   | number
   | EmploymentCustomFieldValueJsonValue;
 export const EmploymentCustomFieldValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmploymentCustomFieldValueValue>;
+  S.Unknown as any as S.Schema<EmploymentCustomFieldValueValue>;
 
 /** The value of a custom field for a specific employment. The type of `value` depends on the custom field's data type. */
 export interface EmploymentCustomFieldValue {
@@ -12078,8 +12053,7 @@ export const EmploymentCustomFieldValueResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EmploymentCustomFieldValueResponse>;
 
 export type GetDirectOffboardingsRequestEmploymentModel = "global_payroll";
-export const GetDirectOffboardingsRequestEmploymentModel =
-  /*@__PURE__*/ S.String;
+export const GetDirectOffboardingsRequestEmploymentModel = S.String;
 
 export interface GetDirectOffboardingsRequest {
   /** Filter by employment ID */
@@ -12114,7 +12088,7 @@ export type DirectOffboardingStatus =
   | "pending_payment_details"
   | "pending_payment"
   | "completed";
-export const DirectOffboardingStatus = /*@__PURE__*/ S.String;
+export const DirectOffboardingStatus = S.String;
 
 /** The type of offboarding. */
 export type DirectOffboardingType =
@@ -12123,7 +12097,7 @@ export type DirectOffboardingType =
   | "mutual_agreement"
   | "retirement"
   | "end_of_contract";
-export const DirectOffboardingType = /*@__PURE__*/ S.String;
+export const DirectOffboardingType = S.String;
 
 /** A Global Payroll employment's offboarding record. */
 export interface DirectOffboarding {
@@ -12201,13 +12175,13 @@ export const ListDirectOffboardingResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetEmployeeAddressRequestAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const GetEmployeeAddressRequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEmployeeAddressRequestAddressDetailsJsonSchemaVersion =
   | number
   | GetEmployeeAddressRequestAddressDetailsJsonSchemaVersionCase1;
 export const GetEmployeeAddressRequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmployeeAddressRequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetEmployeeAddressRequestAddressDetailsJsonSchemaVersion>;
 
 export interface GetEmployeeAddressRequest {
   /** Version of the address_details form schema */
@@ -12236,7 +12210,7 @@ export type EmploymentDetailsOnlyResponseDataEmploymentContractOrigin =
   | "custom_remote_contract"
   | "provided_by_customer";
 export const EmploymentDetailsOnlyResponseDataEmploymentContractOrigin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current status of the employment record. - `active`: The employee is fully onboarded and actively working. - `created`: The employment has been created but onboarding has not started. - `pre_hire`: A pre-hire employment record, created before formal onboarding begins. - `created_awaiting_reserve`: The employment is created but waiting for a risk reserve deposit to be paid. - `created_reserve_paid`: The risk reserve has been paid and the employment can proceed with onboarding. - `initiated`: Onboarding has been started by the employer. - `invited`: The employee has been invited to complete their self-enrollment on Remote. - `pending`: The employment is pending review or further action before it can become active. - `review`: The employment is under review by Remote (e.g., contract or compliance review). - `archived`: The employment has been terminated or offboarded. - `deleted`: The employment record has been deleted. */
 export type EmploymentStatus =
@@ -12254,7 +12228,7 @@ export type EmploymentStatus =
   | "offboarding"
   | "archived"
   | "deleted";
-export const EmploymentStatus = /*@__PURE__*/ S.String;
+export const EmploymentStatus = S.String;
 
 /** The type of employment. */
 export type EmploymentDetailsOnlyResponseDataEmploymentType =
@@ -12262,8 +12236,7 @@ export type EmploymentDetailsOnlyResponseDataEmploymentType =
   | "contractor"
   | "direct_employee"
   | "global_payroll_employee";
-export const EmploymentDetailsOnlyResponseDataEmploymentType =
-  /*@__PURE__*/ S.String;
+export const EmploymentDetailsOnlyResponseDataEmploymentType = S.String;
 
 /** The status of the user account associated with this employment. - `active`: The user account is active and the user can log in. - `created`: The user account has been created but not yet activated. - `initiated`: The user has been invited but has not completed registration. - `cancelled`: The user account was cancelled before activation. - `inactive`: The user account has been deactivated (e.g., after offboarding). - `deleted`: The user account has been deleted. */
 export type UserStatus =
@@ -12273,7 +12246,7 @@ export type UserStatus =
   | "cancelled"
   | "inactive"
   | "deleted";
-export const UserStatus = /*@__PURE__*/ S.String;
+export const UserStatus = S.String;
 
 export interface EmploymentDetailsOnlyResponseDataEmployment {
   /** Home address information. Its properties may vary depending on the country. Null if the employee has not submitted their address yet. */
@@ -12358,13 +12331,13 @@ export const EmploymentDetailsOnlyResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const GetEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion =
   | number
   | GetEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersionCase1;
 export const GetEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion>;
 
 export interface GetEmployeeBankAccountRequest {
   /** Version of the bank_account_details form schema */
@@ -12467,10 +12440,10 @@ export type GetEmployeeDocumentsRequestSortBy =
   | "related_to"
   | "sub_type"
   | "uploaded_by";
-export const GetEmployeeDocumentsRequestSortBy = /*@__PURE__*/ S.String;
+export const GetEmployeeDocumentsRequestSortBy = S.String;
 
 export type GetEmployeeDocumentsRequestOrder = "asc" | "desc";
-export const GetEmployeeDocumentsRequestOrder = /*@__PURE__*/ S.String;
+export const GetEmployeeDocumentsRequestOrder = S.String;
 
 export interface GetEmployeeDocumentsRequest {
   /** Starts fetching records after the given page */
@@ -12543,13 +12516,13 @@ export const ListDocumentsResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
   "latest";
 export const GetEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion =
   | number
   | GetEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1;
 export const GetEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion>;
 
 export interface GetEmployeeEmergencyContactRequest {
   /** Version of the emergency_contact_details form schema */
@@ -12712,15 +12685,14 @@ export type LeavePolicyDetailsLeavePolicyVariantIdCase1 =
   | "casual_leave"
   | "rol"
   | "ex_festivita";
-export const LeavePolicyDetailsLeavePolicyVariantIdCase1 =
-  /*@__PURE__*/ S.String;
+export const LeavePolicyDetailsLeavePolicyVariantIdCase1 = S.String;
 
 /** The ID of the leave policy variant */
 export type LeavePolicyDetailsLeavePolicyVariantId =
   | string
   | LeavePolicyDetailsLeavePolicyVariantIdCase1;
 export const LeavePolicyDetailsLeavePolicyVariantId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LeavePolicyDetailsLeavePolicyVariantId>;
+  S.Unknown as any as S.Schema<LeavePolicyDetailsLeavePolicyVariantId>;
 
 /** Leave Policy Details */
 export interface LeavePolicyDetails {
@@ -12775,7 +12747,7 @@ export const GetEmployeeLeavePoliciesSummaryRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetEmployeeLeavePoliciesSummaryRequest>;
 
 export type UnlimitedDaysandHoursResponseType = "unlimited";
-export const UnlimitedDaysandHoursResponseType = /*@__PURE__*/ S.String;
+export const UnlimitedDaysandHoursResponseType = S.String;
 
 export interface UnlimitedDaysandHoursResponse {
   type: UnlimitedDaysandHoursResponseType;
@@ -12789,7 +12761,7 @@ export const UnlimitedDaysandHoursResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UnlimitedDaysandHoursResponse>;
 
 export type LimitedDaysandHoursResponseType = "limited";
-export const LimitedDaysandHoursResponseType = /*@__PURE__*/ S.String;
+export const LimitedDaysandHoursResponseType = S.String;
 
 /** Includes requested timeoffs (not approved) in the past or in the future. */
 export interface LimitedDaysandHoursResponse {
@@ -12812,24 +12784,24 @@ export type LeavePolicySummaryAnnualBalance =
   | UnlimitedDaysandHoursResponse
   | LimitedDaysandHoursResponse;
 export const LeavePolicySummaryAnnualBalance =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LeavePolicySummaryAnnualBalance>;
+  S.Unknown as any as S.Schema<LeavePolicySummaryAnnualBalance>;
 
 /** The annual entitlement represents what an employee is entitled to in the current entitlement period. It does not account for any accrued value. */
 export type LeavePolicySummaryAnnualEntitlement =
   | UnlimitedDaysandHoursResponse
   | LimitedDaysandHoursResponse;
 export const LeavePolicySummaryAnnualEntitlement =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LeavePolicySummaryAnnualEntitlement>;
+  S.Unknown as any as S.Schema<LeavePolicySummaryAnnualEntitlement>;
 
 /** The balance is the entitlement minus the taken timeoff (i.e 10 entitlement - 3 taken = 7 balance) */
 export type LeavePolicySummaryBalance =
   | UnlimitedDaysandHoursResponse
   | LimitedDaysandHoursResponse;
 export const LeavePolicySummaryBalance =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LeavePolicySummaryBalance>;
+  S.Unknown as any as S.Schema<LeavePolicySummaryBalance>;
 
 export type LeavePolicySummaryBookedType = "limited";
-export const LeavePolicySummaryBookedType = /*@__PURE__*/ S.String;
+export const LeavePolicySummaryBookedType = S.String;
 
 /** Includes all upcoming requested time off. */
 export interface LeavePolicySummaryBooked {
@@ -12852,7 +12824,7 @@ export type LeavePolicySummaryCurrentEntitlement =
   | UnlimitedDaysandHoursResponse
   | LimitedDaysandHoursResponse;
 export const LeavePolicySummaryCurrentEntitlement =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LeavePolicySummaryCurrentEntitlement>;
+  S.Unknown as any as S.Schema<LeavePolicySummaryCurrentEntitlement>;
 
 export type EmployeeLeavePolicyLeavePolicyVariantIdCase1 =
   | "time_off"
@@ -12873,18 +12845,17 @@ export type EmployeeLeavePolicyLeavePolicyVariantIdCase1 =
   | "casual_leave"
   | "rol"
   | "ex_festivita";
-export const EmployeeLeavePolicyLeavePolicyVariantIdCase1 =
-  /*@__PURE__*/ S.String;
+export const EmployeeLeavePolicyLeavePolicyVariantIdCase1 = S.String;
 
 /** The ID of the leave policy variant */
 export type EmployeeLeavePolicyLeavePolicyVariantId =
   | string
   | EmployeeLeavePolicyLeavePolicyVariantIdCase1;
 export const EmployeeLeavePolicyLeavePolicyVariantId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EmployeeLeavePolicyLeavePolicyVariantId>;
+  S.Unknown as any as S.Schema<EmployeeLeavePolicyLeavePolicyVariantId>;
 
 export type EmployeeLeavePolicyUnit = "days" | "hours" | "unlimited";
-export const EmployeeLeavePolicyUnit = /*@__PURE__*/ S.String;
+export const EmployeeLeavePolicyUnit = S.String;
 
 /** Leave Policy abstraction representation for the employee */
 export interface EmployeeLeavePolicy {
@@ -12908,7 +12879,7 @@ export const EmployeeLeavePolicy = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EmployeeLeavePolicy>;
 
 export type LeavePolicySummaryPendingApprovalType = "limited";
-export const LeavePolicySummaryPendingApprovalType = /*@__PURE__*/ S.String;
+export const LeavePolicySummaryPendingApprovalType = S.String;
 
 /** Includes requested timeoffs (not approved) in the past or in the future. */
 export interface LeavePolicySummaryPendingApproval {
@@ -12927,7 +12898,7 @@ export const LeavePolicySummaryPendingApproval = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LeavePolicySummaryPendingApproval>;
 
 export type LeavePolicySummaryTakenType = "limited";
-export const LeavePolicySummaryTakenType = /*@__PURE__*/ S.String;
+export const LeavePolicySummaryTakenType = S.String;
 
 /** Includes all time off (past and future, pending or approved). */
 export interface LeavePolicySummaryTaken {
@@ -12946,7 +12917,7 @@ export const LeavePolicySummaryTaken = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LeavePolicySummaryTaken>;
 
 export type LeavePolicySummaryUpcomingApprovedType = "limited";
-export const LeavePolicySummaryUpcomingApprovedType = /*@__PURE__*/ S.String;
+export const LeavePolicySummaryUpcomingApprovedType = S.String;
 
 /** Includes all upcoming approved time off. */
 export interface LeavePolicySummaryUpcomingApproved {
@@ -12965,7 +12936,7 @@ export const LeavePolicySummaryUpcomingApproved = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LeavePolicySummaryUpcomingApproved>;
 
 export type LeavePolicySummaryUpcomingRequestedType = "limited";
-export const LeavePolicySummaryUpcomingRequestedType = /*@__PURE__*/ S.String;
+export const LeavePolicySummaryUpcomingRequestedType = S.String;
 
 /** Includes all upcoming requested time off. */
 export interface LeavePolicySummaryUpcomingRequested {
@@ -12984,7 +12955,7 @@ export const LeavePolicySummaryUpcomingRequested = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LeavePolicySummaryUpcomingRequested>;
 
 export type LeavePolicySummaryUsedType = "limited";
-export const LeavePolicySummaryUsedType = /*@__PURE__*/ S.String;
+export const LeavePolicySummaryUsedType = S.String;
 
 /** Includes only approved time off in the past. */
 export interface LeavePolicySummaryUsed {
@@ -13307,13 +13278,13 @@ export const ListEmployeePayslipsResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1 =
   "latest";
 export const GetEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion =
   | number
   | GetEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1;
 export const GetEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion>;
 
 export interface GetEmployeePersonalDetailsRequest {
   /** Version of the personal_details form schema */
@@ -13437,7 +13408,7 @@ export const GetEmploymentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** How often Remote bills the employer for management fees. Annual billing typically offers a discount. */
 export type PricingPlanDetailsFrequency = "annually" | "monthly";
-export const PricingPlanDetailsFrequency = /*@__PURE__*/ S.String;
+export const PricingPlanDetailsFrequency = S.String;
 
 /** Selected type of payment. */
 export interface PricingPlanDetails {
@@ -13458,7 +13429,7 @@ export type EmploymentShowResponseDataEmploymentType =
   | "contractor"
   | "direct_employee"
   | "global_payroll_employee";
-export const EmploymentShowResponseDataEmploymentType = /*@__PURE__*/ S.String;
+export const EmploymentShowResponseDataEmploymentType = S.String;
 
 /** Contractor-specific settings. Only present for contractor employments. */
 export interface EmploymentShowResponseDataEmploymentContractorSettings {
@@ -13479,8 +13450,7 @@ export type EmploymentShowResponseDataEmploymentContractorType =
   | "standard"
   | "cor"
   | "plus";
-export const EmploymentShowResponseDataEmploymentContractorType =
-  /*@__PURE__*/ S.String;
+export const EmploymentShowResponseDataEmploymentContractorType = S.String;
 
 export interface EmploymentShowResponseDataEmploymentContractorRateAmountCurrency {
   /** Currency code (e.g., USD, EUR) */
@@ -13520,7 +13490,7 @@ export type EmploymentShowResponseDataEmploymentContractorRatePayFrequency =
   | "semi_monthly"
   | "monthly";
 export const EmploymentShowResponseDataEmploymentContractorRatePayFrequency =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Rate type indicating billing frequency */
 export type EmploymentShowResponseDataEmploymentContractorRateType =
@@ -13529,8 +13499,7 @@ export type EmploymentShowResponseDataEmploymentContractorRateType =
   | "weekly"
   | "monthly"
   | "one_off";
-export const EmploymentShowResponseDataEmploymentContractorRateType =
-  /*@__PURE__*/ S.String;
+export const EmploymentShowResponseDataEmploymentContractorRateType = S.String;
 
 /** Contractor compensation rate details. Only present for contractor employments when rate is configured. */
 export interface EmploymentShowResponseDataEmploymentContractorRate {
@@ -13565,15 +13534,13 @@ export type EmploymentShowResponseDataEmploymentEmploymentModel =
   | "global_payroll"
   | "peo"
   | "eor";
-export const EmploymentShowResponseDataEmploymentEmploymentModel =
-  /*@__PURE__*/ S.String;
+export const EmploymentShowResponseDataEmploymentEmploymentModel = S.String;
 
 export type NullableCountryContractorProductsAvailableItem =
   | "standard"
   | "plus"
   | "cor";
-export const NullableCountryContractorProductsAvailableItem =
-  /*@__PURE__*/ S.String;
+export const NullableCountryContractorProductsAvailableItem = S.String;
 
 /** Contractor product names available for this country */
 export type NullableCountryContractorProductsAvailableList =
@@ -13658,7 +13625,7 @@ export const EmploymentShowResponseDataEmploymentFilesList =
 
 /** The status of the task */
 export type TaskDescriptionStatus = "completed" | "pending";
-export const TaskDescriptionStatus = /*@__PURE__*/ S.String;
+export const TaskDescriptionStatus = S.String;
 
 /** Description and status of an onboarding task. */
 export interface TaskDescription {
@@ -13908,8 +13875,7 @@ export type BackgroundChecksBackgroundCheckRequestItemStatus =
   | "approved"
   | "rejected"
   | "canceled";
-export const BackgroundChecksBackgroundCheckRequestItemStatus =
-  /*@__PURE__*/ S.String;
+export const BackgroundChecksBackgroundCheckRequestItemStatus = S.String;
 
 export interface BackgroundChecksBackgroundCheckRequestItem {
   /** Unique identifier of the background check request item */
@@ -13950,7 +13916,7 @@ export type BackgroundChecksBackgroundCheckStatus =
   | "rejected"
   | "canceled"
   | "submission_failed";
-export const BackgroundChecksBackgroundCheckStatus = /*@__PURE__*/ S.String;
+export const BackgroundChecksBackgroundCheckStatus = S.String;
 
 export interface BackgroundChecksBackgroundCheck {
   /** Individual checks that make up this background check request */
@@ -14005,13 +13971,13 @@ export const BackgroundChecksBackgroundCheckResponse = /*@__PURE__*/ S.suspend(
 export type GetEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersionCase1 =
   "latest";
 export const GetEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion =
   | number
   | GetEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersionCase1;
 export const GetEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion>;
 
 export interface GetEmploymentBasicInformationRequest {
   /** Employment ID */
@@ -14144,13 +14110,13 @@ export const EmploymentsBenefitOffersListBenefitOffers =
 export type GetEmploymentBenefitOffersSchemaRequestJsonSchemaVersionCase1 =
   "latest";
 export const GetEmploymentBenefitOffersSchemaRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetEmploymentBenefitOffersSchemaRequestJsonSchemaVersion =
   | number
   | GetEmploymentBenefitOffersSchemaRequestJsonSchemaVersionCase1;
 export const GetEmploymentBenefitOffersSchemaRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetEmploymentBenefitOffersSchemaRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetEmploymentBenefitOffersSchemaRequestJsonSchemaVersion>;
 
 export interface GetEmploymentBenefitOffersSchemaRequest {
   /** Unique identifier of the employment */
@@ -14422,11 +14388,11 @@ export const GetEmploymentContractDocumentsRequest = /*@__PURE__*/ S.suspend(
 
 /** Signing method used by this signatory */
 export type ListSignatorySignatureMethod = "in_platform" | "docusign";
-export const ListSignatorySignatureMethod = /*@__PURE__*/ S.String;
+export const ListSignatorySignatureMethod = S.String;
 
 /** Legal signature level applied when signing */
 export type ListSignatorySignatureType = "standard" | "qes" | "aes" | "ses";
-export const ListSignatorySignatureType = /*@__PURE__*/ S.String;
+export const ListSignatorySignatureType = S.String;
 
 /** A signatory on a contract document. For company and employee signatories, `user_id` is provided. For other signatory types, `user_id` is null. */
 export interface ListSignatory {
@@ -14555,7 +14521,7 @@ export const GetEmploymentContractsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether the employee is paid hourly or on a salary basis. Null if not yet set. */
 export type CompensationWageType = "hourly" | "salary";
-export const CompensationWageType = /*@__PURE__*/ S.String;
+export const CompensationWageType = S.String;
 
 export interface Compensation {
   /** The compensation amount in cents. Null if compensation is not yet set. */
@@ -14575,7 +14541,7 @@ export const Compensation = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the employment contract. */
 export type EmploymentContractStatus = "active" | "inactive" | "pending";
-export const EmploymentContractStatus = /*@__PURE__*/ S.String;
+export const EmploymentContractStatus = S.String;
 
 export interface EmploymentContract {
   activated_at: string;
@@ -14712,8 +14678,7 @@ export type GetEmploymentCostCenterAllocationsRequestStatus =
   | "active"
   | "scheduled"
   | "expired";
-export const GetEmploymentCostCenterAllocationsRequestStatus =
-  /*@__PURE__*/ S.String;
+export const GetEmploymentCostCenterAllocationsRequestStatus = S.String;
 
 export interface GetEmploymentCostCenterAllocationsRequest {
   /** Employment ID */
@@ -14802,7 +14767,7 @@ export type ListEmploymentCustomFieldValueResponseValue =
   | number
   | EmploymentCustomFieldValueJsonValue;
 export const ListEmploymentCustomFieldValueResponseValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListEmploymentCustomFieldValueResponseValue>;
+  S.Unknown as any as S.Schema<ListEmploymentCustomFieldValueResponseValue>;
 
 /** A custom field value as returned in list responses, including the field definition details alongside the value. */
 export interface ListEmploymentCustomFieldValueResponse {
@@ -15255,7 +15220,7 @@ export const JobCustomFieldValuesItemDefinition = /*@__PURE__*/ S.suspend(() =>
 
 export type JobCustomFieldValuesItemValue = string | number | boolean;
 export const JobCustomFieldValuesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JobCustomFieldValuesItemValue>;
+  S.Unknown as any as S.Schema<JobCustomFieldValuesItemValue>;
 
 export interface JobCustomFieldValuesItem {
   definition?: JobCustomFieldValuesItemDefinition;
@@ -15339,7 +15304,7 @@ export const GetEmploymentOnboardingStepsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Step status */
 export type StepStatus = "not_started" | "in_progress" | "completed" | "failed";
-export const StepStatus = /*@__PURE__*/ S.String;
+export const StepStatus = S.String;
 
 /** Substep status */
 export type SubStepStatus =
@@ -15347,7 +15312,7 @@ export type SubStepStatus =
   | "in_progress"
   | "completed"
   | "failed";
-export const SubStepStatus = /*@__PURE__*/ S.String;
+export const SubStepStatus = S.String;
 
 export interface SubStep {
   completed_at?: string | null;
@@ -15445,7 +15410,7 @@ export type GetEmploymentsRequestEmploymentModel =
   | "global_payroll"
   | "peo"
   | "eor";
-export const GetEmploymentsRequestEmploymentModel = /*@__PURE__*/ S.String;
+export const GetEmploymentsRequestEmploymentModel = S.String;
 
 export interface GetEmploymentsRequest {
   /** Company ID */
@@ -15487,7 +15452,7 @@ export const GetEmploymentsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The employment model. `eor` (Employer of Record), `peo` (Professional Employer Organization), or `global_payroll`. */
 export type MinimalEmploymentEmploymentModel = "eor" | "peo" | "global_payroll";
-export const MinimalEmploymentEmploymentModel = /*@__PURE__*/ S.String;
+export const MinimalEmploymentEmploymentModel = S.String;
 
 /** The type of employment. */
 export type MinimalEmploymentType =
@@ -15495,7 +15460,7 @@ export type MinimalEmploymentType =
   | "contractor"
   | "direct_employee"
   | "global_payroll_employee";
-export const MinimalEmploymentType = /*@__PURE__*/ S.String;
+export const MinimalEmploymentType = S.String;
 
 /** A lightweight employment representation used in list responses. Contains key identification, status, and type fields but not the full onboarding details or country-specific form data. */
 export interface MinimalEmployment {
@@ -15616,7 +15581,7 @@ export type EmploymentType =
   | "contractor"
   | "direct_employee"
   | "global_payroll_employee";
-export const EmploymentType = /*@__PURE__*/ S.String;
+export const EmploymentType = S.String;
 
 /** Contractor-specific settings. Only present for contractor employments. */
 export type EmploymentContractorSettings =
@@ -15626,7 +15591,7 @@ export const EmploymentContractorSettings =
 
 /** Type of contractor product. Only present for contractor employments. 'standard' for Contractor Standard, 'cor' for Contractor of Record, 'plus' for Contractor Plus. */
 export type EmploymentContractorType = "standard" | "cor" | "plus";
-export const EmploymentContractorType = /*@__PURE__*/ S.String;
+export const EmploymentContractorType = S.String;
 
 export type EmploymentContractorRateAmountCurrency =
   EmploymentShowResponseDataEmploymentContractorRateAmountCurrency;
@@ -15644,7 +15609,7 @@ export type EmploymentContractorRatePayFrequency =
   | "bi_weekly"
   | "semi_monthly"
   | "monthly";
-export const EmploymentContractorRatePayFrequency = /*@__PURE__*/ S.String;
+export const EmploymentContractorRatePayFrequency = S.String;
 
 /** Rate type indicating billing frequency */
 export type EmploymentContractorRateType =
@@ -15653,7 +15618,7 @@ export type EmploymentContractorRateType =
   | "weekly"
   | "monthly"
   | "one_off";
-export const EmploymentContractorRateType = /*@__PURE__*/ S.String;
+export const EmploymentContractorRateType = S.String;
 
 /** Contractor compensation rate details. Only present for contractor employments when rate is configured. */
 export interface EmploymentContractorRate {
@@ -15680,7 +15645,7 @@ export const EmploymentContractorRate = /*@__PURE__*/ S.suspend(() =>
 
 /** For the employment models `peo` and `global_payroll`, only [List employments](#operation/get_index_employment) and [Show employment](#operation/get_show_employment) operations are available. */
 export type EmploymentEmploymentModel = "global_payroll" | "peo" | "eor";
-export const EmploymentEmploymentModel = /*@__PURE__*/ S.String;
+export const EmploymentEmploymentModel = S.String;
 
 export type EmploymentBankAccountDetailsList = Array<unknown>;
 export const EmploymentBankAccountDetailsList = /*@__PURE__*/ S.Array(
@@ -16231,7 +16196,7 @@ export type IdentityCurrentResponse =
   | IdentityCompanyAccessTokenResponse
   | IdentityCustomerAccessTokenResponse;
 export const IdentityCurrentResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IdentityCurrentResponse>;
+  S.Unknown as any as S.Schema<IdentityCurrentResponse>;
 
 export type GetIdentityCurrentResponse = IdentityCurrentResponse;
 export const GetIdentityCurrentResponse = /*@__PURE__*/ S.suspend(() =>
@@ -16595,7 +16560,7 @@ export const V2ResignationRequest = /*@__PURE__*/ S.suspend(() =>
 /** The shape depends on the originating request: offboardings that originated from a termination carry a `V2TerminationRequest`; those that originated from a resignation carry a `V2ResignationRequest`. */
 export type V2OffboardingRequest = V2TerminationRequest | V2ResignationRequest;
 export const V2OffboardingRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<V2OffboardingRequest>;
+  S.Unknown as any as S.Schema<V2OffboardingRequest>;
 
 /** The current processing status of the offboarding. - `requested`: The offboarding request has been received and is awaiting review. - `in_review`: Remote is reviewing the request for legal compliance and risks. - `pending_payment`: The offboarding has been approved and submitted to payroll; the employee's final payment is being processed. - `completed`: The offboarding is complete and the employment has been terminated. */
 export type V2OffboardingStatus =
@@ -16603,7 +16568,7 @@ export type V2OffboardingStatus =
   | "in_review"
   | "pending_payment"
   | "completed";
-export const V2OffboardingStatus = /*@__PURE__*/ S.String;
+export const V2OffboardingStatus = S.String;
 
 /** The offboarding type. */
 export type V2OffboardingType =
@@ -16613,7 +16578,7 @@ export type V2OffboardingType =
   | "relocation"
   | "transfer"
   | "conversion";
-export const V2OffboardingType = /*@__PURE__*/ S.String;
+export const V2OffboardingType = S.String;
 
 /** An offboarding record. Top-level fields hold the offboarding's lifecycle state. The nested `request` object holds the immutable creation snapshot of the inputs submitted when the offboarding was created. */
 export interface V2Offboarding {
@@ -16742,7 +16707,7 @@ export type GetOffboardingsRequestType =
   | "relocation"
   | "transfer"
   | "conversion";
-export const GetOffboardingsRequestType = /*@__PURE__*/ S.String;
+export const GetOffboardingsRequestType = S.String;
 
 export interface GetOffboardingsRequest2 {
   /** Filter by Employment ID */
@@ -16933,11 +16898,11 @@ export type PreOnboardingRequirementStatus =
   | "awaiting"
   | "finished"
   | "revised";
-export const PreOnboardingRequirementStatus = /*@__PURE__*/ S.String;
+export const PreOnboardingRequirementStatus = S.String;
 
 /** The requirement type. */
 export type PreOnboardingRequirementType = "document" | "acknowledgement";
-export const PreOnboardingRequirementType = /*@__PURE__*/ S.String;
+export const PreOnboardingRequirementType = S.String;
 
 /** A pre-onboarding requirement (document or acknowledgement) that must be fulfilled before an employee can be onboarded. */
 export interface PreOnboardingRequirement {
@@ -17079,7 +17044,7 @@ export const GetPayrollCalendarRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The frequency at which the payroll calendar is run. */
 export type CycleFrequency = "monthly" | "bi_monthly" | "bi_weekly" | "weekly";
-export const CycleFrequency = /*@__PURE__*/ S.String;
+export const CycleFrequency = S.String;
 
 export interface Cycle {
   employee_inclusion_cutoff_date?: string;
@@ -17378,7 +17343,7 @@ export type PayrollRunStatus =
   | "finalized"
   | "waiting_for_customer_approval"
   | "rejected";
-export const PayrollRunStatus = /*@__PURE__*/ S.String;
+export const PayrollRunStatus = S.String;
 
 /** The type of payroll run. - `main`: The regular recurring payroll for the period. - `one_off`: An ad-hoc payroll run outside the regular cycle, typically for off-cycle payments. - `pro_forma`: A simulated payroll run used for cost estimation purposes. Not actually processed. - `tax_documents`: A payroll run for generating tax-related documents only. - `expenses`: A payroll run dedicated to reimbursing approved expenses. - `parallel`: A supplementary payroll run that runs alongside the main payroll for the same period. */
 export type PayrollRunType =
@@ -17388,7 +17353,7 @@ export type PayrollRunType =
   | "tax_documents"
   | "expenses"
   | "parallel";
-export const PayrollRunType = /*@__PURE__*/ S.String;
+export const PayrollRunType = S.String;
 
 /** A payroll run represents a single payroll processing cycle for a company in a specific country and period. It progresses through statuses from preparation to finalization, and contains cost totals aggregated across all employees included in the run. */
 export interface PayrollRun {
@@ -17589,7 +17554,7 @@ export type MinimalPayrollRunStatus =
   | "finalized"
   | "waiting_for_customer_approval"
   | "rejected";
-export const MinimalPayrollRunStatus = /*@__PURE__*/ S.String;
+export const MinimalPayrollRunStatus = S.String;
 
 /** The type of payroll run. - `main`: Regular recurring payroll. - `one_off`: Ad-hoc off-cycle payment. - `pro_forma`: Simulated run for cost estimation. - `tax_documents`: Tax document generation only. - `expenses`: Dedicated expense reimbursement run. - `parallel`: Supplementary run alongside the main payroll. */
 export type MinimalPayrollRunType =
@@ -17599,7 +17564,7 @@ export type MinimalPayrollRunType =
   | "tax_documents"
   | "expenses"
   | "parallel";
-export const MinimalPayrollRunType = /*@__PURE__*/ S.String;
+export const MinimalPayrollRunType = S.String;
 
 /** A lightweight representation of a payroll run used in list responses. Contains summary information and the total cost, but not the per-employee breakdown or cost category totals. */
 export interface MinimalPayrollRun {
@@ -17965,7 +17930,7 @@ export type ResignationResignation =
   | ResignationBeforeStartDate
   | ResignationAfterStartDate;
 export const ResignationResignation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ResignationResignation>;
+  S.Unknown as any as S.Schema<ResignationResignation>;
 
 /** Resignation details for an offboarding request. The shape depends on whether the employee resigned before or after their employment start date. */
 export interface Resignation {
@@ -18445,14 +18410,13 @@ export const SSOConfigurationDetailsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Use latest version */
 export type GetTestSchemaRequestJsonSchemaVersionCase1 = "latest";
-export const GetTestSchemaRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+export const GetTestSchemaRequestJsonSchemaVersionCase1 = S.String;
 
 export type GetTestSchemaRequestJsonSchemaVersion =
   | number
   | GetTestSchemaRequestJsonSchemaVersionCase1;
 export const GetTestSchemaRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTestSchemaRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<GetTestSchemaRequestJsonSchemaVersion>;
 
 export interface GetTestSchemaRequest {
   /** Version of the form schema */
@@ -18476,13 +18440,13 @@ export type TimeoffStatus2 =
   | "requested"
   | "taken"
   | "cancel_requested";
-export const TimeoffStatus2 = /*@__PURE__*/ S.String;
+export const TimeoffStatus2 = S.String;
 
 export type GetTimeoffRequestOrder = "asc" | "desc";
-export const GetTimeoffRequestOrder = /*@__PURE__*/ S.String;
+export const GetTimeoffRequestOrder = S.String;
 
 export type GetTimeoffRequestSortBy = "timeoff_type" | "status";
-export const GetTimeoffRequestSortBy = /*@__PURE__*/ S.String;
+export const GetTimeoffRequestSortBy = S.String;
 
 export interface GetTimeoffRequest {
   /** Only show time off for a specific employment */
@@ -18534,7 +18498,7 @@ export const GetTimeoffByIdRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Optional query parameter for the List Time Off Types endpoint. - `contractor` — time off types for contractor employments (e.g. includes `time_off`). - `full_time` — time off types for full-time employments (e.g. includes `paid_time_off`). When omitted, the response is unchanged from previous API versions (full-time types). */
 export type TimeoffTypesEmploymentType = "contractor" | "full_time";
-export const TimeoffTypesEmploymentType = /*@__PURE__*/ S.String;
+export const TimeoffTypesEmploymentType = S.String;
 
 export interface GetTimeoffTypesRequest {
   /** Optional. Employment type to list time off types for: `contractor` or `full_time`. Omit for backward-compatible behavior (full-time types). */
@@ -18643,7 +18607,7 @@ export type TimeTrackingType =
   | "unpaid_break"
   | "time_off"
   | "public_holiday";
-export const TimeTrackingType = /*@__PURE__*/ S.String;
+export const TimeTrackingType = S.String;
 
 /** A single time tracking entry within a timesheet, representing a block of work with clock-in/out times. Includes detailed breakdowns of hours by type (regular, overtime, night, weekend, holiday). */
 export interface TimeTracking {
@@ -18766,10 +18730,10 @@ export const TimesheetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TimesheetResponse>;
 
 export type GetTimesheetsRequestOrder = "asc" | "desc";
-export const GetTimesheetsRequestOrder = /*@__PURE__*/ S.String;
+export const GetTimesheetsRequestOrder = S.String;
 
 export type GetTimesheetsRequestSortBy = "submitted_at";
-export const GetTimesheetsRequestSortBy = /*@__PURE__*/ S.String;
+export const GetTimesheetsRequestSortBy = S.String;
 
 export interface GetTimesheetsRequest {
   /** Filter timesheets by their status */
@@ -18873,19 +18837,17 @@ export const TravelLetterUser = /*@__PURE__*/ S.suspend(() =>
 export type TravelLetterRequestResponsibleForAccommodationCost =
   | "employee"
   | "employer";
-export const TravelLetterRequestResponsibleForAccommodationCost =
-  /*@__PURE__*/ S.String;
+export const TravelLetterRequestResponsibleForAccommodationCost = S.String;
 
 /** Who is responsible for meal costs during the trip. Set by the employer during approval. Null if not yet approved. */
 export type TravelLetterRequestResponsibleForMealCost = "employee" | "employer";
-export const TravelLetterRequestResponsibleForMealCost = /*@__PURE__*/ S.String;
+export const TravelLetterRequestResponsibleForMealCost = S.String;
 
 /** Who is responsible for transportation costs. Set by the employer during approval. Null if not yet approved. */
 export type TravelLetterRequestResponsibleForTravelCost =
   | "employee"
   | "employer";
-export const TravelLetterRequestResponsibleForTravelCost =
-  /*@__PURE__*/ S.String;
+export const TravelLetterRequestResponsibleForTravelCost = S.String;
 
 /** The current status of the travel letter request. - `pending`: Submitted by the employee and awaiting manager review. - `cancelled`: Cancelled by the employee before approval. - `declined_by_manager`: The employer manager declined the request. - `declined_by_remote`: Remote declined the request after manager approval (e.g., compliance reasons). - `approved_by_manager`: Approved by the employer manager, awaiting Remote's review. - `approved_by_remote`: Fully approved by both the manager and Remote. The travel letter will be generated. */
 export type TravelLetterRequestStatus =
@@ -18895,7 +18857,7 @@ export type TravelLetterRequestStatus =
   | "declined_by_remote"
   | "approved_by_manager"
   | "approved_by_remote";
-export const TravelLetterRequestStatus = /*@__PURE__*/ S.String;
+export const TravelLetterRequestStatus = S.String;
 
 /** A travel letter request submitted by an employee who needs a formal letter from their employer to support a visa or travel application. The request goes through a two-stage approval: first by the employer manager, then by Remote. */
 export interface TravelLetterRequest {
@@ -18997,13 +18959,13 @@ export type GetTravelLetterRequestsRequestStatus =
   | "declined_by_remote"
   | "approved_by_manager"
   | "approved_by_remote";
-export const GetTravelLetterRequestsRequestStatus = /*@__PURE__*/ S.String;
+export const GetTravelLetterRequestsRequestStatus = S.String;
 
 export type GetTravelLetterRequestsRequestOrder = "asc" | "desc";
-export const GetTravelLetterRequestsRequestOrder = /*@__PURE__*/ S.String;
+export const GetTravelLetterRequestsRequestOrder = S.String;
 
 export type GetTravelLetterRequestsRequestSortBy = "submitted_at";
-export const GetTravelLetterRequestsRequestSortBy = /*@__PURE__*/ S.String;
+export const GetTravelLetterRequestsRequestSortBy = S.String;
 
 export interface GetTravelLetterRequestsRequest {
   /** Filter results on the given status */
@@ -19079,10 +19041,10 @@ export const ListTravelLettersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTravelLettersResponse>;
 
 export type GetWebhookEventsRequestOrder = "asc" | "desc";
-export const GetWebhookEventsRequestOrder = /*@__PURE__*/ S.String;
+export const GetWebhookEventsRequestOrder = S.String;
 
 export type GetWebhookEventsRequestSortBy = "first_triggered_at";
-export const GetWebhookEventsRequestSortBy = /*@__PURE__*/ S.String;
+export const GetWebhookEventsRequestSortBy = S.String;
 
 export interface GetWebhookEventsRequest {
   /** Filter by webhook event type */
@@ -19214,7 +19176,7 @@ export type WorkAuthorizationRequestStatus =
   | "declined_by_remote"
   | "approved_by_manager"
   | "approved_by_remote";
-export const WorkAuthorizationRequestStatus = /*@__PURE__*/ S.String;
+export const WorkAuthorizationRequestStatus = S.String;
 
 /** A work authorization request submitted by an employee who needs authorization to work in a different country. Similar to a travel letter request but specifically for work authorization purposes. */
 export interface WorkAuthorizationRequest {
@@ -19293,13 +19255,13 @@ export type GetWorkAuthorizationRequestsRequestStatus =
   | "declined_by_remote"
   | "approved_by_manager"
   | "approved_by_remote";
-export const GetWorkAuthorizationRequestsRequestStatus = /*@__PURE__*/ S.String;
+export const GetWorkAuthorizationRequestsRequestStatus = S.String;
 
 export type GetWorkAuthorizationRequestsRequestOrder = "asc" | "desc";
-export const GetWorkAuthorizationRequestsRequestOrder = /*@__PURE__*/ S.String;
+export const GetWorkAuthorizationRequestsRequestOrder = S.String;
 
 export type GetWorkAuthorizationRequestsRequestSortBy = "submitted_at";
-export const GetWorkAuthorizationRequestsRequestSortBy = /*@__PURE__*/ S.String;
+export const GetWorkAuthorizationRequestsRequestSortBy = S.String;
 
 export interface GetWorkAuthorizationRequestsRequest {
   /** Filter results on the given status */
@@ -19388,25 +19350,25 @@ export const ListWorkAuthorizationRequestsResponse = /*@__PURE__*/ S.suspend(
 export type PatchV1CompaniesCompanyIdRequestAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1CompaniesCompanyIdRequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1CompaniesCompanyIdRequestAddressDetailsJsonSchemaVersion =
   | number
   | PatchV1CompaniesCompanyIdRequestAddressDetailsJsonSchemaVersionCase1;
 export const PatchV1CompaniesCompanyIdRequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1CompaniesCompanyIdRequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1CompaniesCompanyIdRequestAddressDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1CompaniesCompanyIdRequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1CompaniesCompanyIdRequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1CompaniesCompanyIdRequestBankAccountDetailsJsonSchemaVersion =
   | number
   | PatchV1CompaniesCompanyIdRequestBankAccountDetailsJsonSchemaVersionCase1;
 export const PatchV1CompaniesCompanyIdRequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1CompaniesCompanyIdRequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1CompaniesCompanyIdRequestBankAccountDetailsJsonSchemaVersion>;
 
 /** Desired currency for invoicing and displaying converted salaries in Remote UI regardless of the employee's country. This field is only accepted if company is in status `pending`. Please contact Remote if you wish to update it. */
 export type PatchV1CompaniesCompanyIdRequestDesiredCurrency =
@@ -19422,8 +19384,7 @@ export type PatchV1CompaniesCompanyIdRequestDesiredCurrency =
   | "SEK"
   | "SGD"
   | "USD";
-export const PatchV1CompaniesCompanyIdRequestDesiredCurrency =
-  /*@__PURE__*/ S.String;
+export const PatchV1CompaniesCompanyIdRequestDesiredCurrency = S.String;
 
 export interface PatchV1CompaniesCompanyIdRequest {
   /** Company ID */
@@ -19485,25 +19446,25 @@ export const PatchV1CompaniesCompanyIdRequest = /*@__PURE__*/ S.suspend(() =>
 export type PatchV1CompaniesCompanyId2RequestAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1CompaniesCompanyId2RequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1CompaniesCompanyId2RequestAddressDetailsJsonSchemaVersion =
   | number
   | PatchV1CompaniesCompanyId2RequestAddressDetailsJsonSchemaVersionCase1;
 export const PatchV1CompaniesCompanyId2RequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1CompaniesCompanyId2RequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1CompaniesCompanyId2RequestAddressDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1CompaniesCompanyId2RequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1CompaniesCompanyId2RequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1CompaniesCompanyId2RequestBankAccountDetailsJsonSchemaVersion =
   | number
   | PatchV1CompaniesCompanyId2RequestBankAccountDetailsJsonSchemaVersionCase1;
 export const PatchV1CompaniesCompanyId2RequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1CompaniesCompanyId2RequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1CompaniesCompanyId2RequestBankAccountDetailsJsonSchemaVersion>;
 
 /** Desired currency for invoicing and displaying converted salaries in Remote UI regardless of the employee's country. This field is only accepted if company is in status `pending`. Please contact Remote if you wish to update it. */
 export type PatchV1CompaniesCompanyId2RequestDesiredCurrency =
@@ -19519,8 +19480,7 @@ export type PatchV1CompaniesCompanyId2RequestDesiredCurrency =
   | "SEK"
   | "SGD"
   | "USD";
-export const PatchV1CompaniesCompanyId2RequestDesiredCurrency =
-  /*@__PURE__*/ S.String;
+export const PatchV1CompaniesCompanyId2RequestDesiredCurrency = S.String;
 
 export interface PatchV1CompaniesCompanyId2Request {
   /** Company ID */
@@ -19663,8 +19623,7 @@ export type PatchV1ContractorInvoiceSchedulesIdRequestStatus =
   | "deleted"
   | "active"
   | "processing";
-export const PatchV1ContractorInvoiceSchedulesIdRequestStatus =
-  /*@__PURE__*/ S.String;
+export const PatchV1ContractorInvoiceSchedulesIdRequestStatus = S.String;
 
 export interface PatchV1ContractorInvoiceSchedulesIdRequest {
   /** Resource unique identifier */
@@ -19718,8 +19677,7 @@ export type PatchV1ContractorInvoiceSchedulesId2RequestStatus =
   | "deleted"
   | "active"
   | "processing";
-export const PatchV1ContractorInvoiceSchedulesId2RequestStatus =
-  /*@__PURE__*/ S.String;
+export const PatchV1ContractorInvoiceSchedulesId2RequestStatus = S.String;
 
 export interface PatchV1ContractorInvoiceSchedulesId2Request {
   /** Resource unique identifier */
@@ -19765,7 +19723,7 @@ export type PatchV1CustomFieldsCustomFieldIdValuesEmploymentIdRequestValue =
   | number
   | boolean;
 export const PatchV1CustomFieldsCustomFieldIdValuesEmploymentIdRequestValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1CustomFieldsCustomFieldIdValuesEmploymentIdRequestValue>;
+  S.Unknown as any as S.Schema<PatchV1CustomFieldsCustomFieldIdValuesEmploymentIdRequestValue>;
 
 export interface PatchV1CustomFieldsCustomFieldIdValuesEmploymentIdRequest {
   /** Custom field ID */
@@ -19796,7 +19754,7 @@ export type PatchV1CustomFieldsCustomFieldIdValuesEmploymentId2RequestValue =
   | number
   | boolean;
 export const PatchV1CustomFieldsCustomFieldIdValuesEmploymentId2RequestValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1CustomFieldsCustomFieldIdValuesEmploymentId2RequestValue>;
+  S.Unknown as any as S.Schema<PatchV1CustomFieldsCustomFieldIdValuesEmploymentId2RequestValue>;
 
 export interface PatchV1CustomFieldsCustomFieldIdValuesEmploymentId2Request {
   /** Custom field ID */
@@ -19902,115 +19860,115 @@ export const PatchV1EmployeeTimeoffId2Request = /*@__PURE__*/ S.suspend(() =>
 export type PatchV1EmploymentsEmploymentIdRequestAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestAddressDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestAddressDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestAddressDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestAdministrativeDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestAdministrativeDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestAdministrativeDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestAdministrativeDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestAdministrativeDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestAdministrativeDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestAdministrativeDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestBankAccountDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestBankAccountDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestBankAccountDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestEmploymentBasicInformationJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestEmploymentBasicInformationJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestEmploymentBasicInformationJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestEmploymentBasicInformationJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestEmploymentBasicInformationJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestEmploymentBasicInformationJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestEmploymentBasicInformationJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestBillingAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestBillingAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestBillingAddressDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestBillingAddressDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestBillingAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestBillingAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestBillingAddressDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestContractDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestContractDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestContractDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestContractDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestContractDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestContractDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestContractDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestEmergencyContactDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestEmergencyContactDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestEmergencyContactDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestEmergencyContactDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestEmergencyContactDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestPersonalDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestPersonalDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestPersonalDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestPersonalDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestPersonalDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestPersonalDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestPersonalDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentIdRequestPricingPlanDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentIdRequestPricingPlanDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentIdRequestPricingPlanDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentIdRequestPricingPlanDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentIdRequestPricingPlanDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestPricingPlanDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentIdRequestPricingPlanDetailsJsonSchemaVersion>;
 
 /** If not provided, it will default to `employee`. */
 export type PatchV1EmploymentsEmploymentIdRequestType =
   | "employee"
   | "contractor";
-export const PatchV1EmploymentsEmploymentIdRequestType = /*@__PURE__*/ S.String;
+export const PatchV1EmploymentsEmploymentIdRequestType = S.String;
 
 export interface PatchV1EmploymentsEmploymentIdRequest {
   /** Employment ID */
@@ -20180,116 +20138,115 @@ export const EmploymentResponse = /*@__PURE__*/ S.suspend(() =>
 export type PatchV1EmploymentsEmploymentId2RequestAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestAddressDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestAddressDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestAddressDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestAdministrativeDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestAdministrativeDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestAdministrativeDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestAdministrativeDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestAdministrativeDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestAdministrativeDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestAdministrativeDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestBankAccountDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestBankAccountDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestBankAccountDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestEmploymentBasicInformationJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestEmploymentBasicInformationJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestEmploymentBasicInformationJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestEmploymentBasicInformationJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestEmploymentBasicInformationJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestEmploymentBasicInformationJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestEmploymentBasicInformationJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestBillingAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestBillingAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestBillingAddressDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestBillingAddressDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestBillingAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestBillingAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestBillingAddressDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestContractDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestContractDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestContractDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestContractDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestContractDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestContractDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestContractDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestEmergencyContactDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestEmergencyContactDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestEmergencyContactDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestEmergencyContactDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestEmergencyContactDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestEmergencyContactDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestEmergencyContactDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestPersonalDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestPersonalDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestPersonalDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestPersonalDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestPersonalDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestPersonalDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestPersonalDetailsJsonSchemaVersion>;
 
 /** Use latest version */
 export type PatchV1EmploymentsEmploymentId2RequestPricingPlanDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PatchV1EmploymentsEmploymentId2RequestPricingPlanDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchV1EmploymentsEmploymentId2RequestPricingPlanDetailsJsonSchemaVersion =
   | number
   | PatchV1EmploymentsEmploymentId2RequestPricingPlanDetailsJsonSchemaVersionCase1;
 export const PatchV1EmploymentsEmploymentId2RequestPricingPlanDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestPricingPlanDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PatchV1EmploymentsEmploymentId2RequestPricingPlanDetailsJsonSchemaVersion>;
 
 /** If not provided, it will default to `employee`. */
 export type PatchV1EmploymentsEmploymentId2RequestType =
   | "employee"
   | "contractor";
-export const PatchV1EmploymentsEmploymentId2RequestType =
-  /*@__PURE__*/ S.String;
+export const PatchV1EmploymentsEmploymentId2RequestType = S.String;
 
 export interface PatchV1EmploymentsEmploymentId2Request {
   /** Employment ID */
@@ -20433,7 +20390,7 @@ export const PatchV1EmploymentsEmploymentId2Request = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchV1EmploymentsEmploymentId2Request>;
 
 export type ApproveExpenseParamsStatus = "approved";
-export const ApproveExpenseParamsStatus = /*@__PURE__*/ S.String;
+export const ApproveExpenseParamsStatus = S.String;
 
 /** Approve an expense */
 export interface ApproveExpenseParams {
@@ -20448,7 +20405,7 @@ export const ApproveExpenseParams = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApproveExpenseParams>;
 
 export type DeclineExpenseParamsStatus = "declined";
-export const DeclineExpenseParamsStatus = /*@__PURE__*/ S.String;
+export const DeclineExpenseParamsStatus = S.String;
 
 /** Decline an expense */
 export interface DeclineExpenseParams {
@@ -20468,7 +20425,7 @@ export const DeclineExpenseParams = /*@__PURE__*/ S.suspend(() =>
 /** Update expense params */
 export type UpdateExpenseParams = ApproveExpenseParams | DeclineExpenseParams;
 export const UpdateExpenseParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateExpenseParams>;
+  S.Unknown as any as S.Schema<UpdateExpenseParams>;
 
 export interface PatchV1ExpensesIdRequest {
   /** Expense ID */
@@ -20607,7 +20564,7 @@ export const PatchV1SandboxEmploymentsEmploymentId2Request =
   }) as any as S.Schema<PatchV1SandboxEmploymentsEmploymentId2Request>;
 
 export type PatchV1TimeoffIdRequestStatus = "approved" | "cancelled";
-export const PatchV1TimeoffIdRequestStatus = /*@__PURE__*/ S.String;
+export const PatchV1TimeoffIdRequestStatus = S.String;
 
 export type PatchV1TimeoffIdRequestTimeoffDaysList = Array<TimeoffDaysParams>;
 export const PatchV1TimeoffIdRequestTimeoffDaysList = /*@__PURE__*/ S.Array(
@@ -20653,7 +20610,7 @@ export const PatchV1TimeoffIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchV1TimeoffIdRequest>;
 
 export type PatchV1TimeoffId2RequestStatus = "approved" | "cancelled";
-export const PatchV1TimeoffId2RequestStatus = /*@__PURE__*/ S.String;
+export const PatchV1TimeoffId2RequestStatus = S.String;
 
 export type PatchV1TimeoffId2RequestTimeoffDaysList = Array<TimeoffDaysParams>;
 export const PatchV1TimeoffId2RequestTimeoffDaysList = /*@__PURE__*/ S.Array(
@@ -20701,23 +20658,20 @@ export const PatchV1TimeoffId2Request = /*@__PURE__*/ S.suspend(() =>
 export type ApprovedTravelLetterResponsibleForAccommodationCost =
   | "employee"
   | "employer";
-export const ApprovedTravelLetterResponsibleForAccommodationCost =
-  /*@__PURE__*/ S.String;
+export const ApprovedTravelLetterResponsibleForAccommodationCost = S.String;
 
 export type ApprovedTravelLetterResponsibleForMealCost =
   | "employee"
   | "employer";
-export const ApprovedTravelLetterResponsibleForMealCost =
-  /*@__PURE__*/ S.String;
+export const ApprovedTravelLetterResponsibleForMealCost = S.String;
 
 export type ApprovedTravelLetterResponsibleForTravelCost =
   | "employee"
   | "employer";
-export const ApprovedTravelLetterResponsibleForTravelCost =
-  /*@__PURE__*/ S.String;
+export const ApprovedTravelLetterResponsibleForTravelCost = S.String;
 
 export type ApprovedTravelLetterStatus = "approved_by_manager";
-export const ApprovedTravelLetterStatus = /*@__PURE__*/ S.String;
+export const ApprovedTravelLetterStatus = S.String;
 
 /** Schema for approved travel letter */
 export interface ApprovedTravelLetter {
@@ -20747,7 +20701,7 @@ export const ApprovedTravelLetter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApprovedTravelLetter>;
 
 export type DeclinedTravelLetterStatus = "declined_by_manager";
-export const DeclinedTravelLetterStatus = /*@__PURE__*/ S.String;
+export const DeclinedTravelLetterStatus = S.String;
 
 /** Schema for declined travel letter */
 export interface DeclinedTravelLetter {
@@ -20770,7 +20724,7 @@ export type UpdateTravelLetterRequestParams =
   | ApprovedTravelLetter
   | DeclinedTravelLetter;
 export const UpdateTravelLetterRequestParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTravelLetterRequestParams>;
+  S.Unknown as any as S.Schema<UpdateTravelLetterRequestParams>;
 
 export interface PatchV1TravelLetterRequestsIdRequest {
   /** Travel letter Request ID */
@@ -20815,7 +20769,7 @@ export const PatchV1TravelLetterRequestsId2Request = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchV1TravelLetterRequestsId2Request>;
 
 export type ApprovedWorkAuthozationStatus = "approved_by_manager";
-export const ApprovedWorkAuthozationStatus = /*@__PURE__*/ S.String;
+export const ApprovedWorkAuthozationStatus = S.String;
 
 /** Schema for approved work authorization */
 export interface ApprovedWorkAuthozation {
@@ -20832,7 +20786,7 @@ export const ApprovedWorkAuthozation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApprovedWorkAuthozation>;
 
 export type DeclinedWorkAuthozationStatus = "declined_by_manager";
-export const DeclinedWorkAuthozationStatus = /*@__PURE__*/ S.String;
+export const DeclinedWorkAuthozationStatus = S.String;
 
 /** Schema for declined work authorization */
 export interface DeclinedWorkAuthozation {
@@ -20855,7 +20809,7 @@ export type UpdateWorkAuthorizationRequestParams =
   | ApprovedWorkAuthozation
   | DeclinedWorkAuthozation;
 export const UpdateWorkAuthorizationRequestParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateWorkAuthorizationRequestParams>;
+  S.Unknown as any as S.Schema<UpdateWorkAuthorizationRequestParams>;
 
 export interface PatchV1WorkAuthorizationRequestsIdRequest {
   /** work authorization request ID */
@@ -21019,8 +20973,7 @@ export type RiskReserveProofOfPaymentResponseDataStatus =
   | "manual_review"
   | "approved"
   | "rejected";
-export const RiskReserveProofOfPaymentResponseDataStatus =
-  /*@__PURE__*/ S.String;
+export const RiskReserveProofOfPaymentResponseDataStatus = S.String;
 
 export interface RiskReserveProofOfPaymentResponseData {
   /** Proof of payment ID */
@@ -21074,7 +21027,7 @@ export type PutCompanyLegalEntityAdministrativeDetailsRequestProductType =
   | "global_payroll"
   | "e2e_payroll";
 export const PutCompanyLegalEntityAdministrativeDetailsRequestProductType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PutCompanyLegalEntityAdministrativeDetailsRequest {
   /** Company ID */
@@ -21122,13 +21075,13 @@ export const PutCompanyLegalEntityAdministrativeDetailsResponse =
 export type PutEmployeeAddressRequestAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmployeeAddressRequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmployeeAddressRequestAddressDetailsJsonSchemaVersion =
   | number
   | PutEmployeeAddressRequestAddressDetailsJsonSchemaVersionCase1;
 export const PutEmployeeAddressRequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeeAddressRequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmployeeAddressRequestAddressDetailsJsonSchemaVersion>;
 
 export interface PutEmployeeAddressRequest {
   /** Version of the address_details form schema */
@@ -21151,13 +21104,13 @@ export const PutEmployeeAddressRequest = /*@__PURE__*/ S.suspend(() =>
 export type PutEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion =
   | number
   | PutEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersionCase1;
 export const PutEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmployeeBankAccountRequestBankAccountDetailsJsonSchemaVersion>;
 
 export interface PutEmployeeBankAccountRequest {
   /** Version of the bank_account_details form schema */
@@ -21184,13 +21137,13 @@ export const PutEmployeeBankAccountRequest = /*@__PURE__*/ S.suspend(() =>
 export type PutEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion =
   | number
   | PutEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1;
 export const PutEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmployeeEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion>;
 
 export interface PutEmployeeEmergencyContactRequest {
   /** Version of the emergency_contact_details form schema */
@@ -21231,13 +21184,13 @@ export const PutEmployeeFederalTaxesRequest = /*@__PURE__*/ S.suspend(() =>
 export type PutEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion =
   | number
   | PutEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1;
 export const PutEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmployeePersonalDetailsRequestPersonalDetailsJsonSchemaVersion>;
 
 export interface PutEmployeePersonalDetailsRequest {
   /** Version of the personal_details form schema */
@@ -21285,13 +21238,13 @@ export const PutEmployeeStateTaxRequest = /*@__PURE__*/ S.suspend(() =>
 export type PutEmploymentAddressDetailsRequestAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentAddressDetailsRequestAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentAddressDetailsRequestAddressDetailsJsonSchemaVersion =
   | number
   | PutEmploymentAddressDetailsRequestAddressDetailsJsonSchemaVersionCase1;
 export const PutEmploymentAddressDetailsRequestAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentAddressDetailsRequestAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentAddressDetailsRequestAddressDetailsJsonSchemaVersion>;
 
 export interface PutEmploymentAddressDetailsRequest {
   /** Employment ID */
@@ -21347,13 +21300,13 @@ export const PutEmploymentAdministrativeDetailsRequest =
 export type PutEmploymentBankAccountDetailsRequestBankAccountDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentBankAccountDetailsRequestBankAccountDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentBankAccountDetailsRequestBankAccountDetailsJsonSchemaVersion =
   | number
   | PutEmploymentBankAccountDetailsRequestBankAccountDetailsJsonSchemaVersionCase1;
 export const PutEmploymentBankAccountDetailsRequestBankAccountDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentBankAccountDetailsRequestBankAccountDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentBankAccountDetailsRequestBankAccountDetailsJsonSchemaVersion>;
 
 export interface PutEmploymentBankAccountDetailsRequest {
   /** Employment ID */
@@ -21410,13 +21363,13 @@ export const PutEmploymentBasicInformationRequest = /*@__PURE__*/ S.suspend(
 export type PutEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion =
   | number
   | PutEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersionCase1;
 export const PutEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentBasicInformationRequestEmploymentBasicInformationJsonSchemaVersion>;
 
 export interface PutEmploymentBasicInformationRequest2 {
   /** Employment ID */
@@ -21449,14 +21402,13 @@ export const PutEmploymentBasicInformationRequest2 = /*@__PURE__*/ S.suspend(
 
 /** Use latest version */
 export type PutEmploymentBenefitOffersRequestJsonSchemaVersionCase1 = "latest";
-export const PutEmploymentBenefitOffersRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+export const PutEmploymentBenefitOffersRequestJsonSchemaVersionCase1 = S.String;
 
 export type PutEmploymentBenefitOffersRequestJsonSchemaVersion =
   | number
   | PutEmploymentBenefitOffersRequestJsonSchemaVersionCase1;
 export const PutEmploymentBenefitOffersRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentBenefitOffersRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentBenefitOffersRequestJsonSchemaVersion>;
 
 export interface PutEmploymentBenefitOffersRequest {
   /** Unique identifier of the employment */
@@ -21485,13 +21437,13 @@ export const PutEmploymentBenefitOffersRequest = /*@__PURE__*/ S.suspend(() =>
 export type PutEmploymentBillingAddressDetailsRequestBillingAddressDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentBillingAddressDetailsRequestBillingAddressDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentBillingAddressDetailsRequestBillingAddressDetailsJsonSchemaVersion =
   | number
   | PutEmploymentBillingAddressDetailsRequestBillingAddressDetailsJsonSchemaVersionCase1;
 export const PutEmploymentBillingAddressDetailsRequestBillingAddressDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentBillingAddressDetailsRequestBillingAddressDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentBillingAddressDetailsRequestBillingAddressDetailsJsonSchemaVersion>;
 
 export interface PutEmploymentBillingAddressDetailsRequest {
   /** Employment ID */
@@ -21526,13 +21478,13 @@ export const PutEmploymentBillingAddressDetailsRequest =
 export type PutEmploymentContractDetailsRequestContractDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentContractDetailsRequestContractDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentContractDetailsRequestContractDetailsJsonSchemaVersion =
   | number
   | PutEmploymentContractDetailsRequestContractDetailsJsonSchemaVersionCase1;
 export const PutEmploymentContractDetailsRequestContractDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentContractDetailsRequestContractDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentContractDetailsRequestContractDetailsJsonSchemaVersion>;
 
 export interface PutEmploymentContractDetailsRequest {
   /** Employment ID */
@@ -21569,13 +21521,13 @@ export const PutEmploymentContractDetailsRequest = /*@__PURE__*/ S.suspend(() =>
 export type PutEmploymentEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion =
   | number
   | PutEmploymentEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersionCase1;
 export const PutEmploymentEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentEmergencyContactRequestEmergencyContactDetailsJsonSchemaVersion>;
 
 export interface PutEmploymentEmergencyContactRequest {
   /** Employment ID */
@@ -21673,13 +21625,13 @@ export const PutEmploymentPersonalDetailsRequest = /*@__PURE__*/ S.suspend(() =>
 export type PutEmploymentPersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentPersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentPersonalDetailsRequestPersonalDetailsJsonSchemaVersion =
   | number
   | PutEmploymentPersonalDetailsRequestPersonalDetailsJsonSchemaVersionCase1;
 export const PutEmploymentPersonalDetailsRequestPersonalDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentPersonalDetailsRequestPersonalDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentPersonalDetailsRequestPersonalDetailsJsonSchemaVersion>;
 
 export interface PutEmploymentPersonalDetailsRequest2 {
   /** Employment ID */
@@ -21714,13 +21666,13 @@ export const PutEmploymentPersonalDetailsRequest2 = /*@__PURE__*/ S.suspend(
 export type PutEmploymentPricingPlanDetailsRequestPricingPlanDetailsJsonSchemaVersionCase1 =
   "latest";
 export const PutEmploymentPricingPlanDetailsRequestPricingPlanDetailsJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PutEmploymentPricingPlanDetailsRequestPricingPlanDetailsJsonSchemaVersion =
   | number
   | PutEmploymentPricingPlanDetailsRequestPricingPlanDetailsJsonSchemaVersionCase1;
 export const PutEmploymentPricingPlanDetailsRequestPricingPlanDetailsJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutEmploymentPricingPlanDetailsRequestPricingPlanDetailsJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<PutEmploymentPricingPlanDetailsRequestPricingPlanDetailsJsonSchemaVersion>;
 
 export interface PutEmploymentPricingPlanDetailsRequest {
   /** Employment ID */
@@ -21865,7 +21817,7 @@ export type ValidateResignationRequestParams =
   | ResignationAfterStartDateRequestParams
   | ResignationBeforeStartDateRequestParams;
 export const ValidateResignationRequestParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ValidateResignationRequestParams>;
+  S.Unknown as any as S.Schema<ValidateResignationRequestParams>;
 
 export interface PutResignationValidateRequest {
   /** Offboarding request ID */
@@ -21950,13 +21902,13 @@ export const PutSandboxContractAmendmentCancelRequest = /*@__PURE__*/ S.suspend(
 /** Use latest version */
 export type UpdateBenefitRenewalRequestRequestJsonSchemaVersionCase1 = "latest";
 export const UpdateBenefitRenewalRequestRequestJsonSchemaVersionCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateBenefitRenewalRequestRequestJsonSchemaVersion =
   | number
   | UpdateBenefitRenewalRequestRequestJsonSchemaVersionCase1;
 export const UpdateBenefitRenewalRequestRequestJsonSchemaVersion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBenefitRenewalRequestRequestJsonSchemaVersion>;
+  S.Unknown as any as S.Schema<UpdateBenefitRenewalRequestRequestJsonSchemaVersion>;
 
 export interface UpdateBenefitRenewalRequestRequest {
   /** Benefit Renewal Request Id */
@@ -22158,8 +22110,7 @@ export type UpdateWebhookCallbackRequestSubscribedEventsItem =
   | "work_authorization.declined_by_manager"
   | "work_authorization.declined_by_remote"
   | "work_authorization.requested";
-export const UpdateWebhookCallbackRequestSubscribedEventsItem =
-  /*@__PURE__*/ S.String;
+export const UpdateWebhookCallbackRequestSubscribedEventsItem = S.String;
 
 export type UpdateWebhookCallbackRequestSubscribedEventsList = Array<
   UpdateWebhookCallbackRequestSubscribedEventsItem | (string & {})

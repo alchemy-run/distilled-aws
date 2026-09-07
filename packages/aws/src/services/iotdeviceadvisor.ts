@@ -134,7 +134,7 @@ export type Protocol =
   | "MqttV3_1_1_OverWebSocket"
   | "MqttV5_OverWebSocket"
   | (string & {});
-export const Protocol = /*@__PURE__*/ S.String;
+export const Protocol = S.String;
 
 export interface SuiteDefinitionConfiguration {
   suiteDefinitionName?: string;
@@ -238,7 +238,7 @@ export type AuthenticationMethod =
   | "X509ClientCertificate"
   | "SignatureVersion4"
   | (string & {});
-export const AuthenticationMethod = /*@__PURE__*/ S.String;
+export const AuthenticationMethod = S.String;
 
 export interface GetEndpointRequest {
   thingArn?: string;
@@ -382,14 +382,14 @@ export type Status =
   | "PASS_WITH_WARNINGS"
   | "ERROR"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type LogUrl = string;
 export type Warnings = string;
 export type Failure = string;
 export type TestCaseScenarioId = string;
 export type TestCaseScenarioType = "Advanced" | "Basic" | (string & {});
-export const TestCaseScenarioType = /*@__PURE__*/ S.String;
+export const TestCaseScenarioType = S.String;
 
 export type TestCaseScenarioStatus =
   | "PASS"
@@ -402,7 +402,7 @@ export type TestCaseScenarioStatus =
   | "PASS_WITH_WARNINGS"
   | "ERROR"
   | (string & {});
-export const TestCaseScenarioStatus = /*@__PURE__*/ S.String;
+export const TestCaseScenarioStatus = S.String;
 
 export type SystemMessage = string;
 export interface TestCaseScenario {
@@ -484,7 +484,7 @@ export type SuiteRunStatus =
   | "PASS_WITH_WARNINGS"
   | "ERROR"
   | (string & {});
-export const SuiteRunStatus = /*@__PURE__*/ S.String;
+export const SuiteRunStatus = S.String;
 
 export type ErrorReason = string;
 export interface GetSuiteRunResponse {

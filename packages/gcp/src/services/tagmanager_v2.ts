@@ -104,7 +104,7 @@ export type ConditionTypeEnum =
   | "lessOrEquals"
   | "cssSelector"
   | "urlMatches";
-export const ConditionTypeEnum = /*@__PURE__*/ S.String;
+export const ConditionTypeEnum = S.String;
 
 export type ParameterTypeEnum =
   | "typeUnspecified"
@@ -115,7 +115,7 @@ export type ParameterTypeEnum =
   | "map"
   | "triggerReference"
   | "tagReference";
-export const ParameterTypeEnum = /*@__PURE__*/ S.String;
+export const ParameterTypeEnum = S.String;
 
 /** Represents a Google Tag Manager Parameter. */
 export interface Parameter {
@@ -359,7 +359,7 @@ export type BuiltInVariableTypeEnum =
   | "analyticsClientId"
   | "analyticsSessionId"
   | "analyticsSessionNumber";
-export const BuiltInVariableTypeEnum = /*@__PURE__*/ S.String;
+export const BuiltInVariableTypeEnum = S.String;
 
 /** Built-in variables are a special category of variables that are pre-created and non-customizable. They provide common functionality like accessing properties of the gtm data layer, monitoring clicks, or accessing elements of a page URL. */
 export interface BuiltInVariable {
@@ -474,14 +474,14 @@ export type VariableFormatValueCaseConversionTypeEnum =
   | "none"
   | "lowercase"
   | "uppercase";
-export const VariableFormatValueCaseConversionTypeEnum = /*@__PURE__*/ S.String;
+export const VariableFormatValueCaseConversionTypeEnum = S.String;
 
 export type VariableFormatValueConvertToNumberEnum =
   | "decimalSeparatorTypeUnspecified"
   | "period"
   | "comma"
   | "automatic";
-export const VariableFormatValueConvertToNumberEnum = /*@__PURE__*/ S.String;
+export const VariableFormatValueConvertToNumberEnum = S.String;
 
 export interface VariableFormatValue {
   /** The option to convert a variable value to a boolean. */
@@ -761,7 +761,7 @@ export type TriggerTypeEnum =
   | "youTubeVideo"
   | "scrollDepth"
   | "elementVisibility";
-export const TriggerTypeEnum = /*@__PURE__*/ S.String;
+export const TriggerTypeEnum = S.String;
 
 /** Represents a Google Tag Manager Trigger */
 export interface Trigger {
@@ -873,7 +873,7 @@ export type EntityChangeStatusEnum =
   | "added"
   | "deleted"
   | "updated";
-export const EntityChangeStatusEnum = /*@__PURE__*/ S.String;
+export const EntityChangeStatusEnum = S.String;
 
 /** Represents a reference to atag that fires before another tag in order to set up dependencies. */
 export interface SetupTag {
@@ -898,7 +898,7 @@ export type TagConsentSettingConsentStatusEnum =
   | "notSet"
   | "notNeeded"
   | "needed";
-export const TagConsentSettingConsentStatusEnum = /*@__PURE__*/ S.String;
+export const TagConsentSettingConsentStatusEnum = S.String;
 
 export interface TagConsentSetting {
   /** The tag's consent status. If set to NEEDED, the runtime will check that the consent types specified by the consent_type field have been granted. */
@@ -920,7 +920,7 @@ export type TagTagFiringOptionEnum =
   | "unlimited"
   | "oncePerEvent"
   | "oncePerLoad";
-export const TagTagFiringOptionEnum = /*@__PURE__*/ S.String;
+export const TagTagFiringOptionEnum = S.String;
 
 /** Represents a tag that fires after another tag in order to tear down dependencies. */
 export interface TeardownTag {
@@ -1118,8 +1118,7 @@ export type CombineAccountsContainersSettingSourceEnum =
   | "settingSourceUnspecified"
   | "current"
   | "other";
-export const CombineAccountsContainersSettingSourceEnum =
-  /*@__PURE__*/ S.String;
+export const CombineAccountsContainersSettingSourceEnum = S.String;
 
 export interface CombineAccountsContainersRequest {
   /** Must be set to true to allow features.user_permissions to change from false to true. If this operation causes an update but this bit is false, the operation will fail. */
@@ -1210,7 +1209,7 @@ export type ContainerUsageContextItemEnum =
   | "iosSdk5"
   | "amp"
   | "server";
-export const ContainerUsageContextItemEnum = /*@__PURE__*/ S.String;
+export const ContainerUsageContextItemEnum = S.String;
 
 export type ContainerUsageContextItemEnumList = Array<
   ContainerUsageContextItemEnum | (string & {})
@@ -1288,7 +1287,7 @@ export const CreateAccountsContainersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAccountsContainersRequest>;
 
 export type EnvironmentTypeEnum = "user" | "live" | "latest" | "workspace";
-export const EnvironmentTypeEnum = /*@__PURE__*/ S.String;
+export const EnvironmentTypeEnum = S.String;
 
 /** Represents a Google Tag Manager Environment. Note that a user can create, delete and update environments of type USER, but can only update the enable_debug and url fields of environments of other types. */
 export interface Environment {
@@ -1538,7 +1537,7 @@ export type CreateAccountsContainersWorkspacesBuilt_in_variablesTypeEnum =
   | "analyticsSessionId"
   | "analyticsSessionNumber";
 export const CreateAccountsContainersWorkspacesBuilt_in_variablesTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateAccountsContainersWorkspacesBuilt_in_variablesTypeEnumList =
   Array<
@@ -1795,7 +1794,7 @@ export type AccountAccessPermissionEnum =
   | "noAccess"
   | "user"
   | "admin";
-export const AccountAccessPermissionEnum = /*@__PURE__*/ S.String;
+export const AccountAccessPermissionEnum = S.String;
 
 /** Defines the Google Tag Manager Account access permissions. */
 export interface AccountAccess {
@@ -1815,7 +1814,7 @@ export type ContainerAccessPermissionEnum =
   | "edit"
   | "approve"
   | "publish";
-export const ContainerAccessPermissionEnum = /*@__PURE__*/ S.String;
+export const ContainerAccessPermissionEnum = S.String;
 
 /** Defines the Google Tag Manager Container access permissions. */
 export interface ContainerAccess {
@@ -2293,7 +2292,7 @@ export type DeleteAccountsContainersWorkspacesBuilt_in_variablesTypeEnum =
   | "analyticsSessionId"
   | "analyticsSessionNumber";
 export const DeleteAccountsContainersWorkspacesBuilt_in_variablesTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DeleteAccountsContainersWorkspacesBuilt_in_variablesTypeEnumList =
   Array<
@@ -4225,7 +4224,7 @@ export type RevertAccountsContainersWorkspacesBuilt_in_variablesTypeEnum =
   | "analyticsSessionId"
   | "analyticsSessionNumber";
 export const RevertAccountsContainersWorkspacesBuilt_in_variablesTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RevertAccountsContainersWorkspacesBuilt_in_variablesRequest {
   /** GTM BuiltInVariable's API relative path. */

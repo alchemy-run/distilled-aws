@@ -86,7 +86,7 @@ export type PkixPublicKeySignatureAlgorithmEnum =
   | "ECDSA_P521_SHA512"
   | "EC_SIGN_P521_SHA512"
   | "ML_DSA_65";
-export const PkixPublicKeySignatureAlgorithmEnum = /*@__PURE__*/ S.String;
+export const PkixPublicKeySignatureAlgorithmEnum = S.String;
 
 /** A public key in the PkixPublicKey format (see https://tools.ietf.org/html/rfc5280#section-4.1.2.7 for details). Public keys of this type are typically textually encoded using the PEM format. */
 export interface PkixPublicKey {
@@ -349,13 +349,13 @@ export type AdmissionRuleEvaluationModeEnum =
   | "ALWAYS_ALLOW"
   | "REQUIRE_ATTESTATION"
   | "ALWAYS_DENY";
-export const AdmissionRuleEvaluationModeEnum = /*@__PURE__*/ S.String;
+export const AdmissionRuleEvaluationModeEnum = S.String;
 
 export type AdmissionRuleEnforcementModeEnum =
   | "ENFORCEMENT_MODE_UNSPECIFIED"
   | "ENFORCED_BLOCK_AND_AUDIT_LOG"
   | "DRYRUN_AUDIT_LOG_ONLY";
-export const AdmissionRuleEnforcementModeEnum = /*@__PURE__*/ S.String;
+export const AdmissionRuleEnforcementModeEnum = S.String;
 
 /** An admission rule specifies either that all container images used in a pod creation request must be attested to by one or more attestors, that all pod creations will be allowed, or that all pod creations will be denied. Images matching an admission allowlist pattern are exempted from admission rules and will never block a pod creation. */
 export interface AdmissionRule {
@@ -383,7 +383,7 @@ export type PolicyGlobalPolicyEvaluationModeEnum =
   | "GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED"
   | "ENABLE"
   | "DISABLE";
-export const PolicyGlobalPolicyEvaluationModeEnum = /*@__PURE__*/ S.String;
+export const PolicyGlobalPolicyEvaluationModeEnum = S.String;
 
 /** An admission allowlist pattern exempts images from checks by admission rules. */
 export interface AdmissionWhitelistPattern {
@@ -794,8 +794,7 @@ export type ValidateAttestationOccurrenceResponseResultEnum =
   | "RESULT_UNSPECIFIED"
   | "VERIFIED"
   | "ATTESTATION_NOT_VERIFIABLE";
-export const ValidateAttestationOccurrenceResponseResultEnum =
-  /*@__PURE__*/ S.String;
+export const ValidateAttestationOccurrenceResponseResultEnum = S.String;
 
 /** Response message for ValidationHelperV1.ValidateAttestationOccurrence. */
 export interface ValidateAttestationOccurrenceResponse {

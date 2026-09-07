@@ -144,7 +144,7 @@ export type NetworkStatus =
   | "delete_in_progress"
   | "error"
   | "ready";
-export const NetworkStatus = /*@__PURE__*/ S.String;
+export const NetworkStatus = S.String;
 
 export interface Network {
   /** The ID of the AWS Account in which the network exists. */
@@ -254,7 +254,7 @@ export type PrivateLinkEndpointStatus =
   | "pending-acceptance"
   | "provisioning"
   | "rejected";
-export const PrivateLinkEndpointStatus = /*@__PURE__*/ S.String;
+export const PrivateLinkEndpointStatus = S.String;
 
 /** A PrivateLink endpoint, which connects a project to an AWS VPC endpoint service in a single region so that traffic reaches the service over AWS PrivateLink rather than the public internet. */
 export interface PrivateLinkEndpoint {
@@ -595,13 +595,13 @@ export const UpdateStaticIpsRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateStaticIpsResponseBodyItemEnvIdCase1 =
   | "preview"
   | "production";
-export const UpdateStaticIpsResponseBodyItemEnvIdCase1 = /*@__PURE__*/ S.String;
+export const UpdateStaticIpsResponseBodyItemEnvIdCase1 = S.String;
 
 export type UpdateStaticIpsResponseBodyItemEnvId =
   | string
   | UpdateStaticIpsResponseBodyItemEnvIdCase1;
 export const UpdateStaticIpsResponseBodyItemEnvId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateStaticIpsResponseBodyItemEnvId>;
+  S.Unknown as any as S.Schema<UpdateStaticIpsResponseBodyItemEnvId>;
 
 export type UpdateStaticIpsResponseBodyItemAwsSubnetIdsList = Array<string>;
 export const UpdateStaticIpsResponseBodyItemAwsSubnetIdsList =

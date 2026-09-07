@@ -163,7 +163,7 @@ export class ValidationException
     T.HttpError(400),
   ).pipe(C.withBadRequestError) {}
 export type SourceFormat = "CCDA" | "CSV" | (string & {});
-export const SourceFormat = /*@__PURE__*/ S.String;
+export const SourceFormat = S.String;
 
 export interface StarterProfileSource {
   StarterProfileName: string;
@@ -281,7 +281,7 @@ export const CreateDataTransformationProfileRequest = /*@__PURE__*/ S.suspend(
 export type ProfileIdString = string;
 export type ProfileVersion = number;
 export type TargetFormat = "FHIR_R4" | (string & {});
-export const TargetFormat = /*@__PURE__*/ S.String;
+export const TargetFormat = S.String;
 
 export interface CreateDataTransformationProfileResponse {
   ProfileId: string;
@@ -306,13 +306,13 @@ export const CreateDataTransformationProfileResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateDataTransformationProfileResponse>;
 export type DatastoreName = string;
 export type FHIRVersion = "R4" | (string & {});
-export const FHIRVersion = /*@__PURE__*/ S.String;
+export const FHIRVersion = S.String;
 
 export type CmkType =
   | "CUSTOMER_MANAGED_KMS_KEY"
   | "AWS_OWNED_KMS_KEY"
   | (string & {});
-export const CmkType = /*@__PURE__*/ S.String;
+export const CmkType = S.String;
 
 export type EncryptionKeyID = string;
 export interface KmsEncryptionConfig {
@@ -333,7 +333,7 @@ export const SseConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "SseConfiguration",
 }) as any as S.Schema<SseConfiguration>;
 export type PreloadDataType = "SYNTHEA" | (string & {});
-export const PreloadDataType = /*@__PURE__*/ S.String;
+export const PreloadDataType = S.String;
 
 export interface PreloadDataConfig {
   PreloadDataType: PreloadDataType;
@@ -360,7 +360,7 @@ export type AuthorizationStrategy =
   | "SMART_ON_FHIR"
   | "AWS_AUTH"
   | (string & {});
-export const AuthorizationStrategy = /*@__PURE__*/ S.String;
+export const AuthorizationStrategy = S.String;
 
 export type HealthLakeBoolean = boolean;
 export type ConfigurationMetadata = string;
@@ -389,7 +389,7 @@ export type AnalyticsStatus =
   | "PAUSING"
   | "PAUSED"
   | (string & {});
-export const AnalyticsStatus = /*@__PURE__*/ S.String;
+export const AnalyticsStatus = S.String;
 
 export interface AnalyticsConfiguration {
   Status?: AnalyticsStatus;
@@ -405,7 +405,7 @@ export type NlpStatus =
   | "DISABLED"
   | "DISABLING"
   | (string & {});
-export const NlpStatus = /*@__PURE__*/ S.String;
+export const NlpStatus = S.String;
 
 export interface NlpConfiguration {
   Status?: NlpStatus;
@@ -427,10 +427,10 @@ export const ProfileConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProfileConfiguration",
 }) as any as S.Schema<ProfileConfiguration>;
 export type BackupStatus = "ENABLED" | "DISABLED" | (string & {});
-export const BackupStatus = /*@__PURE__*/ S.String;
+export const BackupStatus = S.String;
 
 export type BackupType = "CONTINUOUS" | (string & {});
-export const BackupType = /*@__PURE__*/ S.String;
+export const BackupType = S.String;
 
 export type BackupRetentionPeriodInDays = number;
 export interface BackupConfiguration {
@@ -492,7 +492,7 @@ export type DatastoreStatus =
   | "UPDATING"
   | "UPDATE_FAILED"
   | (string & {});
-export const DatastoreStatus = /*@__PURE__*/ S.String;
+export const DatastoreStatus = S.String;
 
 export type BoundedLengthString = string;
 export interface CreateFHIRDatastoreResponse {
@@ -600,7 +600,7 @@ export type TransformationJobStatus =
   | "COMPLETED_WITH_ERRORS"
   | "FAILED"
   | (string & {});
-export const TransformationJobStatus = /*@__PURE__*/ S.String;
+export const TransformationJobStatus = S.String;
 
 export type DataTransformationS3Uri = string;
 export interface TransformationInputDataConfig {
@@ -710,7 +710,7 @@ export type ErrorCategory =
   | "RETRYABLE_ERROR"
   | "NON_RETRYABLE_ERROR"
   | (string & {});
-export const ErrorCategory = /*@__PURE__*/ S.String;
+export const ErrorCategory = S.String;
 
 export interface ErrorCause {
   ErrorMessage?: string;
@@ -819,7 +819,7 @@ export type JobStatus =
   | "CANCEL_COMPLETED"
   | "CANCEL_FAILED"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export type S3Uri = string;
 export interface S3Configuration {
@@ -933,7 +933,7 @@ export type ValidationLevel =
   | "structure-only"
   | "minimal"
   | (string & {});
-export const ValidationLevel = /*@__PURE__*/ S.String;
+export const ValidationLevel = S.String;
 
 export interface ImportJobProperties {
   JobId: string;
@@ -1749,7 +1749,7 @@ export type AgentInputMessageType =
   | "normal"
   | "confirmation_response"
   | (string & {});
-export const AgentInputMessageType = /*@__PURE__*/ S.String;
+export const AgentInputMessageType = S.String;
 
 export interface AgentInputMessage {
   Body: string | redacted.Redacted<string>;
@@ -1795,7 +1795,7 @@ export type AgentOutputMessageType =
   | "options"
   | "choices"
   | (string & {});
-export const AgentOutputMessageType = /*@__PURE__*/ S.String;
+export const AgentOutputMessageType = S.String;
 
 export type DataTransformationChatOptionString =
   | string

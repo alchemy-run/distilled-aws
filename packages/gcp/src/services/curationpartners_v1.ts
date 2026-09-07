@@ -104,7 +104,7 @@ export type StringTargetingDimensionSelectionTypeEnum =
   | "SELECTION_TYPE_UNSPECIFIED"
   | "SELECTION_TYPE_INCLUDE"
   | "SELECTION_TYPE_EXCLUDE";
-export const StringTargetingDimensionSelectionTypeEnum = /*@__PURE__*/ S.String;
+export const StringTargetingDimensionSelectionTypeEnum = S.String;
 
 /** Generic targeting with string values. */
 export interface StringTargetingDimension {
@@ -128,7 +128,7 @@ export type AdSizeTypeEnum =
   | "INTERSTITIAL"
   | "NATIVE"
   | "FLUID";
-export const AdSizeTypeEnum = /*@__PURE__*/ S.String;
+export const AdSizeTypeEnum = S.String;
 
 /** Represents size of a single ad slot, or a creative. */
 export interface AdSize {
@@ -193,15 +193,13 @@ export type PackageTargetingIncludedCreativeFormatEnum =
   | "CREATIVE_FORMAT_DISPLAY"
   | "CREATIVE_FORMAT_VIDEO"
   | "CREATIVE_FORMAT_AUDIO";
-export const PackageTargetingIncludedCreativeFormatEnum =
-  /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedCreativeFormatEnum = S.String;
 
 export type PackageTargetingIncludedNativeInventoryTypesItemEnum =
   | "NATIVE_INVENTORY_TYPE_UNSPECIFIED"
   | "NATIVE_INVENTORY_TYPE_NATIVE_ONLY"
   | "NATIVE_INVENTORY_TYPE_NATIVE_OR_BANNER";
-export const PackageTargetingIncludedNativeInventoryTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedNativeInventoryTypesItemEnum = S.String;
 
 export type PackageTargetingIncludedNativeInventoryTypesItemEnumList = Array<
   PackageTargetingIncludedNativeInventoryTypesItemEnum | (string & {})
@@ -217,8 +215,7 @@ export type PackageTargetingIncludedDeviceTypesItemEnum =
   | "DEVICE_TYPE_CONNECTED_TV"
   | "DEVICE_TYPE_PHONE"
   | "DEVICE_TYPE_TABLET";
-export const PackageTargetingIncludedDeviceTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedDeviceTypesItemEnum = S.String;
 
 export type PackageTargetingIncludedDeviceTypesItemEnumList = Array<
   PackageTargetingIncludedDeviceTypesItemEnum | (string & {})
@@ -233,15 +230,13 @@ export type PackageTargetingIncludedAcceleratedMobilePageTypeEnum =
   | "ACCELERATED_MOBILE_PAGE_TYPE_NON_AMP"
   | "ACCELERATED_MOBILE_PAGE_TYPE_AMP"
   | "ACCELERATED_MOBILE_PAGE_TYPE_AMP_STORY";
-export const PackageTargetingIncludedAcceleratedMobilePageTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedAcceleratedMobilePageTypeEnum = S.String;
 
 export type PackageTargetingIncludedRestrictedCategoriesItemEnum =
   | "RESTRICTED_CATEGORY_UNSPECIFIED"
   | "RESTRICTED_CATEGORY_ALCOHOL"
   | "RESTRICTED_CATEGORY_GAMBLING";
-export const PackageTargetingIncludedRestrictedCategoriesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedRestrictedCategoriesItemEnum = S.String;
 
 export type PackageTargetingIncludedRestrictedCategoriesItemEnumList = Array<
   PackageTargetingIncludedRestrictedCategoriesItemEnum | (string & {})
@@ -255,13 +250,12 @@ export type PackageTargetingIncludedRewardedTypeEnum =
   | "REWARDED_TYPE_UNSPECIFIED"
   | "REWARDED_TYPE_NON_REWARDED"
   | "REWARDED_TYPE_REWARDED";
-export const PackageTargetingIncludedRewardedTypeEnum = /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedRewardedTypeEnum = S.String;
 
 export type PackageTargetingIncludedOpenMeasurementTypesItemEnum =
   | "OPEN_MEASUREMENT_TYPE_UNSPECIFIED"
   | "OPEN_MEASUREMENT_TYPE_OMID_V1";
-export const PackageTargetingIncludedOpenMeasurementTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedOpenMeasurementTypesItemEnum = S.String;
 
 export type PackageTargetingIncludedOpenMeasurementTypesItemEnumList = Array<
   PackageTargetingIncludedOpenMeasurementTypesItemEnum | (string & {})
@@ -275,7 +269,7 @@ export type PackageTargetingIncludedEnvironmentEnum =
   | "ENVIRONMENT_UNSPECIFIED"
   | "ENVIRONMENT_SITE"
   | "ENVIRONMENT_APP";
-export const PackageTargetingIncludedEnvironmentEnum = /*@__PURE__*/ S.String;
+export const PackageTargetingIncludedEnvironmentEnum = S.String;
 
 /** Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed. */
 export interface PackagePlacementTargeting {
@@ -317,7 +311,7 @@ export type PackageTargetingIncludedAuthorizedSellerStatusesItemEnum =
   | "AUTHORIZED_SELLER_STATUS_DIRECT"
   | "AUTHORIZED_SELLER_STATUS_RESELLER";
 export const PackageTargetingIncludedAuthorizedSellerStatusesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PackageTargetingIncludedAuthorizedSellerStatusesItemEnumList =
   Array<
@@ -348,7 +342,7 @@ export type VideoPlcmtTargetingSelectionTypeEnum =
   | "SELECTION_TYPE_UNSPECIFIED"
   | "SELECTION_TYPE_INCLUDE"
   | "SELECTION_TYPE_EXCLUDE";
-export const VideoPlcmtTargetingSelectionTypeEnum = /*@__PURE__*/ S.String;
+export const VideoPlcmtTargetingSelectionTypeEnum = S.String;
 
 export type VideoPlcmtTargetingVideoPlcmtTypesItemEnum =
   | "VIDEO_PLCMT_TYPE_UNSPECIFIED"
@@ -356,8 +350,7 @@ export type VideoPlcmtTargetingVideoPlcmtTypesItemEnum =
   | "ACCOMPANYING_CONTENT"
   | "INTERSTITIAL"
   | "NO_CONTENT";
-export const VideoPlcmtTargetingVideoPlcmtTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const VideoPlcmtTargetingVideoPlcmtTypesItemEnum = S.String;
 
 export type VideoPlcmtTargetingVideoPlcmtTypesItemEnumList = Array<
   VideoPlcmtTargetingVideoPlcmtTypesItemEnum | (string & {})
@@ -392,7 +385,7 @@ export type PackageVideoTargetingIncludedMaximumAdDurationTargetingEnum =
   | "MAXIMUM_VIDEO_AD_DURATION_NINETY_SECONDS"
   | "MAXIMUM_VIDEO_AD_DURATION_ONE_HUNDRED_TWENTY_SECONDS";
 export const PackageVideoTargetingIncludedMaximumAdDurationTargetingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PackageVideoTargetingIncludedMimeTypesItemEnum =
   | "VIDEO_MIME_TYPE_UNSPECIFIED"
@@ -402,8 +395,7 @@ export type PackageVideoTargetingIncludedMimeTypesItemEnum =
   | "VIDEO_MIME_TYPE_APPLICATION_MPEGDASH"
   | "VIDEO_MIME_TYPE_APPLICATION_JAVASCRIPT"
   | "VIDEO_MIME_TYPE_WEBM";
-export const PackageVideoTargetingIncludedMimeTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PackageVideoTargetingIncludedMimeTypesItemEnum = S.String;
 
 export type PackageVideoTargetingIncludedMimeTypesItemEnumList = Array<
   PackageVideoTargetingIncludedMimeTypesItemEnum | (string & {})
@@ -417,16 +409,14 @@ export type PackageVideoTargetingIncludedContentDeliveryMethodEnum =
   | "CONTENT_DELIVERY_METHOD_UNSPECIFIED"
   | "CONTENT_DELIVERY_METHOD_STREAMING"
   | "CONTENT_DELIVERY_METHOD_PROGRESSIVE";
-export const PackageVideoTargetingIncludedContentDeliveryMethodEnum =
-  /*@__PURE__*/ S.String;
+export const PackageVideoTargetingIncludedContentDeliveryMethodEnum = S.String;
 
 export type PackageVideoTargetingIncludedPositionTypesItemEnum =
   | "POSITION_TYPE_UNSPECIFIED"
   | "POSITION_TYPE_MIDROLL"
   | "POSITION_TYPE_POSTROLL"
   | "POSITION_TYPE_PREROLL";
-export const PackageVideoTargetingIncludedPositionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const PackageVideoTargetingIncludedPositionTypesItemEnum = S.String;
 
 export type PackageVideoTargetingIncludedPositionTypesItemEnumList = Array<
   PackageVideoTargetingIncludedPositionTypesItemEnum | (string & {})
@@ -441,8 +431,7 @@ export type PackageVideoTargetingIncludedPlaybackMethodsItemEnum =
   | "PLAYBACK_METHOD_AUTO_PLAY_SOUND_ON"
   | "PLAYBACK_METHOD_AUTO_PLAY_SOUND_OFF"
   | "PLAYBACK_METHOD_CLICK_TO_PLAY";
-export const PackageVideoTargetingIncludedPlaybackMethodsItemEnum =
-  /*@__PURE__*/ S.String;
+export const PackageVideoTargetingIncludedPlaybackMethodsItemEnum = S.String;
 
 export type PackageVideoTargetingIncludedPlaybackMethodsItemEnumList = Array<
   PackageVideoTargetingIncludedPlaybackMethodsItemEnum | (string & {})
@@ -626,13 +615,13 @@ export type CuratedPackageCurationFeeVisibilityEnum =
   | "CURATION_FEE_VISIBILITY_UNSPECIFIED"
   | "DISCLOSED"
   | "NON_DISCLOSED";
-export const CuratedPackageCurationFeeVisibilityEnum = /*@__PURE__*/ S.String;
+export const CuratedPackageCurationFeeVisibilityEnum = S.String;
 
 export type CuratedPackageStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "INACTIVE";
-export const CuratedPackageStateEnum = /*@__PURE__*/ S.String;
+export const CuratedPackageStateEnum = S.String;
 
 /** Represents a curated package of inventory created and managed by a Curator. */
 export interface CuratedPackage {
@@ -710,7 +699,7 @@ export type DataSegmentStateEnum =
   | "ACTIVE"
   | "INACTIVE"
   | "SUSPENDED";
-export const DataSegmentStateEnum = /*@__PURE__*/ S.String;
+export const DataSegmentStateEnum = S.String;
 
 /** Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms. -- Next ID: 9 -- */
 export interface DataSegment {
@@ -789,7 +778,7 @@ export type ReportDefinitionTimeZoneSourceEnum =
   | "AD_EXCHANGE"
   | "UTC"
   | "PROVIDED";
-export const ReportDefinitionTimeZoneSourceEnum = /*@__PURE__*/ S.String;
+export const ReportDefinitionTimeZoneSourceEnum = S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Curationpartners_Date {
@@ -853,7 +842,7 @@ export type DateRangeRelativeEnum =
   | "LAST_6_MONTHS"
   | "LAST_12_MONTHS"
   | "ALL_AVAILABLE";
-export const DateRangeRelativeEnum = /*@__PURE__*/ S.String;
+export const DateRangeRelativeEnum = S.String;
 
 /** A date range for a report. */
 export interface DateRange {
@@ -884,7 +873,7 @@ export type ReportDefinitionMetricsItemEnum =
   | "DATA_SEGMENT_REQUESTS"
   | "IMPRESSIONS"
   | "SPEND";
-export const ReportDefinitionMetricsItemEnum = /*@__PURE__*/ S.String;
+export const ReportDefinitionMetricsItemEnum = S.String;
 
 export type ReportDefinitionMetricsItemEnumList = Array<
   ReportDefinitionMetricsItemEnum | (string & {})
@@ -921,7 +910,7 @@ export type ReportDefinitionDimensionsItemEnum =
   | "PUBLISHER_ID"
   | "PUBLISHER_NAME"
   | "WEEK";
-export const ReportDefinitionDimensionsItemEnum = /*@__PURE__*/ S.String;
+export const ReportDefinitionDimensionsItemEnum = S.String;
 
 export type ReportDefinitionDimensionsItemEnumList = Array<
   ReportDefinitionDimensionsItemEnum | (string & {})
@@ -953,7 +942,7 @@ export type FieldFilterOperationEnum =
   | "BETWEEN"
   | "MATCHES"
   | "NOT_MATCHES";
-export const FieldFilterOperationEnum = /*@__PURE__*/ S.String;
+export const FieldFilterOperationEnum = S.String;
 
 /** A list of string values. */
 export interface StringList {
@@ -1038,7 +1027,7 @@ export type FieldMetricEnum =
   | "DATA_SEGMENT_REQUESTS"
   | "IMPRESSIONS"
   | "SPEND";
-export const FieldMetricEnum = /*@__PURE__*/ S.String;
+export const FieldMetricEnum = S.String;
 
 export type FieldDimensionEnum =
   | "DIMENSION_UNSPECIFIED"
@@ -1068,7 +1057,7 @@ export type FieldDimensionEnum =
   | "PUBLISHER_ID"
   | "PUBLISHER_NAME"
   | "WEEK";
-export const FieldDimensionEnum = /*@__PURE__*/ S.String;
+export const FieldDimensionEnum = S.String;
 
 /** A dimension or a metric in a report. */
 export interface Field {

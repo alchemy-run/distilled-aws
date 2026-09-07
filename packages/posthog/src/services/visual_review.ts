@@ -375,7 +375,7 @@ export const CreateVisualReviewRunsCompleteRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateVisualReviewRunsCompleteRequest>;
 
 export type SearchMatchTypeEnum = "exact" | "similar";
-export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
+export const SearchMatchTypeEnum = S.String;
 
 export interface RunSummary {
   total?: number;
@@ -846,7 +846,7 @@ export type FlakinessStateEnum =
   | "at_risk"
   | "noisy"
   | "clean";
-export const FlakinessStateEnum = /*@__PURE__*/ S.String;
+export const FlakinessStateEnum = S.String;
 
 export interface FlakinessEntry {
   /** Distinct alternate hashes the classifier can still match for this snapshot's current baseline. Reads as how many different images this snapshot is currently allowed to produce. Resets when the baseline moves, because tolerations recorded against an old baseline hash can never match again. */

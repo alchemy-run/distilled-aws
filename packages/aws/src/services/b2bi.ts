@@ -138,10 +138,10 @@ export class ValidationException
   ).pipe(C.withBadRequestError) {}
 export type CapabilityName = string;
 export type CapabilityType = "edi" | (string & {});
-export const CapabilityType = /*@__PURE__*/ S.String;
+export const CapabilityType = S.String;
 
 export type CapabilityDirection = "INBOUND" | "OUTBOUND" | (string & {});
-export const CapabilityDirection = /*@__PURE__*/ S.String;
+export const CapabilityDirection = S.String;
 
 export type X12TransactionSet =
   | "X12_100"
@@ -487,7 +487,7 @@ export type X12TransactionSet =
   | "X12_837_X298"
   | "X12_999_X231"
   | (string & {});
-export const X12TransactionSet = /*@__PURE__*/ S.String;
+export const X12TransactionSet = S.String;
 
 export type X12Version =
   | "VERSION_4010"
@@ -497,7 +497,7 @@ export type X12Version =
   | "VERSION_5010"
   | "VERSION_5010_HIPAA"
   | (string & {});
-export const X12Version = /*@__PURE__*/ S.String;
+export const X12Version = S.String;
 
 export interface X12Details {
   transactionSet?: X12TransactionSet;
@@ -697,7 +697,7 @@ export const X12ControlNumbers = /*@__PURE__*/ S.suspend(() =>
   identifier: "X12ControlNumbers",
 }) as any as S.Schema<X12ControlNumbers>;
 export type X12GS05TimeFormat = "HHMM" | "HHMMSS" | "HHMMSSDD" | (string & {});
-export const X12GS05TimeFormat = /*@__PURE__*/ S.String;
+export const X12GS05TimeFormat = S.String;
 
 export interface X12OutboundEdiHeaders {
   interchangeControlHeaders?: X12InterchangeControlHeaders;
@@ -720,10 +720,10 @@ export const X12OutboundEdiHeaders = /*@__PURE__*/ S.suspend(() =>
   identifier: "X12OutboundEdiHeaders",
 }) as any as S.Schema<X12OutboundEdiHeaders>;
 export type WrapFormat = "SEGMENT" | "ONE_LINE" | "LINE_LENGTH" | (string & {});
-export const WrapFormat = /*@__PURE__*/ S.String;
+export const WrapFormat = S.String;
 
 export type LineTerminator = "CRLF" | "LF" | "CR" | (string & {});
-export const LineTerminator = /*@__PURE__*/ S.String;
+export const LineTerminator = S.String;
 
 export type LineLength = number;
 export interface WrapOptions {
@@ -757,13 +757,13 @@ export type X12FunctionalAcknowledgment =
   | "GENERATE_ALL_SEGMENTS"
   | "GENERATE_WITHOUT_TRANSACTION_SET_RESPONSE_LOOP"
   | (string & {});
-export const X12FunctionalAcknowledgment = /*@__PURE__*/ S.String;
+export const X12FunctionalAcknowledgment = S.String;
 
 export type X12TechnicalAcknowledgment =
   | "DO_NOT_GENERATE"
   | "GENERATE_ALL_SEGMENTS"
   | (string & {});
-export const X12TechnicalAcknowledgment = /*@__PURE__*/ S.String;
+export const X12TechnicalAcknowledgment = S.String;
 
 export interface X12AcknowledgmentOptions {
   functionalAcknowledgment: X12FunctionalAcknowledgment;
@@ -871,7 +871,7 @@ export const CreatePartnershipResponse = /*@__PURE__*/ S.suspend(() =>
 export type ProfileName = string;
 export type BusinessName = string;
 export type Logging = "ENABLED" | "DISABLED" | (string & {});
-export const Logging = /*@__PURE__*/ S.String;
+export const Logging = S.String;
 
 export interface CreateProfileRequest {
   name: string;
@@ -932,7 +932,7 @@ export const CreateProfileResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateProfileResponse",
 }) as any as S.Schema<CreateProfileResponse>;
 export type MappingType = "JSONATA" | "XSLT" | (string & {});
-export const MappingType = /*@__PURE__*/ S.String;
+export const MappingType = S.String;
 
 export type TemplateDetails = { x12: X12Details };
 export const TemplateDetails = /*@__PURE__*/ S.Union([
@@ -971,19 +971,19 @@ export const CreateStarterMappingTemplateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateStarterMappingTemplateResponse>;
 export type TransformerName = string;
 export type FileFormat = "XML" | "JSON" | "NOT_USED" | (string & {});
-export const FileFormat = /*@__PURE__*/ S.String;
+export const FileFormat = S.String;
 
 export type MappingTemplate = string;
 export type FileLocation = string;
 export type FromFormat = "X12" | (string & {});
-export const FromFormat = /*@__PURE__*/ S.String;
+export const FromFormat = S.String;
 
 export type FormatOptions = { x12: X12Details };
 export const FormatOptions = /*@__PURE__*/ S.Union([
   S.Struct({ x12: X12Details }),
 ]);
 export type X12SplitBy = "NONE" | "TRANSACTION" | (string & {});
-export const X12SplitBy = /*@__PURE__*/ S.String;
+export const X12SplitBy = S.String;
 
 export interface X12SplitOptions {
   splitBy: X12SplitBy;
@@ -1022,7 +1022,7 @@ export const X12ElementLengthValidationRule = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<X12ElementLengthValidationRule>;
 export type ElementPosition = string;
 export type ElementRequirement = "OPTIONAL" | "MANDATORY" | (string & {});
-export const ElementRequirement = /*@__PURE__*/ S.String;
+export const ElementRequirement = S.String;
 
 export interface X12ElementRequirementValidationRule {
   elementPosition: string;
@@ -1101,7 +1101,7 @@ export const InputConversion = /*@__PURE__*/ S.suspend(() =>
   identifier: "InputConversion",
 }) as any as S.Schema<InputConversion>;
 export type MappingTemplateLanguage = "XSLT" | "JSONATA" | (string & {});
-export const MappingTemplateLanguage = /*@__PURE__*/ S.String;
+export const MappingTemplateLanguage = S.String;
 
 export interface Mapping {
   templateLanguage: MappingTemplateLanguage;
@@ -1114,7 +1114,7 @@ export const Mapping = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Mapping" }) as any as S.Schema<Mapping>;
 export type ToFormat = "X12" | (string & {});
-export const ToFormat = /*@__PURE__*/ S.String;
+export const ToFormat = S.String;
 
 export interface OutputConversion {
   toFormat: ToFormat;
@@ -1190,7 +1190,7 @@ export const CreateTransformerRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateTransformerRequest",
 }) as any as S.Schema<CreateTransformerRequest>;
 export type TransformerStatus = "active" | "inactive" | (string & {});
-export const TransformerStatus = /*@__PURE__*/ S.String;
+export const TransformerStatus = S.String;
 
 export interface CreateTransformerResponse {
   transformerId: string;
@@ -1577,7 +1577,7 @@ export type TransformerJobStatus =
   | "succeeded"
   | "failed"
   | (string & {});
-export const TransformerJobStatus = /*@__PURE__*/ S.String;
+export const TransformerJobStatus = S.String;
 
 export type S3LocationList = S3Location[];
 export const S3LocationList = /*@__PURE__*/ S.Array(S3Location);
@@ -1918,7 +1918,7 @@ export const TagResourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TagResourceResponse",
 }) as any as S.Schema<TagResourceResponse>;
 export type ConversionSourceFormat = "JSON" | "XML" | (string & {});
-export const ConversionSourceFormat = /*@__PURE__*/ S.String;
+export const ConversionSourceFormat = S.String;
 
 export type InputFileSource = { fileContent: string };
 export const InputFileSource = /*@__PURE__*/ S.Union([
@@ -1934,7 +1934,7 @@ export const ConversionSource = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConversionSource",
 }) as any as S.Schema<ConversionSource>;
 export type ConversionTargetFormat = "X12" | (string & {});
-export const ConversionTargetFormat = /*@__PURE__*/ S.String;
+export const ConversionTargetFormat = S.String;
 
 export type ConversionTargetFormatDetails = { x12: X12Details };
 export const ConversionTargetFormatDetails = /*@__PURE__*/ S.Union([

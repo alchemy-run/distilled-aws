@@ -69,10 +69,10 @@ export const GetOriginPostQuantumEncryptionRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetOriginPostQuantumEncryptionRequest>;
 
 export type GetResponseId = "origin_pqe";
-export const GetResponseId = /*@__PURE__*/ S.String;
+export const GetResponseId = S.String;
 
 export type GetResponseValue = "preferred" | "supported" | "off";
-export const GetResponseValue = /*@__PURE__*/ S.String;
+export const GetResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetOriginPostQuantumEncryptionResponse {
@@ -98,7 +98,7 @@ export const GetOriginPostQuantumEncryptionResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetOriginPostQuantumEncryptionResponse>;
 
 export type UpdateRequestValue = "preferred" | "supported" | "off";
-export const UpdateRequestValue = /*@__PURE__*/ S.String;
+export const UpdateRequestValue = S.String;
 
 export interface PutOriginPostQuantumEncryptionRequest {
   /** Identifier. */
@@ -125,10 +125,10 @@ export const PutOriginPostQuantumEncryptionRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PutOriginPostQuantumEncryptionRequest>;
 
 export type UpdateResponseId = "origin_pqe";
-export const UpdateResponseId = /*@__PURE__*/ S.String;
+export const UpdateResponseId = S.String;
 
 export type UpdateResponseValue = "preferred" | "supported" | "off";
-export const UpdateResponseValue = /*@__PURE__*/ S.String;
+export const UpdateResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutOriginPostQuantumEncryptionResponse {

@@ -192,7 +192,7 @@ export type ResourceName = string;
 export type Description = string;
 export type S3Uri = string;
 export type ParallelDataFormat = "TSV" | "CSV" | "TMX" | (string & {});
-export const ParallelDataFormat = /*@__PURE__*/ S.String;
+export const ParallelDataFormat = S.String;
 
 export interface ParallelDataConfig {
   S3Uri?: string;
@@ -207,7 +207,7 @@ export const ParallelDataConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "ParallelDataConfig",
 }) as any as S.Schema<ParallelDataConfig>;
 export type EncryptionKeyType = "KMS" | (string & {});
-export const EncryptionKeyType = /*@__PURE__*/ S.String;
+export const EncryptionKeyType = S.String;
 
 export type EncryptionKeyID = string;
 export interface EncryptionKey {
@@ -258,7 +258,7 @@ export type ParallelDataStatus =
   | "DELETING"
   | "FAILED"
   | (string & {});
-export const ParallelDataStatus = /*@__PURE__*/ S.String;
+export const ParallelDataStatus = S.String;
 
 export interface CreateParallelDataResponse {
   Name?: string;
@@ -331,7 +331,7 @@ export type JobStatus =
   | "STOP_REQUESTED"
   | "STOPPED"
   | (string & {});
-export const JobStatus = /*@__PURE__*/ S.String;
+export const JobStatus = S.String;
 
 export interface JobDetails {
   TranslatedDocumentsCount?: number;
@@ -372,13 +372,13 @@ export const OutputDataConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OutputDataConfig>;
 export type IamRoleArn = string;
 export type Formality = "FORMAL" | "INFORMAL" | (string & {});
-export const Formality = /*@__PURE__*/ S.String;
+export const Formality = S.String;
 
 export type Profanity = "MASK" | (string & {});
-export const Profanity = /*@__PURE__*/ S.String;
+export const Profanity = S.String;
 
 export type Brevity = "ON" | (string & {});
-export const Brevity = /*@__PURE__*/ S.String;
+export const Brevity = S.String;
 
 export interface TranslationSettings {
   Formality?: Formality;
@@ -527,7 +527,7 @@ export const GetParallelDataResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetParallelDataResponse",
 }) as any as S.Schema<GetParallelDataResponse>;
 export type TerminologyDataFormat = "CSV" | "TMX" | "TSV" | (string & {});
-export const TerminologyDataFormat = /*@__PURE__*/ S.String;
+export const TerminologyDataFormat = S.String;
 
 export interface GetTerminologyRequest {
   Name: string;
@@ -545,7 +545,7 @@ export const GetTerminologyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTerminologyRequest>;
 export type TerminologyArn = string;
 export type Directionality = "UNI" | "MULTI" | (string & {});
-export const Directionality = /*@__PURE__*/ S.String;
+export const Directionality = S.String;
 
 export interface TerminologyProperties {
   Name?: string;
@@ -607,7 +607,7 @@ export const GetTerminologyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTerminologyResponse",
 }) as any as S.Schema<GetTerminologyResponse>;
 export type MergeStrategy = "OVERWRITE" | (string & {});
-export const MergeStrategy = /*@__PURE__*/ S.String;
+export const MergeStrategy = S.String;
 
 export type TerminologyFile = Uint8Array | redacted.Redacted<Uint8Array>;
 export interface TerminologyData {
@@ -670,7 +670,7 @@ export type DisplayLanguageCode =
   | "zh"
   | "zh-TW"
   | (string & {});
-export const DisplayLanguageCode = /*@__PURE__*/ S.String;
+export const DisplayLanguageCode = S.String;
 
 export type NextToken = string;
 export type MaxResultsInteger = number;

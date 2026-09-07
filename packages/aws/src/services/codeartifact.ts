@@ -208,10 +208,10 @@ export type PackageFormat =
   | "swift"
   | "cargo"
   | (string & {});
-export const PackageFormat = /*@__PURE__*/ S.String;
+export const PackageFormat = S.String;
 
 export type ExternalConnectionStatus = "Available" | (string & {});
-export const ExternalConnectionStatus = /*@__PURE__*/ S.String;
+export const ExternalConnectionStatus = S.String;
 
 export interface RepositoryExternalConnectionInfo {
   externalConnectionName?: string;
@@ -324,7 +324,7 @@ export type PackageVersionStatus =
   | "Disposed"
   | "Deleted"
   | (string & {});
-export const PackageVersionStatus = /*@__PURE__*/ S.String;
+export const PackageVersionStatus = S.String;
 
 export interface SuccessfulPackageVersionInfo {
   revision?: string;
@@ -353,7 +353,7 @@ export type PackageVersionErrorCode =
   | "NOT_FOUND"
   | "SKIPPED"
   | (string & {});
-export const PackageVersionErrorCode = /*@__PURE__*/ S.String;
+export const PackageVersionErrorCode = S.String;
 
 export type ErrorMessage = string;
 export interface PackageVersionError {
@@ -424,7 +424,7 @@ export const CreateDomainRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDomainRequest",
 }) as any as S.Schema<CreateDomainRequest>;
 export type DomainStatus = "Active" | "Deleted" | (string & {});
-export const DomainStatus = /*@__PURE__*/ S.String;
+export const DomainStatus = S.String;
 
 export interface DomainDescription {
   name?: string;
@@ -496,7 +496,7 @@ export type PackageGroupOriginRestrictionType =
   | "INTERNAL_UPSTREAM"
   | "PUBLISH"
   | (string & {});
-export const PackageGroupOriginRestrictionType = /*@__PURE__*/ S.String;
+export const PackageGroupOriginRestrictionType = S.String;
 
 export type PackageGroupOriginRestrictionMode =
   | "ALLOW"
@@ -504,7 +504,7 @@ export type PackageGroupOriginRestrictionMode =
   | "BLOCK"
   | "INHERIT"
   | (string & {});
-export const PackageGroupOriginRestrictionMode = /*@__PURE__*/ S.String;
+export const PackageGroupOriginRestrictionMode = S.String;
 
 export interface PackageGroupReference {
   arn?: string;
@@ -732,10 +732,10 @@ export const DeletePackageRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePackageRequest",
 }) as any as S.Schema<DeletePackageRequest>;
 export type AllowPublish = "ALLOW" | "BLOCK" | (string & {});
-export const AllowPublish = /*@__PURE__*/ S.String;
+export const AllowPublish = S.String;
 
 export type AllowUpstream = "ALLOW" | "BLOCK" | (string & {});
-export const AllowUpstream = /*@__PURE__*/ S.String;
+export const AllowUpstream = S.String;
 
 export interface PackageOriginRestrictions {
   publish: AllowPublish;
@@ -1093,7 +1093,7 @@ export type PackageVersionOriginType =
   | "EXTERNAL"
   | "UNKNOWN"
   | (string & {});
-export const PackageVersionOriginType = /*@__PURE__*/ S.String;
+export const PackageVersionOriginType = S.String;
 
 export interface PackageVersionOrigin {
   domainEntryPoint?: DomainEntryPoint;
@@ -1291,7 +1291,7 @@ export const GetAssociatedPackageGroupRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAssociatedPackageGroupRequest",
 }) as any as S.Schema<GetAssociatedPackageGroupRequest>;
 export type PackageGroupAssociationType = "STRONG" | "WEAK" | (string & {});
-export const PackageGroupAssociationType = /*@__PURE__*/ S.String;
+export const PackageGroupAssociationType = S.String;
 
 export interface GetAssociatedPackageGroupResult {
   packageGroup?: PackageGroupDescription;
@@ -1476,7 +1476,7 @@ export const GetPackageVersionReadmeResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPackageVersionReadmeResult",
 }) as any as S.Schema<GetPackageVersionReadmeResult>;
 export type EndpointType = "dualstack" | "ipv4" | (string & {});
-export const EndpointType = /*@__PURE__*/ S.String;
+export const EndpointType = S.String;
 
 export interface GetRepositoryEndpointRequest {
   domain: string;
@@ -1874,7 +1874,7 @@ export type HashAlgorithm =
   | "SHA-256"
   | "SHA-512"
   | (string & {});
-export const HashAlgorithm = /*@__PURE__*/ S.String;
+export const HashAlgorithm = S.String;
 
 export type HashValue = string;
 export type AssetHashes = { [key in HashAlgorithm]?: string };
@@ -1994,7 +1994,7 @@ export const ListPackageVersionDependenciesResult = /*@__PURE__*/ S.suspend(
   identifier: "ListPackageVersionDependenciesResult",
 }) as any as S.Schema<ListPackageVersionDependenciesResult>;
 export type PackageVersionSortType = "PUBLISHED_TIME" | (string & {});
-export const PackageVersionSortType = /*@__PURE__*/ S.String;
+export const PackageVersionSortType = S.String;
 
 export type ListPackageVersionsMaxResults = number;
 export interface ListPackageVersionsRequest {
@@ -2576,7 +2576,7 @@ export type PackageGroupAllowedRepositoryUpdateType =
   | "ADDED"
   | "REMOVED"
   | (string & {});
-export const PackageGroupAllowedRepositoryUpdateType = /*@__PURE__*/ S.String;
+export const PackageGroupAllowedRepositoryUpdateType = S.String;
 
 export type PackageGroupAllowedRepositoryUpdate = {
   [key in PackageGroupAllowedRepositoryUpdateType]?: string[];
@@ -2704,7 +2704,7 @@ export type ResourceType =
   | "package-version"
   | "asset"
   | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type RetryAfterSeconds = number;
 export type ValidationExceptionReason =
@@ -2714,7 +2714,7 @@ export type ValidationExceptionReason =
   | "UNKNOWN_OPERATION"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export type AssociateExternalConnectionError =
   | AccessDeniedException

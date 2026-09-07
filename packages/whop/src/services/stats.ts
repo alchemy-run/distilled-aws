@@ -496,7 +496,7 @@ export type DescribeStatsResponseBody =
   | DescribeStatsResponseBodyCase2
   | DescribeStatsResponseBodyCase3;
 export const DescribeStatsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DescribeStatsResponseBody>;
+  S.Unknown as any as S.Schema<DescribeStatsResponseBody>;
 
 export type DescribeStatsResponse = DescribeStatsResponseBody;
 export const DescribeStatsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -514,13 +514,13 @@ export type GetMetricRequestInterval =
   | "week"
   | "month"
   | "year";
-export const GetMetricRequestInterval = /*@__PURE__*/ S.String;
+export const GetMetricRequestInterval = S.String;
 
 export type GetMetricRequestEventType =
   | "page_view"
   | "checkout_start"
   | "other";
-export const GetMetricRequestEventType = /*@__PURE__*/ S.String;
+export const GetMetricRequestEventType = S.String;
 
 export type GetMetricRequestAdCampaignIdsList = Array<string>;
 export const GetMetricRequestAdCampaignIdsList = /*@__PURE__*/ S.Array(
@@ -538,7 +538,7 @@ export const GetMetricRequestAdIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetMetricRequestAdIdsList>;
 
 export type GetMetricRequestSnapshotWindow = "7d" | "28d" | "30d";
-export const GetMetricRequestSnapshotWindow = /*@__PURE__*/ S.String;
+export const GetMetricRequestSnapshotWindow = S.String;
 
 export interface GetMetricRequest {
   /** The metric to retrieve, for example net_revenue. Use GET /stats to see every metric key. The metric sets the unit and the properties you can filter or break down by. */
@@ -771,7 +771,7 @@ export const ListMetricsResponseDataItemPropertiesList = /*@__PURE__*/ S.Array(
 
 /** How to read the metric's values: count is an integer, currency is a decimal amount, and percent is a number where 1.6 means 1.6%. */
 export type ListMetricsResponseDataItemUnit = "count" | "currency" | "percent";
-export const ListMetricsResponseDataItemUnit = /*@__PURE__*/ S.String;
+export const ListMetricsResponseDataItemUnit = S.String;
 
 /** Snapshot metrics only: the trailing windows you can pass as snapshot_window, for example 30d. Absent on live metrics, which use from/to instead. */
 export type ListMetricsResponseDataItemWindowsList = Array<string>;
@@ -948,7 +948,7 @@ export const MetricStatsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 export interface RawStatsRequest {
   resource: string;

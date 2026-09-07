@@ -180,7 +180,7 @@ export type CodespaceMachinePrebuildAvailability =
   | "none"
   | "ready"
   | "in_progress";
-export const CodespaceMachinePrebuildAvailability = /*@__PURE__*/ S.String;
+export const CodespaceMachinePrebuildAvailability = S.String;
 
 /** A description of the machine powering a codespace. */
 export interface CodespaceMachine {
@@ -240,8 +240,7 @@ export type CreateForAuthenticatedUserRequestBodyCase0Geo =
   | "SoutheastAsia"
   | "UsEast"
   | "UsWest";
-export const CreateForAuthenticatedUserRequestBodyCase0Geo =
-  /*@__PURE__*/ S.String;
+export const CreateForAuthenticatedUserRequestBodyCase0Geo = S.String;
 
 export interface CreateForAuthenticatedUserRequestBodyCase0 {
   /** Repository id for this codespace */
@@ -312,8 +311,7 @@ export type CreateForAuthenticatedUserRequestBodyCase1Geo =
   | "SoutheastAsia"
   | "UsEast"
   | "UsWest";
-export const CreateForAuthenticatedUserRequestBodyCase1Geo =
-  /*@__PURE__*/ S.String;
+export const CreateForAuthenticatedUserRequestBodyCase1Geo = S.String;
 
 export interface CreateForAuthenticatedUserRequestBodyCase1 {
   /** Pull request number for this codespace */
@@ -350,7 +348,7 @@ export type CreateForAuthenticatedUserRequestBody =
   | CreateForAuthenticatedUserRequestBodyCase0
   | CreateForAuthenticatedUserRequestBodyCase1;
 export const CreateForAuthenticatedUserRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateForAuthenticatedUserRequestBody>;
+  S.Unknown as any as S.Schema<CreateForAuthenticatedUserRequestBody>;
 
 export interface CreateForAuthenticatedUserRequest {
   body: CreateForAuthenticatedUserRequestBody;
@@ -424,8 +422,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -484,7 +481,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -499,7 +496,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -516,8 +513,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -534,7 +530,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -550,8 +546,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -569,7 +564,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -588,8 +583,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -607,7 +601,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -626,8 +620,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -648,14 +641,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -957,8 +950,7 @@ export type NullableCodespaceMachinePrebuildAvailability =
   | "none"
   | "ready"
   | "in_progress";
-export const NullableCodespaceMachinePrebuildAvailability =
-  /*@__PURE__*/ S.String;
+export const NullableCodespaceMachinePrebuildAvailability = S.String;
 
 /** A description of the machine powering a codespace. */
 export interface NullableCodespaceMachine {
@@ -1012,7 +1004,7 @@ export type CodespaceState =
   | "Exporting"
   | "Updating"
   | "Rebuilding";
-export const CodespaceState = /*@__PURE__*/ S.String;
+export const CodespaceState = S.String;
 
 /** Details about the codespace's git repository. */
 export interface CodespaceGitStatus {
@@ -1045,7 +1037,7 @@ export type CodespaceLocation =
   | "SouthEastAsia"
   | "WestEurope"
   | "WestUs2";
-export const CodespaceLocation = /*@__PURE__*/ S.String;
+export const CodespaceLocation = S.String;
 
 export type CodespaceRecentFoldersList = Array<string>;
 export const CodespaceRecentFoldersList = /*@__PURE__*/ S.Array(
@@ -1174,7 +1166,7 @@ export type CreateOrUpdateOrgSecretRequestVisibility =
   | "all"
   | "private"
   | "selected";
-export const CreateOrUpdateOrgSecretRequestVisibility = /*@__PURE__*/ S.String;
+export const CreateOrUpdateOrgSecretRequestVisibility = S.String;
 
 /** An array of repository IDs that can access the organization secret. You can only provide a list of repository IDs when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
 export type CreateOrUpdateOrgSecretRequestSelectedRepositoryIdsList =
@@ -1267,7 +1259,7 @@ export type CreateOrUpdateSecretForAuthenticatedUserRequestSelectedRepositoryIds
   | number
   | string;
 export const CreateOrUpdateSecretForAuthenticatedUserRequestSelectedRepositoryIdsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrUpdateSecretForAuthenticatedUserRequestSelectedRepositoryIdsItem>;
+  S.Unknown as any as S.Schema<CreateOrUpdateSecretForAuthenticatedUserRequestSelectedRepositoryIdsItem>;
 
 /** An array of repository ids that can access the user secret. You can manage the list of selected repositories using the [List selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#list-selected-repositories-for-a-user-secret), [Set selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#set-selected-repositories-for-a-user-secret), and [Remove a selected repository from a user secret](https://docs.github.com/rest/codespaces/secrets#remove-a-selected-repository-from-a-user-secret) endpoints. */
 export type CreateOrUpdateSecretForAuthenticatedUserRequestSelectedRepositoryIdsList =
@@ -1319,8 +1311,7 @@ export type CreateWithPrForAuthenticatedUserRequestGeo =
   | "SoutheastAsia"
   | "UsEast"
   | "UsWest";
-export const CreateWithPrForAuthenticatedUserRequestGeo =
-  /*@__PURE__*/ S.String;
+export const CreateWithPrForAuthenticatedUserRequestGeo = S.String;
 
 export interface CreateWithPrForAuthenticatedUserRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1383,8 +1374,7 @@ export type CreateWithRepoForAuthenticatedUserRequestGeo =
   | "SoutheastAsia"
   | "UsEast"
   | "UsWest";
-export const CreateWithRepoForAuthenticatedUserRequestGeo =
-  /*@__PURE__*/ S.String;
+export const CreateWithRepoForAuthenticatedUserRequestGeo = S.String;
 
 export interface CreateWithRepoForAuthenticatedUserRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -1789,7 +1779,7 @@ export const GetOrgSecretRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of repositories in the organization that the secret is visible to */
 export type CodespacesOrgSecretVisibility = "all" | "private" | "selected";
-export const CodespacesOrgSecretVisibility = /*@__PURE__*/ S.String;
+export const CodespacesOrgSecretVisibility = S.String;
 
 /** Secrets for a GitHub Codespace. */
 export interface CodespacesOrgSecret {
@@ -1929,7 +1919,7 @@ export const GetSecretForAuthenticatedUserRequest = /*@__PURE__*/ S.suspend(
 
 /** The type of repositories in the organization that the secret is visible to */
 export type CodespacesSecretVisibility = "all" | "private" | "selected";
-export const CodespacesSecretVisibility = /*@__PURE__*/ S.String;
+export const CodespacesSecretVisibility = S.String;
 
 /** Secrets for a GitHub Codespace. */
 export interface CodespacesSecret {
@@ -2448,7 +2438,7 @@ export const FullRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type FullRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const FullRepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const FullRepositoryPullRequestCreationPolicy = S.String;
 
 export interface FullRepositoryPermissions {
   admin: boolean;
@@ -2519,33 +2509,31 @@ export const NullableRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type NullableRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const NullableRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const NullableRepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type NullableRepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const NullableRepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const NullableRepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type NullableRepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const NullableRepositorySquashMergeCommitMessage =
-  /*@__PURE__*/ S.String;
+export const NullableRepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type NullableRepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const NullableRepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const NullableRepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type NullableRepositoryMergeCommitMessage =
   | "PR_BODY"
   | "PR_TITLE"
   | "BLANK";
-export const NullableRepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const NullableRepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface NullableRepositoryCodeSearchIndexStatus {
@@ -2811,22 +2799,22 @@ export const NullableRepository = /*@__PURE__*/ S.suspend(() =>
 export type FullRepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const FullRepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const FullRepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type FullRepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const FullRepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const FullRepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type FullRepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const FullRepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const FullRepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type FullRepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const FullRepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const FullRepositoryMergeCommitMessage = S.String;
 
 /** A GitHub user. */
 export type NullableSimpleUser = SimpleUser;
@@ -2842,28 +2830,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export type RepositoryCodeSearchIndexStatus =
@@ -3388,7 +3376,7 @@ export type CodespaceWithFullRepositoryState =
   | "Exporting"
   | "Updating"
   | "Rebuilding";
-export const CodespaceWithFullRepositoryState = /*@__PURE__*/ S.String;
+export const CodespaceWithFullRepositoryState = S.String;
 
 /** Details about the codespace's git repository. */
 export type CodespaceWithFullRepositoryGitStatus = CodespaceGitStatus;
@@ -3400,7 +3388,7 @@ export type CodespaceWithFullRepositoryLocation =
   | "SouthEastAsia"
   | "WestEurope"
   | "WestUs2";
-export const CodespaceWithFullRepositoryLocation = /*@__PURE__*/ S.String;
+export const CodespaceWithFullRepositoryLocation = S.String;
 
 export type CodespaceWithFullRepositoryRecentFoldersList = Array<string>;
 export const CodespaceWithFullRepositoryRecentFoldersList =

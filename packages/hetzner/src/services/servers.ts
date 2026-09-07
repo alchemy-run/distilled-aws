@@ -39,7 +39,7 @@ export class ServerPlacementError
 
 export type CreateServerRequestSshKeysItem = number | string;
 export const CreateServerRequestSshKeysItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateServerRequestSshKeysItem>;
+  S.Unknown as any as S.Schema<CreateServerRequestSshKeysItem>;
 
 /** SSH key IDs (`integer`) or names (`string`) which should be injected into the Server at creation time. */
 export type CreateServerRequestSshKeysList =
@@ -172,7 +172,7 @@ export type CreateServerResponseServerStatus =
   | "migrating"
   | "rebuilding"
   | "unknown";
-export const CreateServerResponseServerStatus = /*@__PURE__*/ S.String;
+export const CreateServerResponseServerStatus = S.String;
 
 /** IP address (v4) and its reverse DNS entry of this Server. */
 export interface CreateServerResponseServerPublicNetIpv4 {
@@ -255,8 +255,7 @@ export const CreateServerResponseServerPublicNetFloatingIpsList =
 export type CreateServerResponseServerPublicNetFirewallsItemStatus =
   | "applied"
   | "pending";
-export const CreateServerResponseServerPublicNetFirewallsItemStatus =
-  /*@__PURE__*/ S.String;
+export const CreateServerResponseServerPublicNetFirewallsItemStatus = S.String;
 
 export interface CreateServerResponseServerPublicNetFirewallsItem {
   /** ID of the [Firewall](#tag/firewalls). */
@@ -412,20 +411,17 @@ export const CreateServerResponseServerServerTypePricesList =
 export type CreateServerResponseServerServerTypeStorageType =
   | "local"
   | "network";
-export const CreateServerResponseServerServerTypeStorageType =
-  /*@__PURE__*/ S.String;
+export const CreateServerResponseServerServerTypeStorageType = S.String;
 
 /** Type of cpu. */
 export type CreateServerResponseServerServerTypeCpuType =
   | "shared"
   | "dedicated";
-export const CreateServerResponseServerServerTypeCpuType =
-  /*@__PURE__*/ S.String;
+export const CreateServerResponseServerServerTypeCpuType = S.String;
 
 /** CPU architecture of the Server Type. */
 export type CreateServerResponseServerServerTypeArchitecture = "x86" | "arm";
-export const CreateServerResponseServerServerTypeArchitecture =
-  /*@__PURE__*/ S.String;
+export const CreateServerResponseServerServerTypeArchitecture = S.String;
 
 /** This field is deprecated. Use the `deprecation` object in the `locations` field instead (`.locations[].deprecation`). */
 export interface CreateServerResponseServerServerTypeDeprecation {
@@ -578,14 +574,14 @@ export type CreateServerResponseServerImageType =
   | "app"
   | "snapshot"
   | "backup";
-export const CreateServerResponseServerImageType = /*@__PURE__*/ S.String;
+export const CreateServerResponseServerImageType = S.String;
 
 /** Status of the Image. */
 export type CreateServerResponseServerImageStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const CreateServerResponseServerImageStatus = /*@__PURE__*/ S.String;
+export const CreateServerResponseServerImageStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export interface CreateServerResponseServerImageCreatedFrom {
@@ -614,7 +610,7 @@ export type CreateServerResponseServerImageOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const CreateServerResponseServerImageOsFlavor = /*@__PURE__*/ S.String;
+export const CreateServerResponseServerImageOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export interface CreateServerResponseServerImageProtection {
@@ -641,8 +637,7 @@ export const CreateServerResponseServerImageLabelsMap = /*@__PURE__*/ S.Record(
 
 /** CPU architecture compatible with the Image. */
 export type CreateServerResponseServerImageArchitecture = "x86" | "arm";
-export const CreateServerResponseServerImageArchitecture =
-  /*@__PURE__*/ S.String;
+export const CreateServerResponseServerImageArchitecture = S.String;
 
 /** Image the server is based on. */
 export interface CreateServerResponseServerImage {
@@ -710,7 +705,7 @@ export const CreateServerResponseServerImage = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the ISO. */
 export type CreateServerResponseServerIsoType = "public" | "private";
-export const CreateServerResponseServerIsoType = /*@__PURE__*/ S.String;
+export const CreateServerResponseServerIsoType = S.String;
 
 /** Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated. */
 export type CreateServerResponseServerIsoDeprecation =
@@ -720,7 +715,7 @@ export const CreateServerResponseServerIsoDeprecation =
 
 /** CPU architecture compatible with the ISO. Null indicates no restriction on the architecture (wildcard). */
 export type CreateServerResponseServerIsoArchitecture = "x86" | "arm";
-export const CreateServerResponseServerIsoArchitecture = /*@__PURE__*/ S.String;
+export const CreateServerResponseServerIsoArchitecture = S.String;
 
 /** ISO Image that is attached to this Server. Null if no ISO is attached. */
 export interface CreateServerResponseServerIso {
@@ -801,8 +796,7 @@ export const CreateServerResponseServerPlacementGroupLabelsMap =
 
 /** Type of Placement Group. */
 export type CreateServerResponseServerPlacementGroupType = "spread";
-export const CreateServerResponseServerPlacementGroupType =
-  /*@__PURE__*/ S.String;
+export const CreateServerResponseServerPlacementGroupType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type CreateServerResponseServerPlacementGroupServersList = Array<number>;
@@ -918,7 +912,7 @@ export const CreateServerResponseServer = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type CreateServerResponseActionStatus = "running" | "success" | "error";
-export const CreateServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateServerResponseActionStatus = S.String;
 
 export interface CreateServerResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -997,7 +991,7 @@ export type CreateServerResponseNextActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const CreateServerResponseNextActionsItemStatus = /*@__PURE__*/ S.String;
+export const CreateServerResponseNextActionsItemStatus = S.String;
 
 export type CreateServerResponseNextActionsItemResourcesItem =
   CreateServerResponseActionResourcesItem;
@@ -1089,7 +1083,7 @@ export const DeleteServerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type DeleteServerResponseActionStatus = "running" | "success" | "error";
-export const DeleteServerResponseActionStatus = /*@__PURE__*/ S.String;
+export const DeleteServerResponseActionStatus = S.String;
 
 export type DeleteServerResponseActionResourcesItem =
   CreateServerResponseActionResourcesItem;
@@ -1174,7 +1168,7 @@ export type GetServerResponseServerStatus =
   | "migrating"
   | "rebuilding"
   | "unknown";
-export const GetServerResponseServerStatus = /*@__PURE__*/ S.String;
+export const GetServerResponseServerStatus = S.String;
 
 /** IP address (v4) and its reverse DNS entry of this Server. */
 export type GetServerResponseServerPublicNetIpv4 =
@@ -1229,8 +1223,7 @@ export const GetServerResponseServerPublicNetFloatingIpsList =
 export type GetServerResponseServerPublicNetFirewallsItemStatus =
   | "applied"
   | "pending";
-export const GetServerResponseServerPublicNetFirewallsItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetServerResponseServerPublicNetFirewallsItemStatus = S.String;
 
 export interface GetServerResponseServerPublicNetFirewallsItem {
   /** ID of the [Firewall](#tag/firewalls). */
@@ -1347,17 +1340,15 @@ export const GetServerResponseServerServerTypePricesList =
 
 /** Type of Server boot drive. Local has higher speed. Network has better availability. */
 export type GetServerResponseServerServerTypeStorageType = "local" | "network";
-export const GetServerResponseServerServerTypeStorageType =
-  /*@__PURE__*/ S.String;
+export const GetServerResponseServerServerTypeStorageType = S.String;
 
 /** Type of cpu. */
 export type GetServerResponseServerServerTypeCpuType = "shared" | "dedicated";
-export const GetServerResponseServerServerTypeCpuType = /*@__PURE__*/ S.String;
+export const GetServerResponseServerServerTypeCpuType = S.String;
 
 /** CPU architecture of the Server Type. */
 export type GetServerResponseServerServerTypeArchitecture = "x86" | "arm";
-export const GetServerResponseServerServerTypeArchitecture =
-  /*@__PURE__*/ S.String;
+export const GetServerResponseServerServerTypeArchitecture = S.String;
 
 /** This field is deprecated. Use the `deprecation` object in the `locations` field instead (`.locations[].deprecation`). */
 export type GetServerResponseServerServerTypeDeprecation =
@@ -1450,14 +1441,14 @@ export type GetServerResponseServerImageType =
   | "app"
   | "snapshot"
   | "backup";
-export const GetServerResponseServerImageType = /*@__PURE__*/ S.String;
+export const GetServerResponseServerImageType = S.String;
 
 /** Status of the Image. */
 export type GetServerResponseServerImageStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const GetServerResponseServerImageStatus = /*@__PURE__*/ S.String;
+export const GetServerResponseServerImageStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export type GetServerResponseServerImageCreatedFrom =
@@ -1475,7 +1466,7 @@ export type GetServerResponseServerImageOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const GetServerResponseServerImageOsFlavor = /*@__PURE__*/ S.String;
+export const GetServerResponseServerImageOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export type GetServerResponseServerImageProtection =
@@ -1494,7 +1485,7 @@ export const GetServerResponseServerImageLabelsMap = /*@__PURE__*/ S.Record(
 
 /** CPU architecture compatible with the Image. */
 export type GetServerResponseServerImageArchitecture = "x86" | "arm";
-export const GetServerResponseServerImageArchitecture = /*@__PURE__*/ S.String;
+export const GetServerResponseServerImageArchitecture = S.String;
 
 /** Image the server is based on. */
 export interface GetServerResponseServerImage {
@@ -1562,7 +1553,7 @@ export const GetServerResponseServerImage = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the ISO. */
 export type GetServerResponseServerIsoType = "public" | "private";
-export const GetServerResponseServerIsoType = /*@__PURE__*/ S.String;
+export const GetServerResponseServerIsoType = S.String;
 
 /** Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated. */
 export type GetServerResponseServerIsoDeprecation =
@@ -1572,7 +1563,7 @@ export const GetServerResponseServerIsoDeprecation =
 
 /** CPU architecture compatible with the ISO. Null indicates no restriction on the architecture (wildcard). */
 export type GetServerResponseServerIsoArchitecture = "x86" | "arm";
-export const GetServerResponseServerIsoArchitecture = /*@__PURE__*/ S.String;
+export const GetServerResponseServerIsoArchitecture = S.String;
 
 /** ISO Image that is attached to this Server. Null if no ISO is attached. */
 export interface GetServerResponseServerIso {
@@ -1641,7 +1632,7 @@ export const GetServerResponseServerPlacementGroupLabelsMap =
 
 /** Type of Placement Group. */
 export type GetServerResponseServerPlacementGroupType = "spread";
-export const GetServerResponseServerPlacementGroupType = /*@__PURE__*/ S.String;
+export const GetServerResponseServerPlacementGroupType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type GetServerResponseServerPlacementGroupServersList = Array<number>;
@@ -1767,7 +1758,7 @@ export const GetServerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServerResponse>;
 
 export type GetServerMetricsRequestTypeItem = "cpu" | "disk" | "network";
-export const GetServerMetricsRequestTypeItem = /*@__PURE__*/ S.String;
+export const GetServerMetricsRequestTypeItem = S.String;
 
 export type GetServerMetricsRequestTypeList = Array<
   GetServerMetricsRequestTypeItem | (string & {})
@@ -1880,7 +1871,7 @@ export type ListServersRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListServersRequestSortItem = /*@__PURE__*/ S.String;
+export const ListServersRequestSortItem = S.String;
 
 export type ListServersRequestSortList = Array<
   ListServersRequestSortItem | (string & {})
@@ -1900,7 +1891,7 @@ export type ListServersRequestStatusItem =
   | "migrating"
   | "rebuilding"
   | "unknown";
-export const ListServersRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListServersRequestStatusItem = S.String;
 
 export type ListServersRequestStatusList = Array<
   ListServersRequestStatusItem | (string & {})
@@ -1947,7 +1938,7 @@ export type ListServersResponseServersItemStatus =
   | "migrating"
   | "rebuilding"
   | "unknown";
-export const ListServersResponseServersItemStatus = /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemStatus = S.String;
 
 /** IP address (v4) and its reverse DNS entry of this Server. */
 export type ListServersResponseServersItemPublicNetIpv4 =
@@ -2004,7 +1995,7 @@ export type ListServersResponseServersItemPublicNetFirewallsItemStatus =
   | "applied"
   | "pending";
 export const ListServersResponseServersItemPublicNetFirewallsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListServersResponseServersItemPublicNetFirewallsItem {
   /** ID of the [Firewall](#tag/firewalls). */
@@ -2132,22 +2123,19 @@ export const ListServersResponseServersItemServerTypePricesList =
 export type ListServersResponseServersItemServerTypeStorageType =
   | "local"
   | "network";
-export const ListServersResponseServersItemServerTypeStorageType =
-  /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemServerTypeStorageType = S.String;
 
 /** Type of cpu. */
 export type ListServersResponseServersItemServerTypeCpuType =
   | "shared"
   | "dedicated";
-export const ListServersResponseServersItemServerTypeCpuType =
-  /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemServerTypeCpuType = S.String;
 
 /** CPU architecture of the Server Type. */
 export type ListServersResponseServersItemServerTypeArchitecture =
   | "x86"
   | "arm";
-export const ListServersResponseServersItemServerTypeArchitecture =
-  /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemServerTypeArchitecture = S.String;
 
 /** This field is deprecated. Use the `deprecation` object in the `locations` field instead (`.locations[].deprecation`). */
 export type ListServersResponseServersItemServerTypeDeprecation =
@@ -2241,14 +2229,14 @@ export type ListServersResponseServersItemImageType =
   | "app"
   | "snapshot"
   | "backup";
-export const ListServersResponseServersItemImageType = /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemImageType = S.String;
 
 /** Status of the Image. */
 export type ListServersResponseServersItemImageStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const ListServersResponseServersItemImageStatus = /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemImageStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export type ListServersResponseServersItemImageCreatedFrom =
@@ -2266,8 +2254,7 @@ export type ListServersResponseServersItemImageOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const ListServersResponseServersItemImageOsFlavor =
-  /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemImageOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export type ListServersResponseServersItemImageProtection =
@@ -2287,8 +2274,7 @@ export const ListServersResponseServersItemImageLabelsMap =
 
 /** CPU architecture compatible with the Image. */
 export type ListServersResponseServersItemImageArchitecture = "x86" | "arm";
-export const ListServersResponseServersItemImageArchitecture =
-  /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemImageArchitecture = S.String;
 
 /** Image the server is based on. */
 export interface ListServersResponseServersItemImage {
@@ -2356,7 +2342,7 @@ export const ListServersResponseServersItemImage = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the ISO. */
 export type ListServersResponseServersItemIsoType = "public" | "private";
-export const ListServersResponseServersItemIsoType = /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemIsoType = S.String;
 
 /** Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated. */
 export type ListServersResponseServersItemIsoDeprecation =
@@ -2366,8 +2352,7 @@ export const ListServersResponseServersItemIsoDeprecation =
 
 /** CPU architecture compatible with the ISO. Null indicates no restriction on the architecture (wildcard). */
 export type ListServersResponseServersItemIsoArchitecture = "x86" | "arm";
-export const ListServersResponseServersItemIsoArchitecture =
-  /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemIsoArchitecture = S.String;
 
 /** ISO Image that is attached to this Server. Null if no ISO is attached. */
 export interface ListServersResponseServersItemIso {
@@ -2437,8 +2422,7 @@ export const ListServersResponseServersItemPlacementGroupLabelsMap =
 
 /** Type of Placement Group. */
 export type ListServersResponseServersItemPlacementGroupType = "spread";
-export const ListServersResponseServersItemPlacementGroupType =
-  /*@__PURE__*/ S.String;
+export const ListServersResponseServersItemPlacementGroupType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type ListServersResponseServersItemPlacementGroupServersList =
@@ -2650,7 +2634,7 @@ export type UpdateServerResponseServerStatus =
   | "migrating"
   | "rebuilding"
   | "unknown";
-export const UpdateServerResponseServerStatus = /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerStatus = S.String;
 
 /** IP address (v4) and its reverse DNS entry of this Server. */
 export type UpdateServerResponseServerPublicNetIpv4 =
@@ -2705,8 +2689,7 @@ export const UpdateServerResponseServerPublicNetFloatingIpsList =
 export type UpdateServerResponseServerPublicNetFirewallsItemStatus =
   | "applied"
   | "pending";
-export const UpdateServerResponseServerPublicNetFirewallsItemStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerPublicNetFirewallsItemStatus = S.String;
 
 export interface UpdateServerResponseServerPublicNetFirewallsItem {
   /** ID of the [Firewall](#tag/firewalls). */
@@ -2830,20 +2813,17 @@ export const UpdateServerResponseServerServerTypePricesList =
 export type UpdateServerResponseServerServerTypeStorageType =
   | "local"
   | "network";
-export const UpdateServerResponseServerServerTypeStorageType =
-  /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerServerTypeStorageType = S.String;
 
 /** Type of cpu. */
 export type UpdateServerResponseServerServerTypeCpuType =
   | "shared"
   | "dedicated";
-export const UpdateServerResponseServerServerTypeCpuType =
-  /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerServerTypeCpuType = S.String;
 
 /** CPU architecture of the Server Type. */
 export type UpdateServerResponseServerServerTypeArchitecture = "x86" | "arm";
-export const UpdateServerResponseServerServerTypeArchitecture =
-  /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerServerTypeArchitecture = S.String;
 
 /** This field is deprecated. Use the `deprecation` object in the `locations` field instead (`.locations[].deprecation`). */
 export type UpdateServerResponseServerServerTypeDeprecation =
@@ -2937,14 +2917,14 @@ export type UpdateServerResponseServerImageType =
   | "app"
   | "snapshot"
   | "backup";
-export const UpdateServerResponseServerImageType = /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerImageType = S.String;
 
 /** Status of the Image. */
 export type UpdateServerResponseServerImageStatus =
   | "available"
   | "creating"
   | "unavailable";
-export const UpdateServerResponseServerImageStatus = /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerImageStatus = S.String;
 
 /** Information about the Server the Image was created from. */
 export type UpdateServerResponseServerImageCreatedFrom =
@@ -2962,7 +2942,7 @@ export type UpdateServerResponseServerImageOsFlavor =
   | "alma"
   | "opensuse"
   | "unknown";
-export const UpdateServerResponseServerImageOsFlavor = /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerImageOsFlavor = S.String;
 
 /** Protection configuration for the Resource. */
 export type UpdateServerResponseServerImageProtection =
@@ -2981,8 +2961,7 @@ export const UpdateServerResponseServerImageLabelsMap = /*@__PURE__*/ S.Record(
 
 /** CPU architecture compatible with the Image. */
 export type UpdateServerResponseServerImageArchitecture = "x86" | "arm";
-export const UpdateServerResponseServerImageArchitecture =
-  /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerImageArchitecture = S.String;
 
 /** Image the server is based on. */
 export interface UpdateServerResponseServerImage {
@@ -3050,7 +3029,7 @@ export const UpdateServerResponseServerImage = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the ISO. */
 export type UpdateServerResponseServerIsoType = "public" | "private";
-export const UpdateServerResponseServerIsoType = /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerIsoType = S.String;
 
 /** Describes if, when and how the resource is deprecated. If this field is set to `null` the resource is not deprecated. If a value is set, it is considered deprecated. */
 export type UpdateServerResponseServerIsoDeprecation =
@@ -3060,7 +3039,7 @@ export const UpdateServerResponseServerIsoDeprecation =
 
 /** CPU architecture compatible with the ISO. Null indicates no restriction on the architecture (wildcard). */
 export type UpdateServerResponseServerIsoArchitecture = "x86" | "arm";
-export const UpdateServerResponseServerIsoArchitecture = /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerIsoArchitecture = S.String;
 
 /** ISO Image that is attached to this Server. Null if no ISO is attached. */
 export interface UpdateServerResponseServerIso {
@@ -3130,8 +3109,7 @@ export const UpdateServerResponseServerPlacementGroupLabelsMap =
 
 /** Type of Placement Group. */
 export type UpdateServerResponseServerPlacementGroupType = "spread";
-export const UpdateServerResponseServerPlacementGroupType =
-  /*@__PURE__*/ S.String;
+export const UpdateServerResponseServerPlacementGroupType = S.String;
 
 /** Array of IDs of Servers that are part of this Placement Group. */
 export type UpdateServerResponseServerPlacementGroupServersList = Array<number>;

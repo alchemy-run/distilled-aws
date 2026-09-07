@@ -246,15 +246,14 @@ export const TypesAcknowledgedResponseBase = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAcknowledgedResponseBase>;
 
 export type TypesDurationCase1 = "-1";
-export const TypesDurationCase1 = /*@__PURE__*/ S.String;
+export const TypesDurationCase1 = S.String;
 
 export type TypesDurationCase2 = "0";
-export const TypesDurationCase2 = /*@__PURE__*/ S.String;
+export const TypesDurationCase2 = S.String;
 
 /** A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts "0" without a unit and "-1" to indicate an unspecified value. */
 export type TypesDuration = string | TypesDurationCase1 | TypesDurationCase2;
-export const TypesDuration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesDuration>;
+export const TypesDuration = S.Unknown as any as S.Schema<TypesDuration>;
 
 export interface AsyncSearchGetRequest {
   /** A unique identifier for the async search. */
@@ -282,8 +281,7 @@ export const AsyncSearchGetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A date and time, either as a string whose format can depend on the context (defaulting to ISO 8601), or a number of milliseconds since the Epoch. Elasticsearch accepts both as input, but will generally output a string representation. */
 export type TypesDateTime = string | number;
-export const TypesDateTime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesDateTime>;
+export const TypesDateTime = S.Unknown as any as S.Schema<TypesDateTime>;
 
 export type TypesMetadata = { [key: string]: unknown | undefined };
 export const TypesMetadata = /*@__PURE__*/ S.Record(
@@ -307,7 +305,7 @@ export const TypesAggregationsCardinalityAggregate = /*@__PURE__*/ S.suspend(
 
 export type TypesAggregationsKeyedPercentilesValue = string | number;
 export const TypesAggregationsKeyedPercentilesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsKeyedPercentilesValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsKeyedPercentilesValue>;
 
 export type TypesAggregationsKeyedPercentiles = {
   [key: string]: TypesAggregationsKeyedPercentilesValue | undefined;
@@ -319,7 +317,7 @@ export const TypesAggregationsKeyedPercentiles = /*@__PURE__*/ S.Record(
 
 export type TypesAggregationsArrayPercentilesItemValue = number | string;
 export const TypesAggregationsArrayPercentilesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsArrayPercentilesItemValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsArrayPercentilesItemValue>;
 
 export interface TypesAggregationsArrayPercentilesItem {
   key: number;
@@ -347,7 +345,7 @@ export type TypesAggregationsPercentiles =
   | TypesAggregationsKeyedPercentiles
   | TypesAggregationsPercentilesCase1List;
 export const TypesAggregationsPercentiles =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsPercentiles>;
+  S.Unknown as any as S.Schema<TypesAggregationsPercentiles>;
 
 export interface TypesAggregationsHdrPercentilesAggregate {
   meta?: TypesMetadata;
@@ -388,7 +386,7 @@ export type TypesAggregationsMedianAbsoluteDeviationAggregateValue =
   | number
   | string;
 export const TypesAggregationsMedianAbsoluteDeviationAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsMedianAbsoluteDeviationAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsMedianAbsoluteDeviationAggregateValue>;
 
 export interface TypesAggregationsMedianAbsoluteDeviationAggregate {
   meta?: TypesMetadata;
@@ -410,7 +408,7 @@ export const TypesAggregationsMedianAbsoluteDeviationAggregate =
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsMinAggregateValue = number | string;
 export const TypesAggregationsMinAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsMinAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsMinAggregateValue>;
 
 export interface TypesAggregationsMinAggregate {
   meta?: TypesMetadata;
@@ -431,7 +429,7 @@ export const TypesAggregationsMinAggregate = /*@__PURE__*/ S.suspend(() =>
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsMaxAggregateValue = number | string;
 export const TypesAggregationsMaxAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsMaxAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsMaxAggregateValue>;
 
 export interface TypesAggregationsMaxAggregate {
   meta?: TypesMetadata;
@@ -452,7 +450,7 @@ export const TypesAggregationsMaxAggregate = /*@__PURE__*/ S.suspend(() =>
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsSumAggregateValue = number | string;
 export const TypesAggregationsSumAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsSumAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsSumAggregateValue>;
 
 /** Sum aggregation result. `value` is always present and is zero if there were no values to process. */
 export interface TypesAggregationsSumAggregate {
@@ -474,7 +472,7 @@ export const TypesAggregationsSumAggregate = /*@__PURE__*/ S.suspend(() =>
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsAvgAggregateValue = number | string;
 export const TypesAggregationsAvgAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsAvgAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsAvgAggregateValue>;
 
 export interface TypesAggregationsAvgAggregate {
   meta?: TypesMetadata;
@@ -495,7 +493,7 @@ export const TypesAggregationsAvgAggregate = /*@__PURE__*/ S.suspend(() =>
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsWeightedAvgAggregateValue = number | string;
 export const TypesAggregationsWeightedAvgAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsWeightedAvgAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsWeightedAvgAggregateValue>;
 
 /** Weighted average aggregation result. `value` is missing if the weight was set to zero. */
 export interface TypesAggregationsWeightedAvgAggregate {
@@ -518,7 +516,7 @@ export const TypesAggregationsWeightedAvgAggregate = /*@__PURE__*/ S.suspend(
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsValueCountAggregateValue = number | string;
 export const TypesAggregationsValueCountAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsValueCountAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsValueCountAggregateValue>;
 
 /** Value count aggregation result. `value` is always present. */
 export interface TypesAggregationsValueCountAggregate {
@@ -541,7 +539,7 @@ export const TypesAggregationsValueCountAggregate = /*@__PURE__*/ S.suspend(
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsSimpleValueAggregateValue = number | string;
 export const TypesAggregationsSimpleValueAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsSimpleValueAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsSimpleValueAggregateValue>;
 
 export interface TypesAggregationsSimpleValueAggregate {
   meta?: TypesMetadata;
@@ -563,7 +561,7 @@ export const TypesAggregationsSimpleValueAggregate = /*@__PURE__*/ S.suspend(
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsDerivativeAggregateValue = number | string;
 export const TypesAggregationsDerivativeAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsDerivativeAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsDerivativeAggregateValue>;
 
 export interface TypesAggregationsDerivativeAggregate {
   meta?: TypesMetadata;
@@ -589,7 +587,7 @@ export const TypesAggregationsDerivativeAggregate = /*@__PURE__*/ S.suspend(
 /** The metric value. A missing value generally means that there was no data to aggregate, unless specified otherwise. */
 export type TypesAggregationsBucketMetricValueAggregateValue = number | string;
 export const TypesAggregationsBucketMetricValueAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketMetricValueAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketMetricValueAggregateValue>;
 
 export type TypesAggregationsBucketMetricValueAggregateKeysList = Array<string>;
 export const TypesAggregationsBucketMetricValueAggregateKeysList =
@@ -706,8 +704,7 @@ export const TypesAggregationsChangeType = /*@__PURE__*/ S.suspend(() =>
 
 /** A field value. */
 export type TypesFieldValue = number | string | boolean;
-export const TypesFieldValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesFieldValue>;
+export const TypesFieldValue = S.Unknown as any as S.Schema<TypesFieldValue>;
 
 export interface TypesAggregationsChangePointBucket {
   doc_count: number;
@@ -740,15 +737,15 @@ export const TypesAggregationsChangePointAggregate = /*@__PURE__*/ S.suspend(
 
 export type TypesAggregationsStatsAggregateMin = number | string;
 export const TypesAggregationsStatsAggregateMin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStatsAggregateMin>;
+  S.Unknown as any as S.Schema<TypesAggregationsStatsAggregateMin>;
 
 export type TypesAggregationsStatsAggregateMax = number | string;
 export const TypesAggregationsStatsAggregateMax =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStatsAggregateMax>;
+  S.Unknown as any as S.Schema<TypesAggregationsStatsAggregateMax>;
 
 export type TypesAggregationsStatsAggregateAvg = number | string;
 export const TypesAggregationsStatsAggregateAvg =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStatsAggregateAvg>;
+  S.Unknown as any as S.Schema<TypesAggregationsStatsAggregateAvg>;
 
 /** Statistics aggregation result. `min`, `max` and `avg` are missing if there were no values to process (`count` is zero). */
 export interface TypesAggregationsStatsAggregate {
@@ -782,15 +779,15 @@ export const TypesAggregationsStatsAggregate = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAggregationsStatsBucketAggregateMin = number | string;
 export const TypesAggregationsStatsBucketAggregateMin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStatsBucketAggregateMin>;
+  S.Unknown as any as S.Schema<TypesAggregationsStatsBucketAggregateMin>;
 
 export type TypesAggregationsStatsBucketAggregateMax = number | string;
 export const TypesAggregationsStatsBucketAggregateMax =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStatsBucketAggregateMax>;
+  S.Unknown as any as S.Schema<TypesAggregationsStatsBucketAggregateMax>;
 
 export type TypesAggregationsStatsBucketAggregateAvg = number | string;
 export const TypesAggregationsStatsBucketAggregateAvg =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStatsBucketAggregateAvg>;
+  S.Unknown as any as S.Schema<TypesAggregationsStatsBucketAggregateAvg>;
 
 export interface TypesAggregationsStatsBucketAggregate {
   meta?: TypesMetadata;
@@ -824,87 +821,87 @@ export const TypesAggregationsStatsBucketAggregate = /*@__PURE__*/ S.suspend(
 
 export type TypesAggregationsExtendedStatsAggregateMin = number | string;
 export const TypesAggregationsExtendedStatsAggregateMin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateMin>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateMin>;
 
 export type TypesAggregationsExtendedStatsAggregateMax = number | string;
 export const TypesAggregationsExtendedStatsAggregateMax =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateMax>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateMax>;
 
 export type TypesAggregationsExtendedStatsAggregateAvg = number | string;
 export const TypesAggregationsExtendedStatsAggregateAvg =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateAvg>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateAvg>;
 
 export type TypesAggregationsExtendedStatsAggregateSumOfSquares =
   | number
   | string;
 export const TypesAggregationsExtendedStatsAggregateSumOfSquares =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateSumOfSquares>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateSumOfSquares>;
 
 export type TypesAggregationsExtendedStatsAggregateVariance = number | string;
 export const TypesAggregationsExtendedStatsAggregateVariance =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateVariance>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateVariance>;
 
 export type TypesAggregationsExtendedStatsAggregateVariancePopulation =
   | number
   | string;
 export const TypesAggregationsExtendedStatsAggregateVariancePopulation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateVariancePopulation>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateVariancePopulation>;
 
 export type TypesAggregationsExtendedStatsAggregateVarianceSampling =
   | number
   | string;
 export const TypesAggregationsExtendedStatsAggregateVarianceSampling =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateVarianceSampling>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateVarianceSampling>;
 
 export type TypesAggregationsExtendedStatsAggregateStdDeviation =
   | number
   | string;
 export const TypesAggregationsExtendedStatsAggregateStdDeviation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateStdDeviation>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateStdDeviation>;
 
 export type TypesAggregationsExtendedStatsAggregateStdDeviationPopulation =
   | number
   | string;
 export const TypesAggregationsExtendedStatsAggregateStdDeviationPopulation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateStdDeviationPopulation>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateStdDeviationPopulation>;
 
 export type TypesAggregationsExtendedStatsAggregateStdDeviationSampling =
   | number
   | string;
 export const TypesAggregationsExtendedStatsAggregateStdDeviationSampling =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateStdDeviationSampling>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsAggregateStdDeviationSampling>;
 
 export type TypesAggregationsStandardDeviationBoundsUpper = number | string;
 export const TypesAggregationsStandardDeviationBoundsUpper =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsUpper>;
+  S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsUpper>;
 
 export type TypesAggregationsStandardDeviationBoundsLower = number | string;
 export const TypesAggregationsStandardDeviationBoundsLower =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsLower>;
+  S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsLower>;
 
 export type TypesAggregationsStandardDeviationBoundsUpperPopulation =
   | number
   | string;
 export const TypesAggregationsStandardDeviationBoundsUpperPopulation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsUpperPopulation>;
+  S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsUpperPopulation>;
 
 export type TypesAggregationsStandardDeviationBoundsLowerPopulation =
   | number
   | string;
 export const TypesAggregationsStandardDeviationBoundsLowerPopulation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsLowerPopulation>;
+  S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsLowerPopulation>;
 
 export type TypesAggregationsStandardDeviationBoundsUpperSampling =
   | number
   | string;
 export const TypesAggregationsStandardDeviationBoundsUpperSampling =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsUpperSampling>;
+  S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsUpperSampling>;
 
 export type TypesAggregationsStandardDeviationBoundsLowerSampling =
   | number
   | string;
 export const TypesAggregationsStandardDeviationBoundsLowerSampling =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsLowerSampling>;
+  S.Unknown as any as S.Schema<TypesAggregationsStandardDeviationBoundsLowerSampling>;
 
 export interface TypesAggregationsStandardDeviationBounds {
   upper: TypesAggregationsStandardDeviationBoundsUpper;
@@ -1018,57 +1015,57 @@ export const TypesAggregationsExtendedStatsAggregate = /*@__PURE__*/ S.suspend(
 
 export type TypesAggregationsExtendedStatsBucketAggregateMin = number | string;
 export const TypesAggregationsExtendedStatsBucketAggregateMin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateMin>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateMin>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateMax = number | string;
 export const TypesAggregationsExtendedStatsBucketAggregateMax =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateMax>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateMax>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateAvg = number | string;
 export const TypesAggregationsExtendedStatsBucketAggregateAvg =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateAvg>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateAvg>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateSumOfSquares =
   | number
   | string;
 export const TypesAggregationsExtendedStatsBucketAggregateSumOfSquares =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateSumOfSquares>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateSumOfSquares>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateVariance =
   | number
   | string;
 export const TypesAggregationsExtendedStatsBucketAggregateVariance =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateVariance>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateVariance>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateVariancePopulation =
   | number
   | string;
 export const TypesAggregationsExtendedStatsBucketAggregateVariancePopulation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateVariancePopulation>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateVariancePopulation>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateVarianceSampling =
   | number
   | string;
 export const TypesAggregationsExtendedStatsBucketAggregateVarianceSampling =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateVarianceSampling>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateVarianceSampling>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateStdDeviation =
   | number
   | string;
 export const TypesAggregationsExtendedStatsBucketAggregateStdDeviation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateStdDeviation>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateStdDeviation>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateStdDeviationPopulation =
   | number
   | string;
 export const TypesAggregationsExtendedStatsBucketAggregateStdDeviationPopulation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateStdDeviationPopulation>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateStdDeviationPopulation>;
 
 export type TypesAggregationsExtendedStatsBucketAggregateStdDeviationSampling =
   | number
   | string;
 export const TypesAggregationsExtendedStatsBucketAggregateStdDeviationSampling =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateStdDeviationSampling>;
+  S.Unknown as any as S.Schema<TypesAggregationsExtendedStatsBucketAggregateStdDeviationSampling>;
 
 export interface TypesAggregationsExtendedStatsBucketAggregate {
   meta?: TypesMetadata;
@@ -1173,8 +1170,7 @@ export type TypesGeoLocation =
   | TypesGeoHashLocation
   | TypesGeoLocationCase2List
   | string;
-export const TypesGeoLocation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesGeoLocation>;
+export const TypesGeoLocation = S.Unknown as any as S.Schema<TypesGeoLocation>;
 
 export interface TypesTopLeftBottomRightGeoBounds {
   top_left: TypesGeoLocation;
@@ -1279,8 +1275,7 @@ export type TypesGeoBounds =
   | TypesTopLeftBottomRightGeoBounds
   | TypesTopRightBottomLeftGeoBounds
   | TypesWktGeoBounds;
-export const TypesGeoBounds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesGeoBounds>;
+export const TypesGeoBounds = S.Unknown as any as S.Schema<TypesGeoBounds>;
 
 export interface TypesAggregationsGeoBoundsAggregate {
   meta?: TypesMetadata;
@@ -1347,7 +1342,7 @@ export type TypesAggregationsBucketsHistogramBucket =
   | TypesAggregationsBucketsHistogramBucketCase0Map
   | TypesAggregationsBucketsHistogramBucketCase1List;
 export const TypesAggregationsBucketsHistogramBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsHistogramBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsHistogramBucket>;
 
 export interface TypesAggregationsHistogramAggregate {
   meta?: TypesMetadata;
@@ -1388,7 +1383,7 @@ export type TypesAggregationsBucketsDateHistogramBucket =
   | TypesAggregationsBucketsDateHistogramBucketCase0Map
   | TypesAggregationsBucketsDateHistogramBucketCase1List;
 export const TypesAggregationsBucketsDateHistogramBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsDateHistogramBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsDateHistogramBucket>;
 
 export interface TypesAggregationsDateHistogramAggregate {
   meta?: TypesMetadata;
@@ -1465,7 +1460,7 @@ export type TypesAggregationsBucketsVariableWidthHistogramBucket =
   | TypesAggregationsBucketsVariableWidthHistogramBucketCase0Map
   | TypesAggregationsBucketsVariableWidthHistogramBucketCase1List;
 export const TypesAggregationsBucketsVariableWidthHistogramBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsVariableWidthHistogramBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsVariableWidthHistogramBucket>;
 
 export interface TypesAggregationsVariableWidthHistogramAggregate {
   meta?: TypesMetadata;
@@ -1517,7 +1512,7 @@ export type TypesAggregationsBucketsStringTermsBucket =
   | TypesAggregationsBucketsStringTermsBucketCase0Map
   | TypesAggregationsBucketsStringTermsBucketCase1List;
 export const TypesAggregationsBucketsStringTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsStringTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsStringTermsBucket>;
 
 /** Result of a `terms` aggregation when the field is a string. */
 export interface TypesAggregationsStringTermsAggregate {
@@ -1576,7 +1571,7 @@ export type TypesAggregationsBucketsLongTermsBucket =
   | TypesAggregationsBucketsLongTermsBucketCase0Map
   | TypesAggregationsBucketsLongTermsBucketCase1List;
 export const TypesAggregationsBucketsLongTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsLongTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsLongTermsBucket>;
 
 /** Result of a `terms` aggregation when the field is some kind of whole number like a integer, long, or a date. */
 export interface TypesAggregationsLongTermsAggregate {
@@ -1622,7 +1617,7 @@ export type TypesAggregationsBucketsDoubleTermsBucket =
   | TypesAggregationsBucketsDoubleTermsBucketCase0Map
   | TypesAggregationsBucketsDoubleTermsBucketCase1List;
 export const TypesAggregationsBucketsDoubleTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsDoubleTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsDoubleTermsBucket>;
 
 /** Result of a `terms` aggregation when the field is some kind of decimal number like a float, double, or distance. */
 export interface TypesAggregationsDoubleTermsAggregate {
@@ -1661,7 +1656,7 @@ export type TypesAggregationsBucketsVoid =
   | TypesAggregationsBucketsVoidCase0Map
   | TypesAggregationsBucketsVoidCase1List;
 export const TypesAggregationsBucketsVoid =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsVoid>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsVoid>;
 
 /** Result of a `terms` aggregation when the field is unmapped. `buckets` is always empty. */
 export interface TypesAggregationsUnmappedTermsAggregate {
@@ -1719,7 +1714,7 @@ export type TypesAggregationsBucketsLongRareTermsBucket =
   | TypesAggregationsBucketsLongRareTermsBucketCase0Map
   | TypesAggregationsBucketsLongRareTermsBucketCase1List;
 export const TypesAggregationsBucketsLongRareTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsLongRareTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsLongRareTermsBucket>;
 
 /** Result of the `rare_terms` aggregation when the field is some kind of whole number like a integer, long, or a date. */
 export interface TypesAggregationsLongRareTermsAggregate {
@@ -1771,7 +1766,7 @@ export type TypesAggregationsBucketsStringRareTermsBucket =
   | TypesAggregationsBucketsStringRareTermsBucketCase0Map
   | TypesAggregationsBucketsStringRareTermsBucketCase1List;
 export const TypesAggregationsBucketsStringRareTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsStringRareTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsStringRareTermsBucket>;
 
 /** Result of the `rare_terms` aggregation when the field is a string. */
 export interface TypesAggregationsStringRareTermsAggregate {
@@ -1846,7 +1841,7 @@ export type TypesAggregationsBucketsMultiTermsBucket =
   | TypesAggregationsBucketsMultiTermsBucketCase0Map
   | TypesAggregationsBucketsMultiTermsBucketCase1List;
 export const TypesAggregationsBucketsMultiTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsMultiTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsMultiTermsBucket>;
 
 export interface TypesAggregationsMultiTermsAggregate {
   meta?: TypesMetadata;
@@ -1945,7 +1940,7 @@ export type TypesAggregationsBucketsGeoHashGridBucket =
   | TypesAggregationsBucketsGeoHashGridBucketCase0Map
   | TypesAggregationsBucketsGeoHashGridBucketCase1List;
 export const TypesAggregationsBucketsGeoHashGridBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsGeoHashGridBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsGeoHashGridBucket>;
 
 export interface TypesAggregationsGeoHashGridAggregate {
   meta?: TypesMetadata;
@@ -1987,7 +1982,7 @@ export type TypesAggregationsBucketsGeoTileGridBucket =
   | TypesAggregationsBucketsGeoTileGridBucketCase0Map
   | TypesAggregationsBucketsGeoTileGridBucketCase1List;
 export const TypesAggregationsBucketsGeoTileGridBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsGeoTileGridBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsGeoTileGridBucket>;
 
 export interface TypesAggregationsGeoTileGridAggregate {
   meta?: TypesMetadata;
@@ -2029,7 +2024,7 @@ export type TypesAggregationsBucketsGeoHexGridBucket =
   | TypesAggregationsBucketsGeoHexGridBucketCase0Map
   | TypesAggregationsBucketsGeoHexGridBucketCase1List;
 export const TypesAggregationsBucketsGeoHexGridBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsGeoHexGridBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsGeoHexGridBucket>;
 
 export interface TypesAggregationsGeoHexGridAggregate {
   meta?: TypesMetadata;
@@ -2088,7 +2083,7 @@ export type TypesAggregationsBucketsRangeBucket =
   | TypesAggregationsBucketsRangeBucketCase0Map
   | TypesAggregationsBucketsRangeBucketCase1List;
 export const TypesAggregationsBucketsRangeBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsRangeBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsRangeBucket>;
 
 export interface TypesAggregationsRangeAggregate {
   meta?: TypesMetadata;
@@ -2153,7 +2148,7 @@ export type TypesAggregationsBucketsIpRangeBucket =
   | TypesAggregationsBucketsIpRangeBucketCase0Map
   | TypesAggregationsBucketsIpRangeBucketCase1List;
 export const TypesAggregationsBucketsIpRangeBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsIpRangeBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsIpRangeBucket>;
 
 export interface TypesAggregationsIpRangeAggregate {
   meta?: TypesMetadata;
@@ -2208,7 +2203,7 @@ export type TypesAggregationsBucketsIpPrefixBucket =
   | TypesAggregationsBucketsIpPrefixBucketCase0Map
   | TypesAggregationsBucketsIpPrefixBucketCase1List;
 export const TypesAggregationsBucketsIpPrefixBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsIpPrefixBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsIpPrefixBucket>;
 
 export interface TypesAggregationsIpPrefixAggregate {
   meta?: TypesMetadata;
@@ -2257,7 +2252,7 @@ export type TypesAggregationsBucketsFiltersBucket =
   | TypesAggregationsBucketsFiltersBucketCase0Map
   | TypesAggregationsBucketsFiltersBucketCase1List;
 export const TypesAggregationsBucketsFiltersBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsFiltersBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsFiltersBucket>;
 
 export interface TypesAggregationsFiltersAggregate {
   meta?: TypesMetadata;
@@ -2298,7 +2293,7 @@ export type TypesAggregationsBucketsAdjacencyMatrixBucket =
   | TypesAggregationsBucketsAdjacencyMatrixBucketCase0Map
   | TypesAggregationsBucketsAdjacencyMatrixBucketCase1List;
 export const TypesAggregationsBucketsAdjacencyMatrixBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsAdjacencyMatrixBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsAdjacencyMatrixBucket>;
 
 export interface TypesAggregationsAdjacencyMatrixAggregate {
   meta?: TypesMetadata;
@@ -2355,7 +2350,7 @@ export type TypesAggregationsBucketsSignificantLongTermsBucket =
   | TypesAggregationsBucketsSignificantLongTermsBucketCase0Map
   | TypesAggregationsBucketsSignificantLongTermsBucketCase1List;
 export const TypesAggregationsBucketsSignificantLongTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsSignificantLongTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsSignificantLongTermsBucket>;
 
 export interface TypesAggregationsSignificantLongTermsAggregate {
   meta?: TypesMetadata;
@@ -2414,7 +2409,7 @@ export type TypesAggregationsBucketsSignificantStringTermsBucket =
   | TypesAggregationsBucketsSignificantStringTermsBucketCase0Map
   | TypesAggregationsBucketsSignificantStringTermsBucketCase1List;
 export const TypesAggregationsBucketsSignificantStringTermsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsSignificantStringTermsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsSignificantStringTermsBucket>;
 
 export interface TypesAggregationsSignificantStringTermsAggregate {
   meta?: TypesMetadata;
@@ -2495,7 +2490,7 @@ export type TypesAggregationsBucketsCompositeBucket =
   | TypesAggregationsBucketsCompositeBucketCase0Map
   | TypesAggregationsBucketsCompositeBucketCase1List;
 export const TypesAggregationsBucketsCompositeBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsCompositeBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsCompositeBucket>;
 
 export interface TypesAggregationsCompositeAggregate {
   meta?: TypesMetadata;
@@ -2566,7 +2561,7 @@ export type TypesAggregationsBucketsFrequentItemSetsBucket =
   | TypesAggregationsBucketsFrequentItemSetsBucketCase0Map
   | TypesAggregationsBucketsFrequentItemSetsBucketCase1List;
 export const TypesAggregationsBucketsFrequentItemSetsBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsFrequentItemSetsBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsFrequentItemSetsBucket>;
 
 export interface TypesAggregationsFrequentItemSetsAggregate {
   meta?: TypesMetadata;
@@ -2624,7 +2619,7 @@ export type TypesAggregationsBucketsTimeSeriesBucket =
   | TypesAggregationsBucketsTimeSeriesBucketCase0Map
   | TypesAggregationsBucketsTimeSeriesBucketCase1List;
 export const TypesAggregationsBucketsTimeSeriesBucket =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsTimeSeriesBucket>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsTimeSeriesBucket>;
 
 export interface TypesAggregationsTimeSeriesAggregate {
   meta?: TypesMetadata;
@@ -2655,7 +2650,7 @@ export const TypesAggregationsScriptedMetricAggregate = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAggregationsScriptedMetricAggregate>;
 
 export type GlobalSearchTypesTotalHitsRelation = "eq" | "gte";
-export const GlobalSearchTypesTotalHitsRelation = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesTotalHitsRelation = S.String;
 
 export interface GlobalSearchTypesTotalHits {
   relation: GlobalSearchTypesTotalHitsRelation;
@@ -2675,11 +2670,11 @@ export type GlobalSearchTypesHitsMetadataTotal =
   | GlobalSearchTypesTotalHits
   | number;
 export const GlobalSearchTypesHitsMetadataTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesHitsMetadataTotal>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesHitsMetadataTotal>;
 
 export type GlobalSearchTypesHitScore = number | string;
 export const GlobalSearchTypesHitScore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesHitScore>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesHitScore>;
 
 export type GlobalExplainExplanationDetailDetailsList =
   Array<GlobalExplainExplanationDetail>;
@@ -2782,7 +2777,7 @@ export type GlobalSearchTypesHitMatchedQueries =
   | GlobalSearchTypesHitMatchedQueriesCase0List
   | GlobalSearchTypesHitMatchedQueriesCase1Map;
 export const GlobalSearchTypesHitMatchedQueries =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesHitMatchedQueries>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesHitMatchedQueries>;
 
 export interface GlobalSearchTypesNestedIdentity {
   field: string;
@@ -2879,7 +2874,7 @@ export const GlobalSearchTypesHitsMetadataHitsList = /*@__PURE__*/ S.Array(
 
 export type GlobalSearchTypesHitsMetadataMaxScore = number | string;
 export const GlobalSearchTypesHitsMetadataMaxScore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesHitsMetadataMaxScore>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesHitsMetadataMaxScore>;
 
 export interface GlobalSearchTypesHitsMetadata {
   /** Total hit count information, present only if `track_total_hits` wasn't `false` in the search request. */
@@ -3002,19 +2997,19 @@ export const TypesAggregationsInferenceAggregate = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAggregationsStringStatsAggregateMinLength = number | string;
 export const TypesAggregationsStringStatsAggregateMinLength =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateMinLength>;
+  S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateMinLength>;
 
 export type TypesAggregationsStringStatsAggregateMaxLength = number | string;
 export const TypesAggregationsStringStatsAggregateMaxLength =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateMaxLength>;
+  S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateMaxLength>;
 
 export type TypesAggregationsStringStatsAggregateAvgLength = number | string;
 export const TypesAggregationsStringStatsAggregateAvgLength =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateAvgLength>;
+  S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateAvgLength>;
 
 export type TypesAggregationsStringStatsAggregateEntropy = number | string;
 export const TypesAggregationsStringStatsAggregateEntropy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateEntropy>;
+  S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateEntropy>;
 
 export type TypesAggregationsStringStatsAggregateDistributionCase0Map = {
   [key: string]: number | undefined;
@@ -3029,7 +3024,7 @@ export type TypesAggregationsStringStatsAggregateDistribution =
   | TypesAggregationsStringStatsAggregateDistributionCase0Map
   | string;
 export const TypesAggregationsStringStatsAggregateDistribution =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateDistribution>;
+  S.Unknown as any as S.Schema<TypesAggregationsStringStatsAggregateDistribution>;
 
 export interface TypesAggregationsStringStatsAggregate {
   meta?: TypesMetadata;
@@ -3104,7 +3099,7 @@ export const TypesAggregationsBoxPlotAggregate = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAggregationsTopMetricsSortItem = TypesFieldValue | string;
 export const TypesAggregationsTopMetricsSortItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsTopMetricsSortItem>;
+  S.Unknown as any as S.Schema<TypesAggregationsTopMetricsSortItem>;
 
 export type TypesAggregationsTopMetricsSortList =
   Array<TypesAggregationsTopMetricsSortItem>;
@@ -3114,7 +3109,7 @@ export const TypesAggregationsTopMetricsSortList = /*@__PURE__*/ S.Array(
 
 export type TypesAggregationsTopMetricsMetricsValue = TypesFieldValue | string;
 export const TypesAggregationsTopMetricsMetricsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsTopMetricsMetricsValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsTopMetricsMetricsValue>;
 
 export type TypesAggregationsTopMetricsMetricsMap = {
   [key: string]: TypesAggregationsTopMetricsMetricsValue | undefined;
@@ -3160,7 +3155,7 @@ export const TypesAggregationsTopMetricsAggregate = /*@__PURE__*/ S.suspend(
 
 export type TypesAggregationsTTestAggregateValue = number | string;
 export const TypesAggregationsTTestAggregateValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsTTestAggregateValue>;
+  S.Unknown as any as S.Schema<TypesAggregationsTTestAggregateValue>;
 
 export interface TypesAggregationsTTestAggregate {
   meta?: TypesMetadata;
@@ -3382,7 +3377,7 @@ export type TypesAggregationsAggregate =
   | TypesAggregationsMatrixStatsAggregate
   | TypesAggregationsGeoLineAggregate;
 export const TypesAggregationsAggregate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsAggregate>;
+  S.Unknown as any as S.Schema<TypesAggregationsAggregate>;
 
 /** Partial aggregations results, coming from the shards that have already completed running the query. */
 export type AsyncSearchTypesAsyncSearchAggregationsMap = {
@@ -3400,7 +3395,7 @@ export type TypesClusterSearchStatus =
   | "partial"
   | "skipped"
   | "failed";
-export const TypesClusterSearchStatus = /*@__PURE__*/ S.String;
+export const TypesClusterSearchStatus = S.String;
 
 export interface TypesShardFailure {
   index?: string;
@@ -4182,12 +4177,12 @@ export type TypesQueryDslBoolQueryFilter =
   | TypesQueryDslQueryContainer
   | TypesQueryDslBoolQueryFilterCase1List;
 export const TypesQueryDslBoolQueryFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslBoolQueryFilter>;
+  S.Unknown as any as S.Schema<TypesQueryDslBoolQueryFilter>;
 
 /** The minimum number of terms that should match as integer, percentage or range */
 export type TypesMinimumShouldMatch = number | string;
 export const TypesMinimumShouldMatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMinimumShouldMatch>;
+  S.Unknown as any as S.Schema<TypesMinimumShouldMatch>;
 
 export type TypesQueryDslBoolQueryMustCase1List =
   Array<TypesQueryDslQueryContainer>;
@@ -4200,7 +4195,7 @@ export type TypesQueryDslBoolQueryMust =
   | TypesQueryDslQueryContainer
   | TypesQueryDslBoolQueryMustCase1List;
 export const TypesQueryDslBoolQueryMust =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslBoolQueryMust>;
+  S.Unknown as any as S.Schema<TypesQueryDslBoolQueryMust>;
 
 export type TypesQueryDslBoolQueryMustNotCase1List =
   Array<TypesQueryDslQueryContainer>;
@@ -4213,7 +4208,7 @@ export type TypesQueryDslBoolQueryMustNot =
   | TypesQueryDslQueryContainer
   | TypesQueryDslBoolQueryMustNotCase1List;
 export const TypesQueryDslBoolQueryMustNot =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslBoolQueryMustNot>;
+  S.Unknown as any as S.Schema<TypesQueryDslBoolQueryMustNot>;
 
 export type TypesQueryDslBoolQueryShouldCase1List =
   Array<TypesQueryDslQueryContainer>;
@@ -4226,7 +4221,7 @@ export type TypesQueryDslBoolQueryShould =
   | TypesQueryDslQueryContainer
   | TypesQueryDslBoolQueryShouldCase1List;
 export const TypesQueryDslBoolQueryShould =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslBoolQueryShould>;
+  S.Unknown as any as S.Schema<TypesQueryDslBoolQueryShould>;
 
 export interface TypesQueryDslBoolQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4281,7 +4276,7 @@ export const TypesQueryDslBoostingQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesQueryDslBoostingQuery>;
 
 export type TypesQueryDslOperator = "and" | "AND" | "or" | "OR";
-export const TypesQueryDslOperator = /*@__PURE__*/ S.String;
+export const TypesQueryDslOperator = S.String;
 
 export interface TypesQueryDslCommonTermsQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4324,10 +4319,10 @@ export const TypesQueryDslCombinedFieldsQueryFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesQueryDslCombinedFieldsQueryFieldsList>;
 
 export type TypesQueryDslCombinedFieldsOperator = "or" | "and";
-export const TypesQueryDslCombinedFieldsOperator = /*@__PURE__*/ S.String;
+export const TypesQueryDslCombinedFieldsOperator = S.String;
 
 export type TypesQueryDslCombinedFieldsZeroTerms = "none" | "all";
-export const TypesQueryDslCombinedFieldsZeroTerms = /*@__PURE__*/ S.String;
+export const TypesQueryDslCombinedFieldsZeroTerms = S.String;
 
 export interface TypesQueryDslCombinedFieldsQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4482,7 +4477,7 @@ export type TypesQueryDslDistanceFeatureQuery =
   | TypesQueryDslGeoDistanceFeatureQuery
   | TypesQueryDslDateDistanceFeatureQuery;
 export const TypesQueryDslDistanceFeatureQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslDistanceFeatureQuery>;
+  S.Unknown as any as S.Schema<TypesQueryDslDistanceFeatureQuery>;
 
 export interface TypesQueryDslExistsQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4508,10 +4503,10 @@ export type TypesQueryDslFunctionBoostMode =
   | "avg"
   | "max"
   | "min";
-export const TypesQueryDslFunctionBoostMode = /*@__PURE__*/ S.String;
+export const TypesQueryDslFunctionBoostMode = S.String;
 
 export type TypesQueryDslMultiValueMode = "min" | "max" | "avg" | "sum";
-export const TypesQueryDslMultiValueMode = /*@__PURE__*/ S.String;
+export const TypesQueryDslMultiValueMode = S.String;
 
 export interface TypesQueryDslUntypedDecayFunction {
   /** Determines how the distance is calculated when a field used for computing the decay contains multiple values. */
@@ -4542,7 +4537,7 @@ export type TypesQueryDslDecayFunction =
   | TypesQueryDslUntypedDecayFunction
   | TypesQueryDslUntypedDecayFunction;
 export const TypesQueryDslDecayFunction =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslDecayFunction>;
+  S.Unknown as any as S.Schema<TypesQueryDslDecayFunction>;
 
 export type TypesQueryDslFieldValueFactorModifier =
   | "none"
@@ -4555,7 +4550,7 @@ export type TypesQueryDslFieldValueFactorModifier =
   | "square"
   | "sqrt"
   | "reciprocal";
-export const TypesQueryDslFieldValueFactorModifier = /*@__PURE__*/ S.String;
+export const TypesQueryDslFieldValueFactorModifier = S.String;
 
 export interface TypesQueryDslFieldValueFactorScoreFunction {
   /** Field to be extracted from the document. */
@@ -4581,7 +4576,7 @@ export const TypesQueryDslFieldValueFactorScoreFunction =
 
 export type TypesQueryDslRandomScoreFunctionSeed = number | string;
 export const TypesQueryDslRandomScoreFunctionSeed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslRandomScoreFunctionSeed>;
+  S.Unknown as any as S.Schema<TypesQueryDslRandomScoreFunctionSeed>;
 
 export interface TypesQueryDslRandomScoreFunction {
   field?: string;
@@ -4598,7 +4593,7 @@ export const TypesQueryDslRandomScoreFunction = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesScriptSource = string | GlobalSearchTypesSearchRequestBody;
 export const TypesScriptSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesScriptSource>;
+  S.Unknown as any as S.Schema<TypesScriptSource>;
 
 /** Specifies any named parameters that are passed into the script as variables. Use parameters instead of hard-coded values to decrease compile time. */
 export type TypesScriptParamsMap = { [key: string]: unknown | undefined };
@@ -4612,11 +4607,11 @@ export type TypesScriptLanguageCase0 =
   | "expression"
   | "mustache"
   | "java";
-export const TypesScriptLanguageCase0 = /*@__PURE__*/ S.String;
+export const TypesScriptLanguageCase0 = S.String;
 
 export type TypesScriptLanguage = TypesScriptLanguageCase0 | string;
 export const TypesScriptLanguage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesScriptLanguage>;
+  S.Unknown as any as S.Schema<TypesScriptLanguage>;
 
 export type TypesScriptOptionsMap = { [key: string]: string | undefined };
 export const TypesScriptOptionsMap = /*@__PURE__*/ S.Record(
@@ -4706,7 +4701,7 @@ export type TypesQueryDslFunctionScoreMode =
   | "first"
   | "max"
   | "min";
-export const TypesQueryDslFunctionScoreMode = /*@__PURE__*/ S.String;
+export const TypesQueryDslFunctionScoreMode = S.String;
 
 export interface TypesQueryDslFunctionScoreQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4741,13 +4736,12 @@ export const TypesQueryDslFunctionScoreQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesQueryDslFunctionScoreQuery>;
 
 export type TypesFuzziness = string | number;
-export const TypesFuzziness =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesFuzziness>;
+export const TypesFuzziness = S.Unknown as any as S.Schema<TypesFuzziness>;
 
 /** Term you wish to find in the provided field. */
 export type TypesQueryDslFuzzyQueryValue = string | number | boolean;
 export const TypesQueryDslFuzzyQueryValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslFuzzyQueryValue>;
+  S.Unknown as any as S.Schema<TypesQueryDslFuzzyQueryValue>;
 
 export interface TypesQueryDslFuzzyQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4791,13 +4785,13 @@ export const TypesQueryDslQueryContainerFuzzyMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesQueryDslQueryContainerFuzzyMap>;
 
 export type TypesQueryDslGeoExecution = "memory" | "indexed";
-export const TypesQueryDslGeoExecution = /*@__PURE__*/ S.String;
+export const TypesQueryDslGeoExecution = S.String;
 
 export type TypesQueryDslGeoValidationMethod =
   | "coerce"
   | "ignore_malformed"
   | "strict";
-export const TypesQueryDslGeoValidationMethod = /*@__PURE__*/ S.String;
+export const TypesQueryDslGeoValidationMethod = S.String;
 
 export interface TypesQueryDslGeoBoundingBoxQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4822,7 +4816,7 @@ export const TypesQueryDslGeoBoundingBoxQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesQueryDslGeoBoundingBoxQuery>;
 
 export type TypesGeoDistanceType = "arc" | "plane";
-export const TypesGeoDistanceType = /*@__PURE__*/ S.String;
+export const TypesGeoDistanceType = S.String;
 
 export interface TypesQueryDslGeoDistanceQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -4926,7 +4920,7 @@ export type GlobalSearchTypesFieldCollapseInnerHits =
   | GlobalSearchTypesInnerHits
   | GlobalSearchTypesFieldCollapseInnerHitsCase1List;
 export const GlobalSearchTypesFieldCollapseInnerHits =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesFieldCollapseInnerHits>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesFieldCollapseInnerHits>;
 
 export interface GlobalSearchTypesFieldCollapse {
   /** The field to collapse the result set on */
@@ -4974,19 +4968,19 @@ export const GlobalSearchTypesInnerHitsDocvalueFieldsList =
   ) as any as S.Schema<GlobalSearchTypesInnerHitsDocvalueFieldsList>;
 
 export type GlobalSearchTypesHighlighterTypeCase0 = "plain" | "fvh" | "unified";
-export const GlobalSearchTypesHighlighterTypeCase0 = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesHighlighterTypeCase0 = S.String;
 
 export type GlobalSearchTypesHighlighterType =
   | GlobalSearchTypesHighlighterTypeCase0
   | string;
 export const GlobalSearchTypesHighlighterType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesHighlighterType>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesHighlighterType>;
 
 export type GlobalSearchTypesBoundaryScanner = "chars" | "sentence" | "word";
-export const GlobalSearchTypesBoundaryScanner = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesBoundaryScanner = S.String;
 
 export type GlobalSearchTypesHighlighterFragmenter = "simple" | "span";
-export const GlobalSearchTypesHighlighterFragmenter = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesHighlighterFragmenter = S.String;
 
 export type GlobalSearchTypesHighlightOptionsMap = {
   [key: string]: unknown | undefined;
@@ -4997,7 +4991,7 @@ export const GlobalSearchTypesHighlightOptionsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GlobalSearchTypesHighlightOptionsMap>;
 
 export type GlobalSearchTypesHighlighterOrder = "score";
-export const GlobalSearchTypesHighlighterOrder = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesHighlighterOrder = S.String;
 
 /** Use in conjunction with `pre_tags` to define the HTML tags to use for the highlighted text. By default, highlighted text is wrapped in `<em>` and `</em>` tags. */
 export type GlobalSearchTypesHighlightPostTagsList = Array<string>;
@@ -5012,10 +5006,10 @@ export const GlobalSearchTypesHighlightPreTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GlobalSearchTypesHighlightPreTagsList>;
 
 export type GlobalSearchTypesHighlighterTagsSchema = "styled";
-export const GlobalSearchTypesHighlighterTagsSchema = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesHighlighterTagsSchema = S.String;
 
 export type GlobalSearchTypesHighlighterEncoder = "default" | "html";
-export const GlobalSearchTypesHighlighterEncoder = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesHighlighterEncoder = S.String;
 
 export type GlobalSearchTypesHighlightFieldOptionsMap = {
   [key: string]: unknown | undefined;
@@ -5044,8 +5038,7 @@ export const TypesFieldsCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesFieldsCase1List>;
 
 export type TypesFields = string | TypesFieldsCase1List;
-export const TypesFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesFields>;
+export const TypesFields = S.Unknown as any as S.Schema<TypesFields>;
 
 export interface GlobalSearchTypesHighlightField {
   type?: GlobalSearchTypesHighlighterType;
@@ -5145,7 +5138,7 @@ export type GlobalSearchTypesHighlightFields =
   | GlobalSearchTypesHighlightFieldsCase0Map
   | GlobalSearchTypesHighlightFieldsCase1List;
 export const GlobalSearchTypesHighlightFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesHighlightFields>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesHighlightFields>;
 
 export interface GlobalSearchTypesHighlight {
   type?: GlobalSearchTypesHighlighterType;
@@ -5251,7 +5244,7 @@ export const GlobalSearchTypesInnerHitsFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GlobalSearchTypesInnerHitsFieldsList>;
 
 export type TypesSortOrder = "asc" | "desc";
-export const TypesSortOrder = /*@__PURE__*/ S.String;
+export const TypesSortOrder = S.String;
 
 export interface TypesScoreSort {
   order?: TypesSortOrder | (string & {});
@@ -5263,7 +5256,7 @@ export const TypesScoreSort = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TypesScoreSort" }) as any as S.Schema<TypesScoreSort>;
 
 export type TypesSortMode = "min" | "max" | "sum" | "avg" | "median";
-export const TypesSortMode = /*@__PURE__*/ S.String;
+export const TypesSortMode = S.String;
 
 export type TypesDistanceUnit =
   | "in"
@@ -5275,7 +5268,7 @@ export type TypesDistanceUnit =
   | "m"
   | "cm"
   | "mm";
-export const TypesDistanceUnit = /*@__PURE__*/ S.String;
+export const TypesDistanceUnit = S.String;
 
 export interface TypesNestedSortValue {
   filter?: unknown;
@@ -5316,7 +5309,7 @@ export const TypesGeoDistanceSort = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesGeoDistanceSort>;
 
 export type TypesScriptSortType = "string" | "number" | "version";
-export const TypesScriptSortType = /*@__PURE__*/ S.String;
+export const TypesScriptSortType = S.String;
 
 export interface TypesScriptSort {
   order?: TypesSortOrder | (string & {});
@@ -5356,7 +5349,7 @@ export const TypesSortOptions = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesSortCombinations = string | TypesSortOptions;
 export const TypesSortCombinations =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesSortCombinations>;
+  S.Unknown as any as S.Schema<TypesSortCombinations>;
 
 export type TypesSortCase1List = Array<TypesSortCombinations>;
 export const TypesSortCase1List = /*@__PURE__*/ S.Array(
@@ -5364,7 +5357,7 @@ export const TypesSortCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesSortCase1List>;
 
 export type TypesSort = TypesSortCombinations | TypesSortCase1List;
-export const TypesSort = /*@__PURE__*/ S.Unknown as any as S.Schema<TypesSort>;
+export const TypesSort = S.Unknown as any as S.Schema<TypesSort>;
 
 export interface GlobalSearchTypesSourceFilter {
   /** If `true`, vector fields are excluded from the returned source. This option takes precedence over `includes`: any vector field will remain excluded even if it matches an `includes` rule. */
@@ -5389,7 +5382,7 @@ export type GlobalSearchTypesSourceConfig =
   | boolean
   | GlobalSearchTypesSourceFilter;
 export const GlobalSearchTypesSourceConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesSourceConfig>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesSourceConfig>;
 
 export interface GlobalSearchTypesInnerHits {
   /** The name for the particular inner hit definition in the response. Useful when a search request contains multiple inner hits. */
@@ -5444,7 +5437,7 @@ export type TypesQueryDslChildScoreMode =
   | "sum"
   | "max"
   | "min";
-export const TypesQueryDslChildScoreMode = /*@__PURE__*/ S.String;
+export const TypesQueryDslChildScoreMode = S.String;
 
 export interface TypesQueryDslHasChildQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -5516,7 +5509,7 @@ export const TypesIdsCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesIdsCase1List>;
 
 export type TypesIds = string | TypesIdsCase1List;
-export const TypesIds = /*@__PURE__*/ S.Unknown as any as S.Schema<TypesIds>;
+export const TypesIds = S.Unknown as any as S.Schema<TypesIds>;
 
 export interface TypesQueryDslIdsQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -5849,17 +5842,17 @@ export type InferenceTypesEmbeddingContentType =
   | "audio"
   | "video"
   | "pdf";
-export const InferenceTypesEmbeddingContentType = /*@__PURE__*/ S.String;
+export const InferenceTypesEmbeddingContentType = S.String;
 
 export type InferenceTypesEmbeddingContentFormat = "text" | "base64";
-export const InferenceTypesEmbeddingContentFormat = /*@__PURE__*/ S.String;
+export const InferenceTypesEmbeddingContentFormat = S.String;
 
 /** The format of the data. If null, the default data format for the given type is used. */
 export type TypesInferenceStringFormat =
   | InferenceTypesEmbeddingContentFormat
   | string;
 export const TypesInferenceStringFormat =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesInferenceStringFormat>;
+  S.Unknown as any as S.Schema<TypesInferenceStringFormat>;
 
 export interface TypesInferenceString {
   /** The type of data that the value represents. */
@@ -5888,12 +5881,12 @@ export type TypesInferenceStringGroup =
   | TypesInferenceString
   | TypesInferenceStringGroupCase1List;
 export const TypesInferenceStringGroup =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesInferenceStringGroup>;
+  S.Unknown as any as S.Schema<TypesInferenceStringGroup>;
 
 /** Knn embedding input. Either a string, an object or array of objects */
 export type TypesKnnEmbeddingInput = string | TypesInferenceStringGroup;
 export const TypesKnnEmbeddingInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesKnnEmbeddingInput>;
+  S.Unknown as any as S.Schema<TypesKnnEmbeddingInput>;
 
 export interface TypesEmbedding {
   inference_id?: string;
@@ -5970,7 +5963,7 @@ export type TypesKnnQueryFilter =
   | TypesQueryDslQueryContainer
   | TypesKnnQueryFilterCase1List;
 export const TypesKnnQueryFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesKnnQueryFilter>;
+  S.Unknown as any as S.Schema<TypesKnnQueryFilter>;
 
 export interface TypesRescoreVector {
   /** Applies the specified oversample factor to k on the approximate kNN search */
@@ -6026,10 +6019,10 @@ export const TypesKnnQuery = /*@__PURE__*/ S.suspend(() =>
 /** Text, number, boolean value or date you wish to find in the provided field. */
 export type TypesQueryDslMatchQueryQuery = string | number | boolean;
 export const TypesQueryDslMatchQueryQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslMatchQueryQuery>;
+  S.Unknown as any as S.Schema<TypesQueryDslMatchQueryQuery>;
 
 export type TypesQueryDslZeroTermsQuery = "all" | "none";
-export const TypesQueryDslZeroTermsQuery = /*@__PURE__*/ S.String;
+export const TypesQueryDslZeroTermsQuery = S.String;
 
 export interface TypesQueryDslMatchQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -6262,11 +6255,10 @@ export const TypesRoutingCase1List = /*@__PURE__*/ S.Array(
 
 /** Only to be used in query and path parameters, as the array form is actually a csv */
 export type TypesRouting = string | TypesRoutingCase1List;
-export const TypesRouting =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesRouting>;
+export const TypesRouting = S.Unknown as any as S.Schema<TypesRouting>;
 
 export type TypesVersionType = "internal" | "external" | "external_gte";
-export const TypesVersionType = /*@__PURE__*/ S.String;
+export const TypesVersionType = S.String;
 
 export interface TypesQueryDslLikeDocument {
   /** A document not present in the index. */
@@ -6302,7 +6294,7 @@ export const TypesQueryDslLikeDocument = /*@__PURE__*/ S.suspend(() =>
 /** Text that we want similar documents for or a lookup to a document's field for the text. */
 export type TypesQueryDslLike = string | TypesQueryDslLikeDocument;
 export const TypesQueryDslLike =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslLike>;
+  S.Unknown as any as S.Schema<TypesQueryDslLike>;
 
 export type TypesQueryDslMoreLikeThisQueryLikeCase1List =
   Array<TypesQueryDslLike>;
@@ -6316,7 +6308,7 @@ export type TypesQueryDslMoreLikeThisQueryLike =
   | TypesQueryDslLike
   | TypesQueryDslMoreLikeThisQueryLikeCase1List;
 export const TypesQueryDslMoreLikeThisQueryLike =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslMoreLikeThisQueryLike>;
+  S.Unknown as any as S.Schema<TypesQueryDslMoreLikeThisQueryLike>;
 
 export type TypesAnalysisStopWordLanguage =
   | "_arabic_"
@@ -6356,7 +6348,7 @@ export type TypesAnalysisStopWordLanguage =
   | "_thai_"
   | "_turkish_"
   | "_none_";
-export const TypesAnalysisStopWordLanguage = /*@__PURE__*/ S.String;
+export const TypesAnalysisStopWordLanguage = S.String;
 
 export type TypesAnalysisStopWordsCase1List = Array<string>;
 export const TypesAnalysisStopWordsCase1List = /*@__PURE__*/ S.Array(
@@ -6368,7 +6360,7 @@ export type TypesAnalysisStopWords =
   | TypesAnalysisStopWordLanguage
   | TypesAnalysisStopWordsCase1List;
 export const TypesAnalysisStopWords =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisStopWords>;
+  S.Unknown as any as S.Schema<TypesAnalysisStopWords>;
 
 export type TypesQueryDslMoreLikeThisQueryUnlikeCase1List =
   Array<TypesQueryDslLike>;
@@ -6382,7 +6374,7 @@ export type TypesQueryDslMoreLikeThisQueryUnlike =
   | TypesQueryDslLike
   | TypesQueryDslMoreLikeThisQueryUnlikeCase1List;
 export const TypesQueryDslMoreLikeThisQueryUnlike =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslMoreLikeThisQueryUnlike>;
+  S.Unknown as any as S.Schema<TypesQueryDslMoreLikeThisQueryUnlike>;
 
 export interface TypesQueryDslMoreLikeThisQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -6456,7 +6448,7 @@ export type TypesQueryDslTextQueryType =
   | "phrase"
   | "phrase_prefix"
   | "bool_prefix";
-export const TypesQueryDslTextQueryType = /*@__PURE__*/ S.String;
+export const TypesQueryDslTextQueryType = S.String;
 
 export interface TypesQueryDslMultiMatchQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -6798,7 +6790,7 @@ export const TypesQueryDslQueryStringQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesQueryDslQueryStringQuery>;
 
 export type TypesQueryDslRangeRelation = "within" | "contains" | "intersects";
-export const TypesQueryDslRangeRelation = /*@__PURE__*/ S.String;
+export const TypesQueryDslRangeRelation = S.String;
 
 export interface TypesQueryDslUntypedRangeQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -6938,7 +6930,7 @@ export type TypesQueryDslRangeQuery =
   | TypesQueryDslNumberRangeQuery
   | TypesQueryDslTermRangeQuery;
 export const TypesQueryDslRangeQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslRangeQuery>;
+  S.Unknown as any as S.Schema<TypesQueryDslRangeQuery>;
 
 /** Returns documents that contain terms within a provided range. */
 export type TypesQueryDslQueryContainerRangeMap = {
@@ -7074,7 +7066,7 @@ export type TypesQueryDslRuleQueryRulesetIds =
   | string
   | TypesQueryDslRuleQueryRulesetIdsCase1List;
 export const TypesQueryDslRuleQueryRulesetIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslRuleQueryRulesetIds>;
+  S.Unknown as any as S.Schema<TypesQueryDslRuleQueryRulesetIds>;
 
 export interface TypesQueryDslRuleQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -7196,14 +7188,14 @@ export type TypesQueryDslSimpleQueryStringFlag =
   | "NEAR"
   | "SLOP"
   | "ALL";
-export const TypesQueryDslSimpleQueryStringFlag = /*@__PURE__*/ S.String;
+export const TypesQueryDslSimpleQueryStringFlag = S.String;
 
 /** A set of flags that can be represented as a single enum value or a set of values that are encoded as a pipe-separated string Depending on the target language, code generators can use this hint to generate language specific flags enum constructs and the corresponding (de-)serialization code. */
 export type SpecUtilsPipeSeparatedFlagsSimpleQueryStringFlag =
   | TypesQueryDslSimpleQueryStringFlag
   | string;
 export const SpecUtilsPipeSeparatedFlagsSimpleQueryStringFlag =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpecUtilsPipeSeparatedFlagsSimpleQueryStringFlag>;
+  S.Unknown as any as S.Schema<SpecUtilsPipeSeparatedFlagsSimpleQueryStringFlag>;
 
 export interface TypesQueryDslSimpleQueryStringQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -7712,7 +7704,7 @@ export type TypesQueryDslWeightedTokensQueryTokens =
   | TypesQueryDslWeightedTokensQueryTokensCase0Map
   | TypesQueryDslWeightedTokensQueryTokensCase1List;
 export const TypesQueryDslWeightedTokensQueryTokens =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesQueryDslWeightedTokensQueryTokens>;
+  S.Unknown as any as S.Schema<TypesQueryDslWeightedTokensQueryTokens>;
 
 export interface TypesQueryDslWeightedTokensQuery {
   /** Floating point number used to decrease or increase the relevance scores of the query. Boost values are relative to the default value of 1.0. A boost value between 0 and 1.0 decreases the relevance score. A value greater than 1.0 increases the relevance score. */
@@ -8040,14 +8032,14 @@ export type TypesAggregationsMinimumInterval =
   | "day"
   | "month"
   | "year";
-export const TypesAggregationsMinimumInterval = /*@__PURE__*/ S.String;
+export const TypesAggregationsMinimumInterval = S.String;
 
 /** The minimum rounding interval. This can make the collection process more efficient, as the aggregation will not attempt to round at any interval lower than `minimum_interval`. */
 export type TypesAggregationsAutoDateHistogramAggregationMinimumInterval =
   | TypesAggregationsMinimumInterval
   | string;
 export const TypesAggregationsAutoDateHistogramAggregationMinimumInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsAutoDateHistogramAggregationMinimumInterval>;
+  S.Unknown as any as S.Schema<TypesAggregationsAutoDateHistogramAggregationMinimumInterval>;
 
 export type TypesAggregationsAutoDateHistogramAggregationParamsMap = {
   [key: string]: unknown | undefined;
@@ -8099,7 +8091,7 @@ export const TypesAggregationsAutoDateHistogramAggregation =
 
 export type TypesAggregationsMissing = string | number | boolean;
 export const TypesAggregationsMissing =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsMissing>;
+  S.Unknown as any as S.Schema<TypesAggregationsMissing>;
 
 export interface TypesAggregationsAverageAggregation {
   /** The field on which to run the aggregation. */
@@ -8139,13 +8131,13 @@ export type TypesAggregationsBucketsPath =
   | TypesAggregationsBucketsPathCase1List
   | TypesAggregationsBucketsPathCase2Map;
 export const TypesAggregationsBucketsPath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsPath>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsPath>;
 
 export type TypesAggregationsGapPolicy =
   | "skip"
   | "insert_zeros"
   | "keep_values";
-export const TypesAggregationsGapPolicy = /*@__PURE__*/ S.String;
+export const TypesAggregationsGapPolicy = S.String;
 
 export interface TypesAggregationsAverageBucketAggregation {
   /** Path to the buckets that contain one set of values to correlate. */
@@ -8167,7 +8159,7 @@ export const TypesAggregationsAverageBucketAggregation =
   }) as any as S.Schema<TypesAggregationsAverageBucketAggregation>;
 
 export type TypesAggregationsTDigestExecutionHint = "default" | "high_accuracy";
-export const TypesAggregationsTDigestExecutionHint = /*@__PURE__*/ S.String;
+export const TypesAggregationsTDigestExecutionHint = S.String;
 
 export interface TypesAggregationsBoxplotAggregation {
   /** The field on which to run the aggregation. */
@@ -8370,7 +8362,7 @@ export type TypesAggregationsCardinalityExecutionMode =
   | "direct"
   | "save_memory_heuristic"
   | "save_time_heuristic";
-export const TypesAggregationsCardinalityExecutionMode = /*@__PURE__*/ S.String;
+export const TypesAggregationsCardinalityExecutionMode = S.String;
 
 export interface TypesAggregationsCardinalityAggregation {
   /** The field on which to run the aggregation. */
@@ -8467,7 +8459,7 @@ export type TypesAggregationsCategorizeTextAnalyzer =
   | string
   | TypesAggregationsCustomCategorizeTextAnalyzer;
 export const TypesAggregationsCategorizeTextAnalyzer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsCategorizeTextAnalyzer>;
+  S.Unknown as any as S.Schema<TypesAggregationsCategorizeTextAnalyzer>;
 
 /** A multi-bucket aggregation that groups semi-structured text into buckets. Each text field is re-analyzed using a custom analyzer. The resulting tokens are then categorized creating buckets of similarly formatted text values. This aggregation works best with machine generated text like system logs. Only the first 100 analyzed tokens are used to categorize the text. */
 export interface TypesAggregationsCategorizeTextAggregation {
@@ -8533,7 +8525,7 @@ export const TypesAggregationsChildrenAggregation = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAggregationsChildrenAggregation>;
 
 export type TypesAggregationsMissingOrder = "first" | "last" | "default";
-export const TypesAggregationsMissingOrder = /*@__PURE__*/ S.String;
+export const TypesAggregationsMissingOrder = S.String;
 
 export type TypesAggregationsValueType =
   | "string"
@@ -8546,7 +8538,7 @@ export type TypesAggregationsValueType =
   | "numeric"
   | "geo_point"
   | "boolean";
-export const TypesAggregationsValueType = /*@__PURE__*/ S.String;
+export const TypesAggregationsValueType = S.String;
 
 export interface TypesAggregationsCompositeTermsAggregation {
   /** Either `field` or `script` must be present */
@@ -8751,12 +8743,12 @@ export type TypesAggregationsCalendarInterval =
   | "1q"
   | "year"
   | "1y";
-export const TypesAggregationsCalendarInterval = /*@__PURE__*/ S.String;
+export const TypesAggregationsCalendarInterval = S.String;
 
 /** A date range limit, represented either as a DateMath expression or a number expressed according to the target field's precision. */
 export type TypesAggregationsFieldDateMath = string | number;
 export const TypesAggregationsFieldDateMath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsFieldDateMath>;
+  S.Unknown as any as S.Schema<TypesAggregationsFieldDateMath>;
 
 export interface TypesAggregationsExtendedBoundsFieldDateMath {
   /** Maximum value for the bound. */
@@ -8801,7 +8793,7 @@ export type TypesAggregationsAggregateOrder =
   | TypesAggregationsAggregateOrderCase0Map
   | TypesAggregationsAggregateOrderCase1List;
 export const TypesAggregationsAggregateOrder =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsAggregateOrder>;
+  S.Unknown as any as S.Schema<TypesAggregationsAggregateOrder>;
 
 export type TypesAggregationsDateHistogramAggregationParamsMap = {
   [key: string]: unknown | undefined;
@@ -8928,8 +8920,7 @@ export type TypesAggregationsSamplerAggregationExecutionHint =
   | "map"
   | "global_ordinals"
   | "bytes_hash";
-export const TypesAggregationsSamplerAggregationExecutionHint =
-  /*@__PURE__*/ S.String;
+export const TypesAggregationsSamplerAggregationExecutionHint = S.String;
 
 export interface TypesAggregationsDiversifiedSamplerAggregation {
   /** The type of value used for de-duplication. */
@@ -9013,7 +9004,7 @@ export type TypesAggregationsTermsExclude =
   | string
   | TypesAggregationsTermsExcludeCase1List;
 export const TypesAggregationsTermsExclude =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsTermsExclude>;
+  S.Unknown as any as S.Schema<TypesAggregationsTermsExclude>;
 
 export type TypesAggregationsTermsIncludeCase1List = Array<string>;
 export const TypesAggregationsTermsIncludeCase1List = /*@__PURE__*/ S.Array(
@@ -9040,7 +9031,7 @@ export type TypesAggregationsTermsInclude =
   | TypesAggregationsTermsIncludeCase1List
   | TypesAggregationsTermsPartition;
 export const TypesAggregationsTermsInclude =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsTermsInclude>;
+  S.Unknown as any as S.Schema<TypesAggregationsTermsInclude>;
 
 export interface TypesAggregationsFrequentItemSetsField {
   field: string;
@@ -9114,7 +9105,7 @@ export type TypesAggregationsBucketsQueryContainer =
   | TypesAggregationsBucketsQueryContainerCase0Map
   | TypesAggregationsBucketsQueryContainerCase1List;
 export const TypesAggregationsBucketsQueryContainer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsQueryContainer>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsQueryContainer>;
 
 export interface TypesAggregationsFiltersAggregation {
   /** Collection of queries from which to build buckets. */
@@ -9183,12 +9174,12 @@ export const TypesAggregationsGeoCentroidAggregation = /*@__PURE__*/ S.suspend(
 /** Start of the range (inclusive). */
 export type TypesAggregationsAggregationRangeFrom = number | string;
 export const TypesAggregationsAggregationRangeFrom =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsAggregationRangeFrom>;
+  S.Unknown as any as S.Schema<TypesAggregationsAggregationRangeFrom>;
 
 /** End of the range (exclusive). */
 export type TypesAggregationsAggregationRangeTo = number | string;
 export const TypesAggregationsAggregationRangeTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsAggregationRangeTo>;
+  S.Unknown as any as S.Schema<TypesAggregationsAggregationRangeTo>;
 
 export interface TypesAggregationsAggregationRange {
   /** Start of the range (inclusive). */
@@ -9244,7 +9235,7 @@ export const TypesAggregationsGeoDistanceAggregation = /*@__PURE__*/ S.suspend(
 /** A precision that can be expressed as a geohash length between 1 and 12, or a distance measure like "1km", "10m". */
 export type TypesGeoHashPrecision = number | string;
 export const TypesGeoHashPrecision =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesGeoHashPrecision>;
+  S.Unknown as any as S.Schema<TypesGeoHashPrecision>;
 
 export interface TypesAggregationsGeoHashGridAggregation {
   /** The bounding box to filter the points in each bucket. */
@@ -9672,8 +9663,7 @@ export const TypesAggregationsMissingAggregation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAggregationsMissingAggregation>;
 
 export type TypesAggregationsLinearMovingAverageAggregationModel = "linear";
-export const TypesAggregationsLinearMovingAverageAggregationModel =
-  /*@__PURE__*/ S.String;
+export const TypesAggregationsLinearMovingAverageAggregationModel = S.String;
 
 export interface TypesAggregationsLinearMovingAverageAggregation {
   /** Path to the buckets that contain one set of values to correlate. */
@@ -9705,8 +9695,7 @@ export const TypesAggregationsLinearMovingAverageAggregation =
   }) as any as S.Schema<TypesAggregationsLinearMovingAverageAggregation>;
 
 export type TypesAggregationsSimpleMovingAverageAggregationModel = "simple";
-export const TypesAggregationsSimpleMovingAverageAggregationModel =
-  /*@__PURE__*/ S.String;
+export const TypesAggregationsSimpleMovingAverageAggregationModel = S.String;
 
 export interface TypesAggregationsSimpleMovingAverageAggregation {
   /** Path to the buckets that contain one set of values to correlate. */
@@ -9738,8 +9727,7 @@ export const TypesAggregationsSimpleMovingAverageAggregation =
   }) as any as S.Schema<TypesAggregationsSimpleMovingAverageAggregation>;
 
 export type TypesAggregationsEwmaMovingAverageAggregationModel = "ewma";
-export const TypesAggregationsEwmaMovingAverageAggregationModel =
-  /*@__PURE__*/ S.String;
+export const TypesAggregationsEwmaMovingAverageAggregationModel = S.String;
 
 export interface TypesAggregationsEwmaModelSettings {
   alpha?: number;
@@ -9782,8 +9770,7 @@ export const TypesAggregationsEwmaMovingAverageAggregation =
   }) as any as S.Schema<TypesAggregationsEwmaMovingAverageAggregation>;
 
 export type TypesAggregationsHoltMovingAverageAggregationModel = "holt";
-export const TypesAggregationsHoltMovingAverageAggregationModel =
-  /*@__PURE__*/ S.String;
+export const TypesAggregationsHoltMovingAverageAggregationModel = S.String;
 
 export interface TypesAggregationsHoltLinearModelSettings {
   alpha?: number;
@@ -9831,10 +9818,10 @@ export const TypesAggregationsHoltMovingAverageAggregation =
 export type TypesAggregationsHoltWintersMovingAverageAggregationModel =
   "holt_winters";
 export const TypesAggregationsHoltWintersMovingAverageAggregationModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type TypesAggregationsHoltWintersType = "add" | "mult";
-export const TypesAggregationsHoltWintersType = /*@__PURE__*/ S.String;
+export const TypesAggregationsHoltWintersType = S.String;
 
 export interface TypesAggregationsHoltWintersModelSettings {
   alpha?: number;
@@ -9894,7 +9881,7 @@ export type TypesAggregationsMovingAverageAggregation =
   | TypesAggregationsHoltMovingAverageAggregation
   | TypesAggregationsHoltWintersMovingAverageAggregation;
 export const TypesAggregationsMovingAverageAggregation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsMovingAverageAggregation>;
+  S.Unknown as any as S.Schema<TypesAggregationsMovingAverageAggregation>;
 
 export interface TypesAggregationsMovingPercentilesAggregation {
   /** Path to the buckets that contain one set of values to correlate. */
@@ -9954,8 +9941,7 @@ export const TypesAggregationsMovingFunctionAggregation =
 export type TypesAggregationsTermsAggregationCollectMode =
   | "depth_first"
   | "breadth_first";
-export const TypesAggregationsTermsAggregationCollectMode =
-  /*@__PURE__*/ S.String;
+export const TypesAggregationsTermsAggregationCollectMode = S.String;
 
 export interface TypesAggregationsMultiTermLookup {
   /** The value to apply to documents that do not have a value. By default, documents without a value are ignored. */
@@ -10036,7 +10022,7 @@ export type TypesAggregationsNormalizeMethod =
   | "mean"
   | "z-score"
   | "softmax";
-export const TypesAggregationsNormalizeMethod = /*@__PURE__*/ S.String;
+export const TypesAggregationsNormalizeMethod = S.String;
 
 export interface TypesAggregationsNormalizeAggregation {
   /** Path to the buckets that contain one set of values to correlate. */
@@ -10077,7 +10063,7 @@ export type TypesAggregationsPercentileRanksAggregationValues =
   | TypesAggregationsPercentileRanksAggregationValuesCase0List
   | string;
 export const TypesAggregationsPercentileRanksAggregationValues =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsPercentileRanksAggregationValues>;
+  S.Unknown as any as S.Schema<TypesAggregationsPercentileRanksAggregationValues>;
 
 export interface TypesAggregationsHdrMethod {
   /** Specifies the resolution of values for the histogram in number of significant digits. */
@@ -10150,7 +10136,7 @@ export type TypesAggregationsPercentilesAggregationPercents =
   | number
   | TypesAggregationsPercentilesAggregationPercentsCase1List;
 export const TypesAggregationsPercentilesAggregationPercents =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsPercentilesAggregationPercents>;
+  S.Unknown as any as S.Schema<TypesAggregationsPercentilesAggregationPercents>;
 
 export interface TypesAggregationsPercentilesAggregation {
   /** The field on which to run the aggregation. */
@@ -10280,7 +10266,7 @@ export const TypesAggregationsRareTermsAggregation = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAggregationsRareTermsAggregation>;
 
 export type TypesAggregationsRateMode = "sum" | "value_count";
-export const TypesAggregationsRateMode = /*@__PURE__*/ S.String;
+export const TypesAggregationsRateMode = S.String;
 
 export interface TypesAggregationsRateAggregation {
   /** The field on which to run the aggregation. */
@@ -10436,8 +10422,7 @@ export type TypesAggregationsTermsAggregationExecutionHint =
   | "global_ordinals"
   | "global_ordinals_hash"
   | "global_ordinals_low_cardinality";
-export const TypesAggregationsTermsAggregationExecutionHint =
-  /*@__PURE__*/ S.String;
+export const TypesAggregationsTermsAggregationExecutionHint = S.String;
 
 export interface TypesAggregationsGoogleNormalizedDistanceHeuristic {
   /** Set to `false` if you defined a custom background filter that represents a different set of documents that you want to compare to. */
@@ -10846,7 +10831,7 @@ export type TypesAggregationsTTestType =
   | "paired"
   | "homoscedastic"
   | "heteroscedastic";
-export const TypesAggregationsTTestType = /*@__PURE__*/ S.String;
+export const TypesAggregationsTTestType = S.String;
 
 export interface TypesAggregationsTTestAggregation {
   /** Test population A. */
@@ -10890,7 +10875,7 @@ export type TypesAggregationsTopMetricsAggregationMetrics =
   | TypesAggregationsTopMetricsValue
   | TypesAggregationsTopMetricsAggregationMetricsCase1List;
 export const TypesAggregationsTopMetricsAggregationMetrics =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsTopMetricsAggregationMetrics>;
+  S.Unknown as any as S.Schema<TypesAggregationsTopMetricsAggregationMetrics>;
 
 export interface TypesAggregationsTopMetricsAggregation {
   /** The field on which to run the aggregation. */
@@ -11291,7 +11276,7 @@ export const GlobalSearchTypesSearchRequestBodyExtMap = /*@__PURE__*/ S.Record(
 /** Number of hits matching the query to count accurately. If true, the exact number of hits is returned at the cost of some performance. If false, the response does not include the total number of hits matching the query. Defaults to 10,000 hits. */
 export type GlobalSearchTypesTrackHits = boolean | number;
 export const GlobalSearchTypesTrackHits =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesTrackHits>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesTrackHits>;
 
 export type GlobalSearchTypesSearchRequestBodyIndicesBoostItemMap = {
   [key: string]: number | undefined;
@@ -11328,7 +11313,7 @@ export type TypesKnnSearchFilter =
   | TypesQueryDslQueryContainer
   | TypesKnnSearchFilterCase1List;
 export const TypesKnnSearchFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesKnnSearchFilter>;
+  S.Unknown as any as S.Schema<TypesKnnSearchFilter>;
 
 export interface TypesKnnSearch {
   /** The name of the vector field to search against */
@@ -11384,7 +11369,7 @@ export type GlobalSearchTypesSearchRequestBodyKnn =
   | TypesKnnSearch
   | GlobalSearchTypesSearchRequestBodyKnnCase1List;
 export const GlobalSearchTypesSearchRequestBodyKnn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesSearchRequestBodyKnn>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesSearchRequestBodyKnn>;
 
 export interface TypesRrfRank {
   /** How much influence documents in individual result sets per query have over the final ranked result set */
@@ -11417,7 +11402,7 @@ export type GlobalSearchTypesScoreMode =
   | "min"
   | "multiply"
   | "total";
-export const GlobalSearchTypesScoreMode = /*@__PURE__*/ S.String;
+export const GlobalSearchTypesScoreMode = S.String;
 
 export interface GlobalSearchTypesRescoreQuery {
   /** The query to use for rescoring. This query is only run on the Top-K results returned by the `query` and `post_filter` phases. */
@@ -11497,7 +11482,7 @@ export type GlobalSearchTypesSearchRequestBodyRescore =
   | GlobalSearchTypesRescore
   | GlobalSearchTypesSearchRequestBodyRescoreCase1List;
 export const GlobalSearchTypesSearchRequestBodyRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesSearchRequestBodyRescore>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesSearchRequestBodyRescore>;
 
 export type TypesStandardRetrieverFilterCase1List =
   Array<TypesQueryDslQueryContainer>;
@@ -11510,7 +11495,7 @@ export type TypesStandardRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesStandardRetrieverFilterCase1List;
 export const TypesStandardRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesStandardRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesStandardRetrieverFilter>;
 
 export interface TypesStandardRetriever {
   /** Query to filter the documents that can match. */
@@ -11556,7 +11541,7 @@ export type TypesKnnRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesKnnRetrieverFilterCase1List;
 export const TypesKnnRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesKnnRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesKnnRetrieverFilter>;
 
 export interface TypesKnnRetriever {
   /** Query to filter the documents that can match. */
@@ -11611,7 +11596,7 @@ export type TypesRRFRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesRRFRetrieverFilterCase1List;
 export const TypesRRFRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesRRFRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesRRFRetrieverFilter>;
 
 /** Wraps a retriever with an optional weight for RRF scoring. */
 export interface TypesRRFRetrieverComponent {
@@ -11634,7 +11619,7 @@ export type TypesRRFRetrieverEntry =
   | TypesRetrieverContainer
   | TypesRRFRetrieverComponent;
 export const TypesRRFRetrieverEntry =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesRRFRetrieverEntry>;
+  S.Unknown as any as S.Schema<TypesRRFRetrieverEntry>;
 
 /** A list of child retrievers to specify which sets of returned top documents will have the RRF formula applied to them. Each retriever can optionally include a weight parameter. */
 export type TypesRRFRetrieverRetrieversList = Array<TypesRRFRetrieverEntry>;
@@ -11689,7 +11674,7 @@ export type TypesTextSimilarityRerankerFilter =
   | TypesQueryDslQueryContainer
   | TypesTextSimilarityRerankerFilterCase1List;
 export const TypesTextSimilarityRerankerFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesTextSimilarityRerankerFilter>;
+  S.Unknown as any as S.Schema<TypesTextSimilarityRerankerFilter>;
 
 /** Only applicable to the `recursive` strategy and required when using it. A list of strings used as possible split points when chunking text. Each string can be a plain string or a regular expression (regex) pattern. The system tries each separator in order to split the text, starting from the first item in the list. After splitting, it attempts to recombine smaller pieces into larger chunks that stay within the `max_chunk_size` limit, to reduce the total number of chunks generated. */
 export type TypesMappingChunkRescorerChunkingSettingsSeparatorsList =
@@ -11791,7 +11776,7 @@ export type TypesRuleRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesRuleRetrieverFilterCase1List;
 export const TypesRuleRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesRuleRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesRuleRetrieverFilter>;
 
 export type TypesRuleRetrieverRulesetIdsCase1List = Array<string>;
 export const TypesRuleRetrieverRulesetIdsCase1List = /*@__PURE__*/ S.Array(
@@ -11803,7 +11788,7 @@ export type TypesRuleRetrieverRulesetIds =
   | string
   | TypesRuleRetrieverRulesetIdsCase1List;
 export const TypesRuleRetrieverRulesetIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesRuleRetrieverRulesetIds>;
+  S.Unknown as any as S.Schema<TypesRuleRetrieverRulesetIds>;
 
 export interface TypesRuleRetriever {
   /** Query to filter the documents that can match. */
@@ -11846,7 +11831,7 @@ export type TypesRescorerRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesRescorerRetrieverFilterCase1List;
 export const TypesRescorerRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesRescorerRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesRescorerRetrieverFilter>;
 
 export type TypesRescorerRetrieverRescoreCase1List =
   Array<GlobalSearchTypesRescore>;
@@ -11858,7 +11843,7 @@ export type TypesRescorerRetrieverRescore =
   | GlobalSearchTypesRescore
   | TypesRescorerRetrieverRescoreCase1List;
 export const TypesRescorerRetrieverRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesRescorerRetrieverRescore>;
+  S.Unknown as any as S.Schema<TypesRescorerRetrieverRescore>;
 
 export interface TypesRescorerRetriever {
   /** Query to filter the documents that can match. */
@@ -11894,10 +11879,10 @@ export type TypesLinearRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesLinearRetrieverFilterCase1List;
 export const TypesLinearRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesLinearRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesLinearRetrieverFilter>;
 
 export type TypesScoreNormalizer = "none" | "minmax" | "l2_norm";
-export const TypesScoreNormalizer = /*@__PURE__*/ S.String;
+export const TypesScoreNormalizer = S.String;
 
 export interface TypesInnerRetriever {
   retriever: TypesRetrieverContainer;
@@ -11965,7 +11950,7 @@ export type TypesPinnedRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesPinnedRetrieverFilterCase1List;
 export const TypesPinnedRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesPinnedRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesPinnedRetrieverFilter>;
 
 export type TypesPinnedRetrieverIdsList = Array<string>;
 export const TypesPinnedRetrieverIdsList = /*@__PURE__*/ S.Array(
@@ -12028,10 +12013,10 @@ export type TypesDiversifyRetrieverFilter =
   | TypesQueryDslQueryContainer
   | TypesDiversifyRetrieverFilterCase1List;
 export const TypesDiversifyRetrieverFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesDiversifyRetrieverFilter>;
+  S.Unknown as any as S.Schema<TypesDiversifyRetrieverFilter>;
 
 export type TypesDiversifyRetrieverTypes = "mmr";
-export const TypesDiversifyRetrieverTypes = /*@__PURE__*/ S.String;
+export const TypesDiversifyRetrieverTypes = S.String;
 
 export interface TypesDiversifyRetriever {
   /** Query to filter the documents that can match. */
@@ -12181,7 +12166,7 @@ export type TypesMappingRuntimeFieldType =
   | "keyword"
   | "long"
   | "lookup";
-export const TypesMappingRuntimeFieldType = /*@__PURE__*/ S.String;
+export const TypesMappingRuntimeFieldType = S.String;
 
 export interface TypesMappingCompositeSubField {
   type: TypesMappingRuntimeFieldType | (string & {});
@@ -12224,7 +12209,7 @@ export const TypesMappingRuntimeFieldFetchFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesMappingRuntimeFieldFetchFieldsList>;
 
 export type TypesMappingOnScriptError = "fail" | "continue";
-export const TypesMappingOnScriptError = /*@__PURE__*/ S.String;
+export const TypesMappingOnScriptError = S.String;
 
 export interface TypesMappingRuntimeField {
   /** For type `composite` */
@@ -12437,7 +12422,7 @@ export const GlobalSearchTypesProfile = /*@__PURE__*/ S.suspend(() =>
 /** Text or location that we want similar documents for or a lookup to a document's field for the text. */
 export type GlobalSearchTypesContext = string | TypesGeoLocation;
 export const GlobalSearchTypesContext =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesContext>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesContext>;
 
 export type GlobalSearchTypesCompletionSuggestOptionContextsValueList =
   Array<GlobalSearchTypesContext>;
@@ -12507,7 +12492,7 @@ export type GlobalSearchTypesCompletionSuggestOptions =
   | GlobalSearchTypesCompletionSuggestOption
   | GlobalSearchTypesCompletionSuggestOptionsCase1List;
 export const GlobalSearchTypesCompletionSuggestOptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesCompletionSuggestOptions>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesCompletionSuggestOptions>;
 
 export interface GlobalSearchTypesCompletionSuggest {
   length: number;
@@ -12555,7 +12540,7 @@ export type GlobalSearchTypesPhraseSuggestOptions =
   | GlobalSearchTypesPhraseSuggestOption
   | GlobalSearchTypesPhraseSuggestOptionsCase1List;
 export const GlobalSearchTypesPhraseSuggestOptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesPhraseSuggestOptions>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesPhraseSuggestOptions>;
 
 export interface GlobalSearchTypesPhraseSuggest {
   length: number;
@@ -12604,7 +12589,7 @@ export type GlobalSearchTypesTermSuggestOptions =
   | GlobalSearchTypesTermSuggestOption
   | GlobalSearchTypesTermSuggestOptionsCase1List;
 export const GlobalSearchTypesTermSuggestOptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesTermSuggestOptions>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesTermSuggestOptions>;
 
 export interface GlobalSearchTypesTermSuggest {
   length: number;
@@ -12628,7 +12613,7 @@ export type GlobalSearchTypesSuggest =
   | GlobalSearchTypesPhraseSuggest
   | GlobalSearchTypesTermSuggest;
 export const GlobalSearchTypesSuggest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesSuggest>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesSuggest>;
 
 export type AsyncSearchTypesAsyncSearchSuggestValueList =
   Array<GlobalSearchTypesSuggest>;
@@ -12780,7 +12765,7 @@ export const AsyncSearchStatusResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AsyncSearchStatusResponse>;
 
 export type TypesExpandWildcard = "all" | "open" | "closed" | "hidden" | "none";
-export const TypesExpandWildcard = /*@__PURE__*/ S.String;
+export const TypesExpandWildcard = S.String;
 
 export type TypesExpandWildcardsCase1List = Array<
   TypesExpandWildcard | (string & {})
@@ -12793,10 +12778,10 @@ export type TypesExpandWildcards =
   | TypesExpandWildcard
   | TypesExpandWildcardsCase1List;
 export const TypesExpandWildcards =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesExpandWildcards>;
+  S.Unknown as any as S.Schema<TypesExpandWildcards>;
 
 export type TypesSearchType = "query_then_fetch" | "dfs_query_then_fetch";
-export const TypesSearchType = /*@__PURE__*/ S.String;
+export const TypesSearchType = S.String;
 
 export type AsyncSearchSubmitRequestStatsList = Array<string>;
 export const AsyncSearchSubmitRequestStatsList = /*@__PURE__*/ S.Array(
@@ -12804,12 +12789,12 @@ export const AsyncSearchSubmitRequestStatsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AsyncSearchSubmitRequestStatsList>;
 
 export type TypesSuggestMode = "missing" | "popular" | "always";
-export const TypesSuggestMode = /*@__PURE__*/ S.String;
+export const TypesSuggestMode = S.String;
 
 /** Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered. Used as a query parameter along with the `_source_includes` and `_source_excludes` parameters. */
 export type GlobalSearchTypesSourceConfigParam = boolean | TypesFields;
 export const GlobalSearchTypesSourceConfigParam =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalSearchTypesSourceConfigParam>;
+  S.Unknown as any as S.Schema<GlobalSearchTypesSourceConfigParam>;
 
 export type AsyncSearchSubmitRequestSortCase1List = Array<string>;
 export const AsyncSearchSubmitRequestSortCase1List = /*@__PURE__*/ S.Array(
@@ -12820,7 +12805,7 @@ export type AsyncSearchSubmitRequestSort =
   | string
   | AsyncSearchSubmitRequestSortCase1List;
 export const AsyncSearchSubmitRequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AsyncSearchSubmitRequestSort>;
+  S.Unknown as any as S.Schema<AsyncSearchSubmitRequestSort>;
 
 export type AsyncSearchSubmitRequestAggregationsMap = {
   [key: string]: TypesAggregationsAggregationContainer | undefined;
@@ -12865,7 +12850,7 @@ export type AsyncSearchSubmitRequestKnn =
   | TypesKnnSearch
   | AsyncSearchSubmitRequestKnnCase1List;
 export const AsyncSearchSubmitRequestKnn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AsyncSearchSubmitRequestKnn>;
+  S.Unknown as any as S.Schema<AsyncSearchSubmitRequestKnn>;
 
 export type AsyncSearchSubmitRequestRescoreCase1List =
   Array<GlobalSearchTypesRescore>;
@@ -12877,7 +12862,7 @@ export type AsyncSearchSubmitRequestRescore =
   | GlobalSearchTypesRescore
   | AsyncSearchSubmitRequestRescoreCase1List;
 export const AsyncSearchSubmitRequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AsyncSearchSubmitRequestRescore>;
+  S.Unknown as any as S.Schema<AsyncSearchSubmitRequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type AsyncSearchSubmitRequestScriptFieldsMap = {
@@ -13127,7 +13112,7 @@ export type AsyncSearchSubmit1RequestSort =
   | string
   | AsyncSearchSubmit1RequestSortCase1List;
 export const AsyncSearchSubmit1RequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AsyncSearchSubmit1RequestSort>;
+  S.Unknown as any as S.Schema<AsyncSearchSubmit1RequestSort>;
 
 export type AsyncSearchSubmit1RequestAggregationsMap = {
   [key: string]: TypesAggregationsAggregationContainer | undefined;
@@ -13172,7 +13157,7 @@ export type AsyncSearchSubmit1RequestKnn =
   | TypesKnnSearch
   | AsyncSearchSubmit1RequestKnnCase1List;
 export const AsyncSearchSubmit1RequestKnn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AsyncSearchSubmit1RequestKnn>;
+  S.Unknown as any as S.Schema<AsyncSearchSubmit1RequestKnn>;
 
 export type AsyncSearchSubmit1RequestRescoreCase1List =
   Array<GlobalSearchTypesRescore>;
@@ -13184,7 +13169,7 @@ export type AsyncSearchSubmit1RequestRescore =
   | GlobalSearchTypesRescore
   | AsyncSearchSubmit1RequestRescoreCase1List;
 export const AsyncSearchSubmit1RequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AsyncSearchSubmit1RequestRescore>;
+  S.Unknown as any as S.Schema<AsyncSearchSubmit1RequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type AsyncSearchSubmit1RequestScriptFieldsMap = {
@@ -13433,7 +13418,7 @@ export const AuthenticateSecurityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthenticateSecurityRequest>;
 
 export type SecurityTypesCredentialManagedBy = "cloud" | "elasticsearch";
-export const SecurityTypesCredentialManagedBy = /*@__PURE__*/ S.String;
+export const SecurityTypesCredentialManagedBy = S.String;
 
 export interface SecurityAuthenticateAuthenticateApiKey {
   id: string;
@@ -13609,14 +13594,14 @@ export const AuthenticateSecuritySamlResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthenticateSecuritySamlResponse>;
 
 export type TypesRefresh = "true" | "false" | "wait_for";
-export const TypesRefresh = /*@__PURE__*/ S.String;
+export const TypesRefresh = S.String;
 
 export type TypesWaitForActiveShardOptions = "all" | "index-setting";
-export const TypesWaitForActiveShardOptions = /*@__PURE__*/ S.String;
+export const TypesWaitForActiveShardOptions = S.String;
 
 export type TypesWaitForActiveShards = number | TypesWaitForActiveShardOptions;
 export const TypesWaitForActiveShards =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesWaitForActiveShards>;
+  S.Unknown as any as S.Schema<TypesWaitForActiveShards>;
 
 /** A map from the full name of fields to the name of dynamic templates. It defaults to an empty map. If a name matches a dynamic template, that template will be applied regardless of other match predicates defined in the template. If a field is already defined in the mapping, then this parameter won't be used. */
 export type GlobalBulkIndexOperationDynamicTemplatesMap = {
@@ -13824,7 +13809,7 @@ export type BulkRequestBodyItem =
   | GlobalBulkUpdateAction
   | unknown;
 export const BulkRequestBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BulkRequestBodyItem>;
+  S.Unknown as any as S.Schema<BulkRequestBodyItem>;
 
 export type BulkRequestBodyList = Array<BulkRequestBodyItem>;
 export const BulkRequestBodyList = /*@__PURE__*/ S.Array(
@@ -13883,7 +13868,7 @@ export type GlobalBulkFailureStoreStatus =
   | "used"
   | "not_enabled"
   | "failed";
-export const GlobalBulkFailureStoreStatus = /*@__PURE__*/ S.String;
+export const GlobalBulkFailureStoreStatus = S.String;
 
 export type TypesInlineGetDictUserDefinedFieldsMap = {
   [key: string]: unknown | undefined;
@@ -14001,7 +13986,7 @@ export type Bulk1RequestBodyItem =
   | GlobalBulkUpdateAction
   | unknown;
 export const Bulk1RequestBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Bulk1RequestBodyItem>;
+  S.Unknown as any as S.Schema<Bulk1RequestBodyItem>;
 
 export type Bulk1RequestBodyList = Array<Bulk1RequestBodyItem>;
 export const Bulk1RequestBodyList = /*@__PURE__*/ S.Array(
@@ -14092,7 +14077,7 @@ export type Bulk2RequestBodyItem =
   | GlobalBulkUpdateAction
   | unknown;
 export const Bulk2RequestBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Bulk2RequestBodyItem>;
+  S.Unknown as any as S.Schema<Bulk2RequestBodyItem>;
 
 export type Bulk2RequestBodyList = Array<Bulk2RequestBodyItem>;
 export const Bulk2RequestBodyList = /*@__PURE__*/ S.Array(
@@ -14186,7 +14171,7 @@ export type Bulk3RequestBodyItem =
   | GlobalBulkUpdateAction
   | unknown;
 export const Bulk3RequestBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Bulk3RequestBodyItem>;
+  S.Unknown as any as S.Schema<Bulk3RequestBodyItem>;
 
 export type Bulk3RequestBodyList = Array<Bulk3RequestBodyItem>;
 export const Bulk3RequestBodyList = /*@__PURE__*/ S.Array(
@@ -14299,7 +14284,7 @@ export type TypesResult =
   | "deleted"
   | "not_found"
   | "noop";
-export const TypesResult = /*@__PURE__*/ S.String;
+export const TypesResult = S.String;
 
 export interface CancelConnectorSyncJobResponse {
   result: TypesResult;
@@ -14524,7 +14509,7 @@ export type CancelTaskRequestActions =
   | string
   | CancelTaskRequestActionsCase1List;
 export const CancelTaskRequestActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CancelTaskRequestActions>;
+  S.Unknown as any as S.Schema<CancelTaskRequestActions>;
 
 export type CancelTaskRequestNodesList = Array<string>;
 export const CancelTaskRequestNodesList = /*@__PURE__*/ S.Array(
@@ -14768,7 +14753,7 @@ export type TasksTypesTaskInfos =
   | TasksTypesTaskInfosCase0List
   | TasksTypesTaskInfosCase1Map;
 export const TasksTypesTaskInfos =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TasksTypesTaskInfos>;
+  S.Unknown as any as S.Schema<TasksTypesTaskInfos>;
 
 export interface TasksTypesTaskListResponseBase {
   node_failures?: TasksTypesTaskListResponseBaseNodeFailuresList;
@@ -14807,11 +14792,11 @@ export type CatTypesCatAliasesColumnCase0 =
   | "is_write_index"
   | "w"
   | "isWriteIndex";
-export const CatTypesCatAliasesColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatAliasesColumnCase0 = S.String;
 
 export type CatTypesCatAliasesColumn = CatTypesCatAliasesColumnCase0 | string;
 export const CatTypesCatAliasesColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatAliasesColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatAliasesColumn>;
 
 export type CatTypesCatAliasesColumnsCase1List =
   Array<CatTypesCatAliasesColumn>;
@@ -14823,7 +14808,7 @@ export type CatTypesCatAliasesColumns =
   | CatTypesCatAliasesColumn
   | CatTypesCatAliasesColumnsCase1List;
 export const CatTypesCatAliasesColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatAliasesColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatAliasesColumns>;
 
 export type TypesNamesCase1List = Array<string>;
 export const TypesNamesCase1List = /*@__PURE__*/ S.Array(
@@ -14831,8 +14816,7 @@ export const TypesNamesCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesNamesCase1List>;
 
 export type TypesNames = string | TypesNamesCase1List;
-export const TypesNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesNames>;
+export const TypesNames = S.Unknown as any as S.Schema<TypesNames>;
 
 export interface CatAliasesRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -14964,13 +14948,13 @@ export type CatTypesCatAllocationColumnCase0 =
   | "r"
   | "role"
   | "nodeRole";
-export const CatTypesCatAllocationColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatAllocationColumnCase0 = S.String;
 
 export type CatTypesCatAllocationColumn =
   | CatTypesCatAllocationColumnCase0
   | string;
 export const CatTypesCatAllocationColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatAllocationColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatAllocationColumn>;
 
 export type CatTypesCatAllocationColumnsCase1List =
   Array<CatTypesCatAllocationColumn>;
@@ -14982,7 +14966,7 @@ export type CatTypesCatAllocationColumns =
   | CatTypesCatAllocationColumn
   | CatTypesCatAllocationColumnsCase1List;
 export const CatTypesCatAllocationColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatAllocationColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatAllocationColumns>;
 
 export interface CatAllocationRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -15008,54 +14992,52 @@ export const CatAllocationRequest = /*@__PURE__*/ S.suspend(() =>
 /** Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior is used to capture this behavior while keeping the semantics of the field type. Depending on the target language, code generators can keep the union or remove it and leniently parse strings to the target type. */
 export type SpecUtilsStringifieddouble = number | string;
 export const SpecUtilsStringifieddouble =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpecUtilsStringifieddouble>;
+  S.Unknown as any as S.Schema<SpecUtilsStringifieddouble>;
 
 /** Sum of index write load forecasts */
 export type CatAllocationAllocationRecordWriteLoadForecast =
   | SpecUtilsStringifieddouble
   | string;
 export const CatAllocationAllocationRecordWriteLoadForecast =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatAllocationAllocationRecordWriteLoadForecast>;
+  S.Unknown as any as S.Schema<CatAllocationAllocationRecordWriteLoadForecast>;
 
 export type TypesByteSize = number | string;
-export const TypesByteSize =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesByteSize>;
+export const TypesByteSize = S.Unknown as any as S.Schema<TypesByteSize>;
 
 /** Sum of shard size forecasts */
 export type CatAllocationAllocationRecordDiskIndicesForecast =
   | TypesByteSize
   | string;
 export const CatAllocationAllocationRecordDiskIndicesForecast =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskIndicesForecast>;
+  S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskIndicesForecast>;
 
 /** Disk space used by the node’s shards. Does not include disk space for the translog or unassigned shards. IMPORTANT: This metric double-counts disk space for hard-linked files, such as those created when shrinking, splitting, or cloning an index. */
 export type CatAllocationAllocationRecordDiskIndices = TypesByteSize | string;
 export const CatAllocationAllocationRecordDiskIndices =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskIndices>;
+  S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskIndices>;
 
 /** Total disk space in use. Elasticsearch retrieves this metric from the node’s operating system (OS). The metric includes disk space for: Elasticsearch, including the translog and unassigned shards; the node’s operating system; any other applications or files on the node. Unlike `disk.indices`, this metric does not double-count disk space for hard-linked files. */
 export type CatAllocationAllocationRecordDiskUsed = TypesByteSize | string;
 export const CatAllocationAllocationRecordDiskUsed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskUsed>;
+  S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskUsed>;
 
 /** Free disk space available to Elasticsearch. Elasticsearch retrieves this metric from the node’s operating system. Disk-based shard allocation uses this metric to assign shards to nodes based on available disk space. */
 export type CatAllocationAllocationRecordDiskAvail = TypesByteSize | string;
 export const CatAllocationAllocationRecordDiskAvail =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskAvail>;
+  S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskAvail>;
 
 /** Total disk space for the node, including in-use and available space. */
 export type CatAllocationAllocationRecordDiskTotal = TypesByteSize | string;
 export const CatAllocationAllocationRecordDiskTotal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskTotal>;
+  S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskTotal>;
 
 export type TypesPercentage = string | number;
-export const TypesPercentage =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesPercentage>;
+export const TypesPercentage = S.Unknown as any as S.Schema<TypesPercentage>;
 
 /** Total percentage of disk space in use. Calculated as `disk.used / disk.total`. */
 export type CatAllocationAllocationRecordDiskPercent = TypesPercentage | string;
 export const CatAllocationAllocationRecordDiskPercent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskPercent>;
+  S.Unknown as any as S.Schema<CatAllocationAllocationRecordDiskPercent>;
 
 export interface CatAllocationAllocationRecord {
   /** Number of primary and replica shards assigned to the node. */
@@ -15194,13 +15176,13 @@ export type CatTypesCatCircuitBreakerColumnCase0 =
   | "t"
   | "overhead"
   | "o";
-export const CatTypesCatCircuitBreakerColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatCircuitBreakerColumnCase0 = S.String;
 
 export type CatTypesCatCircuitBreakerColumn =
   | CatTypesCatCircuitBreakerColumnCase0
   | string;
 export const CatTypesCatCircuitBreakerColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatCircuitBreakerColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatCircuitBreakerColumn>;
 
 export type CatTypesCatCircuitBreakerColumnsCase1List =
   Array<CatTypesCatCircuitBreakerColumn>;
@@ -15212,7 +15194,7 @@ export type CatTypesCatCircuitBreakerColumns =
   | CatTypesCatCircuitBreakerColumn
   | CatTypesCatCircuitBreakerColumnsCase1List;
 export const CatTypesCatCircuitBreakerColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatCircuitBreakerColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatCircuitBreakerColumns>;
 
 export interface CatCircuitBreakerRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -15343,13 +15325,13 @@ export type CatTypesCatComponentColumnCase0 =
   | "me"
   | "included_in"
   | "i";
-export const CatTypesCatComponentColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatComponentColumnCase0 = S.String;
 
 export type CatTypesCatComponentColumn =
   | CatTypesCatComponentColumnCase0
   | string;
 export const CatTypesCatComponentColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatComponentColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatComponentColumn>;
 
 export type CatTypesCatComponentColumnsCase1List =
   Array<CatTypesCatComponentColumn>;
@@ -15361,7 +15343,7 @@ export type CatTypesCatComponentColumns =
   | CatTypesCatComponentColumn
   | CatTypesCatComponentColumnsCase1List;
 export const CatTypesCatComponentColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatComponentColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatComponentColumns>;
 
 export interface CatComponentTemplatesRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -15480,11 +15462,11 @@ export type CatTypesCatCountColumnCase0 =
   | "dc"
   | "docs.count"
   | "docsCount";
-export const CatTypesCatCountColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatCountColumnCase0 = S.String;
 
 export type CatTypesCatCountColumn = CatTypesCatCountColumnCase0 | string;
 export const CatTypesCatCountColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatCountColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatCountColumn>;
 
 export type CatTypesCatCountColumnsCase1List = Array<CatTypesCatCountColumn>;
 export const CatTypesCatCountColumnsCase1List = /*@__PURE__*/ S.Array(
@@ -15495,7 +15477,7 @@ export type CatTypesCatCountColumns =
   | CatTypesCatCountColumn
   | CatTypesCatCountColumnsCase1List;
 export const CatTypesCatCountColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatCountColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatCountColumns>;
 
 export interface CatCountRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -15515,7 +15497,7 @@ export const CatCountRequest = /*@__PURE__*/ S.suspend(() =>
 /** Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior is used to capture this behavior while keeping the semantics of the field type. Depending on the target language, code generators can keep the union or remove it and leniently parse strings to the target type. */
 export type SpecUtilsStringifiedEpochTimeUnitSeconds = number | string;
 export const SpecUtilsStringifiedEpochTimeUnitSeconds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpecUtilsStringifiedEpochTimeUnitSeconds>;
+  S.Unknown as any as S.Schema<SpecUtilsStringifiedEpochTimeUnitSeconds>;
 
 export interface CatCountCountRecord {
   /** seconds since 1970-01-01 00:00:00 */
@@ -15645,13 +15627,13 @@ export type CatTypesCatFieldDataColumnCase0 =
   | "f"
   | "size"
   | "s";
-export const CatTypesCatFieldDataColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatFieldDataColumnCase0 = S.String;
 
 export type CatTypesCatFieldDataColumn =
   | CatTypesCatFieldDataColumnCase0
   | string;
 export const CatTypesCatFieldDataColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatFieldDataColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatFieldDataColumn>;
 
 export type CatTypesCatFieldDataColumnsCase1List =
   Array<CatTypesCatFieldDataColumn>;
@@ -15663,7 +15645,7 @@ export type CatTypesCatFieldDataColumns =
   | CatTypesCatFieldDataColumn
   | CatTypesCatFieldDataColumnsCase1List;
 export const CatTypesCatFieldDataColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatFieldDataColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatFieldDataColumns>;
 
 export interface CatFielddataRequest {
   /** Comma-separated list of fields used to limit returned information. */
@@ -15806,11 +15788,11 @@ export type CatTypesCatHealthColumnCase0 =
   | "active_shards_percent"
   | "asp"
   | "activeShardsPercent";
-export const CatTypesCatHealthColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatHealthColumnCase0 = S.String;
 
 export type CatTypesCatHealthColumn = CatTypesCatHealthColumnCase0 | string;
 export const CatTypesCatHealthColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatHealthColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatHealthColumn>;
 
 export type CatTypesCatHealthColumnsCase1List = Array<CatTypesCatHealthColumn>;
 export const CatTypesCatHealthColumnsCase1List = /*@__PURE__*/ S.Array(
@@ -15821,7 +15803,7 @@ export type CatTypesCatHealthColumns =
   | CatTypesCatHealthColumn
   | CatTypesCatHealthColumnsCase1List;
 export const CatTypesCatHealthColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatHealthColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatHealthColumns>;
 
 export interface CatHealthRequest {
   /** If true, returns `HH:MM:SS` and Unix epoch timestamps. */
@@ -15928,7 +15910,7 @@ export type TypesHealthStatus =
   | "RED"
   | "unknown"
   | "unavailable";
-export const TypesHealthStatus = /*@__PURE__*/ S.String;
+export const TypesHealthStatus = S.String;
 
 export type CatTypesCatIndicesColumnCase0 =
   | "health"
@@ -16232,11 +16214,11 @@ export type CatTypesCatIndicesColumnCase0 =
   | "svc"
   | "sparseVectorCount"
   | "pri.sparse_vector.value_count";
-export const CatTypesCatIndicesColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatIndicesColumnCase0 = S.String;
 
 export type CatTypesCatIndicesColumn = CatTypesCatIndicesColumnCase0 | string;
 export const CatTypesCatIndicesColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatIndicesColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatIndicesColumn>;
 
 export type CatTypesCatIndicesColumnsCase1List =
   Array<CatTypesCatIndicesColumn>;
@@ -16248,7 +16230,7 @@ export type CatTypesCatIndicesColumns =
   | CatTypesCatIndicesColumn
   | CatTypesCatIndicesColumnsCase1List;
 export const CatTypesCatIndicesColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatIndicesColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatIndicesColumns>;
 
 export interface CatIndicesRequest {
   /** The type of index that wildcard patterns can match. */
@@ -16939,11 +16921,11 @@ export type CatTypesCatMasterColumnCase0 =
   | "ip"
   | "node"
   | "n";
-export const CatTypesCatMasterColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatMasterColumnCase0 = S.String;
 
 export type CatTypesCatMasterColumn = CatTypesCatMasterColumnCase0 | string;
 export const CatTypesCatMasterColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatMasterColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatMasterColumn>;
 
 export type CatTypesCatMasterColumnsCase1List = Array<CatTypesCatMasterColumn>;
 export const CatTypesCatMasterColumnsCase1List = /*@__PURE__*/ S.Array(
@@ -16954,7 +16936,7 @@ export type CatTypesCatMasterColumns =
   | CatTypesCatMasterColumn
   | CatTypesCatMasterColumnsCase1List;
 export const CatTypesCatMasterColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatMasterColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatMasterColumns>;
 
 export interface CatMasterRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -17043,7 +17025,7 @@ export type CatTypesCatDatafeedColumn =
   | "searchTime"
   | "s"
   | "state";
-export const CatTypesCatDatafeedColumn = /*@__PURE__*/ S.String;
+export const CatTypesCatDatafeedColumn = S.String;
 
 export type CatTypesCatDatafeedColumnsCase1List = Array<
   CatTypesCatDatafeedColumn | (string & {})
@@ -17056,7 +17038,7 @@ export type CatTypesCatDatafeedColumns =
   | CatTypesCatDatafeedColumn
   | CatTypesCatDatafeedColumnsCase1List;
 export const CatTypesCatDatafeedColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatDatafeedColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatDatafeedColumns>;
 
 export interface CatMlDatafeedsRequest {
   /** Specifies what to do when the request: * Contains wildcard expressions and there are no datafeeds that match. * Contains the `_all` string or no identifiers and there are no matches. * Contains wildcard expressions and there are only partial matches. If `true`, the API returns an empty datafeeds array when there are no matches and the subset of results when there are partial matches. If `false`, the API returns a 404 status code when there are no matches or only partial matches. */
@@ -17081,7 +17063,7 @@ export type MlTypesDatafeedState =
   | "stopped"
   | "starting"
   | "stopping";
-export const MlTypesDatafeedState = /*@__PURE__*/ S.String;
+export const MlTypesDatafeedState = S.String;
 
 export interface CatMlDatafeedsDatafeedsRecord {
   /** The datafeed identifier. */
@@ -17224,7 +17206,7 @@ export type CatTypesCatDfaColumn =
   | "t"
   | "version"
   | "v";
-export const CatTypesCatDfaColumn = /*@__PURE__*/ S.String;
+export const CatTypesCatDfaColumn = S.String;
 
 export type CatTypesCatDfaColumnsCase1List = Array<
   CatTypesCatDfaColumn | (string & {})
@@ -17237,7 +17219,7 @@ export type CatTypesCatDfaColumns =
   | CatTypesCatDfaColumn
   | CatTypesCatDfaColumnsCase1List;
 export const CatTypesCatDfaColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatDfaColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatDfaColumns>;
 
 export interface CatMlDataFrameAnalyticsRequest {
   /** Whether to ignore if a wildcard expression matches no configs. (This includes `_all` string or when no configs have been specified.) */
@@ -17548,7 +17530,7 @@ export type CatTypesCatAnomalyDetectorColumn =
   | "ot"
   | "state"
   | "s";
-export const CatTypesCatAnomalyDetectorColumn = /*@__PURE__*/ S.String;
+export const CatTypesCatAnomalyDetectorColumn = S.String;
 
 export type CatTypesCatAnomalyDetectorColumnsCase1List = Array<
   CatTypesCatAnomalyDetectorColumn | (string & {})
@@ -17561,7 +17543,7 @@ export type CatTypesCatAnomalyDetectorColumns =
   | CatTypesCatAnomalyDetectorColumn
   | CatTypesCatAnomalyDetectorColumnsCase1List;
 export const CatTypesCatAnomalyDetectorColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatAnomalyDetectorColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatAnomalyDetectorColumns>;
 
 export interface CatMlJobsRequest {
   /** Specifies what to do when the request: * Contains wildcard expressions and there are no jobs that match. * Contains the `_all` string or no identifiers and there are no matches. * Contains wildcard expressions and there are only partial matches. If `true`, the API returns an empty jobs array when there are no matches and the subset of results when there are partial matches. If `false`, the API returns a 404 status code when there are no matches or only partial matches. */
@@ -17589,13 +17571,13 @@ export type MlTypesJobState =
   | "opened"
   | "failed"
   | "opening";
-export const MlTypesJobState = /*@__PURE__*/ S.String;
+export const MlTypesJobState = S.String;
 
 export type MlTypesMemoryStatus = "ok" | "soft_limit" | "hard_limit";
-export const MlTypesMemoryStatus = /*@__PURE__*/ S.String;
+export const MlTypesMemoryStatus = S.String;
 
 export type MlTypesCategorizationStatus = "ok" | "warn";
-export const MlTypesCategorizationStatus = /*@__PURE__*/ S.String;
+export const MlTypesCategorizationStatus = S.String;
 
 export interface CatMlJobsJobsRecord {
   /** The anomaly detection job identifier. */
@@ -17937,7 +17919,7 @@ export type CatTypesCatTrainedModelsColumn =
   | "modelOperations"
   | "version"
   | "v";
-export const CatTypesCatTrainedModelsColumn = /*@__PURE__*/ S.String;
+export const CatTypesCatTrainedModelsColumn = S.String;
 
 export type CatTypesCatTrainedModelsColumnsCase1List = Array<
   CatTypesCatTrainedModelsColumn | (string & {})
@@ -17950,7 +17932,7 @@ export type CatTypesCatTrainedModelsColumns =
   | CatTypesCatTrainedModelsColumn
   | CatTypesCatTrainedModelsColumnsCase1List;
 export const CatTypesCatTrainedModelsColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatTrainedModelsColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatTrainedModelsColumns>;
 
 export interface CatMlTrainedModelsRequest {
   /** Specifies what to do when the request: contains wildcard expressions and there are no models that match; contains the `_all` string or no identifiers and there are no matches; contains wildcard expressions and there are only partial matches. If `true`, the API returns an empty array when there are no matches and the subset of results when there are partial matches. If `false`, the API returns a 404 status code when there are no matches or only partial matches. */
@@ -18121,13 +18103,13 @@ export type CatTypesCatNodeattrsColumnCase0 =
   | "attr.name"
   | "value"
   | "attr.value";
-export const CatTypesCatNodeattrsColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatNodeattrsColumnCase0 = S.String;
 
 export type CatTypesCatNodeattrsColumn =
   | CatTypesCatNodeattrsColumnCase0
   | string;
 export const CatTypesCatNodeattrsColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatNodeattrsColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatNodeattrsColumn>;
 
 export type CatTypesCatNodeattrsColumnsCase1List =
   Array<CatTypesCatNodeattrsColumn>;
@@ -18139,7 +18121,7 @@ export type CatTypesCatNodeattrsColumns =
   | CatTypesCatNodeattrsColumn
   | CatTypesCatNodeattrsColumnsCase1List;
 export const CatTypesCatNodeattrsColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatNodeattrsColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatNodeattrsColumns>;
 
 export interface CatNodeattrsRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -18465,11 +18447,11 @@ export type CatTypesCatNodeColumnCase0 =
   | "u"
   | "version"
   | "v";
-export const CatTypesCatNodeColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatNodeColumnCase0 = S.String;
 
 export type CatTypesCatNodeColumn = CatTypesCatNodeColumnCase0 | string;
 export const CatTypesCatNodeColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatNodeColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatNodeColumn>;
 
 export type CatTypesCatNodeColumnsCase1List = Array<CatTypesCatNodeColumn>;
 export const CatTypesCatNodeColumnsCase1List = /*@__PURE__*/ S.Array(
@@ -18480,7 +18462,7 @@ export type CatTypesCatNodeColumns =
   | CatTypesCatNodeColumn
   | CatTypesCatNodeColumnsCase1List;
 export const CatTypesCatNodeColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatNodeColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatNodeColumns>;
 
 export interface CatNodesRequest {
   /** If `true`, return the full node ID. If `false`, return the shortened node ID. */
@@ -18901,13 +18883,13 @@ export type CatTypesCatPendingTasksColumnCase0 =
   | "p"
   | "source"
   | "s";
-export const CatTypesCatPendingTasksColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatPendingTasksColumnCase0 = S.String;
 
 export type CatTypesCatPendingTasksColumn =
   | CatTypesCatPendingTasksColumnCase0
   | string;
 export const CatTypesCatPendingTasksColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatPendingTasksColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatPendingTasksColumn>;
 
 export type CatTypesCatPendingTasksColumnsCase1List =
   Array<CatTypesCatPendingTasksColumn>;
@@ -18919,7 +18901,7 @@ export type CatTypesCatPendingTasksColumns =
   | CatTypesCatPendingTasksColumn
   | CatTypesCatPendingTasksColumnsCase1List;
 export const CatTypesCatPendingTasksColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatPendingTasksColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatPendingTasksColumns>;
 
 export interface CatPendingTasksRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -18986,11 +18968,11 @@ export type CatTypesCatPluginsColumnCase0 =
   | "v"
   | "description"
   | "d";
-export const CatTypesCatPluginsColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatPluginsColumnCase0 = S.String;
 
 export type CatTypesCatPluginsColumn = CatTypesCatPluginsColumnCase0 | string;
 export const CatTypesCatPluginsColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatPluginsColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatPluginsColumn>;
 
 export type CatTypesCatPluginsColumnsCase1List =
   Array<CatTypesCatPluginsColumn>;
@@ -19002,7 +18984,7 @@ export type CatTypesCatPluginsColumns =
   | CatTypesCatPluginsColumn
   | CatTypesCatPluginsColumnsCase1List;
 export const CatTypesCatPluginsColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatPluginsColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatPluginsColumns>;
 
 export interface CatPluginsRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -19073,8 +19055,7 @@ export const TypesIndicesCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesIndicesCase1List>;
 
 export type TypesIndices = string | TypesIndicesCase1List;
-export const TypesIndices =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesIndices>;
+export const TypesIndices = S.Unknown as any as S.Schema<TypesIndices>;
 
 export type CatTypesCatRecoveryColumnCase0 =
   | "index"
@@ -19134,11 +19115,11 @@ export type CatTypesCatRecoveryColumnCase0 =
   | "tor"
   | "translog_ops_percent"
   | "top";
-export const CatTypesCatRecoveryColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatRecoveryColumnCase0 = S.String;
 
 export type CatTypesCatRecoveryColumn = CatTypesCatRecoveryColumnCase0 | string;
 export const CatTypesCatRecoveryColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatRecoveryColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatRecoveryColumn>;
 
 export type CatTypesCatRecoveryColumnsCase1List =
   Array<CatTypesCatRecoveryColumn>;
@@ -19150,7 +19131,7 @@ export type CatTypesCatRecoveryColumns =
   | CatTypesCatRecoveryColumn
   | CatTypesCatRecoveryColumnsCase1List;
 export const CatTypesCatRecoveryColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatRecoveryColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatRecoveryColumns>;
 
 export interface CatRecoveryRequest {
   /** If `true`, the response only includes ongoing shard recoveries. */
@@ -19386,11 +19367,11 @@ export type CatTypesCatSegmentsColumnCase0 =
   | "version"
   | "compound"
   | "id";
-export const CatTypesCatSegmentsColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatSegmentsColumnCase0 = S.String;
 
 export type CatTypesCatSegmentsColumn = CatTypesCatSegmentsColumnCase0 | string;
 export const CatTypesCatSegmentsColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatSegmentsColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatSegmentsColumn>;
 
 export type CatTypesCatSegmentsColumnsCase1List =
   Array<CatTypesCatSegmentsColumn>;
@@ -19402,7 +19383,7 @@ export type CatTypesCatSegmentsColumns =
   | CatTypesCatSegmentsColumn
   | CatTypesCatSegmentsColumnsCase1List;
 export const CatTypesCatSegmentsColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatSegmentsColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatSegmentsColumns>;
 
 export interface CatSegmentsRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -19753,11 +19734,11 @@ export type CatTypesCatShardColumnCase0 =
   | "uf"
   | "unassigned.reason"
   | "ur";
-export const CatTypesCatShardColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatShardColumnCase0 = S.String;
 
 export type CatTypesCatShardColumn = CatTypesCatShardColumnCase0 | string;
 export const CatTypesCatShardColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatShardColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatShardColumn>;
 
 export type CatTypesCatShardColumnsCase1List = Array<CatTypesCatShardColumn>;
 export const CatTypesCatShardColumnsCase1List = /*@__PURE__*/ S.Array(
@@ -19768,7 +19749,7 @@ export type CatTypesCatShardColumns =
   | CatTypesCatShardColumn
   | CatTypesCatShardColumnsCase1List;
 export const CatTypesCatShardColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatShardColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatShardColumns>;
 
 export interface CatShardsRequest {
   /** List of columns to appear in the response. Supports simple wildcards. */
@@ -20163,13 +20144,13 @@ export type CatTypesCatSnapshotsColumnCase0 =
   | "ts"
   | "reason"
   | "r";
-export const CatTypesCatSnapshotsColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatSnapshotsColumnCase0 = S.String;
 
 export type CatTypesCatSnapshotsColumn =
   | CatTypesCatSnapshotsColumnCase0
   | string;
 export const CatTypesCatSnapshotsColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatSnapshotsColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatSnapshotsColumn>;
 
 export type CatTypesCatSnapshotsColumnsCase1List =
   Array<CatTypesCatSnapshotsColumn>;
@@ -20181,7 +20162,7 @@ export type CatTypesCatSnapshotsColumns =
   | CatTypesCatSnapshotsColumn
   | CatTypesCatSnapshotsColumnsCase1List;
 export const CatTypesCatSnapshotsColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatSnapshotsColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatSnapshotsColumns>;
 
 export interface CatSnapshotsRequest {
   /** If `true`, the response does not include information from unavailable snapshots. */
@@ -20230,7 +20211,7 @@ export const WatcherTypesHourAndMinute = /*@__PURE__*/ S.suspend(() =>
 /** A time of day, expressed either as `hh:mm`, `noon`, `midnight`, or an hour/minutes structure. */
 export type WatcherTypesScheduleTimeOfDay = string | WatcherTypesHourAndMinute;
 export const WatcherTypesScheduleTimeOfDay =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesScheduleTimeOfDay>;
+  S.Unknown as any as S.Schema<WatcherTypesScheduleTimeOfDay>;
 
 export interface CatSnapshotsSnapshotsRecord {
   /** The unique identifier for the snapshot. */
@@ -20372,11 +20353,11 @@ export type CatTypesCatTasksColumnCase0 =
   | "v"
   | "x_opaque_id"
   | "x";
-export const CatTypesCatTasksColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatTasksColumnCase0 = S.String;
 
 export type CatTypesCatTasksColumn = CatTypesCatTasksColumnCase0 | string;
 export const CatTypesCatTasksColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatTasksColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatTasksColumn>;
 
 export type CatTypesCatTasksColumnsCase1List = Array<CatTypesCatTasksColumn>;
 export const CatTypesCatTasksColumnsCase1List = /*@__PURE__*/ S.Array(
@@ -20387,7 +20368,7 @@ export type CatTypesCatTasksColumns =
   | CatTypesCatTasksColumn
   | CatTypesCatTasksColumnsCase1List;
 export const CatTypesCatTasksColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatTasksColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatTasksColumns>;
 
 export interface CatTasksRequest {
   /** The task action names, which are used to limit the response. */
@@ -20503,13 +20484,13 @@ export type CatTypesCatTemplatesColumnCase0 =
   | "v"
   | "composed_of"
   | "c";
-export const CatTypesCatTemplatesColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatTemplatesColumnCase0 = S.String;
 
 export type CatTypesCatTemplatesColumn =
   | CatTypesCatTemplatesColumnCase0
   | string;
 export const CatTypesCatTemplatesColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatTemplatesColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatTemplatesColumn>;
 
 export type CatTypesCatTemplatesColumnsCase1List =
   Array<CatTypesCatTemplatesColumn>;
@@ -20521,7 +20502,7 @@ export type CatTypesCatTemplatesColumns =
   | CatTypesCatTemplatesColumn
   | CatTypesCatTemplatesColumnsCase1List;
 export const CatTypesCatTemplatesColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatTemplatesColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatTemplatesColumns>;
 
 export interface CatTemplatesRequest {
   /** A comma-separated list of columns names to display. It supports simple wildcards. */
@@ -20655,13 +20636,13 @@ export type CatTypesCatThreadPoolColumnCase0 =
   | "sz"
   | "type"
   | "t";
-export const CatTypesCatThreadPoolColumnCase0 = /*@__PURE__*/ S.String;
+export const CatTypesCatThreadPoolColumnCase0 = S.String;
 
 export type CatTypesCatThreadPoolColumn =
   | CatTypesCatThreadPoolColumnCase0
   | string;
 export const CatTypesCatThreadPoolColumn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatThreadPoolColumn>;
+  S.Unknown as any as S.Schema<CatTypesCatThreadPoolColumn>;
 
 export type CatTypesCatThreadPoolColumnsCase1List =
   Array<CatTypesCatThreadPoolColumn>;
@@ -20673,7 +20654,7 @@ export type CatTypesCatThreadPoolColumns =
   | CatTypesCatThreadPoolColumn
   | CatTypesCatThreadPoolColumnsCase1List;
 export const CatTypesCatThreadPoolColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatThreadPoolColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatThreadPoolColumns>;
 
 export interface CatThreadPoolRequest {
   /** List of columns to appear in the response. Supports simple wildcards. */
@@ -20893,7 +20874,7 @@ export type CatTypesCatTransformColumn =
   | "tc"
   | "version"
   | "v";
-export const CatTypesCatTransformColumn = /*@__PURE__*/ S.String;
+export const CatTypesCatTransformColumn = S.String;
 
 export type CatTypesCatTransformColumnsCase1List = Array<
   CatTypesCatTransformColumn | (string & {})
@@ -20906,7 +20887,7 @@ export type CatTypesCatTransformColumns =
   | CatTypesCatTransformColumn
   | CatTypesCatTransformColumnsCase1List;
 export const CatTypesCatTransformColumns =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CatTypesCatTransformColumns>;
+  S.Unknown as any as S.Schema<CatTypesCatTransformColumns>;
 
 export interface CatTransformsRequest {
   /** Specifies what to do when the request: contains wildcard expressions and there are no transforms that match; contains the `_all` string or no identifiers and there are no matches; contains wildcard expressions and there are only partial matches. If `true`, it returns an empty transforms array when there are no matches and the subset of results when there are partial matches. If `false`, the request returns a 404 status code when there are no matches or only partial matches. */
@@ -21172,7 +21153,7 @@ export const CcrFollowInfoFollowerIndexParameters = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CcrFollowInfoFollowerIndexParameters>;
 
 export type CcrFollowInfoFollowerIndexStatus = "active" | "paused";
-export const CcrFollowInfoFollowerIndexStatus = /*@__PURE__*/ S.String;
+export const CcrFollowInfoFollowerIndexStatus = S.String;
 
 export interface CcrFollowInfoFollowerIndex {
   /** The name of the follower index. */
@@ -21830,8 +21811,7 @@ export const TypesScrollIdsCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesScrollIdsCase1List>;
 
 export type TypesScrollIds = string | TypesScrollIdsCase1List;
-export const TypesScrollIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesScrollIds>;
+export const TypesScrollIds = S.Unknown as any as S.Schema<TypesScrollIds>;
 
 export interface ClearScrollRequest {
   /** The scroll IDs to clear. To clear all scroll IDs, use `_all`. */
@@ -22081,15 +22061,14 @@ export type ClusterAllocationExplainDecision =
   | "allocation_delayed"
   | "no_valid_shard_copy"
   | "no_attempt";
-export const ClusterAllocationExplainDecision = /*@__PURE__*/ S.String;
+export const ClusterAllocationExplainDecision = S.String;
 
 export type ClusterAllocationExplainAllocationExplainDecision =
   | "NO"
   | "YES"
   | "THROTTLE"
   | "ALWAYS";
-export const ClusterAllocationExplainAllocationExplainDecision =
-  /*@__PURE__*/ S.String;
+export const ClusterAllocationExplainAllocationExplainDecision = S.String;
 
 export interface ClusterAllocationExplainAllocationDecision {
   decider: string;
@@ -22261,7 +22240,7 @@ export type TypesNodeRole =
   | "transform"
   | "remote_cluster_client"
   | "coordinating_only";
-export const TypesNodeRole = /*@__PURE__*/ S.String;
+export const TypesNodeRole = S.String;
 
 export type TypesNodeRoles = Array<TypesNodeRole>;
 export const TypesNodeRoles = /*@__PURE__*/ S.Array(
@@ -22389,8 +22368,7 @@ export type ClusterAllocationExplainUnassignedInformationReason =
   | "PRIMARY_FAILED"
   | "FORCED_EMPTY_PRIMARY"
   | "MANUAL_ALLOCATION";
-export const ClusterAllocationExplainUnassignedInformationReason =
-  /*@__PURE__*/ S.String;
+export const ClusterAllocationExplainUnassignedInformationReason = S.String;
 
 export interface ClusterAllocationExplainUnassignedInformation {
   at: TypesDateTime;
@@ -22663,7 +22641,7 @@ export type ClusterGetComponentTemplateRequestSettingsFilter =
   | string
   | ClusterGetComponentTemplateRequestSettingsFilterCase1List;
 export const ClusterGetComponentTemplateRequestSettingsFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterGetComponentTemplateRequestSettingsFilter>;
+  S.Unknown as any as S.Schema<ClusterGetComponentTemplateRequestSettingsFilter>;
 
 export interface ClusterGetComponentTemplateRequest {
   /** If `true`, returns settings in flat format. */
@@ -22696,7 +22674,7 @@ export type IndicesTypesRetentionSource =
   | "default_global_retention"
   | "max_global_retention"
   | "default_failures_retention";
-export const IndicesTypesRetentionSource = /*@__PURE__*/ S.String;
+export const IndicesTypesRetentionSource = S.String;
 
 export interface IndicesTypesDownsamplingRound {
   /** The duration since rollover when this downsampling round should execute */
@@ -22722,7 +22700,7 @@ export const IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList =
   ) as any as S.Schema<IndicesTypesDataStreamLifecycleWithRolloverDownsamplingList>;
 
 export type IndicesTypesSamplingMethod = "aggregate" | "last_value";
-export const IndicesTypesSamplingMethod = /*@__PURE__*/ S.String;
+export const IndicesTypesSamplingMethod = S.String;
 
 export interface IndicesTypesDataStreamLifecycleRolloverConditions {
   min_age?: TypesDuration;
@@ -22801,7 +22779,7 @@ export type IndicesTypesIndexSettingsRoutingPath =
   | string
   | IndicesTypesIndexSettingsRoutingPathCase1List;
 export const IndicesTypesIndexSettingsRoutingPath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsRoutingPath>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsRoutingPath>;
 
 export interface IndicesTypesRetentionLease {
   period: TypesDuration;
@@ -22830,7 +22808,7 @@ export const IndicesTypesSoftDeletes = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesSoftDeletes>;
 
 export type IndicesTypesSegmentSortOrder = "asc" | "ASC" | "desc" | "DESC";
-export const IndicesTypesSegmentSortOrder = /*@__PURE__*/ S.String;
+export const IndicesTypesSegmentSortOrder = S.String;
 
 export type IndicesTypesIndexSegmentSortOrderCase1List = Array<
   IndicesTypesSegmentSortOrder | (string & {})
@@ -22843,10 +22821,10 @@ export type IndicesTypesIndexSegmentSortOrder =
   | IndicesTypesSegmentSortOrder
   | IndicesTypesIndexSegmentSortOrderCase1List;
 export const IndicesTypesIndexSegmentSortOrder =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSegmentSortOrder>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSegmentSortOrder>;
 
 export type IndicesTypesSegmentSortMode = "min" | "MIN" | "max" | "MAX";
-export const IndicesTypesSegmentSortMode = /*@__PURE__*/ S.String;
+export const IndicesTypesSegmentSortMode = S.String;
 
 export type IndicesTypesIndexSegmentSortModeCase1List = Array<
   IndicesTypesSegmentSortMode | (string & {})
@@ -22859,10 +22837,10 @@ export type IndicesTypesIndexSegmentSortMode =
   | IndicesTypesSegmentSortMode
   | IndicesTypesIndexSegmentSortModeCase1List;
 export const IndicesTypesIndexSegmentSortMode =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSegmentSortMode>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSegmentSortMode>;
 
 export type IndicesTypesSegmentSortMissing = "_last" | "_first";
-export const IndicesTypesSegmentSortMissing = /*@__PURE__*/ S.String;
+export const IndicesTypesSegmentSortMissing = S.String;
 
 export type IndicesTypesIndexSegmentSortMissingCase1List = Array<
   IndicesTypesSegmentSortMissing | (string & {})
@@ -22876,7 +22854,7 @@ export type IndicesTypesIndexSegmentSortMissing =
   | IndicesTypesSegmentSortMissing
   | IndicesTypesIndexSegmentSortMissingCase1List;
 export const IndicesTypesIndexSegmentSortMissing =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSegmentSortMissing>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSegmentSortMissing>;
 
 export interface IndicesTypesIndexSegmentSort {
   field?: TypesFields;
@@ -22897,23 +22875,23 @@ export const IndicesTypesIndexSegmentSort = /*@__PURE__*/ S.suspend(() =>
 
 export type IndicesTypesIndexSettingsNumberOfShards = number | string;
 export const IndicesTypesIndexSettingsNumberOfShards =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsNumberOfShards>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsNumberOfShards>;
 
 export type IndicesTypesIndexSettingsNumberOfReplicas = number | string;
 export const IndicesTypesIndexSettingsNumberOfReplicas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsNumberOfReplicas>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsNumberOfReplicas>;
 
 export type IndicesTypesIndexCheckOnStartup = "true" | "false" | "checksum";
-export const IndicesTypesIndexCheckOnStartup = /*@__PURE__*/ S.String;
+export const IndicesTypesIndexCheckOnStartup = S.String;
 
 /** Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior is used to capture this behavior while keeping the semantics of the field type. Depending on the target language, code generators can keep the union or remove it and leniently parse strings to the target type. */
 export type SpecUtilsStringifiedinteger = number | string;
 export const SpecUtilsStringifiedinteger =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpecUtilsStringifiedinteger>;
+  S.Unknown as any as S.Schema<SpecUtilsStringifiedinteger>;
 
 export type IndicesTypesIndexSettingsHidden = boolean | string;
 export const IndicesTypesIndexSettingsHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsHidden>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsHidden>;
 
 export interface IndicesTypesMergeScheduler {
   max_thread_count?: SpecUtilsStringifiedinteger;
@@ -23013,7 +22991,7 @@ export const IndicesTypesSettingsSearch = /*@__PURE__*/ S.suspend(() =>
 /** Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior is used to capture this behavior while keeping the semantics of the field type. Depending on the target language, code generators can keep the union or remove it and leniently parse strings to the target type. */
 export type SpecUtilsStringifiedboolean = boolean | string;
 export const SpecUtilsStringifiedboolean =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpecUtilsStringifiedboolean>;
+  S.Unknown as any as S.Schema<SpecUtilsStringifiedboolean>;
 
 export interface IndicesTypesIndexSettingBlocks {
   read_only?: SpecUtilsStringifiedboolean;
@@ -23061,7 +23039,7 @@ export type IndicesTypesIndexRoutingAllocationOptions =
   | "primaries"
   | "new_primaries"
   | "none";
-export const IndicesTypesIndexRoutingAllocationOptions = /*@__PURE__*/ S.String;
+export const IndicesTypesIndexRoutingAllocationOptions = S.String;
 
 export interface IndicesTypesIndexRoutingAllocationInclude {
   _tier_preference?: string;
@@ -23093,7 +23071,7 @@ export type IndicesTypesIndexRoutingAllocationDiskThresholdEnabled =
   | boolean
   | string;
 export const IndicesTypesIndexRoutingAllocationDiskThresholdEnabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexRoutingAllocationDiskThresholdEnabled>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexRoutingAllocationDiskThresholdEnabled>;
 
 export interface IndicesTypesIndexRoutingAllocationDisk {
   threshold_enabled?: IndicesTypesIndexRoutingAllocationDiskThresholdEnabled;
@@ -23133,7 +23111,7 @@ export type IndicesTypesIndexRoutingRebalanceOptions =
   | "primaries"
   | "replicas"
   | "none";
-export const IndicesTypesIndexRoutingRebalanceOptions = /*@__PURE__*/ S.String;
+export const IndicesTypesIndexRoutingRebalanceOptions = S.String;
 
 export interface IndicesTypesIndexRoutingRebalance {
   enable: IndicesTypesIndexRoutingRebalanceOptions | (string & {});
@@ -23199,7 +23177,7 @@ export const IndicesTypesIndexSettingsLifecycleStep = /*@__PURE__*/ S.suspend(
 /** Preference for the system that manages a data stream backing index (preferring ILM when both ILM and DLM are applicable for an index). */
 export type IndicesTypesIndexSettingsLifecyclePreferIlm = boolean | string;
 export const IndicesTypesIndexSettingsLifecyclePreferIlm =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsLifecyclePreferIlm>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsLifecyclePreferIlm>;
 
 export interface IndicesTypesIndexSettingsLifecycle {
   /** The name of the policy to use to manage the index. For information about how Elasticsearch applies policy changes, see Policy updates. */
@@ -23233,7 +23211,7 @@ export const IndicesTypesIndexSettingsLifecycle = /*@__PURE__*/ S.suspend(() =>
 /** Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior is used to capture this behavior while keeping the semantics of the field type. Depending on the target language, code generators can keep the union or remove it and leniently parse strings to the target type. */
 export type SpecUtilsStringifiedEpochTimeUnitMillis = number | string;
 export const SpecUtilsStringifiedEpochTimeUnitMillis =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpecUtilsStringifiedEpochTimeUnitMillis>;
+  S.Unknown as any as S.Schema<SpecUtilsStringifiedEpochTimeUnitMillis>;
 
 export interface IndicesTypesIndexVersioning {
   created?: string;
@@ -23250,18 +23228,18 @@ export const IndicesTypesIndexVersioning = /*@__PURE__*/ S.suspend(() =>
 
 export type IndicesTypesIndexSettingsVerifiedBeforeClose = boolean | string;
 export const IndicesTypesIndexSettingsVerifiedBeforeClose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsVerifiedBeforeClose>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsVerifiedBeforeClose>;
 
 export type IndicesTypesIndexSettingsFormat = string | number;
 export const IndicesTypesIndexSettingsFormat =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsFormat>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsFormat>;
 
 export type IndicesTypesTranslogDurability =
   | "request"
   | "REQUEST"
   | "async"
   | "ASYNC";
-export const IndicesTypesTranslogDurability = /*@__PURE__*/ S.String;
+export const IndicesTypesTranslogDurability = S.String;
 
 export interface IndicesTypesTranslogRetention {
   /** This controls the total size of translog files to keep for each shard. Keeping more translog files increases the chance of performing an operation based sync when recovering a replica. If the translog files are not sufficient, replica recovery will fall back to a file based sync. This setting is ignored, and should not be set, if soft deletes are enabled. Soft deletes are enabled by default in indices created in Elasticsearch versions 7.0.0 and later. */
@@ -23311,10 +23289,10 @@ export const IndicesTypesSettingsQueryString = /*@__PURE__*/ S.suspend(() =>
 
 export type IndicesTypesIndexSettingsPriority = number | string;
 export const IndicesTypesIndexSettingsPriority =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesIndexSettingsPriority>;
+  S.Unknown as any as S.Schema<IndicesTypesIndexSettingsPriority>;
 
 export type TypesAnalysisCustomAnalyzerType = "custom";
-export const TypesAnalysisCustomAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCustomAnalyzerType = S.String;
 
 export type TypesAnalysisCustomAnalyzerCharFilterCase1List = Array<string>;
 export const TypesAnalysisCustomAnalyzerCharFilterCase1List =
@@ -23326,7 +23304,7 @@ export type TypesAnalysisCustomAnalyzerCharFilter =
   | string
   | TypesAnalysisCustomAnalyzerCharFilterCase1List;
 export const TypesAnalysisCustomAnalyzerCharFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisCustomAnalyzerCharFilter>;
+  S.Unknown as any as S.Schema<TypesAnalysisCustomAnalyzerCharFilter>;
 
 export type TypesAnalysisCustomAnalyzerFilterCase1List = Array<string>;
 export const TypesAnalysisCustomAnalyzerFilterCase1List = /*@__PURE__*/ S.Array(
@@ -23337,7 +23315,7 @@ export type TypesAnalysisCustomAnalyzerFilter =
   | string
   | TypesAnalysisCustomAnalyzerFilterCase1List;
 export const TypesAnalysisCustomAnalyzerFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisCustomAnalyzerFilter>;
+  S.Unknown as any as S.Schema<TypesAnalysisCustomAnalyzerFilter>;
 
 export interface TypesAnalysisCustomAnalyzer {
   type: TypesAnalysisCustomAnalyzerType;
@@ -23361,7 +23339,7 @@ export const TypesAnalysisCustomAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCustomAnalyzer>;
 
 export type TypesAnalysisFingerprintAnalyzerType = "fingerprint";
-export const TypesAnalysisFingerprintAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisFingerprintAnalyzerType = S.String;
 
 export interface TypesAnalysisFingerprintAnalyzer {
   type: TypesAnalysisFingerprintAnalyzerType;
@@ -23389,7 +23367,7 @@ export const TypesAnalysisFingerprintAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisFingerprintAnalyzer>;
 
 export type TypesAnalysisKeywordAnalyzerType = "keyword";
-export const TypesAnalysisKeywordAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKeywordAnalyzerType = S.String;
 
 export interface TypesAnalysisKeywordAnalyzer {
   type: TypesAnalysisKeywordAnalyzerType;
@@ -23405,10 +23383,10 @@ export const TypesAnalysisKeywordAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisKeywordAnalyzer>;
 
 export type TypesAnalysisNoriAnalyzerType = "nori";
-export const TypesAnalysisNoriAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisNoriAnalyzerType = S.String;
 
 export type TypesAnalysisNoriDecompoundMode = "discard" | "none" | "mixed";
-export const TypesAnalysisNoriDecompoundMode = /*@__PURE__*/ S.String;
+export const TypesAnalysisNoriDecompoundMode = S.String;
 
 export type TypesAnalysisNoriAnalyzerStoptagsList = Array<string>;
 export const TypesAnalysisNoriAnalyzerStoptagsList = /*@__PURE__*/ S.Array(
@@ -23435,7 +23413,7 @@ export const TypesAnalysisNoriAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisNoriAnalyzer>;
 
 export type TypesAnalysisPatternAnalyzerType = "pattern";
-export const TypesAnalysisPatternAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPatternAnalyzerType = S.String;
 
 export interface TypesAnalysisPatternAnalyzer {
   type: TypesAnalysisPatternAnalyzerType;
@@ -23466,7 +23444,7 @@ export const TypesAnalysisPatternAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPatternAnalyzer>;
 
 export type TypesAnalysisSimpleAnalyzerType = "simple";
-export const TypesAnalysisSimpleAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSimpleAnalyzerType = S.String;
 
 export interface TypesAnalysisSimpleAnalyzer {
   type: TypesAnalysisSimpleAnalyzerType;
@@ -23482,7 +23460,7 @@ export const TypesAnalysisSimpleAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisSimpleAnalyzer>;
 
 export type TypesAnalysisStandardAnalyzerType = "standard";
-export const TypesAnalysisStandardAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisStandardAnalyzerType = S.String;
 
 export interface TypesAnalysisStandardAnalyzer {
   type: TypesAnalysisStandardAnalyzerType;
@@ -23505,7 +23483,7 @@ export const TypesAnalysisStandardAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisStandardAnalyzer>;
 
 export type TypesAnalysisStopAnalyzerType = "stop";
-export const TypesAnalysisStopAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisStopAnalyzerType = S.String;
 
 export interface TypesAnalysisStopAnalyzer {
   type: TypesAnalysisStopAnalyzerType;
@@ -23527,7 +23505,7 @@ export const TypesAnalysisStopAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisStopAnalyzer>;
 
 export type TypesAnalysisWhitespaceAnalyzerType = "whitespace";
-export const TypesAnalysisWhitespaceAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisWhitespaceAnalyzerType = S.String;
 
 export interface TypesAnalysisWhitespaceAnalyzer {
   type: TypesAnalysisWhitespaceAnalyzerType;
@@ -23543,13 +23521,13 @@ export const TypesAnalysisWhitespaceAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisWhitespaceAnalyzer>;
 
 export type TypesAnalysisIcuAnalyzerType = "icu_analyzer";
-export const TypesAnalysisIcuAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuAnalyzerType = S.String;
 
 export type TypesAnalysisIcuNormalizationType = "nfc" | "nfkc" | "nfkc_cf";
-export const TypesAnalysisIcuNormalizationType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuNormalizationType = S.String;
 
 export type TypesAnalysisIcuNormalizationMode = "decompose" | "compose";
-export const TypesAnalysisIcuNormalizationMode = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuNormalizationMode = S.String;
 
 export interface TypesAnalysisIcuAnalyzer {
   type: TypesAnalysisIcuAnalyzerType;
@@ -23567,13 +23545,13 @@ export const TypesAnalysisIcuAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisIcuAnalyzer>;
 
 export type TypesAnalysisKuromojiAnalyzerType = "kuromoji";
-export const TypesAnalysisKuromojiAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKuromojiAnalyzerType = S.String;
 
 export type TypesAnalysisKuromojiTokenizationMode =
   | "normal"
   | "search"
   | "extended";
-export const TypesAnalysisKuromojiTokenizationMode = /*@__PURE__*/ S.String;
+export const TypesAnalysisKuromojiTokenizationMode = S.String;
 
 export interface TypesAnalysisKuromojiAnalyzer {
   type: TypesAnalysisKuromojiAnalyzerType;
@@ -23591,7 +23569,7 @@ export const TypesAnalysisKuromojiAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisKuromojiAnalyzer>;
 
 export type TypesAnalysisSnowballAnalyzerType = "snowball";
-export const TypesAnalysisSnowballAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSnowballAnalyzerType = S.String;
 
 export type TypesAnalysisSnowballLanguage =
   | "Arabic"
@@ -23621,7 +23599,7 @@ export type TypesAnalysisSnowballLanguage =
   | "Spanish"
   | "Swedish"
   | "Turkish";
-export const TypesAnalysisSnowballLanguage = /*@__PURE__*/ S.String;
+export const TypesAnalysisSnowballLanguage = S.String;
 
 export interface TypesAnalysisSnowballAnalyzer {
   type: TypesAnalysisSnowballAnalyzerType;
@@ -23641,7 +23619,7 @@ export const TypesAnalysisSnowballAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisSnowballAnalyzer>;
 
 export type TypesAnalysisArabicAnalyzerType = "arabic";
-export const TypesAnalysisArabicAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisArabicAnalyzerType = S.String;
 
 export type TypesAnalysisArabicAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisArabicAnalyzerStemExclusionList =
@@ -23667,7 +23645,7 @@ export const TypesAnalysisArabicAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisArabicAnalyzer>;
 
 export type TypesAnalysisArmenianAnalyzerType = "armenian";
-export const TypesAnalysisArmenianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisArmenianAnalyzerType = S.String;
 
 export type TypesAnalysisArmenianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisArmenianAnalyzerStemExclusionList =
@@ -23693,7 +23671,7 @@ export const TypesAnalysisArmenianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisArmenianAnalyzer>;
 
 export type TypesAnalysisBasqueAnalyzerType = "basque";
-export const TypesAnalysisBasqueAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisBasqueAnalyzerType = S.String;
 
 export type TypesAnalysisBasqueAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisBasqueAnalyzerStemExclusionList =
@@ -23719,7 +23697,7 @@ export const TypesAnalysisBasqueAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisBasqueAnalyzer>;
 
 export type TypesAnalysisBengaliAnalyzerType = "bengali";
-export const TypesAnalysisBengaliAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisBengaliAnalyzerType = S.String;
 
 export type TypesAnalysisBengaliAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisBengaliAnalyzerStemExclusionList =
@@ -23745,7 +23723,7 @@ export const TypesAnalysisBengaliAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisBengaliAnalyzer>;
 
 export type TypesAnalysisBrazilianAnalyzerType = "brazilian";
-export const TypesAnalysisBrazilianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisBrazilianAnalyzerType = S.String;
 
 export interface TypesAnalysisBrazilianAnalyzer {
   type: TypesAnalysisBrazilianAnalyzerType;
@@ -23763,7 +23741,7 @@ export const TypesAnalysisBrazilianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisBrazilianAnalyzer>;
 
 export type TypesAnalysisBulgarianAnalyzerType = "bulgarian";
-export const TypesAnalysisBulgarianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisBulgarianAnalyzerType = S.String;
 
 export type TypesAnalysisBulgarianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisBulgarianAnalyzerStemExclusionList =
@@ -23789,7 +23767,7 @@ export const TypesAnalysisBulgarianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisBulgarianAnalyzer>;
 
 export type TypesAnalysisCatalanAnalyzerType = "catalan";
-export const TypesAnalysisCatalanAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCatalanAnalyzerType = S.String;
 
 export type TypesAnalysisCatalanAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisCatalanAnalyzerStemExclusionList =
@@ -23815,7 +23793,7 @@ export const TypesAnalysisCatalanAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCatalanAnalyzer>;
 
 export type TypesAnalysisChineseAnalyzerType = "chinese";
-export const TypesAnalysisChineseAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisChineseAnalyzerType = S.String;
 
 export interface TypesAnalysisChineseAnalyzer {
   type: TypesAnalysisChineseAnalyzerType;
@@ -23833,7 +23811,7 @@ export const TypesAnalysisChineseAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisChineseAnalyzer>;
 
 export type TypesAnalysisCjkAnalyzerType = "cjk";
-export const TypesAnalysisCjkAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCjkAnalyzerType = S.String;
 
 export interface TypesAnalysisCjkAnalyzer {
   type: TypesAnalysisCjkAnalyzerType;
@@ -23851,7 +23829,7 @@ export const TypesAnalysisCjkAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCjkAnalyzer>;
 
 export type TypesAnalysisCzechAnalyzerType = "czech";
-export const TypesAnalysisCzechAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCzechAnalyzerType = S.String;
 
 export type TypesAnalysisCzechAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisCzechAnalyzerStemExclusionList =
@@ -23877,7 +23855,7 @@ export const TypesAnalysisCzechAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCzechAnalyzer>;
 
 export type TypesAnalysisDanishAnalyzerType = "danish";
-export const TypesAnalysisDanishAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisDanishAnalyzerType = S.String;
 
 export interface TypesAnalysisDanishAnalyzer {
   type: TypesAnalysisDanishAnalyzerType;
@@ -23895,7 +23873,7 @@ export const TypesAnalysisDanishAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisDanishAnalyzer>;
 
 export type TypesAnalysisDutchAnalyzerType = "dutch";
-export const TypesAnalysisDutchAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisDutchAnalyzerType = S.String;
 
 export type TypesAnalysisDutchAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisDutchAnalyzerStemExclusionList =
@@ -23921,7 +23899,7 @@ export const TypesAnalysisDutchAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisDutchAnalyzer>;
 
 export type TypesAnalysisEnglishAnalyzerType = "english";
-export const TypesAnalysisEnglishAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisEnglishAnalyzerType = S.String;
 
 export type TypesAnalysisEnglishAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisEnglishAnalyzerStemExclusionList =
@@ -23947,7 +23925,7 @@ export const TypesAnalysisEnglishAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisEnglishAnalyzer>;
 
 export type TypesAnalysisEstonianAnalyzerType = "estonian";
-export const TypesAnalysisEstonianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisEstonianAnalyzerType = S.String;
 
 export interface TypesAnalysisEstonianAnalyzer {
   type: TypesAnalysisEstonianAnalyzerType;
@@ -23965,7 +23943,7 @@ export const TypesAnalysisEstonianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisEstonianAnalyzer>;
 
 export type TypesAnalysisFinnishAnalyzerType = "finnish";
-export const TypesAnalysisFinnishAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisFinnishAnalyzerType = S.String;
 
 export type TypesAnalysisFinnishAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisFinnishAnalyzerStemExclusionList =
@@ -23991,7 +23969,7 @@ export const TypesAnalysisFinnishAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisFinnishAnalyzer>;
 
 export type TypesAnalysisFrenchAnalyzerType = "french";
-export const TypesAnalysisFrenchAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisFrenchAnalyzerType = S.String;
 
 export type TypesAnalysisFrenchAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisFrenchAnalyzerStemExclusionList =
@@ -24017,7 +23995,7 @@ export const TypesAnalysisFrenchAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisFrenchAnalyzer>;
 
 export type TypesAnalysisGalicianAnalyzerType = "galician";
-export const TypesAnalysisGalicianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisGalicianAnalyzerType = S.String;
 
 export type TypesAnalysisGalicianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisGalicianAnalyzerStemExclusionList =
@@ -24043,7 +24021,7 @@ export const TypesAnalysisGalicianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisGalicianAnalyzer>;
 
 export type TypesAnalysisGermanAnalyzerType = "german";
-export const TypesAnalysisGermanAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisGermanAnalyzerType = S.String;
 
 export type TypesAnalysisGermanAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisGermanAnalyzerStemExclusionList =
@@ -24069,7 +24047,7 @@ export const TypesAnalysisGermanAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisGermanAnalyzer>;
 
 export type TypesAnalysisGreekAnalyzerType = "greek";
-export const TypesAnalysisGreekAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisGreekAnalyzerType = S.String;
 
 export interface TypesAnalysisGreekAnalyzer {
   type: TypesAnalysisGreekAnalyzerType;
@@ -24087,7 +24065,7 @@ export const TypesAnalysisGreekAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisGreekAnalyzer>;
 
 export type TypesAnalysisHindiAnalyzerType = "hindi";
-export const TypesAnalysisHindiAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisHindiAnalyzerType = S.String;
 
 export type TypesAnalysisHindiAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisHindiAnalyzerStemExclusionList =
@@ -24113,7 +24091,7 @@ export const TypesAnalysisHindiAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisHindiAnalyzer>;
 
 export type TypesAnalysisHungarianAnalyzerType = "hungarian";
-export const TypesAnalysisHungarianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisHungarianAnalyzerType = S.String;
 
 export type TypesAnalysisHungarianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisHungarianAnalyzerStemExclusionList =
@@ -24139,7 +24117,7 @@ export const TypesAnalysisHungarianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisHungarianAnalyzer>;
 
 export type TypesAnalysisIndonesianAnalyzerType = "indonesian";
-export const TypesAnalysisIndonesianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIndonesianAnalyzerType = S.String;
 
 export type TypesAnalysisIndonesianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisIndonesianAnalyzerStemExclusionList =
@@ -24167,7 +24145,7 @@ export const TypesAnalysisIndonesianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisIndonesianAnalyzer>;
 
 export type TypesAnalysisIrishAnalyzerType = "irish";
-export const TypesAnalysisIrishAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIrishAnalyzerType = S.String;
 
 export type TypesAnalysisIrishAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisIrishAnalyzerStemExclusionList =
@@ -24193,7 +24171,7 @@ export const TypesAnalysisIrishAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisIrishAnalyzer>;
 
 export type TypesAnalysisItalianAnalyzerType = "italian";
-export const TypesAnalysisItalianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisItalianAnalyzerType = S.String;
 
 export type TypesAnalysisItalianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisItalianAnalyzerStemExclusionList =
@@ -24219,7 +24197,7 @@ export const TypesAnalysisItalianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisItalianAnalyzer>;
 
 export type TypesAnalysisLatvianAnalyzerType = "latvian";
-export const TypesAnalysisLatvianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisLatvianAnalyzerType = S.String;
 
 export type TypesAnalysisLatvianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisLatvianAnalyzerStemExclusionList =
@@ -24245,7 +24223,7 @@ export const TypesAnalysisLatvianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisLatvianAnalyzer>;
 
 export type TypesAnalysisLithuanianAnalyzerType = "lithuanian";
-export const TypesAnalysisLithuanianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisLithuanianAnalyzerType = S.String;
 
 export type TypesAnalysisLithuanianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisLithuanianAnalyzerStemExclusionList =
@@ -24273,7 +24251,7 @@ export const TypesAnalysisLithuanianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisLithuanianAnalyzer>;
 
 export type TypesAnalysisNorwegianAnalyzerType = "norwegian";
-export const TypesAnalysisNorwegianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisNorwegianAnalyzerType = S.String;
 
 export type TypesAnalysisNorwegianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisNorwegianAnalyzerStemExclusionList =
@@ -24299,7 +24277,7 @@ export const TypesAnalysisNorwegianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisNorwegianAnalyzer>;
 
 export type TypesAnalysisPersianAnalyzerType = "persian";
-export const TypesAnalysisPersianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPersianAnalyzerType = S.String;
 
 export interface TypesAnalysisPersianAnalyzer {
   type: TypesAnalysisPersianAnalyzerType;
@@ -24317,7 +24295,7 @@ export const TypesAnalysisPersianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPersianAnalyzer>;
 
 export type TypesAnalysisPortugueseAnalyzerType = "portuguese";
-export const TypesAnalysisPortugueseAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPortugueseAnalyzerType = S.String;
 
 export type TypesAnalysisPortugueseAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisPortugueseAnalyzerStemExclusionList =
@@ -24345,7 +24323,7 @@ export const TypesAnalysisPortugueseAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPortugueseAnalyzer>;
 
 export type TypesAnalysisRomanianAnalyzerType = "romanian";
-export const TypesAnalysisRomanianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisRomanianAnalyzerType = S.String;
 
 export type TypesAnalysisRomanianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisRomanianAnalyzerStemExclusionList =
@@ -24371,7 +24349,7 @@ export const TypesAnalysisRomanianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisRomanianAnalyzer>;
 
 export type TypesAnalysisRussianAnalyzerType = "russian";
-export const TypesAnalysisRussianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisRussianAnalyzerType = S.String;
 
 export type TypesAnalysisRussianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisRussianAnalyzerStemExclusionList =
@@ -24397,7 +24375,7 @@ export const TypesAnalysisRussianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisRussianAnalyzer>;
 
 export type TypesAnalysisSerbianAnalyzerType = "serbian";
-export const TypesAnalysisSerbianAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSerbianAnalyzerType = S.String;
 
 export type TypesAnalysisSerbianAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisSerbianAnalyzerStemExclusionList =
@@ -24423,7 +24401,7 @@ export const TypesAnalysisSerbianAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisSerbianAnalyzer>;
 
 export type TypesAnalysisSoraniAnalyzerType = "sorani";
-export const TypesAnalysisSoraniAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSoraniAnalyzerType = S.String;
 
 export type TypesAnalysisSoraniAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisSoraniAnalyzerStemExclusionList =
@@ -24449,7 +24427,7 @@ export const TypesAnalysisSoraniAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisSoraniAnalyzer>;
 
 export type TypesAnalysisSpanishAnalyzerType = "spanish";
-export const TypesAnalysisSpanishAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSpanishAnalyzerType = S.String;
 
 export type TypesAnalysisSpanishAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisSpanishAnalyzerStemExclusionList =
@@ -24475,7 +24453,7 @@ export const TypesAnalysisSpanishAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisSpanishAnalyzer>;
 
 export type TypesAnalysisSwedishAnalyzerType = "swedish";
-export const TypesAnalysisSwedishAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSwedishAnalyzerType = S.String;
 
 export type TypesAnalysisSwedishAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisSwedishAnalyzerStemExclusionList =
@@ -24501,7 +24479,7 @@ export const TypesAnalysisSwedishAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisSwedishAnalyzer>;
 
 export type TypesAnalysisTurkishAnalyzerType = "turkish";
-export const TypesAnalysisTurkishAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisTurkishAnalyzerType = S.String;
 
 export type TypesAnalysisTurkishAnalyzerStemExclusionList = Array<string>;
 export const TypesAnalysisTurkishAnalyzerStemExclusionList =
@@ -24527,7 +24505,7 @@ export const TypesAnalysisTurkishAnalyzer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisTurkishAnalyzer>;
 
 export type TypesAnalysisThaiAnalyzerType = "thai";
-export const TypesAnalysisThaiAnalyzerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisThaiAnalyzerType = S.String;
 
 export interface TypesAnalysisThaiAnalyzer {
   type: TypesAnalysisThaiAnalyzerType;
@@ -24595,7 +24573,7 @@ export type TypesAnalysisAnalyzer =
   | TypesAnalysisTurkishAnalyzer
   | TypesAnalysisThaiAnalyzer;
 export const TypesAnalysisAnalyzer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisAnalyzer>;
+  S.Unknown as any as S.Schema<TypesAnalysisAnalyzer>;
 
 export type IndicesTypesIndexSettingsAnalysisAnalyzerMap = {
   [key: string]: TypesAnalysisAnalyzer | undefined;
@@ -24607,7 +24585,7 @@ export const IndicesTypesIndexSettingsAnalysisAnalyzerMap =
   ) as any as S.Schema<IndicesTypesIndexSettingsAnalysisAnalyzerMap>;
 
 export type TypesAnalysisHtmlStripCharFilterType = "html_strip";
-export const TypesAnalysisHtmlStripCharFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisHtmlStripCharFilterType = S.String;
 
 export type TypesAnalysisHtmlStripCharFilterEscapedTagsList = Array<string>;
 export const TypesAnalysisHtmlStripCharFilterEscapedTagsList =
@@ -24631,7 +24609,7 @@ export const TypesAnalysisHtmlStripCharFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisHtmlStripCharFilter>;
 
 export type TypesAnalysisMappingCharFilterType = "mapping";
-export const TypesAnalysisMappingCharFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisMappingCharFilterType = S.String;
 
 export type TypesAnalysisMappingCharFilterMappingsList = Array<string>;
 export const TypesAnalysisMappingCharFilterMappingsList = /*@__PURE__*/ S.Array(
@@ -24656,7 +24634,7 @@ export const TypesAnalysisMappingCharFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisMappingCharFilter>;
 
 export type TypesAnalysisPatternReplaceCharFilterType = "pattern_replace";
-export const TypesAnalysisPatternReplaceCharFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPatternReplaceCharFilterType = S.String;
 
 export interface TypesAnalysisPatternReplaceCharFilter {
   version?: string;
@@ -24679,8 +24657,7 @@ export const TypesAnalysisPatternReplaceCharFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisPatternReplaceCharFilter>;
 
 export type TypesAnalysisIcuNormalizationCharFilterType = "icu_normalizer";
-export const TypesAnalysisIcuNormalizationCharFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuNormalizationCharFilterType = S.String;
 
 export interface TypesAnalysisIcuNormalizationCharFilter {
   version?: string;
@@ -24704,8 +24681,7 @@ export const TypesAnalysisIcuNormalizationCharFilter = /*@__PURE__*/ S.suspend(
 
 export type TypesAnalysisKuromojiIterationMarkCharFilterType =
   "kuromoji_iteration_mark";
-export const TypesAnalysisKuromojiIterationMarkCharFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisKuromojiIterationMarkCharFilterType = S.String;
 
 export interface TypesAnalysisKuromojiIterationMarkCharFilter {
   version?: string;
@@ -24732,13 +24708,13 @@ export type TypesAnalysisCharFilterDefinition =
   | TypesAnalysisIcuNormalizationCharFilter
   | TypesAnalysisKuromojiIterationMarkCharFilter;
 export const TypesAnalysisCharFilterDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisCharFilterDefinition>;
+  S.Unknown as any as S.Schema<TypesAnalysisCharFilterDefinition>;
 
 export type TypesAnalysisCharFilter =
   | string
   | TypesAnalysisCharFilterDefinition;
 export const TypesAnalysisCharFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisCharFilter>;
+  S.Unknown as any as S.Schema<TypesAnalysisCharFilter>;
 
 export type IndicesTypesIndexSettingsAnalysisCharFilterMap = {
   [key: string]: TypesAnalysisCharFilter | undefined;
@@ -24750,7 +24726,7 @@ export const IndicesTypesIndexSettingsAnalysisCharFilterMap =
   ) as any as S.Schema<IndicesTypesIndexSettingsAnalysisCharFilterMap>;
 
 export type TypesAnalysisApostropheTokenFilterType = "apostrophe";
-export const TypesAnalysisApostropheTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisApostropheTokenFilterType = S.String;
 
 export interface TypesAnalysisApostropheTokenFilter {
   version?: string;
@@ -24766,7 +24742,7 @@ export const TypesAnalysisApostropheTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisApostropheTokenFilter>;
 
 export type TypesAnalysisArabicStemTokenFilterType = "arabic_stem";
-export const TypesAnalysisArabicStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisArabicStemTokenFilterType = S.String;
 
 export interface TypesAnalysisArabicStemTokenFilter {
   version?: string;
@@ -24783,8 +24759,7 @@ export const TypesAnalysisArabicStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAnalysisArabicNormalizationTokenFilterType =
   "arabic_normalization";
-export const TypesAnalysisArabicNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisArabicNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisArabicNormalizationTokenFilter {
   version?: string;
@@ -24801,7 +24776,7 @@ export const TypesAnalysisArabicNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisArabicNormalizationTokenFilter>;
 
 export type TypesAnalysisAsciiFoldingTokenFilterType = "asciifolding";
-export const TypesAnalysisAsciiFoldingTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisAsciiFoldingTokenFilterType = S.String;
 
 export interface TypesAnalysisAsciiFoldingTokenFilter {
   version?: string;
@@ -24822,8 +24797,7 @@ export const TypesAnalysisAsciiFoldingTokenFilter = /*@__PURE__*/ S.suspend(
 
 export type TypesAnalysisBengaliNormalizationTokenFilterType =
   "bengali_normalization";
-export const TypesAnalysisBengaliNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisBengaliNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisBengaliNormalizationTokenFilter {
   version?: string;
@@ -24840,7 +24814,7 @@ export const TypesAnalysisBengaliNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisBengaliNormalizationTokenFilter>;
 
 export type TypesAnalysisBrazilianStemTokenFilterType = "brazilian_stem";
-export const TypesAnalysisBrazilianStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisBrazilianStemTokenFilterType = S.String;
 
 export interface TypesAnalysisBrazilianStemTokenFilter {
   version?: string;
@@ -24857,14 +24831,14 @@ export const TypesAnalysisBrazilianStemTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisBrazilianStemTokenFilter>;
 
 export type TypesAnalysisCjkBigramTokenFilterType = "cjk_bigram";
-export const TypesAnalysisCjkBigramTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCjkBigramTokenFilterType = S.String;
 
 export type TypesAnalysisCjkBigramIgnoredScript =
   | "han"
   | "hangul"
   | "hiragana"
   | "katakana";
-export const TypesAnalysisCjkBigramIgnoredScript = /*@__PURE__*/ S.String;
+export const TypesAnalysisCjkBigramIgnoredScript = S.String;
 
 /** Array of character scripts for which to disable bigrams. */
 export type TypesAnalysisCjkBigramTokenFilterIgnoredScriptsList = Array<
@@ -24897,7 +24871,7 @@ export const TypesAnalysisCjkBigramTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCjkBigramTokenFilter>;
 
 export type TypesAnalysisCjkWidthTokenFilterType = "cjk_width";
-export const TypesAnalysisCjkWidthTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCjkWidthTokenFilterType = S.String;
 
 export interface TypesAnalysisCjkWidthTokenFilter {
   version?: string;
@@ -24913,7 +24887,7 @@ export const TypesAnalysisCjkWidthTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCjkWidthTokenFilter>;
 
 export type TypesAnalysisClassicTokenFilterType = "classic";
-export const TypesAnalysisClassicTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisClassicTokenFilterType = S.String;
 
 export interface TypesAnalysisClassicTokenFilter {
   version?: string;
@@ -24929,7 +24903,7 @@ export const TypesAnalysisClassicTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisClassicTokenFilter>;
 
 export type TypesAnalysisCommonGramsTokenFilterType = "common_grams";
-export const TypesAnalysisCommonGramsTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCommonGramsTokenFilterType = S.String;
 
 /** A list of tokens. The filter generates bigrams for these tokens. Either this or the `common_words_path` parameter is required. */
 export type TypesAnalysisCommonGramsTokenFilterCommonWordsList = Array<string>;
@@ -24966,7 +24940,7 @@ export const TypesAnalysisCommonGramsTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCommonGramsTokenFilter>;
 
 export type TypesAnalysisConditionTokenFilterType = "condition";
-export const TypesAnalysisConditionTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisConditionTokenFilterType = S.String;
 
 /** Array of token filters. If a token matches the predicate script in the `script` parameter, these filters are applied to the token in the order provided. */
 export type TypesAnalysisConditionTokenFilterFilterList = Array<string>;
@@ -24995,7 +24969,7 @@ export const TypesAnalysisConditionTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisConditionTokenFilter>;
 
 export type TypesAnalysisCzechStemTokenFilterType = "czech_stem";
-export const TypesAnalysisCzechStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCzechStemTokenFilterType = S.String;
 
 export interface TypesAnalysisCzechStemTokenFilter {
   version?: string;
@@ -25011,7 +24985,7 @@ export const TypesAnalysisCzechStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCzechStemTokenFilter>;
 
 export type TypesAnalysisDecimalDigitTokenFilterType = "decimal_digit";
-export const TypesAnalysisDecimalDigitTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisDecimalDigitTokenFilterType = S.String;
 
 export interface TypesAnalysisDecimalDigitTokenFilter {
   version?: string;
@@ -25028,14 +25002,13 @@ export const TypesAnalysisDecimalDigitTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisDecimalDigitTokenFilter>;
 
 export type TypesAnalysisDelimitedPayloadTokenFilterType = "delimited_payload";
-export const TypesAnalysisDelimitedPayloadTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisDelimitedPayloadTokenFilterType = S.String;
 
 export type TypesAnalysisDelimitedPayloadEncoding =
   | "int"
   | "float"
   | "identity";
-export const TypesAnalysisDelimitedPayloadEncoding = /*@__PURE__*/ S.String;
+export const TypesAnalysisDelimitedPayloadEncoding = S.String;
 
 export interface TypesAnalysisDelimitedPayloadTokenFilter {
   version?: string;
@@ -25058,7 +25031,7 @@ export const TypesAnalysisDelimitedPayloadTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisDelimitedPayloadTokenFilter>;
 
 export type TypesAnalysisDutchStemTokenFilterType = "dutch_stem";
-export const TypesAnalysisDutchStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisDutchStemTokenFilterType = S.String;
 
 export interface TypesAnalysisDutchStemTokenFilter {
   version?: string;
@@ -25074,10 +25047,10 @@ export const TypesAnalysisDutchStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisDutchStemTokenFilter>;
 
 export type TypesAnalysisEdgeNGramTokenFilterType = "edge_ngram";
-export const TypesAnalysisEdgeNGramTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisEdgeNGramTokenFilterType = S.String;
 
 export type TypesAnalysisEdgeNGramSide = "front" | "back";
-export const TypesAnalysisEdgeNGramSide = /*@__PURE__*/ S.String;
+export const TypesAnalysisEdgeNGramSide = S.String;
 
 export interface TypesAnalysisEdgeNGramTokenFilter {
   version?: string;
@@ -25105,7 +25078,7 @@ export const TypesAnalysisEdgeNGramTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisEdgeNGramTokenFilter>;
 
 export type TypesAnalysisElisionTokenFilterType = "elision";
-export const TypesAnalysisElisionTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisElisionTokenFilterType = S.String;
 
 /** List of elisions to remove. To be removed, the elision must be at the beginning of a token and be immediately followed by an apostrophe. Both the elision and apostrophe are removed. For custom `elision` filters, either this parameter or `articles_path` must be specified. */
 export type TypesAnalysisElisionTokenFilterArticlesList = Array<string>;
@@ -25137,7 +25110,7 @@ export const TypesAnalysisElisionTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisElisionTokenFilter>;
 
 export type TypesAnalysisFingerprintTokenFilterType = "fingerprint";
-export const TypesAnalysisFingerprintTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisFingerprintTokenFilterType = S.String;
 
 export interface TypesAnalysisFingerprintTokenFilter {
   version?: string;
@@ -25159,7 +25132,7 @@ export const TypesAnalysisFingerprintTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisFingerprintTokenFilter>;
 
 export type TypesAnalysisFlattenGraphTokenFilterType = "flatten_graph";
-export const TypesAnalysisFlattenGraphTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisFlattenGraphTokenFilterType = S.String;
 
 export interface TypesAnalysisFlattenGraphTokenFilter {
   version?: string;
@@ -25176,7 +25149,7 @@ export const TypesAnalysisFlattenGraphTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisFlattenGraphTokenFilter>;
 
 export type TypesAnalysisFrenchStemTokenFilterType = "french_stem";
-export const TypesAnalysisFrenchStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisFrenchStemTokenFilterType = S.String;
 
 export interface TypesAnalysisFrenchStemTokenFilter {
   version?: string;
@@ -25193,8 +25166,7 @@ export const TypesAnalysisFrenchStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAnalysisGermanNormalizationTokenFilterType =
   "german_normalization";
-export const TypesAnalysisGermanNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisGermanNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisGermanNormalizationTokenFilter {
   version?: string;
@@ -25211,7 +25183,7 @@ export const TypesAnalysisGermanNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisGermanNormalizationTokenFilter>;
 
 export type TypesAnalysisGermanStemTokenFilterType = "german_stem";
-export const TypesAnalysisGermanStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisGermanStemTokenFilterType = S.String;
 
 export interface TypesAnalysisGermanStemTokenFilter {
   version?: string;
@@ -25228,8 +25200,7 @@ export const TypesAnalysisGermanStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAnalysisHindiNormalizationTokenFilterType =
   "hindi_normalization";
-export const TypesAnalysisHindiNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisHindiNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisHindiNormalizationTokenFilter {
   version?: string;
@@ -25246,7 +25217,7 @@ export const TypesAnalysisHindiNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisHindiNormalizationTokenFilter>;
 
 export type TypesAnalysisHunspellTokenFilterType = "hunspell";
-export const TypesAnalysisHunspellTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisHunspellTokenFilterType = S.String;
 
 export interface TypesAnalysisHunspellTokenFilter {
   version?: string;
@@ -25283,8 +25254,7 @@ export const TypesAnalysisHyphenationDecompounderTokenFilterWordListList =
 
 export type TypesAnalysisHyphenationDecompounderTokenFilterType =
   "hyphenation_decompounder";
-export const TypesAnalysisHyphenationDecompounderTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisHyphenationDecompounderTokenFilterType = S.String;
 
 export interface TypesAnalysisHyphenationDecompounderTokenFilter {
   version?: string;
@@ -25331,8 +25301,7 @@ export const TypesAnalysisHyphenationDecompounderTokenFilter =
 
 export type TypesAnalysisIndicNormalizationTokenFilterType =
   "indic_normalization";
-export const TypesAnalysisIndicNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisIndicNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisIndicNormalizationTokenFilter {
   version?: string;
@@ -25349,10 +25318,10 @@ export const TypesAnalysisIndicNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisIndicNormalizationTokenFilter>;
 
 export type TypesAnalysisKeepTypesTokenFilterType = "keep_types";
-export const TypesAnalysisKeepTypesTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKeepTypesTokenFilterType = S.String;
 
 export type TypesAnalysisKeepTypesMode = "include" | "exclude";
-export const TypesAnalysisKeepTypesMode = /*@__PURE__*/ S.String;
+export const TypesAnalysisKeepTypesMode = S.String;
 
 /** List of token types to keep or remove. */
 export type TypesAnalysisKeepTypesTokenFilterTypesList = Array<string>;
@@ -25380,7 +25349,7 @@ export const TypesAnalysisKeepTypesTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisKeepTypesTokenFilter>;
 
 export type TypesAnalysisKeepWordsTokenFilterType = "keep";
-export const TypesAnalysisKeepWordsTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKeepWordsTokenFilterType = S.String;
 
 /** List of words to keep. Only tokens that match words in this list are included in the output. Either this parameter or `keep_words_path` must be specified. */
 export type TypesAnalysisKeepWordsTokenFilterKeepWordsList = Array<string>;
@@ -25412,7 +25381,7 @@ export const TypesAnalysisKeepWordsTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisKeepWordsTokenFilter>;
 
 export type TypesAnalysisKeywordMarkerTokenFilterType = "keyword_marker";
-export const TypesAnalysisKeywordMarkerTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKeywordMarkerTokenFilterType = S.String;
 
 export type TypesAnalysisKeywordMarkerTokenFilterKeywordsCase1List =
   Array<string>;
@@ -25426,7 +25395,7 @@ export type TypesAnalysisKeywordMarkerTokenFilterKeywords =
   | string
   | TypesAnalysisKeywordMarkerTokenFilterKeywordsCase1List;
 export const TypesAnalysisKeywordMarkerTokenFilterKeywords =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisKeywordMarkerTokenFilterKeywords>;
+  S.Unknown as any as S.Schema<TypesAnalysisKeywordMarkerTokenFilterKeywords>;
 
 export interface TypesAnalysisKeywordMarkerTokenFilter {
   version?: string;
@@ -25455,7 +25424,7 @@ export const TypesAnalysisKeywordMarkerTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisKeywordMarkerTokenFilter>;
 
 export type TypesAnalysisKeywordRepeatTokenFilterType = "keyword_repeat";
-export const TypesAnalysisKeywordRepeatTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKeywordRepeatTokenFilterType = S.String;
 
 export interface TypesAnalysisKeywordRepeatTokenFilter {
   version?: string;
@@ -25472,7 +25441,7 @@ export const TypesAnalysisKeywordRepeatTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisKeywordRepeatTokenFilter>;
 
 export type TypesAnalysisKStemTokenFilterType = "kstem";
-export const TypesAnalysisKStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKStemTokenFilterType = S.String;
 
 export interface TypesAnalysisKStemTokenFilter {
   version?: string;
@@ -25488,7 +25457,7 @@ export const TypesAnalysisKStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisKStemTokenFilter>;
 
 export type TypesAnalysisLengthTokenFilterType = "length";
-export const TypesAnalysisLengthTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisLengthTokenFilterType = S.String;
 
 export interface TypesAnalysisLengthTokenFilter {
   version?: string;
@@ -25510,8 +25479,7 @@ export const TypesAnalysisLengthTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisLengthTokenFilter>;
 
 export type TypesAnalysisLimitTokenCountTokenFilterType = "limit";
-export const TypesAnalysisLimitTokenCountTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisLimitTokenCountTokenFilterType = S.String;
 
 export interface TypesAnalysisLimitTokenCountTokenFilter {
   version?: string;
@@ -25534,14 +25502,13 @@ export const TypesAnalysisLimitTokenCountTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisLimitTokenCountTokenFilter>;
 
 export type TypesAnalysisLowercaseTokenFilterType = "lowercase";
-export const TypesAnalysisLowercaseTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisLowercaseTokenFilterType = S.String;
 
 export type TypesAnalysisLowercaseTokenFilterLanguages =
   | "greek"
   | "irish"
   | "turkish";
-export const TypesAnalysisLowercaseTokenFilterLanguages =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisLowercaseTokenFilterLanguages = S.String;
 
 export interface TypesAnalysisLowercaseTokenFilter {
   version?: string;
@@ -25560,7 +25527,7 @@ export const TypesAnalysisLowercaseTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisLowercaseTokenFilter>;
 
 export type TypesAnalysisMinHashTokenFilterType = "min_hash";
-export const TypesAnalysisMinHashTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisMinHashTokenFilterType = S.String;
 
 export interface TypesAnalysisMinHashTokenFilter {
   version?: string;
@@ -25588,7 +25555,7 @@ export const TypesAnalysisMinHashTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisMinHashTokenFilter>;
 
 export type TypesAnalysisMultiplexerTokenFilterType = "multiplexer";
-export const TypesAnalysisMultiplexerTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisMultiplexerTokenFilterType = S.String;
 
 /** A list of token filters to apply to incoming tokens. */
 export type TypesAnalysisMultiplexerTokenFilterFiltersList = Array<string>;
@@ -25617,7 +25584,7 @@ export const TypesAnalysisMultiplexerTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisMultiplexerTokenFilter>;
 
 export type TypesAnalysisNGramTokenFilterType = "ngram";
-export const TypesAnalysisNGramTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisNGramTokenFilterType = S.String;
 
 export interface TypesAnalysisNGramTokenFilter {
   version?: string;
@@ -25643,8 +25610,7 @@ export const TypesAnalysisNGramTokenFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAnalysisNoriPartOfSpeechTokenFilterType =
   "nori_part_of_speech";
-export const TypesAnalysisNoriPartOfSpeechTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisNoriPartOfSpeechTokenFilterType = S.String;
 
 /** An array of part-of-speech tags that should be removed. */
 export type TypesAnalysisNoriPartOfSpeechTokenFilterStoptagsList =
@@ -25674,8 +25640,7 @@ export const TypesAnalysisNoriPartOfSpeechTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisNoriPartOfSpeechTokenFilter>;
 
 export type TypesAnalysisPatternCaptureTokenFilterType = "pattern_capture";
-export const TypesAnalysisPatternCaptureTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisPatternCaptureTokenFilterType = S.String;
 
 /** A list of regular expressions to match. */
 export type TypesAnalysisPatternCaptureTokenFilterPatternsList = Array<string>;
@@ -25705,8 +25670,7 @@ export const TypesAnalysisPatternCaptureTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisPatternCaptureTokenFilter>;
 
 export type TypesAnalysisPatternReplaceTokenFilterType = "pattern_replace";
-export const TypesAnalysisPatternReplaceTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisPatternReplaceTokenFilterType = S.String;
 
 export interface TypesAnalysisPatternReplaceTokenFilter {
   version?: string;
@@ -25735,8 +25699,7 @@ export const TypesAnalysisPatternReplaceTokenFilter = /*@__PURE__*/ S.suspend(
 
 export type TypesAnalysisPersianNormalizationTokenFilterType =
   "persian_normalization";
-export const TypesAnalysisPersianNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisPersianNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisPersianNormalizationTokenFilter {
   version?: string;
@@ -25753,7 +25716,7 @@ export const TypesAnalysisPersianNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisPersianNormalizationTokenFilter>;
 
 export type TypesAnalysisPersianStemTokenFilterType = "persian_stem";
-export const TypesAnalysisPersianStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPersianStemTokenFilterType = S.String;
 
 export interface TypesAnalysisPersianStemTokenFilter {
   version?: string;
@@ -25769,7 +25732,7 @@ export const TypesAnalysisPersianStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPersianStemTokenFilter>;
 
 export type TypesAnalysisPorterStemTokenFilterType = "porter_stem";
-export const TypesAnalysisPorterStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPorterStemTokenFilterType = S.String;
 
 export interface TypesAnalysisPorterStemTokenFilter {
   version?: string;
@@ -25785,7 +25748,7 @@ export const TypesAnalysisPorterStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPorterStemTokenFilter>;
 
 export type TypesAnalysisPredicateTokenFilterType = "predicate_token_filter";
-export const TypesAnalysisPredicateTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPredicateTokenFilterType = S.String;
 
 export interface TypesAnalysisPredicateTokenFilter {
   version?: string;
@@ -25804,8 +25767,7 @@ export const TypesAnalysisPredicateTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPredicateTokenFilter>;
 
 export type TypesAnalysisRemoveDuplicatesTokenFilterType = "remove_duplicates";
-export const TypesAnalysisRemoveDuplicatesTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisRemoveDuplicatesTokenFilterType = S.String;
 
 export interface TypesAnalysisRemoveDuplicatesTokenFilter {
   version?: string;
@@ -25822,7 +25784,7 @@ export const TypesAnalysisRemoveDuplicatesTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisRemoveDuplicatesTokenFilter>;
 
 export type TypesAnalysisReverseTokenFilterType = "reverse";
-export const TypesAnalysisReverseTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisReverseTokenFilterType = S.String;
 
 export interface TypesAnalysisReverseTokenFilter {
   version?: string;
@@ -25838,7 +25800,7 @@ export const TypesAnalysisReverseTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisReverseTokenFilter>;
 
 export type TypesAnalysisRussianStemTokenFilterType = "russian_stem";
-export const TypesAnalysisRussianStemTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisRussianStemTokenFilterType = S.String;
 
 export interface TypesAnalysisRussianStemTokenFilter {
   version?: string;
@@ -25855,8 +25817,7 @@ export const TypesAnalysisRussianStemTokenFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAnalysisScandinavianFoldingTokenFilterType =
   "scandinavian_folding";
-export const TypesAnalysisScandinavianFoldingTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisScandinavianFoldingTokenFilterType = S.String;
 
 export interface TypesAnalysisScandinavianFoldingTokenFilter {
   version?: string;
@@ -25874,8 +25835,7 @@ export const TypesAnalysisScandinavianFoldingTokenFilter =
 
 export type TypesAnalysisScandinavianNormalizationTokenFilterType =
   "scandinavian_normalization";
-export const TypesAnalysisScandinavianNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisScandinavianNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisScandinavianNormalizationTokenFilter {
   version?: string;
@@ -25893,8 +25853,7 @@ export const TypesAnalysisScandinavianNormalizationTokenFilter =
 
 export type TypesAnalysisSerbianNormalizationTokenFilterType =
   "serbian_normalization";
-export const TypesAnalysisSerbianNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisSerbianNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisSerbianNormalizationTokenFilter {
   version?: string;
@@ -25911,7 +25870,7 @@ export const TypesAnalysisSerbianNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisSerbianNormalizationTokenFilter>;
 
 export type TypesAnalysisShingleTokenFilterType = "shingle";
-export const TypesAnalysisShingleTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisShingleTokenFilterType = S.String;
 
 export interface TypesAnalysisShingleTokenFilter {
   version?: string;
@@ -25945,7 +25904,7 @@ export const TypesAnalysisShingleTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisShingleTokenFilter>;
 
 export type TypesAnalysisSnowballTokenFilterType = "snowball";
-export const TypesAnalysisSnowballTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSnowballTokenFilterType = S.String;
 
 export interface TypesAnalysisSnowballTokenFilter {
   version?: string;
@@ -25965,8 +25924,7 @@ export const TypesAnalysisSnowballTokenFilter = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAnalysisSoraniNormalizationTokenFilterType =
   "sorani_normalization";
-export const TypesAnalysisSoraniNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisSoraniNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisSoraniNormalizationTokenFilter {
   version?: string;
@@ -25983,8 +25941,7 @@ export const TypesAnalysisSoraniNormalizationTokenFilter =
   }) as any as S.Schema<TypesAnalysisSoraniNormalizationTokenFilter>;
 
 export type TypesAnalysisStemmerOverrideTokenFilterType = "stemmer_override";
-export const TypesAnalysisStemmerOverrideTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisStemmerOverrideTokenFilterType = S.String;
 
 /** A list of mapping rules to use. */
 export type TypesAnalysisStemmerOverrideTokenFilterRulesList = Array<string>;
@@ -26014,7 +25971,7 @@ export const TypesAnalysisStemmerOverrideTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisStemmerOverrideTokenFilter>;
 
 export type TypesAnalysisStemmerTokenFilterType = "stemmer";
-export const TypesAnalysisStemmerTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisStemmerTokenFilterType = S.String;
 
 export interface TypesAnalysisStemmerTokenFilter {
   version?: string;
@@ -26032,7 +25989,7 @@ export const TypesAnalysisStemmerTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisStemmerTokenFilter>;
 
 export type TypesAnalysisStopTokenFilterType = "stop";
-export const TypesAnalysisStopTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisStopTokenFilterType = S.String;
 
 export interface TypesAnalysisStopTokenFilter {
   version?: string;
@@ -26060,7 +26017,7 @@ export const TypesAnalysisStopTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisStopTokenFilter>;
 
 export type TypesAnalysisSynonymFormat = "solr" | "wordnet";
-export const TypesAnalysisSynonymFormat = /*@__PURE__*/ S.String;
+export const TypesAnalysisSynonymFormat = S.String;
 
 /** Used to define inline synonyms. */
 export type TypesAnalysisSynonymGraphTokenFilterSynonymsList = Array<string>;
@@ -26081,10 +26038,10 @@ export type TypesAnalysisSynonymGraphTokenFilterSynonymsSet =
   | string
   | TypesAnalysisSynonymGraphTokenFilterSynonymsSetCase1List;
 export const TypesAnalysisSynonymGraphTokenFilterSynonymsSet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisSynonymGraphTokenFilterSynonymsSet>;
+  S.Unknown as any as S.Schema<TypesAnalysisSynonymGraphTokenFilterSynonymsSet>;
 
 export type TypesAnalysisSynonymGraphTokenFilterType = "synonym_graph";
-export const TypesAnalysisSynonymGraphTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSynonymGraphTokenFilterType = S.String;
 
 export interface TypesAnalysisSynonymGraphTokenFilter {
   version?: string;
@@ -26142,10 +26099,10 @@ export type TypesAnalysisSynonymTokenFilterSynonymsSet =
   | string
   | TypesAnalysisSynonymTokenFilterSynonymsSetCase1List;
 export const TypesAnalysisSynonymTokenFilterSynonymsSet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisSynonymTokenFilterSynonymsSet>;
+  S.Unknown as any as S.Schema<TypesAnalysisSynonymTokenFilterSynonymsSet>;
 
 export type TypesAnalysisSynonymTokenFilterType = "synonym";
-export const TypesAnalysisSynonymTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSynonymTokenFilterType = S.String;
 
 export interface TypesAnalysisSynonymTokenFilter {
   version?: string;
@@ -26185,7 +26142,7 @@ export const TypesAnalysisSynonymTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisSynonymTokenFilter>;
 
 export type TypesAnalysisTrimTokenFilterType = "trim";
-export const TypesAnalysisTrimTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisTrimTokenFilterType = S.String;
 
 export interface TypesAnalysisTrimTokenFilter {
   version?: string;
@@ -26201,7 +26158,7 @@ export const TypesAnalysisTrimTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisTrimTokenFilter>;
 
 export type TypesAnalysisTruncateTokenFilterType = "truncate";
-export const TypesAnalysisTruncateTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisTruncateTokenFilterType = S.String;
 
 export interface TypesAnalysisTruncateTokenFilter {
   version?: string;
@@ -26220,7 +26177,7 @@ export const TypesAnalysisTruncateTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisTruncateTokenFilter>;
 
 export type TypesAnalysisUniqueTokenFilterType = "unique";
-export const TypesAnalysisUniqueTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisUniqueTokenFilterType = S.String;
 
 export interface TypesAnalysisUniqueTokenFilter {
   version?: string;
@@ -26239,7 +26196,7 @@ export const TypesAnalysisUniqueTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisUniqueTokenFilter>;
 
 export type TypesAnalysisUppercaseTokenFilterType = "uppercase";
-export const TypesAnalysisUppercaseTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisUppercaseTokenFilterType = S.String;
 
 export interface TypesAnalysisUppercaseTokenFilter {
   version?: string;
@@ -26272,8 +26229,7 @@ export const TypesAnalysisWordDelimiterGraphTokenFilterTypeTableList =
 
 export type TypesAnalysisWordDelimiterGraphTokenFilterType =
   "word_delimiter_graph";
-export const TypesAnalysisWordDelimiterGraphTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisWordDelimiterGraphTokenFilterType = S.String;
 
 export interface TypesAnalysisWordDelimiterGraphTokenFilter {
   version?: string;
@@ -26354,7 +26310,7 @@ export const TypesAnalysisWordDelimiterTokenFilterTypeTableList =
   ) as any as S.Schema<TypesAnalysisWordDelimiterTokenFilterTypeTableList>;
 
 export type TypesAnalysisWordDelimiterTokenFilterType = "word_delimiter";
-export const TypesAnalysisWordDelimiterTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisWordDelimiterTokenFilterType = S.String;
 
 export interface TypesAnalysisWordDelimiterTokenFilter {
   version?: string;
@@ -26414,7 +26370,7 @@ export const TypesAnalysisWordDelimiterTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisWordDelimiterTokenFilter>;
 
 export type TypesAnalysisJaStopTokenFilterType = "ja_stop";
-export const TypesAnalysisJaStopTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisJaStopTokenFilterType = S.String;
 
 export interface TypesAnalysisJaStopTokenFilter {
   version?: string;
@@ -26432,8 +26388,7 @@ export const TypesAnalysisJaStopTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisJaStopTokenFilter>;
 
 export type TypesAnalysisKuromojiStemmerTokenFilterType = "kuromoji_stemmer";
-export const TypesAnalysisKuromojiStemmerTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisKuromojiStemmerTokenFilterType = S.String;
 
 export interface TypesAnalysisKuromojiStemmerTokenFilter {
   version?: string;
@@ -26453,8 +26408,7 @@ export const TypesAnalysisKuromojiStemmerTokenFilter = /*@__PURE__*/ S.suspend(
 
 export type TypesAnalysisKuromojiReadingFormTokenFilterType =
   "kuromoji_readingform";
-export const TypesAnalysisKuromojiReadingFormTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisKuromojiReadingFormTokenFilterType = S.String;
 
 export interface TypesAnalysisKuromojiReadingFormTokenFilter {
   version?: string;
@@ -26474,8 +26428,7 @@ export const TypesAnalysisKuromojiReadingFormTokenFilter =
 
 export type TypesAnalysisKuromojiPartOfSpeechTokenFilterType =
   "kuromoji_part_of_speech";
-export const TypesAnalysisKuromojiPartOfSpeechTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisKuromojiPartOfSpeechTokenFilterType = S.String;
 
 export type TypesAnalysisKuromojiPartOfSpeechTokenFilterStoptagsList =
   Array<string>;
@@ -26501,16 +26454,16 @@ export const TypesAnalysisKuromojiPartOfSpeechTokenFilter =
   }) as any as S.Schema<TypesAnalysisKuromojiPartOfSpeechTokenFilter>;
 
 export type TypesAnalysisIcuCollationTokenFilterType = "icu_collation";
-export const TypesAnalysisIcuCollationTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuCollationTokenFilterType = S.String;
 
 export type TypesAnalysisIcuCollationAlternate = "shifted" | "non-ignorable";
-export const TypesAnalysisIcuCollationAlternate = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuCollationAlternate = S.String;
 
 export type TypesAnalysisIcuCollationCaseFirst = "lower" | "upper";
-export const TypesAnalysisIcuCollationCaseFirst = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuCollationCaseFirst = S.String;
 
 export type TypesAnalysisIcuCollationDecomposition = "no" | "identical";
-export const TypesAnalysisIcuCollationDecomposition = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuCollationDecomposition = S.String;
 
 export type TypesAnalysisIcuCollationStrength =
   | "primary"
@@ -26518,7 +26471,7 @@ export type TypesAnalysisIcuCollationStrength =
   | "tertiary"
   | "quaternary"
   | "identical";
-export const TypesAnalysisIcuCollationStrength = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuCollationStrength = S.String;
 
 export interface TypesAnalysisIcuCollationTokenFilter {
   version?: string;
@@ -26559,7 +26512,7 @@ export const TypesAnalysisIcuCollationTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisIcuCollationTokenFilter>;
 
 export type TypesAnalysisIcuFoldingTokenFilterType = "icu_folding";
-export const TypesAnalysisIcuFoldingTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuFoldingTokenFilterType = S.String;
 
 export interface TypesAnalysisIcuFoldingTokenFilter {
   version?: string;
@@ -26577,8 +26530,7 @@ export const TypesAnalysisIcuFoldingTokenFilter = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisIcuFoldingTokenFilter>;
 
 export type TypesAnalysisIcuNormalizationTokenFilterType = "icu_normalizer";
-export const TypesAnalysisIcuNormalizationTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuNormalizationTokenFilterType = S.String;
 
 export interface TypesAnalysisIcuNormalizationTokenFilter {
   version?: string;
@@ -26597,10 +26549,10 @@ export const TypesAnalysisIcuNormalizationTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisIcuNormalizationTokenFilter>;
 
 export type TypesAnalysisIcuTransformTokenFilterType = "icu_transform";
-export const TypesAnalysisIcuTransformTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuTransformTokenFilterType = S.String;
 
 export type TypesAnalysisIcuTransformDirection = "forward" | "reverse";
-export const TypesAnalysisIcuTransformDirection = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuTransformDirection = S.String;
 
 export interface TypesAnalysisIcuTransformTokenFilter {
   version?: string;
@@ -26621,7 +26573,7 @@ export const TypesAnalysisIcuTransformTokenFilter = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisIcuTransformTokenFilter>;
 
 export type TypesAnalysisPhoneticTokenFilterType = "phonetic";
-export const TypesAnalysisPhoneticTokenFilterType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPhoneticTokenFilterType = S.String;
 
 export type TypesAnalysisPhoneticEncoder =
   | "metaphone"
@@ -26636,7 +26588,7 @@ export type TypesAnalysisPhoneticEncoder =
   | "haasephonetik"
   | "beider_morse"
   | "daitch_mokotoff";
-export const TypesAnalysisPhoneticEncoder = /*@__PURE__*/ S.String;
+export const TypesAnalysisPhoneticEncoder = S.String;
 
 export type TypesAnalysisPhoneticLanguage =
   | "any"
@@ -26651,7 +26603,7 @@ export type TypesAnalysisPhoneticLanguage =
   | "romanian"
   | "russian"
   | "spanish";
-export const TypesAnalysisPhoneticLanguage = /*@__PURE__*/ S.String;
+export const TypesAnalysisPhoneticLanguage = S.String;
 
 export type TypesAnalysisPhoneticTokenFilterLanguagesetCase1List = Array<
   TypesAnalysisPhoneticLanguage | (string & {})
@@ -26665,16 +26617,16 @@ export type TypesAnalysisPhoneticTokenFilterLanguageset =
   | TypesAnalysisPhoneticLanguage
   | TypesAnalysisPhoneticTokenFilterLanguagesetCase1List;
 export const TypesAnalysisPhoneticTokenFilterLanguageset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisPhoneticTokenFilterLanguageset>;
+  S.Unknown as any as S.Schema<TypesAnalysisPhoneticTokenFilterLanguageset>;
 
 export type TypesAnalysisPhoneticNameType =
   | "generic"
   | "ashkenazi"
   | "sephardic";
-export const TypesAnalysisPhoneticNameType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPhoneticNameType = S.String;
 
 export type TypesAnalysisPhoneticRuleType = "approx" | "exact";
-export const TypesAnalysisPhoneticRuleType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPhoneticRuleType = S.String;
 
 export interface TypesAnalysisPhoneticTokenFilter {
   version?: string;
@@ -26711,8 +26663,7 @@ export const TypesAnalysisDictionaryDecompounderTokenFilterWordListList =
 
 export type TypesAnalysisDictionaryDecompounderTokenFilterType =
   "dictionary_decompounder";
-export const TypesAnalysisDictionaryDecompounderTokenFilterType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisDictionaryDecompounderTokenFilterType = S.String;
 
 export interface TypesAnalysisDictionaryDecompounderTokenFilter {
   version?: string;
@@ -26824,13 +26775,13 @@ export type TypesAnalysisTokenFilterDefinition =
   | TypesAnalysisPhoneticTokenFilter
   | TypesAnalysisDictionaryDecompounderTokenFilter;
 export const TypesAnalysisTokenFilterDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisTokenFilterDefinition>;
+  S.Unknown as any as S.Schema<TypesAnalysisTokenFilterDefinition>;
 
 export type TypesAnalysisTokenFilter =
   | string
   | TypesAnalysisTokenFilterDefinition;
 export const TypesAnalysisTokenFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisTokenFilter>;
+  S.Unknown as any as S.Schema<TypesAnalysisTokenFilter>;
 
 export type IndicesTypesIndexSettingsAnalysisFilterMap = {
   [key: string]: TypesAnalysisTokenFilter | undefined;
@@ -26842,7 +26793,7 @@ export const IndicesTypesIndexSettingsAnalysisFilterMap =
   ) as any as S.Schema<IndicesTypesIndexSettingsAnalysisFilterMap>;
 
 export type TypesAnalysisLowercaseNormalizerType = "lowercase";
-export const TypesAnalysisLowercaseNormalizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisLowercaseNormalizerType = S.String;
 
 export interface TypesAnalysisLowercaseNormalizer {
   type: TypesAnalysisLowercaseNormalizerType;
@@ -26856,7 +26807,7 @@ export const TypesAnalysisLowercaseNormalizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisLowercaseNormalizer>;
 
 export type TypesAnalysisCustomNormalizerType = "custom";
-export const TypesAnalysisCustomNormalizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCustomNormalizerType = S.String;
 
 export type TypesAnalysisCustomNormalizerCharFilterList = Array<string>;
 export const TypesAnalysisCustomNormalizerCharFilterList =
@@ -26888,7 +26839,7 @@ export type TypesAnalysisNormalizer =
   | TypesAnalysisLowercaseNormalizer
   | TypesAnalysisCustomNormalizer;
 export const TypesAnalysisNormalizer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisNormalizer>;
+  S.Unknown as any as S.Schema<TypesAnalysisNormalizer>;
 
 export type IndicesTypesIndexSettingsAnalysisNormalizerMap = {
   [key: string]: TypesAnalysisNormalizer | undefined;
@@ -26900,7 +26851,7 @@ export const IndicesTypesIndexSettingsAnalysisNormalizerMap =
   ) as any as S.Schema<IndicesTypesIndexSettingsAnalysisNormalizerMap>;
 
 export type TypesAnalysisCharGroupTokenizerType = "char_group";
-export const TypesAnalysisCharGroupTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisCharGroupTokenizerType = S.String;
 
 export type TypesAnalysisCharGroupTokenizerTokenizeOnCharsList = Array<string>;
 export const TypesAnalysisCharGroupTokenizerTokenizeOnCharsList =
@@ -26926,7 +26877,7 @@ export const TypesAnalysisCharGroupTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisCharGroupTokenizer>;
 
 export type TypesAnalysisClassicTokenizerType = "classic";
-export const TypesAnalysisClassicTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisClassicTokenizerType = S.String;
 
 export interface TypesAnalysisClassicTokenizer {
   version?: string;
@@ -26944,7 +26895,7 @@ export const TypesAnalysisClassicTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisClassicTokenizer>;
 
 export type TypesAnalysisEdgeNGramTokenizerType = "edge_ngram";
-export const TypesAnalysisEdgeNGramTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisEdgeNGramTokenizerType = S.String;
 
 export type TypesAnalysisTokenChar =
   | "letter"
@@ -26953,7 +26904,7 @@ export type TypesAnalysisTokenChar =
   | "punctuation"
   | "symbol"
   | "custom";
-export const TypesAnalysisTokenChar = /*@__PURE__*/ S.String;
+export const TypesAnalysisTokenChar = S.String;
 
 export type TypesAnalysisEdgeNGramTokenizerTokenCharsList = Array<
   TypesAnalysisTokenChar | (string & {})
@@ -26985,7 +26936,7 @@ export const TypesAnalysisEdgeNGramTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisEdgeNGramTokenizer>;
 
 export type TypesAnalysisKeywordTokenizerType = "keyword";
-export const TypesAnalysisKeywordTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKeywordTokenizerType = S.String;
 
 export interface TypesAnalysisKeywordTokenizer {
   version?: string;
@@ -27003,7 +26954,7 @@ export const TypesAnalysisKeywordTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisKeywordTokenizer>;
 
 export type TypesAnalysisLetterTokenizerType = "letter";
-export const TypesAnalysisLetterTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisLetterTokenizerType = S.String;
 
 export interface TypesAnalysisLetterTokenizer {
   version?: string;
@@ -27019,7 +26970,7 @@ export const TypesAnalysisLetterTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisLetterTokenizer>;
 
 export type TypesAnalysisLowercaseTokenizerType = "lowercase";
-export const TypesAnalysisLowercaseTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisLowercaseTokenizerType = S.String;
 
 export interface TypesAnalysisLowercaseTokenizer {
   version?: string;
@@ -27035,7 +26986,7 @@ export const TypesAnalysisLowercaseTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisLowercaseTokenizer>;
 
 export type TypesAnalysisNGramTokenizerType = "ngram";
-export const TypesAnalysisNGramTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisNGramTokenizerType = S.String;
 
 export type TypesAnalysisNGramTokenizerTokenCharsList = Array<
   TypesAnalysisTokenChar | (string & {})
@@ -27066,7 +27017,7 @@ export const TypesAnalysisNGramTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisNGramTokenizer>;
 
 export type TypesAnalysisPathHierarchyTokenizerType = "path_hierarchy";
-export const TypesAnalysisPathHierarchyTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPathHierarchyTokenizerType = S.String;
 
 export interface TypesAnalysisPathHierarchyTokenizer {
   version?: string;
@@ -27092,7 +27043,7 @@ export const TypesAnalysisPathHierarchyTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPathHierarchyTokenizer>;
 
 export type TypesAnalysisPatternTokenizerType = "pattern";
-export const TypesAnalysisPatternTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisPatternTokenizerType = S.String;
 
 export interface TypesAnalysisPatternTokenizer {
   version?: string;
@@ -27114,7 +27065,7 @@ export const TypesAnalysisPatternTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisPatternTokenizer>;
 
 export type TypesAnalysisSimplePatternTokenizerType = "simple_pattern";
-export const TypesAnalysisSimplePatternTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisSimplePatternTokenizerType = S.String;
 
 export interface TypesAnalysisSimplePatternTokenizer {
   version?: string;
@@ -27133,8 +27084,7 @@ export const TypesAnalysisSimplePatternTokenizer = /*@__PURE__*/ S.suspend(() =>
 
 export type TypesAnalysisSimplePatternSplitTokenizerType =
   "simple_pattern_split";
-export const TypesAnalysisSimplePatternSplitTokenizerType =
-  /*@__PURE__*/ S.String;
+export const TypesAnalysisSimplePatternSplitTokenizerType = S.String;
 
 export interface TypesAnalysisSimplePatternSplitTokenizer {
   version?: string;
@@ -27153,7 +27103,7 @@ export const TypesAnalysisSimplePatternSplitTokenizer = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TypesAnalysisSimplePatternSplitTokenizer>;
 
 export type TypesAnalysisStandardTokenizerType = "standard";
-export const TypesAnalysisStandardTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisStandardTokenizerType = S.String;
 
 export interface TypesAnalysisStandardTokenizer {
   version?: string;
@@ -27171,7 +27121,7 @@ export const TypesAnalysisStandardTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisStandardTokenizer>;
 
 export type TypesAnalysisThaiTokenizerType = "thai";
-export const TypesAnalysisThaiTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisThaiTokenizerType = S.String;
 
 export interface TypesAnalysisThaiTokenizer {
   version?: string;
@@ -27187,7 +27137,7 @@ export const TypesAnalysisThaiTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisThaiTokenizer>;
 
 export type TypesAnalysisUaxEmailUrlTokenizerType = "uax_url_email";
-export const TypesAnalysisUaxEmailUrlTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisUaxEmailUrlTokenizerType = S.String;
 
 export interface TypesAnalysisUaxEmailUrlTokenizer {
   version?: string;
@@ -27205,7 +27155,7 @@ export const TypesAnalysisUaxEmailUrlTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisUaxEmailUrlTokenizer>;
 
 export type TypesAnalysisWhitespaceTokenizerType = "whitespace";
-export const TypesAnalysisWhitespaceTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisWhitespaceTokenizerType = S.String;
 
 export interface TypesAnalysisWhitespaceTokenizer {
   version?: string;
@@ -27223,7 +27173,7 @@ export const TypesAnalysisWhitespaceTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisWhitespaceTokenizer>;
 
 export type TypesAnalysisIcuTokenizerType = "icu_tokenizer";
-export const TypesAnalysisIcuTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisIcuTokenizerType = S.String;
 
 export interface TypesAnalysisIcuTokenizer {
   version?: string;
@@ -27241,7 +27191,7 @@ export const TypesAnalysisIcuTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisIcuTokenizer>;
 
 export type TypesAnalysisKuromojiTokenizerType = "kuromoji_tokenizer";
-export const TypesAnalysisKuromojiTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisKuromojiTokenizerType = S.String;
 
 export type TypesAnalysisKuromojiTokenizerUserDictionaryRulesList =
   Array<string>;
@@ -27280,7 +27230,7 @@ export const TypesAnalysisKuromojiTokenizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesAnalysisKuromojiTokenizer>;
 
 export type TypesAnalysisNoriTokenizerType = "nori_tokenizer";
-export const TypesAnalysisNoriTokenizerType = /*@__PURE__*/ S.String;
+export const TypesAnalysisNoriTokenizerType = S.String;
 
 export type TypesAnalysisNoriTokenizerUserDictionaryRulesList = Array<string>;
 export const TypesAnalysisNoriTokenizerUserDictionaryRulesList =
@@ -27331,11 +27281,11 @@ export type TypesAnalysisTokenizerDefinition =
   | TypesAnalysisKuromojiTokenizer
   | TypesAnalysisNoriTokenizer;
 export const TypesAnalysisTokenizerDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisTokenizerDefinition>;
+  S.Unknown as any as S.Schema<TypesAnalysisTokenizerDefinition>;
 
 export type TypesAnalysisTokenizer = string | TypesAnalysisTokenizerDefinition;
 export const TypesAnalysisTokenizer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAnalysisTokenizer>;
+  S.Unknown as any as S.Schema<TypesAnalysisTokenizer>;
 
 export type IndicesTypesIndexSettingsAnalysisTokenizerMap = {
   [key: string]: TypesAnalysisTokenizer | undefined;
@@ -27404,7 +27354,7 @@ export const IndicesTypesQueries = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesQueries>;
 
 export type IndicesTypesSettingsSimilarityBm25Type = "BM25";
-export const IndicesTypesSettingsSimilarityBm25Type = /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityBm25Type = S.String;
 
 export interface IndicesTypesSettingsSimilarityBm25 {
   type: IndicesTypesSettingsSimilarityBm25Type;
@@ -27424,7 +27374,7 @@ export const IndicesTypesSettingsSimilarityBm25 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesSettingsSimilarityBm25>;
 
 export type IndicesTypesSettingsSimilarityBooleanType = "boolean";
-export const IndicesTypesSettingsSimilarityBooleanType = /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityBooleanType = S.String;
 
 export interface IndicesTypesSettingsSimilarityBoolean {
   type: IndicesTypesSettingsSimilarityBooleanType;
@@ -27439,13 +27389,13 @@ export const IndicesTypesSettingsSimilarityBoolean = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<IndicesTypesSettingsSimilarityBoolean>;
 
 export type IndicesTypesSettingsSimilarityDfiType = "DFI";
-export const IndicesTypesSettingsSimilarityDfiType = /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityDfiType = S.String;
 
 export type TypesDFIIndependenceMeasure =
   | "standardized"
   | "saturated"
   | "chisquared";
-export const TypesDFIIndependenceMeasure = /*@__PURE__*/ S.String;
+export const TypesDFIIndependenceMeasure = S.String;
 
 export interface IndicesTypesSettingsSimilarityDfi {
   type: IndicesTypesSettingsSimilarityDfiType;
@@ -27461,16 +27411,16 @@ export const IndicesTypesSettingsSimilarityDfi = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesSettingsSimilarityDfi>;
 
 export type IndicesTypesSettingsSimilarityDfrType = "DFR";
-export const IndicesTypesSettingsSimilarityDfrType = /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityDfrType = S.String;
 
 export type TypesDFRAfterEffect = "no" | "b" | "l";
-export const TypesDFRAfterEffect = /*@__PURE__*/ S.String;
+export const TypesDFRAfterEffect = S.String;
 
 export type TypesDFRBasicModel = "be" | "d" | "g" | "if" | "in" | "ine" | "p";
-export const TypesDFRBasicModel = /*@__PURE__*/ S.String;
+export const TypesDFRBasicModel = S.String;
 
 export type TypesNormalization = "no" | "h1" | "h2" | "h3" | "z";
-export const TypesNormalization = /*@__PURE__*/ S.String;
+export const TypesNormalization = S.String;
 
 export interface IndicesTypesSettingsSimilarityDfr {
   type: IndicesTypesSettingsSimilarityDfrType;
@@ -27490,13 +27440,13 @@ export const IndicesTypesSettingsSimilarityDfr = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesSettingsSimilarityDfr>;
 
 export type IndicesTypesSettingsSimilarityIbType = "IB";
-export const IndicesTypesSettingsSimilarityIbType = /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityIbType = S.String;
 
 export type TypesIBDistribution = "ll" | "spl";
-export const TypesIBDistribution = /*@__PURE__*/ S.String;
+export const TypesIBDistribution = S.String;
 
 export type TypesIBLambda = "df" | "ttf";
-export const TypesIBLambda = /*@__PURE__*/ S.String;
+export const TypesIBLambda = S.String;
 
 export interface IndicesTypesSettingsSimilarityIb {
   type: IndicesTypesSettingsSimilarityIbType;
@@ -27516,7 +27466,7 @@ export const IndicesTypesSettingsSimilarityIb = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesSettingsSimilarityIb>;
 
 export type IndicesTypesSettingsSimilarityLmdType = "LMDirichlet";
-export const IndicesTypesSettingsSimilarityLmdType = /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityLmdType = S.String;
 
 export interface IndicesTypesSettingsSimilarityLmd {
   type: IndicesTypesSettingsSimilarityLmdType;
@@ -27532,7 +27482,7 @@ export const IndicesTypesSettingsSimilarityLmd = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesSettingsSimilarityLmd>;
 
 export type IndicesTypesSettingsSimilarityLmjType = "LMJelinekMercer";
-export const IndicesTypesSettingsSimilarityLmjType = /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityLmjType = S.String;
 
 export interface IndicesTypesSettingsSimilarityLmj {
   type: IndicesTypesSettingsSimilarityLmjType;
@@ -27548,8 +27498,7 @@ export const IndicesTypesSettingsSimilarityLmj = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesSettingsSimilarityLmj>;
 
 export type IndicesTypesSettingsSimilarityScriptedType = "scripted";
-export const IndicesTypesSettingsSimilarityScriptedType =
-  /*@__PURE__*/ S.String;
+export const IndicesTypesSettingsSimilarityScriptedType = S.String;
 
 export interface IndicesTypesSettingsSimilarityScripted {
   type: IndicesTypesSettingsSimilarityScriptedType;
@@ -27577,7 +27526,7 @@ export type IndicesTypesSettingsSimilarity =
   | IndicesTypesSettingsSimilarityLmj
   | IndicesTypesSettingsSimilarityScripted;
 export const IndicesTypesSettingsSimilarity =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesSettingsSimilarity>;
+  S.Unknown as any as S.Schema<IndicesTypesSettingsSimilarity>;
 
 /** Configure custom similarity settings to customize how search results are scored. */
 export type IndicesTypesIndexSettingsSimilarityMap = {
@@ -27591,14 +27540,14 @@ export const IndicesTypesIndexSettingsSimilarityMap = /*@__PURE__*/ S.Record(
 /** The maximum number of fields in an index. Field and object mappings, as well as field aliases count towards this limit. The limit is in place to prevent mappings and searches from becoming too large. Higher values can lead to performance degradations and memory issues, especially in clusters with a high load or few resources. */
 export type IndicesTypesMappingLimitSettingsTotalFieldsLimit = number | string;
 export const IndicesTypesMappingLimitSettingsTotalFieldsLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesMappingLimitSettingsTotalFieldsLimit>;
+  S.Unknown as any as S.Schema<IndicesTypesMappingLimitSettingsTotalFieldsLimit>;
 
 /** This setting determines what happens when a dynamically mapped field would exceed the total fields limit. When set to false (the default), the index request of the document that tries to add a dynamic field to the mapping will fail with the message Limit of total fields [X] has been exceeded. When set to true, the index request will not fail. Instead, fields that would exceed the limit are not added to the mapping, similar to dynamic: false. The fields that were not added to the mapping will be added to the _ignored field. */
 export type IndicesTypesMappingLimitSettingsTotalFieldsIgnoreDynamicBeyondLimit =
   | boolean
   | string;
 export const IndicesTypesMappingLimitSettingsTotalFieldsIgnoreDynamicBeyondLimit =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesMappingLimitSettingsTotalFieldsIgnoreDynamicBeyondLimit>;
+  S.Unknown as any as S.Schema<IndicesTypesMappingLimitSettingsTotalFieldsIgnoreDynamicBeyondLimit>;
 
 export interface IndicesTypesMappingLimitSettingsTotalFields {
   /** The maximum number of fields in an index. Field and object mappings, as well as field aliases count towards this limit. The limit is in place to prevent mappings and searches from becoming too large. Higher values can lead to performance degradations and memory issues, especially in clusters with a high load or few resources. */
@@ -27684,7 +27633,7 @@ export const IndicesTypesMappingLimitSettingsDimensionFields =
   }) as any as S.Schema<IndicesTypesMappingLimitSettingsDimensionFields>;
 
 export type IndicesTypesSourceMode = "disabled" | "stored" | "synthetic";
-export const IndicesTypesSourceMode = /*@__PURE__*/ S.String;
+export const IndicesTypesSourceMode = S.String;
 
 export interface IndicesTypesMappingLimitSettingsSourceFields {
   mode: IndicesTypesSourceMode | (string & {});
@@ -27700,7 +27649,7 @@ export const IndicesTypesMappingLimitSettingsSourceFields =
 
 export type IndicesTypesMappingLimitSettingsIgnoreMalformed = boolean | string;
 export const IndicesTypesMappingLimitSettingsIgnoreMalformed =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesMappingLimitSettingsIgnoreMalformed>;
+  S.Unknown as any as S.Schema<IndicesTypesMappingLimitSettingsIgnoreMalformed>;
 
 /** Mapping Limit Settings */
 export interface IndicesTypesMappingLimitSettings {
@@ -27794,11 +27743,11 @@ export type IndicesTypesStorageTypeCase0 =
   | "niofs"
   | "mmapfs"
   | "hybridfs";
-export const IndicesTypesStorageTypeCase0 = /*@__PURE__*/ S.String;
+export const IndicesTypesStorageTypeCase0 = S.String;
 
 export type IndicesTypesStorageType = IndicesTypesStorageTypeCase0 | string;
 export const IndicesTypesStorageType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesStorageType>;
+  S.Unknown as any as S.Schema<IndicesTypesStorageType>;
 
 export interface IndicesTypesStorage {
   type: IndicesTypesStorageType;
@@ -27992,7 +27941,7 @@ export type TypesMappingDynamicMapping =
   | "runtime"
   | "true"
   | "false";
-export const TypesMappingDynamicMapping = /*@__PURE__*/ S.String;
+export const TypesMappingDynamicMapping = S.String;
 
 export type TypesMappingTypeMappingDynamicDateFormatsList = Array<string>;
 export const TypesMappingTypeMappingDynamicDateFormatsList =
@@ -28009,7 +27958,7 @@ export type TypesMappingDynamicTemplateMatch =
   | string
   | TypesMappingDynamicTemplateMatchCase1List;
 export const TypesMappingDynamicTemplateMatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDynamicTemplateMatch>;
+  S.Unknown as any as S.Schema<TypesMappingDynamicTemplateMatch>;
 
 export type TypesMappingDynamicTemplatePathMatchCase1List = Array<string>;
 export const TypesMappingDynamicTemplatePathMatchCase1List =
@@ -28021,7 +27970,7 @@ export type TypesMappingDynamicTemplatePathMatch =
   | string
   | TypesMappingDynamicTemplatePathMatchCase1List;
 export const TypesMappingDynamicTemplatePathMatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDynamicTemplatePathMatch>;
+  S.Unknown as any as S.Schema<TypesMappingDynamicTemplatePathMatch>;
 
 export type TypesMappingDynamicTemplateUnmatchCase1List = Array<string>;
 export const TypesMappingDynamicTemplateUnmatchCase1List =
@@ -28033,7 +27982,7 @@ export type TypesMappingDynamicTemplateUnmatch =
   | string
   | TypesMappingDynamicTemplateUnmatchCase1List;
 export const TypesMappingDynamicTemplateUnmatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDynamicTemplateUnmatch>;
+  S.Unknown as any as S.Schema<TypesMappingDynamicTemplateUnmatch>;
 
 export type TypesMappingDynamicTemplatePathUnmatchCase1List = Array<string>;
 export const TypesMappingDynamicTemplatePathUnmatchCase1List =
@@ -28045,7 +27994,7 @@ export type TypesMappingDynamicTemplatePathUnmatch =
   | string
   | TypesMappingDynamicTemplatePathUnmatchCase1List;
 export const TypesMappingDynamicTemplatePathUnmatch =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDynamicTemplatePathUnmatch>;
+  S.Unknown as any as S.Schema<TypesMappingDynamicTemplatePathUnmatch>;
 
 export type TypesMappingDynamicTemplateMatchMappingTypeCase1List =
   Array<string>;
@@ -28058,7 +28007,7 @@ export type TypesMappingDynamicTemplateMatchMappingType =
   | string
   | TypesMappingDynamicTemplateMatchMappingTypeCase1List;
 export const TypesMappingDynamicTemplateMatchMappingType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDynamicTemplateMatchMappingType>;
+  S.Unknown as any as S.Schema<TypesMappingDynamicTemplateMatchMappingType>;
 
 export type TypesMappingDynamicTemplateUnmatchMappingTypeCase1List =
   Array<string>;
@@ -28071,10 +28020,10 @@ export type TypesMappingDynamicTemplateUnmatchMappingType =
   | string
   | TypesMappingDynamicTemplateUnmatchMappingTypeCase1List;
 export const TypesMappingDynamicTemplateUnmatchMappingType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDynamicTemplateUnmatchMappingType>;
+  S.Unknown as any as S.Schema<TypesMappingDynamicTemplateUnmatchMappingType>;
 
 export type TypesMappingMatchType = "simple" | "regex";
-export const TypesMappingMatchType = /*@__PURE__*/ S.String;
+export const TypesMappingMatchType = S.String;
 
 /** Metadata about the field. */
 export type TypesMappingBinaryPropertyMetaMap = {
@@ -28102,7 +28051,7 @@ export const TypesMappingBinaryPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingBinaryPropertyFieldsMap>;
 
 export type TypesMappingSyntheticSourceKeepEnum = "none" | "arrays" | "all";
-export const TypesMappingSyntheticSourceKeepEnum = /*@__PURE__*/ S.String;
+export const TypesMappingSyntheticSourceKeepEnum = S.String;
 
 /** Configuration object for doc values when sub-parameters are needed. */
 export interface TypesMappingDocValuesConfig {
@@ -28123,10 +28072,10 @@ export const TypesMappingDocValuesConfig = /*@__PURE__*/ S.suspend(() =>
 /** Defines whether doc values are enabled for a field. Can be a simple boolean, or a configuration object for finer-grained control over sub-parameters such as `multi_value`. */
 export type TypesMappingDocValues = boolean | TypesMappingDocValuesConfig;
 export const TypesMappingDocValues =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDocValues>;
+  S.Unknown as any as S.Schema<TypesMappingDocValues>;
 
 export type TypesMappingBinaryPropertyType = "binary";
-export const TypesMappingBinaryPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingBinaryPropertyType = S.String;
 
 export interface TypesMappingBinaryProperty {
   /** Metadata about the field. */
@@ -28184,7 +28133,7 @@ export const TypesMappingBooleanPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingBooleanPropertyFieldsMap>;
 
 export type IndicesTypesNumericFielddataFormat = "array" | "disabled";
-export const IndicesTypesNumericFielddataFormat = /*@__PURE__*/ S.String;
+export const IndicesTypesNumericFielddataFormat = S.String;
 
 export interface IndicesTypesNumericFielddata {
   format: IndicesTypesNumericFielddataFormat | (string & {});
@@ -28198,7 +28147,7 @@ export const IndicesTypesNumericFielddata = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesTypesNumericFielddata>;
 
 export type TypesMappingBooleanPropertyType = "boolean";
-export const TypesMappingBooleanPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingBooleanPropertyType = S.String;
 
 export interface TypesMappingBooleanProperty {
   /** Metadata about the field. */
@@ -28273,7 +28222,7 @@ export const TypesMappingDynamicPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingDynamicPropertyFieldsMap>;
 
 export type TypesMappingDynamicPropertyType = "{dynamic_type}";
-export const TypesMappingDynamicPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingDynamicPropertyType = S.String;
 
 export type TypesMappingTimeSeriesMetricType =
   | "gauge"
@@ -28281,14 +28230,14 @@ export type TypesMappingTimeSeriesMetricType =
   | "summary"
   | "histogram"
   | "position";
-export const TypesMappingTimeSeriesMetricType = /*@__PURE__*/ S.String;
+export const TypesMappingTimeSeriesMetricType = S.String;
 
 export type TypesMappingIndexOptions =
   | "docs"
   | "freqs"
   | "positions"
   | "offsets";
-export const TypesMappingIndexOptions = /*@__PURE__*/ S.String;
+export const TypesMappingIndexOptions = S.String;
 
 export interface TypesMappingTextIndexPrefixes {
   max_chars?: number;
@@ -28307,7 +28256,7 @@ export type TypesMappingDynamicPropertyIndexPrefixes =
   | TypesMappingTextIndexPrefixes
   | string;
 export const TypesMappingDynamicPropertyIndexPrefixes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingDynamicPropertyIndexPrefixes>;
+  S.Unknown as any as S.Schema<TypesMappingDynamicPropertyIndexPrefixes>;
 
 export type TypesMappingTermVectorOption =
   | "no"
@@ -28317,7 +28266,7 @@ export type TypesMappingTermVectorOption =
   | "with_positions_offsets"
   | "with_positions_offsets_payloads"
   | "with_positions_payloads";
-export const TypesMappingTermVectorOption = /*@__PURE__*/ S.String;
+export const TypesMappingTermVectorOption = S.String;
 
 export interface TypesMappingDynamicProperty {
   /** Metadata about the field. */
@@ -28428,7 +28377,7 @@ export type TypesMappingJoinPropertyRelationsValue =
   | string
   | TypesMappingJoinPropertyRelationsValueCase1List;
 export const TypesMappingJoinPropertyRelationsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingJoinPropertyRelationsValue>;
+  S.Unknown as any as S.Schema<TypesMappingJoinPropertyRelationsValue>;
 
 export type TypesMappingJoinPropertyRelationsMap = {
   [key: string]: TypesMappingJoinPropertyRelationsValue | undefined;
@@ -28439,7 +28388,7 @@ export const TypesMappingJoinPropertyRelationsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingJoinPropertyRelationsMap>;
 
 export type TypesMappingJoinPropertyType = "join";
-export const TypesMappingJoinPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingJoinPropertyType = S.String;
 
 export interface TypesMappingJoinProperty {
   /** Metadata about the field. */
@@ -28495,7 +28444,7 @@ export const TypesMappingKeywordPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingKeywordPropertyFieldsMap>;
 
 export type TypesMappingKeywordPropertyType = "keyword";
-export const TypesMappingKeywordPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingKeywordPropertyType = S.String;
 
 export interface TypesMappingKeywordProperty {
   /** Metadata about the field. */
@@ -28553,7 +28502,7 @@ export const TypesMappingKeywordProperty = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesMappingKeywordProperty>;
 
 export type TypesMappingMatchOnlyTextPropertyType = "match_only_text";
-export const TypesMappingMatchOnlyTextPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingMatchOnlyTextPropertyType = S.String;
 
 /** Multi-fields allow the same string value to be indexed in multiple ways for different purposes, such as one field for search and a multi-field for sorting and aggregations, or the same string value analyzed by different analyzers. */
 export type TypesMappingMatchOnlyTextPropertyFieldsMap = {
@@ -28622,7 +28571,7 @@ export const TypesMappingPercolatorPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingPercolatorPropertyFieldsMap>;
 
 export type TypesMappingPercolatorPropertyType = "percolator";
-export const TypesMappingPercolatorPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingPercolatorPropertyType = S.String;
 
 export interface TypesMappingPercolatorProperty {
   /** Metadata about the field. */
@@ -28675,7 +28624,7 @@ export const TypesMappingRankFeaturePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingRankFeaturePropertyFieldsMap>;
 
 export type TypesMappingRankFeaturePropertyType = "rank_feature";
-export const TypesMappingRankFeaturePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingRankFeaturePropertyType = S.String;
 
 export interface TypesMappingRankFeatureProperty {
   /** Metadata about the field. */
@@ -28730,7 +28679,7 @@ export const TypesMappingRankFeaturesPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingRankFeaturesPropertyFieldsMap>;
 
 export type TypesMappingRankFeaturesPropertyType = "rank_features";
-export const TypesMappingRankFeaturesPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingRankFeaturesPropertyType = S.String;
 
 export interface TypesMappingRankFeaturesProperty {
   /** Metadata about the field. */
@@ -28787,7 +28736,7 @@ export const TypesMappingSearchAsYouTypePropertyFieldsMap =
   ) as any as S.Schema<TypesMappingSearchAsYouTypePropertyFieldsMap>;
 
 export type TypesMappingSearchAsYouTypePropertyType = "search_as_you_type";
-export const TypesMappingSearchAsYouTypePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingSearchAsYouTypePropertyType = S.String;
 
 export interface TypesMappingSearchAsYouTypeProperty {
   /** Metadata about the field. */
@@ -28880,10 +28829,10 @@ export type TypesMappingTextPropertyIndexPrefixes =
   | TypesMappingTextIndexPrefixes
   | string;
 export const TypesMappingTextPropertyIndexPrefixes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingTextPropertyIndexPrefixes>;
+  S.Unknown as any as S.Schema<TypesMappingTextPropertyIndexPrefixes>;
 
 export type TypesMappingTextPropertyType = "text";
-export const TypesMappingTextPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingTextPropertyType = S.String;
 
 export interface TypesMappingTextProperty {
   /** Metadata about the field. */
@@ -28971,7 +28920,7 @@ export const TypesMappingVersionPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingVersionPropertyFieldsMap>;
 
 export type TypesMappingVersionPropertyType = "version";
-export const TypesMappingVersionPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingVersionPropertyType = S.String;
 
 export interface TypesMappingVersionProperty {
   /** Metadata about the field. */
@@ -29029,7 +28978,7 @@ export const TypesMappingWildcardPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingWildcardPropertyFieldsMap>;
 
 export type TypesMappingWildcardPropertyType = "wildcard";
-export const TypesMappingWildcardPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingWildcardPropertyType = S.String;
 
 export interface TypesMappingWildcardProperty {
   /** Metadata about the field. */
@@ -29090,7 +29039,7 @@ export const TypesMappingDateNanosPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingDateNanosPropertyFieldsMap>;
 
 export type TypesMappingDateNanosPropertyType = "date_nanos";
-export const TypesMappingDateNanosPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingDateNanosPropertyType = S.String;
 
 export interface TypesMappingDateNanosProperty {
   /** Metadata about the field. */
@@ -29164,7 +29113,7 @@ export const TypesMappingDatePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingDatePropertyFieldsMap>;
 
 export type TypesMappingDatePropertyType = "date";
-export const TypesMappingDatePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingDatePropertyType = S.String;
 
 export interface TypesMappingDateProperty {
   /** Metadata about the field. */
@@ -29246,8 +29195,7 @@ export const TypesMappingAggregateMetricDoublePropertyFieldsMap =
 
 export type TypesMappingAggregateMetricDoublePropertyType =
   "aggregate_metric_double";
-export const TypesMappingAggregateMetricDoublePropertyType =
-  /*@__PURE__*/ S.String;
+export const TypesMappingAggregateMetricDoublePropertyType = S.String;
 
 export type TypesMappingAggregateMetricDoublePropertyMetricsList =
   Array<string>;
@@ -29318,14 +29266,14 @@ export const TypesMappingDenseVectorPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingDenseVectorPropertyFieldsMap>;
 
 export type TypesMappingDenseVectorPropertyType = "dense_vector";
-export const TypesMappingDenseVectorPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingDenseVectorPropertyType = S.String;
 
 export type TypesMappingDenseVectorElementType =
   | "bit"
   | "byte"
   | "float"
   | "bfloat16";
-export const TypesMappingDenseVectorElementType = /*@__PURE__*/ S.String;
+export const TypesMappingDenseVectorElementType = S.String;
 
 export type TypesMappingDenseVectorIndexOptionsType =
   | "bbq_flat"
@@ -29337,7 +29285,7 @@ export type TypesMappingDenseVectorIndexOptionsType =
   | "int4_hnsw"
   | "int8_flat"
   | "int8_hnsw";
-export const TypesMappingDenseVectorIndexOptionsType = /*@__PURE__*/ S.String;
+export const TypesMappingDenseVectorIndexOptionsType = S.String;
 
 export interface TypesMappingDenseVectorIndexOptionsRescoreVector {
   /** The oversampling factor to use when searching for the nearest neighbor. This is only applicable to the quantized formats: `bbq_*`, `int4_*`, and `int8_*`. When provided, `oversample * k` vectors will be gathered and then their scores will be re-computed with the original vectors. valid values are between `1.0` and `10.0` (inclusive), or `0` exactly to disable oversampling. */
@@ -29389,7 +29337,7 @@ export type TypesMappingDenseVectorSimilarity =
   | "dot_product"
   | "l2_norm"
   | "max_inner_product";
-export const TypesMappingDenseVectorSimilarity = /*@__PURE__*/ S.String;
+export const TypesMappingDenseVectorSimilarity = S.String;
 
 export interface TypesMappingDenseVectorProperty {
   /** Metadata about the field. */
@@ -29457,7 +29405,7 @@ export const TypesMappingFlattenedPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingFlattenedPropertyFieldsMap>;
 
 export type TypesMappingPreserveLeafArrays = "lossy" | "exact";
-export const TypesMappingPreserveLeafArrays = /*@__PURE__*/ S.String;
+export const TypesMappingPreserveLeafArrays = S.String;
 
 export type TypesMappingFlattenedPropertyTimeSeriesDimensionsList =
   Array<string>;
@@ -29467,7 +29415,7 @@ export const TypesMappingFlattenedPropertyTimeSeriesDimensionsList =
   ) as any as S.Schema<TypesMappingFlattenedPropertyTimeSeriesDimensionsList>;
 
 export type TypesMappingFlattenedPropertyType = "flattened";
-export const TypesMappingFlattenedPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingFlattenedPropertyType = S.String;
 
 export interface TypesMappingFlattenedProperty {
   /** Metadata about the field. */
@@ -29544,7 +29492,7 @@ export const TypesMappingNestedPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingNestedPropertyFieldsMap>;
 
 export type TypesMappingNestedPropertyType = "nested";
-export const TypesMappingNestedPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingNestedPropertyType = S.String;
 
 export interface TypesMappingNestedProperty {
   /** Metadata about the field. */
@@ -29606,10 +29554,10 @@ export const TypesMappingObjectPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingObjectPropertyFieldsMap>;
 
 export type TypesMappingSubobjects = "true" | "false";
-export const TypesMappingSubobjects = /*@__PURE__*/ S.String;
+export const TypesMappingSubobjects = S.String;
 
 export type TypesMappingObjectPropertyType = "object";
-export const TypesMappingObjectPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingObjectPropertyType = S.String;
 
 export interface TypesMappingObjectProperty {
   /** Metadata about the field. */
@@ -29672,7 +29620,7 @@ export const TypesMappingPassthroughObjectPropertyFieldsMap =
   ) as any as S.Schema<TypesMappingPassthroughObjectPropertyFieldsMap>;
 
 export type TypesMappingPassthroughObjectPropertyType = "passthrough";
-export const TypesMappingPassthroughObjectPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingPassthroughObjectPropertyType = S.String;
 
 export interface TypesMappingPassthroughObjectProperty {
   /** Metadata about the field. */
@@ -29738,10 +29686,10 @@ export const TypesMappingRankVectorPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingRankVectorPropertyFieldsMap>;
 
 export type TypesMappingRankVectorPropertyType = "rank_vectors";
-export const TypesMappingRankVectorPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingRankVectorPropertyType = S.String;
 
 export type TypesMappingRankVectorElementType = "byte" | "float" | "bit";
-export const TypesMappingRankVectorElementType = /*@__PURE__*/ S.String;
+export const TypesMappingRankVectorElementType = S.String;
 
 /** Technical preview */
 export interface TypesMappingRankVectorProperty {
@@ -29773,7 +29721,7 @@ export const TypesMappingRankVectorProperty = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TypesMappingRankVectorProperty>;
 
 export type TypesMappingSemanticTextPropertyType = "semantic_text";
-export const TypesMappingSemanticTextPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingSemanticTextPropertyType = S.String;
 
 export type TypesMappingSemanticTextPropertyMetaMap = {
   [key: string]: string | undefined;
@@ -29851,7 +29799,7 @@ export type TypesMappingSemanticTextPropertyChunkingSettings =
   | TypesMappingChunkingSettings
   | string;
 export const TypesMappingSemanticTextPropertyChunkingSettings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingSemanticTextPropertyChunkingSettings>;
+  S.Unknown as any as S.Schema<TypesMappingSemanticTextPropertyChunkingSettings>;
 
 /** Multi-fields allow the same string value to be indexed in multiple ways for different purposes, such as one field for search and a multi-field for sorting and aggregations, or the same string value analyzed by different analyzers. */
 export type TypesMappingSemanticTextPropertyFieldsMap = {
@@ -29919,7 +29867,7 @@ export const TypesMappingSparseVectorPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingSparseVectorPropertyFieldsMap>;
 
 export type TypesMappingSparseVectorPropertyType = "sparse_vector";
-export const TypesMappingSparseVectorPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingSparseVectorPropertyType = S.String;
 
 export interface TypesMappingSparseVectorProperty {
   /** Metadata about the field. */
@@ -29978,7 +29926,7 @@ export const TypesMappingCompletionPropertyFieldsMap = /*@__PURE__*/ S.Record(
 
 export type TypesMappingSuggestContextPrecision = number | string;
 export const TypesMappingSuggestContextPrecision =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingSuggestContextPrecision>;
+  S.Unknown as any as S.Schema<TypesMappingSuggestContextPrecision>;
 
 export interface TypesMappingSuggestContext {
   name: string;
@@ -30004,7 +29952,7 @@ export const TypesMappingCompletionPropertyContextsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesMappingCompletionPropertyContextsList>;
 
 export type TypesMappingCompletionPropertyType = "completion";
-export const TypesMappingCompletionPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingCompletionPropertyType = S.String;
 
 export interface TypesMappingCompletionProperty {
   /** Metadata about the field. */
@@ -30077,7 +30025,7 @@ export const TypesMappingConstantKeywordPropertyFieldsMap =
   ) as any as S.Schema<TypesMappingConstantKeywordPropertyFieldsMap>;
 
 export type TypesMappingConstantKeywordPropertyType = "constant_keyword";
-export const TypesMappingConstantKeywordPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingConstantKeywordPropertyType = S.String;
 
 export interface TypesMappingConstantKeywordProperty {
   /** Metadata about the field. */
@@ -30133,7 +30081,7 @@ export const TypesMappingCountedKeywordPropertyFieldsMap =
   ) as any as S.Schema<TypesMappingCountedKeywordPropertyFieldsMap>;
 
 export type TypesMappingCountedKeywordPropertyType = "counted_keyword";
-export const TypesMappingCountedKeywordPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingCountedKeywordPropertyType = S.String;
 
 export interface TypesMappingCountedKeywordProperty {
   /** Metadata about the field. */
@@ -30188,7 +30136,7 @@ export const TypesMappingFieldAliasPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingFieldAliasPropertyFieldsMap>;
 
 export type TypesMappingFieldAliasPropertyType = "alias";
-export const TypesMappingFieldAliasPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingFieldAliasPropertyType = S.String;
 
 export interface TypesMappingFieldAliasProperty {
   /** Metadata about the field. */
@@ -30243,7 +30191,7 @@ export const TypesMappingHistogramPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingHistogramPropertyFieldsMap>;
 
 export type TypesMappingHistogramPropertyType = "histogram";
-export const TypesMappingHistogramPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingHistogramPropertyType = S.String;
 
 export interface TypesMappingHistogramProperty {
   /** Metadata about the field. */
@@ -30303,8 +30251,7 @@ export const TypesMappingExponentialHistogramPropertyFieldsMap =
 
 export type TypesMappingExponentialHistogramPropertyType =
   "exponential_histogram";
-export const TypesMappingExponentialHistogramPropertyType =
-  /*@__PURE__*/ S.String;
+export const TypesMappingExponentialHistogramPropertyType = S.String;
 
 export interface TypesMappingExponentialHistogramProperty {
   /** Metadata about the field. */
@@ -30361,7 +30308,7 @@ export const TypesMappingIpPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingIpPropertyFieldsMap>;
 
 export type TypesMappingIpPropertyType = "ip";
-export const TypesMappingIpPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingIpPropertyType = S.String;
 
 export interface TypesMappingIpProperty {
   /** Metadata about the field. */
@@ -30435,7 +30382,7 @@ export const TypesMappingMurmur3HashPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingMurmur3HashPropertyFieldsMap>;
 
 export type TypesMappingMurmur3HashPropertyType = "murmur3";
-export const TypesMappingMurmur3HashPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingMurmur3HashPropertyType = S.String;
 
 export interface TypesMappingMurmur3HashProperty {
   /** Metadata about the field. */
@@ -30494,7 +30441,7 @@ export const TypesMappingTokenCountPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingTokenCountPropertyFieldsMap>;
 
 export type TypesMappingTokenCountPropertyType = "token_count";
-export const TypesMappingTokenCountPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingTokenCountPropertyType = S.String;
 
 export interface TypesMappingTokenCountProperty {
   /** Metadata about the field. */
@@ -30562,10 +30509,10 @@ export const TypesMappingGeoPointPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingGeoPointPropertyFieldsMap>;
 
 export type TypesMappingGeoPointPropertyType = "geo_point";
-export const TypesMappingGeoPointPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingGeoPointPropertyType = S.String;
 
 export type TypesMappingGeoPointMetricType = "gauge" | "counter" | "position";
-export const TypesMappingGeoPointMetricType = /*@__PURE__*/ S.String;
+export const TypesMappingGeoPointMetricType = S.String;
 
 export interface TypesMappingGeoPointProperty {
   /** Metadata about the field. */
@@ -30645,13 +30592,13 @@ export type TypesMappingGeoOrientation =
   | "LEFT"
   | "clockwise"
   | "cw";
-export const TypesMappingGeoOrientation = /*@__PURE__*/ S.String;
+export const TypesMappingGeoOrientation = S.String;
 
 export type TypesMappingGeoStrategy = "recursive" | "term";
-export const TypesMappingGeoStrategy = /*@__PURE__*/ S.String;
+export const TypesMappingGeoStrategy = S.String;
 
 export type TypesMappingGeoShapePropertyType = "geo_shape";
-export const TypesMappingGeoShapePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingGeoShapePropertyType = S.String;
 
 /** The `geo_shape` data type facilitates the indexing of and searching with arbitrary geo shapes such as rectangles and polygons. */
 export interface TypesMappingGeoShapeProperty {
@@ -30722,7 +30669,7 @@ export const TypesMappingPointPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingPointPropertyFieldsMap>;
 
 export type TypesMappingPointPropertyType = "point";
-export const TypesMappingPointPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingPointPropertyType = S.String;
 
 export interface TypesMappingPointProperty {
   /** Metadata about the field. */
@@ -30786,7 +30733,7 @@ export const TypesMappingShapePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingShapePropertyFieldsMap>;
 
 export type TypesMappingShapePropertyType = "shape";
-export const TypesMappingShapePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingShapePropertyType = S.String;
 
 /** The `shape` data type facilitates the indexing of and searching with arbitrary `x, y` cartesian shapes such as rectangles and polygons. */
 export interface TypesMappingShapeProperty {
@@ -30854,7 +30801,7 @@ export const TypesMappingByteNumberPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingByteNumberPropertyFieldsMap>;
 
 export type TypesMappingByteNumberPropertyType = "byte";
-export const TypesMappingByteNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingByteNumberPropertyType = S.String;
 
 export interface TypesMappingByteNumberProperty {
   /** Metadata about the field. */
@@ -30933,7 +30880,7 @@ export const TypesMappingDoubleNumberPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingDoubleNumberPropertyFieldsMap>;
 
 export type TypesMappingDoubleNumberPropertyType = "double";
-export const TypesMappingDoubleNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingDoubleNumberPropertyType = S.String;
 
 export interface TypesMappingDoubleNumberProperty {
   /** Metadata about the field. */
@@ -31012,7 +30959,7 @@ export const TypesMappingFloatNumberPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingFloatNumberPropertyFieldsMap>;
 
 export type TypesMappingFloatNumberPropertyType = "float";
-export const TypesMappingFloatNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingFloatNumberPropertyType = S.String;
 
 export interface TypesMappingFloatNumberProperty {
   /** Metadata about the field. */
@@ -31093,7 +31040,7 @@ export const TypesMappingHalfFloatNumberPropertyFieldsMap =
   ) as any as S.Schema<TypesMappingHalfFloatNumberPropertyFieldsMap>;
 
 export type TypesMappingHalfFloatNumberPropertyType = "half_float";
-export const TypesMappingHalfFloatNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingHalfFloatNumberPropertyType = S.String;
 
 export interface TypesMappingHalfFloatNumberProperty {
   /** Metadata about the field. */
@@ -31173,7 +31120,7 @@ export const TypesMappingIntegerNumberPropertyFieldsMap =
   ) as any as S.Schema<TypesMappingIntegerNumberPropertyFieldsMap>;
 
 export type TypesMappingIntegerNumberPropertyType = "integer";
-export const TypesMappingIntegerNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingIntegerNumberPropertyType = S.String;
 
 export interface TypesMappingIntegerNumberProperty {
   /** Metadata about the field. */
@@ -31252,7 +31199,7 @@ export const TypesMappingLongNumberPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingLongNumberPropertyFieldsMap>;
 
 export type TypesMappingLongNumberPropertyType = "long";
-export const TypesMappingLongNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingLongNumberPropertyType = S.String;
 
 export interface TypesMappingLongNumberProperty {
   /** Metadata about the field. */
@@ -31333,7 +31280,7 @@ export const TypesMappingScaledFloatNumberPropertyFieldsMap =
   ) as any as S.Schema<TypesMappingScaledFloatNumberPropertyFieldsMap>;
 
 export type TypesMappingScaledFloatNumberPropertyType = "scaled_float";
-export const TypesMappingScaledFloatNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingScaledFloatNumberPropertyType = S.String;
 
 export interface TypesMappingScaledFloatNumberProperty {
   /** Metadata about the field. */
@@ -31417,7 +31364,7 @@ export const TypesMappingShortNumberPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingShortNumberPropertyFieldsMap>;
 
 export type TypesMappingShortNumberPropertyType = "short";
-export const TypesMappingShortNumberPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingShortNumberPropertyType = S.String;
 
 export interface TypesMappingShortNumberProperty {
   /** Metadata about the field. */
@@ -31498,8 +31445,7 @@ export const TypesMappingUnsignedLongNumberPropertyFieldsMap =
   ) as any as S.Schema<TypesMappingUnsignedLongNumberPropertyFieldsMap>;
 
 export type TypesMappingUnsignedLongNumberPropertyType = "unsigned_long";
-export const TypesMappingUnsignedLongNumberPropertyType =
-  /*@__PURE__*/ S.String;
+export const TypesMappingUnsignedLongNumberPropertyType = S.String;
 
 export interface TypesMappingUnsignedLongNumberProperty {
   /** Metadata about the field. */
@@ -31581,7 +31527,7 @@ export const TypesMappingDateRangePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingDateRangePropertyFieldsMap>;
 
 export type TypesMappingDateRangePropertyType = "date_range";
-export const TypesMappingDateRangePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingDateRangePropertyType = S.String;
 
 export interface TypesMappingDateRangeProperty {
   /** Metadata about the field. */
@@ -31648,7 +31594,7 @@ export const TypesMappingDoubleRangePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingDoubleRangePropertyFieldsMap>;
 
 export type TypesMappingDoubleRangePropertyType = "double_range";
-export const TypesMappingDoubleRangePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingDoubleRangePropertyType = S.String;
 
 export interface TypesMappingDoubleRangeProperty {
   /** Metadata about the field. */
@@ -31713,7 +31659,7 @@ export const TypesMappingFloatRangePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingFloatRangePropertyFieldsMap>;
 
 export type TypesMappingFloatRangePropertyType = "float_range";
-export const TypesMappingFloatRangePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingFloatRangePropertyType = S.String;
 
 export interface TypesMappingFloatRangeProperty {
   /** Metadata about the field. */
@@ -31778,7 +31724,7 @@ export const TypesMappingIntegerRangePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingIntegerRangePropertyFieldsMap>;
 
 export type TypesMappingIntegerRangePropertyType = "integer_range";
-export const TypesMappingIntegerRangePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingIntegerRangePropertyType = S.String;
 
 export interface TypesMappingIntegerRangeProperty {
   /** Metadata about the field. */
@@ -31842,7 +31788,7 @@ export const TypesMappingIpRangePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingIpRangePropertyFieldsMap>;
 
 export type TypesMappingIpRangePropertyType = "ip_range";
-export const TypesMappingIpRangePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingIpRangePropertyType = S.String;
 
 export interface TypesMappingIpRangeProperty {
   /** Metadata about the field. */
@@ -31907,7 +31853,7 @@ export const TypesMappingLongRangePropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingLongRangePropertyFieldsMap>;
 
 export type TypesMappingLongRangePropertyType = "long_range";
-export const TypesMappingLongRangePropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingLongRangePropertyType = S.String;
 
 export interface TypesMappingLongRangeProperty {
   /** Metadata about the field. */
@@ -31972,7 +31918,7 @@ export const TypesMappingIcuCollationPropertyFieldsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<TypesMappingIcuCollationPropertyFieldsMap>;
 
 export type TypesMappingIcuCollationPropertyType = "icu_collation_keyword";
-export const TypesMappingIcuCollationPropertyType = /*@__PURE__*/ S.String;
+export const TypesMappingIcuCollationPropertyType = S.String;
 
 export interface TypesMappingIcuCollationProperty {
   /** Metadata about the field. */
@@ -32093,7 +32039,7 @@ export type TypesMappingProperty =
   | TypesMappingLongRangeProperty
   | TypesMappingIcuCollationProperty;
 export const TypesMappingProperty =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesMappingProperty>;
+  S.Unknown as any as S.Schema<TypesMappingProperty>;
 
 export interface TypesMappingDynamicTemplate {
   match?: TypesMappingDynamicTemplateMatch;
@@ -32179,7 +32125,7 @@ export const TypesMappingSourceFieldIncludesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesMappingSourceFieldIncludesList>;
 
 export type TypesMappingSourceFieldMode = "disabled" | "stored" | "synthetic";
-export const TypesMappingSourceFieldMode = /*@__PURE__*/ S.String;
+export const TypesMappingSourceFieldMode = S.String;
 
 export interface TypesMappingSourceField {
   enabled?: boolean;
@@ -32432,7 +32378,7 @@ export type ClusterGetComponentTemplate1RequestSettingsFilter =
   | string
   | ClusterGetComponentTemplate1RequestSettingsFilterCase1List;
 export const ClusterGetComponentTemplate1RequestSettingsFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterGetComponentTemplate1RequestSettingsFilter>;
+  S.Unknown as any as S.Schema<ClusterGetComponentTemplate1RequestSettingsFilter>;
 
 export interface ClusterGetComponentTemplate1Request {
   /** Name of component template to retrieve. Wildcard (`*`) expressions are supported. */
@@ -32552,7 +32498,7 @@ export const ClusterGetSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterGetSettingsResponse>;
 
 export type TypesLevel = "cluster" | "indices" | "shards";
-export const TypesLevel = /*@__PURE__*/ S.String;
+export const TypesLevel = S.String;
 
 export type TypesWaitForEvents =
   | "immediate"
@@ -32561,11 +32507,11 @@ export type TypesWaitForEvents =
   | "normal"
   | "low"
   | "languid";
-export const TypesWaitForEvents = /*@__PURE__*/ S.String;
+export const TypesWaitForEvents = S.String;
 
 export type ClusterHealthWaitForNodes = string | number;
 export const ClusterHealthWaitForNodes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterHealthWaitForNodes>;
+  S.Unknown as any as S.Schema<ClusterHealthWaitForNodes>;
 
 export interface ClusterHealthRequest {
   /** Expand wildcard expression to concrete indices that are open, closed or both. */
@@ -33392,14 +33338,14 @@ export type IndicesTypesDataStreamFailureStoreTemplateEnabled =
   | boolean
   | string;
 export const IndicesTypesDataStreamFailureStoreTemplateEnabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesDataStreamFailureStoreTemplateEnabled>;
+  S.Unknown as any as S.Schema<IndicesTypesDataStreamFailureStoreTemplateEnabled>;
 
 /** If defined, every document added to this data stream will be stored at least for this time frame. Any time after this duration the document could be deleted. When empty, every document in this data stream will be stored indefinitely. */
 export type IndicesTypesFailureStoreLifecycleTemplateDataRetention =
   | TypesDuration
   | string;
 export const IndicesTypesFailureStoreLifecycleTemplateDataRetention =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesFailureStoreLifecycleTemplateDataRetention>;
+  S.Unknown as any as S.Schema<IndicesTypesFailureStoreLifecycleTemplateDataRetention>;
 
 /** Template equivalent of FailureStoreLifecycle that allows nullable values. */
 export interface IndicesTypesFailureStoreLifecycleTemplate {
@@ -33425,7 +33371,7 @@ export type IndicesTypesDataStreamFailureStoreTemplateLifecycle =
   | IndicesTypesFailureStoreLifecycleTemplate
   | string;
 export const IndicesTypesDataStreamFailureStoreTemplateLifecycle =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesDataStreamFailureStoreTemplateLifecycle>;
+  S.Unknown as any as S.Schema<IndicesTypesDataStreamFailureStoreTemplateLifecycle>;
 
 /** Template equivalent of DataStreamFailureStore that allows nullable values. */
 export interface IndicesTypesDataStreamFailureStoreTemplate {
@@ -33450,7 +33396,7 @@ export type IndicesTypesDataStreamOptionsTemplateFailureStore =
   | IndicesTypesDataStreamFailureStoreTemplate
   | string;
 export const IndicesTypesDataStreamOptionsTemplateFailureStore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesTypesDataStreamOptionsTemplateFailureStore>;
+  S.Unknown as any as S.Schema<IndicesTypesDataStreamOptionsTemplateFailureStore>;
 
 /** Data stream options template contains the same information as DataStreamOptions but allows them to be set explicitly to null. */
 export interface IndicesTypesDataStreamOptionsTemplate {
@@ -33471,7 +33417,7 @@ export type IndicesPutIndexTemplateIndexTemplateMappingDataStreamOptions =
   | IndicesTypesDataStreamOptionsTemplate
   | string;
 export const IndicesPutIndexTemplateIndexTemplateMappingDataStreamOptions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutIndexTemplateIndexTemplateMappingDataStreamOptions>;
+  S.Unknown as any as S.Schema<IndicesPutIndexTemplateIndexTemplateMappingDataStreamOptions>;
 
 export interface IndicesPutIndexTemplateIndexTemplateMapping {
   /** Aliases to add. If the index template includes a `data_stream` object, these are data stream aliases. Otherwise, these are index aliases. Data stream aliases ignore the `index_routing`, `routing`, and `search_routing` options. */
@@ -33652,8 +33598,7 @@ export const ClusterRemoteInfoRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The connection mode for the remote cluster. */
 export type ClusterRemoteInfoClusterRemoteSniffInfoMode = "sniff";
-export const ClusterRemoteInfoClusterRemoteSniffInfoMode =
-  /*@__PURE__*/ S.String;
+export const ClusterRemoteInfoClusterRemoteSniffInfoMode = S.String;
 
 /** The initial seed transport addresses of the remote cluster when sniff mode is configured. */
 export type ClusterRemoteInfoClusterRemoteSniffInfoSeedsList = Array<string>;
@@ -33695,8 +33640,7 @@ export const ClusterRemoteInfoClusterRemoteSniffInfo = /*@__PURE__*/ S.suspend(
 
 /** The connection mode for the remote cluster. */
 export type ClusterRemoteInfoClusterRemoteProxyInfoMode = "proxy";
-export const ClusterRemoteInfoClusterRemoteProxyInfoMode =
-  /*@__PURE__*/ S.String;
+export const ClusterRemoteInfoClusterRemoteProxyInfoMode = S.String;
 
 export interface ClusterRemoteInfoClusterRemoteProxyInfo {
   /** The connection mode for the remote cluster. */
@@ -33738,7 +33682,7 @@ export type ClusterRemoteInfoClusterRemoteInfo =
   | ClusterRemoteInfoClusterRemoteSniffInfo
   | ClusterRemoteInfoClusterRemoteProxyInfo;
 export const ClusterRemoteInfoClusterRemoteInfo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterRemoteInfoClusterRemoteInfo>;
+  S.Unknown as any as S.Schema<ClusterRemoteInfoClusterRemoteInfo>;
 
 export type ClusterRemoteInfoResponseBodyMap = {
   [key: string]: ClusterRemoteInfoClusterRemoteInfo | undefined;
@@ -33764,7 +33708,7 @@ export type ClusterRerouteRequestMetric =
   | string
   | ClusterRerouteRequestMetricCase1List;
 export const ClusterRerouteRequestMetric =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterRerouteRequestMetric>;
+  S.Unknown as any as S.Schema<ClusterRerouteRequestMetric>;
 
 export interface ClusterRerouteCommandCancelAction {
   index: string;
@@ -36416,8 +36360,7 @@ export const ConnectorUpdateApiKeyIdResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** A scalar value. */
 export type TypesScalarValue = number | string | boolean;
-export const TypesScalarValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesScalarValue>;
+export const TypesScalarValue = S.Unknown as any as S.Schema<TypesScalarValue>;
 
 export interface ConnectorTypesDependency {
   field: string;
@@ -36445,7 +36388,7 @@ export type ConnectorTypesDisplayType =
   | "numeric"
   | "toggle"
   | "dropdown";
-export const ConnectorTypesDisplayType = /*@__PURE__*/ S.String;
+export const ConnectorTypesDisplayType = S.String;
 
 export interface ConnectorTypesSelectOption {
   label: string;
@@ -36468,7 +36411,7 @@ export const ConnectorTypesConnectorConfigPropertiesOptionsList =
   ) as any as S.Schema<ConnectorTypesConnectorConfigPropertiesOptionsList>;
 
 export type ConnectorTypesConnectorFieldType = "str" | "int" | "list" | "bool";
-export const ConnectorTypesConnectorFieldType = /*@__PURE__*/ S.String;
+export const ConnectorTypesConnectorFieldType = S.String;
 
 export type ConnectorTypesConnectorConfigPropertiesUiRestrictionsList =
   Array<string>;
@@ -36478,7 +36421,7 @@ export const ConnectorTypesConnectorConfigPropertiesUiRestrictionsList =
   ) as any as S.Schema<ConnectorTypesConnectorConfigPropertiesUiRestrictionsList>;
 
 export type ConnectorTypesLessThanValidationType = "less_than";
-export const ConnectorTypesLessThanValidationType = /*@__PURE__*/ S.String;
+export const ConnectorTypesLessThanValidationType = S.String;
 
 export interface ConnectorTypesLessThanValidation {
   type: ConnectorTypesLessThanValidationType;
@@ -36494,7 +36437,7 @@ export const ConnectorTypesLessThanValidation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectorTypesLessThanValidation>;
 
 export type ConnectorTypesGreaterThanValidationType = "greater_than";
-export const ConnectorTypesGreaterThanValidationType = /*@__PURE__*/ S.String;
+export const ConnectorTypesGreaterThanValidationType = S.String;
 
 export interface ConnectorTypesGreaterThanValidation {
   type: ConnectorTypesGreaterThanValidationType;
@@ -36510,7 +36453,7 @@ export const ConnectorTypesGreaterThanValidation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectorTypesGreaterThanValidation>;
 
 export type ConnectorTypesListTypeValidationType = "list_type";
-export const ConnectorTypesListTypeValidationType = /*@__PURE__*/ S.String;
+export const ConnectorTypesListTypeValidationType = S.String;
 
 export interface ConnectorTypesListTypeValidation {
   type: ConnectorTypesListTypeValidationType;
@@ -36526,7 +36469,7 @@ export const ConnectorTypesListTypeValidation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectorTypesListTypeValidation>;
 
 export type ConnectorTypesIncludedInValidationType = "included_in";
-export const ConnectorTypesIncludedInValidationType = /*@__PURE__*/ S.String;
+export const ConnectorTypesIncludedInValidationType = S.String;
 
 export type ConnectorTypesIncludedInValidationConstraintList =
   Array<TypesScalarValue>;
@@ -36549,7 +36492,7 @@ export const ConnectorTypesIncludedInValidation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectorTypesIncludedInValidation>;
 
 export type ConnectorTypesRegexValidationType = "regex";
-export const ConnectorTypesRegexValidationType = /*@__PURE__*/ S.String;
+export const ConnectorTypesRegexValidationType = S.String;
 
 export interface ConnectorTypesRegexValidation {
   type: ConnectorTypesRegexValidationType;
@@ -36571,7 +36514,7 @@ export type ConnectorTypesValidation =
   | ConnectorTypesIncludedInValidation
   | ConnectorTypesRegexValidation;
 export const ConnectorTypesValidation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectorTypesValidation>;
+  S.Unknown as any as S.Schema<ConnectorTypesValidation>;
 
 export type ConnectorTypesConnectorConfigPropertiesValidationsList =
   Array<ConnectorTypesValidation>;
@@ -36792,7 +36735,7 @@ export const ConnectorTypesFilteringAdvancedSnippet = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ConnectorTypesFilteringAdvancedSnippet>;
 
 export type ConnectorTypesFilteringPolicy = "exclude" | "include";
-export const ConnectorTypesFilteringPolicy = /*@__PURE__*/ S.String;
+export const ConnectorTypesFilteringPolicy = S.String;
 
 export type ConnectorTypesFilteringRuleRule =
   | "contains"
@@ -36802,7 +36745,7 @@ export type ConnectorTypesFilteringRuleRule =
   | "starts_with"
   | ">"
   | "<";
-export const ConnectorTypesFilteringRuleRule = /*@__PURE__*/ S.String;
+export const ConnectorTypesFilteringRuleRule = S.String;
 
 export interface ConnectorTypesFilteringRule {
   created_at?: TypesDateTime;
@@ -36870,7 +36813,7 @@ export type ConnectorTypesFilteringValidationState =
   | "edited"
   | "invalid"
   | "valid";
-export const ConnectorTypesFilteringValidationState = /*@__PURE__*/ S.String;
+export const ConnectorTypesFilteringValidationState = S.String;
 
 export interface ConnectorTypesFilteringRulesValidation {
   errors: ConnectorTypesFilteringRulesValidationErrorsList;
@@ -37238,7 +37181,7 @@ export type ConnectorTypesConnectorStatus =
   | "configured"
   | "connected"
   | "error";
-export const ConnectorTypesConnectorStatus = /*@__PURE__*/ S.String;
+export const ConnectorTypesConnectorStatus = S.String;
 
 export interface ConnectorUpdateStatusRequest {
   /** The unique identifier of the connector to be updated */
@@ -37278,7 +37221,7 @@ export const CountRequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type CountRequestStats = CountRequestStatsCase0List | string;
 export const CountRequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CountRequestStats>;
+  S.Unknown as any as S.Schema<CountRequestStats>;
 
 export interface CountRequest {
   /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
@@ -37353,7 +37296,7 @@ export const Count1RequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type Count1RequestStats = Count1RequestStatsCase0List | string;
 export const Count1RequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Count1RequestStats>;
+  S.Unknown as any as S.Schema<Count1RequestStats>;
 
 export interface Count1Request {
   /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
@@ -37428,7 +37371,7 @@ export const Count2RequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type Count2RequestStats = Count2RequestStatsCase0List | string;
 export const Count2RequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Count2RequestStats>;
+  S.Unknown as any as S.Schema<Count2RequestStats>;
 
 export interface Count2Request {
   /** A comma-separated list of data streams, indices, and aliases to search. It supports wildcards (`*`). To search all data streams and indices, omit this parameter or use `*` or `_all`. */
@@ -37506,7 +37449,7 @@ export const Count3RequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type Count3RequestStats = Count3RequestStatsCase0List | string;
 export const Count3RequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Count3RequestStats>;
+  S.Unknown as any as S.Schema<Count3RequestStats>;
 
 export interface Count3Request {
   /** A comma-separated list of data streams, indices, and aliases to search. It supports wildcards (`*`). To search all data streams and indices, omit this parameter or use `*` or `_all`. */
@@ -38093,15 +38036,14 @@ export const DeleteRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DeleteRequest" }) as any as S.Schema<DeleteRequest>;
 
 export type TypesConflicts = "abort" | "proceed";
-export const TypesConflicts = /*@__PURE__*/ S.String;
+export const TypesConflicts = S.String;
 
 export type TypesSlicesCalculation = "auto";
-export const TypesSlicesCalculation = /*@__PURE__*/ S.String;
+export const TypesSlicesCalculation = S.String;
 
 /** Slices configuration used to parallelize a process. */
 export type TypesSlices = number | TypesSlicesCalculation;
-export const TypesSlices =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesSlices>;
+export const TypesSlices = S.Unknown as any as S.Schema<TypesSlices>;
 
 export type DeleteByQueryRequestSortList = Array<string>;
 export const DeleteByQueryRequestSortList = /*@__PURE__*/ S.Array(
@@ -38644,7 +38586,7 @@ export const DeleteTransformRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteTransformRequest>;
 
 export type DisableStreamsLogRequestName = "logs" | "logs.otel" | "logs.ecs";
-export const DisableStreamsLogRequestName = /*@__PURE__*/ S.String;
+export const DisableStreamsLogRequestName = S.String;
 
 export interface DisableStreamsLogRequest {
   /** The stream type to disable. */
@@ -38667,7 +38609,7 @@ export const DisableStreamsLogRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DisableStreamsLogRequest>;
 
 export type EnableStreamsLogRequestName = "logs" | "logs.otel" | "logs.ecs";
-export const EnableStreamsLogRequestName = /*@__PURE__*/ S.String;
+export const EnableStreamsLogRequestName = S.String;
 
 export interface EnableStreamsLogRequest {
   /** The stream type to enable. */
@@ -38736,7 +38678,7 @@ export type EnrichExecutePolicyEnrichPolicyPhase =
   | "COMPLETE"
   | "FAILED"
   | "CANCELLED";
-export const EnrichExecutePolicyEnrichPolicyPhase = /*@__PURE__*/ S.String;
+export const EnrichExecutePolicyEnrichPolicyPhase = S.String;
 
 export interface EnrichExecutePolicyExecuteEnrichPolicyStatus {
   phase: EnrichExecutePolicyEnrichPolicyPhase;
@@ -39047,7 +38989,7 @@ export type EqlSearch1RequestFilter =
   | TypesQueryDslQueryContainer
   | EqlSearch1RequestFilterCase1List;
 export const EqlSearch1RequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearch1RequestFilter>;
+  S.Unknown as any as S.Schema<EqlSearch1RequestFilter>;
 
 export type EqlSearch1RequestFieldsCase1List =
   Array<TypesQueryDslFieldAndFormat>;
@@ -39060,10 +39002,10 @@ export type EqlSearch1RequestFields =
   | TypesQueryDslFieldAndFormat
   | EqlSearch1RequestFieldsCase1List;
 export const EqlSearch1RequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EqlSearch1RequestFields>;
+  S.Unknown as any as S.Schema<EqlSearch1RequestFields>;
 
 export type EqlSearchResultPosition = "tail" | "head";
-export const EqlSearchResultPosition = /*@__PURE__*/ S.String;
+export const EqlSearchResultPosition = S.String;
 
 export interface EqlSearch1Request {
   /** Comma-separated list of index names to scope the operation */
@@ -39277,7 +39219,7 @@ export type EsqlTypesEsqlFormat =
   | "cbor"
   | "smile"
   | "arrow";
-export const EsqlTypesEsqlFormat = /*@__PURE__*/ S.String;
+export const EsqlTypesEsqlFormat = S.String;
 
 export type EsqlTypesSingleOrMultiValueCase1List = Array<TypesFieldValue>;
 export const EsqlTypesSingleOrMultiValueCase1List = /*@__PURE__*/ S.Array(
@@ -39288,7 +39230,7 @@ export type EsqlTypesSingleOrMultiValue =
   | TypesFieldValue
   | EsqlTypesSingleOrMultiValueCase1List;
 export const EsqlTypesSingleOrMultiValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesSingleOrMultiValue>;
+  S.Unknown as any as S.Schema<EsqlTypesSingleOrMultiValue>;
 
 export type EsqlTypesESQLParamsCase0List = Array<EsqlTypesSingleOrMultiValue>;
 export const EsqlTypesESQLParamsCase0List = /*@__PURE__*/ S.Array(
@@ -39319,7 +39261,7 @@ export type EsqlTypesNamedParameterValue =
   | EsqlTypesSingleOrMultiValue
   | EsqlTypesClassifiedNamedParameter;
 export const EsqlTypesNamedParameterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesNamedParameterValue>;
+  S.Unknown as any as S.Schema<EsqlTypesNamedParameterValue>;
 
 export type EsqlTypesNamedValue = {
   [key: string]: EsqlTypesNamedParameterValue | undefined;
@@ -39338,7 +39280,7 @@ export type EsqlTypesESQLParams =
   | EsqlTypesESQLParamsCase0List
   | EsqlTypesESQLParamsCase1List;
 export const EsqlTypesESQLParams =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesESQLParams>;
+  S.Unknown as any as S.Schema<EsqlTypesESQLParams>;
 
 export type EsqlTypesTableValuesIntegerValueCase1List = Array<number>;
 export const EsqlTypesTableValuesIntegerValueCase1List = /*@__PURE__*/ S.Array(
@@ -39349,7 +39291,7 @@ export type EsqlTypesTableValuesIntegerValue =
   | number
   | EsqlTypesTableValuesIntegerValueCase1List;
 export const EsqlTypesTableValuesIntegerValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesTableValuesIntegerValue>;
+  S.Unknown as any as S.Schema<EsqlTypesTableValuesIntegerValue>;
 
 export type EsqlTypesTableValuesContainerIntegerList =
   Array<EsqlTypesTableValuesIntegerValue>;
@@ -39366,7 +39308,7 @@ export type EsqlTypesTableValuesKeywordValue =
   | string
   | EsqlTypesTableValuesKeywordValueCase1List;
 export const EsqlTypesTableValuesKeywordValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesTableValuesKeywordValue>;
+  S.Unknown as any as S.Schema<EsqlTypesTableValuesKeywordValue>;
 
 export type EsqlTypesTableValuesContainerKeywordList =
   Array<EsqlTypesTableValuesKeywordValue>;
@@ -39383,7 +39325,7 @@ export type EsqlTypesTableValuesLongValue =
   | number
   | EsqlTypesTableValuesLongValueCase1List;
 export const EsqlTypesTableValuesLongValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesTableValuesLongValue>;
+  S.Unknown as any as S.Schema<EsqlTypesTableValuesLongValue>;
 
 export type EsqlTypesTableValuesContainerLongList =
   Array<EsqlTypesTableValuesLongValue>;
@@ -39400,7 +39342,7 @@ export type EsqlTypesTableValuesLongDouble =
   | number
   | EsqlTypesTableValuesLongDoubleCase1List;
 export const EsqlTypesTableValuesLongDouble =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesTableValuesLongDouble>;
+  S.Unknown as any as S.Schema<EsqlTypesTableValuesLongDouble>;
 
 export type EsqlTypesTableValuesContainerDoubleList =
   Array<EsqlTypesTableValuesLongDouble>;
@@ -39462,7 +39404,7 @@ export type EsqlTypesEsqlApproximation =
   | boolean
   | EsqlTypesEsqlApproximationSettings;
 export const EsqlTypesEsqlApproximation =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EsqlTypesEsqlApproximation>;
+  S.Unknown as any as S.Schema<EsqlTypesEsqlApproximation>;
 
 /** Per-query settings supplied through the request body. This is the request-body equivalent of the in-query `SET` command. Only settings that are exposed as request-body parameters can be set here; other `SET`-only settings (such as `unmapped_fields`) must be supplied in the query itself. */
 export interface EsqlTypesEsqlQuerySettings {
@@ -39577,7 +39519,7 @@ export type EsqlTypesEsqlClusterStatus =
   | "partial"
   | "skipped"
   | "failed";
-export const EsqlTypesEsqlClusterStatus = /*@__PURE__*/ S.String;
+export const EsqlTypesEsqlClusterStatus = S.String;
 
 export interface EsqlTypesEsqlShardInfo {
   total: number;
@@ -39774,7 +39716,7 @@ export const EsqlTypesESQLDatasetSettingsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<EsqlTypesESQLDatasetSettingsMap>;
 
 export type EsqlTypesDynamic = "true" | "false";
-export const EsqlTypesDynamic = /*@__PURE__*/ S.String;
+export const EsqlTypesDynamic = S.String;
 
 /** A per-column declaration inside a dataset mapping's `properties`. */
 export interface EsqlTypesDatasetFieldMapping {
@@ -40397,8 +40339,7 @@ export type GlobalScriptsPainlessExecutePainlessContext =
   | "keyword_field"
   | "long_field"
   | "composite_field";
-export const GlobalScriptsPainlessExecutePainlessContext =
-  /*@__PURE__*/ S.String;
+export const GlobalScriptsPainlessExecutePainlessContext = S.String;
 
 export interface GlobalScriptsPainlessExecutePainlessContextSetup {
   /** Document that's temporarily indexed in-memory and accessible from the script. */
@@ -40626,7 +40567,7 @@ export const FieldCapsRequestFiltersCase1List = /*@__PURE__*/ S.Array(
 
 export type FieldCapsRequestFilters = string | FieldCapsRequestFiltersCase1List;
 export const FieldCapsRequestFilters =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FieldCapsRequestFilters>;
+  S.Unknown as any as S.Schema<FieldCapsRequestFilters>;
 
 export type FieldCapsRequestTypesList = Array<string>;
 export const FieldCapsRequestTypesList = /*@__PURE__*/ S.Array(
@@ -40781,7 +40722,7 @@ export type FieldCaps1RequestFilters =
   | string
   | FieldCaps1RequestFiltersCase1List;
 export const FieldCaps1RequestFilters =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FieldCaps1RequestFilters>;
+  S.Unknown as any as S.Schema<FieldCaps1RequestFilters>;
 
 export type FieldCaps1RequestTypesList = Array<string>;
 export const FieldCaps1RequestTypesList = /*@__PURE__*/ S.Array(
@@ -40866,7 +40807,7 @@ export type FieldCaps2RequestFilters =
   | string
   | FieldCaps2RequestFiltersCase1List;
 export const FieldCaps2RequestFilters =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FieldCaps2RequestFilters>;
+  S.Unknown as any as S.Schema<FieldCaps2RequestFilters>;
 
 export type FieldCaps2RequestTypesList = Array<string>;
 export const FieldCaps2RequestTypesList = /*@__PURE__*/ S.Array(
@@ -40954,7 +40895,7 @@ export type FieldCaps3RequestFilters =
   | string
   | FieldCaps3RequestFiltersCase1List;
 export const FieldCaps3RequestFilters =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FieldCaps3RequestFilters>;
+  S.Unknown as any as S.Schema<FieldCaps3RequestFilters>;
 
 export type FieldCaps3RequestTypesList = Array<string>;
 export const FieldCaps3RequestTypesList = /*@__PURE__*/ S.Array(
@@ -41136,7 +41077,7 @@ export type GlobalMsearchRequestItem =
   | GlobalMsearchMultisearchHeader
   | GlobalSearchTypesSearchRequestBody;
 export const GlobalMsearchRequestItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalMsearchRequestItem>;
+  S.Unknown as any as S.Schema<GlobalMsearchRequestItem>;
 
 export type FleetMsearchRequestBodyList = Array<GlobalMsearchRequestItem>;
 export const FleetMsearchRequestBodyList = /*@__PURE__*/ S.Array(
@@ -41289,7 +41230,7 @@ export type GlobalMsearchResponseItem =
   | GlobalMsearchMultiSearchItem
   | TypesErrorResponseBase;
 export const GlobalMsearchResponseItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalMsearchResponseItem>;
+  S.Unknown as any as S.Schema<GlobalMsearchResponseItem>;
 
 export type FleetMsearchResponseDocsList = Array<GlobalMsearchResponseItem>;
 export const FleetMsearchResponseDocsList = /*@__PURE__*/ S.Array(
@@ -41567,7 +41508,7 @@ export const FleetSearch1RequestSortCase1List = /*@__PURE__*/ S.Array(
 
 export type FleetSearch1RequestSort = string | FleetSearch1RequestSortCase1List;
 export const FleetSearch1RequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FleetSearch1RequestSort>;
+  S.Unknown as any as S.Schema<FleetSearch1RequestSort>;
 
 export type FleetSearch1RequestWaitForCheckpointsList = Array<number>;
 export const FleetSearch1RequestWaitForCheckpointsList = /*@__PURE__*/ S.Array(
@@ -41614,7 +41555,7 @@ export type FleetSearch1RequestRescore =
   | GlobalSearchTypesRescore
   | FleetSearch1RequestRescoreCase1List;
 export const FleetSearch1RequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FleetSearch1RequestRescore>;
+  S.Unknown as any as S.Schema<FleetSearch1RequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type FleetSearch1RequestScriptFieldsMap = {
@@ -42181,7 +42122,7 @@ export type ConnectorTypesSyncStatus =
   | "in_progress"
   | "pending"
   | "suspended";
-export const ConnectorTypesSyncStatus = /*@__PURE__*/ S.String;
+export const ConnectorTypesSyncStatus = S.String;
 
 export interface ConnectorTypesConnector {
   api_key_id?: string;
@@ -42302,7 +42243,7 @@ export type ConnectorTypesSyncJobType =
   | "full"
   | "incremental"
   | "access_control";
-export const ConnectorTypesSyncJobType = /*@__PURE__*/ S.String;
+export const ConnectorTypesSyncJobType = S.String;
 
 export type ConnectorTypesConnectorSyncJobMetadataMap = {
   [key: string]: unknown | undefined;
@@ -42313,7 +42254,7 @@ export const ConnectorTypesConnectorSyncJobMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ConnectorTypesConnectorSyncJobMetadataMap>;
 
 export type ConnectorTypesSyncJobTriggerMethod = "on_demand" | "scheduled";
-export const ConnectorTypesSyncJobTriggerMethod = /*@__PURE__*/ S.String;
+export const ConnectorTypesSyncJobTriggerMethod = S.String;
 
 export interface ConnectorTypesConnectorSyncJob {
   cancelation_requested_at?: TypesDateTime;
@@ -42496,7 +42437,7 @@ export const GetFeaturesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFeaturesResponse>;
 
 export type IndicesGetFeature = "aliases" | "mappings" | "settings";
-export const IndicesGetFeature = /*@__PURE__*/ S.String;
+export const IndicesGetFeature = S.String;
 
 export type IndicesGetFeaturesCase1List = Array<
   IndicesGetFeature | (string & {})
@@ -42509,7 +42450,7 @@ export type IndicesGetFeatures =
   | IndicesGetFeature
   | IndicesGetFeaturesCase1List;
 export const IndicesGetFeatures =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesGetFeatures>;
+  S.Unknown as any as S.Schema<IndicesGetFeatures>;
 
 export interface GetIndexRequest {
   /** Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*) are supported. */
@@ -42646,7 +42587,7 @@ export type InferenceTypesTaskType =
   | "completion"
   | "chat_completion"
   | "embedding";
-export const InferenceTypesTaskType = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskType = S.String;
 
 /** Represents an inference endpoint as returned by the GET API */
 export interface InferenceTypesInferenceEndpointInfo {
@@ -42711,19 +42652,19 @@ export const GetLicenseRequest = /*@__PURE__*/ S.suspend(() =>
 /** The maximum number of nodes the license allows. */
 export type LicenseGetLicenseInformationMaxNodes = number | string;
 export const LicenseGetLicenseInformationMaxNodes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxNodes>;
+  S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxNodes>;
 
 /** The maximum number of resource units the license allows (for enterprise licenses only). */
 export type LicenseGetLicenseInformationMaxResourceUnits = number | string;
 export const LicenseGetLicenseInformationMaxResourceUnits =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxResourceUnits>;
+  S.Unknown as any as S.Schema<LicenseGetLicenseInformationMaxResourceUnits>;
 
 export type LicenseTypesLicenseStatus =
   | "active"
   | "valid"
   | "invalid"
   | "expired";
-export const LicenseTypesLicenseStatus = /*@__PURE__*/ S.String;
+export const LicenseTypesLicenseStatus = S.String;
 
 export type LicenseTypesLicenseType =
   | "missing"
@@ -42735,7 +42676,7 @@ export type LicenseTypesLicenseType =
   | "gold"
   | "platinum"
   | "enterprise";
-export const LicenseTypesLicenseType = /*@__PURE__*/ S.String;
+export const LicenseTypesLicenseType = S.String;
 
 export interface LicenseGetLicenseInformation {
   /** The date and time the license expires in ISO 8601 format. */
@@ -43040,7 +42981,7 @@ export type SnapshotTypesSnapshotSort =
   | "repository"
   | "shard_count"
   | "failed_shard_count";
-export const SnapshotTypesSnapshotSort = /*@__PURE__*/ S.String;
+export const SnapshotTypesSnapshotSort = S.String;
 
 export type SnapshotTypesSnapshotState =
   | "IN_PROGRESS"
@@ -43048,7 +42989,7 @@ export type SnapshotTypesSnapshotState =
   | "FAILED"
   | "PARTIAL"
   | "INCOMPATIBLE";
-export const SnapshotTypesSnapshotState = /*@__PURE__*/ S.String;
+export const SnapshotTypesSnapshotState = S.String;
 
 export type GetSnapshotRequestStateCase1List = Array<
   SnapshotTypesSnapshotState | (string & {})
@@ -43061,7 +43002,7 @@ export type GetSnapshotRequestState =
   | SnapshotTypesSnapshotState
   | GetSnapshotRequestStateCase1List;
 export const GetSnapshotRequestState =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetSnapshotRequestState>;
+  S.Unknown as any as S.Schema<GetSnapshotRequestState>;
 
 export interface GetSnapshotRequest {
   /** A comma-separated list of snapshot repository names used to limit the request. Wildcard (`*`) expressions are supported. */
@@ -44365,14 +44306,14 @@ export type GlobalHealthReportIndicatorHealthStatus =
   | "red"
   | "unknown"
   | "unavailable";
-export const GlobalHealthReportIndicatorHealthStatus = /*@__PURE__*/ S.String;
+export const GlobalHealthReportIndicatorHealthStatus = S.String;
 
 export type GlobalHealthReportImpactArea =
   | "search"
   | "ingest"
   | "backup"
   | "deployment_management";
-export const GlobalHealthReportImpactArea = /*@__PURE__*/ S.String;
+export const GlobalHealthReportImpactArea = S.String;
 
 export type GlobalHealthReportImpactImpactAreasList =
   Array<GlobalHealthReportImpactArea>;
@@ -44870,7 +44811,7 @@ export const GlobalHealthReportIlmIndicatorDiagnosisList =
   ) as any as S.Schema<GlobalHealthReportIlmIndicatorDiagnosisList>;
 
 export type TypesLifecycleOperationMode = "RUNNING" | "STOPPING" | "STOPPED";
-export const TypesLifecycleOperationMode = /*@__PURE__*/ S.String;
+export const TypesLifecycleOperationMode = S.String;
 
 export interface GlobalHealthReportIlmIndicatorDetails {
   ilm_status: TypesLifecycleOperationMode;
@@ -45293,8 +45234,7 @@ export const IlmExplainLifecycleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IlmExplainLifecycleRequest>;
 
 export type IlmExplainLifecycleLifecycleExplainManagedManaged = "true";
-export const IlmExplainLifecycleLifecycleExplainManagedManaged =
-  /*@__PURE__*/ S.String;
+export const IlmExplainLifecycleLifecycleExplainManagedManaged = S.String;
 
 export type IlmExplainLifecycleLifecycleExplainManagedPreviousStepInfoMap = {
   [key: string]: unknown | undefined;
@@ -45637,8 +45577,7 @@ export const IlmExplainLifecycleLifecycleExplainManaged =
   }) as any as S.Schema<IlmExplainLifecycleLifecycleExplainManaged>;
 
 export type IlmExplainLifecycleLifecycleExplainUnmanagedManaged = "false";
-export const IlmExplainLifecycleLifecycleExplainUnmanagedManaged =
-  /*@__PURE__*/ S.String;
+export const IlmExplainLifecycleLifecycleExplainUnmanagedManaged = S.String;
 
 export interface IlmExplainLifecycleLifecycleExplainUnmanaged {
   index: string;
@@ -45658,7 +45597,7 @@ export type IlmExplainLifecycleLifecycleExplain =
   | IlmExplainLifecycleLifecycleExplainManaged
   | IlmExplainLifecycleLifecycleExplainUnmanaged;
 export const IlmExplainLifecycleLifecycleExplain =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IlmExplainLifecycleLifecycleExplain>;
+  S.Unknown as any as S.Schema<IlmExplainLifecycleLifecycleExplain>;
 
 export type IlmExplainLifecycleResponseIndicesMap = {
   [key: string]: IlmExplainLifecycleLifecycleExplain | undefined;
@@ -45977,7 +45916,7 @@ export type IndicesAddBlockRequestBlock =
   | "read"
   | "read_only"
   | "write";
-export const IndicesAddBlockRequestBlock = /*@__PURE__*/ S.String;
+export const IndicesAddBlockRequestBlock = S.String;
 
 export interface IndicesAddBlockRequest {
   /** A comma-separated list or wildcard expression of index names used to limit the request. By default, you must explicitly name the indices you are adding blocks to. To allow the adding of blocks to indices with `_all`, `*`, or other wildcard expressions, change the `action.destructive_requires_name` setting to `false`. You can update this setting in the `elasticsearch.yml` file or by using the cluster update settings API. */
@@ -46072,7 +46011,7 @@ export type IndicesAnalyzeTextToAnalyze =
   | string
   | IndicesAnalyzeTextToAnalyzeCase1List;
 export const IndicesAnalyzeTextToAnalyze =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesAnalyzeTextToAnalyze>;
+  S.Unknown as any as S.Schema<IndicesAnalyzeTextToAnalyze>;
 
 export interface IndicesAnalyzeRequest {
   /** Index used to derive the analyzer. If specified, the `analyzer` or field parameter overrides this value. If no index is specified or the index does not have a default analyzer, the analyze API uses the standard analyzer. */
@@ -47813,14 +47752,14 @@ export type IndicesTypesManagedBy =
   | "Index Lifecycle Management"
   | "Data stream lifecycle"
   | "Unmanaged";
-export const IndicesTypesManagedBy = /*@__PURE__*/ S.String;
+export const IndicesTypesManagedBy = S.String;
 
 export type IndicesTypesIndexMode =
   | "standard"
   | "time_series"
   | "logsdb"
   | "lookup";
-export const IndicesTypesIndexMode = /*@__PURE__*/ S.String;
+export const IndicesTypesIndexMode = S.String;
 
 export interface IndicesTypesDataStreamIndex {
   /** Name of the backing index. */
@@ -48900,7 +48839,7 @@ export const IndicesGetSettings3Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesGetSettings3Response>;
 
 export type IndicesMigrateReindexModeEnum = "upgrade";
-export const IndicesMigrateReindexModeEnum = /*@__PURE__*/ S.String;
+export const IndicesMigrateReindexModeEnum = S.String;
 
 export interface IndicesMigrateReindexSourceIndex {
   index: string;
@@ -49454,35 +49393,35 @@ export type IndicesPutDataStreamSettingsRequestRoutingPath =
   | string
   | IndicesPutDataStreamSettingsRequestRoutingPathCase1List;
 export const IndicesPutDataStreamSettingsRequestRoutingPath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestRoutingPath>;
+  S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestRoutingPath>;
 
 export type IndicesPutDataStreamSettingsRequestNumberOfShards = number | string;
 export const IndicesPutDataStreamSettingsRequestNumberOfShards =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestNumberOfShards>;
+  S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestNumberOfShards>;
 
 export type IndicesPutDataStreamSettingsRequestNumberOfReplicas =
   | number
   | string;
 export const IndicesPutDataStreamSettingsRequestNumberOfReplicas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestNumberOfReplicas>;
+  S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestNumberOfReplicas>;
 
 export type IndicesPutDataStreamSettingsRequestHidden = boolean | string;
 export const IndicesPutDataStreamSettingsRequestHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestHidden>;
+  S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestHidden>;
 
 export type IndicesPutDataStreamSettingsRequestVerifiedBeforeClose =
   | boolean
   | string;
 export const IndicesPutDataStreamSettingsRequestVerifiedBeforeClose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestVerifiedBeforeClose>;
+  S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestVerifiedBeforeClose>;
 
 export type IndicesPutDataStreamSettingsRequestFormat = string | number;
 export const IndicesPutDataStreamSettingsRequestFormat =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestFormat>;
+  S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestFormat>;
 
 export type IndicesPutDataStreamSettingsRequestPriority = number | string;
 export const IndicesPutDataStreamSettingsRequestPriority =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestPriority>;
+  S.Unknown as any as S.Schema<IndicesPutDataStreamSettingsRequestPriority>;
 
 /** Configure custom similarity settings to customize how search results are scored. */
 export type IndicesPutDataStreamSettingsRequestSimilarityMap = {
@@ -50140,31 +50079,31 @@ export type IndicesPutSettingsRequestRoutingPath =
   | string
   | IndicesPutSettingsRequestRoutingPathCase1List;
 export const IndicesPutSettingsRequestRoutingPath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettingsRequestRoutingPath>;
+  S.Unknown as any as S.Schema<IndicesPutSettingsRequestRoutingPath>;
 
 export type IndicesPutSettingsRequestNumberOfShards = number | string;
 export const IndicesPutSettingsRequestNumberOfShards =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettingsRequestNumberOfShards>;
+  S.Unknown as any as S.Schema<IndicesPutSettingsRequestNumberOfShards>;
 
 export type IndicesPutSettingsRequestNumberOfReplicas = number | string;
 export const IndicesPutSettingsRequestNumberOfReplicas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettingsRequestNumberOfReplicas>;
+  S.Unknown as any as S.Schema<IndicesPutSettingsRequestNumberOfReplicas>;
 
 export type IndicesPutSettingsRequestHidden = boolean | string;
 export const IndicesPutSettingsRequestHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettingsRequestHidden>;
+  S.Unknown as any as S.Schema<IndicesPutSettingsRequestHidden>;
 
 export type IndicesPutSettingsRequestVerifiedBeforeClose = boolean | string;
 export const IndicesPutSettingsRequestVerifiedBeforeClose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettingsRequestVerifiedBeforeClose>;
+  S.Unknown as any as S.Schema<IndicesPutSettingsRequestVerifiedBeforeClose>;
 
 export type IndicesPutSettingsRequestFormat = string | number;
 export const IndicesPutSettingsRequestFormat =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettingsRequestFormat>;
+  S.Unknown as any as S.Schema<IndicesPutSettingsRequestFormat>;
 
 export type IndicesPutSettingsRequestPriority = number | string;
 export const IndicesPutSettingsRequestPriority =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettingsRequestPriority>;
+  S.Unknown as any as S.Schema<IndicesPutSettingsRequestPriority>;
 
 /** Configure custom similarity settings to customize how search results are scored. */
 export type IndicesPutSettingsRequestSimilarityMap = {
@@ -50341,31 +50280,31 @@ export type IndicesPutSettings1RequestRoutingPath =
   | string
   | IndicesPutSettings1RequestRoutingPathCase1List;
 export const IndicesPutSettings1RequestRoutingPath =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettings1RequestRoutingPath>;
+  S.Unknown as any as S.Schema<IndicesPutSettings1RequestRoutingPath>;
 
 export type IndicesPutSettings1RequestNumberOfShards = number | string;
 export const IndicesPutSettings1RequestNumberOfShards =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettings1RequestNumberOfShards>;
+  S.Unknown as any as S.Schema<IndicesPutSettings1RequestNumberOfShards>;
 
 export type IndicesPutSettings1RequestNumberOfReplicas = number | string;
 export const IndicesPutSettings1RequestNumberOfReplicas =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettings1RequestNumberOfReplicas>;
+  S.Unknown as any as S.Schema<IndicesPutSettings1RequestNumberOfReplicas>;
 
 export type IndicesPutSettings1RequestHidden = boolean | string;
 export const IndicesPutSettings1RequestHidden =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettings1RequestHidden>;
+  S.Unknown as any as S.Schema<IndicesPutSettings1RequestHidden>;
 
 export type IndicesPutSettings1RequestVerifiedBeforeClose = boolean | string;
 export const IndicesPutSettings1RequestVerifiedBeforeClose =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettings1RequestVerifiedBeforeClose>;
+  S.Unknown as any as S.Schema<IndicesPutSettings1RequestVerifiedBeforeClose>;
 
 export type IndicesPutSettings1RequestFormat = string | number;
 export const IndicesPutSettings1RequestFormat =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettings1RequestFormat>;
+  S.Unknown as any as S.Schema<IndicesPutSettings1RequestFormat>;
 
 export type IndicesPutSettings1RequestPriority = number | string;
 export const IndicesPutSettings1RequestPriority =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesPutSettings1RequestPriority>;
+  S.Unknown as any as S.Schema<IndicesPutSettings1RequestPriority>;
 
 /** Configure custom similarity settings to customize how search results are scored. */
 export type IndicesPutSettings1RequestSimilarityMap = {
@@ -50691,7 +50630,7 @@ export type IndicesRecoveryRecoveryStage =
   | "TRANSLOG"
   | "FINALIZE"
   | "DONE";
-export const IndicesRecoveryRecoveryStage = /*@__PURE__*/ S.String;
+export const IndicesRecoveryRecoveryStage = S.String;
 
 export type IndicesRecoveryRecoveryPriority =
   | "UNASSIGNED_NEW_PRIMARY"
@@ -50701,7 +50640,7 @@ export type IndicesRecoveryRecoveryPriority =
   | "RELOCATION_CAN_REMAIN_NOT_PREFERRED"
   | "RELOCATE_REBALANCING"
   | "UNKNOWN";
-export const IndicesRecoveryRecoveryPriority = /*@__PURE__*/ S.String;
+export const IndicesRecoveryRecoveryPriority = S.String;
 
 export interface IndicesRecoveryRecoveryStartStatus {
   check_index_time?: TypesDuration;
@@ -50747,7 +50686,7 @@ export type IndicesRecoveryRecoveryType =
   | "LOCAL_SHARDS"
   | "PEER"
   | "SNAPSHOT";
-export const IndicesRecoveryRecoveryType = /*@__PURE__*/ S.String;
+export const IndicesRecoveryRecoveryType = S.String;
 
 export type IndicesRecoveryVerifyIndex = IndicesRecoveryRecoveryStartStatus;
 export const IndicesRecoveryVerifyIndex = IndicesRecoveryRecoveryStartStatus;
@@ -50998,7 +50937,7 @@ export type IndicesRemoveBlockRequestBlock =
   | "read"
   | "read_only"
   | "write";
-export const IndicesRemoveBlockRequestBlock = /*@__PURE__*/ S.String;
+export const IndicesRemoveBlockRequestBlock = S.String;
 
 export interface IndicesRemoveBlockRequest {
   /** A comma-separated list or wildcard expression of index names used to limit the request. By default, you must explicitly name the indices you are removing blocks from. To allow the removal of blocks from indices with `_all`, `*`, or other wildcard expressions, change the `action.destructive_requires_name` setting to `false`. You can update this setting in the `elasticsearch.yml` file or by using the cluster update settings API. */
@@ -51207,7 +51146,7 @@ export type IndicesResolveIndex1RequestMode =
   | IndicesTypesIndexMode
   | IndicesResolveIndex1RequestModeCase1List;
 export const IndicesResolveIndex1RequestMode =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesResolveIndex1RequestMode>;
+  S.Unknown as any as S.Schema<IndicesResolveIndex1RequestMode>;
 
 export interface IndicesResolveIndex1Request {
   /** Comma-separated name(s) or index pattern(s) of the indices, aliases, and data streams to resolve. Resources on remote clusters can be specified using the `<cluster>`:`<name>` syntax. */
@@ -51674,7 +51613,7 @@ export type IndicesSegmentsIndexSegmentShardsValue =
   | IndicesSegmentsShardsSegment
   | IndicesSegmentsIndexSegmentShardsValueCase1List;
 export const IndicesSegmentsIndexSegmentShardsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesSegmentsIndexSegmentShardsValue>;
+  S.Unknown as any as S.Schema<IndicesSegmentsIndexSegmentShardsValue>;
 
 export type IndicesSegmentsIndexSegmentShardsMap = {
   [key: string]: IndicesSegmentsIndexSegmentShardsValue | undefined;
@@ -51763,7 +51702,7 @@ export type IndicesShardStoresShardStoreStatus =
   | "yellow"
   | "red"
   | "all";
-export const IndicesShardStoresShardStoreStatus = /*@__PURE__*/ S.String;
+export const IndicesShardStoresShardStoreStatus = S.String;
 
 export type IndicesShardStoresRequestStatusCase1List = Array<
   IndicesShardStoresShardStoreStatus | (string & {})
@@ -51776,7 +51715,7 @@ export type IndicesShardStoresRequestStatus =
   | IndicesShardStoresShardStoreStatus
   | IndicesShardStoresRequestStatusCase1List;
 export const IndicesShardStoresRequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesShardStoresRequestStatus>;
+  S.Unknown as any as S.Schema<IndicesShardStoresRequestStatus>;
 
 export interface IndicesShardStoresRequest {
   /** A setting that does two separate checks on the index expression. If `false`, the request returns an error (1) if any wildcard expression (including `_all` and `*`) resolves to zero matching indices or (2) if the complete set of resolved indices, aliases or data streams is empty after all expressions are evaluated. If `true`, index expressions that resolve to no indices are allowed and the request returns an empty result. */
@@ -51803,7 +51742,7 @@ export type IndicesShardStoresShardStoreAllocation =
   | "primary"
   | "replica"
   | "unused";
-export const IndicesShardStoresShardStoreAllocation = /*@__PURE__*/ S.String;
+export const IndicesShardStoresShardStoreAllocation = S.String;
 
 export interface IndicesShardStoresShardStoreException {
   reason: string;
@@ -51906,7 +51845,7 @@ export type IndicesShardStores1RequestStatus =
   | IndicesShardStoresShardStoreStatus
   | IndicesShardStores1RequestStatusCase1List;
 export const IndicesShardStores1RequestStatus =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesShardStores1RequestStatus>;
+  S.Unknown as any as S.Schema<IndicesShardStores1RequestStatus>;
 
 export interface IndicesShardStores1Request {
   /** List of data streams, indices, and aliases used to limit the request. */
@@ -52590,7 +52529,7 @@ export type IndicesStatsRequestGroups =
   | string
   | IndicesStatsRequestGroupsCase1List;
 export const IndicesStatsRequestGroups =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesStatsRequestGroups>;
+  S.Unknown as any as S.Schema<IndicesStatsRequestGroups>;
 
 export interface IndicesStatsRequest {
   /** Comma-separated list or wildcard expressions of fields to include in fielddata and suggest statistics. */
@@ -53165,7 +53104,7 @@ export type IndicesStatsShardRoutingState =
   | "INITIALIZING"
   | "STARTED"
   | "RELOCATING";
-export const IndicesStatsShardRoutingState = /*@__PURE__*/ S.String;
+export const IndicesStatsShardRoutingState = S.String;
 
 export interface IndicesStatsShardRouting {
   node: string;
@@ -53295,7 +53234,7 @@ export const IndicesStatsIndicesStatsShardsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<IndicesStatsIndicesStatsShardsMap>;
 
 export type IndicesStatsIndexMetadataState = "open" | "close";
-export const IndicesStatsIndexMetadataState = /*@__PURE__*/ S.String;
+export const IndicesStatsIndexMetadataState = S.String;
 
 export interface IndicesStatsIndicesStats {
   primaries?: IndicesStatsIndexStats;
@@ -53350,7 +53289,7 @@ export type IndicesStats1RequestGroups =
   | string
   | IndicesStats1RequestGroupsCase1List;
 export const IndicesStats1RequestGroups =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesStats1RequestGroups>;
+  S.Unknown as any as S.Schema<IndicesStats1RequestGroups>;
 
 export interface IndicesStats1Request {
   /** Comma-separated list of metrics used to limit the request. */
@@ -53423,7 +53362,7 @@ export type IndicesStats2RequestGroups =
   | string
   | IndicesStats2RequestGroupsCase1List;
 export const IndicesStats2RequestGroups =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesStats2RequestGroups>;
+  S.Unknown as any as S.Schema<IndicesStats2RequestGroups>;
 
 export interface IndicesStats2Request {
   /** A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices */
@@ -53496,7 +53435,7 @@ export type IndicesStats3RequestGroups =
   | string
   | IndicesStats3RequestGroupsCase1List;
 export const IndicesStats3RequestGroups =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesStats3RequestGroups>;
+  S.Unknown as any as S.Schema<IndicesStats3RequestGroups>;
 
 export interface IndicesStats3Request {
   /** A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices */
@@ -53576,7 +53515,7 @@ export type IndicesUpdateAliasesAddActionAliases =
   | string
   | IndicesUpdateAliasesAddActionAliasesCase1List;
 export const IndicesUpdateAliasesAddActionAliases =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesUpdateAliasesAddActionAliases>;
+  S.Unknown as any as S.Schema<IndicesUpdateAliasesAddActionAliases>;
 
 export interface IndicesUpdateAliasesAddAction {
   /** Alias for the action. Index alias names support date math. */
@@ -53631,7 +53570,7 @@ export type IndicesUpdateAliasesRemoveActionAliases =
   | string
   | IndicesUpdateAliasesRemoveActionAliasesCase1List;
 export const IndicesUpdateAliasesRemoveActionAliases =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IndicesUpdateAliasesRemoveActionAliases>;
+  S.Unknown as any as S.Schema<IndicesUpdateAliasesRemoveActionAliases>;
 
 export interface IndicesUpdateAliasesRemoveAction {
   /** Alias for the action. Index alias names support date math. */
@@ -54050,10 +53989,10 @@ export const IndicesValidateQuery3Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IndicesValidateQuery3Response>;
 
 export type InferenceTypesContentType = "text" | "image_url" | "file";
-export const InferenceTypesContentType = /*@__PURE__*/ S.String;
+export const InferenceTypesContentType = S.String;
 
 export type InferenceTypesImageUrlDetail = "auto" | "low" | "high";
-export const InferenceTypesImageUrlDetail = /*@__PURE__*/ S.String;
+export const InferenceTypesImageUrlDetail = S.String;
 
 export interface InferenceTypesImageUrl {
   /** The base64 encoded image data as a data URI */
@@ -54117,7 +54056,7 @@ export type InferenceTypesMessageContent =
   | string
   | InferenceTypesMessageContentCase1List;
 export const InferenceTypesMessageContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesMessageContent>;
+  S.Unknown as any as S.Schema<InferenceTypesMessageContent>;
 
 /** The function that the model called. */
 export interface InferenceTypesToolCallFunction {
@@ -54161,8 +54100,7 @@ export const InferenceTypesMessageToolCallsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<InferenceTypesMessageToolCallsList>;
 
 export type InferenceTypesEncryptedReasoningDetailType = "reasoning.encrypted";
-export const InferenceTypesEncryptedReasoningDetailType =
-  /*@__PURE__*/ S.String;
+export const InferenceTypesEncryptedReasoningDetailType = S.String;
 
 /** The reasoning detail with encrypted reasoning data that may be redacted or protected. */
 export interface InferenceTypesEncryptedReasoningDetail {
@@ -54190,7 +54128,7 @@ export const InferenceTypesEncryptedReasoningDetail = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<InferenceTypesEncryptedReasoningDetail>;
 
 export type InferenceTypesSummaryReasoningDetailType = "reasoning.summary";
-export const InferenceTypesSummaryReasoningDetailType = /*@__PURE__*/ S.String;
+export const InferenceTypesSummaryReasoningDetailType = S.String;
 
 /** The reasoning summary detail includes a high-level summary of the model's reasoning process. */
 export interface InferenceTypesSummaryReasoningDetail {
@@ -54218,7 +54156,7 @@ export const InferenceTypesSummaryReasoningDetail = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<InferenceTypesSummaryReasoningDetail>;
 
 export type InferenceTypesTextReasoningDetailType = "reasoning.text";
-export const InferenceTypesTextReasoningDetailType = /*@__PURE__*/ S.String;
+export const InferenceTypesTextReasoningDetailType = S.String;
 
 /** The reasoning text detail includes plaintext reasoning with optional signature verification. */
 export interface InferenceTypesTextReasoningDetail {
@@ -54253,7 +54191,7 @@ export type InferenceTypesReasoningDetail =
   | InferenceTypesSummaryReasoningDetail
   | InferenceTypesTextReasoningDetail;
 export const InferenceTypesReasoningDetail =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesReasoningDetail>;
+  S.Unknown as any as S.Schema<InferenceTypesReasoningDetail>;
 
 /** Only for `assistant` role messages. The reasoning details generated by the model as structured data. Currently supported only for `elastic` provider. */
 export type InferenceTypesMessageReasoningDetailsList =
@@ -54305,10 +54243,10 @@ export type InferenceTypesReasoningEffort =
   | "low"
   | "minimal"
   | "none";
-export const InferenceTypesReasoningEffort = /*@__PURE__*/ S.String;
+export const InferenceTypesReasoningEffort = S.String;
 
 export type InferenceTypesReasoningSummary = "auto" | "concise" | "detailed";
-export const InferenceTypesReasoningSummary = /*@__PURE__*/ S.String;
+export const InferenceTypesReasoningSummary = S.String;
 
 /** The reasoning configuration to use for the completion request. Currently supported only for `elastic` provider. */
 export interface InferenceTypesReasoning {
@@ -54373,7 +54311,7 @@ export type InferenceTypesCompletionToolType =
   | string
   | InferenceTypesCompletionToolChoice;
 export const InferenceTypesCompletionToolType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesCompletionToolType>;
+  S.Unknown as any as S.Schema<InferenceTypesCompletionToolType>;
 
 /** The completion tool function definition. */
 export interface InferenceTypesCompletionToolFunction {
@@ -54488,7 +54426,7 @@ export type InferenceCompletionRequestInput =
   | string
   | InferenceCompletionRequestInputCase1List;
 export const InferenceCompletionRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceCompletionRequestInput>;
+  S.Unknown as any as S.Schema<InferenceCompletionRequestInput>;
 
 export interface InferenceCompletionRequest {
   /** The inference Id */
@@ -54556,7 +54494,7 @@ export type InferenceDelete1RequestTaskType =
   | "completion"
   | "chat_completion"
   | "embedding";
-export const InferenceDelete1RequestTaskType = /*@__PURE__*/ S.String;
+export const InferenceDelete1RequestTaskType = S.String;
 
 export interface InferenceDelete1Request {
   /** The task type */
@@ -54624,7 +54562,7 @@ export type InferenceTypesEmbeddingStringInput =
   | string
   | InferenceTypesEmbeddingStringInputCase1List;
 export const InferenceTypesEmbeddingStringInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesEmbeddingStringInput>;
+  S.Unknown as any as S.Schema<InferenceTypesEmbeddingStringInput>;
 
 /** An object containing the input data for a single item for the model to embed. */
 export interface InferenceTypesEmbeddingContentObjectItem {
@@ -54658,7 +54596,7 @@ export type InferenceTypesEmbeddingContentObjectGroup =
   | InferenceTypesEmbeddingContentObjectItem
   | InferenceTypesEmbeddingContentObjectGroupCase1List;
 export const InferenceTypesEmbeddingContentObjectGroup =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesEmbeddingContentObjectGroup>;
+  S.Unknown as any as S.Schema<InferenceTypesEmbeddingContentObjectGroup>;
 
 /** A wrapper object which contains the fields required to specify multimodal inputs */
 export interface InferenceTypesEmbeddingContentObject {
@@ -54686,14 +54624,14 @@ export type InferenceTypesEmbeddingContentInput =
   | InferenceTypesEmbeddingContentObject
   | InferenceTypesEmbeddingContentInputCase1List;
 export const InferenceTypesEmbeddingContentInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesEmbeddingContentInput>;
+  S.Unknown as any as S.Schema<InferenceTypesEmbeddingContentInput>;
 
 /** Inference input. Either a string, an array of strings, a `content` object, or an array of `content` objects. */
 export type InferenceTypesEmbeddingInput =
   | InferenceTypesEmbeddingStringInput
   | InferenceTypesEmbeddingContentInput;
 export const InferenceTypesEmbeddingInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesEmbeddingInput>;
+  S.Unknown as any as S.Schema<InferenceTypesEmbeddingInput>;
 
 export interface InferenceEmbeddingRequest {
   /** The inference Id */
@@ -54844,7 +54782,7 @@ export type InferenceGet2RequestTaskType =
   | "completion"
   | "chat_completion"
   | "embedding";
-export const InferenceGet2RequestTaskType = /*@__PURE__*/ S.String;
+export const InferenceGet2RequestTaskType = S.String;
 
 export interface InferenceGet2Request {
   /** The task type of the endpoint to return */
@@ -54891,7 +54829,7 @@ export type InferenceGet3RequestTaskType =
   | "completion"
   | "chat_completion"
   | "embedding";
-export const InferenceGet3RequestTaskType = /*@__PURE__*/ S.String;
+export const InferenceGet3RequestTaskType = S.String;
 
 export interface InferenceGet3Request {
   /** The task type of the endpoint to return */
@@ -55013,7 +54951,7 @@ export type InferenceInferenceRequestInput =
   | string
   | InferenceInferenceRequestInputCase1List;
 export const InferenceInferenceRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceInferenceRequestInput>;
+  S.Unknown as any as S.Schema<InferenceInferenceRequestInput>;
 
 export interface InferenceInferenceRequest {
   /** The unique identifier for the inference endpoint. */
@@ -55188,7 +55126,7 @@ export type InferenceInference1RequestTaskType =
   | "completion"
   | "chat_completion"
   | "embedding";
-export const InferenceInference1RequestTaskType = /*@__PURE__*/ S.String;
+export const InferenceInference1RequestTaskType = S.String;
 
 export type InferenceInference1RequestInputCase1List = Array<string>;
 export const InferenceInference1RequestInputCase1List = /*@__PURE__*/ S.Array(
@@ -55200,7 +55138,7 @@ export type InferenceInference1RequestInput =
   | string
   | InferenceInference1RequestInputCase1List;
 export const InferenceInference1RequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceInference1RequestInput>;
+  S.Unknown as any as S.Schema<InferenceInference1RequestInput>;
 
 export interface InferenceInference1Request {
   /** The type of inference task that the model performs. */
@@ -55245,7 +55183,7 @@ export type InferencePut1RequestTaskType =
   | "completion"
   | "chat_completion"
   | "embedding";
-export const InferencePut1RequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePut1RequestTaskType = S.String;
 
 export interface InferencePut1Request {
   /** The task type. Refer to the integration list in the API description for the available task types. */
@@ -55311,10 +55249,10 @@ export const InferencePut1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePut1Response>;
 
 export type InferencePutAi21RequestTaskType = "completion" | "chat_completion";
-export const InferencePutAi21RequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutAi21RequestTaskType = S.String;
 
 export type InferenceTypesAi21ServiceType = "ai21";
-export const InferenceTypesAi21ServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesAi21ServiceType = S.String;
 
 /** This setting helps to minimize the number of rate limit errors returned from the service. */
 export interface InferenceTypesRateLimitSetting {
@@ -55378,7 +55316,7 @@ export const InferencePutAi21Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutAi21Request>;
 
 export type InferenceTypesTaskTypeAi21 = "completion" | "chat_completion";
-export const InferenceTypesTaskTypeAi21 = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeAi21 = S.String;
 
 export interface InferencePutAi21Response {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -55412,10 +55350,10 @@ export type InferencePutAlibabacloudRequestTaskType =
   | "rerank"
   | "sparse_embedding"
   | "text_embedding";
-export const InferencePutAlibabacloudRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutAlibabacloudRequestTaskType = S.String;
 
 export type InferenceTypesAlibabaCloudServiceType = "alibabacloud-ai-search";
-export const InferenceTypesAlibabaCloudServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesAlibabaCloudServiceType = S.String;
 
 export interface InferenceTypesAlibabaCloudServiceSettings {
   /** A valid API key for the AlibabaCloud AI Search API. */
@@ -55499,7 +55437,7 @@ export type InferenceTypesTaskTypeAlibabaCloudAI =
   | "rerank"
   | "completion"
   | "sparse_embedding";
-export const InferenceTypesTaskTypeAlibabaCloudAI = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeAlibabaCloudAI = S.String;
 
 export interface InferencePutAlibabacloudResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -55532,10 +55470,10 @@ export type InferencePutAmazonbedrockRequestTaskType =
   | "chat_completion"
   | "completion"
   | "text_embedding";
-export const InferencePutAmazonbedrockRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutAmazonbedrockRequestTaskType = S.String;
 
 export type InferenceTypesAmazonBedrockServiceType = "amazonbedrock";
-export const InferenceTypesAmazonBedrockServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesAmazonBedrockServiceType = S.String;
 
 export interface InferenceTypesAmazonBedrockServiceSettings {
   /** A valid AWS access key that has permissions to use Amazon Bedrock and access to models for inference requests. */
@@ -55627,7 +55565,7 @@ export type InferenceTypesTaskTypeAmazonBedrock =
   | "chat_completion"
   | "completion"
   | "text_embedding";
-export const InferenceTypesTaskTypeAmazonBedrock = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeAmazonBedrock = S.String;
 
 export interface InferencePutAmazonbedrockResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -55662,23 +55600,22 @@ export type InferencePutAmazonsagemakerRequestTaskType =
   | "chat_completion"
   | "sparse_embedding"
   | "rerank";
-export const InferencePutAmazonsagemakerRequestTaskType =
-  /*@__PURE__*/ S.String;
+export const InferencePutAmazonsagemakerRequestTaskType = S.String;
 
 export type InferenceTypesAmazonSageMakerServiceType = "amazon_sagemaker";
-export const InferenceTypesAmazonSageMakerServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesAmazonSageMakerServiceType = S.String;
 
 export type InferenceTypesAmazonSageMakerApi = "openai" | "elastic";
-export const InferenceTypesAmazonSageMakerApi = /*@__PURE__*/ S.String;
+export const InferenceTypesAmazonSageMakerApi = S.String;
 
 export type InferenceTypesAmazonSageMakerSimilarity =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesAmazonSageMakerSimilarity = /*@__PURE__*/ S.String;
+export const InferenceTypesAmazonSageMakerSimilarity = S.String;
 
 export type InferenceTypesAmazonSageMakerElementType = "byte" | "float" | "bit";
-export const InferenceTypesAmazonSageMakerElementType = /*@__PURE__*/ S.String;
+export const InferenceTypesAmazonSageMakerElementType = S.String;
 
 export interface InferenceTypesAmazonSageMakerServiceSettings {
   /** A valid AWS access key that has permissions to use Amazon SageMaker and access to models for invoking requests. */
@@ -55793,7 +55730,7 @@ export type InferenceTypesTaskTypeAmazonSageMaker =
   | "chat_completion"
   | "sparse_embedding"
   | "rerank";
-export const InferenceTypesTaskTypeAmazonSageMaker = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeAmazonSageMaker = S.String;
 
 export interface InferencePutAmazonsagemakerResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -55825,10 +55762,10 @@ export const InferencePutAmazonsagemakerResponse = /*@__PURE__*/ S.suspend(() =>
 export type InferencePutAnthropicRequestTaskType =
   | "completion"
   | "chat_completion";
-export const InferencePutAnthropicRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutAnthropicRequestTaskType = S.String;
 
 export type InferenceTypesAnthropicServiceType = "anthropic";
-export const InferenceTypesAnthropicServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesAnthropicServiceType = S.String;
 
 export interface InferenceTypesAnthropicServiceSettings {
   /** A valid API key for the Anthropic API. */
@@ -55904,7 +55841,7 @@ export const InferencePutAnthropicRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutAnthropicRequest>;
 
 export type InferenceTypesTaskTypeAnthropic = "completion" | "chat_completion";
-export const InferenceTypesTaskTypeAnthropic = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeAnthropic = S.String;
 
 export interface InferencePutAnthropicResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -55937,10 +55874,10 @@ export type InferencePutAzureaistudioRequestTaskType =
   | "completion"
   | "rerank"
   | "text_embedding";
-export const InferencePutAzureaistudioRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutAzureaistudioRequestTaskType = S.String;
 
 export type InferenceTypesAzureAiStudioServiceType = "azureaistudio";
-export const InferenceTypesAzureAiStudioServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesAzureAiStudioServiceType = S.String;
 
 export interface InferenceTypesAzureAiStudioServiceSettings {
   /** A valid API key of your Azure AI Studio model deployment. This key can be found on the overview page for your deployment in the management section of your Azure AI Studio account. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -56038,7 +55975,7 @@ export type InferenceTypesTaskTypeAzureAIStudio =
   | "text_embedding"
   | "completion"
   | "rerank";
-export const InferenceTypesTaskTypeAzureAIStudio = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeAzureAIStudio = S.String;
 
 export interface InferencePutAzureaistudioResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -56071,10 +56008,10 @@ export type InferencePutAzureopenaiRequestTaskType =
   | "completion"
   | "chat_completion"
   | "text_embedding";
-export const InferencePutAzureopenaiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutAzureopenaiRequestTaskType = S.String;
 
 export type InferenceTypesAzureOpenAIServiceType = "azureopenai";
-export const InferenceTypesAzureOpenAIServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesAzureOpenAIServiceType = S.String;
 
 /** For OAuth 2.0 authorization using the client credentials grant flow. The resource identifier (application ID URI) of the resource you want, suffixed with .default For example: ``` "scopes": [ "https://cognitiveservices.azure.com/.default" ] ``` IMPORTANT: To configure OAuth 2.0, you must specify `client_id`, `scopes`, `tenant_id`, and `client_secret` together. If one of the fields is missing, you will receive an error when you try to create your endpoint. */
 export type InferenceTypesAzureOpenAIServiceSettingsScopesList = Array<string>;
@@ -56189,7 +56126,7 @@ export type InferenceTypesTaskTypeAzureOpenAI =
   | "text_embedding"
   | "completion"
   | "chat_completion";
-export const InferenceTypesTaskTypeAzureOpenAI = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeAzureOpenAI = S.String;
 
 export interface InferencePutAzureopenaiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -56222,10 +56159,10 @@ export type InferencePutCohereRequestTaskType =
   | "completion"
   | "rerank"
   | "text_embedding";
-export const InferencePutCohereRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutCohereRequestTaskType = S.String;
 
 export type InferenceTypesCohereServiceType = "cohere";
-export const InferenceTypesCohereServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesCohereServiceType = S.String;
 
 export type InferenceTypesCohereEmbeddingType =
   | "binary"
@@ -56233,13 +56170,13 @@ export type InferenceTypesCohereEmbeddingType =
   | "byte"
   | "float"
   | "int8";
-export const InferenceTypesCohereEmbeddingType = /*@__PURE__*/ S.String;
+export const InferenceTypesCohereEmbeddingType = S.String;
 
 export type InferenceTypesCohereSimilarityType =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesCohereSimilarityType = /*@__PURE__*/ S.String;
+export const InferenceTypesCohereSimilarityType = S.String;
 
 export interface InferenceTypesCohereServiceSettings {
   /** A valid API key for your Cohere account. You can find or create your Cohere API keys on the Cohere API key settings page. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -56270,10 +56207,10 @@ export type InferenceTypesCohereInputType =
   | "clustering"
   | "ingest"
   | "search";
-export const InferenceTypesCohereInputType = /*@__PURE__*/ S.String;
+export const InferenceTypesCohereInputType = S.String;
 
 export type InferenceTypesCohereTruncateType = "END" | "NONE" | "START";
-export const InferenceTypesCohereTruncateType = /*@__PURE__*/ S.String;
+export const InferenceTypesCohereTruncateType = S.String;
 
 export interface InferenceTypesCohereTaskSettings {
   /** For a `text_embedding` task, the type of input passed to the model. Valid values are: * `classification`: Use it for embeddings passed through a text classifier. * `clustering`: Use it for the embeddings run through a clustering algorithm. * `ingest`: Use it for storing document embeddings in a vector database. * `search`: Use it for storing embeddings of search queries run against a vector database to find relevant documents. IMPORTANT: The `input_type` field is required when using embedding models `v3` and higher. */
@@ -56336,7 +56273,7 @@ export type InferenceTypesTaskTypeCohere =
   | "text_embedding"
   | "rerank"
   | "completion";
-export const InferenceTypesTaskTypeCohere = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeCohere = S.String;
 
 export interface InferencePutCohereResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -56366,10 +56303,10 @@ export const InferencePutCohereResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutCohereResponse>;
 
 export type InferencePutContextualaiRequestTaskType = "rerank";
-export const InferencePutContextualaiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutContextualaiRequestTaskType = S.String;
 
 export type InferenceTypesContextualAIServiceType = "contextualai";
-export const InferenceTypesContextualAIServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesContextualAIServiceType = S.String;
 
 export interface InferenceTypesContextualAIServiceSettings {
   /** A valid API key for your Contexutual AI account. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -56440,7 +56377,7 @@ export const InferencePutContextualaiRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutContextualaiRequest>;
 
 export type InferenceTypesTaskTypeContextualAI = "rerank";
-export const InferenceTypesTaskTypeContextualAI = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeContextualAI = S.String;
 
 export interface InferencePutContextualaiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -56474,10 +56411,10 @@ export type InferencePutCustomRequestTaskType =
   | "sparse_embedding"
   | "rerank"
   | "completion";
-export const InferencePutCustomRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutCustomRequestTaskType = S.String;
 
 export type InferenceTypesCustomServiceType = "custom";
-export const InferenceTypesCustomServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesCustomServiceType = S.String;
 
 /** Specifies the HTTP header parameters – such as `Authorization` or `Content-Type` – that are required to access the custom service. For example: ``` "headers": { "Authorization": "Bearer ${api_key}", "Content-Type": "application/json;charset=utf-8" } ``` */
 export type InferenceTypesCustomServiceSettingsHeadersMap = {
@@ -56593,7 +56530,7 @@ export const InferenceTypesCustomServiceSettings = /*@__PURE__*/ S.suspend(() =>
 
 export type InferenceTypesCustomTaskParameter = string | number | boolean;
 export const InferenceTypesCustomTaskParameter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTypesCustomTaskParameter>;
+  S.Unknown as any as S.Schema<InferenceTypesCustomTaskParameter>;
 
 /** Specifies parameters that are required to run the custom service. The parameters depend on the model your custom service uses. For example: ``` "task_settings":{ "parameters":{ "input_type":"query", "return_token":true } } ``` > warn > The `task_settings.parameters` cannot contain the same keys as `secret_parameters`. If they do, an error will be returned. This applies to PUT requests and POST requests. */
 export type InferenceTypesCustomTaskSettingsParametersMap = {
@@ -56655,7 +56592,7 @@ export type InferenceTypesTaskTypeCustom =
   | "sparse_embedding"
   | "rerank"
   | "completion";
-export const InferenceTypesTaskTypeCustom = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeCustom = S.String;
 
 export interface InferencePutCustomResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -56687,10 +56624,10 @@ export const InferencePutCustomResponse = /*@__PURE__*/ S.suspend(() =>
 export type InferencePutDeepseekRequestTaskType =
   | "completion"
   | "chat_completion";
-export const InferencePutDeepseekRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutDeepseekRequestTaskType = S.String;
 
 export type InferenceTypesDeepSeekServiceType = "deepseek";
-export const InferenceTypesDeepSeekServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesDeepSeekServiceType = S.String;
 
 export interface InferenceTypesDeepSeekServiceSettings {
   /** A valid API key for your DeepSeek account. You can find or create your DeepSeek API keys on the DeepSeek API key page. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -56742,7 +56679,7 @@ export const InferencePutDeepseekRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutDeepseekRequest>;
 
 export type InferenceTypesTaskTypeDeepSeek = "completion" | "chat_completion";
-export const InferenceTypesTaskTypeDeepSeek = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeDeepSeek = S.String;
 
 export interface InferencePutDeepseekResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -56775,10 +56712,10 @@ export type InferencePutElasticsearchRequestTaskType =
   | "rerank"
   | "sparse_embedding"
   | "text_embedding";
-export const InferencePutElasticsearchRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutElasticsearchRequestTaskType = S.String;
 
 export type InferenceTypesElasticsearchServiceType = "elasticsearch";
-export const InferenceTypesElasticsearchServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesElasticsearchServiceType = S.String;
 
 export interface InferenceTypesAdaptiveAllocations {
   /** Turn on `adaptive_allocations`. */
@@ -56882,7 +56819,7 @@ export type InferenceTypesTaskTypeElasticsearch =
   | "sparse_embedding"
   | "text_embedding"
   | "rerank";
-export const InferenceTypesTaskTypeElasticsearch = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeElasticsearch = S.String;
 
 export interface InferencePutElasticsearchResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -56915,16 +56852,16 @@ export type InferencePutFireworksaiRequestTaskType =
   | "chat_completion"
   | "completion"
   | "text_embedding";
-export const InferencePutFireworksaiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutFireworksaiRequestTaskType = S.String;
 
 export type InferenceTypesFireworksAIServiceType = "fireworksai";
-export const InferenceTypesFireworksAIServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesFireworksAIServiceType = S.String;
 
 export type InferenceTypesFireworksAISimilarityType =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesFireworksAISimilarityType = /*@__PURE__*/ S.String;
+export const InferenceTypesFireworksAISimilarityType = S.String;
 
 export interface InferenceTypesFireworksAIServiceSettings {
   /** A valid API key for your Fireworks AI account. You can find or create your API keys in the Fireworks AI dashboard. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -57020,7 +56957,7 @@ export type InferenceTypesTaskTypeFireworksAI =
   | "chat_completion"
   | "completion"
   | "text_embedding";
-export const InferenceTypesTaskTypeFireworksAI = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeFireworksAI = S.String;
 
 export interface InferencePutFireworksaiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57052,10 +56989,10 @@ export const InferencePutFireworksaiResponse = /*@__PURE__*/ S.suspend(() =>
 export type InferencePutGoogleaistudioRequestTaskType =
   | "completion"
   | "text_embedding";
-export const InferencePutGoogleaistudioRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutGoogleaistudioRequestTaskType = S.String;
 
 export type InferenceTypesGoogleAiServiceType = "googleaistudio";
-export const InferenceTypesGoogleAiServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesGoogleAiServiceType = S.String;
 
 export interface InferenceTypesGoogleAiStudioServiceSettings {
   /** A valid API key of your Google Gemini account. */
@@ -57112,7 +57049,7 @@ export const InferencePutGoogleaistudioRequest = /*@__PURE__*/ S.suspend(() =>
 export type InferenceTypesTaskTypeGoogleAIStudio =
   | "text_embedding"
   | "completion";
-export const InferenceTypesTaskTypeGoogleAIStudio = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeGoogleAIStudio = S.String;
 
 export interface InferencePutGoogleaistudioResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57146,10 +57083,10 @@ export type InferencePutGooglevertexaiRequestTaskType =
   | "text_embedding"
   | "completion"
   | "chat_completion";
-export const InferencePutGooglevertexaiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutGooglevertexaiRequestTaskType = S.String;
 
 export type InferenceTypesGoogleVertexAIServiceType = "googlevertexai";
-export const InferenceTypesGoogleVertexAIServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesGoogleVertexAIServiceType = S.String;
 
 export type InferenceTypesGoogleModelGardenProvider =
   | "google"
@@ -57158,7 +57095,7 @@ export type InferenceTypesGoogleModelGardenProvider =
   | "hugging_face"
   | "mistral"
   | "ai21";
-export const InferenceTypesGoogleModelGardenProvider = /*@__PURE__*/ S.String;
+export const InferenceTypesGoogleModelGardenProvider = S.String;
 
 export interface InferenceTypesGoogleVertexAIServiceSettings {
   /** The name of the Google Model Garden Provider for `completion` and `chat_completion` tasks. In order for a Google Model Garden endpoint to be used `provider` must be defined and be other than `google`. Modes: - Google Model Garden (third-party models): set `provider` to a supported non-`google` value and provide `url` and/or `streaming_url`. - Google Vertex AI: omit `provider` or set it to `google`. In this mode, do not set `url` or `streaming_url` and Elastic will construct the endpoint url from `location`, `model_id`, and `project_id` parameters. */
@@ -57275,7 +57212,7 @@ export type InferenceTypesTaskTypeGoogleVertexAI =
   | "completion"
   | "text_embedding"
   | "rerank";
-export const InferenceTypesTaskTypeGoogleVertexAI = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeGoogleVertexAI = S.String;
 
 export interface InferencePutGooglevertexaiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57305,10 +57242,10 @@ export const InferencePutGooglevertexaiResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutGooglevertexaiResponse>;
 
 export type InferencePutGroqRequestTaskType = "chat_completion";
-export const InferencePutGroqRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutGroqRequestTaskType = S.String;
 
 export type InferenceTypesGroqServiceType = "groq";
-export const InferenceTypesGroqServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesGroqServiceType = S.String;
 
 export interface InferenceTypesGroqServiceSettings {
   /** The name of the model to use for the inference task. Refer to the Groq model documentation for the list of supported models and versions. Service has been tested and confirmed to be working for `completion` and `chat_completion` tasks with the following models: * `llama-3.3-70b-versatile` */
@@ -57359,7 +57296,7 @@ export const InferencePutGroqRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutGroqRequest>;
 
 export type InferenceTypesTaskTypeGroq = "chat_completion";
-export const InferenceTypesTaskTypeGroq = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeGroq = S.String;
 
 export interface InferencePutGroqResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57393,10 +57330,10 @@ export type InferencePutHuggingFaceRequestTaskType =
   | "completion"
   | "rerank"
   | "text_embedding";
-export const InferencePutHuggingFaceRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutHuggingFaceRequestTaskType = S.String;
 
 export type InferenceTypesHuggingFaceServiceType = "hugging_face";
-export const InferenceTypesHuggingFaceServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesHuggingFaceServiceType = S.String;
 
 export interface InferenceTypesHuggingFaceServiceSettings {
   /** A valid access token for your HuggingFace account. You can create or find your access tokens on the HuggingFace settings page. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -57477,7 +57414,7 @@ export type InferenceTypesTaskTypeHuggingFace =
   | "completion"
   | "rerank"
   | "text_embedding";
-export const InferenceTypesTaskTypeHuggingFace = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeHuggingFace = S.String;
 
 export interface InferencePutHuggingFaceResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57510,19 +57447,19 @@ export type InferencePutJinaaiRequestTaskType =
   | "embedding"
   | "rerank"
   | "text_embedding";
-export const InferencePutJinaaiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutJinaaiRequestTaskType = S.String;
 
 export type InferenceTypesJinaAIServiceType = "jinaai";
-export const InferenceTypesJinaAIServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesJinaAIServiceType = S.String;
 
 export type InferenceTypesJinaAISimilarityType =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesJinaAISimilarityType = /*@__PURE__*/ S.String;
+export const InferenceTypesJinaAISimilarityType = S.String;
 
 export type InferenceTypesJinaAIElementType = "binary" | "bit" | "float";
-export const InferenceTypesJinaAIElementType = /*@__PURE__*/ S.String;
+export const InferenceTypesJinaAIElementType = S.String;
 
 export interface InferenceTypesJinaAIServiceSettings {
   /** A valid API key of your JinaAI account. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -57559,7 +57496,7 @@ export type InferenceTypesJinaAITextEmbeddingTask =
   | "clustering"
   | "ingest"
   | "search";
-export const InferenceTypesJinaAITextEmbeddingTask = /*@__PURE__*/ S.String;
+export const InferenceTypesJinaAITextEmbeddingTask = S.String;
 
 export interface InferenceTypesJinaAITaskSettings {
   /** For a `rerank` task, return the doc text within the results. */
@@ -57622,7 +57559,7 @@ export type InferenceTypesTaskTypeJinaAi =
   | "embedding"
   | "text_embedding"
   | "rerank";
-export const InferenceTypesTaskTypeJinaAi = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeJinaAi = S.String;
 
 export interface InferencePutJinaaiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57655,16 +57592,16 @@ export type InferencePutLlamaRequestTaskType =
   | "text_embedding"
   | "completion"
   | "chat_completion";
-export const InferencePutLlamaRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutLlamaRequestTaskType = S.String;
 
 export type InferenceTypesLlamaServiceType = "llama";
-export const InferenceTypesLlamaServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesLlamaServiceType = S.String;
 
 export type InferenceTypesLlamaSimilarityType =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesLlamaSimilarityType = /*@__PURE__*/ S.String;
+export const InferenceTypesLlamaSimilarityType = S.String;
 
 export interface InferenceTypesLlamaServiceSettings {
   /** The URL endpoint of the Llama stack endpoint. URL must contain: * For `text_embedding` task - `/v1/inference/embeddings`. * For `completion` and `chat_completion` tasks - `/v1/openai/v1/chat/completions`. */
@@ -57727,7 +57664,7 @@ export type InferenceTypesTaskTypeLlama =
   | "text_embedding"
   | "chat_completion"
   | "completion";
-export const InferenceTypesTaskTypeLlama = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeLlama = S.String;
 
 export interface InferencePutLlamaResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57760,10 +57697,10 @@ export type InferencePutMistralRequestTaskType =
   | "text_embedding"
   | "completion"
   | "chat_completion";
-export const InferencePutMistralRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutMistralRequestTaskType = S.String;
 
 export type InferenceTypesMistralServiceType = "mistral";
-export const InferenceTypesMistralServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesMistralServiceType = S.String;
 
 export interface InferenceTypesMistralServiceSettings {
   /** A valid API key of your Mistral account. You can find your Mistral API keys or you can create a new one on the API Keys page. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -57824,7 +57761,7 @@ export type InferenceTypesTaskTypeMistral =
   | "text_embedding"
   | "chat_completion"
   | "completion";
-export const InferenceTypesTaskTypeMistral = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeMistral = S.String;
 
 export interface InferencePutMistralResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57858,16 +57795,16 @@ export type InferencePutNvidiaRequestTaskType =
   | "completion"
   | "rerank"
   | "text_embedding";
-export const InferencePutNvidiaRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutNvidiaRequestTaskType = S.String;
 
 export type InferenceTypesNvidiaServiceType = "nvidia";
-export const InferenceTypesNvidiaServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesNvidiaServiceType = S.String;
 
 export type InferenceTypesNvidiaSimilarityType =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesNvidiaSimilarityType = /*@__PURE__*/ S.String;
+export const InferenceTypesNvidiaSimilarityType = S.String;
 
 export interface InferenceTypesNvidiaServiceSettings {
   /** A valid API key for your Nvidia endpoint. Can be found in `API Keys` section of Nvidia account settings. */
@@ -57897,7 +57834,7 @@ export const InferenceTypesNvidiaServiceSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferenceTypesNvidiaServiceSettings>;
 
 export type InferenceTypesNvidiaInputType = "ingest" | "search";
-export const InferenceTypesNvidiaInputType = /*@__PURE__*/ S.String;
+export const InferenceTypesNvidiaInputType = S.String;
 
 export interface InferenceTypesNvidiaTaskSettings {
   /** For a `text_embedding` task, type of input sent to the Nvidia endpoint. Valid values are: * `ingest`: Mapped to Nvidia's `passage` value in request. Used when generating embeddings during indexing. * `search`: Mapped to Nvidia's `query` value in request. Used when generating embeddings during querying. IMPORTANT: For Nvidia endpoints, if the `input_type` field is not specified, it defaults to `query`. */
@@ -57955,7 +57892,7 @@ export type InferenceTypesTaskTypeNvidia =
   | "completion"
   | "rerank"
   | "text_embedding";
-export const InferenceTypesTaskTypeNvidia = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeNvidia = S.String;
 
 export interface InferencePutNvidiaResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -57989,10 +57926,10 @@ export type InferencePutOpenaiRequestTaskType =
   | "completion"
   | "text_embedding"
   | "embedding";
-export const InferencePutOpenaiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutOpenaiRequestTaskType = S.String;
 
 export type InferenceTypesOpenAIServiceType = "openai";
-export const InferenceTypesOpenAIServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesOpenAIServiceType = S.String;
 
 /** For OAuth 2.0 authorization using the client credentials grant flow. The resource identifier of the resource you want. For example: ``` "scopes": [ "scope1", "scope2" ] ``` IMPORTANT: To configure OAuth 2.0, you must specify `client_id`, `scopes`, `token_url`, and `client_secret` together. If one of the fields is missing, you will receive an error when you try to create your endpoint. */
 export type InferenceTypesOpenAIServiceSettingsScopesList = Array<string>;
@@ -58005,7 +57942,7 @@ export type InferenceTypesOpenAISimilarityType =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesOpenAISimilarityType = /*@__PURE__*/ S.String;
+export const InferenceTypesOpenAISimilarityType = S.String;
 
 export interface InferenceTypesOpenAIServiceSettings {
   /** A valid API key of your OpenAI account. You can find your OpenAI API keys in your OpenAI account under the API keys section. IMPORTANT: You must specify either `api_key` or `client_secret`. If you do not provide one or you provide more than one of them, you will receive an error when you try to create your endpoint. */
@@ -58115,7 +58052,7 @@ export type InferenceTypesTaskTypeOpenAI =
   | "chat_completion"
   | "completion"
   | "embedding";
-export const InferenceTypesTaskTypeOpenAI = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeOpenAI = S.String;
 
 export interface InferencePutOpenaiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -58149,16 +58086,16 @@ export type InferencePutOpenshiftAiRequestTaskType =
   | "completion"
   | "chat_completion"
   | "rerank";
-export const InferencePutOpenshiftAiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutOpenshiftAiRequestTaskType = S.String;
 
 export type InferenceTypesOpenShiftAiServiceType = "openshift_ai";
-export const InferenceTypesOpenShiftAiServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesOpenShiftAiServiceType = S.String;
 
 export type InferenceTypesOpenShiftAiSimilarityType =
   | "cosine"
   | "dot_product"
   | "l2_norm";
-export const InferenceTypesOpenShiftAiSimilarityType = /*@__PURE__*/ S.String;
+export const InferenceTypesOpenShiftAiSimilarityType = S.String;
 
 export interface InferenceTypesOpenShiftAiServiceSettings {
   /** A valid API key for your OpenShift AI endpoint. Can be found in `Token authentication` section of model related information. */
@@ -58245,7 +58182,7 @@ export type InferenceTypesTaskTypeOpenShiftAi =
   | "chat_completion"
   | "completion"
   | "rerank";
-export const InferenceTypesTaskTypeOpenShiftAi = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeOpenShiftAi = S.String;
 
 export interface InferencePutOpenshiftAiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -58292,10 +58229,10 @@ export const InferencePutRegionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutRegionPolicyRequest>;
 
 export type InferencePutVoyageaiRequestTaskType = "text_embedding" | "rerank";
-export const InferencePutVoyageaiRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutVoyageaiRequestTaskType = S.String;
 
 export type InferenceTypesVoyageAIServiceType = "voyageai";
-export const InferenceTypesVoyageAIServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesVoyageAIServiceType = S.String;
 
 export interface InferenceTypesVoyageAIServiceSettings {
   /** The number of dimensions for resulting output embeddings. This setting maps to `output_dimension` in the VoyageAI documentation. Only for the `text_embedding` task type. */
@@ -58377,7 +58314,7 @@ export const InferencePutVoyageaiRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutVoyageaiRequest>;
 
 export type InferenceTypesTaskTypeVoyageAI = "text_embedding" | "rerank";
-export const InferenceTypesTaskTypeVoyageAI = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeVoyageAI = S.String;
 
 export interface InferencePutVoyageaiResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -58411,10 +58348,10 @@ export type InferencePutWatsonxRequestTaskType =
   | "rerank"
   | "chat_completion"
   | "completion";
-export const InferencePutWatsonxRequestTaskType = /*@__PURE__*/ S.String;
+export const InferencePutWatsonxRequestTaskType = S.String;
 
 export type InferenceTypesWatsonxServiceType = "watsonxai";
-export const InferenceTypesWatsonxServiceType = /*@__PURE__*/ S.String;
+export const InferenceTypesWatsonxServiceType = S.String;
 
 export interface InferenceTypesWatsonxServiceSettings {
   /** A valid API key of your Watsonx account. You can find your Watsonx API keys or you can create a new one on the API keys page. IMPORTANT: You need to provide the API key only once, during the inference model creation. The get inference endpoint API does not retrieve your API key. */
@@ -58481,7 +58418,7 @@ export type InferenceTypesTaskTypeWatsonx =
   | "text_embedding"
   | "chat_completion"
   | "completion";
-export const InferenceTypesTaskTypeWatsonx = /*@__PURE__*/ S.String;
+export const InferenceTypesTaskTypeWatsonx = S.String;
 
 export interface InferencePutWatsonxResponse {
   /** The chunking configuration object. Applies only to the `embedding`, `sparse_embedding` and `text_embedding` task types. Not applicable to the `rerank`, `completion`, or `chat_completion` task types. */
@@ -58511,10 +58448,10 @@ export const InferencePutWatsonxResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InferencePutWatsonxResponse>;
 
 export type InferenceRerankRerankInputType = "text" | "image";
-export const InferenceRerankRerankInputType = /*@__PURE__*/ S.String;
+export const InferenceRerankRerankInputType = S.String;
 
 export type InferenceRerankRerankInputFormat = "text" | "base64";
-export const InferenceRerankRerankInputFormat = /*@__PURE__*/ S.String;
+export const InferenceRerankRerankInputFormat = S.String;
 
 /** An object describing a single input for the `rerank` task, which additionally allows specifying non-text inputs, such as images. */
 export interface InferenceRerankRerankInputObject {
@@ -58540,7 +58477,7 @@ export type InferenceRerankRerankQuery =
   | string
   | InferenceRerankRerankInputObject;
 export const InferenceRerankRerankQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceRerankRerankQuery>;
+  S.Unknown as any as S.Schema<InferenceRerankRerankQuery>;
 
 export type InferenceRerankRerankStringInputCase1List = Array<string>;
 export const InferenceRerankRerankStringInputCase1List = /*@__PURE__*/ S.Array(
@@ -58552,7 +58489,7 @@ export type InferenceRerankRerankStringInput =
   | string
   | InferenceRerankRerankStringInputCase1List;
 export const InferenceRerankRerankStringInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceRerankRerankStringInput>;
+  S.Unknown as any as S.Schema<InferenceRerankRerankStringInput>;
 
 export type InferenceRerankRerankObjectInputCase1List =
   Array<InferenceRerankRerankInputObject>;
@@ -58565,14 +58502,14 @@ export type InferenceRerankRerankObjectInput =
   | InferenceRerankRerankInputObject
   | InferenceRerankRerankObjectInputCase1List;
 export const InferenceRerankRerankObjectInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceRerankRerankObjectInput>;
+  S.Unknown as any as S.Schema<InferenceRerankRerankObjectInput>;
 
 /** The documents to rank for the `rerank` task. Either a string, an array of strings, an object, or an array of objects. The object form additionally allows specifying non-text inputs, such as images. > info > Only the `elastic` service currently supports non-text inputs for the `rerank` task. */
 export type InferenceRerankRerankInput =
   | InferenceRerankRerankStringInput
   | InferenceRerankRerankObjectInput;
 export const InferenceRerankRerankInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceRerankRerankInput>;
+  S.Unknown as any as S.Schema<InferenceRerankRerankInput>;
 
 export interface InferenceRerankRequest {
   /** The unique identifier for the inference endpoint. */
@@ -58641,7 +58578,7 @@ export type InferenceSparseEmbeddingRequestInput =
   | string
   | InferenceSparseEmbeddingRequestInputCase1List;
 export const InferenceSparseEmbeddingRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceSparseEmbeddingRequestInput>;
+  S.Unknown as any as S.Schema<InferenceSparseEmbeddingRequestInput>;
 
 export interface InferenceSparseEmbeddingRequest {
   /** The inference Id */
@@ -58702,7 +58639,7 @@ export type InferenceStreamCompletionRequestInput =
   | string
   | InferenceStreamCompletionRequestInputCase1List;
 export const InferenceStreamCompletionRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceStreamCompletionRequestInput>;
+  S.Unknown as any as S.Schema<InferenceStreamCompletionRequestInput>;
 
 export interface InferenceStreamCompletionRequest {
   /** The unique identifier for the inference endpoint. */
@@ -58749,7 +58686,7 @@ export type InferenceTextEmbeddingRequestInput =
   | string
   | InferenceTextEmbeddingRequestInputCase1List;
 export const InferenceTextEmbeddingRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<InferenceTextEmbeddingRequestInput>;
+  S.Unknown as any as S.Schema<InferenceTextEmbeddingRequestInput>;
 
 export interface InferenceTextEmbeddingRequest {
   /** The inference Id */
@@ -58832,7 +58769,7 @@ export type InferenceUpdate1RequestTaskType =
   | "completion"
   | "chat_completion"
   | "embedding";
-export const InferenceUpdate1RequestTaskType = /*@__PURE__*/ S.String;
+export const InferenceUpdate1RequestTaskType = S.String;
 
 export interface InferenceUpdate1Request {
   /** The type of inference task that the model performs. */
@@ -59385,7 +59322,7 @@ export type IngestTypesAppendProcessorValue =
   | unknown
   | IngestTypesAppendProcessorValueCase1List;
 export const IngestTypesAppendProcessorValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IngestTypesAppendProcessorValue>;
+  S.Unknown as any as S.Schema<IngestTypesAppendProcessorValue>;
 
 export interface IngestTypesAppendProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -59589,7 +59526,7 @@ export const IngestTypesCircleProcessorOnFailureList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IngestTypesCircleProcessorOnFailureList>;
 
 export type IngestTypesShapeType = "geo_shape" | "shape";
-export const IngestTypesShapeType = /*@__PURE__*/ S.String;
+export const IngestTypesShapeType = S.String;
 
 export interface IngestTypesCircleProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -59711,7 +59648,7 @@ export type IngestTypesConvertType =
   | "ip"
   | "string"
   | "auto";
-export const IngestTypesConvertType = /*@__PURE__*/ S.String;
+export const IngestTypesConvertType = S.String;
 
 export interface IngestTypesConvertProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -60043,7 +59980,7 @@ export type TypesGeoShapeRelation =
   | "disjoint"
   | "within"
   | "contains";
-export const TypesGeoShapeRelation = /*@__PURE__*/ S.String;
+export const TypesGeoShapeRelation = S.String;
 
 export interface IngestTypesEnrichProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -60138,7 +60075,7 @@ export type IngestTypesFingerprintDigest =
   | "SHA-256"
   | "SHA-512"
   | "MurmurHash3";
-export const IngestTypesFingerprintDigest = /*@__PURE__*/ S.String;
+export const IngestTypesFingerprintDigest = S.String;
 
 export interface IngestTypesFingerprintProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -60287,10 +60224,10 @@ export const IngestTypesGeoGridProcessorOnFailureList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IngestTypesGeoGridProcessorOnFailureList>;
 
 export type IngestTypesGeoGridTileType = "geotile" | "geohex" | "geohash";
-export const IngestTypesGeoGridTileType = /*@__PURE__*/ S.String;
+export const IngestTypesGeoGridTileType = S.String;
 
 export type IngestTypesGeoGridTargetFormat = "geojson" | "wkt";
-export const IngestTypesGeoGridTargetFormat = /*@__PURE__*/ S.String;
+export const IngestTypesGeoGridTargetFormat = S.String;
 
 export interface IngestTypesGeoGridProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -60654,7 +60591,7 @@ export type IngestTypesInferenceProcessorInputOutput =
   | IngestTypesInputConfig
   | IngestTypesInferenceProcessorInputOutputCase1List;
 export const IngestTypesInferenceProcessorInputOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IngestTypesInferenceProcessorInputOutput>;
+  S.Unknown as any as S.Schema<IngestTypesInferenceProcessorInputOutput>;
 
 export interface IngestTypesInferenceProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -60746,7 +60683,7 @@ export const IngestTypesJsonProcessorOnFailureList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IngestTypesJsonProcessorOnFailureList>;
 
 export type IngestTypesJsonProcessorConflictStrategy = "replace" | "merge";
-export const IngestTypesJsonProcessorConflictStrategy = /*@__PURE__*/ S.String;
+export const IngestTypesJsonProcessorConflictStrategy = S.String;
 
 export interface IngestTypesJsonProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -61218,7 +61155,7 @@ export type IngestTypesRerouteProcessorDataset =
   | string
   | IngestTypesRerouteProcessorDatasetCase1List;
 export const IngestTypesRerouteProcessorDataset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IngestTypesRerouteProcessorDataset>;
+  S.Unknown as any as S.Schema<IngestTypesRerouteProcessorDataset>;
 
 export type IngestTypesRerouteProcessorNamespaceCase1List = Array<string>;
 export const IngestTypesRerouteProcessorNamespaceCase1List =
@@ -61231,7 +61168,7 @@ export type IngestTypesRerouteProcessorNamespace =
   | string
   | IngestTypesRerouteProcessorNamespaceCase1List;
 export const IngestTypesRerouteProcessorNamespace =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IngestTypesRerouteProcessorNamespace>;
+  S.Unknown as any as S.Schema<IngestTypesRerouteProcessorNamespace>;
 
 export interface IngestTypesRerouteProcessor {
   /** Description of the processor. Useful for describing the purpose of the processor or its configuration. */
@@ -61708,7 +61645,7 @@ export type IngestTypesUserAgentProperty =
   | "device"
   | "original"
   | "version";
-export const IngestTypesUserAgentProperty = /*@__PURE__*/ S.String;
+export const IngestTypesUserAgentProperty = S.String;
 
 /** Controls what properties are added to `target_field`. */
 export type IngestTypesUserAgentProcessorPropertiesList = Array<
@@ -61923,7 +61860,7 @@ export const IngestTypesPipelineProcessorsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<IngestTypesPipelineProcessorsList>;
 
 export type IngestTypesFieldAccessPattern = "classic" | "flexible";
-export const IngestTypesFieldAccessPattern = /*@__PURE__*/ S.String;
+export const IngestTypesFieldAccessPattern = S.String;
 
 export interface IngestTypesPipeline {
   /** Description of the ingest pipeline. */
@@ -62239,7 +62176,7 @@ export const IngestTypesDocumentSimulationSourceMap = /*@__PURE__*/ S.Record(
 /** Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior is used to capture this behavior while keeping the semantics of the field type. Depending on the target language, code generators can keep the union or remove it and leniently parse strings to the target type. */
 export type SpecUtilsStringifiedVersionNumber = number | string;
 export const SpecUtilsStringifiedVersionNumber =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SpecUtilsStringifiedVersionNumber>;
+  S.Unknown as any as S.Schema<SpecUtilsStringifiedVersionNumber>;
 
 /** The simulated document, with optional metadata. */
 export interface IngestTypesDocumentSimulation {
@@ -62275,8 +62212,7 @@ export type IngestTypesPipelineSimulationStatusOptions =
   | "error_ignored"
   | "skipped"
   | "dropped";
-export const IngestTypesPipelineSimulationStatusOptions =
-  /*@__PURE__*/ S.String;
+export const IngestTypesPipelineSimulationStatusOptions = S.String;
 
 export interface IngestTypesPipelineProcessorResult {
   doc?: IngestTypesDocumentSimulation;
@@ -62565,7 +62501,7 @@ export const LicenseGetTrialStatusResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type LicenseTypesLicenseMaxNodes = number | string;
 export const LicenseTypesLicenseMaxNodes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicenseTypesLicenseMaxNodes>;
+  S.Unknown as any as S.Schema<LicenseTypesLicenseMaxNodes>;
 
 export interface LicenseTypesLicense {
   expiry_date_in_millis: number;
@@ -62687,7 +62623,7 @@ export type LicensePostStartBasicResponseAcknowledgeValue =
   | string
   | LicensePostStartBasicResponseAcknowledgeValueCase1List;
 export const LicensePostStartBasicResponseAcknowledgeValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LicensePostStartBasicResponseAcknowledgeValue>;
+  S.Unknown as any as S.Schema<LicensePostStartBasicResponseAcknowledgeValue>;
 
 export type LicensePostStartBasicResponseAcknowledgeMap = {
   [key: string]: LicensePostStartBasicResponseAcknowledgeValue | undefined;
@@ -62753,7 +62689,7 @@ export const LicensePostStartTrialResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LicensePostStartTrialResponse>;
 
 export type TypesOpType = "index" | "create";
-export const TypesOpType = /*@__PURE__*/ S.String;
+export const TypesOpType = S.String;
 
 export interface ListRequest {
   /** The name of the data stream or index to target. If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream. If the target doesn't exist and doesn't match a data stream template, this request creates the index. You can check for existing targets with the resolve index API. */
@@ -62974,7 +62910,7 @@ export type ListConnectorSyncJobRequestJobType =
   | ConnectorTypesSyncJobType
   | ListConnectorSyncJobRequestJobTypeCase1List;
 export const ListConnectorSyncJobRequestJobType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListConnectorSyncJobRequestJobType>;
+  S.Unknown as any as S.Schema<ListConnectorSyncJobRequestJobType>;
 
 export interface ListConnectorSyncJobRequest {
   /** Starting offset */
@@ -63030,7 +62966,7 @@ export type ListIndicesResolveRequestMode =
   | IndicesTypesIndexMode
   | ListIndicesResolveRequestModeCase1List;
 export const ListIndicesResolveRequestMode =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListIndicesResolveRequestMode>;
+  S.Unknown as any as S.Schema<ListIndicesResolveRequestMode>;
 
 export interface ListIndicesResolveRequest {
   /** Comma-separated name(s) or index pattern(s) of the indices, aliases, and data streams to resolve. Resources on remote clusters can be specified using the `<cluster>`:`<name>` syntax. */
@@ -63178,10 +63114,10 @@ export const ListTasksRequestActionsCase1List = /*@__PURE__*/ S.Array(
 
 export type ListTasksRequestActions = string | ListTasksRequestActionsCase1List;
 export const ListTasksRequestActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListTasksRequestActions>;
+  S.Unknown as any as S.Schema<ListTasksRequestActions>;
 
 export type TasksTypesGroupBy = "nodes" | "parents" | "none";
-export const TasksTypesGroupBy = /*@__PURE__*/ S.String;
+export const TasksTypesGroupBy = S.String;
 
 export type TypesNodeIdsCase1List = Array<string>;
 export const TypesNodeIdsCase1List = /*@__PURE__*/ S.Array(
@@ -63189,8 +63125,7 @@ export const TypesNodeIdsCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TypesNodeIdsCase1List>;
 
 export type TypesNodeIds = string | TypesNodeIdsCase1List;
-export const TypesNodeIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesNodeIds>;
+export const TypesNodeIds = S.Unknown as any as S.Schema<TypesNodeIds>;
 
 export interface ListTasksRequest {
   /** A comma-separated list or wildcard expression of actions used to limit the request. For example, you can use `cluser:*` to retrieve all cluster-related tasks. */
@@ -63580,7 +63515,7 @@ export type GlobalMgetResponseItem =
   | GlobalGetGetResult
   | GlobalMgetMultiGetError;
 export const GlobalMgetResponseItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalMgetResponseItem>;
+  S.Unknown as any as S.Schema<GlobalMgetResponseItem>;
 
 /** The response includes a docs array that contains the documents in the order specified in the request. The structure of the returned documents is similar to that returned by the get API. If there is a failure getting a particular document, the error is included in place of the document. */
 export type MgetResponseDocsList = Array<GlobalMgetResponseItem>;
@@ -63795,7 +63730,7 @@ export type MigrationDeprecationsDeprecationLevel =
   | "info"
   | "warning"
   | "critical";
-export const MigrationDeprecationsDeprecationLevel = /*@__PURE__*/ S.String;
+export const MigrationDeprecationsDeprecationLevel = S.String;
 
 export type MigrationDeprecationsDeprecationMetaMap = {
   [key: string]: unknown | undefined;
@@ -64106,8 +64041,7 @@ export type MigrationGetFeatureUpgradeStatusMigrationStatus =
   | "MIGRATION_NEEDED"
   | "IN_PROGRESS"
   | "ERROR";
-export const MigrationGetFeatureUpgradeStatusMigrationStatus =
-  /*@__PURE__*/ S.String;
+export const MigrationGetFeatureUpgradeStatusMigrationStatus = S.String;
 
 export interface MigrationGetFeatureUpgradeStatusMigrationFeatureIndexInfo {
   index: string;
@@ -64668,7 +64602,7 @@ export type MlTypesCategorizationAnalyzer =
   | string
   | MlTypesCategorizationAnalyzerDefinition;
 export const MlTypesCategorizationAnalyzer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MlTypesCategorizationAnalyzer>;
+  S.Unknown as any as S.Schema<MlTypesCategorizationAnalyzer>;
 
 /** If `categorization_field_name` is specified, you can also define optional filters. This property expects an array of regular expressions. The expressions are used to filter out matching sequences from the categorization field values. You can use this functionality to fine tune the categorization by excluding sequences from consideration when categories are defined. For example, you can exclude SQL statements that appear in your log files. This property cannot be used at the same time as `categorization_analyzer`. If you only want to define simple regular expression filters that are applied prior to tokenization, setting this property is the easiest method. If you also want to customize the tokenizer or post-tokenization filtering, use the `categorization_analyzer` property instead and include the filters as pattern_replace character filters. The effect is exactly the same. */
 export type MlTypesAnalysisConfigCategorizationFiltersList = Array<string>;
@@ -64678,7 +64612,7 @@ export const MlTypesAnalysisConfigCategorizationFiltersList =
   ) as any as S.Schema<MlTypesAnalysisConfigCategorizationFiltersList>;
 
 export type MlTypesRuleAction = "skip_result" | "skip_model_update";
-export const MlTypesRuleAction = /*@__PURE__*/ S.String;
+export const MlTypesRuleAction = S.String;
 
 /** The set of actions to be triggered when the rule applies. If more than one action is specified the effects of all actions are combined. */
 export type MlTypesDetectionRuleActionsList = Array<
@@ -64693,10 +64627,10 @@ export type MlTypesAppliesTo =
   | "typical"
   | "diff_from_typical"
   | "time";
-export const MlTypesAppliesTo = /*@__PURE__*/ S.String;
+export const MlTypesAppliesTo = S.String;
 
 export type MlTypesConditionOperator = "gt" | "gte" | "lt" | "lte";
-export const MlTypesConditionOperator = /*@__PURE__*/ S.String;
+export const MlTypesConditionOperator = S.String;
 
 export interface MlTypesRuleCondition {
   /** Specifies the result property to which the condition applies. If your detector uses `lat_long`, `metric`, `rare`, or `freq_rare` functions, you can only specify conditions that apply to time. */
@@ -64723,7 +64657,7 @@ export const MlTypesDetectionRuleConditionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MlTypesDetectionRuleConditionsList>;
 
 export type MlTypesFilterType = "include" | "exclude";
-export const MlTypesFilterType = /*@__PURE__*/ S.String;
+export const MlTypesFilterType = S.String;
 
 export interface MlTypesFilterRef {
   /** The identifier for the filter. */
@@ -64774,7 +64708,7 @@ export const MlTypesDetectorCustomRulesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MlTypesDetectorCustomRulesList>;
 
 export type MlTypesExcludeFrequent = "all" | "none" | "by" | "over";
-export const MlTypesExcludeFrequent = /*@__PURE__*/ S.String;
+export const MlTypesExcludeFrequent = S.String;
 
 export interface MlTypesDetector {
   /** The field used to split the data. In particular, this property is used for analyzing the splits with respect to their own history. It is used for finding unusual values in the context of the split. */
@@ -67345,7 +67279,7 @@ export const MlTypesDatafeedAuthorization = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MlTypesDatafeedAuthorization>;
 
 export type MlTypesChunkingMode = "auto" | "manual" | "off";
-export const MlTypesChunkingMode = /*@__PURE__*/ S.String;
+export const MlTypesChunkingMode = S.String;
 
 export interface MlTypesChunkingConfig {
   /** If the mode is `auto`, the chunk size is dynamically calculated; this is the recommended value when the datafeed does not use aggregations. If the mode is `manual`, chunking is applied according to the specified `time_span`; use this mode when the datafeed uses aggregations. If the mode is `off`, no chunking is applied. */
@@ -68159,7 +68093,7 @@ export type MlTypesDataframeState =
   | "starting"
   | "stopping"
   | "failed";
-export const MlTypesDataframeState = /*@__PURE__*/ S.String;
+export const MlTypesDataframeState = S.String;
 
 export interface MlTypesDataframeAnalytics {
   /** An object containing information about the analysis job. */
@@ -68578,7 +68512,7 @@ export const MlTypesAnalysisLimits = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MlTypesAnalysisLimits>;
 
 export type MlTypesJobBlockedReason = "delete" | "reset" | "revert";
-export const MlTypesJobBlockedReason = /*@__PURE__*/ S.String;
+export const MlTypesJobBlockedReason = S.String;
 
 export interface MlTypesJobBlocked {
   reason: MlTypesJobBlockedReason;
@@ -69562,7 +69496,7 @@ export type MlTypesSnapshotUpgradeState =
   | "saving_new_state"
   | "stopped"
   | "failed";
-export const MlTypesSnapshotUpgradeState = /*@__PURE__*/ S.String;
+export const MlTypesSnapshotUpgradeState = S.String;
 
 export type MlTypesDiscoveryNodeContentAttributesMap = {
   [key: string]: string | undefined;
@@ -70183,7 +70117,7 @@ export type MlTypesInclude =
   | "hyperparameters"
   | "total_feature_importance"
   | "definition_status";
-export const MlTypesInclude = /*@__PURE__*/ S.String;
+export const MlTypesInclude = S.String;
 
 export type MlGetTrainedModelsRequestTagsCase1List = Array<string>;
 export const MlGetTrainedModelsRequestTagsCase1List = /*@__PURE__*/ S.Array(
@@ -70194,7 +70128,7 @@ export type MlGetTrainedModelsRequestTags =
   | string
   | MlGetTrainedModelsRequestTagsCase1List;
 export const MlGetTrainedModelsRequestTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MlGetTrainedModelsRequestTags>;
+  S.Unknown as any as S.Schema<MlGetTrainedModelsRequestTags>;
 
 export interface MlGetTrainedModelsRequest {
   /** The unique identifier of the trained model or a model alias. You can get information for multiple trained models in a single API request by using a comma-separated list of model IDs or a wildcard expression. */
@@ -70235,7 +70169,7 @@ export type MlTypesTrainedModelType =
   | "tree_ensemble"
   | "lang_ident"
   | "pytorch";
-export const MlTypesTrainedModelType = /*@__PURE__*/ S.String;
+export const MlTypesTrainedModelType = S.String;
 
 /** A comma delimited string of tags. A trained model can have many tags, or none. */
 export type MlTypesTrainedModelConfigTagsList = Array<string>;
@@ -70254,7 +70188,7 @@ export const MlTypesTrainedModelConfigDefaultFieldMapMap =
   ) as any as S.Schema<MlTypesTrainedModelConfigDefaultFieldMapMap>;
 
 export type MlTypesTokenizationTruncate = "first" | "second" | "none";
-export const MlTypesTokenizationTruncate = /*@__PURE__*/ S.String;
+export const MlTypesTokenizationTruncate = S.String;
 
 /** BERT and MPNet tokenization configuration options */
 export interface MlTypesNlpBertTokenizationConfig {
@@ -71014,7 +70948,7 @@ export type MlGetTrainedModels1RequestTags =
   | string
   | MlGetTrainedModels1RequestTagsCase1List;
 export const MlGetTrainedModels1RequestTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MlGetTrainedModels1RequestTags>;
+  S.Unknown as any as S.Schema<MlGetTrainedModels1RequestTags>;
 
 export interface MlGetTrainedModels1Request {
   /** Specifies what to do when the request: - Contains wildcard expressions and there are no models that match. - Contains the _all string or no identifiers and there are no matches. - Contains wildcard expressions and there are only partial matches. If true, it returns an empty array when there are no matches and the subset of results when there are partial matches. */
@@ -71117,7 +71051,7 @@ export type MlTypesDeploymentAllocationState =
   | "started"
   | "starting"
   | "fully_allocated";
-export const MlTypesDeploymentAllocationState = /*@__PURE__*/ S.String;
+export const MlTypesDeploymentAllocationState = S.String;
 
 export interface MlTypesTrainedModelDeploymentAllocationStatus {
   /** The current number of nodes where the model is allocated. */
@@ -71144,7 +71078,7 @@ export type MlTypesRoutingState =
   | "starting"
   | "stopped"
   | "stopping";
-export const MlTypesRoutingState = /*@__PURE__*/ S.String;
+export const MlTypesRoutingState = S.String;
 
 export interface MlTypesTrainedModelAssignmentRoutingStateAndReason {
   /** The reason for the current state. It is usually populated only when the `routing_state` is `failed`. */
@@ -71232,14 +71166,14 @@ export const MlTypesTrainedModelDeploymentStatsNodesList =
   ) as any as S.Schema<MlTypesTrainedModelDeploymentStatsNodesList>;
 
 export type MlTypesTrainingPriority = "normal" | "low";
-export const MlTypesTrainingPriority = /*@__PURE__*/ S.String;
+export const MlTypesTrainingPriority = S.String;
 
 export type MlTypesDeploymentAssignmentState =
   | "started"
   | "starting"
   | "stopping"
   | "failed";
-export const MlTypesDeploymentAssignmentState = /*@__PURE__*/ S.String;
+export const MlTypesDeploymentAssignmentState = S.String;
 
 export interface MlTypesTrainedModelDeploymentStats {
   adaptive_allocations?: MlTypesAdaptiveAllocationsSettings;
@@ -71727,7 +71661,7 @@ export type MlTypesPredictedValue =
   | TypesScalarValue
   | MlTypesPredictedValueCase1List;
 export const MlTypesPredictedValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MlTypesPredictedValue>;
+  S.Unknown as any as S.Schema<MlTypesPredictedValue>;
 
 export type MlTypesInferenceResponseResultPredictedValueCase1List =
   Array<MlTypesPredictedValue>;
@@ -71741,7 +71675,7 @@ export type MlTypesInferenceResponseResultPredictedValue =
   | MlTypesPredictedValue
   | MlTypesInferenceResponseResultPredictedValueCase1List;
 export const MlTypesInferenceResponseResultPredictedValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MlTypesInferenceResponseResultPredictedValue>;
+  S.Unknown as any as S.Schema<MlTypesInferenceResponseResultPredictedValue>;
 
 export interface MlTypesTopClassEntry {
   class_name: string;
@@ -71896,7 +71830,7 @@ export const MlInfoDatafeeds = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MlInfoDatafeeds>;
 
 export type MlInfoModelPlatformVariant = "linux-x86_64" | "platform_agnostic";
-export const MlInfoModelPlatformVariant = /*@__PURE__*/ S.String;
+export const MlInfoModelPlatformVariant = S.String;
 
 export interface MlInfoDefaults {
   anomaly_detectors: MlInfoAnomalyDetectors;
@@ -72644,7 +72578,7 @@ export const TypesHttpHeadersValueCase1List = /*@__PURE__*/ S.Array(
 
 export type TypesHttpHeadersValue = string | TypesHttpHeadersValueCase1List;
 export const TypesHttpHeadersValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesHttpHeadersValue>;
+  S.Unknown as any as S.Schema<TypesHttpHeadersValue>;
 
 export type TypesHttpHeaders = {
   [key: string]: TypesHttpHeadersValue | undefined;
@@ -73792,7 +73726,7 @@ export type MlTypesTrainedModelAssignmentAdaptiveAllocations =
   | MlTypesAdaptiveAllocationsSettings
   | string;
 export const MlTypesTrainedModelAssignmentAdaptiveAllocations =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MlTypesTrainedModelAssignmentAdaptiveAllocations>;
+  S.Unknown as any as S.Schema<MlTypesTrainedModelAssignmentAdaptiveAllocations>;
 
 export interface MlTypesTrainedModelAssignmentRoutingTable {
   /** The reason for the current state. It is usually populated only when the `routing_state` is `failed`. */
@@ -74891,7 +74825,7 @@ export type GlobalMsearchTemplateRequestItem =
   | GlobalMsearchMultisearchHeader
   | GlobalMsearchTemplateTemplateConfig;
 export const GlobalMsearchTemplateRequestItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalMsearchTemplateRequestItem>;
+  S.Unknown as any as S.Schema<GlobalMsearchTemplateRequestItem>;
 
 export type MsearchTemplateRequestBodyList =
   Array<GlobalMsearchTemplateRequestItem>;
@@ -75577,7 +75511,7 @@ export const NodesGetRepositoriesMeteringInfoResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<NodesGetRepositoriesMeteringInfoResponse>;
 
 export type TypesThreadType = "cpu" | "wait" | "block" | "gpu" | "mem";
-export const TypesThreadType = /*@__PURE__*/ S.String;
+export const TypesThreadType = S.String;
 
 export interface NodesHotThreadsRequest {
   /** If true, known idle threads (e.g. waiting in a socket select, or to get a task from an empty queue) are filtered out. */
@@ -75754,7 +75688,7 @@ export type NodesInfoNodeJvmInfoUsingCompressedOrdinaryObjectPointers =
   | boolean
   | string;
 export const NodesInfoNodeJvmInfoUsingCompressedOrdinaryObjectPointers =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeJvmInfoUsingCompressedOrdinaryObjectPointers>;
+  S.Unknown as any as S.Schema<NodesInfoNodeJvmInfoUsingCompressedOrdinaryObjectPointers>;
 
 export type NodesInfoNodeJvmInfoInputArgumentsList = Array<string>;
 export const NodesInfoNodeJvmInfoInputArgumentsList = /*@__PURE__*/ S.Array(
@@ -75915,11 +75849,11 @@ export type NodesInfoNodeInfoSettingsClusterInitialMasterNodes =
   | NodesInfoNodeInfoSettingsClusterInitialMasterNodesCase0List
   | string;
 export const NodesInfoNodeInfoSettingsClusterInitialMasterNodes =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsClusterInitialMasterNodes>;
+  S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsClusterInitialMasterNodes>;
 
 export type NodesInfoDeprecationIndexingEnabled = boolean | string;
 export const NodesInfoDeprecationIndexingEnabled =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoDeprecationIndexingEnabled>;
+  S.Unknown as any as S.Schema<NodesInfoDeprecationIndexingEnabled>;
 
 export interface NodesInfoDeprecationIndexing {
   enabled: NodesInfoDeprecationIndexingEnabled;
@@ -75990,7 +75924,7 @@ export type NodesInfoNodeInfoPathData =
   | string
   | NodesInfoNodeInfoPathDataCase1List;
 export const NodesInfoNodeInfoPathData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeInfoPathData>;
+  S.Unknown as any as S.Schema<NodesInfoNodeInfoPathData>;
 
 export interface NodesInfoNodeInfoPath {
   logs?: string;
@@ -76041,7 +75975,7 @@ export type NodesInfoNodeInfoDiscoverSeedHosts =
   | NodesInfoNodeInfoDiscoverSeedHostsCase0List
   | string;
 export const NodesInfoNodeInfoDiscoverSeedHosts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeInfoDiscoverSeedHosts>;
+  S.Unknown as any as S.Schema<NodesInfoNodeInfoDiscoverSeedHosts>;
 
 export type NodesInfoNodeInfoDiscoverSeedProvidersCase0List = Array<string>;
 export const NodesInfoNodeInfoDiscoverSeedProvidersCase0List =
@@ -76053,7 +75987,7 @@ export type NodesInfoNodeInfoDiscoverSeedProviders =
   | NodesInfoNodeInfoDiscoverSeedProvidersCase0List
   | string;
 export const NodesInfoNodeInfoDiscoverSeedProviders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeInfoDiscoverSeedProviders>;
+  S.Unknown as any as S.Schema<NodesInfoNodeInfoDiscoverSeedProviders>;
 
 export interface NodesInfoNodeInfoDiscover {
   seed_hosts?: NodesInfoNodeInfoDiscoverSeedHosts;
@@ -76097,11 +76031,11 @@ export const NodesInfoNodeInfoSettingsHttpType = /*@__PURE__*/ S.suspend(() =>
 
 export type NodesInfoNodeInfoSettingsHttpCompression = boolean | string;
 export const NodesInfoNodeInfoSettingsHttpCompression =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsHttpCompression>;
+  S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsHttpCompression>;
 
 export type NodesInfoNodeInfoSettingsHttpPort = number | string;
 export const NodesInfoNodeInfoSettingsHttpPort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsHttpPort>;
+  S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsHttpPort>;
 
 export interface NodesInfoNodeInfoSettingsHttp {
   type: NodesInfoNodeInfoSettingsHttpType;
@@ -76173,7 +76107,7 @@ export type NodesInfoNodeInfoSettingsNetworkHost =
   | string
   | NodesInfoNodeInfoSettingsNetworkHostCase1List;
 export const NodesInfoNodeInfoSettingsNetworkHost =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsNetworkHost>;
+  S.Unknown as any as S.Schema<NodesInfoNodeInfoSettingsNetworkHost>;
 
 export interface NodesInfoNodeInfoSettingsNetwork {
   host?: NodesInfoNodeInfoSettingsNetworkHost;
@@ -77000,7 +76934,7 @@ export const NodesReloadSecureSettings1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NodesReloadSecureSettings1Response>;
 
 export type TypesNodeStatsLevel = "node" | "indices" | "shards";
-export const TypesNodeStatsLevel = /*@__PURE__*/ S.String;
+export const TypesNodeStatsLevel = S.String;
 
 export type NodesStatsRequestTypesList = Array<string>;
 export const NodesStatsRequestTypesList = /*@__PURE__*/ S.Array(
@@ -77332,7 +77266,7 @@ export const NodesTypesStatsIpCase1List = /*@__PURE__*/ S.Array(
 /** IP address and port for the node. */
 export type NodesTypesStatsIp = string | NodesTypesStatsIpCase1List;
 export const NodesTypesStatsIp =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesTypesStatsIp>;
+  S.Unknown as any as S.Schema<NodesTypesStatsIp>;
 
 export interface NodesTypesNodeBufferPool {
   /** Number of buffer pools. */
@@ -77846,7 +77780,7 @@ export type NodesTypesStatsScriptCacheValue =
   | NodesTypesScriptCache
   | NodesTypesStatsScriptCacheValueCase1List;
 export const NodesTypesStatsScriptCacheValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NodesTypesStatsScriptCacheValue>;
+  S.Unknown as any as S.Schema<NodesTypesStatsScriptCacheValue>;
 
 export type NodesTypesStatsScriptCacheMap = {
   [key: string]: NodesTypesStatsScriptCacheValue | undefined;
@@ -79354,7 +79288,7 @@ export type PutSynonymRequestSynonymsSet =
   | SynonymsTypesSynonymRule
   | PutSynonymRequestSynonymsSetCase1List;
 export const PutSynonymRequestSynonymsSet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PutSynonymRequestSynonymsSet>;
+  S.Unknown as any as S.Schema<PutSynonymRequestSynonymsSet>;
 
 export interface PutSynonymRequest {
   /** The ID of the synonyms set to be created or updated. */
@@ -79524,7 +79458,7 @@ export const QueryRulesGetRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QueryRulesGetRuleRequest>;
 
 export type QueryRulesTypesQueryRuleType = "pinned" | "exclude";
-export const QueryRulesTypesQueryRuleType = /*@__PURE__*/ S.String;
+export const QueryRulesTypesQueryRuleType = S.String;
 
 export type QueryRulesTypesQueryRuleCriteriaType =
   | "global"
@@ -79538,7 +79472,7 @@ export type QueryRulesTypesQueryRuleCriteriaType =
   | "gt"
   | "gte"
   | "always";
-export const QueryRulesTypesQueryRuleCriteriaType = /*@__PURE__*/ S.String;
+export const QueryRulesTypesQueryRuleCriteriaType = S.String;
 
 /** The values to match against the `metadata` field. Only one value must match for the criteria to be met. It is required for all criteria types except `always`. */
 export type QueryRulesTypesQueryRuleCriteriaValuesList = Array<unknown>;
@@ -79575,7 +79509,7 @@ export type QueryRulesTypesQueryRuleCriteria2 =
   | QueryRulesTypesQueryRuleCriteria
   | QueryRulesTypesQueryRuleCriteriaCase1List;
 export const QueryRulesTypesQueryRuleCriteria2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryRulesTypesQueryRuleCriteria2>;
+  S.Unknown as any as S.Schema<QueryRulesTypesQueryRuleCriteria2>;
 
 /** The unique document IDs of the documents to apply the rule to. Only one of `ids` or `docs` may be specified and at least one must be specified. */
 export type QueryRulesTypesQueryRuleActionsIdsList = Array<string>;
@@ -79752,7 +79686,7 @@ export type QueryRulesPutRuleRequestCriteria =
   | QueryRulesTypesQueryRuleCriteria
   | QueryRulesPutRuleRequestCriteriaCase1List;
 export const QueryRulesPutRuleRequestCriteria =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryRulesPutRuleRequestCriteria>;
+  S.Unknown as any as S.Schema<QueryRulesPutRuleRequestCriteria>;
 
 export interface QueryRulesPutRuleRequest {
   /** The unique identifier of the query ruleset containing the rule to be created or updated. */
@@ -79807,7 +79741,7 @@ export type QueryRulesPutRulesetRequestRules =
   | QueryRulesTypesQueryRule
   | QueryRulesPutRulesetRequestRulesCase1List;
 export const QueryRulesPutRulesetRequestRules =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryRulesPutRulesetRequestRules>;
+  S.Unknown as any as S.Schema<QueryRulesPutRulesetRequestRules>;
 
 export interface QueryRulesPutRulesetRequest {
   /** The unique identifier of the query ruleset to be created or updated. */
@@ -80143,7 +80077,7 @@ export const GlobalRankEvalRankEvalHit = /*@__PURE__*/ S.suspend(() =>
 
 export type GlobalRankEvalRankEvalHitItemRating = number | string;
 export const GlobalRankEvalRankEvalHitItemRating =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalRankEvalRankEvalHitItemRating>;
+  S.Unknown as any as S.Schema<GlobalRankEvalRankEvalHitItemRating>;
 
 export interface GlobalRankEvalRankEvalHitItem {
   hit: GlobalRankEvalRankEvalHit;
@@ -80924,7 +80858,7 @@ export type GlobalReindexRethrottleReindexTasks =
   | GlobalReindexRethrottleReindexTasksCase0List
   | GlobalReindexRethrottleReindexTasksCase1Map;
 export const GlobalReindexRethrottleReindexTasks =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GlobalReindexRethrottleReindexTasks>;
+  S.Unknown as any as S.Schema<GlobalReindexRethrottleReindexTasks>;
 
 export interface ReindexRethrottleResponse {
   /** Node-level failures encountered while applying the rethrottle request. Will return a `failed_node_exception` wrapping a `no_such_node_exception`, if a node handling the task either never existed, or has left the cluster, and one of the following is true: 1. The task has completed. 2. The task cannot be found. Note: Rethrottle handles relocations, so it should succeed if the task can be found and has not completed. */
@@ -81508,7 +81442,7 @@ export const SearchRequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type SearchRequestStats = SearchRequestStatsCase0List | string;
 export const SearchRequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRequestStats>;
+  S.Unknown as any as S.Schema<SearchRequestStats>;
 
 export type SearchRequestSortCase1List = Array<string>;
 export const SearchRequestSortCase1List = /*@__PURE__*/ S.Array(
@@ -81517,7 +81451,7 @@ export const SearchRequestSortCase1List = /*@__PURE__*/ S.Array(
 
 export type SearchRequestSort = string | SearchRequestSortCase1List;
 export const SearchRequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRequestSort>;
+  S.Unknown as any as S.Schema<SearchRequestSort>;
 
 /** Defines the aggregations that are run as part of the search request. */
 export type SearchRequestAggregationsMap = {
@@ -81557,8 +81491,7 @@ export const SearchRequestKnnCase1List = /*@__PURE__*/ S.Array(
 
 /** The approximate kNN search to run. */
 export type SearchRequestKnn = TypesKnnSearch | SearchRequestKnnCase1List;
-export const SearchRequestKnn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRequestKnn>;
+export const SearchRequestKnn = S.Unknown as any as S.Schema<SearchRequestKnn>;
 
 export type SearchRequestRescoreCase1List = Array<GlobalSearchTypesRescore>;
 export const SearchRequestRescoreCase1List = /*@__PURE__*/ S.Array(
@@ -81570,7 +81503,7 @@ export type SearchRequestRescore =
   | GlobalSearchTypesRescore
   | SearchRequestRescoreCase1List;
 export const SearchRequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchRequestRescore>;
+  S.Unknown as any as S.Schema<SearchRequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type SearchRequestScriptFieldsMap = {
@@ -81793,7 +81726,7 @@ export const Search1RequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type Search1RequestStats = Search1RequestStatsCase0List | string;
 export const Search1RequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search1RequestStats>;
+  S.Unknown as any as S.Schema<Search1RequestStats>;
 
 export type Search1RequestSortCase1List = Array<string>;
 export const Search1RequestSortCase1List = /*@__PURE__*/ S.Array(
@@ -81802,7 +81735,7 @@ export const Search1RequestSortCase1List = /*@__PURE__*/ S.Array(
 
 export type Search1RequestSort = string | Search1RequestSortCase1List;
 export const Search1RequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search1RequestSort>;
+  S.Unknown as any as S.Schema<Search1RequestSort>;
 
 /** Defines the aggregations that are run as part of the search request. */
 export type Search1RequestAggregationsMap = {
@@ -81843,7 +81776,7 @@ export const Search1RequestKnnCase1List = /*@__PURE__*/ S.Array(
 /** The approximate kNN search to run. */
 export type Search1RequestKnn = TypesKnnSearch | Search1RequestKnnCase1List;
 export const Search1RequestKnn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search1RequestKnn>;
+  S.Unknown as any as S.Schema<Search1RequestKnn>;
 
 export type Search1RequestRescoreCase1List = Array<GlobalSearchTypesRescore>;
 export const Search1RequestRescoreCase1List = /*@__PURE__*/ S.Array(
@@ -81855,7 +81788,7 @@ export type Search1RequestRescore =
   | GlobalSearchTypesRescore
   | Search1RequestRescoreCase1List;
 export const Search1RequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search1RequestRescore>;
+  S.Unknown as any as S.Schema<Search1RequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type Search1RequestScriptFieldsMap = {
@@ -82078,7 +82011,7 @@ export const Search2RequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type Search2RequestStats = Search2RequestStatsCase0List | string;
 export const Search2RequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search2RequestStats>;
+  S.Unknown as any as S.Schema<Search2RequestStats>;
 
 export type Search2RequestSortCase1List = Array<string>;
 export const Search2RequestSortCase1List = /*@__PURE__*/ S.Array(
@@ -82087,7 +82020,7 @@ export const Search2RequestSortCase1List = /*@__PURE__*/ S.Array(
 
 export type Search2RequestSort = string | Search2RequestSortCase1List;
 export const Search2RequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search2RequestSort>;
+  S.Unknown as any as S.Schema<Search2RequestSort>;
 
 /** Defines the aggregations that are run as part of the search request. */
 export type Search2RequestAggregationsMap = {
@@ -82128,7 +82061,7 @@ export const Search2RequestKnnCase1List = /*@__PURE__*/ S.Array(
 /** The approximate kNN search to run. */
 export type Search2RequestKnn = TypesKnnSearch | Search2RequestKnnCase1List;
 export const Search2RequestKnn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search2RequestKnn>;
+  S.Unknown as any as S.Schema<Search2RequestKnn>;
 
 export type Search2RequestRescoreCase1List = Array<GlobalSearchTypesRescore>;
 export const Search2RequestRescoreCase1List = /*@__PURE__*/ S.Array(
@@ -82140,7 +82073,7 @@ export type Search2RequestRescore =
   | GlobalSearchTypesRescore
   | Search2RequestRescoreCase1List;
 export const Search2RequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search2RequestRescore>;
+  S.Unknown as any as S.Schema<Search2RequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type Search2RequestScriptFieldsMap = {
@@ -82366,7 +82299,7 @@ export const Search3RequestStatsCase0List = /*@__PURE__*/ S.Array(
 
 export type Search3RequestStats = Search3RequestStatsCase0List | string;
 export const Search3RequestStats =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search3RequestStats>;
+  S.Unknown as any as S.Schema<Search3RequestStats>;
 
 export type Search3RequestSortCase1List = Array<string>;
 export const Search3RequestSortCase1List = /*@__PURE__*/ S.Array(
@@ -82375,7 +82308,7 @@ export const Search3RequestSortCase1List = /*@__PURE__*/ S.Array(
 
 export type Search3RequestSort = string | Search3RequestSortCase1List;
 export const Search3RequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search3RequestSort>;
+  S.Unknown as any as S.Schema<Search3RequestSort>;
 
 /** Defines the aggregations that are run as part of the search request. */
 export type Search3RequestAggregationsMap = {
@@ -82416,7 +82349,7 @@ export const Search3RequestKnnCase1List = /*@__PURE__*/ S.Array(
 /** The approximate kNN search to run. */
 export type Search3RequestKnn = TypesKnnSearch | Search3RequestKnnCase1List;
 export const Search3RequestKnn =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search3RequestKnn>;
+  S.Unknown as any as S.Schema<Search3RequestKnn>;
 
 export type Search3RequestRescoreCase1List = Array<GlobalSearchTypesRescore>;
 export const Search3RequestRescoreCase1List = /*@__PURE__*/ S.Array(
@@ -82428,7 +82361,7 @@ export type Search3RequestRescore =
   | GlobalSearchTypesRescore
   | Search3RequestRescoreCase1List;
 export const Search3RequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<Search3RequestRescore>;
+  S.Unknown as any as S.Schema<Search3RequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type Search3RequestScriptFieldsMap = {
@@ -82828,7 +82761,7 @@ export const SearchableSnapshotsClearCache1Response = /*@__PURE__*/ S.suspend(
 export type SearchableSnapshotsMountStorageOption =
   | "full_copy"
   | "shared_cache";
-export const SearchableSnapshotsMountStorageOption = /*@__PURE__*/ S.String;
+export const SearchableSnapshotsMountStorageOption = S.String;
 
 /** The settings that should be added to the index when it is mounted. */
 export type SearchableSnapshotsMountRequestIndexSettingsMap = {
@@ -82923,7 +82856,7 @@ export type SearchableSnapshotsTypesStatsLevel =
   | "cluster"
   | "indices"
   | "shards";
-export const SearchableSnapshotsTypesStatsLevel = /*@__PURE__*/ S.String;
+export const SearchableSnapshotsTypesStatsLevel = S.String;
 
 export interface SearchableSnapshotsStatsRequest {
   /** Return stats aggregated at cluster, index or shard level */
@@ -83300,7 +83233,7 @@ export type SearchEqlRequestFilter =
   | TypesQueryDslQueryContainer
   | SearchEqlRequestFilterCase1List;
 export const SearchEqlRequestFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchEqlRequestFilter>;
+  S.Unknown as any as S.Schema<SearchEqlRequestFilter>;
 
 export type SearchEqlRequestFieldsCase1List =
   Array<TypesQueryDslFieldAndFormat>;
@@ -83313,7 +83246,7 @@ export type SearchEqlRequestFields =
   | TypesQueryDslFieldAndFormat
   | SearchEqlRequestFieldsCase1List;
 export const SearchEqlRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchEqlRequestFields>;
+  S.Unknown as any as S.Schema<SearchEqlRequestFields>;
 
 export interface SearchEqlRequest {
   /** Comma-separated list of index names to scope the operation */
@@ -83399,7 +83332,7 @@ export const SearchFleetRequestSortCase1List = /*@__PURE__*/ S.Array(
 
 export type SearchFleetRequestSort = string | SearchFleetRequestSortCase1List;
 export const SearchFleetRequestSort =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchFleetRequestSort>;
+  S.Unknown as any as S.Schema<SearchFleetRequestSort>;
 
 export type SearchFleetRequestWaitForCheckpointsList = Array<number>;
 export const SearchFleetRequestWaitForCheckpointsList = /*@__PURE__*/ S.Array(
@@ -83446,7 +83379,7 @@ export type SearchFleetRequestRescore =
   | GlobalSearchTypesRescore
   | SearchFleetRequestRescoreCase1List;
 export const SearchFleetRequestRescore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchFleetRequestRescore>;
+  S.Unknown as any as S.Schema<SearchFleetRequestRescore>;
 
 /** Retrieve a script evaluation (based on different fields) for each hit. */
 export type SearchFleetRequestScriptFieldsMap = {
@@ -83681,10 +83614,10 @@ export const SearchFleetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchFleetResponse>;
 
 export type GlobalSearchMvtTypesGridAggregationType = "geotile" | "geohex";
-export const GlobalSearchMvtTypesGridAggregationType = /*@__PURE__*/ S.String;
+export const GlobalSearchMvtTypesGridAggregationType = S.String;
 
 export type GlobalSearchMvtTypesGridType = "grid" | "point" | "centroid";
-export const GlobalSearchMvtTypesGridType = /*@__PURE__*/ S.String;
+export const GlobalSearchMvtTypesGridType = S.String;
 
 /** Sub-aggregations for the geotile_grid. It supports the following aggregation types: - `avg` - `boxplot` - `cardinality` - `extended stats` - `max` - `median absolute deviation` - `min` - `percentile` - `percentile-rank` - `stats` - `sum` - `value count` The aggregation names can't start with `_mvt_`. The `_mvt_` prefix is reserved for internal aggregations. */
 export type SearchMvtRequestAggsMap = {
@@ -84820,7 +84753,7 @@ export const SearchTemplate3Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchTemplate3Response>;
 
 export type SecurityTypesGrantType = "password" | "access_token";
-export const SecurityTypesGrantType = /*@__PURE__*/ S.String;
+export const SecurityTypesGrantType = S.String;
 
 export interface SecurityActivateUserProfileRequest {
   /** The user's Elasticsearch access token or JWT. Both `access` and `id` JWT token types are supported and they depend on the underlying JWT realm configuration. If you specify the `access_token` grant type, this parameter is required. It is not valid with other grant types. */
@@ -85064,13 +84997,13 @@ export type SecurityTypesClusterPrivilegeCase0 =
   | "transport_client"
   | "write_connector_secrets"
   | "write_fleet_secrets";
-export const SecurityTypesClusterPrivilegeCase0 = /*@__PURE__*/ S.String;
+export const SecurityTypesClusterPrivilegeCase0 = S.String;
 
 export type SecurityTypesClusterPrivilege =
   | SecurityTypesClusterPrivilegeCase0
   | string;
 export const SecurityTypesClusterPrivilege =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesClusterPrivilege>;
+  S.Unknown as any as S.Schema<SecurityTypesClusterPrivilege>;
 
 /** A list of cluster privileges. These privileges define the cluster level actions that API keys are able to execute. */
 export type SecurityTypesRoleDescriptorClusterList =
@@ -85103,7 +85036,7 @@ export type SecurityTypesIndicesPrivilegesNames =
   | string
   | SecurityTypesIndicesPrivilegesNamesCase1List;
 export const SecurityTypesIndicesPrivilegesNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesIndicesPrivilegesNames>;
+  S.Unknown as any as S.Schema<SecurityTypesIndicesPrivilegesNames>;
 
 export type SecurityTypesIndexPrivilegeCase0 =
   | "all"
@@ -85132,13 +85065,13 @@ export type SecurityTypesIndexPrivilegeCase0 =
   | "read_view_metadata"
   | "view_index_metadata"
   | "write";
-export const SecurityTypesIndexPrivilegeCase0 = /*@__PURE__*/ S.String;
+export const SecurityTypesIndexPrivilegeCase0 = S.String;
 
 export type SecurityTypesIndexPrivilege =
   | SecurityTypesIndexPrivilegeCase0
   | string;
 export const SecurityTypesIndexPrivilege =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesIndexPrivilege>;
+  S.Unknown as any as S.Schema<SecurityTypesIndexPrivilege>;
 
 /** The index level privileges that owners of the role have on the specified indices. */
 export type SecurityTypesIndicesPrivilegesPrivilegesList =
@@ -85152,7 +85085,7 @@ export type SecurityTypesRoleTemplateInlineQuery =
   | string
   | TypesQueryDslQueryContainer;
 export const SecurityTypesRoleTemplateInlineQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesRoleTemplateInlineQuery>;
+  S.Unknown as any as S.Schema<SecurityTypesRoleTemplateInlineQuery>;
 
 /** Specifies any named parameters that are passed into the script as variables. Use parameters instead of hard-coded values to decrease compile time. */
 export type SecurityTypesRoleTemplateScriptParamsMap = {
@@ -85211,7 +85144,7 @@ export type SecurityTypesIndicesPrivilegesQuery =
   | TypesQueryDslQueryContainer
   | SecurityTypesRoleTemplateQuery;
 export const SecurityTypesIndicesPrivilegesQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesIndicesPrivilegesQuery>;
+  S.Unknown as any as S.Schema<SecurityTypesIndicesPrivilegesQuery>;
 
 export interface SecurityTypesIndicesPrivileges {
   /** The document fields that the owners of the role have read access to. */
@@ -85255,7 +85188,7 @@ export type SecurityTypesRemoteIndicesPrivilegesNames =
   | string
   | SecurityTypesRemoteIndicesPrivilegesNamesCase1List;
 export const SecurityTypesRemoteIndicesPrivilegesNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesRemoteIndicesPrivilegesNames>;
+  S.Unknown as any as S.Schema<SecurityTypesRemoteIndicesPrivilegesNames>;
 
 /** The index level privileges that owners of the role have on the specified indices. */
 export type SecurityTypesRemoteIndicesPrivilegesPrivilegesList =
@@ -85305,7 +85238,7 @@ export const SecurityTypesRoleDescriptorRemoteIndicesList =
 export type SecurityTypesRemoteClusterPrivilege =
   | "monitor_enrich"
   | "monitor_stats";
-export const SecurityTypesRemoteClusterPrivilege = /*@__PURE__*/ S.String;
+export const SecurityTypesRemoteClusterPrivilege = S.String;
 
 /** The cluster level privileges that owners of the role have on the remote cluster. */
 export type SecurityTypesRemoteClusterPrivilegesPrivilegesList = Array<
@@ -85382,13 +85315,13 @@ export type SecurityTypesDataSourcePrivilegeCase0 =
   | "read_metadata"
   | "read"
   | "manage";
-export const SecurityTypesDataSourcePrivilegeCase0 = /*@__PURE__*/ S.String;
+export const SecurityTypesDataSourcePrivilegeCase0 = S.String;
 
 export type SecurityTypesDataSourcePrivilege =
   | SecurityTypesDataSourcePrivilegeCase0
   | string;
 export const SecurityTypesDataSourcePrivilege =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesDataSourcePrivilege>;
+  S.Unknown as any as S.Schema<SecurityTypesDataSourcePrivilege>;
 
 /** The data source privileges that owners of the role have for the specified data sources. */
 export type SecurityTypesDataSourcePrivilegesPrivilegesList =
@@ -85445,7 +85378,7 @@ export type SecurityTypesRoleDescriptorGlobal =
   | SecurityTypesRoleDescriptorGlobalCase0List
   | SecurityTypesGlobalPrivilege;
 export const SecurityTypesRoleDescriptorGlobal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesRoleDescriptorGlobal>;
+  S.Unknown as any as S.Schema<SecurityTypesRoleDescriptorGlobal>;
 
 /** A list of strings, where each element is the name of an application privilege or action. */
 export type SecurityTypesApplicationPrivilegesPrivilegesList = Array<string>;
@@ -85494,13 +85427,13 @@ export const SecurityTypesRoleDescriptorRunAsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SecurityTypesRoleDescriptorRunAsList>;
 
 export type SecurityTypesRestrictionWorkflowCase0 = "search_application_query";
-export const SecurityTypesRestrictionWorkflowCase0 = /*@__PURE__*/ S.String;
+export const SecurityTypesRestrictionWorkflowCase0 = S.String;
 
 export type SecurityTypesRestrictionWorkflow =
   | SecurityTypesRestrictionWorkflowCase0
   | string;
 export const SecurityTypesRestrictionWorkflow =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesRestrictionWorkflow>;
+  S.Unknown as any as S.Schema<SecurityTypesRestrictionWorkflow>;
 
 /** A list of workflows to which the API key is restricted. NOTE: In order to use a role restriction, an API key must be created with a single role descriptor. */
 export type SecurityTypesRestrictionWorkflowsList =
@@ -85647,7 +85580,7 @@ export type SecurityBulkUpdateApiKeysRequestIds =
   | string
   | SecurityBulkUpdateApiKeysRequestIdsCase1List;
 export const SecurityBulkUpdateApiKeysRequestIds =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityBulkUpdateApiKeysRequestIds>;
+  S.Unknown as any as S.Schema<SecurityBulkUpdateApiKeysRequestIds>;
 
 /** The role descriptors to assign to the API keys. An API key's effective permissions are an intersection of its assigned privileges and the point-in-time snapshot of permissions of the owner user. You can assign new privileges by specifying them in this parameter. To remove assigned privileges, supply the `role_descriptors` parameter as an empty object `{}`. If an API key has no assigned privileges, it inherits the owner user's full permissions. The snapshot of the owner's permissions is always updated, whether you supply the `role_descriptors` parameter. The structure of a role descriptor is the same as the request for the create API keys API. */
 export type SecurityBulkUpdateApiKeysRequestRoleDescriptorsMap = {
@@ -86296,7 +86229,7 @@ export type SecurityTypesReplicationAccessNames =
   | string
   | SecurityTypesReplicationAccessNamesCase1List;
 export const SecurityTypesReplicationAccessNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesReplicationAccessNames>;
+  S.Unknown as any as S.Schema<SecurityTypesReplicationAccessNames>;
 
 export interface SecurityTypesReplicationAccess {
   /** A list of indices (or index name patterns) to which the permissions in this entry apply. */
@@ -86330,7 +86263,7 @@ export type SecurityTypesSearchAccessNames =
   | string
   | SecurityTypesSearchAccessNamesCase1List;
 export const SecurityTypesSearchAccessNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesSearchAccessNames>;
+  S.Unknown as any as S.Schema<SecurityTypesSearchAccessNames>;
 
 export interface SecurityTypesSearchAccess {
   /** The document fields that the owners of the role have read access to. */
@@ -87171,7 +87104,7 @@ export const SecurityGetApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityGetApiKeyRequest>;
 
 export type SecurityTypesApiKeyType = "rest" | "cross_cluster";
-export const SecurityTypesApiKeyType = /*@__PURE__*/ S.String;
+export const SecurityTypesApiKeyType = S.String;
 
 /** The role descriptors assigned to this API key when it was created or last updated. An empty role descriptor means the API key inherits the owner user’s permissions. */
 export type SecurityTypesApiKeyRoleDescriptorsMap = {
@@ -87500,7 +87433,7 @@ export type SecurityGetRoleIndicesPrivilegesReadNames =
   | string
   | SecurityGetRoleIndicesPrivilegesReadNamesCase1List;
 export const SecurityGetRoleIndicesPrivilegesReadNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityGetRoleIndicesPrivilegesReadNames>;
+  S.Unknown as any as S.Schema<SecurityGetRoleIndicesPrivilegesReadNames>;
 
 /** The index level privileges that owners of the role have on the specified indices. */
 export type SecurityGetRoleIndicesPrivilegesReadPrivilegesList =
@@ -87577,7 +87510,7 @@ export const SecurityGetRoleRoleApplicationsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SecurityGetRoleRoleApplicationsList>;
 
 export type SecurityTypesTemplateFormat = "string" | "json";
-export const SecurityTypesTemplateFormat = /*@__PURE__*/ S.String;
+export const SecurityTypesTemplateFormat = S.String;
 
 export interface SecurityTypesRoleTemplate {
   format?: SecurityTypesTemplateFormat | (string & {});
@@ -87749,7 +87682,7 @@ export type SecurityTypesRoleMappingRuleFieldValue =
   | TypesFieldValue
   | SecurityTypesRoleMappingRuleFieldValueCase1List;
 export const SecurityTypesRoleMappingRuleFieldValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesRoleMappingRuleFieldValue>;
+  S.Unknown as any as S.Schema<SecurityTypesRoleMappingRuleFieldValue>;
 
 export type SecurityTypesRoleMappingRuleFieldMap = {
   [key: string]: SecurityTypesRoleMappingRuleFieldValue | undefined;
@@ -87899,7 +87832,7 @@ export type SecurityTypesRoleDescriptorReadGlobal =
   | SecurityTypesRoleDescriptorReadGlobalCase0List
   | SecurityTypesGlobalPrivilege;
 export const SecurityTypesRoleDescriptorReadGlobal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesRoleDescriptorReadGlobal>;
+  S.Unknown as any as S.Schema<SecurityTypesRoleDescriptorReadGlobal>;
 
 /** A list of application privilege entries */
 export type SecurityTypesRoleDescriptorReadApplicationsList =
@@ -88302,7 +88235,7 @@ export type SecurityGetTokenAccessTokenGrantType =
   | "client_credentials"
   | "_kerberos"
   | "refresh_token";
-export const SecurityGetTokenAccessTokenGrantType = /*@__PURE__*/ S.String;
+export const SecurityGetTokenAccessTokenGrantType = S.String;
 
 export interface SecurityGetTokenRequest {
   /** The type of grant. Supported grant types are: `password`, `_kerberos`, `client_credentials`, and `refresh_token`. */
@@ -88551,7 +88484,7 @@ export type SecurityTypesUserIndicesPrivilegesNames =
   | string
   | SecurityTypesUserIndicesPrivilegesNamesCase1List;
 export const SecurityTypesUserIndicesPrivilegesNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesUserIndicesPrivilegesNames>;
+  S.Unknown as any as S.Schema<SecurityTypesUserIndicesPrivilegesNames>;
 
 /** The index level privileges that owners of the role have on the specified indices. */
 export type SecurityTypesUserIndicesPrivilegesPrivilegesList =
@@ -88629,7 +88562,7 @@ export type SecurityTypesRemoteUserIndicesPrivilegesNames =
   | string
   | SecurityTypesRemoteUserIndicesPrivilegesNamesCase1List;
 export const SecurityTypesRemoteUserIndicesPrivilegesNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityTypesRemoteUserIndicesPrivilegesNames>;
+  S.Unknown as any as S.Schema<SecurityTypesRemoteUserIndicesPrivilegesNames>;
 
 /** The index level privileges that owners of the role have on the specified indices. */
 export type SecurityTypesRemoteUserIndicesPrivilegesPrivilegesList =
@@ -88724,7 +88657,7 @@ export type SecurityGetUserProfileRequestData =
   | string
   | SecurityGetUserProfileRequestDataCase1List;
 export const SecurityGetUserProfileRequestData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityGetUserProfileRequestData>;
+  S.Unknown as any as S.Schema<SecurityGetUserProfileRequestData>;
 
 export interface SecurityGetUserProfileRequest {
   /** A unique identifier for the user profile. */
@@ -88859,7 +88792,7 @@ export type SecurityGrantApiKeyGrantApiKeyRoleDescriptors =
   | SecurityGrantApiKeyGrantApiKeyRoleDescriptorsCase0Map
   | SecurityGrantApiKeyGrantApiKeyRoleDescriptorsCase1List;
 export const SecurityGrantApiKeyGrantApiKeyRoleDescriptors =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityGrantApiKeyGrantApiKeyRoleDescriptors>;
+  S.Unknown as any as S.Schema<SecurityGrantApiKeyGrantApiKeyRoleDescriptors>;
 
 export interface SecurityGrantApiKeyGrantApiKey {
   name: string;
@@ -88882,7 +88815,7 @@ export const SecurityGrantApiKeyGrantApiKey = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityGrantApiKeyGrantApiKey>;
 
 export type SecurityGrantApiKeyApiKeyGrantType = "access_token" | "password";
-export const SecurityGrantApiKeyApiKeyGrantType = /*@__PURE__*/ S.String;
+export const SecurityGrantApiKeyApiKeyGrantType = S.String;
 
 export interface SecurityGrantApiKeyRequest {
   /** If 'true', Elasticsearch refreshes the affected shards to make this operation visible to search. If 'wait_for', it waits for a refresh to make this operation visible to search. If 'false', nothing is done with refreshes. */
@@ -90420,7 +90353,7 @@ export type TypesAggregationsBucketsApiKeyQueryContainer =
   | TypesAggregationsBucketsApiKeyQueryContainerCase0Map
   | TypesAggregationsBucketsApiKeyQueryContainerCase1List;
 export const TypesAggregationsBucketsApiKeyQueryContainer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TypesAggregationsBucketsApiKeyQueryContainer>;
+  S.Unknown as any as S.Schema<TypesAggregationsBucketsApiKeyQueryContainer>;
 
 export interface SecurityQueryApiKeysApiKeyFiltersAggregation {
   /** Collection of queries from which to build buckets. */
@@ -90557,7 +90490,7 @@ export type SecurityQueryApiKeysApiKeyAggregate =
   | TypesAggregationsRangeAggregate
   | TypesAggregationsCompositeAggregate;
 export const SecurityQueryApiKeysApiKeyAggregate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityQueryApiKeysApiKeyAggregate>;
+  S.Unknown as any as S.Schema<SecurityQueryApiKeysApiKeyAggregate>;
 
 /** The aggregations result, if requested. */
 export type SecurityQueryApiKeysResponseAggregationsMap = {
@@ -90833,7 +90766,7 @@ export type SecurityQueryRoleQueryRoleGlobal =
   | SecurityQueryRoleQueryRoleGlobalCase0List
   | SecurityTypesGlobalPrivilege;
 export const SecurityQueryRoleQueryRoleGlobal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecurityQueryRoleQueryRoleGlobal>;
+  S.Unknown as any as S.Schema<SecurityQueryRoleQueryRoleGlobal>;
 
 /** A list of application privilege entries */
 export type SecurityQueryRoleQueryRoleApplicationsList =
@@ -91287,7 +91220,7 @@ export type SecuritySuggestUserProfilesRequestData =
   | string
   | SecuritySuggestUserProfilesRequestDataCase1List;
 export const SecuritySuggestUserProfilesRequestData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecuritySuggestUserProfilesRequestData>;
+  S.Unknown as any as S.Schema<SecuritySuggestUserProfilesRequestData>;
 
 /** A list of profile UIDs to match against. */
 export type SecuritySuggestUserProfilesHintUidsList = Array<string>;
@@ -91305,7 +91238,7 @@ export type SecuritySuggestUserProfilesHintLabelsValue =
   | string
   | SecuritySuggestUserProfilesHintLabelsValueCase1List;
 export const SecuritySuggestUserProfilesHintLabelsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecuritySuggestUserProfilesHintLabelsValue>;
+  S.Unknown as any as S.Schema<SecuritySuggestUserProfilesHintLabelsValue>;
 
 /** A single key-value pair to match against the labels section of a profile. A profile is considered matching if it matches at least one of the strings. */
 export type SecuritySuggestUserProfilesHintLabelsMap = {
@@ -91439,7 +91372,7 @@ export type SecuritySuggestUserProfiles1RequestData =
   | string
   | SecuritySuggestUserProfiles1RequestDataCase1List;
 export const SecuritySuggestUserProfiles1RequestData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SecuritySuggestUserProfiles1RequestData>;
+  S.Unknown as any as S.Schema<SecuritySuggestUserProfiles1RequestData>;
 
 export interface SecuritySuggestUserProfiles1Request {
   /** A comma-separated list of filters for the `data` field of the profile document. To return all content use `data=*`. To return a subset of content, use `data=<key>` to retrieve content nested under the specified `<key>`. By default, the API returns no `data` content. It is an error to specify `data` as both the query parameter and the request body field. */
@@ -91726,7 +91659,7 @@ export const SecurityUpdateUserProfileData1Request = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SecurityUpdateUserProfileData1Request>;
 
 export type SimulateIngestMergeType = "index" | "template";
-export const SimulateIngestMergeType = /*@__PURE__*/ S.String;
+export const SimulateIngestMergeType = S.String;
 
 /** Sample documents to test in the pipeline. */
 export type SimulateIngestRequestDocsList = Array<IngestTypesDocument>;
@@ -92849,7 +92782,7 @@ export const SnapshotCreate1Response = /*@__PURE__*/ S.suspend(() =>
 
 /** The Azure repository type. */
 export type SnapshotTypesAzureRepositoryType = "azure";
-export const SnapshotTypesAzureRepositoryType = /*@__PURE__*/ S.String;
+export const SnapshotTypesAzureRepositoryType = S.String;
 
 export interface SnapshotTypesAzureRepositorySettings {
   /** Big files can be broken down into multiple smaller blobs in the blob store during snapshotting. It is not recommended to change this value from its default unless there is an explicit reason for limiting the size of blobs in the repository. Setting a value lower than the default can result in an increased number of API calls to the blob store during snapshot create and restore operations compared to using the default value and thus make both operations slower and more costly. Specify the chunk size as a byte unit, for example: `10MB`, `5KB`, 500B. The default varies by repository type. */
@@ -92913,7 +92846,7 @@ export const SnapshotTypesAzureRepository = /*@__PURE__*/ S.suspend(() =>
 
 /** The Google Cloud Storage repository type. */
 export type SnapshotTypesGcsRepositoryType = "gcs";
-export const SnapshotTypesGcsRepositoryType = /*@__PURE__*/ S.String;
+export const SnapshotTypesGcsRepositoryType = S.String;
 
 export interface SnapshotTypesGcsRepositorySettings {
   /** Big files can be broken down into multiple smaller blobs in the blob store during snapshotting. It is not recommended to change this value from its default unless there is an explicit reason for limiting the size of blobs in the repository. Setting a value lower than the default can result in an increased number of API calls to the blob store during snapshot create and restore operations compared to using the default value and thus make both operations slower and more costly. Specify the chunk size as a byte unit, for example: `10MB`, `5KB`, 500B. The default varies by repository type. */
@@ -92970,7 +92903,7 @@ export const SnapshotTypesGcsRepository = /*@__PURE__*/ S.suspend(() =>
 
 /** The S3 repository type. */
 export type SnapshotTypesS3RepositoryType = "s3";
-export const SnapshotTypesS3RepositoryType = /*@__PURE__*/ S.String;
+export const SnapshotTypesS3RepositoryType = S.String;
 
 export interface SnapshotTypesS3RepositorySettings {
   /** Big files can be broken down into multiple smaller blobs in the blob store during snapshotting. It is not recommended to change this value from its default unless there is an explicit reason for limiting the size of blobs in the repository. Setting a value lower than the default can result in an increased number of API calls to the blob store during snapshot create and restore operations compared to using the default value and thus make both operations slower and more costly. Specify the chunk size as a byte unit, for example: `10MB`, `5KB`, 500B. The default varies by repository type. */
@@ -93063,8 +92996,7 @@ export const SnapshotTypesS3Repository = /*@__PURE__*/ S.suspend(() =>
 
 /** The shared file system repository type. */
 export type SnapshotTypesSharedFileSystemRepositoryType = "fs";
-export const SnapshotTypesSharedFileSystemRepositoryType =
-  /*@__PURE__*/ S.String;
+export const SnapshotTypesSharedFileSystemRepositoryType = S.String;
 
 export interface SnapshotTypesSharedFileSystemRepositorySettings {
   /** Big files can be broken down into multiple smaller blobs in the blob store during snapshotting. It is not recommended to change this value from its default unless there is an explicit reason for limiting the size of blobs in the repository. Setting a value lower than the default can result in an increased number of API calls to the blob store during snapshot create and restore operations compared to using the default value and thus make both operations slower and more costly. Specify the chunk size as a byte unit, for example: `10MB`, `5KB`, 500B. The default varies by repository type. */
@@ -93117,7 +93049,7 @@ export const SnapshotTypesSharedFileSystemRepository = /*@__PURE__*/ S.suspend(
 
 /** The read-only URL repository type. */
 export type SnapshotTypesReadOnlyUrlRepositoryType = "url";
-export const SnapshotTypesReadOnlyUrlRepositoryType = /*@__PURE__*/ S.String;
+export const SnapshotTypesReadOnlyUrlRepositoryType = S.String;
 
 export interface SnapshotTypesReadOnlyUrlRepositorySettings {
   /** Big files can be broken down into multiple smaller blobs in the blob store during snapshotting. It is not recommended to change this value from its default unless there is an explicit reason for limiting the size of blobs in the repository. Setting a value lower than the default can result in an increased number of API calls to the blob store during snapshot create and restore operations compared to using the default value and thus make both operations slower and more costly. Specify the chunk size as a byte unit, for example: `10MB`, `5KB`, 500B. The default varies by repository type. */
@@ -93172,12 +93104,12 @@ export const SnapshotTypesReadOnlyUrlRepository = /*@__PURE__*/ S.suspend(() =>
 
 /** The source-only repository type. */
 export type SnapshotTypesSourceOnlyRepositoryType = "source";
-export const SnapshotTypesSourceOnlyRepositoryType = /*@__PURE__*/ S.String;
+export const SnapshotTypesSourceOnlyRepositoryType = S.String;
 
 export type SnapshotTypesSourceOnlyRepositorySettingsForSharedFileSystemDelegateType =
   "fs";
 export const SnapshotTypesSourceOnlyRepositorySettingsForSharedFileSystemDelegateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SnapshotTypesSourceOnlyRepositorySettingsForSharedFileSystem {
   delegate_type: SnapshotTypesSourceOnlyRepositorySettingsForSharedFileSystemDelegateType;
@@ -93204,7 +93136,7 @@ export const SnapshotTypesSourceOnlyRepositorySettingsForSharedFileSystem =
 export type SnapshotTypesSourceOnlyRepositorySettingsForReadOnlyUrlDelegateType =
   "url";
 export const SnapshotTypesSourceOnlyRepositorySettingsForReadOnlyUrlDelegateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SnapshotTypesSourceOnlyRepositorySettingsForReadOnlyUrl {
   delegate_type: SnapshotTypesSourceOnlyRepositorySettingsForReadOnlyUrlDelegateType;
@@ -93234,7 +93166,7 @@ export const SnapshotTypesSourceOnlyRepositorySettingsForReadOnlyUrl =
 export type SnapshotTypesSourceOnlyRepositorySettingsForAzureDelegateType =
   "azure";
 export const SnapshotTypesSourceOnlyRepositorySettingsForAzureDelegateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SnapshotTypesSourceOnlyRepositorySettingsForAzure {
   delegate_type: SnapshotTypesSourceOnlyRepositorySettingsForAzureDelegateType;
@@ -93272,7 +93204,7 @@ export const SnapshotTypesSourceOnlyRepositorySettingsForAzure =
 
 export type SnapshotTypesSourceOnlyRepositorySettingsForGcsDelegateType = "gcs";
 export const SnapshotTypesSourceOnlyRepositorySettingsForGcsDelegateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SnapshotTypesSourceOnlyRepositorySettingsForGcs {
   delegate_type: SnapshotTypesSourceOnlyRepositorySettingsForGcsDelegateType;
@@ -93304,7 +93236,7 @@ export const SnapshotTypesSourceOnlyRepositorySettingsForGcs =
 
 export type SnapshotTypesSourceOnlyRepositorySettingsForS3DelegateType = "s3";
 export const SnapshotTypesSourceOnlyRepositorySettingsForS3DelegateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SnapshotTypesSourceOnlyRepositorySettingsForS3 {
   delegate_type: SnapshotTypesSourceOnlyRepositorySettingsForS3DelegateType;
@@ -93379,7 +93311,7 @@ export type SnapshotTypesSourceOnlyRepositorySettings =
   | SnapshotTypesSourceOnlyRepositorySettingsForGcs
   | SnapshotTypesSourceOnlyRepositorySettingsForS3;
 export const SnapshotTypesSourceOnlyRepositorySettings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SnapshotTypesSourceOnlyRepositorySettings>;
+  S.Unknown as any as S.Schema<SnapshotTypesSourceOnlyRepositorySettings>;
 
 export interface SnapshotTypesSourceOnlyRepository {
   uuid?: string;
@@ -93406,7 +93338,7 @@ export type SnapshotTypesRepository =
   | SnapshotTypesReadOnlyUrlRepository
   | SnapshotTypesSourceOnlyRepository;
 export const SnapshotTypesRepository =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SnapshotTypesRepository>;
+  S.Unknown as any as S.Schema<SnapshotTypesRepository>;
 
 export interface SnapshotCreateRepositoryRequest {
   /** The name of the snapshot repository to register or update. */
@@ -93954,7 +93886,7 @@ export type SnapshotTypesShardsStatsStage =
   | "FINALIZE"
   | "INIT"
   | "STARTED";
-export const SnapshotTypesShardsStatsStage = /*@__PURE__*/ S.String;
+export const SnapshotTypesShardsStatsStage = S.String;
 
 export interface SnapshotTypesShardsStatsSummaryItem {
   file_count: number;
@@ -94431,7 +94363,7 @@ export type SqlQuerySqlFormat =
   | "yaml"
   | "cbor"
   | "smile";
-export const SqlQuerySqlFormat = /*@__PURE__*/ S.String;
+export const SqlQuerySqlFormat = S.String;
 
 /** The values for parameters in the query. */
 export type SqlQueryRequestParamsList = Array<unknown>;
@@ -95022,7 +94954,7 @@ export type TasksCancel1RequestActions =
   | string
   | TasksCancel1RequestActionsCase1List;
 export const TasksCancel1RequestActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TasksCancel1RequestActions>;
+  S.Unknown as any as S.Schema<TasksCancel1RequestActions>;
 
 export type TasksCancel1RequestNodesList = Array<string>;
 export const TasksCancel1RequestNodesList = /*@__PURE__*/ S.Array(
@@ -95552,17 +95484,17 @@ export type TextStructureFindFieldStructureRequestColumnNames =
   | string
   | TextStructureFindFieldStructureRequestColumnNamesCase1List;
 export const TextStructureFindFieldStructureRequestColumnNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TextStructureFindFieldStructureRequestColumnNames>;
+  S.Unknown as any as S.Schema<TextStructureFindFieldStructureRequestColumnNames>;
 
 export type TextStructureTypesEcsCompatibilityType = "disabled" | "v1";
-export const TextStructureTypesEcsCompatibilityType = /*@__PURE__*/ S.String;
+export const TextStructureTypesEcsCompatibilityType = S.String;
 
 export type TextStructureTypesFormatType =
   | "delimited"
   | "ndjson"
   | "semi_structured_text"
   | "xml";
-export const TextStructureTypesFormatType = /*@__PURE__*/ S.String;
+export const TextStructureTypesFormatType = S.String;
 
 export interface TextStructureFindFieldStructureRequest {
   /** If `format` is set to `delimited`, you can specify the column names in a comma-separated list. If this parameter is not specified, the structure finder uses the column names from the header row of the text. If the text does not have a header row, columns are named "column1", "column2", "column3", for example. */
@@ -95778,7 +95710,7 @@ export type TextStructureFindMessageStructureRequestColumnNames =
   | string
   | TextStructureFindMessageStructureRequestColumnNamesCase1List;
 export const TextStructureFindMessageStructureRequestColumnNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TextStructureFindMessageStructureRequestColumnNames>;
+  S.Unknown as any as S.Schema<TextStructureFindMessageStructureRequestColumnNames>;
 
 /** The list of messages you want to analyze. */
 export type TextStructureFindMessageStructureRequestMessagesList =
@@ -95925,7 +95857,7 @@ export type TextStructureFindMessageStructure1RequestColumnNames =
   | string
   | TextStructureFindMessageStructure1RequestColumnNamesCase1List;
 export const TextStructureFindMessageStructure1RequestColumnNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TextStructureFindMessageStructure1RequestColumnNames>;
+  S.Unknown as any as S.Schema<TextStructureFindMessageStructure1RequestColumnNames>;
 
 /** The list of messages you want to analyze. */
 export type TextStructureFindMessageStructure1RequestMessagesList =
@@ -96072,15 +96004,14 @@ export type TextStructureFindStructureRequestColumnNames =
   | string
   | TextStructureFindStructureRequestColumnNamesCase1List;
 export const TextStructureFindStructureRequestColumnNames =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TextStructureFindStructureRequestColumnNames>;
+  S.Unknown as any as S.Schema<TextStructureFindStructureRequestColumnNames>;
 
 export type TextStructureFindStructureFindStructureFormat =
   | "ndjson"
   | "xml"
   | "delimited"
   | "semi_structured_text";
-export const TextStructureFindStructureFindStructureFormat =
-  /*@__PURE__*/ S.String;
+export const TextStructureFindStructureFindStructureFormat = S.String;
 
 export type TextStructureFindStructureRequestBodyList = Array<unknown>;
 export const TextStructureFindStructureRequestBodyList = /*@__PURE__*/ S.Array(
@@ -97255,7 +97186,7 @@ export type UpdateTransformRequestRetentionPolicy =
   | TransformTypesRetentionPolicyContainer
   | string;
 export const UpdateTransformRequestRetentionPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTransformRequestRetentionPolicy>;
+  S.Unknown as any as S.Schema<UpdateTransformRequestRetentionPolicy>;
 
 export interface UpdateTransformRequest {
   /** Identifier for the transform. */
@@ -97364,7 +97295,7 @@ export type WatcherTypesAcknowledgementOptions =
   | "awaits_successful_execution"
   | "ackable"
   | "acked";
-export const WatcherTypesAcknowledgementOptions = /*@__PURE__*/ S.String;
+export const WatcherTypesAcknowledgementOptions = S.String;
 
 export interface WatcherTypesAcknowledgeState {
   state: WatcherTypesAcknowledgementOptions | (string & {});
@@ -97705,7 +97636,7 @@ export type WatcherTypesActionExecutionMode =
   | "execute"
   | "force_execute"
   | "skip";
-export const WatcherTypesActionExecutionMode = /*@__PURE__*/ S.String;
+export const WatcherTypesActionExecutionMode = S.String;
 
 /** Determines how to handle the watch actions as part of the watch execution. */
 export type WatcherExecuteWatchRequestActionModesMap = {
@@ -97766,7 +97697,7 @@ export type WatcherTypesActionType =
   | "logging"
   | "slack"
   | "pagerduty";
-export const WatcherTypesActionType = /*@__PURE__*/ S.String;
+export const WatcherTypesActionType = S.String;
 
 export interface WatcherTypesArrayCompareCondition {
   path: string;
@@ -98008,7 +97939,7 @@ export type WatcherTypesEmailActionBcc =
   | string
   | WatcherTypesEmailActionBccCase1List;
 export const WatcherTypesEmailActionBcc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailActionBcc>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailActionBcc>;
 
 export interface WatcherTypesEmailBody {
   html?: string;
@@ -98032,7 +97963,7 @@ export type WatcherTypesEmailActionCc =
   | string
   | WatcherTypesEmailActionCcCase1List;
 export const WatcherTypesEmailActionCc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailActionCc>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailActionCc>;
 
 export type WatcherTypesEmailPriority =
   | "lowest"
@@ -98040,7 +97971,7 @@ export type WatcherTypesEmailPriority =
   | "normal"
   | "high"
   | "highest";
-export const WatcherTypesEmailPriority = /*@__PURE__*/ S.String;
+export const WatcherTypesEmailPriority = S.String;
 
 export type WatcherTypesEmailActionReplyToCase1List = Array<string>;
 export const WatcherTypesEmailActionReplyToCase1List = /*@__PURE__*/ S.Array(
@@ -98051,7 +97982,7 @@ export type WatcherTypesEmailActionReplyTo =
   | string
   | WatcherTypesEmailActionReplyToCase1List;
 export const WatcherTypesEmailActionReplyTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailActionReplyTo>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailActionReplyTo>;
 
 export type WatcherTypesEmailActionToCase1List = Array<string>;
 export const WatcherTypesEmailActionToCase1List = /*@__PURE__*/ S.Array(
@@ -98062,7 +97993,7 @@ export type WatcherTypesEmailActionTo =
   | string
   | WatcherTypesEmailActionToCase1List;
 export const WatcherTypesEmailActionTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailActionTo>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailActionTo>;
 
 export interface WatcherTypesHttpInputBasicAuthentication {
   password: string;
@@ -98104,7 +98035,7 @@ export type WatcherTypesHttpInputMethod =
   | "post"
   | "put"
   | "delete";
-export const WatcherTypesHttpInputMethod = /*@__PURE__*/ S.String;
+export const WatcherTypesHttpInputMethod = S.String;
 
 export type WatcherTypesHttpInputRequestDefinitionParamsMap = {
   [key: string]: string | undefined;
@@ -98129,7 +98060,7 @@ export const WatcherTypesHttpInputProxy = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatcherTypesHttpInputProxy>;
 
 export type WatcherTypesConnectionScheme = "http" | "https";
-export const WatcherTypesConnectionScheme = /*@__PURE__*/ S.String;
+export const WatcherTypesConnectionScheme = S.String;
 
 export interface WatcherTypesHttpInputRequestDefinition {
   auth?: WatcherTypesHttpInputAuthentication;
@@ -98203,7 +98134,7 @@ export const WatcherTypesReportingEmailAttachment = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<WatcherTypesReportingEmailAttachment>;
 
 export type WatcherTypesDataAttachmentFormat = "json" | "yaml";
-export const WatcherTypesDataAttachmentFormat = /*@__PURE__*/ S.String;
+export const WatcherTypesDataAttachmentFormat = S.String;
 
 export interface WatcherTypesDataEmailAttachment {
   format?: WatcherTypesDataAttachmentFormat | (string & {});
@@ -98272,7 +98203,7 @@ export const WatcherTypesEmailAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatcherTypesEmailAction>;
 
 export type WatcherTypesPagerDutyContextType = "link" | "image";
-export const WatcherTypesPagerDutyContextType = /*@__PURE__*/ S.String;
+export const WatcherTypesPagerDutyContextType = S.String;
 
 export interface WatcherTypesPagerDutyContext {
   href?: string;
@@ -98299,7 +98230,7 @@ export type WatcherTypesPagerDutyEventType =
   | "trigger"
   | "resolve"
   | "acknowledge";
-export const WatcherTypesPagerDutyEventType = /*@__PURE__*/ S.String;
+export const WatcherTypesPagerDutyEventType = S.String;
 
 export interface WatcherTypesPagerDutyEventProxy {
   host?: string;
@@ -98586,7 +98517,7 @@ export const WatcherTypesHttpInputExtractList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WatcherTypesHttpInputExtractList>;
 
 export type WatcherTypesResponseContentType = "json" | "yaml" | "text";
-export const WatcherTypesResponseContentType = /*@__PURE__*/ S.String;
+export const WatcherTypesResponseContentType = S.String;
 
 export interface WatcherTypesHttpInput {
   extract?: WatcherTypesHttpInputExtractList;
@@ -98717,7 +98648,7 @@ export type WatcherTypesScheduleContainerMonthly =
   | WatcherTypesTimeOfMonth
   | WatcherTypesScheduleContainerMonthlyCase1List;
 export const WatcherTypesScheduleContainerMonthly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesScheduleContainerMonthly>;
+  S.Unknown as any as S.Schema<WatcherTypesScheduleContainerMonthly>;
 
 export type WatcherTypesTimeOfWeekAtList = Array<string>;
 export const WatcherTypesTimeOfWeekAtList = /*@__PURE__*/ S.Array(
@@ -98732,7 +98663,7 @@ export type WatcherTypesDay =
   | "thursday"
   | "friday"
   | "saturday";
-export const WatcherTypesDay = /*@__PURE__*/ S.String;
+export const WatcherTypesDay = S.String;
 
 export type WatcherTypesTimeOfWeekOnList = Array<
   WatcherTypesDay | (string & {})
@@ -98765,7 +98696,7 @@ export type WatcherTypesScheduleContainerWeekly =
   | WatcherTypesTimeOfWeek
   | WatcherTypesScheduleContainerWeeklyCase1List;
 export const WatcherTypesScheduleContainerWeekly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesScheduleContainerWeekly>;
+  S.Unknown as any as S.Schema<WatcherTypesScheduleContainerWeekly>;
 
 export type WatcherTypesTimeOfYearAtList = Array<string>;
 export const WatcherTypesTimeOfYearAtList = /*@__PURE__*/ S.Array(
@@ -98785,7 +98716,7 @@ export type WatcherTypesMonth =
   | "october"
   | "november"
   | "december";
-export const WatcherTypesMonth = /*@__PURE__*/ S.String;
+export const WatcherTypesMonth = S.String;
 
 export type WatcherTypesTimeOfYearIntList = Array<
   WatcherTypesMonth | (string & {})
@@ -98825,7 +98756,7 @@ export type WatcherTypesScheduleContainerYearly =
   | WatcherTypesTimeOfYear
   | WatcherTypesScheduleContainerYearlyCase1List;
 export const WatcherTypesScheduleContainerYearly =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesScheduleContainerYearly>;
+  S.Unknown as any as S.Schema<WatcherTypesScheduleContainerYearly>;
 
 export interface WatcherTypesScheduleContainer {
   timezone?: string;
@@ -98938,7 +98869,7 @@ export type WatcherTypesExecutionStatus =
   | "failed"
   | "deleted_while_queued"
   | "not_executed_already_queued";
-export const WatcherTypesExecutionStatus = /*@__PURE__*/ S.String;
+export const WatcherTypesExecutionStatus = S.String;
 
 export interface WatcherTypesTriggerEventContainer {
   schedule?: WatcherTypesScheduleTriggerEvent;
@@ -98973,7 +98904,7 @@ export const WatcherTypesEmailBccCase1List = /*@__PURE__*/ S.Array(
 
 export type WatcherTypesEmailBcc = string | WatcherTypesEmailBccCase1List;
 export const WatcherTypesEmailBcc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailBcc>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailBcc>;
 
 export type WatcherTypesEmailCcCase1List = Array<string>;
 export const WatcherTypesEmailCcCase1List = /*@__PURE__*/ S.Array(
@@ -98982,7 +98913,7 @@ export const WatcherTypesEmailCcCase1List = /*@__PURE__*/ S.Array(
 
 export type WatcherTypesEmailCc = string | WatcherTypesEmailCcCase1List;
 export const WatcherTypesEmailCc =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailCc>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailCc>;
 
 export type WatcherTypesEmailReplyToCase1List = Array<string>;
 export const WatcherTypesEmailReplyToCase1List = /*@__PURE__*/ S.Array(
@@ -98993,7 +98924,7 @@ export type WatcherTypesEmailReplyTo =
   | string
   | WatcherTypesEmailReplyToCase1List;
 export const WatcherTypesEmailReplyTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailReplyTo>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailReplyTo>;
 
 export type WatcherTypesEmailToCase1List = Array<string>;
 export const WatcherTypesEmailToCase1List = /*@__PURE__*/ S.Array(
@@ -99002,7 +98933,7 @@ export const WatcherTypesEmailToCase1List = /*@__PURE__*/ S.Array(
 
 export type WatcherTypesEmailTo = string | WatcherTypesEmailToCase1List;
 export const WatcherTypesEmailTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesEmailTo>;
+  S.Unknown as any as S.Schema<WatcherTypesEmailTo>;
 
 export type WatcherTypesEmailAttachmentsMap = {
   [key: string]: WatcherTypesEmailAttachmentContainer | undefined;
@@ -99095,7 +99026,7 @@ export type WatcherTypesIndexResultResponse =
   | WatcherTypesIndexResultSummary
   | WatcherTypesIndexResultResponseCase1List;
 export const WatcherTypesIndexResultResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherTypesIndexResultResponse>;
+  S.Unknown as any as S.Schema<WatcherTypesIndexResultResponse>;
 
 export interface WatcherTypesIndexResultRequestSummary {
   doc_id?: string;
@@ -99284,10 +99215,10 @@ export type WatcherTypesActionStatusOptions =
   | "throttled"
   | "condition_failed"
   | "simulated";
-export const WatcherTypesActionStatusOptions = /*@__PURE__*/ S.String;
+export const WatcherTypesActionStatusOptions = S.String;
 
 export type WatcherTypesExecutionResultStatus = "success" | "failure";
-export const WatcherTypesExecutionResultStatus = /*@__PURE__*/ S.String;
+export const WatcherTypesExecutionResultStatus = S.String;
 
 export type WatcherTypesConditionType =
   | "always"
@@ -99295,7 +99226,7 @@ export type WatcherTypesConditionType =
   | "script"
   | "compare"
   | "array_compare";
-export const WatcherTypesConditionType = /*@__PURE__*/ S.String;
+export const WatcherTypesConditionType = S.String;
 
 export type WatcherTypesExecutionResultConditionResolvedResolvedValuesMap = {
   [key: string]: unknown | undefined;
@@ -99353,7 +99284,7 @@ export type WatcherTypesExecutionResultTransformType =
   | "script"
   | "search"
   | "chain";
-export const WatcherTypesExecutionResultTransformType = /*@__PURE__*/ S.String;
+export const WatcherTypesExecutionResultTransformType = S.String;
 
 export interface WatcherTypesExecutionResultSearchInput {
   request: WatcherTypesSearchInputRequestDefinition;
@@ -99486,7 +99417,7 @@ export type WatcherTypesInputType =
   | "search"
   | "simple"
   | "transform";
-export const WatcherTypesInputType = /*@__PURE__*/ S.String;
+export const WatcherTypesInputType = S.String;
 
 export interface WatcherTypesExecutionResultHttpInput {
   request: WatcherTypesHttpInputRequestResult;
@@ -100168,7 +100099,7 @@ export type WatcherStatsWatcherMetric =
   | "queued_watches"
   | "current_watches"
   | "pending_watches";
-export const WatcherStatsWatcherMetric = /*@__PURE__*/ S.String;
+export const WatcherStatsWatcherMetric = S.String;
 
 export type WatcherStatsRequestMetricCase1List = Array<
   WatcherStatsWatcherMetric | (string & {})
@@ -100181,7 +100112,7 @@ export type WatcherStatsRequestMetric =
   | WatcherStatsWatcherMetric
   | WatcherStatsRequestMetricCase1List;
 export const WatcherStatsRequestMetric =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WatcherStatsRequestMetric>;
+  S.Unknown as any as S.Schema<WatcherStatsRequestMetric>;
 
 export interface WatcherStatsRequest {
   /** Defines whether stack traces are generated for each watch that is running. */
@@ -100207,7 +100138,7 @@ export type WatcherTypesExecutionPhase =
   | "watch_transform"
   | "aborted"
   | "finished";
-export const WatcherTypesExecutionPhase = /*@__PURE__*/ S.String;
+export const WatcherTypesExecutionPhase = S.String;
 
 export type WatcherStatsWatchRecordStatsExecutedActionsList = Array<string>;
 export const WatcherStatsWatchRecordStatsExecutedActionsList =
@@ -100290,7 +100221,7 @@ export type WatcherStatsWatcherState =
   | "starting"
   | "started"
   | "stopping";
-export const WatcherStatsWatcherState = /*@__PURE__*/ S.String;
+export const WatcherStatsWatcherState = S.String;
 
 export interface WatcherStatsWatcherNodeStats {
   /** The current executing watches metric gives insight into the watches that are currently being executed by Watcher. Additional information is shared per watch that is currently executing. This information includes the `watch_id`, the time its execution started and its current execution phase. To include this metric, the `metric` option should be set to `current_watches` or `_all`. In addition you can also specify the `emit_stacktraces=true` parameter, which adds stack traces for each watch that is being run. These stack traces can give you more insight into an execution of a watch. */
@@ -100443,7 +100374,7 @@ export const WatchWatcherAckResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatchWatcherAckResponse>;
 
 export type XpackInfoXPackCategory = "build" | "features" | "license";
-export const XpackInfoXPackCategory = /*@__PURE__*/ S.String;
+export const XpackInfoXPackCategory = S.String;
 
 export type XpackInfoRequestCategoriesList = Array<
   XpackInfoXPackCategory | (string & {})

@@ -101,7 +101,7 @@ export type CasePriorityEnum =
   | "P2"
   | "P3"
   | "P4";
-export const CasePriorityEnum = /*@__PURE__*/ S.String;
+export const CasePriorityEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -132,7 +132,7 @@ export type ProductProductLineEnum =
   | "PRODUCT_LINE_UNSPECIFIED"
   | "GOOGLE_CLOUD"
   | "GOOGLE_MAPS";
-export const ProductProductLineEnum = /*@__PURE__*/ S.String;
+export const ProductProductLineEnum = S.String;
 
 /** The product a case may be associated with. */
 export interface Product {
@@ -171,7 +171,7 @@ export type CaseSeverityEnum =
   | "S2"
   | "S3"
   | "S4";
-export const CaseSeverityEnum = /*@__PURE__*/ S.String;
+export const CaseSeverityEnum = S.String;
 
 export type CaseStateEnum =
   | "STATE_UNSPECIFIED"
@@ -180,7 +180,7 @@ export type CaseStateEnum =
   | "ACTION_REQUIRED"
   | "SOLUTION_PROVIDED"
   | "CLOSED";
-export const CaseStateEnum = /*@__PURE__*/ S.String;
+export const CaseStateEnum = S.String;
 
 /** A Case is an object that contains the details of a support case. It contains fields for the time it was created, its priority, its classification, and more. Cases can also have comments and attachments that get added over time. A case is parented by a Google Cloud organization or project. Organizations are identified by a number, so the name of a case parented by an organization would look like this: ``` organizations/123/cases/456 ``` Projects have two unique identifiers, an ID and a number, and they look like this: ``` projects/abc/cases/456 ``` ``` projects/123/cases/456 ``` You can use either of them when calling the API. To learn more about project identifiers, see [AIP-2510](https://google.aip.dev/cloud/2510). */
 export interface Case {
@@ -308,14 +308,14 @@ export type SupportEventSubscriptionFailureReasonEnum =
   | "PERMISSION_DENIED"
   | "TOPIC_NOT_FOUND"
   | "OTHER";
-export const SupportEventSubscriptionFailureReasonEnum = /*@__PURE__*/ S.String;
+export const SupportEventSubscriptionFailureReasonEnum = S.String;
 
 export type SupportEventSubscriptionStateEnum =
   | "STATE_UNSPECIFIED"
   | "WORKING"
   | "FAILING"
   | "DELETED";
-export const SupportEventSubscriptionStateEnum = /*@__PURE__*/ S.String;
+export const SupportEventSubscriptionStateEnum = S.String;
 
 /** A support event subscription. You can also manage support event subscriptions using other tools: * [`gcloud support support-event-subscriptions`](/sdk/gcloud/reference/support/support-event-subscriptions) (or [`gcloud beta`](/sdk/gcloud/reference/beta/support/support-event-subscriptions) for beta) * [Terraform `google_cloud_support_support_event_subscription`](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_support_support_event_subscription) (or [google-beta provider](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/cloud_support_support_event_subscription) for beta) */
 export interface SupportEventSubscription {
@@ -465,7 +465,7 @@ export type CompositeMediaReferenceTypeEnum =
   | "INLINE"
   | "BIGSTORE_REF"
   | "COSMO_BINARY_REFERENCE";
-export const CompositeMediaReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const CompositeMediaReferenceTypeEnum = S.String;
 
 /** # gdata.* are outside protos with mising documentation */
 export interface Blobstore2Info {
@@ -576,7 +576,7 @@ export type MediaReferenceTypeEnum =
   | "DIFF_UPLOAD_RESPONSE"
   | "COSMO_BINARY_REFERENCE"
   | "ARBITRARY_BYTES";
-export const MediaReferenceTypeEnum = /*@__PURE__*/ S.String;
+export const MediaReferenceTypeEnum = S.String;
 
 /** # gdata.* are outside protos with mising documentation */
 export interface DiffDownloadResponse {
@@ -768,7 +768,7 @@ export type EscalationReasonEnum =
   | "RESOLUTION_TIME"
   | "TECHNICAL_EXPERTISE"
   | "BUSINESS_IMPACT";
-export const EscalationReasonEnum = /*@__PURE__*/ S.String;
+export const EscalationReasonEnum = S.String;
 
 /** An escalation of a support case. */
 export interface Escalation {
@@ -953,7 +953,7 @@ export type ListCasesProductLineEnum =
   | "PRODUCT_LINE_UNSPECIFIED"
   | "GOOGLE_CLOUD"
   | "GOOGLE_MAPS";
-export const ListCasesProductLineEnum = /*@__PURE__*/ S.String;
+export const ListCasesProductLineEnum = S.String;
 
 export interface ListCasesRequest {
   /** The product line to request cases for. If unspecified, only Google Cloud cases will be returned. */
@@ -1202,8 +1202,7 @@ export type SearchCaseClassificationsProduct_productLineEnum =
   | "PRODUCT_LINE_UNSPECIFIED"
   | "GOOGLE_CLOUD"
   | "GOOGLE_MAPS";
-export const SearchCaseClassificationsProduct_productLineEnum =
-  /*@__PURE__*/ S.String;
+export const SearchCaseClassificationsProduct_productLineEnum = S.String;
 
 export interface SearchCaseClassificationsRequest {
   /** The product line of the Product. */

@@ -198,7 +198,7 @@ export type LongName = string;
 export type Uri = string;
 export type RoleArn = string;
 export type ValidatorType = "JSON_SCHEMA" | "LAMBDA" | (string & {});
-export const ValidatorType = /*@__PURE__*/ S.String;
+export const ValidatorType = S.String;
 
 export type StringWithLengthBetween0And32768 =
   | string
@@ -284,10 +284,10 @@ export const ConfigurationProfile = /*@__PURE__*/ S.suspend(() =>
 export type MinutesBetween0And24Hours = number;
 export type GrowthFactor = number;
 export type GrowthType = "LINEAR" | "EXPONENTIAL" | (string & {});
-export const GrowthType = /*@__PURE__*/ S.String;
+export const GrowthType = S.String;
 
 export type ReplicateTo = "NONE" | "SSM_DOCUMENT" | (string & {});
-export const ReplicateTo = /*@__PURE__*/ S.String;
+export const ReplicateTo = S.String;
 
 export interface CreateDeploymentStrategyRequest {
   Name: string;
@@ -394,7 +394,7 @@ export type EnvironmentState =
   | "ROLLED_BACK"
   | "REVERTED"
   | (string & {});
-export const EnvironmentState = /*@__PURE__*/ S.String;
+export const EnvironmentState = S.String;
 
 export interface Environment {
   ApplicationId?: string;
@@ -546,7 +546,7 @@ export type ExperimentDefinitionStatus =
   | "IDLE"
   | "ARCHIVED"
   | (string & {});
-export const ExperimentDefinitionStatus = /*@__PURE__*/ S.String;
+export const ExperimentDefinitionStatus = S.String;
 
 export type TreatmentKey = string;
 export interface Treatment {
@@ -621,7 +621,7 @@ export type ActionPoint =
   | "ON_DEPLOYMENT_COMPLETE"
   | "ON_DEPLOYMENT_ROLLED_BACK"
   | (string & {});
-export const ActionPoint = /*@__PURE__*/ S.String;
+export const ActionPoint = S.String;
 
 export interface Action {
   Name?: string;
@@ -859,7 +859,7 @@ export type DeletionProtectionCheck =
   | "APPLY"
   | "BYPASS"
   | (string & {});
-export const DeletionProtectionCheck = /*@__PURE__*/ S.String;
+export const DeletionProtectionCheck = S.String;
 
 export interface DeleteConfigurationProfileRequest {
   ApplicationId: string;
@@ -961,7 +961,7 @@ export const DeleteEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteEnvironmentResponse",
 }) as any as S.Schema<DeleteEnvironmentResponse>;
 export type DeleteType = "ARCHIVE" | "DESTROY" | (string & {});
-export const DeleteType = /*@__PURE__*/ S.String;
+export const DeleteType = S.String;
 
 export interface DeleteExperimentDefinitionRequest {
   ApplicationIdentifier: string;
@@ -1263,7 +1263,7 @@ export type DeploymentState =
   | "ROLLED_BACK"
   | "REVERTED"
   | (string & {});
-export const DeploymentState = /*@__PURE__*/ S.String;
+export const DeploymentState = S.String;
 
 export type DeploymentEventType =
   | "PERCENTAGE_UPDATED"
@@ -1274,7 +1274,7 @@ export type DeploymentEventType =
   | "DEPLOYMENT_COMPLETED"
   | "REVERT_COMPLETED"
   | (string & {});
-export const DeploymentEventType = /*@__PURE__*/ S.String;
+export const DeploymentEventType = S.String;
 
 export type TriggeredBy =
   | "USER"
@@ -1282,7 +1282,7 @@ export type TriggeredBy =
   | "CLOUDWATCH_ALARM"
   | "INTERNAL_ERROR"
   | (string & {});
-export const TriggeredBy = /*@__PURE__*/ S.String;
+export const TriggeredBy = S.String;
 
 export interface ActionInvocation {
   ExtensionIdentifier?: string;
@@ -1504,7 +1504,7 @@ export const GetExperimentRunRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetExperimentRunRequest",
 }) as any as S.Schema<GetExperimentRunRequest>;
 export type ExperimentRunStatus = "RUNNING" | "DONE" | (string & {});
-export const ExperimentRunStatus = /*@__PURE__*/ S.String;
+export const ExperimentRunStatus = S.String;
 
 export type NullablePercentage = number;
 export type EntityId = string;
@@ -1803,7 +1803,7 @@ export const ListDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDeploymentsRequest",
 }) as any as S.Schema<ListDeploymentsRequest>;
 export type DeploymentType = "USER" | "MANAGED" | (string & {});
-export const DeploymentType = /*@__PURE__*/ S.String;
+export const DeploymentType = S.String;
 
 export interface DeploymentSummary {
   DeploymentNumber?: number;
@@ -2051,7 +2051,7 @@ export type ExperimentRunEventType =
   | "OVERRIDES_UPDATED"
   | "RUN_STOPPED"
   | (string & {});
-export const ExperimentRunEventType = /*@__PURE__*/ S.String;
+export const ExperimentRunEventType = S.String;
 
 export interface ExperimentRunEvent {
   Description?: string;
@@ -2889,7 +2889,7 @@ export const ValidateConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ValidateConfigurationResponse",
 }) as any as S.Schema<ValidateConfigurationResponse>;
 export type BadRequestReason = "InvalidConfiguration" | (string & {});
-export const BadRequestReason = /*@__PURE__*/ S.String;
+export const BadRequestReason = S.String;
 
 export interface InvalidConfigurationDetail {
   Constraint?: string;
@@ -2920,7 +2920,7 @@ export const BadRequestDetails = /*@__PURE__*/ S.Union([
   S.Struct({ InvalidConfiguration: InvalidConfigurationDetailList }),
 ]);
 export type BytesMeasure = "KILOBYTES" | (string & {});
-export const BytesMeasure = /*@__PURE__*/ S.String;
+export const BytesMeasure = S.String;
 
 export type CreateApplicationError =
   | BadRequestException

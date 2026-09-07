@@ -119,14 +119,14 @@ export type SeverityAnalysisSeverityLevelEnum =
   | "SEVERITY_LEVEL_LOW"
   | "SEVERITY_LEVEL_MEDIUM"
   | "SEVERITY_LEVEL_HIGH";
-export const SeverityAnalysisSeverityLevelEnum = /*@__PURE__*/ S.String;
+export const SeverityAnalysisSeverityLevelEnum = S.String;
 
 export type SeverityAnalysisConfidenceEnum =
   | "CONFIDENCE_LEVEL_UNSPECIFIED"
   | "CONFIDENCE_LEVEL_LOW"
   | "CONFIDENCE_LEVEL_MEDIUM"
   | "CONFIDENCE_LEVEL_HIGH";
-export const SeverityAnalysisConfidenceEnum = /*@__PURE__*/ S.String;
+export const SeverityAnalysisConfidenceEnum = S.String;
 
 /** Structured severity analysis for a threat. */
 export interface SeverityAnalysis {
@@ -157,7 +157,7 @@ export type PublicExploitExploitReliabilityEnum =
   | "UNREVIEWED"
   | "REVIEWED"
   | "TESTED";
-export const PublicExploitExploitReliabilityEnum = /*@__PURE__*/ S.String;
+export const PublicExploitExploitReliabilityEnum = S.String;
 
 export type PublicExploitExploitGradeEnum =
   | "EXPLOIT_GRADE_UNSPECIFIED"
@@ -167,7 +167,7 @@ export type PublicExploitExploitGradeEnum =
   | "WEAPONIZED"
   | "SCANNER"
   | "FAKE";
-export const PublicExploitExploitGradeEnum = /*@__PURE__*/ S.String;
+export const PublicExploitExploitGradeEnum = S.String;
 
 /** Contains details about a public exploit. */
 export interface PublicExploit {
@@ -209,7 +209,7 @@ export type AssociationTypeEnum =
   | "THREAT_INTEL_OBJECT_TYPE_IOC_COLLECTION"
   | "THREAT_INTEL_OBJECT_TYPE_SOFTWARE_AND_TOOLKITS"
   | "THREAT_INTEL_OBJECT_TYPE_VULNERABILITY";
-export const AssociationTypeEnum = /*@__PURE__*/ S.String;
+export const AssociationTypeEnum = S.String;
 
 /** Represents an association with a vulnerability. */
 export interface Association {
@@ -244,8 +244,7 @@ export type VulnerabilityMatchExploitationConsequencesItemEnum =
   | "SECURITY_BYPASS"
   | "CONTAINER_ESCAPE"
   | "SPOOFING";
-export const VulnerabilityMatchExploitationConsequencesItemEnum =
-  /*@__PURE__*/ S.String;
+export const VulnerabilityMatchExploitationConsequencesItemEnum = S.String;
 
 export type VulnerabilityMatchExploitationConsequencesItemEnumList =
   Array<VulnerabilityMatchExploitationConsequencesItemEnum>;
@@ -261,7 +260,7 @@ export type VulnerabilityMatchExploitationStateEnum =
   | "EXPLOITATION_STATE_SUSPECTED"
   | "EXPLOITATION_STATE_CONFIRMED"
   | "EXPLOITATION_STATE_WIDESPREAD";
-export const VulnerabilityMatchExploitationStateEnum = /*@__PURE__*/ S.String;
+export const VulnerabilityMatchExploitationStateEnum = S.String;
 
 /** Contains details about a product fix. */
 export interface ProductFix {
@@ -295,7 +294,7 @@ export type VulnerabilityMatchPriorityEnum =
   | "P2"
   | "P3"
   | "P4";
-export const VulnerabilityMatchPriorityEnum = /*@__PURE__*/ S.String;
+export const VulnerabilityMatchPriorityEnum = S.String;
 
 export type VulnerabilityMatchRiskRatingEnum =
   | "RISK_RATING_UNSPECIFIED"
@@ -304,7 +303,7 @@ export type VulnerabilityMatchRiskRatingEnum =
   | "HIGH"
   | "CRITICAL"
   | "UNRATED";
-export const VulnerabilityMatchRiskRatingEnum = /*@__PURE__*/ S.String;
+export const VulnerabilityMatchRiskRatingEnum = S.String;
 
 export type VulnerabilityMatchExploitationVectorsItemEnum =
   | "EXPLOITATION_VECTOR_UNSPECIFIED"
@@ -325,8 +324,7 @@ export type VulnerabilityMatchExploitationVectorsItemEnum =
   | "UNSPECIFIED_REMOTE_VECTOR"
   | "VPN_ACCESS"
   | "WIFI_ACCESS";
-export const VulnerabilityMatchExploitationVectorsItemEnum =
-  /*@__PURE__*/ S.String;
+export const VulnerabilityMatchExploitationVectorsItemEnum = S.String;
 
 export type VulnerabilityMatchExploitationVectorsItemEnumList =
   Array<VulnerabilityMatchExploitationVectorsItemEnum>;
@@ -496,21 +494,21 @@ export type AlertStateEnum =
   | "NOT_ACTIONABLE"
   | "BENIGN"
   | "TRACKED_EXTERNALLY";
-export const AlertStateEnum = /*@__PURE__*/ S.String;
+export const AlertStateEnum = S.String;
 
 export type RelevanceAnalysisRelevanceLevelEnum =
   | "RELEVANCE_LEVEL_UNSPECIFIED"
   | "RELEVANCE_LEVEL_LOW"
   | "RELEVANCE_LEVEL_MEDIUM"
   | "RELEVANCE_LEVEL_HIGH";
-export const RelevanceAnalysisRelevanceLevelEnum = /*@__PURE__*/ S.String;
+export const RelevanceAnalysisRelevanceLevelEnum = S.String;
 
 export type RelevanceAnalysisConfidenceEnum =
   | "CONFIDENCE_LEVEL_UNSPECIFIED"
   | "CONFIDENCE_LEVEL_LOW"
   | "CONFIDENCE_LEVEL_MEDIUM"
   | "CONFIDENCE_LEVEL_HIGH";
-export const RelevanceAnalysisConfidenceEnum = /*@__PURE__*/ S.String;
+export const RelevanceAnalysisConfidenceEnum = S.String;
 
 /** Details the evidence used to determine the relevance verdict. */
 export interface Evidence {
@@ -556,7 +554,7 @@ export type PriorityAnalysisConfidenceEnum =
   | "CONFIDENCE_LEVEL_LOW"
   | "CONFIDENCE_LEVEL_MEDIUM"
   | "CONFIDENCE_LEVEL_HIGH";
-export const PriorityAnalysisConfidenceEnum = /*@__PURE__*/ S.String;
+export const PriorityAnalysisConfidenceEnum = S.String;
 
 export type PriorityAnalysisPriorityLevelEnum =
   | "PRIORITY_LEVEL_UNSPECIFIED"
@@ -564,7 +562,7 @@ export type PriorityAnalysisPriorityLevelEnum =
   | "PRIORITY_LEVEL_MEDIUM"
   | "PRIORITY_LEVEL_HIGH"
   | "PRIORITY_LEVEL_CRITICAL";
-export const PriorityAnalysisPriorityLevelEnum = /*@__PURE__*/ S.String;
+export const PriorityAnalysisPriorityLevelEnum = S.String;
 
 /** Structured priority analysis for a threat. */
 export interface PriorityAnalysis {
@@ -1052,7 +1050,7 @@ export type ConfigurationStateEnum =
   | "ENABLED"
   | "DISABLED"
   | "DEPRECATED";
-export const ConfigurationStateEnum = /*@__PURE__*/ S.String;
+export const ConfigurationStateEnum = S.String;
 
 /** Legacy metadata associated with this scenario/monitor. */
 export interface LegacyMetadata {
@@ -1113,12 +1111,12 @@ export const LegacyMetadata = /*@__PURE__*/ S.suspend(() =>
 export type DocumentQueryQueryTypeEnum =
   | "QUERY_TYPE_UNSPECIFIED"
   | "QUERY_TYPE_LUCENE";
-export const DocumentQueryQueryTypeEnum = /*@__PURE__*/ S.String;
+export const DocumentQueryQueryTypeEnum = S.String;
 
 export type DocumentQueryDataModelEnum =
   | "DATA_MODEL_UNSPECIFIED"
   | "DATA_MODEL_GTI";
-export const DocumentQueryDataModelEnum = /*@__PURE__*/ S.String;
+export const DocumentQueryDataModelEnum = S.String;
 
 /** Represents a query to match documents. */
 export interface DocumentQuery {
@@ -1166,8 +1164,7 @@ export type TechnologyWatchListAlertThresholdRiskRatingMinimumEnum =
   | "HIGH"
   | "CRITICAL"
   | "UNRATED";
-export const TechnologyWatchListAlertThresholdRiskRatingMinimumEnum =
-  /*@__PURE__*/ S.String;
+export const TechnologyWatchListAlertThresholdRiskRatingMinimumEnum = S.String;
 
 export type TechnologyWatchListAlertThresholdExploitationStatesItemEnum =
   | "EXPLOITATION_STATE_UNSPECIFIED"
@@ -1177,7 +1174,7 @@ export type TechnologyWatchListAlertThresholdExploitationStatesItemEnum =
   | "EXPLOITATION_STATE_CONFIRMED"
   | "EXPLOITATION_STATE_WIDESPREAD";
 export const TechnologyWatchListAlertThresholdExploitationStatesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type TechnologyWatchListAlertThresholdExploitationStatesItemEnumList =
   Array<
@@ -1195,8 +1192,7 @@ export type TechnologyWatchListAlertThresholdPriorityMinimumEnum =
   | "P2"
   | "P3"
   | "P4";
-export const TechnologyWatchListAlertThresholdPriorityMinimumEnum =
-  /*@__PURE__*/ S.String;
+export const TechnologyWatchListAlertThresholdPriorityMinimumEnum = S.String;
 
 /** TechnologyWatchListAlertThreshold contains the thresholds for alerting. */
 export interface TechnologyWatchListAlertThreshold {
@@ -1266,7 +1262,7 @@ export type DomainSettingStateEnum =
   | "STATE_UNSPECIFIED"
   | "PENDING"
   | "VERIFIED";
-export const DomainSettingStateEnum = /*@__PURE__*/ S.String;
+export const DomainSettingStateEnum = S.String;
 
 /** Feature settings and toggles for a single specific domain. */
 export interface DomainSetting {
@@ -1716,8 +1712,7 @@ export type InitialAccessBrokerFindingDetailSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const InitialAccessBrokerFindingDetailSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const InitialAccessBrokerFindingDetailSeverityEnum = S.String;
 
 /** A detail object for an Initial Access Broker (IAB) finding. */
 export interface InitialAccessBrokerFindingDetail {
@@ -1744,7 +1739,7 @@ export type DataLeakFindingDetailSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const DataLeakFindingDetailSeverityEnum = /*@__PURE__*/ S.String;
+export const DataLeakFindingDetailSeverityEnum = S.String;
 
 /** A detail object for a Data Leak finding. */
 export interface DataLeakFindingDetail {
@@ -1771,7 +1766,7 @@ export type InsiderThreatFindingDetailSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const InsiderThreatFindingDetailSeverityEnum = /*@__PURE__*/ S.String;
+export const InsiderThreatFindingDetailSeverityEnum = S.String;
 
 /** A detail object for a InsiderThreat finding. */
 export interface InsiderThreatFindingDetail {

@@ -123,7 +123,7 @@ export type DimensionProductEngineEnum =
   | "ENGINE_ADB_SERVERLESS_ORACLE"
   | "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE"
   | "ENGINE_OTHER";
-export const DimensionProductEngineEnum = /*@__PURE__*/ S.String;
+export const DimensionProductEngineEnum = S.String;
 
 export type DimensionResourceCategoryEnum =
   | "RESOURCE_CATEGORY_UNSPECIFIED"
@@ -132,13 +132,13 @@ export type DimensionResourceCategoryEnum =
   | "DATABASE"
   | "DATASET"
   | "RESERVATION";
-export const DimensionResourceCategoryEnum = /*@__PURE__*/ S.String;
+export const DimensionResourceCategoryEnum = S.String;
 
 export type DimensionManagementTypeEnum =
   | "MANAGEMENT_TYPE_UNSPECIFIED"
   | "MANAGEMENT_TYPE_GCP_MANAGED"
   | "MANAGEMENT_TYPE_SELF_MANAGED";
-export const DimensionManagementTypeEnum = /*@__PURE__*/ S.String;
+export const DimensionManagementTypeEnum = S.String;
 
 export type DimensionProductTypeEnum =
   | "PRODUCT_TYPE_UNSPECIFIED"
@@ -152,14 +152,14 @@ export type DimensionProductTypeEnum =
   | "PRODUCT_TYPE_ORACLE_ON_GCP"
   | "PRODUCT_TYPE_BIGQUERY"
   | "PRODUCT_TYPE_OTHER";
-export const DimensionProductTypeEnum = /*@__PURE__*/ S.String;
+export const DimensionProductTypeEnum = S.String;
 
 export type DimensionEditionEnum =
   | "EDITION_UNSPECIFIED"
   | "EDITION_ENTERPRISE"
   | "EDITION_ENTERPRISE_PLUS"
   | "EDITION_STANDARD";
-export const DimensionEditionEnum = /*@__PURE__*/ S.String;
+export const DimensionEditionEnum = S.String;
 
 export type DimensionSubResourceTypeEnum =
   | "SUB_RESOURCE_TYPE_UNSPECIFIED"
@@ -171,7 +171,7 @@ export type DimensionSubResourceTypeEnum =
   | "SUB_RESOURCE_TYPE_RESERVATION"
   | "SUB_RESOURCE_TYPE_DATASET"
   | "SUB_RESOURCE_TYPE_OTHER";
-export const DimensionSubResourceTypeEnum = /*@__PURE__*/ S.String;
+export const DimensionSubResourceTypeEnum = S.String;
 
 /** Dimension used to aggregate the fleet. */
 export interface Dimension {
@@ -259,7 +259,7 @@ export type ProductEngineEnum =
   | "ENGINE_ADB_SERVERLESS_ORACLE"
   | "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE"
   | "ENGINE_OTHER";
-export const ProductEngineEnum = /*@__PURE__*/ S.String;
+export const ProductEngineEnum = S.String;
 
 export type ProductTypeEnum =
   | "PRODUCT_TYPE_UNSPECIFIED"
@@ -273,7 +273,7 @@ export type ProductTypeEnum =
   | "PRODUCT_TYPE_ORACLE_ON_GCP"
   | "PRODUCT_TYPE_BIGQUERY"
   | "PRODUCT_TYPE_OTHER";
-export const ProductTypeEnum = /*@__PURE__*/ S.String;
+export const ProductTypeEnum = S.String;
 
 /** Product specification for databasecenter resources. */
 export interface Product {
@@ -500,7 +500,7 @@ export type SignalTypeGroupSignalTypesItemEnum =
   | "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK"
   | "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME"
   | "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION";
-export const SignalTypeGroupSignalTypesItemEnum = /*@__PURE__*/ S.String;
+export const SignalTypeGroupSignalTypesItemEnum = S.String;
 
 export type SignalTypeGroupSignalTypesItemEnumList = Array<
   SignalTypeGroupSignalTypesItemEnum | (string & {})
@@ -693,7 +693,7 @@ export type IssueStatsSignalTypeEnum =
   | "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK"
   | "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME"
   | "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION";
-export const IssueStatsSignalTypeEnum = /*@__PURE__*/ S.String;
+export const IssueStatsSignalTypeEnum = S.String;
 
 export type IssueStatsIssueSeverityEnum =
   | "ISSUE_SEVERITY_UNSPECIFIED"
@@ -702,7 +702,7 @@ export type IssueStatsIssueSeverityEnum =
   | "ISSUE_SEVERITY_HIGH"
   | "ISSUE_SEVERITY_CRITICAL"
   | "ISSUE_SEVERITY_IRRELEVANT";
-export const IssueStatsIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const IssueStatsIssueSeverityEnum = S.String;
 
 /** IssueStats holds stats for a particular signal category. */
 export interface IssueStats {
@@ -879,7 +879,7 @@ export type QueryMetricsMetricsWindowEnum =
   | "LAST_ONE_DAY"
   | "LAST_ONE_WEEK"
   | "LAST_TWO_WEEKS";
-export const QueryMetricsMetricsWindowEnum = /*@__PURE__*/ S.String;
+export const QueryMetricsMetricsWindowEnum = S.String;
 
 /** QueryMetrics contains the metrics related to the query execution. */
 export interface QueryMetrics {
@@ -1120,7 +1120,7 @@ export type SignalProductsFiltersSignalTypeEnum =
   | "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK"
   | "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME"
   | "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION";
-export const SignalProductsFiltersSignalTypeEnum = /*@__PURE__*/ S.String;
+export const SignalProductsFiltersSignalTypeEnum = S.String;
 
 export type ProductList = Array<Product>;
 export const ProductList = /*@__PURE__*/ S.Array(
@@ -1252,7 +1252,7 @@ export type SignalFilterSignalTypeEnum =
   | "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK"
   | "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME"
   | "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION";
-export const SignalFilterSignalTypeEnum = /*@__PURE__*/ S.String;
+export const SignalFilterSignalTypeEnum = S.String;
 
 export type SignalFilterSignalStatusEnum =
   | "SIGNAL_STATUS_UNSPECIFIED"
@@ -1260,7 +1260,7 @@ export type SignalFilterSignalStatusEnum =
   | "SIGNAL_STATUS_OK"
   | "SIGNAL_STATUS_ISSUE"
   | "SIGNAL_STATUS_NOT_ENABLED";
-export const SignalFilterSignalStatusEnum = /*@__PURE__*/ S.String;
+export const SignalFilterSignalStatusEnum = S.String;
 
 /** A filter for Signals. If signal_type is left unset, all signals should be returned. For example, the following filter returns all issues. signal_filter: { signal_status: SIGNAL_STATUS_ISSUE; } Another example, the following filter returns issues of the given type: signal_filter: { type: SIGNAL_TYPE_NO_PROMOTABLE_REPLICA signal_status: ISSUE } If signal_status is left unset or set to SIGNAL_STATE_UNSPECIFIED, an error should be returned. */
 export interface SignalFilter {
@@ -1344,7 +1344,7 @@ export type DatabaseResourceSubResourceTypeEnum =
   | "SUB_RESOURCE_TYPE_RESERVATION"
   | "SUB_RESOURCE_TYPE_DATASET"
   | "SUB_RESOURCE_TYPE_OTHER";
-export const DatabaseResourceSubResourceTypeEnum = /*@__PURE__*/ S.String;
+export const DatabaseResourceSubResourceTypeEnum = S.String;
 
 /** TypedValue represents the value of the metric based on data type. */
 export interface TypedValue {
@@ -1415,7 +1415,7 @@ export type SignalSignalStatusEnum =
   | "SIGNAL_STATUS_OK"
   | "SIGNAL_STATUS_ISSUE"
   | "SIGNAL_STATUS_NOT_ENABLED";
-export const SignalSignalStatusEnum = /*@__PURE__*/ S.String;
+export const SignalSignalStatusEnum = S.String;
 
 export type SignalSignalTypeEnum =
   | "SIGNAL_TYPE_UNSPECIFIED"
@@ -1521,7 +1521,7 @@ export type SignalSignalTypeEnum =
   | "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK"
   | "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME"
   | "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION";
-export const SignalSignalTypeEnum = /*@__PURE__*/ S.String;
+export const SignalSignalTypeEnum = S.String;
 
 export type ResourceMaintenanceSchedulePhaseEnum =
   | "PHASE_UNSPECIFIED"
@@ -1529,7 +1529,7 @@ export type ResourceMaintenanceSchedulePhaseEnum =
   | "PHASE_WEEK2"
   | "PHASE_WEEK5"
   | "PHASE_ANY";
-export const ResourceMaintenanceSchedulePhaseEnum = /*@__PURE__*/ S.String;
+export const ResourceMaintenanceSchedulePhaseEnum = S.String;
 
 export type ResourceMaintenanceScheduleDayEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -1540,7 +1540,7 @@ export type ResourceMaintenanceScheduleDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const ResourceMaintenanceScheduleDayEnum = /*@__PURE__*/ S.String;
+export const ResourceMaintenanceScheduleDayEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -1608,8 +1608,7 @@ export type ResourceSuspensionInfoSuspensionReasonEnum =
   | "ABUSER_DETECTED"
   | "ENCRYPTION_KEY_INACCESSIBLE"
   | "REPLICATED_CLUSTER_ENCRYPTION_KEY_INACCESSIBLE";
-export const ResourceSuspensionInfoSuspensionReasonEnum =
-  /*@__PURE__*/ S.String;
+export const ResourceSuspensionInfoSuspensionReasonEnum = S.String;
 
 /** Resource suspension info for a database resource. */
 export interface ResourceSuspensionInfo {
@@ -1709,13 +1708,13 @@ export type BackupRunInfoOperationErrorTypeEnum =
   | "CANCELLATION_ERROR"
   | "SQLSERVER_ERROR"
   | "INTERNAL_ERROR";
-export const BackupRunInfoOperationErrorTypeEnum = /*@__PURE__*/ S.String;
+export const BackupRunInfoOperationErrorTypeEnum = S.String;
 
 export type BackupRunInfoStateEnum =
   | "STATE_UNSPECIFIED"
   | "SUCCEEDED"
   | "FAILED";
-export const BackupRunInfoStateEnum = /*@__PURE__*/ S.String;
+export const BackupRunInfoStateEnum = S.String;
 
 /** Metadata about latest backup run state for a database resource. */
 export interface BackupRunInfo {
@@ -1888,7 +1887,7 @@ export type AdditionalDetailSignalTypeEnum =
   | "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK"
   | "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME"
   | "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION";
-export const AdditionalDetailSignalTypeEnum = /*@__PURE__*/ S.String;
+export const AdditionalDetailSignalTypeEnum = S.String;
 
 export type AdditionalDetailSignalSourceEnum =
   | "SIGNAL_SOURCE_UNSPECIFIED"
@@ -1896,7 +1895,7 @@ export type AdditionalDetailSignalSourceEnum =
   | "SIGNAL_SOURCE_SECURITY_FINDINGS"
   | "SIGNAL_SOURCE_RECOMMENDER"
   | "SIGNAL_SOURCE_MODERN_OBSERVABILITY";
-export const AdditionalDetailSignalSourceEnum = /*@__PURE__*/ S.String;
+export const AdditionalDetailSignalSourceEnum = S.String;
 
 /** Info associated with recommendation. */
 export interface RecommendationInfo {
@@ -1991,7 +1990,7 @@ export type SignalIssueSeverityEnum =
   | "ISSUE_SEVERITY_HIGH"
   | "ISSUE_SEVERITY_CRITICAL"
   | "ISSUE_SEVERITY_IRRELEVANT";
-export const SignalIssueSeverityEnum = /*@__PURE__*/ S.String;
+export const SignalIssueSeverityEnum = S.String;
 
 /** Represents a signal. */
 export interface Signal {
@@ -2048,7 +2047,7 @@ export type DatabaseResourceEditionEnum =
   | "EDITION_ENTERPRISE"
   | "EDITION_ENTERPRISE_PLUS"
   | "EDITION_STANDARD";
-export const DatabaseResourceEditionEnum = /*@__PURE__*/ S.String;
+export const DatabaseResourceEditionEnum = S.String;
 
 export type LineageProcessTypeEnum =
   | "PROCESS_TYPE_UNSPECIFIED"
@@ -2058,7 +2057,7 @@ export type LineageProcessTypeEnum =
   | "BIGQUERY"
   | "DATA_FUSION"
   | "DATAPROC";
-export const LineageProcessTypeEnum = /*@__PURE__*/ S.String;
+export const LineageProcessTypeEnum = S.String;
 
 /** lineage information of the affiliated resources This captures source, target and process which created the lineage. */
 export interface Lineage {
@@ -2114,7 +2113,7 @@ export type DatabaseResourceResourceCategoryEnum =
   | "DATABASE"
   | "DATASET"
   | "RESERVATION";
-export const DatabaseResourceResourceCategoryEnum = /*@__PURE__*/ S.String;
+export const DatabaseResourceResourceCategoryEnum = S.String;
 
 /** BackupDRConfig to capture the backup and disaster recovery details of database resource. */
 export interface BackupDRConfig {
@@ -2225,7 +2224,7 @@ export type MaintenanceInfoStateEnum =
   | "MAINTENANCE_STATE_IN_PROGRESS"
   | "MAINTENANCE_STATE_COMPLETED"
   | "MAINTENANCE_STATE_FAILED";
-export const MaintenanceInfoStateEnum = /*@__PURE__*/ S.String;
+export const MaintenanceInfoStateEnum = S.String;
 
 /** Upcoming maintenance window for the database resource. */
 export interface UpcomingMaintenance {
@@ -2247,8 +2246,7 @@ export type MaintenanceInfoPossibleFailureReasonsItemEnum =
   | "POSSIBLE_FAILURE_REASON_UNSPECIFIED"
   | "POSSIBLE_FAILURE_REASON_DENY_POLICY_CONFLICT"
   | "POSSIBLE_FAILURE_REASON_INSTANCE_IN_STOPPED_STATE";
-export const MaintenanceInfoPossibleFailureReasonsItemEnum =
-  /*@__PURE__*/ S.String;
+export const MaintenanceInfoPossibleFailureReasonsItemEnum = S.String;
 
 export type MaintenanceInfoPossibleFailureReasonsItemEnumList =
   Array<MaintenanceInfoPossibleFailureReasonsItemEnum>;

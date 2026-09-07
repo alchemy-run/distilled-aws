@@ -131,7 +131,7 @@ export type Pubsub_SchemaTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "PROTOCOL_BUFFER"
   | "AVRO";
-export const Pubsub_SchemaTypeEnum = /*@__PURE__*/ S.String;
+export const Pubsub_SchemaTypeEnum = S.String;
 
 /** A schema resource. */
 export interface Pubsub_Schema {
@@ -291,7 +291,7 @@ export type CloudStorageConfigStateEnum =
   | "IN_TRANSIT_LOCATION_RESTRICTION"
   | "SCHEMA_MISMATCH"
   | "VERTEX_AI_LOCATION_RESTRICTION";
-export const CloudStorageConfigStateEnum = /*@__PURE__*/ S.String;
+export const CloudStorageConfigStateEnum = S.String;
 
 /** Configuration for writing message data in Avro format. Message payloads and metadata will be written to files as an Avro binary. */
 export interface AvroConfig {
@@ -380,7 +380,7 @@ export type BigQueryConfigStateEnum =
   | "SCHEMA_MISMATCH"
   | "IN_TRANSIT_LOCATION_RESTRICTION"
   | "VERTEX_AI_LOCATION_RESTRICTION";
-export const BigQueryConfigStateEnum = /*@__PURE__*/ S.String;
+export const BigQueryConfigStateEnum = S.String;
 
 /** Configuration for a BigQuery subscription. */
 export interface BigQueryConfig {
@@ -481,7 +481,7 @@ export type SubscriptionStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "RESOURCE_ERROR";
-export const SubscriptionStateEnum = /*@__PURE__*/ S.String;
+export const SubscriptionStateEnum = S.String;
 
 export type BigtableConfigStateEnum =
   | "STATE_UNSPECIFIED"
@@ -492,7 +492,7 @@ export type BigtableConfigStateEnum =
   | "SCHEMA_MISMATCH"
   | "IN_TRANSIT_LOCATION_RESTRICTION"
   | "VERTEX_AI_LOCATION_RESTRICTION";
-export const BigtableConfigStateEnum = /*@__PURE__*/ S.String;
+export const BigtableConfigStateEnum = S.String;
 
 /** Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp. */
 export interface BigtableConfig {
@@ -586,13 +586,13 @@ export const JavaScriptUDF = /*@__PURE__*/ S.suspend(() =>
 export type CompressionCompressionAlgorithmEnum =
   | "COMPRESSION_ALGORITHM_UNSPECIFIED"
   | "ZLIB";
-export const CompressionCompressionAlgorithmEnum = /*@__PURE__*/ S.String;
+export const CompressionCompressionAlgorithmEnum = S.String;
 
 export type CompressionCompressionModeEnum =
   | "COMPRESSION_MODE_UNSPECIFIED"
   | "COMPRESS"
   | "DECOMPRESS";
-export const CompressionCompressionModeEnum = /*@__PURE__*/ S.String;
+export const CompressionCompressionModeEnum = S.String;
 
 /** Configuration for compressing/decompressing message data using a user-specified compression algorithm. */
 export interface Compression {
@@ -766,13 +766,13 @@ export type TopicStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "INGESTION_RESOURCE_ERROR";
-export const TopicStateEnum = /*@__PURE__*/ S.String;
+export const TopicStateEnum = S.String;
 
 export type SchemaSettingsEncodingEnum =
   | "ENCODING_UNSPECIFIED"
   | "JSON"
   | "BINARY";
-export const SchemaSettingsEncodingEnum = /*@__PURE__*/ S.String;
+export const SchemaSettingsEncodingEnum = S.String;
 
 /** Settings for validating messages published against a schema. */
 export interface SchemaSettings {
@@ -804,7 +804,7 @@ export type AzureEventHubsStateEnum =
   | "SUBSCRIPTION_NOT_FOUND"
   | "RESOURCE_GROUP_NOT_FOUND"
   | "CONFLICTING_REGION_CONSTRAINTS";
-export const AzureEventHubsStateEnum = /*@__PURE__*/ S.String;
+export const AzureEventHubsStateEnum = S.String;
 
 /** Ingestion settings for Azure Event Hubs. */
 export interface AzureEventHubs {
@@ -846,7 +846,7 @@ export type AwsMskStateEnum =
   | "CLUSTER_NOT_FOUND"
   | "TOPIC_NOT_FOUND"
   | "CONFLICTING_REGION_CONSTRAINTS";
-export const AwsMskStateEnum = /*@__PURE__*/ S.String;
+export const AwsMskStateEnum = S.String;
 
 /** Ingestion settings for Amazon MSK. */
 export interface AwsMsk {
@@ -878,7 +878,7 @@ export type PlatformLogsSettingsSeverityEnum =
   | "INFO"
   | "WARNING"
   | "ERROR";
-export const PlatformLogsSettingsSeverityEnum = /*@__PURE__*/ S.String;
+export const PlatformLogsSettingsSeverityEnum = S.String;
 
 /** Settings for Platform Logs produced by Pub/Sub. */
 export interface PlatformLogsSettings {
@@ -902,7 +902,7 @@ export type ConfluentCloudStateEnum =
   | "CLUSTER_NOT_FOUND"
   | "TOPIC_NOT_FOUND"
   | "CONFLICTING_REGION_CONSTRAINTS";
-export const ConfluentCloudStateEnum = /*@__PURE__*/ S.String;
+export const ConfluentCloudStateEnum = S.String;
 
 /** Ingestion settings for Confluent Cloud. */
 export interface ConfluentCloud {
@@ -946,7 +946,7 @@ export type CloudStorageStateEnum =
   | "BUCKET_NOT_FOUND"
   | "TOO_MANY_OBJECTS"
   | "CONFLICTING_REGION_CONSTRAINTS";
-export const CloudStorageStateEnum = /*@__PURE__*/ S.String;
+export const CloudStorageStateEnum = S.String;
 
 /** Configuration for reading Cloud Storage data in text format. Each line of text as specified by the delimiter will be set to the `data` field of a Pub/Sub message. */
 export interface TextFormat {
@@ -996,7 +996,7 @@ export type AwsKinesisStateEnum =
   | "STREAM_NOT_FOUND"
   | "CONSUMER_NOT_FOUND"
   | "CONFLICTING_REGION_CONSTRAINTS";
-export const AwsKinesisStateEnum = /*@__PURE__*/ S.String;
+export const AwsKinesisStateEnum = S.String;
 
 /** Ingestion settings for Amazon Kinesis Data Streams. */
 export interface AwsKinesis {
@@ -1380,7 +1380,7 @@ export type GetProjectsSchemasViewEnum =
   | "SCHEMA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsSchemasViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsSchemasViewEnum = S.String;
 
 export interface GetProjectsSchemasRequest {
   /** The set of fields to return in the response. If not set, returns a Schema with all fields filled out. Set to `BASIC` to omit the `definition`. */
@@ -1461,7 +1461,7 @@ export type ListProjectsSchemasViewEnum =
   | "SCHEMA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsSchemasViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsSchemasViewEnum = S.String;
 
 export interface ListProjectsSchemasRequest {
   /** Maximum number of schemas to return. */
@@ -1731,7 +1731,7 @@ export type ListRevisionsProjectsSchemasViewEnum =
   | "SCHEMA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListRevisionsProjectsSchemasViewEnum = /*@__PURE__*/ S.String;
+export const ListRevisionsProjectsSchemasViewEnum = S.String;
 
 export interface ListRevisionsProjectsSchemasRequest {
   /** The page token, received from a previous ListSchemaRevisions call. Provide this to retrieve the subsequent page. */
@@ -2395,7 +2395,7 @@ export type ValidateMessageRequestEncodingEnum =
   | "ENCODING_UNSPECIFIED"
   | "JSON"
   | "BINARY";
-export const ValidateMessageRequestEncodingEnum = /*@__PURE__*/ S.String;
+export const ValidateMessageRequestEncodingEnum = S.String;
 
 /** Request for the `ValidateMessage` method. */
 export interface ValidateMessageRequest {

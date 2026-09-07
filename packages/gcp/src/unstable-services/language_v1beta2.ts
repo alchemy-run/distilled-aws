@@ -69,10 +69,10 @@ export type DocumentBoilerplateHandlingEnum =
   | "BOILERPLATE_HANDLING_UNSPECIFIED"
   | "SKIP_BOILERPLATE"
   | "KEEP_BOILERPLATE";
-export const DocumentBoilerplateHandlingEnum = /*@__PURE__*/ S.String;
+export const DocumentBoilerplateHandlingEnum = S.String;
 
 export type DocumentTypeEnum = "TYPE_UNSPECIFIED" | "PLAIN_TEXT" | "HTML";
-export const DocumentTypeEnum = /*@__PURE__*/ S.String;
+export const DocumentTypeEnum = S.String;
 
 /** Represents the input to API methods. */
 export interface Document {
@@ -105,7 +105,7 @@ export type AnalyzeEntitiesRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnalyzeEntitiesRequestEncodingTypeEnum = /*@__PURE__*/ S.String;
+export const AnalyzeEntitiesRequestEncodingTypeEnum = S.String;
 
 /** The entity analysis request message. */
 export interface AnalyzeEntitiesRequest {
@@ -162,7 +162,7 @@ export const TextSpan = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TextSpan" }) as any as S.Schema<TextSpan>;
 
 export type EntityMentionTypeEnum = "TYPE_UNKNOWN" | "PROPER" | "COMMON";
-export const EntityMentionTypeEnum = /*@__PURE__*/ S.String;
+export const EntityMentionTypeEnum = S.String;
 
 /** Represents the feeling associated with the entire text or entities in the text. */
 export interface Sentiment {
@@ -214,7 +214,7 @@ export type EntityTypeEnum =
   | "DATE"
   | "NUMBER"
   | "PRICE";
-export const EntityTypeEnum = /*@__PURE__*/ S.String;
+export const EntityTypeEnum = S.String;
 
 /** Represents a phrase in the text that is a known entity, such as a person, an organization, or location. The API associates information, such as salience and mentions, with entities. */
 export interface Entity {
@@ -268,8 +268,7 @@ export type AnalyzeEntitySentimentRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnalyzeEntitySentimentRequestEncodingTypeEnum =
-  /*@__PURE__*/ S.String;
+export const AnalyzeEntitySentimentRequestEncodingTypeEnum = S.String;
 
 /** The entity-level sentiment analysis request message. */
 export interface AnalyzeEntitySentimentRequest {
@@ -327,7 +326,7 @@ export type AnalyzeSentimentRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnalyzeSentimentRequestEncodingTypeEnum = /*@__PURE__*/ S.String;
+export const AnalyzeSentimentRequestEncodingTypeEnum = S.String;
 
 /** The sentiment analysis request message. */
 export interface AnalyzeSentimentRequest {
@@ -406,7 +405,7 @@ export type AnalyzeSyntaxRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnalyzeSyntaxRequestEncodingTypeEnum = /*@__PURE__*/ S.String;
+export const AnalyzeSyntaxRequestEncodingTypeEnum = S.String;
 
 /** The syntax analysis request message. */
 export interface AnalyzeSyntaxRequest {
@@ -526,7 +525,7 @@ export type DependencyEdgeLabelEnum =
   | "INFMOD"
   | "MES"
   | "NCOMP";
-export const DependencyEdgeLabelEnum = /*@__PURE__*/ S.String;
+export const DependencyEdgeLabelEnum = S.String;
 
 /** Represents dependency parse tree information for a token. */
 export interface DependencyEdge {
@@ -546,24 +545,24 @@ export type PartOfSpeechReciprocityEnum =
   | "RECIPROCITY_UNKNOWN"
   | "RECIPROCAL"
   | "NON_RECIPROCAL";
-export const PartOfSpeechReciprocityEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechReciprocityEnum = S.String;
 
 export type PartOfSpeechAspectEnum =
   | "ASPECT_UNKNOWN"
   | "PERFECTIVE"
   | "IMPERFECTIVE"
   | "PROGRESSIVE";
-export const PartOfSpeechAspectEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechAspectEnum = S.String;
 
 export type PartOfSpeechProperEnum = "PROPER_UNKNOWN" | "PROPER" | "NOT_PROPER";
-export const PartOfSpeechProperEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechProperEnum = S.String;
 
 export type PartOfSpeechVoiceEnum =
   | "VOICE_UNKNOWN"
   | "ACTIVE"
   | "CAUSATIVE"
   | "PASSIVE";
-export const PartOfSpeechVoiceEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechVoiceEnum = S.String;
 
 export type PartOfSpeechMoodEnum =
   | "MOOD_UNKNOWN"
@@ -573,7 +572,7 @@ export type PartOfSpeechMoodEnum =
   | "INTERROGATIVE"
   | "JUSSIVE"
   | "SUBJUNCTIVE";
-export const PartOfSpeechMoodEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechMoodEnum = S.String;
 
 export type PartOfSpeechTenseEnum =
   | "TENSE_UNKNOWN"
@@ -583,14 +582,14 @@ export type PartOfSpeechTenseEnum =
   | "PRESENT"
   | "IMPERFECT"
   | "PLUPERFECT";
-export const PartOfSpeechTenseEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechTenseEnum = S.String;
 
 export type PartOfSpeechNumberEnum =
   | "NUMBER_UNKNOWN"
   | "SINGULAR"
   | "PLURAL"
   | "DUAL";
-export const PartOfSpeechNumberEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechNumberEnum = S.String;
 
 export type PartOfSpeechCaseEnum =
   | "CASE_UNKNOWN"
@@ -608,7 +607,7 @@ export type PartOfSpeechCaseEnum =
   | "REFLEXIVE_CASE"
   | "RELATIVE_CASE"
   | "VOCATIVE";
-export const PartOfSpeechCaseEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechCaseEnum = S.String;
 
 export type PartOfSpeechTagEnum =
   | "UNKNOWN"
@@ -625,7 +624,7 @@ export type PartOfSpeechTagEnum =
   | "VERB"
   | "X"
   | "AFFIX";
-export const PartOfSpeechTagEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechTagEnum = S.String;
 
 export type PartOfSpeechPersonEnum =
   | "PERSON_UNKNOWN"
@@ -633,7 +632,7 @@ export type PartOfSpeechPersonEnum =
   | "SECOND"
   | "THIRD"
   | "REFLEXIVE_PERSON";
-export const PartOfSpeechPersonEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechPersonEnum = S.String;
 
 export type PartOfSpeechFormEnum =
   | "FORM_UNKNOWN"
@@ -648,14 +647,14 @@ export type PartOfSpeechFormEnum =
   | "LONG"
   | "ORDER"
   | "SPECIFIC";
-export const PartOfSpeechFormEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechFormEnum = S.String;
 
 export type PartOfSpeechGenderEnum =
   | "GENDER_UNKNOWN"
   | "FEMININE"
   | "MASCULINE"
   | "NEUTER";
-export const PartOfSpeechGenderEnum = /*@__PURE__*/ S.String;
+export const PartOfSpeechGenderEnum = S.String;
 
 /** Represents part of speech information for a token. */
 export interface PartOfSpeech {
@@ -758,7 +757,7 @@ export type ClassificationModelOptionsV2ModelContentCategoriesVersionEnum =
   | "V1"
   | "V2";
 export const ClassificationModelOptionsV2ModelContentCategoriesVersionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options for the V2 model. */
 export interface ClassificationModelOptionsV2Model {
@@ -829,7 +828,7 @@ export type AnnotateTextRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnnotateTextRequestEncodingTypeEnum = /*@__PURE__*/ S.String;
+export const AnnotateTextRequestEncodingTypeEnum = S.String;
 
 /** The request message for the text annotation API, which can perform multiple analysis types (sentiment, entities, and syntax) in one call. */
 export interface AnnotateTextRequest {

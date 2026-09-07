@@ -121,7 +121,7 @@ export type LinkDescriptionMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+export const LinkDescriptionMethod = S.String;
 
 /** The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information. */
 export interface LinkDescription {
@@ -297,7 +297,7 @@ export const EventTypeList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "EventTypeList" }) as any as S.Schema<EventTypeList>;
 
 export type ListWebhooksRequestAnchorType = "APPLICATION" | "ACCOUNT";
-export const ListWebhooksRequestAnchorType = /*@__PURE__*/ S.String;
+export const ListWebhooksRequestAnchorType = S.String;
 
 export interface ListWebhooksRequest {
   /** Filters the webhooks in the response by an `anchor_id` entity type. */
@@ -539,7 +539,7 @@ export const ResendWebhooksEventResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The operation. */
 export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
-export const PatchOp = /*@__PURE__*/ S.String;
+export const PatchOp = S.String;
 
 /** The JSON patch object to apply partial updates to resources. */
 export interface Patch {
@@ -638,8 +638,7 @@ export const VerifyWebhookSignaturePostRequest = /*@__PURE__*/ S.suspend(() =>
 export type VerifyWebhookSignatureResponseVerificationStatus =
   | "SUCCESS"
   | "FAILURE";
-export const VerifyWebhookSignatureResponseVerificationStatus =
-  /*@__PURE__*/ S.String;
+export const VerifyWebhookSignatureResponseVerificationStatus = S.String;
 
 /** The verify webhook signature response. */
 export interface VerifyWebhookSignatureResponse {

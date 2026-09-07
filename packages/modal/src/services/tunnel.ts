@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 export type { ModalOpError, ModalOpContext };
 
 export type TunnelType = "TUNNEL_TYPE_UNSPECIFIED" | "TUNNEL_TYPE_H2";
-export const TunnelType = /*@__PURE__*/ S.String;
+export const TunnelType = S.String;
 
 export interface StartTunnelRequest {
   port?: number;

@@ -51,12 +51,12 @@ export class NotFound
 /** Source chain name or chain ID. Defaults to the source token's chain when omitted. */
 export type CreateSwapRequestFromChain = string | number;
 export const CreateSwapRequestFromChain =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSwapRequestFromChain>;
+  S.Unknown as any as S.Schema<CreateSwapRequestFromChain>;
 
 /** Destination chain name or chain ID. Defaults to the destination token's chain when omitted. */
 export type CreateSwapRequestToChain = string | number;
 export const CreateSwapRequestToChain =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSwapRequestToChain>;
+  S.Unknown as any as S.Schema<CreateSwapRequestToChain>;
 
 export interface CreateSwapRequest {
   /** Business or user account ID (biz_* / user_*). */
@@ -107,7 +107,7 @@ export const CreateSwapResponseFromToken = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSwapResponseFromToken>;
 
 export type CreateSwapResponseObject = "swap";
-export const CreateSwapResponseObject = /*@__PURE__*/ S.String;
+export const CreateSwapResponseObject = S.String;
 
 /** Swap status. Crypto swaps start `queued`; fiat conversions return `complete`, or `working` while a stablecoin repayment settles. */
 export type CreateSwapResponseStatus =
@@ -115,7 +115,7 @@ export type CreateSwapResponseStatus =
   | "working"
   | "complete"
   | "failed";
-export const CreateSwapResponseStatus = /*@__PURE__*/ S.String;
+export const CreateSwapResponseStatus = S.String;
 
 /** Fiat pairs only: the destination currency. */
 export type CreateSwapResponseToToken = CreateSwapResponseFromToken;
@@ -168,7 +168,7 @@ export const CreateSwapResponse = /*@__PURE__*/ S.suspend(() =>
 /** Source chain name or chain ID. Defaults to the source token's chain when omitted. */
 export type CreateSwapQuoteRequestFromChain = string | number;
 export const CreateSwapQuoteRequestFromChain =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSwapQuoteRequestFromChain>;
+  S.Unknown as any as S.Schema<CreateSwapQuoteRequestFromChain>;
 
 /** Metadata to include with the quote response. */
 export type CreateSwapQuoteRequestMetadataMap = {
@@ -182,7 +182,7 @@ export const CreateSwapQuoteRequestMetadataMap = /*@__PURE__*/ S.Record(
 /** Destination chain name or chain ID. Defaults to the destination token's chain when omitted. */
 export type CreateSwapQuoteRequestToChain = string | number;
 export const CreateSwapQuoteRequestToChain =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSwapQuoteRequestToChain>;
+  S.Unknown as any as S.Schema<CreateSwapQuoteRequestToChain>;
 
 export interface CreateSwapQuoteRequest {
   /** Source token amount. */
@@ -242,7 +242,7 @@ export const CreateSwapQuoteResponseMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateSwapQuoteResponseMetadataMap>;
 
 export type CreateSwapQuoteResponseObject = "swap_quote";
-export const CreateSwapQuoteResponseObject = /*@__PURE__*/ S.String;
+export const CreateSwapQuoteResponseObject = S.String;
 
 /** Resolved destination token details. */
 export type CreateSwapQuoteResponseToTokenMap = {
@@ -314,7 +314,7 @@ export const GetSwapRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetSwapRequest" }) as any as S.Schema<GetSwapRequest>;
 
 export type GetSwapResponseObject = "swap";
-export const GetSwapResponseObject = /*@__PURE__*/ S.String;
+export const GetSwapResponseObject = S.String;
 
 /** Current swap status. `complete` and `failed` are terminal. */
 export type GetSwapResponseStatus =
@@ -322,7 +322,7 @@ export type GetSwapResponseStatus =
   | "working"
   | "complete"
   | "failed";
-export const GetSwapResponseStatus = /*@__PURE__*/ S.String;
+export const GetSwapResponseStatus = S.String;
 
 /** On-chain transaction hashes produced by the swap. */
 export type GetSwapResponseTxHashesList = Array<string>;
@@ -369,7 +369,7 @@ export const ListSwapsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSwapsRequest>;
 
 export type ListSwapsResponseDataItemObject = "swap";
-export const ListSwapsResponseDataItemObject = /*@__PURE__*/ S.String;
+export const ListSwapsResponseDataItemObject = S.String;
 
 /** Current swap status. `complete` and `failed` are terminal. */
 export type ListSwapsResponseDataItemStatus =
@@ -377,7 +377,7 @@ export type ListSwapsResponseDataItemStatus =
   | "working"
   | "complete"
   | "failed";
-export const ListSwapsResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const ListSwapsResponseDataItemStatus = S.String;
 
 /** On-chain transaction hashes produced by the swap. */
 export type ListSwapsResponseDataItemTxHashesList = Array<string>;

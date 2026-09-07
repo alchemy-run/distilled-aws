@@ -24,11 +24,11 @@ export const AppliancesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Represents a supported Fabric/Infra. (AKSEdge etc...). */
 export type AppliancePropertiesInputDistro = "AKSEdge";
-export const AppliancePropertiesInputDistro = /*@__PURE__*/ S.String;
+export const AppliancePropertiesInputDistro = S.String;
 
 /** Information about the connected appliance. */
 export type Provider = "VMWare" | "HCI" | "SCVMM";
-export const Provider = /*@__PURE__*/ S.String;
+export const Provider = S.String;
 
 /** Contains infrastructure information about the Appliance */
 export interface AppliancePropertiesInfrastructureConfig {
@@ -68,7 +68,7 @@ export const AppliancePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type. */
 export type ResourceIdentityType = "SystemAssigned" | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 /** Identity for the resource. */
 export interface IdentityInput {
@@ -124,7 +124,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -132,7 +132,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -171,7 +171,7 @@ export const AppliancesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Represents a supported Fabric/Infra. (AKSEdge etc...). */
 export type AppliancePropertiesDistro = "AKSEdge";
-export const AppliancePropertiesDistro = /*@__PURE__*/ S.String;
+export const AppliancePropertiesDistro = S.String;
 
 /** Appliance’s health and state of connection to on-prem. This list of values is not exhaustive. */
 export type Status =
@@ -207,7 +207,7 @@ export type Status =
   | "UpgradeFailed"
   | "Offline"
   | "None";
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 /** Properties for an appliance. */
 export interface ApplianceProperties {
@@ -707,7 +707,7 @@ export const HybridConnectionConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Name which contains the role of the kubeconfig. */
 export type AccessProfileType = "clusterUser" | "clusterCustomerUser";
-export const AccessProfileType = /*@__PURE__*/ S.String;
+export const AccessProfileType = S.String;
 
 /** Cluster User Credential appliance. */
 export interface ApplianceCredentialKubeconfig {

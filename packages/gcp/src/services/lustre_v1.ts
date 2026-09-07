@@ -112,7 +112,7 @@ export type AccessRuleSquashModeEnum =
   | "SQUASH_MODE_UNSPECIFIED"
   | "NO_SQUASH"
   | "ROOT_SQUASH";
-export const AccessRuleSquashModeEnum = /*@__PURE__*/ S.String;
+export const AccessRuleSquashModeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -145,7 +145,7 @@ export type AccessRulesOptionsDefaultSquashModeEnum =
   | "SQUASH_MODE_UNSPECIFIED"
   | "NO_SQUASH"
   | "ROOT_SQUASH";
-export const AccessRulesOptionsDefaultSquashModeEnum = /*@__PURE__*/ S.String;
+export const AccessRulesOptionsDefaultSquashModeEnum = S.String;
 
 /** IP-based access rules for the Managed Lustre instance. These options define the root user squash configuration. */
 export interface AccessRulesOptions {
@@ -178,7 +178,7 @@ export type WeeklyMaintenanceWindowDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeeklyMaintenanceWindowDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const WeeklyMaintenanceWindowDayOfWeekEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -282,7 +282,7 @@ export type DynamicTierOptionsModeEnum =
   | "MODE_UNSPECIFIED"
   | "DISABLED"
   | "DEFAULT_CACHE";
-export const DynamicTierOptionsModeEnum = /*@__PURE__*/ S.String;
+export const DynamicTierOptionsModeEnum = S.String;
 
 /** Dynamic tier options for a Managed Lustre instance. */
 export interface DynamicTierOptions {
@@ -313,7 +313,7 @@ export type InstanceStateEnum =
   | "STOPPED"
   | "UPDATING"
   | "SUSPENDED";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** A Managed Lustre instance. */
 export interface Instance {
@@ -889,7 +889,7 @@ export type RescheduleRescheduleTypeEnum =
   | "IMMEDIATE"
   | "NEXT_AVAILABLE_WINDOW"
   | "BY_TIME";
-export const RescheduleRescheduleTypeEnum = /*@__PURE__*/ S.String;
+export const RescheduleRescheduleTypeEnum = S.String;
 
 /** The desired reschedule settings. */
 export interface Reschedule {

@@ -15,7 +15,7 @@ export type { HetznerOpError, HetznerOpContext };
 
 /** Mode of the [Zone](#tag/zones). For more information, see [Zone Modes](#tag/zones/zone-modes). */
 export type CreateZoneRequestMode = "primary" | "secondary";
-export const CreateZoneRequestMode = /*@__PURE__*/ S.String;
+export const CreateZoneRequestMode = S.String;
 
 /** User-defined labels (`key/value` pairs) for the Resource. For more information, see "[Labels](#description/labels)". */
 export type CreateZoneRequestLabelsMap = { [key: string]: string | undefined };
@@ -29,8 +29,7 @@ export type CreateZoneRequestPrimaryNameserversItemTsigAlgorithm =
   | "hmac-md5"
   | "hmac-sha1"
   | "hmac-sha256";
-export const CreateZoneRequestPrimaryNameserversItemTsigAlgorithm =
-  /*@__PURE__*/ S.String;
+export const CreateZoneRequestPrimaryNameserversItemTsigAlgorithm = S.String;
 
 /** Primary nameserver that returns [Zones](#tag/zones) via `AXFR`. Must allow queries from and may send `NOTIFY` queries to [Hetzner's secondary nameservers](https://docs.hetzner.com/dns-console/dns/general/authoritative-name-servers#secondary-dns-servers-old-name-servers-for-robot-customers). */
 export interface CreateZoneRequestPrimaryNameserversItem {
@@ -84,7 +83,7 @@ export type CreateZoneRequestRrsetsItemType =
   | "SVCB"
   | "TLSA"
   | "TXT";
-export const CreateZoneRequestRrsetsItemType = /*@__PURE__*/ S.String;
+export const CreateZoneRequestRrsetsItemType = S.String;
 
 /** Record of a [RRSet](#tag/zone-rrsets). The `value` is used to identify the record in an [RRSet](#tag/zone-rrsets). */
 export interface CreateZoneRequestRrsetsItemRecordsItem {
@@ -184,8 +183,7 @@ export type ZonePrimaryPrimaryNameserversItemTsigAlgorithm =
   | "hmac-md5"
   | "hmac-sha1"
   | "hmac-sha256";
-export const ZonePrimaryPrimaryNameserversItemTsigAlgorithm =
-  /*@__PURE__*/ S.String;
+export const ZonePrimaryPrimaryNameserversItemTsigAlgorithm = S.String;
 
 /** Primary nameserver that returns [Zones](#tag/zones) via `AXFR`. Must allow queries from and may send `NOTIFY` queries to [Hetzner's secondary nameservers](https://docs.hetzner.com/dns-console/dns/general/authoritative-name-servers#secondary-dns-servers-old-name-servers-for-robot-customers). */
 export interface ZonePrimaryPrimaryNameserversItem {
@@ -238,7 +236,7 @@ export const ZonePrimaryProtection = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the [Zone](#tag/zones). */
 export type ZonePrimaryStatus = "ok" | "updating" | "error";
-export const ZonePrimaryStatus = /*@__PURE__*/ S.String;
+export const ZonePrimaryStatus = S.String;
 
 /** Authoritative Hetzner nameservers assigned to this [Zone](#tag/zones). */
 export type ZonePrimaryAuthoritativeNameserversAssignedList = Array<string>;
@@ -262,8 +260,7 @@ export type ZonePrimaryAuthoritativeNameserversDelegationStatus =
   | "lame"
   | "unregistered"
   | "unknown";
-export const ZonePrimaryAuthoritativeNameserversDelegationStatus =
-  /*@__PURE__*/ S.String;
+export const ZonePrimaryAuthoritativeNameserversDelegationStatus = S.String;
 
 export interface ZonePrimaryAuthoritativeNameservers {
   /** Authoritative Hetzner nameservers assigned to this [Zone](#tag/zones). */
@@ -290,11 +287,11 @@ export const ZonePrimaryAuthoritativeNameservers = /*@__PURE__*/ S.suspend(() =>
 
 /** Registrar of the domain. */
 export type ZonePrimaryRegistrar = "hetzner" | "other" | "unknown";
-export const ZonePrimaryRegistrar = /*@__PURE__*/ S.String;
+export const ZonePrimaryRegistrar = S.String;
 
 /** Mode of the [Zone](#tag/zones). For more information, see [Zone Modes](#tag/zones/zone-modes). */
 export type ZonePrimaryMode = "primary";
-export const ZonePrimaryMode = /*@__PURE__*/ S.String;
+export const ZonePrimaryMode = S.String;
 
 export interface ZonePrimary {
   /** ID of the [Zone](#tag/zones). */
@@ -343,8 +340,7 @@ export type ZoneSecondaryPrimaryNameserversItemTsigAlgorithm =
   | "hmac-md5"
   | "hmac-sha1"
   | "hmac-sha256";
-export const ZoneSecondaryPrimaryNameserversItemTsigAlgorithm =
-  /*@__PURE__*/ S.String;
+export const ZoneSecondaryPrimaryNameserversItemTsigAlgorithm = S.String;
 
 /** Primary nameserver that returns [Zones](#tag/zones) via `AXFR`. Must allow queries from and may send `NOTIFY` queries to [Hetzner's secondary nameservers](https://docs.hetzner.com/dns-console/dns/general/authoritative-name-servers#secondary-dns-servers-old-name-servers-for-robot-customers). */
 export interface ZoneSecondaryPrimaryNameserversItem {
@@ -390,7 +386,7 @@ export const ZoneSecondaryProtection = ZonePrimaryProtection;
 
 /** Status of the [Zone](#tag/zones). */
 export type ZoneSecondaryStatus = "ok" | "updating" | "error";
-export const ZoneSecondaryStatus = /*@__PURE__*/ S.String;
+export const ZoneSecondaryStatus = S.String;
 
 /** Authoritative Hetzner nameservers assigned to this [Zone](#tag/zones). */
 export type ZoneSecondaryAuthoritativeNameserversAssignedList = Array<string>;
@@ -414,8 +410,7 @@ export type ZoneSecondaryAuthoritativeNameserversDelegationStatus =
   | "lame"
   | "unregistered"
   | "unknown";
-export const ZoneSecondaryAuthoritativeNameserversDelegationStatus =
-  /*@__PURE__*/ S.String;
+export const ZoneSecondaryAuthoritativeNameserversDelegationStatus = S.String;
 
 export interface ZoneSecondaryAuthoritativeNameservers {
   /** Authoritative Hetzner nameservers assigned to this [Zone](#tag/zones). */
@@ -443,11 +438,11 @@ export const ZoneSecondaryAuthoritativeNameservers = /*@__PURE__*/ S.suspend(
 
 /** Registrar of the domain. */
 export type ZoneSecondaryRegistrar = "hetzner" | "other" | "unknown";
-export const ZoneSecondaryRegistrar = /*@__PURE__*/ S.String;
+export const ZoneSecondaryRegistrar = S.String;
 
 /** Mode of the [Zone](#tag/zones). For more information, see [Zone Modes](#tag/zones/zone-modes). */
 export type ZoneSecondaryMode = "secondary";
-export const ZoneSecondaryMode = /*@__PURE__*/ S.String;
+export const ZoneSecondaryMode = S.String;
 
 export interface ZoneSecondary {
   /** ID of the [Zone](#tag/zones). */
@@ -493,11 +488,11 @@ export const ZoneSecondary = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateZoneResponseZone = ZonePrimary | ZoneSecondary;
 export const CreateZoneResponseZone =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateZoneResponseZone>;
+  S.Unknown as any as S.Schema<CreateZoneResponseZone>;
 
 /** Status of the Action. */
 export type CreateZoneResponseActionStatus = "running" | "success" | "error";
-export const CreateZoneResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateZoneResponseActionStatus = S.String;
 
 export interface CreateZoneResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -598,7 +593,7 @@ export const DeleteZoneRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type DeleteZoneResponseActionStatus = "running" | "success" | "error";
-export const DeleteZoneResponseActionStatus = /*@__PURE__*/ S.String;
+export const DeleteZoneResponseActionStatus = S.String;
 
 export type DeleteZoneResponseActionResourcesItem =
   CreateZoneResponseActionResourcesItem;
@@ -672,7 +667,7 @@ export const GetZoneRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type GetZoneResponseZone = ZonePrimary | ZoneSecondary;
 export const GetZoneResponseZone =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetZoneResponseZone>;
+  S.Unknown as any as S.Schema<GetZoneResponseZone>;
 
 export interface GetZoneResponse {
   zone: GetZoneResponseZone;
@@ -713,7 +708,7 @@ export const GetZoneZonefileResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Mode of the [Zone](#tag/zones). For more information, see [Zone Modes](#tag/zones/zone-modes). */
 export type ListZonesRequestMode = "primary" | "secondary";
-export const ListZonesRequestMode = /*@__PURE__*/ S.String;
+export const ListZonesRequestMode = S.String;
 
 export type ListZonesRequestSortItem =
   | "id"
@@ -725,7 +720,7 @@ export type ListZonesRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListZonesRequestSortItem = /*@__PURE__*/ S.String;
+export const ListZonesRequestSortItem = S.String;
 
 export type ListZonesRequestSortList = Array<
   ListZonesRequestSortItem | (string & {})
@@ -763,7 +758,7 @@ export const ListZonesRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type ListZonesResponseZonesItem = ZonePrimary | ZoneSecondary;
 export const ListZonesResponseZonesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListZonesResponseZonesItem>;
+  S.Unknown as any as S.Schema<ListZonesResponseZonesItem>;
 
 export type ListZonesResponseZonesList = Array<ListZonesResponseZonesItem>;
 export const ListZonesResponseZonesList = /*@__PURE__*/ S.Array(
@@ -847,7 +842,7 @@ export const UpdateZoneRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateZoneResponseZone = ZonePrimary | ZoneSecondary;
 export const UpdateZoneResponseZone =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateZoneResponseZone>;
+  S.Unknown as any as S.Schema<UpdateZoneResponseZone>;
 
 export interface UpdateZoneResponse {
   zone: UpdateZoneResponseZone;

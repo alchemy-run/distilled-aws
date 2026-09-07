@@ -14,15 +14,15 @@ export type { PaypalOpError, PaypalOpContext };
 
 /** The type of landing page to display on the PayPal site for user checkout. To use the non-PayPal account landing page, set to `Billing`. To use the PayPal account login landing page, set to `Login`. */
 export type FlowConfigLandingPageType = "login" | "billing";
-export const FlowConfigLandingPageType = /*@__PURE__*/ S.String;
+export const FlowConfigLandingPageType = S.String;
 
 /** Presents either the **Continue** or **Pay Now** checkout flow to the customer.<br/><br/>Default is **Continue**, or `user_action=continue`. When you do not know the final payment amount, accept this default flow, which redirects the customer to the PayPal payment page with the **Continue** button. When the customer clicks **Continue**, the customer can change the payment amount.<br/><br/> When you know the final payment amount, set `user_action=commit` to choose the **Pay Now** flow, which redirects the customer to the PayPal payment page with the **Pay Now** button. When the customer clicks **Pay Now**, the payment is processed immediately. */
 export type FlowConfigUserAction = "COMMIT";
-export const FlowConfigUserAction = /*@__PURE__*/ S.String;
+export const FlowConfigUserAction = S.String;
 
 /** The HTTP method to use to redirect the customer to a return URL. Value is `GET` or `POST`. */
 export type FlowConfigReturnUriHttpMethod = "GET" | "POST";
-export const FlowConfigReturnUriHttpMethod = /*@__PURE__*/ S.String;
+export const FlowConfigReturnUriHttpMethod = S.String;
 
 /** The flow configuration parameters. */
 export interface FlowConfig {
@@ -210,7 +210,7 @@ export const UpdateWebProfileResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The operation. */
 export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
-export const PatchOp = /*@__PURE__*/ S.String;
+export const PatchOp = S.String;
 
 /** The JSON patch object to apply partial updates to resources. */
 export interface Patch {

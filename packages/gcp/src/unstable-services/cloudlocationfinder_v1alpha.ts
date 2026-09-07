@@ -117,14 +117,14 @@ export type CloudLocationCloudProviderEnum =
   | "CLOUD_PROVIDER_AWS"
   | "CLOUD_PROVIDER_AZURE"
   | "CLOUD_PROVIDER_OCI";
-export const CloudLocationCloudProviderEnum = /*@__PURE__*/ S.String;
+export const CloudLocationCloudProviderEnum = S.String;
 
 export type CloudLocationCloudLocationTypeEnum =
   | "CLOUD_LOCATION_TYPE_UNSPECIFIED"
   | "CLOUD_LOCATION_TYPE_REGION"
   | "CLOUD_LOCATION_TYPE_ZONE"
   | "CLOUD_LOCATION_TYPE_GDCC_ZONE";
-export const CloudLocationCloudLocationTypeEnum = /*@__PURE__*/ S.String;
+export const CloudLocationCloudLocationTypeEnum = S.String;
 
 /** Represents resource cloud locations. */
 export interface CloudLocation {

@@ -70,7 +70,7 @@ export type GoogleCloudAiplatformV1beta1FunctionDeclarationBehaviorEnum =
   | "BLOCKING"
   | "NON_BLOCKING";
 export const GoogleCloudAiplatformV1beta1FunctionDeclarationBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -100,8 +100,7 @@ export type GoogleCloudAiplatformV1beta1SchemaTypeEnum =
   | "ARRAY"
   | "OBJECT"
   | "NULL";
-export const GoogleCloudAiplatformV1beta1SchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1SchemaTypeEnum = S.String;
 
 /** Defines the schema of input and output data. This is a subset of the [OpenAPI 3.0 Schema Object](https://spec.openapis.org/oas/v3.0.3#schema-object). */
 export interface GoogleCloudAiplatformV1beta1Schema {
@@ -235,7 +234,7 @@ export type GoogleCloudAiplatformV1beta1DynamicRetrievalConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "MODE_DYNAMIC";
 export const GoogleCloudAiplatformV1beta1DynamicRetrievalConfigModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Describes the options to customize dynamic retrieval. */
 export interface GoogleCloudAiplatformV1beta1DynamicRetrievalConfig {
@@ -654,7 +653,7 @@ export type GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfigHttpElementLocatio
   | "HTTP_IN_BODY"
   | "HTTP_IN_COOKIE";
 export const GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfigHttpElementLocationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config for authentication with API key. */
 export interface GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig {
@@ -691,8 +690,7 @@ export type GoogleCloudAiplatformV1beta1AuthConfigAuthTypeEnum =
   | "GOOGLE_SERVICE_ACCOUNT_AUTH"
   | "OAUTH"
   | "OIDC_AUTH";
-export const GoogleCloudAiplatformV1beta1AuthConfigAuthTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1AuthConfigAuthTypeEnum = S.String;
 
 /** Config for Google Service Account Authentication. */
 export interface GoogleCloudAiplatformV1beta1AuthConfigGoogleServiceAccountConfig {
@@ -787,8 +785,7 @@ export type GoogleCloudAiplatformV1beta1ExternalApiApiSpecEnum =
   | "API_SPEC_UNSPECIFIED"
   | "SIMPLE_SEARCH"
   | "ELASTIC_SEARCH";
-export const GoogleCloudAiplatformV1beta1ExternalApiApiSpecEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1ExternalApiApiSpecEnum = S.String;
 
 /** Retrieve from data source powered by external API for grounding. The external API is not owned by Google, but need to follow the pre-defined API spec. */
 export interface GoogleCloudAiplatformV1beta1ExternalApi {
@@ -875,7 +872,7 @@ export type GoogleCloudAiplatformV1beta1ToolComputerUseEnvironmentEnum =
   | "ENVIRONMENT_MOBILE"
   | "ENVIRONMENT_DESKTOP";
 export const GoogleCloudAiplatformV1beta1ToolComputerUseEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Tool to support computer use. */
 export interface GoogleCloudAiplatformV1beta1ToolComputerUse {
@@ -910,7 +907,7 @@ export type GoogleCloudAiplatformV1beta1EnterpriseWebSearchBlockingConfidenceEnu
   | "BLOCK_VERY_HIGH_AND_ABOVE"
   | "BLOCK_ONLY_EXTREMELY_HIGH";
 export const GoogleCloudAiplatformV1beta1EnterpriseWebSearchBlockingConfidenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Tool to search public web data, powered by Vertex AI Search and Sec4 compliance. */
 export interface GoogleCloudAiplatformV1beta1EnterpriseWebSearch {
@@ -942,7 +939,7 @@ export type GoogleCloudAiplatformV1beta1ToolGoogleSearchBlockingConfidenceEnum =
   | "BLOCK_VERY_HIGH_AND_ABOVE"
   | "BLOCK_ONLY_EXTREMELY_HIGH";
 export const GoogleCloudAiplatformV1beta1ToolGoogleSearchBlockingConfidenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Standard web search for grounding and related configurations. Only text results are returned. */
 export type GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch =
@@ -1062,7 +1059,7 @@ export type GoogleCloudAiplatformV1beta1GenerationConfigMediaResolutionEnum =
   | "MEDIA_RESOLUTION_MEDIUM"
   | "MEDIA_RESOLUTION_HIGH";
 export const GoogleCloudAiplatformV1beta1GenerationConfigMediaResolutionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1GenerationConfigModelConfigFeatureSelectionPreferenceEnum =
   | "FEATURE_SELECTION_PREFERENCE_UNSPECIFIED"
@@ -1070,7 +1067,7 @@ export type GoogleCloudAiplatformV1beta1GenerationConfigModelConfigFeatureSelect
   | "BALANCED"
   | "PRIORITIZE_COST";
 export const GoogleCloudAiplatformV1beta1GenerationConfigModelConfigFeatureSelectionPreferenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config for model selection. */
 export interface GoogleCloudAiplatformV1beta1GenerationConfigModelConfig {
@@ -1095,7 +1092,7 @@ export type GoogleCloudAiplatformV1beta1ImageConfigProminentPeopleEnum =
   | "ALLOW_PROMINENT_PEOPLE"
   | "BLOCK_PROMINENT_PEOPLE";
 export const GoogleCloudAiplatformV1beta1ImageConfigProminentPeopleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1ImageConfigPersonGenerationEnum =
   | "PERSON_GENERATION_UNSPECIFIED"
@@ -1103,7 +1100,7 @@ export type GoogleCloudAiplatformV1beta1ImageConfigPersonGenerationEnum =
   | "ALLOW_ADULT"
   | "ALLOW_NONE";
 export const GoogleCloudAiplatformV1beta1ImageConfigPersonGenerationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The image output format for generated images. */
 export interface GoogleCloudAiplatformV1beta1ImageConfigImageOutputOptions {
@@ -1234,7 +1231,7 @@ export type GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRouting
   | "BALANCED"
   | "PRIORITIZE_COST";
 export const GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingModeModelRoutingPreferenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration for automated routing. When automated routing is specified, the routing will be determined by the pretrained routing model and customer provided model routing preference. */
 export interface GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingMode {
@@ -1285,14 +1282,14 @@ export type GoogleCloudAiplatformV1beta1AudioResponseFormatMimeTypeEnum =
   | "AUDIO_ALAW"
   | "AUDIO_MULAW";
 export const GoogleCloudAiplatformV1beta1AudioResponseFormatMimeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1AudioResponseFormatDeliveryEnum =
   | "DELIVERY_UNSPECIFIED"
   | "INLINE"
   | "URI";
 export const GoogleCloudAiplatformV1beta1AudioResponseFormatDeliveryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for audio-specific output formatting. */
 export interface GoogleCloudAiplatformV1beta1AudioResponseFormat {
@@ -1330,14 +1327,14 @@ export type GoogleCloudAiplatformV1beta1VideoResponseFormatDeliveryEnum =
   | "INLINE"
   | "URI";
 export const GoogleCloudAiplatformV1beta1VideoResponseFormatDeliveryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1VideoResponseFormatAspectRatioEnum =
   | "ASPECT_RATIO_UNSPECIFIED"
   | "ASPECT_RATIO_SIXTEEN_BY_NINE"
   | "ASPECT_RATIO_NINE_BY_SIXTEEN";
 export const GoogleCloudAiplatformV1beta1VideoResponseFormatAspectRatioEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for video-specific output formatting. */
 export interface GoogleCloudAiplatformV1beta1VideoResponseFormat {
@@ -1380,7 +1377,7 @@ export type GoogleCloudAiplatformV1beta1ImageResponseFormatImageSizeEnum =
   | "IMAGE_SIZE_TWO_K"
   | "IMAGE_SIZE_FOUR_K";
 export const GoogleCloudAiplatformV1beta1ImageResponseFormatImageSizeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1ImageResponseFormatAspectRatioEnum =
   | "ASPECT_RATIO_UNSPECIFIED"
@@ -1399,20 +1396,20 @@ export type GoogleCloudAiplatformV1beta1ImageResponseFormatAspectRatioEnum =
   | "ASPECT_RATIO_ONE_BY_FOUR"
   | "ASPECT_RATIO_FOUR_BY_ONE";
 export const GoogleCloudAiplatformV1beta1ImageResponseFormatAspectRatioEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1ImageResponseFormatMimeTypeEnum =
   | "MIME_TYPE_UNSPECIFIED"
   | "IMAGE_JPEG";
 export const GoogleCloudAiplatformV1beta1ImageResponseFormatMimeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1ImageResponseFormatDeliveryEnum =
   | "DELIVERY_UNSPECIFIED"
   | "INLINE"
   | "URI";
 export const GoogleCloudAiplatformV1beta1ImageResponseFormatDeliveryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for image-specific output formatting. */
 export interface GoogleCloudAiplatformV1beta1ImageResponseFormat {
@@ -1458,7 +1455,7 @@ export type GoogleCloudAiplatformV1beta1TextResponseFormatMimeTypeEnum =
   | "APPLICATION_JSON"
   | "TEXT_PLAIN";
 export const GoogleCloudAiplatformV1beta1TextResponseFormatMimeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for text-specific output formatting. */
 export interface GoogleCloudAiplatformV1beta1TextResponseFormat {
@@ -1632,7 +1629,7 @@ export type GoogleCloudAiplatformV1beta1GenerationConfigResponseModalitiesItemEn
   | "AUDIO"
   | "VIDEO";
 export const GoogleCloudAiplatformV1beta1GenerationConfigResponseModalitiesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAiplatformV1beta1GenerationConfigResponseModalitiesItemEnumList =
   Array<
@@ -1651,7 +1648,7 @@ export type GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfigThinkingLe
   | "HIGH"
   | "MINIMAL";
 export const GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfigThinkingLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for the model's thinking features. "Thinking" is a process where the model breaks down a complex task into smaller, manageable steps. This allows the model to reason about the task, plan its approach, and execute the plan to generate a high-quality response. */
 export interface GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig {
@@ -1780,8 +1777,7 @@ export const GoogleCloudAiplatformV1beta1GenerationConfig =
   }) as any as S.Schema<GoogleCloudAiplatformV1beta1GenerationConfig>;
 
 export type GoogleCloudAiplatformV1beta1PartialArgNullValueEnum = "NULL_VALUE";
-export const GoogleCloudAiplatformV1beta1PartialArgNullValueEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1PartialArgNullValueEnum = S.String;
 
 /** Partial argument value of the function call. */
 export interface GoogleCloudAiplatformV1beta1PartialArg {
@@ -1874,7 +1870,7 @@ export type GoogleCloudAiplatformV1beta1PartMediaResolutionLevelEnum =
   | "MEDIA_RESOLUTION_HIGH"
   | "MEDIA_RESOLUTION_ULTRA_HIGH";
 export const GoogleCloudAiplatformV1beta1PartMediaResolutionLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** per part media resolution. Media resolution for the input media. */
 export interface GoogleCloudAiplatformV1beta1PartMediaResolution {
@@ -1917,8 +1913,7 @@ export const GoogleCloudAiplatformV1beta1FileData = /*@__PURE__*/ S.suspend(
 export type GoogleCloudAiplatformV1beta1ExecutableCodeLanguageEnum =
   | "LANGUAGE_UNSPECIFIED"
   | "PYTHON";
-export const GoogleCloudAiplatformV1beta1ExecutableCodeLanguageEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1ExecutableCodeLanguageEnum = S.String;
 
 /** Code generated by the model that is meant to be executed, and the result returned to the model. Generated when using the `CodeExecution` tool, in which the code will be automatically executed, and a corresponding CodeExecutionResult will also be generated. */
 export interface GoogleCloudAiplatformV1beta1ExecutableCode {
@@ -1950,7 +1945,7 @@ export type GoogleCloudAiplatformV1beta1CodeExecutionResultOutcomeEnum =
   | "OUTCOME_FAILED"
   | "OUTCOME_DEADLINE_EXCEEDED";
 export const GoogleCloudAiplatformV1beta1CodeExecutionResultOutcomeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Result of executing the ExecutableCode. Generated only when the `CodeExecution` tool is used. */
 export interface GoogleCloudAiplatformV1beta1CodeExecutionResult {
@@ -2117,7 +2112,7 @@ export type GoogleCloudAiplatformV1beta1FunctionResponseSchedulingEnum =
   | "WHEN_IDLE"
   | "INTERRUPT";
 export const GoogleCloudAiplatformV1beta1FunctionResponseSchedulingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The result output from a FunctionCall that contains a string representing the FunctionDeclaration.name and a structured JSON object containing any output from the function is used as context to the model. This should contain the result of a `FunctionCall` made based on model prediction. */
 export interface GoogleCloudAiplatformV1beta1FunctionResponse {
@@ -2153,8 +2148,7 @@ export type GoogleCloudAiplatformV1beta1PartMediaProcessingEnum =
   | "MEDIA_PROCESSING_UNSPECIFIED"
   | "STATIC"
   | "AGENTIC";
-export const GoogleCloudAiplatformV1beta1PartMediaProcessingEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1PartMediaProcessingEnum = S.String;
 
 /** A datatype containing media that is part of a multi-part Content message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. For media types that are not text, `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes. */
 export interface GoogleCloudAiplatformV1beta1Part {
@@ -2311,7 +2305,7 @@ export type GoogleCloudAiplatformV1beta1ModalityTokenCountModalityEnum =
   | "AUDIO"
   | "DOCUMENT";
 export const GoogleCloudAiplatformV1beta1ModalityTokenCountModalityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a breakdown of token usage by modality. This message is used in CountTokensResponse and GenerateContentResponse.UsageMetadata to provide a detailed view of how many tokens are used by each modality (e.g., text, image, video) in a request. This is particularly useful for multimodal models, allowing you to track and manage token consumption for billing and quota purposes. */
 export interface GoogleCloudAiplatformV1beta1ModalityTokenCount {
@@ -2365,8 +2359,7 @@ export type GoogleCloudAiplatformV1beta1SafetySettingMethodEnum =
   | "HARM_BLOCK_METHOD_UNSPECIFIED"
   | "SEVERITY"
   | "PROBABILITY";
-export const GoogleCloudAiplatformV1beta1SafetySettingMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1SafetySettingMethodEnum = S.String;
 
 export type GoogleCloudAiplatformV1beta1SafetySettingThresholdEnum =
   | "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
@@ -2375,8 +2368,7 @@ export type GoogleCloudAiplatformV1beta1SafetySettingThresholdEnum =
   | "BLOCK_ONLY_HIGH"
   | "BLOCK_NONE"
   | "OFF";
-export const GoogleCloudAiplatformV1beta1SafetySettingThresholdEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1SafetySettingThresholdEnum = S.String;
 
 export type GoogleCloudAiplatformV1beta1SafetySettingCategoryEnum =
   | "HARM_CATEGORY_UNSPECIFIED"
@@ -2390,8 +2382,7 @@ export type GoogleCloudAiplatformV1beta1SafetySettingCategoryEnum =
   | "HARM_CATEGORY_IMAGE_HARASSMENT"
   | "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT"
   | "HARM_CATEGORY_JAILBREAK";
-export const GoogleCloudAiplatformV1beta1SafetySettingCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1SafetySettingCategoryEnum = S.String;
 
 /** A safety setting that affects the safety-blocking behavior. A SafetySetting consists of a harm category and a threshold for that category. */
 export interface GoogleCloudAiplatformV1beta1SafetySetting {
@@ -2458,7 +2449,7 @@ export type GoogleCloudAiplatformV1beta1FunctionCallingConfigModeEnum =
   | "NONE"
   | "VALIDATED";
 export const GoogleCloudAiplatformV1beta1FunctionCallingConfigModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Function calling config. */
 export interface GoogleCloudAiplatformV1beta1FunctionCallingConfig {
@@ -2606,8 +2597,7 @@ export type GoogleCloudAiplatformV1beta1SafetyRatingProbabilityEnum =
   | "LOW"
   | "MEDIUM"
   | "HIGH";
-export const GoogleCloudAiplatformV1beta1SafetyRatingProbabilityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1SafetyRatingProbabilityEnum = S.String;
 
 export type GoogleCloudAiplatformV1beta1SafetyRatingSeverityEnum =
   | "HARM_SEVERITY_UNSPECIFIED"
@@ -2615,8 +2605,7 @@ export type GoogleCloudAiplatformV1beta1SafetyRatingSeverityEnum =
   | "HARM_SEVERITY_LOW"
   | "HARM_SEVERITY_MEDIUM"
   | "HARM_SEVERITY_HIGH";
-export const GoogleCloudAiplatformV1beta1SafetyRatingSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1SafetyRatingSeverityEnum = S.String;
 
 export type GoogleCloudAiplatformV1beta1SafetyRatingCategoryEnum =
   | "HARM_CATEGORY_UNSPECIFIED"
@@ -2630,8 +2619,7 @@ export type GoogleCloudAiplatformV1beta1SafetyRatingCategoryEnum =
   | "HARM_CATEGORY_IMAGE_HARASSMENT"
   | "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT"
   | "HARM_CATEGORY_JAILBREAK";
-export const GoogleCloudAiplatformV1beta1SafetyRatingCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1SafetyRatingCategoryEnum = S.String;
 
 export type GoogleCloudAiplatformV1beta1SafetyRatingOverwrittenThresholdEnum =
   | "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
@@ -2641,7 +2629,7 @@ export type GoogleCloudAiplatformV1beta1SafetyRatingOverwrittenThresholdEnum =
   | "BLOCK_NONE"
   | "OFF";
 export const GoogleCloudAiplatformV1beta1SafetyRatingOverwrittenThresholdEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A safety rating for a piece of content. The safety rating contains the harm category and the harm probability level. */
 export interface GoogleCloudAiplatformV1beta1SafetyRating {
@@ -2700,7 +2688,7 @@ export type GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedbackBlo
   | "IMAGE_SAFETY"
   | "JAILBREAK";
 export const GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedbackBlockReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Content filter results for a prompt sent in the request. Note: This is sent only in the first stream chunk and only if no candidates were generated due to content violations. */
 export interface GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback {
@@ -3204,7 +3192,7 @@ export type GoogleCloudAiplatformV1beta1UrlMetadataUrlRetrievalStatusEnum =
   | "URL_RETRIEVAL_STATUS_SUCCESS"
   | "URL_RETRIEVAL_STATUS_ERROR";
 export const GoogleCloudAiplatformV1beta1UrlMetadataUrlRetrievalStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The metadata for a single URL retrieval. */
 export interface GoogleCloudAiplatformV1beta1UrlMetadata {
@@ -3332,8 +3320,7 @@ export type GoogleCloudAiplatformV1beta1CandidateFinishReasonEnum =
   | "IMAGE_OTHER"
   | "UNEXPECTED_TOOL_CALL"
   | "NO_IMAGE";
-export const GoogleCloudAiplatformV1beta1CandidateFinishReasonEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAiplatformV1beta1CandidateFinishReasonEnum = S.String;
 
 /** A response candidate generated from the model. */
 export interface GoogleCloudAiplatformV1beta1Candidate {
@@ -3398,7 +3385,7 @@ export type GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadataTraf
   | "ON_DEMAND_OFFPEAK"
   | "PROVISIONED_THROUGHPUT";
 export const GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadataTrafficTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Usage metadata about the content generation request and response. This message provides a detailed breakdown of token usage and other relevant metrics. */
 export interface GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata {

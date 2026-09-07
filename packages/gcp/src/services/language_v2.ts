@@ -70,10 +70,10 @@ export type AnalyzeEntitiesRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnalyzeEntitiesRequestEncodingTypeEnum = /*@__PURE__*/ S.String;
+export const AnalyzeEntitiesRequestEncodingTypeEnum = S.String;
 
 export type DocumentTypeEnum = "TYPE_UNSPECIFIED" | "PLAIN_TEXT" | "HTML";
-export const DocumentTypeEnum = /*@__PURE__*/ S.String;
+export const DocumentTypeEnum = S.String;
 
 /** Represents the input to API methods. */
 export interface Document {
@@ -157,7 +157,7 @@ export type EntityTypeEnum =
   | "DATE"
   | "NUMBER"
   | "PRICE";
-export const EntityTypeEnum = /*@__PURE__*/ S.String;
+export const EntityTypeEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -180,7 +180,7 @@ export const TextSpan = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TextSpan" }) as any as S.Schema<TextSpan>;
 
 export type EntityMentionTypeEnum = "TYPE_UNKNOWN" | "PROPER" | "COMMON";
-export const EntityMentionTypeEnum = /*@__PURE__*/ S.String;
+export const EntityMentionTypeEnum = S.String;
 
 /** Represents a mention for an entity in the text. Currently, proper noun mentions are supported. */
 export interface EntityMention {
@@ -259,7 +259,7 @@ export type AnalyzeSentimentRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnalyzeSentimentRequestEncodingTypeEnum = /*@__PURE__*/ S.String;
+export const AnalyzeSentimentRequestEncodingTypeEnum = S.String;
 
 /** The sentiment analysis request message. */
 export interface AnalyzeSentimentRequest {
@@ -341,7 +341,7 @@ export type AnnotateTextRequestEncodingTypeEnum =
   | "UTF8"
   | "UTF16"
   | "UTF32";
-export const AnnotateTextRequestEncodingTypeEnum = /*@__PURE__*/ S.String;
+export const AnnotateTextRequestEncodingTypeEnum = S.String;
 
 /** All available features. Setting each one to true will enable that specific analysis for the input. */
 export interface AnnotateTextRequestFeatures {
@@ -511,7 +511,7 @@ export type ModerateTextRequestModelVersionEnum =
   | "MODEL_VERSION_UNSPECIFIED"
   | "MODEL_VERSION_1"
   | "MODEL_VERSION_2";
-export const ModerateTextRequestModelVersionEnum = /*@__PURE__*/ S.String;
+export const ModerateTextRequestModelVersionEnum = S.String;
 
 /** The document moderation request message. */
 export interface ModerateTextRequest {

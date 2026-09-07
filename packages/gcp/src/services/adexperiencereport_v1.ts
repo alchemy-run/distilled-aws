@@ -62,7 +62,7 @@ export type PlatformSummaryRegionItemEnum =
   | "REGION_A"
   | "REGION_B"
   | "REGION_C";
-export const PlatformSummaryRegionItemEnum = /*@__PURE__*/ S.String;
+export const PlatformSummaryRegionItemEnum = S.String;
 
 export type PlatformSummaryRegionItemEnumList =
   Array<PlatformSummaryRegionItemEnum>;
@@ -76,14 +76,14 @@ export type PlatformSummaryFilterStatusEnum =
   | "OFF"
   | "PAUSED"
   | "PENDING";
-export const PlatformSummaryFilterStatusEnum = /*@__PURE__*/ S.String;
+export const PlatformSummaryFilterStatusEnum = S.String;
 
 export type PlatformSummaryBetterAdsStatusEnum =
   | "UNKNOWN"
   | "PASSING"
   | "WARNING"
   | "FAILING";
-export const PlatformSummaryBetterAdsStatusEnum = /*@__PURE__*/ S.String;
+export const PlatformSummaryBetterAdsStatusEnum = S.String;
 
 /** A site's Ad Experience Report summary on a single platform. */
 export interface PlatformSummary {

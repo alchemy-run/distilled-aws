@@ -58,14 +58,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -166,7 +166,7 @@ export const LLMPrompt = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "LLMPrompt" }) as any as S.Schema<LLMPrompt>;
 
 export type GetLlmPromptsNameRequestContent = "full" | "preview" | "none";
-export const GetLlmPromptsNameRequestContent = /*@__PURE__*/ S.String;
+export const GetLlmPromptsNameRequestContent = S.String;
 
 export interface GetLlmPromptsNameRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -366,7 +366,7 @@ export const LLMPromptResolveResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LLMPromptResolveResponse>;
 
 export type ListLlmPromptsRequestContent = "full" | "preview" | "none";
-export const ListLlmPromptsRequestContent = /*@__PURE__*/ S.String;
+export const ListLlmPromptsRequestContent = S.String;
 
 export type ListLlmPromptsRequestOrderBy =
   | "name"
@@ -385,7 +385,7 @@ export type ListLlmPromptsRequestOrderBy =
   | "-first_version_created_at"
   | "prompt_size_bytes"
   | "-prompt_size_bytes";
-export const ListLlmPromptsRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListLlmPromptsRequestOrderBy = S.String;
 
 export interface ListLlmPromptsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

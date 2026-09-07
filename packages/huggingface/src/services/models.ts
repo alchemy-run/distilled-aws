@@ -50,7 +50,7 @@ export type AddResourceGroupResponseType =
   | "space"
   | "bucket"
   | "kernel";
-export const AddResourceGroupResponseType = /*@__PURE__*/ S.String;
+export const AddResourceGroupResponseType = S.String;
 
 export interface AddResourceGroupResponse {
   name: string;
@@ -73,7 +73,7 @@ export type BatchHandleAccessRequestsRequestStatus =
   | "accepted"
   | "rejected"
   | "pending";
-export const BatchHandleAccessRequestsRequestStatus = /*@__PURE__*/ S.String;
+export const BatchHandleAccessRequestsRequestStatus = S.String;
 
 export interface BatchHandleAccessRequestsRequestRequestsItem {
   /** Either userId or user must be provided */
@@ -126,8 +126,7 @@ export const BatchHandleAccessRequestsRequest = /*@__PURE__*/ S.suspend(() =>
 export type BatchHandleAccessRequestsResponseBodyItemError =
   | "user_not_found"
   | "request_not_found";
-export const BatchHandleAccessRequestsResponseBodyItemError =
-  /*@__PURE__*/ S.String;
+export const BatchHandleAccessRequestsResponseBodyItemError = S.String;
 
 export interface BatchHandleAccessRequestsResponseBodyItem {
   userId?: string;
@@ -238,8 +237,7 @@ export const CheckUploadMethodRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckUploadMethodRequest>;
 
 export type CheckUploadMethodResponseFilesItemUploadMode = "lfs" | "regular";
-export const CheckUploadMethodResponseFilesItemUploadMode =
-  /*@__PURE__*/ S.String;
+export const CheckUploadMethodResponseFilesItemUploadMode = S.String;
 
 export interface CheckUploadMethodResponseFilesItem {
   path: string;
@@ -282,7 +280,7 @@ export const CheckUploadMethodResponse = /*@__PURE__*/ S.suspend(() =>
 export type CommitRequestContentType =
   | "application/json"
   | "application/x-ndjson";
-export const CommitRequestContentType = /*@__PURE__*/ S.String;
+export const CommitRequestContentType = S.String;
 
 export interface CommitRequest {
   namespace: string;
@@ -539,7 +537,7 @@ export type DuplicateXetFilesRequestTargetType =
   | "model"
   | "space"
   | "kernel";
-export const DuplicateXetFilesRequestTargetType = /*@__PURE__*/ S.String;
+export const DuplicateXetFilesRequestTargetType = S.String;
 
 export interface DuplicateXetFilesRequestTarget {
   type: DuplicateXetFilesRequestTargetType | (string & {});
@@ -820,7 +818,7 @@ export type GetModelTagsRequestType =
   | "region"
   | "deploy"
   | "other";
-export const GetModelTagsRequestType = /*@__PURE__*/ S.String;
+export const GetModelTagsRequestType = S.String;
 
 export interface GetModelTagsRequest {
   type?: GetModelTagsRequestType | (string & {});
@@ -847,7 +845,7 @@ export type GetModelTagsResponseBodyValueItemType =
   | "region"
   | "deploy"
   | "other";
-export const GetModelTagsResponseBodyValueItemType = /*@__PURE__*/ S.String;
+export const GetModelTagsResponseBodyValueItemType = S.String;
 
 export interface GetModelTagsResponseBodyValueItem {
   id: string;
@@ -950,7 +948,7 @@ export type GetNotebookUrlResponseBody =
   | GetNotebookUrlResponseBodyCase1
   | GetNotebookUrlResponseBodyCase2;
 export const GetNotebookUrlResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetNotebookUrlResponseBody>;
+  S.Unknown as any as S.Schema<GetNotebookUrlResponseBody>;
 
 export type GetNotebookUrlResponse = GetNotebookUrlResponseBody;
 export const GetNotebookUrlResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1020,8 +1018,7 @@ export type GetSecurityStatusResponseFilesWithIssuesItemLevel =
   | "caution"
   | "suspicious"
   | "unsafe";
-export const GetSecurityStatusResponseFilesWithIssuesItemLevel =
-  /*@__PURE__*/ S.String;
+export const GetSecurityStatusResponseFilesWithIssuesItemLevel = S.String;
 
 export interface GetSecurityStatusResponseFilesWithIssuesItem {
   path: string;
@@ -1058,7 +1055,7 @@ export const GetSecurityStatusResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSecurityStatusResponse>;
 
 export type GetTrendingRequestType = "all" | "dataset" | "model" | "space";
-export const GetTrendingRequestType = /*@__PURE__*/ S.String;
+export const GetTrendingRequestType = S.String;
 
 export interface GetTrendingRequest {
   type?: GetTrendingRequestType | (string & {});
@@ -1078,7 +1075,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerIn
   | "viewer-partial"
   | "viewer";
 export const GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoViewer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoLibrariesItem =
   | "mlcroissant"
@@ -1094,7 +1091,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerIn
   | "duckdb"
   | "datadesigner";
 export const GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoLibrariesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoLibrariesList =
   Array<GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoLibrariesItem>;
@@ -1115,7 +1112,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerIn
   | "optimized-parquet"
   | "agent-traces";
 export const GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoFormatsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoFormatsList =
   Array<GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoFormatsItem>;
@@ -1135,7 +1132,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerIn
   | "timeseries"
   | "video";
 export const GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoModalitiesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoModalitiesList =
   Array<GetTrendingResponseRecentlyTrendingItemCase0RepoDataDatasetsServerInfoModalitiesItem>;
@@ -1173,13 +1170,13 @@ export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataGatedCase1 =
   | "auto"
   | "manual";
 export const GetTrendingResponseRecentlyTrendingItemCase0RepoDataGatedCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase0RepoDataGated =
   | unknown
   | GetTrendingResponseRecentlyTrendingItemCase0RepoDataGatedCase1;
 export const GetTrendingResponseRecentlyTrendingItemCase0RepoDataGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase0RepoDataGated>;
+  S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase0RepoDataGated>;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase0RepoDataResourceGroup {
   id: string;
@@ -1273,21 +1270,21 @@ export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferen
   | "wavespeed"
   | "zai-org";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemProviderStatus =
   | "live"
   | "staging"
   | "error";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemProviderStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemModelStatus =
   | "live"
   | "staging"
   | "error";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemModelStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemTask =
   | "text-classification"
@@ -1349,7 +1346,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferen
   | "other"
   | "conversational";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemTask =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase1RepoDataAvailableInferenceProvidersItemFeatures {
   toolCalling?: boolean;
@@ -1419,13 +1416,13 @@ export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataGatedCase1 =
   | "auto"
   | "manual";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataGatedCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataGated =
   | unknown
   | GetTrendingResponseRecentlyTrendingItemCase1RepoDataGatedCase1;
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase1RepoDataGated>;
+  S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase1RepoDataGated>;
 
 export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataResourceGroup =
   GetTrendingResponseRecentlyTrendingItemCase0RepoDataResourceGroup;
@@ -1438,7 +1435,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase0P
   | "plus"
   | "academia";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase0 {
   _id: string;
@@ -1481,7 +1478,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase1P
   | "plus"
   | "academia";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -1490,7 +1487,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase1P
   | "read"
   | "no_access";
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -1570,7 +1567,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorData =
   | GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase0
   | GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorDataCase1;
 export const GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorData>;
+  S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase1RepoDataAuthorData>;
 
 export type GetTrendingResponseRecentlyTrendingItemCase1RepoDataWidgetOutputUrlsList =
   Array<string>;
@@ -1647,8 +1644,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataSdk =
   | "docker"
   | "static"
   | "streamlit";
-export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataSdk =
-  /*@__PURE__*/ S.String;
+export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataSdk = S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeStage =
   | "NO_APP_FILE"
@@ -1665,7 +1661,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeStage =
   | "PAUSED"
   | "SLEEPING";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardwareCurrent =
   | "cpu-basic"
@@ -1698,7 +1694,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardwareC
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardwareCurrent =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardwareRequested =
   | "cpu-basic"
@@ -1731,7 +1727,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardwareR
   | "rtx-pro-6000x8"
   | "inf2x6";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardwareRequested =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardware {
   current: GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeHardwareCurrent | null;
@@ -1756,7 +1752,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeReplicasR
   | number
   | unknown;
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeReplicasRequested =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeReplicasRequested>;
+  S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeReplicasRequested>;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeReplicas {
   current?: number | null;
@@ -1781,7 +1777,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeDomainsIt
   | "EXPIRED_CHALLENGE"
   | "MISCONFIGURED";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeDomainsItemStage =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataRuntimeDomainsItem {
   domain: string;
@@ -1878,7 +1874,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor
   | "plus"
   | "academia";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase0 {
   _id: string;
@@ -1921,7 +1917,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor
   | "plus"
   | "academia";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -1930,7 +1926,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor
   | "read"
   | "no_access";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -2010,7 +2006,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor
   | GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase0
   | GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthorCase1;
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor>;
+  S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor>;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepo {
   author: GetTrendingResponseRecentlyTrendingItemCase2RepoDataOriginRepoAuthor;
@@ -2046,7 +2042,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase0P
   | "plus"
   | "academia";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase0 {
   _id: string;
@@ -2089,7 +2085,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase1P
   | "plus"
   | "academia";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase1PrimaryOrgUserRole =
   | "admin"
@@ -2098,7 +2094,7 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase1P
   | "read"
   | "no_access";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase1PrimaryOrg {
   avatarUrl: string;
@@ -2178,14 +2174,14 @@ export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorData =
   | GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase0
   | GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorDataCase1;
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorData>;
+  S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItemCase2RepoDataAuthorData>;
 
 export type GetTrendingResponseRecentlyTrendingItemCase2RepoDataVisibility =
   | "public"
   | "private"
   | "protected";
 export const GetTrendingResponseRecentlyTrendingItemCase2RepoDataVisibility =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetTrendingResponseRecentlyTrendingItemCase2RepoData {
   author: string;
@@ -2277,7 +2273,7 @@ export type GetTrendingResponseRecentlyTrendingItem =
   | GetTrendingResponseRecentlyTrendingItemCase1
   | GetTrendingResponseRecentlyTrendingItemCase2;
 export const GetTrendingResponseRecentlyTrendingItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItem>;
+  S.Unknown as any as S.Schema<GetTrendingResponseRecentlyTrendingItem>;
 
 export type GetTrendingResponseRecentlyTrendingList =
   Array<GetTrendingResponseRecentlyTrendingItem>;
@@ -2330,7 +2326,7 @@ export type HandleAccessRequestRequestStatus =
   | "accepted"
   | "rejected"
   | "pending";
-export const HandleAccessRequestRequestStatus = /*@__PURE__*/ S.String;
+export const HandleAccessRequestRequestStatus = S.String;
 
 export interface HandleAccessRequestRequest {
   namespace: string;
@@ -2372,7 +2368,7 @@ export type ListAccessRequestsRequestStatus =
   | "pending"
   | "accepted"
   | "rejected";
-export const ListAccessRequestsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAccessRequestsRequestStatus = S.String;
 
 export interface ListAccessRequestsRequest {
   namespace: string;
@@ -2607,13 +2603,13 @@ export type ListAccessRequestsResponseBodyItemGrantedBy =
   | ListAccessRequestsResponseBodyItemGrantedByCase0
   | unknown;
 export const ListAccessRequestsResponseBodyItemGrantedBy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListAccessRequestsResponseBodyItemGrantedBy>;
+  S.Unknown as any as S.Schema<ListAccessRequestsResponseBodyItemGrantedBy>;
 
 export type ListAccessRequestsResponseBodyItemStatus =
   | "accepted"
   | "rejected"
   | "pending";
-export const ListAccessRequestsResponseBodyItemStatus = /*@__PURE__*/ S.String;
+export const ListAccessRequestsResponseBodyItemStatus = S.String;
 
 export type ListAccessRequestsResponseBodyItemFieldsMap = {
   [key: string]: string | undefined;
@@ -2659,7 +2655,7 @@ export const ListAccessRequestsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAccessRequestsResponse>;
 
 export type ListCommitsRequestExpandItem = "formatted";
-export const ListCommitsRequestExpandItem = /*@__PURE__*/ S.String;
+export const ListCommitsRequestExpandItem = S.String;
 
 export type ListCommitsRequestExpandList = Array<
   ListCommitsRequestExpandItem | (string & {})
@@ -2799,7 +2795,7 @@ export type ListFolderContentResponseBodyItemType =
   | "file"
   | "directory"
   | "unknown";
-export const ListFolderContentResponseBodyItemType = /*@__PURE__*/ S.String;
+export const ListFolderContentResponseBodyItemType = S.String;
 
 export interface ListFolderContentResponseBodyItemLfs {
   oid: string;
@@ -2842,7 +2838,7 @@ export type ListFolderContentResponseBodyItemSecurityFileStatusStatus =
   | "suspicious"
   | "unsafe";
 export const ListFolderContentResponseBodyItemSecurityFileStatusStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanStatus =
   | "unscanned"
@@ -2853,14 +2849,14 @@ export type ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanStatus =
   | "suspicious"
   | "unsafe";
 export const ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFolderContentResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItem {
   module: string;
@@ -2921,14 +2917,14 @@ export type ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanStat
   | "suspicious"
   | "unsafe";
 export const ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFolderContentResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItem {
   module: string;
@@ -2990,14 +2986,14 @@ export type ListFolderContentResponseBodyItemSecurityFileStatusAvScanStatus =
   | "suspicious"
   | "unsafe";
 export const ListFolderContentResponseBodyItemSecurityFileStatusAvScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFolderContentResponseBodyItemSecurityFileStatusAvScanPickleImportsItem {
   module: string;
@@ -3057,14 +3053,14 @@ export type ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanS
   | "suspicious"
   | "unsafe";
 export const ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFolderContentResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItem {
   module: string;
@@ -3126,14 +3122,14 @@ export type ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanSta
   | "suspicious"
   | "unsafe";
 export const ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListFolderContentResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItem {
   module: string;
@@ -3255,10 +3251,10 @@ export const ListFolderContentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListFolderContentResponse>;
 
 export type ListLargeFilesRequestDirection = "asc" | "desc";
-export const ListLargeFilesRequestDirection = /*@__PURE__*/ S.String;
+export const ListLargeFilesRequestDirection = S.String;
 
 export type ListLargeFilesRequestSort = "size" | "pushedAt";
-export const ListLargeFilesRequestSort = /*@__PURE__*/ S.String;
+export const ListLargeFilesRequestSort = S.String;
 
 export interface ListLargeFilesRequest {
   namespace: string;
@@ -3294,8 +3290,7 @@ export type ListLargeFilesResponseBodyItemPusherPrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ListLargeFilesResponseBodyItemPusherPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const ListLargeFilesResponseBodyItemPusherPrimaryOrgPlan = S.String;
 
 export type ListLargeFilesResponseBodyItemPusherPrimaryOrgUserRole =
   | "admin"
@@ -3303,8 +3298,7 @@ export type ListLargeFilesResponseBodyItemPusherPrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const ListLargeFilesResponseBodyItemPusherPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const ListLargeFilesResponseBodyItemPusherPrimaryOrgUserRole = S.String;
 
 export interface ListLargeFilesResponseBodyItemPusherPrimaryOrg {
   avatarUrl: string;
@@ -3422,12 +3416,12 @@ export type ListPathsInfoRequestPaths =
   | ListPathsInfoRequestPathsCase0List
   | string;
 export const ListPathsInfoRequestPaths =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListPathsInfoRequestPaths>;
+  S.Unknown as any as S.Schema<ListPathsInfoRequestPaths>;
 
 /** Expand the response with the last commit and security file status */
 export type ListPathsInfoRequestExpand = unknown | boolean;
 export const ListPathsInfoRequestExpand =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListPathsInfoRequestExpand>;
+  S.Unknown as any as S.Schema<ListPathsInfoRequestExpand>;
 
 export interface ListPathsInfoRequest {
   namespace: string;
@@ -3459,7 +3453,7 @@ export type ListPathsInfoResponseBodyItemType =
   | "file"
   | "directory"
   | "unknown";
-export const ListPathsInfoResponseBodyItemType = /*@__PURE__*/ S.String;
+export const ListPathsInfoResponseBodyItemType = S.String;
 
 export interface ListPathsInfoResponseBodyItemLfs {
   pointerSize: number;
@@ -3485,8 +3479,7 @@ export type ListPathsInfoResponseBodyItemSecurityFileStatusStatus =
   | "caution"
   | "suspicious"
   | "unsafe";
-export const ListPathsInfoResponseBodyItemSecurityFileStatusStatus =
-  /*@__PURE__*/ S.String;
+export const ListPathsInfoResponseBodyItemSecurityFileStatusStatus = S.String;
 
 export type ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanStatus =
   | "unscanned"
@@ -3497,14 +3490,14 @@ export type ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanStatus =
   | "suspicious"
   | "unsafe";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPathsInfoResponseBodyItemSecurityFileStatusJFrogScanPickleImportsItem {
   module: string;
@@ -3564,14 +3557,14 @@ export type ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanStatus =
   | "suspicious"
   | "unsafe";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPathsInfoResponseBodyItemSecurityFileStatusProtectAiScanPickleImportsItem {
   module: string;
@@ -3632,14 +3625,14 @@ export type ListPathsInfoResponseBodyItemSecurityFileStatusAvScanStatus =
   | "suspicious"
   | "unsafe";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusAvScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPathsInfoResponseBodyItemSecurityFileStatusAvScanPickleImportsItem {
   module: string;
@@ -3699,14 +3692,14 @@ export type ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanStatu
   | "suspicious"
   | "unsafe";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPathsInfoResponseBodyItemSecurityFileStatusPickleImportScanPickleImportsItem {
   module: string;
@@ -3768,14 +3761,14 @@ export type ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanStatus 
   | "suspicious"
   | "unsafe";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety =
   | "innocuous"
   | "suspicious"
   | "dangerous";
 export const ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItemSafety =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListPathsInfoResponseBodyItemSecurityFileStatusVirusTotalScanPickleImportsItem {
   module: string;
@@ -4164,29 +4157,27 @@ export type UpdateRepoSettingsRequestVisibility =
   | "private"
   | "public"
   | "protected";
-export const UpdateRepoSettingsRequestVisibility = /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsRequestVisibility = S.String;
 
 export type UpdateRepoSettingsRequestDiscussionsSorting =
   | "recently-created"
   | "trending"
   | "reactions";
-export const UpdateRepoSettingsRequestDiscussionsSorting =
-  /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsRequestDiscussionsSorting = S.String;
 
 export type UpdateRepoSettingsRequestGatedCase1 = "auto" | "manual";
-export const UpdateRepoSettingsRequestGatedCase1 = /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsRequestGatedCase1 = S.String;
 
 export type UpdateRepoSettingsRequestGated =
   | unknown
   | UpdateRepoSettingsRequestGatedCase1;
 export const UpdateRepoSettingsRequestGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRepoSettingsRequestGated>;
+  S.Unknown as any as S.Schema<UpdateRepoSettingsRequestGated>;
 
 export type UpdateRepoSettingsRequestGatedNotificationsMode =
   | "bulk"
   | "real-time";
-export const UpdateRepoSettingsRequestGatedNotificationsMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsRequestGatedNotificationsMode = S.String;
 
 export interface UpdateRepoSettingsRequest {
   namespace: string;
@@ -4236,29 +4227,27 @@ export type UpdateRepoSettingsResponseVisibility =
   | "private"
   | "public"
   | "protected";
-export const UpdateRepoSettingsResponseVisibility = /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsResponseVisibility = S.String;
 
 export type UpdateRepoSettingsResponseDiscussionsSorting =
   | "recently-created"
   | "trending"
   | "reactions";
-export const UpdateRepoSettingsResponseDiscussionsSorting =
-  /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsResponseDiscussionsSorting = S.String;
 
 export type UpdateRepoSettingsResponseGatedCase1 = "auto" | "manual";
-export const UpdateRepoSettingsResponseGatedCase1 = /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsResponseGatedCase1 = S.String;
 
 export type UpdateRepoSettingsResponseGated =
   | unknown
   | UpdateRepoSettingsResponseGatedCase1;
 export const UpdateRepoSettingsResponseGated =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRepoSettingsResponseGated>;
+  S.Unknown as any as S.Schema<UpdateRepoSettingsResponseGated>;
 
 export type UpdateRepoSettingsResponseGatedNotificationsMode =
   | "bulk"
   | "real-time";
-export const UpdateRepoSettingsResponseGatedNotificationsMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRepoSettingsResponseGatedNotificationsMode = S.String;
 
 export interface UpdateRepoSettingsResponse {
   private?: boolean;

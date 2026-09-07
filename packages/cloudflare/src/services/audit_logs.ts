@@ -49,7 +49,7 @@ export const ListRequestActor = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRequestActor>;
 
 export type ListRequestDirection = "desc" | "asc";
-export const ListRequestDirection = /*@__PURE__*/ S.String;
+export const ListRequestDirection = S.String;
 
 export interface ListRequestZone {
   /** Filters by the name of the zone associated to the change. */
@@ -129,7 +129,7 @@ export const ListResultItemAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResultItemAction>;
 
 export type ListResultItemActorType = "user" | "admin" | "Cloudflare";
-export const ListResultItemActorType = /*@__PURE__*/ S.String;
+export const ListResultItemActorType = S.String;
 
 export interface ListResultItemActor {
   /** The ID of the actor that performed the action. If a user performed the action, this will be their User ID. */

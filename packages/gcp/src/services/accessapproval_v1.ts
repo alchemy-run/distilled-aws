@@ -178,7 +178,7 @@ export type SignatureInfoGoogleKeyAlgorithmEnum =
   | "KEM_ECDH_P256"
   | "KEM_ECDH_P384"
   | "AES_256_KWP";
-export const SignatureInfoGoogleKeyAlgorithmEnum = /*@__PURE__*/ S.String;
+export const SignatureInfoGoogleKeyAlgorithmEnum = S.String;
 
 /** Information about the digital signature of the resource. */
 export interface SignatureInfo {
@@ -255,7 +255,7 @@ export type AccessReasonTypeEnum =
   | "THIRD_PARTY_DATA_REQUEST"
   | "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
   | "CLOUD_INITIATED_ACCESS";
-export const AccessReasonTypeEnum = /*@__PURE__*/ S.String;
+export const AccessReasonTypeEnum = S.String;
 
 export interface AccessReason {
   /** Type of access reason. */
@@ -533,7 +533,7 @@ export type CustomerApprovalApprovalPolicyJustificationBasedApprovalPolicyEnum =
   | "JUSTIFICATION_BASED_APPROVAL_NOT_ENABLED"
   | "JUSTIFICATION_BASED_APPROVAL_INHERITED";
 export const CustomerApprovalApprovalPolicyJustificationBasedApprovalPolicyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents all the policies that can be set for Customer Approval. */
 export interface CustomerApprovalApprovalPolicy {
@@ -555,7 +555,7 @@ export const CustomerApprovalApprovalPolicy = /*@__PURE__*/ S.suspend(() =>
 export type EnrolledServiceEnrollmentLevelEnum =
   | "ENROLLMENT_LEVEL_UNSPECIFIED"
   | "BLOCK_ALL";
-export const EnrolledServiceEnrollmentLevelEnum = /*@__PURE__*/ S.String;
+export const EnrolledServiceEnrollmentLevelEnum = S.String;
 
 /** Represents the enrollment of a cloud resource into a specific service. */
 export interface EnrolledService {
@@ -589,7 +589,7 @@ export type AccessApprovalSettingsRequestScopeMaxWidthPreferenceEnum =
   | "FOLDER"
   | "PROJECT";
 export const AccessApprovalSettingsRequestScopeMaxWidthPreferenceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings on a Project/Folder/Organization related to Access Approval. */
 export interface AccessApprovalSettings {

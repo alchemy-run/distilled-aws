@@ -460,7 +460,7 @@ export const ActivateOrganizationsAccessOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActivateOrganizationsAccessOutput",
 }) as any as S.Schema<ActivateOrganizationsAccessOutput>;
 export type ThirdPartyType = "RESOURCE" | "MODULE" | "HOOK" | (string & {});
-export const ThirdPartyType = /*@__PURE__*/ S.String;
+export const ThirdPartyType = S.String;
 
 export type ThirdPartyTypeArn = string;
 export type PublisherId = string;
@@ -479,7 +479,7 @@ export const LoggingConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LoggingConfig" }) as any as S.Schema<LoggingConfig>;
 export type VersionBump = "MAJOR" | "MINOR" | (string & {});
-export const VersionBump = /*@__PURE__*/ S.String;
+export const VersionBump = S.String;
 
 export type MajorVersion = number;
 export interface ActivateTypeInput {
@@ -740,7 +740,7 @@ export type Capability =
   | "CAPABILITY_NAMED_IAM"
   | "CAPABILITY_AUTO_EXPAND"
   | (string & {});
-export const Capability = /*@__PURE__*/ S.String;
+export const Capability = S.String;
 
 export type Capabilities = Capability[];
 export const Capabilities = /*@__PURE__*/ S.Array(Capability);
@@ -791,7 +791,7 @@ export type ChangeSetName = string;
 export type ClientToken = string;
 export type Description = string;
 export type ChangeSetType = "CREATE" | "UPDATE" | "IMPORT" | (string & {});
-export const ChangeSetType = /*@__PURE__*/ S.String;
+export const ChangeSetType = S.String;
 
 export type LogicalResourceId = string;
 export type ResourceIdentifierPropertyKey = string;
@@ -825,14 +825,14 @@ export type OnStackFailure =
   | "ROLLBACK"
   | "DELETE"
   | (string & {});
-export const OnStackFailure = /*@__PURE__*/ S.String;
+export const OnStackFailure = S.String;
 
 export type ImportExistingResources = boolean;
 export type DeploymentMode = "REVERT_DRIFT" | (string & {});
-export const DeploymentMode = /*@__PURE__*/ S.String;
+export const DeploymentMode = S.String;
 
 export type DeploymentConfigMode = "STANDARD" | "EXPRESS" | (string & {});
-export const DeploymentConfigMode = /*@__PURE__*/ S.String;
+export const DeploymentConfigMode = S.String;
 
 export type DisableRollback = boolean;
 export interface DeploymentConfig {
@@ -944,13 +944,13 @@ export type GeneratedTemplateDeletionPolicy =
   | "DELETE"
   | "RETAIN"
   | (string & {});
-export const GeneratedTemplateDeletionPolicy = /*@__PURE__*/ S.String;
+export const GeneratedTemplateDeletionPolicy = S.String;
 
 export type GeneratedTemplateUpdateReplacePolicy =
   | "DELETE"
   | "RETAIN"
   | (string & {});
-export const GeneratedTemplateUpdateReplacePolicy = /*@__PURE__*/ S.String;
+export const GeneratedTemplateUpdateReplacePolicy = S.String;
 
 export interface TemplateConfiguration {
   DeletionPolicy?: GeneratedTemplateDeletionPolicy;
@@ -1001,7 +1001,7 @@ export const CreateGeneratedTemplateOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateGeneratedTemplateOutput>;
 export type TimeoutMinutes = number;
 export type OnFailure = "DO_NOTHING" | "ROLLBACK" | "DELETE" | (string & {});
-export const OnFailure = /*@__PURE__*/ S.String;
+export const OnFailure = S.String;
 
 export type StackPolicyBody = string;
 export type StackPolicyURL = string;
@@ -1092,7 +1092,7 @@ export type AccountFilterType =
   | "DIFFERENCE"
   | "UNION"
   | (string & {});
-export const AccountFilterType = /*@__PURE__*/ S.String;
+export const AccountFilterType = S.String;
 
 export interface DeploymentTargets {
   Accounts?: string[];
@@ -1114,7 +1114,7 @@ export type Region = string;
 export type RegionList = string[];
 export const RegionList = /*@__PURE__*/ S.Array(S.String);
 export type RegionConcurrencyType = "SEQUENTIAL" | "PARALLEL" | (string & {});
-export const RegionConcurrencyType = /*@__PURE__*/ S.String;
+export const RegionConcurrencyType = S.String;
 
 export type FailureToleranceCount = number;
 export type FailureTolerancePercentage = number;
@@ -1124,7 +1124,7 @@ export type ConcurrencyMode =
   | "STRICT_FAILURE_TOLERANCE"
   | "SOFT_FAILURE_TOLERANCE"
   | (string & {});
-export const ConcurrencyMode = /*@__PURE__*/ S.String;
+export const ConcurrencyMode = S.String;
 
 export interface StackSetOperationPreferences {
   RegionConcurrencyType?: RegionConcurrencyType;
@@ -1149,7 +1149,7 @@ export const StackSetOperationPreferences = /*@__PURE__*/ S.suspend(() =>
   identifier: "StackSetOperationPreferences",
 }) as any as S.Schema<StackSetOperationPreferences>;
 export type CallAs = "SELF" | "DELEGATED_ADMIN" | (string & {});
-export const CallAs = /*@__PURE__*/ S.String;
+export const CallAs = S.String;
 
 export interface CreateStackInstancesInput {
   StackSetName?: string;
@@ -1276,7 +1276,7 @@ export type PermissionModels =
   | "SERVICE_MANAGED"
   | "SELF_MANAGED"
   | (string & {});
-export const PermissionModels = /*@__PURE__*/ S.String;
+export const PermissionModels = S.String;
 
 export type AutoDeploymentNullable = boolean;
 export type RetainStacksOnAccountRemovalNullable = boolean;
@@ -1469,7 +1469,7 @@ export const DeleteGeneratedTemplateResponse = /*@__PURE__*/ S.suspend(() =>
 export type RetainResources = string[];
 export const RetainResources = /*@__PURE__*/ S.Array(S.String);
 export type DeletionMode = "STANDARD" | "FORCE_DELETE_STACK" | (string & {});
-export const DeletionMode = /*@__PURE__*/ S.String;
+export const DeletionMode = S.String;
 
 export interface DeleteStackInput {
   StackName?: string;
@@ -1579,7 +1579,7 @@ export const DeleteStackSetOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteStackSetOutput",
 }) as any as S.Schema<DeleteStackSetOutput>;
 export type RegistryType = "RESOURCE" | "MODULE" | "HOOK" | (string & {});
-export const RegistryType = /*@__PURE__*/ S.String;
+export const RegistryType = S.String;
 
 export type TypeVersionId = string;
 export interface DeregisterTypeInput {
@@ -1692,7 +1692,7 @@ export type ExecutionStatus =
   | "EXECUTE_FAILED"
   | "OBSOLETE"
   | (string & {});
-export const ExecutionStatus = /*@__PURE__*/ S.String;
+export const ExecutionStatus = S.String;
 
 export type ChangeSetStatus =
   | "CREATE_PENDING"
@@ -1704,7 +1704,7 @@ export type ChangeSetStatus =
   | "DELETE_FAILED"
   | "FAILED"
   | (string & {});
-export const ChangeSetStatus = /*@__PURE__*/ S.String;
+export const ChangeSetStatus = S.String;
 
 export type ChangeSetStatusReason = string;
 export type StackDriftStatus =
@@ -1713,10 +1713,10 @@ export type StackDriftStatus =
   | "UNKNOWN"
   | "NOT_CHECKED"
   | (string & {});
-export const StackDriftStatus = /*@__PURE__*/ S.String;
+export const StackDriftStatus = S.String;
 
 export type ChangeType = "Resource" | (string & {});
-export const ChangeType = /*@__PURE__*/ S.String;
+export const ChangeType = S.String;
 
 export type HookInvocationCount = number;
 export type PolicyAction =
@@ -1727,7 +1727,7 @@ export type PolicyAction =
   | "ReplaceAndRetain"
   | "ReplaceAndSnapshot"
   | (string & {});
-export const PolicyAction = /*@__PURE__*/ S.String;
+export const PolicyAction = S.String;
 
 export type ChangeAction =
   | "Add"
@@ -1737,11 +1737,11 @@ export type ChangeAction =
   | "Dynamic"
   | "SyncWithActual"
   | (string & {});
-export const ChangeAction = /*@__PURE__*/ S.String;
+export const ChangeAction = S.String;
 
 export type PhysicalResourceId = string;
 export type Replacement = "True" | "False" | "Conditional" | (string & {});
-export const Replacement = /*@__PURE__*/ S.String;
+export const Replacement = S.String;
 
 export type ResourceAttribute =
   | "Properties"
@@ -1752,7 +1752,7 @@ export type ResourceAttribute =
   | "UpdateReplacePolicy"
   | "Tags"
   | (string & {});
-export const ResourceAttribute = /*@__PURE__*/ S.String;
+export const ResourceAttribute = S.String;
 
 export type Scope = ResourceAttribute[];
 export const Scope = /*@__PURE__*/ S.Array(ResourceAttribute);
@@ -1764,7 +1764,7 @@ export type StackResourceDriftStatus =
   | "UNKNOWN"
   | "UNSUPPORTED"
   | (string & {});
-export const StackResourceDriftStatus = /*@__PURE__*/ S.String;
+export const StackResourceDriftStatus = S.String;
 
 export type ResourcePropertyPath = string;
 export type DriftIgnoredReason =
@@ -1772,7 +1772,7 @@ export type DriftIgnoredReason =
   | "WRITE_ONLY_PROPERTY"
   | "SENSITIVE_PROPERTY"
   | (string & {});
-export const DriftIgnoredReason = /*@__PURE__*/ S.String;
+export const DriftIgnoredReason = S.String;
 
 export interface ResourceDriftIgnoredAttribute {
   Path?: string;
@@ -1796,7 +1796,7 @@ export type RequiresRecreation =
   | "Conditionally"
   | "Always"
   | (string & {});
-export const RequiresRecreation = /*@__PURE__*/ S.String;
+export const RequiresRecreation = S.String;
 
 export type BeforeValue = string;
 export type AfterValue = string;
@@ -1804,10 +1804,10 @@ export type BeforeValueFrom =
   | "PREVIOUS_DEPLOYMENT_STATE"
   | "ACTUAL_STATE"
   | (string & {});
-export const BeforeValueFrom = /*@__PURE__*/ S.String;
+export const BeforeValueFrom = S.String;
 
 export type AfterValueFrom = "TEMPLATE" | (string & {});
-export const AfterValueFrom = /*@__PURE__*/ S.String;
+export const AfterValueFrom = S.String;
 
 export type ResourceDriftPreviousValue = string;
 export type ResourceDriftActualValue = string;
@@ -1833,7 +1833,7 @@ export type AttributeChangeType =
   | "Modify"
   | "SyncWithActual"
   | (string & {});
-export const AttributeChangeType = /*@__PURE__*/ S.String;
+export const AttributeChangeType = S.String;
 
 export interface ResourceTargetDefinition {
   Attribute?: ResourceAttribute;
@@ -1864,7 +1864,7 @@ export const ResourceTargetDefinition = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceTargetDefinition",
 }) as any as S.Schema<ResourceTargetDefinition>;
 export type EvaluationType = "Static" | "Dynamic" | (string & {});
-export const EvaluationType = /*@__PURE__*/ S.String;
+export const EvaluationType = S.String;
 
 export type ChangeSource =
   | "ResourceReference"
@@ -1874,7 +1874,7 @@ export type ChangeSource =
   | "Automatic"
   | "NoModification"
   | (string & {});
-export const ChangeSource = /*@__PURE__*/ S.String;
+export const ChangeSource = S.String;
 
 export type CausingEntity = string;
 export interface ResourceChangeDetail {
@@ -2048,16 +2048,16 @@ export const DescribeChangeSetHooksInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeChangeSetHooksInput",
 }) as any as S.Schema<DescribeChangeSetHooksInput>;
 export type HookInvocationPoint = "PRE_PROVISION" | (string & {});
-export const HookInvocationPoint = /*@__PURE__*/ S.String;
+export const HookInvocationPoint = S.String;
 
 export type HookFailureMode = "FAIL" | "WARN" | (string & {});
-export const HookFailureMode = /*@__PURE__*/ S.String;
+export const HookFailureMode = S.String;
 
 export type HookTypeName = string;
 export type HookTypeVersionId = string;
 export type HookTypeConfigurationVersionId = string;
 export type HookTargetType = "RESOURCE" | (string & {});
-export const HookTargetType = /*@__PURE__*/ S.String;
+export const HookTargetType = S.String;
 
 export type HookTargetTypeName = string;
 export interface ChangeSetHookResourceTargetDetails {
@@ -2111,7 +2111,7 @@ export type ChangeSetHooksStatus =
   | "PLANNED"
   | "UNAVAILABLE"
   | (string & {});
-export const ChangeSetHooksStatus = /*@__PURE__*/ S.String;
+export const ChangeSetHooksStatus = S.String;
 
 export interface DescribeChangeSetHooksOutput {
   ChangeSetId?: string;
@@ -2179,14 +2179,14 @@ export type OperationType =
   | "ROLLBACK"
   | "CREATE_CHANGESET"
   | (string & {});
-export const OperationType = /*@__PURE__*/ S.String;
+export const OperationType = S.String;
 
 export type BeaconStackOperationStatus =
   | "IN_PROGRESS"
   | "SUCCEEDED"
   | "FAILED"
   | (string & {});
-export const BeaconStackOperationStatus = /*@__PURE__*/ S.String;
+export const BeaconStackOperationStatus = S.String;
 
 export type EventType =
   | "STACK_EVENT"
@@ -2195,7 +2195,7 @@ export type EventType =
   | "PROVISIONING_ERROR"
   | "HOOK_INVOCATION_ERROR"
   | (string & {});
-export const EventType = /*@__PURE__*/ S.String;
+export const EventType = S.String;
 
 export type ResourceStatus =
   | "CREATE_IN_PROGRESS"
@@ -2227,7 +2227,7 @@ export type ResourceStatus =
   | "ROLLBACK_COMPLETE"
   | "ROLLBACK_FAILED"
   | (string & {});
-export const ResourceStatus = /*@__PURE__*/ S.String;
+export const ResourceStatus = S.String;
 
 export type ResourceStatusReason = string;
 export type ResourceProperties = string;
@@ -2238,18 +2238,18 @@ export type HookStatus =
   | "HOOK_COMPLETE_FAILED"
   | "HOOK_FAILED"
   | (string & {});
-export const HookStatus = /*@__PURE__*/ S.String;
+export const HookStatus = S.String;
 
 export type HookStatusReason = string;
 export type DetailedStatus =
   | "CONFIGURATION_COMPLETE"
   | "VALIDATION_FAILED"
   | (string & {});
-export const DetailedStatus = /*@__PURE__*/ S.String;
+export const DetailedStatus = S.String;
 
 export type ValidationName = string;
 export type ValidationStatus = "FAILED" | "SKIPPED" | (string & {});
-export const ValidationStatus = /*@__PURE__*/ S.String;
+export const ValidationStatus = S.String;
 
 export type ValidationStatusReason = string;
 export type ValidationPath = string;
@@ -2355,7 +2355,7 @@ export type GeneratedTemplateResourceStatus =
   | "FAILED"
   | "COMPLETE"
   | (string & {});
-export const GeneratedTemplateResourceStatus = /*@__PURE__*/ S.String;
+export const GeneratedTemplateResourceStatus = S.String;
 
 export type WarningType =
   | "MUTUALLY_EXCLUSIVE_PROPERTIES"
@@ -2364,7 +2364,7 @@ export type WarningType =
   | "EXCLUDED_PROPERTIES"
   | "EXCLUDED_RESOURCES"
   | (string & {});
-export const WarningType = /*@__PURE__*/ S.String;
+export const WarningType = S.String;
 
 export type PropertyPath = string;
 export type RequiredProperty = boolean;
@@ -2427,7 +2427,7 @@ export type GeneratedTemplateStatus =
   | "FAILED"
   | "COMPLETE"
   | (string & {});
-export const GeneratedTemplateStatus = /*@__PURE__*/ S.String;
+export const GeneratedTemplateStatus = S.String;
 
 export type TemplateStatusReason = string;
 export type LastUpdatedTime = Date;
@@ -2509,7 +2509,7 @@ export type OrganizationStatus =
   | "DISABLED"
   | "DISABLED_PERMANENTLY"
   | (string & {});
-export const OrganizationStatus = /*@__PURE__*/ S.String;
+export const OrganizationStatus = S.String;
 
 export interface DescribeOrganizationsAccessOutput {
   Status?: OrganizationStatus;
@@ -2538,14 +2538,14 @@ export const DescribePublisherInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribePublisherInput",
 }) as any as S.Schema<DescribePublisherInput>;
 export type PublisherStatus = "VERIFIED" | "UNVERIFIED" | (string & {});
-export const PublisherStatus = /*@__PURE__*/ S.String;
+export const PublisherStatus = S.String;
 
 export type IdentityProvider =
   | "AWS_Marketplace"
   | "GitHub"
   | "Bitbucket"
   | (string & {});
-export const IdentityProvider = /*@__PURE__*/ S.String;
+export const IdentityProvider = S.String;
 
 export type PublisherProfile = string;
 export interface DescribePublisherOutput {
@@ -2589,7 +2589,7 @@ export type ResourceScanStatus =
   | "COMPLETE"
   | "EXPIRED"
   | (string & {});
-export const ResourceScanStatus = /*@__PURE__*/ S.String;
+export const ResourceScanStatus = S.String;
 
 export type ResourceScanStatusReason = string;
 export type PercentageCompleted = number;
@@ -2661,7 +2661,7 @@ export type StackDriftDetectionStatus =
   | "DETECTION_FAILED"
   | "DETECTION_COMPLETE"
   | (string & {});
-export const StackDriftDetectionStatus = /*@__PURE__*/ S.String;
+export const StackDriftDetectionStatus = S.String;
 
 export type StackDriftDetectionStatusReason = string;
 export type BoxedInteger = number;
@@ -2809,7 +2809,7 @@ export type StackInstanceStatus =
   | "OUTDATED"
   | "INOPERABLE"
   | (string & {});
-export const StackInstanceStatus = /*@__PURE__*/ S.String;
+export const StackInstanceStatus = S.String;
 
 export type StackInstanceDetailedStatus =
   | "PENDING"
@@ -2821,7 +2821,7 @@ export type StackInstanceDetailedStatus =
   | "SKIPPED_SUSPENDED_ACCOUNT"
   | "FAILED_IMPORT"
   | (string & {});
-export const StackInstanceDetailedStatus = /*@__PURE__*/ S.String;
+export const StackInstanceDetailedStatus = S.String;
 
 export interface StackInstanceComprehensiveStatus {
   DetailedStatus?: StackInstanceDetailedStatus;
@@ -2903,7 +2903,7 @@ export type StackRefactorExecutionStatus =
   | "ROLLBACK_COMPLETE"
   | "ROLLBACK_FAILED"
   | (string & {});
-export const StackRefactorExecutionStatus = /*@__PURE__*/ S.String;
+export const StackRefactorExecutionStatus = S.String;
 
 export type ExecutionStatusReason = string;
 export type StackRefactorStatus =
@@ -2914,7 +2914,7 @@ export type StackRefactorStatus =
   | "DELETE_COMPLETE"
   | "DELETE_FAILED"
   | (string & {});
-export const StackRefactorStatus = /*@__PURE__*/ S.String;
+export const StackRefactorStatus = S.String;
 
 export type StackRefactorStatusReason = string;
 export interface DescribeStackRefactorOutput {
@@ -3077,7 +3077,7 @@ export const PhysicalResourceIdContext = /*@__PURE__*/ S.Array(
 export type Properties = string;
 export type PropertyValue = string;
 export type DifferenceType = "ADD" | "REMOVE" | "NOT_EQUAL" | (string & {});
-export const DifferenceType = /*@__PURE__*/ S.String;
+export const DifferenceType = S.String;
 
 export interface PropertyDifference {
   PropertyPath?: string;
@@ -3282,7 +3282,7 @@ export type StackStatus =
   | "IMPORT_ROLLBACK_FAILED"
   | "IMPORT_ROLLBACK_COMPLETE"
   | (string & {});
-export const StackStatus = /*@__PURE__*/ S.String;
+export const StackStatus = S.String;
 
 export type StackStatusReason = string;
 export type OutputKey = string;
@@ -3444,14 +3444,14 @@ export const DescribeStackSetInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeStackSetInput",
 }) as any as S.Schema<DescribeStackSetInput>;
 export type StackSetStatus = "ACTIVE" | "DELETED" | (string & {});
-export const StackSetStatus = /*@__PURE__*/ S.String;
+export const StackSetStatus = S.String;
 
 export type StackSetDriftStatus =
   | "DRIFTED"
   | "IN_SYNC"
   | "NOT_CHECKED"
   | (string & {});
-export const StackSetDriftStatus = /*@__PURE__*/ S.String;
+export const StackSetDriftStatus = S.String;
 
 export type StackSetDriftDetectionStatus =
   | "COMPLETED"
@@ -3460,7 +3460,7 @@ export type StackSetDriftDetectionStatus =
   | "IN_PROGRESS"
   | "STOPPED"
   | (string & {});
-export const StackSetDriftDetectionStatus = /*@__PURE__*/ S.String;
+export const StackSetDriftDetectionStatus = S.String;
 
 export type TotalStackInstancesCount = number;
 export type DriftedStackInstancesCount = number;
@@ -3571,7 +3571,7 @@ export type StackSetOperationAction =
   | "DELETE"
   | "DETECT_DRIFT"
   | (string & {});
-export const StackSetOperationAction = /*@__PURE__*/ S.String;
+export const StackSetOperationAction = S.String;
 
 export type StackSetOperationStatus =
   | "RUNNING"
@@ -3581,7 +3581,7 @@ export type StackSetOperationStatus =
   | "STOPPED"
   | "QUEUED"
   | (string & {});
-export const StackSetOperationStatus = /*@__PURE__*/ S.String;
+export const StackSetOperationStatus = S.String;
 
 export type RetainStacksNullable = boolean;
 export type StackSetOperationStatusReason = string;
@@ -3679,7 +3679,7 @@ export type TypeTestsStatus =
   | "IN_PROGRESS"
   | "NOT_TESTED"
   | (string & {});
-export const TypeTestsStatus = /*@__PURE__*/ S.String;
+export const TypeTestsStatus = S.String;
 
 export type TypeTestsStatusDescription = string;
 export type TypeSchema = string;
@@ -3688,10 +3688,10 @@ export type ProvisioningType =
   | "IMMUTABLE"
   | "FULLY_MUTABLE"
   | (string & {});
-export const ProvisioningType = /*@__PURE__*/ S.String;
+export const ProvisioningType = S.String;
 
 export type DeprecatedStatus = "LIVE" | "DEPRECATED" | (string & {});
-export const DeprecatedStatus = /*@__PURE__*/ S.String;
+export const DeprecatedStatus = S.String;
 
 export type SupportedMajorVersion = number;
 export type SupportedMajorVersions = number[];
@@ -3717,7 +3717,7 @@ export const RequiredActivatedTypes = /*@__PURE__*/ S.Array(
   RequiredActivatedType,
 );
 export type Visibility = "PUBLIC" | "PRIVATE" | (string & {});
-export const Visibility = /*@__PURE__*/ S.String;
+export const Visibility = S.String;
 
 export type OptionalSecureUrl = string;
 export type ConfigurationSchema = string;
@@ -3815,7 +3815,7 @@ export type RegistrationStatus =
   | "IN_PROGRESS"
   | "FAILED"
   | (string & {});
-export const RegistrationStatus = /*@__PURE__*/ S.String;
+export const RegistrationStatus = S.String;
 
 export interface DescribeTypeRegistrationOutput {
   ProgressStatus?: RegistrationStatus;
@@ -4038,7 +4038,7 @@ export const ExecuteStackRefactorResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExecuteStackRefactorResponse",
 }) as any as S.Schema<ExecuteStackRefactorResponse>;
 export type TemplateFormat = "JSON" | "YAML" | (string & {});
-export const TemplateFormat = /*@__PURE__*/ S.String;
+export const TemplateFormat = S.String;
 
 export interface GetGeneratedTemplateInput {
   Format?: TemplateFormat;
@@ -4100,7 +4100,7 @@ export type HookTargetAction =
   | "DELETE"
   | "IMPORT"
   | (string & {});
-export const HookTargetAction = /*@__PURE__*/ S.String;
+export const HookTargetAction = S.String;
 
 export interface HookTarget {
   TargetType?: HookTargetType;
@@ -4118,7 +4118,7 @@ export const HookTarget = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "HookTarget" }) as any as S.Schema<HookTarget>;
 export type AnnotationName = string;
 export type AnnotationStatus = "PASSED" | "FAILED" | "SKIPPED" | (string & {});
-export const AnnotationStatus = /*@__PURE__*/ S.String;
+export const AnnotationStatus = S.String;
 
 export type RemediationMessageStatusMessage = string;
 export type RemediationMessageRemediationMessage = string;
@@ -4130,7 +4130,7 @@ export type AnnotationSeverityLevel =
   | "HIGH"
   | "CRITICAL"
   | (string & {});
-export const AnnotationSeverityLevel = /*@__PURE__*/ S.String;
+export const AnnotationSeverityLevel = S.String;
 
 export interface Annotation {
   AnnotationName?: string;
@@ -4220,7 +4220,7 @@ export const GetStackPolicyOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetStackPolicyOutput",
 }) as any as S.Schema<GetStackPolicyOutput>;
 export type TemplateStage = "Original" | "Processed" | (string & {});
-export const TemplateStage = /*@__PURE__*/ S.String;
+export const TemplateStage = S.String;
 
 export interface GetTemplateInput {
   StackName?: string;
@@ -4624,7 +4624,7 @@ export type ListHookResultsTargetType =
   | "RESOURCE"
   | "CLOUD_CONTROL"
   | (string & {});
-export const ListHookResultsTargetType = /*@__PURE__*/ S.String;
+export const ListHookResultsTargetType = S.String;
 
 export type HookResultId = string;
 export interface ListHookResultsInput {
@@ -4877,7 +4877,7 @@ export const ListResourceScanResourcesOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListResourceScanResourcesOutput",
 }) as any as S.Schema<ListResourceScanResourcesOutput>;
 export type ScanType = "FULL" | "PARTIAL" | (string & {});
-export const ScanType = /*@__PURE__*/ S.String;
+export const ScanType = S.String;
 
 export interface ListResourceScansInput {
   NextToken?: string;
@@ -5043,7 +5043,7 @@ export type StackInstanceFilterName =
   | "LAST_OPERATION_ID"
   | "DRIFT_STATUS"
   | (string & {});
-export const StackInstanceFilterName = /*@__PURE__*/ S.String;
+export const StackInstanceFilterName = S.String;
 
 export type StackInstanceFilterValues = string;
 export interface StackInstanceFilter {
@@ -5164,14 +5164,14 @@ export const ListStackRefactorActionsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListStackRefactorActionsInput",
 }) as any as S.Schema<ListStackRefactorActionsInput>;
 export type StackRefactorActionType = "MOVE" | "CREATE" | (string & {});
-export const StackRefactorActionType = /*@__PURE__*/ S.String;
+export const StackRefactorActionType = S.String;
 
 export type StackRefactorActionEntity = "RESOURCE" | "STACK" | (string & {});
-export const StackRefactorActionEntity = /*@__PURE__*/ S.String;
+export const StackRefactorActionEntity = S.String;
 
 export type StackRefactorResourceIdentifier = string;
 export type StackRefactorDetection = "AUTO" | "MANUAL" | (string & {});
-export const StackRefactorDetection = /*@__PURE__*/ S.String;
+export const StackRefactorDetection = S.String;
 
 export type DetectionReason = string;
 export type StackRefactorTagResources = Tag[];
@@ -5537,7 +5537,7 @@ export const ListStackSetAutoDeploymentTargetsOutput = /*@__PURE__*/ S.suspend(
 export type OperationResultFilterName =
   | "OPERATION_RESULT_STATUS"
   | (string & {});
-export const OperationResultFilterName = /*@__PURE__*/ S.String;
+export const OperationResultFilterName = S.String;
 
 export type OperationResultFilterValues = string;
 export interface OperationResultFilter {
@@ -5593,14 +5593,14 @@ export type StackSetOperationResultStatus =
   | "FAILED"
   | "CANCELLED"
   | (string & {});
-export const StackSetOperationResultStatus = /*@__PURE__*/ S.String;
+export const StackSetOperationResultStatus = S.String;
 
 export type AccountGateStatus =
   | "SUCCEEDED"
   | "FAILED"
   | "SKIPPED"
   | (string & {});
-export const AccountGateStatus = /*@__PURE__*/ S.String;
+export const AccountGateStatus = S.String;
 
 export type AccountGateStatusReason = string;
 export interface AccountGateResult {
@@ -5839,7 +5839,7 @@ export type Category =
   | "THIRD_PARTY"
   | "AWS_TYPES"
   | (string & {});
-export const Category = /*@__PURE__*/ S.String;
+export const Category = S.String;
 
 export type TypeNamePrefix = string;
 export interface TypeFilters {
@@ -6045,7 +6045,7 @@ export type OperationStatus =
   | "SUCCESS"
   | "FAILED"
   | (string & {});
-export const OperationStatus = /*@__PURE__*/ S.String;
+export const OperationStatus = S.String;
 
 export type StatusMessage = string;
 export type HandlerErrorCode =
@@ -6069,7 +6069,7 @@ export type HandlerErrorCode =
   | "Unknown"
   | "UnsupportedTarget"
   | (string & {});
-export const HandlerErrorCode = /*@__PURE__*/ S.String;
+export const HandlerErrorCode = S.String;
 
 export type ResourceModel = string;
 export interface RecordHandlerProgressInput {
@@ -6322,7 +6322,7 @@ export const SetTypeDefaultVersionOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SetTypeDefaultVersionOutput>;
 export type ResourceSignalUniqueId = string;
 export type ResourceSignalStatus = "SUCCESS" | "FAILURE" | (string & {});
-export const ResourceSignalStatus = /*@__PURE__*/ S.String;
+export const ResourceSignalStatus = S.String;
 
 export interface SignalResourceInput {
   StackName?: string;

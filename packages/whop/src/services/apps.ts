@@ -66,7 +66,7 @@ export type CreateAppRequestAppType =
   | "company_app"
   | "component"
   | "website";
-export const CreateAppRequestAppType = /*@__PURE__*/ S.String;
+export const CreateAppRequestAppType = S.String;
 
 /** The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new direct upload. */
 export interface CreateAppRequestIcon {
@@ -162,7 +162,7 @@ export type AppAppType =
   | "company_app"
   | "component"
   | "website";
-export const AppAppType = /*@__PURE__*/ S.String;
+export const AppAppType = S.String;
 
 export interface AppBannerImage {
   /** Banner image URL, taken from the app's product listing. */
@@ -226,7 +226,7 @@ export type AppDeploymentPhase =
   | "process_archive"
   | "create_build"
   | "promote";
-export const AppDeploymentPhase = /*@__PURE__*/ S.String;
+export const AppDeploymentPhase = S.String;
 
 /** Whether the app has anything to publish, and what a publish in flight is doing. `unpublished` means publishing would ship something new; `no_source` means the sandbox holds no copy of this app, so there is nothing to publish from. */
 export type AppDeploymentStatus =
@@ -235,7 +235,7 @@ export type AppDeploymentStatus =
   | "publishing"
   | "failed"
   | "no_source";
-export const AppDeploymentStatus = /*@__PURE__*/ S.String;
+export const AppDeploymentStatus = S.String;
 
 export interface AppDeployment {
   /** The app being deployed, prefixed `app_`. */
@@ -317,7 +317,7 @@ export type AppElementsUsedItem =
   | "websites"
   | "websites.pixel-setup"
   | "websites.websites";
-export const AppElementsUsedItem = /*@__PURE__*/ S.String;
+export const AppElementsUsedItem = S.String;
 
 export type AppElementsUsedList = Array<AppElementsUsedItem>;
 export const AppElementsUsedList = /*@__PURE__*/ S.Array(
@@ -339,11 +339,11 @@ export type AppMarketplaceStatus =
   | "not_available"
   | "pending_review"
   | "live_marketplace";
-export const AppMarketplaceStatus = /*@__PURE__*/ S.String;
+export const AppMarketplaceStatus = S.String;
 
 /** How the app authenticates at the OAuth token endpoint. */
 export type AppOauthClientType = "public" | "confidential";
-export const AppOauthClientType = /*@__PURE__*/ S.String;
+export const AppOauthClientType = S.String;
 
 /** The build's review status. */
 export type AppProductionBuildStatus =
@@ -351,7 +351,7 @@ export type AppProductionBuildStatus =
   | "pending"
   | "approved"
   | "rejected";
-export const AppProductionBuildStatus = /*@__PURE__*/ S.String;
+export const AppProductionBuildStatus = S.String;
 
 export interface AppProductionBuild {
   /** Client-generated checksum of the build file, used to verify file integrity. */
@@ -422,7 +422,7 @@ export const AppRequestedPermissionsList = /*@__PURE__*/ S.Array(
 
 /** Scopes the app asks a user to grant when they authorize it, shown on the consent screen. */
 export type AppRequiredScopesItem = "read_user";
-export const AppRequiredScopesItem = /*@__PURE__*/ S.String;
+export const AppRequiredScopesItem = S.String;
 
 export type AppRequiredScopesList = Array<AppRequiredScopesItem>;
 export const AppRequiredScopesList = /*@__PURE__*/ S.Array(
@@ -431,7 +431,7 @@ export const AppRequiredScopesList = /*@__PURE__*/ S.Array(
 
 /** Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is accessible only via direct link, `hidden` is not visible anywhere. */
 export type AppStatus = "live" | "unlisted" | "hidden";
-export const AppStatus = /*@__PURE__*/ S.String;
+export const AppStatus = S.String;
 
 export interface App {
   /** The account that owns the app. */
@@ -607,7 +607,7 @@ export type ListAppLogsRequestLevel =
   | "info"
   | "warn"
   | "error";
-export const ListAppLogsRequestLevel = /*@__PURE__*/ S.String;
+export const ListAppLogsRequestLevel = S.String;
 
 export interface ListAppLogsRequest {
   /** The ID of the app, which will look like app_*************. */
@@ -651,13 +651,13 @@ export type ListAppLogsResponseDataItemLevel =
   | "info"
   | "warn"
   | "error";
-export const ListAppLogsResponseDataItemLevel = /*@__PURE__*/ S.String;
+export const ListAppLogsResponseDataItemLevel = S.String;
 
 export type ListAppLogsResponseDataItemSource =
   | "console"
   | "exception"
   | "request";
-export const ListAppLogsResponseDataItemSource = /*@__PURE__*/ S.String;
+export const ListAppLogsResponseDataItemSource = S.String;
 
 export interface ListAppLogsResponseDataItem {
   app_build_id: string;
@@ -739,7 +739,7 @@ export type ListAppsRequestAppType =
   | "company_app"
   | "component"
   | "website";
-export const ListAppsRequestAppType = /*@__PURE__*/ S.String;
+export const ListAppsRequestAppType = S.String;
 
 export type ListAppsRequestViewType =
   | "hub"
@@ -749,7 +749,7 @@ export type ListAppsRequestViewType =
   | "analytics"
   | "skills"
   | "openapi";
-export const ListAppsRequestViewType = /*@__PURE__*/ S.String;
+export const ListAppsRequestViewType = S.String;
 
 export type ListAppsRequestOrder =
   | "created_at"
@@ -757,10 +757,10 @@ export type ListAppsRequestOrder =
   | "template_usage"
   | "total_installs_last_30_days"
   | "total_installs_last_7_days";
-export const ListAppsRequestOrder = /*@__PURE__*/ S.String;
+export const ListAppsRequestOrder = S.String;
 
 export type ListAppsRequestDirection = "asc" | "desc";
-export const ListAppsRequestDirection = /*@__PURE__*/ S.String;
+export const ListAppsRequestDirection = S.String;
 
 export interface ListAppsRequest {
   /** Only return apps created by this account (`biz_` tag). With developer access to the account this includes its unlisted and hidden apps. */
@@ -817,7 +817,7 @@ export type AppListItemAppType =
   | "company_app"
   | "component"
   | "website";
-export const AppListItemAppType = /*@__PURE__*/ S.String;
+export const AppListItemAppType = S.String;
 
 export type AppListItemBusinessesCreatedLogoUrlsList = Array<string>;
 export const AppListItemBusinessesCreatedLogoUrlsList = /*@__PURE__*/ S.Array(
@@ -826,7 +826,7 @@ export const AppListItemBusinessesCreatedLogoUrlsList = /*@__PURE__*/ S.Array(
 
 /** Visibility on the Whop app store: `live` is publicly discoverable, `unlisted` is accessible only via direct link, `hidden` is not visible anywhere. */
 export type AppListItemStatus = "live" | "unlisted" | "hidden";
-export const AppListItemStatus = /*@__PURE__*/ S.String;
+export const AppListItemStatus = S.String;
 
 export interface AppListItem {
   /** The account that owns the app. */
@@ -942,7 +942,7 @@ export type UpdateAppRequestAppType =
   | "company_app"
   | "component"
   | "website";
-export const UpdateAppRequestAppType = /*@__PURE__*/ S.String;
+export const UpdateAppRequestAppType = S.String;
 
 /** The icon image for the app in PNG, JPEG, or GIF format, referencing an uploaded file: `{ id }` for an existing attachment or `{ direct_upload_id }` for a new direct upload. */
 export type UpdateAppRequestIcon = CreateAppRequestIcon;
@@ -950,7 +950,7 @@ export const UpdateAppRequestIcon = CreateAppRequestIcon;
 
 /** How the app authenticates at the OAuth token endpoint. */
 export type UpdateAppRequestOauthClientType = "public" | "confidential";
-export const UpdateAppRequestOauthClientType = /*@__PURE__*/ S.String;
+export const UpdateAppRequestOauthClientType = S.String;
 
 /** The whitelisted OAuth callback URLs users are redirected to after authorizing the app. */
 export type UpdateAppRequestRedirectUrisList = Array<string>;
@@ -966,7 +966,7 @@ export const UpdateAppRequestRequiredScopesList = /*@__PURE__*/ S.Array(
 
 /** Controls whether the app is published on Whop discovery or accessible only through its direct link. Publishing requires a name, icon, and description. */
 export type UpdateAppRequestStatus = "live" | "unlisted" | "hidden";
-export const UpdateAppRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateAppRequestStatus = S.String;
 
 export interface UpdateAppRequest {
   /** App ID (prefixed `app_`), the app's claimed route, or its proxy domain id. */

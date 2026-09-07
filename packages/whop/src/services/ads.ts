@@ -64,7 +64,7 @@ export type CreateAdRequestCallToAction =
   | "sign_up"
   | "subscribe"
   | "watch_more";
-export const CreateAdRequestCallToAction = /*@__PURE__*/ S.String;
+export const CreateAdRequestCallToAction = S.String;
 
 /** The saved crop window for this creative, in source image pixels. Omit it for the original asset or for a format that has not been cropped. */
 export interface CreateAdRequestCreativesItemCrop {
@@ -88,7 +88,7 @@ export type CreateAdRequestCreativesItemFormat =
   | "square"
   | "vertical"
   | "horizontal";
-export const CreateAdRequestCreativesItemFormat = /*@__PURE__*/ S.String;
+export const CreateAdRequestCreativesItemFormat = S.String;
 
 export interface CreateAdRequestCreativesItem {
   /** The saved crop window for this creative, in source image pixels. Omit it for the original asset or for a format that has not been cropped. */
@@ -186,7 +186,7 @@ export const CreateAdRequestLeadFormDisclaimer = /*@__PURE__*/ S.suspend(() =>
 
 /** more_volume (default) is quickest to submit; higher_intent adds a confirmation step. */
 export type CreateAdRequestLeadFormFormType = "more_volume" | "higher_intent";
-export const CreateAdRequestLeadFormFormType = /*@__PURE__*/ S.String;
+export const CreateAdRequestLeadFormFormType = S.String;
 
 /** Optional intro screen shown before the questions. */
 export interface CreateAdRequestLeadFormIntro {
@@ -221,15 +221,14 @@ export type CreateAdRequestLeadFormQuestionsItemFormat =
   | "short_answer"
   | "multiple_choice"
   | "appointment";
-export const CreateAdRequestLeadFormQuestionsItemFormat =
-  /*@__PURE__*/ S.String;
+export const CreateAdRequestLeadFormQuestionsItemFormat = S.String;
 
 export type CreateAdRequestLeadFormQuestionsItemOptionsItemLogicAction =
   | "go_to_question"
   | "submit_form"
   | "close_form";
 export const CreateAdRequestLeadFormQuestionsItemOptionsItemLogicAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateAdRequestLeadFormQuestionsItemOptionsItemLogic {
   action?:
@@ -296,7 +295,7 @@ export type CreateAdRequestLeadFormQuestionsItemType =
   | "military_status"
   | "date_time"
   | "custom";
-export const CreateAdRequestLeadFormQuestionsItemType = /*@__PURE__*/ S.String;
+export const CreateAdRequestLeadFormQuestionsItemType = S.String;
 
 export interface CreateAdRequestLeadFormQuestionsItem {
   format?: CreateAdRequestLeadFormQuestionsItemFormat | (string & {});
@@ -373,7 +372,7 @@ export const CreateAdRequestMessagingConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Identifies the network that owns `existing_post_id`. The source is inferred from the ID shape when omitted. */
 export type CreateAdRequestPostSource = "facebook" | "instagram";
-export const CreateAdRequestPostSource = /*@__PURE__*/ S.String;
+export const CreateAdRequestPostSource = S.String;
 
 /** The primary text variants shown in the ad body. */
 export type CreateAdRequestPrimaryTextsList = Array<string>;
@@ -508,7 +507,7 @@ export type AdCallToAction =
   | "event_rsvp"
   | "see_details"
   | "view_instagram_profile";
-export const AdCallToAction = /*@__PURE__*/ S.String;
+export const AdCallToAction = S.String;
 
 export interface AdCreativeCrop {
   /** Height of the crop window in source pixels. */
@@ -531,7 +530,7 @@ export const AdCreativeCrop = /*@__PURE__*/ S.suspend(() =>
 
 /** The placement variant this asset covers, or null for the original asset. */
 export type AdCreativeFormat = "square" | "vertical" | "horizontal";
-export const AdCreativeFormat = /*@__PURE__*/ S.String;
+export const AdCreativeFormat = S.String;
 
 export interface AdCreative {
   /** The saved crop window for this creative, in source image pixels. Null for the original asset or a format that has not been cropped. */
@@ -574,7 +573,7 @@ export type AdDeliveryStatus =
   | "learning_limited"
   | "learning"
   | "active";
-export const AdDeliveryStatus = /*@__PURE__*/ S.String;
+export const AdDeliveryStatus = S.String;
 
 export type AdDescriptionsList = Array<string>;
 export const AdDescriptionsList = /*@__PURE__*/ S.Array(
@@ -588,7 +587,7 @@ export const AdHeadlinesList = /*@__PURE__*/ S.Array(
 
 /** The type of resource the issue is attached to. */
 export type AdPlatformIssueResourceType = "ad_campaign" | "ad_group" | "ad";
-export const AdPlatformIssueResourceType = /*@__PURE__*/ S.String;
+export const AdPlatformIssueResourceType = S.String;
 
 export interface AdPlatformIssue {
   /** Unique identifier for the issue. */
@@ -683,7 +682,7 @@ export const AdLeadFormDisclaimer = /*@__PURE__*/ S.suspend(() =>
 
 /** `more_volume` is quickest to submit; `higher_intent` adds a confirmation step before submission. */
 export type AdLeadFormFormType = "more_volume" | "higher_intent";
-export const AdLeadFormFormType = /*@__PURE__*/ S.String;
+export const AdLeadFormFormType = S.String;
 
 export interface AdLeadFormIntro {
   /** Body text under the headline. */
@@ -720,7 +719,7 @@ export type AdLeadFormOptionLogicAction =
   | "go_to_question"
   | "submit_form"
   | "close_form";
-export const AdLeadFormOptionLogicAction = /*@__PURE__*/ S.String;
+export const AdLeadFormOptionLogicAction = S.String;
 
 export interface AdLeadFormOptionLogic {
   /** What happens when the choice is selected. */
@@ -835,7 +834,7 @@ export const AdMessagingConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Identifies the network that owns `existing_post_id`; `null` when the ad uses uploaded creatives. */
 export type AdPostSource = "facebook" | "instagram";
-export const AdPostSource = /*@__PURE__*/ S.String;
+export const AdPostSource = S.String;
 
 export type AdPrimaryTextsList = Array<string>;
 export const AdPrimaryTextsList = /*@__PURE__*/ S.Array(
@@ -854,7 +853,7 @@ export type AdResultEvent =
   | "add_to_cart"
   | "custom"
   | "messaging_conversation";
-export const AdResultEvent = /*@__PURE__*/ S.String;
+export const AdResultEvent = S.String;
 
 export type AdSocialAccountsList = Array<AdEntityReference>;
 export const AdSocialAccountsList = /*@__PURE__*/ S.Array(
@@ -863,7 +862,7 @@ export const AdSocialAccountsList = /*@__PURE__*/ S.Array(
 
 /** Whether the ad is enabled. `active` and `paused` are set by you; `in_review` and `rejected` come from ad review. */
 export type AdStatus = "active" | "paused" | "in_review" | "rejected";
-export const AdStatus = /*@__PURE__*/ S.String;
+export const AdStatus = S.String;
 
 export interface Ad {
   /** The ad campaign this ad belongs to. */
@@ -1141,7 +1140,7 @@ export const DuplicateAdResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DuplicateAdResponse>;
 
 export type GetAdRequestAttributionModel = "last_touch" | "first_touch";
-export const GetAdRequestAttributionModel = /*@__PURE__*/ S.String;
+export const GetAdRequestAttributionModel = S.String;
 
 export interface GetAdRequest {
   /** The ad ID. */
@@ -1180,7 +1179,7 @@ export type ListAdsRequestStatus =
   | "paused"
   | "in_review"
   | "rejected";
-export const ListAdsRequestStatus = /*@__PURE__*/ S.String;
+export const ListAdsRequestStatus = S.String;
 
 export type ListAdsRequestOrder =
   | "created_at"
@@ -1197,13 +1196,13 @@ export type ListAdsRequestOrder =
   | "cost_per_click"
   | "cost_per_result"
   | "return_on_ad_spend";
-export const ListAdsRequestOrder = /*@__PURE__*/ S.String;
+export const ListAdsRequestOrder = S.String;
 
 export type ListAdsRequestDirection = "asc" | "desc";
-export const ListAdsRequestDirection = /*@__PURE__*/ S.String;
+export const ListAdsRequestDirection = S.String;
 
 export type ListAdsRequestAttributionModel = "last_touch" | "first_touch";
-export const ListAdsRequestAttributionModel = /*@__PURE__*/ S.String;
+export const ListAdsRequestAttributionModel = S.String;
 
 export interface ListAdsRequest {
   /** The account the ads belong to. Defaults to the account-scoped key's own account. */
@@ -1360,7 +1359,7 @@ export type UpdateAdRequestCallToAction =
   | "sign_up"
   | "subscribe"
   | "watch_more";
-export const UpdateAdRequestCallToAction = /*@__PURE__*/ S.String;
+export const UpdateAdRequestCallToAction = S.String;
 
 /** The saved crop window for this creative, in source image pixels. Omit it for the original asset or for a format that has not been cropped. */
 export type UpdateAdRequestCreativesItemCrop = CreateAdRequestCreativesItemCrop;
@@ -1371,7 +1370,7 @@ export type UpdateAdRequestCreativesItemFormat =
   | "square"
   | "vertical"
   | "horizontal";
-export const UpdateAdRequestCreativesItemFormat = /*@__PURE__*/ S.String;
+export const UpdateAdRequestCreativesItemFormat = S.String;
 
 export interface UpdateAdRequestCreativesItem {
   /** The saved crop window for this creative, in source image pixels. Omit it for the original asset or for a format that has not been cropped. */
@@ -1444,7 +1443,7 @@ export const UpdateAdRequestLeadFormDisclaimer = /*@__PURE__*/ S.suspend(() =>
 
 /** more_volume (default) is quickest to submit; higher_intent adds a confirmation step. */
 export type UpdateAdRequestLeadFormFormType = "more_volume" | "higher_intent";
-export const UpdateAdRequestLeadFormFormType = /*@__PURE__*/ S.String;
+export const UpdateAdRequestLeadFormFormType = S.String;
 
 /** Optional intro screen shown before the questions. */
 export type UpdateAdRequestLeadFormIntro = CreateAdRequestLeadFormIntro;
@@ -1460,15 +1459,14 @@ export type UpdateAdRequestLeadFormQuestionsItemFormat =
   | "short_answer"
   | "multiple_choice"
   | "appointment";
-export const UpdateAdRequestLeadFormQuestionsItemFormat =
-  /*@__PURE__*/ S.String;
+export const UpdateAdRequestLeadFormQuestionsItemFormat = S.String;
 
 export type UpdateAdRequestLeadFormQuestionsItemOptionsItemLogicAction =
   | "go_to_question"
   | "submit_form"
   | "close_form";
 export const UpdateAdRequestLeadFormQuestionsItemOptionsItemLogicAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateAdRequestLeadFormQuestionsItemOptionsItemLogic {
   action?:
@@ -1535,7 +1533,7 @@ export type UpdateAdRequestLeadFormQuestionsItemType =
   | "military_status"
   | "date_time"
   | "custom";
-export const UpdateAdRequestLeadFormQuestionsItemType = /*@__PURE__*/ S.String;
+export const UpdateAdRequestLeadFormQuestionsItemType = S.String;
 
 export interface UpdateAdRequestLeadFormQuestionsItem {
   format?: UpdateAdRequestLeadFormQuestionsItemFormat | (string & {});
@@ -1602,7 +1600,7 @@ export const UpdateAdRequestMessagingConfig = CreateAdRequestMessagingConfig;
 
 /** Identifies the network that owns `existing_post_id`. The source is inferred from the ID shape when omitted. */
 export type UpdateAdRequestPostSource = "facebook" | "instagram";
-export const UpdateAdRequestPostSource = /*@__PURE__*/ S.String;
+export const UpdateAdRequestPostSource = S.String;
 
 /** The primary text variants shown in the ad body. */
 export type UpdateAdRequestPrimaryTextsList = Array<string>;

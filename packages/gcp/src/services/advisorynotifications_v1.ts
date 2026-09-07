@@ -93,7 +93,7 @@ export type GoogleCloudAdvisorynotificationsV1TextLocalizationStateEnum =
   | "LOCALIZATION_STATE_PENDING"
   | "LOCALIZATION_STATE_COMPLETED";
 export const GoogleCloudAdvisorynotificationsV1TextLocalizationStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A text object containing the English text and its localized copies. */
 export interface GoogleCloudAdvisorynotificationsV1Text {
@@ -249,7 +249,7 @@ export type GoogleCloudAdvisorynotificationsV1NotificationNotificationTypeEnum =
   | "NOTIFICATION_TYPE_SECURITY_MSA"
   | "NOTIFICATION_TYPE_THREAT_HORIZONS";
 export const GoogleCloudAdvisorynotificationsV1NotificationNotificationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A notification object for notifying customers about security and privacy issues. */
 export interface GoogleCloudAdvisorynotificationsV1Notification {
@@ -389,8 +389,7 @@ export type ListOrganizationsLocationsNotificationsViewEnum =
   | "NOTIFICATION_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListOrganizationsLocationsNotificationsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationsLocationsNotificationsViewEnum = S.String;
 
 export interface ListOrganizationsLocationsNotificationsRequest {
   /** The maximum number of notifications to return. The service may return fewer than this value. If unspecified or equal to 0, at most 50 notifications will be returned. The maximum value is 50; values above 50 will be coerced to 50. */
@@ -458,8 +457,7 @@ export type ListProjectsLocationsNotificationsViewEnum =
   | "NOTIFICATION_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsNotificationsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsNotificationsViewEnum = S.String;
 
 export interface ListProjectsLocationsNotificationsRequest {
   /** The maximum number of notifications to return. The service may return fewer than this value. If unspecified or equal to 0, at most 50 notifications will be returned. The maximum value is 50; values above 50 will be coerced to 50. */

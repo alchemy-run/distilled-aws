@@ -53,7 +53,7 @@ export const AddFieldForOrgRequestBodyCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** The field's data type. */
 export type AddFieldForOrgRequestBodyCase1DataType = "text" | "number" | "date";
-export const AddFieldForOrgRequestBodyCase1DataType = /*@__PURE__*/ S.String;
+export const AddFieldForOrgRequestBodyCase1DataType = S.String;
 
 export interface AddFieldForOrgRequestBodyCase1 {
   /** The name of the field. */
@@ -72,7 +72,7 @@ export const AddFieldForOrgRequestBodyCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** The field's data type. */
 export type AddFieldForOrgRequestBodyCase2DataType = "single_select";
-export const AddFieldForOrgRequestBodyCase2DataType = /*@__PURE__*/ S.String;
+export const AddFieldForOrgRequestBodyCase2DataType = S.String;
 
 /** The color associated with the option. */
 export type ProjectsV2FieldSingleSelectOptionColor =
@@ -84,7 +84,7 @@ export type ProjectsV2FieldSingleSelectOptionColor =
   | "PURPLE"
   | "RED"
   | "YELLOW";
-export const ProjectsV2FieldSingleSelectOptionColor = /*@__PURE__*/ S.String;
+export const ProjectsV2FieldSingleSelectOptionColor = S.String;
 
 export interface ProjectsV2FieldSingleSelectOption {
   /** The display name of the option. */
@@ -133,7 +133,7 @@ export const AddFieldForOrgRequestBodyCase2 = /*@__PURE__*/ S.suspend(() =>
 
 /** The field's data type. */
 export type AddFieldForOrgRequestBodyCase3DataType = "iteration";
-export const AddFieldForOrgRequestBodyCase3DataType = /*@__PURE__*/ S.String;
+export const AddFieldForOrgRequestBodyCase3DataType = S.String;
 
 export interface ProjectsV2FieldIterationConfigurationIterationsItem {
   /** The title of the iteration. */
@@ -207,7 +207,7 @@ export type AddFieldForOrgRequestBody =
   | AddFieldForOrgRequestBodyCase2
   | AddFieldForOrgRequestBodyCase3;
 export const AddFieldForOrgRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddFieldForOrgRequestBody>;
+  S.Unknown as any as S.Schema<AddFieldForOrgRequestBody>;
 
 export interface AddFieldForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -249,7 +249,7 @@ export type ProjectsV2FieldDataType =
   | "issue_type"
   | "parent_issue"
   | "sub_issues_progress";
-export const ProjectsV2FieldDataType = /*@__PURE__*/ S.String;
+export const ProjectsV2FieldDataType = S.String;
 
 /** The display name of the option, in raw text and HTML formats. */
 export interface ProjectsV2SingleSelectOptionsName {
@@ -399,7 +399,7 @@ export type AddFieldForUserRequestBodyCase0DataType =
   | "text"
   | "number"
   | "date";
-export const AddFieldForUserRequestBodyCase0DataType = /*@__PURE__*/ S.String;
+export const AddFieldForUserRequestBodyCase0DataType = S.String;
 
 export interface AddFieldForUserRequestBodyCase0 {
   /** The name of the field. */
@@ -418,7 +418,7 @@ export const AddFieldForUserRequestBodyCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** The field's data type. */
 export type AddFieldForUserRequestBodyCase1DataType = "single_select";
-export const AddFieldForUserRequestBodyCase1DataType = /*@__PURE__*/ S.String;
+export const AddFieldForUserRequestBodyCase1DataType = S.String;
 
 /** The options available for single select fields. At least one option must be provided when creating a single select field. */
 export type AddFieldForUserRequestBodyCase1SingleSelectOptionsList =
@@ -449,7 +449,7 @@ export const AddFieldForUserRequestBodyCase1 = /*@__PURE__*/ S.suspend(() =>
 
 /** The field's data type. */
 export type AddFieldForUserRequestBodyCase2DataType = "iteration";
-export const AddFieldForUserRequestBodyCase2DataType = /*@__PURE__*/ S.String;
+export const AddFieldForUserRequestBodyCase2DataType = S.String;
 
 export interface AddFieldForUserRequestBodyCase2 {
   /** The name of the field. */
@@ -473,7 +473,7 @@ export type AddFieldForUserRequestBody =
   | AddFieldForUserRequestBodyCase1
   | AddFieldForUserRequestBodyCase2;
 export const AddFieldForUserRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddFieldForUserRequestBody>;
+  S.Unknown as any as S.Schema<AddFieldForUserRequestBody>;
 
 export interface AddFieldForUserRequest {
   /** The handle for the GitHub user account. */
@@ -500,7 +500,7 @@ export const AddFieldForUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of item to add to the project. Must be either Issue or PullRequest. */
 export type AddItemForOrgRequestType = "Issue" | "PullRequest";
-export const AddItemForOrgRequestType = /*@__PURE__*/ S.String;
+export const AddItemForOrgRequestType = S.String;
 
 export interface AddItemForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -544,7 +544,7 @@ export type IssueStateReason =
   | "reopened"
   | "not_planned"
   | "duplicate";
-export const IssueStateReason = /*@__PURE__*/ S.String;
+export const IssueStateReason = S.String;
 
 /** A GitHub user. */
 export interface NullableSimpleUser {
@@ -624,8 +624,7 @@ export const IssueLabelsItemCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssueLabelsItemCase1>;
 
 export type IssueLabelsItem = string | IssueLabelsItemCase1;
-export const IssueLabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueLabelsItem>;
+export const IssueLabelsItem = S.Unknown as any as S.Schema<IssueLabelsItem>;
 
 /** Labels to associate with this issue; pass one or more label names to replace the set of labels on this issue; send an empty array to clear all labels from the issue; note that the labels are silently dropped for users without push access to the repository */
 export type IssueLabelsList = Array<IssueLabelsItem>;
@@ -644,7 +643,7 @@ export const IssueAssigneesList = /*@__PURE__*/ S.Array(
 
 /** The state of the milestone. */
 export type NullableMilestoneState = "open" | "closed";
-export const NullableMilestoneState = /*@__PURE__*/ S.String;
+export const NullableMilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface NullableMilestone {
@@ -720,7 +719,7 @@ export type IssueTypeColor =
   | "red"
   | "pink"
   | "purple";
-export const IssueTypeColor = /*@__PURE__*/ S.String;
+export const IssueTypeColor = S.String;
 
 /** The type assigned to the issue. This is only present for issues in repositories where issue types are supported. */
 export interface IssueType {
@@ -802,28 +801,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -1111,7 +1110,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 
 export type NullableIntegrationOwner = NullableSimpleUser | Enterprise;
 export const NullableIntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIntegrationOwner>;
+  S.Unknown as any as S.Schema<NullableIntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface NullableIntegrationPermissions {
@@ -1193,7 +1192,7 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 export interface ReactionRollup {
   url: string;
@@ -1333,12 +1332,12 @@ export type IssueFieldValueDataType =
   | "multi_select"
   | "number"
   | "date";
-export const IssueFieldValueDataType = /*@__PURE__*/ S.String;
+export const IssueFieldValueDataType = S.String;
 
 /** The value of the issue field */
 export type IssueFieldValueValue = string | number | number;
 export const IssueFieldValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueFieldValueValue>;
+  S.Unknown as any as S.Schema<IssueFieldValueValue>;
 
 /** Details about the selected option (only present for single_select fields) */
 export interface IssueFieldValueSingleSelectOption {
@@ -1565,15 +1564,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -1740,7 +1739,7 @@ export const PullRequestSimpleLinks = /*@__PURE__*/ S.suspend(() =>
 
 /** The merge method to use. */
 export type AutoMergeMergeMethod = "merge" | "squash" | "rebase";
-export const AutoMergeMergeMethod = /*@__PURE__*/ S.String;
+export const AutoMergeMergeMethod = S.String;
 
 /** The status of auto merging a pull request. */
 export interface AutoMerge {
@@ -1921,11 +1920,11 @@ export type ProjectsV2ItemSimpleContent =
   | PullRequestSimple
   | ProjectsV2DraftIssue;
 export const ProjectsV2ItemSimpleContent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProjectsV2ItemSimpleContent>;
+  S.Unknown as any as S.Schema<ProjectsV2ItemSimpleContent>;
 
 /** The type of content tracked in a project item */
 export type ProjectsV2ItemContentType = "Issue" | "PullRequest" | "DraftIssue";
-export const ProjectsV2ItemContentType = /*@__PURE__*/ S.String;
+export const ProjectsV2ItemContentType = S.String;
 
 /** An item belonging to a project */
 export interface ProjectsV2ItemSimple {
@@ -1967,7 +1966,7 @@ export const ProjectsV2ItemSimple = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of item to add to the project. Must be either Issue or PullRequest. */
 export type AddItemForUserRequestType = "Issue" | "PullRequest";
-export const AddItemForUserRequestType = /*@__PURE__*/ S.String;
+export const AddItemForUserRequestType = S.String;
 
 export interface AddItemForUserRequest {
   /** The handle for the GitHub user account. */
@@ -2062,7 +2061,7 @@ export const CreateDraftItemForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The layout of the view. */
 export type CreateViewForOrgRequestLayout = "table" | "board" | "roadmap";
-export const CreateViewForOrgRequestLayout = /*@__PURE__*/ S.String;
+export const CreateViewForOrgRequestLayout = S.String;
 
 /** `visible_fields` is not applicable to `roadmap` layout views. For `table` and `board` layouts, this represents the field IDs that should be visible in the view. If not provided, the default visible fields will be used. */
 export type CreateViewForOrgRequestVisibleFieldsList = Array<number>;
@@ -2072,7 +2071,7 @@ export const CreateViewForOrgRequestVisibleFieldsList = /*@__PURE__*/ S.Array(
 
 export type CreateViewForOrgRequestSortByItemItem = number | string;
 export const CreateViewForOrgRequestSortByItemItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateViewForOrgRequestSortByItemItem>;
+  S.Unknown as any as S.Schema<CreateViewForOrgRequestSortByItemItem>;
 
 export type CreateViewForOrgRequestSortByItemList =
   Array<CreateViewForOrgRequestSortByItemItem>;
@@ -2143,7 +2142,7 @@ export const CreateViewForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The layout of the view. */
 export type ProjectsV2ViewLayout = "table" | "board" | "roadmap";
-export const ProjectsV2ViewLayout = /*@__PURE__*/ S.String;
+export const ProjectsV2ViewLayout = S.String;
 
 /** The list of field IDs that are visible in the view. */
 export type ProjectsV2ViewVisibleFieldsList = Array<number>;
@@ -2153,7 +2152,7 @@ export const ProjectsV2ViewVisibleFieldsList = /*@__PURE__*/ S.Array(
 
 export type ProjectsV2ViewSortByItemItem = number | string;
 export const ProjectsV2ViewSortByItemItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProjectsV2ViewSortByItemItem>;
+  S.Unknown as any as S.Schema<ProjectsV2ViewSortByItemItem>;
 
 export type ProjectsV2ViewSortByItemList = Array<ProjectsV2ViewSortByItemItem>;
 export const ProjectsV2ViewSortByItemList = /*@__PURE__*/ S.Array(
@@ -2232,7 +2231,7 @@ export const ProjectsV2View = /*@__PURE__*/ S.suspend(() =>
 
 /** The layout of the view. */
 export type CreateViewForUserRequestLayout = "table" | "board" | "roadmap";
-export const CreateViewForUserRequestLayout = /*@__PURE__*/ S.String;
+export const CreateViewForUserRequestLayout = S.String;
 
 /** `visible_fields` is not applicable to `roadmap` layout views. For `table` and `board` layouts, this represents the field IDs that should be visible in the view. If not provided, the default visible fields will be used. */
 export type CreateViewForUserRequestVisibleFieldsList = Array<number>;
@@ -2242,7 +2241,7 @@ export const CreateViewForUserRequestVisibleFieldsList = /*@__PURE__*/ S.Array(
 
 export type CreateViewForUserRequestSortByItemItem = number | string;
 export const CreateViewForUserRequestSortByItemItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateViewForUserRequestSortByItemItem>;
+  S.Unknown as any as S.Schema<CreateViewForUserRequestSortByItemItem>;
 
 export type CreateViewForUserRequestSortByItemList =
   Array<CreateViewForUserRequestSortByItemItem>;
@@ -2445,7 +2444,7 @@ export const GetForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The current state of the project. */
 export type ProjectsV2State = "open" | "closed";
-export const ProjectsV2State = /*@__PURE__*/ S.String;
+export const ProjectsV2State = S.String;
 
 /** The current status. */
 export type NullableProjectsV2StatusUpdateStatus =
@@ -2454,7 +2453,7 @@ export type NullableProjectsV2StatusUpdateStatus =
   | "AT_RISK"
   | "OFF_TRACK"
   | "COMPLETE";
-export const NullableProjectsV2StatusUpdateStatus = /*@__PURE__*/ S.String;
+export const NullableProjectsV2StatusUpdateStatus = S.String;
 
 /** An status update belonging to a project */
 export interface NullableProjectsV2StatusUpdate {
@@ -2578,7 +2577,7 @@ export const GetOrgItemRequestFieldsCase1List = /*@__PURE__*/ S.Array(
 
 export type GetOrgItemRequestFields = string | GetOrgItemRequestFieldsCase1List;
 export const GetOrgItemRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrgItemRequestFields>;
+  S.Unknown as any as S.Schema<GetOrgItemRequestFields>;
 
 export interface GetOrgItemRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2681,7 +2680,7 @@ export type GetUserItemRequestFields =
   | string
   | GetUserItemRequestFieldsCase1List;
 export const GetUserItemRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetUserItemRequestFields>;
+  S.Unknown as any as S.Schema<GetUserItemRequestFields>;
 
 export interface GetUserItemRequest {
   /** The handle for the GitHub user account. */
@@ -2877,7 +2876,7 @@ export type ListItemsForOrgRequestFields =
   | string
   | ListItemsForOrgRequestFieldsCase1List;
 export const ListItemsForOrgRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListItemsForOrgRequestFields>;
+  S.Unknown as any as S.Schema<ListItemsForOrgRequestFields>;
 
 export interface ListItemsForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2936,7 +2935,7 @@ export type ListItemsForUserRequestFields =
   | string
   | ListItemsForUserRequestFieldsCase1List;
 export const ListItemsForUserRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListItemsForUserRequestFields>;
+  S.Unknown as any as S.Schema<ListItemsForUserRequestFields>;
 
 export interface ListItemsForUserRequest {
   /** The handle for the GitHub user account. */
@@ -2995,7 +2994,7 @@ export type ListViewItemsForOrgRequestFields =
   | string
   | ListViewItemsForOrgRequestFieldsCase1List;
 export const ListViewItemsForOrgRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListViewItemsForOrgRequestFields>;
+  S.Unknown as any as S.Schema<ListViewItemsForOrgRequestFields>;
 
 export interface ListViewItemsForOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -3055,7 +3054,7 @@ export type ListViewItemsForUserRequestFields =
   | string
   | ListViewItemsForUserRequestFieldsCase1List;
 export const ListViewItemsForUserRequestFields =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListViewItemsForUserRequestFields>;
+  S.Unknown as any as S.Schema<ListViewItemsForUserRequestFields>;
 
 export interface ListViewItemsForUserRequest {
   /** The handle for the GitHub user account. */
@@ -3109,7 +3108,7 @@ export const ListViewItemsForUserResponse = /*@__PURE__*/ S.suspend(() =>
 /** The new value for the field: - For text, number, and date fields, provide the new value directly. - For single select and iteration fields, provide the ID of the option or iteration. - To clear the field, set this to null. */
 export type UpdateItemForOrgRequestFieldsItemValue = string | number;
 export const UpdateItemForOrgRequestFieldsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateItemForOrgRequestFieldsItemValue>;
+  S.Unknown as any as S.Schema<UpdateItemForOrgRequestFieldsItemValue>;
 
 export interface UpdateItemForOrgRequestFieldsItem {
   /** The ID of the project field to update. */
@@ -3163,7 +3162,7 @@ export const UpdateItemForOrgRequest = /*@__PURE__*/ S.suspend(() =>
 /** The new value for the field: - For text, number, and date fields, provide the new value directly. - For single select and iteration fields, provide the ID of the option or iteration. - To clear the field, set this to null. */
 export type UpdateItemForUserRequestFieldsItemValue = string | number;
 export const UpdateItemForUserRequestFieldsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateItemForUserRequestFieldsItemValue>;
+  S.Unknown as any as S.Schema<UpdateItemForUserRequestFieldsItemValue>;
 
 export interface UpdateItemForUserRequestFieldsItem {
   /** The ID of the project field to update. */

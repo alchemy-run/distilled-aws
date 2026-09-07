@@ -91,7 +91,7 @@ export const CancelPayoutResponseFailure = /*@__PURE__*/ S.suspend(() =>
 
 /** Who bore the payout fee: the account itself, or its parent platform. */
 export type CancelPayoutResponseFeePaidBy = "self" | "platform";
-export const CancelPayoutResponseFeePaidBy = /*@__PURE__*/ S.String;
+export const CancelPayoutResponseFeePaidBy = S.String;
 
 /** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
 export type CancelPayoutResponseMetadataMap = {
@@ -103,7 +103,7 @@ export const CancelPayoutResponseMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CancelPayoutResponseMetadataMap>;
 
 export type CancelPayoutResponseObject = "payout";
-export const CancelPayoutResponseObject = /*@__PURE__*/ S.String;
+export const CancelPayoutResponseObject = S.String;
 
 /** How the funds are delivered to the recipient. */
 export type CancelPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
@@ -117,7 +117,7 @@ export type CancelPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
   | "cryptocurrency"
   | "unknown";
 export const CancelPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Supported payout method display details. */
 export interface CancelPayoutResponsePayoutMethodSupportedPayoutMethod {
@@ -160,11 +160,11 @@ export const CancelPayoutResponsePayoutMethod = /*@__PURE__*/ S.suspend(() =>
 
 /** How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling. */
 export type CancelPayoutResponseSource = "api" | "dashboard" | "automatic";
-export const CancelPayoutResponseSource = /*@__PURE__*/ S.String;
+export const CancelPayoutResponseSource = S.String;
 
 /** Payout delivery speed. */
 export type CancelPayoutResponseSpeed = "standard" | "instant";
-export const CancelPayoutResponseSpeed = /*@__PURE__*/ S.String;
+export const CancelPayoutResponseSpeed = S.String;
 
 /** Current payout status. */
 export type CancelPayoutResponseStatus =
@@ -176,7 +176,7 @@ export type CancelPayoutResponseStatus =
   | "canceled"
   | "failed"
   | "denied";
-export const CancelPayoutResponseStatus = /*@__PURE__*/ S.String;
+export const CancelPayoutResponseStatus = S.String;
 
 export interface CancelPayoutResponse {
   /** The payout amount in whole currency units, as a decimal string. */
@@ -269,7 +269,7 @@ export const CreatePayoutRequestMetadataMap = /*@__PURE__*/ S.Record(
 
 /** How fast the funds should arrive. `instant` is only accepted when the account and payout method are eligible; otherwise the payout is rejected. */
 export type CreatePayoutRequestSpeed = "standard" | "instant";
-export const CreatePayoutRequestSpeed = /*@__PURE__*/ S.String;
+export const CreatePayoutRequestSpeed = S.String;
 
 export interface CreatePayoutRequest {
   /** Account to pay out from, prefixed `biz_`. Provide exactly one of `account_id` or `user_id`. */
@@ -319,7 +319,7 @@ export const CreatePayoutResponseFailure = CancelPayoutResponseFailure;
 
 /** Who bore the payout fee: the account itself, or its parent platform. */
 export type CreatePayoutResponseFeePaidBy = "self" | "platform";
-export const CreatePayoutResponseFeePaidBy = /*@__PURE__*/ S.String;
+export const CreatePayoutResponseFeePaidBy = S.String;
 
 /** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
 export type CreatePayoutResponseMetadataMap = {
@@ -331,7 +331,7 @@ export const CreatePayoutResponseMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreatePayoutResponseMetadataMap>;
 
 export type CreatePayoutResponseObject = "payout";
-export const CreatePayoutResponseObject = /*@__PURE__*/ S.String;
+export const CreatePayoutResponseObject = S.String;
 
 /** How the funds are delivered to the recipient. */
 export type CreatePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
@@ -345,7 +345,7 @@ export type CreatePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
   | "cryptocurrency"
   | "unknown";
 export const CreatePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Supported payout method display details. */
 export interface CreatePayoutResponsePayoutMethodSupportedPayoutMethod {
@@ -388,11 +388,11 @@ export const CreatePayoutResponsePayoutMethod = /*@__PURE__*/ S.suspend(() =>
 
 /** How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling. */
 export type CreatePayoutResponseSource = "api" | "dashboard" | "automatic";
-export const CreatePayoutResponseSource = /*@__PURE__*/ S.String;
+export const CreatePayoutResponseSource = S.String;
 
 /** Payout delivery speed. */
 export type CreatePayoutResponseSpeed = "standard" | "instant";
-export const CreatePayoutResponseSpeed = /*@__PURE__*/ S.String;
+export const CreatePayoutResponseSpeed = S.String;
 
 /** Current payout status, in the same vocabulary as GET /payouts. */
 export type CreatePayoutResponseStatus =
@@ -404,7 +404,7 @@ export type CreatePayoutResponseStatus =
   | "canceled"
   | "failed"
   | "denied";
-export const CreatePayoutResponseStatus = /*@__PURE__*/ S.String;
+export const CreatePayoutResponseStatus = S.String;
 
 export interface CreatePayoutResponse {
   /** The payout amount in whole currency units, as a decimal string. */
@@ -535,15 +535,14 @@ export type CreatePayoutMethodResponseBankVerificationState =
   | "no_data"
   | "warning"
   | "broken";
-export const CreatePayoutMethodResponseBankVerificationState =
-  /*@__PURE__*/ S.String;
+export const CreatePayoutMethodResponseBankVerificationState = S.String;
 
 export type CreatePayoutMethodResponseObject = "payout_method";
-export const CreatePayoutMethodResponseObject = /*@__PURE__*/ S.String;
+export const CreatePayoutMethodResponseObject = S.String;
 
 /** Always `created` on create — no payout has used the method yet. */
 export type CreatePayoutMethodResponseStatus = "created" | "active" | "broken";
-export const CreatePayoutMethodResponseStatus = /*@__PURE__*/ S.String;
+export const CreatePayoutMethodResponseStatus = S.String;
 
 /** How funds are delivered. */
 export type CreatePayoutMethodResponseSupportedPayoutMethodDeliveryType =
@@ -557,7 +556,7 @@ export type CreatePayoutMethodResponseSupportedPayoutMethodDeliveryType =
   | "cryptocurrency"
   | "unknown";
 export const CreatePayoutMethodResponseSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePayoutMethodResponseSupportedPayoutMethod {
   /** ISO 3166-1 alpha-3 country the destination pays out to. */
@@ -589,8 +588,7 @@ export const CreatePayoutMethodResponseSupportedPayoutMethod =
 
 /** Why this method is unavailable: `destination_retired` means the payout provider stopped offering the destination. Whop may automatically remap an eligible method that was not linked through Plaid to a compatible replacement; otherwise, the account owner must re-add it. `null` means no unavailability reason is known. */
 export type CreatePayoutMethodResponseUnavailableReason = "destination_retired";
-export const CreatePayoutMethodResponseUnavailableReason =
-  /*@__PURE__*/ S.String;
+export const CreatePayoutMethodResponseUnavailableReason = S.String;
 
 export interface CreatePayoutMethodResponse {
   /** Masked identifier for the destination. */
@@ -714,7 +712,7 @@ export const GetPayoutResponseFailure = CancelPayoutResponseFailure;
 
 /** Who bore the payout fee: the account itself, or its parent platform. */
 export type GetPayoutResponseFeePaidBy = "self" | "platform";
-export const GetPayoutResponseFeePaidBy = /*@__PURE__*/ S.String;
+export const GetPayoutResponseFeePaidBy = S.String;
 
 /** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
 export type GetPayoutResponseMetadataMap = {
@@ -726,7 +724,7 @@ export const GetPayoutResponseMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GetPayoutResponseMetadataMap>;
 
 export type GetPayoutResponseObject = "payout";
-export const GetPayoutResponseObject = /*@__PURE__*/ S.String;
+export const GetPayoutResponseObject = S.String;
 
 /** How the funds are delivered to the recipient. */
 export type GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
@@ -740,7 +738,7 @@ export type GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
   | "cryptocurrency"
   | "unknown";
 export const GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Supported payout method display details. */
 export interface GetPayoutResponsePayoutMethodSupportedPayoutMethod {
@@ -783,11 +781,11 @@ export const GetPayoutResponsePayoutMethod = /*@__PURE__*/ S.suspend(() =>
 
 /** How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling. */
 export type GetPayoutResponseSource = "api" | "dashboard" | "automatic";
-export const GetPayoutResponseSource = /*@__PURE__*/ S.String;
+export const GetPayoutResponseSource = S.String;
 
 /** Payout delivery speed. */
 export type GetPayoutResponseSpeed = "standard" | "instant";
-export const GetPayoutResponseSpeed = /*@__PURE__*/ S.String;
+export const GetPayoutResponseSpeed = S.String;
 
 /** Current payout status. */
 export type GetPayoutResponseStatus =
@@ -799,7 +797,7 @@ export type GetPayoutResponseStatus =
   | "canceled"
   | "failed"
   | "denied";
-export const GetPayoutResponseStatus = /*@__PURE__*/ S.String;
+export const GetPayoutResponseStatus = S.String;
 
 export interface GetPayoutResponse {
   /** The payout amount in whole currency units, as a decimal string. */
@@ -882,7 +880,7 @@ export const GetPayoutResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPayoutResponse>;
 
 export type ListPayoutMethodsRequestStatus = "created" | "active" | "broken";
-export const ListPayoutMethodsRequestStatus = /*@__PURE__*/ S.String;
+export const ListPayoutMethodsRequestStatus = S.String;
 
 export interface ListPayoutMethodsRequest {
   /** The owning account ID (a biz_ identifier). Provide this or user_id. */
@@ -930,8 +928,7 @@ export type ListPayoutMethodsResponseDataItemBankVerificationState =
   | "no_data"
   | "warning"
   | "broken";
-export const ListPayoutMethodsResponseDataItemBankVerificationState =
-  /*@__PURE__*/ S.String;
+export const ListPayoutMethodsResponseDataItemBankVerificationState = S.String;
 
 /** Estimated arrival times before an amount-specific quote is requested. Null when the method is not currently eligible. */
 export interface ListPayoutMethodsResponseDataItemEstimatedArrival {
@@ -971,7 +968,7 @@ export const ListPayoutMethodsResponseDataItemFeeStructure =
   }) as any as S.Schema<ListPayoutMethodsResponseDataItemFeeStructure>;
 
 export type ListPayoutMethodsResponseDataItemObject = "payout_method";
-export const ListPayoutMethodsResponseDataItemObject = /*@__PURE__*/ S.String;
+export const ListPayoutMethodsResponseDataItemObject = S.String;
 
 /** Instant-delivery estimate. Null if the method does not support instant delivery, instant delivery is unavailable for the account, or the amount does not cover the fee. */
 export interface ListPayoutMethodsResponseDataItemQuoteInstant {
@@ -1033,7 +1030,7 @@ export type ListPayoutMethodsResponseDataItemStatus =
   | "created"
   | "active"
   | "broken";
-export const ListPayoutMethodsResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const ListPayoutMethodsResponseDataItemStatus = S.String;
 
 /** How funds are delivered. */
 export type ListPayoutMethodsResponseDataItemSupportedPayoutMethodDeliveryType =
@@ -1047,7 +1044,7 @@ export type ListPayoutMethodsResponseDataItemSupportedPayoutMethodDeliveryType =
   | "cryptocurrency"
   | "unknown";
 export const ListPayoutMethodsResponseDataItemSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The supported payout method this saved method was created from. */
 export interface ListPayoutMethodsResponseDataItemSupportedPayoutMethod {
@@ -1083,8 +1080,7 @@ export const ListPayoutMethodsResponseDataItemSupportedPayoutMethod =
 /** Why this method is unavailable: `destination_retired` means the payout provider stopped offering the destination. Whop may automatically remap an eligible method that was not linked through Plaid to a compatible replacement; otherwise, the account owner must re-add it. `null` means no unavailability reason is known. */
 export type ListPayoutMethodsResponseDataItemUnavailableReason =
   "destination_retired";
-export const ListPayoutMethodsResponseDataItemUnavailableReason =
-  /*@__PURE__*/ S.String;
+export const ListPayoutMethodsResponseDataItemUnavailableReason = S.String;
 
 export interface ListPayoutMethodsResponseDataItem {
   /** Masked identifier for the destination, such as the last four digits of a bank account. */
@@ -1177,8 +1173,7 @@ export type ListPayoutMethodsResponseLimitsInstantErrorCode =
   | "account_daily_limit_reached"
   | "restricted_account"
   | "feature_disabled";
-export const ListPayoutMethodsResponseLimitsInstantErrorCode =
-  /*@__PURE__*/ S.String;
+export const ListPayoutMethodsResponseLimitsInstantErrorCode = S.String;
 
 /** Caps for instant-speed payouts, which additionally draw on pending funds. */
 export interface ListPayoutMethodsResponseLimitsInstant {
@@ -1207,7 +1202,7 @@ export const ListPayoutMethodsResponseLimitsInstant = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListPayoutMethodsResponseLimitsInstant>;
 
 export type ListPayoutMethodsResponseLimitsObject = "payout_limit";
-export const ListPayoutMethodsResponseLimitsObject = /*@__PURE__*/ S.String;
+export const ListPayoutMethodsResponseLimitsObject = S.String;
 
 /** Caps for standard-speed payouts, which draw on settled funds only. */
 export interface ListPayoutMethodsResponseLimitsStandard {
@@ -1286,10 +1281,10 @@ export type ListPayoutsRequestStatus =
   | "canceled"
   | "failed"
   | "denied";
-export const ListPayoutsRequestStatus = /*@__PURE__*/ S.String;
+export const ListPayoutsRequestStatus = S.String;
 
 export type ListPayoutsRequestSource = "api" | "dashboard" | "automatic";
-export const ListPayoutsRequestSource = /*@__PURE__*/ S.String;
+export const ListPayoutsRequestSource = S.String;
 
 export interface ListPayoutsRequest {
   /** The owning account ID (a biz_ identifier). Provide this or user_id. */
@@ -1342,7 +1337,7 @@ export const ListPayoutsResponseDataItemFailure = CancelPayoutResponseFailure;
 
 /** Who bore the payout fee: the account itself, or its parent platform. */
 export type ListPayoutsResponseDataItemFeePaidBy = "self" | "platform";
-export const ListPayoutsResponseDataItemFeePaidBy = /*@__PURE__*/ S.String;
+export const ListPayoutsResponseDataItemFeePaidBy = S.String;
 
 /** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
 export type ListPayoutsResponseDataItemMetadataMap = {
@@ -1354,7 +1349,7 @@ export const ListPayoutsResponseDataItemMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ListPayoutsResponseDataItemMetadataMap>;
 
 export type ListPayoutsResponseDataItemObject = "payout";
-export const ListPayoutsResponseDataItemObject = /*@__PURE__*/ S.String;
+export const ListPayoutsResponseDataItemObject = S.String;
 
 /** How the funds are delivered to the recipient. */
 export type ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethodDeliveryType =
@@ -1368,7 +1363,7 @@ export type ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethodDelivery
   | "cryptocurrency"
   | "unknown";
 export const ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Supported payout method display details. */
 export interface ListPayoutsResponseDataItemPayoutMethodSupportedPayoutMethod {
@@ -1415,11 +1410,11 @@ export type ListPayoutsResponseDataItemSource =
   | "api"
   | "dashboard"
   | "automatic";
-export const ListPayoutsResponseDataItemSource = /*@__PURE__*/ S.String;
+export const ListPayoutsResponseDataItemSource = S.String;
 
 /** Payout delivery speed. */
 export type ListPayoutsResponseDataItemSpeed = "standard" | "instant";
-export const ListPayoutsResponseDataItemSpeed = /*@__PURE__*/ S.String;
+export const ListPayoutsResponseDataItemSpeed = S.String;
 
 /** Current payout status. */
 export type ListPayoutsResponseDataItemStatus =
@@ -1431,7 +1426,7 @@ export type ListPayoutsResponseDataItemStatus =
   | "canceled"
   | "failed"
   | "denied";
-export const ListPayoutsResponseDataItemStatus = /*@__PURE__*/ S.String;
+export const ListPayoutsResponseDataItemStatus = S.String;
 
 export interface ListPayoutsResponseDataItem {
   /** The payout amount in whole currency units, as a decimal string. */
@@ -1588,13 +1583,11 @@ export type ListSupportedPayoutMethodsResponseDataItemDeliveryType =
   | "check"
   | "bill"
   | "cryptocurrency";
-export const ListSupportedPayoutMethodsResponseDataItemDeliveryType =
-  /*@__PURE__*/ S.String;
+export const ListSupportedPayoutMethodsResponseDataItemDeliveryType = S.String;
 
 export type ListSupportedPayoutMethodsResponseDataItemObject =
   "supported_payout_method";
-export const ListSupportedPayoutMethodsResponseDataItemObject =
-  /*@__PURE__*/ S.String;
+export const ListSupportedPayoutMethodsResponseDataItemObject = S.String;
 
 /** Instant-delivery estimate. Null if unsupported, unavailable for the account, or the amount does not cover the fee. */
 export interface ListSupportedPayoutMethodsResponseDataItemQuotesItemInstant {
@@ -1668,7 +1661,7 @@ export const ListSupportedPayoutMethodsResponseDataItemQuotesList =
 export type ListSupportedPayoutMethodsResponseDataItemRequiredFieldsItemObject =
   "required_field";
 export const ListSupportedPayoutMethodsResponseDataItemRequiredFieldsItemObject =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allowed values for options fields. */
 export type ListSupportedPayoutMethodsResponseDataItemRequiredFieldsItemOptionsList =
@@ -1810,15 +1803,14 @@ export type UpdatePayoutMethodResponseBankVerificationState =
   | "no_data"
   | "warning"
   | "broken";
-export const UpdatePayoutMethodResponseBankVerificationState =
-  /*@__PURE__*/ S.String;
+export const UpdatePayoutMethodResponseBankVerificationState = S.String;
 
 export type UpdatePayoutMethodResponseObject = "payout_method";
-export const UpdatePayoutMethodResponseObject = /*@__PURE__*/ S.String;
+export const UpdatePayoutMethodResponseObject = S.String;
 
 /** `created` — saved, no payout has completed through it yet. `active` — a payout through it completed. `broken` — a payout through it failed with an error attributable to the method, and it no longer accepts payouts; a later successful payout returns it to `active`. */
 export type UpdatePayoutMethodResponseStatus = "created" | "active" | "broken";
-export const UpdatePayoutMethodResponseStatus = /*@__PURE__*/ S.String;
+export const UpdatePayoutMethodResponseStatus = S.String;
 
 /** How funds are delivered. */
 export type UpdatePayoutMethodResponseSupportedPayoutMethodDeliveryType =
@@ -1832,7 +1824,7 @@ export type UpdatePayoutMethodResponseSupportedPayoutMethodDeliveryType =
   | "cryptocurrency"
   | "unknown";
 export const UpdatePayoutMethodResponseSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdatePayoutMethodResponseSupportedPayoutMethod {
   /** ISO 3166-1 alpha-3 country the destination pays out to. */
@@ -1864,8 +1856,7 @@ export const UpdatePayoutMethodResponseSupportedPayoutMethod =
 
 /** Why this method is unavailable: `destination_retired` means the payout provider stopped offering the destination. Whop may automatically remap an eligible method that was not linked through Plaid to a compatible replacement; otherwise, the account owner must re-add it. `null` means no unavailability reason is known. */
 export type UpdatePayoutMethodResponseUnavailableReason = "destination_retired";
-export const UpdatePayoutMethodResponseUnavailableReason =
-  /*@__PURE__*/ S.String;
+export const UpdatePayoutMethodResponseUnavailableReason = S.String;
 
 export interface UpdatePayoutMethodResponse {
   /** Masked identifier for the destination. */

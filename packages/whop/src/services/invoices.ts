@@ -164,7 +164,7 @@ export type TaxIdentifierTypes =
   | "zw_tin"
   | "sr_fin"
   | "xi_vat";
-export const TaxIdentifierTypes = /*@__PURE__*/ S.String;
+export const TaxIdentifierTypes = S.String;
 
 /** Inline billing address to create a new mailing address for this invoice. Cannot be used together with mailing_address_id. */
 export interface CreateInvoiceRequestBodyCase0BillingAddress {
@@ -209,7 +209,7 @@ export const CreateInvoiceRequestBodyCase0BillingAddress =
 
 /** The method of collection for an invoice. */
 export type InvoiceCollectionMethods = "send_invoice" | "charge_automatically";
-export const InvoiceCollectionMethods = /*@__PURE__*/ S.String;
+export const InvoiceCollectionMethods = S.String;
 
 /** A single line item to include on the invoice, with a label, quantity, and unit price. */
 export interface CreateInvoiceRequestBodyCase0LineItemsItem {
@@ -330,7 +330,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 export interface CreateInvoiceRequestBodyCase0PlanCustomFieldsItem {
   /** The type of the custom field. */
@@ -487,7 +487,7 @@ export type PaymentMethodTypes =
   | "zip"
   | "coinflow"
   | "unknown";
-export const PaymentMethodTypes = /*@__PURE__*/ S.String;
+export const PaymentMethodTypes = S.String;
 
 /** An array of payment method identifiers that are explicitly disabled. Only applies if the include_platform_defaults is true. */
 export type CreateInvoiceRequestBodyCase0PlanPaymentMethodConfigurationDisabledList =
@@ -529,15 +529,15 @@ export const CreateInvoiceRequestBodyCase0PlanPaymentMethodConfiguration =
 
 /** The type of plan that can be attached to a product */
 export type PlanTypes = "renewal" | "one_time";
-export const PlanTypes = /*@__PURE__*/ S.String;
+export const PlanTypes = S.String;
 
 /** The methods of how a plan can be released. */
 export type ReleaseMethod = "buy_now" | "waitlist";
-export const ReleaseMethod = /*@__PURE__*/ S.String;
+export const ReleaseMethod = S.String;
 
 /** Visibility of a resource */
 export type Visibility = "visible" | "hidden" | "archived" | "quick_link";
-export const Visibility = /*@__PURE__*/ S.String;
+export const Visibility = S.String;
 
 /** The plan attributes defining the price, currency, and billing interval for this invoice. */
 export interface CreateInvoiceRequestBodyCase0Plan {
@@ -891,7 +891,7 @@ export type CreateInvoiceRequestBody =
   | CreateInvoiceRequestBodyCase0
   | CreateInvoiceRequestBodyCase1;
 export const CreateInvoiceRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateInvoiceRequestBody>;
+  S.Unknown as any as S.Schema<CreateInvoiceRequestBody>;
 
 export interface CreateInvoiceRequest {
   body: CreateInvoiceRequestBody;
@@ -1046,7 +1046,7 @@ export type InvoiceStatuses =
   | "past_due"
   | "uncollectible"
   | "void";
-export const InvoiceStatuses = /*@__PURE__*/ S.String;
+export const InvoiceStatuses = S.String;
 
 /** The user this invoice is addressed to. Null if the user account has been removed. */
 export interface InvoiceUser {
@@ -1178,7 +1178,7 @@ export const GetInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export const Direction = S.String;
 
 /** Filter invoices to only those associated with these specific product identifiers. */
 export type ListInvoiceRequestProductIdsList = Array<string>;
@@ -1204,7 +1204,7 @@ export const ListInvoiceRequestStatusesList = /*@__PURE__*/ S.Array(
 
 /** Which columns can be used to sort. */
 export type InvoicesSortableColumns = "id" | "created_at" | "due_date";
-export const InvoicesSortableColumns = /*@__PURE__*/ S.String;
+export const InvoicesSortableColumns = S.String;
 
 export interface ListInvoiceRequest {
   after?: string;

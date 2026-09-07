@@ -652,7 +652,7 @@ export const ListRulesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListRulesResponse>;
 
 export type SiteInfoListRequestOrderBy = "host" | "created";
-export const SiteInfoListRequestOrderBy = /*@__PURE__*/ S.String;
+export const SiteInfoListRequestOrderBy = S.String;
 
 export interface ListSiteInfosRequest {
   /** Identifier. */

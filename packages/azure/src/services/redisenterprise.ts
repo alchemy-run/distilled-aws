@@ -86,7 +86,7 @@ export type ProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The user associated with the access policy. */
 export type AccessPolicyAssignmentPropertiesUser =
@@ -139,16 +139,14 @@ export const AccessPolicyAssignmentCreateUpdateResponse =
 export type DatabaseCreatePropertiesInputClientProtocol =
   | "Encrypted"
   | "Plaintext";
-export const DatabaseCreatePropertiesInputClientProtocol =
-  /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesInputClientProtocol = S.String;
 
 /** Clustering policy - default is OSSCluster. This property can be updated only if the current value is NoCluster. If the value is OSSCluster or EnterpriseCluster, it cannot be updated without deleting the database. */
 export type DatabaseCreatePropertiesInputClusteringPolicy =
   | "EnterpriseCluster"
   | "OSSCluster"
   | "NoCluster";
-export const DatabaseCreatePropertiesInputClusteringPolicy =
-  /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesInputClusteringPolicy = S.String;
 
 /** Redis eviction policy - default is VolatileLRU */
 export type DatabaseCreatePropertiesInputEvictionPolicy =
@@ -160,16 +158,15 @@ export type DatabaseCreatePropertiesInputEvictionPolicy =
   | "VolatileTTL"
   | "VolatileRandom"
   | "NoEviction";
-export const DatabaseCreatePropertiesInputEvictionPolicy =
-  /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesInputEvictionPolicy = S.String;
 
 /** Sets the frequency at which data is written to disk. Defaults to '1s', meaning 'every second'. Note that the 'always' setting is deprecated, because of its performance impact. */
 export type PersistenceAofFrequency = "1s" | "always";
-export const PersistenceAofFrequency = /*@__PURE__*/ S.String;
+export const PersistenceAofFrequency = S.String;
 
 /** Sets the frequency at which a snapshot of the database is created. */
 export type PersistenceRdbFrequency = "1h" | "6h" | "12h";
-export const PersistenceRdbFrequency = /*@__PURE__*/ S.String;
+export const PersistenceRdbFrequency = S.String;
 
 /** Persistence-related configuration for the Redis Enterprise database */
 export interface Persistence {
@@ -255,14 +252,13 @@ export const DatabaseCreatePropertiesInputGeoReplication =
 export type DatabaseCreatePropertiesInputDeferUpgrade =
   | "Deferred"
   | "NotDeferred";
-export const DatabaseCreatePropertiesInputDeferUpgrade = /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesInputDeferUpgrade = S.String;
 
 /** This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even after database is created. */
 export type DatabaseCreatePropertiesInputAccessKeysAuthentication =
   | "Disabled"
   | "Enabled";
-export const DatabaseCreatePropertiesInputAccessKeysAuthentication =
-  /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesInputAccessKeysAuthentication = S.String;
 
 /** Properties for creating Redis Enterprise databases */
 export interface DatabaseCreatePropertiesInput {
@@ -340,7 +336,7 @@ export const CreateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted. */
 export type DatabaseCreatePropertiesClientProtocol = "Encrypted" | "Plaintext";
-export const DatabaseCreatePropertiesClientProtocol = /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesClientProtocol = S.String;
 
 /** Current resource status */
 export type ResourceState =
@@ -359,14 +355,14 @@ export type ResourceState =
   | "Scaling"
   | "ScalingFailed"
   | "Moving";
-export const ResourceState = /*@__PURE__*/ S.String;
+export const ResourceState = S.String;
 
 /** Clustering policy - default is OSSCluster. This property can be updated only if the current value is NoCluster. If the value is OSSCluster or EnterpriseCluster, it cannot be updated without deleting the database. */
 export type DatabaseCreatePropertiesClusteringPolicy =
   | "EnterpriseCluster"
   | "OSSCluster"
   | "NoCluster";
-export const DatabaseCreatePropertiesClusteringPolicy = /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesClusteringPolicy = S.String;
 
 /** Redis eviction policy - default is VolatileLRU */
 export type DatabaseCreatePropertiesEvictionPolicy =
@@ -378,7 +374,7 @@ export type DatabaseCreatePropertiesEvictionPolicy =
   | "VolatileTTL"
   | "VolatileRandom"
   | "NoEviction";
-export const DatabaseCreatePropertiesEvictionPolicy = /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesEvictionPolicy = S.String;
 
 /** Specifies configuration of a redis module */
 export interface Module {
@@ -410,7 +406,7 @@ export type LinkedDatabaseState =
   | "Unlinking"
   | "LinkFailed"
   | "UnlinkFailed";
-export const LinkedDatabaseState = /*@__PURE__*/ S.String;
+export const LinkedDatabaseState = S.String;
 
 /** Specifies details of a linked database resource. */
 export interface LinkedDatabase {
@@ -455,14 +451,13 @@ export const DatabaseCreatePropertiesGeoReplication = /*@__PURE__*/ S.suspend(
 
 /** Option to defer upgrade when newest version is released - default is NotDeferred. Learn more: https://aka.ms/redisversionupgrade */
 export type DatabaseCreatePropertiesDeferUpgrade = "Deferred" | "NotDeferred";
-export const DatabaseCreatePropertiesDeferUpgrade = /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesDeferUpgrade = S.String;
 
 /** This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even after database is created. */
 export type DatabaseCreatePropertiesAccessKeysAuthentication =
   | "Disabled"
   | "Enabled";
-export const DatabaseCreatePropertiesAccessKeysAuthentication =
-  /*@__PURE__*/ S.String;
+export const DatabaseCreatePropertiesAccessKeysAuthentication = S.String;
 
 /** Properties for creating Redis Enterprise databases */
 export interface DatabaseCreateProperties {
@@ -599,7 +594,7 @@ export type SkuName =
   | "FlashOptimized_A1500"
   | "FlashOptimized_A2000"
   | "FlashOptimized_A4500";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** SKU parameters supplied to the create Redis Enterprise cluster operation. */
 export interface Sku {
@@ -627,7 +622,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -665,23 +660,21 @@ export const CreateRedisEnterpriseRequestIdentity = /*@__PURE__*/ S.suspend(
 export type ClusterCreatePropertiesInputHighAvailability =
   | "Enabled"
   | "Disabled";
-export const ClusterCreatePropertiesInputHighAvailability =
-  /*@__PURE__*/ S.String;
+export const ClusterCreatePropertiesInputHighAvailability = S.String;
 
 /** The minimum TLS version for the cluster to support, e.g. '1.2'. Newer versions can be added in the future. Note that TLS 1.0 and TLS 1.1 are now completely obsolete -- you cannot use them. They are mentioned only for the sake of consistency with old API versions. */
 export type ClusterCreatePropertiesInputMinimumTlsVersion =
   | "1.0"
   | "1.1"
   | "1.2";
-export const ClusterCreatePropertiesInputMinimumTlsVersion =
-  /*@__PURE__*/ S.String;
+export const ClusterCreatePropertiesInputMinimumTlsVersion = S.String;
 
 /** Only userAssignedIdentity is supported in this API version; other types may be supported in the future */
 export type ClusterCreatePropertiesInputEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
   | "systemAssignedIdentity"
   | "userAssignedIdentity";
 export const ClusterCreatePropertiesInputEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault. */
 export interface ClusterCreatePropertiesInputEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentity {
@@ -745,8 +738,7 @@ export const ClusterCreatePropertiesInputEncryption = /*@__PURE__*/ S.suspend(
 export type ClusterCreatePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const ClusterCreatePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ClusterCreatePropertiesInputPublicNetworkAccess = S.String;
 
 /** Properties of Redis Enterprise clusters for create operations */
 export interface ClusterCreatePropertiesInput {
@@ -835,7 +827,7 @@ export const CreateRedisEnterpriseResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Distinguishes the kind of cluster. Read-only. */
 export type Kind = "v1" | "v2";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 /** The Availability Zones where this cluster will be deployed. */
 export type CreateRedisEnterpriseResponseZonesList = Array<string>;
@@ -891,18 +883,18 @@ export const CreateRedisEnterpriseResponseIdentity = /*@__PURE__*/ S.suspend(
 
 /** Enabled by default. If highAvailability is disabled, the data set is not replicated. This affects the availability SLA, and increases the risk of data loss. */
 export type ClusterCreatePropertiesHighAvailability = "Enabled" | "Disabled";
-export const ClusterCreatePropertiesHighAvailability = /*@__PURE__*/ S.String;
+export const ClusterCreatePropertiesHighAvailability = S.String;
 
 /** The minimum TLS version for the cluster to support, e.g. '1.2'. Newer versions can be added in the future. Note that TLS 1.0 and TLS 1.1 are now completely obsolete -- you cannot use them. They are mentioned only for the sake of consistency with old API versions. */
 export type ClusterCreatePropertiesMinimumTlsVersion = "1.0" | "1.1" | "1.2";
-export const ClusterCreatePropertiesMinimumTlsVersion = /*@__PURE__*/ S.String;
+export const ClusterCreatePropertiesMinimumTlsVersion = S.String;
 
 /** Only userAssignedIdentity is supported in this API version; other types may be supported in the future */
 export type ClusterCreatePropertiesEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
   | "systemAssignedIdentity"
   | "userAssignedIdentity";
 export const ClusterCreatePropertiesEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault. */
 export interface ClusterCreatePropertiesEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentity {
@@ -960,7 +952,7 @@ export const ClusterCreatePropertiesEncryption = /*@__PURE__*/ S.suspend(() =>
 
 /** Explains the current redundancy strategy of the cluster, which affects the expected SLA. */
 export type ClusterCreatePropertiesRedundancyMode = "None" | "LR" | "ZR";
-export const ClusterCreatePropertiesRedundancyMode = /*@__PURE__*/ S.String;
+export const ClusterCreatePropertiesRedundancyMode = S.String;
 
 /** The Private Endpoint resource. */
 export interface PrivateEndpoint {
@@ -980,7 +972,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -1007,8 +999,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the PrivateEndpointConnectProperties. */
 export interface PrivateEndpointConnectionProperties {
@@ -1062,8 +1053,7 @@ export const ClusterCreatePropertiesPrivateEndpointConnectionsList =
 
 /** Whether or not public network traffic can access the Redis cluster. Only 'Enabled' or 'Disabled' can be set. null is returned only for clusters created using an old API version which do not have this property and cannot be set. */
 export type ClusterCreatePropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const ClusterCreatePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ClusterCreatePropertiesPublicNetworkAccess = S.String;
 
 /** Properties of Redis Enterprise clusters for create operations */
 export interface ClusterCreateProperties {
@@ -2082,11 +2072,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -2540,7 +2530,7 @@ export const PutPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
 
 /** Which access key to regenerate. */
 export type RegenerateDatabaseKeyRequestKeyType = "Primary" | "Secondary";
-export const RegenerateDatabaseKeyRequestKeyType = /*@__PURE__*/ S.String;
+export const RegenerateDatabaseKeyRequestKeyType = S.String;
 
 export interface RegenerateDatabaseKeyRequest {
   /** The ID of the target subscription. */
@@ -2621,16 +2611,14 @@ export const UnlinkDatabasesForceResponse = /*@__PURE__*/ S.suspend(() =>
 export type DatabaseUpdatePropertiesInputClientProtocol =
   | "Encrypted"
   | "Plaintext";
-export const DatabaseUpdatePropertiesInputClientProtocol =
-  /*@__PURE__*/ S.String;
+export const DatabaseUpdatePropertiesInputClientProtocol = S.String;
 
 /** Clustering policy - default is OSSCluster. This property can be updated only if the current value is NoCluster. If the value is OSSCluster or EnterpriseCluster, it cannot be updated without deleting the database. */
 export type DatabaseUpdatePropertiesInputClusteringPolicy =
   | "EnterpriseCluster"
   | "OSSCluster"
   | "NoCluster";
-export const DatabaseUpdatePropertiesInputClusteringPolicy =
-  /*@__PURE__*/ S.String;
+export const DatabaseUpdatePropertiesInputClusteringPolicy = S.String;
 
 /** Redis eviction policy - default is VolatileLRU */
 export type DatabaseUpdatePropertiesInputEvictionPolicy =
@@ -2642,8 +2630,7 @@ export type DatabaseUpdatePropertiesInputEvictionPolicy =
   | "VolatileTTL"
   | "VolatileRandom"
   | "NoEviction";
-export const DatabaseUpdatePropertiesInputEvictionPolicy =
-  /*@__PURE__*/ S.String;
+export const DatabaseUpdatePropertiesInputEvictionPolicy = S.String;
 
 /** Optional set of redis modules to enable in this database - modules can only be added at creation time. */
 export type DatabaseUpdatePropertiesInputModulesList = Array<ModuleInput>;
@@ -2682,14 +2669,13 @@ export const DatabaseUpdatePropertiesInputGeoReplication =
 export type DatabaseUpdatePropertiesInputDeferUpgrade =
   | "Deferred"
   | "NotDeferred";
-export const DatabaseUpdatePropertiesInputDeferUpgrade = /*@__PURE__*/ S.String;
+export const DatabaseUpdatePropertiesInputDeferUpgrade = S.String;
 
 /** This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even after database is created. */
 export type DatabaseUpdatePropertiesInputAccessKeysAuthentication =
   | "Disabled"
   | "Enabled";
-export const DatabaseUpdatePropertiesInputAccessKeysAuthentication =
-  /*@__PURE__*/ S.String;
+export const DatabaseUpdatePropertiesInputAccessKeysAuthentication = S.String;
 
 /** Properties for updating Redis Enterprise databases */
 export interface DatabaseUpdatePropertiesInput {
@@ -2790,23 +2776,21 @@ export const UpdateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
 export type ClusterUpdatePropertiesInputHighAvailability =
   | "Enabled"
   | "Disabled";
-export const ClusterUpdatePropertiesInputHighAvailability =
-  /*@__PURE__*/ S.String;
+export const ClusterUpdatePropertiesInputHighAvailability = S.String;
 
 /** The minimum TLS version for the cluster to support, e.g. '1.2'. Newer versions can be added in the future. Note that TLS 1.0 and TLS 1.1 are now completely obsolete -- you cannot use them. They are mentioned only for the sake of consistency with old API versions. */
 export type ClusterUpdatePropertiesInputMinimumTlsVersion =
   | "1.0"
   | "1.1"
   | "1.2";
-export const ClusterUpdatePropertiesInputMinimumTlsVersion =
-  /*@__PURE__*/ S.String;
+export const ClusterUpdatePropertiesInputMinimumTlsVersion = S.String;
 
 /** Only userAssignedIdentity is supported in this API version; other types may be supported in the future */
 export type ClusterUpdatePropertiesInputEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
   | "systemAssignedIdentity"
   | "userAssignedIdentity";
 export const ClusterUpdatePropertiesInputEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault. */
 export interface ClusterUpdatePropertiesInputEncryptionCustomerManagedKeyEncryptionKeyEncryptionKeyIdentity {
@@ -2870,8 +2854,7 @@ export const ClusterUpdatePropertiesInputEncryption = /*@__PURE__*/ S.suspend(
 export type ClusterUpdatePropertiesInputPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const ClusterUpdatePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ClusterUpdatePropertiesInputPublicNetworkAccess = S.String;
 
 /** Properties of Redis Enterprise clusters for update operations */
 export interface ClusterUpdatePropertiesInput {

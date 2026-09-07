@@ -92,7 +92,7 @@ export type CreateExportRequestResource =
   | "invoices"
   | "cancelation_reasons"
   | "child_companies";
-export const CreateExportRequestResource = /*@__PURE__*/ S.String;
+export const CreateExportRequestResource = S.String;
 
 export interface CreateExportRequest {
   /** The account to export from, prefixed `biz_`. Defaults to the credential's account. */
@@ -161,7 +161,7 @@ export type ExportResource =
   | "child_companies"
   | "ledger_lines"
   | "withdrawal_lines";
-export const ExportResource = /*@__PURE__*/ S.String;
+export const ExportResource = S.String;
 
 /** `pending` or `processing` while the CSV is generated, `completed` when the download is ready, `failed` if it errored, `expired` once the CSV has been deleted. */
 export type ExportStatus =
@@ -170,7 +170,7 @@ export type ExportStatus =
   | "completed"
   | "failed"
   | "expired";
-export const ExportStatus = /*@__PURE__*/ S.String;
+export const ExportStatus = S.String;
 
 export interface Export {
   /** When the export was requested, as an ISO 8601 timestamp. */
@@ -254,7 +254,7 @@ export type ListExportsRequestResource =
   | "child_companies"
   | "ledger_lines"
   | "withdrawal_lines";
-export const ListExportsRequestResource = /*@__PURE__*/ S.String;
+export const ListExportsRequestResource = S.String;
 
 export type ListExportsRequestStatus =
   | "pending"
@@ -262,13 +262,13 @@ export type ListExportsRequestStatus =
   | "completed"
   | "failed"
   | "expired";
-export const ListExportsRequestStatus = /*@__PURE__*/ S.String;
+export const ListExportsRequestStatus = S.String;
 
 export type ListExportsRequestOrder = "created_at";
-export const ListExportsRequestOrder = /*@__PURE__*/ S.String;
+export const ListExportsRequestOrder = S.String;
 
 export type ListExportsRequestDirection = "asc" | "desc";
-export const ListExportsRequestDirection = /*@__PURE__*/ S.String;
+export const ListExportsRequestDirection = S.String;
 
 export interface ListExportsRequest {
   /** The account to list exports for, prefixed `biz_`. Defaults to the credential's account. */

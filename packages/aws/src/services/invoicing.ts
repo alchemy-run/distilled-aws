@@ -299,13 +299,13 @@ export type ProcurementPortalName =
   | "SAP_BUSINESS_NETWORK"
   | "COUPA"
   | (string & {});
-export const ProcurementPortalName = /*@__PURE__*/ S.String;
+export const ProcurementPortalName = S.String;
 
 export type BuyerDomain = "NetworkID" | (string & {});
-export const BuyerDomain = /*@__PURE__*/ S.String;
+export const BuyerDomain = S.String;
 
 export type SupplierDomain = "NetworkID" | (string & {});
-export const SupplierDomain = /*@__PURE__*/ S.String;
+export const SupplierDomain = S.String;
 
 export type InvoiceUnitArns = string[];
 export const InvoiceUnitArns = /*@__PURE__*/ S.Array(S.String);
@@ -350,7 +350,7 @@ export type EinvoiceDeliveryDocumentType =
   | "AWS_MARKETPLACE_CREDIT_MEMO"
   | "AWS_REQUEST_FOR_PAYMENT"
   | (string & {});
-export const EinvoiceDeliveryDocumentType = /*@__PURE__*/ S.String;
+export const EinvoiceDeliveryDocumentType = S.String;
 
 export type EinvoiceDeliveryDocumentTypes = EinvoiceDeliveryDocumentType[];
 export const EinvoiceDeliveryDocumentTypes = /*@__PURE__*/ S.Array(
@@ -360,20 +360,20 @@ export type EinvoiceDeliveryAttachmentType =
   | "INVOICE_PDF"
   | "RFP_PDF"
   | (string & {});
-export const EinvoiceDeliveryAttachmentType = /*@__PURE__*/ S.String;
+export const EinvoiceDeliveryAttachmentType = S.String;
 
 export type EinvoiceDeliveryAttachmentTypes = EinvoiceDeliveryAttachmentType[];
 export const EinvoiceDeliveryAttachmentTypes = /*@__PURE__*/ S.Array(
   EinvoiceDeliveryAttachmentType,
 );
 export type Protocol = "CXML" | (string & {});
-export const Protocol = /*@__PURE__*/ S.String;
+export const Protocol = S.String;
 
 export type PurchaseOrderDataSourceType =
   | "ASSOCIATED_PURCHASE_ORDER_REQUIRED"
   | "PURCHASE_ORDER_NOT_REQUIRED"
   | (string & {});
-export const PurchaseOrderDataSourceType = /*@__PURE__*/ S.String;
+export const PurchaseOrderDataSourceType = S.String;
 
 export interface PurchaseOrderDataSource {
   EinvoiceDeliveryDocumentType?: EinvoiceDeliveryDocumentType;
@@ -395,7 +395,7 @@ export type ConnectionTestingMethod =
   | "PROD_ENV_DOLLAR_TEST"
   | "TEST_ENV_REPLAY_TEST"
   | (string & {});
-export const ConnectionTestingMethod = /*@__PURE__*/ S.String;
+export const ConnectionTestingMethod = S.String;
 
 export interface EinvoiceDeliveryPreference {
   EinvoiceDeliveryDocumentTypes: EinvoiceDeliveryDocumentType[];
@@ -545,7 +545,7 @@ export type SupplementalDocumentType =
   | "PAYMENT_RECEIPT"
   | "SUPPLEMENT"
   | (string & {});
-export const SupplementalDocumentType = /*@__PURE__*/ S.String;
+export const SupplementalDocumentType = S.String;
 
 export interface SupplementalDocument {
   DocumentType?: SupplementalDocumentType;
@@ -672,7 +672,7 @@ export type ProcurementPortalPreferenceStatus =
   | "ACTIVE"
   | "SUSPENDED"
   | (string & {});
-export const ProcurementPortalPreferenceStatus = /*@__PURE__*/ S.String;
+export const ProcurementPortalPreferenceStatus = S.String;
 
 export interface ProcurementPortalPreference {
   AwsAccountId: string;
@@ -744,7 +744,7 @@ export type ListInvoiceSummariesResourceType =
   | "ACCOUNT_ID"
   | "INVOICE_ID"
   | (string & {});
-export const ListInvoiceSummariesResourceType = /*@__PURE__*/ S.String;
+export const ListInvoiceSummariesResourceType = S.String;
 
 export interface InvoiceSummariesSelector {
   ResourceType: ListInvoiceSummariesResourceType;
@@ -775,7 +775,7 @@ export const BillingPeriod = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ Month: S.Number, Year: S.Number }),
 ).annotate({ identifier: "BillingPeriod" }) as any as S.Schema<BillingPeriod>;
 export type ReceiverRole = "SELLER" | "RESELLER" | "BUYER" | (string & {});
-export const ReceiverRole = /*@__PURE__*/ S.String;
+export const ReceiverRole = S.String;
 
 export interface InvoiceSummariesFilter {
   TimeInterval?: DateInterval;
@@ -816,7 +816,7 @@ export const ListInvoiceSummariesRequest = /*@__PURE__*/ S.suspend(() =>
 export type BillSourceAccountList = string[];
 export const BillSourceAccountList = /*@__PURE__*/ S.Array(S.String);
 export type BillingEntity = "AWS" | "AWS_MARKETPLACE" | (string & {});
-export const BillingEntity = /*@__PURE__*/ S.String;
+export const BillingEntity = S.String;
 
 export interface Entity {
   InvoicingEntity?: string;
@@ -829,26 +829,26 @@ export const Entity = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Entity" }) as any as S.Schema<Entity>;
 export type InvoiceFrequency = "ONE_TIME" | "RECURRING" | (string & {});
-export const InvoiceFrequency = /*@__PURE__*/ S.String;
+export const InvoiceFrequency = S.String;
 
 export type BillType = "ANNIVERSARY" | "PURCHASE" | "REFUND" | (string & {});
-export const BillType = /*@__PURE__*/ S.String;
+export const BillType = S.String;
 
 export type InvoiceType =
   | "INVOICE"
   | "CREDIT_MEMO"
   | "PAYMENT_RECEIPT"
   | (string & {});
-export const InvoiceType = /*@__PURE__*/ S.String;
+export const InvoiceType = S.String;
 
 export type EinvoiceDeliveryStatus =
   | "DELIVERED"
   | "NOT_DELIVERED"
   | (string & {});
-export const EinvoiceDeliveryStatus = /*@__PURE__*/ S.String;
+export const EinvoiceDeliveryStatus = S.String;
 
 export type TaxAuthorityStatus = "ISSUED" | "CANCELLED" | (string & {});
-export const TaxAuthorityStatus = /*@__PURE__*/ S.String;
+export const TaxAuthorityStatus = S.String;
 
 export type CurrencyCode = string;
 export interface DiscountsBreakdownAmount {
@@ -1417,7 +1417,7 @@ export type ValidationExceptionReason =
   | "unknownOperation"
   | "other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

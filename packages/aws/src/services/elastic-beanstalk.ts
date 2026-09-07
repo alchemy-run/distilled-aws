@@ -360,7 +360,7 @@ export type ActionType =
   | "PlatformUpdate"
   | "Unknown"
   | (string & {});
-export const ActionType = /*@__PURE__*/ S.String;
+export const ActionType = S.String;
 
 export interface ApplyEnvironmentManagedActionResult {
   ActionId?: string;
@@ -483,7 +483,7 @@ export type EnvironmentStatus =
   | "Terminating"
   | "Terminated"
   | (string & {});
-export const EnvironmentStatus = /*@__PURE__*/ S.String;
+export const EnvironmentStatus = S.String;
 
 export type AbortableOperationInProgress = boolean;
 export type EnvironmentHealth =
@@ -492,7 +492,7 @@ export type EnvironmentHealth =
   | "Red"
   | "Grey"
   | (string & {});
-export const EnvironmentHealth = /*@__PURE__*/ S.String;
+export const EnvironmentHealth = S.String;
 
 export type EnvironmentHealthStatus =
   | "NoData"
@@ -505,7 +505,7 @@ export type EnvironmentHealthStatus =
   | "Severe"
   | "Suspended"
   | (string & {});
-export const EnvironmentHealthStatus = /*@__PURE__*/ S.String;
+export const EnvironmentHealthStatus = S.String;
 
 export interface Listener {
   Protocol?: string;
@@ -767,10 +767,10 @@ export const ApplicationDescriptionMessage = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApplicationDescriptionMessage",
 }) as any as S.Schema<ApplicationDescriptionMessage>;
 export type SourceType = "Git" | "Zip" | (string & {});
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 export type SourceRepository = "CodeCommit" | "S3" | (string & {});
-export const SourceRepository = /*@__PURE__*/ S.String;
+export const SourceRepository = S.String;
 
 export type SourceLocation = string;
 export interface SourceBuildInformation {
@@ -802,7 +802,7 @@ export type ComputeType =
   | "BUILD_GENERAL1_MEDIUM"
   | "BUILD_GENERAL1_LARGE"
   | (string & {});
-export const ComputeType = /*@__PURE__*/ S.String;
+export const ComputeType = S.String;
 
 export interface BuildConfiguration {
   ArtifactName?: string;
@@ -868,7 +868,7 @@ export type ApplicationVersionStatus =
   | "Processing"
   | "Building"
   | (string & {});
-export const ApplicationVersionStatus = /*@__PURE__*/ S.String;
+export const ApplicationVersionStatus = S.String;
 
 export interface ApplicationVersionDescription {
   ApplicationVersionArn?: string;
@@ -990,7 +990,7 @@ export type ConfigurationDeploymentStatus =
   | "pending"
   | "failed"
   | (string & {});
-export const ConfigurationDeploymentStatus = /*@__PURE__*/ S.String;
+export const ConfigurationDeploymentStatus = S.String;
 
 export interface ConfigurationSettingsDescription {
   SolutionStackName?: string;
@@ -1126,7 +1126,7 @@ export type PlatformStatus =
   | "Deleting"
   | "Deleted"
   | (string & {});
-export const PlatformStatus = /*@__PURE__*/ S.String;
+export const PlatformStatus = S.String;
 
 export type PlatformCategory = string;
 export type OperatingSystemName = string;
@@ -1508,7 +1508,7 @@ export type ConfigurationOptionDefaultValue = string;
 export type ConfigurationOptionSeverity = string;
 export type UserDefinedOption = boolean;
 export type ConfigurationOptionValueType = "Scalar" | "List" | (string & {});
-export const ConfigurationOptionValueType = /*@__PURE__*/ S.String;
+export const ConfigurationOptionValueType = S.String;
 
 export type ConfigurationOptionPossibleValue = string;
 export type ConfigurationOptionPossibleValues = string[];
@@ -1628,7 +1628,7 @@ export type EnvironmentHealthAttribute =
   | "HealthStatus"
   | "RefreshedAt"
   | (string & {});
-export const EnvironmentHealthAttribute = /*@__PURE__*/ S.String;
+export const EnvironmentHealthAttribute = S.String;
 
 export type EnvironmentHealthAttributes = EnvironmentHealthAttribute[];
 export const EnvironmentHealthAttributes = /*@__PURE__*/ S.Array(
@@ -1802,14 +1802,14 @@ export type FailureType =
   | "InvalidEnvironmentState"
   | "PermissionsError"
   | (string & {});
-export const FailureType = /*@__PURE__*/ S.String;
+export const FailureType = S.String;
 
 export type ActionHistoryStatus =
   | "Completed"
   | "Failed"
   | "Unknown"
   | (string & {});
-export const ActionHistoryStatus = /*@__PURE__*/ S.String;
+export const ActionHistoryStatus = S.String;
 
 export interface ManagedActionHistoryItem {
   ActionId?: string;
@@ -1862,7 +1862,7 @@ export type ActionStatus =
   | "Running"
   | "Unknown"
   | (string & {});
-export const ActionStatus = /*@__PURE__*/ S.String;
+export const ActionStatus = S.String;
 
 export interface DescribeEnvironmentManagedActionsRequest {
   EnvironmentName?: string;
@@ -2088,7 +2088,7 @@ export type EventSeverity =
   | "ERROR"
   | "FATAL"
   | (string & {});
-export const EventSeverity = /*@__PURE__*/ S.String;
+export const EventSeverity = S.String;
 
 export type TimeFilterStart = Date;
 export type TimeFilterEnd = Date;
@@ -2193,7 +2193,7 @@ export type InstancesHealthAttribute =
   | "InstanceType"
   | "All"
   | (string & {});
-export const InstancesHealthAttribute = /*@__PURE__*/ S.String;
+export const InstancesHealthAttribute = S.String;
 
 export type InstancesHealthAttributes = InstancesHealthAttribute[];
 export const InstancesHealthAttributes = /*@__PURE__*/ S.Array(
@@ -2720,7 +2720,7 @@ export const RebuildEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RebuildEnvironmentResponse",
 }) as any as S.Schema<RebuildEnvironmentResponse>;
 export type EnvironmentInfoType = "tail" | "bundle" | "analyze" | (string & {});
-export const EnvironmentInfoType = /*@__PURE__*/ S.String;
+export const EnvironmentInfoType = S.String;
 
 export interface RequestEnvironmentInfoMessage {
   EnvironmentId?: string;
@@ -3113,7 +3113,7 @@ export const ValidateConfigurationSettingsMessage = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ValidateConfigurationSettingsMessage>;
 export type ValidationMessageString = string;
 export type ValidationSeverity = "error" | "warning" | (string & {});
-export const ValidationSeverity = /*@__PURE__*/ S.String;
+export const ValidationSeverity = S.String;
 
 export interface ValidationMessage {
   Message?: string;

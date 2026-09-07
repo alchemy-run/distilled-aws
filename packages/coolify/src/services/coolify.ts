@@ -279,7 +279,7 @@ export type CreateCloudTokenRequestProvider =
   | "hetzner"
   | "digitalocean"
   | "vultr";
-export const CreateCloudTokenRequestProvider = /*@__PURE__*/ S.String;
+export const CreateCloudTokenRequestProvider = S.String;
 
 export interface CreateCloudTokenRequest {
   /** The cloud provider. */
@@ -1129,8 +1129,7 @@ export const CreateDigitaloceanServerResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The build pack type. */
 export type CreateDockerfileApplicationRequestBuildPack = "dockerfile";
-export const CreateDockerfileApplicationRequestBuildPack =
-  /*@__PURE__*/ S.String;
+export const CreateDockerfileApplicationRequestBuildPack = S.String;
 
 /** The subset of the application domains served with an X-Robots-Tag: noindex, nofollow response header, keeping them out of search engines. Entries that are not among the application domains are ignored. */
 export type CreateDockerfileApplicationRequestNoindexDomainsList =
@@ -1145,8 +1144,7 @@ export type CreateDockerfileApplicationRequestRedirect =
   | "www"
   | "non-www"
   | "both";
-export const CreateDockerfileApplicationRequestRedirect =
-  /*@__PURE__*/ S.String;
+export const CreateDockerfileApplicationRequestRedirect = S.String;
 
 /** Tags to assign to the application. */
 export type CreateDockerfileApplicationRequestTagsList = Array<string>;
@@ -1439,8 +1437,7 @@ export type CreateDockerimageApplicationRequestRedirect =
   | "www"
   | "non-www"
   | "both";
-export const CreateDockerimageApplicationRequestRedirect =
-  /*@__PURE__*/ S.String;
+export const CreateDockerimageApplicationRequestRedirect = S.String;
 
 /** Tags to assign to the application. */
 export type CreateDockerimageApplicationRequestTagsList = Array<string>;
@@ -2158,8 +2155,7 @@ export type CreatePrivateDeployKeyApplicationRequestBuildPack =
   | "static"
   | "dockerfile"
   | "dockercompose";
-export const CreatePrivateDeployKeyApplicationRequestBuildPack =
-  /*@__PURE__*/ S.String;
+export const CreatePrivateDeployKeyApplicationRequestBuildPack = S.String;
 
 /** The subset of the application domains served with an X-Robots-Tag: noindex, nofollow response header, keeping them out of search engines. Entries that are not among the application domains are ignored. */
 export type CreatePrivateDeployKeyApplicationRequestNoindexDomainsList =
@@ -2172,16 +2168,14 @@ export const CreatePrivateDeployKeyApplicationRequestNoindexDomainsList =
 /** The static image. */
 export type CreatePrivateDeployKeyApplicationRequestStaticImage =
   "nginx:alpine";
-export const CreatePrivateDeployKeyApplicationRequestStaticImage =
-  /*@__PURE__*/ S.String;
+export const CreatePrivateDeployKeyApplicationRequestStaticImage = S.String;
 
 /** How to set redirect with Traefik / Caddy. www<->non-www. */
 export type CreatePrivateDeployKeyApplicationRequestRedirect =
   | "www"
   | "non-www"
   | "both";
-export const CreatePrivateDeployKeyApplicationRequestRedirect =
-  /*@__PURE__*/ S.String;
+export const CreatePrivateDeployKeyApplicationRequestRedirect = S.String;
 
 /** Per-service www/non-www redirect for this compose service. */
 export type CreatePrivateDeployKeyApplicationRequestDockerComposeDomainsItemRedirect =
@@ -2189,7 +2183,7 @@ export type CreatePrivateDeployKeyApplicationRequestDockerComposeDomainsItemRedi
   | "non-www"
   | "both";
 export const CreatePrivateDeployKeyApplicationRequestDockerComposeDomainsItemRedirect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePrivateDeployKeyApplicationRequestDockerComposeDomainsItem {
   /** The service name as defined in docker-compose. */
@@ -2586,8 +2580,7 @@ export type CreatePrivateGithubAppApplicationRequestBuildPack =
   | "static"
   | "dockerfile"
   | "dockercompose";
-export const CreatePrivateGithubAppApplicationRequestBuildPack =
-  /*@__PURE__*/ S.String;
+export const CreatePrivateGithubAppApplicationRequestBuildPack = S.String;
 
 /** The subset of the application domains served with an X-Robots-Tag: noindex, nofollow response header, keeping them out of search engines. Entries that are not among the application domains are ignored. */
 export type CreatePrivateGithubAppApplicationRequestNoindexDomainsList =
@@ -2600,16 +2593,14 @@ export const CreatePrivateGithubAppApplicationRequestNoindexDomainsList =
 /** The static image. */
 export type CreatePrivateGithubAppApplicationRequestStaticImage =
   "nginx:alpine";
-export const CreatePrivateGithubAppApplicationRequestStaticImage =
-  /*@__PURE__*/ S.String;
+export const CreatePrivateGithubAppApplicationRequestStaticImage = S.String;
 
 /** How to set redirect with Traefik / Caddy. www<->non-www. */
 export type CreatePrivateGithubAppApplicationRequestRedirect =
   | "www"
   | "non-www"
   | "both";
-export const CreatePrivateGithubAppApplicationRequestRedirect =
-  /*@__PURE__*/ S.String;
+export const CreatePrivateGithubAppApplicationRequestRedirect = S.String;
 
 /** Per-service www/non-www redirect for this compose service. */
 export type CreatePrivateGithubAppApplicationRequestDockerComposeDomainsItemRedirect =
@@ -2617,7 +2608,7 @@ export type CreatePrivateGithubAppApplicationRequestDockerComposeDomainsItemRedi
   | "non-www"
   | "both";
 export const CreatePrivateGithubAppApplicationRequestDockerComposeDomainsItemRedirect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePrivateGithubAppApplicationRequestDockerComposeDomainsItem {
   /** The service name as defined in docker-compose. */
@@ -3086,7 +3077,7 @@ export type CreatePublicApplicationRequestBuildPack =
   | "static"
   | "dockerfile"
   | "dockercompose";
-export const CreatePublicApplicationRequestBuildPack = /*@__PURE__*/ S.String;
+export const CreatePublicApplicationRequestBuildPack = S.String;
 
 /** The subset of the application domains served with an X-Robots-Tag: noindex, nofollow response header, keeping them out of search engines. Entries that are not among the application domains are ignored. */
 export type CreatePublicApplicationRequestNoindexDomainsList = Array<string>;
@@ -3097,11 +3088,11 @@ export const CreatePublicApplicationRequestNoindexDomainsList =
 
 /** The static image. */
 export type CreatePublicApplicationRequestStaticImage = "nginx:alpine";
-export const CreatePublicApplicationRequestStaticImage = /*@__PURE__*/ S.String;
+export const CreatePublicApplicationRequestStaticImage = S.String;
 
 /** How to set redirect with Traefik / Caddy. www<->non-www. */
 export type CreatePublicApplicationRequestRedirect = "www" | "non-www" | "both";
-export const CreatePublicApplicationRequestRedirect = /*@__PURE__*/ S.String;
+export const CreatePublicApplicationRequestRedirect = S.String;
 
 /** Per-service www/non-www redirect for this compose service. */
 export type CreatePublicApplicationRequestDockerComposeDomainsItemRedirect =
@@ -3109,7 +3100,7 @@ export type CreatePublicApplicationRequestDockerComposeDomainsItemRedirect =
   | "non-www"
   | "both";
 export const CreatePublicApplicationRequestDockerComposeDomainsItemRedirect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePublicApplicationRequestDockerComposeDomainsItem {
   /** The service name as defined in docker-compose. */
@@ -3636,7 +3627,7 @@ export const CreateScheduledTaskByServiceUuidRequest = /*@__PURE__*/ S.suspend(
 
 /** The proxy type. */
 export type CreateServerRequestProxyType = "traefik" | "caddy" | "none";
-export const CreateServerRequestProxyType = /*@__PURE__*/ S.String;
+export const CreateServerRequestProxyType = S.String;
 
 export interface CreateServerRequest {
   /** The name of the server. */
@@ -3687,7 +3678,7 @@ export const CreateServerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateServerResponse>;
 
 export type CreateServerDestinationRequestType = "standalone" | "swarm";
-export const CreateServerDestinationRequestType = /*@__PURE__*/ S.String;
+export const CreateServerDestinationRequestType = S.String;
 
 export interface CreateServerDestinationRequest {
   /** Server UUID */
@@ -3714,7 +3705,7 @@ export const CreateServerDestinationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateServerDestinationRequest>;
 
 export type DestinationType = "standalone" | "swarm";
-export const DestinationType = /*@__PURE__*/ S.String;
+export const DestinationType = S.String;
 
 /** A Docker network destination attached to a server. */
 export interface Destination {
@@ -3858,7 +3849,7 @@ export const CreateServiceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of storage. */
 export type CreateStorageByApplicationUuidRequestType = "persistent" | "file";
-export const CreateStorageByApplicationUuidRequestType = /*@__PURE__*/ S.String;
+export const CreateStorageByApplicationUuidRequestType = S.String;
 
 export interface CreateStorageByApplicationUuidRequest {
   /** UUID of the application. */
@@ -3909,7 +3900,7 @@ export const CreateStorageByApplicationUuidResponse = /*@__PURE__*/ S.suspend(
 
 /** The type of storage. */
 export type CreateStorageByDatabaseUuidRequestType = "persistent" | "file";
-export const CreateStorageByDatabaseUuidRequestType = /*@__PURE__*/ S.String;
+export const CreateStorageByDatabaseUuidRequestType = S.String;
 
 export interface CreateStorageByDatabaseUuidRequest {
   /** UUID of the database. */
@@ -3955,7 +3946,7 @@ export const CreateStorageByDatabaseUuidResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of storage. */
 export type CreateStorageByServiceUuidRequestType = "persistent" | "file";
-export const CreateStorageByServiceUuidRequestType = /*@__PURE__*/ S.String;
+export const CreateStorageByServiceUuidRequestType = S.String;
 
 export interface CreateStorageByServiceUuidRequest {
   /** UUID of the service. */
@@ -5518,15 +5509,15 @@ export type ApplicationBuildPack =
   | "static"
   | "dockerfile"
   | "dockercompose";
-export const ApplicationBuildPack = /*@__PURE__*/ S.String;
+export const ApplicationBuildPack = S.String;
 
 /** Health check type: http or cmd. */
 export type ApplicationHealthCheckType = "http" | "cmd";
-export const ApplicationHealthCheckType = /*@__PURE__*/ S.String;
+export const ApplicationHealthCheckType = S.String;
 
 /** How to set redirect with Traefik / Caddy. www<->non-www. */
 export type ApplicationRedirect = "www" | "non-www" | "both";
-export const ApplicationRedirect = /*@__PURE__*/ S.String;
+export const ApplicationRedirect = S.String;
 
 /** Application settings. */
 export interface ApplicationSetting {
@@ -6978,7 +6969,7 @@ export const GetServerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The proxy type. */
 export type ServerProxyType = "traefik" | "caddy" | "none";
-export const ServerProxyType = /*@__PURE__*/ S.String;
+export const ServerProxyType = S.String;
 
 /** Server Settings model */
 export interface ServerSetting {
@@ -7927,7 +7918,7 @@ export type ListCloudTokensResponseBodyItemProvider =
   | "hetzner"
   | "digitalocean"
   | "vultr";
-export const ListCloudTokensResponseBodyItemProvider = /*@__PURE__*/ S.String;
+export const ListCloudTokensResponseBodyItemProvider = S.String;
 
 export interface ListCloudTokensResponseBodyItem {
   uuid?: string;
@@ -8468,7 +8459,7 @@ export const ListScheduledTaskExecutionsByApplicationUuidRequest =
 
 /** The status of the execution. */
 export type ScheduledTaskExecutionStatus = "success" | "failed" | "running";
-export const ScheduledTaskExecutionStatus = /*@__PURE__*/ S.String;
+export const ScheduledTaskExecutionStatus = S.String;
 
 /** Scheduled Task Execution model */
 export interface ScheduledTaskExecution {
@@ -10048,7 +10039,7 @@ export const SetApplicationStorageBackupScheduleRequest =
 export type VolumeBackupScheduleResponseStorageType =
   | "persistent"
   | "directory";
-export const VolumeBackupScheduleResponseStorageType = /*@__PURE__*/ S.String;
+export const VolumeBackupScheduleResponseStorageType = S.String;
 
 export interface VolumeBackupScheduleResponse {
   uuid: string;
@@ -10427,7 +10418,7 @@ export type UpdateApplicationByUuidRequestBuildPack =
   | "static"
   | "dockerfile"
   | "dockercompose";
-export const UpdateApplicationByUuidRequestBuildPack = /*@__PURE__*/ S.String;
+export const UpdateApplicationByUuidRequestBuildPack = S.String;
 
 /** The subset of the application domains served with an X-Robots-Tag: noindex, nofollow response header, keeping them out of search engines. Entries that are not among the application domains are ignored. */
 export type UpdateApplicationByUuidRequestNoindexDomainsList = Array<string>;
@@ -10438,7 +10429,7 @@ export const UpdateApplicationByUuidRequestNoindexDomainsList =
 
 /** How to set redirect with Traefik / Caddy. www<->non-www. */
 export type UpdateApplicationByUuidRequestRedirect = "www" | "non-www" | "both";
-export const UpdateApplicationByUuidRequestRedirect = /*@__PURE__*/ S.String;
+export const UpdateApplicationByUuidRequestRedirect = S.String;
 
 /** Per-service www/non-www redirect for this compose service. */
 export type UpdateApplicationByUuidRequestDockerComposeDomainsItemRedirect =
@@ -10446,7 +10437,7 @@ export type UpdateApplicationByUuidRequestDockerComposeDomainsItemRedirect =
   | "non-www"
   | "both";
 export const UpdateApplicationByUuidRequestDockerComposeDomainsItemRedirect =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateApplicationByUuidRequestDockerComposeDomainsItem {
   /** The service name as defined in docker-compose. */
@@ -11854,7 +11845,7 @@ export const UpdateScheduledTaskByServiceUuidRequest = /*@__PURE__*/ S.suspend(
 
 /** The proxy type. */
 export type UpdateServerByUuidRequestProxyType = "traefik" | "caddy" | "none";
-export const UpdateServerByUuidRequestProxyType = /*@__PURE__*/ S.String;
+export const UpdateServerByUuidRequestProxyType = S.String;
 
 export interface UpdateServerByUuidRequest {
   /** Server UUID */
@@ -12037,7 +12028,7 @@ export type UpdateServerProxyRequestProxyType =
   | "caddy"
   | "nginx"
   | "none";
-export const UpdateServerProxyRequestProxyType = /*@__PURE__*/ S.String;
+export const UpdateServerProxyRequestProxyType = S.String;
 
 export interface UpdateServerProxyRequest {
   /** Server UUID */
@@ -12216,7 +12207,7 @@ export const UpdateServiceByUuidResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of storage: persistent or file. */
 export type UpdateStorageByApplicationUuidRequestType = "persistent" | "file";
-export const UpdateStorageByApplicationUuidRequestType = /*@__PURE__*/ S.String;
+export const UpdateStorageByApplicationUuidRequestType = S.String;
 
 export interface UpdateStorageByApplicationUuidRequest {
   /** UUID of the application. */
@@ -12267,7 +12258,7 @@ export const UpdateStorageByApplicationUuidResponse = /*@__PURE__*/ S.suspend(
 
 /** The type of storage: persistent or file. */
 export type UpdateStorageByDatabaseUuidRequestType = "persistent" | "file";
-export const UpdateStorageByDatabaseUuidRequestType = /*@__PURE__*/ S.String;
+export const UpdateStorageByDatabaseUuidRequestType = S.String;
 
 export interface UpdateStorageByDatabaseUuidRequest {
   /** UUID of the database. */
@@ -12313,7 +12304,7 @@ export const UpdateStorageByDatabaseUuidResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of storage: persistent or file. */
 export type UpdateStorageByServiceUuidRequestType = "persistent" | "file";
-export const UpdateStorageByServiceUuidRequestType = /*@__PURE__*/ S.String;
+export const UpdateStorageByServiceUuidRequestType = S.String;
 
 export interface UpdateStorageByServiceUuidRequest {
   /** UUID of the service. */

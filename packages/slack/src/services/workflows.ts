@@ -318,8 +318,7 @@ export type RemoveTriggersPermissionsResponsePermissionType =
   | "everyone"
   | "app_collaborators"
   | "named_entities";
-export const RemoveTriggersPermissionsResponsePermissionType =
-  /*@__PURE__*/ S.String;
+export const RemoveTriggersPermissionsResponsePermissionType = S.String;
 
 /** A list of encoded user IDs. */
 export type RemoveTriggersPermissionsResponseUserIdsList = Array<string>;
@@ -413,8 +412,7 @@ export type SetTriggersPermissionsRequestPermissionType =
   | "everyone"
   | "app_collaborators"
   | "named_entities";
-export const SetTriggersPermissionsRequestPermissionType =
-  /*@__PURE__*/ S.String;
+export const SetTriggersPermissionsRequestPermissionType = S.String;
 
 /** List of encoded user IDs */
 export type SetTriggersPermissionsRequestUserIdsList = Array<string>;

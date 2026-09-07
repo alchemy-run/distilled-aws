@@ -29,7 +29,7 @@ export type CreateRequestActionMode =
   | "challenge"
   | "js_challenge"
   | "managed_challenge";
-export const CreateRequestActionMode = /*@__PURE__*/ S.String;
+export const CreateRequestActionMode = S.String;
 
 export interface CreateRequestActionResponse {
   /** The response body to return. The value must conform to the configured content type. */
@@ -65,7 +65,7 @@ export const CreateRequestAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestAction>;
 
 export type CreateRequestMatchHeadersItemOp = "eq" | "ne";
-export const CreateRequestMatchHeadersItemOp = /*@__PURE__*/ S.String;
+export const CreateRequestMatchHeadersItemOp = S.String;
 
 export interface CreateRequestMatchHeadersItem {
   /** The name of the response header to match. */
@@ -99,7 +99,7 @@ export type CreateRequestMatchRequestMethodsItem =
   | "PATCH"
   | "HEAD"
   | "_ALL_";
-export const CreateRequestMatchRequestMethodsItem = /*@__PURE__*/ S.String;
+export const CreateRequestMatchRequestMethodsItem = S.String;
 
 export type CreateRequestMatchRequestMethodsList = Array<
   CreateRequestMatchRequestMethodsItem | (string & {})
@@ -196,7 +196,7 @@ export type CreateResponseActionMode =
   | "challenge"
   | "js_challenge"
   | "managed_challenge";
-export const CreateResponseActionMode = /*@__PURE__*/ S.String;
+export const CreateResponseActionMode = S.String;
 
 export interface CreateResponseActionResponse {
   /** The response body to return. The value must conform to the configured content type. */
@@ -232,7 +232,7 @@ export const CreateResponseAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseAction>;
 
 export type CreateResponseBypassItemName = "url";
-export const CreateResponseBypassItemName = /*@__PURE__*/ S.String;
+export const CreateResponseBypassItemName = S.String;
 
 export interface CreateResponseBypassItem {
   name?: CreateResponseBypassItemName | null;
@@ -254,7 +254,7 @@ export const CreateResponseBypassList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateResponseBypassList>;
 
 export type CreateResponseMatchHeadersItemOp = "eq" | "ne";
-export const CreateResponseMatchHeadersItemOp = /*@__PURE__*/ S.String;
+export const CreateResponseMatchHeadersItemOp = S.String;
 
 export interface CreateResponseMatchHeadersItem {
   /** The name of the response header to match. */
@@ -288,7 +288,7 @@ export type CreateResponseMatchRequestMethodsItem =
   | "PATCH"
   | "HEAD"
   | "_ALL_";
-export const CreateResponseMatchRequestMethodsItem = /*@__PURE__*/ S.String;
+export const CreateResponseMatchRequestMethodsItem = S.String;
 
 export type CreateResponseMatchRequestMethodsList =
   Array<CreateResponseMatchRequestMethodsItem>;
@@ -411,7 +411,7 @@ export type DeleteResponseActionMode =
   | "challenge"
   | "js_challenge"
   | "managed_challenge";
-export const DeleteResponseActionMode = /*@__PURE__*/ S.String;
+export const DeleteResponseActionMode = S.String;
 
 export type DeleteResponseActionResponse = CreateResponseActionResponse;
 export const DeleteResponseActionResponse = CreateResponseActionResponse;
@@ -435,7 +435,7 @@ export const DeleteResponseAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteResponseAction>;
 
 export type DeleteResponseBypassItemName = "url";
-export const DeleteResponseBypassItemName = /*@__PURE__*/ S.String;
+export const DeleteResponseBypassItemName = S.String;
 
 export interface DeleteResponseBypassItem {
   name?: DeleteResponseBypassItemName | null;
@@ -457,7 +457,7 @@ export const DeleteResponseBypassList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DeleteResponseBypassList>;
 
 export type DeleteResponseMatchHeadersItemOp = "eq" | "ne";
-export const DeleteResponseMatchHeadersItemOp = /*@__PURE__*/ S.String;
+export const DeleteResponseMatchHeadersItemOp = S.String;
 
 export interface DeleteResponseMatchHeadersItem {
   /** The name of the response header to match. */
@@ -491,7 +491,7 @@ export type DeleteResponseMatchRequestMethodsItem =
   | "PATCH"
   | "HEAD"
   | "_ALL_";
-export const DeleteResponseMatchRequestMethodsItem = /*@__PURE__*/ S.String;
+export const DeleteResponseMatchRequestMethodsItem = S.String;
 
 export type DeleteResponseMatchRequestMethodsList =
   Array<DeleteResponseMatchRequestMethodsItem>;
@@ -580,7 +580,7 @@ export type EditRequestActionMode =
   | "challenge"
   | "js_challenge"
   | "managed_challenge";
-export const EditRequestActionMode = /*@__PURE__*/ S.String;
+export const EditRequestActionMode = S.String;
 
 export type EditRequestActionResponse = CreateRequestActionResponse;
 export const EditRequestActionResponse = CreateRequestActionResponse;
@@ -604,7 +604,7 @@ export const EditRequestAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EditRequestAction>;
 
 export type EditRequestMatchHeadersItemOp = "eq" | "ne";
-export const EditRequestMatchHeadersItemOp = /*@__PURE__*/ S.String;
+export const EditRequestMatchHeadersItemOp = S.String;
 
 export interface EditRequestMatchHeadersItem {
   /** The name of the response header to match. */
@@ -637,7 +637,7 @@ export type EditRequestMatchRequestMethodsItem =
   | "PATCH"
   | "HEAD"
   | "_ALL_";
-export const EditRequestMatchRequestMethodsItem = /*@__PURE__*/ S.String;
+export const EditRequestMatchRequestMethodsItem = S.String;
 
 export type EditRequestMatchRequestMethodsList = Array<
   EditRequestMatchRequestMethodsItem | (string & {})
@@ -728,7 +728,7 @@ export type EditResponseActionMode =
   | "challenge"
   | "js_challenge"
   | "managed_challenge";
-export const EditResponseActionMode = /*@__PURE__*/ S.String;
+export const EditResponseActionMode = S.String;
 
 export type EditResponseActionResponse = CreateResponseActionResponse;
 export const EditResponseActionResponse = CreateResponseActionResponse;
@@ -752,7 +752,7 @@ export const EditResponseAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EditResponseAction>;
 
 export type EditResponseBypassItemName = "url";
-export const EditResponseBypassItemName = /*@__PURE__*/ S.String;
+export const EditResponseBypassItemName = S.String;
 
 export interface EditResponseBypassItem {
   name?: EditResponseBypassItemName | null;
@@ -774,7 +774,7 @@ export const EditResponseBypassList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EditResponseBypassList>;
 
 export type EditResponseMatchHeadersItemOp = "eq" | "ne";
-export const EditResponseMatchHeadersItemOp = /*@__PURE__*/ S.String;
+export const EditResponseMatchHeadersItemOp = S.String;
 
 export interface EditResponseMatchHeadersItem {
   /** The name of the response header to match. */
@@ -807,7 +807,7 @@ export type EditResponseMatchRequestMethodsItem =
   | "PATCH"
   | "HEAD"
   | "_ALL_";
-export const EditResponseMatchRequestMethodsItem = /*@__PURE__*/ S.String;
+export const EditResponseMatchRequestMethodsItem = S.String;
 
 export type EditResponseMatchRequestMethodsList =
   Array<EditResponseMatchRequestMethodsItem>;
@@ -919,7 +919,7 @@ export type GetResponseActionMode =
   | "challenge"
   | "js_challenge"
   | "managed_challenge";
-export const GetResponseActionMode = /*@__PURE__*/ S.String;
+export const GetResponseActionMode = S.String;
 
 export type GetResponseActionResponse = CreateResponseActionResponse;
 export const GetResponseActionResponse = CreateResponseActionResponse;
@@ -943,7 +943,7 @@ export const GetResponseAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseAction>;
 
 export type GetResponseBypassItemName = "url";
-export const GetResponseBypassItemName = /*@__PURE__*/ S.String;
+export const GetResponseBypassItemName = S.String;
 
 export interface GetResponseBypassItem {
   name?: GetResponseBypassItemName | null;
@@ -965,7 +965,7 @@ export const GetResponseBypassList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetResponseBypassList>;
 
 export type GetResponseMatchHeadersItemOp = "eq" | "ne";
-export const GetResponseMatchHeadersItemOp = /*@__PURE__*/ S.String;
+export const GetResponseMatchHeadersItemOp = S.String;
 
 export interface GetResponseMatchHeadersItem {
   /** The name of the response header to match. */
@@ -998,7 +998,7 @@ export type GetResponseMatchRequestMethodsItem =
   | "PATCH"
   | "HEAD"
   | "_ALL_";
-export const GetResponseMatchRequestMethodsItem = /*@__PURE__*/ S.String;
+export const GetResponseMatchRequestMethodsItem = S.String;
 
 export type GetResponseMatchRequestMethodsList =
   Array<GetResponseMatchRequestMethodsItem>;
@@ -1109,7 +1109,7 @@ export type ListResultItemActionMode =
   | "challenge"
   | "js_challenge"
   | "managed_challenge";
-export const ListResultItemActionMode = /*@__PURE__*/ S.String;
+export const ListResultItemActionMode = S.String;
 
 export type ListResultItemActionResponse = CreateResponseActionResponse;
 export const ListResultItemActionResponse = CreateResponseActionResponse;
@@ -1133,7 +1133,7 @@ export const ListResultItemAction = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResultItemAction>;
 
 export type ListResultItemBypassItemName = "url";
-export const ListResultItemBypassItemName = /*@__PURE__*/ S.String;
+export const ListResultItemBypassItemName = S.String;
 
 export interface ListResultItemBypassItem {
   name?: ListResultItemBypassItemName | null;
@@ -1155,7 +1155,7 @@ export const ListResultItemBypassList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListResultItemBypassList>;
 
 export type ListResultItemMatchHeadersItemOp = "eq" | "ne";
-export const ListResultItemMatchHeadersItemOp = /*@__PURE__*/ S.String;
+export const ListResultItemMatchHeadersItemOp = S.String;
 
 export interface ListResultItemMatchHeadersItem {
   /** The name of the response header to match. */
@@ -1189,7 +1189,7 @@ export type ListResultItemMatchRequestMethodsItem =
   | "PATCH"
   | "HEAD"
   | "_ALL_";
-export const ListResultItemMatchRequestMethodsItem = /*@__PURE__*/ S.String;
+export const ListResultItemMatchRequestMethodsItem = S.String;
 
 export type ListResultItemMatchRequestMethodsList =
   Array<ListResultItemMatchRequestMethodsItem>;

@@ -17,7 +17,7 @@ export type SearchContextRequestChannelTypesItem =
   | "private_channel"
   | "mpim"
   | "im";
-export const SearchContextRequestChannelTypesItem = /*@__PURE__*/ S.String;
+export const SearchContextRequestChannelTypesItem = S.String;
 
 /** Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`. */
 export type SearchContextRequestChannelTypesList = Array<
@@ -33,7 +33,7 @@ export type SearchContextRequestContentTypesItem =
   | "enterprise"
   | "channels"
   | "users";
-export const SearchContextRequestContentTypesItem = /*@__PURE__*/ S.String;
+export const SearchContextRequestContentTypesItem = S.String;
 
 /** Content types to include, a comma-separated list of any combination of `messages`, `files`, `channels`, `users`. */
 export type SearchContextRequestContentTypesList = Array<
@@ -45,11 +45,11 @@ export const SearchContextRequestContentTypesList = /*@__PURE__*/ S.Array(
 
 /** The field to sort the results by. Defaults to score. Can be one of: score, timestamp. */
 export type SearchContextRequestSort = "score" | "timestamp";
-export const SearchContextRequestSort = /*@__PURE__*/ S.String;
+export const SearchContextRequestSort = S.String;
 
 /** The direction to sort the results by. Defaults to desc. */
 export type SearchContextRequestSortDir = "asc" | "desc";
-export const SearchContextRequestSortDir = /*@__PURE__*/ S.String;
+export const SearchContextRequestSortDir = S.String;
 
 /** A list of term clauses. A term clause is a string with search terms. Search results returned will match every term clause specified (i.e., conjunctive normal form). */
 export type SearchContextRequestTermClausesList = Array<string>;

@@ -17,7 +17,7 @@ export type FileDescriptor =
   | "FILE_DESCRIPTOR_STDOUT"
   | "FILE_DESCRIPTOR_STDERR"
   | "FILE_DESCRIPTOR_INFO";
-export const FileDescriptor = /*@__PURE__*/ S.String;
+export const FileDescriptor = S.String;
 
 export interface AppCountLogsRequest {
   appId?: string;
@@ -138,7 +138,7 @@ export type DeploymentType =
   | "DEPLOYMENT_TYPE_ROLLOVER"
   | "DEPLOYMENT_TYPE_PROMOTION"
   | "DEPLOYMENT_TYPE_STAGED";
-export const DeploymentType = /*@__PURE__*/ S.String;
+export const DeploymentType = S.String;
 
 export interface AppDeploymentHistory2 {
   appId?: string;
@@ -237,10 +237,10 @@ export type TaskState =
   | "TASK_STATE_PREEMPTIBLE"
   | "TASK_STATE_PREEMPTED"
   | "TASK_STATE_LOADING_CHECKPOINT_IMAGE";
-export const TaskState = /*@__PURE__*/ S.String;
+export const TaskState = S.String;
 
 export type ProgressType = "IMAGE_SNAPSHOT_UPLOAD" | "FUNCTION_QUEUED";
-export const ProgressType = /*@__PURE__*/ S.String;
+export const ProgressType = S.String;
 
 export interface TaskProgress {
   len?: string;
@@ -368,7 +368,7 @@ export type AppState =
   | "APP_STATE_DISABLED"
   | "APP_STATE_DETACHED_DISCONNECTED"
   | "APP_STATE_DERIVED";
-export const AppState = /*@__PURE__*/ S.String;
+export const AppState = S.String;
 
 /** tag -> class id */
 export interface AppLifecycle {
@@ -496,14 +496,13 @@ export type FunctionFunctionType =
   | "FUNCTION_TYPE_UNSPECIFIED"
   | "FUNCTION_TYPE_GENERATOR"
   | "FUNCTION_TYPE_FUNCTION";
-export const FunctionFunctionType = /*@__PURE__*/ S.String;
+export const FunctionFunctionType = S.String;
 
 export type ClassParameterInfoParameterSerializationFormat =
   | "PARAM_SERIALIZATION_FORMAT_UNSPECIFIED"
   | "PARAM_SERIALIZATION_FORMAT_PICKLE"
   | "PARAM_SERIALIZATION_FORMAT_PROTO";
-export const ClassParameterInfoParameterSerializationFormat =
-  /*@__PURE__*/ S.String;
+export const ClassParameterInfoParameterSerializationFormat = S.String;
 
 export type ParameterType =
   | "PARAM_TYPE_UNSPECIFIED"
@@ -516,7 +515,7 @@ export type ParameterType =
   | "PARAM_TYPE_DICT"
   | "PARAM_TYPE_NONE"
   | "PARAM_TYPE_BOOL";
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 export type GenericPayloadTypeList = Array<GenericPayloadType>;
 export const GenericPayloadTypeList = /*@__PURE__*/ S.Array(
@@ -596,7 +595,7 @@ export const FunctionHandleMetadataMap = /*@__PURE__*/ S.Record(
 export type FunctionSchemaFunctionSchemaType =
   | "FUNCTION_SCHEMA_UNSPECIFIED"
   | "FUNCTION_SCHEMA_V1";
-export const FunctionSchemaFunctionSchemaType = /*@__PURE__*/ S.String;
+export const FunctionSchemaFunctionSchemaType = S.String;
 
 export interface FunctionSchema {
   schemaType?: FunctionSchemaFunctionSchemaType;
@@ -624,7 +623,7 @@ export type DataFormat =
   | "DATA_FORMAT_ASGI"
   | "DATA_FORMAT_GENERATOR_DONE"
   | "DATA_FORMAT_CBOR";
-export const DataFormat = /*@__PURE__*/ S.String;
+export const DataFormat = S.String;
 
 export type DataFormatList = Array<DataFormat>;
 export const DataFormatList = /*@__PURE__*/ S.Array(
@@ -738,7 +737,7 @@ export type GenericResultGenericStatus =
   | "GENERIC_STATUS_INTERNAL_FAILURE"
   | "GENERIC_STATUS_IDLE_TIMEOUT"
   | "GENERIC_STATUS_MEMORY_MANAGER_EVICTION";
-export const GenericResultGenericStatus = /*@__PURE__*/ S.String;
+export const GenericResultGenericStatus = S.String;
 
 /** sub-type for generic types like lists */
 export interface GenericResult {
@@ -792,7 +791,7 @@ export type VolumeFsVersion =
   | "VOLUME_FS_VERSION_UNSPECIFIED"
   | "VOLUME_FS_VERSION_V1"
   | "VOLUME_FS_VERSION_V2";
-export const VolumeFsVersion = /*@__PURE__*/ S.String;
+export const VolumeFsVersion = S.String;
 
 export interface CreationInfo {
   /** This message is used in metadata for resource objects like Dict, Queue, Volume, etc. */
@@ -954,7 +953,7 @@ export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
   | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
   | "OBJECT_CREATION_TYPE_EPHEMERAL";
-export const ObjectCreationType = /*@__PURE__*/ S.String;
+export const ObjectCreationType = S.String;
 
 export interface AppGetOrCreateRequest {
   appName?: string;
@@ -1066,7 +1065,7 @@ export type WarningWarningType =
   | "WARNING_TYPE_CLIENT_DEPRECATION"
   | "WARNING_TYPE_RESOURCE_LIMIT"
   | "WARNING_TYPE_FUNCTION_CONFIGURATION";
-export const WarningWarningType = /*@__PURE__*/ S.String;
+export const WarningWarningType = S.String;
 
 export interface Warning {
   type?: WarningWarningType;
@@ -1235,7 +1234,7 @@ export type AppDeployVisibility =
   | "APP_DEPLOY_VISIBILITY_UNSPECIFIED"
   | "APP_DEPLOY_VISIBILITY_WORKSPACE"
   | "APP_DEPLOY_VISIBILITY_PUBLIC";
-export const AppDeployVisibility = /*@__PURE__*/ S.String;
+export const AppDeployVisibility = S.String;
 
 export interface DeployAppRequest {
   appId?: string;
@@ -1281,7 +1280,7 @@ export type AppDisconnectReason =
   | "APP_DISCONNECT_REASON_ENTRYPOINT_COMPLETED"
   | "APP_DISCONNECT_REASON_DEPLOYMENT_EXCEPTION"
   | "APP_DISCONNECT_REASON_REMOTE_EXCEPTION";
-export const AppDisconnectReason = /*@__PURE__*/ S.String;
+export const AppDisconnectReason = S.String;
 
 export interface DisconnectAppClientRequest {
   appId?: string;
@@ -1499,7 +1498,7 @@ export type AppStopSource =
   | "APP_STOP_SOURCE_CLI"
   | "APP_STOP_SOURCE_PYTHON_CLIENT"
   | "APP_STOP_SOURCE_WEB";
-export const AppStopSource = /*@__PURE__*/ S.String;
+export const AppStopSource = S.String;
 
 export interface StopAppRequest {
   appId?: string;

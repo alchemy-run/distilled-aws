@@ -107,7 +107,7 @@ export type AccountStateEnum =
   | "UNCHECKED"
   | "APPROVED"
   | "DISAPPROVED";
-export const AccountStateEnum = /*@__PURE__*/ S.String;
+export const AccountStateEnum = S.String;
 
 /** Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones). */
 export interface TimeZone {
@@ -177,7 +177,7 @@ export type EventEventTypeEnum =
   | "EVENT_TYPE_UNSPECIFIED"
   | "LOG_IN_VIA_PLATFORM"
   | "SIGN_UP_VIA_PLATFORM";
-export const EventEventTypeEnum = /*@__PURE__*/ S.String;
+export const EventEventTypeEnum = S.String;
 
 /** Address data. */
 export interface Address {
@@ -276,7 +276,7 @@ export type SiteStateEnum =
   | "GETTING_READY"
   | "READY"
   | "NEEDS_ATTENTION";
-export const SiteStateEnum = /*@__PURE__*/ S.String;
+export const SiteStateEnum = S.String;
 
 /** Representation of a Site. */
 export interface Site {

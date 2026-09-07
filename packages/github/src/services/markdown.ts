@@ -13,7 +13,7 @@ export type { GithubOpError, GithubOpContext };
 
 /** The rendering mode. */
 export type RenderRequestMode = "markdown" | "gfm";
-export const RenderRequestMode = /*@__PURE__*/ S.String;
+export const RenderRequestMode = S.String;
 
 export interface RenderRequest {
   /** The Markdown text to render in HTML. */

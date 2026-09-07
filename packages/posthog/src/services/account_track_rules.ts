@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `account_field` - account_field * `custom_property` - custom_property */
 export type AccountTrackRuleFieldKindEnum = "account_field" | "custom_property";
-export const AccountTrackRuleFieldKindEnum = /*@__PURE__*/ S.String;
+export const AccountTrackRuleFieldKindEnum = S.String;
 
 /** * `name` - name * `external_id` - external_id * `created_at` - created_at * `updated_at` - updated_at * `churned_at` - churned_at * `ignored_at` - ignored_at * `stripe_customer_id` - stripe_customer_id * `hubspot_deal_id` - hubspot_deal_id * `billing_id` - billing_id * `sfdc_id` - sfdc_id * `zendesk_id` - zendesk_id */
 export type AccountTrackRuleFieldFieldEnum =
@@ -28,7 +28,7 @@ export type AccountTrackRuleFieldFieldEnum =
   | "billing_id"
   | "sfdc_id"
   | "zendesk_id";
-export const AccountTrackRuleFieldFieldEnum = /*@__PURE__*/ S.String;
+export const AccountTrackRuleFieldFieldEnum = S.String;
 
 export interface AccountTrackRuleField {
   kind: AccountTrackRuleFieldKindEnum | (string & {});

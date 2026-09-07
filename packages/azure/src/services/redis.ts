@@ -20,7 +20,7 @@ export type AccessPolicyAssignmentProvisioningState =
   | "Deleted"
   | "Canceled"
   | "Failed";
-export const AccessPolicyAssignmentProvisioningState = /*@__PURE__*/ S.String;
+export const AccessPolicyAssignmentProvisioningState = S.String;
 
 /** Properties for an access policy assignment */
 export interface RedisCacheAccessPolicyAssignmentProperties {
@@ -83,7 +83,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -91,7 +91,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -152,11 +152,11 @@ export type AccessPolicyProvisioningState =
   | "Deleted"
   | "Canceled"
   | "Failed";
-export const AccessPolicyProvisioningState = /*@__PURE__*/ S.String;
+export const AccessPolicyProvisioningState = S.String;
 
 /** Built-In or Custom access policy */
 export type AccessPolicyType = "Custom" | "BuiltIn";
-export const AccessPolicyType = /*@__PURE__*/ S.String;
+export const AccessPolicyType = S.String;
 
 /** All properties of an access policy. */
 export interface RedisCacheAccessPolicyProperties {
@@ -266,7 +266,7 @@ export const CheckRedisNameAvailabilityResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Role of the linked server. */
 export type ReplicationRole = "Primary" | "Secondary";
-export const ReplicationRole = /*@__PURE__*/ S.String;
+export const ReplicationRole = S.String;
 
 /** Create properties for a linked server */
 export interface RedisLinkedServerCreatePropertiesInput {
@@ -466,27 +466,27 @@ export const RedisCreatePropertiesInputTenantSettingsMap =
 
 /** Optional: requires clients to use a specified TLS version (or higher) to connect (e,g, '1.0', '1.1', '1.2') */
 export type TlsVersion = "1.0" | "1.1" | "1.2";
-export const TlsVersion = /*@__PURE__*/ S.String;
+export const TlsVersion = S.String;
 
 /** Whether or not public endpoint access is allowed for this cache. Value is optional but if passed in, must be 'Enabled' or 'Disabled'. If 'Disabled', private endpoints are the exclusive access method. Default value is 'Enabled' */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Optional: Specifies the update channel for the monthly Redis updates your Redis Cache will receive. Caches using 'Preview' update channel get latest Redis updates at least 4 weeks ahead of 'Stable' channel caches. Default value is 'Stable'. */
 export type UpdateChannel = "Stable" | "Preview";
-export const UpdateChannel = /*@__PURE__*/ S.String;
+export const UpdateChannel = S.String;
 
 /** Optional: Specifies how availability zones are allocated to the Redis cache. 'Automatic' enables zone redundancy and Azure will automatically select zones based on regional availability and capacity. 'UserDefined' will select availability zones passed in by you using the 'zones' parameter. 'NoZones' will produce a non-zonal cache. If 'zonalAllocationPolicy' is not passed, it will be set to 'UserDefined' when zones are passed in, otherwise, it will be set to 'Automatic' in regions where zones are supported and 'NoZones' in regions where zones are not supported. */
 export type ZonalAllocationPolicy = "Automatic" | "UserDefined" | "NoZones";
-export const ZonalAllocationPolicy = /*@__PURE__*/ S.String;
+export const ZonalAllocationPolicy = S.String;
 
 /** The type of Redis cache to deploy. Valid values: (Basic, Standard, Premium) */
 export type SkuName = "Basic" | "Standard" | "Premium";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The SKU family to use. Valid values: (C, P). (C = Basic/Standard, P = Premium). */
 export type SkuFamily = "C" | "P";
-export const SkuFamily = /*@__PURE__*/ S.String;
+export const SkuFamily = S.String;
 
 /** SKU parameters supplied to the create Redis operation. */
 export interface Sku {
@@ -581,7 +581,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -781,7 +781,7 @@ export type ProvisioningState =
   | "Unprovisioning"
   | "Updating"
   | "ConfiguringAAD";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Redis cache access keys. */
 export interface RedisAccessKeys {
@@ -877,7 +877,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -904,8 +904,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -1272,7 +1271,7 @@ export const DeleteLinkedServerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteLinkedServerResponse>;
 
 export type DeletePatchScheduleRequestDefault = "default";
-export const DeletePatchScheduleRequestDefault = /*@__PURE__*/ S.String;
+export const DeletePatchScheduleRequestDefault = S.String;
 
 export interface DeletePatchScheduleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1943,7 +1942,7 @@ export const GetLinkedServerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLinkedServerResponse>;
 
 export type GetPatchScheduleRequestDefault = "default";
-export const GetPatchScheduleRequestDefault = /*@__PURE__*/ S.String;
+export const GetPatchScheduleRequestDefault = S.String;
 
 export interface GetPatchScheduleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1984,7 +1983,7 @@ export type DayOfWeek =
   | "Sunday"
   | "Everyday"
   | "Weekend";
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 /** Patch schedule entry for a Premium Redis Cache. */
 export interface ScheduleEntry {
@@ -3063,8 +3062,7 @@ export const NotificationListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NotificationListResponse>;
 
 export type PatchSchedulesCreateOrUpdateRequestDefault = "default";
-export const PatchSchedulesCreateOrUpdateRequestDefault =
-  /*@__PURE__*/ S.String;
+export const PatchSchedulesCreateOrUpdateRequestDefault = S.String;
 
 export interface PatchSchedulesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3204,7 +3202,7 @@ export const PutPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
 
 /** Which Redis node(s) to reboot. Depending on this value data loss is possible. */
 export type RebootType = "PrimaryNode" | "SecondaryNode" | "AllNodes";
-export const RebootType = /*@__PURE__*/ S.String;
+export const RebootType = S.String;
 
 /** A list of redis instances to reboot, specified by per-instance SSL ports or non-SSL ports. */
 export type RebootRedisForceRequestPortsList = Array<number>;
@@ -3261,7 +3259,7 @@ export const RebootRedisForceResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The Redis access key to regenerate. */
 export type RedisKeyType = "Primary" | "Secondary";
-export const RedisKeyType = /*@__PURE__*/ S.String;
+export const RedisKeyType = S.String;
 
 export interface RegenerateRedisKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */

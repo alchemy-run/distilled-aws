@@ -80,7 +80,7 @@ export type ProfileProfileTypeEnum =
   | "CONTENTION"
   | "PEAK_HEAP"
   | "HEAP_ALLOC";
-export const ProfileProfileTypeEnum = /*@__PURE__*/ S.String;
+export const ProfileProfileTypeEnum = S.String;
 
 /** Deployment contains the deployment identification information. */
 export interface Deployment {
@@ -159,7 +159,7 @@ export type CreateProfileRequestProfileTypeItemEnum =
   | "CONTENTION"
   | "PEAK_HEAP"
   | "HEAP_ALLOC";
-export const CreateProfileRequestProfileTypeItemEnum = /*@__PURE__*/ S.String;
+export const CreateProfileRequestProfileTypeItemEnum = S.String;
 
 export type CreateProfileRequestProfileTypeItemEnumList = Array<
   CreateProfileRequestProfileTypeItemEnum | (string & {})

@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** A role defining the data plane operations that a principal can perform on a Time Series Insights client. */
 export type AccessPolicyResourcePropertiesRolesItem = "Reader" | "Contributor";
-export const AccessPolicyResourcePropertiesRolesItem = /*@__PURE__*/ S.String;
+export const AccessPolicyResourcePropertiesRolesItem = S.String;
 
 /** The list of roles the principal is assigned on the environment. */
 export type AccessPolicyResourcePropertiesRolesList = Array<
@@ -241,11 +241,11 @@ export const EnvironmentsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The kind of the environment. */
 export type EnvironmentsCreateOrUpdateRequestKind = "Gen1" | "Gen2";
-export const EnvironmentsCreateOrUpdateRequestKind = /*@__PURE__*/ S.String;
+export const EnvironmentsCreateOrUpdateRequestKind = S.String;
 
 /** The name of this SKU. */
 export type SkuName = "S1" | "S2" | "P1" | "L1";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The sku determines the type of environment, either Gen1 (S1 or S2) or Gen2 (L1). For Gen1 environments the sku determines the capacity of the environment, the ingress rate, and the billing rate. */
 export interface Sku {
@@ -309,7 +309,7 @@ export const EnvironmentsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The kind of the environment. */
 export type EnvironmentsCreateOrUpdateResponseKind = "Gen1" | "Gen2";
-export const EnvironmentsCreateOrUpdateResponseKind = /*@__PURE__*/ S.String;
+export const EnvironmentsCreateOrUpdateResponseKind = S.String;
 
 export interface EnvironmentsCreateOrUpdateResponse {
   /** Resource Id */
@@ -354,11 +354,11 @@ export const EventSourcesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 export type EventSourcesCreateOrUpdateRequestKind =
   | "Microsoft.EventHub"
   | "Microsoft.IoTHub";
-export const EventSourcesCreateOrUpdateRequestKind = /*@__PURE__*/ S.String;
+export const EventSourcesCreateOrUpdateRequestKind = S.String;
 
 /** An enum that represents the format of the local timestamp property that needs to be set. */
 export type LocalTimestampFormat = "Embedded";
-export const LocalTimestampFormat = /*@__PURE__*/ S.String;
+export const LocalTimestampFormat = S.String;
 
 /** An object that represents the offset information for the local timestamp format specified. Should not be specified for LocalTimestampFormat - Embedded. */
 export interface LocalTimestampTimeZoneOffset {
@@ -440,7 +440,7 @@ export const EventSourcesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 export type EventSourcesCreateOrUpdateResponseKind =
   | "Microsoft.EventHub"
   | "Microsoft.IoTHub";
-export const EventSourcesCreateOrUpdateResponseKind = /*@__PURE__*/ S.String;
+export const EventSourcesCreateOrUpdateResponseKind = S.String;
 
 export interface EventSourcesCreateOrUpdateResponse {
   /** Resource Id */
@@ -556,7 +556,7 @@ export const GetEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The kind of the environment. */
 export type GetEnvironmentResponseKind = "Gen1" | "Gen2";
-export const GetEnvironmentResponseKind = /*@__PURE__*/ S.String;
+export const GetEnvironmentResponseKind = S.String;
 
 export interface GetEnvironmentResponse {
   /** Resource Id */
@@ -629,7 +629,7 @@ export const GetEventSourceResponseTagsMap = /*@__PURE__*/ S.Record(
 export type GetEventSourceResponseKind =
   | "Microsoft.EventHub"
   | "Microsoft.IoTHub";
-export const GetEventSourceResponseKind = /*@__PURE__*/ S.String;
+export const GetEventSourceResponseKind = S.String;
 
 export interface GetEventSourceResponse {
   /** Resource Id */
@@ -701,7 +701,7 @@ export type ReferenceDataSetKeyPropertyType =
   | "Double"
   | "Bool"
   | "DateTime";
-export const ReferenceDataSetKeyPropertyType = /*@__PURE__*/ S.String;
+export const ReferenceDataSetKeyPropertyType = S.String;
 
 /** A key property for the reference data set. A reference data set can have multiple key properties. */
 export interface ReferenceDataSetKeyProperty {
@@ -732,7 +732,7 @@ export type ReferenceDataSetResourcePropertiesDataStringComparisonBehavior =
   | "Ordinal"
   | "OrdinalIgnoreCase";
 export const ReferenceDataSetResourcePropertiesDataStringComparisonBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Provisioning state of the resource. */
 export type ProvisioningState =
@@ -742,7 +742,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Properties of the reference data set. */
 export interface ReferenceDataSetResourceProperties {
@@ -892,7 +892,7 @@ export const EnvironmentResourceTagsMap = /*@__PURE__*/ S.Record(
 
 /** The kind of the environment. */
 export type EnvironmentResourceKind = "Gen1" | "Gen2";
-export const EnvironmentResourceKind = /*@__PURE__*/ S.String;
+export const EnvironmentResourceKind = S.String;
 
 /** An environment is a set of time-series data available for query, and is the top level Azure Time Series Insights resource. */
 export interface EnvironmentResource {
@@ -998,7 +998,7 @@ export const EventSourceResourceTagsMap = /*@__PURE__*/ S.Record(
 
 /** The kind of the event source. */
 export type EventSourceResourceKind = "Microsoft.EventHub" | "Microsoft.IoTHub";
-export const EventSourceResourceKind = /*@__PURE__*/ S.String;
+export const EventSourceResourceKind = S.String;
 
 /** An environment receives data from one or more event sources. Each event source has associated connection info that allows the Time Series Insights ingress pipeline to connect to and pull data from the event source */
 export interface EventSourceResource {
@@ -1366,7 +1366,7 @@ export type ReferenceDataSetCreationPropertiesDataStringComparisonBehavior =
   | "Ordinal"
   | "OrdinalIgnoreCase";
 export const ReferenceDataSetCreationPropertiesDataStringComparisonBehavior =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties used to create a reference data set. */
 export interface ReferenceDataSetCreationProperties {
@@ -1464,7 +1464,7 @@ export const ReferenceDataSetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** A role defining the data plane operations that a principal can perform on a Time Series Insights client. */
 export type AccessPolicyMutablePropertiesRolesItem = "Reader" | "Contributor";
-export const AccessPolicyMutablePropertiesRolesItem = /*@__PURE__*/ S.String;
+export const AccessPolicyMutablePropertiesRolesItem = S.String;
 
 /** The list of roles the principal is assigned on the environment. */
 export type AccessPolicyMutablePropertiesRolesList = Array<
@@ -1542,7 +1542,7 @@ export const UpdateAccessPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the environment. */
 export type UpdateEnvironmentRequestKind = "Gen1" | "Gen2";
-export const UpdateEnvironmentRequestKind = /*@__PURE__*/ S.String;
+export const UpdateEnvironmentRequestKind = S.String;
 
 /** Key-value pairs of additional properties for the environment. */
 export type UpdateEnvironmentRequestTagsMap = {
@@ -1595,7 +1595,7 @@ export const UpdateEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The kind of the environment. */
 export type UpdateEnvironmentResponseKind = "Gen1" | "Gen2";
-export const UpdateEnvironmentResponseKind = /*@__PURE__*/ S.String;
+export const UpdateEnvironmentResponseKind = S.String;
 
 export interface UpdateEnvironmentResponse {
   /** Resource Id */
@@ -1631,7 +1631,7 @@ export const UpdateEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateEventSourceRequestKind =
   | "Microsoft.EventHub"
   | "Microsoft.IoTHub";
-export const UpdateEventSourceRequestKind = /*@__PURE__*/ S.String;
+export const UpdateEventSourceRequestKind = S.String;
 
 /** Key-value pairs of additional properties for the event source. */
 export type UpdateEventSourceRequestTagsMap = {
@@ -1689,7 +1689,7 @@ export const UpdateEventSourceResponseTagsMap = /*@__PURE__*/ S.Record(
 export type UpdateEventSourceResponseKind =
   | "Microsoft.EventHub"
   | "Microsoft.IoTHub";
-export const UpdateEventSourceResponseKind = /*@__PURE__*/ S.String;
+export const UpdateEventSourceResponseKind = S.String;
 
 export interface UpdateEventSourceResponse {
   /** Resource Id */

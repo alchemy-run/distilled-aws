@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 export type { PosthogOpError, PosthogOpContext };
 
 export type GetUserFacetSettingsRequestProduct = "logs" | "tracing";
-export const GetUserFacetSettingsRequestProduct = /*@__PURE__*/ S.String;
+export const GetUserFacetSettingsRequestProduct = S.String;
 
 export interface GetUserFacetSettingsRequest {
   uuid: string;
@@ -38,7 +38,7 @@ export const GetUserFacetSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 export type UserFacetSettingsEntrySourceTypeEnum =
   | "attribute"
   | "resourceAttribute";
-export const UserFacetSettingsEntrySourceTypeEnum = /*@__PURE__*/ S.String;
+export const UserFacetSettingsEntrySourceTypeEnum = S.String;
 
 export interface UserFacetSettingsEntry {
   /** The log or span attribute key this facet is based on — for example `http.status_code` or `k8s.pod.name`. */
@@ -74,8 +74,7 @@ export const UserFacetSettings2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserFacetSettings2>;
 
 export type UpdateUserFacetSettingsPartialRequestProduct = "logs" | "tracing";
-export const UpdateUserFacetSettingsPartialRequestProduct =
-  /*@__PURE__*/ S.String;
+export const UpdateUserFacetSettingsPartialRequestProduct = S.String;
 
 /** Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set. */
 export type UpdateUserFacetSettingsPartialRequestCustomFacetsList =

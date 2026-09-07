@@ -72,7 +72,7 @@ export type ConnectorStateEnum =
   | "DELETING"
   | "ERROR"
   | "UPDATING";
-export const ConnectorStateEnum = /*@__PURE__*/ S.String;
+export const ConnectorStateEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

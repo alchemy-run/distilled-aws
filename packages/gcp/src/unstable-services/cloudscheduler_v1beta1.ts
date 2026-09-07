@@ -206,7 +206,7 @@ export type AppEngineHttpTargetHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const AppEngineHttpTargetHttpMethodEnum = /*@__PURE__*/ S.String;
+export const AppEngineHttpTargetHttpMethodEnum = S.String;
 
 /** App Engine target. The job will be pushed to a job handler by means of an HTTP request via an http_method such as HTTP POST, HTTP GET, etc. The job is acknowledged by means of an HTTP response code in the range [200 - 299]. Error 503 is considered an App Engine system error instead of an application error. Requests returning error 503 will be retried regardless of retry configuration and not counted against retry counts. Any other response code, or a failure to receive a response before the deadline, constitutes a failed attempt. */
 export interface AppEngineHttpTarget {
@@ -239,7 +239,7 @@ export type JobStateEnum =
   | "PAUSED"
   | "DISABLED"
   | "UPDATE_FAILED";
-export const JobStateEnum = /*@__PURE__*/ S.String;
+export const JobStateEnum = S.String;
 
 export type HttpTargetHttpMethodEnum =
   | "HTTP_METHOD_UNSPECIFIED"
@@ -250,7 +250,7 @@ export type HttpTargetHttpMethodEnum =
   | "DELETE"
   | "PATCH"
   | "OPTIONS";
-export const HttpTargetHttpMethodEnum = /*@__PURE__*/ S.String;
+export const HttpTargetHttpMethodEnum = S.String;
 
 /** Contains information needed for generating an [OAuth token](https://developers.google.com/identity/protocols/OAuth2). This type of authorization should generally only be used when calling Google APIs hosted on *.googleapis.com. */
 export interface OAuthToken {

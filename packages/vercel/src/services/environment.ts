@@ -53,8 +53,7 @@ export type CreateCustomEnvironmentRequestBranchMatcherType =
   | "equals"
   | "startsWith"
   | "endsWith";
-export const CreateCustomEnvironmentRequestBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const CreateCustomEnvironmentRequestBranchMatcherType = S.String;
 
 /** How we want to determine a matching branch. This is optional. */
 export interface CreateCustomEnvironmentRequestBranchMatcher {
@@ -111,15 +110,14 @@ export type CreateCustomEnvironmentResponseType =
   | "development"
   | "preview"
   | "production";
-export const CreateCustomEnvironmentResponseType = /*@__PURE__*/ S.String;
+export const CreateCustomEnvironmentResponseType = S.String;
 
 /** The type of matching to perform */
 export type CreateCustomEnvironmentResponseBranchMatcherType =
   | "endsWith"
   | "equals"
   | "startsWith";
-export const CreateCustomEnvironmentResponseBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const CreateCustomEnvironmentResponseBranchMatcherType = S.String;
 
 /** Configuration for matching git branches to this environment */
 export interface CreateCustomEnvironmentResponseBranchMatcher {
@@ -144,7 +142,7 @@ export type CreateCustomEnvironmentResponseDomainsItemRedirectStatusCode =
   | 307
   | 308;
 export const CreateCustomEnvironmentResponseDomainsItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
 export interface CreateCustomEnvironmentResponseDomainsItemVerificationItem {
@@ -292,13 +290,13 @@ export const CreateSharedEnvVariableRequestEvsList = /*@__PURE__*/ S.Array(
 
 /** The type of environment variable */
 export type CreateSharedEnvVariableRequestType = "encrypted" | "sensitive";
-export const CreateSharedEnvVariableRequestType = /*@__PURE__*/ S.String;
+export const CreateSharedEnvVariableRequestType = S.String;
 
 export type CreateSharedEnvVariableRequestTargetItem =
   | "production"
   | "preview"
   | "development";
-export const CreateSharedEnvVariableRequestTargetItem = /*@__PURE__*/ S.String;
+export const CreateSharedEnvVariableRequestTargetItem = S.String;
 
 /** The target environment of the Shared Environment Variable */
 export type CreateSharedEnvVariableRequestTargetList = Array<
@@ -355,16 +353,14 @@ export type CreateSharedEnvVariableResponseCreatedItemType =
   | "plain"
   | "sensitive"
   | "system";
-export const CreateSharedEnvVariableResponseCreatedItemType =
-  /*@__PURE__*/ S.String;
+export const CreateSharedEnvVariableResponseCreatedItemType = S.String;
 
 /** environments this env variable targets */
 export type CreateSharedEnvVariableResponseCreatedItemTargetItem =
   | "development"
   | "preview"
   | "production";
-export const CreateSharedEnvVariableResponseCreatedItemTargetItem =
-  /*@__PURE__*/ S.String;
+export const CreateSharedEnvVariableResponseCreatedItemTargetItem = S.String;
 
 /** environments this env variable targets */
 export type CreateSharedEnvVariableResponseCreatedItemTargetList =
@@ -466,7 +462,7 @@ export type CreateSharedEnvVariableResponseFailedItemErrorValueCase1Item =
   | "preview"
   | "production";
 export const CreateSharedEnvVariableResponseFailedItemErrorValueCase1Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateSharedEnvVariableResponseFailedItemErrorValueCase1List =
   Array<CreateSharedEnvVariableResponseFailedItemErrorValueCase1Item>;
@@ -479,7 +475,7 @@ export type CreateSharedEnvVariableResponseFailedItemErrorValue =
   | string
   | CreateSharedEnvVariableResponseFailedItemErrorValueCase1List;
 export const CreateSharedEnvVariableResponseFailedItemErrorValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSharedEnvVariableResponseFailedItemErrorValue>;
+  S.Unknown as any as S.Schema<CreateSharedEnvVariableResponseFailedItemErrorValue>;
 
 export type CreateSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
   | "development"
@@ -488,7 +484,7 @@ export type CreateSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
   | "preview"
   | "production";
 export const CreateSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateSharedEnvVariableResponseFailedItemErrorTargetCase0List =
   Array<CreateSharedEnvVariableResponseFailedItemErrorTargetCase0Item>;
@@ -504,13 +500,13 @@ export type CreateSharedEnvVariableResponseFailedItemErrorTargetCase1 =
   | "preview"
   | "production";
 export const CreateSharedEnvVariableResponseFailedItemErrorTargetCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateSharedEnvVariableResponseFailedItemErrorTarget =
   | CreateSharedEnvVariableResponseFailedItemErrorTargetCase0List
   | CreateSharedEnvVariableResponseFailedItemErrorTargetCase1;
 export const CreateSharedEnvVariableResponseFailedItemErrorTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSharedEnvVariableResponseFailedItemErrorTarget>;
+  S.Unknown as any as S.Schema<CreateSharedEnvVariableResponseFailedItemErrorTarget>;
 
 export interface CreateSharedEnvVariableResponseFailedItemError {
   code: string;
@@ -611,7 +607,7 @@ export type DeleteSharedEnvVariableResponseFailedItemErrorValueCase1Item =
   | "preview"
   | "production";
 export const DeleteSharedEnvVariableResponseFailedItemErrorValueCase1Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DeleteSharedEnvVariableResponseFailedItemErrorValueCase1List =
   Array<DeleteSharedEnvVariableResponseFailedItemErrorValueCase1Item>;
@@ -624,7 +620,7 @@ export type DeleteSharedEnvVariableResponseFailedItemErrorValue =
   | string
   | DeleteSharedEnvVariableResponseFailedItemErrorValueCase1List;
 export const DeleteSharedEnvVariableResponseFailedItemErrorValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteSharedEnvVariableResponseFailedItemErrorValue>;
+  S.Unknown as any as S.Schema<DeleteSharedEnvVariableResponseFailedItemErrorValue>;
 
 export type DeleteSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
   | "development"
@@ -633,7 +629,7 @@ export type DeleteSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
   | "preview"
   | "production";
 export const DeleteSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DeleteSharedEnvVariableResponseFailedItemErrorTargetCase0List =
   Array<DeleteSharedEnvVariableResponseFailedItemErrorTargetCase0Item>;
@@ -649,13 +645,13 @@ export type DeleteSharedEnvVariableResponseFailedItemErrorTargetCase1 =
   | "preview"
   | "production";
 export const DeleteSharedEnvVariableResponseFailedItemErrorTargetCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DeleteSharedEnvVariableResponseFailedItemErrorTarget =
   | DeleteSharedEnvVariableResponseFailedItemErrorTargetCase0List
   | DeleteSharedEnvVariableResponseFailedItemErrorTargetCase1;
 export const DeleteSharedEnvVariableResponseFailedItemErrorTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteSharedEnvVariableResponseFailedItemErrorTarget>;
+  S.Unknown as any as S.Schema<DeleteSharedEnvVariableResponseFailedItemErrorTarget>;
 
 export interface DeleteSharedEnvVariableResponseFailedItemError {
   code: string;
@@ -752,15 +748,14 @@ export type GetCustomEnvironmentResponseType =
   | "development"
   | "preview"
   | "production";
-export const GetCustomEnvironmentResponseType = /*@__PURE__*/ S.String;
+export const GetCustomEnvironmentResponseType = S.String;
 
 /** The type of matching to perform */
 export type GetCustomEnvironmentResponseBranchMatcherType =
   | "endsWith"
   | "equals"
   | "startsWith";
-export const GetCustomEnvironmentResponseBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const GetCustomEnvironmentResponseBranchMatcherType = S.String;
 
 /** Configuration for matching git branches to this environment */
 export interface GetCustomEnvironmentResponseBranchMatcher {
@@ -785,7 +780,7 @@ export type GetCustomEnvironmentResponseDomainsItemRedirectStatusCode =
   | 307
   | 308;
 export const GetCustomEnvironmentResponseDomainsItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
 export type GetCustomEnvironmentResponseDomainsItemVerificationItem =
@@ -939,7 +934,7 @@ export type GetProjectCustomEnvironmentsResponseEnvironmentsItemType =
   | "preview"
   | "production";
 export const GetProjectCustomEnvironmentsResponseEnvironmentsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode =
   | 301
@@ -947,7 +942,7 @@ export type GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedir
   | 307
   | 308;
 export const GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
 export type GetProjectCustomEnvironmentsResponseEnvironmentsItemDomainsItemVerificationItem =
@@ -1019,7 +1014,7 @@ export type GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherTyp
   | "equals"
   | "startsWith";
 export const GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcherType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for matching git branches to this environment */
 export interface GetProjectCustomEnvironmentsResponseEnvironmentsItemBranchMatcher {
@@ -1142,14 +1137,14 @@ export type GetSharedEnvVarResponseType =
   | "plain"
   | "sensitive"
   | "system";
-export const GetSharedEnvVarResponseType = /*@__PURE__*/ S.String;
+export const GetSharedEnvVarResponseType = S.String;
 
 /** environments this env variable targets */
 export type GetSharedEnvVarResponseTargetItem =
   | "development"
   | "preview"
   | "production";
-export const GetSharedEnvVarResponseTargetItem = /*@__PURE__*/ S.String;
+export const GetSharedEnvVarResponseTargetItem = S.String;
 
 /** environments this env variable targets */
 export type GetSharedEnvVarResponseTargetList =
@@ -1275,15 +1270,14 @@ export type ListSharedEnvVariableResponseDataItemType =
   | "plain"
   | "sensitive"
   | "system";
-export const ListSharedEnvVariableResponseDataItemType = /*@__PURE__*/ S.String;
+export const ListSharedEnvVariableResponseDataItemType = S.String;
 
 /** environments this env variable targets */
 export type ListSharedEnvVariableResponseDataItemTargetItem =
   | "development"
   | "preview"
   | "production";
-export const ListSharedEnvVariableResponseDataItemTargetItem =
-  /*@__PURE__*/ S.String;
+export const ListSharedEnvVariableResponseDataItemTargetItem = S.String;
 
 /** environments this env variable targets */
 export type ListSharedEnvVariableResponseDataItemTargetList =
@@ -1441,15 +1435,14 @@ export type RemoveCustomEnvironmentResponseType =
   | "development"
   | "preview"
   | "production";
-export const RemoveCustomEnvironmentResponseType = /*@__PURE__*/ S.String;
+export const RemoveCustomEnvironmentResponseType = S.String;
 
 /** The type of matching to perform */
 export type RemoveCustomEnvironmentResponseBranchMatcherType =
   | "endsWith"
   | "equals"
   | "startsWith";
-export const RemoveCustomEnvironmentResponseBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const RemoveCustomEnvironmentResponseBranchMatcherType = S.String;
 
 /** Configuration for matching git branches to this environment */
 export interface RemoveCustomEnvironmentResponseBranchMatcher {
@@ -1474,7 +1467,7 @@ export type RemoveCustomEnvironmentResponseDomainsItemRedirectStatusCode =
   | 307
   | 308;
 export const RemoveCustomEnvironmentResponseDomainsItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
 export type RemoveCustomEnvironmentResponseDomainsItemVerificationItem =
@@ -1624,8 +1617,7 @@ export type UpdateCustomEnvironmentRequestBranchMatcherType =
   | "equals"
   | "startsWith"
   | "endsWith";
-export const UpdateCustomEnvironmentRequestBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const UpdateCustomEnvironmentRequestBranchMatcherType = S.String;
 
 /** How we want to determine a matching branch. This is optional. */
 export interface UpdateCustomEnvironmentRequestBranchMatcher {
@@ -1684,15 +1676,14 @@ export type UpdateCustomEnvironmentResponseType =
   | "development"
   | "preview"
   | "production";
-export const UpdateCustomEnvironmentResponseType = /*@__PURE__*/ S.String;
+export const UpdateCustomEnvironmentResponseType = S.String;
 
 /** The type of matching to perform */
 export type UpdateCustomEnvironmentResponseBranchMatcherType =
   | "endsWith"
   | "equals"
   | "startsWith";
-export const UpdateCustomEnvironmentResponseBranchMatcherType =
-  /*@__PURE__*/ S.String;
+export const UpdateCustomEnvironmentResponseBranchMatcherType = S.String;
 
 /** Configuration for matching git branches to this environment */
 export interface UpdateCustomEnvironmentResponseBranchMatcher {
@@ -1717,7 +1708,7 @@ export type UpdateCustomEnvironmentResponseDomainsItemRedirectStatusCode =
   | 307
   | 308;
 export const UpdateCustomEnvironmentResponseDomainsItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
 export type UpdateCustomEnvironmentResponseDomainsItemVerificationItem =
@@ -1829,8 +1820,7 @@ export type UpdateSharedEnvVariableRequestUpdatesValueTargetItem =
   | "production"
   | "preview"
   | "development";
-export const UpdateSharedEnvVariableRequestUpdatesValueTargetItem =
-  /*@__PURE__*/ S.String;
+export const UpdateSharedEnvVariableRequestUpdatesValueTargetItem = S.String;
 
 /** The target environment of the Shared Environment Variable */
 export type UpdateSharedEnvVariableRequestUpdatesValueTargetList = Array<
@@ -1890,8 +1880,7 @@ export const UpdateSharedEnvVariableRequestUpdatesValueProjectIdUpdates =
 export type UpdateSharedEnvVariableRequestUpdatesValueType =
   | "encrypted"
   | "sensitive";
-export const UpdateSharedEnvVariableRequestUpdatesValueType =
-  /*@__PURE__*/ S.String;
+export const UpdateSharedEnvVariableRequestUpdatesValueType = S.String;
 
 export interface UpdateSharedEnvVariableRequestUpdatesValue {
   /** The name of the Shared Environment Variable */
@@ -1969,16 +1958,14 @@ export type UpdateSharedEnvVariableResponseUpdatedItemType =
   | "plain"
   | "sensitive"
   | "system";
-export const UpdateSharedEnvVariableResponseUpdatedItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateSharedEnvVariableResponseUpdatedItemType = S.String;
 
 /** environments this env variable targets */
 export type UpdateSharedEnvVariableResponseUpdatedItemTargetItem =
   | "development"
   | "preview"
   | "production";
-export const UpdateSharedEnvVariableResponseUpdatedItemTargetItem =
-  /*@__PURE__*/ S.String;
+export const UpdateSharedEnvVariableResponseUpdatedItemTargetItem = S.String;
 
 /** environments this env variable targets */
 export type UpdateSharedEnvVariableResponseUpdatedItemTargetList =
@@ -2080,7 +2067,7 @@ export type UpdateSharedEnvVariableResponseFailedItemErrorValueCase1Item =
   | "preview"
   | "production";
 export const UpdateSharedEnvVariableResponseFailedItemErrorValueCase1Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateSharedEnvVariableResponseFailedItemErrorValueCase1List =
   Array<UpdateSharedEnvVariableResponseFailedItemErrorValueCase1Item>;
@@ -2093,7 +2080,7 @@ export type UpdateSharedEnvVariableResponseFailedItemErrorValue =
   | string
   | UpdateSharedEnvVariableResponseFailedItemErrorValueCase1List;
 export const UpdateSharedEnvVariableResponseFailedItemErrorValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSharedEnvVariableResponseFailedItemErrorValue>;
+  S.Unknown as any as S.Schema<UpdateSharedEnvVariableResponseFailedItemErrorValue>;
 
 export type UpdateSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
   | "development"
@@ -2102,7 +2089,7 @@ export type UpdateSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
   | "preview"
   | "production";
 export const UpdateSharedEnvVariableResponseFailedItemErrorTargetCase0Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateSharedEnvVariableResponseFailedItemErrorTargetCase0List =
   Array<UpdateSharedEnvVariableResponseFailedItemErrorTargetCase0Item>;
@@ -2118,13 +2105,13 @@ export type UpdateSharedEnvVariableResponseFailedItemErrorTargetCase1 =
   | "preview"
   | "production";
 export const UpdateSharedEnvVariableResponseFailedItemErrorTargetCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateSharedEnvVariableResponseFailedItemErrorTarget =
   | UpdateSharedEnvVariableResponseFailedItemErrorTargetCase0List
   | UpdateSharedEnvVariableResponseFailedItemErrorTargetCase1;
 export const UpdateSharedEnvVariableResponseFailedItemErrorTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSharedEnvVariableResponseFailedItemErrorTarget>;
+  S.Unknown as any as S.Schema<UpdateSharedEnvVariableResponseFailedItemErrorTarget>;
 
 export interface UpdateSharedEnvVariableResponseFailedItemError {
   code: string;

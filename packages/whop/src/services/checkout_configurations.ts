@@ -42,7 +42,7 @@ export class NotFound
 
 /** Controls whether checkout charges the buyer immediately or saves payment details for later. Defaults to `payment`. */
 export type CreateCheckoutConfigurationRequestMode = "payment" | "setup";
-export const CreateCheckoutConfigurationRequestMode = /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationRequestMode = S.String;
 
 /** Payment methods explicitly disabled for checkout. */
 export type CreateCheckoutConfigurationRequestPaymentMethodConfigurationDisabledList =
@@ -129,22 +129,19 @@ export const CreateCheckoutConfigurationRequestPlanPaymentMethodConfiguration =
 export type CreateCheckoutConfigurationRequestPlanPlanType =
   | "renewal"
   | "one_time";
-export const CreateCheckoutConfigurationRequestPlanPlanType =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationRequestPlanPlanType = S.String;
 
 /** Sales method for the plan. */
 export type CreateCheckoutConfigurationRequestPlanReleaseMethod =
   | "buy_now"
   | "waitlist";
-export const CreateCheckoutConfigurationRequestPlanReleaseMethod =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationRequestPlanReleaseMethod = S.String;
 
 /** 3D Secure behavior for the inline plan, or `null` to use the account default. */
 export type CreateCheckoutConfigurationRequestPlanThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const CreateCheckoutConfigurationRequestPlanThreeDsLevel =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationRequestPlanThreeDsLevel = S.String;
 
 /** Whether the plan is visible to customers or hidden from public view. */
 export type CreateCheckoutConfigurationRequestPlanVisibility =
@@ -152,8 +149,7 @@ export type CreateCheckoutConfigurationRequestPlanVisibility =
   | "hidden"
   | "archived"
   | "quick_link";
-export const CreateCheckoutConfigurationRequestPlanVisibility =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationRequestPlanVisibility = S.String;
 
 /** Plan attributes used to create or find a plan for this checkout configuration. Mutually exclusive with `plan_id`. */
 export interface CreateCheckoutConfigurationRequestPlan {
@@ -254,8 +250,7 @@ export const CreateCheckoutConfigurationRequestPlan = /*@__PURE__*/ S.suspend(
 export type CreateCheckoutConfigurationRequestThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const CreateCheckoutConfigurationRequestThreeDsLevel =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationRequestThreeDsLevel = S.String;
 
 export interface CreateCheckoutConfigurationRequest {
   /** Account ID, prefixed `biz_`. */
@@ -351,7 +346,7 @@ export const CreateCheckoutConfigurationResponseEffectivePaymentMethodConfigurat
 
 /** Controls whether checkout charges the buyer immediately or saves payment details for later. */
 export type CreateCheckoutConfigurationResponseMode = "payment" | "setup";
-export const CreateCheckoutConfigurationResponseMode = /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationResponseMode = S.String;
 
 /** Payment methods explicitly disabled for checkout. */
 export type CreateCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList =
@@ -397,22 +392,19 @@ export const CreateCheckoutConfigurationResponsePaymentMethodConfiguration =
 export type CreateCheckoutConfigurationResponsePlanPlanType =
   | "renewal"
   | "one_time";
-export const CreateCheckoutConfigurationResponsePlanPlanType =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationResponsePlanPlanType = S.String;
 
 /** Sales method for the plan. */
 export type CreateCheckoutConfigurationResponsePlanReleaseMethod =
   | "buy_now"
   | "waitlist";
-export const CreateCheckoutConfigurationResponsePlanReleaseMethod =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationResponsePlanReleaseMethod = S.String;
 
 /** 3D Secure behavior for this plan, or `null` to use the account default. */
 export type CreateCheckoutConfigurationResponsePlanThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const CreateCheckoutConfigurationResponsePlanThreeDsLevel =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationResponsePlanThreeDsLevel = S.String;
 
 /** Whether the plan is visible to customers or hidden from public view. */
 export type CreateCheckoutConfigurationResponsePlanVisibility =
@@ -420,8 +412,7 @@ export type CreateCheckoutConfigurationResponsePlanVisibility =
   | "hidden"
   | "archived"
   | "quick_link";
-export const CreateCheckoutConfigurationResponsePlanVisibility =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationResponsePlanVisibility = S.String;
 
 /** Plan used for payment checkout. `null` in setup mode. */
 export interface CreateCheckoutConfigurationResponsePlan {
@@ -476,8 +467,7 @@ export const CreateCheckoutConfigurationResponsePlan = /*@__PURE__*/ S.suspend(
 export type CreateCheckoutConfigurationResponseThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const CreateCheckoutConfigurationResponseThreeDsLevel =
-  /*@__PURE__*/ S.String;
+export const CreateCheckoutConfigurationResponseThreeDsLevel = S.String;
 
 export interface CreateCheckoutConfigurationResponse {
   /** Account ID, prefixed `biz_`. */
@@ -628,7 +618,7 @@ export const GetCheckoutConfigurationResponseEffectivePaymentMethodConfiguration
 
 /** Controls whether checkout charges the buyer immediately or saves payment details for later. */
 export type GetCheckoutConfigurationResponseMode = "payment" | "setup";
-export const GetCheckoutConfigurationResponseMode = /*@__PURE__*/ S.String;
+export const GetCheckoutConfigurationResponseMode = S.String;
 
 /** Payment methods explicitly disabled for checkout. */
 export type GetCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList =
@@ -674,22 +664,19 @@ export const GetCheckoutConfigurationResponsePaymentMethodConfiguration =
 export type GetCheckoutConfigurationResponsePlanPlanType =
   | "renewal"
   | "one_time";
-export const GetCheckoutConfigurationResponsePlanPlanType =
-  /*@__PURE__*/ S.String;
+export const GetCheckoutConfigurationResponsePlanPlanType = S.String;
 
 /** Sales method for the plan. */
 export type GetCheckoutConfigurationResponsePlanReleaseMethod =
   | "buy_now"
   | "waitlist";
-export const GetCheckoutConfigurationResponsePlanReleaseMethod =
-  /*@__PURE__*/ S.String;
+export const GetCheckoutConfigurationResponsePlanReleaseMethod = S.String;
 
 /** 3D Secure behavior for this plan, or `null` to use the account default. */
 export type GetCheckoutConfigurationResponsePlanThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const GetCheckoutConfigurationResponsePlanThreeDsLevel =
-  /*@__PURE__*/ S.String;
+export const GetCheckoutConfigurationResponsePlanThreeDsLevel = S.String;
 
 /** Whether the plan is visible to customers or hidden from public view. */
 export type GetCheckoutConfigurationResponsePlanVisibility =
@@ -697,8 +684,7 @@ export type GetCheckoutConfigurationResponsePlanVisibility =
   | "hidden"
   | "archived"
   | "quick_link";
-export const GetCheckoutConfigurationResponsePlanVisibility =
-  /*@__PURE__*/ S.String;
+export const GetCheckoutConfigurationResponsePlanVisibility = S.String;
 
 /** Plan used for payment checkout. `null` in setup mode. */
 export interface GetCheckoutConfigurationResponsePlan {
@@ -753,8 +739,7 @@ export const GetCheckoutConfigurationResponsePlan = /*@__PURE__*/ S.suspend(
 export type GetCheckoutConfigurationResponseThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const GetCheckoutConfigurationResponseThreeDsLevel =
-  /*@__PURE__*/ S.String;
+export const GetCheckoutConfigurationResponseThreeDsLevel = S.String;
 
 export interface GetCheckoutConfigurationResponse {
   /** Account ID, prefixed `biz_`. */
@@ -816,11 +801,10 @@ export const GetCheckoutConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCheckoutConfigurationResponse>;
 
 export type ListCheckoutConfigurationsRequestOrder = "created_at";
-export const ListCheckoutConfigurationsRequestOrder = /*@__PURE__*/ S.String;
+export const ListCheckoutConfigurationsRequestOrder = S.String;
 
 export type ListCheckoutConfigurationsRequestDirection = "asc" | "desc";
-export const ListCheckoutConfigurationsRequestDirection =
-  /*@__PURE__*/ S.String;
+export const ListCheckoutConfigurationsRequestDirection = S.String;
 
 export interface ListCheckoutConfigurationsRequest {
   /** Account ID, prefixed `biz_`. */
@@ -904,8 +888,7 @@ export const ListCheckoutConfigurationsResponseDataItemEffectivePaymentMethodCon
 export type ListCheckoutConfigurationsResponseDataItemMode =
   | "payment"
   | "setup";
-export const ListCheckoutConfigurationsResponseDataItemMode =
-  /*@__PURE__*/ S.String;
+export const ListCheckoutConfigurationsResponseDataItemMode = S.String;
 
 /** Payment methods explicitly disabled for checkout. */
 export type ListCheckoutConfigurationsResponseDataItemPaymentMethodConfigurationDisabledList =
@@ -952,22 +935,21 @@ export const ListCheckoutConfigurationsResponseDataItemPaymentMethodConfiguratio
 export type ListCheckoutConfigurationsResponseDataItemPlanPlanType =
   | "renewal"
   | "one_time";
-export const ListCheckoutConfigurationsResponseDataItemPlanPlanType =
-  /*@__PURE__*/ S.String;
+export const ListCheckoutConfigurationsResponseDataItemPlanPlanType = S.String;
 
 /** Sales method for the plan. */
 export type ListCheckoutConfigurationsResponseDataItemPlanReleaseMethod =
   | "buy_now"
   | "waitlist";
 export const ListCheckoutConfigurationsResponseDataItemPlanReleaseMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** 3D Secure behavior for this plan, or `null` to use the account default. */
 export type ListCheckoutConfigurationsResponseDataItemPlanThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
 export const ListCheckoutConfigurationsResponseDataItemPlanThreeDsLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Whether the plan is visible to customers or hidden from public view. */
 export type ListCheckoutConfigurationsResponseDataItemPlanVisibility =
@@ -976,7 +958,7 @@ export type ListCheckoutConfigurationsResponseDataItemPlanVisibility =
   | "archived"
   | "quick_link";
 export const ListCheckoutConfigurationsResponseDataItemPlanVisibility =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Plan used for payment checkout. `null` in setup mode. */
 export interface ListCheckoutConfigurationsResponseDataItemPlan {
@@ -1032,8 +1014,7 @@ export const ListCheckoutConfigurationsResponseDataItemPlan =
 export type ListCheckoutConfigurationsResponseDataItemThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const ListCheckoutConfigurationsResponseDataItemThreeDsLevel =
-  /*@__PURE__*/ S.String;
+export const ListCheckoutConfigurationsResponseDataItemThreeDsLevel = S.String;
 
 export interface ListCheckoutConfigurationsResponseDataItem {
   /** Account ID, prefixed `biz_`. */

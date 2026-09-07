@@ -92,13 +92,12 @@ export type ApproveRollingReleaseStageResponseRollingReleaseState =
   | "ABORTED"
   | "ACTIVE"
   | "COMPLETE";
-export const ApproveRollingReleaseStageResponseRollingReleaseState =
-  /*@__PURE__*/ S.String;
+export const ApproveRollingReleaseStageResponseRollingReleaseState = S.String;
 
 /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
 export type ApproveRollingReleaseStageResponseRollingReleaseSubstate = "PAUSED";
 export const ApproveRollingReleaseStageResponseRollingReleaseSubstate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
 export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState =
@@ -110,14 +109,14 @@ export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentRea
   | "QUEUED"
   | "READY";
 export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget =
   | "production"
   | "staging";
 export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource =
@@ -132,7 +131,7 @@ export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSou
   | "redeploy"
   | "v0-web";
 export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current deployment receiving production traffic */
 export interface ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment {
@@ -186,14 +185,14 @@ export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentRead
   | "QUEUED"
   | "READY";
 export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget =
   | "production"
   | "staging";
 export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource =
@@ -208,7 +207,7 @@ export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSour
   | "redeploy"
   | "v0-web";
 export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The canary deployment being rolled out */
 export interface ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment {
@@ -257,7 +256,7 @@ export type ApproveRollingReleaseStageResponseRollingReleaseAdvancementType =
   | "automatic"
   | "manual-approval";
 export const ApproveRollingReleaseStageResponseRollingReleaseAdvancementType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All stages configured for this rolling release */
 export interface ApproveRollingReleaseStageResponseRollingReleaseStagesItem {
@@ -410,13 +409,11 @@ export type CompleteRollingReleaseResponseRollingReleaseState =
   | "ABORTED"
   | "ACTIVE"
   | "COMPLETE";
-export const CompleteRollingReleaseResponseRollingReleaseState =
-  /*@__PURE__*/ S.String;
+export const CompleteRollingReleaseResponseRollingReleaseState = S.String;
 
 /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
 export type CompleteRollingReleaseResponseRollingReleaseSubstate = "PAUSED";
-export const CompleteRollingReleaseResponseRollingReleaseSubstate =
-  /*@__PURE__*/ S.String;
+export const CompleteRollingReleaseResponseRollingReleaseSubstate = S.String;
 
 /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
 export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
@@ -428,14 +425,14 @@ export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadySt
   | "QUEUED"
   | "READY";
 export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
   | "production"
   | "staging";
 export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
@@ -450,7 +447,7 @@ export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource 
   | "redeploy"
   | "v0-web";
 export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current deployment receiving production traffic */
 export interface CompleteRollingReleaseResponseRollingReleaseCurrentDeployment {
@@ -503,14 +500,14 @@ export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadySta
   | "QUEUED"
   | "READY";
 export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
   | "production"
   | "staging";
 export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
@@ -525,7 +522,7 @@ export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
   | "redeploy"
   | "v0-web";
 export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The canary deployment being rolled out */
 export interface CompleteRollingReleaseResponseRollingReleaseCanaryDeployment {
@@ -573,7 +570,7 @@ export type CompleteRollingReleaseResponseRollingReleaseAdvancementType =
   | "automatic"
   | "manual-approval";
 export const CompleteRollingReleaseResponseRollingReleaseAdvancementType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All stages configured for this rolling release */
 export type CompleteRollingReleaseResponseRollingReleaseStagesItem =
@@ -706,7 +703,7 @@ export const DeleteRollingReleaseConfigResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Filter by rolling release state */
 export type GetRollingReleaseRequestState = "ACTIVE" | "COMPLETE" | "ABORTED";
-export const GetRollingReleaseRequestState = /*@__PURE__*/ S.String;
+export const GetRollingReleaseRequestState = S.String;
 
 export interface GetRollingReleaseRequest {
   /** Project ID or project name (URL-encoded) */
@@ -740,13 +737,11 @@ export type GetRollingReleaseResponseRollingReleaseState =
   | "ABORTED"
   | "ACTIVE"
   | "COMPLETE";
-export const GetRollingReleaseResponseRollingReleaseState =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseResponseRollingReleaseState = S.String;
 
 /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
 export type GetRollingReleaseResponseRollingReleaseSubstate = "PAUSED";
-export const GetRollingReleaseResponseRollingReleaseSubstate =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseResponseRollingReleaseSubstate = S.String;
 
 /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
 export type GetRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
@@ -758,14 +753,14 @@ export type GetRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
   | "QUEUED"
   | "READY";
 export const GetRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type GetRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
   | "production"
   | "staging";
 export const GetRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type GetRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
@@ -780,7 +775,7 @@ export type GetRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
   | "redeploy"
   | "v0-web";
 export const GetRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current deployment receiving production traffic */
 export interface GetRollingReleaseResponseRollingReleaseCurrentDeployment {
@@ -833,14 +828,14 @@ export type GetRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
   | "QUEUED"
   | "READY";
 export const GetRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type GetRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
   | "production"
   | "staging";
 export const GetRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type GetRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
@@ -855,7 +850,7 @@ export type GetRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
   | "redeploy"
   | "v0-web";
 export const GetRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The canary deployment being rolled out */
 export interface GetRollingReleaseResponseRollingReleaseCanaryDeployment {
@@ -900,8 +895,7 @@ export const GetRollingReleaseResponseRollingReleaseCanaryDeployment =
 export type GetRollingReleaseResponseRollingReleaseAdvancementType =
   | "automatic"
   | "manual-approval";
-export const GetRollingReleaseResponseRollingReleaseAdvancementType =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseResponseRollingReleaseAdvancementType = S.String;
 
 /** All stages configured for this rolling release */
 export type GetRollingReleaseResponseRollingReleaseStagesItem =
@@ -1023,12 +1017,11 @@ export const GetRollingReleaseBillingStatusRequest = /*@__PURE__*/ S.suspend(
 
 export type GetRollingReleaseBillingStatusResponseBodyCase0AvailableSlots = 0;
 export const GetRollingReleaseBillingStatusResponseBodyCase0AvailableSlots =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type GetRollingReleaseBillingStatusResponseBodyCase0Reason =
   "plan_not_supported";
-export const GetRollingReleaseBillingStatusResponseBodyCase0Reason =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseBillingStatusResponseBodyCase0Reason = S.String;
 
 export interface GetRollingReleaseBillingStatusResponseBodyCase0 {
   availableSlots: GetRollingReleaseBillingStatusResponseBodyCase0AvailableSlots;
@@ -1050,12 +1043,11 @@ export const GetRollingReleaseBillingStatusResponseBodyCase0 =
 export type GetRollingReleaseBillingStatusResponseBodyCase1AvailableSlots =
   "unlimited";
 export const GetRollingReleaseBillingStatusResponseBodyCase1AvailableSlots =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetRollingReleaseBillingStatusResponseBodyCase1Reason =
   "unlimited_slots";
-export const GetRollingReleaseBillingStatusResponseBodyCase1Reason =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseBillingStatusResponseBodyCase1Reason = S.String;
 
 export interface GetRollingReleaseBillingStatusResponseBodyCase1 {
   availableSlots: GetRollingReleaseBillingStatusResponseBodyCase1AvailableSlots;
@@ -1076,12 +1068,11 @@ export const GetRollingReleaseBillingStatusResponseBodyCase1 =
 
 export type GetRollingReleaseBillingStatusResponseBodyCase2AvailableSlots = 0;
 export const GetRollingReleaseBillingStatusResponseBodyCase2AvailableSlots =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type GetRollingReleaseBillingStatusResponseBodyCase2Reason =
   "no_available_slots";
-export const GetRollingReleaseBillingStatusResponseBodyCase2Reason =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseBillingStatusResponseBodyCase2Reason = S.String;
 
 export type GetRollingReleaseBillingStatusResponseBodyCase2EnabledProjectsList =
   Array<string>;
@@ -1112,8 +1103,7 @@ export const GetRollingReleaseBillingStatusResponseBodyCase2 =
 
 export type GetRollingReleaseBillingStatusResponseBodyCase3Reason =
   "available_slots";
-export const GetRollingReleaseBillingStatusResponseBodyCase3Reason =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseBillingStatusResponseBodyCase3Reason = S.String;
 
 export interface GetRollingReleaseBillingStatusResponseBodyCase3 {
   availableSlots: number;
@@ -1137,7 +1127,7 @@ export type GetRollingReleaseBillingStatusResponseBody =
   | GetRollingReleaseBillingStatusResponseBodyCase2
   | GetRollingReleaseBillingStatusResponseBodyCase3;
 export const GetRollingReleaseBillingStatusResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetRollingReleaseBillingStatusResponseBody>;
+  S.Unknown as any as S.Schema<GetRollingReleaseBillingStatusResponseBody>;
 
 export type GetRollingReleaseBillingStatusResponse =
   GetRollingReleaseBillingStatusResponseBody;
@@ -1206,7 +1196,7 @@ export const GetRollingReleaseConfigResponseRollingReleaseStagesList =
 export type GetRollingReleaseConfigResponseRollingReleaseGateChecksItemType =
   "error-rate-5xx";
 export const GetRollingReleaseConfigResponseRollingReleaseGateChecksItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Response status codes to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Defaults to `[]` when omitted. */
 export type GetRollingReleaseConfigResponseRollingReleaseGateChecksItemExcludeStatusCodesList =
@@ -1266,8 +1256,7 @@ export const GetRollingReleaseConfigResponseRollingReleaseGateChecksList =
 export type GetRollingReleaseConfigResponseRollingReleaseGateAction =
   | "pause"
   | "rollback";
-export const GetRollingReleaseConfigResponseRollingReleaseGateAction =
-  /*@__PURE__*/ S.String;
+export const GetRollingReleaseConfigResponseRollingReleaseGateAction = S.String;
 
 /** Automated gating configuration. Omitted (the default) means no gating is configured, which is equivalent to `enabled: false`. */
 export interface GetRollingReleaseConfigResponseRollingReleaseGate {
@@ -1367,13 +1356,11 @@ export type StartRollingReleaseResponseRollingReleaseState =
   | "ABORTED"
   | "ACTIVE"
   | "COMPLETE";
-export const StartRollingReleaseResponseRollingReleaseState =
-  /*@__PURE__*/ S.String;
+export const StartRollingReleaseResponseRollingReleaseState = S.String;
 
 /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
 export type StartRollingReleaseResponseRollingReleaseSubstate = "PAUSED";
-export const StartRollingReleaseResponseRollingReleaseSubstate =
-  /*@__PURE__*/ S.String;
+export const StartRollingReleaseResponseRollingReleaseSubstate = S.String;
 
 /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
 export type StartRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
@@ -1385,14 +1372,14 @@ export type StartRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState
   | "QUEUED"
   | "READY";
 export const StartRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type StartRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
   | "production"
   | "staging";
 export const StartRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type StartRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
@@ -1407,7 +1394,7 @@ export type StartRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
   | "redeploy"
   | "v0-web";
 export const StartRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The current deployment receiving production traffic */
 export interface StartRollingReleaseResponseRollingReleaseCurrentDeployment {
@@ -1460,14 +1447,14 @@ export type StartRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState 
   | "QUEUED"
   | "READY";
 export const StartRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
 export type StartRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
   | "production"
   | "staging";
 export const StartRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
 export type StartRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
@@ -1482,7 +1469,7 @@ export type StartRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
   | "redeploy"
   | "v0-web";
 export const StartRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The canary deployment being rolled out */
 export interface StartRollingReleaseResponseRollingReleaseCanaryDeployment {
@@ -1530,7 +1517,7 @@ export type StartRollingReleaseResponseRollingReleaseAdvancementType =
   | "automatic"
   | "manual-approval";
 export const StartRollingReleaseResponseRollingReleaseAdvancementType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All stages configured for this rolling release */
 export type StartRollingReleaseResponseRollingReleaseStagesItem =
@@ -1708,7 +1695,7 @@ export type UpdateRollingReleaseConfigResponseBody =
   | UpdateRollingReleaseConfigResponseBodyCase0
   | UpdateRollingReleaseConfigResponseBodyCase1;
 export const UpdateRollingReleaseConfigResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRollingReleaseConfigResponseBody>;
+  S.Unknown as any as S.Schema<UpdateRollingReleaseConfigResponseBody>;
 
 export type UpdateRollingReleaseConfigResponse =
   UpdateRollingReleaseConfigResponseBody;

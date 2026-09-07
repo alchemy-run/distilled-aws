@@ -150,7 +150,7 @@ export type ErrorGroupResolutionStatusEnum =
   | "ACKNOWLEDGED"
   | "RESOLVED"
   | "MUTED";
-export const ErrorGroupResolutionStatusEnum = /*@__PURE__*/ S.String;
+export const ErrorGroupResolutionStatusEnum = S.String;
 
 /** Description of a group of similar error events. */
 export interface ErrorGroup {
@@ -197,7 +197,7 @@ export type ListProjectsEventsTimeRange_periodEnum =
   | "PERIOD_1_DAY"
   | "PERIOD_1_WEEK"
   | "PERIOD_30_DAYS";
-export const ListProjectsEventsTimeRange_periodEnum = /*@__PURE__*/ S.String;
+export const ListProjectsEventsTimeRange_periodEnum = S.String;
 
 export interface ListProjectsEventsRequest {
   /** Optional. The maximum number of results to return per response. */
@@ -393,7 +393,7 @@ export type ListProjectsGroupStatsOrderEnum =
   | "LAST_SEEN_DESC"
   | "CREATED_DESC"
   | "AFFECTED_USERS_DESC";
-export const ListProjectsGroupStatsOrderEnum = /*@__PURE__*/ S.String;
+export const ListProjectsGroupStatsOrderEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -407,14 +407,13 @@ export type ListProjectsGroupStatsTimeRange_periodEnum =
   | "PERIOD_1_DAY"
   | "PERIOD_1_WEEK"
   | "PERIOD_30_DAYS";
-export const ListProjectsGroupStatsTimeRange_periodEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsGroupStatsTimeRange_periodEnum = S.String;
 
 export type ListProjectsGroupStatsAlignmentEnum =
   | "ERROR_COUNT_ALIGNMENT_UNSPECIFIED"
   | "ALIGNMENT_EQUAL_ROUNDED"
   | "ALIGNMENT_EQUAL_AT_END";
-export const ListProjectsGroupStatsAlignmentEnum = /*@__PURE__*/ S.String;
+export const ListProjectsGroupStatsAlignmentEnum = S.String;
 
 export interface ListProjectsGroupStatsRequest {
   /** Optional. The sort order in which the results are returned. Default is `COUNT_DESC`. */
@@ -566,8 +565,7 @@ export type ListProjectsLocationsEventsTimeRange_periodEnum =
   | "PERIOD_1_DAY"
   | "PERIOD_1_WEEK"
   | "PERIOD_30_DAYS";
-export const ListProjectsLocationsEventsTimeRange_periodEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsEventsTimeRange_periodEnum = S.String;
 
 export interface ListProjectsLocationsEventsRequest {
   /** Optional. The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service). */
@@ -616,8 +614,7 @@ export type ListProjectsLocationsGroupStatsAlignmentEnum =
   | "ERROR_COUNT_ALIGNMENT_UNSPECIFIED"
   | "ALIGNMENT_EQUAL_ROUNDED"
   | "ALIGNMENT_EQUAL_AT_END";
-export const ListProjectsLocationsGroupStatsAlignmentEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsGroupStatsAlignmentEnum = S.String;
 
 export type ListProjectsLocationsGroupStatsOrderEnum =
   | "GROUP_ORDER_UNSPECIFIED"
@@ -625,7 +622,7 @@ export type ListProjectsLocationsGroupStatsOrderEnum =
   | "LAST_SEEN_DESC"
   | "CREATED_DESC"
   | "AFFECTED_USERS_DESC";
-export const ListProjectsLocationsGroupStatsOrderEnum = /*@__PURE__*/ S.String;
+export const ListProjectsLocationsGroupStatsOrderEnum = S.String;
 
 export type ListProjectsLocationsGroupStatsTimeRange_periodEnum =
   | "PERIOD_UNSPECIFIED"
@@ -634,8 +631,7 @@ export type ListProjectsLocationsGroupStatsTimeRange_periodEnum =
   | "PERIOD_1_DAY"
   | "PERIOD_1_WEEK"
   | "PERIOD_30_DAYS";
-export const ListProjectsLocationsGroupStatsTimeRange_periodEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsGroupStatsTimeRange_periodEnum = S.String;
 
 export interface ListProjectsLocationsGroupStatsRequest {
   /** Optional. The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`. */

@@ -263,16 +263,16 @@ export class RouteNotFound
 export type CreateRequestLogManagementStrategy =
   | "STOP_INSERTING"
   | "DELETE_OLDEST";
-export const CreateRequestLogManagementStrategy = /*@__PURE__*/ S.String;
+export const CreateRequestLogManagementStrategy = S.String;
 
 export type CreateRequestRateLimitingTechnique = "fixed" | "sliding";
-export const CreateRequestRateLimitingTechnique = /*@__PURE__*/ S.String;
+export const CreateRequestRateLimitingTechnique = S.String;
 
 export type CreateRequestRetryBackoff = "constant" | "linear" | "exponential";
-export const CreateRequestRetryBackoff = /*@__PURE__*/ S.String;
+export const CreateRequestRetryBackoff = S.String;
 
 export type CreateRequestWorkersAiBillingMode = "postpaid";
-export const CreateRequestWorkersAiBillingMode = /*@__PURE__*/ S.String;
+export const CreateRequestWorkersAiBillingMode = S.String;
 
 export interface CreateAiGatewayRequest {
   accountId: string;
@@ -349,7 +349,7 @@ export const CreateAiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAiGatewayRequest>;
 
 export type CreateResponseDlpCase0Action = "BLOCK" | "FLAG";
-export const CreateResponseDlpCase0Action = /*@__PURE__*/ S.String;
+export const CreateResponseDlpCase0Action = S.String;
 
 export type CreateResponseDlpCase0ProfilesList = Array<string>;
 export const CreateResponseDlpCase0ProfilesList = /*@__PURE__*/ S.Array(
@@ -372,13 +372,12 @@ export const CreateResponseDlpCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseDlpCase0>;
 
 export type CreateResponseDlpCase1PoliciesItemAction = "FLAG" | "BLOCK";
-export const CreateResponseDlpCase1PoliciesItemAction = /*@__PURE__*/ S.String;
+export const CreateResponseDlpCase1PoliciesItemAction = S.String;
 
 export type CreateResponseDlpCase1PoliciesItemCheckItem =
   | "REQUEST"
   | "RESPONSE";
-export const CreateResponseDlpCase1PoliciesItemCheckItem =
-  /*@__PURE__*/ S.String;
+export const CreateResponseDlpCase1PoliciesItemCheckItem = S.String;
 
 export type CreateResponseDlpCase1PoliciesItemCheckList =
   Array<CreateResponseDlpCase1PoliciesItemCheckItem>;
@@ -440,46 +439,46 @@ export const CreateResponseDlp = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type CreateResponseGuardrailsPromptP1 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptP1 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptP1 = S.String;
 
 export type CreateResponseGuardrailsPromptS1 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS1 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS1 = S.String;
 
 export type CreateResponseGuardrailsPromptS10 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS10 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS10 = S.String;
 
 export type CreateResponseGuardrailsPromptS11 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS11 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS11 = S.String;
 
 export type CreateResponseGuardrailsPromptS12 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS12 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS12 = S.String;
 
 export type CreateResponseGuardrailsPromptS13 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS13 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS13 = S.String;
 
 export type CreateResponseGuardrailsPromptS2 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS2 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS2 = S.String;
 
 export type CreateResponseGuardrailsPromptS3 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS3 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS3 = S.String;
 
 export type CreateResponseGuardrailsPromptS4 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS4 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS4 = S.String;
 
 export type CreateResponseGuardrailsPromptS5 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS5 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS5 = S.String;
 
 export type CreateResponseGuardrailsPromptS6 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS6 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS6 = S.String;
 
 export type CreateResponseGuardrailsPromptS7 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS7 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS7 = S.String;
 
 export type CreateResponseGuardrailsPromptS8 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS8 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS8 = S.String;
 
 export type CreateResponseGuardrailsPromptS9 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsPromptS9 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsPromptS9 = S.String;
 
 export interface CreateResponseGuardrailsPrompt {
   p1?: CreateResponseGuardrailsPromptP1 | null;
@@ -547,46 +546,46 @@ export const CreateResponseGuardrailsPrompt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseGuardrailsPrompt>;
 
 export type CreateResponseGuardrailsResponseP1 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseP1 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseP1 = S.String;
 
 export type CreateResponseGuardrailsResponseS1 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS1 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS1 = S.String;
 
 export type CreateResponseGuardrailsResponseS10 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS10 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS10 = S.String;
 
 export type CreateResponseGuardrailsResponseS11 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS11 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS11 = S.String;
 
 export type CreateResponseGuardrailsResponseS12 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS12 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS12 = S.String;
 
 export type CreateResponseGuardrailsResponseS13 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS13 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS13 = S.String;
 
 export type CreateResponseGuardrailsResponseS2 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS2 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS2 = S.String;
 
 export type CreateResponseGuardrailsResponseS3 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS3 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS3 = S.String;
 
 export type CreateResponseGuardrailsResponseS4 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS4 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS4 = S.String;
 
 export type CreateResponseGuardrailsResponseS5 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS5 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS5 = S.String;
 
 export type CreateResponseGuardrailsResponseS6 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS6 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS6 = S.String;
 
 export type CreateResponseGuardrailsResponseS7 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS7 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS7 = S.String;
 
 export type CreateResponseGuardrailsResponseS8 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS8 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS8 = S.String;
 
 export type CreateResponseGuardrailsResponseS9 = "FLAG" | "BLOCK";
-export const CreateResponseGuardrailsResponseS9 = /*@__PURE__*/ S.String;
+export const CreateResponseGuardrailsResponseS9 = S.String;
 
 export interface CreateResponseGuardrailsResponse {
   p1?: CreateResponseGuardrailsResponseP1 | null;
@@ -669,7 +668,7 @@ export const CreateResponseGuardrails = /*@__PURE__*/ S.suspend(() =>
 export type CreateResponseLogManagementStrategy =
   | "STOP_INSERTING"
   | "DELETE_OLDEST";
-export const CreateResponseLogManagementStrategy = /*@__PURE__*/ S.String;
+export const CreateResponseLogManagementStrategy = S.String;
 
 export type CreateResponseOtelItemHeadersMap = {
   [key: string]: unknown | undefined;
@@ -680,7 +679,7 @@ export const CreateResponseOtelItemHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateResponseOtelItemHeadersMap>;
 
 export type CreateResponseOtelItemContentType = "json" | "protobuf";
-export const CreateResponseOtelItemContentType = /*@__PURE__*/ S.String;
+export const CreateResponseOtelItemContentType = S.String;
 
 export interface CreateResponseOtelItem {
   headers: CreateResponseOtelItemHeadersMap;
@@ -707,14 +706,13 @@ export const CreateResponseOtelList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateResponseOtelList>;
 
 export type CreateResponseRateLimitingTechnique = "fixed" | "sliding";
-export const CreateResponseRateLimitingTechnique = /*@__PURE__*/ S.String;
+export const CreateResponseRateLimitingTechnique = S.String;
 
 export type CreateResponseRetryBackoff = "constant" | "linear" | "exponential";
-export const CreateResponseRetryBackoff = /*@__PURE__*/ S.String;
+export const CreateResponseRetryBackoff = S.String;
 
 export type CreateResponseSpendLimitsRulesItemLimitType = "cost";
-export const CreateResponseSpendLimitsRulesItemLimitType =
-  /*@__PURE__*/ S.String;
+export const CreateResponseSpendLimitsRulesItemLimitType = S.String;
 
 export type UntypedMetadataMap = { [key: string]: unknown | undefined };
 export const UntypedMetadataMap = /*@__PURE__*/ S.Record(
@@ -723,8 +721,7 @@ export const UntypedMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UntypedMetadataMap>;
 
 export type CreateResponseSpendLimitsRulesItemModelMode = "filter";
-export const CreateResponseSpendLimitsRulesItemModelMode =
-  /*@__PURE__*/ S.String;
+export const CreateResponseSpendLimitsRulesItemModelMode = S.String;
 
 export type CreateResponseSpendLimitsRulesItemModelValuesList = Array<string>;
 export const CreateResponseSpendLimitsRulesItemModelValuesList =
@@ -747,8 +744,7 @@ export const CreateResponseSpendLimitsRulesItemModel = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateResponseSpendLimitsRulesItemModel>;
 
 export type CreateResponseSpendLimitsRulesItemProviderMode = "filter";
-export const CreateResponseSpendLimitsRulesItemProviderMode =
-  /*@__PURE__*/ S.String;
+export const CreateResponseSpendLimitsRulesItemProviderMode = S.String;
 
 export type CreateResponseSpendLimitsRulesItemProviderValuesList =
   Array<string>;
@@ -772,8 +768,7 @@ export const CreateResponseSpendLimitsRulesItemProvider =
   }) as any as S.Schema<CreateResponseSpendLimitsRulesItemProvider>;
 
 export type CreateResponseSpendLimitsRulesItemTechnique = "fixed" | "sliding";
-export const CreateResponseSpendLimitsRulesItemTechnique =
-  /*@__PURE__*/ S.String;
+export const CreateResponseSpendLimitsRulesItemTechnique = S.String;
 
 export interface CreateResponseSpendLimitsRulesItem {
   limit: number;
@@ -856,7 +851,7 @@ export const CreateResponseStripe = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseStripe>;
 
 export type CreateResponseWorkersAiBillingMode = "postpaid";
-export const CreateResponseWorkersAiBillingMode = /*@__PURE__*/ S.String;
+export const CreateResponseWorkersAiBillingMode = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateAiGatewayResponse {
@@ -953,10 +948,10 @@ export type BillingSpendingLimitCreateRequestDuration =
   | "daily"
   | "weekly"
   | "monthly";
-export const BillingSpendingLimitCreateRequestDuration = /*@__PURE__*/ S.String;
+export const BillingSpendingLimitCreateRequestDuration = S.String;
 
 export type BillingSpendingLimitCreateRequestStrategy = "fixed" | "sliding";
-export const BillingSpendingLimitCreateRequestStrategy = /*@__PURE__*/ S.String;
+export const BillingSpendingLimitCreateRequestStrategy = S.String;
 
 export interface CreateBillingSpendingLimitRequest {
   accountId: string;
@@ -1174,14 +1169,14 @@ export type DatasetsCreateRequestFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const DatasetsCreateRequestFiltersItemKey = /*@__PURE__*/ S.String;
+export const DatasetsCreateRequestFiltersItemKey = S.String;
 
 export type DatasetsCreateRequestFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const DatasetsCreateRequestFiltersItemOperator = /*@__PURE__*/ S.String;
+export const DatasetsCreateRequestFiltersItemOperator = S.String;
 
 export type DatasetsCreateRequestFiltersItemValueItem =
   | string
@@ -1259,14 +1254,14 @@ export type DatasetsCreateResponseFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const DatasetsCreateResponseFiltersItemKey = /*@__PURE__*/ S.String;
+export const DatasetsCreateResponseFiltersItemKey = S.String;
 
 export type DatasetsCreateResponseFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const DatasetsCreateResponseFiltersItemOperator = /*@__PURE__*/ S.String;
+export const DatasetsCreateResponseFiltersItemOperator = S.String;
 
 export type DatasetsCreateResponseFiltersItemValueItem =
   | string
@@ -1382,7 +1377,7 @@ export const DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs =
 export type DynamicRoutingCreateDeploymentResponseElementsItemCase0Type =
   "start";
 export const DynamicRoutingCreateDeploymentResponseElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateDeploymentResponseElementsItemCase0 {
   id: string;
@@ -1441,7 +1436,7 @@ export const DynamicRoutingCreateDeploymentResponseElementsItemCase1Properties =
 export type DynamicRoutingCreateDeploymentResponseElementsItemCase1Type =
   "conditional";
 export const DynamicRoutingCreateDeploymentResponseElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateDeploymentResponseElementsItemCase1 {
   id: string;
@@ -1473,7 +1468,7 @@ export const DynamicRoutingCreateDeploymentResponseElementsItemCase2OutputsMap =
 export type DynamicRoutingCreateDeploymentResponseElementsItemCase2Type =
   "percentage";
 export const DynamicRoutingCreateDeploymentResponseElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateDeploymentResponseElementsItemCase2 {
   id: string;
@@ -1523,7 +1518,7 @@ export type DynamicRoutingCreateDeploymentResponseElementsItemCase3PropertiesLim
   | "count"
   | "cost";
 export const DynamicRoutingCreateDeploymentResponseElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateDeploymentResponseElementsItemCase3Properties {
   key: string;
@@ -1548,7 +1543,7 @@ export const DynamicRoutingCreateDeploymentResponseElementsItemCase3Properties =
 export type DynamicRoutingCreateDeploymentResponseElementsItemCase3Type =
   "rate";
 export const DynamicRoutingCreateDeploymentResponseElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateDeploymentResponseElementsItemCase3 {
   id: string;
@@ -1606,7 +1601,7 @@ export const DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties =
 export type DynamicRoutingCreateDeploymentResponseElementsItemCase4Type =
   "model";
 export const DynamicRoutingCreateDeploymentResponseElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateDeploymentResponseElementsItemCase4 {
   id: string;
@@ -1637,7 +1632,7 @@ export const DynamicRoutingCreateDeploymentResponseElementsItemCase5OutputsMap =
 
 export type DynamicRoutingCreateDeploymentResponseElementsItemCase5Type = "end";
 export const DynamicRoutingCreateDeploymentResponseElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateDeploymentResponseElementsItemCase5 {
   id: string;
@@ -1716,8 +1711,7 @@ export const DynamicRoutingCreateRequestElementsItemCase0Outputs =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs;
 
 export type DynamicRoutingCreateRequestElementsItemCase0Type = "start";
-export const DynamicRoutingCreateRequestElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateRequestElementsItemCase0Type = S.String;
 
 export interface DynamicRoutingCreateRequestElementsItemCase0 {
   id: string;
@@ -1756,8 +1750,7 @@ export const DynamicRoutingCreateRequestElementsItemCase1Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase1Properties;
 
 export type DynamicRoutingCreateRequestElementsItemCase1Type = "conditional";
-export const DynamicRoutingCreateRequestElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateRequestElementsItemCase1Type = S.String;
 
 export interface DynamicRoutingCreateRequestElementsItemCase1 {
   id: string;
@@ -1788,8 +1781,7 @@ export const DynamicRoutingCreateRequestElementsItemCase2OutputsMap =
   ) as any as S.Schema<DynamicRoutingCreateRequestElementsItemCase2OutputsMap>;
 
 export type DynamicRoutingCreateRequestElementsItemCase2Type = "percentage";
-export const DynamicRoutingCreateRequestElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateRequestElementsItemCase2Type = S.String;
 
 export interface DynamicRoutingCreateRequestElementsItemCase2 {
   id: string;
@@ -1826,7 +1818,7 @@ export type DynamicRoutingCreateRequestElementsItemCase3PropertiesLimitType =
   | "count"
   | "cost";
 export const DynamicRoutingCreateRequestElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateRequestElementsItemCase3Properties {
   key: string;
@@ -1850,8 +1842,7 @@ export const DynamicRoutingCreateRequestElementsItemCase3Properties =
   }) as any as S.Schema<DynamicRoutingCreateRequestElementsItemCase3Properties>;
 
 export type DynamicRoutingCreateRequestElementsItemCase3Type = "rate";
-export const DynamicRoutingCreateRequestElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateRequestElementsItemCase3Type = S.String;
 
 export interface DynamicRoutingCreateRequestElementsItemCase3 {
   id: string;
@@ -1892,8 +1883,7 @@ export const DynamicRoutingCreateRequestElementsItemCase4Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties;
 
 export type DynamicRoutingCreateRequestElementsItemCase4Type = "model";
-export const DynamicRoutingCreateRequestElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateRequestElementsItemCase4Type = S.String;
 
 export interface DynamicRoutingCreateRequestElementsItemCase4 {
   id: string;
@@ -1924,8 +1914,7 @@ export const DynamicRoutingCreateRequestElementsItemCase5OutputsMap =
   ) as any as S.Schema<DynamicRoutingCreateRequestElementsItemCase5OutputsMap>;
 
 export type DynamicRoutingCreateRequestElementsItemCase5Type = "end";
-export const DynamicRoutingCreateRequestElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateRequestElementsItemCase5Type = S.String;
 
 export interface DynamicRoutingCreateRequestElementsItemCase5 {
   id: string;
@@ -2020,8 +2009,7 @@ export const DynamicRoutingCreateResponseElementsItemCase0Outputs =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs;
 
 export type DynamicRoutingCreateResponseElementsItemCase0Type = "start";
-export const DynamicRoutingCreateResponseElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateResponseElementsItemCase0Type = S.String;
 
 export interface DynamicRoutingCreateResponseElementsItemCase0 {
   id: string;
@@ -2060,8 +2048,7 @@ export const DynamicRoutingCreateResponseElementsItemCase1Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase1Properties;
 
 export type DynamicRoutingCreateResponseElementsItemCase1Type = "conditional";
-export const DynamicRoutingCreateResponseElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateResponseElementsItemCase1Type = S.String;
 
 export interface DynamicRoutingCreateResponseElementsItemCase1 {
   id: string;
@@ -2092,8 +2079,7 @@ export const DynamicRoutingCreateResponseElementsItemCase2OutputsMap =
   ) as any as S.Schema<DynamicRoutingCreateResponseElementsItemCase2OutputsMap>;
 
 export type DynamicRoutingCreateResponseElementsItemCase2Type = "percentage";
-export const DynamicRoutingCreateResponseElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateResponseElementsItemCase2Type = S.String;
 
 export interface DynamicRoutingCreateResponseElementsItemCase2 {
   id: string;
@@ -2130,7 +2116,7 @@ export type DynamicRoutingCreateResponseElementsItemCase3PropertiesLimitType =
   | "count"
   | "cost";
 export const DynamicRoutingCreateResponseElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateResponseElementsItemCase3Properties {
   key: string;
@@ -2152,8 +2138,7 @@ export const DynamicRoutingCreateResponseElementsItemCase3Properties =
   }) as any as S.Schema<DynamicRoutingCreateResponseElementsItemCase3Properties>;
 
 export type DynamicRoutingCreateResponseElementsItemCase3Type = "rate";
-export const DynamicRoutingCreateResponseElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateResponseElementsItemCase3Type = S.String;
 
 export interface DynamicRoutingCreateResponseElementsItemCase3 {
   id: string;
@@ -2194,8 +2179,7 @@ export const DynamicRoutingCreateResponseElementsItemCase4Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties;
 
 export type DynamicRoutingCreateResponseElementsItemCase4Type = "model";
-export const DynamicRoutingCreateResponseElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateResponseElementsItemCase4Type = S.String;
 
 export interface DynamicRoutingCreateResponseElementsItemCase4 {
   id: string;
@@ -2226,8 +2210,7 @@ export const DynamicRoutingCreateResponseElementsItemCase5OutputsMap =
   ) as any as S.Schema<DynamicRoutingCreateResponseElementsItemCase5OutputsMap>;
 
 export type DynamicRoutingCreateResponseElementsItemCase5Type = "end";
-export const DynamicRoutingCreateResponseElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateResponseElementsItemCase5Type = S.String;
 
 export interface DynamicRoutingCreateResponseElementsItemCase5 {
   id: string;
@@ -2271,7 +2254,7 @@ export const DynamicRoutingCreateResponseElementsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DynamicRoutingCreateResponseElementsList>;
 
 export type DynamicRoutingCreateResponseVersionActive = "true" | "false";
-export const DynamicRoutingCreateResponseVersionActive = /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateResponseVersionActive = S.String;
 
 export interface DynamicRoutingCreateResponseVersion {
   active: DynamicRoutingCreateResponseVersionActive;
@@ -2375,8 +2358,7 @@ export type EvaluationsCreateResponseDatasetsItemFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const EvaluationsCreateResponseDatasetsItemFiltersItemKey =
-  /*@__PURE__*/ S.String;
+export const EvaluationsCreateResponseDatasetsItemFiltersItemKey = S.String;
 
 export type EvaluationsCreateResponseDatasetsItemFiltersItemOperator =
   | "eq"
@@ -2384,7 +2366,7 @@ export type EvaluationsCreateResponseDatasetsItemFiltersItemOperator =
   | "lt"
   | "gt";
 export const EvaluationsCreateResponseDatasetsItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EvaluationsCreateResponseDatasetsItemFiltersItemValueItem =
   | string
@@ -2601,8 +2583,7 @@ export const DynamicRoutingCreateVersionRequestElementsItemCase0Outputs =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs;
 
 export type DynamicRoutingCreateVersionRequestElementsItemCase0Type = "start";
-export const DynamicRoutingCreateVersionRequestElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateVersionRequestElementsItemCase0Type = S.String;
 
 export interface DynamicRoutingCreateVersionRequestElementsItemCase0 {
   id: string;
@@ -2649,8 +2630,7 @@ export const DynamicRoutingCreateVersionRequestElementsItemCase1Properties =
 
 export type DynamicRoutingCreateVersionRequestElementsItemCase1Type =
   "conditional";
-export const DynamicRoutingCreateVersionRequestElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateVersionRequestElementsItemCase1Type = S.String;
 
 export interface DynamicRoutingCreateVersionRequestElementsItemCase1 {
   id: string;
@@ -2681,8 +2661,7 @@ export const DynamicRoutingCreateVersionRequestElementsItemCase2OutputsMap =
 
 export type DynamicRoutingCreateVersionRequestElementsItemCase2Type =
   "percentage";
-export const DynamicRoutingCreateVersionRequestElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateVersionRequestElementsItemCase2Type = S.String;
 
 export interface DynamicRoutingCreateVersionRequestElementsItemCase2 {
   id: string;
@@ -2719,7 +2698,7 @@ export type DynamicRoutingCreateVersionRequestElementsItemCase3PropertiesLimitTy
   | "count"
   | "cost";
 export const DynamicRoutingCreateVersionRequestElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionRequestElementsItemCase3Properties {
   key: string;
@@ -2743,8 +2722,7 @@ export const DynamicRoutingCreateVersionRequestElementsItemCase3Properties =
   }) as any as S.Schema<DynamicRoutingCreateVersionRequestElementsItemCase3Properties>;
 
 export type DynamicRoutingCreateVersionRequestElementsItemCase3Type = "rate";
-export const DynamicRoutingCreateVersionRequestElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateVersionRequestElementsItemCase3Type = S.String;
 
 export interface DynamicRoutingCreateVersionRequestElementsItemCase3 {
   id: string;
@@ -2785,8 +2763,7 @@ export const DynamicRoutingCreateVersionRequestElementsItemCase4Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties;
 
 export type DynamicRoutingCreateVersionRequestElementsItemCase4Type = "model";
-export const DynamicRoutingCreateVersionRequestElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateVersionRequestElementsItemCase4Type = S.String;
 
 export interface DynamicRoutingCreateVersionRequestElementsItemCase4 {
   id: string;
@@ -2817,8 +2794,7 @@ export const DynamicRoutingCreateVersionRequestElementsItemCase5OutputsMap =
   ) as any as S.Schema<DynamicRoutingCreateVersionRequestElementsItemCase5OutputsMap>;
 
 export type DynamicRoutingCreateVersionRequestElementsItemCase5Type = "end";
-export const DynamicRoutingCreateVersionRequestElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingCreateVersionRequestElementsItemCase5Type = S.String;
 
 export interface DynamicRoutingCreateVersionRequestElementsItemCase5 {
   id: string;
@@ -2899,7 +2875,7 @@ export const DynamicRoutingCreateVersionResponseElementsItemCase0Outputs =
 
 export type DynamicRoutingCreateVersionResponseElementsItemCase0Type = "start";
 export const DynamicRoutingCreateVersionResponseElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionResponseElementsItemCase0 {
   id: string;
@@ -2940,7 +2916,7 @@ export const DynamicRoutingCreateVersionResponseElementsItemCase1Properties =
 export type DynamicRoutingCreateVersionResponseElementsItemCase1Type =
   "conditional";
 export const DynamicRoutingCreateVersionResponseElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionResponseElementsItemCase1 {
   id: string;
@@ -2973,7 +2949,7 @@ export const DynamicRoutingCreateVersionResponseElementsItemCase2OutputsMap =
 export type DynamicRoutingCreateVersionResponseElementsItemCase2Type =
   "percentage";
 export const DynamicRoutingCreateVersionResponseElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionResponseElementsItemCase2 {
   id: string;
@@ -3010,7 +2986,7 @@ export type DynamicRoutingCreateVersionResponseElementsItemCase3PropertiesLimitT
   | "count"
   | "cost";
 export const DynamicRoutingCreateVersionResponseElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionResponseElementsItemCase3Properties {
   key: string;
@@ -3034,7 +3010,7 @@ export const DynamicRoutingCreateVersionResponseElementsItemCase3Properties =
 
 export type DynamicRoutingCreateVersionResponseElementsItemCase3Type = "rate";
 export const DynamicRoutingCreateVersionResponseElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionResponseElementsItemCase3 {
   id: string;
@@ -3077,7 +3053,7 @@ export const DynamicRoutingCreateVersionResponseElementsItemCase4Properties =
 
 export type DynamicRoutingCreateVersionResponseElementsItemCase4Type = "model";
 export const DynamicRoutingCreateVersionResponseElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionResponseElementsItemCase4 {
   id: string;
@@ -3109,7 +3085,7 @@ export const DynamicRoutingCreateVersionResponseElementsItemCase5OutputsMap =
 
 export type DynamicRoutingCreateVersionResponseElementsItemCase5Type = "end";
 export const DynamicRoutingCreateVersionResponseElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingCreateVersionResponseElementsItemCase5 {
   id: string;
@@ -3282,7 +3258,7 @@ export const DeleteAiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteAiGatewayRequest>;
 
 export type DeleteResponseDlpCase0Action = "BLOCK" | "FLAG";
-export const DeleteResponseDlpCase0Action = /*@__PURE__*/ S.String;
+export const DeleteResponseDlpCase0Action = S.String;
 
 export type DeleteResponseDlpCase0ProfilesList = Array<string>;
 export const DeleteResponseDlpCase0ProfilesList = /*@__PURE__*/ S.Array(
@@ -3305,13 +3281,12 @@ export const DeleteResponseDlpCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteResponseDlpCase0>;
 
 export type DeleteResponseDlpCase1PoliciesItemAction = "FLAG" | "BLOCK";
-export const DeleteResponseDlpCase1PoliciesItemAction = /*@__PURE__*/ S.String;
+export const DeleteResponseDlpCase1PoliciesItemAction = S.String;
 
 export type DeleteResponseDlpCase1PoliciesItemCheckItem =
   | "REQUEST"
   | "RESPONSE";
-export const DeleteResponseDlpCase1PoliciesItemCheckItem =
-  /*@__PURE__*/ S.String;
+export const DeleteResponseDlpCase1PoliciesItemCheckItem = S.String;
 
 export type DeleteResponseDlpCase1PoliciesItemCheckList =
   Array<DeleteResponseDlpCase1PoliciesItemCheckItem>;
@@ -3373,46 +3348,46 @@ export const DeleteResponseDlp = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type DeleteResponseGuardrailsPromptP1 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptP1 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptP1 = S.String;
 
 export type DeleteResponseGuardrailsPromptS1 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS1 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS1 = S.String;
 
 export type DeleteResponseGuardrailsPromptS10 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS10 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS10 = S.String;
 
 export type DeleteResponseGuardrailsPromptS11 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS11 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS11 = S.String;
 
 export type DeleteResponseGuardrailsPromptS12 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS12 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS12 = S.String;
 
 export type DeleteResponseGuardrailsPromptS13 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS13 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS13 = S.String;
 
 export type DeleteResponseGuardrailsPromptS2 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS2 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS2 = S.String;
 
 export type DeleteResponseGuardrailsPromptS3 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS3 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS3 = S.String;
 
 export type DeleteResponseGuardrailsPromptS4 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS4 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS4 = S.String;
 
 export type DeleteResponseGuardrailsPromptS5 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS5 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS5 = S.String;
 
 export type DeleteResponseGuardrailsPromptS6 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS6 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS6 = S.String;
 
 export type DeleteResponseGuardrailsPromptS7 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS7 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS7 = S.String;
 
 export type DeleteResponseGuardrailsPromptS8 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS8 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS8 = S.String;
 
 export type DeleteResponseGuardrailsPromptS9 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsPromptS9 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsPromptS9 = S.String;
 
 export interface DeleteResponseGuardrailsPrompt {
   p1?: DeleteResponseGuardrailsPromptP1 | null;
@@ -3480,46 +3455,46 @@ export const DeleteResponseGuardrailsPrompt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteResponseGuardrailsPrompt>;
 
 export type DeleteResponseGuardrailsResponseP1 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseP1 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseP1 = S.String;
 
 export type DeleteResponseGuardrailsResponseS1 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS1 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS1 = S.String;
 
 export type DeleteResponseGuardrailsResponseS10 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS10 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS10 = S.String;
 
 export type DeleteResponseGuardrailsResponseS11 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS11 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS11 = S.String;
 
 export type DeleteResponseGuardrailsResponseS12 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS12 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS12 = S.String;
 
 export type DeleteResponseGuardrailsResponseS13 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS13 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS13 = S.String;
 
 export type DeleteResponseGuardrailsResponseS2 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS2 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS2 = S.String;
 
 export type DeleteResponseGuardrailsResponseS3 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS3 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS3 = S.String;
 
 export type DeleteResponseGuardrailsResponseS4 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS4 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS4 = S.String;
 
 export type DeleteResponseGuardrailsResponseS5 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS5 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS5 = S.String;
 
 export type DeleteResponseGuardrailsResponseS6 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS6 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS6 = S.String;
 
 export type DeleteResponseGuardrailsResponseS7 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS7 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS7 = S.String;
 
 export type DeleteResponseGuardrailsResponseS8 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS8 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS8 = S.String;
 
 export type DeleteResponseGuardrailsResponseS9 = "FLAG" | "BLOCK";
-export const DeleteResponseGuardrailsResponseS9 = /*@__PURE__*/ S.String;
+export const DeleteResponseGuardrailsResponseS9 = S.String;
 
 export interface DeleteResponseGuardrailsResponse {
   p1?: DeleteResponseGuardrailsResponseP1 | null;
@@ -3602,7 +3577,7 @@ export const DeleteResponseGuardrails = /*@__PURE__*/ S.suspend(() =>
 export type DeleteResponseLogManagementStrategy =
   | "STOP_INSERTING"
   | "DELETE_OLDEST";
-export const DeleteResponseLogManagementStrategy = /*@__PURE__*/ S.String;
+export const DeleteResponseLogManagementStrategy = S.String;
 
 export type DeleteResponseOtelItemHeadersMap = {
   [key: string]: unknown | undefined;
@@ -3613,7 +3588,7 @@ export const DeleteResponseOtelItemHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<DeleteResponseOtelItemHeadersMap>;
 
 export type DeleteResponseOtelItemContentType = "json" | "protobuf";
-export const DeleteResponseOtelItemContentType = /*@__PURE__*/ S.String;
+export const DeleteResponseOtelItemContentType = S.String;
 
 export interface DeleteResponseOtelItem {
   headers: DeleteResponseOtelItemHeadersMap;
@@ -3640,18 +3615,16 @@ export const DeleteResponseOtelList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DeleteResponseOtelList>;
 
 export type DeleteResponseRateLimitingTechnique = "fixed" | "sliding";
-export const DeleteResponseRateLimitingTechnique = /*@__PURE__*/ S.String;
+export const DeleteResponseRateLimitingTechnique = S.String;
 
 export type DeleteResponseRetryBackoff = "constant" | "linear" | "exponential";
-export const DeleteResponseRetryBackoff = /*@__PURE__*/ S.String;
+export const DeleteResponseRetryBackoff = S.String;
 
 export type DeleteResponseSpendLimitsRulesItemLimitType = "cost";
-export const DeleteResponseSpendLimitsRulesItemLimitType =
-  /*@__PURE__*/ S.String;
+export const DeleteResponseSpendLimitsRulesItemLimitType = S.String;
 
 export type DeleteResponseSpendLimitsRulesItemModelMode = "filter";
-export const DeleteResponseSpendLimitsRulesItemModelMode =
-  /*@__PURE__*/ S.String;
+export const DeleteResponseSpendLimitsRulesItemModelMode = S.String;
 
 export type DeleteResponseSpendLimitsRulesItemModelValuesList = Array<string>;
 export const DeleteResponseSpendLimitsRulesItemModelValuesList =
@@ -3674,8 +3647,7 @@ export const DeleteResponseSpendLimitsRulesItemModel = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteResponseSpendLimitsRulesItemModel>;
 
 export type DeleteResponseSpendLimitsRulesItemProviderMode = "filter";
-export const DeleteResponseSpendLimitsRulesItemProviderMode =
-  /*@__PURE__*/ S.String;
+export const DeleteResponseSpendLimitsRulesItemProviderMode = S.String;
 
 export type DeleteResponseSpendLimitsRulesItemProviderValuesList =
   Array<string>;
@@ -3699,8 +3671,7 @@ export const DeleteResponseSpendLimitsRulesItemProvider =
   }) as any as S.Schema<DeleteResponseSpendLimitsRulesItemProvider>;
 
 export type DeleteResponseSpendLimitsRulesItemTechnique = "fixed" | "sliding";
-export const DeleteResponseSpendLimitsRulesItemTechnique =
-  /*@__PURE__*/ S.String;
+export const DeleteResponseSpendLimitsRulesItemTechnique = S.String;
 
 export interface DeleteResponseSpendLimitsRulesItem {
   limit: number;
@@ -3777,7 +3748,7 @@ export const DeleteResponseStripe = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteResponseStripe>;
 
 export type DeleteResponseWorkersAiBillingMode = "postpaid";
-export const DeleteResponseWorkersAiBillingMode = /*@__PURE__*/ S.String;
+export const DeleteResponseWorkersAiBillingMode = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteAiGatewayResponse {
@@ -4021,14 +3992,14 @@ export type DatasetsDeleteResponseFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const DatasetsDeleteResponseFiltersItemKey = /*@__PURE__*/ S.String;
+export const DatasetsDeleteResponseFiltersItemKey = S.String;
 
 export type DatasetsDeleteResponseFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const DatasetsDeleteResponseFiltersItemOperator = /*@__PURE__*/ S.String;
+export const DatasetsDeleteResponseFiltersItemOperator = S.String;
 
 export type DatasetsDeleteResponseFiltersItemValueItem =
   | string
@@ -4123,8 +4094,7 @@ export const DynamicRoutingDeleteResponseElementsItemCase0Outputs =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs;
 
 export type DynamicRoutingDeleteResponseElementsItemCase0Type = "start";
-export const DynamicRoutingDeleteResponseElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingDeleteResponseElementsItemCase0Type = S.String;
 
 export interface DynamicRoutingDeleteResponseElementsItemCase0 {
   id: string;
@@ -4163,8 +4133,7 @@ export const DynamicRoutingDeleteResponseElementsItemCase1Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase1Properties;
 
 export type DynamicRoutingDeleteResponseElementsItemCase1Type = "conditional";
-export const DynamicRoutingDeleteResponseElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingDeleteResponseElementsItemCase1Type = S.String;
 
 export interface DynamicRoutingDeleteResponseElementsItemCase1 {
   id: string;
@@ -4195,8 +4164,7 @@ export const DynamicRoutingDeleteResponseElementsItemCase2OutputsMap =
   ) as any as S.Schema<DynamicRoutingDeleteResponseElementsItemCase2OutputsMap>;
 
 export type DynamicRoutingDeleteResponseElementsItemCase2Type = "percentage";
-export const DynamicRoutingDeleteResponseElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingDeleteResponseElementsItemCase2Type = S.String;
 
 export interface DynamicRoutingDeleteResponseElementsItemCase2 {
   id: string;
@@ -4233,7 +4201,7 @@ export type DynamicRoutingDeleteResponseElementsItemCase3PropertiesLimitType =
   | "count"
   | "cost";
 export const DynamicRoutingDeleteResponseElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingDeleteResponseElementsItemCase3Properties {
   key: string;
@@ -4255,8 +4223,7 @@ export const DynamicRoutingDeleteResponseElementsItemCase3Properties =
   }) as any as S.Schema<DynamicRoutingDeleteResponseElementsItemCase3Properties>;
 
 export type DynamicRoutingDeleteResponseElementsItemCase3Type = "rate";
-export const DynamicRoutingDeleteResponseElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingDeleteResponseElementsItemCase3Type = S.String;
 
 export interface DynamicRoutingDeleteResponseElementsItemCase3 {
   id: string;
@@ -4297,8 +4264,7 @@ export const DynamicRoutingDeleteResponseElementsItemCase4Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties;
 
 export type DynamicRoutingDeleteResponseElementsItemCase4Type = "model";
-export const DynamicRoutingDeleteResponseElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingDeleteResponseElementsItemCase4Type = S.String;
 
 export interface DynamicRoutingDeleteResponseElementsItemCase4 {
   id: string;
@@ -4329,8 +4295,7 @@ export const DynamicRoutingDeleteResponseElementsItemCase5OutputsMap =
   ) as any as S.Schema<DynamicRoutingDeleteResponseElementsItemCase5OutputsMap>;
 
 export type DynamicRoutingDeleteResponseElementsItemCase5Type = "end";
-export const DynamicRoutingDeleteResponseElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingDeleteResponseElementsItemCase5Type = S.String;
 
 export interface DynamicRoutingDeleteResponseElementsItemCase5 {
   id: string;
@@ -4433,8 +4398,7 @@ export type EvaluationsDeleteResponseDatasetsItemFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const EvaluationsDeleteResponseDatasetsItemFiltersItemKey =
-  /*@__PURE__*/ S.String;
+export const EvaluationsDeleteResponseDatasetsItemFiltersItemKey = S.String;
 
 export type EvaluationsDeleteResponseDatasetsItemFiltersItemOperator =
   | "eq"
@@ -4442,7 +4406,7 @@ export type EvaluationsDeleteResponseDatasetsItemFiltersItemOperator =
   | "lt"
   | "gt";
 export const EvaluationsDeleteResponseDatasetsItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EvaluationsDeleteResponseDatasetsItemFiltersItemValueItem =
   | string
@@ -4573,10 +4537,10 @@ export type LogsDeleteRequestOrderBy =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const LogsDeleteRequestOrderBy = /*@__PURE__*/ S.String;
+export const LogsDeleteRequestOrderBy = S.String;
 
 export type LogsDeleteRequestOrderByDirection = "asc" | "desc";
-export const LogsDeleteRequestOrderByDirection = /*@__PURE__*/ S.String;
+export const LogsDeleteRequestOrderByDirection = S.String;
 
 export interface DeleteLogRequest {
   accountId: string;
@@ -4671,7 +4635,7 @@ export const GetAiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAiGatewayRequest>;
 
 export type GetResponseDlpCase0Action = "BLOCK" | "FLAG";
-export const GetResponseDlpCase0Action = /*@__PURE__*/ S.String;
+export const GetResponseDlpCase0Action = S.String;
 
 export type GetResponseDlpCase0ProfilesList = Array<string>;
 export const GetResponseDlpCase0ProfilesList = /*@__PURE__*/ S.Array(
@@ -4694,10 +4658,10 @@ export const GetResponseDlpCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseDlpCase0>;
 
 export type GetResponseDlpCase1PoliciesItemAction = "FLAG" | "BLOCK";
-export const GetResponseDlpCase1PoliciesItemAction = /*@__PURE__*/ S.String;
+export const GetResponseDlpCase1PoliciesItemAction = S.String;
 
 export type GetResponseDlpCase1PoliciesItemCheckItem = "REQUEST" | "RESPONSE";
-export const GetResponseDlpCase1PoliciesItemCheckItem = /*@__PURE__*/ S.String;
+export const GetResponseDlpCase1PoliciesItemCheckItem = S.String;
 
 export type GetResponseDlpCase1PoliciesItemCheckList =
   Array<GetResponseDlpCase1PoliciesItemCheckItem>;
@@ -4758,46 +4722,46 @@ export const GetResponseDlp = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type GetResponseGuardrailsPromptP1 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptP1 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptP1 = S.String;
 
 export type GetResponseGuardrailsPromptS1 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS1 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS1 = S.String;
 
 export type GetResponseGuardrailsPromptS10 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS10 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS10 = S.String;
 
 export type GetResponseGuardrailsPromptS11 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS11 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS11 = S.String;
 
 export type GetResponseGuardrailsPromptS12 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS12 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS12 = S.String;
 
 export type GetResponseGuardrailsPromptS13 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS13 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS13 = S.String;
 
 export type GetResponseGuardrailsPromptS2 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS2 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS2 = S.String;
 
 export type GetResponseGuardrailsPromptS3 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS3 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS3 = S.String;
 
 export type GetResponseGuardrailsPromptS4 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS4 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS4 = S.String;
 
 export type GetResponseGuardrailsPromptS5 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS5 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS5 = S.String;
 
 export type GetResponseGuardrailsPromptS6 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS6 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS6 = S.String;
 
 export type GetResponseGuardrailsPromptS7 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS7 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS7 = S.String;
 
 export type GetResponseGuardrailsPromptS8 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS8 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS8 = S.String;
 
 export type GetResponseGuardrailsPromptS9 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsPromptS9 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsPromptS9 = S.String;
 
 export interface GetResponseGuardrailsPrompt {
   p1?: GetResponseGuardrailsPromptP1 | null;
@@ -4845,46 +4809,46 @@ export const GetResponseGuardrailsPrompt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseGuardrailsPrompt>;
 
 export type GetResponseGuardrailsResponseP1 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseP1 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseP1 = S.String;
 
 export type GetResponseGuardrailsResponseS1 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS1 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS1 = S.String;
 
 export type GetResponseGuardrailsResponseS10 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS10 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS10 = S.String;
 
 export type GetResponseGuardrailsResponseS11 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS11 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS11 = S.String;
 
 export type GetResponseGuardrailsResponseS12 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS12 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS12 = S.String;
 
 export type GetResponseGuardrailsResponseS13 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS13 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS13 = S.String;
 
 export type GetResponseGuardrailsResponseS2 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS2 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS2 = S.String;
 
 export type GetResponseGuardrailsResponseS3 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS3 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS3 = S.String;
 
 export type GetResponseGuardrailsResponseS4 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS4 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS4 = S.String;
 
 export type GetResponseGuardrailsResponseS5 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS5 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS5 = S.String;
 
 export type GetResponseGuardrailsResponseS6 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS6 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS6 = S.String;
 
 export type GetResponseGuardrailsResponseS7 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS7 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS7 = S.String;
 
 export type GetResponseGuardrailsResponseS8 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS8 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS8 = S.String;
 
 export type GetResponseGuardrailsResponseS9 = "FLAG" | "BLOCK";
-export const GetResponseGuardrailsResponseS9 = /*@__PURE__*/ S.String;
+export const GetResponseGuardrailsResponseS9 = S.String;
 
 export interface GetResponseGuardrailsResponse {
   p1?: GetResponseGuardrailsResponseP1 | null;
@@ -4967,7 +4931,7 @@ export const GetResponseGuardrails = /*@__PURE__*/ S.suspend(() =>
 export type GetResponseLogManagementStrategy =
   | "STOP_INSERTING"
   | "DELETE_OLDEST";
-export const GetResponseLogManagementStrategy = /*@__PURE__*/ S.String;
+export const GetResponseLogManagementStrategy = S.String;
 
 export type GetResponseOtelItemHeadersMap = {
   [key: string]: unknown | undefined;
@@ -4978,7 +4942,7 @@ export const GetResponseOtelItemHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GetResponseOtelItemHeadersMap>;
 
 export type GetResponseOtelItemContentType = "json" | "protobuf";
-export const GetResponseOtelItemContentType = /*@__PURE__*/ S.String;
+export const GetResponseOtelItemContentType = S.String;
 
 export interface GetResponseOtelItem {
   headers: GetResponseOtelItemHeadersMap;
@@ -5005,16 +4969,16 @@ export const GetResponseOtelList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetResponseOtelList>;
 
 export type GetResponseRateLimitingTechnique = "fixed" | "sliding";
-export const GetResponseRateLimitingTechnique = /*@__PURE__*/ S.String;
+export const GetResponseRateLimitingTechnique = S.String;
 
 export type GetResponseRetryBackoff = "constant" | "linear" | "exponential";
-export const GetResponseRetryBackoff = /*@__PURE__*/ S.String;
+export const GetResponseRetryBackoff = S.String;
 
 export type GetResponseSpendLimitsRulesItemLimitType = "cost";
-export const GetResponseSpendLimitsRulesItemLimitType = /*@__PURE__*/ S.String;
+export const GetResponseSpendLimitsRulesItemLimitType = S.String;
 
 export type GetResponseSpendLimitsRulesItemModelMode = "filter";
-export const GetResponseSpendLimitsRulesItemModelMode = /*@__PURE__*/ S.String;
+export const GetResponseSpendLimitsRulesItemModelMode = S.String;
 
 export type GetResponseSpendLimitsRulesItemModelValuesList = Array<string>;
 export const GetResponseSpendLimitsRulesItemModelValuesList =
@@ -5037,8 +5001,7 @@ export const GetResponseSpendLimitsRulesItemModel = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetResponseSpendLimitsRulesItemModel>;
 
 export type GetResponseSpendLimitsRulesItemProviderMode = "filter";
-export const GetResponseSpendLimitsRulesItemProviderMode =
-  /*@__PURE__*/ S.String;
+export const GetResponseSpendLimitsRulesItemProviderMode = S.String;
 
 export type GetResponseSpendLimitsRulesItemProviderValuesList = Array<string>;
 export const GetResponseSpendLimitsRulesItemProviderValuesList =
@@ -5061,7 +5024,7 @@ export const GetResponseSpendLimitsRulesItemProvider = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetResponseSpendLimitsRulesItemProvider>;
 
 export type GetResponseSpendLimitsRulesItemTechnique = "fixed" | "sliding";
-export const GetResponseSpendLimitsRulesItemTechnique = /*@__PURE__*/ S.String;
+export const GetResponseSpendLimitsRulesItemTechnique = S.String;
 
 export interface GetResponseSpendLimitsRulesItem {
   limit: number;
@@ -5134,7 +5097,7 @@ export const GetResponseStripe = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseStripe>;
 
 export type GetResponseWorkersAiBillingMode = "postpaid";
-export const GetResponseWorkersAiBillingMode = /*@__PURE__*/ S.String;
+export const GetResponseWorkersAiBillingMode = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetAiGatewayResponse {
@@ -5414,14 +5377,14 @@ export type DatasetsGetResponseFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const DatasetsGetResponseFiltersItemKey = /*@__PURE__*/ S.String;
+export const DatasetsGetResponseFiltersItemKey = S.String;
 
 export type DatasetsGetResponseFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const DatasetsGetResponseFiltersItemOperator = /*@__PURE__*/ S.String;
+export const DatasetsGetResponseFiltersItemOperator = S.String;
 
 export type DatasetsGetResponseFiltersItemValueItem = string | number | boolean;
 export const DatasetsGetResponseFiltersItemValueItem =
@@ -5518,8 +5481,7 @@ export const DynamicRoutingGetResponseElementsItemCase0Outputs =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs;
 
 export type DynamicRoutingGetResponseElementsItemCase0Type = "start";
-export const DynamicRoutingGetResponseElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetResponseElementsItemCase0Type = S.String;
 
 export interface DynamicRoutingGetResponseElementsItemCase0 {
   id: string;
@@ -5558,8 +5520,7 @@ export const DynamicRoutingGetResponseElementsItemCase1Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase1Properties;
 
 export type DynamicRoutingGetResponseElementsItemCase1Type = "conditional";
-export const DynamicRoutingGetResponseElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetResponseElementsItemCase1Type = S.String;
 
 export interface DynamicRoutingGetResponseElementsItemCase1 {
   id: string;
@@ -5590,8 +5551,7 @@ export const DynamicRoutingGetResponseElementsItemCase2OutputsMap =
   ) as any as S.Schema<DynamicRoutingGetResponseElementsItemCase2OutputsMap>;
 
 export type DynamicRoutingGetResponseElementsItemCase2Type = "percentage";
-export const DynamicRoutingGetResponseElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetResponseElementsItemCase2Type = S.String;
 
 export interface DynamicRoutingGetResponseElementsItemCase2 {
   id: string;
@@ -5628,7 +5588,7 @@ export type DynamicRoutingGetResponseElementsItemCase3PropertiesLimitType =
   | "count"
   | "cost";
 export const DynamicRoutingGetResponseElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingGetResponseElementsItemCase3Properties {
   key: string;
@@ -5649,8 +5609,7 @@ export const DynamicRoutingGetResponseElementsItemCase3Properties =
   }) as any as S.Schema<DynamicRoutingGetResponseElementsItemCase3Properties>;
 
 export type DynamicRoutingGetResponseElementsItemCase3Type = "rate";
-export const DynamicRoutingGetResponseElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetResponseElementsItemCase3Type = S.String;
 
 export interface DynamicRoutingGetResponseElementsItemCase3 {
   id: string;
@@ -5691,8 +5650,7 @@ export const DynamicRoutingGetResponseElementsItemCase4Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties;
 
 export type DynamicRoutingGetResponseElementsItemCase4Type = "model";
-export const DynamicRoutingGetResponseElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetResponseElementsItemCase4Type = S.String;
 
 export interface DynamicRoutingGetResponseElementsItemCase4 {
   id: string;
@@ -5723,8 +5681,7 @@ export const DynamicRoutingGetResponseElementsItemCase5OutputsMap =
   ) as any as S.Schema<DynamicRoutingGetResponseElementsItemCase5OutputsMap>;
 
 export type DynamicRoutingGetResponseElementsItemCase5Type = "end";
-export const DynamicRoutingGetResponseElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetResponseElementsItemCase5Type = S.String;
 
 export interface DynamicRoutingGetResponseElementsItemCase5 {
   id: string;
@@ -5768,7 +5725,7 @@ export const DynamicRoutingGetResponseElementsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DynamicRoutingGetResponseElementsList>;
 
 export type DynamicRoutingGetResponseVersionActive = "true" | "false";
-export const DynamicRoutingGetResponseVersionActive = /*@__PURE__*/ S.String;
+export const DynamicRoutingGetResponseVersionActive = S.String;
 
 export interface DynamicRoutingGetResponseVersion {
   active: DynamicRoutingGetResponseVersionActive;
@@ -5853,16 +5810,14 @@ export type EvaluationsGetResponseDatasetsItemFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const EvaluationsGetResponseDatasetsItemFiltersItemKey =
-  /*@__PURE__*/ S.String;
+export const EvaluationsGetResponseDatasetsItemFiltersItemKey = S.String;
 
 export type EvaluationsGetResponseDatasetsItemFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const EvaluationsGetResponseDatasetsItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+export const EvaluationsGetResponseDatasetsItemFiltersItemOperator = S.String;
 
 export type EvaluationsGetResponseDatasetsItemFiltersItemValueItem =
   | string
@@ -6116,7 +6071,7 @@ export const GetVersionDynamicRoutingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVersionDynamicRoutingRequest>;
 
 export type DynamicRoutingGetVersionResponseActive = "true" | "false";
-export const DynamicRoutingGetVersionResponseActive = /*@__PURE__*/ S.String;
+export const DynamicRoutingGetVersionResponseActive = S.String;
 
 export type DynamicRoutingGetVersionResponseElementsItemCase0OutputsNext =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0OutputsNext;
@@ -6129,8 +6084,7 @@ export const DynamicRoutingGetVersionResponseElementsItemCase0Outputs =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs;
 
 export type DynamicRoutingGetVersionResponseElementsItemCase0Type = "start";
-export const DynamicRoutingGetVersionResponseElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetVersionResponseElementsItemCase0Type = S.String;
 
 export interface DynamicRoutingGetVersionResponseElementsItemCase0 {
   id: string;
@@ -6170,8 +6124,7 @@ export const DynamicRoutingGetVersionResponseElementsItemCase1Properties =
 
 export type DynamicRoutingGetVersionResponseElementsItemCase1Type =
   "conditional";
-export const DynamicRoutingGetVersionResponseElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetVersionResponseElementsItemCase1Type = S.String;
 
 export interface DynamicRoutingGetVersionResponseElementsItemCase1 {
   id: string;
@@ -6203,8 +6156,7 @@ export const DynamicRoutingGetVersionResponseElementsItemCase2OutputsMap =
 
 export type DynamicRoutingGetVersionResponseElementsItemCase2Type =
   "percentage";
-export const DynamicRoutingGetVersionResponseElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetVersionResponseElementsItemCase2Type = S.String;
 
 export interface DynamicRoutingGetVersionResponseElementsItemCase2 {
   id: string;
@@ -6241,7 +6193,7 @@ export type DynamicRoutingGetVersionResponseElementsItemCase3PropertiesLimitType
   | "count"
   | "cost";
 export const DynamicRoutingGetVersionResponseElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingGetVersionResponseElementsItemCase3Properties {
   key: string;
@@ -6263,8 +6215,7 @@ export const DynamicRoutingGetVersionResponseElementsItemCase3Properties =
   }) as any as S.Schema<DynamicRoutingGetVersionResponseElementsItemCase3Properties>;
 
 export type DynamicRoutingGetVersionResponseElementsItemCase3Type = "rate";
-export const DynamicRoutingGetVersionResponseElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetVersionResponseElementsItemCase3Type = S.String;
 
 export interface DynamicRoutingGetVersionResponseElementsItemCase3 {
   id: string;
@@ -6305,8 +6256,7 @@ export const DynamicRoutingGetVersionResponseElementsItemCase4Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties;
 
 export type DynamicRoutingGetVersionResponseElementsItemCase4Type = "model";
-export const DynamicRoutingGetVersionResponseElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetVersionResponseElementsItemCase4Type = S.String;
 
 export interface DynamicRoutingGetVersionResponseElementsItemCase4 {
   id: string;
@@ -6337,8 +6287,7 @@ export const DynamicRoutingGetVersionResponseElementsItemCase5OutputsMap =
   ) as any as S.Schema<DynamicRoutingGetVersionResponseElementsItemCase5OutputsMap>;
 
 export type DynamicRoutingGetVersionResponseElementsItemCase5Type = "end";
-export const DynamicRoutingGetVersionResponseElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingGetVersionResponseElementsItemCase5Type = S.String;
 
 export interface DynamicRoutingGetVersionResponseElementsItemCase5 {
   id: string;
@@ -6413,7 +6362,7 @@ export const GetVersionDynamicRoutingResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVersionDynamicRoutingResponse>;
 
 export type BillingInvoiceHistoryRequestType = "auto" | "all" | "manual";
-export const BillingInvoiceHistoryRequestType = /*@__PURE__*/ S.String;
+export const BillingInvoiceHistoryRequestType = S.String;
 
 export interface InvoiceHistoryBillingRequest {
   accountId: string;
@@ -6631,7 +6580,7 @@ export type BillingInvoicePreviewResponseStatus =
   | "paid"
   | "uncollectible"
   | "void";
-export const BillingInvoicePreviewResponseStatus = /*@__PURE__*/ S.String;
+export const BillingInvoicePreviewResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface InvoicePreviewBillingResponse {
@@ -6690,7 +6639,7 @@ export const ListAiGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAiGatewaysRequest>;
 
 export type ListResultItemDlpCase0Action = "BLOCK" | "FLAG";
-export const ListResultItemDlpCase0Action = /*@__PURE__*/ S.String;
+export const ListResultItemDlpCase0Action = S.String;
 
 export type ListResultItemDlpCase0ProfilesList = Array<string>;
 export const ListResultItemDlpCase0ProfilesList = /*@__PURE__*/ S.Array(
@@ -6713,13 +6662,12 @@ export const ListResultItemDlpCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResultItemDlpCase0>;
 
 export type ListResultItemDlpCase1PoliciesItemAction = "FLAG" | "BLOCK";
-export const ListResultItemDlpCase1PoliciesItemAction = /*@__PURE__*/ S.String;
+export const ListResultItemDlpCase1PoliciesItemAction = S.String;
 
 export type ListResultItemDlpCase1PoliciesItemCheckItem =
   | "REQUEST"
   | "RESPONSE";
-export const ListResultItemDlpCase1PoliciesItemCheckItem =
-  /*@__PURE__*/ S.String;
+export const ListResultItemDlpCase1PoliciesItemCheckItem = S.String;
 
 export type ListResultItemDlpCase1PoliciesItemCheckList =
   Array<ListResultItemDlpCase1PoliciesItemCheckItem>;
@@ -6781,46 +6729,46 @@ export const ListResultItemDlp = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type ListResultItemGuardrailsPromptP1 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptP1 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptP1 = S.String;
 
 export type ListResultItemGuardrailsPromptS1 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS1 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS1 = S.String;
 
 export type ListResultItemGuardrailsPromptS10 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS10 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS10 = S.String;
 
 export type ListResultItemGuardrailsPromptS11 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS11 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS11 = S.String;
 
 export type ListResultItemGuardrailsPromptS12 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS12 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS12 = S.String;
 
 export type ListResultItemGuardrailsPromptS13 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS13 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS13 = S.String;
 
 export type ListResultItemGuardrailsPromptS2 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS2 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS2 = S.String;
 
 export type ListResultItemGuardrailsPromptS3 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS3 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS3 = S.String;
 
 export type ListResultItemGuardrailsPromptS4 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS4 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS4 = S.String;
 
 export type ListResultItemGuardrailsPromptS5 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS5 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS5 = S.String;
 
 export type ListResultItemGuardrailsPromptS6 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS6 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS6 = S.String;
 
 export type ListResultItemGuardrailsPromptS7 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS7 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS7 = S.String;
 
 export type ListResultItemGuardrailsPromptS8 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS8 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS8 = S.String;
 
 export type ListResultItemGuardrailsPromptS9 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsPromptS9 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsPromptS9 = S.String;
 
 export interface ListResultItemGuardrailsPrompt {
   p1?: ListResultItemGuardrailsPromptP1 | null;
@@ -6888,46 +6836,46 @@ export const ListResultItemGuardrailsPrompt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResultItemGuardrailsPrompt>;
 
 export type ListResultItemGuardrailsResponseP1 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseP1 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseP1 = S.String;
 
 export type ListResultItemGuardrailsResponseS1 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS1 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS1 = S.String;
 
 export type ListResultItemGuardrailsResponseS10 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS10 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS10 = S.String;
 
 export type ListResultItemGuardrailsResponseS11 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS11 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS11 = S.String;
 
 export type ListResultItemGuardrailsResponseS12 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS12 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS12 = S.String;
 
 export type ListResultItemGuardrailsResponseS13 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS13 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS13 = S.String;
 
 export type ListResultItemGuardrailsResponseS2 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS2 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS2 = S.String;
 
 export type ListResultItemGuardrailsResponseS3 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS3 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS3 = S.String;
 
 export type ListResultItemGuardrailsResponseS4 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS4 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS4 = S.String;
 
 export type ListResultItemGuardrailsResponseS5 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS5 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS5 = S.String;
 
 export type ListResultItemGuardrailsResponseS6 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS6 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS6 = S.String;
 
 export type ListResultItemGuardrailsResponseS7 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS7 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS7 = S.String;
 
 export type ListResultItemGuardrailsResponseS8 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS8 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS8 = S.String;
 
 export type ListResultItemGuardrailsResponseS9 = "FLAG" | "BLOCK";
-export const ListResultItemGuardrailsResponseS9 = /*@__PURE__*/ S.String;
+export const ListResultItemGuardrailsResponseS9 = S.String;
 
 export interface ListResultItemGuardrailsResponse {
   p1?: ListResultItemGuardrailsResponseP1 | null;
@@ -7010,7 +6958,7 @@ export const ListResultItemGuardrails = /*@__PURE__*/ S.suspend(() =>
 export type ListResultItemLogManagementStrategy =
   | "STOP_INSERTING"
   | "DELETE_OLDEST";
-export const ListResultItemLogManagementStrategy = /*@__PURE__*/ S.String;
+export const ListResultItemLogManagementStrategy = S.String;
 
 export type ListResultItemOtelItemHeadersMap = {
   [key: string]: unknown | undefined;
@@ -7021,7 +6969,7 @@ export const ListResultItemOtelItemHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ListResultItemOtelItemHeadersMap>;
 
 export type ListResultItemOtelItemContentType = "json" | "protobuf";
-export const ListResultItemOtelItemContentType = /*@__PURE__*/ S.String;
+export const ListResultItemOtelItemContentType = S.String;
 
 export interface ListResultItemOtelItem {
   headers: ListResultItemOtelItemHeadersMap;
@@ -7048,18 +6996,16 @@ export const ListResultItemOtelList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListResultItemOtelList>;
 
 export type ListResultItemRateLimitingTechnique = "fixed" | "sliding";
-export const ListResultItemRateLimitingTechnique = /*@__PURE__*/ S.String;
+export const ListResultItemRateLimitingTechnique = S.String;
 
 export type ListResultItemRetryBackoff = "constant" | "linear" | "exponential";
-export const ListResultItemRetryBackoff = /*@__PURE__*/ S.String;
+export const ListResultItemRetryBackoff = S.String;
 
 export type ListResultItemSpendLimitsRulesItemLimitType = "cost";
-export const ListResultItemSpendLimitsRulesItemLimitType =
-  /*@__PURE__*/ S.String;
+export const ListResultItemSpendLimitsRulesItemLimitType = S.String;
 
 export type ListResultItemSpendLimitsRulesItemModelMode = "filter";
-export const ListResultItemSpendLimitsRulesItemModelMode =
-  /*@__PURE__*/ S.String;
+export const ListResultItemSpendLimitsRulesItemModelMode = S.String;
 
 export type ListResultItemSpendLimitsRulesItemModelValuesList = Array<string>;
 export const ListResultItemSpendLimitsRulesItemModelValuesList =
@@ -7082,8 +7028,7 @@ export const ListResultItemSpendLimitsRulesItemModel = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListResultItemSpendLimitsRulesItemModel>;
 
 export type ListResultItemSpendLimitsRulesItemProviderMode = "filter";
-export const ListResultItemSpendLimitsRulesItemProviderMode =
-  /*@__PURE__*/ S.String;
+export const ListResultItemSpendLimitsRulesItemProviderMode = S.String;
 
 export type ListResultItemSpendLimitsRulesItemProviderValuesList =
   Array<string>;
@@ -7107,8 +7052,7 @@ export const ListResultItemSpendLimitsRulesItemProvider =
   }) as any as S.Schema<ListResultItemSpendLimitsRulesItemProvider>;
 
 export type ListResultItemSpendLimitsRulesItemTechnique = "fixed" | "sliding";
-export const ListResultItemSpendLimitsRulesItemTechnique =
-  /*@__PURE__*/ S.String;
+export const ListResultItemSpendLimitsRulesItemTechnique = S.String;
 
 export interface ListResultItemSpendLimitsRulesItem {
   limit: number;
@@ -7185,7 +7129,7 @@ export const ListResultItemStripe = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListResultItemStripe>;
 
 export type ListResultItemWorkersAiBillingMode = "postpaid";
-export const ListResultItemWorkersAiBillingMode = /*@__PURE__*/ S.String;
+export const ListResultItemWorkersAiBillingMode = S.String;
 
 export interface ListResultItem {
   /** gateway id */
@@ -7432,14 +7376,14 @@ export type DatasetsListResultItemFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const DatasetsListResultItemFiltersItemKey = /*@__PURE__*/ S.String;
+export const DatasetsListResultItemFiltersItemKey = S.String;
 
 export type DatasetsListResultItemFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const DatasetsListResultItemFiltersItemOperator = /*@__PURE__*/ S.String;
+export const DatasetsListResultItemFiltersItemOperator = S.String;
 
 export type DatasetsListResultItemFiltersItemValueItem =
   | string
@@ -7633,7 +7577,7 @@ export const DynamicRoutingListResponseDataRoutesItemElementsItemCase0Outputs =
 export type DynamicRoutingListResponseDataRoutesItemElementsItemCase0Type =
   "start";
 export const DynamicRoutingListResponseDataRoutesItemElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemElementsItemCase0 {
   id: string;
@@ -7674,7 +7618,7 @@ export const DynamicRoutingListResponseDataRoutesItemElementsItemCase1Properties
 export type DynamicRoutingListResponseDataRoutesItemElementsItemCase1Type =
   "conditional";
 export const DynamicRoutingListResponseDataRoutesItemElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemElementsItemCase1 {
   id: string;
@@ -7706,7 +7650,7 @@ export const DynamicRoutingListResponseDataRoutesItemElementsItemCase2OutputsMap
 export type DynamicRoutingListResponseDataRoutesItemElementsItemCase2Type =
   "percentage";
 export const DynamicRoutingListResponseDataRoutesItemElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemElementsItemCase2 {
   id: string;
@@ -7744,7 +7688,7 @@ export type DynamicRoutingListResponseDataRoutesItemElementsItemCase3PropertiesL
   | "count"
   | "cost";
 export const DynamicRoutingListResponseDataRoutesItemElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemElementsItemCase3Properties {
   key: string;
@@ -7769,7 +7713,7 @@ export const DynamicRoutingListResponseDataRoutesItemElementsItemCase3Properties
 export type DynamicRoutingListResponseDataRoutesItemElementsItemCase3Type =
   "rate";
 export const DynamicRoutingListResponseDataRoutesItemElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemElementsItemCase3 {
   id: string;
@@ -7813,7 +7757,7 @@ export const DynamicRoutingListResponseDataRoutesItemElementsItemCase4Properties
 export type DynamicRoutingListResponseDataRoutesItemElementsItemCase4Type =
   "model";
 export const DynamicRoutingListResponseDataRoutesItemElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemElementsItemCase4 {
   id: string;
@@ -7845,7 +7789,7 @@ export const DynamicRoutingListResponseDataRoutesItemElementsItemCase5OutputsMap
 export type DynamicRoutingListResponseDataRoutesItemElementsItemCase5Type =
   "end";
 export const DynamicRoutingListResponseDataRoutesItemElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemElementsItemCase5 {
   id: string;
@@ -7893,8 +7837,7 @@ export const DynamicRoutingListResponseDataRoutesItemElementsList =
 export type DynamicRoutingListResponseDataRoutesItemVersionActive =
   | "true"
   | "false";
-export const DynamicRoutingListResponseDataRoutesItemVersionActive =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingListResponseDataRoutesItemVersionActive = S.String;
 
 export interface DynamicRoutingListResponseDataRoutesItemVersion {
   active: DynamicRoutingListResponseDataRoutesItemVersionActive;
@@ -8028,8 +7971,7 @@ export type EvaluationsListResultItemDatasetsItemFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const EvaluationsListResultItemDatasetsItemFiltersItemKey =
-  /*@__PURE__*/ S.String;
+export const EvaluationsListResultItemDatasetsItemFiltersItemKey = S.String;
 
 export type EvaluationsListResultItemDatasetsItemFiltersItemOperator =
   | "eq"
@@ -8037,7 +7979,7 @@ export type EvaluationsListResultItemDatasetsItemFiltersItemOperator =
   | "lt"
   | "gt";
 export const EvaluationsListResultItemDatasetsItemFiltersItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EvaluationsListResultItemDatasetsItemFiltersItemValueItem =
   | string
@@ -8171,8 +8113,7 @@ export const ListEvaluationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListEvaluationsResponse>;
 
 export type EvaluationTypesListRequestOrderByDirection = "asc" | "desc";
-export const EvaluationTypesListRequestOrderByDirection =
-  /*@__PURE__*/ S.String;
+export const EvaluationTypesListRequestOrderByDirection = S.String;
 
 export interface ListEvaluationTypesRequest {
   accountId: string;
@@ -8252,7 +8193,7 @@ export const ListEvaluationTypesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListEvaluationTypesResponse>;
 
 export type LogsListRequestDirection = "asc" | "desc";
-export const LogsListRequestDirection = /*@__PURE__*/ S.String;
+export const LogsListRequestDirection = S.String;
 
 export type LogsListRequestFiltersList = Array<string>;
 export const LogsListRequestFiltersList = /*@__PURE__*/ S.Array(
@@ -8266,10 +8207,10 @@ export type LogsListRequestOrderBy =
   | "model_type"
   | "success"
   | "cached";
-export const LogsListRequestOrderBy = /*@__PURE__*/ S.String;
+export const LogsListRequestOrderBy = S.String;
 
 export type LogsListRequestOrderByDirection = "asc" | "desc";
-export const LogsListRequestOrderByDirection = /*@__PURE__*/ S.String;
+export const LogsListRequestOrderByDirection = S.String;
 
 export interface ListLogsRequest {
   accountId: string;
@@ -8532,7 +8473,7 @@ export type DynamicRoutingListVersionsResponseDataVersionsItemActive =
   | "true"
   | "false";
 export const DynamicRoutingListVersionsResponseDataVersionsItemActive =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingListVersionsResponseDataVersionsItem {
   active: DynamicRoutingListVersionsResponseDataVersionsItemActive;
@@ -8634,8 +8575,7 @@ export const DynamicRoutingUpdateResponseRouteElementsItemCase0Outputs =
   DynamicRoutingCreateDeploymentResponseElementsItemCase0Outputs;
 
 export type DynamicRoutingUpdateResponseRouteElementsItemCase0Type = "start";
-export const DynamicRoutingUpdateResponseRouteElementsItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingUpdateResponseRouteElementsItemCase0Type = S.String;
 
 export interface DynamicRoutingUpdateResponseRouteElementsItemCase0 {
   id: string;
@@ -8675,8 +8615,7 @@ export const DynamicRoutingUpdateResponseRouteElementsItemCase1Properties =
 
 export type DynamicRoutingUpdateResponseRouteElementsItemCase1Type =
   "conditional";
-export const DynamicRoutingUpdateResponseRouteElementsItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingUpdateResponseRouteElementsItemCase1Type = S.String;
 
 export interface DynamicRoutingUpdateResponseRouteElementsItemCase1 {
   id: string;
@@ -8708,8 +8647,7 @@ export const DynamicRoutingUpdateResponseRouteElementsItemCase2OutputsMap =
 
 export type DynamicRoutingUpdateResponseRouteElementsItemCase2Type =
   "percentage";
-export const DynamicRoutingUpdateResponseRouteElementsItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingUpdateResponseRouteElementsItemCase2Type = S.String;
 
 export interface DynamicRoutingUpdateResponseRouteElementsItemCase2 {
   id: string;
@@ -8746,7 +8684,7 @@ export type DynamicRoutingUpdateResponseRouteElementsItemCase3PropertiesLimitTyp
   | "count"
   | "cost";
 export const DynamicRoutingUpdateResponseRouteElementsItemCase3PropertiesLimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DynamicRoutingUpdateResponseRouteElementsItemCase3Properties {
   key: string;
@@ -8768,8 +8706,7 @@ export const DynamicRoutingUpdateResponseRouteElementsItemCase3Properties =
   }) as any as S.Schema<DynamicRoutingUpdateResponseRouteElementsItemCase3Properties>;
 
 export type DynamicRoutingUpdateResponseRouteElementsItemCase3Type = "rate";
-export const DynamicRoutingUpdateResponseRouteElementsItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingUpdateResponseRouteElementsItemCase3Type = S.String;
 
 export interface DynamicRoutingUpdateResponseRouteElementsItemCase3 {
   id: string;
@@ -8810,8 +8747,7 @@ export const DynamicRoutingUpdateResponseRouteElementsItemCase4Properties =
   DynamicRoutingCreateDeploymentResponseElementsItemCase4Properties;
 
 export type DynamicRoutingUpdateResponseRouteElementsItemCase4Type = "model";
-export const DynamicRoutingUpdateResponseRouteElementsItemCase4Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingUpdateResponseRouteElementsItemCase4Type = S.String;
 
 export interface DynamicRoutingUpdateResponseRouteElementsItemCase4 {
   id: string;
@@ -8842,8 +8778,7 @@ export const DynamicRoutingUpdateResponseRouteElementsItemCase5OutputsMap =
   ) as any as S.Schema<DynamicRoutingUpdateResponseRouteElementsItemCase5OutputsMap>;
 
 export type DynamicRoutingUpdateResponseRouteElementsItemCase5Type = "end";
-export const DynamicRoutingUpdateResponseRouteElementsItemCase5Type =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingUpdateResponseRouteElementsItemCase5Type = S.String;
 
 export interface DynamicRoutingUpdateResponseRouteElementsItemCase5 {
   id: string;
@@ -8888,8 +8823,7 @@ export const DynamicRoutingUpdateResponseRouteElementsList =
   ) as any as S.Schema<DynamicRoutingUpdateResponseRouteElementsList>;
 
 export type DynamicRoutingUpdateResponseRouteVersionActive = "true" | "false";
-export const DynamicRoutingUpdateResponseRouteVersionActive =
-  /*@__PURE__*/ S.String;
+export const DynamicRoutingUpdateResponseRouteVersionActive = S.String;
 
 export interface DynamicRoutingUpdateResponseRouteVersion {
   active: DynamicRoutingUpdateResponseRouteVersionActive;
@@ -9077,7 +9011,7 @@ export const StatusBillingTopupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StatusBillingTopupRequest>;
 
 export type BillingTopupStatusResponseStatus = "completed" | "pending";
-export const BillingTopupStatusResponseStatus = /*@__PURE__*/ S.String;
+export const BillingTopupStatusResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface StatusBillingTopupResponse {
@@ -9094,7 +9028,7 @@ export const StatusBillingTopupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StatusBillingTopupResponse>;
 
 export type UpdateRequestDlpCase0Action = "BLOCK" | "FLAG";
-export const UpdateRequestDlpCase0Action = /*@__PURE__*/ S.String;
+export const UpdateRequestDlpCase0Action = S.String;
 
 export type UpdateRequestDlpCase0ProfilesList = Array<string>;
 export const UpdateRequestDlpCase0ProfilesList = /*@__PURE__*/ S.Array(
@@ -9117,11 +9051,10 @@ export const UpdateRequestDlpCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestDlpCase0>;
 
 export type UpdateRequestDlpCase1PoliciesItemAction = "FLAG" | "BLOCK";
-export const UpdateRequestDlpCase1PoliciesItemAction = /*@__PURE__*/ S.String;
+export const UpdateRequestDlpCase1PoliciesItemAction = S.String;
 
 export type UpdateRequestDlpCase1PoliciesItemCheckItem = "REQUEST" | "RESPONSE";
-export const UpdateRequestDlpCase1PoliciesItemCheckItem =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestDlpCase1PoliciesItemCheckItem = S.String;
 
 export type UpdateRequestDlpCase1PoliciesItemCheckList = Array<
   UpdateRequestDlpCase1PoliciesItemCheckItem | (string & {})
@@ -9183,46 +9116,46 @@ export const UpdateRequestDlp = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type UpdateRequestGuardrailsPromptP1 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptP1 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptP1 = S.String;
 
 export type UpdateRequestGuardrailsPromptS1 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS1 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS1 = S.String;
 
 export type UpdateRequestGuardrailsPromptS10 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS10 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS10 = S.String;
 
 export type UpdateRequestGuardrailsPromptS11 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS11 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS11 = S.String;
 
 export type UpdateRequestGuardrailsPromptS12 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS12 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS12 = S.String;
 
 export type UpdateRequestGuardrailsPromptS13 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS13 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS13 = S.String;
 
 export type UpdateRequestGuardrailsPromptS2 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS2 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS2 = S.String;
 
 export type UpdateRequestGuardrailsPromptS3 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS3 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS3 = S.String;
 
 export type UpdateRequestGuardrailsPromptS4 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS4 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS4 = S.String;
 
 export type UpdateRequestGuardrailsPromptS5 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS5 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS5 = S.String;
 
 export type UpdateRequestGuardrailsPromptS6 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS6 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS6 = S.String;
 
 export type UpdateRequestGuardrailsPromptS7 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS7 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS7 = S.String;
 
 export type UpdateRequestGuardrailsPromptS8 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS8 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS8 = S.String;
 
 export type UpdateRequestGuardrailsPromptS9 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsPromptS9 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsPromptS9 = S.String;
 
 export interface UpdateRequestGuardrailsPrompt {
   p1?: UpdateRequestGuardrailsPromptP1 | (string & {});
@@ -9262,46 +9195,46 @@ export const UpdateRequestGuardrailsPrompt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestGuardrailsPrompt>;
 
 export type UpdateRequestGuardrailsResponseP1 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseP1 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseP1 = S.String;
 
 export type UpdateRequestGuardrailsResponseS1 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS1 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS1 = S.String;
 
 export type UpdateRequestGuardrailsResponseS10 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS10 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS10 = S.String;
 
 export type UpdateRequestGuardrailsResponseS11 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS11 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS11 = S.String;
 
 export type UpdateRequestGuardrailsResponseS12 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS12 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS12 = S.String;
 
 export type UpdateRequestGuardrailsResponseS13 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS13 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS13 = S.String;
 
 export type UpdateRequestGuardrailsResponseS2 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS2 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS2 = S.String;
 
 export type UpdateRequestGuardrailsResponseS3 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS3 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS3 = S.String;
 
 export type UpdateRequestGuardrailsResponseS4 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS4 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS4 = S.String;
 
 export type UpdateRequestGuardrailsResponseS5 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS5 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS5 = S.String;
 
 export type UpdateRequestGuardrailsResponseS6 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS6 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS6 = S.String;
 
 export type UpdateRequestGuardrailsResponseS7 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS7 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS7 = S.String;
 
 export type UpdateRequestGuardrailsResponseS8 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS8 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS8 = S.String;
 
 export type UpdateRequestGuardrailsResponseS9 = "FLAG" | "BLOCK";
-export const UpdateRequestGuardrailsResponseS9 = /*@__PURE__*/ S.String;
+export const UpdateRequestGuardrailsResponseS9 = S.String;
 
 export interface UpdateRequestGuardrailsResponse {
   p1?: UpdateRequestGuardrailsResponseP1 | (string & {});
@@ -9356,7 +9289,7 @@ export const UpdateRequestGuardrails = /*@__PURE__*/ S.suspend(() =>
 export type UpdateRequestLogManagementStrategy =
   | "STOP_INSERTING"
   | "DELETE_OLDEST";
-export const UpdateRequestLogManagementStrategy = /*@__PURE__*/ S.String;
+export const UpdateRequestLogManagementStrategy = S.String;
 
 export type UpdateRequestOtelItemHeadersMap = {
   [key: string]: unknown | undefined;
@@ -9367,7 +9300,7 @@ export const UpdateRequestOtelItemHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UpdateRequestOtelItemHeadersMap>;
 
 export type UpdateRequestOtelItemContentType = "json" | "protobuf";
-export const UpdateRequestOtelItemContentType = /*@__PURE__*/ S.String;
+export const UpdateRequestOtelItemContentType = S.String;
 
 export interface UpdateRequestOtelItem {
   headers: UpdateRequestOtelItemHeadersMap;
@@ -9394,18 +9327,16 @@ export const UpdateRequestOtelList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateRequestOtelList>;
 
 export type UpdateRequestRateLimitingTechnique = "fixed" | "sliding";
-export const UpdateRequestRateLimitingTechnique = /*@__PURE__*/ S.String;
+export const UpdateRequestRateLimitingTechnique = S.String;
 
 export type UpdateRequestRetryBackoff = "constant" | "linear" | "exponential";
-export const UpdateRequestRetryBackoff = /*@__PURE__*/ S.String;
+export const UpdateRequestRetryBackoff = S.String;
 
 export type UpdateRequestSpendLimitsRulesItemLimitType = "cost";
-export const UpdateRequestSpendLimitsRulesItemLimitType =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestSpendLimitsRulesItemLimitType = S.String;
 
 export type UpdateRequestSpendLimitsRulesItemModelMode = "filter";
-export const UpdateRequestSpendLimitsRulesItemModelMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestSpendLimitsRulesItemModelMode = S.String;
 
 export type UpdateRequestSpendLimitsRulesItemModelValuesList = Array<string>;
 export const UpdateRequestSpendLimitsRulesItemModelValuesList =
@@ -9428,8 +9359,7 @@ export const UpdateRequestSpendLimitsRulesItemModel = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateRequestSpendLimitsRulesItemModel>;
 
 export type UpdateRequestSpendLimitsRulesItemProviderMode = "filter";
-export const UpdateRequestSpendLimitsRulesItemProviderMode =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestSpendLimitsRulesItemProviderMode = S.String;
 
 export type UpdateRequestSpendLimitsRulesItemProviderValuesList = Array<string>;
 export const UpdateRequestSpendLimitsRulesItemProviderValuesList =
@@ -9452,8 +9382,7 @@ export const UpdateRequestSpendLimitsRulesItemProvider =
   }) as any as S.Schema<UpdateRequestSpendLimitsRulesItemProvider>;
 
 export type UpdateRequestSpendLimitsRulesItemTechnique = "fixed" | "sliding";
-export const UpdateRequestSpendLimitsRulesItemTechnique =
-  /*@__PURE__*/ S.String;
+export const UpdateRequestSpendLimitsRulesItemTechnique = S.String;
 
 export interface UpdateRequestSpendLimitsRulesItem {
   limit: number;
@@ -9528,7 +9457,7 @@ export const UpdateRequestStripe = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestStripe>;
 
 export type UpdateRequestWorkersAiBillingMode = "postpaid";
-export const UpdateRequestWorkersAiBillingMode = /*@__PURE__*/ S.String;
+export const UpdateRequestWorkersAiBillingMode = S.String;
 
 export interface UpdateAiGatewayRequest {
   accountId: string;
@@ -9619,7 +9548,7 @@ export const UpdateAiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAiGatewayRequest>;
 
 export type UpdateResponseDlpCase0Action = "BLOCK" | "FLAG";
-export const UpdateResponseDlpCase0Action = /*@__PURE__*/ S.String;
+export const UpdateResponseDlpCase0Action = S.String;
 
 export type UpdateResponseDlpCase0ProfilesList = Array<string>;
 export const UpdateResponseDlpCase0ProfilesList = /*@__PURE__*/ S.Array(
@@ -9642,13 +9571,12 @@ export const UpdateResponseDlpCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseDlpCase0>;
 
 export type UpdateResponseDlpCase1PoliciesItemAction = "FLAG" | "BLOCK";
-export const UpdateResponseDlpCase1PoliciesItemAction = /*@__PURE__*/ S.String;
+export const UpdateResponseDlpCase1PoliciesItemAction = S.String;
 
 export type UpdateResponseDlpCase1PoliciesItemCheckItem =
   | "REQUEST"
   | "RESPONSE";
-export const UpdateResponseDlpCase1PoliciesItemCheckItem =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseDlpCase1PoliciesItemCheckItem = S.String;
 
 export type UpdateResponseDlpCase1PoliciesItemCheckList =
   Array<UpdateResponseDlpCase1PoliciesItemCheckItem>;
@@ -9710,46 +9638,46 @@ export const UpdateResponseDlp = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type UpdateResponseGuardrailsPromptP1 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptP1 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptP1 = S.String;
 
 export type UpdateResponseGuardrailsPromptS1 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS1 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS1 = S.String;
 
 export type UpdateResponseGuardrailsPromptS10 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS10 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS10 = S.String;
 
 export type UpdateResponseGuardrailsPromptS11 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS11 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS11 = S.String;
 
 export type UpdateResponseGuardrailsPromptS12 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS12 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS12 = S.String;
 
 export type UpdateResponseGuardrailsPromptS13 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS13 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS13 = S.String;
 
 export type UpdateResponseGuardrailsPromptS2 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS2 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS2 = S.String;
 
 export type UpdateResponseGuardrailsPromptS3 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS3 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS3 = S.String;
 
 export type UpdateResponseGuardrailsPromptS4 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS4 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS4 = S.String;
 
 export type UpdateResponseGuardrailsPromptS5 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS5 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS5 = S.String;
 
 export type UpdateResponseGuardrailsPromptS6 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS6 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS6 = S.String;
 
 export type UpdateResponseGuardrailsPromptS7 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS7 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS7 = S.String;
 
 export type UpdateResponseGuardrailsPromptS8 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS8 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS8 = S.String;
 
 export type UpdateResponseGuardrailsPromptS9 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsPromptS9 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsPromptS9 = S.String;
 
 export interface UpdateResponseGuardrailsPrompt {
   p1?: UpdateResponseGuardrailsPromptP1 | null;
@@ -9817,46 +9745,46 @@ export const UpdateResponseGuardrailsPrompt = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseGuardrailsPrompt>;
 
 export type UpdateResponseGuardrailsResponseP1 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseP1 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseP1 = S.String;
 
 export type UpdateResponseGuardrailsResponseS1 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS1 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS1 = S.String;
 
 export type UpdateResponseGuardrailsResponseS10 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS10 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS10 = S.String;
 
 export type UpdateResponseGuardrailsResponseS11 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS11 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS11 = S.String;
 
 export type UpdateResponseGuardrailsResponseS12 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS12 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS12 = S.String;
 
 export type UpdateResponseGuardrailsResponseS13 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS13 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS13 = S.String;
 
 export type UpdateResponseGuardrailsResponseS2 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS2 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS2 = S.String;
 
 export type UpdateResponseGuardrailsResponseS3 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS3 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS3 = S.String;
 
 export type UpdateResponseGuardrailsResponseS4 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS4 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS4 = S.String;
 
 export type UpdateResponseGuardrailsResponseS5 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS5 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS5 = S.String;
 
 export type UpdateResponseGuardrailsResponseS6 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS6 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS6 = S.String;
 
 export type UpdateResponseGuardrailsResponseS7 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS7 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS7 = S.String;
 
 export type UpdateResponseGuardrailsResponseS8 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS8 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS8 = S.String;
 
 export type UpdateResponseGuardrailsResponseS9 = "FLAG" | "BLOCK";
-export const UpdateResponseGuardrailsResponseS9 = /*@__PURE__*/ S.String;
+export const UpdateResponseGuardrailsResponseS9 = S.String;
 
 export interface UpdateResponseGuardrailsResponse {
   p1?: UpdateResponseGuardrailsResponseP1 | null;
@@ -9939,7 +9867,7 @@ export const UpdateResponseGuardrails = /*@__PURE__*/ S.suspend(() =>
 export type UpdateResponseLogManagementStrategy =
   | "STOP_INSERTING"
   | "DELETE_OLDEST";
-export const UpdateResponseLogManagementStrategy = /*@__PURE__*/ S.String;
+export const UpdateResponseLogManagementStrategy = S.String;
 
 export type UpdateResponseOtelItemHeadersMap = {
   [key: string]: unknown | undefined;
@@ -9950,7 +9878,7 @@ export const UpdateResponseOtelItemHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UpdateResponseOtelItemHeadersMap>;
 
 export type UpdateResponseOtelItemContentType = "json" | "protobuf";
-export const UpdateResponseOtelItemContentType = /*@__PURE__*/ S.String;
+export const UpdateResponseOtelItemContentType = S.String;
 
 export interface UpdateResponseOtelItem {
   headers: UpdateResponseOtelItemHeadersMap;
@@ -9977,18 +9905,16 @@ export const UpdateResponseOtelList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UpdateResponseOtelList>;
 
 export type UpdateResponseRateLimitingTechnique = "fixed" | "sliding";
-export const UpdateResponseRateLimitingTechnique = /*@__PURE__*/ S.String;
+export const UpdateResponseRateLimitingTechnique = S.String;
 
 export type UpdateResponseRetryBackoff = "constant" | "linear" | "exponential";
-export const UpdateResponseRetryBackoff = /*@__PURE__*/ S.String;
+export const UpdateResponseRetryBackoff = S.String;
 
 export type UpdateResponseSpendLimitsRulesItemLimitType = "cost";
-export const UpdateResponseSpendLimitsRulesItemLimitType =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSpendLimitsRulesItemLimitType = S.String;
 
 export type UpdateResponseSpendLimitsRulesItemModelMode = "filter";
-export const UpdateResponseSpendLimitsRulesItemModelMode =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSpendLimitsRulesItemModelMode = S.String;
 
 export type UpdateResponseSpendLimitsRulesItemModelValuesList = Array<string>;
 export const UpdateResponseSpendLimitsRulesItemModelValuesList =
@@ -10011,8 +9937,7 @@ export const UpdateResponseSpendLimitsRulesItemModel = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateResponseSpendLimitsRulesItemModel>;
 
 export type UpdateResponseSpendLimitsRulesItemProviderMode = "filter";
-export const UpdateResponseSpendLimitsRulesItemProviderMode =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSpendLimitsRulesItemProviderMode = S.String;
 
 export type UpdateResponseSpendLimitsRulesItemProviderValuesList =
   Array<string>;
@@ -10036,8 +9961,7 @@ export const UpdateResponseSpendLimitsRulesItemProvider =
   }) as any as S.Schema<UpdateResponseSpendLimitsRulesItemProvider>;
 
 export type UpdateResponseSpendLimitsRulesItemTechnique = "fixed" | "sliding";
-export const UpdateResponseSpendLimitsRulesItemTechnique =
-  /*@__PURE__*/ S.String;
+export const UpdateResponseSpendLimitsRulesItemTechnique = S.String;
 
 export interface UpdateResponseSpendLimitsRulesItem {
   limit: number;
@@ -10114,7 +10038,7 @@ export const UpdateResponseStripe = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResponseStripe>;
 
 export type UpdateResponseWorkersAiBillingMode = "postpaid";
-export const UpdateResponseWorkersAiBillingMode = /*@__PURE__*/ S.String;
+export const UpdateResponseWorkersAiBillingMode = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateAiGatewayResponse {
@@ -10221,14 +10145,14 @@ export type DatasetsUpdateRequestFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const DatasetsUpdateRequestFiltersItemKey = /*@__PURE__*/ S.String;
+export const DatasetsUpdateRequestFiltersItemKey = S.String;
 
 export type DatasetsUpdateRequestFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const DatasetsUpdateRequestFiltersItemOperator = /*@__PURE__*/ S.String;
+export const DatasetsUpdateRequestFiltersItemOperator = S.String;
 
 export type DatasetsUpdateRequestFiltersItemValueItem =
   | string
@@ -10308,14 +10232,14 @@ export type DatasetsUpdateResponseFiltersItemKey =
   | "tokens_out"
   | "duration"
   | "feedback";
-export const DatasetsUpdateResponseFiltersItemKey = /*@__PURE__*/ S.String;
+export const DatasetsUpdateResponseFiltersItemKey = S.String;
 
 export type DatasetsUpdateResponseFiltersItemOperator =
   | "eq"
   | "contains"
   | "lt"
   | "gt";
-export const DatasetsUpdateResponseFiltersItemOperator = /*@__PURE__*/ S.String;
+export const DatasetsUpdateResponseFiltersItemOperator = S.String;
 
 export type DatasetsUpdateResponseFiltersItemValueItem =
   | string
@@ -10377,8 +10301,7 @@ export const UpdateDatasetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDatasetResponse>;
 
 export type BillingUsageHistoryRequestValueGroupingWindow = "day" | "hour";
-export const BillingUsageHistoryRequestValueGroupingWindow =
-  /*@__PURE__*/ S.String;
+export const BillingUsageHistoryRequestValueGroupingWindow = S.String;
 
 export interface UsageHistoryBillingRequest {
   accountId: string;

@@ -210,7 +210,7 @@ export type CreateRequestDestinationCompressionType =
   | "none"
   | "gzip"
   | "deflate";
-export const CreateRequestDestinationCompressionType = /*@__PURE__*/ S.String;
+export const CreateRequestDestinationCompressionType = S.String;
 
 export interface CreateRequestDestinationCompression {
   /** Specifies the desired compression algorithm and format. */
@@ -243,7 +243,7 @@ export const CreateRequestDestinationCredentials = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestDestinationCredentials>;
 
 export type CreateRequestDestinationFormat = "json";
-export const CreateRequestDestinationFormat = /*@__PURE__*/ S.String;
+export const CreateRequestDestinationFormat = S.String;
 
 export interface CreateRequestDestinationPath {
   /** Specifies the R2 Bucket to store files. */
@@ -267,7 +267,7 @@ export const CreateRequestDestinationPath = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRequestDestinationPath>;
 
 export type CreateRequestDestinationType = "r2";
-export const CreateRequestDestinationType = /*@__PURE__*/ S.String;
+export const CreateRequestDestinationType = S.String;
 
 export interface CreateRequestDestination {
   batch: CreateRequestDestinationBatch;
@@ -295,7 +295,7 @@ export const CreateRequestDestination = /*@__PURE__*/ S.suspend(() =>
 export type CreateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
   "json";
 export const CreateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceCorsOriginsList =
   Array<string>;
@@ -347,7 +347,7 @@ export const CreateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourc
 export type CreateRequestSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
   "json";
 export const CreateRequestSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateRequestSourceItemCloudflarePipelinesWorkersPipelinesBindingSource {
   /** Specifies the format of source data. */
@@ -430,7 +430,7 @@ export type CreateResponseDestinationCompressionType =
   | "none"
   | "gzip"
   | "deflate";
-export const CreateResponseDestinationCompressionType = /*@__PURE__*/ S.String;
+export const CreateResponseDestinationCompressionType = S.String;
 
 export interface CreateResponseDestinationCompression {
   /** Specifies the desired compression algorithm and format. */
@@ -446,7 +446,7 @@ export const CreateResponseDestinationCompression = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateResponseDestinationCompression>;
 
 export type CreateResponseDestinationFormat = "json";
-export const CreateResponseDestinationFormat = /*@__PURE__*/ S.String;
+export const CreateResponseDestinationFormat = S.String;
 
 export interface CreateResponseDestinationPath {
   /** Specifies the R2 Bucket to store files. */
@@ -470,7 +470,7 @@ export const CreateResponseDestinationPath = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateResponseDestinationPath>;
 
 export type CreateResponseDestinationType = "r2";
-export const CreateResponseDestinationType = /*@__PURE__*/ S.String;
+export const CreateResponseDestinationType = S.String;
 
 export interface CreateResponseDestination {
   batch: CreateResponseDestinationBatch;
@@ -496,7 +496,7 @@ export const CreateResponseDestination = /*@__PURE__*/ S.suspend(() =>
 export type CreateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
   "json";
 export const CreateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceCorsOriginsList =
   Array<string>;
@@ -552,7 +552,7 @@ export const CreateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSour
 export type CreateResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
   "json";
 export const CreateResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSource {
   /** Specifies the format of source data. */
@@ -613,7 +613,7 @@ export const CreatePipelineResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreatePipelineResponse>;
 
 export type SinksCreateRequestType = "r2" | "r2_data_catalog";
-export const SinksCreateRequestType = /*@__PURE__*/ S.String;
+export const SinksCreateRequestType = S.String;
 
 export interface SinksCreateRequestConfigCloudflarePipelinesR2TableCredentials {
   /** Cloudflare Account ID for the bucket */
@@ -637,7 +637,7 @@ export type SinksCreateRequestConfigCloudflarePipelinesR2TableFileNamingStrategy
   | "uuid_v7"
   | "ulid";
 export const SinksCreateRequestConfigCloudflarePipelinesR2TableFileNamingStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SinksCreateRequestConfigCloudflarePipelinesR2TableFileNaming {
   /** The prefix to use in file name. i.e prefix-<uuid>.parquet */
@@ -799,20 +799,18 @@ export const SinksCreateRequestConfig = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type SinksCreateRequestFormatJsonType = "json";
-export const SinksCreateRequestFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksCreateRequestFormatJsonType = S.String;
 
 export type SinksCreateRequestFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksCreateRequestFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const SinksCreateRequestFormatJsonDecimalEncoding = S.String;
 
 export type SinksCreateRequestFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksCreateRequestFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const SinksCreateRequestFormatJsonTimestampFormat = S.String;
 
 export interface SinksCreateRequestFormatJson {
   type: SinksCreateRequestFormatJsonType;
@@ -840,7 +838,7 @@ export const SinksCreateRequestFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksCreateRequestFormatJson>;
 
 export type SinksCreateRequestFormatParquetType = "parquet";
-export const SinksCreateRequestFormatParquetType = /*@__PURE__*/ S.String;
+export const SinksCreateRequestFormatParquetType = S.String;
 
 export type SinksCreateRequestFormatParquetCompression =
   | "uncompressed"
@@ -848,8 +846,7 @@ export type SinksCreateRequestFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksCreateRequestFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const SinksCreateRequestFormatParquetCompression = S.String;
 
 export interface SinksCreateRequestFormatParquet {
   type: SinksCreateRequestFormatParquetType;
@@ -882,20 +879,18 @@ export const SinksCreateRequestSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SinksCreateRequestSchemaFieldsList>;
 
 export type SinksCreateRequestSchemaFormatJsonType = "json";
-export const SinksCreateRequestSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksCreateRequestSchemaFormatJsonType = S.String;
 
 export type SinksCreateRequestSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksCreateRequestSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const SinksCreateRequestSchemaFormatJsonDecimalEncoding = S.String;
 
 export type SinksCreateRequestSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksCreateRequestSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const SinksCreateRequestSchemaFormatJsonTimestampFormat = S.String;
 
 export interface SinksCreateRequestSchemaFormatJson {
   type: SinksCreateRequestSchemaFormatJsonType;
@@ -927,7 +922,7 @@ export const SinksCreateRequestSchemaFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksCreateRequestSchemaFormatJson>;
 
 export type SinksCreateRequestSchemaFormatParquetType = "parquet";
-export const SinksCreateRequestSchemaFormatParquetType = /*@__PURE__*/ S.String;
+export const SinksCreateRequestSchemaFormatParquetType = S.String;
 
 export type SinksCreateRequestSchemaFormatParquetCompression =
   | "uncompressed"
@@ -935,8 +930,7 @@ export type SinksCreateRequestSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksCreateRequestSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const SinksCreateRequestSchemaFormatParquetCompression = S.String;
 
 export interface SinksCreateRequestSchemaFormatParquet {
   type: SinksCreateRequestSchemaFormatParquetType;
@@ -1015,7 +1009,7 @@ export const CreateSinkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSinkRequest>;
 
 export type SinksCreateResponseType = "r2" | "r2_data_catalog";
-export const SinksCreateResponseType = /*@__PURE__*/ S.String;
+export const SinksCreateResponseType = S.String;
 
 export type SinksCreateResponseConfigCloudflarePipelinesR2TableCredentials =
   SinksCreateRequestConfigCloudflarePipelinesR2TableCredentials;
@@ -1028,7 +1022,7 @@ export type SinksCreateResponseConfigCloudflarePipelinesR2TableFileNamingStrateg
   | "uuid_v7"
   | "ulid";
 export const SinksCreateResponseConfigCloudflarePipelinesR2TableFileNamingStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SinksCreateResponseConfigCloudflarePipelinesR2TableFileNaming {
   /** The prefix to use in file name. i.e prefix-<uuid>.parquet */
@@ -1197,20 +1191,18 @@ export const SinksCreateResponseConfig = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type SinksCreateResponseFormatJsonType = "json";
-export const SinksCreateResponseFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksCreateResponseFormatJsonType = S.String;
 
 export type SinksCreateResponseFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksCreateResponseFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const SinksCreateResponseFormatJsonDecimalEncoding = S.String;
 
 export type SinksCreateResponseFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksCreateResponseFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const SinksCreateResponseFormatJsonTimestampFormat = S.String;
 
 export interface SinksCreateResponseFormatJson {
   type: SinksCreateResponseFormatJsonType;
@@ -1238,7 +1230,7 @@ export const SinksCreateResponseFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksCreateResponseFormatJson>;
 
 export type SinksCreateResponseFormatParquetType = "parquet";
-export const SinksCreateResponseFormatParquetType = /*@__PURE__*/ S.String;
+export const SinksCreateResponseFormatParquetType = S.String;
 
 export type SinksCreateResponseFormatParquetCompression =
   | "uncompressed"
@@ -1246,8 +1238,7 @@ export type SinksCreateResponseFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksCreateResponseFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const SinksCreateResponseFormatParquetCompression = S.String;
 
 export interface SinksCreateResponseFormatParquet {
   type: SinksCreateResponseFormatParquetType;
@@ -1284,20 +1275,18 @@ export const SinksCreateResponseSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SinksCreateResponseSchemaFieldsList>;
 
 export type SinksCreateResponseSchemaFormatJsonType = "json";
-export const SinksCreateResponseSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksCreateResponseSchemaFormatJsonType = S.String;
 
 export type SinksCreateResponseSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksCreateResponseSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const SinksCreateResponseSchemaFormatJsonDecimalEncoding = S.String;
 
 export type SinksCreateResponseSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksCreateResponseSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const SinksCreateResponseSchemaFormatJsonTimestampFormat = S.String;
 
 export interface SinksCreateResponseSchemaFormatJson {
   type: SinksCreateResponseSchemaFormatJsonType;
@@ -1325,8 +1314,7 @@ export const SinksCreateResponseSchemaFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksCreateResponseSchemaFormatJson>;
 
 export type SinksCreateResponseSchemaFormatParquetType = "parquet";
-export const SinksCreateResponseSchemaFormatParquetType =
-  /*@__PURE__*/ S.String;
+export const SinksCreateResponseSchemaFormatParquetType = S.String;
 
 export type SinksCreateResponseSchemaFormatParquetCompression =
   | "uncompressed"
@@ -1334,8 +1322,7 @@ export type SinksCreateResponseSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksCreateResponseSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const SinksCreateResponseSchemaFormatParquetCompression = S.String;
 
 export interface SinksCreateResponseSchemaFormatParquet {
   type: SinksCreateResponseSchemaFormatParquetType;
@@ -1413,20 +1400,18 @@ export const CreateSinkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSinkResponse>;
 
 export type StreamsCreateRequestFormatJsonType = "json";
-export const StreamsCreateRequestFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsCreateRequestFormatJsonType = S.String;
 
 export type StreamsCreateRequestFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsCreateRequestFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateRequestFormatJsonDecimalEncoding = S.String;
 
 export type StreamsCreateRequestFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsCreateRequestFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateRequestFormatJsonTimestampFormat = S.String;
 
 export interface StreamsCreateRequestFormatJson {
   type: StreamsCreateRequestFormatJsonType;
@@ -1458,7 +1443,7 @@ export const StreamsCreateRequestFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamsCreateRequestFormatJson>;
 
 export type StreamsCreateRequestFormatParquetType = "parquet";
-export const StreamsCreateRequestFormatParquetType = /*@__PURE__*/ S.String;
+export const StreamsCreateRequestFormatParquetType = S.String;
 
 export type StreamsCreateRequestFormatParquetCompression =
   | "uncompressed"
@@ -1466,8 +1451,7 @@ export type StreamsCreateRequestFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsCreateRequestFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateRequestFormatParquetCompression = S.String;
 
 export interface StreamsCreateRequestFormatParquet {
   type: StreamsCreateRequestFormatParquetType;
@@ -1534,20 +1518,18 @@ export const StreamsCreateRequestSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StreamsCreateRequestSchemaFieldsList>;
 
 export type StreamsCreateRequestSchemaFormatJsonType = "json";
-export const StreamsCreateRequestSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsCreateRequestSchemaFormatJsonType = S.String;
 
 export type StreamsCreateRequestSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsCreateRequestSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateRequestSchemaFormatJsonDecimalEncoding = S.String;
 
 export type StreamsCreateRequestSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsCreateRequestSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateRequestSchemaFormatJsonTimestampFormat = S.String;
 
 export interface StreamsCreateRequestSchemaFormatJson {
   type: StreamsCreateRequestSchemaFormatJsonType;
@@ -1580,8 +1562,7 @@ export const StreamsCreateRequestSchemaFormatJson = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<StreamsCreateRequestSchemaFormatJson>;
 
 export type StreamsCreateRequestSchemaFormatParquetType = "parquet";
-export const StreamsCreateRequestSchemaFormatParquetType =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateRequestSchemaFormatParquetType = S.String;
 
 export type StreamsCreateRequestSchemaFormatParquetCompression =
   | "uncompressed"
@@ -1589,8 +1570,7 @@ export type StreamsCreateRequestSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsCreateRequestSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateRequestSchemaFormatParquetCompression = S.String;
 
 export interface StreamsCreateRequestSchemaFormatParquet {
   type: StreamsCreateRequestSchemaFormatParquetType;
@@ -1722,20 +1702,18 @@ export const StreamsCreateResponseWorkerBinding =
   StreamsCreateRequestWorkerBinding;
 
 export type StreamsCreateResponseFormatJsonType = "json";
-export const StreamsCreateResponseFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsCreateResponseFormatJsonType = S.String;
 
 export type StreamsCreateResponseFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsCreateResponseFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateResponseFormatJsonDecimalEncoding = S.String;
 
 export type StreamsCreateResponseFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsCreateResponseFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateResponseFormatJsonTimestampFormat = S.String;
 
 export interface StreamsCreateResponseFormatJson {
   type: StreamsCreateResponseFormatJsonType;
@@ -1763,7 +1741,7 @@ export const StreamsCreateResponseFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamsCreateResponseFormatJson>;
 
 export type StreamsCreateResponseFormatParquetType = "parquet";
-export const StreamsCreateResponseFormatParquetType = /*@__PURE__*/ S.String;
+export const StreamsCreateResponseFormatParquetType = S.String;
 
 export type StreamsCreateResponseFormatParquetCompression =
   | "uncompressed"
@@ -1771,8 +1749,7 @@ export type StreamsCreateResponseFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsCreateResponseFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateResponseFormatParquetCompression = S.String;
 
 export interface StreamsCreateResponseFormatParquet {
   type: StreamsCreateResponseFormatParquetType;
@@ -1809,20 +1786,18 @@ export const StreamsCreateResponseSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StreamsCreateResponseSchemaFieldsList>;
 
 export type StreamsCreateResponseSchemaFormatJsonType = "json";
-export const StreamsCreateResponseSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsCreateResponseSchemaFormatJsonType = S.String;
 
 export type StreamsCreateResponseSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsCreateResponseSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateResponseSchemaFormatJsonDecimalEncoding = S.String;
 
 export type StreamsCreateResponseSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsCreateResponseSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateResponseSchemaFormatJsonTimestampFormat = S.String;
 
 export interface StreamsCreateResponseSchemaFormatJson {
   type: StreamsCreateResponseSchemaFormatJsonType;
@@ -1851,8 +1826,7 @@ export const StreamsCreateResponseSchemaFormatJson = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<StreamsCreateResponseSchemaFormatJson>;
 
 export type StreamsCreateResponseSchemaFormatParquetType = "parquet";
-export const StreamsCreateResponseSchemaFormatParquetType =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateResponseSchemaFormatParquetType = S.String;
 
 export type StreamsCreateResponseSchemaFormatParquetCompression =
   | "uncompressed"
@@ -1860,8 +1834,7 @@ export type StreamsCreateResponseSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsCreateResponseSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsCreateResponseSchemaFormatParquetCompression = S.String;
 
 export interface StreamsCreateResponseSchemaFormatParquet {
   type: StreamsCreateResponseSchemaFormatParquetType;
@@ -2149,7 +2122,7 @@ export type GetResponseDestinationBatch = CreateResponseDestinationBatch;
 export const GetResponseDestinationBatch = CreateResponseDestinationBatch;
 
 export type GetResponseDestinationCompressionType = "none" | "gzip" | "deflate";
-export const GetResponseDestinationCompressionType = /*@__PURE__*/ S.String;
+export const GetResponseDestinationCompressionType = S.String;
 
 export interface GetResponseDestinationCompression {
   /** Specifies the desired compression algorithm and format. */
@@ -2164,13 +2137,13 @@ export const GetResponseDestinationCompression = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResponseDestinationCompression>;
 
 export type GetResponseDestinationFormat = "json";
-export const GetResponseDestinationFormat = /*@__PURE__*/ S.String;
+export const GetResponseDestinationFormat = S.String;
 
 export type GetResponseDestinationPath = CreateResponseDestinationPath;
 export const GetResponseDestinationPath = CreateResponseDestinationPath;
 
 export type GetResponseDestinationType = "r2";
-export const GetResponseDestinationType = /*@__PURE__*/ S.String;
+export const GetResponseDestinationType = S.String;
 
 export interface GetResponseDestination {
   batch: CreateResponseDestinationBatch;
@@ -2196,7 +2169,7 @@ export const GetResponseDestination = /*@__PURE__*/ S.suspend(() =>
 export type GetResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
   "json";
 export const GetResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceCorsOriginsList =
   Array<string>;
@@ -2252,7 +2225,7 @@ export const GetResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSource 
 export type GetResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
   "json";
 export const GetResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSource {
   /** Specifies the format of source data. */
@@ -2334,7 +2307,7 @@ export const GetSinkRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetSinkRequest" }) as any as S.Schema<GetSinkRequest>;
 
 export type SinksGetResponseType = "r2" | "r2_data_catalog";
-export const SinksGetResponseType = /*@__PURE__*/ S.String;
+export const SinksGetResponseType = S.String;
 
 export type SinksGetResponseConfigCloudflarePipelinesR2TablePublicFileNamingStrategy =
   | "serial"
@@ -2342,7 +2315,7 @@ export type SinksGetResponseConfigCloudflarePipelinesR2TablePublicFileNamingStra
   | "uuid_v7"
   | "ulid";
 export const SinksGetResponseConfigCloudflarePipelinesR2TablePublicFileNamingStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SinksGetResponseConfigCloudflarePipelinesR2TablePublicFileNaming {
   /** The prefix to use in file name. i.e prefix-<uuid>.parquet */
@@ -2475,18 +2448,18 @@ export const SinksGetResponseConfig = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type SinksGetResponseFormatJsonType = "json";
-export const SinksGetResponseFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksGetResponseFormatJsonType = S.String;
 
 export type SinksGetResponseFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksGetResponseFormatJsonDecimalEncoding = /*@__PURE__*/ S.String;
+export const SinksGetResponseFormatJsonDecimalEncoding = S.String;
 
 export type SinksGetResponseFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksGetResponseFormatJsonTimestampFormat = /*@__PURE__*/ S.String;
+export const SinksGetResponseFormatJsonTimestampFormat = S.String;
 
 export interface SinksGetResponseFormatJson {
   type: SinksGetResponseFormatJsonType;
@@ -2514,7 +2487,7 @@ export const SinksGetResponseFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksGetResponseFormatJson>;
 
 export type SinksGetResponseFormatParquetType = "parquet";
-export const SinksGetResponseFormatParquetType = /*@__PURE__*/ S.String;
+export const SinksGetResponseFormatParquetType = S.String;
 
 export type SinksGetResponseFormatParquetCompression =
   | "uncompressed"
@@ -2522,7 +2495,7 @@ export type SinksGetResponseFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksGetResponseFormatParquetCompression = /*@__PURE__*/ S.String;
+export const SinksGetResponseFormatParquetCompression = S.String;
 
 export interface SinksGetResponseFormatParquet {
   type: SinksGetResponseFormatParquetType;
@@ -2557,20 +2530,18 @@ export const SinksGetResponseSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SinksGetResponseSchemaFieldsList>;
 
 export type SinksGetResponseSchemaFormatJsonType = "json";
-export const SinksGetResponseSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksGetResponseSchemaFormatJsonType = S.String;
 
 export type SinksGetResponseSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksGetResponseSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const SinksGetResponseSchemaFormatJsonDecimalEncoding = S.String;
 
 export type SinksGetResponseSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksGetResponseSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const SinksGetResponseSchemaFormatJsonTimestampFormat = S.String;
 
 export interface SinksGetResponseSchemaFormatJson {
   type: SinksGetResponseSchemaFormatJsonType;
@@ -2598,7 +2569,7 @@ export const SinksGetResponseSchemaFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksGetResponseSchemaFormatJson>;
 
 export type SinksGetResponseSchemaFormatParquetType = "parquet";
-export const SinksGetResponseSchemaFormatParquetType = /*@__PURE__*/ S.String;
+export const SinksGetResponseSchemaFormatParquetType = S.String;
 
 export type SinksGetResponseSchemaFormatParquetCompression =
   | "uncompressed"
@@ -2606,8 +2577,7 @@ export type SinksGetResponseSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksGetResponseSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const SinksGetResponseSchemaFormatParquetCompression = S.String;
 
 export interface SinksGetResponseSchemaFormatParquet {
   type: SinksGetResponseSchemaFormatParquetType;
@@ -2745,20 +2715,18 @@ export const StreamsGetResponseWorkerBinding =
   StreamsCreateRequestWorkerBinding;
 
 export type StreamsGetResponseFormatJsonType = "json";
-export const StreamsGetResponseFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsGetResponseFormatJsonType = S.String;
 
 export type StreamsGetResponseFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsGetResponseFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsGetResponseFormatJsonDecimalEncoding = S.String;
 
 export type StreamsGetResponseFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsGetResponseFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsGetResponseFormatJsonTimestampFormat = S.String;
 
 export interface StreamsGetResponseFormatJson {
   type: StreamsGetResponseFormatJsonType;
@@ -2786,7 +2754,7 @@ export const StreamsGetResponseFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamsGetResponseFormatJson>;
 
 export type StreamsGetResponseFormatParquetType = "parquet";
-export const StreamsGetResponseFormatParquetType = /*@__PURE__*/ S.String;
+export const StreamsGetResponseFormatParquetType = S.String;
 
 export type StreamsGetResponseFormatParquetCompression =
   | "uncompressed"
@@ -2794,8 +2762,7 @@ export type StreamsGetResponseFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsGetResponseFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsGetResponseFormatParquetCompression = S.String;
 
 export interface StreamsGetResponseFormatParquet {
   type: StreamsGetResponseFormatParquetType;
@@ -2832,20 +2799,18 @@ export const StreamsGetResponseSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StreamsGetResponseSchemaFieldsList>;
 
 export type StreamsGetResponseSchemaFormatJsonType = "json";
-export const StreamsGetResponseSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsGetResponseSchemaFormatJsonType = S.String;
 
 export type StreamsGetResponseSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsGetResponseSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsGetResponseSchemaFormatJsonDecimalEncoding = S.String;
 
 export type StreamsGetResponseSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsGetResponseSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsGetResponseSchemaFormatJsonTimestampFormat = S.String;
 
 export interface StreamsGetResponseSchemaFormatJson {
   type: StreamsGetResponseSchemaFormatJsonType;
@@ -2873,7 +2838,7 @@ export const StreamsGetResponseSchemaFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamsGetResponseSchemaFormatJson>;
 
 export type StreamsGetResponseSchemaFormatParquetType = "parquet";
-export const StreamsGetResponseSchemaFormatParquetType = /*@__PURE__*/ S.String;
+export const StreamsGetResponseSchemaFormatParquetType = S.String;
 
 export type StreamsGetResponseSchemaFormatParquetCompression =
   | "uncompressed"
@@ -2881,8 +2846,7 @@ export type StreamsGetResponseSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsGetResponseSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsGetResponseSchemaFormatParquetCompression = S.String;
 
 export interface StreamsGetResponseSchemaFormatParquet {
   type: StreamsGetResponseSchemaFormatParquetType;
@@ -2989,7 +2953,7 @@ export const GetV1PipelineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetV1PipelineRequest>;
 
 export type GetV1ResponseTablesItemType = "stream" | "sink";
-export const GetV1ResponseTablesItemType = /*@__PURE__*/ S.String;
+export const GetV1ResponseTablesItemType = S.String;
 
 export interface GetV1ResponseTablesItem {
   /** Unique identifier for the connection (stream or sink). */
@@ -3092,8 +3056,7 @@ export type ListResponseResultsItemDestinationCompressionType =
   | "none"
   | "gzip"
   | "deflate";
-export const ListResponseResultsItemDestinationCompressionType =
-  /*@__PURE__*/ S.String;
+export const ListResponseResultsItemDestinationCompressionType = S.String;
 
 export interface ListResponseResultsItemDestinationCompression {
   /** Specifies the desired compression algorithm and format. */
@@ -3109,7 +3072,7 @@ export const ListResponseResultsItemDestinationCompression =
   }) as any as S.Schema<ListResponseResultsItemDestinationCompression>;
 
 export type ListResponseResultsItemDestinationFormat = "json";
-export const ListResponseResultsItemDestinationFormat = /*@__PURE__*/ S.String;
+export const ListResponseResultsItemDestinationFormat = S.String;
 
 export type ListResponseResultsItemDestinationPath =
   CreateResponseDestinationPath;
@@ -3117,7 +3080,7 @@ export const ListResponseResultsItemDestinationPath =
   CreateResponseDestinationPath;
 
 export type ListResponseResultsItemDestinationType = "r2";
-export const ListResponseResultsItemDestinationType = /*@__PURE__*/ S.String;
+export const ListResponseResultsItemDestinationType = S.String;
 
 export interface ListResponseResultsItemDestination {
   batch: CreateResponseDestinationBatch;
@@ -3143,7 +3106,7 @@ export const ListResponseResultsItemDestination = /*@__PURE__*/ S.suspend(() =>
 export type ListResponseResultsItemSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
   "json";
 export const ListResponseResultsItemSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListResponseResultsItemSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceCorsOriginsList =
   Array<string>;
@@ -3199,7 +3162,7 @@ export const ListResponseResultsItemSourceItemCloudflarePipelinesWorkersPipeline
 export type ListResponseResultsItemSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
   "json";
 export const ListResponseResultsItemSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListResponseResultsItemSourceItemCloudflarePipelinesWorkersPipelinesBindingSource {
   /** Specifies the format of source data. */
@@ -3309,7 +3272,7 @@ export const ListSinksRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSinksRequest>;
 
 export type SinksListResultItemType = "r2" | "r2_data_catalog";
-export const SinksListResultItemType = /*@__PURE__*/ S.String;
+export const SinksListResultItemType = S.String;
 
 export type SinksListResultItemConfigCloudflarePipelinesR2TablePublicFileNamingStrategy =
   | "serial"
@@ -3317,7 +3280,7 @@ export type SinksListResultItemConfigCloudflarePipelinesR2TablePublicFileNamingS
   | "uuid_v7"
   | "ulid";
 export const SinksListResultItemConfigCloudflarePipelinesR2TablePublicFileNamingStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SinksListResultItemConfigCloudflarePipelinesR2TablePublicFileNaming {
   /** The prefix to use in file name. i.e prefix-<uuid>.parquet */
@@ -3425,20 +3388,18 @@ export const SinksListResultItemConfig = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type SinksListResultItemFormatJsonType = "json";
-export const SinksListResultItemFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksListResultItemFormatJsonType = S.String;
 
 export type SinksListResultItemFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksListResultItemFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const SinksListResultItemFormatJsonDecimalEncoding = S.String;
 
 export type SinksListResultItemFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksListResultItemFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const SinksListResultItemFormatJsonTimestampFormat = S.String;
 
 export interface SinksListResultItemFormatJson {
   type: SinksListResultItemFormatJsonType;
@@ -3466,7 +3427,7 @@ export const SinksListResultItemFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksListResultItemFormatJson>;
 
 export type SinksListResultItemFormatParquetType = "parquet";
-export const SinksListResultItemFormatParquetType = /*@__PURE__*/ S.String;
+export const SinksListResultItemFormatParquetType = S.String;
 
 export type SinksListResultItemFormatParquetCompression =
   | "uncompressed"
@@ -3474,8 +3435,7 @@ export type SinksListResultItemFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksListResultItemFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const SinksListResultItemFormatParquetCompression = S.String;
 
 export interface SinksListResultItemFormatParquet {
   type: SinksListResultItemFormatParquetType;
@@ -3512,20 +3472,18 @@ export const SinksListResultItemSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SinksListResultItemSchemaFieldsList>;
 
 export type SinksListResultItemSchemaFormatJsonType = "json";
-export const SinksListResultItemSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const SinksListResultItemSchemaFormatJsonType = S.String;
 
 export type SinksListResultItemSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const SinksListResultItemSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const SinksListResultItemSchemaFormatJsonDecimalEncoding = S.String;
 
 export type SinksListResultItemSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const SinksListResultItemSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const SinksListResultItemSchemaFormatJsonTimestampFormat = S.String;
 
 export interface SinksListResultItemSchemaFormatJson {
   type: SinksListResultItemSchemaFormatJsonType;
@@ -3553,8 +3511,7 @@ export const SinksListResultItemSchemaFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SinksListResultItemSchemaFormatJson>;
 
 export type SinksListResultItemSchemaFormatParquetType = "parquet";
-export const SinksListResultItemSchemaFormatParquetType =
-  /*@__PURE__*/ S.String;
+export const SinksListResultItemSchemaFormatParquetType = S.String;
 
 export type SinksListResultItemSchemaFormatParquetCompression =
   | "uncompressed"
@@ -3562,8 +3519,7 @@ export type SinksListResultItemSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const SinksListResultItemSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const SinksListResultItemSchemaFormatParquetCompression = S.String;
 
 export interface SinksListResultItemSchemaFormatParquet {
   type: SinksListResultItemSchemaFormatParquetType;
@@ -3729,20 +3685,18 @@ export const StreamsListResultItemWorkerBinding =
   StreamsCreateRequestWorkerBinding;
 
 export type StreamsListResultItemFormatJsonType = "json";
-export const StreamsListResultItemFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsListResultItemFormatJsonType = S.String;
 
 export type StreamsListResultItemFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsListResultItemFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsListResultItemFormatJsonDecimalEncoding = S.String;
 
 export type StreamsListResultItemFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsListResultItemFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsListResultItemFormatJsonTimestampFormat = S.String;
 
 export interface StreamsListResultItemFormatJson {
   type: StreamsListResultItemFormatJsonType;
@@ -3770,7 +3724,7 @@ export const StreamsListResultItemFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamsListResultItemFormatJson>;
 
 export type StreamsListResultItemFormatParquetType = "parquet";
-export const StreamsListResultItemFormatParquetType = /*@__PURE__*/ S.String;
+export const StreamsListResultItemFormatParquetType = S.String;
 
 export type StreamsListResultItemFormatParquetCompression =
   | "uncompressed"
@@ -3778,8 +3732,7 @@ export type StreamsListResultItemFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsListResultItemFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsListResultItemFormatParquetCompression = S.String;
 
 export interface StreamsListResultItemFormatParquet {
   type: StreamsListResultItemFormatParquetType;
@@ -3816,20 +3769,18 @@ export const StreamsListResultItemSchemaFieldsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StreamsListResultItemSchemaFieldsList>;
 
 export type StreamsListResultItemSchemaFormatJsonType = "json";
-export const StreamsListResultItemSchemaFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsListResultItemSchemaFormatJsonType = S.String;
 
 export type StreamsListResultItemSchemaFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsListResultItemSchemaFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsListResultItemSchemaFormatJsonDecimalEncoding = S.String;
 
 export type StreamsListResultItemSchemaFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsListResultItemSchemaFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsListResultItemSchemaFormatJsonTimestampFormat = S.String;
 
 export interface StreamsListResultItemSchemaFormatJson {
   type: StreamsListResultItemSchemaFormatJsonType;
@@ -3858,8 +3809,7 @@ export const StreamsListResultItemSchemaFormatJson = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<StreamsListResultItemSchemaFormatJson>;
 
 export type StreamsListResultItemSchemaFormatParquetType = "parquet";
-export const StreamsListResultItemSchemaFormatParquetType =
-  /*@__PURE__*/ S.String;
+export const StreamsListResultItemSchemaFormatParquetType = S.String;
 
 export type StreamsListResultItemSchemaFormatParquetCompression =
   | "uncompressed"
@@ -3867,8 +3817,7 @@ export type StreamsListResultItemSchemaFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsListResultItemSchemaFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsListResultItemSchemaFormatParquetCompression = S.String;
 
 export interface StreamsListResultItemSchemaFormatParquet {
   type: StreamsListResultItemSchemaFormatParquetType;
@@ -4150,20 +4099,18 @@ export const StreamsUpdateResponseWorkerBinding =
   StreamsCreateRequestWorkerBinding;
 
 export type StreamsUpdateResponseFormatJsonType = "json";
-export const StreamsUpdateResponseFormatJsonType = /*@__PURE__*/ S.String;
+export const StreamsUpdateResponseFormatJsonType = S.String;
 
 export type StreamsUpdateResponseFormatJsonDecimalEncoding =
   | "number"
   | "string"
   | "bytes";
-export const StreamsUpdateResponseFormatJsonDecimalEncoding =
-  /*@__PURE__*/ S.String;
+export const StreamsUpdateResponseFormatJsonDecimalEncoding = S.String;
 
 export type StreamsUpdateResponseFormatJsonTimestampFormat =
   | "rfc3339"
   | "unix_millis";
-export const StreamsUpdateResponseFormatJsonTimestampFormat =
-  /*@__PURE__*/ S.String;
+export const StreamsUpdateResponseFormatJsonTimestampFormat = S.String;
 
 export interface StreamsUpdateResponseFormatJson {
   type: StreamsUpdateResponseFormatJsonType;
@@ -4191,7 +4138,7 @@ export const StreamsUpdateResponseFormatJson = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamsUpdateResponseFormatJson>;
 
 export type StreamsUpdateResponseFormatParquetType = "parquet";
-export const StreamsUpdateResponseFormatParquetType = /*@__PURE__*/ S.String;
+export const StreamsUpdateResponseFormatParquetType = S.String;
 
 export type StreamsUpdateResponseFormatParquetCompression =
   | "uncompressed"
@@ -4199,8 +4146,7 @@ export type StreamsUpdateResponseFormatParquetCompression =
   | "gzip"
   | "zstd"
   | "lz4";
-export const StreamsUpdateResponseFormatParquetCompression =
-  /*@__PURE__*/ S.String;
+export const StreamsUpdateResponseFormatParquetCompression = S.String;
 
 export interface StreamsUpdateResponseFormatParquet {
   type: StreamsUpdateResponseFormatParquetType;
@@ -4272,7 +4218,7 @@ export type UpdateRequestDestinationCompressionType =
   | "none"
   | "gzip"
   | "deflate";
-export const UpdateRequestDestinationCompressionType = /*@__PURE__*/ S.String;
+export const UpdateRequestDestinationCompressionType = S.String;
 
 export interface UpdateRequestDestinationCompression {
   /** Specifies the desired compression algorithm and format. */
@@ -4287,13 +4233,13 @@ export const UpdateRequestDestinationCompression = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRequestDestinationCompression>;
 
 export type UpdateRequestDestinationFormat = "json";
-export const UpdateRequestDestinationFormat = /*@__PURE__*/ S.String;
+export const UpdateRequestDestinationFormat = S.String;
 
 export type UpdateRequestDestinationPath = CreateRequestDestinationPath;
 export const UpdateRequestDestinationPath = CreateRequestDestinationPath;
 
 export type UpdateRequestDestinationType = "r2";
-export const UpdateRequestDestinationType = /*@__PURE__*/ S.String;
+export const UpdateRequestDestinationType = S.String;
 
 export type UpdateRequestDestinationCredentials =
   CreateRequestDestinationCredentials;
@@ -4326,7 +4272,7 @@ export const UpdateRequestDestination = /*@__PURE__*/ S.suspend(() =>
 export type UpdateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
   "json";
 export const UpdateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceCorsOriginsList =
   Array<string>;
@@ -4378,7 +4324,7 @@ export const UpdateRequestSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourc
 export type UpdateRequestSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
   "json";
 export const UpdateRequestSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateRequestSourceItemCloudflarePipelinesWorkersPipelinesBindingSource {
   /** Specifies the format of source data. */
@@ -4449,7 +4395,7 @@ export type UpdateResponseDestinationCompressionType =
   | "none"
   | "gzip"
   | "deflate";
-export const UpdateResponseDestinationCompressionType = /*@__PURE__*/ S.String;
+export const UpdateResponseDestinationCompressionType = S.String;
 
 export interface UpdateResponseDestinationCompression {
   /** Specifies the desired compression algorithm and format. */
@@ -4465,13 +4411,13 @@ export const UpdateResponseDestinationCompression = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateResponseDestinationCompression>;
 
 export type UpdateResponseDestinationFormat = "json";
-export const UpdateResponseDestinationFormat = /*@__PURE__*/ S.String;
+export const UpdateResponseDestinationFormat = S.String;
 
 export type UpdateResponseDestinationPath = CreateResponseDestinationPath;
 export const UpdateResponseDestinationPath = CreateResponseDestinationPath;
 
 export type UpdateResponseDestinationType = "r2";
-export const UpdateResponseDestinationType = /*@__PURE__*/ S.String;
+export const UpdateResponseDestinationType = S.String;
 
 export interface UpdateResponseDestination {
   batch: CreateResponseDestinationBatch;
@@ -4497,7 +4443,7 @@ export const UpdateResponseDestination = /*@__PURE__*/ S.suspend(() =>
 export type UpdateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
   "json";
 export const UpdateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSourceCorsOriginsList =
   Array<string>;
@@ -4553,7 +4499,7 @@ export const UpdateResponseSourceItemCloudflarePipelinesWorkersPipelinesHTTPSour
 export type UpdateResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
   "json";
 export const UpdateResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSourceFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateResponseSourceItemCloudflarePipelinesWorkersPipelinesBindingSource {
   /** Specifies the format of source data. */

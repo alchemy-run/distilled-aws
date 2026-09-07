@@ -329,7 +329,7 @@ export type EnvironmentStateEnum =
   | "PENDING"
   | "RUNNING"
   | "DELETING";
-export const EnvironmentStateEnum = /*@__PURE__*/ S.String;
+export const EnvironmentStateEnum = S.String;
 
 /** A Cloud Shell environment, which is defined as the combination of a Docker image specifying what is installed on the environment and a home directory containing the user's data that will remain across sessions. Each user has at least an environment with the ID "default". */
 export interface Environment {

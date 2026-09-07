@@ -88,7 +88,7 @@ export type GoogleCloudDialogflowV2beta1OutputAudioConfigAudioEncodingEnum =
   | "OUTPUT_AUDIO_ENCODING_MULAW"
   | "OUTPUT_AUDIO_ENCODING_ALAW";
 export const GoogleCloudDialogflowV2beta1OutputAudioConfigAudioEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1VoiceSelectionParamsSsmlGenderEnum =
   | "SSML_VOICE_GENDER_UNSPECIFIED"
@@ -96,7 +96,7 @@ export type GoogleCloudDialogflowV2beta1VoiceSelectionParamsSsmlGenderEnum =
   | "SSML_VOICE_GENDER_FEMALE"
   | "SSML_VOICE_GENDER_NEUTRAL";
 export const GoogleCloudDialogflowV2beta1VoiceSelectionParamsSsmlGenderEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1VoiceSelectionParams {
   name?: string;
@@ -121,7 +121,7 @@ export type GoogleCloudDialogflowV2beta1CustomPronunciationParamsPhoneticEncodin
   | "PHONETIC_ENCODING_IPA"
   | "PHONETIC_ENCODING_X_SAMPA";
 export const GoogleCloudDialogflowV2beta1CustomPronunciationParamsPhoneticEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1CustomPronunciationParams {
   phrase?: string;
@@ -206,8 +206,7 @@ export type GoogleCloudDialogflowV2beta1SuggestionInputActionEnum =
   | "CANCEL"
   | "REVISE"
   | "CONFIRM";
-export const GoogleCloudDialogflowV2beta1SuggestionInputActionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1SuggestionInputActionEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1IntentInput {
   intent?: string;
@@ -327,14 +326,14 @@ export type GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfigStartOf
   | "START_SENSITIVITY_HIGH"
   | "START_SENSITIVITY_LOW";
 export const GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfigStartOfSpeechSensitivityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfigEndOfSpeechSensitivityEnum =
   | "END_SENSITIVITY_UNSPECIFIED"
   | "END_SENSITIVITY_HIGH"
   | "END_SENSITIVITY_LOW";
 export const GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfigEndOfSpeechSensitivityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig {
   modelId?: string;
@@ -370,7 +369,7 @@ export type GoogleCloudDialogflowV2beta1InputAudioConfigModelVariantEnum =
   | "USE_STANDARD"
   | "USE_ENHANCED";
 export const GoogleCloudDialogflowV2beta1InputAudioConfigModelVariantEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1InputAudioConfigAudioEncodingEnum =
   | "AUDIO_ENCODING_UNSPECIFIED"
@@ -383,7 +382,7 @@ export type GoogleCloudDialogflowV2beta1InputAudioConfigAudioEncodingEnum =
   | "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
   | "AUDIO_ENCODING_ALAW";
 export const GoogleCloudDialogflowV2beta1InputAudioConfigAudioEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1InputAudioConfig {
   sampleRateHertz?: number;
@@ -505,7 +504,7 @@ export type GoogleCloudDialogflowV2beta1SessionEntityTypeEntityOverrideModeEnum 
   | "ENTITY_OVERRIDE_MODE_OVERRIDE"
   | "ENTITY_OVERRIDE_MODE_SUPPLEMENT";
 export const GoogleCloudDialogflowV2beta1SessionEntityTypeEntityOverrideModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1EntityTypeEntity {
   value?: string;
@@ -719,7 +718,7 @@ export type GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswerMatchConfidenceLev
   | "MEDIUM"
   | "HIGH";
 export const GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswerMatchConfidenceLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer {
   faqQuestion?: string;
@@ -820,7 +819,7 @@ export type GoogleCloudDialogflowV2beta1IntentMessageColumnPropertiesHorizontalA
   | "CENTER"
   | "TRAILING";
 export const GoogleCloudDialogflowV2beta1IntentMessageColumnPropertiesHorizontalAlignmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1IntentMessageColumnProperties {
   horizontalAlignment?:
@@ -999,14 +998,14 @@ export type GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCardCardOrient
   | "HORIZONTAL"
   | "VERTICAL";
 export const GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCardCardOrientationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCardThumbnailImageAlignmentEnum =
   | "THUMBNAIL_IMAGE_ALIGNMENT_UNSPECIFIED"
   | "LEFT"
   | "RIGHT";
 export const GoogleCloudDialogflowV2beta1IntentMessageRbmStandaloneCardThumbnailImageAlignmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMediaHeightEnum =
   | "HEIGHT_UNSPECIFIED"
@@ -1014,7 +1013,7 @@ export type GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMediaHeigh
   | "MEDIUM"
   | "TALL";
 export const GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMediaHeightEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia {
   fileUri?: string;
@@ -1308,14 +1307,13 @@ export type GoogleCloudDialogflowV2beta1IntentMessagePlatformEnum =
   | "ACTIONS_ON_GOOGLE"
   | "TELEPHONY"
   | "GOOGLE_HANGOUTS";
-export const GoogleCloudDialogflowV2beta1IntentMessagePlatformEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1IntentMessagePlatformEnum = S.String;
 
 export type GoogleCloudDialogflowV2beta1IntentMessageMediaContentMediaTypeEnum =
   | "RESPONSE_MEDIA_TYPE_UNSPECIFIED"
   | "AUDIO";
 export const GoogleCloudDialogflowV2beta1IntentMessageMediaContentMediaTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1IntentMessageMediaContentResponseMediaObject {
   name?: string;
@@ -1370,7 +1368,7 @@ export type GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCardCardWidthEnu
   | "SMALL"
   | "MEDIUM";
 export const GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCardCardWidthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentList =
   Array<GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent>;
@@ -1493,7 +1491,7 @@ export type GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardBrowseCar
   | "AMP_ACTION"
   | "AMP_CONTENT";
 export const GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardBrowseCarouselCardItemOpenUrlActionUrlTypeHintEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardBrowseCarouselCardItemOpenUrlAction {
   url?: string;
@@ -1551,7 +1549,7 @@ export type GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardImageDisp
   | "CROPPED"
   | "BLURRED_BACKGROUND";
 export const GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardImageDisplayOptionsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCard {
   items?: GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardBrowseCarouselCardItemList;
@@ -1732,7 +1730,7 @@ export type GoogleCloudDialogflowV2beta1IntentTrainingPhraseTypeEnum =
   | "EXAMPLE"
   | "TEMPLATE";
 export const GoogleCloudDialogflowV2beta1IntentTrainingPhraseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1IntentTrainingPhrase {
   parts?: GoogleCloudDialogflowV2beta1IntentTrainingPhrasePartList;
@@ -1769,8 +1767,7 @@ export type GoogleCloudDialogflowV2beta1IntentWebhookStateEnum =
   | "WEBHOOK_STATE_UNSPECIFIED"
   | "WEBHOOK_STATE_ENABLED"
   | "WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING";
-export const GoogleCloudDialogflowV2beta1IntentWebhookStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1IntentWebhookStateEnum = S.String;
 
 export type GoogleCloudDialogflowV2beta1IntentDefaultResponsePlatformsItemEnum =
   | "PLATFORM_UNSPECIFIED"
@@ -1785,7 +1782,7 @@ export type GoogleCloudDialogflowV2beta1IntentDefaultResponsePlatformsItemEnum =
   | "TELEPHONY"
   | "GOOGLE_HANGOUTS";
 export const GoogleCloudDialogflowV2beta1IntentDefaultResponsePlatformsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1IntentDefaultResponsePlatformsItemEnumList =
   Array<
@@ -2124,7 +2121,7 @@ export type GoogleCloudDialogflowV2beta1AgentCoachingInstructionTriggeringEventE
   | "AGENT_MESSAGE"
   | "TOOL_CALL_COMPLETION";
 export const GoogleCloudDialogflowV2beta1AgentCoachingInstructionTriggeringEventEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1AgentCoachingInstructionDuplicateCheckResultDuplicateSuggestion {
   suggestionIndex?: number;
@@ -2272,8 +2269,7 @@ export type GoogleCloudDialogflowV2beta1ToolCallStateEnum =
   | "STATE_UNSPECIFIED"
   | "TRIGGERED"
   | "NEEDS_CONFIRMATION";
-export const GoogleCloudDialogflowV2beta1ToolCallStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1ToolCallStateEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1ToolCall {
   toolDisplayDetails?: string;
@@ -2491,7 +2487,7 @@ export type GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfoIngeste
   | "INGESTION_STATUS_INVALID_FORMAT"
   | "INGESTION_STATUS_LANGUAGE_MISMATCH";
 export const GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfoIngestedParameterDebugInfoIngestionStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfoIngestedParameterDebugInfo {
   ingestionStatus?: GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfoIngestedParameterDebugInfoIngestionStatusEnum;
@@ -2588,7 +2584,7 @@ export type GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationF
   | "QUERY_GENERATION_EMPTY_LAST_MESSAGE"
   | "QUERY_GENERATION_TRIGGERING_EVENT_CONDITION_NOT_MET";
 export const GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationFailureReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryCategorizationFailureReasonEnum =
   | "QUERY_CATEGORIZATION_FAILURE_REASON_UNSPECIFIED"
@@ -2596,7 +2592,7 @@ export type GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryCategorizat
   | "QUERY_CATEGORIZATION_RESULT_NOT_FOUND"
   | "QUERY_CATEGORIZATION_FAILED";
 export const GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryCategorizationFailureReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo {
   totalTokenCount?: number;
@@ -2635,7 +2631,7 @@ export type GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoDatastoreRespons
   | "ANSWER_GENERATION_RAI_FAILED"
   | "ANSWER_GENERATION_NOT_GROUNDED";
 export const GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoDatastoreResponseReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoKnowledgeAssistBehavior {
   queryContainedSearchContext?: boolean;
@@ -3102,7 +3098,7 @@ export type GoogleCloudDialogflowV2beta1AutomatedAgentReplyAutomatedAgentReplyTy
   | "PARTIAL"
   | "FINAL";
 export const GoogleCloudDialogflowV2beta1AutomatedAgentReplyAutomatedAgentReplyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction =
   GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation;
@@ -3291,8 +3287,7 @@ export type GoogleCloudDialogflowV2beta1MessageParticipantRoleEnum =
   | "HUMAN_AGENT"
   | "AUTOMATED_AGENT"
   | "END_USER";
-export const GoogleCloudDialogflowV2beta1MessageParticipantRoleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1MessageParticipantRoleEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1AnnotatedMessagePart {
   formattedValue?: unknown;
@@ -3809,14 +3804,13 @@ export type GoogleCloudDialogflowV2beta1EntityTypeKindEnum =
   | "KIND_MAP"
   | "KIND_LIST"
   | "KIND_REGEXP";
-export const GoogleCloudDialogflowV2beta1EntityTypeKindEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1EntityTypeKindEnum = S.String;
 
 export type GoogleCloudDialogflowV2beta1EntityTypeAutoExpansionModeEnum =
   | "AUTO_EXPANSION_MODE_UNSPECIFIED"
   | "AUTO_EXPANSION_MODE_DEFAULT";
 export const GoogleCloudDialogflowV2beta1EntityTypeAutoExpansionModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1EntityType {
   displayName?: string;
@@ -3957,7 +3951,7 @@ export type GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequestIntentViewEnum 
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
 export const GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequestIntentViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest {
   languageCode?: string;
@@ -4133,7 +4127,7 @@ export type GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequestParti
   | "AUTOMATED_AGENT"
   | "END_USER";
 export const GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequestParticipantRoleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequestSuggestionFeatureTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -4145,7 +4139,7 @@ export type GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequestSugge
   | "KNOWLEDGE_SEARCH"
   | "KNOWLEDGE_ASSIST";
 export const GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequestSuggestionFeatureTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest {
   participantRole?:
@@ -4416,8 +4410,7 @@ export type GoogleCloudDialogflowV2beta1SuggestionFeatureTypeEnum =
   | "CONVERSATION_SUMMARIZATION"
   | "KNOWLEDGE_SEARCH"
   | "KNOWLEDGE_ASSIST";
-export const GoogleCloudDialogflowV2beta1SuggestionFeatureTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1SuggestionFeatureTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1SuggestionFeature {
   type?: GoogleCloudDialogflowV2beta1SuggestionFeatureTypeEnum | (string & {});
@@ -4513,7 +4506,7 @@ export type GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQuery
   | "CUSTOMER_SATISFACTION"
   | "ENTITIES";
 export const GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigSectionsSectionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigSectionsSectionTypesItemEnumList =
   Array<
@@ -4584,7 +4577,7 @@ export type GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatu
   | "CUSTOMER_MESSAGE"
   | "AGENT_MESSAGE";
 export const GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfigSuggestionTriggerEventEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig {
   recentSentencesCount?: number;
@@ -4621,7 +4614,7 @@ export type GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfigCategoryEnum
   | "HARASSMENT"
   | "HATE_SPEECH";
 export const GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfigCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfigSensitivityLevelEnum =
   | "SENSITIVITY_LEVEL_UNSPECIFIED"
@@ -4630,7 +4623,7 @@ export type GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfigSensitivityL
   | "BLOCK_FEW"
   | "BLOCK_NONE";
 export const GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfigSensitivityLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1RaiSettingsRaiCategoryConfig {
   category?:
@@ -4780,7 +4773,7 @@ export type GoogleCloudDialogflowV2beta1NotificationConfigMessageFormatEnum =
   | "PROTO"
   | "JSON";
 export const GoogleCloudDialogflowV2beta1NotificationConfigMessageFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1NotificationConfig {
   topic?: string;
@@ -4882,7 +4875,7 @@ export type GoogleCloudDialogflowV2beta1SpeechToTextConfigSpeechModelVariantEnum
   | "USE_STANDARD"
   | "USE_ENHANCED";
 export const GoogleCloudDialogflowV2beta1SpeechToTextConfigSpeechModelVariantEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1SpeechToTextConfigAudioEncodingEnum =
   | "AUDIO_ENCODING_UNSPECIFIED"
@@ -4895,7 +4888,7 @@ export type GoogleCloudDialogflowV2beta1SpeechToTextConfigAudioEncodingEnum =
   | "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
   | "AUDIO_ENCODING_ALAW";
 export const GoogleCloudDialogflowV2beta1SpeechToTextConfigAudioEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SpeechToTextConfig {
   useTimeoutBasedEndpointing?: boolean;
@@ -5026,14 +5019,14 @@ export type GoogleCloudDialogflowV2beta1ConversationContextReferenceUpdateModeEn
   | "APPEND"
   | "OVERWRITE";
 export const GoogleCloudDialogflowV2beta1ConversationContextReferenceUpdateModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ConversationContextReferenceContextContentContentFormatEnum =
   | "CONTENT_FORMAT_UNSPECIFIED"
   | "JSON"
   | "PLAIN_TEXT";
 export const GoogleCloudDialogflowV2beta1ConversationContextReferenceContextContentContentFormatEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ConversationContextReferenceContextContent {
   contentFormat?:
@@ -5105,7 +5098,7 @@ export type GoogleCloudDialogflowV2beta1ConversationLifecycleStateEnum =
   | "IN_PROGRESS"
   | "COMPLETED";
 export const GoogleCloudDialogflowV2beta1ConversationLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfoSipHeader {
   name?: string;
@@ -5179,7 +5172,7 @@ export type GoogleCloudDialogflowV2beta1ConversationConversationStageEnum =
   | "VIRTUAL_AGENT_STAGE"
   | "HUMAN_ASSIST_STAGE";
 export const GoogleCloudDialogflowV2beta1ConversationConversationStageEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ConversationGeneratorContextGeneratorTypeEnum =
   | "GENERATOR_TYPE_UNSPECIFIED"
@@ -5190,7 +5183,7 @@ export type GoogleCloudDialogflowV2beta1ConversationGeneratorContextGeneratorTyp
   | "AGENT_FEEDBACK"
   | "CUSTOMER_MESSAGE_GENERATION";
 export const GoogleCloudDialogflowV2beta1ConversationGeneratorContextGeneratorTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ConversationGeneratorContext {
   generatorType?:
@@ -5338,8 +5331,7 @@ export type GoogleCloudDialogflowV2beta1EnvironmentStateEnum =
   | "STOPPED"
   | "LOADING"
   | "RUNNING";
-export const GoogleCloudDialogflowV2beta1EnvironmentStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1EnvironmentStateEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1FulfillmentGenericWebService {
   password?: string;
@@ -5364,8 +5356,7 @@ export const GoogleCloudDialogflowV2beta1FulfillmentGenericWebService =
 export type GoogleCloudDialogflowV2beta1FulfillmentFeatureTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "SMALLTALK";
-export const GoogleCloudDialogflowV2beta1FulfillmentFeatureTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1FulfillmentFeatureTypeEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1FulfillmentFeature {
   type?: GoogleCloudDialogflowV2beta1FulfillmentFeatureTypeEnum | (string & {});
@@ -5417,7 +5408,7 @@ export type GoogleCloudDialogflowV2beta1TextToSpeechSettingsOutputAudioEncodingE
   | "OUTPUT_AUDIO_ENCODING_MULAW"
   | "OUTPUT_AUDIO_ENCODING_ALAW";
 export const GoogleCloudDialogflowV2beta1TextToSpeechSettingsOutputAudioEncodingEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1SynthesizeSpeechConfigMap = {
   [key: string]: GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig | undefined;
@@ -5551,7 +5542,7 @@ export const CreateProjectsAgentEnvironmentsUsersSessionsEntityTypesRequest =
 export type CreateProjectsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const CreateProjectsAgentIntentsIntentViewEnum = /*@__PURE__*/ S.String;
+export const CreateProjectsAgentIntentsIntentViewEnum = S.String;
 
 export interface CreateProjectsAgentIntentsRequest {
   intentView?: CreateProjectsAgentIntentsIntentViewEnum | (string & {});
@@ -5639,8 +5630,7 @@ export type GoogleCloudDialogflowV2beta1DocumentStateEnum =
   | "UPDATING"
   | "RELOADING"
   | "DELETING";
-export const GoogleCloudDialogflowV2beta1DocumentStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1DocumentStateEnum = S.String;
 
 export type GoogleCloudDialogflowV2beta1DocumentKnowledgeTypesItemEnum =
   | "KNOWLEDGE_TYPE_UNSPECIFIED"
@@ -5650,7 +5640,7 @@ export type GoogleCloudDialogflowV2beta1DocumentKnowledgeTypesItemEnum =
   | "AGENT_FACING_SMART_REPLY"
   | "SMART_REPLY";
 export const GoogleCloudDialogflowV2beta1DocumentKnowledgeTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1DocumentKnowledgeTypesItemEnumList =
   Array<
@@ -5769,8 +5759,7 @@ export type GoogleCloudDialogflowV2beta1VersionStatusEnum =
   | "IN_PROGRESS"
   | "READY"
   | "FAILED";
-export const GoogleCloudDialogflowV2beta1VersionStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1VersionStatusEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1Version {
   status?: GoogleCloudDialogflowV2beta1VersionStatusEnum | (string & {});
@@ -5866,15 +5855,14 @@ export type GoogleCloudDialogflowV2beta1ParticipantAgentDesktopSourceEnum =
   | "SALESFORCE"
   | "OTHER";
 export const GoogleCloudDialogflowV2beta1ParticipantAgentDesktopSourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ParticipantRoleEnum =
   | "ROLE_UNSPECIFIED"
   | "HUMAN_AGENT"
   | "AUTOMATED_AGENT"
   | "END_USER";
-export const GoogleCloudDialogflowV2beta1ParticipantRoleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1ParticipantRoleEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1Participant {
   name?: string;
@@ -5928,7 +5916,7 @@ export type GoogleCloudDialogflowV2beta1CesToolSpecConfirmationRequirementEnum =
   | "REQUIRED"
   | "NOT_REQUIRED";
 export const GoogleCloudDialogflowV2beta1CesToolSpecConfirmationRequirementEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1CesToolSpec {
   cesTool?: string;
@@ -5960,7 +5948,7 @@ export type GoogleCloudDialogflowV2beta1CesAppSpecConfirmationRequirementEnum =
   | "REQUIRED"
   | "NOT_REQUIRED";
 export const GoogleCloudDialogflowV2beta1CesAppSpecConfirmationRequirementEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1CesAppSpec {
   confirmationRequirement?:
@@ -5996,8 +5984,7 @@ export type GoogleCloudDialogflowV2beta1GeneratorTriggerEventEnum =
   | "MANUAL_CALL"
   | "CUSTOMER_MESSAGE"
   | "AGENT_MESSAGE";
-export const GoogleCloudDialogflowV2beta1GeneratorTriggerEventEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1GeneratorTriggerEventEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1InferenceParameter {
   topP?: number;
@@ -6068,7 +6055,7 @@ export type GoogleCloudDialogflowV2beta1SummarizationSectionTypeEnum =
   | "SITUATION_CONCISE"
   | "ACTION_CONCISE";
 export const GoogleCloudDialogflowV2beta1SummarizationSectionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SummarizationSection {
   key?: string;
@@ -6116,8 +6103,7 @@ export type GoogleCloudDialogflowV2beta1MessageEntryRoleEnum =
   | "HUMAN_AGENT"
   | "AUTOMATED_AGENT"
   | "END_USER";
-export const GoogleCloudDialogflowV2beta1MessageEntryRoleEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1MessageEntryRoleEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1MessageEntry {
   createTime?: string;
@@ -6212,7 +6198,7 @@ export type GoogleCloudDialogflowV2beta1ToolsetToolConfirmationRequirementEnum =
   | "REQUIRED"
   | "NOT_REQUIRED";
 export const GoogleCloudDialogflowV2beta1ToolsetToolConfirmationRequirementEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ToolsetTool {
   toolset?: string;
@@ -6461,8 +6447,7 @@ export const CreateProjectsLocationsAgentEnvironmentsUsersSessionsEntityTypesReq
 export type CreateProjectsLocationsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const CreateProjectsLocationsAgentIntentsIntentViewEnum =
-  /*@__PURE__*/ S.String;
+export const CreateProjectsLocationsAgentIntentsIntentViewEnum = S.String;
 
 export interface CreateProjectsLocationsAgentIntentsRequest {
   languageCode?: string;
@@ -6659,7 +6644,7 @@ export type GoogleCloudDialogflowV2beta1GeneratorEvaluationConfigInputDataConfig
   | "AGENT_ASSIST_CONVERSATIONS"
   | "INSIGHTS_CONVERSATIONS";
 export const GoogleCloudDialogflowV2beta1GeneratorEvaluationConfigInputDataConfigInputDataSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1GeneratorEvaluationConfigDatasetInputDataConfig {
   dataset?: string;
@@ -6680,7 +6665,7 @@ export type GoogleCloudDialogflowV2beta1GeneratorEvaluationConfigInputDataConfig
   | "GENERATE_IF_MISSING"
   | "DO_NOT_GENERATE";
 export const GoogleCloudDialogflowV2beta1GeneratorEvaluationConfigInputDataConfigSummaryGenerationOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1GeneratorEvaluationConfigAgentAssistInputDataConfig {
   endTime?: string;
@@ -7214,8 +7199,7 @@ export type GoogleCloudDialogflowV2beta1ProbeDetailsProbeStatusEnum =
   | "PROBE_STATUS_UNSPECIFIED"
   | "PROBE_STATUS_SUCCESS"
   | "PROBE_STATUS_FAILED";
-export const GoogleCloudDialogflowV2beta1ProbeDetailsProbeStatusEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1ProbeDetailsProbeStatusEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1ProbeDetails {
   probeStatus?:
@@ -7248,7 +7232,7 @@ export type GoogleCloudDialogflowV2beta1SipHostnameHostnameErrorDetailsCertifica
   | "HOSTNAME_INVALID_FORMAT"
   | "QUOTA_EXCEEDED";
 export const GoogleCloudDialogflowV2beta1SipHostnameHostnameErrorDetailsCertificateStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SipHostnameHostnameErrorDetails {
   errorMessage?: string;
@@ -7275,7 +7259,7 @@ export type GoogleCloudDialogflowV2beta1SipHostnameConnectionStateEnum =
   | "AUTHENTICATION_FAILED"
   | "KEEPALIVE";
 export const GoogleCloudDialogflowV2beta1SipHostnameConnectionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SipHostname {
   probeDetails?: GoogleCloudDialogflowV2beta1ProbeDetails;
@@ -7318,7 +7302,7 @@ export type GoogleCloudDialogflowV2beta1SipTrunkGoogleRootCertFileEnum =
   | "CERT_FILE_UNSPECIFIED"
   | "EXTERNAL_PRIVATE_CA";
 export const GoogleCloudDialogflowV2beta1SipTrunkGoogleRootCertFileEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ConnectionStateEnum =
   | "STATE_UNSPECIFIED"
@@ -7326,8 +7310,7 @@ export type GoogleCloudDialogflowV2beta1ConnectionStateEnum =
   | "DISCONNECTED"
   | "AUTHENTICATION_FAILED"
   | "KEEPALIVE";
-export const GoogleCloudDialogflowV2beta1ConnectionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1ConnectionStateEnum = S.String;
 
 export type GoogleCloudDialogflowV2beta1ConnectionErrorDetailsCertificateStateEnum =
   | "CERTIFICATE_STATE_UNSPECIFIED"
@@ -7340,7 +7323,7 @@ export type GoogleCloudDialogflowV2beta1ConnectionErrorDetailsCertificateStateEn
   | "CERTIFICATE_HOSTNAME_INVALID_FORMAT"
   | "CERTIFICATE_QUOTA_EXCEEDED";
 export const GoogleCloudDialogflowV2beta1ConnectionErrorDetailsCertificateStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ConnectionErrorDetails {
   certificateState?:
@@ -7483,7 +7466,7 @@ export type GoogleCloudDialogflowV2beta1ToolAuthenticationServiceAgentAuthConfig
   | "ID_TOKEN"
   | "ACCESS_TOKEN";
 export const GoogleCloudDialogflowV2beta1ToolAuthenticationServiceAgentAuthConfigServiceAgentAuthEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ToolAuthenticationServiceAgentAuthConfig {
   serviceAgentAuth?:
@@ -7506,7 +7489,7 @@ export type GoogleCloudDialogflowV2beta1ToolAuthenticationOAuthConfigOauthGrantT
   | "OAUTH_GRANT_TYPE_UNSPECIFIED"
   | "CLIENT_CREDENTIAL";
 export const GoogleCloudDialogflowV2beta1ToolAuthenticationOAuthConfigOauthGrantTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ToolAuthenticationOAuthConfig {
   clientId?: string;
@@ -7539,7 +7522,7 @@ export type GoogleCloudDialogflowV2beta1ToolAuthenticationApiKeyConfigRequestLoc
   | "HEADER"
   | "QUERY_STRING";
 export const GoogleCloudDialogflowV2beta1ToolAuthenticationApiKeyConfigRequestLocationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ToolAuthenticationApiKeyConfig {
   keyName?: string;
@@ -7646,7 +7629,7 @@ export type GoogleCloudDialogflowV2beta1ToolFunctionToolMethodTypeEnum =
   | "DELETE"
   | "PATCH";
 export const GoogleCloudDialogflowV2beta1ToolFunctionToolMethodTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ToolFunctionTool {
   inputSchema?: DocumentMap;
@@ -7676,7 +7659,7 @@ export type GoogleCloudDialogflowV2beta1ToolConnectorToolActionEntityOperationOp
   | "UPDATE"
   | "DELETE";
 export const GoogleCloudDialogflowV2beta1ToolConnectorToolActionEntityOperationOperationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1ToolConnectorToolActionEntityOperation {
   entityId?: string;
@@ -7745,7 +7728,7 @@ export type GoogleCloudDialogflowV2beta1ToolActionConfirmationRequirementValueEn
   | "REQUIRED"
   | "NOT_REQUIRED";
 export const GoogleCloudDialogflowV2beta1ToolActionConfirmationRequirementValueEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ToolActionConfirmationRequirementValueEnumMap =
   {
@@ -8423,7 +8406,7 @@ export type GoogleCloudDialogflowV2beta1PhoneNumberLifecycleStateEnum =
   | "ACTIVE"
   | "DELETE_REQUESTED";
 export const GoogleCloudDialogflowV2beta1PhoneNumberLifecycleStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1PhoneNumberAllowedSipTrunks {
   sipTrunks?: StringList;
@@ -8538,7 +8521,7 @@ export type GoogleCloudDialogflowV2beta1TelephonyDtmfEventsDtmfEventsItemEnum =
   | "DTMF_STAR"
   | "DTMF_POUND";
 export const GoogleCloudDialogflowV2beta1TelephonyDtmfEventsDtmfEventsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1TelephonyDtmfEventsDtmfEventsItemEnumList =
   Array<
@@ -8760,7 +8743,7 @@ export type GoogleCloudDialogflowV2beta1GenerateSuggestionsRequestTriggerEventsI
   | "CUSTOMER_MESSAGE"
   | "AGENT_MESSAGE";
 export const GoogleCloudDialogflowV2beta1GenerateSuggestionsRequestTriggerEventsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1GenerateSuggestionsRequestTriggerEventsItemEnumList =
   Array<
@@ -8845,7 +8828,7 @@ export type GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequestTrigge
   | "CUSTOMER_MESSAGE"
   | "AGENT_MESSAGE";
 export const GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequestTriggerEventsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequestTriggerEventsItemEnumList =
   Array<
@@ -9068,22 +9051,20 @@ export type GoogleCloudDialogflowV2beta1AgentTierEnum =
   | "TIER_STANDARD"
   | "TIER_ENTERPRISE"
   | "TIER_ENTERPRISE_PLUS";
-export const GoogleCloudDialogflowV2beta1AgentTierEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1AgentTierEnum = S.String;
 
 export type GoogleCloudDialogflowV2beta1AgentApiVersionEnum =
   | "API_VERSION_UNSPECIFIED"
   | "API_VERSION_V1"
   | "API_VERSION_V2"
   | "API_VERSION_V2_BETA_1";
-export const GoogleCloudDialogflowV2beta1AgentApiVersionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1AgentApiVersionEnum = S.String;
 
 export type GoogleCloudDialogflowV2beta1AgentMatchModeEnum =
   | "MATCH_MODE_UNSPECIFIED"
   | "MATCH_MODE_HYBRID"
   | "MATCH_MODE_ML_ONLY";
-export const GoogleCloudDialogflowV2beta1AgentMatchModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1AgentMatchModeEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1Agent {
   timeZone?: string;
@@ -9362,7 +9343,7 @@ export const GetProjectsAgentEnvironmentsUsersSessionsEntityTypesRequest =
 export type GetProjectsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const GetProjectsAgentIntentsIntentViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsAgentIntentsIntentViewEnum = S.String;
 
 export interface GetProjectsAgentIntentsRequest {
   languageCode?: string;
@@ -9498,7 +9479,7 @@ export type GoogleCloudDialogflowV2beta1AgentAssistantFeedbackDocumentEfficiency
   | "INEFFICIENT"
   | "EFFICIENT";
 export const GoogleCloudDialogflowV2beta1AgentAssistantFeedbackDocumentEfficiencyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback {
   answerCopied?: boolean;
@@ -9554,14 +9535,14 @@ export type GoogleCloudDialogflowV2beta1AgentAssistantFeedbackDocumentCorrectnes
   | "INCORRECT"
   | "CORRECT";
 export const GoogleCloudDialogflowV2beta1AgentAssistantFeedbackDocumentCorrectnessEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1AgentAssistantFeedbackAnswerRelevanceEnum =
   | "ANSWER_RELEVANCE_UNSPECIFIED"
   | "IRRELEVANT"
   | "RELEVANT";
 export const GoogleCloudDialogflowV2beta1AgentAssistantFeedbackAnswerRelevanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1AgentAssistantFeedback {
   documentEfficiency?:
@@ -9609,7 +9590,7 @@ export type GoogleCloudDialogflowV2beta1AnswerFeedbackCorrectnessLevelEnum =
   | "PARTIALLY_CORRECT"
   | "FULLY_CORRECT";
 export const GoogleCloudDialogflowV2beta1AnswerFeedbackCorrectnessLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1AnswerFeedback {
   clickTime?: string;
@@ -9884,8 +9865,7 @@ export const GetProjectsLocationsAgentEnvironmentsUsersSessionsEntityTypesReques
 export type GetProjectsLocationsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const GetProjectsLocationsAgentIntentsIntentViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsAgentIntentsIntentViewEnum = S.String;
 
 export interface GetProjectsLocationsAgentIntentsRequest {
   name: string;
@@ -10205,8 +10185,7 @@ export type GoogleCloudDialogflowV2beta1ValidationErrorSeverityEnum =
   | "WARNING"
   | "ERROR"
   | "CRITICAL";
-export const GoogleCloudDialogflowV2beta1ValidationErrorSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDialogflowV2beta1ValidationErrorSeverityEnum = S.String;
 
 export interface GoogleCloudDialogflowV2beta1ValidationError {
   errorMessage?: string;
@@ -10311,7 +10290,7 @@ export type GoogleCloudDialogflowV2beta1ImportDocumentTemplateKnowledgeTypesItem
   | "AGENT_FACING_SMART_REPLY"
   | "SMART_REPLY";
 export const GoogleCloudDialogflowV2beta1ImportDocumentTemplateKnowledgeTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDialogflowV2beta1ImportDocumentTemplateKnowledgeTypesItemEnumList =
   Array<
@@ -10612,8 +10591,7 @@ export const GoogleCloudDialogflowV2beta1ListEnvironmentsResponse =
 export type ListProjectsAgentEnvironmentsIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const ListProjectsAgentEnvironmentsIntentsIntentViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsAgentEnvironmentsIntentsIntentViewEnum = S.String;
 
 export interface ListProjectsAgentEnvironmentsIntentsRequest {
   pageToken?: string;
@@ -10736,7 +10714,7 @@ export const GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse =
 export type ListProjectsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const ListProjectsAgentIntentsIntentViewEnum = /*@__PURE__*/ S.String;
+export const ListProjectsAgentIntentsIntentViewEnum = S.String;
 
 export interface ListProjectsAgentIntentsRequest {
   languageCode?: string;
@@ -11380,7 +11358,7 @@ export type ListProjectsLocationsAgentEnvironmentsIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
 export const ListProjectsLocationsAgentEnvironmentsIntentsIntentViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsAgentEnvironmentsIntentsRequest {
   pageToken?: string;
@@ -11463,8 +11441,7 @@ export const ListProjectsLocationsAgentEnvironmentsUsersSessionsEntityTypesReque
 export type ListProjectsLocationsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const ListProjectsLocationsAgentIntentsIntentViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsAgentIntentsIntentViewEnum = S.String;
 
 export interface ListProjectsLocationsAgentIntentsRequest {
   parent: string;
@@ -12119,7 +12096,7 @@ export const PatchProjectsAgentEnvironmentsUsersSessionsEntityTypesRequest =
 export type PatchProjectsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const PatchProjectsAgentIntentsIntentViewEnum = /*@__PURE__*/ S.String;
+export const PatchProjectsAgentIntentsIntentViewEnum = S.String;
 
 export interface PatchProjectsAgentIntentsRequest {
   intentView?: PatchProjectsAgentIntentsIntentViewEnum | (string & {});
@@ -12495,8 +12472,7 @@ export const PatchProjectsLocationsAgentEnvironmentsUsersSessionsEntityTypesRequ
 export type PatchProjectsLocationsAgentIntentsIntentViewEnum =
   | "INTENT_VIEW_UNSPECIFIED"
   | "INTENT_VIEW_FULL";
-export const PatchProjectsLocationsAgentIntentsIntentViewEnum =
-  /*@__PURE__*/ S.String;
+export const PatchProjectsLocationsAgentIntentsIntentViewEnum = S.String;
 
 export interface PatchProjectsLocationsAgentIntentsRequest {
   languageCode?: string;
@@ -13007,7 +12983,7 @@ export type GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostS
   | "NUMERICAL"
   | "FRESHNESS";
 export const GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecAttributeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
   attributeValue?: string;
@@ -13035,7 +13011,7 @@ export type GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostS
   | "INTERPOLATION_TYPE_UNSPECIFIED"
   | "LINEAR";
 export const GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecInterpolationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec {
   attributeType?:
@@ -13162,7 +13138,7 @@ export type GoogleCloudDialogflowV2beta1SearchKnowledgeRequestQuerySourceEnum =
   | "AGENT_QUERY"
   | "SUGGESTED_QUERY";
 export const GoogleCloudDialogflowV2beta1SearchKnowledgeRequestQuerySourceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SearchKnowledgeRequest {
   searchConfig?: GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfig;
@@ -13256,7 +13232,7 @@ export type GoogleCloudDialogflowV2beta1SearchKnowledgeAnswerAnswerTypeEnum =
   | "PLAYBOOK"
   | "EVENT";
 export const GoogleCloudDialogflowV2beta1SearchKnowledgeAnswerAnswerTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SearchKnowledgeAnswer {
   answer?: string;
@@ -13316,7 +13292,7 @@ export type GoogleCloudDialogflowV2beta1SearchKnowledgeDebugInfoDatastoreRespons
   | "ANSWER_GENERATION_RAI_FAILED"
   | "ANSWER_GENERATION_NOT_GROUNDED";
 export const GoogleCloudDialogflowV2beta1SearchKnowledgeDebugInfoDatastoreResponseReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SearchKnowledgeDebugInfo {
   serviceLatency?: GoogleCloudDialogflowV2beta1ServiceLatency;
@@ -13546,7 +13522,7 @@ export type GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequestPartici
   | "AUTOMATED_AGENT"
   | "END_USER";
 export const GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequestParticipantRoleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest {
   suggestionFeatureConfig?: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig;

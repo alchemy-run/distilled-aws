@@ -248,22 +248,22 @@ export const BusinessKnowledgeSourcesRefreshCreateRequest =
 
 /** * `text` - Text * `url` - URL * `file` - File */
 export type SourceTypeEnum = "text" | "url" | "file";
-export const SourceTypeEnum = /*@__PURE__*/ S.String;
+export const SourceTypeEnum = S.String;
 
 /** * `pending` - Pending * `processing` - Processing * `ready` - Ready * `error` - Error */
 export type SourceStatusEnum = "pending" | "processing" | "ready" | "error";
-export const SourceStatusEnum = /*@__PURE__*/ S.String;
+export const SourceStatusEnum = S.String;
 
 /** * `success` - Success * `not_modified` - Not modified * `error` - Error */
 export type RefreshStatusEnum = "success" | "not_modified" | "error";
-export const RefreshStatusEnum = /*@__PURE__*/ S.String;
+export const RefreshStatusEnum = S.String;
 
 /** * `manual` - Manual only * `1h` - Every hour * `6h` - Every 6 hours * `24h` - Every day * `7d` - Every week */
 export type RefreshIntervalEnum = "manual" | "1h" | "6h" | "24h" | "7d";
-export const RefreshIntervalEnum = /*@__PURE__*/ S.String;
+export const RefreshIntervalEnum = S.String;
 
 export type EmbeddingStatusEnum = "pending" | "completed" | "disabled";
-export const EmbeddingStatusEnum = /*@__PURE__*/ S.String;
+export const EmbeddingStatusEnum = S.String;
 
 /** * `single` - Single page * `sitemap` - Sitemap * `same_origin` - Same origin crawl * `github_repo` - GitHub repository */
 export type CrawlModeEnum =
@@ -271,7 +271,7 @@ export type CrawlModeEnum =
   | "sitemap"
   | "same_origin"
   | "github_repo";
-export const CrawlModeEnum = /*@__PURE__*/ S.String;
+export const CrawlModeEnum = S.String;
 
 export interface KnowledgeSource {
   id: string;

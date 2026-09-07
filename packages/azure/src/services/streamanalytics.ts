@@ -23,7 +23,7 @@ export const ClustersCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Specifies the SKU name of the cluster. Required on PUT (CreateOrUpdate) requests. */
 export type ClusterSkuName = "Default";
-export const ClusterSkuName = /*@__PURE__*/ S.String;
+export const ClusterSkuName = S.String;
 
 /** The SKU of the cluster. This determines the size/capacity of the cluster. Required on PUT (CreateOrUpdate) requests. */
 export interface ClusterSku {
@@ -98,7 +98,7 @@ export type ClusterProvisioningState =
   | "Failed"
   | "Canceled"
   | "InProgress";
-export const ClusterProvisioningState = /*@__PURE__*/ S.String;
+export const ClusterProvisioningState = S.String;
 
 /** The properties associated with a Stream Analytics cluster. */
 export interface ClusterProperties {
@@ -702,7 +702,7 @@ export const GetInputRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of serialization that the input or output uses. Required on PUT (CreateOrReplace) requests. */
 export type EventSerializationType = "Csv" | "Avro" | "Json" | "Parquet";
-export const EventSerializationType = /*@__PURE__*/ S.String;
+export const EventSerializationType = S.String;
 
 /** Describes how data from an input is serialized or how data is serialized when written to an output. */
 export interface Serialization {
@@ -753,7 +753,7 @@ export const Diagnostics = /*@__PURE__*/ S.suspend(() =>
 
 /** Indicates the type of compression that the input uses. Required on PUT (CreateOrReplace) requests. */
 export type CompressionType = "None" | "GZip" | "Deflate";
-export const CompressionType = /*@__PURE__*/ S.String;
+export const CompressionType = S.String;
 
 /** Describes how input data is compressed */
 export interface Compression {
@@ -1117,7 +1117,7 @@ export const GetStreamingJobResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The name of the SKU. Required on PUT (CreateOrReplace) requests. */
 export type SkuName = "Standard";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The properties that are associated with a SKU. */
 export interface Sku {
@@ -1132,26 +1132,26 @@ export const Sku = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes the type of the job. Valid modes are `Cloud` and 'Edge'. */
 export type StreamingJobPropertiesJobType = "Cloud" | "Edge";
-export const StreamingJobPropertiesJobType = /*@__PURE__*/ S.String;
+export const StreamingJobPropertiesJobType = S.String;
 
 /** Value may be JobStartTime, CustomTime, or LastOutputEventTime to indicate whether the starting point of the output event stream should start whenever the job is started, start at a custom user time stamp specified via the outputStartTime property, or start from the last event output time. */
 export type OutputStartMode =
   | "JobStartTime"
   | "CustomTime"
   | "LastOutputEventTime";
-export const OutputStartMode = /*@__PURE__*/ S.String;
+export const OutputStartMode = S.String;
 
 /** Indicates the policy to apply to events that arrive out of order in the input event stream. */
 export type EventsOutOfOrderPolicy = "Adjust" | "Drop";
-export const EventsOutOfOrderPolicy = /*@__PURE__*/ S.String;
+export const EventsOutOfOrderPolicy = S.String;
 
 /** Indicates the policy to apply to events that arrive at the output and cannot be written to the external storage due to being malformed (missing column values, column values of wrong type or size). */
 export type OutputErrorPolicy = "Stop" | "Drop";
-export const OutputErrorPolicy = /*@__PURE__*/ S.String;
+export const OutputErrorPolicy = S.String;
 
 /** Controls certain runtime behaviors of the streaming job. */
 export type CompatibilityLevel = "1.0" | "1.2";
-export const CompatibilityLevel = /*@__PURE__*/ S.String;
+export const CompatibilityLevel = S.String;
 
 /** An input object, containing all information associated with the named input. All inputs are contained under a streaming job. */
 export interface StreamingJobPropertiesInputsItem {
@@ -1299,7 +1299,7 @@ export type JobStorageAccountAuthenticationMode =
   | "Msi"
   | "UserToken"
   | "ConnectionString";
-export const JobStorageAccountAuthenticationMode = /*@__PURE__*/ S.String;
+export const JobStorageAccountAuthenticationMode = S.String;
 
 /** The properties that are associated with an Azure Storage account with MSI */
 export interface JobStorageAccount {
@@ -1324,8 +1324,7 @@ export const JobStorageAccount = /*@__PURE__*/ S.suspend(() =>
 export type StreamingJobPropertiesContentStoragePolicy =
   | "SystemAccount"
   | "JobStorageAccount";
-export const StreamingJobPropertiesContentStoragePolicy =
-  /*@__PURE__*/ S.String;
+export const StreamingJobPropertiesContentStoragePolicy = S.String;
 
 /** The properties associated with a Stream Analytics cluster. */
 export interface ClusterInfo {
@@ -1730,7 +1729,7 @@ export type JobState =
   | "Degraded"
   | "Restarting"
   | "Scaling";
-export const JobState = /*@__PURE__*/ S.String;
+export const JobState = S.String;
 
 /** A streaming job. */
 export interface ClusterJob {
@@ -2598,7 +2597,7 @@ export const StreamingJobsCreateOrReplaceRequestTagsMap =
 
 /** Describes the type of the job. Valid modes are `Cloud` and 'Edge'. */
 export type StreamingJobPropertiesInputJobType = "Cloud" | "Edge";
-export const StreamingJobPropertiesInputJobType = /*@__PURE__*/ S.String;
+export const StreamingJobPropertiesInputJobType = S.String;
 
 /** An input object, containing all information associated with the named input. All inputs are contained under a streaming job. */
 export interface StreamingJobPropertiesInputInputsItem {
@@ -2722,8 +2721,7 @@ export const StreamingJobPropertiesInputFunctionsList = /*@__PURE__*/ S.Array(
 export type StreamingJobPropertiesInputContentStoragePolicy =
   | "SystemAccount"
   | "JobStorageAccount";
-export const StreamingJobPropertiesInputContentStoragePolicy =
-  /*@__PURE__*/ S.String;
+export const StreamingJobPropertiesInputContentStoragePolicy = S.String;
 
 /** The properties that are associated with a streaming job. */
 export interface StreamingJobPropertiesInput {

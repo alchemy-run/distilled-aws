@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 export type { SlackOpError, SlackOpContext };
 
 export type SearchAllRequestSortDir = "asc" | "desc";
-export const SearchAllRequestSortDir = /*@__PURE__*/ S.String;
+export const SearchAllRequestSortDir = S.String;
 
 export interface SearchAllRequest {
   count?: number;
@@ -67,7 +67,7 @@ export const SearchAllResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchAllResponse>;
 
 export type SearchFilesRequestSortDir = "asc" | "desc";
-export const SearchFilesRequestSortDir = /*@__PURE__*/ S.String;
+export const SearchFilesRequestSortDir = S.String;
 
 export interface SearchFilesRequest {
   count?: number;
@@ -257,7 +257,7 @@ export const SearchFilesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchFilesResponse>;
 
 export type SearchMessagesRequestSortDir = "asc" | "desc" | "";
-export const SearchMessagesRequestSortDir = /*@__PURE__*/ S.String;
+export const SearchMessagesRequestSortDir = S.String;
 
 export interface SearchMessagesRequest {
   /** Pass the number of results you want per "page". Maximum of `100`. */

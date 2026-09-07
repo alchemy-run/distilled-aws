@@ -115,7 +115,7 @@ export type DedicatedTaskFunctionEnum =
   | "testIPMIping"
   | "virtualMacAdd"
   | "virtualMacDelete";
-export const DedicatedTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const DedicatedTaskFunctionEnum = S.String;
 
 /** different task status */
 export type DedicatedTaskStatusEnum =
@@ -126,7 +126,7 @@ export type DedicatedTaskStatusEnum =
   | "init"
   | "ovhError"
   | "todo";
-export const DedicatedTaskStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedTaskStatusEnum = S.String;
 
 /** Key and value, with proper key strings */
 export interface ComplexTypeSafeKeyValueCanBeNullString {
@@ -231,7 +231,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -249,7 +249,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmDedicatedServerTerminationRequest {
   /** The internal name of your dedicated server */
@@ -316,7 +316,7 @@ export type DedicatedServerAccessTypeEnum =
   | "SQL_SERVER"
   | "SSH"
   | "WEB_PANEL";
-export const DedicatedServerAccessTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerAccessTypeEnum = S.String;
 
 /** A structure describing the server's access */
 export interface DedicatedServerAccess {
@@ -372,14 +372,14 @@ export type DedicatedServerBiosSettingsSgxPrmrrEnum =
   | "64"
   | "65536"
   | "8192";
-export const DedicatedServerBiosSettingsSgxPrmrrEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBiosSettingsSgxPrmrrEnum = S.String;
 
 /** SGX Status enum */
 export type DedicatedServerBiosSettingsSgxStatusEnum =
   | "disabled"
   | "enabled"
   | "software controlled";
-export const DedicatedServerBiosSettingsSgxStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBiosSettingsSgxStatusEnum = S.String;
 
 export interface CreateDedicatedServerBiosSettingsSgxConfigureRequest {
   /** The internal name of your dedicated server */
@@ -613,7 +613,7 @@ export type DedicatedServerBackupBackupStatusCodeEnum =
   | "SUSPENDING"
   | "UNKNOWN"
   | "WAITING_AGREEMENTS_VALIDATION";
-export const DedicatedServerBackupBackupStatusCodeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBackupBackupStatusCodeEnum = S.String;
 
 /** A structure describing the status of your backup */
 export interface DedicatedServerBackupBackupStatus {
@@ -765,7 +765,7 @@ export const CreateDedicatedServerFeatureBackupFTPPasswordRequest =
 
 /** Time to live in minutes for cache */
 export type DedicatedServerCacheTTLEnum = 1 | 3 | 5 | 10 | 15;
-export const DedicatedServerCacheTTLEnum = /*@__PURE__*/ S.Number;
+export const DedicatedServerCacheTTLEnum = S.Number;
 
 export interface CreateDedicatedServerFeatureBmcJavaKvmRequest {
   /** The internal name of your dedicated server */
@@ -803,7 +803,7 @@ export type DedicatedOperationFunctionEnum =
   | "bmc/testWeb"
   | "bmc/webKvm"
   | "bmc/webSol";
-export const DedicatedOperationFunctionEnum = /*@__PURE__*/ S.String;
+export const DedicatedOperationFunctionEnum = S.String;
 
 /** Server operations */
 export interface DedicatedServerOperation {
@@ -917,7 +917,7 @@ export type DedicatedServerIpmiAccessTypeEnum =
   | "kvmipJnlp"
   | "serialOverLanSshKey"
   | "serialOverLanURL";
-export const DedicatedServerIpmiAccessTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerIpmiAccessTypeEnum = S.String;
 
 export interface CreateDedicatedServerFeatureIpmiAccessRequest {
   /** The internal name of your dedicated server */
@@ -1575,7 +1575,7 @@ export type LicenseWindowsOsVersionEnum =
   | "windows-server-2025-license-standard-edition-72-cores"
   | "windows-server-2025-license-standard-edition-8-cores"
   | "windows-server-2025-license-standard-edition-96-cores";
-export const LicenseWindowsOsVersionEnum = /*@__PURE__*/ S.String;
+export const LicenseWindowsOsVersionEnum = S.String;
 
 export interface CreateDedicatedServerLicenseWindowsRequest {
   /** The internal name of your dedicated server */
@@ -1610,7 +1610,7 @@ export const DedicatedServerInterfacesMacsList = /*@__PURE__*/ S.Array(
 
 /** Network type */
 export type DedicatedServerNetworkingTypeEnum = "public" | "vrack";
-export const DedicatedServerNetworkingTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerNetworkingTypeEnum = S.String;
 
 /** Interface or interfaces aggregation */
 export interface DedicatedServerInterfaces {
@@ -1667,7 +1667,7 @@ export const DedicatedServerNetworkingInterfacesList = /*@__PURE__*/ S.Array(
 
 /** Network operation states */
 export type DedicatedServerNetworkingOperationEnum = "active" | "deploying";
-export const DedicatedServerNetworkingOperationEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerNetworkingOperationEnum = S.String;
 
 /** Network configuration */
 export interface DedicatedServerNetworking {
@@ -1739,14 +1739,13 @@ export type DedicatedServerReinstallCustomizationsImageCheckSumTypeEnum =
   | "sha256"
   | "sha512";
 export const DedicatedServerReinstallCustomizationsImageCheckSumTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Image Type */
 export type DedicatedServerReinstallCustomizationsImageTypeEnum =
   | "qcow2"
   | "raw";
-export const DedicatedServerReinstallCustomizationsImageTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DedicatedServerReinstallCustomizationsImageTypeEnum = S.String;
 
 /** Display Language */
 export type DedicatedServerReinstallCustomizationsLanguageEnum =
@@ -1759,15 +1758,14 @@ export type DedicatedServerReinstallCustomizationsLanguageEnum =
   | "nl-nl"
   | "pl-pl"
   | "pt-pt";
-export const DedicatedServerReinstallCustomizationsLanguageEnum =
-  /*@__PURE__*/ S.String;
+export const DedicatedServerReinstallCustomizationsLanguageEnum = S.String;
 
 /** Post-Installation Script File Extension */
 export type DedicatedServerReinstallCustomizationsPostInstallationScriptExtensionEnum =
   | "cmd"
   | "ps1";
 export const DedicatedServerReinstallCustomizationsPostInstallationScriptExtensionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** OS reinstallation customizations */
 export interface DedicatedServerReinstallCustomizations {
@@ -1850,7 +1848,7 @@ export type DedicatedServerReinstallStorageHardwareRaidRaidLevelEnum =
   | 50
   | 60;
 export const DedicatedServerReinstallStorageHardwareRaidRaidLevelEnum =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** Hardware Raid configuration */
 export interface DedicatedServerReinstallStorageHardwareRaid {
@@ -1949,7 +1947,7 @@ export type DedicatedServerReinstallStoragePartitioningLayoutFileSystemEnum =
   | "xfs"
   | "zfs";
 export const DedicatedServerReinstallStoragePartitioningLayoutFileSystemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Software raid types */
 export type DedicatedServerReinstallStoragePartitioningLayoutRaidLevelEnum =
@@ -1960,7 +1958,7 @@ export type DedicatedServerReinstallStoragePartitioningLayoutRaidLevelEnum =
   | 7
   | 10;
 export const DedicatedServerReinstallStoragePartitioningLayoutRaidLevelEnum =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** Custom partition parameters */
 export interface DedicatedServerReinstallStoragePartitioningLayout {
@@ -2128,7 +2126,7 @@ export type DedicatedServerTaskFunctionEnum =
   | "testIPMIping"
   | "virtualMacAdd"
   | "virtualMacDelete";
-export const DedicatedServerTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerTaskFunctionEnum = S.String;
 
 /** Task statuses */
 export type DedicatedServerTaskStatusEnum =
@@ -2139,7 +2137,7 @@ export type DedicatedServerTaskStatusEnum =
   | "init"
   | "ovhError"
   | "todo";
-export const DedicatedServerTaskStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerTaskStatusEnum = S.String;
 
 /** Dedicated server task */
 export interface DedicatedServerTaskResponse {
@@ -2201,7 +2199,7 @@ export const CreateDedicatedServerSecondaryDnsDomainResponse =
 
 /** SPLA license type */
 export type DedicatedServerSplaTypeEnum = "os" | "sqlstd" | "sqlweb";
-export const DedicatedServerSplaTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerSplaTypeEnum = S.String;
 
 export interface CreateDedicatedServerSplaRequest {
   /** The internal name of your dedicated server */
@@ -2408,7 +2406,7 @@ export const CreateDedicatedServerTaskScheduleResponse =
 
 /** Distinct type of virtual mac */
 export type DedicatedServerVmacTypeEnum = "ovh" | "vmware";
-export const DedicatedServerVmacTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerVmacTypeEnum = S.String;
 
 export interface CreateDedicatedServerVirtualMacRequest {
   /** The internal name of your dedicated server */
@@ -2564,7 +2562,7 @@ export type DeleteDedicatedServerOptionRequestOption =
   | "TUNING_FIREWALL"
   | "TUNING_KVM"
   | "USB_KVM_IP";
-export const DeleteDedicatedServerOptionRequestOption = /*@__PURE__*/ S.String;
+export const DeleteDedicatedServerOptionRequestOption = S.String;
 
 export interface DeleteDedicatedServerOptionRequest {
   /** The internal name of your dedicated server */
@@ -2675,7 +2673,7 @@ export type VrackTaskStatusEnum =
   | "done"
   | "init"
   | "todo";
-export const VrackTaskStatusEnum = /*@__PURE__*/ S.String;
+export const VrackTaskStatusEnum = S.String;
 
 /** vrack tasks */
 export interface VrackTask {
@@ -2776,7 +2774,7 @@ export type DedicatedDatacenterEnum =
   | "waw1"
   | "ynm1"
   | "yyz01";
-export const DedicatedDatacenterEnum = /*@__PURE__*/ S.String;
+export const DedicatedDatacenterEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -2809,7 +2807,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Power states of a Dedicated */
 export type DedicatedServerPowerStateEnum = "poweroff" | "poweron";
-export const DedicatedServerPowerStateEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerPowerStateEnum = S.String;
 
 /** All states a Dedicated can in */
 export type DedicatedServerStateEnum =
@@ -2817,7 +2815,7 @@ export type DedicatedServerStateEnum =
   | "hacked"
   | "hackedBlocked"
   | "ok";
-export const DedicatedServerStateEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerStateEnum = S.String;
 
 /** distincts support level */
 export type DedicatedServerSupportLevelEnum =
@@ -2825,7 +2823,7 @@ export type DedicatedServerSupportLevelEnum =
   | "fastpath"
   | "gs"
   | "pro";
-export const DedicatedServerSupportLevelEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerSupportLevelEnum = S.String;
 
 /** Server informations */
 export interface DedicatedServerDedicatedWithIAM {
@@ -2927,7 +2925,7 @@ export const GetDedicatedServerAntiDDosGameStatusRequest =
 
 /** enable or disable */
 export type DedicatedStatusEnum = "disable" | "enable";
-export const DedicatedStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedStatusEnum = S.String;
 
 export type GetDedicatedServerAntiDDosGameStatusResponse = DedicatedStatusEnum;
 export const GetDedicatedServerAntiDDosGameStatusResponse =
@@ -3125,7 +3123,7 @@ export type DedicatedServerBootTypeEnum =
   | "network"
   | "power"
   | "rescue";
-export const DedicatedServerBootTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBootTypeEnum = S.String;
 
 /** Available boots */
 export interface DedicatedServerNetboot {
@@ -3155,7 +3153,7 @@ export type GetDedicatedServerBootOptionRequestOption =
   | "grsec"
   | "ipv6"
   | "smp";
-export const GetDedicatedServerBootOptionRequestOption = /*@__PURE__*/ S.String;
+export const GetDedicatedServerBootOptionRequestOption = S.String;
 
 export interface GetDedicatedServerBootOptionRequest {
   /** The internal name of your dedicated server */
@@ -3187,7 +3185,7 @@ export type DedicatedServerBootOptionEnum =
   | "grsec"
   | "ipv6"
   | "smp";
-export const DedicatedServerBootOptionEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBootOptionEnum = S.String;
 
 /** Available boot options */
 export interface DedicatedServerNetbootOption {
@@ -3228,7 +3226,7 @@ export type DedicatedServerBurstStatusEnum =
   | "active"
   | "inactive"
   | "inactiveLocked";
-export const DedicatedServerBurstStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBurstStatusEnum = S.String;
 
 /** Server bandwidth burst details */
 export interface DedicatedServerServerBurst {
@@ -3267,7 +3265,7 @@ export const GetDedicatedServerFeatureBackupFTPRequest =
 
 /** Different backup storage type */
 export type DedicatedServerBackupStorageTypeEnum = "included" | "storage";
-export const DedicatedServerBackupStorageTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBackupStorageTypeEnum = S.String;
 
 /** Backup Ftp assigned to this server */
 export interface DedicatedServerBackupFtp {
@@ -3487,7 +3485,7 @@ export const DedicatedServerBmcSshSolValue = /*@__PURE__*/ S.suspend(() =>
 
 /** List of tests to run on a BMC */
 export type DedicatedServerBmcTestTypeEnum = "password" | "ping" | "web";
-export const DedicatedServerBmcTestTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBmcTestTypeEnum = S.String;
 
 export interface GetDedicatedServerFeatureBmcTestRequest {
   /** The internal name of your dedicated server */
@@ -3630,14 +3628,14 @@ export const GetDedicatedServerFeatureFirewallRequest = /*@__PURE__*/ S.suspend(
 
 /** Dedicated server firewall mode */
 export type DedicatedServerFirewallModeEnum = "routed" | "transparent";
-export const DedicatedServerFirewallModeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerFirewallModeEnum = S.String;
 
 /** Firewall model name */
 export type DedicatedServerFirewallModelEnum =
   | "asa5505"
   | "asa5510"
   | "asa5520";
-export const DedicatedServerFirewallModelEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerFirewallModelEnum = S.String;
 
 /** Firewall attached to this server */
 export interface DedicatedServerFirewall {
@@ -3760,7 +3758,7 @@ export const DedicatedServerIpmiAccessValue = /*@__PURE__*/ S.suspend(() =>
 
 /** Different test can be made on IPMI interface */
 export type DedicatedServerIpmiTestTypeEnum = "http" | "password" | "ping";
-export const DedicatedServerIpmiTestTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerIpmiTestTypeEnum = S.String;
 
 export interface GetDedicatedServerFeatureIpmiTestRequest {
   /** The internal name of your dedicated server */
@@ -3939,7 +3937,7 @@ export type DedicatedNetworkInterfaceControllerNetworkInterfaceControllerLinkTyp
   | "public"
   | "public_lag";
 export const DedicatedNetworkInterfaceControllerNetworkInterfaceControllerLinkTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Your networkInterfaceController */
 export interface DedicatedNetworkInterfaceControllerNetworkInterfaceController {
@@ -3997,7 +3995,7 @@ export type GetDedicatedServerOptionRequestOption =
   | "TUNING_FIREWALL"
   | "TUNING_KVM"
   | "USB_KVM_IP";
-export const GetDedicatedServerOptionRequestOption = /*@__PURE__*/ S.String;
+export const GetDedicatedServerOptionRequestOption = S.String;
 
 export interface GetDedicatedServerOptionRequest {
   /** The internal name of your dedicated server */
@@ -4033,11 +4031,11 @@ export type DedicatedServerOptionEnum =
   | "TUNING_FIREWALL"
   | "TUNING_KVM"
   | "USB_KVM_IP";
-export const DedicatedServerOptionEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerOptionEnum = S.String;
 
 /** All states a dedicated server option can be in */
 export type DedicatedServerOptionStateEnum = "released" | "subscribed";
-export const DedicatedServerOptionStateEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerOptionStateEnum = S.String;
 
 /** Information about the options of a dedicated server */
 export interface DedicatedServerOption {
@@ -4059,7 +4057,7 @@ export const DedicatedServerOption = /*@__PURE__*/ S.suspend(() =>
 export type DedicatedServerOrderableSysFeatureEnum =
   | "backupProtocol"
   | "monitoring";
-export const DedicatedServerOrderableSysFeatureEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerOrderableSysFeatureEnum = S.String;
 
 export interface GetDedicatedServerOrderableFeatureRequest {
   /** The internal name of your dedicated server */
@@ -4189,12 +4187,12 @@ export const GetDedicatedServerPlannedInterventionRequest =
 
 /** Intervention status */
 export type DedicatedPlannedInterventionStatusEnum = "doing" | "done" | "todo";
-export const DedicatedPlannedInterventionStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedPlannedInterventionStatusEnum = S.String;
 
 /** Intervention type */
 export type DedicatedPlannedInterventionTypeEnum =
   "HARDWARE_UPGRADE_ON_ACTIVE_SERVER";
-export const DedicatedPlannedInterventionTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedPlannedInterventionTypeEnum = S.String;
 
 /** Planned intervention on the server */
 export interface DedicatedServerPlannedIntervention {
@@ -4344,7 +4342,7 @@ export type ZoneNamedResolutionFieldTypeEnum =
   | "SSHFP"
   | "TLSA"
   | "TXT";
-export const ZoneNamedResolutionFieldTypeEnum = /*@__PURE__*/ S.String;
+export const ZoneNamedResolutionFieldTypeEnum = S.String;
 
 /** A structure describing informations about secondary dns check field */
 export interface SecondaryDnsSecondaryDNSCheckField {
@@ -4444,7 +4442,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -4453,7 +4451,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -4517,7 +4515,7 @@ export const GetDedicatedServerSpecificationHardwareRequest =
 
 /** Server boot mode */
 export type DedicatedServerBootModeEnum = "legacy" | "uefi" | "uefi-legacy";
-export const DedicatedServerBootModeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBootModeEnum = S.String;
 
 /** Raid hard configuration */
 export type DedicatedServerHardwareSpecificationsRaidHardEnum =
@@ -4529,8 +4527,7 @@ export type DedicatedServerHardwareSpecificationsRaidHardEnum =
   | "raid50"
   | "raid6"
   | "raid60";
-export const DedicatedServerHardwareSpecificationsRaidHardEnum =
-  /*@__PURE__*/ S.String;
+export const DedicatedServerHardwareSpecificationsRaidHardEnum = S.String;
 
 /** A structure describing informations about server disks */
 export interface DedicatedServerHardwareSpecificationsDisk {
@@ -4584,7 +4581,7 @@ export type DedicatedServerHardwareSpecificationsExpansionCardTypeEnum =
   | "fpga"
   | "gpu";
 export const DedicatedServerHardwareSpecificationsExpansionCardTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A structure describing informations about server expansion cards */
 export interface DedicatedServerHardwareSpecificationsExpansionCard {
@@ -4621,7 +4618,7 @@ export type DedicatedServerFormFactorEnum =
   | "2u"
   | "3u"
   | "4u";
-export const DedicatedServerFormFactorEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerFormFactorEnum = S.String;
 
 /** cpu family */
 export type DedicatedServerCpuFamilyEnum =
@@ -4631,7 +4628,7 @@ export type DedicatedServerCpuFamilyEnum =
   | "x86"
   | "x86-ht"
   | "x86_64";
-export const DedicatedServerCpuFamilyEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerCpuFamilyEnum = S.String;
 
 /** Capacity of the USB keys installed on your server, if any */
 export type DedicatedServerHardwareSpecificationsUsbKeysList =
@@ -4734,7 +4731,7 @@ export type DedicatedServerBandwidthTypeEnum =
   | "premium"
   | "standard"
   | "ultimate";
-export const DedicatedServerBandwidthTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBandwidthTypeEnum = S.String;
 
 /** A structure describing bandwidth informations about this dedicated server */
 export interface DedicatedServerBandwidthDetails {
@@ -4760,7 +4757,7 @@ export const DedicatedServerBandwidthDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** An enum describing OVH Link Aggregation interface types */
 export type DedicatedServerOlaInterfaceModeEnum = "public" | "vrack";
-export const DedicatedServerOlaInterfaceModeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerOlaInterfaceModeEnum = S.String;
 
 /** A structure describing OVH Link Aggregation interface configuration */
 export interface DedicatedServerOlaInterface {
@@ -4823,7 +4820,7 @@ export type DedicatedVirtualNetworkInterfaceVirtualNetworkInterfaceModeEnum =
   | "vrack"
   | "vrack_aggregation";
 export const DedicatedVirtualNetworkInterfaceVirtualNetworkInterfaceModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** (DEPRECATED) What modes are supported */
 export type DedicatedServerOlaDetailsSupportedModesList =
@@ -4954,7 +4951,7 @@ export const DedicatedServerVmacDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Different Bandwidth type */
 export type DedicatedServerBandwidthvRackTypeEnum = "included" | "standard";
-export const DedicatedServerBandwidthvRackTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerBandwidthvRackTypeEnum = S.String;
 
 /** A structure describing vRack bandwidth informations about this dedicated server */
 export interface DedicatedServerBandwidthvRackDetails {
@@ -5034,7 +5031,7 @@ export type DedicatedServerSplaStatusEnum =
   | "terminated"
   | "used"
   | "waitingToCheck";
-export const DedicatedServerSplaStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerSplaStatusEnum = S.String;
 
 /** SPLA licenses management */
 export interface DedicatedServerSpla {
@@ -5401,7 +5398,7 @@ export type DedicatedAvailabilityEnum =
   | "comingSoon"
   | "unavailable"
   | "unknown";
-export const DedicatedAvailabilityEnum = /*@__PURE__*/ S.String;
+export const DedicatedAvailabilityEnum = S.String;
 
 /** The region */
 export type DedicatedAvailabilityRegionEnum =
@@ -5449,7 +5446,7 @@ export type DedicatedAvailabilityRegionEnum =
   | "vin"
   | "waw"
   | "ynm";
-export const DedicatedAvailabilityRegionEnum = /*@__PURE__*/ S.String;
+export const DedicatedAvailabilityRegionEnum = S.String;
 
 /** A structure describing the availabilities of dedicated server */
 export interface DedicatedAvailabilitiesRaw {
@@ -5676,7 +5673,7 @@ export type DedicatedAvailabilityDatacenterEnum =
   | "vin"
   | "waw"
   | "ynm";
-export const DedicatedAvailabilityDatacenterEnum = /*@__PURE__*/ S.String;
+export const DedicatedAvailabilityDatacenterEnum = S.String;
 
 /** A structure describing the hardware availability for each datacenter */
 export interface DedicatedAvailabilityDatacenter {
@@ -5853,7 +5850,7 @@ export type DedicatedAvailabilityAvailabilityZoneEnum =
   | "eu-west-sbg-a"
   | "us-east-vin-a"
   | "us-west-hil-a";
-export const DedicatedAvailabilityAvailabilityZoneEnum = /*@__PURE__*/ S.String;
+export const DedicatedAvailabilityAvailabilityZoneEnum = S.String;
 
 /** A structure describing the hardware raw availability for each availability zone */
 export interface DedicatedAvailabilityRawAvailabilityZones {
@@ -5909,7 +5906,7 @@ export type DedicatedAvailabilityRegionalizationEnum =
   | "eu-west-sbg"
   | "us-east-vin"
   | "us-west-hil";
-export const DedicatedAvailabilityRegionalizationEnum = /*@__PURE__*/ S.String;
+export const DedicatedAvailabilityRegionalizationEnum = S.String;
 
 /** A structure describing the hardware raw availability for each datacenter */
 export interface DedicatedAvailabilityRawRegion {
@@ -6234,7 +6231,7 @@ export type DedicatedServerDiskTypeEnum =
   | "SATA"
   | "SSD"
   | "Unknown";
-export const DedicatedServerDiskTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerDiskTypeEnum = S.String;
 
 /** Disk attached to a RAID controller */
 export interface DedicatedServerHardwareRaidDiskGroup {
@@ -6420,8 +6417,7 @@ export type DedicatedServerInstallationProgressStatusEnum =
   | "pending"
   | "stopping"
   | "todo";
-export const DedicatedServerInstallationProgressStatusEnum =
-  /*@__PURE__*/ S.String;
+export const DedicatedServerInstallationProgressStatusEnum = S.String;
 
 /** A structure describing informations about this dedicated server installation steps */
 export interface DedicatedServerInstallationProgressSteps {
@@ -6543,7 +6539,7 @@ export type DedicatedServerIpCountryEnum =
   | "sg"
   | "uk"
   | "us";
-export const DedicatedServerIpCountryEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerIpCountryEnum = S.String;
 
 export type ListDedicatedServerIpCountryAvailableResponseBodyList =
   Array<DedicatedServerIpCountryEnum>;
@@ -6676,7 +6672,7 @@ export type LicenseWindowsSqlVersionEnum =
   | "SQL_SERVER_2012_WEB_EDITION_4_CORES"
   | "SQL_SERVER_2012_WEB_EDITION_6_CORES"
   | "SQL_SERVER_2012_WEB_EDITION_8_CORES";
-export const LicenseWindowsSqlVersionEnum = /*@__PURE__*/ S.String;
+export const LicenseWindowsSqlVersionEnum = S.String;
 
 export type ListDedicatedServerLicenseCompliantWindowsSqlServerResponseBodyList =
   Array<LicenseWindowsSqlVersionEnum>;
@@ -6768,7 +6764,7 @@ export type DedicatedServerMrtgPeriodEnum =
   | "monthly"
   | "weekly"
   | "yearly";
-export const DedicatedServerMrtgPeriodEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerMrtgPeriodEnum = S.String;
 
 /** distincts MRTG type */
 export type DedicatedServerMrtgTypeEnum =
@@ -6778,7 +6774,7 @@ export type DedicatedServerMrtgTypeEnum =
   | "packets:upload"
   | "traffic:download"
   | "traffic:upload";
-export const DedicatedServerMrtgTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerMrtgTypeEnum = S.String;
 
 export interface ListDedicatedServerNetworkInterfaceControllerMrtgRequest {
   /** The internal name of your dedicated server */
@@ -6993,7 +6989,7 @@ export type DedicatedServerBackupStorageCapacityEnum =
   | 1000
   | 5000
   | 10000;
-export const DedicatedServerBackupStorageCapacityEnum = /*@__PURE__*/ S.Number;
+export const DedicatedServerBackupStorageCapacityEnum = S.Number;
 
 /** Backup storage orderable capacities in gigabytes */
 export type DedicatedServerBackupStorageOrderableCapacitiesList =
@@ -7043,7 +7039,7 @@ export const ListDedicatedServerOrderableBandwidthRequest =
 
 /** Different Bandwidth orderable in Mbps */
 export type DedicatedServerBandwidthOrderEnum = 1000 | 2000 | 3000;
-export const DedicatedServerBandwidthOrderEnum = /*@__PURE__*/ S.Number;
+export const DedicatedServerBandwidthOrderEnum = S.Number;
 
 /** Bandwidth "platinum" orderable in mbps */
 export type DedicatedServerBandwidthOrderablePlatinumList =
@@ -7116,7 +7112,7 @@ export const ListDedicatedServerOrderableBandwidthvRackRequest =
 
 /** Different vRack Bandwidth orderable in Mbps */
 export type DedicatedServerBandwidthvRackOrderEnum = 1000 | 3000;
-export const DedicatedServerBandwidthvRackOrderEnum = /*@__PURE__*/ S.Number;
+export const DedicatedServerBandwidthvRackOrderEnum = S.Number;
 
 /** vRack Bandwidth orderable in mbps */
 export type DedicatedServerBandwidthvRackOrderableVrackList =
@@ -7174,7 +7170,7 @@ export type DedicatedServerIpBlockSizeEnum =
   | 64
   | 128
   | 256;
-export const DedicatedServerIpBlockSizeEnum = /*@__PURE__*/ S.Number;
+export const DedicatedServerIpBlockSizeEnum = S.Number;
 
 /** Orderable IP blocks sizes */
 export type DedicatedServerIpOrderableDetailsBlockSizesList =
@@ -7186,14 +7182,14 @@ export const DedicatedServerIpOrderableDetailsBlockSizesList =
 
 /** Required option */
 export type DedicatedServerOptionRequiredEnum = "professionalUse";
-export const DedicatedServerOptionRequiredEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerOptionRequiredEnum = S.String;
 
 /** Orderable IP type */
 export type DedicatedServerIpTypeOrderableEnum =
   | "failover"
   | "static"
   | "unshielded";
-export const DedicatedServerIpTypeOrderableEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerIpTypeOrderableEnum = S.String;
 
 /** A structure describing informations about orderable IP address */
 export interface DedicatedServerIpOrderableDetails {
@@ -7277,7 +7273,7 @@ export type DedicatedServerSupportLevelOrderableEnum =
   | "critical"
   | "fastpath"
   | "gs";
-export const DedicatedServerSupportLevelOrderableEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerSupportLevelOrderableEnum = S.String;
 
 /** Support level orderable */
 export type DedicatedServerSupportLevelOrderableLevelsList =
@@ -7330,7 +7326,7 @@ export type DedicatedServerTrafficOrderEnum =
   | "100Mbps-Unlimited"
   | "250Mbps-Unlimited"
   | "500Mbps-Unlimited";
-export const DedicatedServerTrafficOrderEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerTrafficOrderEnum = S.String;
 
 /** traffic orderable */
 export type DedicatedServerTrafficOrderableTrafficList =
@@ -7376,7 +7372,7 @@ export const ListDedicatedServerOrderableUsbKeyRequest =
 
 /** Different USB key capacity in gigabytes */
 export type DedicatedServerUsbKeyCapacityEnum = 16 | 32 | 64 | 128 | 256;
-export const DedicatedServerUsbKeyCapacityEnum = /*@__PURE__*/ S.Number;
+export const DedicatedServerUsbKeyCapacityEnum = S.Number;
 
 /** Orderable USB keys capacity in gigabytes */
 export type DedicatedServerUsbKeyOrderableDetailsCapacityList =
@@ -7498,8 +7494,7 @@ export type DedicatedServerAvailabilityRegionalizationEnum =
   | "eu-west-sbg"
   | "us-east-vin"
   | "us-west-hil";
-export const DedicatedServerAvailabilityRegionalizationEnum =
-  /*@__PURE__*/ S.String;
+export const DedicatedServerAvailabilityRegionalizationEnum = S.String;
 
 export type ListDedicatedServerRegionAvailabilitiesRequestRegionsList = Array<
   DedicatedServerAvailabilityRegionalizationEnum | (string & {})
@@ -7568,7 +7563,7 @@ export type DedicatedServerAvailabilityEnum =
   | "comingSoon"
   | "unavailable"
   | "unknown";
-export const DedicatedServerAvailabilityEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerAvailabilityEnum = S.String;
 
 /** The availability zone */
 export type DedicatedServerAvailabilityZonesEnum =
@@ -7596,7 +7591,7 @@ export type DedicatedServerAvailabilityZonesEnum =
   | "eu-west-sbg-a"
   | "us-east-vin-a"
   | "us-west-hil-a";
-export const DedicatedServerAvailabilityZonesEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerAvailabilityZonesEnum = S.String;
 
 /** A structure describing the hardware availability for each availability zone */
 export interface DedicatedServerAvailabilityZones {
@@ -7898,7 +7893,7 @@ export const ListDedicatedServerTaskAvailableTimeslotsResponse =
 
 /** Addon family */
 export type DedicatedServerAddonFamilyEnum = "memory" | "storage";
-export const DedicatedServerAddonFamilyEnum = /*@__PURE__*/ S.String;
+export const DedicatedServerAddonFamilyEnum = S.String;
 
 export interface ListDedicatedServerUpdateAllowedRequest {
   /** The internal name of your dedicated server */

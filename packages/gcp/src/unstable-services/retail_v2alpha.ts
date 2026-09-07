@@ -101,7 +101,7 @@ export type GoogleCloudRetailV2alphaProjectEnrolledSolutionsItemEnum =
   | "SOLUTION_TYPE_RECOMMENDATION"
   | "SOLUTION_TYPE_SEARCH";
 export const GoogleCloudRetailV2alphaProjectEnrolledSolutionsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaProjectEnrolledSolutionsItemEnumList =
   Array<GoogleCloudRetailV2alphaProjectEnrolledSolutionsItemEnum>;
@@ -286,49 +286,48 @@ export type GoogleCloudRetailV2alphaCatalogAttributeRecommendationsFilteringOpti
   | "RECOMMENDATIONS_FILTERING_DISABLED"
   | "RECOMMENDATIONS_FILTERING_ENABLED";
 export const GoogleCloudRetailV2alphaCatalogAttributeRecommendationsFilteringOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaCatalogAttributeDynamicFacetableOptionEnum =
   | "DYNAMIC_FACETABLE_OPTION_UNSPECIFIED"
   | "DYNAMIC_FACETABLE_ENABLED"
   | "DYNAMIC_FACETABLE_DISABLED";
 export const GoogleCloudRetailV2alphaCatalogAttributeDynamicFacetableOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaCatalogAttributeSearchableOptionEnum =
   | "SEARCHABLE_OPTION_UNSPECIFIED"
   | "SEARCHABLE_ENABLED"
   | "SEARCHABLE_DISABLED";
 export const GoogleCloudRetailV2alphaCatalogAttributeSearchableOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaCatalogAttributeIndexableOptionEnum =
   | "INDEXABLE_OPTION_UNSPECIFIED"
   | "INDEXABLE_ENABLED"
   | "INDEXABLE_DISABLED";
 export const GoogleCloudRetailV2alphaCatalogAttributeIndexableOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaCatalogAttributeExactSearchableOptionEnum =
   | "EXACT_SEARCHABLE_OPTION_UNSPECIFIED"
   | "EXACT_SEARCHABLE_ENABLED"
   | "EXACT_SEARCHABLE_DISABLED";
 export const GoogleCloudRetailV2alphaCatalogAttributeExactSearchableOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaCatalogAttributeRetrievableOptionEnum =
   | "RETRIEVABLE_OPTION_UNSPECIFIED"
   | "RETRIEVABLE_ENABLED"
   | "RETRIEVABLE_DISABLED";
 export const GoogleCloudRetailV2alphaCatalogAttributeRetrievableOptionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaCatalogAttributeTypeEnum =
   | "UNKNOWN"
   | "TEXTUAL"
   | "NUMERICAL";
-export const GoogleCloudRetailV2alphaCatalogAttributeTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaCatalogAttributeTypeEnum = S.String;
 
 /** Catalog level attribute config for an attribute. For example, if customers want to enable/disable facet for a specific attribute. */
 export interface GoogleCloudRetailV2alphaCatalogAttribute {
@@ -450,7 +449,7 @@ export type GoogleCloudRetailV2alphaAttributesConfigAttributeConfigLevelEnum =
   | "PRODUCT_LEVEL_ATTRIBUTE_CONFIG"
   | "CATALOG_LEVEL_ATTRIBUTE_CONFIG";
 export const GoogleCloudRetailV2alphaAttributesConfigAttributeConfigLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Catalog level attribute config. */
 export interface GoogleCloudRetailV2alphaAttributesConfig {
@@ -520,15 +519,14 @@ export type GoogleCloudRetailV2alphaServingConfigDiversityTypeEnum =
   | "DIVERSITY_TYPE_UNSPECIFIED"
   | "RULE_BASED_DIVERSITY"
   | "DATA_DRIVEN_DIVERSITY";
-export const GoogleCloudRetailV2alphaServingConfigDiversityTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaServingConfigDiversityTypeEnum = S.String;
 
 export type GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpecModeEnum =
   | "MODE_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
 export const GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpecModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The specifications of dynamically generated facets. */
 export interface GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec {
@@ -553,7 +551,7 @@ export type GoogleCloudRetailV2alphaSearchRequestPersonalizationSpecModeEnum =
   | "AUTO"
   | "DISABLED";
 export const GoogleCloudRetailV2alphaSearchRequestPersonalizationSpecModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The specification for personalization. */
 export interface GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec {
@@ -578,7 +576,7 @@ export type GoogleCloudRetailV2alphaServingConfigSolutionTypesItemEnum =
   | "SOLUTION_TYPE_RECOMMENDATION"
   | "SOLUTION_TYPE_SEARCH";
 export const GoogleCloudRetailV2alphaServingConfigSolutionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaServingConfigSolutionTypesItemEnumList =
   Array<
@@ -779,8 +777,7 @@ export type GoogleCloudRetailV2alphaLocalInventoryAvailabilityEnum =
   | "OUT_OF_STOCK"
   | "PREORDER"
   | "BACKORDER";
-export const GoogleCloudRetailV2alphaLocalInventoryAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaLocalInventoryAvailabilityEnum = S.String;
 
 /** The price range of all variant Product having the same Product.primary_product_id. */
 export interface GoogleCloudRetailV2alphaPriceInfoPriceRange {
@@ -1477,8 +1474,7 @@ export type GoogleCloudRetailV2alphaSafetySettingMethodEnum =
   | "HARM_BLOCK_METHOD_UNSPECIFIED"
   | "SEVERITY"
   | "PROBABILITY";
-export const GoogleCloudRetailV2alphaSafetySettingMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaSafetySettingMethodEnum = S.String;
 
 export type GoogleCloudRetailV2alphaSafetySettingThresholdEnum =
   | "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
@@ -1487,8 +1483,7 @@ export type GoogleCloudRetailV2alphaSafetySettingThresholdEnum =
   | "BLOCK_ONLY_HIGH"
   | "BLOCK_NONE"
   | "OFF";
-export const GoogleCloudRetailV2alphaSafetySettingThresholdEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaSafetySettingThresholdEnum = S.String;
 
 export type GoogleCloudRetailV2alphaSafetySettingCategoryEnum =
   | "HARM_CATEGORY_UNSPECIFIED"
@@ -1497,8 +1492,7 @@ export type GoogleCloudRetailV2alphaSafetySettingCategoryEnum =
   | "HARM_CATEGORY_HARASSMENT"
   | "HARM_CATEGORY_SEXUALLY_EXPLICIT"
   | "HARM_CATEGORY_CIVIC_INTEGRITY";
-export const GoogleCloudRetailV2alphaSafetySettingCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaSafetySettingCategoryEnum = S.String;
 
 /** Safety settings. */
 export interface GoogleCloudRetailV2alphaSafetySetting {
@@ -1655,7 +1649,7 @@ export type GoogleCloudRetailV2alphaConversationalSearchRequestConversationalFil
   | "ENABLED"
   | "CONVERSATIONAL_FILTER_ONLY";
 export const GoogleCloudRetailV2alphaConversationalSearchRequestConversationalFilteringSpecConversationalFilteringModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** This field specifies all conversational filtering related parameters addition to conversational retail search. */
 export interface GoogleCloudRetailV2alphaConversationalSearchRequestConversationalFilteringSpec {
@@ -1759,7 +1753,7 @@ export type GoogleCloudRetailV2alphaConversationalSearchResponseStateEnum =
   | "STREAMING"
   | "SUCCEEDED";
 export const GoogleCloudRetailV2alphaConversationalSearchResponseStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The proposed refined search for intent-refinement/bundled shopping conversation. When using CONVERSATIONAL_FILTER_ONLY mode, the refined_query from search response will be populated here. */
 export interface GoogleCloudRetailV2alphaConversationalSearchResponseRefinedSearch {
@@ -1941,7 +1935,7 @@ export type GoogleCloudRetailV2alphaProductTypeEnum =
   | "PRIMARY"
   | "VARIANT"
   | "COLLECTION";
-export const GoogleCloudRetailV2alphaProductTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaProductTypeEnum = S.String;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -2028,8 +2022,7 @@ export type GoogleCloudRetailV2alphaProductAvailabilityEnum =
   | "OUT_OF_STOCK"
   | "PREORDER"
   | "BACKORDER";
-export const GoogleCloudRetailV2alphaProductAvailabilityEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaProductAvailabilityEnum = S.String;
 
 /** Promotion specification. */
 export interface GoogleCloudRetailV2alphaPromotion {
@@ -2210,7 +2203,7 @@ export type GoogleCloudRetailV2alphaControlSearchSolutionUseCaseItemEnum =
   | "SEARCH_SOLUTION_USE_CASE_SEARCH"
   | "SEARCH_SOLUTION_USE_CASE_BROWSE";
 export const GoogleCloudRetailV2alphaControlSearchSolutionUseCaseItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaControlSearchSolutionUseCaseItemEnumList =
   Array<
@@ -2552,8 +2545,7 @@ export type GoogleCloudRetailV2alphaControlSolutionTypesItemEnum =
   | "SOLUTION_TYPE_UNSPECIFIED"
   | "SOLUTION_TYPE_RECOMMENDATION"
   | "SOLUTION_TYPE_SEARCH";
-export const GoogleCloudRetailV2alphaControlSolutionTypesItemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaControlSolutionTypesItemEnum = S.String;
 
 export type GoogleCloudRetailV2alphaControlSolutionTypesItemEnumList = Array<
   GoogleCloudRetailV2alphaControlSolutionTypesItemEnum | (string & {})
@@ -2626,7 +2618,7 @@ export type GoogleCloudRetailV2alphaMerchantCenterAccountLinkStateEnum =
   | "ACTIVE"
   | "FAILED";
 export const GoogleCloudRetailV2alphaMerchantCenterAccountLinkStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Merchant Center Feed filter criterion. */
 export interface GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter {
@@ -2753,38 +2745,34 @@ export type GoogleCloudRetailV2alphaModelTrainingStateEnum =
   | "TRAINING_STATE_UNSPECIFIED"
   | "PAUSED"
   | "TRAINING";
-export const GoogleCloudRetailV2alphaModelTrainingStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaModelTrainingStateEnum = S.String;
 
 export type GoogleCloudRetailV2alphaModelServingStateEnum =
   | "SERVING_STATE_UNSPECIFIED"
   | "INACTIVE"
   | "ACTIVE"
   | "TUNED";
-export const GoogleCloudRetailV2alphaModelServingStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaModelServingStateEnum = S.String;
 
 export type GoogleCloudRetailV2alphaModelFilteringOptionEnum =
   | "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED"
   | "RECOMMENDATIONS_FILTERING_DISABLED"
   | "RECOMMENDATIONS_FILTERING_ENABLED";
-export const GoogleCloudRetailV2alphaModelFilteringOptionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaModelFilteringOptionEnum = S.String;
 
 export type GoogleCloudRetailV2alphaModelPeriodicTuningStateEnum =
   | "PERIODIC_TUNING_STATE_UNSPECIFIED"
   | "PERIODIC_TUNING_DISABLED"
   | "ALL_TUNING_DISABLED"
   | "PERIODIC_TUNING_ENABLED";
-export const GoogleCloudRetailV2alphaModelPeriodicTuningStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaModelPeriodicTuningStateEnum = S.String;
 
 export type GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfigContextProductsTypeEnum =
   | "CONTEXT_PRODUCTS_TYPE_UNSPECIFIED"
   | "SINGLE_CONTEXT_PRODUCT"
   | "MULTIPLE_CONTEXT_PRODUCTS";
 export const GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfigContextProductsTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Additional configs for the frequently-bought-together model type. */
 export interface GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig {
@@ -2825,8 +2813,7 @@ export type GoogleCloudRetailV2alphaModelDataStateEnum =
   | "DATA_STATE_UNSPECIFIED"
   | "DATA_OK"
   | "DATA_ERROR";
-export const GoogleCloudRetailV2alphaModelDataStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaModelDataStateEnum = S.String;
 
 /** A candidate to consider for a given panel. Currently only ServingConfig are valid candidates. */
 export interface GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate {
@@ -2887,7 +2874,7 @@ export type GoogleCloudRetailV2alphaModelPageOptimizationConfigRestrictionEnum =
   | "UNIQUE_MODEL_RESTRICTION"
   | "UNIQUE_MODEL_TYPE_RESTRICTION";
 export const GoogleCloudRetailV2alphaModelPageOptimizationConfigRestrictionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The PageOptimizationConfig for model training. This determines how many panels to optimize for, and which serving configs to consider for each panel. The purpose of this model is to optimize which ServingConfig to show on which panels in way that optimizes the visitors shopping journey. */
 export interface GoogleCloudRetailV2alphaModelPageOptimizationConfig {
@@ -3153,7 +3140,7 @@ export type GoogleCloudRetailV2alphaEnrollSolutionRequestSolutionEnum =
   | "SOLUTION_TYPE_RECOMMENDATION"
   | "SOLUTION_TYPE_SEARCH";
 export const GoogleCloudRetailV2alphaEnrollSolutionRequestSolutionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request for EnrollSolution method. */
 export interface GoogleCloudRetailV2alphaEnrollSolutionRequest {
@@ -3399,7 +3386,7 @@ export type GoogleCloudRetailV2alphaAlertConfigAlertPolicyEnrollStatusEnum =
   | "ENROLLED"
   | "DECLINED";
 export const GoogleCloudRetailV2alphaAlertConfigAlertPolicyEnrollStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Recipient contact information. */
 export interface GoogleCloudRetailV2alphaAlertConfigAlertPolicyRecipient {
@@ -3646,7 +3633,7 @@ export type GoogleCloudRetailV2alphaIntentClassificationConfigInlineForceIntentO
   | "EXACT_MATCH"
   | "CONTAINS";
 export const GoogleCloudRetailV2alphaIntentClassificationConfigInlineForceIntentOperationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An inline force intent classification configuration. */
 export interface GoogleCloudRetailV2alphaIntentClassificationConfigInlineForceIntent {
@@ -3883,7 +3870,7 @@ export type GoogleCloudRetailV2alphaLoggingConfigLogGenerationRuleLoggingLevelEn
   | "LOG_WARNINGS_AND_ABOVE"
   | "LOG_ALL";
 export const GoogleCloudRetailV2alphaLoggingConfigLogGenerationRuleLoggingLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The logging configurations for services supporting log generation. */
 export interface GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule {
@@ -3960,8 +3947,7 @@ export type GetProjectsLocationsCatalogsBranchesViewEnum =
   | "BRANCH_VIEW_UNSPECIFIED"
   | "BRANCH_VIEW_BASIC"
   | "BRANCH_VIEW_FULL";
-export const GetProjectsLocationsCatalogsBranchesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsCatalogsBranchesViewEnum = S.String;
 
 export interface GetProjectsLocationsCatalogsBranchesRequest {
   /** Required. The name of the branch to retrieve. Format: `projects/*\/locations/global/catalogs/default_catalog/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the catalog. */
@@ -4027,7 +4013,7 @@ export type GoogleCloudRetailV2alphaBranchProductCountStatisticScopeEnum =
   | "ALL_PRODUCTS"
   | "LAST_24_HOUR_UPDATE";
 export const GoogleCloudRetailV2alphaBranchProductCountStatisticScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A statistic about the number of products in a branch. */
 export interface GoogleCloudRetailV2alphaBranchProductCountStatistic {
@@ -4344,7 +4330,7 @@ export type GoogleCloudRetailV2alphaImportProductsRequestReconciliationModeEnum 
   | "INCREMENTAL"
   | "FULL";
 export const GoogleCloudRetailV2alphaImportProductsRequestReconciliationModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for Import methods. */
 export interface GoogleCloudRetailV2alphaImportProductsRequest {
@@ -4737,7 +4723,7 @@ export type GoogleCloudRetailV2alphaListEnrolledSolutionsResponseEnrolledSolutio
   | "SOLUTION_TYPE_RECOMMENDATION"
   | "SOLUTION_TYPE_SEARCH";
 export const GoogleCloudRetailV2alphaListEnrolledSolutionsResponseEnrolledSolutionsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaListEnrolledSolutionsResponseEnrolledSolutionsItemEnumList =
   Array<GoogleCloudRetailV2alphaListEnrolledSolutionsResponseEnrolledSolutionsItemEnum>;
@@ -4932,8 +4918,7 @@ export type ListProjectsLocationsCatalogsBranchesViewEnum =
   | "BRANCH_VIEW_UNSPECIFIED"
   | "BRANCH_VIEW_BASIC"
   | "BRANCH_VIEW_FULL";
-export const ListProjectsLocationsCatalogsBranchesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsCatalogsBranchesViewEnum = S.String;
 
 export interface ListProjectsLocationsCatalogsBranchesRequest {
   /** Required. The parent catalog resource name. */
@@ -5752,7 +5737,7 @@ export type GoogleCloudRetailV2alphaRejoinUserEventsRequestUserEventRejoinScopeE
   | "JOINED_EVENTS"
   | "UNJOINED_EVENTS";
 export const GoogleCloudRetailV2alphaRejoinUserEventsRequestUserEventRejoinScopeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for RejoinUserEvents method. */
 export interface GoogleCloudRetailV2alphaRejoinUserEventsRequest {
@@ -6050,8 +6035,7 @@ export type GoogleCloudRetailV2alphaSearchRequestSearchModeEnum =
   | "SEARCH_MODE_UNSPECIFIED"
   | "PRODUCT_SEARCH_ONLY"
   | "FACETED_SEARCH_ONLY";
-export const GoogleCloudRetailV2alphaSearchRequestSearchModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudRetailV2alphaSearchRequestSearchModeEnum = S.String;
 
 /** A list of string values. */
 export interface GoogleCloudRetailV2alphaStringList {
@@ -6079,7 +6063,7 @@ export type GoogleCloudRetailV2alphaSearchRequestSpellCorrectionSpecModeEnum =
   | "SUGGESTION_ONLY"
   | "AUTO";
 export const GoogleCloudRetailV2alphaSearchRequestSpellCorrectionSpecModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The specification for query spell correction. */
 export interface GoogleCloudRetailV2alphaSearchRequestSpellCorrectionSpec {
@@ -6247,14 +6231,14 @@ export type GoogleCloudRetailV2alphaSearchRequestRelevanceThresholdEnum =
   | "LOW"
   | "LOWEST";
 export const GoogleCloudRetailV2alphaSearchRequestRelevanceThresholdEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpecConditionEnum =
   | "CONDITION_UNSPECIFIED"
   | "DISABLED"
   | "AUTO";
 export const GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpecConditionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification to determine under which conditions query expansion should occur. */
 export interface GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec {

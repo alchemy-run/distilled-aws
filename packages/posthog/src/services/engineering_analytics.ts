@@ -140,7 +140,7 @@ export type BrokenTestRowStateEnum =
   | "potentially_resolved"
   | "flaky"
   | "pr_only";
-export const BrokenTestRowStateEnum = /*@__PURE__*/ S.String;
+export const BrokenTestRowStateEnum = S.String;
 
 /** Hourly failure counts over the last 24 hours, oldest first (fixed 24-slot array), for the row sparkline. All zeros when nothing failed in the last day. */
 export type BrokenTestRowTrend24hList = Array<number>;
@@ -468,8 +468,7 @@ export type EngineeringAnalyticsDoraRequestGranularity =
   | "day"
   | "hour"
   | "week";
-export const EngineeringAnalyticsDoraRequestGranularity =
-  /*@__PURE__*/ S.String;
+export const EngineeringAnalyticsDoraRequestGranularity = S.String;
 
 export interface EngineeringAnalyticsDoraRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -698,8 +697,7 @@ export const DoraOverview = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DoraOverview" }) as any as S.Schema<DoraOverview>;
 
 export type EngineeringAnalyticsFlakyTestsRequestRunner = "jest" | "pytest";
-export const EngineeringAnalyticsFlakyTestsRequestRunner =
-  /*@__PURE__*/ S.String;
+export const EngineeringAnalyticsFlakyTestsRequestRunner = S.String;
 
 export interface EngineeringAnalyticsFlakyTestsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -745,14 +743,14 @@ export const EngineeringAnalyticsFlakyTestsRequest = /*@__PURE__*/ S.suspend(
 
 /** * `pytest` - PYTEST * `jest` - JEST */
 export type CITestRunnerEnum = "pytest" | "jest";
-export const CITestRunnerEnum = /*@__PURE__*/ S.String;
+export const CITestRunnerEnum = S.String;
 
 /** * `confirmed_flake` - CONFIRMED_FLAKE * `suspected_regression` - SUSPECTED_REGRESSION * `quarantined` - QUARANTINED */
 export type FlakyTestItemClassificationEnum =
   | "confirmed_flake"
   | "suspected_regression"
   | "quarantined";
-export const FlakyTestItemClassificationEnum = /*@__PURE__*/ S.String;
+export const FlakyTestItemClassificationEnum = S.String;
 
 export interface FlakyTestItem {
   /** Test runner that emitted this signal: 'pytest' or 'jest'. * `pytest` - PYTEST * `jest` - JEST */
@@ -1153,7 +1151,7 @@ export const Author = /*@__PURE__*/ S.suspend(() =>
 
 /** * `open` - OPEN * `closed` - CLOSED * `merged` - MERGED */
 export type EngineeringAnalyticsPRStateEnum = "open" | "closed" | "merged";
-export const EngineeringAnalyticsPRStateEnum = /*@__PURE__*/ S.String;
+export const EngineeringAnalyticsPRStateEnum = S.String;
 
 export interface PullRequest {
   /** The pull request author. */
@@ -1201,7 +1199,7 @@ export type PRLifecycleEventKindEnum =
   | "ci_finished"
   | "merged"
   | "closed";
-export const PRLifecycleEventKindEnum = /*@__PURE__*/ S.String;
+export const PRLifecycleEventKindEnum = S.String;
 
 export interface PRLifecycleEvent {
   /** Event kind: opened, ready_for_review, converted_to_draft, ci_started, ci_finished, merged, or closed. * `opened` - OPENED * `ready_for_review` - READY_FOR_REVIEW * `converted_to_draft` - CONVERTED_TO_DRAFT * `ci_started` - CI_STARTED * `ci_finished` - CI_FINISHED * `merged` - MERGED * `closed` - CLOSED */
@@ -1232,7 +1230,7 @@ export const PRLifecycleEventsList = /*@__PURE__*/ S.Array(
 
 /** * `precise` - PRECISE * `coarse` - COARSE * `partial` - PARTIAL */
 export type MetricQualityEnum = "precise" | "coarse" | "partial";
-export const MetricQualityEnum = /*@__PURE__*/ S.String;
+export const MetricQualityEnum = S.String;
 
 export interface PRLifecycle {
   /** The pull request header. */
@@ -1543,15 +1541,15 @@ export const EngineeringAnalyticsQuarantineRequest = /*@__PURE__*/ S.suspend(
 
 /** * `run` - RUN * `skip` - SKIP */
 export type QuarantineModeEnum = "run" | "skip";
-export const QuarantineModeEnum = /*@__PURE__*/ S.String;
+export const QuarantineModeEnum = S.String;
 
 /** * `active` - ACTIVE * `expiring_soon` - EXPIRING_SOON * `in_grace` - IN_GRACE * `overdue` - OVERDUE */
 export type LifecycleEnum = "active" | "expiring_soon" | "in_grace" | "overdue";
-export const LifecycleEnum = /*@__PURE__*/ S.String;
+export const LifecycleEnum = S.String;
 
 /** * `product` - PRODUCT * `file` - FILE * `directory` - DIRECTORY * `test` - TEST */
 export type SelectorKindEnum = "product" | "file" | "directory" | "test";
-export const SelectorKindEnum = /*@__PURE__*/ S.String;
+export const SelectorKindEnum = S.String;
 
 export interface QuarantineEntry {
   /** Test selector: an exact test id, a file, a directory, a class prefix, or 'product:<dashed-name>'. */
@@ -1643,11 +1641,11 @@ export const QuarantineFile = /*@__PURE__*/ S.suspend(() =>
 
 /** * `quarantine` - QUARANTINE * `extend` - EXTEND * `remove` - REMOVE */
 export type OperationEnum = "quarantine" | "extend" | "remove";
-export const OperationEnum = /*@__PURE__*/ S.String;
+export const OperationEnum = S.String;
 
 /** * `pytest` - PYTEST * `jest` - JEST * `playwright` - PLAYWRIGHT */
 export type QuarantineRequestRunnerEnum = "pytest" | "jest" | "playwright";
-export const QuarantineRequestRunnerEnum = /*@__PURE__*/ S.String;
+export const QuarantineRequestRunnerEnum = S.String;
 
 export interface EngineeringAnalyticsQuarantineRequestRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1837,7 +1835,7 @@ export const RepoOverviewOpenToMergeSeriesList = /*@__PURE__*/ S.Array(
 
 /** * `open_to_gate` - OPEN_TO_GATE * `gate_to_merge` - GATE_TO_MERGE */
 export type DeliveryStageTimingStageEnum = "open_to_gate" | "gate_to_merge";
-export const DeliveryStageTimingStageEnum = /*@__PURE__*/ S.String;
+export const DeliveryStageTimingStageEnum = S.String;
 
 export interface DeliveryStageTiming {
   /** Which leg this is: 'open_to_gate' (created_at to the PR's first merge-queue gate run starting) or 'gate_to_merge' (that gate run to merged_at). The post-merge leg is the DORA endpoint's median_merge_to_deploy_seconds. * `open_to_gate` - OPEN_TO_GATE * `gate_to_merge` - GATE_TO_MERGE */
@@ -2523,8 +2521,7 @@ export const TrunkQuarantineDebt = /*@__PURE__*/ S.suspend(() =>
 export type EngineeringAnalyticsWorkflowHealthRequestRunScope =
   | "all"
   | "pull_request";
-export const EngineeringAnalyticsWorkflowHealthRequestRunScope =
-  /*@__PURE__*/ S.String;
+export const EngineeringAnalyticsWorkflowHealthRequestRunScope = S.String;
 
 export interface EngineeringAnalyticsWorkflowHealthRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2920,7 +2917,7 @@ export const GetEngineeringAnalyticsCiSignalsConfigRequest =
 
 /** * `running` - RUNNING * `completed` - COMPLETED * `failed` - FAILED */
 export type SyncStatusEnum = "running" | "completed" | "failed";
-export const SyncStatusEnum = /*@__PURE__*/ S.String;
+export const SyncStatusEnum = S.String;
 
 export interface CISignalsConfig {
   /** Whether this project has ever configured CI signals. */

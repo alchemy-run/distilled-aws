@@ -67,7 +67,7 @@ export const ListStarsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListStarsRequest>;
 
 export type ListStarsResponseItemsItemCase0Type = "message";
-export const ListStarsResponseItemsItemCase0Type = /*@__PURE__*/ S.String;
+export const ListStarsResponseItemsItemCase0Type = S.String;
 
 export interface ListStarsResponseItemsItemCase0 {
   type: ListStarsResponseItemsItemCase0Type;
@@ -87,7 +87,7 @@ export const ListStarsResponseItemsItemCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListStarsResponseItemsItemCase0>;
 
 export type ListStarsResponseItemsItemCase1Type = "file";
-export const ListStarsResponseItemsItemCase1Type = /*@__PURE__*/ S.String;
+export const ListStarsResponseItemsItemCase1Type = S.String;
 
 export interface ListStarsResponseItemsItemCase1 {
   type: ListStarsResponseItemsItemCase1Type;
@@ -105,7 +105,7 @@ export const ListStarsResponseItemsItemCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListStarsResponseItemsItemCase1>;
 
 export type ListStarsResponseItemsItemCase2Type = "file_comment";
-export const ListStarsResponseItemsItemCase2Type = /*@__PURE__*/ S.String;
+export const ListStarsResponseItemsItemCase2Type = S.String;
 
 export interface ListStarsResponseItemsItemCase2 {
   type: ListStarsResponseItemsItemCase2Type;
@@ -125,7 +125,7 @@ export const ListStarsResponseItemsItemCase2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListStarsResponseItemsItemCase2>;
 
 export type ListStarsResponseItemsItemCase3Type = "channel";
-export const ListStarsResponseItemsItemCase3Type = /*@__PURE__*/ S.String;
+export const ListStarsResponseItemsItemCase3Type = S.String;
 
 export interface ListStarsResponseItemsItemCase3 {
   type: ListStarsResponseItemsItemCase3Type;
@@ -143,7 +143,7 @@ export const ListStarsResponseItemsItemCase3 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListStarsResponseItemsItemCase3>;
 
 export type ListStarsResponseItemsItemCase4Type = "im";
-export const ListStarsResponseItemsItemCase4Type = /*@__PURE__*/ S.String;
+export const ListStarsResponseItemsItemCase4Type = S.String;
 
 export interface ListStarsResponseItemsItemCase4 {
   type: ListStarsResponseItemsItemCase4Type;
@@ -161,7 +161,7 @@ export const ListStarsResponseItemsItemCase4 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListStarsResponseItemsItemCase4>;
 
 export type ListStarsResponseItemsItemCase5Type = "group";
-export const ListStarsResponseItemsItemCase5Type = /*@__PURE__*/ S.String;
+export const ListStarsResponseItemsItemCase5Type = S.String;
 
 export interface ListStarsResponseItemsItemCase5 {
   type: ListStarsResponseItemsItemCase5Type;

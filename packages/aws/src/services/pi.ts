@@ -101,7 +101,7 @@ export class NotAuthorizedException
     { message: S.optional(S.String).pipe(T.ErrorMessage()) },
   ) {}
 export type ServiceType = "RDS" | "DOCDB" | (string & {});
-export const ServiceType = /*@__PURE__*/ S.String;
+export const ServiceType = S.String;
 
 export type IdentifierString = string;
 export type ISOTimestamp = Date;
@@ -351,7 +351,7 @@ export type DetailStatus =
   | "PROCESSING"
   | "UNAVAILABLE"
   | (string & {});
-export const DetailStatus = /*@__PURE__*/ S.String;
+export const DetailStatus = S.String;
 
 export interface DimensionKeyDetail {
   Value?: string;
@@ -378,10 +378,10 @@ export const GetDimensionKeyDetailsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDimensionKeyDetailsResponse",
 }) as any as S.Schema<GetDimensionKeyDetailsResponse>;
 export type TextFormat = "PLAIN_TEXT" | "MARKDOWN" | (string & {});
-export const TextFormat = /*@__PURE__*/ S.String;
+export const TextFormat = S.String;
 
 export type AcceptLanguage = "EN_US" | (string & {});
-export const AcceptLanguage = /*@__PURE__*/ S.String;
+export const AcceptLanguage = S.String;
 
 export interface GetPerformanceAnalysisReportRequest {
   ServiceType: ServiceType;
@@ -412,13 +412,13 @@ export const GetPerformanceAnalysisReportRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPerformanceAnalysisReportRequest",
 }) as any as S.Schema<GetPerformanceAnalysisReportRequest>;
 export type AnalysisStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | (string & {});
-export const AnalysisStatus = /*@__PURE__*/ S.String;
+export const AnalysisStatus = S.String;
 
 export type ContextType = "CAUSAL" | "CONTEXTUAL" | (string & {});
-export const ContextType = /*@__PURE__*/ S.String;
+export const ContextType = S.String;
 
 export type Severity = "LOW" | "MEDIUM" | "HIGH" | (string & {});
-export const Severity = /*@__PURE__*/ S.String;
+export const Severity = S.String;
 
 export type MarkdownString = string | redacted.Redacted<string>;
 export interface Recommendation {
@@ -562,7 +562,7 @@ export type FeatureStatus =
   | "DISABLED_PENDING_REBOOT"
   | "UNKNOWN"
   | (string & {});
-export const FeatureStatus = /*@__PURE__*/ S.String;
+export const FeatureStatus = S.String;
 
 export interface FeatureMetadata {
   Status?: FeatureStatus;
@@ -604,7 +604,7 @@ export const MetricQuery = /*@__PURE__*/ S.suspend(() =>
 export type MetricQueryList = MetricQuery[];
 export const MetricQueryList = /*@__PURE__*/ S.Array(MetricQuery);
 export type PeriodAlignment = "END_TIME" | "START_TIME" | (string & {});
-export const PeriodAlignment = /*@__PURE__*/ S.String;
+export const PeriodAlignment = S.String;
 
 export interface GetResourceMetricsRequest {
   ServiceType: ServiceType;
@@ -705,7 +705,7 @@ export type FineGrainedAction =
   | "GetDimensionKeyDetails"
   | "GetResourceMetrics"
   | (string & {});
-export const FineGrainedAction = /*@__PURE__*/ S.String;
+export const FineGrainedAction = S.String;
 
 export type AuthorizedActionsList = FineGrainedAction[];
 export const AuthorizedActionsList = /*@__PURE__*/ S.Array(FineGrainedAction);

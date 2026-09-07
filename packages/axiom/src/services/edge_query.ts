@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 export type { AxiomOpError, AxiomOpContext };
 
 export type QueryAplRequestFormat = "legacy" | "tabular" | "tabular-rows";
-export const QueryAplRequestFormat = /*@__PURE__*/ S.String;
+export const QueryAplRequestFormat = S.String;
 
 export interface QueryAplRequestDefaultOrderItem {
   desc?: boolean;

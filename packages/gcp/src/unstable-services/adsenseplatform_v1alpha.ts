@@ -121,7 +121,7 @@ export type AccountStateEnum =
   | "UNCHECKED"
   | "APPROVED"
   | "DISAPPROVED";
-export const AccountStateEnum = /*@__PURE__*/ S.String;
+export const AccountStateEnum = S.String;
 
 /** Representation of an Account. */
 export interface Account {
@@ -229,7 +229,7 @@ export type EventEventTypeEnum =
   | "EVENT_TYPE_UNSPECIFIED"
   | "LOG_IN_VIA_PLATFORM"
   | "SIGN_UP_VIA_PLATFORM";
-export const EventEventTypeEnum = /*@__PURE__*/ S.String;
+export const EventEventTypeEnum = S.String;
 
 /** A platform sub-account event to record spam signals. */
 export interface Event {
@@ -276,7 +276,7 @@ export type SiteStateEnum =
   | "GETTING_READY"
   | "READY"
   | "NEEDS_ATTENTION";
-export const SiteStateEnum = /*@__PURE__*/ S.String;
+export const SiteStateEnum = S.String;
 
 /** Representation of a Site. */
 export interface Site {

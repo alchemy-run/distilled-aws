@@ -19,7 +19,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -37,7 +37,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmDedicatedCephTerminationRequest {
   /** Service name */
@@ -589,8 +589,7 @@ export type DedicatedCephClusterGetResponseCrushTunablesEnum =
   | "JEWEL"
   | "LEGACY"
   | "OPTIMAL";
-export const DedicatedCephClusterGetResponseCrushTunablesEnum =
-  /*@__PURE__*/ S.String;
+export const DedicatedCephClusterGetResponseCrushTunablesEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -623,7 +622,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** State of cluster */
 export type DedicatedCephClusterGetResponseStateEnum = "ACTIVE" | "SUSPENDED";
-export const DedicatedCephClusterGetResponseStateEnum = /*@__PURE__*/ S.String;
+export const DedicatedCephClusterGetResponseStateEnum = S.String;
 
 /** Status of cluster */
 export type DedicatedCephClusterGetResponseStatusEnum =
@@ -632,7 +631,7 @@ export type DedicatedCephClusterGetResponseStatusEnum =
   | "DELETING"
   | "INSTALLED"
   | "TASK_IN_PROGRESS";
-export const DedicatedCephClusterGetResponseStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedCephClusterGetResponseStatusEnum = S.String;
 
 /** Details about ceph cluster */
 export interface DedicatedCephClusterGetResponseWithIAM {
@@ -706,7 +705,7 @@ export const GetDedicatedCephAclRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Family of IP ACL */
 export type DedicatedCephAclGetResponseFamilyEnum = "IPV4" | "IPV6";
-export const DedicatedCephAclGetResponseFamilyEnum = /*@__PURE__*/ S.String;
+export const DedicatedCephAclGetResponseFamilyEnum = S.String;
 
 /** IP ACL */
 export interface DedicatedCephAclGetResponse {
@@ -838,7 +837,7 @@ export const GetDedicatedCephPoolRequest = /*@__PURE__*/ S.suspend(() =>
 export type DedicatedCephPoolGetResponsePoolTypeEnum =
   | "ERASURE_CODED"
   | "REPLICATED";
-export const DedicatedCephPoolGetResponsePoolTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedCephPoolGetResponsePoolTypeEnum = S.String;
 
 /** Ceph pool */
 export interface DedicatedCephPoolGetResponse {
@@ -963,7 +962,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 /** service.StateEnum */
 export type ServiceStateEnum =
@@ -973,7 +972,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -1042,7 +1041,7 @@ export type DedicatedCephTaskGetResponseStateEnum =
   | "DONE"
   | "FAILED"
   | "IN PROGRESS";
-export const DedicatedCephTaskGetResponseStateEnum = /*@__PURE__*/ S.String;
+export const DedicatedCephTaskGetResponseStateEnum = S.String;
 
 /** List of task subtasks */
 export interface DedicatedCephTaskGetResponse {
@@ -1459,8 +1458,7 @@ export type DedicatedCephClusterUpdateCrushTunablesEnum =
   | "JEWEL"
   | "LEGACY"
   | "OPTIMAL";
-export const DedicatedCephClusterUpdateCrushTunablesEnum =
-  /*@__PURE__*/ S.String;
+export const DedicatedCephClusterUpdateCrushTunablesEnum = S.String;
 
 export interface PutDedicatedCephRequest {
   /** Service name */

@@ -396,7 +396,7 @@ export const GetByCustomerIdConversionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetByCustomerIdConversionRequest>;
 
 export type ConversionAdUserDataConsentEnum = "UNKNOWN" | "GRANTED" | "DENIED";
-export const ConversionAdUserDataConsentEnum = /*@__PURE__*/ S.String;
+export const ConversionAdUserDataConsentEnum = S.String;
 
 /** A message containing the custom dimension. */
 export interface CustomDimension {

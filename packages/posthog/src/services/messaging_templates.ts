@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `liquid` - liquid */
 export type MessageTemplateContentTemplatingEnum = "liquid";
-export const MessageTemplateContentTemplatingEnum = /*@__PURE__*/ S.String;
+export const MessageTemplateContentTemplatingEnum = S.String;
 
 /** Rows of {id, cells, columns[{id, contents[{id, type, values}], values}], values}. */
 export type EmailTemplateDesignBodyRowsList = Array<unknown>;
@@ -158,14 +158,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -372,7 +372,7 @@ export type EmailTemplateDesignOperationEnum =
   | "move_content"
   | "add_row"
   | "remove_row";
-export const EmailTemplateDesignOperationEnum = /*@__PURE__*/ S.String;
+export const EmailTemplateDesignOperationEnum = S.String;
 
 export interface DesignOperation {
   /** Design edit. update_content {id, patch}: deep-merge patch into the content block's fields (a null leaf deletes that key) — the surgical path, e.g. change just values.text. update_row / update_column {id, patch} and update_body {patch}: same deep-merge for row/column/body-level settings. add_content {column_id, content, index?}: insert a content block into a column (id and Unlayer numbering are filled in for you). remove_content {id} / move_content {id, column_id, index?}: delete or relocate a block. add_row {row, index?} / remove_row {id}: add or delete a row. * `update_content` - update_content * `update_column` - update_column * `update_row` - update_row * `update_body` - update_body * `add_content` - add_content * `remove_content` - remove_content * `move_content` - move_content * `add_row` - add_row * `remove_row` - remove_row */

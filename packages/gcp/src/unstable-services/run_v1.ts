@@ -912,7 +912,7 @@ export type DomainMappingSpecCertificateModeEnum =
   | "CERTIFICATE_MODE_UNSPECIFIED"
   | "NONE"
   | "AUTOMATIC";
-export const DomainMappingSpecCertificateModeEnum = /*@__PURE__*/ S.String;
+export const DomainMappingSpecCertificateModeEnum = S.String;
 
 /** The desired state of the Domain Mapping. */
 export interface DomainMappingSpec {
@@ -938,7 +938,7 @@ export type ResourceRecordTypeEnum =
   | "A"
   | "AAAA"
   | "CNAME";
-export const ResourceRecordTypeEnum = /*@__PURE__*/ S.String;
+export const ResourceRecordTypeEnum = S.String;
 
 /** A DNS resource record. */
 export interface ResourceRecord {
@@ -1132,7 +1132,7 @@ export type ExecutionReferenceCompletionStatusEnum =
   | "EXECUTION_RUNNING"
   | "EXECUTION_PENDING"
   | "EXECUTION_CANCELLED";
-export const ExecutionReferenceCompletionStatusEnum = /*@__PURE__*/ S.String;
+export const ExecutionReferenceCompletionStatusEnum = S.String;
 
 /** Reference to an Execution. Use /Executions.GetExecution with the given name to get full execution including the latest status. */
 export interface ExecutionReference {
@@ -2038,7 +2038,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

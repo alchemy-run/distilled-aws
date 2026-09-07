@@ -571,7 +571,7 @@ export type QueueAttributeName =
   | "RedriveAllowPolicy"
   | "SqsManagedSseEnabled"
   | (string & {});
-export const QueueAttributeName = /*@__PURE__*/ S.String;
+export const QueueAttributeName = S.String;
 
 export type QueueAttributeMap = { [key in QueueAttributeName]?: string };
 export const QueueAttributeMap = /*@__PURE__*/ S.Record(
@@ -926,7 +926,7 @@ export type MessageSystemAttributeName =
   | "AWSTraceHeader"
   | "DeadLetterQueueSourceArn"
   | (string & {});
-export const MessageSystemAttributeName = /*@__PURE__*/ S.String;
+export const MessageSystemAttributeName = S.String;
 
 export type MessageSystemAttributeList = MessageSystemAttributeName[];
 export const MessageSystemAttributeList = /*@__PURE__*/ S.Array(
@@ -1080,7 +1080,7 @@ export const RemovePermissionResponse = /*@__PURE__*/ S.suspend(() =>
 export type MessageSystemAttributeNameForSends =
   | "AWSTraceHeader"
   | (string & {});
-export const MessageSystemAttributeNameForSends = /*@__PURE__*/ S.String;
+export const MessageSystemAttributeNameForSends = S.String;
 
 export interface MessageSystemAttributeValue {
   StringValue?: string;

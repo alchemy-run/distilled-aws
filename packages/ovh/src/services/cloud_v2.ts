@@ -148,8 +148,7 @@ export type PublicCloudInstanceAutobackupExecutionStateEnum =
   | "IDLE"
   | "RUNNING"
   | "SUCCESS";
-export const PublicCloudInstanceAutobackupExecutionStateEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudInstanceAutobackupExecutionStateEnum = S.String;
 
 /** A single execution of an instance autobackup, as recorded by the autobackup execution engine when the backup workflow runs */
 export interface PublicCloudInstanceAutobackupExecution {
@@ -254,7 +253,7 @@ export type CommonCurrentTaskStatusEnum =
   | "RUNNING"
   | "SCHEDULED"
   | "WAITING_USER_INPUT";
-export const CommonCurrentTaskStatusEnum = /*@__PURE__*/ S.String;
+export const CommonCurrentTaskStatusEnum = S.String;
 
 /** Asynchronous operation currently running */
 export interface CommonCurrentTask {
@@ -299,7 +298,7 @@ export type CommonResourceStatusEnum =
   | "SUSPENDED"
   | "UNKNOWN"
   | "UPDATING";
-export const CommonResourceStatusEnum = /*@__PURE__*/ S.String;
+export const CommonResourceStatusEnum = S.String;
 
 /** A Public Cloud instance autobackup (Mistral crontrigger for scheduled automatic backups) */
 export interface PublicCloudInstanceAutobackup {
@@ -404,7 +403,7 @@ export type PublicCloudInstanceImageStatusEnum =
   | "PENDING_DELETE"
   | "QUEUED"
   | "SAVING";
-export const PublicCloudInstanceImageStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudInstanceImageStatusEnum = S.String;
 
 /** Possible visibility levels for an instance image */
 export type PublicCloudInstanceImageVisibilityEnum =
@@ -412,7 +411,7 @@ export type PublicCloudInstanceImageVisibilityEnum =
   | "PRIVATE"
   | "PUBLIC"
   | "SHARED";
-export const PublicCloudInstanceImageVisibilityEnum = /*@__PURE__*/ S.String;
+export const PublicCloudInstanceImageVisibilityEnum = S.String;
 
 /** Current state of an instance backup as observed from the infrastructure */
 export interface PublicCloudInstanceBackupCurrentState {
@@ -573,7 +572,7 @@ export type PublicCloudInstancePowerStateEnum =
   | "RESCUE"
   | "SHELVED"
   | "SHUTOFF";
-export const PublicCloudInstancePowerStateEnum = /*@__PURE__*/ S.String;
+export const PublicCloudInstancePowerStateEnum = S.String;
 
 /** Reference to a security group */
 export interface PublicCloudSecurityGroupSecurityGroupRef {
@@ -965,7 +964,7 @@ export type PublicCloudInstanceInstanceActionTypeEnum =
   | "RESCUE"
   | "UNLOCK"
   | "UNRESCUE";
-export const PublicCloudInstanceInstanceActionTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudInstanceInstanceActionTypeEnum = S.String;
 
 export interface CreatePublicCloudProjectComputeInstanceActionRequest {
   /** Project ID */
@@ -1005,8 +1004,7 @@ export type PublicCloudInstanceRemoteConsoleProtocolEnum =
   | "SERIAL"
   | "SPICE"
   | "VNC";
-export const PublicCloudInstanceRemoteConsoleProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudInstanceRemoteConsoleProtocolEnum = S.String;
 
 /** Supported remote console display types */
 export type PublicCloudInstanceRemoteConsoleTypeEnum =
@@ -1014,7 +1012,7 @@ export type PublicCloudInstanceRemoteConsoleTypeEnum =
   | "SERIAL"
   | "SPICE_HTML5"
   | "XVPVNC";
-export const PublicCloudInstanceRemoteConsoleTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudInstanceRemoteConsoleTypeEnum = S.String;
 
 export interface CreatePublicCloudProjectComputeInstanceConsoleRequest {
   /** Project ID */
@@ -1065,7 +1063,7 @@ export const PublicCloudInstanceRemoteConsole = /*@__PURE__*/ S.suspend(() =>
 
 /** Placement policy for an instance group */
 export type PublicCloudInstanceGroupPolicyEnum = "AFFINITY" | "ANTI_AFFINITY";
-export const PublicCloudInstanceGroupPolicyEnum = /*@__PURE__*/ S.String;
+export const PublicCloudInstanceGroupPolicyEnum = S.String;
 
 /** Target specification for an instance group */
 export interface PublicCloudInstanceGroupInstanceGroupTargetSpec {
@@ -1266,7 +1264,7 @@ export type PublicCloudFloatingIpFloatingIPStatusEnum =
   | "ACTIVE"
   | "DOWN"
   | "ERROR";
-export const PublicCloudFloatingIpFloatingIPStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudFloatingIpFloatingIPStatusEnum = S.String;
 
 /** Current state of a floating IP from OpenStack */
 export interface PublicCloudFloatingIpFloatingIPCurrentState {
@@ -1348,8 +1346,7 @@ export type PublicCloudGatewayExternalGatewayModelEnum =
   | "M"
   | "S"
   | "XL";
-export const PublicCloudGatewayExternalGatewayModelEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudGatewayExternalGatewayModelEnum = S.String;
 
 /** External gateway configuration */
 export interface PublicCloudGatewayExternalGateway {
@@ -1447,7 +1444,7 @@ export type PublicCloudGatewayGatewayStatusEnum =
   | "BUILD"
   | "DOWN"
   | "ERROR";
-export const PublicCloudGatewayGatewayStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudGatewayGatewayStatusEnum = S.String;
 
 /** Currently attached subnets */
 export type PublicCloudGatewayGatewayCurrentStateSubnetsList =
@@ -1578,7 +1575,7 @@ export type PublicCloudKeyManagerContainerTypeEnum =
   | "CERTIFICATE"
   | "GENERIC"
   | "RSA";
-export const PublicCloudKeyManagerContainerTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerContainerTypeEnum = S.String;
 
 /** Target specification for a key manager container */
 export interface PublicCloudKeyManagerContainerTargetSpec {
@@ -1637,7 +1634,7 @@ export const PublicCloudKeyManagerContainerCurrentStateSecretRefsList =
 
 /** Status of a Key Manager container in OpenStack */
 export type PublicCloudKeyManagerContainerStatusEnum = "ACTIVE" | "ERROR";
-export const PublicCloudKeyManagerContainerStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerContainerStatusEnum = S.String;
 
 /** Current state of a key manager container as observed from the infrastructure */
 export interface PublicCloudKeyManagerContainerCurrentState {
@@ -1721,8 +1718,7 @@ export type PublicCloudKeyManagerConsumerResourceTypeEnum =
   | "IMAGE"
   | "INSTANCE"
   | "LOADBALANCER";
-export const PublicCloudKeyManagerConsumerResourceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerConsumerResourceTypeEnum = S.String;
 
 /** Type of service consuming a Key Manager secret */
 export type PublicCloudKeyManagerConsumerServiceEnum =
@@ -1730,7 +1726,7 @@ export type PublicCloudKeyManagerConsumerServiceEnum =
   | "IMAGE"
   | "LOADBALANCER"
   | "NETWORK";
-export const PublicCloudKeyManagerConsumerServiceEnum = /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerConsumerServiceEnum = S.String;
 
 export interface CreatePublicCloudProjectKeyManagerContainerConsumerRequest {
   /** Project ID */
@@ -1793,7 +1789,7 @@ export type PublicCloudKeyManagerAlgorithmEnum =
   | "DSA"
   | "EC"
   | "RSA";
-export const PublicCloudKeyManagerAlgorithmEnum = /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerAlgorithmEnum = S.String;
 
 /** Bit length of a Key Manager secret */
 export type PublicCloudKeyManagerBitLengthEnum =
@@ -1803,7 +1799,7 @@ export type PublicCloudKeyManagerBitLengthEnum =
   | 1024
   | 2048
   | 4096;
-export const PublicCloudKeyManagerBitLengthEnum = /*@__PURE__*/ S.Number;
+export const PublicCloudKeyManagerBitLengthEnum = S.Number;
 
 /** Key-value metadata pairs for the secret */
 export type PublicCloudKeyManagerSecretTargetSpecMetadataMap = {
@@ -1817,7 +1813,7 @@ export const PublicCloudKeyManagerSecretTargetSpecMetadataMap =
 
 /** Block cipher mode associated with a Key Manager secret */
 export type PublicCloudKeyManagerModeEnum = "CBC" | "CTR";
-export const PublicCloudKeyManagerModeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerModeEnum = S.String;
 
 /** Content type of a Key Manager secret payload */
 export type PublicCloudKeyManagerPayloadContentTypeEnum =
@@ -1825,8 +1821,7 @@ export type PublicCloudKeyManagerPayloadContentTypeEnum =
   | "APPLICATION_PKCS8"
   | "APPLICATION_PKIX_CERT"
   | "TEXT_PLAIN";
-export const PublicCloudKeyManagerPayloadContentTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerPayloadContentTypeEnum = S.String;
 
 /** Type of a Key Manager secret */
 export type PublicCloudKeyManagerSecretTypeEnum =
@@ -1836,7 +1831,7 @@ export type PublicCloudKeyManagerSecretTypeEnum =
   | "PRIVATE"
   | "PUBLIC"
   | "SYMMETRIC";
-export const PublicCloudKeyManagerSecretTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerSecretTypeEnum = S.String;
 
 /** Desired specification for a Key Manager secret */
 export interface PublicCloudKeyManagerSecretTargetSpec {
@@ -1920,7 +1915,7 @@ export const PublicCloudKeyManagerSecretCurrentStateMetadataMap =
 
 /** Status of a Key Manager secret in OpenStack */
 export type PublicCloudKeyManagerSecretStatusEnum = "ACTIVE" | "ERROR";
-export const PublicCloudKeyManagerSecretStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudKeyManagerSecretStatusEnum = S.String;
 
 /** Current state of a Key Manager secret from OpenStack */
 export interface PublicCloudKeyManagerSecretCurrentState {
@@ -2108,8 +2103,7 @@ export type PublicCloudLoadbalancerLoadbalancerFlavorNameEnum =
   | "MEDIUM"
   | "SMALL"
   | "XL";
-export const PublicCloudLoadbalancerLoadbalancerFlavorNameEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerLoadbalancerFlavorNameEnum = S.String;
 
 /** Reference to an Octavia flavor by name */
 export interface PublicCloudLoadbalancerLoadbalancerFlavorRef {
@@ -2212,8 +2206,7 @@ export type PublicCloudLoadbalancerLoadbalancerOperatingStatusEnum =
   | "NO_MONITOR"
   | "OFFLINE"
   | "ONLINE";
-export const PublicCloudLoadbalancerLoadbalancerOperatingStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerLoadbalancerOperatingStatusEnum = S.String;
 
 /** Provisioning status of a load balancer in OpenStack */
 export type PublicCloudLoadbalancerLoadbalancerProvisioningStatusEnum =
@@ -2224,7 +2217,7 @@ export type PublicCloudLoadbalancerLoadbalancerProvisioningStatusEnum =
   | "PENDING_DELETE"
   | "PENDING_UPDATE";
 export const PublicCloudLoadbalancerLoadbalancerProvisioningStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Current state of a load balancer from OpenStack */
 export interface PublicCloudLoadbalancerLoadbalancerCurrentState {
@@ -2373,8 +2366,7 @@ export type PublicCloudLoadbalancerListenerProtocolEnum =
   | "TCP"
   | "TERMINATED_HTTPS"
   | "UDP";
-export const PublicCloudLoadbalancerListenerProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerListenerProtocolEnum = S.String;
 
 /** References to TLS certificate containers for SNI (for TERMINATED_HTTPS) */
 export type PublicCloudLoadbalancerListenerTargetSpecSniContainerRefsList =
@@ -2651,7 +2643,7 @@ export type PublicCloudLoadbalancerL7PolicyActionEnum =
   | "REDIRECT_TO_POOL"
   | "REDIRECT_TO_URL"
   | "REJECT";
-export const PublicCloudLoadbalancerL7PolicyActionEnum = /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerL7PolicyActionEnum = S.String;
 
 /** Reference to a pool for L7 policy redirect */
 export interface PublicCloudLoadbalancerL7PolicyRedirectPoolRef {
@@ -2674,8 +2666,7 @@ export type PublicCloudLoadbalancerL7RuleCompareTypeEnum =
   | "EQUAL_TO"
   | "REGEX"
   | "STARTS_WITH";
-export const PublicCloudLoadbalancerL7RuleCompareTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerL7RuleCompareTypeEnum = S.String;
 
 /** Type of attribute to match in an L7 rule */
 export type PublicCloudLoadbalancerL7RuleTypeEnum =
@@ -2684,7 +2675,7 @@ export type PublicCloudLoadbalancerL7RuleTypeEnum =
   | "HEADER"
   | "HOST_NAME"
   | "PATH";
-export const PublicCloudLoadbalancerL7RuleTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerL7RuleTypeEnum = S.String;
 
 /** Desired specification for an L7 rule embedded in an L7 policy */
 export interface PublicCloudLoadbalancerL7RuleSpec {
@@ -2953,7 +2944,7 @@ export type PublicCloudLoadbalancerPoolAlgorithmEnum =
   | "ROUND_ROBIN"
   | "SOURCE_IP"
   | "SOURCE_IP_PORT";
-export const PublicCloudLoadbalancerPoolAlgorithmEnum = /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerPoolAlgorithmEnum = S.String;
 
 /** HTTP method used by the health monitor for HTTP/HTTPS type probes */
 export type PublicCloudLoadbalancerHealthMonitorHttpMethodEnum =
@@ -2966,8 +2957,7 @@ export type PublicCloudLoadbalancerHealthMonitorHttpMethodEnum =
   | "POST"
   | "PUT"
   | "TRACE";
-export const PublicCloudLoadbalancerHealthMonitorHttpMethodEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerHealthMonitorHttpMethodEnum = S.String;
 
 /** Type of health monitor probe */
 export type PublicCloudLoadbalancerHealthMonitorTypeEnum =
@@ -2978,8 +2968,7 @@ export type PublicCloudLoadbalancerHealthMonitorTypeEnum =
   | "TCP"
   | "TLS_HELLO"
   | "UDP_CONNECT";
-export const PublicCloudLoadbalancerHealthMonitorTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerHealthMonitorTypeEnum = S.String;
 
 /** Desired specification for creating a health monitor on a pool */
 export interface PublicCloudLoadbalancerHealthMonitorTargetSpec {
@@ -3035,8 +3024,7 @@ export type PublicCloudLoadbalancerSessionPersistenceTypeEnum =
   | "APP_COOKIE"
   | "HTTP_COOKIE"
   | "SOURCE_IP";
-export const PublicCloudLoadbalancerSessionPersistenceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerSessionPersistenceTypeEnum = S.String;
 
 /** Session persistence configuration for a load balancer pool */
 export interface PublicCloudLoadbalancerSessionPersistence {
@@ -3064,7 +3052,7 @@ export type PublicCloudLoadbalancerPoolProtocolEnum =
   | "SCTP"
   | "TCP"
   | "UDP";
-export const PublicCloudLoadbalancerPoolProtocolEnum = /*@__PURE__*/ S.String;
+export const PublicCloudLoadbalancerPoolProtocolEnum = S.String;
 
 /** Desired specification for creating a load balancer pool */
 export interface PublicCloudLoadbalancerPoolTargetSpec {
@@ -3795,8 +3783,7 @@ export const CreatePublicCloudProjectPublicIpFloatingRequest =
 
 /** Type of resource associated with a public IP */
 export type PublicCloudPublicIpPublicIPAssociatedResourceTypeEnum = "INSTANCE";
-export const PublicCloudPublicIpPublicIPAssociatedResourceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudPublicIpPublicIPAssociatedResourceTypeEnum = S.String;
 
 /** Resource associated with a public IP */
 export interface PublicCloudPublicIpPublicIPAssociatedResource {
@@ -3830,7 +3817,7 @@ export type PublicCloudPublicIpFloatingIPStatusEnum =
   | "PENDING_CREATE"
   | "PENDING_DELETE"
   | "PENDING_UPDATE";
-export const PublicCloudPublicIpFloatingIPStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudPublicIpFloatingIPStatusEnum = S.String;
 
 /** Current state of a floating IP from OpenStack */
 export interface PublicCloudPublicIpFloatingIPCurrentState {
@@ -3912,7 +3899,7 @@ export const PublicCloudPublicIpFloatingIP = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for managed Rancher plans */
 export type PublicCloudRancherPlanEnum = "OVHCLOUD_EDITION" | "STANDARD";
-export const PublicCloudRancherPlanEnum = /*@__PURE__*/ S.String;
+export const PublicCloudRancherPlanEnum = S.String;
 
 /** Target specification of the managed Rancher service */
 export interface PublicCloudRancherRancherCreationTargetSpec {
@@ -4010,7 +3997,7 @@ export type PublicCloudRancherRegionEnum =
   | "EU_WEST_GRA"
   | "EU_WEST_RBX"
   | "EU_WEST_SBG";
-export const PublicCloudRancherRegionEnum = /*@__PURE__*/ S.String;
+export const PublicCloudRancherRegionEnum = S.String;
 
 /** A metric sample about a managed Rancher usage */
 export interface PublicCloudRancherUsage {
@@ -4188,11 +4175,11 @@ export const PublicCloudRancherCredentials = /*@__PURE__*/ S.suspend(() =>
 
 /** Flow rule of traffic for a security group rule */
 export type PublicCloudSecurityGroupTrafficFlowEnum = "EGRESS" | "INGRESS";
-export const PublicCloudSecurityGroupTrafficFlowEnum = /*@__PURE__*/ S.String;
+export const PublicCloudSecurityGroupTrafficFlowEnum = S.String;
 
 /** Ethernet type for a security group rule */
 export type PublicCloudSecurityGroupEthernetTypeEnum = "IPV4" | "IPV6";
-export const PublicCloudSecurityGroupEthernetTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudSecurityGroupEthernetTypeEnum = S.String;
 
 /** Network protocol for a security group rule */
 export type PublicCloudSecurityGroupProtocolEnum =
@@ -4212,7 +4199,7 @@ export type PublicCloudSecurityGroupProtocolEnum =
   | "UDP"
   | "UDPLITE"
   | "VRRP";
-export const PublicCloudSecurityGroupProtocolEnum = /*@__PURE__*/ S.String;
+export const PublicCloudSecurityGroupProtocolEnum = S.String;
 
 /** Desired firewall rule for a security group */
 export interface PublicCloudSecurityGroupSecurityGroupTargetRule {
@@ -4765,7 +4752,7 @@ export type PublicCloudBlockStorageVolumeTypeEnum =
   | "CLASSIC"
   | "HIGH_SPEED"
   | "HIGH_SPEED_GEN2";
-export const PublicCloudBlockStorageVolumeTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudBlockStorageVolumeTypeEnum = S.String;
 
 /** Target specification for a block storage volume */
 export interface PublicCloudBlockStorageBlockTargetSpec {
@@ -4856,7 +4843,7 @@ export type PublicCloudBlockStorageVolumeStatusEnum =
   | "EXTENDING"
   | "IN_USE"
   | "RETYPING";
-export const PublicCloudBlockStorageVolumeStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudBlockStorageVolumeStatusEnum = S.String;
 
 /** Current state of a block storage volume as observed from the infrastructure */
 export interface PublicCloudBlockStorageBlockCurrentState {
@@ -4994,8 +4981,7 @@ export const CreatePublicCloudProjectStorageFileSnapshotRequest =
 
 /** Supported file sharing protocols */
 export type PublicCloudStorageFileFileStorageProtocolEnum = "NFS";
-export const PublicCloudStorageFileFileStorageProtocolEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageFileFileStorageProtocolEnum = S.String;
 
 /** Current state of a file storage snapshot as observed from the infrastructure */
 export interface PublicCloudStorageFileFileStorageSnapshotCurrentState {
@@ -5080,8 +5066,7 @@ export const PublicCloudStorageFileFileStorageSnapshot =
 
 /** Supported encryption algorithms for S3 buckets */
 export type PublicCloudStorageObjectBucketEncryptionAlgorithmEnum = "AES256";
-export const PublicCloudStorageObjectBucketEncryptionAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageObjectBucketEncryptionAlgorithmEnum = S.String;
 
 /** Server-side encryption configuration for an S3 bucket */
 export interface PublicCloudStorageObjectBucketEncryptionConfig {
@@ -5117,8 +5102,7 @@ export const PublicCloudStorageObjectBucketLocation = /*@__PURE__*/ S.suspend(
 export type PublicCloudStorageObjectBucketObjectLockModeEnum =
   | "COMPLIANCE"
   | "GOVERNANCE";
-export const PublicCloudStorageObjectBucketObjectLockModeEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageObjectBucketObjectLockModeEnum = S.String;
 
 /** Object lock (WORM) configuration for an S3 bucket */
 export interface PublicCloudStorageObjectBucketObjectLockConfigInput {
@@ -5152,8 +5136,7 @@ export type PublicCloudStorageObjectBucketVersioningStatusEnum =
   | "DISABLED"
   | "ENABLED"
   | "SUSPENDED";
-export const PublicCloudStorageObjectBucketVersioningStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageObjectBucketVersioningStatusEnum = S.String;
 
 /** Versioning configuration for an S3 bucket */
 export interface PublicCloudStorageObjectBucketVersioningConfig {
@@ -6061,8 +6044,7 @@ export const DeletePublicCloudProjectStorageFileShareRequest =
 export type PublicCloudStorageFileFileStorageAccessLevelEnum =
   | "READ_ONLY"
   | "READ_WRITE";
-export const PublicCloudStorageFileFileStorageAccessLevelEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageFileFileStorageAccessLevelEnum = S.String;
 
 /** Possible states for a file storage access rule */
 export type PublicCloudStorageFileFileStorageAccessRuleStateEnum =
@@ -6070,8 +6052,7 @@ export type PublicCloudStorageFileFileStorageAccessRuleStateEnum =
   | "APPLYING"
   | "DENYING"
   | "ERROR";
-export const PublicCloudStorageFileFileStorageAccessRuleStateEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageFileFileStorageAccessRuleStateEnum = S.String;
 
 /** An access rule controlling which IP addresses can access a file storage */
 export interface PublicCloudStorageFileFileStorageAccessRule {
@@ -6134,7 +6115,7 @@ export const PublicCloudStorageFileFileStorageCurrentStateExportLocationsList =
 
 /** Supported file storage types (performance tiers) */
 export type PublicCloudStorageFileFileStorageTypeEnum = "STANDARD_1AZ";
-export const PublicCloudStorageFileFileStorageTypeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudStorageFileFileStorageTypeEnum = S.String;
 
 /** Current state of a file storage as observed from the infrastructure */
 export interface PublicCloudStorageFileFileStorageCurrentState {
@@ -6358,7 +6339,7 @@ export const GetPublicCloudProjectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for cloud project mode */
 export type PublicCloudProjectModeEnum = "CLASSIC" | "DISCOVERY";
-export const PublicCloudProjectModeEnum = /*@__PURE__*/ S.String;
+export const PublicCloudProjectModeEnum = S.String;
 
 /** Current state of the cloud project */
 export interface PublicCloudProjectProjectCurrentState {
@@ -6391,7 +6372,7 @@ export type IamResourceMetadataStateEnum =
   | "IN_CREATION"
   | "OK"
   | "SUSPENDED";
-export const IamResourceMetadataStateEnum = /*@__PURE__*/ S.String;
+export const IamResourceMetadataStateEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -7273,7 +7254,7 @@ export type PublicCloudQuotaQuotaUnitEnum =
   | "GiB"
   | "MB"
   | "MiB";
-export const PublicCloudQuotaQuotaUnitEnum = /*@__PURE__*/ S.String;
+export const PublicCloudQuotaQuotaUnitEnum = S.String;
 
 /** Quota usage with limit and current consumption */
 export interface PublicCloudQuotaQuotaUsage {
@@ -7701,7 +7682,7 @@ export type CommonTaskStatusEnum =
   | "RUNNING"
   | "SCHEDULED"
   | "WAITING_USER_INPUT";
-export const CommonTaskStatusEnum = /*@__PURE__*/ S.String;
+export const CommonTaskStatusEnum = S.String;
 
 /** Detailed information about an asynchronous operation progress steps */
 export interface CommonTaskProgress {
@@ -7963,7 +7944,7 @@ export type PublicCloudReferenceRegionStatusEnum =
   | "DISABLED"
   | "ENABLED"
   | "MAINTENANCE";
-export const PublicCloudReferenceRegionStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudReferenceRegionStatusEnum = S.String;
 
 /** A Public Cloud region (read-only reference data) */
 export interface PublicCloudReferenceRegion {
@@ -8403,7 +8384,7 @@ export type CommonEventTypeEnum =
   | "TASK_ERROR"
   | "TASK_START"
   | "TASK_SUCCESS";
-export const CommonEventTypeEnum = /*@__PURE__*/ S.String;
+export const CommonEventTypeEnum = S.String;
 
 /** Represents an event for an async envelope */
 export interface CommonEvent {
@@ -9127,7 +9108,7 @@ export type PublicCloudPublicIpPublicIPKindEnum =
   | "ADDITIONAL_IP"
   | "EXT_NET_IP"
   | "FLOATING_IP";
-export const PublicCloudPublicIpPublicIPKindEnum = /*@__PURE__*/ S.String;
+export const PublicCloudPublicIpPublicIPKindEnum = S.String;
 
 /** Lightweight view of a Public Cloud public IP, exposing only its kind and address */
 export interface PublicCloudPublicIpPublicIPSummary {
@@ -9373,16 +9354,14 @@ export type PublicCloudRancherPlanUnavailabilityCauseEnum =
   | "CANNOT_DOWNGRADE_USING_HIGHER_FEATURES"
   | "CANNOT_SWITCH_PLAN_FOR_ALPHA"
   | "NOT_IMPLEMENTED";
-export const PublicCloudRancherPlanUnavailabilityCauseEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudRancherPlanUnavailabilityCauseEnum = S.String;
 
 /** Possible statuses for a managed Rancher plan capability, applicable to an existing managed Rancher */
 export type PublicCloudRancherPlanCapabilityStatusEnum =
   | "AVAILABLE"
   | "CURRENT"
   | "UNAVAILABLE";
-export const PublicCloudRancherPlanCapabilityStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudRancherPlanCapabilityStatusEnum = S.String;
 
 /** A managed Rancher service plan capability, applicable to an existing managed Rancher */
 export interface PublicCloudRancherPlanCapability {
@@ -9462,15 +9441,13 @@ export type PublicCloudRancherVersionUnavailabilityCauseEnum =
   | "END_OF_LIFE"
   | "END_OF_SALE"
   | "END_OF_SUPPORT";
-export const PublicCloudRancherVersionUnavailabilityCauseEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudRancherVersionUnavailabilityCauseEnum = S.String;
 
 /** Possible statuses for a managed Rancher version capability, applicable to an existing managed Rancher */
 export type PublicCloudRancherVersionCapabilityStatusEnum =
   | "AVAILABLE"
   | "UNAVAILABLE";
-export const PublicCloudRancherVersionCapabilityStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudRancherVersionCapabilityStatusEnum = S.String;
 
 /** A managed Rancher service version capability, applicable to an existing managed Rancher */
 export interface PublicCloudRancherVersionCapability {
@@ -9738,7 +9715,7 @@ export const ListPublicCloudProjectReferenceRancherPlanRequest =
 export type PublicCloudRancherPlanReferenceStatusEnum =
   | "AVAILABLE"
   | "UNAVAILABLE";
-export const PublicCloudRancherPlanReferenceStatusEnum = /*@__PURE__*/ S.String;
+export const PublicCloudRancherPlanReferenceStatusEnum = S.String;
 
 /** A managed Rancher service plan reference, applicable to service creations */
 export interface PublicCloudRancherPlanReference {
@@ -9811,8 +9788,7 @@ export const ListPublicCloudProjectReferenceRancherVersionRequest =
 export type PublicCloudRancherVersionReferenceStatusEnum =
   | "AVAILABLE"
   | "UNAVAILABLE";
-export const PublicCloudRancherVersionReferenceStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudRancherVersionReferenceStatusEnum = S.String;
 
 /** A managed Rancher service version reference, applicable to service creations */
 export interface PublicCloudRancherVersionReference {
@@ -10383,7 +10359,7 @@ export type PublicCloudStorageObjectStorageClassEnum =
   | "HIGH_PERF"
   | "STANDARD"
   | "STANDARD_IA";
-export const PublicCloudStorageObjectStorageClassEnum = /*@__PURE__*/ S.String;
+export const PublicCloudStorageObjectStorageClassEnum = S.String;
 
 /** Storage class transition for noncurrent object versions */
 export interface PublicCloudStorageObjectLifecycleRuleNoncurrentVersionTransition {
@@ -10418,8 +10394,7 @@ export const PublicCloudStorageObjectLifecycleRuleNoncurrentVersionTransitionsLi
 export type PublicCloudStorageObjectLifecycleRuleStatusEnum =
   | "DISABLED"
   | "ENABLED";
-export const PublicCloudStorageObjectLifecycleRuleStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageObjectLifecycleRuleStatusEnum = S.String;
 
 /** Storage class transition for current object versions */
 export interface PublicCloudStorageObjectLifecycleRuleTransition {
@@ -10550,8 +10525,7 @@ export const ListPublicCloudProjectStorageObjectBucketReplicationRequest =
 export type PublicCloudStorageObjectReplicationRuleStatusEnum =
   | "DISABLED"
   | "ENABLED";
-export const PublicCloudStorageObjectReplicationRuleStatusEnum =
-  /*@__PURE__*/ S.String;
+export const PublicCloudStorageObjectReplicationRuleStatusEnum = S.String;
 
 /** Destination configuration for replicated objects */
 export interface PublicCloudStorageObjectReplicationRuleDestination {

@@ -98,7 +98,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -106,7 +106,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -315,7 +315,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export type UserAssignedIdentityInput = CapabilityPropertiesInput;
@@ -347,7 +347,7 @@ export const ExperimentsCreateOrUpdateRequestIdentity = /*@__PURE__*/ S.suspend(
 
 /** Enum union of Chaos experiment action types. */
 export type ExperimentActionType = "delay" | "discrete" | "continuous";
-export const ExperimentActionType = /*@__PURE__*/ S.String;
+export const ExperimentActionType = S.String;
 
 /** Model that represents the base action model. 9 total per experiment. */
 export interface ChaosExperimentAction {
@@ -417,11 +417,11 @@ export const ExperimentPropertiesInputStepsList = /*@__PURE__*/ S.Array(
 
 /** Enum of the selector type. */
 export type SelectorType = "List" | "Query";
-export const SelectorType = /*@__PURE__*/ S.String;
+export const SelectorType = S.String;
 
 /** Enum that discriminates between filter types. Currently only `Simple` type is supported. */
 export type FilterType = "Simple";
-export const FilterType = /*@__PURE__*/ S.String;
+export const FilterType = S.String;
 
 /** Model that represents available filter types that can be applied to a targets list. */
 export interface ChaosTargetFilter {
@@ -577,7 +577,7 @@ export type ProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** List of steps. */
 export type ExperimentPropertiesStepsList = Array<ChaosExperimentStep>;
@@ -1908,11 +1908,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

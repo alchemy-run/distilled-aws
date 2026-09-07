@@ -618,7 +618,7 @@ export const ContainerChangesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of change Can be one of: - `0`: Modified ("C") - `1`: Added ("A") - `2`: Deleted ("D") */
 export type ChangeType = 0 | 1 | 2;
-export const ChangeType = /*@__PURE__*/ S.Number;
+export const ChangeType = S.Number;
 
 /** Change in the container's filesystem. */
 export interface FilesystemChange {
@@ -677,11 +677,11 @@ export type ContainerStateStatus =
   | "removing"
   | "exited"
   | "dead";
-export const ContainerStateStatus = /*@__PURE__*/ S.String;
+export const ContainerStateStatus = S.String;
 
 /** Status is one of `none`, `starting`, `healthy` or `unhealthy` - "none" Indicates there is no healthcheck - "starting" Starting indicates that the container is not yet ready - "healthy" Healthy indicates that the container is running correctly - "unhealthy" Unhealthy indicates that the container has a problem */
 export type HealthStatus = "none" | "starting" | "healthy" | "unhealthy";
-export const HealthStatus = /*@__PURE__*/ S.String;
+export const HealthStatus = S.String;
 
 /** HealthcheckResult stores information about a single run of a healthcheck probe */
 export interface HealthcheckResult {
@@ -1026,7 +1026,7 @@ export type HostConfigLogConfigType =
   | "splunk"
   | "etwlogs"
   | "none";
-export const HostConfigLogConfigType = /*@__PURE__*/ S.String;
+export const HostConfigLogConfigType = S.String;
 
 /** Driver-specific configuration options for the logging driver. */
 export type HostConfigLogConfigConfigMap = {
@@ -1086,7 +1086,7 @@ export type RestartPolicyName =
   | "always"
   | "unless-stopped"
   | "on-failure";
-export const RestartPolicyName = /*@__PURE__*/ S.String;
+export const RestartPolicyName = S.String;
 
 /** The behavior to apply when the container exits. The default is not to restart. An ever increasing delay (double the previous delay, starting at 100ms) is added before each restart to prevent flooding the server. */
 export interface RestartPolicy {
@@ -1116,7 +1116,7 @@ export type MountType =
   | "npipe"
   | "tmpfs"
   | "volume";
-export const MountType = /*@__PURE__*/ S.String;
+export const MountType = S.String;
 
 /** A propagation mode with the value `[r]private`, `[r]shared`, or `[r]slave`. */
 export type MountBindOptionsPropagation =
@@ -1126,7 +1126,7 @@ export type MountBindOptionsPropagation =
   | "rshared"
   | "slave"
   | "rslave";
-export const MountBindOptionsPropagation = /*@__PURE__*/ S.String;
+export const MountBindOptionsPropagation = S.String;
 
 /** Optional configuration for the `bind` type. */
 export interface MountBindOptions {
@@ -1318,7 +1318,7 @@ export const HostConfigCapDropList = /*@__PURE__*/ S.Array(
 
 /** cgroup namespace mode for the container. Possible values are: - `"private"`: the container runs in its own private cgroup namespace - `"host"`: use the host system's cgroup namespace If not specified, the daemon default is used, which can either be `"private"` or `"host"`, depending on daemon version, kernel support and configuration. */
 export type HostConfigCgroupnsMode = "private" | "host";
-export const HostConfigCgroupnsMode = /*@__PURE__*/ S.String;
+export const HostConfigCgroupnsMode = S.String;
 
 /** A list of DNS servers for the container to use. */
 export type HostConfigDnsList = Array<string>;
@@ -1385,7 +1385,7 @@ export const HostConfigSysctlsMap = /*@__PURE__*/ S.Record(
 
 /** Isolation technology of the container. (Windows only) */
 export type HostConfigIsolation = "default" | "process" | "hyperv" | "";
-export const HostConfigIsolation = /*@__PURE__*/ S.String;
+export const HostConfigIsolation = S.String;
 
 /** The list of paths to be masked inside the container (this overrides the default set of paths). */
 export type HostConfigMaskedPathsList = Array<string>;
@@ -3063,8 +3063,7 @@ export type TaskSpecContainerSpecPrivilegesSeccompMode =
   | "default"
   | "unconfined"
   | "custom";
-export const TaskSpecContainerSpecPrivilegesSeccompMode =
-  /*@__PURE__*/ S.String;
+export const TaskSpecContainerSpecPrivilegesSeccompMode = S.String;
 
 /** Options for configuring seccomp on the container */
 export interface TaskSpecContainerSpecPrivilegesSeccomp {
@@ -3085,8 +3084,7 @@ export const TaskSpecContainerSpecPrivilegesSeccomp = /*@__PURE__*/ S.suspend(
 export type TaskSpecContainerSpecPrivilegesAppArmorMode =
   | "default"
   | "disabled";
-export const TaskSpecContainerSpecPrivilegesAppArmorMode =
-  /*@__PURE__*/ S.String;
+export const TaskSpecContainerSpecPrivilegesAppArmorMode = S.String;
 
 /** Options for configuring AppArmor on the container */
 export interface TaskSpecContainerSpecPrivilegesAppArmor {
@@ -3264,7 +3262,7 @@ export type TaskSpecContainerSpecIsolation =
   | "process"
   | "hyperv"
   | "";
-export const TaskSpecContainerSpecIsolation = /*@__PURE__*/ S.String;
+export const TaskSpecContainerSpecIsolation = S.String;
 
 /** Set kernel namedspaced parameters (sysctls) in the container. The Sysctls option on services accepts the same sysctls as the are supported on containers. Note that while the same sysctls are supported, no guarantees or checks are made about their suitability for a clustered environment, and it's up to the user to determine whether a given sysctl will work properly in a Service. */
 export type TaskSpecContainerSpecSysctlsMap = {
@@ -3502,7 +3500,7 @@ export const TaskSpecResources = /*@__PURE__*/ S.suspend(() =>
 
 /** Condition for restart. */
 export type TaskSpecRestartPolicyCondition = "none" | "on-failure" | "any";
-export const TaskSpecRestartPolicyCondition = /*@__PURE__*/ S.String;
+export const TaskSpecRestartPolicyCondition = S.String;
 
 /** Specification for the restart policy which applies to containers created as part of this service. */
 export interface TaskSpecRestartPolicy {
@@ -3754,14 +3752,13 @@ export type CreateServiceRequestUpdateConfigFailureAction =
   | "continue"
   | "pause"
   | "rollback";
-export const CreateServiceRequestUpdateConfigFailureAction =
-  /*@__PURE__*/ S.String;
+export const CreateServiceRequestUpdateConfigFailureAction = S.String;
 
 /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
 export type CreateServiceRequestUpdateConfigOrder =
   | "stop-first"
   | "start-first";
-export const CreateServiceRequestUpdateConfigOrder = /*@__PURE__*/ S.String;
+export const CreateServiceRequestUpdateConfigOrder = S.String;
 
 /** Specification for the update strategy of the service. */
 export interface CreateServiceRequestUpdateConfig {
@@ -3795,14 +3792,13 @@ export const CreateServiceRequestUpdateConfig = /*@__PURE__*/ S.suspend(() =>
 export type CreateServiceRequestRollbackConfigFailureAction =
   | "continue"
   | "pause";
-export const CreateServiceRequestRollbackConfigFailureAction =
-  /*@__PURE__*/ S.String;
+export const CreateServiceRequestRollbackConfigFailureAction = S.String;
 
 /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
 export type CreateServiceRequestRollbackConfigOrder =
   | "stop-first"
   | "start-first";
-export const CreateServiceRequestRollbackConfigOrder = /*@__PURE__*/ S.String;
+export const CreateServiceRequestRollbackConfigOrder = S.String;
 
 /** Specification for the rollback strategy of the service. */
 export interface CreateServiceRequestRollbackConfig {
@@ -3842,14 +3838,14 @@ export const CreateServiceRequestNetworksList = /*@__PURE__*/ S.Array(
 
 /** The mode of resolution to use for internal load balancing between tasks. */
 export type EndpointSpecMode = "vip" | "dnsrr";
-export const EndpointSpecMode = /*@__PURE__*/ S.String;
+export const EndpointSpecMode = S.String;
 
 export type EndpointPortConfigProtocol = "tcp" | "udp" | "sctp";
-export const EndpointPortConfigProtocol = /*@__PURE__*/ S.String;
+export const EndpointPortConfigProtocol = S.String;
 
 /** The mode in which port is published. <p><br /></p> - "ingress" makes the target port accessible on every node, regardless of whether there is a task for the service running on that node or not. - "host" bypasses the routing mesh and publish the port directly on the swarm node where that service is running. */
 export type EndpointPortConfigPublishMode = "ingress" | "host";
-export const EndpointPortConfigPublishMode = /*@__PURE__*/ S.String;
+export const EndpointPortConfigPublishMode = S.String;
 
 export interface EndpointPortConfig {
   Name?: string;
@@ -3969,7 +3965,7 @@ export const CreateVolumeRequestLabelsMap = /*@__PURE__*/ S.Record(
 
 /** The set of nodes this volume can be used on at one time. - `single` The volume may only be scheduled to one node at a time. - `multi` the volume may be scheduled to any supported number of nodes at a time. */
 export type ClusterVolumeSpecAccessModeScope = "single" | "multi";
-export const ClusterVolumeSpecAccessModeScope = /*@__PURE__*/ S.String;
+export const ClusterVolumeSpecAccessModeScope = S.String;
 
 /** The number and way that different tasks can use this volume at one time. - `none` The volume may only be used by one task at a time. - `readonly` The volume may be used by any number of tasks, but they all must mount the volume as readonly - `onewriter` The volume may be used by any number of tasks, but only one may mount it as read/write. - `all` The volume may have any number of readers and writers. */
 export type ClusterVolumeSpecAccessModeSharing =
@@ -3977,7 +3973,7 @@ export type ClusterVolumeSpecAccessModeSharing =
   | "readonly"
   | "onewriter"
   | "all";
-export const ClusterVolumeSpecAccessModeSharing = /*@__PURE__*/ S.String;
+export const ClusterVolumeSpecAccessModeSharing = S.String;
 
 /** One cluster volume secret entry. Defines a key-value pair that is passed to the plugin. */
 export interface ClusterVolumeSpecAccessModeSecretsItem {
@@ -4078,7 +4074,7 @@ export type ClusterVolumeSpecAccessModeAvailability =
   | "active"
   | "pause"
   | "drain";
-export const ClusterVolumeSpecAccessModeAvailability = /*@__PURE__*/ S.String;
+export const ClusterVolumeSpecAccessModeAvailability = S.String;
 
 /** Defines how the volume is used by tasks. */
 export interface ClusterVolumeSpecAccessMode {
@@ -4168,7 +4164,7 @@ export const VolumeLabelsMap = /*@__PURE__*/ S.Record(
 
 /** The level at which the volume exists. Either `global` for cluster-wide, or `local` for machine level. */
 export type VolumeScope = "local" | "global";
-export const VolumeScope = /*@__PURE__*/ S.String;
+export const VolumeScope = S.String;
 
 /** A map of strings to strings returned from the storage plugin when the volume is created. */
 export type ClusterVolumeInfoVolumeContextMap = {
@@ -4213,7 +4209,7 @@ export type ClusterVolumePublishStatusItemState =
   | "published"
   | "pending-node-unpublish"
   | "pending-controller-unpublish";
-export const ClusterVolumePublishStatusItemState = /*@__PURE__*/ S.String;
+export const ClusterVolumePublishStatusItemState = S.String;
 
 /** A map of strings to strings returned by the CSI controller plugin when a volume is published. */
 export type ClusterVolumePublishStatusItemPublishContextMap = {
@@ -4584,7 +4580,7 @@ export const PluginConfigInterfaceTypesList = /*@__PURE__*/ S.Array(
 
 /** Protocol to use for clients connecting to the plugin. */
 export type PluginConfigInterfaceProtocolScheme = "" | "moby.plugins.http/v1";
-export const PluginConfigInterfaceProtocolScheme = /*@__PURE__*/ S.String;
+export const PluginConfigInterfaceProtocolScheme = S.String;
 
 /** The interface between Docker and the plugin */
 export interface PluginConfigInterface {
@@ -5285,10 +5281,10 @@ export const ImageAttestationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImageAttestationsResponse>;
 
 export type ImageBuildRequestVersion = "1" | "2";
-export const ImageBuildRequestVersion = /*@__PURE__*/ S.String;
+export const ImageBuildRequestVersion = S.String;
 
 export type ImageBuildRequestContentType = "application/x-tar";
-export const ImageBuildRequestContentType = /*@__PURE__*/ S.String;
+export const ImageBuildRequestContentType = S.String;
 
 export interface ImageBuildRequest {
   /** Path within the build context to the `Dockerfile`. This is ignored if `remote` is specified and points to an external `Dockerfile`. */
@@ -5511,11 +5507,11 @@ export const ImageManifestSummarySize = /*@__PURE__*/ S.suspend(() =>
 
 /** The kind of the manifest. kind | description -------------|----------------------------------------------------------- image | Image manifest that can be used to start a container. attestation | Attestation manifest produced by the Buildkit builder for a specific image manifest. */
 export type ImageManifestSummaryKind = "image" | "attestation" | "unknown";
-export const ImageManifestSummaryKind = /*@__PURE__*/ S.String;
+export const ImageManifestSummaryKind = S.String;
 
 /** SignatureTimestampType is the type of timestamp used in the signature. */
 export type SignatureTimestampType = "Tlog" | "TimestampAuthority";
-export const SignatureTimestampType = /*@__PURE__*/ S.String;
+export const SignatureTimestampType = S.String;
 
 /** SignatureTimestamp contains information about a verified signed timestamp for an image signature. */
 export interface SignatureTimestamp {
@@ -5541,7 +5537,7 @@ export const SignatureIdentityTimestampsList = /*@__PURE__*/ S.Array(
 
 /** KnownSignerIdentity is an identifier for a special signer identity that is known to the implementation. */
 export type KnownSignerIdentity = "DHI";
-export const KnownSignerIdentity = /*@__PURE__*/ S.String;
+export const KnownSignerIdentity = S.String;
 
 /** SignerIdentity contains information about the signer certificate used to sign the image. */
 export interface SignerIdentity {
@@ -5604,7 +5600,7 @@ export const SignerIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** SignatureType is the type of signature format. */
 export type SignatureType = "bundle-v0.3" | "simplesigning-v1";
-export const SignatureType = /*@__PURE__*/ S.String;
+export const SignatureType = S.String;
 
 /** Warnings contains any warnings that occurred during signature verification. For example, if there was no internet connectivity and cached trust roots were used. Warning does not indicate a failed verification but may point to configuration issues. */
 export type SignatureIdentityWarningsList = Array<string>;
@@ -6241,7 +6237,7 @@ export const ContainerSummaryNamesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ContainerSummaryNamesList>;
 
 export type PortSummaryType = "tcp" | "udp" | "sctp";
-export const PortSummaryType = /*@__PURE__*/ S.String;
+export const PortSummaryType = S.String;
 
 /** Describes a port-mapping between the container and the host. */
 export interface PortSummary {
@@ -6284,7 +6280,7 @@ export type ContainerSummaryState =
   | "exited"
   | "removing"
   | "dead";
-export const ContainerSummaryState = /*@__PURE__*/ S.String;
+export const ContainerSummaryState = S.String;
 
 /** Arbitrary key-value metadata attached to the container. */
 export type ContainerSummaryHostConfigAnnotationsMap = {
@@ -6346,7 +6342,7 @@ export type ContainerSummaryHealthStatus =
   | "starting"
   | "healthy"
   | "unhealthy";
-export const ContainerSummaryHealthStatus = /*@__PURE__*/ S.String;
+export const ContainerSummaryHealthStatus = S.String;
 
 /** Summary of health status Added in v1.52, before that version all container summary not include Health. After this attribute introduced, it includes containers with no health checks configured, or containers that are not running with none */
 export interface ContainerSummaryHealth {
@@ -6673,11 +6669,11 @@ export const NodeSpecLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Role of the node. */
 export type NodeSpecRole = "worker" | "manager";
-export const NodeSpecRole = /*@__PURE__*/ S.String;
+export const NodeSpecRole = S.String;
 
 /** Availability of the node. */
 export type NodeSpecAvailability = "active" | "pause" | "drain";
-export const NodeSpecAvailability = /*@__PURE__*/ S.String;
+export const NodeSpecAvailability = S.String;
 
 export interface NodeSpec {
   /** Name for the node. */
@@ -6777,7 +6773,7 @@ export const NodeDescription = /*@__PURE__*/ S.suspend(() =>
 
 /** NodeState represents the state of a node. */
 export type NodeState = "unknown" | "down" | "ready" | "disconnected";
-export const NodeState = /*@__PURE__*/ S.String;
+export const NodeState = S.String;
 
 /** NodeStatus represents the status of a node. It provides the current status of the node, as seen by the manager. */
 export interface NodeStatus {
@@ -6796,7 +6792,7 @@ export const NodeStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** Reachability represents the reachability of a node. */
 export type Reachability = "unknown" | "unreachable" | "reachable";
-export const Reachability = /*@__PURE__*/ S.String;
+export const Reachability = S.String;
 
 /** ManagerStatus represents the status of a manager. It provides the current status of a node's manager component, if the node is a manager. */
 export interface ManagerStatus {
@@ -6984,11 +6980,11 @@ export type ServiceSpecUpdateConfigFailureAction =
   | "continue"
   | "pause"
   | "rollback";
-export const ServiceSpecUpdateConfigFailureAction = /*@__PURE__*/ S.String;
+export const ServiceSpecUpdateConfigFailureAction = S.String;
 
 /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
 export type ServiceSpecUpdateConfigOrder = "stop-first" | "start-first";
-export const ServiceSpecUpdateConfigOrder = /*@__PURE__*/ S.String;
+export const ServiceSpecUpdateConfigOrder = S.String;
 
 /** Specification for the update strategy of the service. */
 export interface ServiceSpecUpdateConfig {
@@ -7020,11 +7016,11 @@ export const ServiceSpecUpdateConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Action to take if an rolled back task fails to run, or stops running during the rollback. */
 export type ServiceSpecRollbackConfigFailureAction = "continue" | "pause";
-export const ServiceSpecRollbackConfigFailureAction = /*@__PURE__*/ S.String;
+export const ServiceSpecRollbackConfigFailureAction = S.String;
 
 /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
 export type ServiceSpecRollbackConfigOrder = "stop-first" | "start-first";
-export const ServiceSpecRollbackConfigOrder = /*@__PURE__*/ S.String;
+export const ServiceSpecRollbackConfigOrder = S.String;
 
 /** Specification for the rollback strategy of the service. */
 export interface ServiceSpecRollbackConfig {
@@ -7130,7 +7126,7 @@ export const ServiceEndpoint = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServiceEndpoint>;
 
 export type ServiceUpdateStatusState = "updating" | "paused" | "completed";
-export const ServiceUpdateStatusState = /*@__PURE__*/ S.String;
+export const ServiceUpdateStatusState = S.String;
 
 /** The status of a service update. */
 export interface ServiceUpdateStatus {
@@ -7260,7 +7256,7 @@ export type TaskState =
   | "rejected"
   | "remove"
   | "orphaned";
-export const TaskState = /*@__PURE__*/ S.String;
+export const TaskState = S.String;
 
 /** represents the status of a container. */
 export interface ContainerStatus {
@@ -8167,7 +8163,7 @@ export const SwarmSpecDispatcher = /*@__PURE__*/ S.suspend(() =>
 
 /** Protocol for communication with the external CA (currently only `cfssl` is supported). */
 export type SwarmSpecCAConfigExternalCAsItemProtocol = "cfssl";
-export const SwarmSpecCAConfigExternalCAsItemProtocol = /*@__PURE__*/ S.String;
+export const SwarmSpecCAConfigExternalCAsItemProtocol = S.String;
 
 /** An object with key/value pairs that are interpreted as protocol-specific options for the external CA driver. */
 export type SwarmSpecCAConfigExternalCAsItemOptionsMap = {
@@ -8474,7 +8470,7 @@ export type SystemDataUsageRequestTypeItem =
   | "image"
   | "volume"
   | "build-cache";
-export const SystemDataUsageRequestTypeItem = /*@__PURE__*/ S.String;
+export const SystemDataUsageRequestTypeItem = S.String;
 
 export type SystemDataUsageRequestTypeList = Array<
   SystemDataUsageRequestTypeItem | (string & {})
@@ -8670,7 +8666,7 @@ export type EventMessageType =
   | "secret"
   | "service"
   | "volume";
-export const EventMessageType = /*@__PURE__*/ S.String;
+export const EventMessageType = S.String;
 
 /** Various key/value attributes of the object, depending on its type. */
 export type EventActorAttributesMap = { [key: string]: string | undefined };
@@ -8695,7 +8691,7 @@ export const EventActor = /*@__PURE__*/ S.suspend(() =>
 
 /** Scope of the event. Engine events are `local` scope. Cluster (Swarm) events are `swarm` scope. */
 export type EventMessageScope = "local" | "swarm";
-export const EventMessageScope = /*@__PURE__*/ S.String;
+export const EventMessageScope = S.String;
 
 /** EventMessage represents the information an event contains. */
 export interface EventMessage {
@@ -8786,11 +8782,11 @@ export const PluginsInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** The driver to use for managing cgroups. */
 export type SystemInfoCgroupDriver = "cgroupfs" | "systemd" | "none";
-export const SystemInfoCgroupDriver = /*@__PURE__*/ S.String;
+export const SystemInfoCgroupDriver = S.String;
 
 /** The version of the cgroup. */
 export type SystemInfoCgroupVersion = "1" | "2";
-export const SystemInfoCgroupVersion = /*@__PURE__*/ S.String;
+export const SystemInfoCgroupVersion = S.String;
 
 /** List of IP ranges of insecure registries, using the CIDR syntax ([RFC 4632](https://tools.ietf.org/html/4632)). Insecure registries accept un-encrypted (HTTP) and/or untrusted (HTTPS with certificates from unknown CAs) communication. By default, local registries (`::1/128` and `127.0.0.0/8`) are configured as insecure. All other registries are secure. Communicating with an insecure registry is not possible if the daemon assumes that registry is secure. This configuration override this behavior, insecure communication with registries whose resolved IP address is within the subnet described by the CIDR syntax. Registries can also be marked insecure by hostname. Those registries are listed under `IndexConfigs` and have their `Secure` field set to `false`. > **Warning**: Using this option can be useful when running a local > registry, but introduces security vulnerabilities. This option > should therefore ONLY be used for testing purposes. For increased > security, users should add their CA to their system's list of trusted > CAs instead of enabling this option. */
 export type RegistryServiceConfigInsecureRegistryCIDRsList = Array<string>;
@@ -8910,7 +8906,7 @@ export type LocalNodeState =
   | "active"
   | "error"
   | "locked";
-export const LocalNodeState = /*@__PURE__*/ S.String;
+export const LocalNodeState = S.String;
 
 /** Represents a peer-node in the swarm */
 export interface PeerNode {
@@ -9006,7 +9002,7 @@ export const SwarmInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents the isolation technology to use as a default for containers. The supported values are platform-specific. If no isolation value is specified on daemon start, on Windows client, the default is `hyperv`, and on Windows server, the default is `process`. This option is currently not used on other platforms. */
 export type SystemInfoIsolation = "default" | "hyperv" | "process" | "";
-export const SystemInfoIsolation = /*@__PURE__*/ S.String;
+export const SystemInfoIsolation = S.String;
 
 /** Commit holds the Git-commit (SHA1) that a binary was built from, as reported in the version-string of external tools, such as `containerd`, or `runC`. */
 export interface Commit {
@@ -9774,11 +9770,11 @@ export const UpdateNodeRequestLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Role of the node. */
 export type UpdateNodeRequestRole = "worker" | "manager";
-export const UpdateNodeRequestRole = /*@__PURE__*/ S.String;
+export const UpdateNodeRequestRole = S.String;
 
 /** Availability of the node. */
 export type UpdateNodeRequestAvailability = "active" | "pause" | "drain";
-export const UpdateNodeRequestAvailability = /*@__PURE__*/ S.String;
+export const UpdateNodeRequestAvailability = S.String;
 
 export interface UpdateNodeRequest {
   /** The ID of the node */
@@ -9861,7 +9857,7 @@ export const UpdateSecretResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSecretResponse>;
 
 export type UpdateServiceRequestRegistryAuthFrom = "spec" | "previous-spec";
-export const UpdateServiceRequestRegistryAuthFrom = /*@__PURE__*/ S.String;
+export const UpdateServiceRequestRegistryAuthFrom = S.String;
 
 /** User-defined key/value metadata. */
 export type UpdateServiceRequestLabelsMap = {
@@ -9892,14 +9888,13 @@ export type UpdateServiceRequestUpdateConfigFailureAction =
   | "continue"
   | "pause"
   | "rollback";
-export const UpdateServiceRequestUpdateConfigFailureAction =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceRequestUpdateConfigFailureAction = S.String;
 
 /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
 export type UpdateServiceRequestUpdateConfigOrder =
   | "stop-first"
   | "start-first";
-export const UpdateServiceRequestUpdateConfigOrder = /*@__PURE__*/ S.String;
+export const UpdateServiceRequestUpdateConfigOrder = S.String;
 
 /** Specification for the update strategy of the service. */
 export interface UpdateServiceRequestUpdateConfig {
@@ -9933,14 +9928,13 @@ export const UpdateServiceRequestUpdateConfig = /*@__PURE__*/ S.suspend(() =>
 export type UpdateServiceRequestRollbackConfigFailureAction =
   | "continue"
   | "pause";
-export const UpdateServiceRequestRollbackConfigFailureAction =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceRequestRollbackConfigFailureAction = S.String;
 
 /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
 export type UpdateServiceRequestRollbackConfigOrder =
   | "stop-first"
   | "start-first";
-export const UpdateServiceRequestRollbackConfigOrder = /*@__PURE__*/ S.String;
+export const UpdateServiceRequestRollbackConfigOrder = S.String;
 
 /** Specification for the rollback strategy of the service. */
 export interface UpdateServiceRequestRollbackConfig {
@@ -10065,8 +10059,7 @@ export const UpdateSwarmRequestDispatcher = SwarmSpecDispatcher;
 
 /** Protocol for communication with the external CA (currently only `cfssl` is supported). */
 export type UpdateSwarmRequestCAConfigExternalCAsItemProtocol = "cfssl";
-export const UpdateSwarmRequestCAConfigExternalCAsItemProtocol =
-  /*@__PURE__*/ S.String;
+export const UpdateSwarmRequestCAConfigExternalCAsItemProtocol = S.String;
 
 /** An object with key/value pairs that are interpreted as protocol-specific options for the external CA driver. */
 export type UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap = {
@@ -10301,7 +10294,7 @@ export type WaitContainerRequestCondition =
   | "not-running"
   | "next-exit"
   | "removed";
-export const WaitContainerRequestCondition = /*@__PURE__*/ S.String;
+export const WaitContainerRequestCondition = S.String;
 
 export interface WaitContainerRequest {
   /** ID or name of the container */

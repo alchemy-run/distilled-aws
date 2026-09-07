@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type BucketByTimePeriodTypeEnum = "day" | "week" | "month";
-export const BucketByTimePeriodTypeEnum = /*@__PURE__*/ S.String;
+export const BucketByTimePeriodTypeEnum = S.String;
 
 export interface BucketByTimePeriod {
   type?: BucketByTimePeriodTypeEnum | (string & {});
@@ -153,8 +153,7 @@ export type AggregateRequestFilteredDataQualityStandardItemEnum =
   | "dataQualityBloodPressureBhsBB"
   | "dataQualityBloodGlucoseIso151972003"
   | "dataQualityBloodGlucoseIso151972013";
-export const AggregateRequestFilteredDataQualityStandardItemEnum =
-  /*@__PURE__*/ S.String;
+export const AggregateRequestFilteredDataQualityStandardItemEnum = S.String;
 
 export type AggregateRequestFilteredDataQualityStandardItemEnumList = Array<
   AggregateRequestFilteredDataQualityStandardItemEnum | (string & {})
@@ -227,7 +226,7 @@ export type AggregateBucketTypeEnum =
   | "session"
   | "activityType"
   | "activitySegment";
-export const AggregateBucketTypeEnum = /*@__PURE__*/ S.String;
+export const AggregateBucketTypeEnum = S.String;
 
 /** Holder object for the value of an entry in a map field of a data point. A map value supports a subset of the formats that the regular Value supports. */
 export interface MapValue {
@@ -457,7 +456,7 @@ export type DataSourceDataQualityStandardItemEnum =
   | "dataQualityBloodPressureBhsBB"
   | "dataQualityBloodGlucoseIso151972003"
   | "dataQualityBloodGlucoseIso151972013";
-export const DataSourceDataQualityStandardItemEnum = /*@__PURE__*/ S.String;
+export const DataSourceDataQualityStandardItemEnum = S.String;
 
 export type DataSourceDataQualityStandardItemEnumList = Array<
   DataSourceDataQualityStandardItemEnum | (string & {})
@@ -474,7 +473,7 @@ export type DataTypeFieldFormatEnum =
   | "integerList"
   | "floatList"
   | "blob";
-export const DataTypeFieldFormatEnum = /*@__PURE__*/ S.String;
+export const DataTypeFieldFormatEnum = S.String;
 
 /** In case of multi-dimensional data (such as an accelerometer with x, y, and z axes) each field represents one dimension. Each data type field has a unique name which identifies it. The field also defines the format of the data (int, float, etc.). This message is only instantiated in code and not used for wire comms or stored in any way. */
 export interface DataTypeField {
@@ -511,7 +510,7 @@ export const DataType = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DataType" }) as any as S.Schema<DataType>;
 
 export type DataSourceTypeEnum = "raw" | "derived";
-export const DataSourceTypeEnum = /*@__PURE__*/ S.String;
+export const DataSourceTypeEnum = S.String;
 
 export type DeviceTypeEnum =
   | "unknown"
@@ -522,7 +521,7 @@ export type DeviceTypeEnum =
   | "scale"
   | "headMounted"
   | "smartDisplay";
-export const DeviceTypeEnum = /*@__PURE__*/ S.String;
+export const DeviceTypeEnum = S.String;
 
 /** Representation of an integrated device (such as a phone or a wearable) that can hold sensors. Each sensor is exposed as a data source. The main purpose of the device information contained in this class is to identify the hardware of a particular data source. This can be useful in different ways, including: - Distinguishing two similar sensors on different devices (the step counter on two nexus 5 phones, for instance) - Display the source of data to the user (by using the device make / model) - Treat data differently depending on sensor type (accelerometers on a watch may give different patterns than those on a phone) - Build different analysis models for each device/version. */
 export interface Device {

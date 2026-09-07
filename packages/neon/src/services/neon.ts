@@ -96,7 +96,7 @@ export type NeonAuthOauthProviderId =
   | "github"
   | "microsoft"
   | "vercel";
-export const NeonAuthOauthProviderId = /*@__PURE__*/ S.String;
+export const NeonAuthOauthProviderId = S.String;
 
 export interface AddBranchNeonAuthOauthProviderRequest {
   /** The Neon project ID */
@@ -133,7 +133,7 @@ export const AddBranchNeonAuthOauthProviderRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AddBranchNeonAuthOauthProviderRequest>;
 
 export type NeonAuthOauthProviderType = "standard" | "shared";
-export const NeonAuthOauthProviderType = /*@__PURE__*/ S.String;
+export const NeonAuthOauthProviderType = S.String;
 
 export interface NeonAuthOauthProvider {
   /** The OAuth provider's ID. */
@@ -158,7 +158,7 @@ export const NeonAuthOauthProvider = /*@__PURE__*/ S.suspend(() =>
 
 /** Authentication provider integrated with this Neon Auth configuration. `better_auth` integrates with Better Auth (the current, recommended provider). `stack` integrates with Stack Auth (deprecated). `mock` is a simulated provider for local development and testing only. */
 export type NeonAuthSupportedAuthProvider = "mock" | "stack" | "better_auth";
-export const NeonAuthSupportedAuthProvider = /*@__PURE__*/ S.String;
+export const NeonAuthSupportedAuthProvider = S.String;
 
 export interface AddBranchNeonAuthTrustedDomainRequest {
   /** The Neon project ID */
@@ -310,7 +310,7 @@ export type OperationAction =
   | "mark_migration_prepared"
   | "update_catalog"
   | "epc_sync";
-export const OperationAction = /*@__PURE__*/ S.String;
+export const OperationAction = S.String;
 
 /** Lifecycle state of the operation. `scheduling`: queued, not yet started. `running`: actively executing. `finished`: completed successfully. `failed`: ended with a failure. `error`: ended with a terminal error. `cancelling`: cancellation requested but not yet complete. `cancelled`: stopped before completion. `skipped`: bypassed without executing. */
 export type OperationStatus =
@@ -322,7 +322,7 @@ export type OperationStatus =
   | "cancelling"
   | "cancelled"
   | "skipped";
-export const OperationStatus = /*@__PURE__*/ S.String;
+export const OperationStatus = S.String;
 
 /** An asynchronous action Neon performs on your resources (for example, starting a compute or creating a branch). Fields such as `action`, `status`, and `total_duration_ms` describe the operation and its progress. */
 export interface Operation {
@@ -566,7 +566,7 @@ export type CredentialScope =
   | "storage:write"
   | "ai_gateway:invoke"
   | "functions:invoke";
-export const CredentialScope = /*@__PURE__*/ S.String;
+export const CredentialScope = S.String;
 
 export type CreateCredentialRequestScopesList = Array<
   CredentialScope | (string & {})
@@ -577,7 +577,7 @@ export const CreateCredentialRequestScopesList = /*@__PURE__*/ S.Array(
 
 /** Principal type for the credential. Only `user` is customer-managed and accepted here. `function` and `system` credentials are platform-internal (e.g. function-serve auto-mint, presign signer) and are never issued through the customer-facing API. */
 export type CreateCredentialRequestPrincipalType = "user";
-export const CreateCredentialRequestPrincipalType = /*@__PURE__*/ S.String;
+export const CreateCredentialRequestPrincipalType = S.String;
 
 export interface CreateCredentialRequest {
   /** The Neon project ID */
@@ -615,7 +615,7 @@ export type GrantedCredentialScope =
   | "ai_gateway:invoke"
   | "telemetry:write"
   | "functions:invoke";
-export const GrantedCredentialScope = /*@__PURE__*/ S.String;
+export const GrantedCredentialScope = S.String;
 
 export type CreateCredentialResponseScopesList = Array<GrantedCredentialScope>;
 export const CreateCredentialResponseScopesList = /*@__PURE__*/ S.Array(
@@ -735,7 +735,7 @@ export type MemberRole =
   | "editor"
   | "viewer"
   | "collaborator";
-export const MemberRole = /*@__PURE__*/ S.String;
+export const MemberRole = S.String;
 
 export interface OrganizationInviteCreateRequest {
   /** Email address of the person to invite to the organization. */
@@ -944,7 +944,7 @@ export const MaintenanceWindow = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MaintenanceWindow>;
 
 export type ProjectAuditLogLevel = "base" | "extended" | "full";
-export const ProjectAuditLogLevel = /*@__PURE__*/ S.String;
+export const ProjectAuditLogLevel = S.String;
 
 /** Names of shared preload libraries to enable for the project. */
 export type PreloadLibrariesEnabledLibrariesList = Array<string>;
@@ -1137,7 +1137,7 @@ export type BillingSubscriptionType =
   | "scale_v3"
   | "business"
   | "vercel_pg_legacy";
-export const BillingSubscriptionType = /*@__PURE__*/ S.String;
+export const BillingSubscriptionType = S.String;
 
 export interface ProjectOwnerData {
   /** Email address of the project owner. */
@@ -1161,7 +1161,7 @@ export const ProjectOwnerData = /*@__PURE__*/ S.suspend(() =>
 
 /** The caller's effective permission for a project when per-project permissions are enabled. `VIEWER` grants read access, `EDITOR` adds update access, and `ADMIN` grants full management. Omitted for personal projects, flag-off organizations, and non-user subjects. */
 export type ProjectPermissionLevel = "VIEWER" | "EDITOR" | "ADMIN";
-export const ProjectPermissionLevel = /*@__PURE__*/ S.String;
+export const ProjectPermissionLevel = S.String;
 
 export interface Project {
   /** Bytes-Hour. Project consumed that much Postgres storage hourly during the billing period. The value has some lag. The value is reset at the beginning of each billing period. */
@@ -1424,7 +1424,7 @@ export const BranchRestrictedActionsList = /*@__PURE__*/ S.Array(
 
 /** How the branch was deleted: 'user' for manual deletion, 'ttl' for TTL expiration */
 export type BranchRecoveryInfoDeletionMethod = "user" | "ttl";
-export const BranchRecoveryInfoDeletionMethod = /*@__PURE__*/ S.String;
+export const BranchRecoveryInfoDeletionMethod = S.String;
 
 /** Recovery information for a deleted branch. Only present when listing deleted branches with `include_deleted=true`. This is part of the Branch Recovery feature, which is in preview and not available to all users. */
 export interface BranchRecoveryInfo {
@@ -1543,11 +1543,11 @@ export const Branch = /*@__PURE__*/ S.suspend(() =>
 
 /** Compute endpoint type. `read_write`: the primary read-write endpoint (one per branch). `read_only`: a read replica endpoint (multiple allowed per branch). */
 export type EndpointType = "read_only" | "read_write";
-export const EndpointType = /*@__PURE__*/ S.String;
+export const EndpointType = S.String;
 
 /** Lifecycle state of the compute endpoint. `init`: being initialized. `active`: running and accepting connections. `idle`: suspended (scaled to zero). */
 export type EndpointState = "init" | "active" | "idle";
-export const EndpointState = /*@__PURE__*/ S.String;
+export const EndpointState = S.String;
 
 /** A collection of settings for a compute endpoint */
 export interface EndpointSettingsData {
@@ -1568,7 +1568,7 @@ export const EndpointSettingsData = /*@__PURE__*/ S.suspend(() =>
 
 /** Deprecated. The connection pooler mode. Neon supports PgBouncer in `transaction` mode only. Removal scheduled for June 20, 2026. */
 export type EndpointPoolerMode = "transaction";
-export const EndpointPoolerMode = /*@__PURE__*/ S.String;
+export const EndpointPoolerMode = S.String;
 
 export interface Endpoint {
   /** The hostname of the compute endpoint. This is the hostname specified when connecting to a Neon database. */
@@ -1998,8 +1998,7 @@ export const CreateProjectBranchAnonymizedResponse = /*@__PURE__*/ S.suspend(
 export type CreateProjectBranchBucketRequestAccessLevel =
   | "private"
   | "public_read";
-export const CreateProjectBranchBucketRequestAccessLevel =
-  /*@__PURE__*/ S.String;
+export const CreateProjectBranchBucketRequestAccessLevel = S.String;
 
 export interface CreateProjectBranchBucketRequest {
   /** The Neon project ID */
@@ -2030,7 +2029,7 @@ export const CreateProjectBranchBucketRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Controls anonymous access to objects in the bucket. - `private`: all reads and writes require authenticated requests (default). - `public_read`: anonymous `GetObject`/`HeadObject` requests succeed; listing, writes, and deletes still require authenticated requests. */
 export type BucketAccessLevel = "private" | "public_read";
-export const BucketAccessLevel = /*@__PURE__*/ S.String;
+export const BucketAccessLevel = S.String;
 
 export interface Bucket {
   /** The bucket name (unique within a branch). */
@@ -2060,8 +2059,7 @@ export const BucketResponse = /*@__PURE__*/ S.suspend(() =>
 export type CreateProjectBranchDataAPIRequestAuthProvider =
   | "neon_auth"
   | "external";
-export const CreateProjectBranchDataAPIRequestAuthProvider =
-  /*@__PURE__*/ S.String;
+export const CreateProjectBranchDataAPIRequestAuthProvider = S.String;
 
 /** List of schemas to expose via the API. Default: ["public"] */
 export type DataAPISettingsDbSchemasList = Array<string>;
@@ -2230,8 +2228,7 @@ export const CreateProjectBranchDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateProjectBranchDatabaseResponse>;
 
 export type CreateProjectBranchFunctionDeploymentRequestRuntime = "nodejs24";
-export const CreateProjectBranchFunctionDeploymentRequestRuntime =
-  /*@__PURE__*/ S.String;
+export const CreateProjectBranchFunctionDeploymentRequestRuntime = S.String;
 
 export interface CreateProjectBranchFunctionDeploymentRequest {
   /** The Neon project ID */
@@ -2273,7 +2270,7 @@ export type NeonFunctionDeploymentStatus =
   | "building"
   | "completed"
   | "failed";
-export const NeonFunctionDeploymentStatus = /*@__PURE__*/ S.String;
+export const NeonFunctionDeploymentStatus = S.String;
 
 /** The NAMES of the deployment's environment variables, sorted. Values are encrypted at rest and are never returned — they are write-only. To change a value, deploy the variable with the new value; to remove a variable, deploy it with an empty value. */
 export type NeonFunctionDeploymentEnvironmentList = Array<string>;
@@ -2603,8 +2600,7 @@ export type DeleteBranchNeonAuthOauthProviderRequestOauthProviderId =
   | "github"
   | "microsoft"
   | "vercel";
-export const DeleteBranchNeonAuthOauthProviderRequestOauthProviderId =
-  /*@__PURE__*/ S.String;
+export const DeleteBranchNeonAuthOauthProviderRequestOauthProviderId = S.String;
 
 export interface DeleteBranchNeonAuthOauthProviderRequest {
   /** The Neon project ID */
@@ -3474,7 +3470,7 @@ export type AuthDetailsResponseAuthMethod =
   | "api_key_user"
   | "api_key_org"
   | "oauth";
-export const AuthDetailsResponseAuthMethod = /*@__PURE__*/ S.String;
+export const AuthDetailsResponseAuthMethod = S.String;
 
 export interface AuthDetailsResponse {
   /** The ID of the account associated with this authentication record. */
@@ -3613,7 +3609,7 @@ export const GetConsumptionHistoryPerBranchV2RequestBranchIdsList =
   ) as any as S.Schema<GetConsumptionHistoryPerBranchV2RequestBranchIdsList>;
 
 export type ConsumptionHistoryGranularity = "hourly" | "daily" | "monthly";
-export const ConsumptionHistoryGranularity = /*@__PURE__*/ S.String;
+export const ConsumptionHistoryGranularity = S.String;
 
 export type ConsumptionHistoryQueryMetrics = Array<string>;
 export const ConsumptionHistoryQueryMetrics = /*@__PURE__*/ S.Array(
@@ -4071,7 +4067,7 @@ export type BillingAccountState =
   | "suspended"
   | "deactivated"
   | "deleted";
-export const BillingAccountState = /*@__PURE__*/ S.String;
+export const BillingAccountState = S.String;
 
 /** Card network reported by the payment processor. Set to `unknown` when the network cannot be determined. */
 export type PaymentSourceBankCardBrand =
@@ -4083,7 +4079,7 @@ export type PaymentSourceBankCardBrand =
   | "unionpay"
   | "unknown"
   | "visa";
-export const PaymentSourceBankCardBrand = /*@__PURE__*/ S.String;
+export const PaymentSourceBankCardBrand = S.String;
 
 export interface PaymentSourceBankCard {
   /** Last 4 digits of the card. */
@@ -4132,7 +4128,7 @@ export type BillingPaymentMethod =
   | "trial"
   | "sponsorship"
   | "shared_payment_token";
-export const BillingPaymentMethod = /*@__PURE__*/ S.String;
+export const BillingPaymentMethod = S.String;
 
 export interface PlanVersion {
   major: number;
@@ -4229,7 +4225,7 @@ export type IdentityProviderId =
   | "microsoftv2"
   | "vercelmp"
   | "keycloak";
-export const IdentityProviderId = /*@__PURE__*/ S.String;
+export const IdentityProviderId = S.String;
 
 export interface CurrentUserAuthAccount {
   /** Email address associated with this auth account. */
@@ -4434,10 +4430,10 @@ export const GetNeonAuthRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNeonAuthRequest>;
 
 export type NeonAuthProviderProjectOwnedBy = "user" | "neon";
-export const NeonAuthProviderProjectOwnedBy = /*@__PURE__*/ S.String;
+export const NeonAuthProviderProjectOwnedBy = S.String;
 
 export type NeonAuthProviderProjectTransferStatus = "initiated" | "finished";
-export const NeonAuthProviderProjectTransferStatus = /*@__PURE__*/ S.String;
+export const NeonAuthProviderProjectTransferStatus = S.String;
 
 export interface NeonAuthIntegration {
   auth_provider: NeonAuthSupportedAuthProvider;
@@ -4534,7 +4530,7 @@ export const GetNeonAuthEmailAndPasswordConfigRequest = /*@__PURE__*/ S.suspend(
 
 /** The email verification method to use. - `link`: Sends a verification link via email - `otp`: Sends a one-time password (OTP) via email */
 export type NeonAuthEmailVerificationMethod = "link" | "otp";
-export const NeonAuthEmailVerificationMethod = /*@__PURE__*/ S.String;
+export const NeonAuthEmailVerificationMethod = S.String;
 
 export interface NeonAuthEmailAndPasswordConfig {
   /** Whether email and password authentication is enabled */
@@ -4633,7 +4629,7 @@ export type NeonAuthEmailServerConfigResponse =
   | StandardEmailServerResponse
   | SharedEmailServer;
 export const NeonAuthEmailServerConfigResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NeonAuthEmailServerConfigResponse>;
+  S.Unknown as any as S.Schema<NeonAuthEmailServerConfigResponse>;
 
 export type GetNeonAuthEmailProviderResponse =
   NeonAuthEmailServerConfigResponse;
@@ -4702,7 +4698,7 @@ export const GetNeonAuthPluginConfigsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Role of the organization's creator. `owner`: full control, including deleting the org and transferring ownership. `admin`: manage members and settings only. */
 export type NeonAuthOrganizationConfigCreatorRole = "admin" | "owner";
-export const NeonAuthOrganizationConfigCreatorRole = /*@__PURE__*/ S.String;
+export const NeonAuthOrganizationConfigCreatorRole = S.String;
 
 export interface NeonAuthOrganizationConfig {
   /** Whether the organization plugin is enabled. */
@@ -4813,7 +4809,7 @@ export type NeonAuthWebhookConfigEnabledEventsItem =
   | "organization.invitation.created"
   | "organization.invitation.accepted"
   | "phone_number.verified";
-export const NeonAuthWebhookConfigEnabledEventsItem = /*@__PURE__*/ S.String;
+export const NeonAuthWebhookConfigEnabledEventsItem = S.String;
 
 /** Event types that trigger this webhook. Covers user lifecycle, email/OTP delivery, organization invitations, and phone verification events; see the enum for exact values. */
 export type NeonAuthWebhookConfigEnabledEventsList =
@@ -4919,10 +4915,10 @@ export type GetOrganizationMembersRequestSortBy =
   | "email"
   | "role"
   | "joined_at";
-export const GetOrganizationMembersRequestSortBy = /*@__PURE__*/ S.String;
+export const GetOrganizationMembersRequestSortBy = S.String;
 
 export type GetOrganizationMembersRequestSortOrder = "asc" | "desc";
-export const GetOrganizationMembersRequestSortOrder = /*@__PURE__*/ S.String;
+export const GetOrganizationMembersRequestSortOrder = S.String;
 
 export interface GetOrganizationMembersRequest {
   /** The Neon organization ID */
@@ -5125,14 +5121,13 @@ export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Category of an advisor issue */
 export type AdvisorCategory = "SECURITY" | "PERFORMANCE";
-export const AdvisorCategory = /*@__PURE__*/ S.String;
+export const AdvisorCategory = S.String;
 
 export type GetProjectAdvisorSecurityIssuesRequestMinSeverity =
   | "INFO"
   | "WARN"
   | "ERROR";
-export const GetProjectAdvisorSecurityIssuesRequestMinSeverity =
-  /*@__PURE__*/ S.String;
+export const GetProjectAdvisorSecurityIssuesRequestMinSeverity = S.String;
 
 export interface GetProjectAdvisorSecurityIssuesRequest {
   /** Neon project ID */
@@ -5171,7 +5166,7 @@ export const GetProjectAdvisorSecurityIssuesRequest = /*@__PURE__*/ S.suspend(
 
 /** Whether this issue affects external API exposure or is internal only */
 export type AdvisorIssueFacing = "EXTERNAL" | "INTERNAL";
-export const AdvisorIssueFacing = /*@__PURE__*/ S.String;
+export const AdvisorIssueFacing = S.String;
 
 /** Categories this issue belongs to */
 export type AdvisorIssueCategoriesList = Array<AdvisorCategory>;
@@ -6771,10 +6766,10 @@ export type ListProjectBranchesRequestSortBy =
   | "name"
   | "created_at"
   | "updated_at";
-export const ListProjectBranchesRequestSortBy = /*@__PURE__*/ S.String;
+export const ListProjectBranchesRequestSortBy = S.String;
 
 export type ListProjectBranchesRequestSortOrder = "asc" | "desc";
-export const ListProjectBranchesRequestSortOrder = /*@__PURE__*/ S.String;
+export const ListProjectBranchesRequestSortOrder = S.String;
 
 export interface ListProjectBranchesRequest {
   /** The Neon project ID */
@@ -6932,7 +6927,7 @@ export const ProjectBranchLogFieldsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The Neon service that emitted the log record. */
 export type ProjectBranchLogSource = "function" | "storage" | "pg_endpoint";
-export const ProjectBranchLogSource = /*@__PURE__*/ S.String;
+export const ProjectBranchLogSource = S.String;
 
 export interface ListProjectBranchLogFieldValuesRequest {
   /** The Neon project ID */
@@ -7075,11 +7070,11 @@ export type ProjectMemberOrgRole =
   | "editor"
   | "viewer"
   | "collaborator";
-export const ProjectMemberOrgRole = /*@__PURE__*/ S.String;
+export const ProjectMemberOrgRole = S.String;
 
 /** Per-project role. `viewer` maps to `VIEWER`, `editor` maps to `EDITOR`, and `admin` maps to `ADMIN`. */
 export type ProjectRole = "viewer" | "editor" | "admin";
-export const ProjectRole = /*@__PURE__*/ S.String;
+export const ProjectRole = S.String;
 
 /** How a member's project access is granted. */
 export type ProjectMemberGrantSource =
@@ -7087,7 +7082,7 @@ export type ProjectMemberGrantSource =
   | "org_role_default"
   | "org_admin_override"
   | "unassigned";
-export const ProjectMemberGrantSource = /*@__PURE__*/ S.String;
+export const ProjectMemberGrantSource = S.String;
 
 export interface ProjectMember {
   /** The organization member ID. */
@@ -7348,7 +7343,7 @@ export const ListProjectsResponseUnavailableProjectIdsList =
 
 /** Type of application integration */
 export type ApplicationType = "vercel" | "github" | "datadog" | "opentelemetry";
-export const ApplicationType = /*@__PURE__*/ S.String;
+export const ApplicationType = S.String;
 
 export type ListProjectsResponseApplicationsValueList = Array<ApplicationType>;
 export const ListProjectsResponseApplicationsValueList = /*@__PURE__*/ S.Array(
@@ -7512,8 +7507,7 @@ export const ListSnapshotsResponse = /*@__PURE__*/ S.suspend(() =>
 export type PresignProjectBranchBucketObjectRequestOperation =
   | "upload"
   | "download";
-export const PresignProjectBranchBucketObjectRequestOperation =
-  /*@__PURE__*/ S.String;
+export const PresignProjectBranchBucketObjectRequestOperation = S.String;
 
 export interface PresignProjectBranchBucketObjectRequest {
   /** The Neon project ID */
@@ -7582,7 +7576,7 @@ export const PresignResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Order matching records by timestamp. `desc`, the default, returns the newest records first. */
 export type QueryProjectBranchLogsRequestSortOrder = "asc" | "desc";
-export const QueryProjectBranchLogsRequestSortOrder = /*@__PURE__*/ S.String;
+export const QueryProjectBranchLogsRequestSortOrder = S.String;
 
 /** An OpenTelemetry severity level. A minimum severity includes every higher level in this order: `trace`, `debug`, `info`, `warn`, `error`, `fatal`. */
 export type ProjectBranchLogSeverity =
@@ -7592,7 +7586,7 @@ export type ProjectBranchLogSeverity =
   | "warn"
   | "error"
   | "fatal";
-export const ProjectBranchLogSeverity = /*@__PURE__*/ S.String;
+export const ProjectBranchLogSeverity = S.String;
 
 export interface QueryProjectBranchLogsRequest {
   /** The Neon project ID */
@@ -8303,7 +8297,7 @@ export const RotateCredentialResponseScopesList = /*@__PURE__*/ S.Array(
 
 /** Always `user`: only customer-managed credentials are rotatable through this endpoint. */
 export type RotateCredentialResponsePrincipalType = "user";
-export const RotateCredentialResponsePrincipalType = /*@__PURE__*/ S.String;
+export const RotateCredentialResponsePrincipalType = S.String;
 
 /** The replacement secret material for an existing credential, returned exactly once. `token_id`, `scopes`, `branch_id` and `created_at` are unchanged by the rotation — only `api_token` and `s3_secret_access_key` are new. */
 export interface RotateCredentialResponse {
@@ -8684,8 +8678,7 @@ export type UpdateBranchNeonAuthOauthProviderRequestOauthProviderId =
   | "github"
   | "microsoft"
   | "vercel";
-export const UpdateBranchNeonAuthOauthProviderRequestOauthProviderId =
-  /*@__PURE__*/ S.String;
+export const UpdateBranchNeonAuthOauthProviderRequestOauthProviderId = S.String;
 
 export interface UpdateBranchNeonAuthOauthProviderRequest {
   /** The Neon project ID */
@@ -8886,7 +8879,7 @@ export const StandardEmailServer = /*@__PURE__*/ S.suspend(() =>
 
 export type NeonAuthEmailServerConfig = StandardEmailServer | SharedEmailServer;
 export const NeonAuthEmailServerConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NeonAuthEmailServerConfig>;
+  S.Unknown as any as S.Schema<NeonAuthEmailServerConfig>;
 
 export interface UpdateNeonAuthEmailProviderRequest {
   /** The Neon project ID */
@@ -8954,8 +8947,7 @@ export const UpdateNeonAuthMagicLinkPluginRequest = /*@__PURE__*/ S.suspend(
 export type UpdateNeonAuthOrganizationPluginRequestCreatorRole =
   | "admin"
   | "owner";
-export const UpdateNeonAuthOrganizationPluginRequestCreatorRole =
-  /*@__PURE__*/ S.String;
+export const UpdateNeonAuthOrganizationPluginRequestCreatorRole = S.String;
 
 export interface UpdateNeonAuthOrganizationPluginRequest {
   /** The Neon project ID */
@@ -9079,8 +9071,7 @@ export type UpdateNeonAuthWebhookConfigRequestEnabledEventsItem =
   | "organization.invitation.created"
   | "organization.invitation.accepted"
   | "phone_number.verified";
-export const UpdateNeonAuthWebhookConfigRequestEnabledEventsItem =
-  /*@__PURE__*/ S.String;
+export const UpdateNeonAuthWebhookConfigRequestEnabledEventsItem = S.String;
 
 /** Event types that trigger this webhook. Covers user lifecycle, email/OTP delivery, organization invitations, and phone verification events; see the enum for exact values. */
 export type UpdateNeonAuthWebhookConfigRequestEnabledEventsList = Array<

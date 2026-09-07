@@ -407,7 +407,7 @@ export const KeyResponseDataRolesList = /*@__PURE__*/ S.Array(
 
 /** How often credits are automatically refilled. */
 export type KeyCreditsRefillInterval = "daily" | "monthly";
-export const KeyCreditsRefillInterval = /*@__PURE__*/ S.String;
+export const KeyCreditsRefillInterval = S.String;
 
 /** Configuration for automatic credit refill behavior. */
 export interface KeyCreditsRefill {
@@ -765,7 +765,7 @@ export const CreateDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Record type to create. `ALIAS` is not a real DNS record type: it means an apex-compatible alias, which providers expose as ALIAS, ANAME, or a flattened CNAME. Apex domains cannot hold a plain CNAME, so they receive `ALIAS` where a subdomain receives `CNAME`. */
 export type DnsRecordType = "CNAME" | "ALIAS" | "TXT";
-export const DnsRecordType = /*@__PURE__*/ S.String;
+export const DnsRecordType = S.String;
 
 export interface DnsRecord {
   /** Record type to create. `ALIAS` is not a real DNS record type: it means an apex-compatible alias, which providers expose as ALIAS, ANAME, or a flattened CNAME. Apex domains cannot hold a plain CNAME, so they receive `ALIAS` where a subdomain receives `CNAME`. */
@@ -1322,7 +1322,7 @@ export const DeploymentsRollbackDeploymentResponse = /*@__PURE__*/ S.suspend(
 
 /** How the value may be read back. `writeonly` values can never be read back through the API; `recoverable` values can be decrypted. Values are encrypted at rest either way. */
 export type EnvironmentVariableKind = "recoverable" | "writeonly";
-export const EnvironmentVariableKind = /*@__PURE__*/ S.String;
+export const EnvironmentVariableKind = S.String;
 
 /** A single environment variable to set. */
 export interface EnvironmentVariableInput {
@@ -1412,7 +1412,7 @@ export const EnvironmentsUpdateSettingsRequestCommandList =
 
 /** HTTP method used to probe the container. */
 export type EnvironmentHealthcheckMethod = "GET" | "POST";
-export const EnvironmentHealthcheckMethod = /*@__PURE__*/ S.String;
+export const EnvironmentHealthcheckMethod = S.String;
 
 export interface EnvironmentHealthcheck {
   /** HTTP method used to probe the container. */
@@ -1447,11 +1447,11 @@ export type EnvironmentShutdownSignal =
   | "SIGINT"
   | "SIGQUIT"
   | "SIGKILL";
-export const EnvironmentShutdownSignal = /*@__PURE__*/ S.String;
+export const EnvironmentShutdownSignal = S.String;
 
 /** Protocol used to reach the container. */
 export type EnvironmentUpstreamProtocol = "http1" | "h2c";
-export const EnvironmentUpstreamProtocol = /*@__PURE__*/ S.String;
+export const EnvironmentUpstreamProtocol = S.String;
 
 /** Min and max replica bounds for autoscaling in a region. */
 export interface Replicas {
@@ -1625,7 +1625,7 @@ export type MethodMatchMethodsItem =
   | "DELETE"
   | "HEAD"
   | "OPTIONS";
-export const MethodMatchMethodsItem = /*@__PURE__*/ S.String;
+export const MethodMatchMethodsItem = S.String;
 
 export type MethodMatchMethodsList = Array<
   MethodMatchMethodsItem | (string & {})
@@ -1849,7 +1849,7 @@ export const RatelimitPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** What to do with matching requests. */
 export type FirewallPolicyAction = "ACTION_DENY";
-export const FirewallPolicyAction = /*@__PURE__*/ S.String;
+export const FirewallPolicyAction = S.String;
 
 /** Blocks matching requests. */
 export interface FirewallPolicy {
@@ -2163,7 +2163,7 @@ export type DeploymentStatus =
   | "stopped"
   | "superseded"
   | "cancelled";
-export const DeploymentStatus = /*@__PURE__*/ S.String;
+export const DeploymentStatus = S.String;
 
 export interface DeploymentGit {
   /** The git commit SHA this deployment was built from. */
@@ -2192,7 +2192,7 @@ export const DeploymentDocker = /*@__PURE__*/ S.suspend(() =>
 
 /** A lifecycle operation that can be performed on the deployment in its current state, given its status, environment, and whether it is the current deployment. */
 export type DeploymentAction = "promote" | "rollback" | "stop" | "start";
-export const DeploymentAction = /*@__PURE__*/ S.String;
+export const DeploymentAction = S.String;
 
 /** Lifecycle operations you are allowed to call on this deployment right now. Empty when none apply (e.g. while building or in a terminal state). */
 export type DeploymentAvailableActionsList = Array<DeploymentAction>;
@@ -2215,7 +2215,7 @@ export type DeploymentErrorCode =
   | "storage_quota_exceeded"
   | "build_failed"
   | "unknown";
-export const DeploymentErrorCode = /*@__PURE__*/ S.String;
+export const DeploymentErrorCode = S.String;
 
 export interface DeploymentError {
   code: DeploymentErrorCode;
@@ -2355,7 +2355,7 @@ export const GetDomainRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The verification status of the domain. - `pending`: the domain is created. No DNS check has completed yet. - `verifying`: Unkey checks the DNS records approximately each minute. - `verified`: the domain is verified. Unkey has configured routing and requested a certificate. - `failed`: the required DNS records did not appear within 24 hours. Fix the records, then retry verification. */
 export type DomainStatus = "pending" | "verifying" | "verified" | "failed";
-export const DomainStatus = /*@__PURE__*/ S.String;
+export const DomainStatus = S.String;
 
 /** The DNS records this domain needs. Create each record at your DNS provider. Each record has a `verified` flag. The flag shows whether Unkey has read that record back, so it tells you which records are still missing. */
 export type DomainDnsRecordsList = Array<DnsRecord>;
@@ -2437,7 +2437,7 @@ export const GetEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The deployment lifecycle role of an environment. - `production`: Deployments serve production traffic, support promotion and rollback, and cannot be stopped. - `preview`: Deployments can be stopped and started and are eligible for preview lifecycle automation. */
 export type EnvironmentKind = "production" | "preview";
-export const EnvironmentKind = /*@__PURE__*/ S.String;
+export const EnvironmentKind = S.String;
 
 /** Container entrypoint command override. */
 export type EnvironmentRuntimeCommandList = Array<string>;
@@ -3120,7 +3120,7 @@ export type KeysUpdateCreditsRequestOperation =
   | "set"
   | "increment"
   | "decrement";
-export const KeysUpdateCreditsRequestOperation = /*@__PURE__*/ S.String;
+export const KeysUpdateCreditsRequestOperation = S.String;
 
 export interface KeysUpdateCreditsRequest {
   /** The ID of the key to update (begins with `key_`). This is the database reference ID for the key, not the actual API key string that users authenticate with. This ID uniquely identifies which key's credits will be updated. */
@@ -4069,7 +4069,7 @@ export type PortalCreateSessionRequestScopesItem =
   | "keys:create"
   | "keys:reroll"
   | "analytics:read";
-export const PortalCreateSessionRequestScopesItem = /*@__PURE__*/ S.String;
+export const PortalCreateSessionRequestScopesItem = S.String;
 
 /** The capabilities granted to the end user in the Portal, from a fixed vocabulary. All capabilities are scoped to this end user: key capabilities (`keys:*`) apply only to keys the end user owns within the keyspace configured on the portal, and `analytics:read` returns only the end user's own verification events. An end user can never see another identity's keys or analytics. Tab visibility is derived from the scopes: - Keys tab: any `keys:*` scope - Analytics tab: `analytics:read` - Docs tab: visible when any scope is present `keys:create` is accepted but has no portal route behind it yet. It is still authorized like the others, so a session minted with it required `create_key` on the keyspace at mint time, and a future portal create-key route inherits an enforced ceiling rather than trusting sessions minted while the capability was inert. Each scope requires the equivalent permission on your own root key. See Required Permissions on this operation. */
 export type PortalCreateSessionRequestScopesList = Array<
@@ -4851,7 +4851,7 @@ export const UpdateKeyRequestMetaMap = /*@__PURE__*/ S.Record(
 
 /** How often credits are automatically refilled. */
 export type UpdateKeyCreditsRefillInterval = "daily" | "monthly";
-export const UpdateKeyCreditsRefillInterval = /*@__PURE__*/ S.String;
+export const UpdateKeyCreditsRefillInterval = S.String;
 
 /** Configuration for automatic credit refill behavior. */
 export interface UpdateKeyCreditsRefill {
@@ -5137,7 +5137,7 @@ export type V2KeysVerifyKeyResponseDataCode =
   | "RATE_LIMITED"
   | "DISABLED"
   | "EXPIRED";
-export const V2KeysVerifyKeyResponseDataCode = /*@__PURE__*/ S.String;
+export const V2KeysVerifyKeyResponseDataCode = S.String;
 
 /** Custom metadata associated with the key. This can include any JSON-serializable data you stored with the key during creation or updates, such as plan information, feature flags, or user details. Use this to avoid additional database lookups for contextual information needed during API calls. */
 export type V2KeysVerifyKeyResponseDataMetaMap = {

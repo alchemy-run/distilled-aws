@@ -82,7 +82,7 @@ export type ShipmentCheckpointStatus =
   | "failure"
   | "cancelled"
   | "error";
-export const ShipmentCheckpointStatus = /*@__PURE__*/ S.String;
+export const ShipmentCheckpointStatus = S.String;
 
 export interface ShipmentCheckpoint {
   /** Where the carrier recorded the scan, such as `PHILADELPHIA, PA`. Null when the carrier sent none. */
@@ -122,7 +122,7 @@ export type ShipmentStatus =
   | "failure"
   | "cancelled"
   | "error";
-export const ShipmentStatus = /*@__PURE__*/ S.String;
+export const ShipmentStatus = S.String;
 
 export interface Shipment {
   /** The account that owns this shipment, prefixed `biz_`. */
@@ -183,7 +183,7 @@ export type ListShipmentsRequestStatus =
   | "failure"
   | "cancelled"
   | "error";
-export const ListShipmentsRequestStatus = /*@__PURE__*/ S.String;
+export const ListShipmentsRequestStatus = S.String;
 
 export type ListShipmentsRequestPaymentIdList = Array<string>;
 export const ListShipmentsRequestPaymentIdList = /*@__PURE__*/ S.Array(
@@ -191,10 +191,10 @@ export const ListShipmentsRequestPaymentIdList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListShipmentsRequestPaymentIdList>;
 
 export type ListShipmentsRequestOrder = "created_at";
-export const ListShipmentsRequestOrder = /*@__PURE__*/ S.String;
+export const ListShipmentsRequestOrder = S.String;
 
 export type ListShipmentsRequestDirection = "asc" | "desc";
-export const ListShipmentsRequestDirection = /*@__PURE__*/ S.String;
+export const ListShipmentsRequestDirection = S.String;
 
 export interface ListShipmentsRequest {
   /** The account to list shipments for. Defaults to the acting account. */

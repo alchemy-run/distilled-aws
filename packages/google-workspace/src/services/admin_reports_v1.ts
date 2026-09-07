@@ -254,7 +254,7 @@ export const UsageReports = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UsageReports" }) as any as S.Schema<UsageReports>;
 
 export type GetEntityUsageReportsEntityTypeEnum = "gplus_communities";
-export const GetEntityUsageReportsEntityTypeEnum = /*@__PURE__*/ S.String;
+export const GetEntityUsageReportsEntityTypeEnum = S.String;
 
 export interface GetEntityUsageReportsRequest {
   /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. */
@@ -379,7 +379,7 @@ export type ListActivitiesApplicationNameEnum =
   | "voice"
   | "chrome_sync"
   | "workspace_studio";
-export const ListActivitiesApplicationNameEnum = /*@__PURE__*/ S.String;
+export const ListActivitiesApplicationNameEnum = S.String;
 
 export interface ListActivitiesRequest {
   /** Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175) */
@@ -1297,7 +1297,7 @@ export type WatchActivitiesApplicationNameEnum =
   | "data_studio"
   | "keep"
   | "classroom";
-export const WatchActivitiesApplicationNameEnum = /*@__PURE__*/ S.String;
+export const WatchActivitiesApplicationNameEnum = S.String;
 
 export interface WatchActivitiesRequest {
   /** `Deprecated`. This field is deprecated and is no longer supported. ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results. */

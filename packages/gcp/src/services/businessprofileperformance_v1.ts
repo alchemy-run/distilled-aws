@@ -53,7 +53,7 @@ export type FetchMultiDailyMetricsTimeSeriesLocationsDailyMetricsEnum =
   | "BUSINESS_FOOD_ORDERS"
   | "BUSINESS_FOOD_MENU_CLICKS";
 export const FetchMultiDailyMetricsTimeSeriesLocationsDailyMetricsEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type FetchMultiDailyMetricsTimeSeriesLocationsDailyMetricsEnumList =
   Array<
@@ -166,7 +166,7 @@ export type DailySubEntityTypeDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const DailySubEntityTypeDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const DailySubEntityTypeDayOfWeekEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -217,7 +217,7 @@ export type DailyMetricTimeSeriesDailyMetricEnum =
   | "BUSINESS_BOOKINGS"
   | "BUSINESS_FOOD_ORDERS"
   | "BUSINESS_FOOD_MENU_CLICKS";
-export const DailyMetricTimeSeriesDailyMetricEnum = /*@__PURE__*/ S.String;
+export const DailyMetricTimeSeriesDailyMetricEnum = S.String;
 
 /** Represents a single datapoint, where each datapoint is a DailyMetric-DailySubEntityType-TimeSeries tuple. */
 export interface DailyMetricTimeSeries {
@@ -288,8 +288,7 @@ export type GetDailyMetricsTimeSeriesLocationsDailyMetricEnum =
   | "BUSINESS_BOOKINGS"
   | "BUSINESS_FOOD_ORDERS"
   | "BUSINESS_FOOD_MENU_CLICKS";
-export const GetDailyMetricsTimeSeriesLocationsDailyMetricEnum =
-  /*@__PURE__*/ S.String;
+export const GetDailyMetricsTimeSeriesLocationsDailyMetricEnum = S.String;
 
 export type GetDailyMetricsTimeSeriesLocationsDailySubEntityType_dayOfWeekEnum =
   | "DAY_OF_WEEK_UNSPECIFIED"
@@ -301,7 +300,7 @@ export type GetDailyMetricsTimeSeriesLocationsDailySubEntityType_dayOfWeekEnum =
   | "SATURDAY"
   | "SUNDAY";
 export const GetDailyMetricsTimeSeriesLocationsDailySubEntityType_dayOfWeekEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDailyMetricsTimeSeriesLocationsRequest {
   /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */

@@ -76,7 +76,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -84,7 +84,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -131,7 +131,7 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The properties related to Aks Resource */
 export interface AksProfile {
@@ -399,11 +399,11 @@ export const MdsResourcePropertiesDenyAssignmentExclusionsList =
 
 /** The current state of the resource */
 export type ResourceState = "Active" | "Inactive";
-export const ResourceState = /*@__PURE__*/ S.String;
+export const ResourceState = S.String;
 
 /** The redundancy state of the resource */
 export type RedundancyState = "Zonal" | "None";
-export const RedundancyState = /*@__PURE__*/ S.String;
+export const RedundancyState = S.String;
 
 /** Details of the ManufacturingPlatform MdsResource. */
 export interface MdsResourceProperties {
@@ -497,7 +497,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -547,7 +547,7 @@ export const GetManufacturingDataServiceResponseIdentity =
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface GetManufacturingDataServiceResponseSku {
@@ -830,11 +830,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -1165,7 +1165,7 @@ export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
 export const AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** User assigned identity properties */
 export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue =
@@ -1212,8 +1212,7 @@ export type AzureResourceManagerCommonTypesSkuUpdateTier =
   | "Basic"
   | "Standard"
   | "Premium";
-export const AzureResourceManagerCommonTypesSkuUpdateTier =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerCommonTypesSkuUpdateTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface AzureResourceManagerCommonTypesSkuUpdate {

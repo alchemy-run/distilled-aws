@@ -207,7 +207,7 @@ export type ConnectionType =
   | "CONNECTION_CREDENTIALS"
   | "WEBRTC_CONNECTION"
   | (string & {});
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 export type ConnectionTypeList = ConnectionType[];
 export const ConnectionTypeList = /*@__PURE__*/ S.Array(ConnectionType);
@@ -288,7 +288,7 @@ export const WebRTCMediaPlacement = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebRTCMediaPlacement",
 }) as any as S.Schema<WebRTCMediaPlacement>;
 export type MeetingFeatureStatus = "AVAILABLE" | "UNAVAILABLE" | (string & {});
-export const MeetingFeatureStatus = /*@__PURE__*/ S.String;
+export const MeetingFeatureStatus = S.String;
 
 export interface AudioFeatures {
   EchoReduction?: MeetingFeatureStatus;
@@ -515,10 +515,10 @@ export type ContactId = string;
 export type MaxResults = number;
 export type NextToken = string;
 export type ScanDirection = "FORWARD" | "BACKWARD" | (string & {});
-export const ScanDirection = /*@__PURE__*/ S.String;
+export const ScanDirection = S.String;
 
 export type SortKey = "DESCENDING" | "ASCENDING" | (string & {});
-export const SortKey = /*@__PURE__*/ S.String;
+export const SortKey = S.String;
 
 export type ChatItemId = string;
 export type Instant = string;
@@ -582,7 +582,7 @@ export type ChatItemType =
   | "MESSAGE_DELIVERED"
   | "MESSAGE_READ"
   | (string & {});
-export const ChatItemType = /*@__PURE__*/ S.String;
+export const ChatItemType = S.String;
 
 export type ParticipantId = string;
 export type DisplayName = string;
@@ -593,7 +593,7 @@ export type ParticipantRole =
   | "CUSTOM_BOT"
   | "SUPERVISOR"
   | (string & {});
-export const ParticipantRole = /*@__PURE__*/ S.String;
+export const ParticipantRole = S.String;
 
 export type ContentType = string;
 export type AttachmentName = string;
@@ -602,7 +602,7 @@ export type ArtifactStatus =
   | "REJECTED"
   | "IN_PROGRESS"
   | (string & {});
-export const ArtifactStatus = /*@__PURE__*/ S.String;
+export const ArtifactStatus = S.String;
 
 export interface AttachmentItem {
   ContentType?: string;
@@ -639,7 +639,7 @@ export type MessageProcessingStatus =
   | "FAILED"
   | "REJECTED"
   | (string & {});
-export const MessageProcessingStatus = /*@__PURE__*/ S.String;
+export const MessageProcessingStatus = S.String;
 
 export interface MessageMetadata {
   MessageId?: string;
@@ -854,7 +854,7 @@ export type ResourceType =
   | "USER"
   | "PHONE_NUMBER"
   | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type CancelParticipantAuthenticationError =
   | AccessDeniedException

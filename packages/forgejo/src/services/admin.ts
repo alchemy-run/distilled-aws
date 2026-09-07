@@ -166,7 +166,7 @@ export type AdminCreateHookRequestType =
   | "feishu"
   | "wechatwork"
   | "packagist";
-export const AdminCreateHookRequestType = /*@__PURE__*/ S.String;
+export const AdminCreateHookRequestType = S.String;
 
 export interface AdminCreateHookRequest {
   active?: boolean;
@@ -236,7 +236,7 @@ export const Hook = /*@__PURE__*/ S.suspend(() =>
 
 /** possible values are `public` (default), `limited` or `private` */
 export type AdminCreateOrgRequestVisibility = "public" | "limited" | "private";
-export const AdminCreateOrgRequestVisibility = /*@__PURE__*/ S.String;
+export const AdminCreateOrgRequestVisibility = S.String;
 
 export interface AdminCreateOrgRequest {
   /** username of the user that will own the created organization */
@@ -543,7 +543,7 @@ export const AdminCreateQuotaRuleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type AdminCreateRepoRequestObjectFormatName = "sha1" | "sha256";
-export const AdminCreateRepoRequestObjectFormatName = /*@__PURE__*/ S.String;
+export const AdminCreateRepoRequestObjectFormatName = S.String;
 
 /** TrustModel of the repository */
 export type AdminCreateRepoRequestTrustModel =
@@ -551,7 +551,7 @@ export type AdminCreateRepoRequestTrustModel =
   | "collaborator"
   | "committer"
   | "collaboratorcommitter";
-export const AdminCreateRepoRequestTrustModel = /*@__PURE__*/ S.String;
+export const AdminCreateRepoRequestTrustModel = S.String;
 
 export interface AdminCreateRepoRequest {
   /** username of the user. This user will own the created repository */
@@ -657,7 +657,7 @@ export const InternalTracker = /*@__PURE__*/ S.suspend(() =>
 
 /** ObjectFormatName of the underlying git repository */
 export type RepositoryObjectFormatName = "sha1" | "sha256";
-export const RepositoryObjectFormatName = /*@__PURE__*/ S.String;
+export const RepositoryObjectFormatName = S.String;
 
 /** Permission represents a set of permissions */
 export interface Permission {
@@ -674,7 +674,7 @@ export const Permission = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Permission" }) as any as S.Schema<Permission>;
 
 export type TeamPermission = "none" | "read" | "write" | "admin" | "owner";
-export const TeamPermission = /*@__PURE__*/ S.String;
+export const TeamPermission = S.String;
 
 export type TeamUnitsList = Array<string>;
 export const TeamUnitsList = /*@__PURE__*/ S.Array(
@@ -1950,7 +1950,7 @@ export type AdminSearchUsersRequestSort =
   | "reversealphabetically"
   | "recentupdate"
   | "leastupdate";
-export const AdminSearchUsersRequestSort = /*@__PURE__*/ S.String;
+export const AdminSearchUsersRequestSort = S.String;
 
 export interface AdminSearchUsersRequest {
   /** ID of the user's login source to search for */
@@ -2076,7 +2076,7 @@ export const ActionRunnerLabelsList = /*@__PURE__*/ S.Array(
 
 /** Status indicates whether this runner is offline, or active, for example. */
 export type ActionRunnerStatus = "offline" | "idle" | "active";
-export const ActionRunnerStatus = /*@__PURE__*/ S.String;
+export const ActionRunnerStatus = S.String;
 
 /** ActionRunner represents a runner */
 export interface ActionRunner {

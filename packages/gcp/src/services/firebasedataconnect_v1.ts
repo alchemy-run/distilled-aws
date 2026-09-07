@@ -154,21 +154,21 @@ export const HttpGraphql = /*@__PURE__*/ S.suspend(() =>
 export type PostgreSqlSchemaMigrationEnum =
   | "SQL_SCHEMA_MIGRATION_UNSPECIFIED"
   | "MIGRATE_COMPATIBLE";
-export const PostgreSqlSchemaMigrationEnum = /*@__PURE__*/ S.String;
+export const PostgreSqlSchemaMigrationEnum = S.String;
 
 export type PostgreSqlSchemaValidationEnum =
   | "SQL_SCHEMA_VALIDATION_UNSPECIFIED"
   | "NONE"
   | "STRICT"
   | "COMPATIBLE";
-export const PostgreSqlSchemaValidationEnum = /*@__PURE__*/ S.String;
+export const PostgreSqlSchemaValidationEnum = S.String;
 
 export type CloudSqlInstanceEditionEnum =
   | "EDITION_UNSPECIFIED"
   | "EDITION_ENTERPRISE"
   | "EDITION_ENTERPRISE_PLUS"
   | "EDITION_DEVELOPER";
-export const CloudSqlInstanceEditionEnum = /*@__PURE__*/ S.String;
+export const CloudSqlInstanceEditionEnum = S.String;
 
 /** Settings for CloudSQL instance configuration. */
 export interface CloudSqlInstance {
@@ -832,7 +832,7 @@ export type GraphqlErrorExtensionsCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const GraphqlErrorExtensionsCodeEnum = /*@__PURE__*/ S.String;
+export const GraphqlErrorExtensionsCodeEnum = S.String;
 
 export type GraphqlErrorExtensionsWarningLevelEnum =
   | "WARNING_LEVEL_UNKNOWN"
@@ -840,7 +840,7 @@ export type GraphqlErrorExtensionsWarningLevelEnum =
   | "INTERACTIVE_ACK"
   | "REQUIRE_ACK"
   | "REQUIRE_FORCE";
-export const GraphqlErrorExtensionsWarningLevelEnum = /*@__PURE__*/ S.String;
+export const GraphqlErrorExtensionsWarningLevelEnum = S.String;
 
 /** GraphqlErrorExtensions contains additional information of `GraphqlError`. */
 export interface GraphqlErrorExtensions {
@@ -1117,7 +1117,7 @@ export type GenerationStatusStateEnum =
   | "ANALYZING_CODE"
   | "GENERATING_CODE"
   | "COMPLETED";
-export const GenerationStatusStateEnum = /*@__PURE__*/ S.String;
+export const GenerationStatusStateEnum = S.String;
 
 /** Represents the progress of the server side generation request. */
 export interface GenerationStatus {

@@ -70,7 +70,7 @@ export const CreateExtensionRequestPropertiesConfigurationProtectedSettingsMap =
 
 /** Level of the status. */
 export type ExtensionStatusInputLevel = "Error" | "Warning" | "Information";
-export const ExtensionStatusInputLevel = /*@__PURE__*/ S.String;
+export const ExtensionStatusInputLevel = S.String;
 
 /** Status from the extension. */
 export interface ExtensionStatusInput {
@@ -116,8 +116,7 @@ export const CreateExtensionRequestPropertiesErrorInfo =
 export type CreateExtensionRequestPropertiesAksAssignedIdentityType =
   | "SystemAssigned"
   | "UserAssigned";
-export const CreateExtensionRequestPropertiesAksAssignedIdentityType =
-  /*@__PURE__*/ S.String;
+export const CreateExtensionRequestPropertiesAksAssignedIdentityType = S.String;
 
 /** Identity of the Extension resource in an AKS cluster */
 export interface CreateExtensionRequestPropertiesAksAssignedIdentity {
@@ -187,7 +186,7 @@ export const CreateExtensionRequestProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type. */
 export type CreateExtensionRequestIdentityType = "SystemAssigned";
-export const CreateExtensionRequestIdentityType = /*@__PURE__*/ S.String;
+export const CreateExtensionRequestIdentityType = S.String;
 
 /** Identity for the resource. */
 export interface CreateExtensionRequestIdentity {
@@ -297,12 +296,11 @@ export type CreateExtensionResponsePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const CreateExtensionResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const CreateExtensionResponsePropertiesProvisioningState = S.String;
 
 /** Level of the status. */
 export type ExtensionStatusLevel = "Error" | "Warning" | "Information";
-export const ExtensionStatusLevel = /*@__PURE__*/ S.String;
+export const ExtensionStatusLevel = S.String;
 
 /** Status from the extension. */
 export interface ExtensionStatus {
@@ -449,7 +447,7 @@ export type CreateExtensionResponsePropertiesAksAssignedIdentityType =
   | "SystemAssigned"
   | "UserAssigned";
 export const CreateExtensionResponsePropertiesAksAssignedIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Identity of the Extension resource in an AKS cluster */
 export interface CreateExtensionResponsePropertiesAksAssignedIdentity {
@@ -544,7 +542,7 @@ export const CreateExtensionResponseProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type. */
 export type CreateExtensionResponseIdentityType = "SystemAssigned";
-export const CreateExtensionResponseIdentityType = /*@__PURE__*/ S.String;
+export const CreateExtensionResponseIdentityType = S.String;
 
 /** Identity for the resource. */
 export interface CreateExtensionResponseIdentity {
@@ -571,8 +569,7 @@ export type CreateExtensionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateExtensionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const CreateExtensionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreateExtensionResponseSystemDataLastModifiedByType =
@@ -580,8 +577,7 @@ export type CreateExtensionResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreateExtensionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const CreateExtensionResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreateExtensionResponseSystemData {
@@ -779,11 +775,11 @@ export const DeleteSourceControlConfigurationResponse = /*@__PURE__*/ S.suspend(
 
 /** Scope at which the configuration will be installed. */
 export type ScopeDefinition = "cluster" | "namespace";
-export const ScopeDefinition = /*@__PURE__*/ S.String;
+export const ScopeDefinition = S.String;
 
 /** Source Kind to pull the configuration data from. */
 export type SourceKindDefinition = "GitRepository" | "Bucket" | "AzureBlob";
-export const SourceKindDefinition = /*@__PURE__*/ S.String;
+export const SourceKindDefinition = S.String;
 
 /** The source reference for the GitRepository object. */
 export interface RepositoryRefDefinition {
@@ -1225,7 +1221,7 @@ export type FluxComplianceStateDefinition =
   | "Pending"
   | "Suspended"
   | "Unknown";
-export const FluxComplianceStateDefinition = /*@__PURE__*/ S.String;
+export const FluxComplianceStateDefinition = S.String;
 
 /** Object reference to a Kubernetes object on a cluster */
 export interface ObjectReferenceDefinition {
@@ -1352,7 +1348,7 @@ export type FluxConfigurationsCreateOrUpdateResponsePropertiesProvisioningState 
   | "Updating"
   | "Deleting";
 export const FluxConfigurationsCreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties to create a Flux Configuration resource */
 export interface FluxConfigurationsCreateOrUpdateResponseProperties {
@@ -1443,7 +1439,7 @@ export type FluxConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const FluxConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type FluxConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -1452,7 +1448,7 @@ export type FluxConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType
   | "ManagedIdentity"
   | "Key";
 export const FluxConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface FluxConfigurationsCreateOrUpdateResponseSystemData {
@@ -1578,8 +1574,7 @@ export type GetExtensionResponsePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const GetExtensionResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const GetExtensionResponsePropertiesProvisioningState = S.String;
 
 /** Status from this extension. */
 export type GetExtensionResponsePropertiesStatusesList = Array<ExtensionStatus>;
@@ -1645,8 +1640,7 @@ export const GetExtensionResponsePropertiesCustomLocationSettingsMap =
 export type GetExtensionResponsePropertiesAksAssignedIdentityType =
   | "SystemAssigned"
   | "UserAssigned";
-export const GetExtensionResponsePropertiesAksAssignedIdentityType =
-  /*@__PURE__*/ S.String;
+export const GetExtensionResponsePropertiesAksAssignedIdentityType = S.String;
 
 /** Identity of the Extension resource in an AKS cluster */
 export interface GetExtensionResponsePropertiesAksAssignedIdentity {
@@ -1735,7 +1729,7 @@ export const GetExtensionResponseProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type. */
 export type GetExtensionResponseIdentityType = "SystemAssigned";
-export const GetExtensionResponseIdentityType = /*@__PURE__*/ S.String;
+export const GetExtensionResponseIdentityType = S.String;
 
 /** Identity for the resource. */
 export interface GetExtensionResponseIdentity {
@@ -1762,8 +1756,7 @@ export type GetExtensionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetExtensionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetExtensionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetExtensionResponseSystemDataLastModifiedByType =
@@ -1771,8 +1764,7 @@ export type GetExtensionResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetExtensionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetExtensionResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetExtensionResponseSystemData {
@@ -2025,8 +2017,7 @@ export type GetFluxConfigurationResponsePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const GetFluxConfigurationResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const GetFluxConfigurationResponsePropertiesProvisioningState = S.String;
 
 /** Properties to create a Flux Configuration resource */
 export interface GetFluxConfigurationResponseProperties {
@@ -2112,8 +2103,7 @@ export type GetFluxConfigurationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetFluxConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetFluxConfigurationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetFluxConfigurationResponseSystemDataLastModifiedByType =
@@ -2122,7 +2112,7 @@ export type GetFluxConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetFluxConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetFluxConfigurationResponseSystemData {
@@ -2329,7 +2319,7 @@ export const GetSourceControlConfigurationRequest = /*@__PURE__*/ S.suspend(
 
 /** Type of the operator */
 export type OperatorTypeDefinition = "Flux";
-export const OperatorTypeDefinition = /*@__PURE__*/ S.String;
+export const OperatorTypeDefinition = S.String;
 
 /** Name-value pairs of protected configuration settings for the configuration */
 export type ConfigurationProtectedSettings = {
@@ -2342,7 +2332,7 @@ export const ConfigurationProtectedSettings = /*@__PURE__*/ S.Record(
 
 /** Scope at which the operator will be installed. */
 export type OperatorScopeDefinition = "cluster" | "namespace";
-export const OperatorScopeDefinition = /*@__PURE__*/ S.String;
+export const OperatorScopeDefinition = S.String;
 
 /** Properties for Helm operator. */
 export interface HelmOperatorProperties {
@@ -2368,7 +2358,7 @@ export type GetSourceControlConfigurationResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Failed";
 export const GetSourceControlConfigurationResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The compliance state of the configuration. */
 export type ComplianceStatusComplianceState =
@@ -2377,11 +2367,11 @@ export type ComplianceStatusComplianceState =
   | "Noncompliant"
   | "Installed"
   | "Failed";
-export const ComplianceStatusComplianceState = /*@__PURE__*/ S.String;
+export const ComplianceStatusComplianceState = S.String;
 
 /** Level of the message. */
 export type ComplianceStatusMessageLevel = "Error" | "Warning" | "Information";
-export const ComplianceStatusMessageLevel = /*@__PURE__*/ S.String;
+export const ComplianceStatusMessageLevel = S.String;
 
 /** Compliance Status details */
 export interface ComplianceStatus {
@@ -2466,7 +2456,7 @@ export type GetSourceControlConfigurationResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSourceControlConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetSourceControlConfigurationResponseSystemDataLastModifiedByType =
@@ -2475,7 +2465,7 @@ export type GetSourceControlConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetSourceControlConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetSourceControlConfigurationResponseSystemData {
@@ -2594,7 +2584,7 @@ export type ExtensionPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const ExtensionPropertiesProvisioningState = /*@__PURE__*/ S.String;
+export const ExtensionPropertiesProvisioningState = S.String;
 
 /** Status from this extension. */
 export type ExtensionPropertiesStatusesList = Array<ExtensionStatus>;
@@ -2655,8 +2645,7 @@ export const ExtensionPropertiesCustomLocationSettingsMap =
 export type ExtensionPropertiesAksAssignedIdentityType =
   | "SystemAssigned"
   | "UserAssigned";
-export const ExtensionPropertiesAksAssignedIdentityType =
-  /*@__PURE__*/ S.String;
+export const ExtensionPropertiesAksAssignedIdentityType = S.String;
 
 /** Identity of the Extension resource in an AKS cluster */
 export interface ExtensionPropertiesAksAssignedIdentity {
@@ -2743,7 +2732,7 @@ export const ExtensionProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type. */
 export type ExtensionIdentityType = "SystemAssigned";
-export const ExtensionIdentityType = /*@__PURE__*/ S.String;
+export const ExtensionIdentityType = S.String;
 
 /** Identity for the resource. */
 export interface ExtensionIdentity {
@@ -2770,7 +2759,7 @@ export type ExtensionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ExtensionSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ExtensionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ExtensionSystemDataLastModifiedByType =
@@ -2778,7 +2767,7 @@ export type ExtensionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ExtensionSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const ExtensionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ExtensionSystemData {
@@ -2927,8 +2916,7 @@ export type FluxConfigurationPropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const FluxConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const FluxConfigurationPropertiesProvisioningState = S.String;
 
 /** Properties to create a Flux Configuration resource */
 export interface FluxConfigurationProperties {
@@ -3007,7 +2995,7 @@ export type FluxConfigurationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const FluxConfigurationSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const FluxConfigurationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type FluxConfigurationSystemDataLastModifiedByType =
@@ -3015,8 +3003,7 @@ export type FluxConfigurationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const FluxConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const FluxConfigurationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface FluxConfigurationSystemData {
@@ -3338,8 +3325,7 @@ export type SourceControlConfigurationPropertiesProvisioningState =
   | "Running"
   | "Succeeded"
   | "Failed";
-export const SourceControlConfigurationPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const SourceControlConfigurationPropertiesProvisioningState = S.String;
 
 /** Properties to create a Source Control Configuration resource */
 export interface SourceControlConfigurationProperties {
@@ -3401,8 +3387,7 @@ export type SourceControlConfigurationSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SourceControlConfigurationSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const SourceControlConfigurationSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SourceControlConfigurationSystemDataLastModifiedByType =
@@ -3410,8 +3395,7 @@ export type SourceControlConfigurationSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SourceControlConfigurationSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const SourceControlConfigurationSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SourceControlConfigurationSystemData {
@@ -3585,7 +3569,7 @@ export type SourceControlConfigurationsCreateOrUpdateResponsePropertiesProvision
   | "Succeeded"
   | "Failed";
 export const SourceControlConfigurationsCreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties to create a Source Control Configuration resource */
 export interface SourceControlConfigurationsCreateOrUpdateResponseProperties {
@@ -3648,7 +3632,7 @@ export type SourceControlConfigurationsCreateOrUpdateResponseSystemDataCreatedBy
   | "ManagedIdentity"
   | "Key";
 export const SourceControlConfigurationsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type SourceControlConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -3657,7 +3641,7 @@ export type SourceControlConfigurationsCreateOrUpdateResponseSystemDataLastModif
   | "ManagedIdentity"
   | "Key";
 export const SourceControlConfigurationsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SourceControlConfigurationsCreateOrUpdateResponseSystemData {
@@ -3835,8 +3819,7 @@ export type UpdateExtensionResponsePropertiesProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const UpdateExtensionResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const UpdateExtensionResponsePropertiesProvisioningState = S.String;
 
 /** Status from this extension. */
 export type UpdateExtensionResponsePropertiesStatusesList =
@@ -3907,7 +3890,7 @@ export type UpdateExtensionResponsePropertiesAksAssignedIdentityType =
   | "SystemAssigned"
   | "UserAssigned";
 export const UpdateExtensionResponsePropertiesAksAssignedIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Identity of the Extension resource in an AKS cluster */
 export interface UpdateExtensionResponsePropertiesAksAssignedIdentity {
@@ -4002,7 +3985,7 @@ export const UpdateExtensionResponseProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** The identity type. */
 export type UpdateExtensionResponseIdentityType = "SystemAssigned";
-export const UpdateExtensionResponseIdentityType = /*@__PURE__*/ S.String;
+export const UpdateExtensionResponseIdentityType = S.String;
 
 /** Identity for the resource. */
 export interface UpdateExtensionResponseIdentity {
@@ -4029,8 +4012,7 @@ export type UpdateExtensionResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateExtensionResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateExtensionResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateExtensionResponseSystemDataLastModifiedByType =
@@ -4038,8 +4020,7 @@ export type UpdateExtensionResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateExtensionResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateExtensionResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateExtensionResponseSystemData {
@@ -4325,7 +4306,7 @@ export type UpdateFluxConfigurationResponsePropertiesProvisioningState =
   | "Updating"
   | "Deleting";
 export const UpdateFluxConfigurationResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties to create a Flux Configuration resource */
 export interface UpdateFluxConfigurationResponseProperties {
@@ -4411,8 +4392,7 @@ export type UpdateFluxConfigurationResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateFluxConfigurationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateFluxConfigurationResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateFluxConfigurationResponseSystemDataLastModifiedByType =
@@ -4421,7 +4401,7 @@ export type UpdateFluxConfigurationResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateFluxConfigurationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateFluxConfigurationResponseSystemData {

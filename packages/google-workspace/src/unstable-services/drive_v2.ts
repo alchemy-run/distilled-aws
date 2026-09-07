@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type CopyFilesVisibilityEnum = "DEFAULT" | "PRIVATE";
-export const CopyFilesVisibilityEnum = /*@__PURE__*/ S.String;
+export const CopyFilesVisibilityEnum = S.String;
 
 export interface UserPicture {
   /** Output only. A URL that points to a profile picture of this user. */
@@ -2569,7 +2569,7 @@ export const GetDrivesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDrivesRequest>;
 
 export type GetFilesProjectionEnum = "BASIC" | "FULL";
-export const GetFilesProjectionEnum = /*@__PURE__*/ S.String;
+export const GetFilesProjectionEnum = S.String;
 
 export interface GetFilesRequest {
   /** The ID for the file in question. */
@@ -2982,7 +2982,7 @@ export const InsertDrivesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertDrivesRequest>;
 
 export type InsertFilesVisibilityEnum = "DEFAULT" | "PRIVATE";
-export const InsertFilesVisibilityEnum = /*@__PURE__*/ S.String;
+export const InsertFilesVisibilityEnum = S.String;
 
 export interface InsertFilesRequest {
   /** The visibility of the new file. Permissions are still inherited from parent folders. This parameter is only relevant when `convert=false`. */
@@ -3498,10 +3498,10 @@ export const DriveList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DriveList" }) as any as S.Schema<DriveList>;
 
 export type ListFilesProjectionEnum = "BASIC" | "FULL";
-export const ListFilesProjectionEnum = /*@__PURE__*/ S.String;
+export const ListFilesProjectionEnum = S.String;
 
 export type ListFilesCorpusEnum = "DEFAULT" | "DOMAIN";
-export const ListFilesCorpusEnum = /*@__PURE__*/ S.String;
+export const ListFilesCorpusEnum = S.String;
 
 export interface ListFilesRequest {
   /** A comma-separated list of sort keys. Valid keys are: * `createdDate`: When the file was created. * `folder`: The folder ID. This field is sorted using alphabetical ordering. * `lastViewedByMeDate`: The last time the file was viewed by the user. * `modifiedByMeDate`: The last time the file was modified by the user. * `modifiedDate`: The last time the file was modified by anyone. * `quotaBytesUsed`: The number of storage quota bytes used by the file. * `recency`: The most recent timestamp from the file's date-time fields. * `sharedWithMeDate`: When the file was shared with the user, if applicable. * `starred`: Whether the user has starred the file. * `title`: The title of the file. This field is sorted using alphabetical ordering, so 1, 12, 2, 22. * `title_natural`: The title of the file. This field is sorted using natural sort ordering, so 1, 2, 12, 22. Each key sorts ascending by default, but can be reversed with the 'desc' modifier. Example usage: `?orderBy=folder,modifiedDate desc,title`. Note that there's a current limitation for users with approximately one million files in which the requested sort order is ignored. */
@@ -4082,7 +4082,7 @@ export type PatchFilesModifiedDateBehaviorEnum =
   | "noChange"
   | "now"
   | "nowIfNeeded";
-export const PatchFilesModifiedDateBehaviorEnum = /*@__PURE__*/ S.String;
+export const PatchFilesModifiedDateBehaviorEnum = S.String;
 
 export interface PatchFilesRequest {
   /** Whether to use the content as indexable text. */
@@ -4507,7 +4507,7 @@ export type UpdateFilesModifiedDateBehaviorEnum =
   | "noChange"
   | "now"
   | "nowIfNeeded";
-export const UpdateFilesModifiedDateBehaviorEnum = /*@__PURE__*/ S.String;
+export const UpdateFilesModifiedDateBehaviorEnum = S.String;
 
 export interface UpdateFilesRequest {
   /** Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads. */
@@ -4794,7 +4794,7 @@ export const WatchChangesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatchChangesRequest>;
 
 export type WatchFilesProjectionEnum = "BASIC" | "FULL";
-export const WatchFilesProjectionEnum = /*@__PURE__*/ S.String;
+export const WatchFilesProjectionEnum = S.String;
 
 export interface WatchFilesRequest {
   /** Specifies which additional view's permissions to include in the response. Only `published` is supported. */

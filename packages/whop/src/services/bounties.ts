@@ -69,7 +69,7 @@ export type BountyAcceptedDeliverableTypesItem =
   | "content_url"
   | "media"
   | "data_capture";
-export const BountyAcceptedDeliverableTypesItem = /*@__PURE__*/ S.String;
+export const BountyAcceptedDeliverableTypesItem = S.String;
 
 export type BountyAcceptedDeliverableTypesList =
   Array<BountyAcceptedDeliverableTypesItem>;
@@ -146,7 +146,7 @@ export type BountyBusinessGoalType =
   | "local_activation"
   | "data_capture"
   | "other";
-export const BountyBusinessGoalType = /*@__PURE__*/ S.String;
+export const BountyBusinessGoalType = S.String;
 
 export interface CaptureSpecImu {
   /** Units for the device-motion channels, as a compact key=unit string. */
@@ -185,7 +185,7 @@ export const CaptureSpecVideoCodecsList = /*@__PURE__*/ S.Array(
 
 /** How the client must configure video stabilization: `off` disables EIS so raw motion is preserved for pose extraction, `on` requires it, `any` leaves the device default. */
 export type CaptureSpecVideoStabilizationMode = "off" | "on" | "any";
-export const CaptureSpecVideoStabilizationMode = /*@__PURE__*/ S.String;
+export const CaptureSpecVideoStabilizationMode = S.String;
 
 export interface CaptureSpecVideo {
   /** Maximum acceptable average bitrate, in megabits per second. */
@@ -356,7 +356,7 @@ export type BountyCurrency =
   | "cny"
   | "kzt"
   | "awg";
-export const BountyCurrency = /*@__PURE__*/ S.String;
+export const BountyCurrency = S.String;
 
 export interface AccountSummary {
   /** Account ID, prefixed `biz_`. */
@@ -396,7 +396,7 @@ export type BountyScheduledFrequency =
   | "daily"
   | "weekly"
   | "monthly";
-export const BountyScheduledFrequency = /*@__PURE__*/ S.String;
+export const BountyScheduledFrequency = S.String;
 
 /** Lifecycle state. `scheduled` bounties are unpublished drafts, visible to their poster and the account's authorized managers; `open` bounties accept new submissions; `closed` bounties are live but no longer accept new submissions; `completed` bounties paid out every winner slot; `canceled` bounties ended before filling their slots. */
 export type BountyStatus =
@@ -405,7 +405,7 @@ export type BountyStatus =
   | "closed"
   | "completed"
   | "canceled";
-export const BountyStatus = /*@__PURE__*/ S.String;
+export const BountyStatus = S.String;
 
 export interface Bounty {
   accepted_deliverable_types: BountyAcceptedDeliverableTypesList;
@@ -534,15 +534,14 @@ export type CreateBountyRequestBusinessGoalType =
   | "local_activation"
   | "data_capture"
   | "other";
-export const CreateBountyRequestBusinessGoalType = /*@__PURE__*/ S.String;
+export const CreateBountyRequestBusinessGoalType = S.String;
 
 /** How the recorder configures video stabilization. `off` preserves raw motion for pose extraction. */
 export type CreateBountyRequestCaptureSpecStabilizationMode =
   | "off"
   | "on"
   | "any";
-export const CreateBountyRequestCaptureSpecStabilizationMode =
-  /*@__PURE__*/ S.String;
+export const CreateBountyRequestCaptureSpecStabilizationMode = S.String;
 
 /** Per-bounty overrides of the served capture contract. Only accepted when `business_goal_type` is `data_capture`; omitted fields keep the platform defaults, and the resulting contract is echoed back as `capture_spec` on the bounty. */
 export interface CreateBountyRequestCaptureSpec {
@@ -583,7 +582,7 @@ export type CreateBountyRequestFrequency =
   | "daily"
   | "weekly"
   | "monthly";
-export const CreateBountyRequestFrequency = /*@__PURE__*/ S.String;
+export const CreateBountyRequestFrequency = S.String;
 
 export interface CreateBountyRequest {
   /** Number of submissions that can be accepted (winner slots). Defaults to 1. The escrowed total is `gross_reward_amount` times this limit and must be at least $5. */
@@ -677,8 +676,7 @@ export type BountySubmissionLivestreamFeedRecordingStatus =
   | "processing"
   | "completed"
   | "failed";
-export const BountySubmissionLivestreamFeedRecordingStatus =
-  /*@__PURE__*/ S.String;
+export const BountySubmissionLivestreamFeedRecordingStatus = S.String;
 
 export interface BountySubmissionLivestreamFeed {
   /** When the proof livestream ended, as an ISO 8601 timestamp. `null` while it is still live — a feed with a `started_at` and no `ended_at` is streaming right now. */
@@ -712,7 +710,7 @@ export const BountySubmissionLivestreamFeed = /*@__PURE__*/ S.suspend(() =>
 
 /** Lifecycle state. `submitted` submissions await review; `approved` submissions were accepted and paid; `denied` submissions were rejected. In-progress attempts never appear on the public list. */
 export type PublicBountySubmissionStatus = "submitted" | "approved" | "denied";
-export const PublicBountySubmissionStatus = /*@__PURE__*/ S.String;
+export const PublicBountySubmissionStatus = S.String;
 
 export interface PublicBountySubmission {
   /** The bounty the work was submitted to, prefixed `bnty_`. */
@@ -762,7 +760,7 @@ export type ListBountiesRequestStatus =
   | "closed"
   | "completed"
   | "canceled";
-export const ListBountiesRequestStatus = /*@__PURE__*/ S.String;
+export const ListBountiesRequestStatus = S.String;
 
 export type ListBountiesRequestBusinessGoalType =
   | "clipping"
@@ -772,16 +770,16 @@ export type ListBountiesRequestBusinessGoalType =
   | "local_activation"
   | "data_capture"
   | "other";
-export const ListBountiesRequestBusinessGoalType = /*@__PURE__*/ S.String;
+export const ListBountiesRequestBusinessGoalType = S.String;
 
 export type ListBountiesRequestOrder =
   | "created_at"
   | "gross_paid_out_amount"
   | "gross_reward_amount";
-export const ListBountiesRequestOrder = /*@__PURE__*/ S.String;
+export const ListBountiesRequestOrder = S.String;
 
 export type ListBountiesRequestDirection = "asc" | "desc";
-export const ListBountiesRequestDirection = /*@__PURE__*/ S.String;
+export const ListBountiesRequestDirection = S.String;
 
 export interface ListBountiesRequest {
   /** Scope the list to this account (`biz_` tag). Requires read access to the account; account API keys may pass their own account or a connected account. */
@@ -844,8 +842,7 @@ export type BountyListItemAcceptedDeliverableTypesItem =
   | "content_url"
   | "media"
   | "data_capture";
-export const BountyListItemAcceptedDeliverableTypesItem =
-  /*@__PURE__*/ S.String;
+export const BountyListItemAcceptedDeliverableTypesItem = S.String;
 
 export type BountyListItemAcceptedDeliverableTypesList =
   Array<BountyListItemAcceptedDeliverableTypesItem>;
@@ -867,7 +864,7 @@ export type BountyListItemBusinessGoalType =
   | "local_activation"
   | "data_capture"
   | "other";
-export const BountyListItemBusinessGoalType = /*@__PURE__*/ S.String;
+export const BountyListItemBusinessGoalType = S.String;
 
 /** How often the schedule creates a new bounty. Each occurrence is a separate bounty; the original is not republished. */
 export type BountyListItemScheduledFrequency =
@@ -876,7 +873,7 @@ export type BountyListItemScheduledFrequency =
   | "daily"
   | "weekly"
   | "monthly";
-export const BountyListItemScheduledFrequency = /*@__PURE__*/ S.String;
+export const BountyListItemScheduledFrequency = S.String;
 
 /** Lifecycle state. `scheduled` bounties are unpublished drafts, visible to their poster and the account's authorized managers; `open` bounties accept new submissions; `closed` bounties are live but no longer accept new submissions; `completed` bounties paid out every winner slot; `canceled` bounties ended before filling their slots. */
 export type BountyListItemStatus =
@@ -885,7 +882,7 @@ export type BountyListItemStatus =
   | "closed"
   | "completed"
   | "canceled";
-export const BountyListItemStatus = /*@__PURE__*/ S.String;
+export const BountyListItemStatus = S.String;
 
 export interface BountyListItem {
   accepted_deliverable_types: BountyListItemAcceptedDeliverableTypesList;
@@ -1027,16 +1024,15 @@ export type ListPublicBountySubmissionsRequestStatus =
   | "submitted"
   | "approved"
   | "denied";
-export const ListPublicBountySubmissionsRequestStatus = /*@__PURE__*/ S.String;
+export const ListPublicBountySubmissionsRequestStatus = S.String;
 
 export type ListPublicBountySubmissionsRequestOrder =
   | "created_at"
   | "updated_at";
-export const ListPublicBountySubmissionsRequestOrder = /*@__PURE__*/ S.String;
+export const ListPublicBountySubmissionsRequestOrder = S.String;
 
 export type ListPublicBountySubmissionsRequestDirection = "asc" | "desc";
-export const ListPublicBountySubmissionsRequestDirection =
-  /*@__PURE__*/ S.String;
+export const ListPublicBountySubmissionsRequestDirection = S.String;
 
 export interface ListPublicBountySubmissionsRequest {
   /** The bounty whose public submissions to list (`bnty_` tag). */
@@ -1127,7 +1123,7 @@ export type UpdateBountyRequestBusinessGoalType =
   | "local_activation"
   | "data_capture"
   | "other";
-export const UpdateBountyRequestBusinessGoalType = /*@__PURE__*/ S.String;
+export const UpdateBountyRequestBusinessGoalType = S.String;
 
 /** Scheduled drafts only. How often the schedule creates a new bounty. */
 export type UpdateBountyRequestFrequency =
@@ -1136,7 +1132,7 @@ export type UpdateBountyRequestFrequency =
   | "daily"
   | "weekly"
   | "monthly";
-export const UpdateBountyRequestFrequency = /*@__PURE__*/ S.String;
+export const UpdateBountyRequestFrequency = S.String;
 
 export interface UpdateBountyRequest {
   /** Bounty ID (`bnty_` tag). */

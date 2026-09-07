@@ -90,7 +90,7 @@ export type ConfigModuleEnablementStateEnum =
   | "INHERITED"
   | "ENABLED"
   | "DISABLED";
-export const ConfigModuleEnablementStateEnum = /*@__PURE__*/ S.String;
+export const ConfigModuleEnablementStateEnum = S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -121,7 +121,7 @@ export type ContainerThreatDetectionSettingsServiceEnablementStateEnum =
   | "ENABLED"
   | "DISABLED";
 export const ContainerThreatDetectionSettingsServiceEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ContainerThreatDetectionSettings {
   name?: string;
@@ -171,8 +171,7 @@ export type EventThreatDetectionSettingsServiceEnablementStateEnum =
   | "INHERITED"
   | "ENABLED"
   | "DISABLED";
-export const EventThreatDetectionSettingsServiceEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+export const EventThreatDetectionSettingsServiceEnablementStateEnum = S.String;
 
 export interface EventThreatDetectionSettings {
   serviceEnablementState?:
@@ -219,7 +218,7 @@ export type RapidVulnerabilityDetectionSettingsServiceEnablementStateEnum =
   | "ENABLED"
   | "DISABLED";
 export const RapidVulnerabilityDetectionSettingsServiceEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RapidVulnerabilityDetectionSettings {
   serviceEnablementState?:
@@ -268,7 +267,7 @@ export type SecurityHealthAnalyticsSettingsServiceEnablementStateEnum =
   | "ENABLED"
   | "DISABLED";
 export const SecurityHealthAnalyticsSettingsServiceEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityHealthAnalyticsSettings {
   modules?: ConfigMap;
@@ -319,7 +318,7 @@ export type VirtualMachineThreatDetectionSettingsServiceEnablementStateEnum =
   | "ENABLED"
   | "DISABLED";
 export const VirtualMachineThreatDetectionSettingsServiceEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VirtualMachineThreatDetectionSettings {
   serviceEnablementState?:
@@ -370,8 +369,7 @@ export type WebSecurityScannerSettingsServiceEnablementStateEnum =
   | "INHERITED"
   | "ENABLED"
   | "DISABLED";
-export const WebSecurityScannerSettingsServiceEnablementStateEnum =
-  /*@__PURE__*/ S.String;
+export const WebSecurityScannerSettingsServiceEnablementStateEnum = S.String;
 
 export interface WebSecurityScannerSettings {
   name?: string;
@@ -988,7 +986,7 @@ export type DetailsTypeEnum =
   | "SUBSCRIPTION"
   | "SUB_FIXED"
   | "SUB_BASE_OVERAGE";
-export const DetailsTypeEnum = /*@__PURE__*/ S.String;
+export const DetailsTypeEnum = S.String;
 
 export interface Details {
   startTime?: string;
@@ -1009,7 +1007,7 @@ export type SubscriptionTierEnum =
   | "PREMIUM"
   | "ENTERPRISE"
   | "ENTERPRISE_MC";
-export const SubscriptionTierEnum = /*@__PURE__*/ S.String;
+export const SubscriptionTierEnum = S.String;
 
 export interface Subscription {
   details?: Details;

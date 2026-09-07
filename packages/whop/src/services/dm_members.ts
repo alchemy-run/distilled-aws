@@ -66,7 +66,7 @@ export const CreateDmMemberRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The notification preferences for a DMs feed member */
 export type DmsFeedMemberNotificationPreferences = "all" | "mentions" | "none";
-export const DmsFeedMemberNotificationPreferences = /*@__PURE__*/ S.String;
+export const DmsFeedMemberNotificationPreferences = S.String;
 
 /** The statuses of a DMs feed member */
 export type DmsFeedMemberStatuses =
@@ -75,7 +75,7 @@ export type DmsFeedMemberStatuses =
   | "hidden"
   | "closed"
   | "archived";
-export const DmsFeedMemberStatuses = /*@__PURE__*/ S.String;
+export const DmsFeedMemberStatuses = S.String;
 
 /** A user's membership record in a messaging channel, including notification preferences and read state. */
 export interface DmMember {

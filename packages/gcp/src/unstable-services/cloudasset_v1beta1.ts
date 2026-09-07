@@ -74,8 +74,7 @@ export type BatchGetAssetsHistoryOrganizationsContentTypeEnum =
   | "CONTENT_TYPE_UNSPECIFIED"
   | "RESOURCE"
   | "IAM_POLICY";
-export const BatchGetAssetsHistoryOrganizationsContentTypeEnum =
-  /*@__PURE__*/ S.String;
+export const BatchGetAssetsHistoryOrganizationsContentTypeEnum = S.String;
 
 export interface BatchGetAssetsHistoryOrganizationsRequest {
   /** Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345"). */
@@ -162,7 +161,7 @@ export type GoogleIdentityAccesscontextmanagerV1ServicePerimeterPerimeterTypeEnu
   | "PERIMETER_TYPE_REGULAR"
   | "PERIMETER_TYPE_BRIDGE";
 export const GoogleIdentityAccesscontextmanagerV1ServicePerimeterPerimeterTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An allowed method or permission of a service specified in ApiOperation. */
 export interface GoogleIdentityAccesscontextmanagerV1MethodSelector {
@@ -286,7 +285,7 @@ export type GoogleIdentityAccesscontextmanagerV1IngressFromIdentityTypeEnum =
   | "ANY_USER_ACCOUNT"
   | "ANY_SERVICE_ACCOUNT";
 export const GoogleIdentityAccesscontextmanagerV1IngressFromIdentityTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the source of the request. The request must satisfy what is defined in `sources` AND identity related fields in order to match. */
 export interface GoogleIdentityAccesscontextmanagerV1IngressFrom {
@@ -345,7 +344,7 @@ export type GoogleIdentityAccesscontextmanagerV1EgressFromIdentityTypeEnum =
   | "ANY_USER_ACCOUNT"
   | "ANY_SERVICE_ACCOUNT";
 export const GoogleIdentityAccesscontextmanagerV1EgressFromIdentityTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source that EgressPolicy authorizes access from inside the ServicePerimeter to somewhere outside the ServicePerimeter boundaries. */
 export interface GoogleIdentityAccesscontextmanagerV1EgressSource {
@@ -381,7 +380,7 @@ export type GoogleIdentityAccesscontextmanagerV1EgressFromSourceRestrictionEnum 
   | "SOURCE_RESTRICTION_ENABLED"
   | "SOURCE_RESTRICTION_DISABLED";
 export const GoogleIdentityAccesscontextmanagerV1EgressFromSourceRestrictionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed. */
 export interface GoogleIdentityAccesscontextmanagerV1EgressFrom {
@@ -533,7 +532,7 @@ export type GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatt
   | "SERVICE_PATTERNS_ENFORCEMENT_SCOPE_UNSPECIFIED"
   | "GOOGLE_APIS_VIA_PRIVATE_PATH";
 export const GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatternsEnforcementScopesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatternsEnforcementScopesItemEnumList =
   Array<GoogleIdentityAccesscontextmanagerV1VpcAccessibleServicesServicePatternsEnforcementScopesItemEnum>;
@@ -728,7 +727,7 @@ export type GoogleIdentityAccesscontextmanagerV1OsConstraintOsTypeEnum =
   | "ANDROID"
   | "IOS";
 export const GoogleIdentityAccesscontextmanagerV1OsConstraintOsTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A restriction on the OS type and version of devices making requests. */
 export interface GoogleIdentityAccesscontextmanagerV1OsConstraint {
@@ -765,7 +764,7 @@ export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionSta
   | "UNENCRYPTED"
   | "ENCRYPTED";
 export const GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionStatusesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionStatusesItemEnumList =
   Array<GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedEncryptionStatusesItemEnum>;
@@ -780,7 +779,7 @@ export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagem
   | "BASIC"
   | "COMPLETE";
 export const GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagementLevelsItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagementLevelsItemEnumList =
   Array<GoogleIdentityAccesscontextmanagerV1DevicePolicyAllowedDeviceManagementLevelsItemEnum>;
@@ -871,7 +870,7 @@ export type GoogleIdentityAccesscontextmanagerV1BasicLevelCombiningFunctionEnum 
   | "AND"
   | "OR";
 export const GoogleIdentityAccesscontextmanagerV1BasicLevelCombiningFunctionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** `BasicLevel` is an `AccessLevel` using a set of recommended features. */
 export interface GoogleIdentityAccesscontextmanagerV1BasicLevel {
@@ -943,8 +942,7 @@ export type GoogleCloudOrgpolicyV1ListPolicyAllValuesEnum =
   | "ALL_VALUES_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GoogleCloudOrgpolicyV1ListPolicyAllValuesEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudOrgpolicyV1ListPolicyAllValuesEnum = S.String;
 
 /** Used in `policy_type` to specify how `list_policy` behaves at this resource. `ListPolicy` can define specific values and subtrees of Cloud Resource Manager resource hierarchy (`Organizations`, `Folders`, `Projects`) that are allowed or denied by setting the `allowed_values` and `denied_values` fields. This is achieved by using the `under:` and optional `is:` prefixes. The `under:` prefix is used to denote resource subtree values. The `is:` prefix is used to denote specific values, and is required only if the value contains a ":". Values prefixed with "is:" are treated the same as values with no prefix. Ancestry subtrees must be in one of the following formats: - "projects/", e.g. "projects/tokyo-rain-123" - "folders/", e.g. "folders/1234" - "organizations/", e.g. "organizations/1234" The `supports_under` field of the associated `Constraint` defines whether ancestry prefixes can be used. You can set `allowed_values` and `denied_values` in the same `Policy` if `all_values` is `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all values. If `all_values` is set to either `ALLOW` or `DENY`, `allowed_values` and `denied_values` must be unset. */
 export interface GoogleCloudOrgpolicyV1ListPolicy {
@@ -1061,7 +1059,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1194,8 +1192,7 @@ export type BatchGetAssetsHistoryProjectsContentTypeEnum =
   | "CONTENT_TYPE_UNSPECIFIED"
   | "RESOURCE"
   | "IAM_POLICY";
-export const BatchGetAssetsHistoryProjectsContentTypeEnum =
-  /*@__PURE__*/ S.String;
+export const BatchGetAssetsHistoryProjectsContentTypeEnum = S.String;
 
 export interface BatchGetAssetsHistoryProjectsRequest {
   /** Required. The relative name of the root asset. It can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id")", or a project number (such as "projects/12345"). */
@@ -1234,7 +1231,7 @@ export type ExportAssetsRequestContentTypeEnum =
   | "CONTENT_TYPE_UNSPECIFIED"
   | "RESOURCE"
   | "IAM_POLICY";
-export const ExportAssetsRequestContentTypeEnum = /*@__PURE__*/ S.String;
+export const ExportAssetsRequestContentTypeEnum = S.String;
 
 /** A Cloud Storage location. */
 export interface GcsDestination {

@@ -170,7 +170,7 @@ export const HyperParameters = /*@__PURE__*/ S.Record(
   S.String.pipe(S.optional),
 );
 export type RankingInfluenceType = "POPULARITY" | "FRESHNESS" | (string & {});
-export const RankingInfluenceType = /*@__PURE__*/ S.String;
+export const RankingInfluenceType = S.String;
 
 export type RankingInfluenceWeight = number;
 export type RankingInfluence = { [key in RankingInfluenceType]?: number };
@@ -205,7 +205,7 @@ export type BatchInferenceJobMode =
   | "BATCH_INFERENCE"
   | "THEME_GENERATION"
   | (string & {});
-export const BatchInferenceJobMode = /*@__PURE__*/ S.String;
+export const BatchInferenceJobMode = S.String;
 
 export type ColumnName = string;
 export interface FieldsForThemeGeneration {
@@ -421,7 +421,7 @@ export const CreateDatasetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDatasetResponse",
 }) as any as S.Schema<CreateDatasetResponse>;
 export type IngestionMode = "BULK" | "PUT" | "ALL" | (string & {});
-export const IngestionMode = /*@__PURE__*/ S.String;
+export const IngestionMode = S.String;
 
 export interface DatasetExportJobOutput {
   s3DataDestination: S3DataConfig;
@@ -462,7 +462,7 @@ export const CreateDatasetExportJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDatasetExportJobResponse",
 }) as any as S.Schema<CreateDatasetExportJobResponse>;
 export type Domain = "ECOMMERCE" | "VIDEO_ON_DEMAND" | (string & {});
-export const Domain = /*@__PURE__*/ S.String;
+export const Domain = S.String;
 
 export interface CreateDatasetGroupRequest {
   name: string;
@@ -497,7 +497,7 @@ export const CreateDatasetGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateDatasetGroupResponse",
 }) as any as S.Schema<CreateDatasetGroupResponse>;
 export type ImportMode = "FULL" | "INCREMENTAL" | (string & {});
-export const ImportMode = /*@__PURE__*/ S.String;
+export const ImportMode = S.String;
 
 export interface CreateDatasetImportJobRequest {
   jobName: string;
@@ -898,7 +898,7 @@ export type ObjectiveSensitivity =
   | "HIGH"
   | "OFF"
   | (string & {});
-export const ObjectiveSensitivity = /*@__PURE__*/ S.String;
+export const ObjectiveSensitivity = S.String;
 
 export interface OptimizationObjective {
   itemAttribute?: string;
@@ -986,7 +986,7 @@ export const CreateSolutionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSolutionResponse",
 }) as any as S.Schema<CreateSolutionResponse>;
 export type TrainingMode = "FULL" | "UPDATE" | "AUTOTRAIN" | (string & {});
-export const TrainingMode = /*@__PURE__*/ S.String;
+export const TrainingMode = S.String;
 
 export interface CreateSolutionVersionRequest {
   name?: string;
@@ -2127,7 +2127,7 @@ export const AutoMLResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ bestRecipeArn: S.optional(S.String) }),
 ).annotate({ identifier: "AutoMLResult" }) as any as S.Schema<AutoMLResult>;
 export type TrainingType = "AUTOMATIC" | "MANUAL" | (string & {});
-export const TrainingType = /*@__PURE__*/ S.String;
+export const TrainingType = S.String;
 
 export interface SolutionVersionSummary {
   solutionVersionArn?: string;
@@ -2968,7 +2968,7 @@ export const ListMetricAttributionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListMetricAttributionsResponse",
 }) as any as S.Schema<ListMetricAttributionsResponse>;
 export type RecipeProvider = "SERVICE" | (string & {});
-export const RecipeProvider = /*@__PURE__*/ S.String;
+export const RecipeProvider = S.String;
 
 export interface ListRecipesRequest {
   recipeProvider?: RecipeProvider;

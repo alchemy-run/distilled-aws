@@ -37,7 +37,7 @@ export const AddGroupDmUserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddGroupDmUserRequest>;
 
 export type ChannelTypes = 1 | 3 | 0 | 2 | 4 | 5 | 10 | 11 | 12 | 13 | 14 | 15;
-export const ChannelTypes = /*@__PURE__*/ S.Number;
+export const ChannelTypes = S.Number;
 
 export interface UserAvatarDecorationResponse {
   /** the avatar decoration hash */
@@ -67,7 +67,7 @@ export type NameplatePalette =
   | "lemon"
   | "white"
   | "black";
-export const NameplatePalette = /*@__PURE__*/ S.String;
+export const NameplatePalette = S.String;
 
 export interface UserNameplateResponse {
   /** ID of the nameplate SKU */
@@ -400,7 +400,7 @@ export const AddLobbyMemberRequestMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<AddLobbyMemberRequestMetadataMap>;
 
 export type AddLobbyMemberRequestFlags = 1;
-export const AddLobbyMemberRequestFlags = /*@__PURE__*/ S.Number;
+export const AddLobbyMemberRequestFlags = S.Number;
 
 export interface AddLobbyMemberRequest {
   lobby_id: string;
@@ -711,7 +711,7 @@ export type ApplicationCommandOptionType =
   | 9
   | 10
   | 11;
-export const ApplicationCommandOptionType = /*@__PURE__*/ S.Number;
+export const ApplicationCommandOptionType = S.Number;
 
 export type ApplicationCommandAttachmentOptionNameLocalizationsMap = {
   [key: string]: string | undefined;
@@ -1586,7 +1586,7 @@ export const ApplicationCommandUpdateRequestOptionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ApplicationCommandUpdateRequestOptionsList>;
 
 export type InteractionContextType = 0 | 1 | 2;
-export const InteractionContextType = /*@__PURE__*/ S.Number;
+export const InteractionContextType = S.Number;
 
 export type ApplicationCommandUpdateRequestContextsList = Array<
   InteractionContextType | (number & {})
@@ -1597,7 +1597,7 @@ export const ApplicationCommandUpdateRequestContextsList =
   ) as any as S.Schema<ApplicationCommandUpdateRequestContextsList>;
 
 export type ApplicationIntegrationType = 0 | 1;
-export const ApplicationIntegrationType = /*@__PURE__*/ S.Number;
+export const ApplicationIntegrationType = S.Number;
 
 export type ApplicationCommandUpdateRequestIntegrationTypesList = Array<
   ApplicationIntegrationType | (number & {})
@@ -1608,10 +1608,10 @@ export const ApplicationCommandUpdateRequestIntegrationTypesList =
   ) as any as S.Schema<ApplicationCommandUpdateRequestIntegrationTypesList>;
 
 export type ApplicationCommandHandler = 1 | 2;
-export const ApplicationCommandHandler = /*@__PURE__*/ S.Number;
+export const ApplicationCommandHandler = S.Number;
 
 export type ApplicationCommandType = 1 | 2 | 3 | 4;
-export const ApplicationCommandType = /*@__PURE__*/ S.Number;
+export const ApplicationCommandType = S.Number;
 
 export interface ApplicationCommandUpdateRequest {
   name: string;
@@ -2995,7 +2995,7 @@ export const BulkLobbyMemberRequestMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<BulkLobbyMemberRequestMetadataMap>;
 
 export type BulkLobbyMemberRequestFlags = 1;
-export const BulkLobbyMemberRequestFlags = /*@__PURE__*/ S.Number;
+export const BulkLobbyMemberRequestFlags = S.Number;
 
 export interface BulkLobbyMemberRequest {
   id: string;
@@ -3396,10 +3396,10 @@ export const EmojiResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "EmojiResponse" }) as any as S.Schema<EmojiResponse>;
 
 export type AutomodEventType = 1 | 2;
-export const AutomodEventType = /*@__PURE__*/ S.Number;
+export const AutomodEventType = S.Number;
 
 export type AutomodActionType = 1 | 2 | 3 | 4;
-export const AutomodActionType = /*@__PURE__*/ S.Number;
+export const AutomodActionType = S.Number;
 
 export interface BlockMessageActionMetadata {
   custom_message?: string | null;
@@ -3521,7 +3521,7 @@ export const DefaultKeywordListUpsertRequestExemptChannelsList =
   ) as any as S.Schema<DefaultKeywordListUpsertRequestExemptChannelsList>;
 
 export type AutomodTriggerType = 1 | 3 | 4 | 5 | 6;
-export const AutomodTriggerType = /*@__PURE__*/ S.Number;
+export const AutomodTriggerType = S.Number;
 
 export type DefaultKeywordListTriggerMetadataAllowListList = Array<string>;
 export const DefaultKeywordListTriggerMetadataAllowListList =
@@ -3530,7 +3530,7 @@ export const DefaultKeywordListTriggerMetadataAllowListList =
   ) as any as S.Schema<DefaultKeywordListTriggerMetadataAllowListList>;
 
 export type AutomodKeywordPresetType = 1 | 2 | 3;
-export const AutomodKeywordPresetType = /*@__PURE__*/ S.Number;
+export const AutomodKeywordPresetType = S.Number;
 
 export type DefaultKeywordListTriggerMetadataPresetsList = Array<
   AutomodKeywordPresetType | (number & {})
@@ -4558,7 +4558,7 @@ export const CreateGroupDMInviteRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateGroupDMInviteRequest>;
 
 export type InviteTargetTypes = 1 | 2 | 3;
-export const InviteTargetTypes = /*@__PURE__*/ S.Number;
+export const InviteTargetTypes = S.Number;
 
 export type CreateGuildInviteRequestRoleIdsCase1List = Array<string>;
 export const CreateGuildInviteRequestRoleIdsCase1List = /*@__PURE__*/ S.Array(
@@ -4636,7 +4636,7 @@ export const CreateChannelInviteRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateChannelInviteRequest>;
 
 export type InviteTypes = 0 | 1 | 2;
-export const InviteTypes = /*@__PURE__*/ S.Number;
+export const InviteTypes = S.Number;
 
 export interface InviteChannelRecipientResponse {
   id: string;
@@ -4766,7 +4766,7 @@ export type GuildFeatures =
   | "VIP_REGIONS"
   | "WELCOME_SCREEN_ENABLED"
   | "OFFICIAL_GAME_GUILD";
-export const GuildFeatures = /*@__PURE__*/ S.String;
+export const GuildFeatures = S.String;
 
 export type InviteGuildResponseFeaturesList = Array<GuildFeatures>;
 export const InviteGuildResponseFeaturesList = /*@__PURE__*/ S.Array(
@@ -4774,10 +4774,10 @@ export const InviteGuildResponseFeaturesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<InviteGuildResponseFeaturesList>;
 
 export type VerificationLevels = 0 | 1 | 2 | 3 | 4;
-export const VerificationLevels = /*@__PURE__*/ S.Number;
+export const VerificationLevels = S.Number;
 
 export type GuildNSFWContentLevel = 0 | 1 | 2 | 3;
-export const GuildNSFWContentLevel = /*@__PURE__*/ S.Number;
+export const GuildNSFWContentLevel = S.Number;
 
 export interface InviteGuildResponse {
   id: string;
@@ -4813,7 +4813,7 @@ export const InviteGuildResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InviteGuildResponse>;
 
 export type ApplicationTypes = 4;
-export const ApplicationTypes = /*@__PURE__*/ S.Number;
+export const ApplicationTypes = S.Number;
 
 export type InviteApplicationResponseRpcOriginsList = Array<string>;
 export const InviteApplicationResponseRpcOriginsList = /*@__PURE__*/ S.Array(
@@ -4855,7 +4855,7 @@ export type OAuth2Scopes =
   | "dm_channels.read"
   | "role_connections.write"
   | "openid";
-export const OAuth2Scopes = /*@__PURE__*/ S.String;
+export const OAuth2Scopes = S.String;
 
 export type ApplicationOAuth2InstallParamsResponseScopesList =
   Array<OAuth2Scopes>;
@@ -4964,16 +4964,16 @@ export const InviteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InviteApplicationResponse>;
 
 export type GuildScheduledEventStatuses = 1 | 2 | 3 | 4;
-export const GuildScheduledEventStatuses = /*@__PURE__*/ S.Number;
+export const GuildScheduledEventStatuses = S.Number;
 
 export type GuildScheduledEventEntityTypes = 0 | 1 | 2 | 3;
-export const GuildScheduledEventEntityTypes = /*@__PURE__*/ S.Number;
+export const GuildScheduledEventEntityTypes = S.Number;
 
 export type RecurrenceRuleFrequencies = 3 | 2 | 1 | 0;
-export const RecurrenceRuleFrequencies = /*@__PURE__*/ S.Number;
+export const RecurrenceRuleFrequencies = S.Number;
 
 export type RecurrenceRuleWeekdays = 0 | 1 | 2 | 3 | 4 | 5 | 6;
-export const RecurrenceRuleWeekdays = /*@__PURE__*/ S.Number;
+export const RecurrenceRuleWeekdays = S.Number;
 
 /** Set of specific days within a week for the event to recur on */
 export type RecurrenceRuleResponseByWeekdayList = Array<RecurrenceRuleWeekdays>;
@@ -5015,7 +5015,7 @@ export type RecurrenceRuleMonths =
   | 10
   | 11
   | 12;
-export const RecurrenceRuleMonths = /*@__PURE__*/ S.Number;
+export const RecurrenceRuleMonths = S.Number;
 
 /** Set of specific months to recur on */
 export type RecurrenceRuleResponseByMonthList = Array<RecurrenceRuleMonths>;
@@ -5075,10 +5075,10 @@ export const RecurrenceRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RecurrenceRuleResponse>;
 
 export type GuildScheduledEventPrivacyLevels = 2;
-export const GuildScheduledEventPrivacyLevels = /*@__PURE__*/ S.Number;
+export const GuildScheduledEventPrivacyLevels = S.Number;
 
 export type GuildScheduledEventUserResponses = 0 | 1;
-export const GuildScheduledEventUserResponses = /*@__PURE__*/ S.Number;
+export const GuildScheduledEventUserResponses = S.Number;
 
 export interface ScheduledEventUserResponse {
   /** ID of the scheduled event */
@@ -5464,7 +5464,7 @@ export const CreateDmResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDmResponse>;
 
 export type EntitlementOwnerTypes = 1 | 2;
-export const EntitlementOwnerTypes = /*@__PURE__*/ S.Number;
+export const EntitlementOwnerTypes = S.Number;
 
 export interface CreateEntitlementRequest {
   application_id: string;
@@ -5493,7 +5493,7 @@ export const CreateEntitlementRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEntitlementRequest>;
 
 export type EntitlementTypes = 8 | 10;
-export const EntitlementTypes = /*@__PURE__*/ S.Number;
+export const EntitlementTypes = S.Number;
 
 export type EntitlementTenantFulfillmentStatusResponse =
   | 0
@@ -5504,8 +5504,7 @@ export type EntitlementTenantFulfillmentStatusResponse =
   | 5
   | 6
   | 7;
-export const EntitlementTenantFulfillmentStatusResponse =
-  /*@__PURE__*/ S.Number;
+export const EntitlementTenantFulfillmentStatusResponse = S.Number;
 
 export interface EntitlementResponse {
   id: string;
@@ -5765,7 +5764,7 @@ export const CreateGuildApplicationCommandRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateGuildApplicationCommandRequest>;
 
 export type ChannelPermissionOverwrites = 0 | 1;
-export const ChannelPermissionOverwrites = /*@__PURE__*/ S.Number;
+export const ChannelPermissionOverwrites = S.Number;
 
 export interface ChannelPermissionOverwriteRequest {
   id: string;
@@ -5792,10 +5791,10 @@ export const CreateGuildChannelRequestPermissionOverwritesList =
   ) as any as S.Schema<CreateGuildChannelRequestPermissionOverwritesList>;
 
 export type VideoQualityModes = 1 | 2;
-export const VideoQualityModes = /*@__PURE__*/ S.Number;
+export const VideoQualityModes = S.Number;
 
 export type ThreadAutoArchiveDuration = 60 | 1440 | 4320 | 10080;
-export const ThreadAutoArchiveDuration = /*@__PURE__*/ S.Number;
+export const ThreadAutoArchiveDuration = S.Number;
 
 export interface UpdateDefaultReactionEmojiRequest {
   emoji_id?: string | null;
@@ -5811,13 +5810,13 @@ export const UpdateDefaultReactionEmojiRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDefaultReactionEmojiRequest>;
 
 export type ThreadSortOrder = 0 | 1;
-export const ThreadSortOrder = /*@__PURE__*/ S.Number;
+export const ThreadSortOrder = S.Number;
 
 export type ForumLayout = 0 | 1 | 2;
-export const ForumLayout = /*@__PURE__*/ S.Number;
+export const ForumLayout = S.Number;
 
 export type ThreadSearchTagSetting = "match_all" | "match_some";
-export const ThreadSearchTagSetting = /*@__PURE__*/ S.String;
+export const ThreadSearchTagSetting = S.String;
 
 export interface CreateOrUpdateThreadTagRequest {
   name: string;
@@ -6733,10 +6732,10 @@ export const CreateGuildStickerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateGuildStickerRequest>;
 
 export type StickerTypes = 1 | 2;
-export const StickerTypes = /*@__PURE__*/ S.Number;
+export const StickerTypes = S.Number;
 
 export type StickerFormatTypes = 1 | 2 | 3 | 4;
-export const StickerFormatTypes = /*@__PURE__*/ S.Number;
+export const StickerFormatTypes = S.Number;
 
 export interface GuildStickerResponse {
   id: string;
@@ -6783,10 +6782,10 @@ export const CreateGuildTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateGuildTemplateRequest>;
 
 export type UserNotificationSettings = 0 | 1;
-export const UserNotificationSettings = /*@__PURE__*/ S.Number;
+export const UserNotificationSettings = S.Number;
 
 export type GuildExplicitContentFilterTypes = 0 | 1 | 2;
-export const GuildExplicitContentFilterTypes = /*@__PURE__*/ S.Number;
+export const GuildExplicitContentFilterTypes = S.Number;
 
 export type AvailableLocalesEnum =
   | "ar"
@@ -6823,10 +6822,10 @@ export type AvailableLocalesEnum =
   | "vi"
   | "zh-CN"
   | "zh-TW";
-export const AvailableLocalesEnum = /*@__PURE__*/ S.String;
+export const AvailableLocalesEnum = S.String;
 
 export type AfkTimeouts = 60 | 300 | 900 | 1800 | 3600;
-export const AfkTimeouts = /*@__PURE__*/ S.Number;
+export const AfkTimeouts = S.Number;
 
 export type GuildTemplateRoleColorsResponse = GuildRoleColorsResponse;
 export const GuildTemplateRoleColorsResponse = GuildRoleColorsResponse;
@@ -7019,7 +7018,7 @@ export const GuildTemplateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GuildTemplateResponse>;
 
 export type InteractionCallbackTypes = 1 | 4 | 5 | 6 | 7 | 8 | 9 | 12 | 13;
-export const InteractionCallbackTypes = /*@__PURE__*/ S.Number;
+export const InteractionCallbackTypes = S.Number;
 
 export type InteractionApplicationCommandAutocompleteCallbackIntegerDataChoicesList =
   Array<ApplicationCommandOptionIntegerChoice>;
@@ -7239,7 +7238,7 @@ export const IncomingWebhookInteractionRequestEmbedsList =
   ) as any as S.Schema<IncomingWebhookInteractionRequestEmbedsList>;
 
 export type AllowedMentionTypes = "users" | "roles" | "everyone";
-export const AllowedMentionTypes = /*@__PURE__*/ S.String;
+export const AllowedMentionTypes = S.String;
 
 export type MessageAllowedMentionsRequestParseList = Array<
   AllowedMentionTypes | (string & {})
@@ -7296,10 +7295,10 @@ export type MessageComponentTypes =
   | 21
   | 22
   | 23;
-export const MessageComponentTypes = /*@__PURE__*/ S.Number;
+export const MessageComponentTypes = S.Number;
 
 export type ButtonStyleTypes = 1 | 2 | 3 | 4 | 5 | 6;
-export const ButtonStyleTypes = /*@__PURE__*/ S.Number;
+export const ButtonStyleTypes = S.Number;
 
 export interface ComponentEmojiForRequest {
   id?: string | null;
@@ -7342,7 +7341,7 @@ export const ButtonComponentForMessageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ButtonComponentForMessageRequest>;
 
 export type SnowflakeSelectDefaultValueTypes = "user" | "role" | "channel";
-export const SnowflakeSelectDefaultValueTypes = /*@__PURE__*/ S.String;
+export const SnowflakeSelectDefaultValueTypes = S.String;
 
 export interface ChannelSelectDefaultValue {
   type: SnowflakeSelectDefaultValueTypes | (string & {});
@@ -7843,7 +7842,7 @@ export const SectionComponentForMessageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SectionComponentForMessageRequest>;
 
 export type MessageComponentSeparatorSpacingSize = 1 | 2;
-export const MessageComponentSeparatorSpacingSize = /*@__PURE__*/ S.Number;
+export const MessageComponentSeparatorSpacingSize = S.Number;
 
 export interface SeparatorComponentForMessageRequest {
   type: MessageComponentTypes | (number & {});
@@ -8021,7 +8020,7 @@ export const PollCreateRequestAnswersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PollCreateRequestAnswersList>;
 
 export type PollLayoutTypes = 1;
-export const PollLayoutTypes = /*@__PURE__*/ S.Number;
+export const PollLayoutTypes = S.Number;
 
 export interface PollCreateRequest {
   /** The question of the poll. Only `text` is supported. */
@@ -8103,7 +8102,7 @@ export const LaunchActivityInteractionCallbackRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<LaunchActivityInteractionCallbackRequest>;
 
 export type TextInputStyleTypes = 1 | 2;
-export const TextInputStyleTypes = /*@__PURE__*/ S.Number;
+export const TextInputStyleTypes = S.Number;
 
 export interface TextInputComponentForModalRequest {
   type: MessageComponentTypes | (number & {});
@@ -8668,7 +8667,7 @@ export const PongInteractionCallbackRequest =
   LaunchActivityInteractionCallbackRequest;
 
 export type SKUIneligibilityReason = 0 | 1 | 2;
-export const SKUIneligibilityReason = /*@__PURE__*/ S.Number;
+export const SKUIneligibilityReason = S.Number;
 
 export interface SocialLayerSKUPurchaseEligibilityCallbackData {
   eligible: boolean;
@@ -8837,7 +8836,7 @@ export const CreateInteractionResponseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInteractionResponseRequest>;
 
 export type InteractionTypes = 1 | 2 | 3 | 4 | 5 | 6;
-export const InteractionTypes = /*@__PURE__*/ S.Number;
+export const InteractionTypes = S.Number;
 
 export interface InteractionResponse {
   id: string;
@@ -8902,7 +8901,7 @@ export type MessageType =
   | 39
   | 46
   | 55;
-export const MessageType = /*@__PURE__*/ S.Number;
+export const MessageType = S.Number;
 
 export type MessageResponseMentionsList = Array<UserResponse>;
 export const MessageResponseMentionsList = /*@__PURE__*/ S.Array(
@@ -9938,7 +9937,7 @@ export const MessageCallResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessageCallResponse>;
 
 export type ActivityActionTypes = 1 | 2 | 3 | 5 | 6;
-export const ActivityActionTypes = /*@__PURE__*/ S.Number;
+export const ActivityActionTypes = S.Number;
 
 export interface MessageActivityResponse {
   type: ActivityActionTypes;
@@ -10007,7 +10006,7 @@ export const MessageResponseNonce = /*@__PURE__*/ S.Unknown.pipe(
 );
 
 export type MessageReferenceType = 0;
-export const MessageReferenceType = /*@__PURE__*/ S.Number;
+export const MessageReferenceType = S.Number;
 
 export interface MessageReferenceResponse {
   type: MessageReferenceType;
@@ -10161,7 +10160,7 @@ export const MessageRoleSubscriptionDataResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessageRoleSubscriptionDataResponse>;
 
 export type PurchaseType = 0;
-export const PurchaseType = /*@__PURE__*/ S.Number;
+export const PurchaseType = S.Number;
 
 export interface GuildProductPurchaseResponse {
   listing_id: string;
@@ -10490,7 +10489,7 @@ export const CustomClientThemeResponseColorsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomClientThemeResponseColorsList>;
 
 export type MessageShareCustomUserThemeBaseTheme = 0 | 1 | 2 | 3 | 4;
-export const MessageShareCustomUserThemeBaseTheme = /*@__PURE__*/ S.Number;
+export const MessageShareCustomUserThemeBaseTheme = S.Number;
 
 export interface CustomClientThemeResponse {
   colors: CustomClientThemeResponseColorsList;
@@ -11302,7 +11301,7 @@ export const LobbyMemberRequestMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<LobbyMemberRequestMetadataMap>;
 
 export type LobbyMemberRequestFlags = 1;
-export const LobbyMemberRequestFlags = /*@__PURE__*/ S.Number;
+export const LobbyMemberRequestFlags = S.Number;
 
 export interface LobbyMemberRequest {
   id: string;
@@ -11335,7 +11334,7 @@ export const CreateLobbyRequestMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateLobbyRequestMetadataMap>;
 
 export type CreateLobbyRequestFlags = 1;
-export const CreateLobbyRequestFlags = /*@__PURE__*/ S.Number;
+export const CreateLobbyRequestFlags = S.Number;
 
 export interface CreateLobbyRequest {
   idle_timeout_seconds?: number | null;
@@ -11670,7 +11669,7 @@ export const CreateOrJoinLobbyRequestMemberMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateOrJoinLobbyRequestMemberMetadataMap>;
 
 export type CreateOrJoinLobbyRequestFlags = 1;
-export const CreateOrJoinLobbyRequestFlags = /*@__PURE__*/ S.Number;
+export const CreateOrJoinLobbyRequestFlags = S.Number;
 
 export interface CreateOrJoinLobbyRequest {
   idle_timeout_seconds?: number | null;
@@ -11722,7 +11721,7 @@ export const CreatePinResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreatePinResponse>;
 
 export type StageInstancesPrivacyLevels = 1 | 2;
-export const StageInstancesPrivacyLevels = /*@__PURE__*/ S.Number;
+export const StageInstancesPrivacyLevels = S.Number;
 
 export interface CreateStageInstanceRequest {
   topic: string;
@@ -12033,7 +12032,7 @@ export const CreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateWebhookRequest>;
 
 export type WebhookTypes = 1 | 2 | 3;
-export const WebhookTypes = /*@__PURE__*/ S.Number;
+export const WebhookTypes = S.Number;
 
 export interface GuildIncomingWebhookResponse {
   application_id: string | null;
@@ -13052,7 +13051,7 @@ export const EditLobbyRequestMembersList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EditLobbyRequestMembersList>;
 
 export type EditLobbyRequestFlags = 1;
-export const EditLobbyRequestFlags = /*@__PURE__*/ S.Number;
+export const EditLobbyRequestFlags = S.Number;
 
 export interface EditLobbyRequest {
   lobby_id: string;
@@ -13880,7 +13879,7 @@ export const PrivateApplicationResponseRedirectUrisList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PrivateApplicationResponseRedirectUrisList>;
 
 export type ApplicationEventWebhooksStatus = 1 | 2 | 3;
-export const ApplicationEventWebhooksStatus = /*@__PURE__*/ S.Number;
+export const ApplicationEventWebhooksStatus = S.Number;
 
 export type ActionTypes =
   | "TYPING_START"
@@ -13962,7 +13961,7 @@ export type ActionTypes =
   | "GUILD_SOUNDBOARD_SOUND_DELETE"
   | "QUEST_USER_ENROLLMENT"
   | "RATE_LIMITED";
-export const ActionTypes = /*@__PURE__*/ S.String;
+export const ActionTypes = S.String;
 
 export type PrivateApplicationResponseEventWebhooksTypesList =
   Array<ActionTypes>;
@@ -13972,13 +13971,13 @@ export const PrivateApplicationResponseEventWebhooksTypesList =
   ) as any as S.Schema<PrivateApplicationResponseEventWebhooksTypesList>;
 
 export type ApplicationExplicitContentFilterTypes = 0 | 1;
-export const ApplicationExplicitContentFilterTypes = /*@__PURE__*/ S.Number;
+export const ApplicationExplicitContentFilterTypes = S.Number;
 
 export type TeamMembershipStates = 1 | 2;
-export const TeamMembershipStates = /*@__PURE__*/ S.Number;
+export const TeamMembershipStates = S.Number;
 
 export type TeamMemberRoles = "admin" | "developer" | "read_only";
-export const TeamMemberRoles = /*@__PURE__*/ S.String;
+export const TeamMemberRoles = S.String;
 
 export type TeamMemberResponsePermissionsList = Array<string>;
 export const TeamMemberResponsePermissionsList = /*@__PURE__*/ S.Array(
@@ -14141,7 +14140,7 @@ export const GetApplicationActivityInstanceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetApplicationActivityInstanceRequest>;
 
 export type EmbeddedActivityLocationKind = "gc" | "pc" | "party";
-export const EmbeddedActivityLocationKind = /*@__PURE__*/ S.String;
+export const EmbeddedActivityLocationKind = S.String;
 
 export interface GuildChannelLocation {
   id: string;
@@ -14266,7 +14265,7 @@ export const GetApplicationRoleConnectionsMetadataRequest =
   }) as any as S.Schema<GetApplicationRoleConnectionsMetadataRequest>;
 
 export type MetadataItemTypes = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-export const MetadataItemTypes = /*@__PURE__*/ S.Number;
+export const MetadataItemTypes = S.Number;
 
 export type ApplicationRoleConnectionsMetadataItemResponseNameLocalizationsMap =
   { [key: string]: string | undefined };
@@ -14790,10 +14789,10 @@ export const GuildWithCountsResponseRolesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GuildWithCountsResponseRolesList>;
 
 export type GuildMFALevel = 0 | 1;
-export const GuildMFALevel = /*@__PURE__*/ S.Number;
+export const GuildMFALevel = S.Number;
 
 export type PremiumGuildTiers = 0 | 1 | 2 | 3;
-export const PremiumGuildTiers = /*@__PURE__*/ S.Number;
+export const PremiumGuildTiers = S.Number;
 
 export type GuildWithCountsResponseEmojisList = Array<EmojiResponse>;
 export const GuildWithCountsResponseEmojisList = /*@__PURE__*/ S.Array(
@@ -14961,7 +14960,7 @@ export const GetGuildApplicationCommandPermissionsRequest =
   }) as any as S.Schema<GetGuildApplicationCommandPermissionsRequest>;
 
 export type ApplicationCommandPermissionType = 1 | 2 | 3;
-export const ApplicationCommandPermissionType = /*@__PURE__*/ S.Number;
+export const ApplicationCommandPermissionType = S.Number;
 
 export interface CommandPermissionResponse {
   id: string;
@@ -15057,7 +15056,7 @@ export type GuildJoinRequestApplicationStatus =
   | "SUBMITTED"
   | "REJECTED"
   | "APPROVED";
-export const GuildJoinRequestApplicationStatus = /*@__PURE__*/ S.String;
+export const GuildJoinRequestApplicationStatus = S.String;
 
 export interface GetGuildJoinRequestsRequest {
   guild_id: string;
@@ -15085,7 +15084,7 @@ export type GuildMemberVerificationFormFieldType =
   | "TEXT_INPUT"
   | "PARAGRAPH"
   | "MULTIPLE_CHOICE";
-export const GuildMemberVerificationFormFieldType = /*@__PURE__*/ S.String;
+export const GuildMemberVerificationFormFieldType = S.String;
 
 /** Choices applicant can select from */
 export type MultipleChoiceFormFieldResponseChoicesList = Array<string>;
@@ -15329,7 +15328,7 @@ export const WelcomeMessageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WelcomeMessageResponse>;
 
 export type NewMemberActionType = 0 | 1;
-export const NewMemberActionType = /*@__PURE__*/ S.Number;
+export const NewMemberActionType = S.Number;
 
 export interface SettingsEmojiResponse {
   id: string | null;
@@ -15651,7 +15650,7 @@ export const OnboardingPromptResponseOptionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<OnboardingPromptResponseOptionsList>;
 
 export type OnboardingPromptType = 0 | 1;
-export const OnboardingPromptType = /*@__PURE__*/ S.Number;
+export const OnboardingPromptType = S.Number;
 
 export interface OnboardingPromptResponse {
   id: string;
@@ -15689,7 +15688,7 @@ export const UserGuildOnboardingResponseDefaultChannelIdsList =
   ) as any as S.Schema<UserGuildOnboardingResponseDefaultChannelIdsList>;
 
 export type GuildOnboardingMode = 0 | 1;
-export const GuildOnboardingMode = /*@__PURE__*/ S.Number;
+export const GuildOnboardingMode = S.Number;
 
 export interface UserGuildOnboardingResponse {
   guild_id: string;
@@ -16039,7 +16038,7 @@ export const WidgetResponseChannelsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WidgetResponseChannelsList>;
 
 export type WidgetUserDiscriminator = "0000";
-export const WidgetUserDiscriminator = /*@__PURE__*/ S.String;
+export const WidgetUserDiscriminator = S.String;
 
 export type WidgetActivity = GithubCheckApp;
 export const WidgetActivity = GithubCheckApp;
@@ -16107,7 +16106,7 @@ export type WidgetImageStyles =
   | "banner2"
   | "banner3"
   | "banner4";
-export const WidgetImageStyles = /*@__PURE__*/ S.String;
+export const WidgetImageStyles = S.String;
 
 export interface GetGuildWidgetPngRequest {
   guild_id: string;
@@ -16196,7 +16195,7 @@ export const GetInviteTargetUsersJobStatusRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetInviteTargetUsersJobStatusRequest>;
 
 export type TargetUsersJobStatusTypes = 0 | 1 | 2 | 3;
-export const TargetUsersJobStatusTypes = /*@__PURE__*/ S.Number;
+export const TargetUsersJobStatusTypes = S.Number;
 
 export interface TargetUsersJobStatusResponse {
   /** The status of the job processing the target users. */
@@ -16413,7 +16412,7 @@ export const GetMyUserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMyUserRequest>;
 
 export type PremiumTypes = 0 | 1 | 2 | 3;
-export const PremiumTypes = /*@__PURE__*/ S.Number;
+export const PremiumTypes = S.Number;
 
 export interface UserPIIResponse {
   /** the user's id */
@@ -16661,7 +16660,7 @@ export const SubscriptionResponseEntitlementIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SubscriptionResponseEntitlementIdsList>;
 
 export type SubscriptionResponseStatusType = 0 | 1 | 2;
-export const SubscriptionResponseStatusType = /*@__PURE__*/ S.Number;
+export const SubscriptionResponseStatusType = S.Number;
 
 export interface SubscriptionResponse {
   /** ID of the subscription */
@@ -17810,7 +17809,7 @@ export type AuditLogActionTypes =
   | 201
   | 202
   | 211;
-export const AuditLogActionTypes = /*@__PURE__*/ S.Number;
+export const AuditLogActionTypes = S.Number;
 
 export interface ListGuildAuditLogEntriesRequest {
   guild_id: string;
@@ -17905,7 +17904,7 @@ export type IntegrationTypes =
   | "twitch"
   | "youtube"
   | "guild_subscription";
-export const IntegrationTypes = /*@__PURE__*/ S.String;
+export const IntegrationTypes = S.String;
 
 export interface AccountResponse {
   id: string;
@@ -18443,10 +18442,10 @@ export const DiscordIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiscordIntegrationResponse>;
 
 export type IntegrationExpireBehaviorTypes = 0 | 1;
-export const IntegrationExpireBehaviorTypes = /*@__PURE__*/ S.Number;
+export const IntegrationExpireBehaviorTypes = S.Number;
 
 export type IntegrationExpireGracePeriodTypes = 1 | 3 | 7 | 14 | 30;
-export const IntegrationExpireGracePeriodTypes = /*@__PURE__*/ S.Number;
+export const IntegrationExpireGracePeriodTypes = S.Number;
 
 export interface ExternalConnectionIntegrationResponse {
   type: IntegrationTypes;
@@ -19023,7 +19022,7 @@ export const ListGuildVoiceRegionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGuildVoiceRegionsResponse>;
 
 export type ReactionTypes = 0 | 1;
-export const ReactionTypes = /*@__PURE__*/ S.Number;
+export const ReactionTypes = S.Number;
 
 export interface ListMessageReactionsByEmojiRequest {
   channel_id: string;
@@ -19137,7 +19136,7 @@ export type ConnectedAccountProviders =
   | "xbox"
   | "youtube"
   | "domain";
-export const ConnectedAccountProviders = /*@__PURE__*/ S.String;
+export const ConnectedAccountProviders = S.String;
 
 export interface ConnectedAccountGuildResponse {
   id: string;
@@ -19178,7 +19177,7 @@ export const ConnectedAccountResponseIntegrationsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ConnectedAccountResponseIntegrationsList>;
 
 export type ConnectedAccountVisibility = 0 | 1;
-export const ConnectedAccountVisibility = /*@__PURE__*/ S.Number;
+export const ConnectedAccountVisibility = S.Number;
 
 export interface ConnectedAccountResponse {
   id: string;
@@ -19489,7 +19488,7 @@ export type ApplicationIdentityProviderAuthType =
   | "DISCORD_BOT_ISSUED_ACCESS_TOKEN"
   | "APPLE_ID_TOKEN"
   | "PLAYSTATION_NETWORK_ID_TOKEN";
-export const ApplicationIdentityProviderAuthType = /*@__PURE__*/ S.String;
+export const ApplicationIdentityProviderAuthType = S.String;
 
 export interface PartnerSdkTokenRequest {
   client_id: string;
@@ -19842,10 +19841,10 @@ export const RevokeInviteResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RevokeInviteResponse>;
 
 export type SortingMode = "relevance" | "timestamp";
-export const SortingMode = /*@__PURE__*/ S.String;
+export const SortingMode = S.String;
 
 export type SortingOrder = "asc" | "desc";
-export const SortingOrder = /*@__PURE__*/ S.String;
+export const SortingOrder = S.String;
 
 export type SearchGuildRequestAuthorIdList = Array<string>;
 export const SearchGuildRequestAuthorIdList = /*@__PURE__*/ S.Array(
@@ -19859,7 +19858,7 @@ export type AuthorType =
   | "-user"
   | "-bot"
   | "-webhook";
-export const AuthorType = /*@__PURE__*/ S.String;
+export const AuthorType = S.String;
 
 export type SearchGuildRequestAuthorTypeList = Array<
   AuthorType | (string & {})
@@ -19907,7 +19906,7 @@ export type HasOption =
   | "-sticker"
   | "-poll"
   | "-snapshot";
-export const HasOption = /*@__PURE__*/ S.String;
+export const HasOption = S.String;
 
 export type SearchGuildRequestHasList = Array<HasOption | (string & {})>;
 export const SearchGuildRequestHasList = /*@__PURE__*/ S.Array(
@@ -19930,7 +19929,7 @@ export type SearchableEmbedType =
   | "gif"
   | "sound"
   | "article";
-export const SearchableEmbedType = /*@__PURE__*/ S.String;
+export const SearchableEmbedType = S.String;
 
 export type SearchGuildRequestEmbedTypeList = Array<
   SearchableEmbedType | (string & {})
@@ -20359,7 +20358,7 @@ export type ThreadSortingMode =
   | "creation_time"
   | "last_message_time"
   | "archive_time";
-export const ThreadSortingMode = /*@__PURE__*/ S.String;
+export const ThreadSortingMode = S.String;
 
 export interface SearchThreadRequest {
   channel_id: string;

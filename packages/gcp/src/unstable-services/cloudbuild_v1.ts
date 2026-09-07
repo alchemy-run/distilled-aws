@@ -69,7 +69,7 @@ export type ApprovalResultDecisionEnum =
   | "DECISION_UNSPECIFIED"
   | "APPROVED"
   | "REJECTED";
-export const ApprovalResultDecisionEnum = /*@__PURE__*/ S.String;
+export const ApprovalResultDecisionEnum = S.String;
 
 /** ApprovalResult describes the decision and associated metadata of a manual approval of a build. */
 export interface ApprovalResult {
@@ -391,7 +391,7 @@ export type HashTypeEnum =
   | "GO_MODULE_H1"
   | "SHA512"
   | "DIRSUM_SHA256";
-export const HashTypeEnum = /*@__PURE__*/ S.String;
+export const HashTypeEnum = S.String;
 
 /** Container message for hash values. */
 export interface Hash {
@@ -452,7 +452,7 @@ export type StorageSourceSourceFetcherEnum =
   | "SOURCE_FETCHER_UNSPECIFIED"
   | "GSUTIL"
   | "GCS_FETCHER";
-export const StorageSourceSourceFetcherEnum = /*@__PURE__*/ S.String;
+export const StorageSourceSourceFetcherEnum = S.String;
 
 /** Location of the source in an archive file in Cloud Storage. */
 export interface StorageSource {
@@ -726,7 +726,7 @@ export type BuiltImageOciMediaTypeEnum =
   | "OCI_MEDIA_TYPE_UNSPECIFIED"
   | "IMAGE_MANIFEST"
   | "IMAGE_INDEX";
-export const BuiltImageOciMediaTypeEnum = /*@__PURE__*/ S.String;
+export const BuiltImageOciMediaTypeEnum = S.String;
 
 /** An image built by the pipeline. */
 export interface BuiltImage {
@@ -932,7 +932,7 @@ export type BuildStepStatusEnum =
   | "TIMEOUT"
   | "CANCELLED"
   | "EXPIRED";
-export const BuildStepStatusEnum = /*@__PURE__*/ S.String;
+export const BuildStepStatusEnum = S.String;
 
 /** Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution. */
 export interface Volume {
@@ -1039,7 +1039,7 @@ export type WarningPriorityEnum =
   | "INFO"
   | "WARNING"
   | "ALERT";
-export const WarningPriorityEnum = /*@__PURE__*/ S.String;
+export const WarningPriorityEnum = S.String;
 
 /** A non-fatal problem encountered during the execution of the build. */
 export interface Warning {
@@ -1144,7 +1144,7 @@ export type BuildStatusEnum =
   | "TIMEOUT"
   | "CANCELLED"
   | "EXPIRED";
-export const BuildStatusEnum = /*@__PURE__*/ S.String;
+export const BuildStatusEnum = S.String;
 
 export type FailureInfoTypeEnum =
   | "FAILURE_TYPE_UNSPECIFIED"
@@ -1154,7 +1154,7 @@ export type FailureInfoTypeEnum =
   | "LOGGING_FAILURE"
   | "USER_BUILD_STEP"
   | "FETCH_SOURCE_FAILED";
-export const FailureInfoTypeEnum = /*@__PURE__*/ S.String;
+export const FailureInfoTypeEnum = S.String;
 
 /** A fatal problem encountered during the execution of the build. */
 export interface FailureInfo {
@@ -1258,7 +1258,7 @@ export type BuildApprovalStateEnum =
   | "APPROVED"
   | "REJECTED"
   | "CANCELLED";
-export const BuildApprovalStateEnum = /*@__PURE__*/ S.String;
+export const BuildApprovalStateEnum = S.String;
 
 /** ApprovalConfig describes configuration for manual approval of a build. */
 export interface ApprovalConfig {
@@ -1307,10 +1307,10 @@ export type BuildOptionsMachineTypeEnum =
   | "E2_HIGHCPU_32"
   | "E2_MEDIUM"
   | "E2_STANDARD_2";
-export const BuildOptionsMachineTypeEnum = /*@__PURE__*/ S.String;
+export const BuildOptionsMachineTypeEnum = S.String;
 
 export type BuildOptionsRequestedVerifyOptionEnum = "NOT_VERIFIED" | "VERIFIED";
-export const BuildOptionsRequestedVerifyOptionEnum = /*@__PURE__*/ S.String;
+export const BuildOptionsRequestedVerifyOptionEnum = S.String;
 
 export type BuildOptionsLoggingEnum =
   | "LOGGING_UNSPECIFIED"
@@ -1319,7 +1319,7 @@ export type BuildOptionsLoggingEnum =
   | "STACKDRIVER_ONLY"
   | "CLOUD_LOGGING_ONLY"
   | "NONE";
-export const BuildOptionsLoggingEnum = /*@__PURE__*/ S.String;
+export const BuildOptionsLoggingEnum = S.String;
 
 export type BuildOptionsSourceProvenanceHashItemEnum =
   | "NONE"
@@ -1328,7 +1328,7 @@ export type BuildOptionsSourceProvenanceHashItemEnum =
   | "GO_MODULE_H1"
   | "SHA512"
   | "DIRSUM_SHA256";
-export const BuildOptionsSourceProvenanceHashItemEnum = /*@__PURE__*/ S.String;
+export const BuildOptionsSourceProvenanceHashItemEnum = S.String;
 
 export type BuildOptionsSourceProvenanceHashItemEnumList = Array<
   BuildOptionsSourceProvenanceHashItemEnum | (string & {})
@@ -1342,16 +1342,16 @@ export type BuildOptionsLogStreamingOptionEnum =
   | "STREAM_DEFAULT"
   | "STREAM_ON"
   | "STREAM_OFF";
-export const BuildOptionsLogStreamingOptionEnum = /*@__PURE__*/ S.String;
+export const BuildOptionsLogStreamingOptionEnum = S.String;
 
 export type BuildOptionsSubstitutionOptionEnum = "MUST_MATCH" | "ALLOW_LOOSE";
-export const BuildOptionsSubstitutionOptionEnum = /*@__PURE__*/ S.String;
+export const BuildOptionsSubstitutionOptionEnum = S.String;
 
 export type BuildOptionsDefaultLogsBucketBehaviorEnum =
   | "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED"
   | "REGIONAL_USER_OWNED_BUCKET"
   | "LEGACY_BUCKET";
-export const BuildOptionsDefaultLogsBucketBehaviorEnum = /*@__PURE__*/ S.String;
+export const BuildOptionsDefaultLogsBucketBehaviorEnum = S.String;
 
 /** Optional arguments to enable specific features of builds. */
 export interface BuildOptions {
@@ -2049,14 +2049,13 @@ export type DeveloperConnectEventConfigGitRepositoryLinkTypeEnum =
   | "GITLAB_ENTERPRISE"
   | "BITBUCKET_DATA_CENTER"
   | "BITBUCKET_CLOUD";
-export const DeveloperConnectEventConfigGitRepositoryLinkTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DeveloperConnectEventConfigGitRepositoryLinkTypeEnum = S.String;
 
 export type PullRequestFilterCommentControlEnum =
   | "COMMENTS_DISABLED"
   | "COMMENTS_ENABLED"
   | "COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY";
-export const PullRequestFilterCommentControlEnum = /*@__PURE__*/ S.String;
+export const PullRequestFilterCommentControlEnum = S.String;
 
 /** PullRequestFilter contains filter properties for matching GitHub Pull Requests. */
 export interface PullRequestFilter {
@@ -2107,7 +2106,7 @@ export type WebhookConfigStateEnum =
   | "STATE_UNSPECIFIED"
   | "OK"
   | "SECRET_DELETED";
-export const WebhookConfigStateEnum = /*@__PURE__*/ S.String;
+export const WebhookConfigStateEnum = S.String;
 
 /** WebhookConfig describes the configuration of a trigger that creates a build whenever a webhook is sent to a trigger's webhook URL. */
 export interface WebhookConfig {
@@ -2126,7 +2125,7 @@ export const WebhookConfig = /*@__PURE__*/ S.suspend(() =>
 export type BuildTriggerIncludeBuildLogsEnum =
   | "INCLUDE_BUILD_LOGS_UNSPECIFIED"
   | "INCLUDE_BUILD_LOGS_WITH_STATUS";
-export const BuildTriggerIncludeBuildLogsEnum = /*@__PURE__*/ S.String;
+export const BuildTriggerIncludeBuildLogsEnum = S.String;
 
 export type BuildTriggerEventTypeEnum =
   | "EVENT_TYPE_UNSPECIFIED"
@@ -2134,7 +2133,7 @@ export type BuildTriggerEventTypeEnum =
   | "WEBHOOK"
   | "PUBSUB"
   | "MANUAL";
-export const BuildTriggerEventTypeEnum = /*@__PURE__*/ S.String;
+export const BuildTriggerEventTypeEnum = S.String;
 
 export type RepositoryEventConfigRepositoryTypeEnum =
   | "REPOSITORY_TYPE_UNSPECIFIED"
@@ -2143,7 +2142,7 @@ export type RepositoryEventConfigRepositoryTypeEnum =
   | "GITLAB_ENTERPRISE"
   | "BITBUCKET_DATA_CENTER"
   | "BITBUCKET_CLOUD";
-export const RepositoryEventConfigRepositoryTypeEnum = /*@__PURE__*/ S.String;
+export const RepositoryEventConfigRepositoryTypeEnum = S.String;
 
 /** The configuration of a trigger that creates a build whenever an event from Repo API is received. */
 export interface RepositoryEventConfig {
@@ -2202,7 +2201,7 @@ export type GitFileSourceRepoTypeEnum =
   | "BITBUCKET_SERVER"
   | "GITLAB"
   | "BITBUCKET_CLOUD";
-export const GitFileSourceRepoTypeEnum = /*@__PURE__*/ S.String;
+export const GitFileSourceRepoTypeEnum = S.String;
 
 /** GitFileSource describes a file within a (possibly remote) code repository. */
 export interface GitFileSource {
@@ -2240,7 +2239,7 @@ export type GitRepoSourceRepoTypeEnum =
   | "BITBUCKET_SERVER"
   | "GITLAB"
   | "BITBUCKET_CLOUD";
-export const GitRepoSourceRepoTypeEnum = /*@__PURE__*/ S.String;
+export const GitRepoSourceRepoTypeEnum = S.String;
 
 /** GitRepoSource describes a repo and ref of a code repository. */
 export interface GitRepoSource {
@@ -2302,7 +2301,7 @@ export type PubsubConfigStateEnum =
   | "SUBSCRIPTION_DELETED"
   | "TOPIC_DELETED"
   | "SUBSCRIPTION_MISCONFIGURED";
-export const PubsubConfigStateEnum = /*@__PURE__*/ S.String;
+export const PubsubConfigStateEnum = S.String;
 
 /** PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published. */
 export interface PubsubConfig {
@@ -2445,7 +2444,7 @@ export type WorkerPoolStateEnum =
   | "DELETING"
   | "DELETED"
   | "UPDATING";
-export const WorkerPoolStateEnum = /*@__PURE__*/ S.String;
+export const WorkerPoolStateEnum = S.String;
 
 /** Defines the configuration to be used for creating workers in the pool. */
 export interface WorkerConfig {
@@ -2468,7 +2467,7 @@ export type NetworkConfigEgressOptionEnum =
   | "EGRESS_OPTION_UNSPECIFIED"
   | "NO_PUBLIC_EGRESS"
   | "PUBLIC_EGRESS";
-export const NetworkConfigEgressOptionEnum = /*@__PURE__*/ S.String;
+export const NetworkConfigEgressOptionEnum = S.String;
 
 /** Defines the network configuration for the pool. */
 export interface NetworkConfig {

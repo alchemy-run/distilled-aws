@@ -66,7 +66,7 @@ export class NotFound
   ) {}
 
 export type AdUnitStateEnum = "STATE_UNSPECIFIED" | "ACTIVE" | "ARCHIVED";
-export const AdUnitStateEnum = /*@__PURE__*/ S.String;
+export const AdUnitStateEnum = S.String;
 
 export type ContentAdsSettingsTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -75,7 +75,7 @@ export type ContentAdsSettingsTypeEnum =
   | "ARTICLE"
   | "MATCHED_CONTENT"
   | "LINK";
-export const ContentAdsSettingsTypeEnum = /*@__PURE__*/ S.String;
+export const ContentAdsSettingsTypeEnum = S.String;
 
 /** Settings specific to content ads (AFC). */
 export interface ContentAdsSettings {
@@ -263,7 +263,7 @@ export type GenerateAccountsReportsDimensionsEnum =
   | "BROWSER_TYPE_CODE"
   | "WEBVIEW_TYPE_NAME"
   | "WEBVIEW_TYPE_CODE";
-export const GenerateAccountsReportsDimensionsEnum = /*@__PURE__*/ S.String;
+export const GenerateAccountsReportsDimensionsEnum = S.String;
 
 export type GenerateAccountsReportsDimensionsEnumList = Array<
   GenerateAccountsReportsDimensionsEnum | (string & {})
@@ -315,7 +315,7 @@ export type GenerateAccountsReportsMetricsEnum =
   | "FUNNEL_IMPRESSIONS"
   | "FUNNEL_CLICKS"
   | "FUNNEL_RPM";
-export const GenerateAccountsReportsMetricsEnum = /*@__PURE__*/ S.String;
+export const GenerateAccountsReportsMetricsEnum = S.String;
 
 export type GenerateAccountsReportsMetricsEnumList = Array<
   GenerateAccountsReportsMetricsEnum | (string & {})
@@ -333,14 +333,13 @@ export type GenerateAccountsReportsDateRangeEnum =
   | "YEAR_TO_DATE"
   | "LAST_7_DAYS"
   | "LAST_30_DAYS";
-export const GenerateAccountsReportsDateRangeEnum = /*@__PURE__*/ S.String;
+export const GenerateAccountsReportsDateRangeEnum = S.String;
 
 export type GenerateAccountsReportsReportingTimeZoneEnum =
   | "REPORTING_TIME_ZONE_UNSPECIFIED"
   | "ACCOUNT_TIME_ZONE"
   | "GOOGLE_TIME_ZONE";
-export const GenerateAccountsReportsReportingTimeZoneEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateAccountsReportsReportingTimeZoneEnum = S.String;
 
 export interface GenerateAccountsReportsRequest {
   /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
@@ -466,7 +465,7 @@ export type HeaderTypeEnum =
   | "METRIC_CURRENCY"
   | "METRIC_MILLISECONDS"
   | "METRIC_DECIMAL";
-export const HeaderTypeEnum = /*@__PURE__*/ S.String;
+export const HeaderTypeEnum = S.String;
 
 /** The header information of the columns requested in the report. */
 export interface Header {
@@ -526,8 +525,7 @@ export type GenerateAccountsReportsSavedReportingTimeZoneEnum =
   | "REPORTING_TIME_ZONE_UNSPECIFIED"
   | "ACCOUNT_TIME_ZONE"
   | "GOOGLE_TIME_ZONE";
-export const GenerateAccountsReportsSavedReportingTimeZoneEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateAccountsReportsSavedReportingTimeZoneEnum = S.String;
 
 export type GenerateAccountsReportsSavedDateRangeEnum =
   | "REPORTING_DATE_RANGE_UNSPECIFIED"
@@ -538,7 +536,7 @@ export type GenerateAccountsReportsSavedDateRangeEnum =
   | "YEAR_TO_DATE"
   | "LAST_7_DAYS"
   | "LAST_30_DAYS";
-export const GenerateAccountsReportsSavedDateRangeEnum = /*@__PURE__*/ S.String;
+export const GenerateAccountsReportsSavedDateRangeEnum = S.String;
 
 export interface GenerateAccountsReportsSavedRequest {
   /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
@@ -652,7 +650,7 @@ export type GenerateCsvAccountsReportsDimensionsEnum =
   | "BROWSER_TYPE_CODE"
   | "WEBVIEW_TYPE_NAME"
   | "WEBVIEW_TYPE_CODE";
-export const GenerateCsvAccountsReportsDimensionsEnum = /*@__PURE__*/ S.String;
+export const GenerateCsvAccountsReportsDimensionsEnum = S.String;
 
 export type GenerateCsvAccountsReportsDimensionsEnumList = Array<
   GenerateCsvAccountsReportsDimensionsEnum | (string & {})
@@ -671,7 +669,7 @@ export type GenerateCsvAccountsReportsDateRangeEnum =
   | "YEAR_TO_DATE"
   | "LAST_7_DAYS"
   | "LAST_30_DAYS";
-export const GenerateCsvAccountsReportsDateRangeEnum = /*@__PURE__*/ S.String;
+export const GenerateCsvAccountsReportsDateRangeEnum = S.String;
 
 export type GenerateCsvAccountsReportsMetricsEnum =
   | "METRIC_UNSPECIFIED"
@@ -711,7 +709,7 @@ export type GenerateCsvAccountsReportsMetricsEnum =
   | "FUNNEL_IMPRESSIONS"
   | "FUNNEL_CLICKS"
   | "FUNNEL_RPM";
-export const GenerateCsvAccountsReportsMetricsEnum = /*@__PURE__*/ S.String;
+export const GenerateCsvAccountsReportsMetricsEnum = S.String;
 
 export type GenerateCsvAccountsReportsMetricsEnumList = Array<
   GenerateCsvAccountsReportsMetricsEnum | (string & {})
@@ -724,8 +722,7 @@ export type GenerateCsvAccountsReportsReportingTimeZoneEnum =
   | "REPORTING_TIME_ZONE_UNSPECIFIED"
   | "ACCOUNT_TIME_ZONE"
   | "GOOGLE_TIME_ZONE";
-export const GenerateCsvAccountsReportsReportingTimeZoneEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateCsvAccountsReportsReportingTimeZoneEnum = S.String;
 
 export interface GenerateCsvAccountsReportsRequest {
   /** Dimensions to base the report on. */
@@ -837,15 +834,13 @@ export type GenerateCsvAccountsReportsSavedDateRangeEnum =
   | "YEAR_TO_DATE"
   | "LAST_7_DAYS"
   | "LAST_30_DAYS";
-export const GenerateCsvAccountsReportsSavedDateRangeEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateCsvAccountsReportsSavedDateRangeEnum = S.String;
 
 export type GenerateCsvAccountsReportsSavedReportingTimeZoneEnum =
   | "REPORTING_TIME_ZONE_UNSPECIFIED"
   | "ACCOUNT_TIME_ZONE"
   | "GOOGLE_TIME_ZONE";
-export const GenerateCsvAccountsReportsSavedReportingTimeZoneEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateCsvAccountsReportsSavedReportingTimeZoneEnum = S.String;
 
 export interface GenerateCsvAccountsReportsSavedRequest {
   /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
@@ -939,7 +934,7 @@ export type AccountStateEnum =
   | "READY"
   | "NEEDS_ATTENTION"
   | "CLOSED";
-export const AccountStateEnum = /*@__PURE__*/ S.String;
+export const AccountStateEnum = S.String;
 
 /** Representation of an account. */
 export interface Account {
@@ -993,7 +988,7 @@ export type AdClientStateEnum =
   | "READY"
   | "GETTING_READY"
   | "REQUIRES_REVIEW";
-export const AdClientStateEnum = /*@__PURE__*/ S.String;
+export const AdClientStateEnum = S.String;
 
 /** Representation of an ad client. An ad client represents a user's subscription with a specific AdSense product. */
 export interface AdClient {
@@ -1113,21 +1108,21 @@ export type PolicyIssueActionEnum =
   | "AD_SERVING_DISABLED"
   | "AD_SERVED_WITH_CLICK_CONFIRMATION"
   | "AD_PERSONALIZATION_RESTRICTED";
-export const PolicyIssueActionEnum = /*@__PURE__*/ S.String;
+export const PolicyIssueActionEnum = S.String;
 
 export type PolicyIssueEntityTypeEnum =
   | "ENTITY_TYPE_UNSPECIFIED"
   | "SITE"
   | "SITE_SECTION"
   | "PAGE";
-export const PolicyIssueEntityTypeEnum = /*@__PURE__*/ S.String;
+export const PolicyIssueEntityTypeEnum = S.String;
 
 export type PolicyTopicTypeEnum =
   | "POLICY_TOPIC_TYPE_UNSPECIFIED"
   | "POLICY"
   | "ADVERTISER_PREFERENCE"
   | "REGULATORY";
-export const PolicyTopicTypeEnum = /*@__PURE__*/ S.String;
+export const PolicyTopicTypeEnum = S.String;
 
 /** Information about a particular policy topic. A policy topic represents a single class of policy issue that can impact ad serving for your site. For example, sexual content or having ads that obscure your content. A single policy issue can have multiple policy topics for a single entity. */
 export interface PolicyTopic {
@@ -1219,7 +1214,7 @@ export type SiteStateEnum =
   | "GETTING_READY"
   | "READY"
   | "NEEDS_ATTENTION";
-export const SiteStateEnum = /*@__PURE__*/ S.String;
+export const SiteStateEnum = S.String;
 
 /** Representation of a Site. */
 export interface Site {
@@ -1626,7 +1621,7 @@ export type AlertSeverityEnum =
   | "INFO"
   | "WARNING"
   | "SEVERE";
-export const AlertSeverityEnum = /*@__PURE__*/ S.String;
+export const AlertSeverityEnum = S.String;
 
 /** Representation of an alert. */
 export interface Alert {

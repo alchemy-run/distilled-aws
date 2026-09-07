@@ -19,7 +19,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -37,7 +37,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmDedicatedNashaTerminationRequest {
   /** The internal name of your storage */
@@ -122,7 +122,7 @@ export const CreateDedicatedNashaChangeContactResponse =
 
 /** Partition Protocol */
 export type DedicatedStorageProtocolEnum = "CIFS" | "NFS" | "NFS_CIFS";
-export const DedicatedStorageProtocolEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageProtocolEnum = S.String;
 
 export interface CreateDedicatedNashaPartitionRequest {
   /** The internal name of your storage */
@@ -178,7 +178,7 @@ export type DedicatedStorageTaskFunctionEnum =
   | "nasPartitionUpdate"
   | "nasQuotaUpdate"
   | "remoteBackupRecursiveDestroy";
-export const DedicatedStorageTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageTaskFunctionEnum = S.String;
 
 /** different task status */
 export type DedicatedTaskStatusEnum =
@@ -189,7 +189,7 @@ export type DedicatedTaskStatusEnum =
   | "init"
   | "ovhError"
   | "todo";
-export const DedicatedTaskStatusEnum = /*@__PURE__*/ S.String;
+export const DedicatedTaskStatusEnum = S.String;
 
 /** Storage task */
 export interface DedicatedNasTaskTask {
@@ -230,7 +230,7 @@ export const DedicatedNasTaskTask = /*@__PURE__*/ S.suspend(() =>
 
 /** Acl Type */
 export type DedicatedStorageAclTypeEnum = "readonly" | "readwrite";
-export const DedicatedStorageAclTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageAclTypeEnum = S.String;
 
 export interface CreateDedicatedNashaPartitionAccessRequest {
   /** The internal name of your storage */
@@ -293,7 +293,7 @@ export const CreateDedicatedNashaPartitionCustomSnapshotRequest =
 
 /** Atime values */
 export type DedicatedStorageAtimeEnum = "off" | "on";
-export const DedicatedStorageAtimeEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageAtimeEnum = S.String;
 
 /** Recordsize values */
 export type DedicatedStorageRecordSizeEnum =
@@ -304,11 +304,11 @@ export type DedicatedStorageRecordSizeEnum =
   | "4096"
   | "65536"
   | "8192";
-export const DedicatedStorageRecordSizeEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageRecordSizeEnum = S.String;
 
 /** Sync values */
 export type DedicatedStorageSyncEnum = "always" | "disabled" | "standard";
-export const DedicatedStorageSyncEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageSyncEnum = S.String;
 
 /** The template enumeration available for your partition. */
 export type DedicatedStorageTemplateUsageOptionsEnum =
@@ -316,7 +316,7 @@ export type DedicatedStorageTemplateUsageOptionsEnum =
   | "Default"
   | "File Systems (big files)"
   | "Virtual machines";
-export const DedicatedStorageTemplateUsageOptionsEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageTemplateUsageOptionsEnum = S.String;
 
 export interface CreateDedicatedNashaPartitionOptionRequest {
   /** The internal name of your storage */
@@ -388,7 +388,7 @@ export type DedicatedStorageSnapshotEnum =
   | "day-7"
   | "hour-1"
   | "hour-6";
-export const DedicatedStorageSnapshotEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageSnapshotEnum = S.String;
 
 export interface CreateDedicatedNashaPartitionSnapshotRequest {
   /** The internal name of your storage */
@@ -521,7 +521,7 @@ export type DeleteDedicatedNashaPartitionSnapshotRequestSnapshotType =
   | "hour-1"
   | "hour-6";
 export const DeleteDedicatedNashaPartitionSnapshotRequestSnapshotType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteDedicatedNashaPartitionSnapshotRequest {
   /** The internal name of your storage */
@@ -569,7 +569,7 @@ export const GetDedicatedNashaRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** the disk type of the nasHa */
 export type DedicatedStorageDiskTypeEnum = "hdd" | "nvme" | "ssd";
-export const DedicatedStorageDiskTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageDiskTypeEnum = S.String;
 
 /** Resource tags. Tags that were internally computed are prefixed with ovh: */
 export type IamResourceMetadataTagsMap = { [key: string]: string | undefined };
@@ -910,8 +910,7 @@ export type GetDedicatedNashaPartitionSnapshotRequestSnapshotType =
   | "day-7"
   | "hour-1"
   | "hour-6";
-export const GetDedicatedNashaPartitionSnapshotRequestSnapshotType =
-  /*@__PURE__*/ S.String;
+export const GetDedicatedNashaPartitionSnapshotRequestSnapshotType = S.String;
 
 export interface GetDedicatedNashaPartitionSnapshotRequest {
   /** The internal name of your storage */
@@ -960,7 +959,7 @@ export type DedicatedStoragePartitionUsageTypeEnum =
   | "size"
   | "used"
   | "usedbysnapshots";
-export const DedicatedStoragePartitionUsageTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedStoragePartitionUsageTypeEnum = S.String;
 
 export interface GetDedicatedNashaPartitionUseRequest {
   /** The internal name of your storage */
@@ -1061,7 +1060,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -1070,7 +1069,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -1139,7 +1138,7 @@ export type DedicatedStorageNasUsageTypeEnum =
   | "size"
   | "used"
   | "usedbysnapshots";
-export const DedicatedStorageNasUsageTypeEnum = /*@__PURE__*/ S.String;
+export const DedicatedStorageNasUsageTypeEnum = S.String;
 
 export interface GetDedicatedNashaUseRequest {
   /** The internal name of your storage */

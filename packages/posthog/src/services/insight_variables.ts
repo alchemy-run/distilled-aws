@@ -46,7 +46,7 @@ export type InsightVariableTypeEnum =
   | "Boolean"
   | "List"
   | "Date";
-export const InsightVariableTypeEnum = /*@__PURE__*/ S.String;
+export const InsightVariableTypeEnum = S.String;
 
 export interface CreateInsightVariableRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

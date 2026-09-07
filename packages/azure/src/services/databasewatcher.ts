@@ -15,7 +15,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** The properties with which the alert rule resource was created. */
 export type AlertRuleCreationProperties = "CreatedWithActionGroup" | "None";
-export const AlertRuleCreationProperties = /*@__PURE__*/ S.String;
+export const AlertRuleCreationProperties = S.String;
 
 /** The generic properties of the alert rule proxy resource. */
 export interface AlertRuleResourcePropertiesInput {
@@ -80,7 +80,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -88,7 +88,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -121,8 +121,7 @@ export type AzureResourceManagerResourceProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
+export const AzureResourceManagerResourceProvisioningState = S.String;
 
 /** The generic properties of the alert rule proxy resource. */
 export interface AlertRuleResourceProperties {
@@ -240,7 +239,7 @@ export type SharedPrivateLinkResourceStatus =
   | "Approved"
   | "Rejected"
   | "Disconnected";
-export const SharedPrivateLinkResourceStatus = /*@__PURE__*/ S.String;
+export const SharedPrivateLinkResourceStatus = S.String;
 
 /** The generic properties of a Shared Private Link resource. */
 export interface SharedPrivateLinkResourceProperties {
@@ -523,7 +522,7 @@ export type ValidationStatus =
   | "Failed"
   | "Canceled"
   | "TimedOut";
-export const ValidationStatus = /*@__PURE__*/ S.String;
+export const ValidationStatus = S.String;
 
 /** The model of a health validation issue. */
 export interface ValidationIssue {
@@ -696,7 +695,7 @@ export const GetTargetRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of authentication to use when connecting to a target. */
 export type TargetAuthenticationType = "Aad" | "Sql";
-export const TargetAuthenticationType = /*@__PURE__*/ S.String;
+export const TargetAuthenticationType = S.String;
 
 /** The vault specific details required if using SQL authentication to connect to a target. */
 export interface VaultSecret {
@@ -800,7 +799,7 @@ export const GetWatcherResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The type of Kusto offering. */
 export type KustoOfferingType = "adx" | "free" | "fabric";
-export const KustoOfferingType = /*@__PURE__*/ S.String;
+export const KustoOfferingType = S.String;
 
 /** The properties of a data store. */
 export interface Datastore {
@@ -838,14 +837,14 @@ export type WatcherStatus =
   | "Stopping"
   | "Stopped"
   | "Deleting";
-export const WatcherStatus = /*@__PURE__*/ S.String;
+export const WatcherStatus = S.String;
 
 /** The status of the last provisioning operation performed on the resource. */
 export type DatabaseWatcherProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const DatabaseWatcherProvisioningState = /*@__PURE__*/ S.String;
+export const DatabaseWatcherProvisioningState = S.String;
 
 /** The RP specific properties of the resource. */
 export interface WatcherProperties {
@@ -875,7 +874,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -1138,11 +1137,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

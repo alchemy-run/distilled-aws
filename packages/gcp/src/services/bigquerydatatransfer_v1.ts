@@ -218,7 +218,7 @@ export type TransferConfigManagedTableTypeEnum =
   | "MANAGED_TABLE_TYPE_UNSPECIFIED"
   | "NATIVE"
   | "BIGLAKE";
-export const TransferConfigManagedTableTypeEnum = /*@__PURE__*/ S.String;
+export const TransferConfigManagedTableTypeEnum = S.String;
 
 /** Represents preferences for sending email notifications for transfer run events. */
 export interface EmailPreferences {
@@ -295,7 +295,7 @@ export type TransferConfigStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "CANCELLED";
-export const TransferConfigStateEnum = /*@__PURE__*/ S.String;
+export const TransferConfigStateEnum = S.String;
 
 /** Represents the encryption configuration for a transfer. */
 export interface EncryptionConfiguration {
@@ -612,7 +612,7 @@ export type DataSourceAuthorizationTypeEnum =
   | "AUTHORIZATION_CODE"
   | "GOOGLE_PLUS_AUTHORIZATION_CODE"
   | "FIRST_PARTY_OAUTH";
-export const DataSourceAuthorizationTypeEnum = /*@__PURE__*/ S.String;
+export const DataSourceAuthorizationTypeEnum = S.String;
 
 export type DataSourceParameterTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -623,7 +623,7 @@ export type DataSourceParameterTypeEnum =
   | "RECORD"
   | "PLUS_PAGE"
   | "LIST";
-export const DataSourceParameterTypeEnum = /*@__PURE__*/ S.String;
+export const DataSourceParameterTypeEnum = S.String;
 
 /** A parameter used to define custom fields in a data source definition. */
 export interface DataSourceParameter {
@@ -695,13 +695,13 @@ export type DataSourceTransferTypeEnum =
   | "TRANSFER_TYPE_UNSPECIFIED"
   | "BATCH"
   | "STREAMING";
-export const DataSourceTransferTypeEnum = /*@__PURE__*/ S.String;
+export const DataSourceTransferTypeEnum = S.String;
 
 export type DataSourceDataRefreshTypeEnum =
   | "DATA_REFRESH_TYPE_UNSPECIFIED"
   | "SLIDING_WINDOW"
   | "CUSTOM_SLIDING_WINDOW";
-export const DataSourceDataRefreshTypeEnum = /*@__PURE__*/ S.String;
+export const DataSourceDataRefreshTypeEnum = S.String;
 
 /** Defines the properties and custom parameters for a data source. */
 export interface DataSource {
@@ -876,7 +876,7 @@ export type TransferRunStateEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "CANCELLED";
-export const TransferRunStateEnum = /*@__PURE__*/ S.String;
+export const TransferRunStateEnum = S.String;
 
 /** Represents a data transfer run. */
 export interface TransferRun {
@@ -954,7 +954,7 @@ export type TransferResourceTypeEnum =
   | "RESOURCE_TYPE_UNSPECIFIED"
   | "RESOURCE_TYPE_TABLE"
   | "RESOURCE_TYPE_PARTITION";
-export const TransferResourceTypeEnum = /*@__PURE__*/ S.String;
+export const TransferResourceTypeEnum = S.String;
 
 /** Basic information about a transfer run. */
 export interface TransferRunBrief {
@@ -979,7 +979,7 @@ export type TransferResourceDestinationEnum =
   | "RESOURCE_DESTINATION_BIGLAKE_METASTORE"
   | "RESOURCE_DESTINATION_BIGLAKE_REST_CATALOG"
   | "RESOURCE_DESTINATION_BIGLAKE_HIVE_CATALOG";
-export const TransferResourceDestinationEnum = /*@__PURE__*/ S.String;
+export const TransferResourceDestinationEnum = S.String;
 
 /** Table details related to hierarchy. */
 export interface TableDetail {
@@ -1025,7 +1025,7 @@ export type TransferStatusMetricUnitEnum =
   | "TRANSFER_STATUS_UNIT_UNSPECIFIED"
   | "TRANSFER_STATUS_UNIT_BYTES"
   | "TRANSFER_STATUS_UNIT_OBJECTS";
-export const TransferStatusMetricUnitEnum = /*@__PURE__*/ S.String;
+export const TransferStatusMetricUnitEnum = S.String;
 
 /** Metrics for tracking the transfer status. */
 export interface TransferStatusMetric {
@@ -1061,7 +1061,7 @@ export type TransferStatusSummaryProgressUnitEnum =
   | "TRANSFER_STATUS_UNIT_UNSPECIFIED"
   | "TRANSFER_STATUS_UNIT_BYTES"
   | "TRANSFER_STATUS_UNIT_OBJECTS";
-export const TransferStatusSummaryProgressUnitEnum = /*@__PURE__*/ S.String;
+export const TransferStatusSummaryProgressUnitEnum = S.String;
 
 /** Status summary of the resource being transferred. */
 export interface TransferStatusSummary {
@@ -1086,7 +1086,7 @@ export type TransferResourceStatusDetailStateEnum =
   | "RESOURCE_TRANSFER_SUCCEEDED"
   | "RESOURCE_TRANSFER_FAILED"
   | "RESOURCE_TRANSFER_CANCELLED";
-export const TransferResourceStatusDetailStateEnum = /*@__PURE__*/ S.String;
+export const TransferResourceStatusDetailStateEnum = S.String;
 
 /** Status details of the resource being transferred. */
 export interface TransferResourceStatusDetail {
@@ -1373,8 +1373,7 @@ export const ListTransferConfigsResponse = /*@__PURE__*/ S.suspend(() =>
 export type ListProjectsLocationsTransferConfigsRunsRunAttemptEnum =
   | "RUN_ATTEMPT_UNSPECIFIED"
   | "LATEST";
-export const ListProjectsLocationsTransferConfigsRunsRunAttemptEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsTransferConfigsRunsRunAttemptEnum = S.String;
 
 export type ListProjectsLocationsTransferConfigsRunsStatesEnum =
   | "TRANSFER_STATE_UNSPECIFIED"
@@ -1383,8 +1382,7 @@ export type ListProjectsLocationsTransferConfigsRunsStatesEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "CANCELLED";
-export const ListProjectsLocationsTransferConfigsRunsStatesEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsTransferConfigsRunsStatesEnum = S.String;
 
 export type ListProjectsLocationsTransferConfigsRunsStatesEnumList = Array<
   ListProjectsLocationsTransferConfigsRunsStatesEnum | (string & {})
@@ -1458,7 +1456,7 @@ export type ListProjectsLocationsTransferConfigsRunsTransferLogsMessageTypesEnum
   | "WARNING"
   | "ERROR";
 export const ListProjectsLocationsTransferConfigsRunsTransferLogsMessageTypesEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectsLocationsTransferConfigsRunsTransferLogsMessageTypesEnumList =
   Array<
@@ -1507,7 +1505,7 @@ export type TransferMessageSeverityEnum =
   | "INFO"
   | "WARNING"
   | "ERROR";
-export const TransferMessageSeverityEnum = /*@__PURE__*/ S.String;
+export const TransferMessageSeverityEnum = S.String;
 
 /** Represents a user facing message for a particular data transfer run. */
 export interface TransferMessage {
@@ -1628,8 +1626,7 @@ export const ListProjectsTransferConfigsRequest = /*@__PURE__*/ S.suspend(() =>
 export type ListProjectsTransferConfigsRunsRunAttemptEnum =
   | "RUN_ATTEMPT_UNSPECIFIED"
   | "LATEST";
-export const ListProjectsTransferConfigsRunsRunAttemptEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsTransferConfigsRunsRunAttemptEnum = S.String;
 
 export type ListProjectsTransferConfigsRunsStatesEnum =
   | "TRANSFER_STATE_UNSPECIFIED"
@@ -1638,7 +1635,7 @@ export type ListProjectsTransferConfigsRunsStatesEnum =
   | "SUCCEEDED"
   | "FAILED"
   | "CANCELLED";
-export const ListProjectsTransferConfigsRunsStatesEnum = /*@__PURE__*/ S.String;
+export const ListProjectsTransferConfigsRunsStatesEnum = S.String;
 
 export type ListProjectsTransferConfigsRunsStatesEnumList = Array<
   ListProjectsTransferConfigsRunsStatesEnum | (string & {})
@@ -1689,7 +1686,7 @@ export type ListProjectsTransferConfigsRunsTransferLogsMessageTypesEnum =
   | "WARNING"
   | "ERROR";
 export const ListProjectsTransferConfigsRunsTransferLogsMessageTypesEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectsTransferConfigsRunsTransferLogsMessageTypesEnumList =
   Array<

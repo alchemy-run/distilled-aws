@@ -162,7 +162,7 @@ export type Currencies =
   | "awg"
   | "whop_usd"
   | "xau";
-export const Currencies = /*@__PURE__*/ S.String;
+export const Currencies = S.String;
 
 /** Input type for a single poll option */
 export interface CreateForumPostRequestPollOptionsItem {
@@ -203,7 +203,7 @@ export const CreateForumPostRequestPoll = /*@__PURE__*/ S.suspend(() =>
 
 /** The visibility types for forum posts */
 export type ForumPostVisibilityTypes = "members_only" | "globally_visible";
-export const ForumPostVisibilityTypes = /*@__PURE__*/ S.String;
+export const ForumPostVisibilityTypes = S.String;
 
 export interface CreateForumPostRequest {
   /** A list of file attachments to include with the post, such as images or videos. */

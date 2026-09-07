@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `FeatureFlag` - feature flag */
 export type ScheduledChangeAllowedModelsEnum = "FeatureFlag";
-export const ScheduledChangeAllowedModelsEnum = /*@__PURE__*/ S.String;
+export const ScheduledChangeAllowedModelsEnum = S.String;
 
 /** * `daily` - daily * `weekly` - weekly * `monthly` - monthly * `yearly` - yearly */
 export type ScheduledChangeRecurrenceIntervalEnum =
@@ -21,7 +21,7 @@ export type ScheduledChangeRecurrenceIntervalEnum =
   | "weekly"
   | "monthly"
   | "yearly";
-export const ScheduledChangeRecurrenceIntervalEnum = /*@__PURE__*/ S.String;
+export const ScheduledChangeRecurrenceIntervalEnum = S.String;
 
 export interface CreateScheduledChangeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -86,14 +86,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -128,7 +128,7 @@ export type ChangeRequestStateEnum =
   | "rejected"
   | "expired"
   | "failed";
-export const ChangeRequestStateEnum = /*@__PURE__*/ S.String;
+export const ChangeRequestStateEnum = S.String;
 
 /** Minimal read-only ChangeRequest shape for embedding on resources gated by an approval, e.g. the scheduled change that carries it. Exposes just enough to show the approval state and link to the change request. */
 export interface ChangeRequestSummary {

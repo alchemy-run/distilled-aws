@@ -268,7 +268,7 @@ export type ErrorCode =
   | "Gone"
   | "Validation"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export interface PhoneNumberError {
   PhoneNumberId?: string | redacted.Redacted<string>;
@@ -365,7 +365,7 @@ export type PhoneNumberProductType =
   | "VoiceConnector"
   | "SipMediaApplicationDialIn"
   | (string & {});
-export const PhoneNumberProductType = /*@__PURE__*/ S.String;
+export const PhoneNumberProductType = S.String;
 
 export type CallingName = string | redacted.Redacted<string>;
 export type PhoneNumberName = string | redacted.Redacted<string>;
@@ -453,17 +453,17 @@ export type PhoneNumberOrderStatus =
   | "CancelRequested"
   | "Cancelled"
   | (string & {});
-export const PhoneNumberOrderStatus = /*@__PURE__*/ S.String;
+export const PhoneNumberOrderStatus = S.String;
 
 export type PhoneNumberOrderType = "New" | "Porting" | (string & {});
-export const PhoneNumberOrderType = /*@__PURE__*/ S.String;
+export const PhoneNumberOrderType = S.String;
 
 export type OrderedPhoneNumberStatus =
   | "Processing"
   | "Acquired"
   | "Failed"
   | (string & {});
-export const OrderedPhoneNumberStatus = /*@__PURE__*/ S.String;
+export const OrderedPhoneNumberStatus = S.String;
 
 export interface OrderedPhoneNumber {
   E164PhoneNumber?: string | redacted.Redacted<string>;
@@ -522,7 +522,7 @@ export const ParticipantPhoneNumberList =
 export type ProxySessionNameString = string | redacted.Redacted<string>;
 export type PositiveInteger = number;
 export type Capability = "Voice" | "SMS" | (string & {});
-export const Capability = /*@__PURE__*/ S.String;
+export const Capability = S.String;
 
 export type CapabilityList = Capability[];
 export const CapabilityList = /*@__PURE__*/ S.Array(Capability);
@@ -530,10 +530,10 @@ export type NumberSelectionBehavior =
   | "PreferSticky"
   | "AvoidSticky"
   | (string & {});
-export const NumberSelectionBehavior = /*@__PURE__*/ S.String;
+export const NumberSelectionBehavior = S.String;
 
 export type GeoMatchLevel = "Country" | "AreaCode" | (string & {});
-export const GeoMatchLevel = /*@__PURE__*/ S.String;
+export const GeoMatchLevel = S.String;
 
 export type Country = string;
 export type AreaCode = string;
@@ -587,7 +587,7 @@ export type ProxySessionStatus =
   | "InProgress"
   | "Closed"
   | (string & {});
-export const ProxySessionStatus = /*@__PURE__*/ S.String;
+export const ProxySessionStatus = S.String;
 
 export interface Participant {
   PhoneNumber?: string | redacted.Redacted<string>;
@@ -805,7 +805,7 @@ export type SipRuleTriggerType =
   | "ToPhoneNumber"
   | "RequestUriHostname"
   | (string & {});
-export const SipRuleTriggerType = /*@__PURE__*/ S.String;
+export const SipRuleTriggerType = S.String;
 
 export type SipApplicationPriority = number;
 export interface SipRuleTargetApplication {
@@ -900,16 +900,16 @@ export type VoiceConnectorAwsRegion =
   | "ap-southeast-1"
   | "ap-southeast-2"
   | (string & {});
-export const VoiceConnectorAwsRegion = /*@__PURE__*/ S.String;
+export const VoiceConnectorAwsRegion = S.String;
 
 export type VoiceConnectorIntegrationType =
   | "CONNECT_CALL_TRANSFER_CONNECTOR"
   | "CONNECT_ANALYTICS_CONNECTOR"
   | (string & {});
-export const VoiceConnectorIntegrationType = /*@__PURE__*/ S.String;
+export const VoiceConnectorIntegrationType = S.String;
 
 export type NetworkType = "IPV4_ONLY" | "DUAL_STACK" | (string & {});
-export const NetworkType = /*@__PURE__*/ S.String;
+export const NetworkType = S.String;
 
 export interface CreateVoiceConnectorRequest {
   Name: string;
@@ -995,7 +995,7 @@ export type CallDistributionType =
   | "PriorityWeightedDistribution"
   | "LoadBalancedDistribution"
   | (string & {});
-export const CallDistributionType = /*@__PURE__*/ S.String;
+export const CallDistributionType = S.String;
 
 export interface CreateVoiceConnectorGroupRequest {
   Name: string;
@@ -1716,7 +1716,7 @@ export const GetPhoneNumberRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPhoneNumberRequest>;
 export type Alpha2CountryCode = string;
 export type PhoneNumberType = "Local" | "TollFree" | (string & {});
-export const PhoneNumberType = /*@__PURE__*/ S.String;
+export const PhoneNumberType = S.String;
 
 export type PhoneNumberStatus =
   | "Cancelled"
@@ -1731,7 +1731,7 @@ export type PhoneNumberStatus =
   | "ReleaseFailed"
   | "DeleteFailed"
   | (string & {});
-export const PhoneNumberStatus = /*@__PURE__*/ S.String;
+export const PhoneNumberStatus = S.String;
 
 export interface PhoneNumberCapabilities {
   InboundCall?: boolean;
@@ -1758,7 +1758,7 @@ export type PhoneNumberAssociationName =
   | "VoiceConnectorGroupId"
   | "SipRuleId"
   | (string & {});
-export const PhoneNumberAssociationName = /*@__PURE__*/ S.String;
+export const PhoneNumberAssociationName = S.String;
 
 export interface PhoneNumberAssociation {
   Value?: string;
@@ -1786,7 +1786,7 @@ export type CallingNameStatus =
   | "UpdateSucceeded"
   | "UpdateFailed"
   | (string & {});
-export const CallingNameStatus = /*@__PURE__*/ S.String;
+export const CallingNameStatus = S.String;
 
 export interface PhoneNumber {
   PhoneNumberId?: string | redacted.Redacted<string>;
@@ -1987,7 +1987,7 @@ export const GetSipMediaApplicationAlexaSkillConfigurationRequest =
     identifier: "GetSipMediaApplicationAlexaSkillConfigurationRequest",
   }) as any as S.Schema<GetSipMediaApplicationAlexaSkillConfigurationRequest>;
 export type AlexaSkillStatus = "ACTIVE" | "INACTIVE" | (string & {});
-export const AlexaSkillStatus = /*@__PURE__*/ S.String;
+export const AlexaSkillStatus = S.String;
 
 export type AlexaSkillId = string | redacted.Redacted<string>;
 export type AlexaSkillIdList = (string | redacted.Redacted<string>)[];
@@ -2310,7 +2310,7 @@ export type SessionBorderControllerType =
   | "CISCO_UNIFIED_BORDER_ELEMENT"
   | "AUDIOCODES_MEDIANT_SBC"
   | (string & {});
-export const SessionBorderControllerType = /*@__PURE__*/ S.String;
+export const SessionBorderControllerType = S.String;
 
 export type SessionBorderControllerTypeList = SessionBorderControllerType[];
 export const SessionBorderControllerTypeList = /*@__PURE__*/ S.Array(
@@ -2322,7 +2322,7 @@ export type ContactCenterSystemType =
   | "AVAYA_AURA_CONTACT_CENTER"
   | "CISCO_UNIFIED_CONTACT_CENTER_ENTERPRISE"
   | (string & {});
-export const ContactCenterSystemType = /*@__PURE__*/ S.String;
+export const ContactCenterSystemType = S.String;
 
 export type ContactCenterSystemTypeList = ContactCenterSystemType[];
 export const ContactCenterSystemTypeList = /*@__PURE__*/ S.Array(
@@ -2449,7 +2449,7 @@ export const GetVoiceConnectorOriginationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVoiceConnectorOriginationRequest>;
 export type Port = number;
 export type OriginationRouteProtocol = "TCP" | "UDP" | (string & {});
-export const OriginationRouteProtocol = /*@__PURE__*/ S.String;
+export const OriginationRouteProtocol = S.String;
 
 export type OriginationRoutePriority = number;
 export type OriginationRouteWeight = number;
@@ -2562,7 +2562,7 @@ export const GetVoiceConnectorStreamingConfigurationRequest =
   }) as any as S.Schema<GetVoiceConnectorStreamingConfigurationRequest>;
 export type DataRetentionInHours = number;
 export type NotificationTarget = "EventBridge" | "SNS" | "SQS" | (string & {});
-export const NotificationTarget = /*@__PURE__*/ S.String;
+export const NotificationTarget = S.String;
 
 export interface StreamingNotificationTarget {
   NotificationTarget?: NotificationTarget;
@@ -3813,7 +3813,7 @@ export const SearchAvailablePhoneNumbersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchAvailablePhoneNumbersResponse",
 }) as any as S.Schema<SearchAvailablePhoneNumbersResponse>;
 export type CallLegType = "Caller" | "Callee" | (string & {});
-export const CallLegType = /*@__PURE__*/ S.String;
+export const CallLegType = S.String;
 
 export interface StartSpeakerSearchTaskRequest {
   VoiceConnectorId: string;
@@ -3854,7 +3854,7 @@ export const StartSpeakerSearchTaskResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartSpeakerSearchTaskResponse",
 }) as any as S.Schema<StartSpeakerSearchTaskResponse>;
 export type LanguageCode = "en-US" | (string & {});
-export const LanguageCode = /*@__PURE__*/ S.String;
+export const LanguageCode = S.String;
 
 export interface StartVoiceToneAnalysisTaskRequest {
   VoiceConnectorId: string;

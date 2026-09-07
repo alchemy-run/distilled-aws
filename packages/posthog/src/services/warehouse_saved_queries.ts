@@ -40,8 +40,7 @@ export class NotFound
   ) {}
 
 export type CreateWarehouseSavedQueriesAncestorRequestQueryKind = "HogQLQuery";
-export const CreateWarehouseSavedQueriesAncestorRequestQueryKind =
-  /*@__PURE__*/ S.String;
+export const CreateWarehouseSavedQueriesAncestorRequestQueryKind = S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface CreateWarehouseSavedQueriesAncestorRequestQuery {
@@ -97,7 +96,7 @@ export type SavedQuerySyncFrequencyEnum =
   | "24hour"
   | "7day"
   | "30day";
-export const SavedQuerySyncFrequencyEnum = /*@__PURE__*/ S.String;
+export const SavedQuerySyncFrequencyEnum = S.String;
 
 export interface CreateWarehouseSavedQueriesAncestorRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -154,7 +153,7 @@ export const CreateWarehouseSavedQueriesAncestorRequest =
   }) as any as S.Schema<CreateWarehouseSavedQueriesAncestorRequest>;
 
 export type DataWarehouseSavedQueryOutputQueryKind = "HogQLQuery";
-export const DataWarehouseSavedQueryOutputQueryKind = /*@__PURE__*/ S.String;
+export const DataWarehouseSavedQueryOutputQueryKind = S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface DataWarehouseSavedQueryOutputQuery {
@@ -172,7 +171,7 @@ export const DataWarehouseSavedQueryOutputQuery = /*@__PURE__*/ S.suspend(() =>
 
 /** * `incremental` - incremental * `full_refresh` - full_refresh */
 export type LastRunModeEnum = "incremental" | "full_refresh";
-export const LastRunModeEnum = /*@__PURE__*/ S.String;
+export const LastRunModeEnum = S.String;
 
 /** Read-only progress written by the materialization run. */
 export interface IncrementalState {
@@ -213,14 +212,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -254,7 +253,7 @@ export type FrequencyModeEnum =
   | "managed_viewset"
   | "legacy"
   | "no_node";
-export const FrequencyModeEnum = /*@__PURE__*/ S.String;
+export const FrequencyModeEnum = S.String;
 
 /** * `15min` - 15min * `30min` - 30min * `1hour` - 1hour * `6hour` - 6hour * `12hour` - 12hour * `24hour` - 24hour * `7day` - 7day * `30day` - 30day */
 export type MaterializeSyncFrequencyEnum =
@@ -266,11 +265,11 @@ export type MaterializeSyncFrequencyEnum =
   | "24hour"
   | "7day"
   | "30day";
-export const MaterializeSyncFrequencyEnum = /*@__PURE__*/ S.String;
+export const MaterializeSyncFrequencyEnum = S.String;
 
 /** * `source` - source * `consumer` - consumer */
 export type SyncFrequencyBlockedByEnum = "source" | "consumer";
-export const SyncFrequencyBlockedByEnum = /*@__PURE__*/ S.String;
+export const SyncFrequencyBlockedByEnum = S.String;
 
 /** The node holding a cadence back, named so a refusal points at something a person can open. */
 export interface SyncFrequencyBlocker {
@@ -386,14 +385,14 @@ export type DataWarehouseSavedQueryStatusEnum =
   | "Completed"
   | "Failed"
   | "Running";
-export const DataWarehouseSavedQueryStatusEnum = /*@__PURE__*/ S.String;
+export const DataWarehouseSavedQueryStatusEnum = S.String;
 
 /** * `data_warehouse` - Data Warehouse * `endpoint` - Endpoint * `managed_viewset` - Managed Viewset */
 export type DataWarehouseSavedQueryOriginEnum =
   | "data_warehouse"
   | "endpoint"
   | "managed_viewset";
-export const DataWarehouseSavedQueryOriginEnum = /*@__PURE__*/ S.String;
+export const DataWarehouseSavedQueryOriginEnum = S.String;
 
 export interface SavedQuerySuspension {
   /** When materialization was suspended. */
@@ -509,7 +508,7 @@ export type CheckTypeEnum =
   | "row_count"
   | "freshness"
   | "custom_sql";
-export const CheckTypeEnum = /*@__PURE__*/ S.String;
+export const CheckTypeEnum = S.String;
 
 /** Type-specific configuration, validated against the check type's JSON schema. */
 export type CreateWarehouseSavedQueriesCheckRequestConfigMap = {
@@ -523,7 +522,7 @@ export const CreateWarehouseSavedQueriesCheckRequestConfigMap =
 
 /** * `error` - error * `warn` - warn */
 export type DataQualityCheckSeverityEnum = "error" | "warn";
-export const DataQualityCheckSeverityEnum = /*@__PURE__*/ S.String;
+export const DataQualityCheckSeverityEnum = S.String;
 
 /** Free-form string labels for grouping and filtering. */
 export type CreateWarehouseSavedQueriesCheckRequestTagsList = Array<string>;
@@ -534,7 +533,7 @@ export const CreateWarehouseSavedQueriesCheckRequestTagsList =
 
 /** * `user` - user * `ai_generated` - ai_generated */
 export type CreatedSourceEnum = "user" | "ai_generated";
-export const CreatedSourceEnum = /*@__PURE__*/ S.String;
+export const CreatedSourceEnum = S.String;
 
 export interface CreateWarehouseSavedQueriesCheckRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -595,7 +594,7 @@ export const CreateWarehouseSavedQueriesCheckRequest = /*@__PURE__*/ S.suspend(
 
 /** * `table` - table * `view` - view */
 export type SubjectTypeEnum = "table" | "view";
-export const SubjectTypeEnum = /*@__PURE__*/ S.String;
+export const SubjectTypeEnum = S.String;
 
 /** Type-specific configuration, validated against the check type's JSON schema. */
 export type DataQualityCheckConfigMap = { [key: string]: unknown | undefined };
@@ -890,8 +889,7 @@ export const CreateWarehouseSavedQueriesChecksRunAllRequest =
 
 export type CreateWarehouseSavedQueriesDescendantRequestQueryKind =
   "HogQLQuery";
-export const CreateWarehouseSavedQueriesDescendantRequestQueryKind =
-  /*@__PURE__*/ S.String;
+export const CreateWarehouseSavedQueriesDescendantRequestQueryKind = S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface CreateWarehouseSavedQueriesDescendantRequestQuery {
@@ -996,7 +994,7 @@ export const CreateWarehouseSavedQueriesMaterializeResponse =
 export type CreateWarehouseSavedQueriesRevertMaterializationRequestQueryKind =
   "HogQLQuery";
 export const CreateWarehouseSavedQueriesRevertMaterializationRequestQueryKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface CreateWarehouseSavedQueriesRevertMaterializationRequestQuery {
@@ -1106,7 +1104,7 @@ export const CreateWarehouseSavedQueriesRunResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateWarehouseSavedQueriesRunResponse>;
 
 export type CreateWarehouseSavedQueryRequestQueryKind = "HogQLQuery";
-export const CreateWarehouseSavedQueryRequestQueryKind = /*@__PURE__*/ S.String;
+export const CreateWarehouseSavedQueryRequestQueryKind = S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface CreateWarehouseSavedQueryRequestQuery {
@@ -1963,8 +1961,7 @@ export const UpdateWarehouseSavedQueriesChecksPartialRequest =
   }) as any as S.Schema<UpdateWarehouseSavedQueriesChecksPartialRequest>;
 
 export type UpdateWarehouseSavedQueriesPartialRequestQueryKind = "HogQLQuery";
-export const UpdateWarehouseSavedQueriesPartialRequestQueryKind =
-  /*@__PURE__*/ S.String;
+export const UpdateWarehouseSavedQueriesPartialRequestQueryKind = S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface UpdateWarehouseSavedQueriesPartialRequestQuery {
@@ -2036,7 +2033,7 @@ export const UpdateWarehouseSavedQueriesPartialRequest =
   }) as any as S.Schema<UpdateWarehouseSavedQueriesPartialRequest>;
 
 export type UpdateWarehouseSavedQueryRequestQueryKind = "HogQLQuery";
-export const UpdateWarehouseSavedQueryRequestQueryKind = /*@__PURE__*/ S.String;
+export const UpdateWarehouseSavedQueryRequestQueryKind = S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface UpdateWarehouseSavedQueryRequestQuery {
@@ -2107,8 +2104,7 @@ export const UpdateWarehouseSavedQueryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWarehouseSavedQueryRequest>;
 
 export type WarehouseSavedQueriesCancelCreateRequestQueryKind = "HogQLQuery";
-export const WarehouseSavedQueriesCancelCreateRequestQueryKind =
-  /*@__PURE__*/ S.String;
+export const WarehouseSavedQueriesCancelCreateRequestQueryKind = S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface WarehouseSavedQueriesCancelCreateRequestQuery {
@@ -2274,7 +2270,7 @@ export const SavedQueryResume = /*@__PURE__*/ S.suspend(() =>
 export type WarehouseSavedQueriesResumeSchedulesCreateRequestQueryKind =
   "HogQLQuery";
 export const WarehouseSavedQueriesResumeSchedulesCreateRequestQueryKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** HogQL query definition as a JSON object with a "query" key containing the SQL string and a "kind" key (always "HogQLQuery"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {"kind": "HogQLQuery", "query": "SELECT\n event,\n count() AS cnt\nFROM events\nGROUP BY event\nLIMIT 100"} */
 export interface WarehouseSavedQueriesResumeSchedulesCreateRequestQuery {

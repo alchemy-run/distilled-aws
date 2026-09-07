@@ -357,7 +357,7 @@ export type DeleteSubscriptionsDeletionTypeEnum =
   | "deletion_type_undefined"
   | "cancel"
   | "transfer_to_direct";
-export const DeleteSubscriptionsDeletionTypeEnum = /*@__PURE__*/ S.String;
+export const DeleteSubscriptionsDeletionTypeEnum = S.String;
 
 export interface DeleteSubscriptionsRequest {
   /** This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable. */
@@ -412,7 +412,7 @@ export type CustomerCustomerTypeEnum =
   | "customerTypeUnspecified"
   | "domain"
   | "team";
-export const CustomerCustomerTypeEnum = /*@__PURE__*/ S.String;
+export const CustomerCustomerTypeEnum = S.String;
 
 /** JSON template for primary admin in case of TEAM customers */
 export interface PrimaryAdmin {
@@ -578,7 +578,7 @@ export type InsertSubscriptionsActionEnum =
   | "actionUnspecified"
   | "buy"
   | "switch";
-export const InsertSubscriptionsActionEnum = /*@__PURE__*/ S.String;
+export const InsertSubscriptionsActionEnum = S.String;
 
 export interface InsertSubscriptionsRequest {
   /** This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable. */

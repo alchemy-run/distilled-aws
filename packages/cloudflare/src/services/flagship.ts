@@ -115,7 +115,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase0Operator =
   | "in"
   | "not_in";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase0 {
   attribute: string;
@@ -149,7 +149,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase0Op
   | "in"
   | "not_in";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -185,7 +185,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -221,7 +221,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -257,7 +257,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -293,7 +293,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -344,7 +344,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -389,7 +389,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -434,7 +434,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -479,7 +479,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -524,7 +524,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1Lo
   | "AND"
   | "OR";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -569,7 +569,7 @@ export type AppsFlagsCreateRequestRulesItemConditionsItemCase1LogicalOperator =
   | "AND"
   | "OR";
 export const AppsFlagsCreateRequestRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateRequestRulesItemConditionsItemCase1 {
   clauses: AppsFlagsCreateRequestRulesItemConditionsItemCase1ClausesList;
@@ -661,7 +661,7 @@ export type AppsFlagsCreateRequestType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsCreateRequestType = /*@__PURE__*/ S.String;
+export const AppsFlagsCreateRequestType = S.String;
 
 export interface CreateAppFlagRequest {
   /** Cloudflare account ID. */
@@ -719,7 +719,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase0Operator =
   | "in"
   | "not_in";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase0 {
   attribute: string;
@@ -751,7 +751,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase0O
   | "in"
   | "not_in";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -785,7 +785,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -819,7 +819,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -853,7 +853,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -887,7 +887,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -936,7 +936,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -979,7 +979,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -1022,7 +1022,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -1065,7 +1065,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -1108,7 +1108,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1L
   | "AND"
   | "OR";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -1151,7 +1151,7 @@ export type AppsFlagsCreateResponseRulesItemConditionsItemCase1LogicalOperator =
   | "AND"
   | "OR";
 export const AppsFlagsCreateResponseRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsCreateResponseRulesItemConditionsItemCase1 {
   clauses: AppsFlagsCreateResponseRulesItemConditionsItemCase1ClausesList;
@@ -1235,7 +1235,7 @@ export type AppsFlagsCreateResponseType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsCreateResponseType = /*@__PURE__*/ S.String;
+export const AppsFlagsCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateAppFlagResponse {
@@ -1418,7 +1418,7 @@ export type AppsEvaluateGetResponseReason =
   | "DEFAULT"
   | "DISABLED"
   | "SPLIT";
-export const AppsEvaluateGetResponseReason = /*@__PURE__*/ S.String;
+export const AppsEvaluateGetResponseReason = S.String;
 
 export type AppsEvaluateGetResponseValueCase3Map = {
   [key: string]: unknown | undefined;
@@ -1500,7 +1500,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase0Operator =
   | "in"
   | "not_in";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase0 {
   attribute: string;
@@ -1532,7 +1532,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase0Oper
   | "in"
   | "not_in";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -1566,7 +1566,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "in"
   | "not_in";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -1600,7 +1600,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "in"
   | "not_in";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -1634,7 +1634,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "in"
   | "not_in";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -1668,7 +1668,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "in"
   | "not_in";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -1717,7 +1717,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "AND"
   | "OR";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -1760,7 +1760,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "AND"
   | "OR";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -1803,7 +1803,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "AND"
   | "OR";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -1846,7 +1846,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Clau
   | "AND"
   | "OR";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -1889,7 +1889,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1Logi
   | "AND"
   | "OR";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -1932,7 +1932,7 @@ export type AppsFlagsGetResponseRulesItemConditionsItemCase1LogicalOperator =
   | "AND"
   | "OR";
 export const AppsFlagsGetResponseRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsGetResponseRulesItemConditionsItemCase1 {
   clauses: AppsFlagsGetResponseRulesItemConditionsItemCase1ClausesList;
@@ -2001,7 +2001,7 @@ export const AppsFlagsGetResponseRulesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AppsFlagsGetResponseRulesList>;
 
 export type AppsFlagsGetResponseType = "boolean" | "string" | "number" | "json";
-export const AppsFlagsGetResponseType = /*@__PURE__*/ S.String;
+export const AppsFlagsGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetAppFlagResponse {
@@ -2082,7 +2082,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase0 {
   attribute: string;
@@ -2116,7 +2116,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2150,7 +2150,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2184,7 +2184,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2218,7 +2218,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2252,7 +2252,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2301,7 +2301,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -2344,7 +2344,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -2387,7 +2387,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -2430,7 +2430,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -2473,7 +2473,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -2516,7 +2516,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase0AfterRulesItemConditionsItemCase1ClausesList;
@@ -2594,8 +2594,7 @@ export type AppsFlagsChangelogListResultItemCase0AfterType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsChangelogListResultItemCase0AfterType =
-  /*@__PURE__*/ S.String;
+export const AppsFlagsChangelogListResultItemCase0AfterType = S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0After {
   /** Variation served when no rule matches or the flag is disabled. Must be a key in `variations`. */
@@ -2634,8 +2633,7 @@ export const AppsFlagsChangelogListResultItemCase0After =
   }) as any as S.Schema<AppsFlagsChangelogListResultItemCase0After>;
 
 export type AppsFlagsChangelogListResultItemCase0Event = "create";
-export const AppsFlagsChangelogListResultItemCase0Event =
-  /*@__PURE__*/ S.String;
+export const AppsFlagsChangelogListResultItemCase0Event = S.String;
 
 export interface AppsFlagsChangelogListResultItemCase0 {
   after: AppsFlagsChangelogListResultItemCase0After;
@@ -2666,7 +2664,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase0 {
   attribute: string;
@@ -2700,7 +2698,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2734,7 +2732,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2768,7 +2766,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2802,7 +2800,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2836,7 +2834,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -2885,7 +2883,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -2928,7 +2926,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -2971,7 +2969,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -3014,7 +3012,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -3057,7 +3055,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -3100,7 +3098,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase1AfterRulesItemConditionsItemCase1ClausesList;
@@ -3178,8 +3176,7 @@ export type AppsFlagsChangelogListResultItemCase1AfterType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsChangelogListResultItemCase1AfterType =
-  /*@__PURE__*/ S.String;
+export const AppsFlagsChangelogListResultItemCase1AfterType = S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1After {
   /** Variation served when no rule matches or the flag is disabled. Must be a key in `variations`. */
@@ -3218,8 +3215,7 @@ export const AppsFlagsChangelogListResultItemCase1After =
   }) as any as S.Schema<AppsFlagsChangelogListResultItemCase1After>;
 
 export type AppsFlagsChangelogListResultItemCase1Event = "delete";
-export const AppsFlagsChangelogListResultItemCase1Event =
-  /*@__PURE__*/ S.String;
+export const AppsFlagsChangelogListResultItemCase1Event = S.String;
 
 export interface AppsFlagsChangelogListResultItemCase1 {
   after: AppsFlagsChangelogListResultItemCase1After;
@@ -3250,7 +3246,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase0 {
   attribute: string;
@@ -3284,7 +3280,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -3318,7 +3314,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -3352,7 +3348,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -3386,7 +3382,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -3420,7 +3416,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "in"
   | "not_in";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -3469,7 +3465,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -3512,7 +3508,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -3555,7 +3551,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -3598,7 +3594,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -3641,7 +3637,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -3684,7 +3680,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCas
   | "AND"
   | "OR";
 export const AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1 {
   clauses: AppsFlagsChangelogListResultItemCase2AfterRulesItemConditionsItemCase1ClausesList;
@@ -3762,8 +3758,7 @@ export type AppsFlagsChangelogListResultItemCase2AfterType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsChangelogListResultItemCase2AfterType =
-  /*@__PURE__*/ S.String;
+export const AppsFlagsChangelogListResultItemCase2AfterType = S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2After {
   /** Variation served when no rule matches or the flag is disabled. Must be a key in `variations`. */
@@ -3879,8 +3874,7 @@ export const AppsFlagsChangelogListResultItemCase2DiffMap =
   ) as any as S.Schema<AppsFlagsChangelogListResultItemCase2DiffMap>;
 
 export type AppsFlagsChangelogListResultItemCase2Event = "update";
-export const AppsFlagsChangelogListResultItemCase2Event =
-  /*@__PURE__*/ S.String;
+export const AppsFlagsChangelogListResultItemCase2Event = S.String;
 
 export interface AppsFlagsChangelogListResultItemCase2 {
   after: AppsFlagsChangelogListResultItemCase2After;
@@ -3975,7 +3969,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase0Operator =
   | "in"
   | "not_in";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase0 {
   attribute: string;
@@ -4007,7 +4001,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase0O
   | "in"
   | "not_in";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4041,7 +4035,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4075,7 +4069,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4109,7 +4103,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4143,7 +4137,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4192,7 +4186,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -4235,7 +4229,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -4278,7 +4272,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -4321,7 +4315,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -4364,7 +4358,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1L
   | "AND"
   | "OR";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -4407,7 +4401,7 @@ export type AppsFlagsListResultItemRulesItemConditionsItemCase1LogicalOperator =
   | "AND"
   | "OR";
 export const AppsFlagsListResultItemRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsListResultItemRulesItemConditionsItemCase1 {
   clauses: AppsFlagsListResultItemRulesItemConditionsItemCase1ClausesList;
@@ -4480,7 +4474,7 @@ export type AppsFlagsListResultItemType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsListResultItemType = /*@__PURE__*/ S.String;
+export const AppsFlagsListResultItemType = S.String;
 
 export interface AppsFlagsListResultItem {
   /** Variation served when no rule matches or the flag is disabled. Must be a key in `variations`. */
@@ -4654,7 +4648,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase0Operator =
   | "in"
   | "not_in";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase0 {
   attribute: string;
@@ -4688,7 +4682,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase0Op
   | "in"
   | "not_in";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4724,7 +4718,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4760,7 +4754,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4796,7 +4790,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4832,7 +4826,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "in"
   | "not_in";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -4883,7 +4877,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -4928,7 +4922,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -4973,7 +4967,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -5018,7 +5012,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Cl
   | "AND"
   | "OR";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -5063,7 +5057,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1Lo
   | "AND"
   | "OR";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -5108,7 +5102,7 @@ export type AppsFlagsUpdateRequestRulesItemConditionsItemCase1LogicalOperator =
   | "AND"
   | "OR";
 export const AppsFlagsUpdateRequestRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateRequestRulesItemConditionsItemCase1 {
   clauses: AppsFlagsUpdateRequestRulesItemConditionsItemCase1ClausesList;
@@ -5183,7 +5177,7 @@ export type AppsFlagsUpdateRequestType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsUpdateRequestType = /*@__PURE__*/ S.String;
+export const AppsFlagsUpdateRequestType = S.String;
 
 export interface UpdateAppFlagRequest {
   /** Cloudflare account ID. */
@@ -5244,7 +5238,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase0Operator =
   | "in"
   | "not_in";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase0 {
   attribute: string;
@@ -5276,7 +5270,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase0O
   | "in"
   | "not_in";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase0 {
   attribute: string;
@@ -5310,7 +5304,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -5344,7 +5338,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -5378,7 +5372,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -5412,7 +5406,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "in"
   | "not_in";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0Operator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase0 {
   attribute: string;
@@ -5461,7 +5455,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1Clauses;
@@ -5504,7 +5498,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -5547,7 +5541,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -5590,7 +5584,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1C
   | "AND"
   | "OR";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesItemCase1ClausesList;
@@ -5633,7 +5627,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1L
   | "AND"
   | "OR";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1 {
   clauses: AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesItemCase1ClausesList;
@@ -5676,7 +5670,7 @@ export type AppsFlagsUpdateResponseRulesItemConditionsItemCase1LogicalOperator =
   | "AND"
   | "OR";
 export const AppsFlagsUpdateResponseRulesItemConditionsItemCase1LogicalOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AppsFlagsUpdateResponseRulesItemConditionsItemCase1 {
   clauses: AppsFlagsUpdateResponseRulesItemConditionsItemCase1ClausesList;
@@ -5749,7 +5743,7 @@ export type AppsFlagsUpdateResponseType =
   | "string"
   | "number"
   | "json";
-export const AppsFlagsUpdateResponseType = /*@__PURE__*/ S.String;
+export const AppsFlagsUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateAppFlagResponse {

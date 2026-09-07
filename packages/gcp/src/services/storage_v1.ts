@@ -269,8 +269,7 @@ export type ComposeObjectsDestinationPredefinedAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const ComposeObjectsDestinationPredefinedAclEnum =
-  /*@__PURE__*/ S.String;
+export const ComposeObjectsDestinationPredefinedAclEnum = S.String;
 
 export interface ObjectAccessControlProjectTeam {
   /** The project number. */
@@ -665,10 +664,10 @@ export type CopyObjectsDestinationPredefinedAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const CopyObjectsDestinationPredefinedAclEnum = /*@__PURE__*/ S.String;
+export const CopyObjectsDestinationPredefinedAclEnum = S.String;
 
 export type CopyObjectsProjectionEnum = "full" | "noAcl";
-export const CopyObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const CopyObjectsProjectionEnum = S.String;
 
 export interface CopyObjectsRequest {
   /** Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding). */
@@ -1344,7 +1343,7 @@ export const BucketAccessControl = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BucketAccessControl>;
 
 export type GetBucketsProjectionEnum = "full" | "noAcl";
-export const GetBucketsProjectionEnum = /*@__PURE__*/ S.String;
+export const GetBucketsProjectionEnum = S.String;
 
 export interface GetBucketsRequest {
   /** Name of a bucket. */
@@ -1437,7 +1436,7 @@ export type BucketEncryptionGoogleManagedEncryptionEnforcementConfigRestrictionM
   | "NotRestricted"
   | "FullyRestricted";
 export const BucketEncryptionGoogleManagedEncryptionEnforcementConfigRestrictionModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BucketEncryptionGoogleManagedEncryptionEnforcementConfig {
   /** Restriction mode for Google-Managed Encryption Keys. Defaults to NotRestricted. */
@@ -1463,7 +1462,7 @@ export type BucketEncryptionCustomerManagedEncryptionEnforcementConfigRestrictio
   | "NotRestricted"
   | "FullyRestricted";
 export const BucketEncryptionCustomerManagedEncryptionEnforcementConfigRestrictionModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BucketEncryptionCustomerManagedEncryptionEnforcementConfig {
   /** Restriction mode for Customer-Managed Encryption Keys. Defaults to NotRestricted. */
@@ -1489,7 +1488,7 @@ export type BucketEncryptionCustomerSuppliedEncryptionEnforcementConfigRestricti
   | "NotRestricted"
   | "FullyRestricted";
 export const BucketEncryptionCustomerSuppliedEncryptionEnforcementConfigRestrictionModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface BucketEncryptionCustomerSuppliedEncryptionEnforcementConfig {
   /** Restriction mode for Customer-Supplied Encryption Keys. Defaults to NotRestricted. */
@@ -2265,7 +2264,7 @@ export const GetManagedFoldersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedFoldersRequest>;
 
 export type RapidCachePolicyIngestOnWriteEnum = "enabled" | "unspecified";
-export const RapidCachePolicyIngestOnWriteEnum = /*@__PURE__*/ S.String;
+export const RapidCachePolicyIngestOnWriteEnum = S.String;
 
 /** The rapid cache policy configuration for a managed folder. */
 export interface RapidCachePolicy {
@@ -2429,7 +2428,7 @@ export const GetObjectAccessControlsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetObjectAccessControlsRequest>;
 
 export type GetObjectsProjectionEnum = "full" | "noAcl";
-export const GetObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const GetObjectsProjectionEnum = S.String;
 
 export interface GetObjectsRequest {
   /** Name of the bucket in which the object resides. */
@@ -2740,7 +2739,7 @@ export type InsertBucketsPredefinedAclEnum =
   | "projectPrivate"
   | "publicRead"
   | "publicReadWrite";
-export const InsertBucketsPredefinedAclEnum = /*@__PURE__*/ S.String;
+export const InsertBucketsPredefinedAclEnum = S.String;
 
 export type InsertBucketsPredefinedDefaultObjectAclEnum =
   | "authenticatedRead"
@@ -2749,11 +2748,10 @@ export type InsertBucketsPredefinedDefaultObjectAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const InsertBucketsPredefinedDefaultObjectAclEnum =
-  /*@__PURE__*/ S.String;
+export const InsertBucketsPredefinedDefaultObjectAclEnum = S.String;
 
 export type InsertBucketsProjectionEnum = "full" | "noAcl";
-export const InsertBucketsProjectionEnum = /*@__PURE__*/ S.String;
+export const InsertBucketsProjectionEnum = S.String;
 
 export interface InsertBucketsRequest {
   /** Apply a predefined set of access controls to this bucket. */
@@ -2926,10 +2924,10 @@ export type InsertObjectsPredefinedAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const InsertObjectsPredefinedAclEnum = /*@__PURE__*/ S.String;
+export const InsertObjectsPredefinedAclEnum = S.String;
 
 export type InsertObjectsProjectionEnum = "full" | "noAcl";
-export const InsertObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const InsertObjectsProjectionEnum = S.String;
 
 export interface InsertObjectsRequest {
   /** Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any. */
@@ -3087,7 +3085,7 @@ export const BucketAccessControls = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BucketAccessControls>;
 
 export type ListBucketsProjectionEnum = "full" | "noAcl";
-export const ListBucketsProjectionEnum = /*@__PURE__*/ S.String;
+export const ListBucketsProjectionEnum = S.String;
 
 export interface ListBucketsRequest {
   /** Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller. */
@@ -3372,7 +3370,7 @@ export const ListObjectAccessControlsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListObjectAccessControlsRequest>;
 
 export type ListObjectsProjectionEnum = "full" | "noAcl";
-export const ListObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const ListObjectsProjectionEnum = S.String;
 
 export interface ListObjectsRequest {
   /** Name of the bucket in which to look for objects. */
@@ -3639,7 +3637,7 @@ export const LockRetentionPolicyBucketsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LockRetentionPolicyBucketsRequest>;
 
 export type MoveObjectsProjectionEnum = "full" | "noAcl";
-export const MoveObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const MoveObjectsProjectionEnum = S.String;
 
 export interface MoveObjectsRequest {
   /** Name of the bucket in which the object resides. */
@@ -3728,7 +3726,7 @@ export type PatchBucketsPredefinedAclEnum =
   | "projectPrivate"
   | "publicRead"
   | "publicReadWrite";
-export const PatchBucketsPredefinedAclEnum = /*@__PURE__*/ S.String;
+export const PatchBucketsPredefinedAclEnum = S.String;
 
 export type PatchBucketsPredefinedDefaultObjectAclEnum =
   | "authenticatedRead"
@@ -3737,11 +3735,10 @@ export type PatchBucketsPredefinedDefaultObjectAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const PatchBucketsPredefinedDefaultObjectAclEnum =
-  /*@__PURE__*/ S.String;
+export const PatchBucketsPredefinedDefaultObjectAclEnum = S.String;
 
 export type PatchBucketsProjectionEnum = "full" | "noAcl";
-export const PatchBucketsProjectionEnum = /*@__PURE__*/ S.String;
+export const PatchBucketsProjectionEnum = S.String;
 
 export interface PatchBucketsRequest {
   /** Name of a bucket. */
@@ -3854,10 +3851,10 @@ export type PatchObjectsPredefinedAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const PatchObjectsPredefinedAclEnum = /*@__PURE__*/ S.String;
+export const PatchObjectsPredefinedAclEnum = S.String;
 
 export type PatchObjectsProjectionEnum = "full" | "noAcl";
-export const PatchObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const PatchObjectsProjectionEnum = S.String;
 
 export interface PatchObjectsRequest {
   /** Name of the bucket in which the object resides. */
@@ -4010,7 +4007,7 @@ export const RenameFoldersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RenameFoldersRequest>;
 
 export type RestoreBucketsProjectionEnum = "full" | "noAcl";
-export const RestoreBucketsProjectionEnum = /*@__PURE__*/ S.String;
+export const RestoreBucketsProjectionEnum = S.String;
 
 export interface RestoreBucketsRequest {
   /** Name of a bucket. */
@@ -4040,7 +4037,7 @@ export const RestoreBucketsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestoreBucketsRequest>;
 
 export type RestoreObjectsProjectionEnum = "full" | "noAcl";
-export const RestoreObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const RestoreObjectsProjectionEnum = S.String;
 
 export interface RestoreObjectsRequest {
   /** Name of the bucket in which the object resides. */
@@ -4118,11 +4115,10 @@ export type RewriteObjectsDestinationPredefinedAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const RewriteObjectsDestinationPredefinedAclEnum =
-  /*@__PURE__*/ S.String;
+export const RewriteObjectsDestinationPredefinedAclEnum = S.String;
 
 export type RewriteObjectsProjectionEnum = "full" | "noAcl";
-export const RewriteObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const RewriteObjectsProjectionEnum = S.String;
 
 export interface RewriteObjectsRequest {
   /** Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any. */
@@ -4533,7 +4529,7 @@ export type UpdateBucketsPredefinedAclEnum =
   | "projectPrivate"
   | "publicRead"
   | "publicReadWrite";
-export const UpdateBucketsPredefinedAclEnum = /*@__PURE__*/ S.String;
+export const UpdateBucketsPredefinedAclEnum = S.String;
 
 export type UpdateBucketsPredefinedDefaultObjectAclEnum =
   | "authenticatedRead"
@@ -4542,11 +4538,10 @@ export type UpdateBucketsPredefinedDefaultObjectAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const UpdateBucketsPredefinedDefaultObjectAclEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateBucketsPredefinedDefaultObjectAclEnum = S.String;
 
 export type UpdateBucketsProjectionEnum = "full" | "noAcl";
-export const UpdateBucketsProjectionEnum = /*@__PURE__*/ S.String;
+export const UpdateBucketsProjectionEnum = S.String;
 
 export interface UpdateBucketsRequest {
   /** Name of a bucket. */
@@ -4689,10 +4684,10 @@ export type UpdateObjectsPredefinedAclEnum =
   | "private"
   | "projectPrivate"
   | "publicRead";
-export const UpdateObjectsPredefinedAclEnum = /*@__PURE__*/ S.String;
+export const UpdateObjectsPredefinedAclEnum = S.String;
 
 export type UpdateObjectsProjectionEnum = "full" | "noAcl";
-export const UpdateObjectsProjectionEnum = /*@__PURE__*/ S.String;
+export const UpdateObjectsProjectionEnum = S.String;
 
 export interface UpdateObjectsRequest {
   /** Name of the bucket in which the object resides. */

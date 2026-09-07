@@ -96,7 +96,7 @@ export type ReadWriteConcurrencyModeEnum =
   | "CONCURRENCY_MODE_UNSPECIFIED"
   | "OPTIMISTIC"
   | "PESSIMISTIC";
-export const ReadWriteConcurrencyModeEnum = /*@__PURE__*/ S.String;
+export const ReadWriteConcurrencyModeEnum = S.String;
 
 /** Options for a transaction that can be used to read and write documents. */
 export interface ReadWrite {
@@ -214,7 +214,7 @@ export const Firestore_Function = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Firestore_Function>;
 
 export type ValueNullValueEnum = "NULL_VALUE";
-export const ValueNullValueEnum = /*@__PURE__*/ S.String;
+export const ValueNullValueEnum = S.String;
 
 /** An array value. */
 export interface ArrayValue {
@@ -409,7 +409,7 @@ export const Precondition = /*@__PURE__*/ S.suspend(() =>
 export type FieldTransformSetToServerValueEnum =
   | "SERVER_VALUE_UNSPECIFIED"
   | "REQUEST_TIME";
-export const FieldTransformSetToServerValueEnum = /*@__PURE__*/ S.String;
+export const FieldTransformSetToServerValueEnum = S.String;
 
 /** A transformation of a field of the document. */
 export interface FieldTransform {
@@ -991,57 +991,54 @@ export type GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum =
   | "REALTIME_UPDATES_MODE_UNSPECIFIED"
   | "REALTIME_UPDATES_MODE_ENABLED"
   | "REALTIME_UPDATES_MODE_DISABLED";
-export const GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1DatabaseRealtimeUpdatesModeEnum = S.String;
 
 export type GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum =
   | "DATA_ACCESS_MODE_UNSPECIFIED"
   | "DATA_ACCESS_MODE_ENABLED"
   | "DATA_ACCESS_MODE_DISABLED";
 export const GoogleFirestoreAdminV1DatabaseMongodbCompatibleDataAccessModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum =
   | "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
 export const GoogleFirestoreAdminV1DatabaseAppEngineIntegrationModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum =
   | "CONCURRENCY_MODE_UNSPECIFIED"
   | "OPTIMISTIC"
   | "PESSIMISTIC"
   | "OPTIMISTIC_WITH_ENTITY_GROUPS";
-export const GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1DatabaseConcurrencyModeEnum = S.String;
 
 export type GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum =
   | "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED"
   | "POINT_IN_TIME_RECOVERY_ENABLED"
   | "POINT_IN_TIME_RECOVERY_DISABLED";
 export const GoogleFirestoreAdminV1DatabasePointInTimeRecoveryEnablementEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum =
   | "DATA_ACCESS_MODE_UNSPECIFIED"
   | "DATA_ACCESS_MODE_ENABLED"
   | "DATA_ACCESS_MODE_DISABLED";
 export const GoogleFirestoreAdminV1DatabaseFirestoreDataAccessModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum =
   | "DATABASE_EDITION_UNSPECIFIED"
   | "STANDARD"
   | "ENTERPRISE";
-export const GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1DatabaseDatabaseEditionEnum = S.String;
 
 export type GoogleFirestoreAdminV1DatabaseTypeEnum =
   | "DATABASE_TYPE_UNSPECIFIED"
   | "FIRESTORE_NATIVE"
   | "DATASTORE_MODE";
-export const GoogleFirestoreAdminV1DatabaseTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1DatabaseTypeEnum = S.String;
 
 /** The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key. */
 export interface GoogleFirestoreAdminV1CmekConfig {
@@ -1063,8 +1060,7 @@ export type GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum =
   | "DELETE_PROTECTION_STATE_UNSPECIFIED"
   | "DELETE_PROTECTION_DISABLED"
   | "DELETE_PROTECTION_ENABLED";
-export const GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1DatabaseDeleteProtectionStateEnum = S.String;
 
 /** A Cloud Firestore Database. */
 export interface GoogleFirestoreAdminV1Database {
@@ -1219,8 +1215,7 @@ export type GoogleFirestoreAdminV1WeeklyRecurrenceDayEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const GoogleFirestoreAdminV1WeeklyRecurrenceDayEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1WeeklyRecurrenceDayEnum = S.String;
 
 /** Represents a recurring schedule that runs on a specified day of the week. The time zone is UTC. */
 export interface GoogleFirestoreAdminV1WeeklyRecurrence {
@@ -1372,7 +1367,7 @@ export type GoogleFirestoreAdminV1IndexApiScopeEnum =
   | "ANY_API"
   | "DATASTORE_MODE_API"
   | "MONGODB_COMPATIBLE_API";
-export const GoogleFirestoreAdminV1IndexApiScopeEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1IndexApiScopeEnum = S.String;
 
 /** Options for search indexes at the definition level. */
 export interface GoogleFirestoreAdminV1SearchIndexOptions {
@@ -1396,14 +1391,14 @@ export type GoogleFirestoreAdminV1IndexStateEnum =
   | "CREATING"
   | "READY"
   | "NEEDS_REPAIR";
-export const GoogleFirestoreAdminV1IndexStateEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1IndexStateEnum = S.String;
 
 export type GoogleFirestoreAdminV1IndexQueryScopeEnum =
   | "QUERY_SCOPE_UNSPECIFIED"
   | "COLLECTION"
   | "COLLECTION_GROUP"
   | "COLLECTION_RECURSIVE";
-export const GoogleFirestoreAdminV1IndexQueryScopeEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1IndexQueryScopeEnum = S.String;
 
 /** An index that stores vectors in a flat data structure, and supports exhaustive search. */
 export type GoogleFirestoreAdminV1FlatIndex =
@@ -1431,25 +1426,22 @@ export type GoogleFirestoreAdminV1IndexFieldOrderEnum =
   | "ORDER_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const GoogleFirestoreAdminV1IndexFieldOrderEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1IndexFieldOrderEnum = S.String;
 
 export type GoogleFirestoreAdminV1IndexFieldArrayConfigEnum =
   | "ARRAY_CONFIG_UNSPECIFIED"
   | "CONTAINS";
-export const GoogleFirestoreAdminV1IndexFieldArrayConfigEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1IndexFieldArrayConfigEnum = S.String;
 
 export type GoogleFirestoreAdminV1SearchTextIndexSpecIndexTypeEnum =
   | "TEXT_INDEX_TYPE_UNSPECIFIED"
   | "TOKENIZED";
-export const GoogleFirestoreAdminV1SearchTextIndexSpecIndexTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1SearchTextIndexSpecIndexTypeEnum = S.String;
 
 export type GoogleFirestoreAdminV1SearchTextIndexSpecMatchTypeEnum =
   | "TEXT_MATCH_TYPE_UNSPECIFIED"
   | "MATCH_GLOBALLY";
-export const GoogleFirestoreAdminV1SearchTextIndexSpecMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1SearchTextIndexSpecMatchTypeEnum = S.String;
 
 /** Specification of how the field should be indexed for search text indexes. */
 export interface GoogleFirestoreAdminV1SearchTextIndexSpec {
@@ -1562,7 +1554,7 @@ export type GoogleFirestoreAdminV1IndexDensityEnum =
   | "SPARSE_ALL"
   | "SPARSE_ANY"
   | "DENSE";
-export const GoogleFirestoreAdminV1IndexDensityEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1IndexDensityEnum = S.String;
 
 /** Cloud Firestore indexes enable simple and complex queries against documents in a database. In Standard edition databases, single-field indexes are managed using the google.firestore.admin.v1.Field resource, and composite indexes are managed using the google.firestore.admin.v1.Index resource. In Enterprise edition databases, both single-field and composite indexes are managed using the google.firestore.admin.v1.Index resource. */
 export interface GoogleFirestoreAdminV1Index {
@@ -1630,7 +1622,7 @@ export type GoogleFirestoreAdminV1UserCredsStateEnum =
   | "STATE_UNSPECIFIED"
   | "ENABLED"
   | "DISABLED";
-export const GoogleFirestoreAdminV1UserCredsStateEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1UserCredsStateEnum = S.String;
 
 /** Describes a Resource Identity principal. */
 export interface GoogleFirestoreAdminV1ResourceIdentity {
@@ -2156,7 +2148,7 @@ export type GoogleFirestoreAdminV1TtlConfigStateEnum =
   | "CREATING"
   | "ACTIVE"
   | "NEEDS_REPAIR";
-export const GoogleFirestoreAdminV1TtlConfigStateEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1TtlConfigStateEnum = S.String;
 
 /** The TTL (time-to-live) configuration for documents that have this `Field` set. A timestamp stored in a TTL-enabled field will be used to determine the expiration time of the document. The expiration time is the sum of the timestamp value and the `expiration_offset`. For Enterprise edition databases, the timestamp value may alternatively be stored in an array value in the TTL-enabled field. An expiration time in the past indicates that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document. */
 export interface GoogleFirestoreAdminV1TtlConfig {
@@ -2392,7 +2384,7 @@ export type GoogleFirestoreAdminV1BackupStateEnum =
   | "CREATING"
   | "READY"
   | "NOT_AVAILABLE";
-export const GoogleFirestoreAdminV1BackupStateEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1BackupStateEnum = S.String;
 
 /** A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at a specific point in time. */
 export interface GoogleFirestoreAdminV1Backup {
@@ -2623,7 +2615,7 @@ export type FindNearestDistanceMeasureEnum =
   | "EUCLIDEAN"
   | "COSINE"
   | "DOT_PRODUCT";
-export const FindNearestDistanceMeasureEnum = /*@__PURE__*/ S.String;
+export const FindNearestDistanceMeasureEnum = S.String;
 
 /** Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries. */
 export interface FindNearest {
@@ -2687,7 +2679,7 @@ export type UnaryFilterOpEnum =
   | "IS_NULL"
   | "IS_NOT_NAN"
   | "IS_NOT_NULL";
-export const UnaryFilterOpEnum = /*@__PURE__*/ S.String;
+export const UnaryFilterOpEnum = S.String;
 
 /** A filter with a single operand. */
 export interface UnaryFilter {
@@ -2709,7 +2701,7 @@ export const FilterList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FilterList>;
 
 export type CompositeFilterOpEnum = "OPERATOR_UNSPECIFIED" | "AND" | "OR";
-export const CompositeFilterOpEnum = /*@__PURE__*/ S.String;
+export const CompositeFilterOpEnum = S.String;
 
 /** A filter that merges multiple other filters using the given operator. */
 export interface CompositeFilter {
@@ -2739,7 +2731,7 @@ export type FieldFilterOpEnum =
   | "IN"
   | "ARRAY_CONTAINS_ANY"
   | "NOT_IN";
-export const FieldFilterOpEnum = /*@__PURE__*/ S.String;
+export const FieldFilterOpEnum = S.String;
 
 /** A filter on a specific field. */
 export interface FieldFilter {
@@ -2800,7 +2792,7 @@ export type OrderDirectionEnum =
   | "DIRECTION_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const OrderDirectionEnum = /*@__PURE__*/ S.String;
+export const OrderDirectionEnum = S.String;
 
 /** An order on a field. */
 export interface Order {
@@ -3052,7 +3044,7 @@ export type TargetChangeTargetChangeTypeEnum =
   | "REMOVE"
   | "CURRENT"
   | "RESET";
-export const TargetChangeTargetChangeTypeEnum = /*@__PURE__*/ S.String;
+export const TargetChangeTargetChangeTypeEnum = S.String;
 
 /** Targets being watched have changed. */
 export interface TargetChange {

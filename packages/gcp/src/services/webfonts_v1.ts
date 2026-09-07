@@ -44,7 +44,7 @@ export type ListWebfontsCapabilityEnum =
   | "WOFF2"
   | "VF"
   | "FAMILY_TAGS";
-export const ListWebfontsCapabilityEnum = /*@__PURE__*/ S.String;
+export const ListWebfontsCapabilityEnum = S.String;
 
 export type ListWebfontsCapabilityEnumList = Array<
   ListWebfontsCapabilityEnum | (string & {})
@@ -60,7 +60,7 @@ export type ListWebfontsSortEnum =
   | "POPULARITY"
   | "STYLE"
   | "TRENDING";
-export const ListWebfontsSortEnum = /*@__PURE__*/ S.String;
+export const ListWebfontsSortEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

@@ -446,7 +446,7 @@ export type OperationResultsDescriptionStatus =
   | "Failed"
   | "Requested"
   | "Running";
-export const OperationResultsDescriptionStatus = /*@__PURE__*/ S.String;
+export const OperationResultsDescriptionStatus = S.String;
 
 /** The properties indicating the operation result of an operation on a service. */
 export interface OperationResultsDescription {
@@ -509,7 +509,7 @@ export type GetPrivateEndpointConnectionsAdtAPIResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsAdtAPIResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateEndpointConnectionsAdtAPIResponseSystemDataLastModifiedByType =
@@ -518,7 +518,7 @@ export type GetPrivateEndpointConnectionsAdtAPIResponseSystemDataLastModifiedByT
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsAdtAPIResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateEndpointConnectionsAdtAPIResponseSystemData {
@@ -571,7 +571,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -598,8 +598,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the PrivateEndpointConnectProperties. */
 export interface PrivateEndpointConnectionProperties {
@@ -683,7 +682,7 @@ export type GetPrivateEndpointConnectionsCompResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsCompResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateEndpointConnectionsCompResponseSystemDataLastModifiedByType =
@@ -692,7 +691,7 @@ export type GetPrivateEndpointConnectionsCompResponseSystemDataLastModifiedByTyp
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsCompResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateEndpointConnectionsCompResponseSystemData {
@@ -790,7 +789,7 @@ export type GetPrivateEndpointConnectionsForEDMResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsForEDMResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateEndpointConnectionsForEDMResponseSystemDataLastModifiedByType =
@@ -799,7 +798,7 @@ export type GetPrivateEndpointConnectionsForEDMResponseSystemDataLastModifiedByT
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsForEDMResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateEndpointConnectionsForEDMResponseSystemData {
@@ -897,7 +896,7 @@ export type GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataCreat
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataLastModifiedByType =
@@ -906,7 +905,7 @@ export type GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataLastM
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemData {
@@ -1005,7 +1004,7 @@ export type GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataCreat
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataLastModifiedByType =
@@ -1014,7 +1013,7 @@ export type GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataLastM
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateEndpointConnectionsForSCCPowershellResponseSystemData {
@@ -1113,7 +1112,7 @@ export type GetPrivateEndpointConnectionsSecResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsSecResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateEndpointConnectionsSecResponseSystemDataLastModifiedByType =
@@ -1122,7 +1121,7 @@ export type GetPrivateEndpointConnectionsSecResponseSystemDataLastModifiedByType
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateEndpointConnectionsSecResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateEndpointConnectionsSecResponseSystemData {
@@ -1218,8 +1217,7 @@ export type GetPrivateLinkResourceResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetPrivateLinkResourceResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetPrivateLinkResourceResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
@@ -1228,7 +1226,7 @@ export type GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkResourceResponseSystemData {
@@ -1360,7 +1358,7 @@ export type GetPrivateLinkResourcesAdtAPIResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesAdtAPIResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkResourcesAdtAPIResponseSystemDataLastModifiedByType =
@@ -1369,7 +1367,7 @@ export type GetPrivateLinkResourcesAdtAPIResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesAdtAPIResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkResourcesAdtAPIResponseSystemData {
@@ -1464,7 +1462,7 @@ export type GetPrivateLinkResourcesCompResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesCompResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkResourcesCompResponseSystemDataLastModifiedByType =
@@ -1473,7 +1471,7 @@ export type GetPrivateLinkResourcesCompResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesCompResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkResourcesCompResponseSystemData {
@@ -1568,7 +1566,7 @@ export type GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataCreatedByTy
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataLastModifiedByType =
@@ -1577,7 +1575,7 @@ export type GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataLastModifie
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkResourcesForMIPPolicySyncResponseSystemData {
@@ -1675,7 +1673,7 @@ export type GetPrivateLinkResourcesForSCCPowershellResponseSystemDataCreatedByTy
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesForSCCPowershellResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkResourcesForSCCPowershellResponseSystemDataLastModifiedByType =
@@ -1684,7 +1682,7 @@ export type GetPrivateLinkResourcesForSCCPowershellResponseSystemDataLastModifie
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesForSCCPowershellResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkResourcesForSCCPowershellResponseSystemData {
@@ -1781,7 +1779,7 @@ export type GetPrivateLinkResourcesSecResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesSecResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkResourcesSecResponseSystemDataLastModifiedByType =
@@ -1790,7 +1788,7 @@ export type GetPrivateLinkResourcesSecResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkResourcesSecResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkResourcesSecResponseSystemData {
@@ -1882,7 +1880,7 @@ export type GetPrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
@@ -1891,7 +1889,7 @@ export type GetPrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkServicesForEDMUploadResponseSystemData {
@@ -1931,8 +1929,7 @@ export type GetPrivateLinkServicesForEDMUploadResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const GetPrivateLinkServicesForEDMUploadResponseKind =
-  /*@__PURE__*/ S.String;
+export const GetPrivateLinkServicesForEDMUploadResponseKind = S.String;
 
 /** The resource tags. */
 export type GetPrivateLinkServicesForEDMUploadResponseTagsMap = {
@@ -1948,8 +1945,7 @@ export const GetPrivateLinkServicesForEDMUploadResponseTagsMap =
 export type GetPrivateLinkServicesForEDMUploadResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const GetPrivateLinkServicesForEDMUploadResponseIdentityType =
-  /*@__PURE__*/ S.String;
+export const GetPrivateLinkServicesForEDMUploadResponseIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetPrivateLinkServicesForEDMUploadResponseIdentity {
@@ -1983,7 +1979,7 @@ export type GetPrivateLinkServicesForEDMUploadResponsePropertiesProvisioningStat
   | "Canceled"
   | "Deprovisioned";
 export const GetPrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An access policy entry. */
 export interface ServiceAccessPolicyEntry {
@@ -2102,8 +2098,7 @@ export type PrivateEndpointConnectionSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionSystemDataLastModifiedByType =
@@ -2111,8 +2106,7 @@ export type PrivateEndpointConnectionSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionSystemData {
@@ -2182,7 +2176,7 @@ export type GetPrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAcc
   | "Enabled"
   | "Disabled";
 export const GetPrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface GetPrivateLinkServicesForEDMUploadResponseProperties {
@@ -2304,7 +2298,7 @@ export type GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreat
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
@@ -2313,7 +2307,7 @@ export type GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastM
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkServicesForM365ComplianceCenterResponseSystemData {
@@ -2355,7 +2349,7 @@ export type GetPrivateLinkServicesForM365ComplianceCenterResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const GetPrivateLinkServicesForM365ComplianceCenterResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type GetPrivateLinkServicesForM365ComplianceCenterResponseTagsMap = {
@@ -2372,7 +2366,7 @@ export type GetPrivateLinkServicesForM365ComplianceCenterResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const GetPrivateLinkServicesForM365ComplianceCenterResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetPrivateLinkServicesForM365ComplianceCenterResponseIdentity {
@@ -2408,7 +2402,7 @@ export type GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvi
   | "Canceled"
   | "Deprovisioned";
 export const GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList =
@@ -2423,7 +2417,7 @@ export type GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPubli
   | "Enabled"
   | "Disabled";
 export const GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface GetPrivateLinkServicesForM365ComplianceCenterResponseProperties {
@@ -2550,7 +2544,7 @@ export type GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataCreated
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
@@ -2559,7 +2553,7 @@ export type GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataLastMod
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkServicesForM365SecurityCenterResponseSystemData {
@@ -2599,8 +2593,7 @@ export type GetPrivateLinkServicesForM365SecurityCenterResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const GetPrivateLinkServicesForM365SecurityCenterResponseKind =
-  /*@__PURE__*/ S.String;
+export const GetPrivateLinkServicesForM365SecurityCenterResponseKind = S.String;
 
 /** The resource tags. */
 export type GetPrivateLinkServicesForM365SecurityCenterResponseTagsMap = {
@@ -2617,7 +2610,7 @@ export type GetPrivateLinkServicesForM365SecurityCenterResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const GetPrivateLinkServicesForM365SecurityCenterResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetPrivateLinkServicesForM365SecurityCenterResponseIdentity {
@@ -2653,7 +2646,7 @@ export type GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisi
   | "Canceled"
   | "Deprovisioned";
 export const GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList =
@@ -2668,7 +2661,7 @@ export type GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicN
   | "Enabled"
   | "Disabled";
 export const GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface GetPrivateLinkServicesForM365SecurityCenterResponseProperties {
@@ -2794,7 +2787,7 @@ export type GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByTyp
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
@@ -2803,7 +2796,7 @@ export type GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModified
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkServicesForMIPPolicySyncResponseSystemData {
@@ -2843,8 +2836,7 @@ export type GetPrivateLinkServicesForMIPPolicySyncResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const GetPrivateLinkServicesForMIPPolicySyncResponseKind =
-  /*@__PURE__*/ S.String;
+export const GetPrivateLinkServicesForMIPPolicySyncResponseKind = S.String;
 
 /** The resource tags. */
 export type GetPrivateLinkServicesForMIPPolicySyncResponseTagsMap = {
@@ -2861,7 +2853,7 @@ export type GetPrivateLinkServicesForMIPPolicySyncResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const GetPrivateLinkServicesForMIPPolicySyncResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetPrivateLinkServicesForMIPPolicySyncResponseIdentity {
@@ -2897,7 +2889,7 @@ export type GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioning
   | "Canceled"
   | "Deprovisioned";
 export const GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList =
@@ -2912,7 +2904,7 @@ export type GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetwor
   | "Enabled"
   | "Disabled";
 export const GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface GetPrivateLinkServicesForMIPPolicySyncResponseProperties {
@@ -3036,7 +3028,7 @@ export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
@@ -3045,7 +3037,7 @@ export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData {
@@ -3087,7 +3079,7 @@ export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap =
@@ -3103,7 +3095,7 @@ export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentityTy
   | "SystemAssigned"
   | "None";
 export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentity {
@@ -3140,7 +3132,7 @@ export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties
   | "Canceled"
   | "Deprovisioned";
 export const GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList =
@@ -3155,7 +3147,7 @@ export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties
   | "Enabled"
   | "Disabled";
 export const GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties {
@@ -3282,7 +3274,7 @@ export type GetPrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByTyp
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetPrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
@@ -3291,7 +3283,7 @@ export type GetPrivateLinkServicesForSCCPowershellResponseSystemDataLastModified
   | "ManagedIdentity"
   | "Key";
 export const GetPrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetPrivateLinkServicesForSCCPowershellResponseSystemData {
@@ -3331,8 +3323,7 @@ export type GetPrivateLinkServicesForSCCPowershellResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const GetPrivateLinkServicesForSCCPowershellResponseKind =
-  /*@__PURE__*/ S.String;
+export const GetPrivateLinkServicesForSCCPowershellResponseKind = S.String;
 
 /** The resource tags. */
 export type GetPrivateLinkServicesForSCCPowershellResponseTagsMap = {
@@ -3349,7 +3340,7 @@ export type GetPrivateLinkServicesForSCCPowershellResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const GetPrivateLinkServicesForSCCPowershellResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface GetPrivateLinkServicesForSCCPowershellResponseIdentity {
@@ -3385,7 +3376,7 @@ export type GetPrivateLinkServicesForSCCPowershellResponsePropertiesProvisioning
   | "Canceled"
   | "Deprovisioned";
 export const GetPrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type GetPrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList =
@@ -3400,7 +3391,7 @@ export type GetPrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetwor
   | "Enabled"
   | "Disabled";
 export const GetPrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface GetPrivateLinkServicesForSCCPowershellResponseProperties {
@@ -3917,8 +3908,7 @@ export type PrivateLinkResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkResourceSystemDataLastModifiedByType =
@@ -3926,8 +3916,7 @@ export type PrivateLinkResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkResourceSystemData {
@@ -4291,7 +4280,7 @@ export type PrivateLinkServicesForEDMUploadDescriptionSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForEDMUploadDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForEDMUploadDescriptionSystemDataLastModifiedByType =
@@ -4300,7 +4289,7 @@ export type PrivateLinkServicesForEDMUploadDescriptionSystemDataLastModifiedByTy
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForEDMUploadDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForEDMUploadDescriptionSystemData {
@@ -4340,8 +4329,7 @@ export type PrivateLinkServicesForEDMUploadDescriptionKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForEDMUploadDescriptionKind =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicesForEDMUploadDescriptionKind = S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForEDMUploadDescriptionTagsMap = {
@@ -4357,8 +4345,7 @@ export const PrivateLinkServicesForEDMUploadDescriptionTagsMap =
 export type PrivateLinkServicesForEDMUploadDescriptionIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForEDMUploadDescriptionIdentityType =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicesForEDMUploadDescriptionIdentityType = S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForEDMUploadDescriptionIdentity {
@@ -4392,7 +4379,7 @@ export type PrivateLinkServicesForEDMUploadDescriptionPropertiesProvisioningStat
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForEDMUploadDescriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForEDMUploadDescriptionPropertiesPrivateEndpointConnectionsList =
@@ -4407,7 +4394,7 @@ export type PrivateLinkServicesForEDMUploadDescriptionPropertiesPublicNetworkAcc
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForEDMUploadDescriptionPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForEDMUploadDescriptionProperties {
@@ -4574,7 +4561,7 @@ export type PrivateLinkServicesForM365ComplianceCenterDescriptionSystemDataCreat
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365ComplianceCenterDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForM365ComplianceCenterDescriptionSystemDataLastModifiedByType =
@@ -4583,7 +4570,7 @@ export type PrivateLinkServicesForM365ComplianceCenterDescriptionSystemDataLastM
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365ComplianceCenterDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForM365ComplianceCenterDescriptionSystemData {
@@ -4625,7 +4612,7 @@ export type PrivateLinkServicesForM365ComplianceCenterDescriptionKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForM365ComplianceCenterDescriptionKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForM365ComplianceCenterDescriptionTagsMap = {
@@ -4642,7 +4629,7 @@ export type PrivateLinkServicesForM365ComplianceCenterDescriptionIdentityType =
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForM365ComplianceCenterDescriptionIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForM365ComplianceCenterDescriptionIdentity {
@@ -4678,7 +4665,7 @@ export type PrivateLinkServicesForM365ComplianceCenterDescriptionPropertiesProvi
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForM365ComplianceCenterDescriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForM365ComplianceCenterDescriptionPropertiesPrivateEndpointConnectionsList =
@@ -4693,7 +4680,7 @@ export type PrivateLinkServicesForM365ComplianceCenterDescriptionPropertiesPubli
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForM365ComplianceCenterDescriptionPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForM365ComplianceCenterDescriptionProperties {
@@ -4867,7 +4854,7 @@ export type PrivateLinkServicesForM365SecurityCenterDescriptionSystemDataCreated
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365SecurityCenterDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForM365SecurityCenterDescriptionSystemDataLastModifiedByType =
@@ -4876,7 +4863,7 @@ export type PrivateLinkServicesForM365SecurityCenterDescriptionSystemDataLastMod
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365SecurityCenterDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForM365SecurityCenterDescriptionSystemData {
@@ -4916,8 +4903,7 @@ export type PrivateLinkServicesForM365SecurityCenterDescriptionKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForM365SecurityCenterDescriptionKind =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicesForM365SecurityCenterDescriptionKind = S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForM365SecurityCenterDescriptionTagsMap = {
@@ -4934,7 +4920,7 @@ export type PrivateLinkServicesForM365SecurityCenterDescriptionIdentityType =
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForM365SecurityCenterDescriptionIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForM365SecurityCenterDescriptionIdentity {
@@ -4970,7 +4956,7 @@ export type PrivateLinkServicesForM365SecurityCenterDescriptionPropertiesProvisi
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForM365SecurityCenterDescriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForM365SecurityCenterDescriptionPropertiesPrivateEndpointConnectionsList =
@@ -4985,7 +4971,7 @@ export type PrivateLinkServicesForM365SecurityCenterDescriptionPropertiesPublicN
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForM365SecurityCenterDescriptionPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForM365SecurityCenterDescriptionProperties {
@@ -5157,7 +5143,7 @@ export type PrivateLinkServicesForMIPPolicySyncDescriptionSystemDataCreatedByTyp
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForMIPPolicySyncDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForMIPPolicySyncDescriptionSystemDataLastModifiedByType =
@@ -5166,7 +5152,7 @@ export type PrivateLinkServicesForMIPPolicySyncDescriptionSystemDataLastModified
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForMIPPolicySyncDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForMIPPolicySyncDescriptionSystemData {
@@ -5206,8 +5192,7 @@ export type PrivateLinkServicesForMIPPolicySyncDescriptionKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForMIPPolicySyncDescriptionKind =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicesForMIPPolicySyncDescriptionKind = S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForMIPPolicySyncDescriptionTagsMap = {
@@ -5224,7 +5209,7 @@ export type PrivateLinkServicesForMIPPolicySyncDescriptionIdentityType =
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForMIPPolicySyncDescriptionIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForMIPPolicySyncDescriptionIdentity {
@@ -5260,7 +5245,7 @@ export type PrivateLinkServicesForMIPPolicySyncDescriptionPropertiesProvisioning
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForMIPPolicySyncDescriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForMIPPolicySyncDescriptionPropertiesPrivateEndpointConnectionsList =
@@ -5275,7 +5260,7 @@ export type PrivateLinkServicesForMIPPolicySyncDescriptionPropertiesPublicNetwor
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForMIPPolicySyncDescriptionPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForMIPPolicySyncDescriptionProperties {
@@ -5444,7 +5429,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionSystemData
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForO365ManagementActivityAPIDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionSystemDataLastModifiedByType =
@@ -5453,7 +5438,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionSystemData
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForO365ManagementActivityAPIDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForO365ManagementActivityAPIDescriptionSystemData {
@@ -5495,7 +5480,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForO365ManagementActivityAPIDescriptionKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionTagsMap =
@@ -5511,7 +5496,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionIdentityTy
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForO365ManagementActivityAPIDescriptionIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForO365ManagementActivityAPIDescriptionIdentity {
@@ -5548,7 +5533,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionProperties
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForO365ManagementActivityAPIDescriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionPropertiesPrivateEndpointConnectionsList =
@@ -5563,7 +5548,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionProperties
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForO365ManagementActivityAPIDescriptionPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForO365ManagementActivityAPIDescriptionProperties {
@@ -5737,7 +5722,7 @@ export type PrivateLinkServicesForSCCPowershellDescriptionSystemDataCreatedByTyp
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForSCCPowershellDescriptionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForSCCPowershellDescriptionSystemDataLastModifiedByType =
@@ -5746,7 +5731,7 @@ export type PrivateLinkServicesForSCCPowershellDescriptionSystemDataLastModified
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForSCCPowershellDescriptionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForSCCPowershellDescriptionSystemData {
@@ -5786,8 +5771,7 @@ export type PrivateLinkServicesForSCCPowershellDescriptionKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForSCCPowershellDescriptionKind =
-  /*@__PURE__*/ S.String;
+export const PrivateLinkServicesForSCCPowershellDescriptionKind = S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForSCCPowershellDescriptionTagsMap = {
@@ -5804,7 +5788,7 @@ export type PrivateLinkServicesForSCCPowershellDescriptionIdentityType =
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForSCCPowershellDescriptionIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForSCCPowershellDescriptionIdentity {
@@ -5840,7 +5824,7 @@ export type PrivateLinkServicesForSCCPowershellDescriptionPropertiesProvisioning
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForSCCPowershellDescriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForSCCPowershellDescriptionPropertiesPrivateEndpointConnectionsList =
@@ -5855,7 +5839,7 @@ export type PrivateLinkServicesForSCCPowershellDescriptionPropertiesPublicNetwor
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForSCCPowershellDescriptionPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForSCCPowershellDescriptionProperties {
@@ -6061,7 +6045,7 @@ export type PrivateEndpointConnectionsAdtAPICreateOrUpdateResponseSystemDataCrea
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsAdtAPICreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionsAdtAPICreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -6070,7 +6054,7 @@ export type PrivateEndpointConnectionsAdtAPICreateOrUpdateResponseSystemDataLast
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsAdtAPICreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionsAdtAPICreateOrUpdateResponseSystemData {
@@ -6172,7 +6156,7 @@ export type PrivateEndpointConnectionsCompCreateOrUpdateResponseSystemDataCreate
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsCompCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionsCompCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -6181,7 +6165,7 @@ export type PrivateEndpointConnectionsCompCreateOrUpdateResponseSystemDataLastMo
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsCompCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionsCompCreateOrUpdateResponseSystemData {
@@ -6283,7 +6267,7 @@ export type PrivateEndpointConnectionsForEDMCreateOrUpdateResponseSystemDataCrea
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsForEDMCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionsForEDMCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -6292,7 +6276,7 @@ export type PrivateEndpointConnectionsForEDMCreateOrUpdateResponseSystemDataLast
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsForEDMCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionsForEDMCreateOrUpdateResponseSystemData {
@@ -6395,7 +6379,7 @@ export type PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdateResponseSyst
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -6404,7 +6388,7 @@ export type PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdateResponseSyst
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdateResponseSystemData {
@@ -6508,7 +6492,7 @@ export type PrivateEndpointConnectionsForSCCPowershellCreateOrUpdateResponseSyst
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsForSCCPowershellCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionsForSCCPowershellCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -6517,7 +6501,7 @@ export type PrivateEndpointConnectionsForSCCPowershellCreateOrUpdateResponseSyst
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsForSCCPowershellCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionsForSCCPowershellCreateOrUpdateResponseSystemData {
@@ -6620,7 +6604,7 @@ export type PrivateEndpointConnectionsSecCreateOrUpdateResponseSystemDataCreated
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsSecCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateEndpointConnectionsSecCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -6629,7 +6613,7 @@ export type PrivateEndpointConnectionsSecCreateOrUpdateResponseSystemDataLastMod
   | "ManagedIdentity"
   | "Key";
 export const PrivateEndpointConnectionsSecCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateEndpointConnectionsSecCreateOrUpdateResponseSystemData {
@@ -6697,7 +6681,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateRequestKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateRequestKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForEDMUploadCreateOrUpdateRequestTagsMap = {
@@ -6714,7 +6698,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateRequestIdentityType =
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForEDMUploadCreateOrUpdateRequestIdentity {
@@ -6760,7 +6744,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateRequestPropertiesPublic
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateRequestPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForEDMUploadCreateOrUpdateRequestProperties {
@@ -6862,7 +6846,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponseSystemDataCreat
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -6871,7 +6855,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponseSystemDataLastM
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForEDMUploadCreateOrUpdateResponseSystemData {
@@ -6913,7 +6897,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponseTagsMap = {
@@ -6930,7 +6914,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForEDMUploadCreateOrUpdateResponseIdentity {
@@ -6966,7 +6950,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponsePropertiesProvi
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponsePropertiesPrivateEndpointConnectionsList =
@@ -6981,7 +6965,7 @@ export type PrivateLinkServicesForEDMUploadCreateOrUpdateResponsePropertiesPubli
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForEDMUploadCreateOrUpdateResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForEDMUploadCreateOrUpdateResponseProperties {
@@ -7081,7 +7065,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestKind 
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestTagsMap =
@@ -7097,7 +7081,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestIdent
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestIdentity {
@@ -7131,7 +7115,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestPrope
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateRequestProperties {
@@ -7234,7 +7218,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseSyst
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -7243,7 +7227,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseSyst
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseSystemData {
@@ -7285,7 +7269,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseKind
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseTagsMap =
@@ -7301,7 +7285,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseIden
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseIdentity {
@@ -7338,7 +7322,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseProp
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponsePropertiesPrivateEndpointConnectionsList =
@@ -7353,7 +7337,7 @@ export type PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseProp
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForM365ComplianceCenterCreateOrUpdateResponseProperties {
@@ -7454,7 +7438,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestTagsMap =
@@ -7470,7 +7454,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestIdentit
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestIdentity {
@@ -7504,7 +7488,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestPropert
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForM365SecurityCenterCreateOrUpdateRequestProperties {
@@ -7606,7 +7590,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseSystem
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -7615,7 +7599,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseSystem
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseSystemData {
@@ -7657,7 +7641,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseTagsMap =
@@ -7673,7 +7657,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseIdenti
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseIdentity {
@@ -7710,7 +7694,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseProper
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponsePropertiesPrivateEndpointConnectionsList =
@@ -7725,7 +7709,7 @@ export type PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseProper
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForM365SecurityCenterCreateOrUpdateResponseProperties {
@@ -7826,7 +7810,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestTagsMap = {
@@ -7843,7 +7827,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestIdentityType
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestIdentity {
@@ -7877,7 +7861,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestPropertiesPu
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForMIPPolicySyncCreateOrUpdateRequestProperties {
@@ -7979,7 +7963,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseSystemDataC
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -7988,7 +7972,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseSystemDataL
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseSystemData {
@@ -8030,7 +8014,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseTagsMap = {
@@ -8047,7 +8031,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseIdentityTyp
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseIdentity {
@@ -8084,7 +8068,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponsePropertiesP
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponsePropertiesPrivateEndpointConnectionsList =
@@ -8099,7 +8083,7 @@ export type PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponsePropertiesP
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForMIPPolicySyncCreateOrUpdateResponseProperties {
@@ -8199,7 +8183,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequest
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequestKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequestTagsMap =
@@ -8215,7 +8199,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequest
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequestIdentity {
@@ -8249,7 +8233,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequest
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequestPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRequestProperties {
@@ -8352,7 +8336,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRespons
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -8361,7 +8345,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRespons
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseSystemData {
@@ -8403,7 +8387,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRespons
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseTagsMap =
@@ -8419,7 +8403,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRespons
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseIdentity {
@@ -8456,7 +8440,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRespons
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponsePropertiesPrivateEndpointConnectionsList =
@@ -8471,7 +8455,7 @@ export type PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateRespons
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdateResponseProperties {
@@ -8572,7 +8556,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestTagsMap = {
@@ -8589,7 +8573,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestIdentityType
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestIdentity {
@@ -8623,7 +8607,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestPropertiesPu
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForSCCPowershellCreateOrUpdateRequestProperties {
@@ -8725,7 +8709,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseSystemDataC
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -8734,7 +8718,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseSystemDataL
   | "ManagedIdentity"
   | "Key";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseSystemData {
@@ -8776,7 +8760,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseTagsMap = {
@@ -8793,7 +8777,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseIdentityTyp
   | "SystemAssigned"
   | "None";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseIdentity {
@@ -8830,7 +8814,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponsePropertiesP
   | "Canceled"
   | "Deprovisioned";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponsePropertiesPrivateEndpointConnectionsList =
@@ -8845,7 +8829,7 @@ export type PrivateLinkServicesForSCCPowershellCreateOrUpdateResponsePropertiesP
   | "Enabled"
   | "Disabled";
 export const PrivateLinkServicesForSCCPowershellCreateOrUpdateResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface PrivateLinkServicesForSCCPowershellCreateOrUpdateResponseProperties {
@@ -8953,8 +8937,7 @@ export const UpdatePrivateLinkServicesForEDMUploadRequestTagsMap =
 export type ServicesPropertiesUpdateParametersPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const ServicesPropertiesUpdateParametersPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const ServicesPropertiesUpdateParametersPublicNetworkAccess = S.String;
 
 /** The properties for updating a service instance. */
 export interface ServicesPropertiesUpdateParameters {
@@ -9012,7 +8995,7 @@ export type UpdatePrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
@@ -9021,7 +9004,7 @@ export type UpdatePrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedB
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePrivateLinkServicesForEDMUploadResponseSystemData {
@@ -9061,8 +9044,7 @@ export type UpdatePrivateLinkServicesForEDMUploadResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const UpdatePrivateLinkServicesForEDMUploadResponseKind =
-  /*@__PURE__*/ S.String;
+export const UpdatePrivateLinkServicesForEDMUploadResponseKind = S.String;
 
 /** The resource tags. */
 export type UpdatePrivateLinkServicesForEDMUploadResponseTagsMap = {
@@ -9079,7 +9061,7 @@ export type UpdatePrivateLinkServicesForEDMUploadResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const UpdatePrivateLinkServicesForEDMUploadResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdatePrivateLinkServicesForEDMUploadResponseIdentity {
@@ -9115,7 +9097,7 @@ export type UpdatePrivateLinkServicesForEDMUploadResponsePropertiesProvisioningS
   | "Canceled"
   | "Deprovisioned";
 export const UpdatePrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList =
@@ -9130,7 +9112,7 @@ export type UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPublicNetwork
   | "Enabled"
   | "Disabled";
 export const UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface UpdatePrivateLinkServicesForEDMUploadResponseProperties {
@@ -9272,7 +9254,7 @@ export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataCr
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
@@ -9281,7 +9263,7 @@ export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataLa
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemData {
@@ -9323,7 +9305,7 @@ export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseTagsMap = {
@@ -9340,7 +9322,7 @@ export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentityType
   | "SystemAssigned"
   | "None";
 export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentity {
@@ -9377,7 +9359,7 @@ export type UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPr
   | "Canceled"
   | "Deprovisioned";
 export const UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList =
@@ -9392,7 +9374,7 @@ export type UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPu
   | "Enabled"
   | "Disabled";
 export const UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface UpdatePrivateLinkServicesForM365ComplianceCenterResponseProperties {
@@ -9537,7 +9519,7 @@ export type UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataCrea
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
@@ -9546,7 +9528,7 @@ export type UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataLast
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemData {
@@ -9588,7 +9570,7 @@ export type UpdatePrivateLinkServicesForM365SecurityCenterResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const UpdatePrivateLinkServicesForM365SecurityCenterResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type UpdatePrivateLinkServicesForM365SecurityCenterResponseTagsMap = {
@@ -9605,7 +9587,7 @@ export type UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentity {
@@ -9642,7 +9624,7 @@ export type UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesProv
   | "Canceled"
   | "Deprovisioned";
 export const UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList =
@@ -9657,7 +9639,7 @@ export type UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPubl
   | "Enabled"
   | "Disabled";
 export const UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface UpdatePrivateLinkServicesForM365SecurityCenterResponseProperties {
@@ -9800,7 +9782,7 @@ export type UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedBy
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
@@ -9809,7 +9791,7 @@ export type UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModif
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemData {
@@ -9849,8 +9831,7 @@ export type UpdatePrivateLinkServicesForMIPPolicySyncResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const UpdatePrivateLinkServicesForMIPPolicySyncResponseKind =
-  /*@__PURE__*/ S.String;
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseKind = S.String;
 
 /** The resource tags. */
 export type UpdatePrivateLinkServicesForMIPPolicySyncResponseTagsMap = {
@@ -9867,7 +9848,7 @@ export type UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentity {
@@ -9903,7 +9884,7 @@ export type UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesProvision
   | "Canceled"
   | "Deprovisioned";
 export const UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList =
@@ -9918,7 +9899,7 @@ export type UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNet
   | "Enabled"
   | "Disabled";
 export const UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface UpdatePrivateLinkServicesForMIPPolicySyncResponseProperties {
@@ -10061,7 +10042,7 @@ export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemD
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
@@ -10070,7 +10051,7 @@ export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemD
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemData {
@@ -10112,7 +10093,7 @@ export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseKind =
   | "fhir-Stu3"
   | "fhir-R4";
 export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The resource tags. */
 export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap =
@@ -10128,7 +10109,7 @@ export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentit
   | "SystemAssigned"
   | "None";
 export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentity {
@@ -10165,7 +10146,7 @@ export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropert
   | "Canceled"
   | "Deprovisioned";
 export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList =
@@ -10180,7 +10161,7 @@ export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropert
   | "Enabled"
   | "Disabled";
 export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseProperties {
@@ -10323,7 +10304,7 @@ export type UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataCreatedBy
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
@@ -10332,7 +10313,7 @@ export type UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataLastModif
   | "ManagedIdentity"
   | "Key";
 export const UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdatePrivateLinkServicesForSCCPowershellResponseSystemData {
@@ -10372,8 +10353,7 @@ export type UpdatePrivateLinkServicesForSCCPowershellResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const UpdatePrivateLinkServicesForSCCPowershellResponseKind =
-  /*@__PURE__*/ S.String;
+export const UpdatePrivateLinkServicesForSCCPowershellResponseKind = S.String;
 
 /** The resource tags. */
 export type UpdatePrivateLinkServicesForSCCPowershellResponseTagsMap = {
@@ -10390,7 +10370,7 @@ export type UpdatePrivateLinkServicesForSCCPowershellResponseIdentityType =
   | "SystemAssigned"
   | "None";
 export const UpdatePrivateLinkServicesForSCCPowershellResponseIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 export interface UpdatePrivateLinkServicesForSCCPowershellResponseIdentity {
@@ -10426,7 +10406,7 @@ export type UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesProvision
   | "Canceled"
   | "Deprovisioned";
 export const UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
 export type UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList =
@@ -10441,7 +10421,7 @@ export type UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPublicNet
   | "Enabled"
   | "Disabled";
 export const UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The properties of a service instance. */
 export interface UpdatePrivateLinkServicesForSCCPowershellResponseProperties {

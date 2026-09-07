@@ -39,11 +39,11 @@ export type DataModelingJobStatusEnum =
   | "Failed"
   | "Running"
   | "Skipped";
-export const DataModelingJobStatusEnum = /*@__PURE__*/ S.String;
+export const DataModelingJobStatusEnum = S.String;
 
 /** * `full_refresh` - Full refresh * `incremental` - Incremental */
 export type DataModelingJobRunModeEnum = "full_refresh" | "incremental";
-export const DataModelingJobRunModeEnum = /*@__PURE__*/ S.String;
+export const DataModelingJobRunModeEnum = S.String;
 
 export interface DataModelingJob {
   id: string;

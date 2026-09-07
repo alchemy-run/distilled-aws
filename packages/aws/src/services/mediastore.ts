@@ -151,7 +151,7 @@ export type ContainerStatus =
   | "CREATING"
   | "DELETING"
   | (string & {});
-export const ContainerStatus = /*@__PURE__*/ S.String;
+export const ContainerStatus = S.String;
 
 export type ContainerAccessLoggingEnabled = boolean;
 export interface Container {
@@ -375,7 +375,7 @@ export type Origin = string;
 export type AllowedOrigins = string[];
 export const AllowedOrigins = /*@__PURE__*/ S.Array(S.String);
 export type MethodName = "PUT" | "GET" | "DELETE" | "HEAD" | (string & {});
-export const MethodName = /*@__PURE__*/ S.String;
+export const MethodName = S.String;
 
 export type AllowedMethods = MethodName[];
 export const AllowedMethods = /*@__PURE__*/ S.Array(MethodName);
@@ -457,7 +457,7 @@ export const GetMetricPolicyInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMetricPolicyInput",
 }) as any as S.Schema<GetMetricPolicyInput>;
 export type ContainerLevelMetrics = "ENABLED" | "DISABLED" | (string & {});
-export const ContainerLevelMetrics = /*@__PURE__*/ S.String;
+export const ContainerLevelMetrics = S.String;
 
 export type ObjectGroup = string;
 export type ObjectGroupName = string;

@@ -57,7 +57,7 @@ export const CreateJobRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Type of the transfer. */
 export type TransferType = "ImportToAzure" | "ExportFromAzure";
-export const TransferType = /*@__PURE__*/ S.String;
+export const TransferType = S.String;
 
 /** List of Email-ids to be notified about job progress. */
 export type ContactDetailsEmailListList = Array<string>;
@@ -75,7 +75,7 @@ export type NotificationStageName =
   | "DataCopy"
   | "Created"
   | "ShippedToCustomer";
-export const NotificationStageName = /*@__PURE__*/ S.String;
+export const NotificationStageName = S.String;
 
 /** Notification preference for a job stage. */
 export interface NotificationPreference {
@@ -130,7 +130,7 @@ export const ContactDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of address. */
 export type ShippingAddressAddressType = "None" | "Residential" | "Commercial";
-export const ShippingAddressAddressType = /*@__PURE__*/ S.String;
+export const ShippingAddressAddressType = S.String;
 
 /** Shipping address where customer wishes to receive the device. */
 export interface ShippingAddress {
@@ -182,7 +182,7 @@ export const ShippingAddress = /*@__PURE__*/ S.suspend(() =>
 export type DataAccountDetailsDataAccountType =
   | "StorageAccount"
   | "ManagedDisk";
-export const DataAccountDetailsDataAccountType = /*@__PURE__*/ S.String;
+export const DataAccountDetailsDataAccountType = S.String;
 
 /** Account details of the data to be transferred */
 export interface DataAccountDetails {
@@ -202,7 +202,7 @@ export const DataAccountDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Level of the logs to be collected. */
 export type DataImportDetailsLogCollectionLevel = "Error" | "Verbose";
-export const DataImportDetailsLogCollectionLevel = /*@__PURE__*/ S.String;
+export const DataImportDetailsLogCollectionLevel = S.String;
 
 /** Details of the data to be used for importing data to azure. */
 export interface DataImportDetails {
@@ -228,13 +228,13 @@ export const JobDetailsInputDataImportDetailsList = /*@__PURE__*/ S.Array(
 
 /** Type of the configuration for transfer. */
 export type TransferConfigurationType = "TransferAll" | "TransferUsingFilter";
-export const TransferConfigurationType = /*@__PURE__*/ S.String;
+export const TransferConfigurationType = S.String;
 
 /** Type of the account of data. */
 export type TransferFilterDetailsDataAccountType =
   | "StorageAccount"
   | "ManagedDisk";
-export const TransferFilterDetailsDataAccountType = /*@__PURE__*/ S.String;
+export const TransferFilterDetailsDataAccountType = S.String;
 
 /** Prefix list of the Azure blobs to be transferred. */
 export type BlobFilterDetailsBlobPrefixListList = Array<string>;
@@ -312,7 +312,7 @@ export const AzureFileFilterDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the filter file. */
 export type FilterFileType = "AzureBlob" | "AzureFile";
-export const FilterFileType = /*@__PURE__*/ S.String;
+export const FilterFileType = S.String;
 
 /** Details of the filter files to be used for data transfer. */
 export interface FilterFileDetails {
@@ -377,7 +377,7 @@ export const TransferConfigurationTransferFilterDetails =
 export type TransferAllDetailsDataAccountType =
   | "StorageAccount"
   | "ManagedDisk";
-export const TransferAllDetailsDataAccountType = /*@__PURE__*/ S.String;
+export const TransferAllDetailsDataAccountType = S.String;
 
 /** Details to transfer all data. */
 export interface TransferAllDetails {
@@ -435,7 +435,7 @@ export const TransferConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Level of the logs to be collected. */
 export type DataExportDetailsLogCollectionLevel = "Error" | "Verbose";
-export const DataExportDetailsLogCollectionLevel = /*@__PURE__*/ S.String;
+export const DataExportDetailsLogCollectionLevel = S.String;
 
 /** Details of the data to be used for exporting data from azure. */
 export interface DataExportDetails {
@@ -468,7 +468,7 @@ export type ClassDiscriminator =
   | "DataBoxDisk"
   | "DataBoxHeavy"
   | "DataBoxCustomerDisk";
-export const ClassDiscriminator = /*@__PURE__*/ S.String;
+export const ClassDiscriminator = S.String;
 
 /** Preferred data center region. */
 export type PreferencesInputPreferredDataCenterRegionList = Array<string>;
@@ -479,7 +479,7 @@ export const PreferencesInputPreferredDataCenterRegionList =
 
 /** Transport Shipment Type supported for given region. */
 export type TransportShipmentTypes = "CustomerManaged" | "MicrosoftManaged";
-export const TransportShipmentTypes = /*@__PURE__*/ S.String;
+export const TransportShipmentTypes = S.String;
 
 /** Preferences related to the shipment logistics of the sku */
 export interface TransportPreferencesInput {
@@ -496,11 +496,11 @@ export const TransportPreferencesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines secondary layer of software-based encryption enablement. */
 export type EncryptionPreferencesDoubleEncryption = "Enabled" | "Disabled";
-export const EncryptionPreferencesDoubleEncryption = /*@__PURE__*/ S.String;
+export const EncryptionPreferencesDoubleEncryption = S.String;
 
 /** Hardware encryption support for a given sku for a given region. */
 export type HardwareEncryption = "Enabled" | "Disabled";
-export const HardwareEncryption = /*@__PURE__*/ S.String;
+export const HardwareEncryption = S.String;
 
 /** Preferences related to the Encryption. */
 export interface EncryptionPreferences {
@@ -519,8 +519,7 @@ export const EncryptionPreferences = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EncryptionPreferences>;
 
 export type PreferencesInputStorageAccountAccessTierPreferencesItem = "Archive";
-export const PreferencesInputStorageAccountAccessTierPreferencesItem =
-  /*@__PURE__*/ S.String;
+export const PreferencesInputStorageAccountAccessTierPreferencesItem = S.String;
 
 /** Preferences related to the Access Tier of storage accounts. */
 export type PreferencesInputStorageAccountAccessTierPreferencesList = Array<
@@ -598,7 +597,7 @@ export const ReverseShippingDetailsInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of encryption key used for key encryption. */
 export type KeyEncryptionKeyKekType = "MicrosoftManaged" | "CustomerManaged";
-export const KeyEncryptionKeyKekType = /*@__PURE__*/ S.String;
+export const KeyEncryptionKeyKekType = S.String;
 
 /** User assigned identity properties. */
 export interface UserAssignedProperties {
@@ -690,7 +689,7 @@ export const JobDetailsInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Delivery type of Job. */
 export type JobPropertiesInputDeliveryType = "NonScheduled" | "Scheduled";
-export const JobPropertiesInputDeliveryType = /*@__PURE__*/ S.String;
+export const JobPropertiesInputDeliveryType = S.String;
 
 /** Additional delivery info. */
 export interface JobDeliveryInfo {
@@ -733,7 +732,7 @@ export type SkuName =
   | "DataBoxDisk"
   | "DataBoxHeavy"
   | "DataBoxCustomerDisk";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The customer friendly name of the combination of version and capacity of the device. This field is necessary only at the time of ordering the newer generation device i.e. AzureDataBox120 and AzureDataBox525 as of Feb/2025 */
 export type ModelName =
@@ -743,7 +742,7 @@ export type ModelName =
   | "DataBoxCustomerDisk"
   | "AzureDataBox120"
   | "AzureDataBox525";
-export const ModelName = /*@__PURE__*/ S.String;
+export const ModelName = S.String;
 
 /** The Sku. */
 export interface Sku {
@@ -846,7 +845,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -854,7 +853,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -894,14 +893,14 @@ export type ReverseShippingDetailsEditStatus =
   | "Enabled"
   | "Disabled"
   | "NotSupported";
-export const ReverseShippingDetailsEditStatus = /*@__PURE__*/ S.String;
+export const ReverseShippingDetailsEditStatus = S.String;
 
 /** The Editable status for Reverse Transport preferences */
 export type ReverseTransportPreferenceEditStatus =
   | "Enabled"
   | "Disabled"
   | "NotSupported";
-export const ReverseTransportPreferenceEditStatus = /*@__PURE__*/ S.String;
+export const ReverseTransportPreferenceEditStatus = S.String;
 
 /** Name of the stage which is in progress. */
 export type StageName =
@@ -926,7 +925,7 @@ export type StageName =
   | "AwaitingShipmentDetails"
   | "PreparingToShipFromAzureDC"
   | "ShippedToCustomer";
-export const StageName = /*@__PURE__*/ S.String;
+export const StageName = S.String;
 
 /** Additional information of the type of error. */
 export type AdditionalErrorInfoInfoMap = { [key: string]: unknown | undefined };
@@ -1001,11 +1000,11 @@ export type StageStatus =
   | "WaitingForCustomerActionForCleanUp"
   | "CustomerActionPerformedForCleanUp"
   | "CustomerActionPerformed";
-export const StageStatus = /*@__PURE__*/ S.String;
+export const StageStatus = S.String;
 
 /** Status of notification */
 export type DelayNotificationStatus = "Active" | "Resolved";
-export const DelayNotificationStatus = /*@__PURE__*/ S.String;
+export const DelayNotificationStatus = S.String;
 
 /** Delay Error code */
 export type PortalDelayErrorCode =
@@ -1013,7 +1012,7 @@ export type PortalDelayErrorCode =
   | "ActiveOrderLimitBreachedDelay"
   | "HighDemandDelay"
   | "LargeNumberOfFilesDelay";
-export const PortalDelayErrorCode = /*@__PURE__*/ S.String;
+export const PortalDelayErrorCode = S.String;
 
 /** Job Delay Notification details */
 export interface JobDelayDetails {
@@ -1132,8 +1131,7 @@ export const TransportPreferences = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TransportPreferences>;
 
 export type PreferencesStorageAccountAccessTierPreferencesItem = "Archive";
-export const PreferencesStorageAccountAccessTierPreferencesItem =
-  /*@__PURE__*/ S.String;
+export const PreferencesStorageAccountAccessTierPreferencesItem = S.String;
 
 /** Preferences related to the Access Tier of storage accounts. */
 export type PreferencesStorageAccountAccessTierPreferencesList =
@@ -1232,7 +1230,7 @@ export type CustomerResolutionCode =
   | "Resume"
   | "Restart"
   | "ReachOutToOperation";
-export const CustomerResolutionCode = /*@__PURE__*/ S.String;
+export const CustomerResolutionCode = S.String;
 
 /** Available actions on the job. */
 export type JobDetailsActionsList = Array<CustomerResolutionCode>;
@@ -1263,7 +1261,7 @@ export const LastMitigationActionOnJob = /*@__PURE__*/ S.suspend(() =>
 export type DatacenterAddressType =
   | "DatacenterAddressLocation"
   | "DatacenterAddressInstruction";
-export const DatacenterAddressType = /*@__PURE__*/ S.String;
+export const DatacenterAddressType = S.String;
 
 /** List of supported carriers for return shipment. */
 export type DatacenterAddressResponseSupportedCarriersForReturnShipmentList =
@@ -1364,7 +1362,7 @@ export type DataCenterCode =
   | "AMS25"
   | "CPQ21"
   | "OSA23";
-export const DataCenterCode = /*@__PURE__*/ S.String;
+export const DataCenterCode = S.String;
 
 /** Job details. */
 export interface JobDetails {
@@ -1436,7 +1434,7 @@ export const JobDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** Delivery type of Job. */
 export type JobPropertiesDeliveryType = "NonScheduled" | "Scheduled";
-export const JobPropertiesDeliveryType = /*@__PURE__*/ S.String;
+export const JobPropertiesDeliveryType = S.String;
 
 /** Job Properties */
 export interface JobProperties {
@@ -2195,7 +2193,7 @@ export type SkuDisabledReason =
   | "Feature"
   | "OfferType"
   | "NoSubscriptionInfo";
-export const SkuDisabledReason = /*@__PURE__*/ S.String;
+export const SkuDisabledReason = S.String;
 
 /** List of all the Countries in the SKU specific commerce boundary */
 export type SkuPropertiesCountriesWithinCommerceBoundaryList = Array<string>;
@@ -2723,8 +2721,7 @@ export const UpdateJobResponse = /*@__PURE__*/ S.suspend(() =>
 /** Identify the nature of validation. */
 export type ValidateServiceInputsRequestValidationCategory =
   "JobCreationValidation";
-export const ValidateServiceInputsRequestValidationCategory =
-  /*@__PURE__*/ S.String;
+export const ValidateServiceInputsRequestValidationCategory = S.String;
 
 /** Identifies the type of validation request. */
 export type ValidationInputDiscriminator =
@@ -2734,7 +2731,7 @@ export type ValidationInputDiscriminator =
   | "ValidateCreateOrderLimit"
   | "ValidateSkuAvailability"
   | "ValidateDataTransferDetails";
-export const ValidationInputDiscriminator = /*@__PURE__*/ S.String;
+export const ValidationInputDiscriminator = S.String;
 
 /** Minimum fields that must be present in any type of validation request. */
 export interface ValidationInputRequest {
@@ -2793,7 +2790,7 @@ export type OverallValidationStatus =
   | "AllValidToProceed"
   | "InputsRevisitRequired"
   | "CertainInputValidationsSkipped";
-export const OverallValidationStatus = /*@__PURE__*/ S.String;
+export const OverallValidationStatus = S.String;
 
 /** Minimum properties that should be present in each individual validation response. */
 export interface ValidationInputResponse {
@@ -2854,7 +2851,7 @@ export const ValidationResponse = /*@__PURE__*/ S.suspend(() =>
 export type ValidateServiceInputsByResourceGroupRequestValidationCategory =
   "JobCreationValidation";
 export const ValidateServiceInputsByResourceGroupRequestValidationCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of request details contain validationType and its request as key and value respectively. */
 export type ValidateServiceInputsByResourceGroupRequestIndividualRequestDetailsList =

@@ -126,15 +126,14 @@ export type ClaimDomainOwnershipResponseDomainEchMode =
   | "auto"
   | "disabled"
   | "enabled";
-export const ClaimDomainOwnershipResponseDomainEchMode = /*@__PURE__*/ S.String;
+export const ClaimDomainOwnershipResponseDomainEchMode = S.String;
 
 /** The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available. */
 export type ClaimDomainOwnershipResponseDomainServiceType =
   | "external"
   | "na"
   | "zeit.world";
-export const ClaimDomainOwnershipResponseDomainServiceType =
-  /*@__PURE__*/ S.String;
+export const ClaimDomainOwnershipResponseDomainServiceType = S.String;
 
 export interface ClaimDomainOwnershipResponseDomain {
   /** Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel. */
@@ -260,16 +259,14 @@ export type CreateOrTransferDomainResponseDomainEchMode =
   | "auto"
   | "disabled"
   | "enabled";
-export const CreateOrTransferDomainResponseDomainEchMode =
-  /*@__PURE__*/ S.String;
+export const CreateOrTransferDomainResponseDomainEchMode = S.String;
 
 /** The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available. */
 export type CreateOrTransferDomainResponseDomainServiceType =
   | "external"
   | "na"
   | "zeit.world";
-export const CreateOrTransferDomainResponseDomainServiceType =
-  /*@__PURE__*/ S.String;
+export const CreateOrTransferDomainResponseDomainServiceType = S.String;
 
 export interface CreateOrTransferDomainResponseDomain {
   /** Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel. */
@@ -419,14 +416,14 @@ export const GetDomainResponseDomainCreator =
 
 /** Whether the domain is enrolled in Encrypted Client Hello. `auto` leaves the decision to Vercel, `enabled` always enrolls, and `disabled` never enrolls and opts out of automatic enrollment. */
 export type GetDomainResponseDomainEchMode = "auto" | "disabled" | "enabled";
-export const GetDomainResponseDomainEchMode = /*@__PURE__*/ S.String;
+export const GetDomainResponseDomainEchMode = S.String;
 
 /** The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available. */
 export type GetDomainResponseDomainServiceType =
   | "external"
   | "na"
   | "zeit.world";
-export const GetDomainResponseDomainServiceType = /*@__PURE__*/ S.String;
+export const GetDomainResponseDomainServiceType = S.String;
 
 export interface GetDomainResponseDomain {
   suffix: boolean;
@@ -501,7 +498,7 @@ export const GetDomainResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** When true, the response will only include the nameservers assigned directly to the specified domain. When false and there are no nameservers assigned directly to the specified domain, the response will include the nameservers of the domain's parent zone. */
 export type GetDomainConfigRequestStrict = "true" | "false";
-export const GetDomainConfigRequestStrict = /*@__PURE__*/ S.String;
+export const GetDomainConfigRequestStrict = S.String;
 
 export interface GetDomainConfigRequest {
   /** The name of the domain. */
@@ -535,14 +532,13 @@ export type GetDomainConfigResponseConfiguredBy =
   | "CNAME"
   | "dns-01"
   | "http";
-export const GetDomainConfigResponseConfiguredBy = /*@__PURE__*/ S.String;
+export const GetDomainConfigResponseConfiguredBy = S.String;
 
 /** Which challenge types the domain can use for issuing certs. */
 export type GetDomainConfigResponseAcceptedChallengesItem =
   | "dns-01"
   | "http-01";
-export const GetDomainConfigResponseAcceptedChallengesItem =
-  /*@__PURE__*/ S.String;
+export const GetDomainConfigResponseAcceptedChallengesItem = S.String;
 
 /** Which challenge types the domain can use for issuing certs. */
 export type GetDomainConfigResponseAcceptedChallengesList =
@@ -666,7 +662,7 @@ export type GetDomainProjectDomainsResponseProjectDomainsItemRedirectStatusCode 
   | 307
   | 308;
 export const GetDomainProjectDomainsResponseProjectDomainsItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
 export interface GetDomainProjectDomainsResponseProjectDomainsItemVerificationItem {
@@ -830,14 +826,14 @@ export type GetDomainsResponseDomainsItemEchMode =
   | "auto"
   | "disabled"
   | "enabled";
-export const GetDomainsResponseDomainsItemEchMode = /*@__PURE__*/ S.String;
+export const GetDomainsResponseDomainsItemEchMode = S.String;
 
 /** The type of service the domain is handled by. `external` if the DNS is externally handled, `zeit.world` if handled with Vercel, or `na` if the service is not available. */
 export type GetDomainsResponseDomainsItemServiceType =
   | "external"
   | "na"
   | "zeit.world";
-export const GetDomainsResponseDomainsItemServiceType = /*@__PURE__*/ S.String;
+export const GetDomainsResponseDomainsItemServiceType = S.String;
 
 export interface GetDomainsResponseDomainsItem {
   /** Timestamp in milliseconds at which the domain is set to expire. null if not bought with Vercel. */
@@ -964,7 +960,7 @@ export const UpdateDomainRequestBodyCase0CustomNameserversList =
 
 /** Encrypted Client Hello enrollment. 'auto' leaves it to Vercel, 'disabled' never enrolls and opts out of automatic enrollment. */
 export type UpdateDomainRequestBodyCase0EchMode = "auto" | "disabled";
-export const UpdateDomainRequestBodyCase0EchMode = /*@__PURE__*/ S.String;
+export const UpdateDomainRequestBodyCase0EchMode = S.String;
 
 /** update */
 export interface UpdateDomainRequestBodyCase0 {
@@ -1011,7 +1007,7 @@ export type UpdateDomainRequestBody =
   | UpdateDomainRequestBodyCase0
   | UpdateDomainRequestBodyCase1;
 export const UpdateDomainRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDomainRequestBody>;
+  S.Unknown as any as S.Schema<UpdateDomainRequestBody>;
 
 export interface UpdateDomainRequest {
   domain: string;
@@ -1066,7 +1062,7 @@ export type UpdateDomainResponseBodyCase2EchMode =
   | "auto"
   | "disabled"
   | "enabled";
-export const UpdateDomainResponseBodyCase2EchMode = /*@__PURE__*/ S.String;
+export const UpdateDomainResponseBodyCase2EchMode = S.String;
 
 export interface UpdateDomainResponseBodyCase2 {
   renew?: boolean;
@@ -1092,7 +1088,7 @@ export type UpdateDomainResponseBody =
   | UpdateDomainResponseBodyCase1
   | UpdateDomainResponseBodyCase2;
 export const UpdateDomainResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDomainResponseBody>;
+  S.Unknown as any as S.Schema<UpdateDomainResponseBody>;
 
 export type UpdateDomainResponse = UpdateDomainResponseBody;
 export const UpdateDomainResponse = /*@__PURE__*/ S.suspend(() =>

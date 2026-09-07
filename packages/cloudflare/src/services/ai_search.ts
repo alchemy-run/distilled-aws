@@ -280,7 +280,7 @@ export class WebCrawlerDomainNotOwned
 export type InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase0Type =
   "text";
 export const InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase0 {
   text: string;
@@ -313,7 +313,7 @@ export const InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1Ima
 export type InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1Type =
   "image_url";
 export const InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -363,8 +363,7 @@ export type InstancesChatCompletionsRequestMessagesItemRole =
   | "user"
   | "assistant"
   | "tool";
-export const InstancesChatCompletionsRequestMessagesItemRole =
-  /*@__PURE__*/ S.String;
+export const InstancesChatCompletionsRequestMessagesItemRole = S.String;
 
 export interface InstancesChatCompletionsRequestMessagesItem {
   content?: InstancesChatCompletionsRequestMessagesItemContent | null;
@@ -395,7 +394,7 @@ export type InstancesChatCompletionsRequestAiSearchOptionsCacheCacheThreshold =
   | "flexible_friend"
   | "anything_goes";
 export const InstancesChatCompletionsRequestAiSearchOptionsCacheCacheThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsRequestAiSearchOptionsCache {
   cacheThreshold?:
@@ -449,7 +448,7 @@ export type InstancesChatCompletionsRequestAiSearchOptionsQueryRewriteModel =
   | "openai/gpt-5-nano"
   | "";
 export const InstancesChatCompletionsRequestAiSearchOptionsQueryRewriteModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsRequestAiSearchOptionsQueryRewrite {
   enabled?: boolean;
@@ -475,7 +474,7 @@ export type InstancesChatCompletionsRequestAiSearchOptionsRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
 export const InstancesChatCompletionsRequestAiSearchOptionsRerankingModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsRequestAiSearchOptionsReranking {
   enabled?: boolean;
@@ -503,7 +502,7 @@ export type InstancesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItemDi
   | "exists"
   | "not_exists";
 export const InstancesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -545,20 +544,20 @@ export type InstancesChatCompletionsRequestAiSearchOptionsRetrievalFusionMethod 
   | "max"
   | "rrf";
 export const InstancesChatCompletionsRequestAiSearchOptionsRetrievalFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstancesChatCompletionsRequestAiSearchOptionsRetrievalKeywordMatchMode =
   | "and"
   | "or";
 export const InstancesChatCompletionsRequestAiSearchOptionsRetrievalKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstancesChatCompletionsRequestAiSearchOptionsRetrievalRetrievalType =
   | "vector"
   | "keyword"
   | "hybrid";
 export const InstancesChatCompletionsRequestAiSearchOptionsRetrievalRetrievalType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsRequestAiSearchOptionsRetrieval {
   /** Metadata fields to boost search results by. Overrides the instance-level boost_by config. Direction defaults to 'asc' for numeric/datetime fields, 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -671,7 +670,7 @@ export type InstancesChatCompletionsRequestModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesChatCompletionsRequestModel = /*@__PURE__*/ S.String;
+export const InstancesChatCompletionsRequestModel = S.String;
 
 export interface ChatCompletionsInstanceRequest {
   accountId: string;
@@ -710,7 +709,7 @@ export const ChatCompletionsInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 export type InstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0Type =
   "text";
 export const InstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0 {
   text: string;
@@ -735,7 +734,7 @@ export const InstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemC
 export type InstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1Type =
   "image_url";
 export const InstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -785,8 +784,7 @@ export type InstancesChatCompletionsResponseChoicesItemMessageRole =
   | "user"
   | "assistant"
   | "tool";
-export const InstancesChatCompletionsResponseChoicesItemMessageRole =
-  /*@__PURE__*/ S.String;
+export const InstancesChatCompletionsResponseChoicesItemMessageRole = S.String;
 
 export interface InstancesChatCompletionsResponseChoicesItemMessage {
   content: InstancesChatCompletionsResponseChoicesItemMessageContent;
@@ -854,7 +852,7 @@ export type InstancesChatCompletionsResponseChunksItemScoringDetailsFusionMethod
   | "rrf"
   | "max";
 export const InstancesChatCompletionsResponseChunksItemScoringDetailsFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesChatCompletionsResponseChunksItemScoringDetails {
   fusionMethod?: InstancesChatCompletionsResponseChunksItemScoringDetailsFusionMethod | null;
@@ -953,7 +951,7 @@ export type NamespacesChatCompletionsRequestAiSearchOptionsCacheCacheThreshold =
   | "flexible_friend"
   | "anything_goes";
 export const NamespacesChatCompletionsRequestAiSearchOptionsCacheCacheThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsRequestAiSearchOptionsCache {
   cacheThreshold?:
@@ -1007,7 +1005,7 @@ export type NamespacesChatCompletionsRequestAiSearchOptionsQueryRewriteModel =
   | "openai/gpt-5-nano"
   | "";
 export const NamespacesChatCompletionsRequestAiSearchOptionsQueryRewriteModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsRequestAiSearchOptionsQueryRewrite {
   enabled?: boolean;
@@ -1033,7 +1031,7 @@ export type NamespacesChatCompletionsRequestAiSearchOptionsRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
 export const NamespacesChatCompletionsRequestAiSearchOptionsRerankingModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsRequestAiSearchOptionsReranking {
   enabled?: boolean;
@@ -1061,7 +1059,7 @@ export type NamespacesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItemD
   | "exists"
   | "not_exists";
 export const NamespacesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -1103,20 +1101,20 @@ export type NamespacesChatCompletionsRequestAiSearchOptionsRetrievalFusionMethod
   | "max"
   | "rrf";
 export const NamespacesChatCompletionsRequestAiSearchOptionsRetrievalFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesChatCompletionsRequestAiSearchOptionsRetrievalKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesChatCompletionsRequestAiSearchOptionsRetrievalKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesChatCompletionsRequestAiSearchOptionsRetrievalRetrievalType =
   | "vector"
   | "keyword"
   | "hybrid";
 export const NamespacesChatCompletionsRequestAiSearchOptionsRetrievalRetrievalType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsRequestAiSearchOptionsRetrieval {
   /** Metadata fields to boost search results by. Overrides the instance-level boost_by config. Direction defaults to 'asc' for numeric/datetime fields, 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -1206,7 +1204,7 @@ export const NamespacesChatCompletionsRequestAiSearchOptions =
 export type NamespacesChatCompletionsRequestMessagesItemContentCase1ItemCase0Type =
   "text";
 export const NamespacesChatCompletionsRequestMessagesItemContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsRequestMessagesItemContentCase1ItemCase0 {
   text: string;
@@ -1231,7 +1229,7 @@ export const NamespacesChatCompletionsRequestMessagesItemContentCase1ItemCase1Im
 export type NamespacesChatCompletionsRequestMessagesItemContentCase1ItemCase1Type =
   "image_url";
 export const NamespacesChatCompletionsRequestMessagesItemContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsRequestMessagesItemContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -1281,8 +1279,7 @@ export type NamespacesChatCompletionsRequestMessagesItemRole =
   | "user"
   | "assistant"
   | "tool";
-export const NamespacesChatCompletionsRequestMessagesItemRole =
-  /*@__PURE__*/ S.String;
+export const NamespacesChatCompletionsRequestMessagesItemRole = S.String;
 
 export interface NamespacesChatCompletionsRequestMessagesItem {
   content?: NamespacesChatCompletionsRequestMessagesItemContent | null;
@@ -1338,7 +1335,7 @@ export type NamespacesChatCompletionsRequestModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesChatCompletionsRequestModel = /*@__PURE__*/ S.String;
+export const NamespacesChatCompletionsRequestModel = S.String;
 
 export interface ChatCompletionsNamespaceRequest {
   accountId: string;
@@ -1374,7 +1371,7 @@ export const ChatCompletionsNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 export type NamespacesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0Type =
   "text";
 export const NamespacesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0 {
   text: string;
@@ -1399,7 +1396,7 @@ export const NamespacesChatCompletionsResponseChoicesItemMessageContentCase1Item
 export type NamespacesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1Type =
   "image_url";
 export const NamespacesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -1449,8 +1446,7 @@ export type NamespacesChatCompletionsResponseChoicesItemMessageRole =
   | "user"
   | "assistant"
   | "tool";
-export const NamespacesChatCompletionsResponseChoicesItemMessageRole =
-  /*@__PURE__*/ S.String;
+export const NamespacesChatCompletionsResponseChoicesItemMessageRole = S.String;
 
 export interface NamespacesChatCompletionsResponseChoicesItemMessage {
   content: NamespacesChatCompletionsResponseChoicesItemMessageContent;
@@ -1518,7 +1514,7 @@ export type NamespacesChatCompletionsResponseChunksItemScoringDetailsFusionMetho
   | "rrf"
   | "max";
 export const NamespacesChatCompletionsResponseChunksItemScoringDetailsFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesChatCompletionsResponseChunksItemScoringDetails {
   fusionMethod?: NamespacesChatCompletionsResponseChunksItemScoringDetailsFusionMethod | null;
@@ -1610,7 +1606,7 @@ export const ChatCompletionsNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
 export type NamespacesInstancesChatCompletionsRequestMessagesItemContentCase1ItemCase0Type =
   "text";
 export const NamespacesInstancesChatCompletionsRequestMessagesItemContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestMessagesItemContentCase1ItemCase0 {
   text: string;
@@ -1635,7 +1631,7 @@ export const NamespacesInstancesChatCompletionsRequestMessagesItemContentCase1It
 export type NamespacesInstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1Type =
   "image_url";
 export const NamespacesInstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -1686,7 +1682,7 @@ export type NamespacesInstancesChatCompletionsRequestMessagesItemRole =
   | "assistant"
   | "tool";
 export const NamespacesInstancesChatCompletionsRequestMessagesItemRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestMessagesItem {
   content?: NamespacesInstancesChatCompletionsRequestMessagesItemContent | null;
@@ -1719,7 +1715,7 @@ export type NamespacesInstancesChatCompletionsRequestAiSearchOptionsCacheCacheTh
   | "flexible_friend"
   | "anything_goes";
 export const NamespacesInstancesChatCompletionsRequestAiSearchOptionsCacheCacheThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestAiSearchOptionsCache {
   cacheThreshold?:
@@ -1773,7 +1769,7 @@ export type NamespacesInstancesChatCompletionsRequestAiSearchOptionsQueryRewrite
   | "openai/gpt-5-nano"
   | "";
 export const NamespacesInstancesChatCompletionsRequestAiSearchOptionsQueryRewriteModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestAiSearchOptionsQueryRewrite {
   enabled?: boolean;
@@ -1800,7 +1796,7 @@ export type NamespacesInstancesChatCompletionsRequestAiSearchOptionsRerankingMod
   | "@cf/baai/bge-reranker-base"
   | "";
 export const NamespacesInstancesChatCompletionsRequestAiSearchOptionsRerankingModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestAiSearchOptionsReranking {
   enabled?: boolean;
@@ -1829,7 +1825,7 @@ export type NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalBoo
   | "exists"
   | "not_exists";
 export const NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -1871,20 +1867,20 @@ export type NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalFus
   | "max"
   | "rrf";
 export const NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalRetrievalType =
   | "vector"
   | "keyword"
   | "hybrid";
 export const NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrievalRetrievalType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsRequestAiSearchOptionsRetrieval {
   /** Metadata fields to boost search results by. Overrides the instance-level boost_by config. Direction defaults to 'asc' for numeric/datetime fields, 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -2000,8 +1996,7 @@ export type NamespacesInstancesChatCompletionsRequestModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesChatCompletionsRequestModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesChatCompletionsRequestModel = S.String;
 
 export interface ChatCompletionsNamespaceInstanceRequest {
   accountId: string;
@@ -2043,7 +2038,7 @@ export const ChatCompletionsNamespaceInstanceRequest = /*@__PURE__*/ S.suspend(
 export type NamespacesInstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0Type =
   "text";
 export const NamespacesInstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase0 {
   text: string;
@@ -2068,7 +2063,7 @@ export const NamespacesInstancesChatCompletionsResponseChoicesItemMessageContent
 export type NamespacesInstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1Type =
   "image_url";
 export const NamespacesInstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsResponseChoicesItemMessageContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -2119,7 +2114,7 @@ export type NamespacesInstancesChatCompletionsResponseChoicesItemMessageRole =
   | "assistant"
   | "tool";
 export const NamespacesInstancesChatCompletionsResponseChoicesItemMessageRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsResponseChoicesItemMessage {
   content: NamespacesInstancesChatCompletionsResponseChoicesItemMessageContent;
@@ -2189,7 +2184,7 @@ export type NamespacesInstancesChatCompletionsResponseChunksItemScoringDetailsFu
   | "rrf"
   | "max";
 export const NamespacesInstancesChatCompletionsResponseChunksItemScoringDetailsFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesChatCompletionsResponseChunksItemScoringDetails {
   fusionMethod?: NamespacesInstancesChatCompletionsResponseChunksItemScoringDetailsFusionMethod | null;
@@ -2403,14 +2398,14 @@ export type InstancesCreateRequestAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesCreateRequestAiSearchModel = /*@__PURE__*/ S.String;
+export const InstancesCreateRequestAiSearchModel = S.String;
 
 export type InstancesCreateRequestCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const InstancesCreateRequestCacheThreshold = /*@__PURE__*/ S.String;
+export const InstancesCreateRequestCacheThreshold = S.String;
 
 export type InstancesCreateRequestCacheTtl =
   | 600
@@ -2423,15 +2418,14 @@ export type InstancesCreateRequestCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const InstancesCreateRequestCacheTtl = /*@__PURE__*/ S.Number;
+export const InstancesCreateRequestCacheTtl = S.Number;
 
 export type InstancesCreateRequestCustomMetadataItemDataType =
   | "text"
   | "number"
   | "boolean"
   | "datetime";
-export const InstancesCreateRequestCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateRequestCustomMetadataItemDataType = S.String;
 
 export interface InstancesCreateRequestCustomMetadataItem {
   dataType: InstancesCreateRequestCustomMetadataItemDataType | (string & {});
@@ -2467,10 +2461,10 @@ export type InstancesCreateRequestEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const InstancesCreateRequestEmbeddingModel = /*@__PURE__*/ S.String;
+export const InstancesCreateRequestEmbeddingModel = S.String;
 
 export type InstancesCreateRequestFusionMethod = "max" | "rrf";
-export const InstancesCreateRequestFusionMethod = /*@__PURE__*/ S.String;
+export const InstancesCreateRequestFusionMethod = S.String;
 
 export interface InstancesCreateRequestIndexMethod {
   /** Enable keyword (BM25) storage backend. */
@@ -2490,8 +2484,7 @@ export const InstancesCreateRequestIndexMethod = /*@__PURE__*/ S.suspend(() =>
 export type InstancesCreateRequestIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
-export const InstancesCreateRequestIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateRequestIndexingOptionsKeywordTokenizer = S.String;
 
 export interface InstancesCreateRequestIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -2574,7 +2567,7 @@ export type InstancesCreateRequestPublicEndpointParamsRateLimitTechnique =
   | "fixed"
   | "sliding";
 export const InstancesCreateRequestPublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesCreateRequestPublicEndpointParamsRateLimit {
   periodMs?: number;
@@ -2657,7 +2650,7 @@ export const InstancesCreateRequestPublicEndpointParams =
 export type InstancesCreateRequestRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesCreateRequestRerankingModel = /*@__PURE__*/ S.String;
+export const InstancesCreateRequestRerankingModel = S.String;
 
 export type InstancesCreateRequestRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -2665,7 +2658,7 @@ export type InstancesCreateRequestRetrievalOptionsBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesCreateRequestRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesCreateRequestRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -2697,8 +2690,7 @@ export const InstancesCreateRequestRetrievalOptionsBoostByList =
 export type InstancesCreateRequestRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
-export const InstancesCreateRequestRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateRequestRetrievalOptionsKeywordMatchMode = S.String;
 
 export interface InstancesCreateRequestRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -2757,7 +2749,7 @@ export type InstancesCreateRequestRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesCreateRequestRewriteModel = /*@__PURE__*/ S.String;
+export const InstancesCreateRequestRewriteModel = S.String;
 
 export type InstancesCreateRequestSourceParamsExcludeItemsList = Array<string>;
 export const InstancesCreateRequestSourceParamsExcludeItemsList =
@@ -2850,11 +2842,10 @@ export const InstancesCreateRequestSourceParamsWebCrawlerParseOptions =
 export type InstancesCreateRequestSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
-export const InstancesCreateRequestSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateRequestSourceParamsWebCrawlerParseType = S.String;
 
 export type WebCrawlerCrawlOptionsSource = "all" | "sitemaps" | "links";
-export const WebCrawlerCrawlOptionsSource = /*@__PURE__*/ S.String;
+export const WebCrawlerCrawlOptionsSource = S.String;
 
 export interface WebCrawlerCrawlOptions {
   /** Maximum crawl depth from the seed URL. */
@@ -2950,10 +2941,10 @@ export type InstancesCreateRequestSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const InstancesCreateRequestSyncInterval = /*@__PURE__*/ S.Number;
+export const InstancesCreateRequestSyncInterval = S.Number;
 
 export type InstancesCreateRequestType = "r2" | "web-crawler";
-export const InstancesCreateRequestType = /*@__PURE__*/ S.String;
+export const InstancesCreateRequestType = S.String;
 
 export interface CreateInstanceRequest {
   accountId: string;
@@ -3100,14 +3091,14 @@ export type InstancesCreateResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesCreateResponseAiSearchModel = /*@__PURE__*/ S.String;
+export const InstancesCreateResponseAiSearchModel = S.String;
 
 export type InstancesCreateResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const InstancesCreateResponseCacheThreshold = /*@__PURE__*/ S.String;
+export const InstancesCreateResponseCacheThreshold = S.String;
 
 export type InstancesCreateResponseCacheTtl =
   | 600
@@ -3120,15 +3111,14 @@ export type InstancesCreateResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const InstancesCreateResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const InstancesCreateResponseCacheTtl = S.Number;
 
 export type InstancesCreateResponseCustomMetadataItemDataType =
   | "text"
   | "number"
   | "boolean"
   | "datetime";
-export const InstancesCreateResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateResponseCustomMetadataItemDataType = S.String;
 
 export interface InstancesCreateResponseCustomMetadataItem {
   dataType: InstancesCreateResponseCustomMetadataItemDataType;
@@ -3164,10 +3154,10 @@ export type InstancesCreateResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const InstancesCreateResponseEmbeddingModel = /*@__PURE__*/ S.String;
+export const InstancesCreateResponseEmbeddingModel = S.String;
 
 export type InstancesCreateResponseFusionMethod = "max" | "rrf";
-export const InstancesCreateResponseFusionMethod = /*@__PURE__*/ S.String;
+export const InstancesCreateResponseFusionMethod = S.String;
 
 export type InstancesCreateResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -3177,8 +3167,7 @@ export const InstancesCreateResponseIndexMethod =
 export type InstancesCreateResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
-export const InstancesCreateResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateResponseIndexingOptionsKeywordTokenizer = S.String;
 
 export interface InstancesCreateResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -3259,7 +3248,7 @@ export type InstancesCreateResponsePublicEndpointParamsRateLimitTechnique =
   | "fixed"
   | "sliding";
 export const InstancesCreateResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesCreateResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -3340,7 +3329,7 @@ export const InstancesCreateResponsePublicEndpointParams =
 export type InstancesCreateResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesCreateResponseRerankingModel = /*@__PURE__*/ S.String;
+export const InstancesCreateResponseRerankingModel = S.String;
 
 export type InstancesCreateResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -3348,7 +3337,7 @@ export type InstancesCreateResponseRetrievalOptionsBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesCreateResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesCreateResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -3378,8 +3367,7 @@ export const InstancesCreateResponseRetrievalOptionsBoostByList =
 export type InstancesCreateResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
-export const InstancesCreateResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateResponseRetrievalOptionsKeywordMatchMode = S.String;
 
 export interface InstancesCreateResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -3436,7 +3424,7 @@ export type InstancesCreateResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesCreateResponseRewriteModel = /*@__PURE__*/ S.String;
+export const InstancesCreateResponseRewriteModel = S.String;
 
 export type InstancesCreateResponseSourceParamsExcludeItemsList = Array<string>;
 export const InstancesCreateResponseSourceParamsExcludeItemsList =
@@ -3519,8 +3507,7 @@ export const InstancesCreateResponseSourceParamsWebCrawlerParseOptions =
 export type InstancesCreateResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
-export const InstancesCreateResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+export const InstancesCreateResponseSourceParamsWebCrawlerParseType = S.String;
 
 export interface InstancesCreateResponseSourceParamsWebCrawler {
   parseOptions?: InstancesCreateResponseSourceParamsWebCrawlerParseOptions | null;
@@ -3593,10 +3580,10 @@ export type InstancesCreateResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const InstancesCreateResponseSyncInterval = /*@__PURE__*/ S.Number;
+export const InstancesCreateResponseSyncInterval = S.Number;
 
 export type InstancesCreateResponseType = "r2" | "web-crawler";
-export const InstancesCreateResponseType = /*@__PURE__*/ S.String;
+export const InstancesCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateInstanceResponse {
@@ -3778,7 +3765,7 @@ export const CreateInstanceJobRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInstanceJobRequest>;
 
 export type InstancesJobsCreateResponseSource = "user" | "schedule";
-export const InstancesJobsCreateResponseSource = /*@__PURE__*/ S.String;
+export const InstancesJobsCreateResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateInstanceJobResponse {
@@ -3876,16 +3863,14 @@ export type NamespacesInstancesCreateRequestAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesCreateRequestAiSearchModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateRequestAiSearchModel = S.String;
 
 export type NamespacesInstancesCreateRequestCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const NamespacesInstancesCreateRequestCacheThreshold =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateRequestCacheThreshold = S.String;
 
 export type NamespacesInstancesCreateRequestCacheTtl =
   | 600
@@ -3898,7 +3883,7 @@ export type NamespacesInstancesCreateRequestCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const NamespacesInstancesCreateRequestCacheTtl = /*@__PURE__*/ S.Number;
+export const NamespacesInstancesCreateRequestCacheTtl = S.Number;
 
 export type NamespacesInstancesCreateRequestCustomMetadataItemDataType =
   | "text"
@@ -3906,7 +3891,7 @@ export type NamespacesInstancesCreateRequestCustomMetadataItemDataType =
   | "boolean"
   | "datetime";
 export const NamespacesInstancesCreateRequestCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateRequestCustomMetadataItem {
   dataType:
@@ -3945,12 +3930,10 @@ export type NamespacesInstancesCreateRequestEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const NamespacesInstancesCreateRequestEmbeddingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateRequestEmbeddingModel = S.String;
 
 export type NamespacesInstancesCreateRequestFusionMethod = "max" | "rrf";
-export const NamespacesInstancesCreateRequestFusionMethod =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateRequestFusionMethod = S.String;
 
 export type NamespacesInstancesCreateRequestIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -3961,7 +3944,7 @@ export type NamespacesInstancesCreateRequestIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
 export const NamespacesInstancesCreateRequestIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateRequestIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -4015,7 +3998,7 @@ export type NamespacesInstancesCreateRequestPublicEndpointParamsRateLimitTechniq
   | "fixed"
   | "sliding";
 export const NamespacesInstancesCreateRequestPublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateRequestPublicEndpointParamsRateLimit {
   periodMs?: number;
@@ -4090,8 +4073,7 @@ export const NamespacesInstancesCreateRequestPublicEndpointParams =
 export type NamespacesInstancesCreateRequestRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesInstancesCreateRequestRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateRequestRerankingModel = S.String;
 
 export type NamespacesInstancesCreateRequestRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -4099,7 +4081,7 @@ export type NamespacesInstancesCreateRequestRetrievalOptionsBoostByItemDirection
   | "exists"
   | "not_exists";
 export const NamespacesInstancesCreateRequestRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateRequestRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -4132,7 +4114,7 @@ export type NamespacesInstancesCreateRequestRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesCreateRequestRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateRequestRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -4191,8 +4173,7 @@ export type NamespacesInstancesCreateRequestRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesCreateRequestRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateRequestRewriteModel = S.String;
 
 export type NamespacesInstancesCreateRequestSourceParamsExcludeItemsList =
   Array<string>;
@@ -4277,7 +4258,7 @@ export type NamespacesInstancesCreateRequestSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
 export const NamespacesInstancesCreateRequestSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateRequestSourceParamsWebCrawler {
   parseOptions?: NamespacesInstancesCreateRequestSourceParamsWebCrawlerParseOptions;
@@ -4351,11 +4332,10 @@ export type NamespacesInstancesCreateRequestSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const NamespacesInstancesCreateRequestSyncInterval =
-  /*@__PURE__*/ S.Number;
+export const NamespacesInstancesCreateRequestSyncInterval = S.Number;
 
 export type NamespacesInstancesCreateRequestType = "r2" | "web-crawler";
-export const NamespacesInstancesCreateRequestType = /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateRequestType = S.String;
 
 export interface CreateNamespaceInstanceRequest {
   accountId: string;
@@ -4532,16 +4512,14 @@ export type NamespacesInstancesCreateResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesCreateResponseAiSearchModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateResponseAiSearchModel = S.String;
 
 export type NamespacesInstancesCreateResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const NamespacesInstancesCreateResponseCacheThreshold =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateResponseCacheThreshold = S.String;
 
 export type NamespacesInstancesCreateResponseCacheTtl =
   | 600
@@ -4554,7 +4532,7 @@ export type NamespacesInstancesCreateResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const NamespacesInstancesCreateResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const NamespacesInstancesCreateResponseCacheTtl = S.Number;
 
 export type NamespacesInstancesCreateResponseCustomMetadataItemDataType =
   | "text"
@@ -4562,7 +4540,7 @@ export type NamespacesInstancesCreateResponseCustomMetadataItemDataType =
   | "boolean"
   | "datetime";
 export const NamespacesInstancesCreateResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateResponseCustomMetadataItem {
   dataType: NamespacesInstancesCreateResponseCustomMetadataItemDataType;
@@ -4600,12 +4578,10 @@ export type NamespacesInstancesCreateResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const NamespacesInstancesCreateResponseEmbeddingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateResponseEmbeddingModel = S.String;
 
 export type NamespacesInstancesCreateResponseFusionMethod = "max" | "rrf";
-export const NamespacesInstancesCreateResponseFusionMethod =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateResponseFusionMethod = S.String;
 
 export type NamespacesInstancesCreateResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -4616,7 +4592,7 @@ export type NamespacesInstancesCreateResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
 export const NamespacesInstancesCreateResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -4668,7 +4644,7 @@ export type NamespacesInstancesCreateResponsePublicEndpointParamsRateLimitTechni
   | "fixed"
   | "sliding";
 export const NamespacesInstancesCreateResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -4744,8 +4720,7 @@ export const NamespacesInstancesCreateResponsePublicEndpointParams =
 export type NamespacesInstancesCreateResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesInstancesCreateResponseRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateResponseRerankingModel = S.String;
 
 export type NamespacesInstancesCreateResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -4753,7 +4728,7 @@ export type NamespacesInstancesCreateResponseRetrievalOptionsBoostByItemDirectio
   | "exists"
   | "not_exists";
 export const NamespacesInstancesCreateResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -4786,7 +4761,7 @@ export type NamespacesInstancesCreateResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesCreateResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -4843,8 +4818,7 @@ export type NamespacesInstancesCreateResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesCreateResponseRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateResponseRewriteModel = S.String;
 
 export type NamespacesInstancesCreateResponseSourceParamsExcludeItemsList =
   Array<string>;
@@ -4931,7 +4905,7 @@ export type NamespacesInstancesCreateResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
 export const NamespacesInstancesCreateResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesCreateResponseSourceParamsWebCrawler {
   parseOptions?: NamespacesInstancesCreateResponseSourceParamsWebCrawlerParseOptions | null;
@@ -5005,11 +4979,10 @@ export type NamespacesInstancesCreateResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const NamespacesInstancesCreateResponseSyncInterval =
-  /*@__PURE__*/ S.Number;
+export const NamespacesInstancesCreateResponseSyncInterval = S.Number;
 
 export type NamespacesInstancesCreateResponseType = "r2" | "web-crawler";
-export const NamespacesInstancesCreateResponseType = /*@__PURE__*/ S.String;
+export const NamespacesInstancesCreateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateNamespaceInstanceResponse {
@@ -5195,8 +5168,7 @@ export const CreateNamespaceInstanceJobRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNamespaceInstanceJobRequest>;
 
 export type NamespacesInstancesJobsCreateResponseSource = "user" | "schedule";
-export const NamespacesInstancesJobsCreateResponseSource =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesJobsCreateResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateNamespaceInstanceJobResponse {
@@ -5223,8 +5195,7 @@ export const CreateNamespaceInstanceJobResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNamespaceInstanceJobResponse>;
 
 export type NamespacesInstancesItemsCreateOrUpdateRequestNextAction = "INDEX";
-export const NamespacesInstancesItemsCreateOrUpdateRequestNextAction =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsCreateOrUpdateRequestNextAction = S.String;
 
 export interface CreateOrUpdateNamespaceInstanceItemRequest {
   accountId: string;
@@ -5269,7 +5240,7 @@ export type NamespacesInstancesItemsCreateOrUpdateResponseNextAction =
   | "INDEX"
   | "DELETE";
 export const NamespacesInstancesItemsCreateOrUpdateResponseNextAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesInstancesItemsCreateOrUpdateResponseStatus =
   | "queued"
@@ -5278,8 +5249,7 @@ export type NamespacesInstancesItemsCreateOrUpdateResponseStatus =
   | "error"
   | "skipped"
   | "outdated";
-export const NamespacesInstancesItemsCreateOrUpdateResponseStatus =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsCreateOrUpdateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateOrUpdateNamespaceInstanceItemResponse {
@@ -5426,14 +5396,14 @@ export type InstancesDeleteResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesDeleteResponseAiSearchModel = /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseAiSearchModel = S.String;
 
 export type InstancesDeleteResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const InstancesDeleteResponseCacheThreshold = /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseCacheThreshold = S.String;
 
 export type InstancesDeleteResponseCacheTtl =
   | 600
@@ -5446,15 +5416,14 @@ export type InstancesDeleteResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const InstancesDeleteResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const InstancesDeleteResponseCacheTtl = S.Number;
 
 export type InstancesDeleteResponseCustomMetadataItemDataType =
   | "text"
   | "number"
   | "boolean"
   | "datetime";
-export const InstancesDeleteResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseCustomMetadataItemDataType = S.String;
 
 export interface InstancesDeleteResponseCustomMetadataItem {
   dataType: InstancesDeleteResponseCustomMetadataItemDataType;
@@ -5490,10 +5459,10 @@ export type InstancesDeleteResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const InstancesDeleteResponseEmbeddingModel = /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseEmbeddingModel = S.String;
 
 export type InstancesDeleteResponseFusionMethod = "max" | "rrf";
-export const InstancesDeleteResponseFusionMethod = /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseFusionMethod = S.String;
 
 export type InstancesDeleteResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -5503,8 +5472,7 @@ export const InstancesDeleteResponseIndexMethod =
 export type InstancesDeleteResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
-export const InstancesDeleteResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseIndexingOptionsKeywordTokenizer = S.String;
 
 export interface InstancesDeleteResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -5554,7 +5522,7 @@ export type InstancesDeleteResponsePublicEndpointParamsRateLimitTechnique =
   | "fixed"
   | "sliding";
 export const InstancesDeleteResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesDeleteResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -5627,7 +5595,7 @@ export const InstancesDeleteResponsePublicEndpointParams =
 export type InstancesDeleteResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesDeleteResponseRerankingModel = /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseRerankingModel = S.String;
 
 export type InstancesDeleteResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -5635,7 +5603,7 @@ export type InstancesDeleteResponseRetrievalOptionsBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesDeleteResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesDeleteResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -5665,8 +5633,7 @@ export const InstancesDeleteResponseRetrievalOptionsBoostByList =
 export type InstancesDeleteResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
-export const InstancesDeleteResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseRetrievalOptionsKeywordMatchMode = S.String;
 
 export interface InstancesDeleteResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -5723,7 +5690,7 @@ export type InstancesDeleteResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesDeleteResponseRewriteModel = /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseRewriteModel = S.String;
 
 export type InstancesDeleteResponseSourceParamsExcludeItemsList = Array<string>;
 export const InstancesDeleteResponseSourceParamsExcludeItemsList =
@@ -5806,8 +5773,7 @@ export const InstancesDeleteResponseSourceParamsWebCrawlerParseOptions =
 export type InstancesDeleteResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
-export const InstancesDeleteResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseSourceParamsWebCrawlerParseType = S.String;
 
 export interface InstancesDeleteResponseSourceParamsWebCrawler {
   parseOptions?: InstancesDeleteResponseSourceParamsWebCrawlerParseOptions | null;
@@ -5880,10 +5846,10 @@ export type InstancesDeleteResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const InstancesDeleteResponseSyncInterval = /*@__PURE__*/ S.Number;
+export const InstancesDeleteResponseSyncInterval = S.Number;
 
 export type InstancesDeleteResponseType = "r2" | "web-crawler";
-export const InstancesDeleteResponseType = /*@__PURE__*/ S.String;
+export const InstancesDeleteResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteInstanceResponse {
@@ -6122,16 +6088,14 @@ export type NamespacesInstancesDeleteResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesDeleteResponseAiSearchModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesDeleteResponseAiSearchModel = S.String;
 
 export type NamespacesInstancesDeleteResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const NamespacesInstancesDeleteResponseCacheThreshold =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesDeleteResponseCacheThreshold = S.String;
 
 export type NamespacesInstancesDeleteResponseCacheTtl =
   | 600
@@ -6144,7 +6108,7 @@ export type NamespacesInstancesDeleteResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const NamespacesInstancesDeleteResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const NamespacesInstancesDeleteResponseCacheTtl = S.Number;
 
 export type NamespacesInstancesDeleteResponseCustomMetadataItemDataType =
   | "text"
@@ -6152,7 +6116,7 @@ export type NamespacesInstancesDeleteResponseCustomMetadataItemDataType =
   | "boolean"
   | "datetime";
 export const NamespacesInstancesDeleteResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesDeleteResponseCustomMetadataItem {
   dataType: NamespacesInstancesDeleteResponseCustomMetadataItemDataType;
@@ -6190,12 +6154,10 @@ export type NamespacesInstancesDeleteResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const NamespacesInstancesDeleteResponseEmbeddingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesDeleteResponseEmbeddingModel = S.String;
 
 export type NamespacesInstancesDeleteResponseFusionMethod = "max" | "rrf";
-export const NamespacesInstancesDeleteResponseFusionMethod =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesDeleteResponseFusionMethod = S.String;
 
 export type NamespacesInstancesDeleteResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -6206,7 +6168,7 @@ export type NamespacesInstancesDeleteResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
 export const NamespacesInstancesDeleteResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesDeleteResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -6258,7 +6220,7 @@ export type NamespacesInstancesDeleteResponsePublicEndpointParamsRateLimitTechni
   | "fixed"
   | "sliding";
 export const NamespacesInstancesDeleteResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesDeleteResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -6334,8 +6296,7 @@ export const NamespacesInstancesDeleteResponsePublicEndpointParams =
 export type NamespacesInstancesDeleteResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesInstancesDeleteResponseRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesDeleteResponseRerankingModel = S.String;
 
 export type NamespacesInstancesDeleteResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -6343,7 +6304,7 @@ export type NamespacesInstancesDeleteResponseRetrievalOptionsBoostByItemDirectio
   | "exists"
   | "not_exists";
 export const NamespacesInstancesDeleteResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesDeleteResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -6376,7 +6337,7 @@ export type NamespacesInstancesDeleteResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesDeleteResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesDeleteResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -6433,8 +6394,7 @@ export type NamespacesInstancesDeleteResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesDeleteResponseRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesDeleteResponseRewriteModel = S.String;
 
 export type NamespacesInstancesDeleteResponseSourceParamsExcludeItemsList =
   Array<string>;
@@ -6521,7 +6481,7 @@ export type NamespacesInstancesDeleteResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
 export const NamespacesInstancesDeleteResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesDeleteResponseSourceParamsWebCrawler {
   parseOptions?: NamespacesInstancesDeleteResponseSourceParamsWebCrawlerParseOptions | null;
@@ -6595,11 +6555,10 @@ export type NamespacesInstancesDeleteResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const NamespacesInstancesDeleteResponseSyncInterval =
-  /*@__PURE__*/ S.Number;
+export const NamespacesInstancesDeleteResponseSyncInterval = S.Number;
 
 export type NamespacesInstancesDeleteResponseType = "r2" | "web-crawler";
-export const NamespacesInstancesDeleteResponseType = /*@__PURE__*/ S.String;
+export const NamespacesInstancesDeleteResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface DeleteNamespaceInstanceResponse {
@@ -6883,7 +6842,7 @@ export const GetInstanceJobRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInstanceJobRequest>;
 
 export type InstancesJobsGetResponseSource = "user" | "schedule";
-export const InstancesJobsGetResponseSource = /*@__PURE__*/ S.String;
+export const InstancesJobsGetResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetInstanceJobResponse {
@@ -6936,8 +6895,7 @@ export const GetNamespaceInstanceItemRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNamespaceInstanceItemRequest>;
 
 export type NamespacesInstancesItemsGetResponseNextAction = "INDEX" | "DELETE";
-export const NamespacesInstancesItemsGetResponseNextAction =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsGetResponseNextAction = S.String;
 
 export type NamespacesInstancesItemsGetResponseStatus =
   | "queued"
@@ -6946,7 +6904,7 @@ export type NamespacesInstancesItemsGetResponseStatus =
   | "error"
   | "skipped"
   | "outdated";
-export const NamespacesInstancesItemsGetResponseStatus = /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetNamespaceInstanceItemResponse {
@@ -7012,7 +6970,7 @@ export const GetNamespaceInstanceJobRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNamespaceInstanceJobRequest>;
 
 export type NamespacesInstancesJobsGetResponseSource = "user" | "schedule";
-export const NamespacesInstancesJobsGetResponseSource = /*@__PURE__*/ S.String;
+export const NamespacesInstancesJobsGetResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetNamespaceInstanceJobResponse {
@@ -7065,7 +7023,7 @@ export const ListInstanceJobsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListInstanceJobsRequest>;
 
 export type InstancesJobsListResultItemSource = "user" | "schedule";
-export const InstancesJobsListResultItemSource = /*@__PURE__*/ S.String;
+export const InstancesJobsListResultItemSource = S.String;
 
 export interface InstancesJobsListResultItem {
   id: string;
@@ -7111,10 +7069,10 @@ export const ListInstanceJobsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListInstanceJobsResponse>;
 
 export type InstancesListRequestOrderBy = "created_at";
-export const InstancesListRequestOrderBy = /*@__PURE__*/ S.String;
+export const InstancesListRequestOrderBy = S.String;
 
 export type InstancesListRequestOrderByDirection = "asc" | "desc";
-export const InstancesListRequestOrderByDirection = /*@__PURE__*/ S.String;
+export const InstancesListRequestOrderByDirection = S.String;
 
 export interface ListInstancesRequest {
   accountId: string;
@@ -7186,14 +7144,14 @@ export type InstancesListResultItemAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesListResultItemAiSearchModel = /*@__PURE__*/ S.String;
+export const InstancesListResultItemAiSearchModel = S.String;
 
 export type InstancesListResultItemCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const InstancesListResultItemCacheThreshold = /*@__PURE__*/ S.String;
+export const InstancesListResultItemCacheThreshold = S.String;
 
 export type InstancesListResultItemCacheTtl =
   | 600
@@ -7206,15 +7164,14 @@ export type InstancesListResultItemCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const InstancesListResultItemCacheTtl = /*@__PURE__*/ S.Number;
+export const InstancesListResultItemCacheTtl = S.Number;
 
 export type InstancesListResultItemCustomMetadataItemDataType =
   | "text"
   | "number"
   | "boolean"
   | "datetime";
-export const InstancesListResultItemCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+export const InstancesListResultItemCustomMetadataItemDataType = S.String;
 
 export interface InstancesListResultItemCustomMetadataItem {
   dataType: InstancesListResultItemCustomMetadataItemDataType;
@@ -7250,10 +7207,10 @@ export type InstancesListResultItemEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const InstancesListResultItemEmbeddingModel = /*@__PURE__*/ S.String;
+export const InstancesListResultItemEmbeddingModel = S.String;
 
 export type InstancesListResultItemFusionMethod = "max" | "rrf";
-export const InstancesListResultItemFusionMethod = /*@__PURE__*/ S.String;
+export const InstancesListResultItemFusionMethod = S.String;
 
 export type InstancesListResultItemIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -7263,8 +7220,7 @@ export const InstancesListResultItemIndexMethod =
 export type InstancesListResultItemIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
-export const InstancesListResultItemIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+export const InstancesListResultItemIndexingOptionsKeywordTokenizer = S.String;
 
 export interface InstancesListResultItemIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -7314,7 +7270,7 @@ export type InstancesListResultItemPublicEndpointParamsRateLimitTechnique =
   | "fixed"
   | "sliding";
 export const InstancesListResultItemPublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesListResultItemPublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -7387,7 +7343,7 @@ export const InstancesListResultItemPublicEndpointParams =
 export type InstancesListResultItemRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesListResultItemRerankingModel = /*@__PURE__*/ S.String;
+export const InstancesListResultItemRerankingModel = S.String;
 
 export type InstancesListResultItemRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -7395,7 +7351,7 @@ export type InstancesListResultItemRetrievalOptionsBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesListResultItemRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesListResultItemRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -7425,8 +7381,7 @@ export const InstancesListResultItemRetrievalOptionsBoostByList =
 export type InstancesListResultItemRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
-export const InstancesListResultItemRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+export const InstancesListResultItemRetrievalOptionsKeywordMatchMode = S.String;
 
 export interface InstancesListResultItemRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -7483,7 +7438,7 @@ export type InstancesListResultItemRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesListResultItemRewriteModel = /*@__PURE__*/ S.String;
+export const InstancesListResultItemRewriteModel = S.String;
 
 export type InstancesListResultItemSourceParamsExcludeItemsList = Array<string>;
 export const InstancesListResultItemSourceParamsExcludeItemsList =
@@ -7566,8 +7521,7 @@ export const InstancesListResultItemSourceParamsWebCrawlerParseOptions =
 export type InstancesListResultItemSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
-export const InstancesListResultItemSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+export const InstancesListResultItemSourceParamsWebCrawlerParseType = S.String;
 
 export interface InstancesListResultItemSourceParamsWebCrawler {
   parseOptions?: InstancesListResultItemSourceParamsWebCrawlerParseOptions | null;
@@ -7640,10 +7594,10 @@ export type InstancesListResultItemSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const InstancesListResultItemSyncInterval = /*@__PURE__*/ S.Number;
+export const InstancesListResultItemSyncInterval = S.Number;
 
 export type InstancesListResultItemType = "r2" | "web-crawler";
-export const InstancesListResultItemType = /*@__PURE__*/ S.String;
+export const InstancesListResultItemType = S.String;
 
 export interface InstancesListResultItem {
   /** AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores. */
@@ -7822,7 +7776,7 @@ export const ListInstancesResponse = /*@__PURE__*/ S.suspend(() =>
 export type NamespacesInstancesItemsListRequestSortBy =
   | "status"
   | "modified_at";
-export const NamespacesInstancesItemsListRequestSortBy = /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsListRequestSortBy = S.String;
 
 export type NamespacesInstancesItemsListRequestStatus =
   | "queued"
@@ -7831,7 +7785,7 @@ export type NamespacesInstancesItemsListRequestStatus =
   | "error"
   | "skipped"
   | "outdated";
-export const NamespacesInstancesItemsListRequestStatus = /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsListRequestStatus = S.String;
 
 export interface ListNamespaceInstanceItemsRequest {
   accountId: string;
@@ -7884,8 +7838,7 @@ export const ListNamespaceInstanceItemsRequest = /*@__PURE__*/ S.suspend(() =>
 export type NamespacesInstancesItemsListResultItemNextAction =
   | "INDEX"
   | "DELETE";
-export const NamespacesInstancesItemsListResultItemNextAction =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsListResultItemNextAction = S.String;
 
 export type NamespacesInstancesItemsListResultItemStatus =
   | "queued"
@@ -7894,8 +7847,7 @@ export type NamespacesInstancesItemsListResultItemStatus =
   | "error"
   | "skipped"
   | "outdated";
-export const NamespacesInstancesItemsListResultItemStatus =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsListResultItemStatus = S.String;
 
 export interface NamespacesInstancesItemsListResultItem {
   id: string;
@@ -7984,8 +7936,7 @@ export const ListNamespaceInstanceJobsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListNamespaceInstanceJobsRequest>;
 
 export type NamespacesInstancesJobsListResultItemSource = "user" | "schedule";
-export const NamespacesInstancesJobsListResultItemSource =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesJobsListResultItemSource = S.String;
 
 export interface NamespacesInstancesJobsListResultItem {
   id: string;
@@ -8033,11 +7984,10 @@ export const ListNamespaceInstanceJobsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListNamespaceInstanceJobsResponse>;
 
 export type NamespacesInstancesListRequestOrderBy = "created_at";
-export const NamespacesInstancesListRequestOrderBy = /*@__PURE__*/ S.String;
+export const NamespacesInstancesListRequestOrderBy = S.String;
 
 export type NamespacesInstancesListRequestOrderByDirection = "asc" | "desc";
-export const NamespacesInstancesListRequestOrderByDirection =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesListRequestOrderByDirection = S.String;
 
 export interface ListNamespaceInstancesRequest {
   accountId: string;
@@ -8117,16 +8067,14 @@ export type NamespacesInstancesListResultItemAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesListResultItemAiSearchModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesListResultItemAiSearchModel = S.String;
 
 export type NamespacesInstancesListResultItemCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const NamespacesInstancesListResultItemCacheThreshold =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesListResultItemCacheThreshold = S.String;
 
 export type NamespacesInstancesListResultItemCacheTtl =
   | 600
@@ -8139,7 +8087,7 @@ export type NamespacesInstancesListResultItemCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const NamespacesInstancesListResultItemCacheTtl = /*@__PURE__*/ S.Number;
+export const NamespacesInstancesListResultItemCacheTtl = S.Number;
 
 export type NamespacesInstancesListResultItemCustomMetadataItemDataType =
   | "text"
@@ -8147,7 +8095,7 @@ export type NamespacesInstancesListResultItemCustomMetadataItemDataType =
   | "boolean"
   | "datetime";
 export const NamespacesInstancesListResultItemCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesListResultItemCustomMetadataItem {
   dataType: NamespacesInstancesListResultItemCustomMetadataItemDataType;
@@ -8185,12 +8133,10 @@ export type NamespacesInstancesListResultItemEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const NamespacesInstancesListResultItemEmbeddingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesListResultItemEmbeddingModel = S.String;
 
 export type NamespacesInstancesListResultItemFusionMethod = "max" | "rrf";
-export const NamespacesInstancesListResultItemFusionMethod =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesListResultItemFusionMethod = S.String;
 
 export type NamespacesInstancesListResultItemIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -8201,7 +8147,7 @@ export type NamespacesInstancesListResultItemIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
 export const NamespacesInstancesListResultItemIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesListResultItemIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -8253,7 +8199,7 @@ export type NamespacesInstancesListResultItemPublicEndpointParamsRateLimitTechni
   | "fixed"
   | "sliding";
 export const NamespacesInstancesListResultItemPublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesListResultItemPublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -8329,8 +8275,7 @@ export const NamespacesInstancesListResultItemPublicEndpointParams =
 export type NamespacesInstancesListResultItemRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesInstancesListResultItemRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesListResultItemRerankingModel = S.String;
 
 export type NamespacesInstancesListResultItemRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -8338,7 +8283,7 @@ export type NamespacesInstancesListResultItemRetrievalOptionsBoostByItemDirectio
   | "exists"
   | "not_exists";
 export const NamespacesInstancesListResultItemRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesListResultItemRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -8371,7 +8316,7 @@ export type NamespacesInstancesListResultItemRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesListResultItemRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesListResultItemRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -8428,8 +8373,7 @@ export type NamespacesInstancesListResultItemRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesListResultItemRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesListResultItemRewriteModel = S.String;
 
 export type NamespacesInstancesListResultItemSourceParamsExcludeItemsList =
   Array<string>;
@@ -8516,7 +8460,7 @@ export type NamespacesInstancesListResultItemSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
 export const NamespacesInstancesListResultItemSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesListResultItemSourceParamsWebCrawler {
   parseOptions?: NamespacesInstancesListResultItemSourceParamsWebCrawlerParseOptions | null;
@@ -8590,11 +8534,10 @@ export type NamespacesInstancesListResultItemSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const NamespacesInstancesListResultItemSyncInterval =
-  /*@__PURE__*/ S.Number;
+export const NamespacesInstancesListResultItemSyncInterval = S.Number;
 
 export type NamespacesInstancesListResultItemType = "r2" | "web-crawler";
-export const NamespacesInstancesListResultItemType = /*@__PURE__*/ S.String;
+export const NamespacesInstancesListResultItemType = S.String;
 
 export interface NamespacesInstancesListResultItem {
   /** AI Search instance ID. Lowercase alphanumeric, hyphens, and underscores. */
@@ -9095,8 +9038,7 @@ export const LogsNamespaceInstanceJobResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LogsNamespaceInstanceJobResponse>;
 
 export type NamespacesInstancesJobsUpdateRequestAction = "cancel";
-export const NamespacesInstancesJobsUpdateRequestAction =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesJobsUpdateRequestAction = S.String;
 
 export interface PatchNamespaceInstanceJobRequest {
   accountId: string;
@@ -9127,8 +9069,7 @@ export const PatchNamespaceInstanceJobRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchNamespaceInstanceJobRequest>;
 
 export type NamespacesInstancesJobsUpdateResponseSource = "user" | "schedule";
-export const NamespacesInstancesJobsUpdateResponseSource =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesJobsUpdateResponseSource = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchNamespaceInstanceJobResponse {
@@ -9206,14 +9147,14 @@ export type InstancesReadResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesReadResponseAiSearchModel = /*@__PURE__*/ S.String;
+export const InstancesReadResponseAiSearchModel = S.String;
 
 export type InstancesReadResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const InstancesReadResponseCacheThreshold = /*@__PURE__*/ S.String;
+export const InstancesReadResponseCacheThreshold = S.String;
 
 export type InstancesReadResponseCacheTtl =
   | 600
@@ -9226,15 +9167,14 @@ export type InstancesReadResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const InstancesReadResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const InstancesReadResponseCacheTtl = S.Number;
 
 export type InstancesReadResponseCustomMetadataItemDataType =
   | "text"
   | "number"
   | "boolean"
   | "datetime";
-export const InstancesReadResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+export const InstancesReadResponseCustomMetadataItemDataType = S.String;
 
 export interface InstancesReadResponseCustomMetadataItem {
   dataType: InstancesReadResponseCustomMetadataItemDataType;
@@ -9270,10 +9210,10 @@ export type InstancesReadResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const InstancesReadResponseEmbeddingModel = /*@__PURE__*/ S.String;
+export const InstancesReadResponseEmbeddingModel = S.String;
 
 export type InstancesReadResponseFusionMethod = "max" | "rrf";
-export const InstancesReadResponseFusionMethod = /*@__PURE__*/ S.String;
+export const InstancesReadResponseFusionMethod = S.String;
 
 export type InstancesReadResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -9283,8 +9223,7 @@ export const InstancesReadResponseIndexMethod =
 export type InstancesReadResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
-export const InstancesReadResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+export const InstancesReadResponseIndexingOptionsKeywordTokenizer = S.String;
 
 export interface InstancesReadResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -9334,7 +9273,7 @@ export type InstancesReadResponsePublicEndpointParamsRateLimitTechnique =
   | "fixed"
   | "sliding";
 export const InstancesReadResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesReadResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -9407,7 +9346,7 @@ export const InstancesReadResponsePublicEndpointParams =
 export type InstancesReadResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesReadResponseRerankingModel = /*@__PURE__*/ S.String;
+export const InstancesReadResponseRerankingModel = S.String;
 
 export type InstancesReadResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -9415,7 +9354,7 @@ export type InstancesReadResponseRetrievalOptionsBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesReadResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesReadResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -9445,8 +9384,7 @@ export const InstancesReadResponseRetrievalOptionsBoostByList =
 export type InstancesReadResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
-export const InstancesReadResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+export const InstancesReadResponseRetrievalOptionsKeywordMatchMode = S.String;
 
 export interface InstancesReadResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -9503,7 +9441,7 @@ export type InstancesReadResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesReadResponseRewriteModel = /*@__PURE__*/ S.String;
+export const InstancesReadResponseRewriteModel = S.String;
 
 export type InstancesReadResponseSourceParamsExcludeItemsList = Array<string>;
 export const InstancesReadResponseSourceParamsExcludeItemsList =
@@ -9586,8 +9524,7 @@ export const InstancesReadResponseSourceParamsWebCrawlerParseOptions =
 export type InstancesReadResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
-export const InstancesReadResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+export const InstancesReadResponseSourceParamsWebCrawlerParseType = S.String;
 
 export interface InstancesReadResponseSourceParamsWebCrawler {
   parseOptions?: InstancesReadResponseSourceParamsWebCrawlerParseOptions | null;
@@ -9660,10 +9597,10 @@ export type InstancesReadResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const InstancesReadResponseSyncInterval = /*@__PURE__*/ S.Number;
+export const InstancesReadResponseSyncInterval = S.Number;
 
 export type InstancesReadResponseType = "r2" | "web-crawler";
-export const InstancesReadResponseType = /*@__PURE__*/ S.String;
+export const InstancesReadResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface ReadInstanceResponse {
@@ -9904,16 +9841,14 @@ export type NamespacesInstancesReadResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesReadResponseAiSearchModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesReadResponseAiSearchModel = S.String;
 
 export type NamespacesInstancesReadResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const NamespacesInstancesReadResponseCacheThreshold =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesReadResponseCacheThreshold = S.String;
 
 export type NamespacesInstancesReadResponseCacheTtl =
   | 600
@@ -9926,7 +9861,7 @@ export type NamespacesInstancesReadResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const NamespacesInstancesReadResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const NamespacesInstancesReadResponseCacheTtl = S.Number;
 
 export type NamespacesInstancesReadResponseCustomMetadataItemDataType =
   | "text"
@@ -9934,7 +9869,7 @@ export type NamespacesInstancesReadResponseCustomMetadataItemDataType =
   | "boolean"
   | "datetime";
 export const NamespacesInstancesReadResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesReadResponseCustomMetadataItem {
   dataType: NamespacesInstancesReadResponseCustomMetadataItemDataType;
@@ -9971,12 +9906,10 @@ export type NamespacesInstancesReadResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const NamespacesInstancesReadResponseEmbeddingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesReadResponseEmbeddingModel = S.String;
 
 export type NamespacesInstancesReadResponseFusionMethod = "max" | "rrf";
-export const NamespacesInstancesReadResponseFusionMethod =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesReadResponseFusionMethod = S.String;
 
 export type NamespacesInstancesReadResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -9987,7 +9920,7 @@ export type NamespacesInstancesReadResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
 export const NamespacesInstancesReadResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesReadResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -10039,7 +9972,7 @@ export type NamespacesInstancesReadResponsePublicEndpointParamsRateLimitTechniqu
   | "fixed"
   | "sliding";
 export const NamespacesInstancesReadResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesReadResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -10114,8 +10047,7 @@ export const NamespacesInstancesReadResponsePublicEndpointParams =
 export type NamespacesInstancesReadResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesInstancesReadResponseRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesReadResponseRerankingModel = S.String;
 
 export type NamespacesInstancesReadResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -10123,7 +10055,7 @@ export type NamespacesInstancesReadResponseRetrievalOptionsBoostByItemDirection 
   | "exists"
   | "not_exists";
 export const NamespacesInstancesReadResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesReadResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -10156,7 +10088,7 @@ export type NamespacesInstancesReadResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesReadResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesReadResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -10213,8 +10145,7 @@ export type NamespacesInstancesReadResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesReadResponseRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesReadResponseRewriteModel = S.String;
 
 export type NamespacesInstancesReadResponseSourceParamsExcludeItemsList =
   Array<string>;
@@ -10301,7 +10232,7 @@ export type NamespacesInstancesReadResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
 export const NamespacesInstancesReadResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesReadResponseSourceParamsWebCrawler {
   parseOptions?: NamespacesInstancesReadResponseSourceParamsWebCrawlerParseOptions | null;
@@ -10375,11 +10306,10 @@ export type NamespacesInstancesReadResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const NamespacesInstancesReadResponseSyncInterval =
-  /*@__PURE__*/ S.Number;
+export const NamespacesInstancesReadResponseSyncInterval = S.Number;
 
 export type NamespacesInstancesReadResponseType = "r2" | "web-crawler";
-export const NamespacesInstancesReadResponseType = /*@__PURE__*/ S.String;
+export const NamespacesInstancesReadResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface ReadNamespaceInstanceResponse {
@@ -10593,7 +10523,7 @@ export type InstancesSearchRequestAiSearchOptionsCacheCacheThreshold =
   | "flexible_friend"
   | "anything_goes";
 export const InstancesSearchRequestAiSearchOptionsCacheCacheThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesSearchRequestAiSearchOptionsCache {
   cacheThreshold?:
@@ -10646,8 +10576,7 @@ export type InstancesSearchRequestAiSearchOptionsQueryRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesSearchRequestAiSearchOptionsQueryRewriteModel =
-  /*@__PURE__*/ S.String;
+export const InstancesSearchRequestAiSearchOptionsQueryRewriteModel = S.String;
 
 export interface InstancesSearchRequestAiSearchOptionsQueryRewrite {
   enabled?: boolean;
@@ -10670,8 +10599,7 @@ export const InstancesSearchRequestAiSearchOptionsQueryRewrite =
 export type InstancesSearchRequestAiSearchOptionsRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesSearchRequestAiSearchOptionsRerankingModel =
-  /*@__PURE__*/ S.String;
+export const InstancesSearchRequestAiSearchOptionsRerankingModel = S.String;
 
 export interface InstancesSearchRequestAiSearchOptionsReranking {
   enabled?: boolean;
@@ -10695,7 +10623,7 @@ export type InstancesSearchRequestAiSearchOptionsRetrievalBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesSearchRequestAiSearchOptionsRetrievalBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesSearchRequestAiSearchOptionsRetrievalBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -10737,20 +10665,20 @@ export type InstancesSearchRequestAiSearchOptionsRetrievalFusionMethod =
   | "max"
   | "rrf";
 export const InstancesSearchRequestAiSearchOptionsRetrievalFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstancesSearchRequestAiSearchOptionsRetrievalKeywordMatchMode =
   | "and"
   | "or";
 export const InstancesSearchRequestAiSearchOptionsRetrievalKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type InstancesSearchRequestAiSearchOptionsRetrievalRetrievalType =
   | "vector"
   | "keyword"
   | "hybrid";
 export const InstancesSearchRequestAiSearchOptionsRetrievalRetrievalType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesSearchRequestAiSearchOptionsRetrieval {
   /** Metadata fields to boost search results by. Overrides the instance-level boost_by config. Direction defaults to 'asc' for numeric/datetime fields, 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -10831,7 +10759,7 @@ export const InstancesSearchRequestAiSearchOptions = /*@__PURE__*/ S.suspend(
 export type InstancesSearchRequestMessagesItemContentCase1ItemCase0Type =
   "text";
 export const InstancesSearchRequestMessagesItemContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesSearchRequestMessagesItemContentCase1ItemCase0 {
   text: string;
@@ -10855,7 +10783,7 @@ export const InstancesSearchRequestMessagesItemContentCase1ItemCase1ImageUrl =
 export type InstancesSearchRequestMessagesItemContentCase1ItemCase1Type =
   "image_url";
 export const InstancesSearchRequestMessagesItemContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesSearchRequestMessagesItemContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -10904,7 +10832,7 @@ export type InstancesSearchRequestMessagesItemRole =
   | "user"
   | "assistant"
   | "tool";
-export const InstancesSearchRequestMessagesItemRole = /*@__PURE__*/ S.String;
+export const InstancesSearchRequestMessagesItemRole = S.String;
 
 export interface InstancesSearchRequestMessagesItem {
   content: InstancesSearchRequestMessagesItemContent;
@@ -10988,7 +10916,7 @@ export type InstancesSearchResponseChunksItemScoringDetailsFusionMethod =
   | "rrf"
   | "max";
 export const InstancesSearchResponseChunksItemScoringDetailsFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesSearchResponseChunksItemScoringDetails {
   fusionMethod?: InstancesSearchResponseChunksItemScoringDetailsFusionMethod | null;
@@ -11052,7 +10980,7 @@ export const InstancesSearchResponseChunksList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<InstancesSearchResponseChunksList>;
 
 export type InstancesSearchResponseQueryKind = "text" | "image" | "multimodal";
-export const InstancesSearchResponseQueryKind = /*@__PURE__*/ S.String;
+export const InstancesSearchResponseQueryKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface SearchInstanceResponse {
@@ -11083,7 +11011,7 @@ export type NamespacesSearchRequestAiSearchOptionsCacheCacheThreshold =
   | "flexible_friend"
   | "anything_goes";
 export const NamespacesSearchRequestAiSearchOptionsCacheCacheThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesSearchRequestAiSearchOptionsCache {
   cacheThreshold?:
@@ -11136,8 +11064,7 @@ export type NamespacesSearchRequestAiSearchOptionsQueryRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesSearchRequestAiSearchOptionsQueryRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesSearchRequestAiSearchOptionsQueryRewriteModel = S.String;
 
 export interface NamespacesSearchRequestAiSearchOptionsQueryRewrite {
   enabled?: boolean;
@@ -11162,8 +11089,7 @@ export const NamespacesSearchRequestAiSearchOptionsQueryRewrite =
 export type NamespacesSearchRequestAiSearchOptionsRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesSearchRequestAiSearchOptionsRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesSearchRequestAiSearchOptionsRerankingModel = S.String;
 
 export interface NamespacesSearchRequestAiSearchOptionsReranking {
   enabled?: boolean;
@@ -11187,7 +11113,7 @@ export type NamespacesSearchRequestAiSearchOptionsRetrievalBoostByItemDirection 
   | "exists"
   | "not_exists";
 export const NamespacesSearchRequestAiSearchOptionsRetrievalBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesSearchRequestAiSearchOptionsRetrievalBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -11229,20 +11155,20 @@ export type NamespacesSearchRequestAiSearchOptionsRetrievalFusionMethod =
   | "max"
   | "rrf";
 export const NamespacesSearchRequestAiSearchOptionsRetrievalFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesSearchRequestAiSearchOptionsRetrievalKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesSearchRequestAiSearchOptionsRetrievalKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesSearchRequestAiSearchOptionsRetrievalRetrievalType =
   | "vector"
   | "keyword"
   | "hybrid";
 export const NamespacesSearchRequestAiSearchOptionsRetrievalRetrievalType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesSearchRequestAiSearchOptionsRetrieval {
   /** Metadata fields to boost search results by. Overrides the instance-level boost_by config. Direction defaults to 'asc' for numeric/datetime fields, 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -11327,7 +11253,7 @@ export const NamespacesSearchRequestAiSearchOptions = /*@__PURE__*/ S.suspend(
 export type NamespacesSearchRequestMessagesItemContentCase1ItemCase0Type =
   "text";
 export const NamespacesSearchRequestMessagesItemContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesSearchRequestMessagesItemContentCase1ItemCase0 {
   text: string;
@@ -11351,7 +11277,7 @@ export const NamespacesSearchRequestMessagesItemContentCase1ItemCase1ImageUrl =
 export type NamespacesSearchRequestMessagesItemContentCase1ItemCase1Type =
   "image_url";
 export const NamespacesSearchRequestMessagesItemContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesSearchRequestMessagesItemContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -11400,7 +11326,7 @@ export type NamespacesSearchRequestMessagesItemRole =
   | "user"
   | "assistant"
   | "tool";
-export const NamespacesSearchRequestMessagesItemRole = /*@__PURE__*/ S.String;
+export const NamespacesSearchRequestMessagesItemRole = S.String;
 
 export interface NamespacesSearchRequestMessagesItem {
   content: NamespacesSearchRequestMessagesItemContent;
@@ -11483,7 +11409,7 @@ export type NamespacesSearchResponseChunksItemScoringDetailsFusionMethod =
   | "rrf"
   | "max";
 export const NamespacesSearchResponseChunksItemScoringDetailsFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesSearchResponseChunksItemScoringDetails {
   fusionMethod?: NamespacesSearchResponseChunksItemScoringDetailsFusionMethod | null;
@@ -11549,7 +11475,7 @@ export const NamespacesSearchResponseChunksList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<NamespacesSearchResponseChunksList>;
 
 export type NamespacesSearchResponseQueryKind = "text" | "image" | "multimodal";
-export const NamespacesSearchResponseQueryKind = /*@__PURE__*/ S.String;
+export const NamespacesSearchResponseQueryKind = S.String;
 
 export interface NamespacesSearchResponseErrorsItem {
   instanceId: string;
@@ -11594,7 +11520,7 @@ export type NamespacesInstancesSearchRequestAiSearchOptionsCacheCacheThreshold =
   | "flexible_friend"
   | "anything_goes";
 export const NamespacesInstancesSearchRequestAiSearchOptionsCacheCacheThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchRequestAiSearchOptionsCache {
   cacheThreshold?:
@@ -11648,7 +11574,7 @@ export type NamespacesInstancesSearchRequestAiSearchOptionsQueryRewriteModel =
   | "openai/gpt-5-nano"
   | "";
 export const NamespacesInstancesSearchRequestAiSearchOptionsQueryRewriteModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchRequestAiSearchOptionsQueryRewrite {
   enabled?: boolean;
@@ -11674,7 +11600,7 @@ export type NamespacesInstancesSearchRequestAiSearchOptionsRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
 export const NamespacesInstancesSearchRequestAiSearchOptionsRerankingModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchRequestAiSearchOptionsReranking {
   enabled?: boolean;
@@ -11702,7 +11628,7 @@ export type NamespacesInstancesSearchRequestAiSearchOptionsRetrievalBoostByItemD
   | "exists"
   | "not_exists";
 export const NamespacesInstancesSearchRequestAiSearchOptionsRetrievalBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchRequestAiSearchOptionsRetrievalBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -11744,20 +11670,20 @@ export type NamespacesInstancesSearchRequestAiSearchOptionsRetrievalFusionMethod
   | "max"
   | "rrf";
 export const NamespacesInstancesSearchRequestAiSearchOptionsRetrievalFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesInstancesSearchRequestAiSearchOptionsRetrievalKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesSearchRequestAiSearchOptionsRetrievalKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type NamespacesInstancesSearchRequestAiSearchOptionsRetrievalRetrievalType =
   | "vector"
   | "keyword"
   | "hybrid";
 export const NamespacesInstancesSearchRequestAiSearchOptionsRetrievalRetrievalType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchRequestAiSearchOptionsRetrieval {
   /** Metadata fields to boost search results by. Overrides the instance-level boost_by config. Direction defaults to 'asc' for numeric/datetime fields, 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -11842,7 +11768,7 @@ export const NamespacesInstancesSearchRequestAiSearchOptions =
 export type NamespacesInstancesSearchRequestMessagesItemContentCase1ItemCase0Type =
   "text";
 export const NamespacesInstancesSearchRequestMessagesItemContentCase1ItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchRequestMessagesItemContentCase1ItemCase0 {
   text: string;
@@ -11867,7 +11793,7 @@ export const NamespacesInstancesSearchRequestMessagesItemContentCase1ItemCase1Im
 export type NamespacesInstancesSearchRequestMessagesItemContentCase1ItemCase1Type =
   "image_url";
 export const NamespacesInstancesSearchRequestMessagesItemContentCase1ItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchRequestMessagesItemContentCase1ItemCase1 {
   imageUrl: InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase1ImageUrl;
@@ -11917,8 +11843,7 @@ export type NamespacesInstancesSearchRequestMessagesItemRole =
   | "user"
   | "assistant"
   | "tool";
-export const NamespacesInstancesSearchRequestMessagesItemRole =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesSearchRequestMessagesItemRole = S.String;
 
 export interface NamespacesInstancesSearchRequestMessagesItem {
   content: NamespacesInstancesSearchRequestMessagesItemContent;
@@ -12008,7 +11933,7 @@ export type NamespacesInstancesSearchResponseChunksItemScoringDetailsFusionMetho
   | "rrf"
   | "max";
 export const NamespacesInstancesSearchResponseChunksItemScoringDetailsFusionMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesSearchResponseChunksItemScoringDetails {
   fusionMethod?: NamespacesInstancesSearchResponseChunksItemScoringDetailsFusionMethod | null;
@@ -12079,8 +12004,7 @@ export type NamespacesInstancesSearchResponseQueryKind =
   | "text"
   | "image"
   | "multimodal";
-export const NamespacesInstancesSearchResponseQueryKind =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesSearchResponseQueryKind = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface SearchNamespaceInstanceResponse {
@@ -12325,8 +12249,7 @@ export const StatsNamespaceInstanceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StatsNamespaceInstanceResponse>;
 
 export type NamespacesInstancesItemsSyncRequestNextAction = "INDEX";
-export const NamespacesInstancesItemsSyncRequestNextAction =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsSyncRequestNextAction = S.String;
 
 export interface SyncNamespaceInstanceItemRequest {
   accountId: string;
@@ -12364,8 +12287,7 @@ export const SyncNamespaceInstanceItemRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SyncNamespaceInstanceItemRequest>;
 
 export type NamespacesInstancesItemsSyncResponseNextAction = "INDEX" | "DELETE";
-export const NamespacesInstancesItemsSyncResponseNextAction =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsSyncResponseNextAction = S.String;
 
 export type NamespacesInstancesItemsSyncResponseStatus =
   | "queued"
@@ -12374,8 +12296,7 @@ export type NamespacesInstancesItemsSyncResponseStatus =
   | "error"
   | "skipped"
   | "outdated";
-export const NamespacesInstancesItemsSyncResponseStatus =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsSyncResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface SyncNamespaceInstanceItemResponse {
@@ -12445,14 +12366,14 @@ export type InstancesUpdateRequestAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesUpdateRequestAiSearchModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestAiSearchModel = S.String;
 
 export type InstancesUpdateRequestCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const InstancesUpdateRequestCacheThreshold = /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestCacheThreshold = S.String;
 
 export type InstancesUpdateRequestCacheTtl =
   | 600
@@ -12465,15 +12386,14 @@ export type InstancesUpdateRequestCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const InstancesUpdateRequestCacheTtl = /*@__PURE__*/ S.Number;
+export const InstancesUpdateRequestCacheTtl = S.Number;
 
 export type InstancesUpdateRequestCustomMetadataItemDataType =
   | "text"
   | "number"
   | "boolean"
   | "datetime";
-export const InstancesUpdateRequestCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestCustomMetadataItemDataType = S.String;
 
 export interface InstancesUpdateRequestCustomMetadataItem {
   dataType: InstancesUpdateRequestCustomMetadataItemDataType | (string & {});
@@ -12509,10 +12429,10 @@ export type InstancesUpdateRequestEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const InstancesUpdateRequestEmbeddingModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestEmbeddingModel = S.String;
 
 export type InstancesUpdateRequestFusionMethod = "max" | "rrf";
-export const InstancesUpdateRequestFusionMethod = /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestFusionMethod = S.String;
 
 export type InstancesUpdateRequestIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -12522,8 +12442,7 @@ export const InstancesUpdateRequestIndexMethod =
 export type InstancesUpdateRequestIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
-export const InstancesUpdateRequestIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestIndexingOptionsKeywordTokenizer = S.String;
 
 export interface InstancesUpdateRequestIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -12575,7 +12494,7 @@ export type InstancesUpdateRequestPublicEndpointParamsRateLimitTechnique =
   | "fixed"
   | "sliding";
 export const InstancesUpdateRequestPublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesUpdateRequestPublicEndpointParamsRateLimit {
   periodMs?: number;
@@ -12650,7 +12569,7 @@ export const InstancesUpdateRequestPublicEndpointParams =
 export type InstancesUpdateRequestRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesUpdateRequestRerankingModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestRerankingModel = S.String;
 
 export type InstancesUpdateRequestRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -12658,7 +12577,7 @@ export type InstancesUpdateRequestRetrievalOptionsBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesUpdateRequestRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesUpdateRequestRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -12690,8 +12609,7 @@ export const InstancesUpdateRequestRetrievalOptionsBoostByList =
 export type InstancesUpdateRequestRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
-export const InstancesUpdateRequestRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestRetrievalOptionsKeywordMatchMode = S.String;
 
 export interface InstancesUpdateRequestRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -12750,7 +12668,7 @@ export type InstancesUpdateRequestRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesUpdateRequestRewriteModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestRewriteModel = S.String;
 
 export type InstancesUpdateRequestSourceParamsExcludeItemsList = Array<string>;
 export const InstancesUpdateRequestSourceParamsExcludeItemsList =
@@ -12831,8 +12749,7 @@ export const InstancesUpdateRequestSourceParamsWebCrawlerParseOptions =
 export type InstancesUpdateRequestSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
-export const InstancesUpdateRequestSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestSourceParamsWebCrawlerParseType = S.String;
 
 export interface InstancesUpdateRequestSourceParamsWebCrawler {
   parseOptions?: InstancesUpdateRequestSourceParamsWebCrawlerParseOptions;
@@ -12925,7 +12842,7 @@ export type InstancesUpdateRequestSummarizationModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesUpdateRequestSummarizationModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateRequestSummarizationModel = S.String;
 
 export type InstancesUpdateRequestSyncInterval =
   | 900
@@ -12936,7 +12853,7 @@ export type InstancesUpdateRequestSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const InstancesUpdateRequestSyncInterval = /*@__PURE__*/ S.Number;
+export const InstancesUpdateRequestSyncInterval = S.Number;
 
 export interface UpdateInstanceRequest {
   accountId: string;
@@ -13097,14 +13014,14 @@ export type InstancesUpdateResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesUpdateResponseAiSearchModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseAiSearchModel = S.String;
 
 export type InstancesUpdateResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const InstancesUpdateResponseCacheThreshold = /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseCacheThreshold = S.String;
 
 export type InstancesUpdateResponseCacheTtl =
   | 600
@@ -13117,15 +13034,14 @@ export type InstancesUpdateResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const InstancesUpdateResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const InstancesUpdateResponseCacheTtl = S.Number;
 
 export type InstancesUpdateResponseCustomMetadataItemDataType =
   | "text"
   | "number"
   | "boolean"
   | "datetime";
-export const InstancesUpdateResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseCustomMetadataItemDataType = S.String;
 
 export interface InstancesUpdateResponseCustomMetadataItem {
   dataType: InstancesUpdateResponseCustomMetadataItemDataType;
@@ -13161,10 +13077,10 @@ export type InstancesUpdateResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const InstancesUpdateResponseEmbeddingModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseEmbeddingModel = S.String;
 
 export type InstancesUpdateResponseFusionMethod = "max" | "rrf";
-export const InstancesUpdateResponseFusionMethod = /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseFusionMethod = S.String;
 
 export type InstancesUpdateResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -13174,8 +13090,7 @@ export const InstancesUpdateResponseIndexMethod =
 export type InstancesUpdateResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
-export const InstancesUpdateResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseIndexingOptionsKeywordTokenizer = S.String;
 
 export interface InstancesUpdateResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -13225,7 +13140,7 @@ export type InstancesUpdateResponsePublicEndpointParamsRateLimitTechnique =
   | "fixed"
   | "sliding";
 export const InstancesUpdateResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesUpdateResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -13298,7 +13213,7 @@ export const InstancesUpdateResponsePublicEndpointParams =
 export type InstancesUpdateResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const InstancesUpdateResponseRerankingModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseRerankingModel = S.String;
 
 export type InstancesUpdateResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -13306,7 +13221,7 @@ export type InstancesUpdateResponseRetrievalOptionsBoostByItemDirection =
   | "exists"
   | "not_exists";
 export const InstancesUpdateResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface InstancesUpdateResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -13336,8 +13251,7 @@ export const InstancesUpdateResponseRetrievalOptionsBoostByList =
 export type InstancesUpdateResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
-export const InstancesUpdateResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseRetrievalOptionsKeywordMatchMode = S.String;
 
 export interface InstancesUpdateResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -13394,7 +13308,7 @@ export type InstancesUpdateResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const InstancesUpdateResponseRewriteModel = /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseRewriteModel = S.String;
 
 export type InstancesUpdateResponseSourceParamsExcludeItemsList = Array<string>;
 export const InstancesUpdateResponseSourceParamsExcludeItemsList =
@@ -13477,8 +13391,7 @@ export const InstancesUpdateResponseSourceParamsWebCrawlerParseOptions =
 export type InstancesUpdateResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
-export const InstancesUpdateResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseSourceParamsWebCrawlerParseType = S.String;
 
 export interface InstancesUpdateResponseSourceParamsWebCrawler {
   parseOptions?: InstancesUpdateResponseSourceParamsWebCrawlerParseOptions | null;
@@ -13551,10 +13464,10 @@ export type InstancesUpdateResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const InstancesUpdateResponseSyncInterval = /*@__PURE__*/ S.Number;
+export const InstancesUpdateResponseSyncInterval = S.Number;
 
 export type InstancesUpdateResponseType = "r2" | "web-crawler";
-export const InstancesUpdateResponseType = /*@__PURE__*/ S.String;
+export const InstancesUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateInstanceResponse {
@@ -13783,16 +13696,14 @@ export type NamespacesInstancesUpdateRequestAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesUpdateRequestAiSearchModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateRequestAiSearchModel = S.String;
 
 export type NamespacesInstancesUpdateRequestCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const NamespacesInstancesUpdateRequestCacheThreshold =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateRequestCacheThreshold = S.String;
 
 export type NamespacesInstancesUpdateRequestCacheTtl =
   | 600
@@ -13805,7 +13716,7 @@ export type NamespacesInstancesUpdateRequestCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const NamespacesInstancesUpdateRequestCacheTtl = /*@__PURE__*/ S.Number;
+export const NamespacesInstancesUpdateRequestCacheTtl = S.Number;
 
 export type NamespacesInstancesUpdateRequestCustomMetadataItemDataType =
   | "text"
@@ -13813,7 +13724,7 @@ export type NamespacesInstancesUpdateRequestCustomMetadataItemDataType =
   | "boolean"
   | "datetime";
 export const NamespacesInstancesUpdateRequestCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateRequestCustomMetadataItem {
   dataType:
@@ -13852,12 +13763,10 @@ export type NamespacesInstancesUpdateRequestEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const NamespacesInstancesUpdateRequestEmbeddingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateRequestEmbeddingModel = S.String;
 
 export type NamespacesInstancesUpdateRequestFusionMethod = "max" | "rrf";
-export const NamespacesInstancesUpdateRequestFusionMethod =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateRequestFusionMethod = S.String;
 
 export type NamespacesInstancesUpdateRequestIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -13868,7 +13777,7 @@ export type NamespacesInstancesUpdateRequestIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
 export const NamespacesInstancesUpdateRequestIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateRequestIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -13922,7 +13831,7 @@ export type NamespacesInstancesUpdateRequestPublicEndpointParamsRateLimitTechniq
   | "fixed"
   | "sliding";
 export const NamespacesInstancesUpdateRequestPublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateRequestPublicEndpointParamsRateLimit {
   periodMs?: number;
@@ -13997,8 +13906,7 @@ export const NamespacesInstancesUpdateRequestPublicEndpointParams =
 export type NamespacesInstancesUpdateRequestRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesInstancesUpdateRequestRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateRequestRerankingModel = S.String;
 
 export type NamespacesInstancesUpdateRequestRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -14006,7 +13914,7 @@ export type NamespacesInstancesUpdateRequestRetrievalOptionsBoostByItemDirection
   | "exists"
   | "not_exists";
 export const NamespacesInstancesUpdateRequestRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateRequestRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -14039,7 +13947,7 @@ export type NamespacesInstancesUpdateRequestRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesUpdateRequestRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateRequestRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -14098,8 +14006,7 @@ export type NamespacesInstancesUpdateRequestRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesUpdateRequestRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateRequestRewriteModel = S.String;
 
 export type NamespacesInstancesUpdateRequestSourceParamsExcludeItemsList =
   Array<string>;
@@ -14184,7 +14091,7 @@ export type NamespacesInstancesUpdateRequestSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
 export const NamespacesInstancesUpdateRequestSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateRequestSourceParamsWebCrawler {
   parseOptions?: NamespacesInstancesUpdateRequestSourceParamsWebCrawlerParseOptions;
@@ -14280,8 +14187,7 @@ export type NamespacesInstancesUpdateRequestSummarizationModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesUpdateRequestSummarizationModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateRequestSummarizationModel = S.String;
 
 export type NamespacesInstancesUpdateRequestSyncInterval =
   | 900
@@ -14292,8 +14198,7 @@ export type NamespacesInstancesUpdateRequestSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const NamespacesInstancesUpdateRequestSyncInterval =
-  /*@__PURE__*/ S.Number;
+export const NamespacesInstancesUpdateRequestSyncInterval = S.Number;
 
 export interface UpdateNamespaceInstanceRequest {
   accountId: string;
@@ -14486,16 +14391,14 @@ export type NamespacesInstancesUpdateResponseAiSearchModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesUpdateResponseAiSearchModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateResponseAiSearchModel = S.String;
 
 export type NamespacesInstancesUpdateResponseCacheThreshold =
   | "super_strict_match"
   | "close_enough"
   | "flexible_friend"
   | "anything_goes";
-export const NamespacesInstancesUpdateResponseCacheThreshold =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateResponseCacheThreshold = S.String;
 
 export type NamespacesInstancesUpdateResponseCacheTtl =
   | 600
@@ -14508,7 +14411,7 @@ export type NamespacesInstancesUpdateResponseCacheTtl =
   | 172800
   | 259200
   | 518400;
-export const NamespacesInstancesUpdateResponseCacheTtl = /*@__PURE__*/ S.Number;
+export const NamespacesInstancesUpdateResponseCacheTtl = S.Number;
 
 export type NamespacesInstancesUpdateResponseCustomMetadataItemDataType =
   | "text"
@@ -14516,7 +14419,7 @@ export type NamespacesInstancesUpdateResponseCustomMetadataItemDataType =
   | "boolean"
   | "datetime";
 export const NamespacesInstancesUpdateResponseCustomMetadataItemDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateResponseCustomMetadataItem {
   dataType: NamespacesInstancesUpdateResponseCustomMetadataItemDataType;
@@ -14554,12 +14457,10 @@ export type NamespacesInstancesUpdateResponseEmbeddingModel =
   | "openai/text-embedding-3-small"
   | "openai/text-embedding-3-large"
   | "";
-export const NamespacesInstancesUpdateResponseEmbeddingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateResponseEmbeddingModel = S.String;
 
 export type NamespacesInstancesUpdateResponseFusionMethod = "max" | "rrf";
-export const NamespacesInstancesUpdateResponseFusionMethod =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateResponseFusionMethod = S.String;
 
 export type NamespacesInstancesUpdateResponseIndexMethod =
   InstancesCreateRequestIndexMethod;
@@ -14570,7 +14471,7 @@ export type NamespacesInstancesUpdateResponseIndexingOptionsKeywordTokenizer =
   | "porter"
   | "trigram";
 export const NamespacesInstancesUpdateResponseIndexingOptionsKeywordTokenizer =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateResponseIndexingOptions {
   /** Tokenizer used for keyword search indexing. porter provides word-level tokenization with Porter stemming (good for natural language queries). trigram enables character-level substring matching (good for partial matches, code, identifiers). Changing this triggers a full re-index. Defaults to porter. */
@@ -14622,7 +14523,7 @@ export type NamespacesInstancesUpdateResponsePublicEndpointParamsRateLimitTechni
   | "fixed"
   | "sliding";
 export const NamespacesInstancesUpdateResponsePublicEndpointParamsRateLimitTechnique =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateResponsePublicEndpointParamsRateLimit {
   periodMs?: number | null;
@@ -14698,8 +14599,7 @@ export const NamespacesInstancesUpdateResponsePublicEndpointParams =
 export type NamespacesInstancesUpdateResponseRerankingModel =
   | "@cf/baai/bge-reranker-base"
   | "";
-export const NamespacesInstancesUpdateResponseRerankingModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateResponseRerankingModel = S.String;
 
 export type NamespacesInstancesUpdateResponseRetrievalOptionsBoostByItemDirection =
   | "asc"
@@ -14707,7 +14607,7 @@ export type NamespacesInstancesUpdateResponseRetrievalOptionsBoostByItemDirectio
   | "exists"
   | "not_exists";
 export const NamespacesInstancesUpdateResponseRetrievalOptionsBoostByItemDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateResponseRetrievalOptionsBoostByItem {
   /** Metadata field name to boost by. Use 'timestamp' for document freshness, or any custom_metadata field. Numeric and datetime fields support all four directions (asc, desc, exists, not_exists); text/boolean fields only support exists/not_exists. */
@@ -14740,7 +14640,7 @@ export type NamespacesInstancesUpdateResponseRetrievalOptionsKeywordMatchMode =
   | "and"
   | "or";
 export const NamespacesInstancesUpdateResponseRetrievalOptionsKeywordMatchMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateResponseRetrievalOptions {
   /** Metadata fields to boost search results by. Each entry specifies a metadata field and an optional direction. Direction defaults to 'asc' for numeric/datetime fields and 'exists' for text/boolean fields. Fields must match 'timestamp' or a defined custom_metadata field. */
@@ -14797,8 +14697,7 @@ export type NamespacesInstancesUpdateResponseRewriteModel =
   | "openai/gpt-5-mini"
   | "openai/gpt-5-nano"
   | "";
-export const NamespacesInstancesUpdateResponseRewriteModel =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateResponseRewriteModel = S.String;
 
 export type NamespacesInstancesUpdateResponseSourceParamsExcludeItemsList =
   Array<string>;
@@ -14885,7 +14784,7 @@ export type NamespacesInstancesUpdateResponseSourceParamsWebCrawlerParseType =
   | "sitemap"
   | "crawl";
 export const NamespacesInstancesUpdateResponseSourceParamsWebCrawlerParseType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NamespacesInstancesUpdateResponseSourceParamsWebCrawler {
   parseOptions?: NamespacesInstancesUpdateResponseSourceParamsWebCrawlerParseOptions | null;
@@ -14959,11 +14858,10 @@ export type NamespacesInstancesUpdateResponseSyncInterval =
   | 21600
   | 43200
   | 86400;
-export const NamespacesInstancesUpdateResponseSyncInterval =
-  /*@__PURE__*/ S.Number;
+export const NamespacesInstancesUpdateResponseSyncInterval = S.Number;
 
 export type NamespacesInstancesUpdateResponseType = "r2" | "web-crawler";
-export const NamespacesInstancesUpdateResponseType = /*@__PURE__*/ S.String;
+export const NamespacesInstancesUpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateNamespaceInstanceResponse {
@@ -15206,8 +15104,7 @@ export const UploadNamespaceInstanceItemRequest = /*@__PURE__*/ S.suspend(() =>
 export type NamespacesInstancesItemsUploadResponseNextAction =
   | "INDEX"
   | "DELETE";
-export const NamespacesInstancesItemsUploadResponseNextAction =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsUploadResponseNextAction = S.String;
 
 export type NamespacesInstancesItemsUploadResponseStatus =
   | "queued"
@@ -15216,8 +15113,7 @@ export type NamespacesInstancesItemsUploadResponseStatus =
   | "error"
   | "skipped"
   | "outdated";
-export const NamespacesInstancesItemsUploadResponseStatus =
-  /*@__PURE__*/ S.String;
+export const NamespacesInstancesItemsUploadResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UploadNamespaceInstanceItemResponse {

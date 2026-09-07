@@ -66,7 +66,7 @@ export type PackageRegistrationStatusStateEnum =
   | "REGISTERED"
   | "NOT_REGISTERED"
   | "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT";
-export const PackageRegistrationStatusStateEnum = /*@__PURE__*/ S.String;
+export const PackageRegistrationStatusStateEnum = S.String;
 
 /** Resource message PackageRegistrationStatus. */
 export interface PackageRegistrationStatus {

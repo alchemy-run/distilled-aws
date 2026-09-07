@@ -26,12 +26,11 @@ export const AccountsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 export type AccountsCreateOrUpdateRequestPropertiesConfiguration =
   | "Free"
   | "Capacity";
-export const AccountsCreateOrUpdateRequestPropertiesConfiguration =
-  /*@__PURE__*/ S.String;
+export const AccountsCreateOrUpdateRequestPropertiesConfiguration = S.String;
 
 /** AAD principal type. */
 export type EndpointAuthenticationPrincipalType = "Application" | "User";
-export const EndpointAuthenticationPrincipalType = /*@__PURE__*/ S.String;
+export const EndpointAuthenticationPrincipalType = S.String;
 
 /** Service endpoints authentication details. */
 export interface EndpointAuthentication {
@@ -185,8 +184,7 @@ export const AccountsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 export type AccountsCreateOrUpdateResponsePropertiesConfiguration =
   | "Free"
   | "Capacity";
-export const AccountsCreateOrUpdateResponsePropertiesConfiguration =
-  /*@__PURE__*/ S.String;
+export const AccountsCreateOrUpdateResponsePropertiesConfiguration = S.String;
 
 /** Account resource properties. */
 export interface AccountsCreateOrUpdateResponseProperties {
@@ -222,8 +220,7 @@ export type AccountsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AccountsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AccountsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -232,7 +229,7 @@ export type AccountsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const AccountsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountsCreateOrUpdateResponseSystemData {
@@ -326,8 +323,7 @@ export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 export type CheckAccountNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CheckAccountNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityResponseReason = S.String;
 
 export interface CheckAccountNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -484,7 +480,7 @@ export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Account configuration. This can only be set at RecommendationsService Account creation. */
 export type GetAccountResponsePropertiesConfiguration = "Free" | "Capacity";
-export const GetAccountResponsePropertiesConfiguration = /*@__PURE__*/ S.String;
+export const GetAccountResponsePropertiesConfiguration = S.String;
 
 /** Account resource properties. */
 export interface GetAccountResponseProperties {
@@ -517,7 +513,7 @@ export type GetAccountResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAccountResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetAccountResponseSystemDataLastModifiedByType =
@@ -525,8 +521,7 @@ export type GetAccountResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAccountResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetAccountResponseSystemData {
@@ -707,15 +702,15 @@ export type GetModelingResponsePropertiesFeatures =
   | "Basic"
   | "Standard"
   | "Premium";
-export const GetModelingResponsePropertiesFeatures = /*@__PURE__*/ S.String;
+export const GetModelingResponsePropertiesFeatures = S.String;
 
 /** Modeling frequency controls the modeling compute frequency. */
 export type GetModelingResponsePropertiesFrequency = "Low" | "Medium" | "High";
-export const GetModelingResponsePropertiesFrequency = /*@__PURE__*/ S.String;
+export const GetModelingResponsePropertiesFrequency = S.String;
 
 /** Modeling size controls the maximum supported input data size. */
 export type GetModelingResponsePropertiesSize = "Small" | "Medium" | "Large";
-export const GetModelingResponsePropertiesSize = /*@__PURE__*/ S.String;
+export const GetModelingResponsePropertiesSize = S.String;
 
 /** The configuration to raw CDM data to be used as Modeling resource input. */
 export interface ModelingInputData {
@@ -761,8 +756,7 @@ export type GetModelingResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetModelingResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetModelingResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetModelingResponseSystemDataLastModifiedByType =
@@ -770,8 +764,7 @@ export type GetModelingResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetModelingResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetModelingResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetModelingResponseSystemData {
@@ -1061,8 +1054,7 @@ export type GetServiceEndpointResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServiceEndpointResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetServiceEndpointResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetServiceEndpointResponseSystemDataLastModifiedByType =
@@ -1070,8 +1062,7 @@ export type GetServiceEndpointResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetServiceEndpointResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetServiceEndpointResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetServiceEndpointResponseSystemData {
@@ -1167,7 +1158,7 @@ export const AccountResourceTagsMap = /*@__PURE__*/ S.Record(
 
 /** Account configuration. This can only be set at RecommendationsService Account creation. */
 export type AccountResourcePropertiesConfiguration = "Free" | "Capacity";
-export const AccountResourcePropertiesConfiguration = /*@__PURE__*/ S.String;
+export const AccountResourcePropertiesConfiguration = S.String;
 
 /** Account resource properties. */
 export interface AccountResourceProperties {
@@ -1200,7 +1191,7 @@ export type AccountResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountResourceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const AccountResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AccountResourceSystemDataLastModifiedByType =
@@ -1208,8 +1199,7 @@ export type AccountResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const AccountResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountResourceSystemData {
@@ -1349,15 +1339,15 @@ export type ModelingResourcePropertiesFeatures =
   | "Basic"
   | "Standard"
   | "Premium";
-export const ModelingResourcePropertiesFeatures = /*@__PURE__*/ S.String;
+export const ModelingResourcePropertiesFeatures = S.String;
 
 /** Modeling frequency controls the modeling compute frequency. */
 export type ModelingResourcePropertiesFrequency = "Low" | "Medium" | "High";
-export const ModelingResourcePropertiesFrequency = /*@__PURE__*/ S.String;
+export const ModelingResourcePropertiesFrequency = S.String;
 
 /** Modeling size controls the maximum supported input data size. */
 export type ModelingResourcePropertiesSize = "Small" | "Medium" | "Large";
-export const ModelingResourcePropertiesSize = /*@__PURE__*/ S.String;
+export const ModelingResourcePropertiesSize = S.String;
 
 /** Modeling resource properties. */
 export interface ModelingResourceProperties {
@@ -1390,7 +1380,7 @@ export type ModelingResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ModelingResourceSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const ModelingResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ModelingResourceSystemDataLastModifiedByType =
@@ -1398,8 +1388,7 @@ export type ModelingResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ModelingResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ModelingResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ModelingResourceSystemData {
@@ -1522,11 +1511,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -1619,8 +1608,7 @@ export type ServiceEndpointResourceSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceEndpointResourceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ServiceEndpointResourceSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ServiceEndpointResourceSystemDataLastModifiedByType =
@@ -1628,8 +1616,7 @@ export type ServiceEndpointResourceSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceEndpointResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const ServiceEndpointResourceSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ServiceEndpointResourceSystemData {
@@ -1729,24 +1716,21 @@ export type ModelingCreateOrUpdateRequestPropertiesFeatures =
   | "Basic"
   | "Standard"
   | "Premium";
-export const ModelingCreateOrUpdateRequestPropertiesFeatures =
-  /*@__PURE__*/ S.String;
+export const ModelingCreateOrUpdateRequestPropertiesFeatures = S.String;
 
 /** Modeling frequency controls the modeling compute frequency. */
 export type ModelingCreateOrUpdateRequestPropertiesFrequency =
   | "Low"
   | "Medium"
   | "High";
-export const ModelingCreateOrUpdateRequestPropertiesFrequency =
-  /*@__PURE__*/ S.String;
+export const ModelingCreateOrUpdateRequestPropertiesFrequency = S.String;
 
 /** Modeling size controls the maximum supported input data size. */
 export type ModelingCreateOrUpdateRequestPropertiesSize =
   | "Small"
   | "Medium"
   | "Large";
-export const ModelingCreateOrUpdateRequestPropertiesSize =
-  /*@__PURE__*/ S.String;
+export const ModelingCreateOrUpdateRequestPropertiesSize = S.String;
 
 /** Modeling resource properties. */
 export interface ModelingCreateOrUpdateRequestProperties {
@@ -1822,24 +1806,21 @@ export type ModelingCreateOrUpdateResponsePropertiesFeatures =
   | "Basic"
   | "Standard"
   | "Premium";
-export const ModelingCreateOrUpdateResponsePropertiesFeatures =
-  /*@__PURE__*/ S.String;
+export const ModelingCreateOrUpdateResponsePropertiesFeatures = S.String;
 
 /** Modeling frequency controls the modeling compute frequency. */
 export type ModelingCreateOrUpdateResponsePropertiesFrequency =
   | "Low"
   | "Medium"
   | "High";
-export const ModelingCreateOrUpdateResponsePropertiesFrequency =
-  /*@__PURE__*/ S.String;
+export const ModelingCreateOrUpdateResponsePropertiesFrequency = S.String;
 
 /** Modeling size controls the maximum supported input data size. */
 export type ModelingCreateOrUpdateResponsePropertiesSize =
   | "Small"
   | "Medium"
   | "Large";
-export const ModelingCreateOrUpdateResponsePropertiesSize =
-  /*@__PURE__*/ S.String;
+export const ModelingCreateOrUpdateResponsePropertiesSize = S.String;
 
 /** Modeling resource properties. */
 export interface ModelingCreateOrUpdateResponseProperties {
@@ -1873,8 +1854,7 @@ export type ModelingCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ModelingCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const ModelingCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type ModelingCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -1883,7 +1863,7 @@ export type ModelingCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ModelingCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ModelingCreateOrUpdateResponseSystemData {
@@ -2033,7 +2013,7 @@ export type ServiceEndpointsCreateOrUpdateResponseSystemDataCreatedByType =
   | "ManagedIdentity"
   | "Key";
 export const ServiceEndpointsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of identity that last modified the resource. */
 export type ServiceEndpointsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -2042,7 +2022,7 @@ export type ServiceEndpointsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const ServiceEndpointsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface ServiceEndpointsCreateOrUpdateResponseSystemData {
@@ -2176,8 +2156,7 @@ export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Account configuration. This can only be set at RecommendationsService Account creation. */
 export type UpdateAccountResponsePropertiesConfiguration = "Free" | "Capacity";
-export const UpdateAccountResponsePropertiesConfiguration =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponsePropertiesConfiguration = S.String;
 
 /** Account resource properties. */
 export interface UpdateAccountResponseProperties {
@@ -2210,8 +2189,7 @@ export type UpdateAccountResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateAccountResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateAccountResponseSystemDataLastModifiedByType =
@@ -2219,8 +2197,7 @@ export type UpdateAccountResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateAccountResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateAccountResponseSystemData {
@@ -2343,18 +2320,18 @@ export type UpdateModelingResponsePropertiesFeatures =
   | "Basic"
   | "Standard"
   | "Premium";
-export const UpdateModelingResponsePropertiesFeatures = /*@__PURE__*/ S.String;
+export const UpdateModelingResponsePropertiesFeatures = S.String;
 
 /** Modeling frequency controls the modeling compute frequency. */
 export type UpdateModelingResponsePropertiesFrequency =
   | "Low"
   | "Medium"
   | "High";
-export const UpdateModelingResponsePropertiesFrequency = /*@__PURE__*/ S.String;
+export const UpdateModelingResponsePropertiesFrequency = S.String;
 
 /** Modeling size controls the maximum supported input data size. */
 export type UpdateModelingResponsePropertiesSize = "Small" | "Medium" | "Large";
-export const UpdateModelingResponsePropertiesSize = /*@__PURE__*/ S.String;
+export const UpdateModelingResponsePropertiesSize = S.String;
 
 /** Modeling resource properties. */
 export interface UpdateModelingResponseProperties {
@@ -2387,8 +2364,7 @@ export type UpdateModelingResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateModelingResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateModelingResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateModelingResponseSystemDataLastModifiedByType =
@@ -2396,8 +2372,7 @@ export type UpdateModelingResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateModelingResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateModelingResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateModelingResponseSystemData {
@@ -2511,8 +2486,7 @@ export type UpdateServiceEndpointResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateServiceEndpointResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateServiceEndpointResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateServiceEndpointResponseSystemDataLastModifiedByType =
@@ -2521,7 +2495,7 @@ export type UpdateServiceEndpointResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const UpdateServiceEndpointResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateServiceEndpointResponseSystemData {

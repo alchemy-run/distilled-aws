@@ -477,7 +477,7 @@ export type CompatibilityIssue =
   | "ConnectionToInternetRequired"
   | "ConnectionToAzureRequired"
   | "DisconnectedEnvironmentRequired";
-export const CompatibilityIssue = /*@__PURE__*/ S.String;
+export const CompatibilityIssue = S.String;
 
 /** List of all issues found */
 export type CompatibilityIssuesList = Array<CompatibilityIssue>;
@@ -743,7 +743,7 @@ export const GetRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Location of the resource. */
 export type GetRegistrationResponseLocation = "global";
-export const GetRegistrationResponseLocation = /*@__PURE__*/ S.String;
+export const GetRegistrationResponseLocation = S.String;
 
 /** Custom tags for the resource. */
 export type GetRegistrationResponseTagsMap = {
@@ -1052,7 +1052,7 @@ export const ListProductDetailsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Compute role type (IaaS or PaaS). */
 export type ComputeRole = "None" | "IaaS" | "PaaS";
-export const ComputeRole = /*@__PURE__*/ S.String;
+export const ComputeRole = S.String;
 
 /** The URI. */
 export interface Uri {
@@ -1067,7 +1067,7 @@ export const Uri = /*@__PURE__*/ S.suspend(() =>
 
 /** Operating system type (Windows or Linux). */
 export type OperatingSystem = "None" | "Windows" | "Linux";
-export const OperatingSystem = /*@__PURE__*/ S.String;
+export const OperatingSystem = S.String;
 
 /** OS disk image. */
 export interface OsDiskImage {
@@ -1235,7 +1235,7 @@ export const ListRegistrationBySubscriptionRequest = /*@__PURE__*/ S.suspend(
 
 /** Location of the resource. */
 export type RegistrationLocation = "global";
-export const RegistrationLocation = /*@__PURE__*/ S.String;
+export const RegistrationLocation = S.String;
 
 /** Custom tags for the resource. */
 export type RegistrationTagsMap = { [key: string]: string | undefined };
@@ -1332,8 +1332,7 @@ export const RegistrationParameterProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Location of the resource. */
 export type RegistrationsCreateOrUpdateRequestLocation = "global";
-export const RegistrationsCreateOrUpdateRequestLocation =
-  /*@__PURE__*/ S.String;
+export const RegistrationsCreateOrUpdateRequestLocation = S.String;
 
 export interface RegistrationsCreateOrUpdateRequest {
   /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -1368,8 +1367,7 @@ export const RegistrationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Location of the resource. */
 export type RegistrationsCreateOrUpdateResponseLocation = "global";
-export const RegistrationsCreateOrUpdateResponseLocation =
-  /*@__PURE__*/ S.String;
+export const RegistrationsCreateOrUpdateResponseLocation = S.String;
 
 /** Custom tags for the resource. */
 export type RegistrationsCreateOrUpdateResponseTagsMap = {
@@ -1413,7 +1411,7 @@ export const RegistrationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Location of the resource. */
 export type UpdateRegistrationRequestLocation = "global";
-export const UpdateRegistrationRequestLocation = /*@__PURE__*/ S.String;
+export const UpdateRegistrationRequestLocation = S.String;
 
 export interface UpdateRegistrationRequest {
   /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -1448,7 +1446,7 @@ export const UpdateRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Location of the resource. */
 export type UpdateRegistrationResponseLocation = "global";
-export const UpdateRegistrationResponseLocation = /*@__PURE__*/ S.String;
+export const UpdateRegistrationResponseLocation = S.String;
 
 /** Custom tags for the resource. */
 export type UpdateRegistrationResponseTagsMap = {

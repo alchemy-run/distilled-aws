@@ -30,7 +30,7 @@ export const CapabilityHostPropertiesInputAiServicesConnectionsList =
   ) as any as S.Schema<CapabilityHostPropertiesInputAiServicesConnectionsList>;
 
 export type CapabilityHostKind = "Agents";
-export const CapabilityHostKind = /*@__PURE__*/ S.String;
+export const CapabilityHostKind = S.String;
 
 /** List of connection names from those available in the account or project to be used as a storage resource. */
 export type CapabilityHostPropertiesInputStorageConnectionsList = Array<string>;
@@ -137,7 +137,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -145,7 +145,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -197,7 +197,7 @@ export type CapabilityHostProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const CapabilityHostProvisioningState = /*@__PURE__*/ S.String;
+export const CapabilityHostProvisioningState = S.String;
 
 /** List of connection names from those available in the account or project to be used as a storage resource. */
 export type CapabilityHostPropertiesStorageConnectionsList = Array<string>;
@@ -453,11 +453,11 @@ export type IdentityKind =
   | "AgenticUser"
   | "Managed"
   | "None";
-export const IdentityKind = /*@__PURE__*/ S.String;
+export const IdentityKind = S.String;
 
 /** Enumeration of identity types, from the perspective of management. */
 export type IdentityManagementType = "System" | "User" | "None";
-export const IdentityManagementType = /*@__PURE__*/ S.String;
+export const IdentityManagementType = S.String;
 
 /** Type representing an identity assignment */
 export interface AssignedIdentityInput {
@@ -493,7 +493,7 @@ export type BuiltInAuthorizationScheme =
   | "OrganizationScope"
   | "Channels"
   | "Custom";
-export const BuiltInAuthorizationScheme = /*@__PURE__*/ S.String;
+export const BuiltInAuthorizationScheme = S.String;
 
 /** Represents a policy for authorizing applications based on specified authentication and authorization schemes. */
 export interface ApplicationAuthorizationPolicy {
@@ -510,7 +510,7 @@ export const ApplicationAuthorizationPolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** Traffic routing protocol, used to distribute an application's inbound traffic to its deployments. */
 export type TrafficRoutingProtocol = "FixedRatio";
-export const TrafficRoutingProtocol = /*@__PURE__*/ S.String;
+export const TrafficRoutingProtocol = S.String;
 
 /** Represents a rule for routing traffic to a specific deployment. */
 export interface TrafficRoutingRule {
@@ -653,7 +653,7 @@ export type IdentityProvisioningState =
   | "Failed"
   | "Canceled"
   | "Deleting";
-export const IdentityProvisioningState = /*@__PURE__*/ S.String;
+export const IdentityProvisioningState = S.String;
 
 /** Type representing an identity assignment */
 export interface AssignedIdentity {
@@ -694,7 +694,7 @@ export type AgenticApplicationProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AgenticApplicationProvisioningState = /*@__PURE__*/ S.String;
+export const AgenticApplicationProvisioningState = S.String;
 
 /** Resource type representing an agentic application as a management construct. */
 export interface AgenticApplicationProperties {
@@ -783,11 +783,11 @@ export type AgentDeploymentState =
   | "Deleting"
   | "Deleted"
   | "Updating";
-export const AgentDeploymentState = /*@__PURE__*/ S.String;
+export const AgentDeploymentState = S.String;
 
 /** Protocol used by the agent/exposed by a deployment. */
 export type AgentProtocol = "Agent" | "A2A" | "Responses";
-export const AgentProtocol = /*@__PURE__*/ S.String;
+export const AgentProtocol = S.String;
 
 /** Type modeling the protocol and version used by an agent/exposed by a deployment. */
 export interface AgentProtocolVersion {
@@ -841,7 +841,7 @@ export const AgentDeploymentPropertiesInputAgentsList = /*@__PURE__*/ S.Array(
 
 /** Specifies the type of deployment for an agent, indicating how the underlying compute and network infrastructure is managed. */
 export type AgentDeploymentType = "Managed" | "Hosted" | "Custom";
-export const AgentDeploymentType = /*@__PURE__*/ S.String;
+export const AgentDeploymentType = S.String;
 
 /** Type representing an agent deployment as a management construct. */
 export interface AgentDeploymentPropertiesInput {
@@ -948,7 +948,7 @@ export type AgentDeploymentProvisioningState =
   | "Creating"
   | "Updating"
   | "Deleting";
-export const AgentDeploymentProvisioningState = /*@__PURE__*/ S.String;
+export const AgentDeploymentProvisioningState = S.String;
 
 /** Type representing an agent deployment as a management construct. */
 export interface AgentDeploymentProperties {
@@ -1286,7 +1286,7 @@ export type HostingModel =
   | "ConnectedContainer"
   | "DisconnectedContainer"
   | "ProvisionedWeb";
-export const HostingModel = /*@__PURE__*/ S.String;
+export const HostingModel = S.String;
 
 /** Cognitive Services account commitment period. */
 export interface CommitmentPeriodInput {
@@ -1344,7 +1344,7 @@ export const CommitmentPlansCreateOrUpdateRequestTagsMap =
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type SkuTier = "Free" | "Basic" | "Standard" | "Premium" | "Enterprise";
-export const SkuTier = /*@__PURE__*/ S.String;
+export const SkuTier = S.String;
 
 /** The resource model definition representing SKU */
 export interface Sku {
@@ -1422,7 +1422,7 @@ export type CommitmentPlanProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Canceled";
-export const CommitmentPlanProvisioningState = /*@__PURE__*/ S.String;
+export const CommitmentPlanProvisioningState = S.String;
 
 /** Cognitive Services account commitment quota. */
 export interface CommitmentQuota {
@@ -1764,11 +1764,11 @@ export const CommitmentPlansCreateOrUpdatePlanResponse =
 
 /** The default action when no rule from ipRules and from virtualNetworkRules match. This is only used after the bypass property has been evaluated. */
 export type NetworkRuleAction = "Allow" | "Deny";
-export const NetworkRuleAction = /*@__PURE__*/ S.String;
+export const NetworkRuleAction = S.String;
 
 /** Setting for trusted services. */
 export type ByPassSelection = "None" | "AzureServices";
-export const ByPassSelection = /*@__PURE__*/ S.String;
+export const ByPassSelection = S.String;
 
 /** A rule governing the accessibility from a specific ip address or ip range. */
 export interface IpRule {
@@ -1857,7 +1857,7 @@ export const KeyVaultProperties = /*@__PURE__*/ S.suspend(() =>
 export type EncryptionKeySource =
   | "Microsoft.CognitiveServices"
   | "Microsoft.KeyVault";
-export const EncryptionKeySource = /*@__PURE__*/ S.String;
+export const EncryptionKeySource = S.String;
 
 /** Properties to configure Encryption */
 export interface Encryption {
@@ -1913,7 +1913,7 @@ export const UserOwnedAmlWorkspace = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether or not public endpoint access is allowed for this account. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** The api properties for special APIs. */
 export interface ApiProperties {
@@ -1960,7 +1960,7 @@ export const AccountPropertiesInputAllowedFqdnListList = /*@__PURE__*/ S.Array(
 
 /** Multiregion routing methods. */
 export type RoutingMethods = "Priority" | "Weighted" | "Performance";
-export const RoutingMethods = /*@__PURE__*/ S.String;
+export const RoutingMethods = S.String;
 
 /** The call rate limit Cognitive Services account. */
 export interface RegionSetting {
@@ -2017,7 +2017,7 @@ export const RaiMonitorConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies what features in AI Foundry network injection applies to. Currently only supports 'agent' for agent scenarios. 'none' means no network injection. */
 export type ScenarioType = "none" | "agent";
-export const ScenarioType = /*@__PURE__*/ S.String;
+export const ScenarioType = S.String;
 
 /** Specifies in AI Foundry where virtual network injection occurs to secure scenarios like Agents entirely within the user's private network, eliminating public internet exposure while maintaining control over network configurations and resources. */
 export interface NetworkInjection {
@@ -2132,7 +2132,7 @@ export type ResourceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
+export const ResourceIdentityType = S.String;
 
 /** User-assigned managed identity. */
 export interface UserAssignedIdentityInput {}
@@ -2218,7 +2218,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Canceled"
   | "ResolvingDNS";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** SkuCapability indicates the capability of a certain feature. */
 export interface SkuCapability {
@@ -2282,7 +2282,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState {
@@ -2311,8 +2311,7 @@ export type PrivateEndpointConnectionPropertiesProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionPropertiesProvisioningState = S.String;
 
 /** The private link resource group ids. */
 export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
@@ -2503,7 +2502,7 @@ export const AccountPropertiesCommitmentPlanAssociationsList =
 
 /** The action of AbusePenalty. */
 export type AbusePenaltyAction = "Throttle" | "Block";
-export const AbusePenaltyAction = /*@__PURE__*/ S.String;
+export const AbusePenaltyAction = S.String;
 
 /** The abuse penalty. */
 export interface AbusePenalty {
@@ -2763,7 +2762,7 @@ export type ConnectionAuthType =
   | "AgentUserImpersonation"
   | "AgenticIdentityToken"
   | "AgenticUser";
-export const ConnectionAuthType = /*@__PURE__*/ S.String;
+export const ConnectionAuthType = S.String;
 
 /** Category of the connection */
 export type ConnectionCategory =
@@ -2887,7 +2886,7 @@ export type ConnectionCategory =
   | "MicrosoftFabric"
   | "PowerPlatformEnvironment"
   | "RemoteA2A";
-export const ConnectionCategory = /*@__PURE__*/ S.String;
+export const ConnectionCategory = S.String;
 
 /** Store user metadata for this connection */
 export type ConnectionPropertiesV2InputMetadataMap = {
@@ -2899,10 +2898,10 @@ export const ConnectionPropertiesV2InputMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ConnectionPropertiesV2InputMetadataMap>;
 
 export type ManagedPERequirement = "Required" | "NotRequired" | "NotApplicable";
-export const ManagedPERequirement = /*@__PURE__*/ S.String;
+export const ManagedPERequirement = S.String;
 
 export type ManagedPEStatus = "Inactive" | "Active" | "NotApplicable";
-export const ManagedPEStatus = /*@__PURE__*/ S.String;
+export const ManagedPEStatus = S.String;
 
 export type ConnectionPropertiesV2InputSharedUserListList = Array<string>;
 export const ConnectionPropertiesV2InputSharedUserListList =
@@ -2989,7 +2988,7 @@ export type ConnectionGroup =
   | "File"
   | "GenericProtocol"
   | "ServicesAndApps";
-export const ConnectionGroup = /*@__PURE__*/ S.String;
+export const ConnectionGroup = S.String;
 
 /** Store user metadata for this connection */
 export type ConnectionPropertiesV2MetadataMap = {
@@ -3276,7 +3275,7 @@ export const CreateProjectConnectionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Defender for AI state on the AI resource. */
 export type DefenderForAISettingState = "Disabled" | "Enabled";
-export const DefenderForAISettingState = /*@__PURE__*/ S.String;
+export const DefenderForAISettingState = S.String;
 
 /** The Defender for AI resource properties. */
 export interface DefenderForAISettingProperties {
@@ -4233,7 +4232,7 @@ export const DeleteSubscriptionRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Deployment scale type. */
 export type DeploymentScaleType = "Standard" | "Manual";
-export const DeploymentScaleType = /*@__PURE__*/ S.String;
+export const DeploymentScaleType = S.String;
 
 /** Properties of Cognitive Services account deployment model. (Deprecated, please use Deployment.sku instead.) */
 export interface DeploymentScaleSettingsInput {
@@ -4256,7 +4255,7 @@ export type DeploymentModelVersionUpgradeOption =
   | "OnceNewDefaultVersionAvailable"
   | "OnceCurrentVersionExpired"
   | "NoAutoUpgrade";
-export const DeploymentModelVersionUpgradeOption = /*@__PURE__*/ S.String;
+export const DeploymentModelVersionUpgradeOption = S.String;
 
 /** Internal use only. */
 export interface DeploymentCapacitySettings {
@@ -4276,15 +4275,15 @@ export const DeploymentCapacitySettings = /*@__PURE__*/ S.suspend(() =>
 
 /** The service tier for the deployment. Determines the pricing and performance level for request processing. Use 'Default' for standard pricing or 'Priority' for higher-priority processing with premium pricing. Note: Pause operations are only supported on Standard, DataZoneStandard, and GlobalStandard SKUs. */
 export type ServiceTier = "Default" | "Priority";
-export const ServiceTier = /*@__PURE__*/ S.String;
+export const ServiceTier = S.String;
 
 /** The state of the deployment. Controls whether the deployment is accepting inference requests. Use 'Running' for active deployments that process requests, or 'Paused' to temporarily stop inference while preserving the deployment configuration. */
 export type DeploymentState = "Running" | "Paused";
-export const DeploymentState = /*@__PURE__*/ S.String;
+export const DeploymentState = S.String;
 
 /** The model-router routing mode that determines how requests are distributed across models. */
 export type DeploymentRoutingMode = "cost" | "balanced" | "quality";
-export const DeploymentRoutingMode = /*@__PURE__*/ S.String;
+export const DeploymentRoutingMode = S.String;
 
 /** Optional. The list of model-router supported models that the model router can use to route requests across. If not specified, the model router will route to all available models specified in the model-router version. */
 export type DeploymentRoutingModelsList = Array<DeploymentModel>;
@@ -4407,7 +4406,7 @@ export type DeploymentProvisioningState =
   | "Succeeded"
   | "Disabled"
   | "Canceled";
-export const DeploymentProvisioningState = /*@__PURE__*/ S.String;
+export const DeploymentProvisioningState = S.String;
 
 /** Properties of Cognitive Services account deployment model. (Deprecated, please use Deployment.sku instead.) */
 export interface DeploymentScaleSettings {
@@ -4621,11 +4620,11 @@ export const EnableAgentApplicationResponse = /*@__PURE__*/ S.suspend(() =>
 export type EncryptionScopePropertiesInputKeySource =
   | "Microsoft.CognitiveServices"
   | "Microsoft.KeyVault";
-export const EncryptionScopePropertiesInputKeySource = /*@__PURE__*/ S.String;
+export const EncryptionScopePropertiesInputKeySource = S.String;
 
 /** The encryptionScope state. */
 export type EncryptionScopeState = "Disabled" | "Enabled";
-export const EncryptionScopeState = /*@__PURE__*/ S.String;
+export const EncryptionScopeState = S.String;
 
 /** Properties to EncryptionScope */
 export interface EncryptionScopePropertiesInput {
@@ -4695,7 +4694,7 @@ export const EncryptionScopesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
 export type EncryptionScopePropertiesKeySource =
   | "Microsoft.CognitiveServices"
   | "Microsoft.KeyVault";
-export const EncryptionScopePropertiesKeySource = /*@__PURE__*/ S.String;
+export const EncryptionScopePropertiesKeySource = S.String;
 
 /** Gets the status of the resource at the time the operation was called. */
 export type EncryptionScopeProvisioningState =
@@ -4706,7 +4705,7 @@ export type EncryptionScopeProvisioningState =
   | "Failed"
   | "Succeeded"
   | "Canceled";
-export const EncryptionScopeProvisioningState = /*@__PURE__*/ S.String;
+export const EncryptionScopeProvisioningState = S.String;
 
 /** Properties to EncryptionScope */
 export interface EncryptionScopeProperties {
@@ -5596,7 +5595,7 @@ export type IsolationMode =
   | "Disabled"
   | "AllowInternetOutbound"
   | "AllowOnlyApprovedOutbound";
-export const IsolationMode = /*@__PURE__*/ S.String;
+export const IsolationMode = S.String;
 
 /** Category of a managed network Outbound Rule of a cognitive services account. */
 export type RuleCategory =
@@ -5604,7 +5603,7 @@ export type RuleCategory =
   | "Recommended"
   | "UserDefined"
   | "Dependency";
-export const RuleCategory = /*@__PURE__*/ S.String;
+export const RuleCategory = S.String;
 
 /** Type of a managed network Outbound Rule of a cognitive services account. */
 export type RuleStatus =
@@ -5613,11 +5612,11 @@ export type RuleStatus =
   | "Provisioning"
   | "Deleting"
   | "Failed";
-export const RuleStatus = /*@__PURE__*/ S.String;
+export const RuleStatus = S.String;
 
 /** Type of a managed network Outbound Rule of a cognitive services account. */
 export type RuleType = "FQDN" | "PrivateEndpoint" | "ServiceTag";
-export const RuleType = /*@__PURE__*/ S.String;
+export const RuleType = S.String;
 
 export type OutboundRuleParentRuleNamesList = Array<string>;
 export const OutboundRuleParentRuleNamesList = /*@__PURE__*/ S.Array(
@@ -5657,7 +5656,7 @@ export const ManagedNetworkSettingsExOutboundRulesMap = /*@__PURE__*/ S.Record(
 
 /** Status for the managed network of a cognitive services account. */
 export type ManagedNetworkStatus = "Inactive" | "Active";
-export const ManagedNetworkStatus = /*@__PURE__*/ S.String;
+export const ManagedNetworkStatus = S.String;
 
 /** Status of the Provisioning for the managed network of a cognitive services account. */
 export interface ManagedNetworkProvisionStatus {
@@ -5674,11 +5673,11 @@ export const ManagedNetworkProvisionStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** Firewall Sku used for FQDN Rules */
 export type FirewallSku = "Standard" | "Basic";
-export const FirewallSku = /*@__PURE__*/ S.String;
+export const FirewallSku = S.String;
 
 /** The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch back to V1 once V2 is enabled. */
 export type ManagedNetworkKind = "V1" | "V2";
-export const ManagedNetworkKind = /*@__PURE__*/ S.String;
+export const ManagedNetworkKind = S.String;
 
 export type ManagedNetworkProvisioningState =
   | "Deferred"
@@ -5687,7 +5686,7 @@ export type ManagedNetworkProvisioningState =
   | "Failed"
   | "Deleting"
   | "Deleted";
-export const ManagedNetworkProvisioningState = /*@__PURE__*/ S.String;
+export const ManagedNetworkProvisioningState = S.String;
 
 export type ManagedNetworkSettingsExChangeableIsolationModesList =
   Array<IsolationMode>;
@@ -5812,7 +5811,7 @@ export const ProvisioningIssuePropertiesSuggestedResourceIdsList =
 
 /** Direction of Access Rule */
 export type NspAccessRuleDirection = "Inbound" | "Outbound";
-export const NspAccessRuleDirection = /*@__PURE__*/ S.String;
+export const NspAccessRuleDirection = S.String;
 
 /** Address prefixes for inbound rules */
 export type NetworkSecurityPerimeterAccessRulePropertiesAddressPrefixesList =
@@ -6485,11 +6484,11 @@ export const GetQuotaTierRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Gets the tier upgrade policy for the subscription. */
 export type TierUpgradePolicy = "OnceUpgradeIsAvailable" | "NoAutoUpgrade";
-export const TierUpgradePolicy = /*@__PURE__*/ S.String;
+export const TierUpgradePolicy = S.String;
 
 /** Specifies whether an upgrade to the next quota tier is available. */
 export type UpgradeAvailabilityStatus = "Available" | "NotAvailable";
-export const UpgradeAvailabilityStatus = /*@__PURE__*/ S.String;
+export const UpgradeAvailabilityStatus = S.String;
 
 /** Information about the quota tier upgrade eligibility for the subscription. */
 export interface QuotaTierUpgradeEligibilityInfo {
@@ -6731,7 +6730,7 @@ export type RaiPolicyContentSource =
   | "PostToolCall"
   | "PreRun"
   | "PostRun";
-export const RaiPolicyContentSource = /*@__PURE__*/ S.String;
+export const RaiPolicyContentSource = S.String;
 
 /** Azure OpenAI Content Filter Properties. */
 export interface RaiContentFilterProperties {
@@ -6907,7 +6906,7 @@ export const GetRaiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Content Filters policy type. */
 export type RaiPolicyType = "UserManaged" | "SystemManaged";
-export const RaiPolicyType = /*@__PURE__*/ S.String;
+export const RaiPolicyType = S.String;
 
 /** Rai policy mode. The enum value mapping is as below: Default = 0, Deferred=1, Blocking=2, Asynchronous_filter =3. Please use 'Asynchronous_filter' after 2025-06-01. It is the same as 'Deferred' in previous version. */
 export type RaiPolicyMode =
@@ -6915,11 +6914,11 @@ export type RaiPolicyMode =
   | "Deferred"
   | "Blocking"
   | "Asynchronous_filter";
-export const RaiPolicyMode = /*@__PURE__*/ S.String;
+export const RaiPolicyMode = S.String;
 
 /** Level at which content is filtered. */
 export type ContentLevel = "Low" | "Medium" | "High";
-export const ContentLevel = /*@__PURE__*/ S.String;
+export const ContentLevel = S.String;
 
 /** The action types to apply to the content filters */
 export type RaiActionType =
@@ -6928,7 +6927,7 @@ export type RaiActionType =
   | "ANNOTATING"
   | "HITL"
   | "RETRY";
-export const RaiActionType = /*@__PURE__*/ S.String;
+export const RaiActionType = S.String;
 
 /** Azure OpenAI Content Filter. */
 export interface RaiPolicyContentFilter {
@@ -7801,7 +7800,7 @@ export const AccountModelFinetuneCapabilitiesMap = /*@__PURE__*/ S.Record(
 
 /** Indicates whether the deprecation date is a confirmed planned end-of-life date or an estimated deprecation date. When 'Planned', the deprecation date represents a confirmed and communicated model end-of-life date. When 'Tentative', the deprecation date is an estimated timeline that may be subject to change. */
 export type DeprecationStatus = "Planned" | "Tentative";
-export const DeprecationStatus = /*@__PURE__*/ S.String;
+export const DeprecationStatus = S.String;
 
 /** Cognitive Services account ModelDeprecationInfo. */
 export interface ModelDeprecationInfo {
@@ -7852,7 +7851,7 @@ export type ModelLifecycleStatus =
   | "Deprecating"
   | "Deprecated"
   | "Legacy";
-export const ModelLifecycleStatus = /*@__PURE__*/ S.String;
+export const ModelLifecycleStatus = S.String;
 
 /** The type of identity that created the resource. */
 export type AccountModelSystemDataCreatedByType =
@@ -7860,7 +7859,7 @@ export type AccountModelSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountModelSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const AccountModelSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AccountModelSystemDataLastModifiedByType =
@@ -7868,7 +7867,7 @@ export type AccountModelSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountModelSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const AccountModelSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountModelSystemData {
@@ -8096,7 +8095,7 @@ export type UnitType =
   | "CountPerSecond"
   | "BytesPerSecond"
   | "Milliseconds";
-export const UnitType = /*@__PURE__*/ S.String;
+export const UnitType = S.String;
 
 /** A metric name. */
 export interface MetricName {
@@ -8114,11 +8113,11 @@ export const MetricName = /*@__PURE__*/ S.suspend(() =>
 
 /** Cognitive Services account quota usage status. */
 export type QuotaUsageStatus = "Included" | "Blocked" | "InOverage" | "Unknown";
-export const QuotaUsageStatus = /*@__PURE__*/ S.String;
+export const QuotaUsageStatus = S.String;
 
 /** The quota scope that determines the level at which the quota is applied. */
 export type QuotaScopeType = "Regional" | "Global" | "DataZone" | "Classic";
-export const QuotaScopeType = /*@__PURE__*/ S.String;
+export const QuotaScopeType = S.String;
 
 /** The usage data for a usage request. */
 export interface Usage {
@@ -9511,11 +9510,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -10659,7 +10658,7 @@ export const ResourceSkuLocationsList = /*@__PURE__*/ S.Array(
 
 /** The type of restrictions. */
 export type ResourceSkuRestrictionsType = "Location" | "Zone";
-export const ResourceSkuRestrictionsType = /*@__PURE__*/ S.String;
+export const ResourceSkuRestrictionsType = S.String;
 
 /** The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted. */
 export type ResourceSkuRestrictionsValuesList = Array<string>;
@@ -10698,7 +10697,7 @@ export const ResourceSkuRestrictionInfo = /*@__PURE__*/ S.suspend(() =>
 export type ResourceSkuRestrictionsReasonCode =
   | "QuotaId"
   | "NotAvailableForSubscription";
-export const ResourceSkuRestrictionsReasonCode = /*@__PURE__*/ S.String;
+export const ResourceSkuRestrictionsReasonCode = S.String;
 
 /** Describes restrictions of a SKU. */
 export interface ResourceSkuRestrictions {
@@ -12126,7 +12125,7 @@ export const RaiTopicsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** key name to generate (Key1|Key2) */
 export type KeyName = "Key1" | "Key2";
-export const KeyName = /*@__PURE__*/ S.String;
+export const KeyName = S.String;
 
 export interface RegenerateAccountKeyRequest {
   /** The ID of the target subscription. */

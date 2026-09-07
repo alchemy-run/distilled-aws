@@ -230,7 +230,7 @@ export type CloudSqlPropertiesTypeEnum =
   | "DATABASE_TYPE_UNSPECIFIED"
   | "POSTGRES"
   | "MYSQL";
-export const CloudSqlPropertiesTypeEnum = /*@__PURE__*/ S.String;
+export const CloudSqlPropertiesTypeEnum = S.String;
 
 /** Credential info for the Cloud SQL. */
 export interface CloudSqlCredential {
@@ -292,8 +292,7 @@ export const ConnectorConfigurationAsset = /*@__PURE__*/ S.suspend(() =>
 export type ConnectorConfigurationSecretSecretTypeEnum =
   | "SECRET_TYPE_UNSPECIFIED"
   | "PLAINTEXT";
-export const ConnectorConfigurationSecretSecretTypeEnum =
-  /*@__PURE__*/ S.String;
+export const ConnectorConfigurationSecretSecretTypeEnum = S.String;
 
 /** Secret value parameter. */
 export interface ConnectorConfigurationSecret {
@@ -438,7 +437,7 @@ export type ConnectorConfigurationTlsModeEnum =
   | "ENCRYPT_VERIFY_NONE"
   | "ENCRYPT_VERIFY_CA"
   | "ENCRYPT_VERIFY_CA_AND_HOST";
-export const ConnectorConfigurationTlsModeEnum = /*@__PURE__*/ S.String;
+export const ConnectorConfigurationTlsModeEnum = S.String;
 
 /** Private PKI. */
 export interface ConnectorConfigurationTlsPrivatePki {
@@ -659,7 +658,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

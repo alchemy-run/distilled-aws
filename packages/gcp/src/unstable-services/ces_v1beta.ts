@@ -209,8 +209,7 @@ export type EvaluationPersonaSpeechConfigEnvironmentEnum =
   | "TRAFFIC"
   | "KIDS_NOISE"
   | "CAFE";
-export const EvaluationPersonaSpeechConfigEnvironmentEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationPersonaSpeechConfigEnvironmentEnum = S.String;
 
 /** Configuration for Text-to-Speech generation. */
 export interface EvaluationPersonaSpeechConfig {
@@ -434,7 +433,7 @@ export type AppToolExecutionModeEnum =
   | "TOOL_EXECUTION_MODE_UNSPECIFIED"
   | "PARALLEL"
   | "SEQUENTIAL";
-export const AppToolExecutionModeEnum = /*@__PURE__*/ S.String;
+export const AppToolExecutionModeEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -446,35 +445,32 @@ export type EvaluationSettingsGoldenRunMethodEnum =
   | "GOLDEN_RUN_METHOD_UNSPECIFIED"
   | "STABLE"
   | "NAIVE";
-export const EvaluationSettingsGoldenRunMethodEnum = /*@__PURE__*/ S.String;
+export const EvaluationSettingsGoldenRunMethodEnum = S.String;
 
 export type EvaluationSettingsScenarioExecutionModeEnum =
   | "SCENARIO_EXECUTION_MODE_UNSPECIFIED"
   | "QUALITY_OPTIMIZED"
   | "SPEED_OPTIMIZED";
-export const EvaluationSettingsScenarioExecutionModeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationSettingsScenarioExecutionModeEnum = S.String;
 
 export type EvaluationSettingsScenarioConversationInitiatorEnum =
   | "SCENARIO_CONVERSATION_INITIATOR_UNSPECIFIED"
   | "USER"
   | "AGENT";
-export const EvaluationSettingsScenarioConversationInitiatorEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationSettingsScenarioConversationInitiatorEnum = S.String;
 
 export type EvaluationSettingsGoldenEvaluationToolCallBehaviourEnum =
   | "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED"
   | "REAL"
   | "FAKE";
-export const EvaluationSettingsGoldenEvaluationToolCallBehaviourEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationSettingsGoldenEvaluationToolCallBehaviourEnum = S.String;
 
 export type EvaluationSettingsScenarioEvaluationToolCallBehaviourEnum =
   | "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED"
   | "REAL"
   | "FAKE";
 export const EvaluationSettingsScenarioEvaluationToolCallBehaviourEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for similarity metrics for the evaluation. To disable the metric, set the message but do not set the `enable_semantic_similarity_metrics` field to true (or explicitly set it to false). To unset the configuration and fallback to the default behavior, omit the message entirely. */
 export interface EvaluationMetricsConfigSemanticSimilarityMetricsConfig {
@@ -601,8 +597,7 @@ export type EvaluationRunCachingSettingsRunCachingModeEnum =
   | "EVALUATION_RUN_CACHING_MODE_UNSPECIFIED"
   | "FORCE_RUN"
   | "SKIP_IF_UNCHANGED";
-export const EvaluationRunCachingSettingsRunCachingModeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationRunCachingSettingsRunCachingModeEnum = S.String;
 
 /** Settings for evaluation run caching. */
 export interface EvaluationRunCachingSettings {
@@ -685,7 +680,7 @@ export type Ces_SchemaTypeEnum =
   | "BOOLEAN"
   | "OBJECT"
   | "ARRAY";
-export const Ces_SchemaTypeEnum = /*@__PURE__*/ S.String;
+export const Ces_SchemaTypeEnum = S.String;
 
 /** Represents a select subset of an OpenAPI 3.0 schema object. */
 export interface Ces_Schema {
@@ -808,7 +803,7 @@ export type ChannelProfilePersonaPropertyPersonaEnum =
   | "UNKNOWN"
   | "CONCISE"
   | "CHATTY";
-export const ChannelProfilePersonaPropertyPersonaEnum = /*@__PURE__*/ S.String;
+export const ChannelProfilePersonaPropertyPersonaEnum = S.String;
 
 /** Represents the persona property of a channel. */
 export interface ChannelProfilePersonaProperty {
@@ -851,13 +846,13 @@ export type ChannelProfileWebWidgetConfigModalityEnum =
   | "VOICE_ONLY"
   | "CHAT_ONLY"
   | "CHAT_VOICE_AND_VIDEO";
-export const ChannelProfileWebWidgetConfigModalityEnum = /*@__PURE__*/ S.String;
+export const ChannelProfileWebWidgetConfigModalityEnum = S.String;
 
 export type ChannelProfileWebWidgetConfigThemeEnum =
   | "THEME_UNSPECIFIED"
   | "LIGHT"
   | "DARK";
-export const ChannelProfileWebWidgetConfigThemeEnum = /*@__PURE__*/ S.String;
+export const ChannelProfileWebWidgetConfigThemeEnum = S.String;
 
 /** Security settings for the web widget. */
 export interface ChannelProfileWebWidgetConfigSecuritySettings {
@@ -916,7 +911,7 @@ export type ChannelProfileChannelTypeEnum =
   | "CONTACT_CENTER_INTEGRATION"
   | "WHATSAPP"
   | "INSTAGRAM";
-export const ChannelProfileChannelTypeEnum = /*@__PURE__*/ S.String;
+export const ChannelProfileChannelTypeEnum = S.String;
 
 /** A ChannelProfile configures the agent's behavior for a specific communication channel, such as web UI or telephony. */
 export interface ChannelProfile {
@@ -958,21 +953,21 @@ export type EvaluationMetricsThresholdsScenarioHallucinationMetricBehaviorEnum =
   | "DISABLED"
   | "ENABLED";
 export const EvaluationMetricsThresholdsScenarioHallucinationMetricBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EvaluationMetricsThresholdsHallucinationMetricBehaviorEnum =
   | "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED"
   | "DISABLED"
   | "ENABLED";
 export const EvaluationMetricsThresholdsHallucinationMetricBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type EvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehaviorEnum =
   | "EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED"
   | "FAIL"
   | "ALLOW";
 export const EvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings for matching tool calls. */
 export interface EvaluationMetricsThresholdsToolMatchingSettings {
@@ -997,7 +992,7 @@ export type EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLeve
   | "TEXT"
   | "AUDIO";
 export const EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholdsSemanticSimilarityChannelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Turn level metrics thresholds. */
 export interface EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds {
@@ -1070,7 +1065,7 @@ export type EvaluationMetricsThresholdsGoldenHallucinationMetricBehaviorEnum =
   | "DISABLED"
   | "ENABLED";
 export const EvaluationMetricsThresholdsGoldenHallucinationMetricBehaviorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Threshold settings for metrics in an Evaluation. */
 export interface EvaluationMetricsThresholds {
@@ -1112,7 +1107,7 @@ export type DataStoreSettingsEngineTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "ENGINE_TYPE_SEARCH"
   | "ENGINE_TYPE_CHAT";
-export const DataStoreSettingsEngineTypeEnum = /*@__PURE__*/ S.String;
+export const DataStoreSettingsEngineTypeEnum = S.String;
 
 /** An engine to which the data stores are connected. See Vertex AI Search: https://cloud.google.com/generative-ai-app-builder/docs/enterprise-search-introduction. */
 export interface DataStoreSettingsEngine {
@@ -1153,8 +1148,7 @@ export type AmbientSoundConfigPrebuiltAmbientNoiseEnum =
   | "RETAIL_STORE"
   | "CONVENTION_HALL"
   | "OUTDOOR";
-export const AmbientSoundConfigPrebuiltAmbientNoiseEnum =
-  /*@__PURE__*/ S.String;
+export const AmbientSoundConfigPrebuiltAmbientNoiseEnum = S.String;
 
 /** Configuration for the ambient sound to be played with the synthesized agent response, to enhance the naturalness of the conversation. */
 export interface AmbientSoundConfig {
@@ -1304,8 +1298,7 @@ export type ErrorHandlingSettingsErrorHandlingStrategyEnum =
   | "NONE"
   | "FALLBACK_RESPONSE"
   | "END_SESSION";
-export const ErrorHandlingSettingsErrorHandlingStrategyEnum =
-  /*@__PURE__*/ S.String;
+export const ErrorHandlingSettingsErrorHandlingStrategyEnum = S.String;
 
 /** Configuration for handling fallback responses. */
 export interface ErrorHandlingSettingsFallbackResponseConfig {
@@ -1578,7 +1571,7 @@ export type TransferRuleDirectionEnum =
   | "DIRECTION_UNSPECIFIED"
   | "PARENT_TO_CHILD"
   | "CHILD_TO_PARENT";
-export const TransferRuleDirectionEnum = /*@__PURE__*/ S.String;
+export const TransferRuleDirectionEnum = S.String;
 
 /** Rule for transferring to a specific agent. */
 export interface TransferRule {
@@ -1763,7 +1756,7 @@ export type ExperimentConfigVersionReleaseStateEnum =
   | "RUNNING"
   | "DONE"
   | "EXPIRED";
-export const ExperimentConfigVersionReleaseStateEnum = /*@__PURE__*/ S.String;
+export const ExperimentConfigVersionReleaseStateEnum = S.String;
 
 /** Traffic allocation for the version release. */
 export interface ExperimentConfigVersionReleaseTrafficAllocation {
@@ -1856,7 +1849,7 @@ export type DeploymentModalityEnum =
   | "MODALITY_TEXT"
   | "MODALITY_VOICE"
   | "MODALITY_VIDEO";
-export const DeploymentModalityEnum = /*@__PURE__*/ S.String;
+export const DeploymentModalityEnum = S.String;
 
 /** Ephemeral Meta credentials for Instagram native integration. */
 export interface InstagramCredentials {
@@ -2303,8 +2296,7 @@ export type EvaluationGoldenExpectationComparisonTypeEnum =
   | "EQUALS"
   | "CONTAINS"
   | "SEMANTIC_SIMILARITY";
-export const EvaluationGoldenExpectationComparisonTypeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationGoldenExpectationComparisonTypeEnum = S.String;
 
 /** A tool that is created from a toolset. */
 export interface ToolsetTool {
@@ -2657,7 +2649,7 @@ export type EvaluationGoldenTurnHallucinationMetricBehaviorOverrideEnum =
   | "DISABLED"
   | "ENABLED";
 export const EvaluationGoldenTurnHallucinationMetricBehaviorOverrideEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A golden turn defines a single turn in a golden conversation. */
 export interface EvaluationGoldenTurn {
@@ -2713,7 +2705,7 @@ export type EvaluationScenarioUserGoalBehaviorEnum =
   | "USER_GOAL_SATISFIED"
   | "USER_GOAL_REJECTED"
   | "USER_GOAL_IGNORED";
-export const EvaluationScenarioUserGoalBehaviorEnum = /*@__PURE__*/ S.String;
+export const EvaluationScenarioUserGoalBehaviorEnum = S.String;
 
 /** Facts about the user as a key value pair. */
 export interface EvaluationScenarioUserFact {
@@ -2740,8 +2732,7 @@ export type EvaluationScenarioScenarioExecutionModeEnum =
   | "SCENARIO_EXECUTION_MODE_UNSPECIFIED"
   | "QUALITY_OPTIMIZED"
   | "SPEED_OPTIMIZED";
-export const EvaluationScenarioScenarioExecutionModeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationScenarioScenarioExecutionModeEnum = S.String;
 
 /** The tool call and response pair to be evaluated. */
 export interface EvaluationScenarioExpectationToolExpectation {
@@ -2786,8 +2777,7 @@ export type EvaluationScenarioTaskCompletionBehaviorEnum =
   | "TASK_COMPLETION_BEHAVIOR_UNSPECIFIED"
   | "TASK_SATISFIED"
   | "TASK_REJECTED";
-export const EvaluationScenarioTaskCompletionBehaviorEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationScenarioTaskCompletionBehaviorEnum = S.String;
 
 /** The config for a scenario */
 export interface EvaluationScenario {
@@ -2844,19 +2834,19 @@ export type EvaluationResultExecutionStateEnum =
   | "COMPLETED"
   | "ERROR"
   | "CANCELLED";
-export const EvaluationResultExecutionStateEnum = /*@__PURE__*/ S.String;
+export const EvaluationResultExecutionStateEnum = S.String;
 
 export type EvaluationResultOutcomeMetadataEnum =
   | "OUTCOME_METADATA_UNSPECIFIED"
   | "GRACEFUL_HANDOFF";
-export const EvaluationResultOutcomeMetadataEnum = /*@__PURE__*/ S.String;
+export const EvaluationResultOutcomeMetadataEnum = S.String;
 
 export type InputAudioConfigAudioEncodingEnum =
   | "AUDIO_ENCODING_UNSPECIFIED"
   | "LINEAR16"
   | "MULAW"
   | "ALAW";
-export const InputAudioConfigAudioEncodingEnum = /*@__PURE__*/ S.String;
+export const InputAudioConfigAudioEncodingEnum = S.String;
 
 /** InputAudioConfig configures how the CES agent should interpret the incoming audio data. */
 export interface InputAudioConfig {
@@ -2881,14 +2871,14 @@ export type EvaluationConfigToolCallBehaviourEnum =
   | "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED"
   | "REAL"
   | "FAKE";
-export const EvaluationConfigToolCallBehaviourEnum = /*@__PURE__*/ S.String;
+export const EvaluationConfigToolCallBehaviourEnum = S.String;
 
 export type OutputAudioConfigAudioEncodingEnum =
   | "AUDIO_ENCODING_UNSPECIFIED"
   | "LINEAR16"
   | "MULAW"
   | "ALAW";
-export const OutputAudioConfigAudioEncodingEnum = /*@__PURE__*/ S.String;
+export const OutputAudioConfigAudioEncodingEnum = S.String;
 
 /** OutputAudioConfig configures how the CES agent should synthesize outgoing audio responses. */
 export interface OutputAudioConfig {
@@ -2910,7 +2900,7 @@ export type EvaluationConfigEvaluationChannelEnum =
   | "EVALUATION_CHANNEL_UNSPECIFIED"
   | "TEXT"
   | "AUDIO";
-export const EvaluationConfigEvaluationChannelEnum = /*@__PURE__*/ S.String;
+export const EvaluationConfigEvaluationChannelEnum = S.String;
 
 /** EvaluationConfig configures settings for running the evaluation. */
 export interface EvaluationConfig {
@@ -2939,8 +2929,7 @@ export type EvaluationResultEvaluationExpectationResultOutcomeEnum =
   | "PASS"
   | "FAIL"
   | "SKIPPED";
-export const EvaluationResultEvaluationExpectationResultOutcomeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationResultEvaluationExpectationResultOutcomeEnum = S.String;
 
 /** The result of a single evaluation expectation. */
 export interface EvaluationResultEvaluationExpectationResult {
@@ -2981,8 +2970,7 @@ export type EvaluationResultSemanticSimilarityResultOutcomeEnum =
   | "PASS"
   | "FAIL"
   | "SKIPPED";
-export const EvaluationResultSemanticSimilarityResultOutcomeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationResultSemanticSimilarityResultOutcomeEnum = S.String;
 
 /** The result of the semantic similarity check. */
 export interface EvaluationResultSemanticSimilarityResult {
@@ -3012,8 +3000,7 @@ export type EvaluationResultGoldenExpectationOutcomeOutcomeEnum =
   | "PASS"
   | "FAIL"
   | "SKIPPED";
-export const EvaluationResultGoldenExpectationOutcomeOutcomeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationResultGoldenExpectationOutcomeOutcomeEnum = S.String;
 
 export type EvaluationResultGoldenExpectationOutcomeToolInvocationResultOutcomeEnum =
   | "OUTCOME_UNSPECIFIED"
@@ -3021,7 +3008,7 @@ export type EvaluationResultGoldenExpectationOutcomeToolInvocationResultOutcomeE
   | "FAIL"
   | "SKIPPED";
 export const EvaluationResultGoldenExpectationOutcomeToolInvocationResultOutcomeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The result of the tool invocation check. */
 export interface EvaluationResultGoldenExpectationOutcomeToolInvocationResult {
@@ -3132,8 +3119,7 @@ export type EvaluationResultOverallToolInvocationResultOutcomeEnum =
   | "PASS"
   | "FAIL"
   | "SKIPPED";
-export const EvaluationResultOverallToolInvocationResultOutcomeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationResultOverallToolInvocationResultOutcomeEnum = S.String;
 
 /** The result of the overall tool invocation check. */
 export interface EvaluationResultOverallToolInvocationResult {
@@ -3162,7 +3148,7 @@ export type EvaluationResultSpanLatencyTypeEnum =
   | "USER_CALLBACK"
   | "GUARDRAIL"
   | "LLM";
-export const EvaluationResultSpanLatencyTypeEnum = /*@__PURE__*/ S.String;
+export const EvaluationResultSpanLatencyTypeEnum = S.String;
 
 /** The latency of a span execution. */
 export interface EvaluationResultSpanLatency {
@@ -3234,7 +3220,7 @@ export type EvaluationErrorInfoErrorTypeEnum =
   | "EVALUATION_UPDATE_FAILURE"
   | "QUOTA_EXHAUSTED"
   | "USER_SIMULATION_FAILURE";
-export const EvaluationErrorInfoErrorTypeEnum = /*@__PURE__*/ S.String;
+export const EvaluationErrorInfoErrorTypeEnum = S.String;
 
 /** Information about an error encountered during an evaluation execution. */
 export interface EvaluationErrorInfo {
@@ -3412,8 +3398,7 @@ export type EvaluationResultScenarioExpectationOutcomeOutcomeEnum =
   | "PASS"
   | "FAIL"
   | "SKIPPED";
-export const EvaluationResultScenarioExpectationOutcomeOutcomeEnum =
-  /*@__PURE__*/ S.String;
+export const EvaluationResultScenarioExpectationOutcomeOutcomeEnum = S.String;
 
 /** The observed tool call and response. */
 export interface EvaluationResultScenarioExpectationOutcomeObservedToolCall {
@@ -3528,13 +3513,13 @@ export type EvaluationResultEvaluationStatusEnum =
   | "PASS"
   | "FAIL"
   | "SKIPPED";
-export const EvaluationResultEvaluationStatusEnum = /*@__PURE__*/ S.String;
+export const EvaluationResultEvaluationStatusEnum = S.String;
 
 export type EvaluationResultGoldenRunMethodEnum =
   | "GOLDEN_RUN_METHOD_UNSPECIFIED"
   | "STABLE"
   | "NAIVE";
-export const EvaluationResultGoldenRunMethodEnum = /*@__PURE__*/ S.String;
+export const EvaluationResultGoldenRunMethodEnum = S.String;
 
 /** An evaluation result represents the output of running an Evaluation. */
 export interface EvaluationResult {
@@ -3788,7 +3773,7 @@ export type GuardrailLlmPolicyPolicyScopeEnum =
   | "USER_QUERY"
   | "AGENT_RESPONSE"
   | "USER_QUERY_AND_AGENT_RESPONSE";
-export const GuardrailLlmPolicyPolicyScopeEnum = /*@__PURE__*/ S.String;
+export const GuardrailLlmPolicyPolicyScopeEnum = S.String;
 
 /** Guardrail that blocks the conversation if the LLM response is considered violating the policy based on the LLM classification. */
 export interface GuardrailLlmPolicy {
@@ -3844,7 +3829,7 @@ export type GuardrailContentFilterMatchTypeEnum =
   | "SIMPLE_STRING_MATCH"
   | "WORD_BOUNDARY_STRING_MATCH"
   | "REGEXP_MATCH";
-export const GuardrailContentFilterMatchTypeEnum = /*@__PURE__*/ S.String;
+export const GuardrailContentFilterMatchTypeEnum = S.String;
 
 /** Guardrail that bans certain content from being used in the conversation. */
 export interface GuardrailContentFilter {
@@ -3901,8 +3886,7 @@ export type GuardrailModelSafetySafetySettingCategoryEnum =
   | "HARM_CATEGORY_SEXUALLY_EXPLICIT"
   | "HARM_CATEGORY_PROFANITY"
   | "HARM_CATEGORY_TOXIC";
-export const GuardrailModelSafetySafetySettingCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GuardrailModelSafetySafetySettingCategoryEnum = S.String;
 
 export type GuardrailModelSafetySafetySettingThresholdEnum =
   | "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
@@ -3911,8 +3895,7 @@ export type GuardrailModelSafetySafetySettingThresholdEnum =
   | "BLOCK_ONLY_HIGH"
   | "BLOCK_NONE"
   | "OFF";
-export const GuardrailModelSafetySafetySettingThresholdEnum =
-  /*@__PURE__*/ S.String;
+export const GuardrailModelSafetySafetySettingThresholdEnum = S.String;
 
 /** Safety setting. */
 export interface GuardrailModelSafetySafetySetting {
@@ -4103,7 +4086,7 @@ export type OptimizationConfigStatusEnum =
   | "RUNNING"
   | "COMPLETED"
   | "ERROR";
-export const OptimizationConfigStatusEnum = /*@__PURE__*/ S.String;
+export const OptimizationConfigStatusEnum = S.String;
 
 /** Configuration for running the optimization step after the evaluation run. */
 export interface OptimizationConfig {
@@ -4140,7 +4123,7 @@ export type RunEvaluationRequestGoldenRunMethodEnum =
   | "GOLDEN_RUN_METHOD_UNSPECIFIED"
   | "STABLE"
   | "NAIVE";
-export const RunEvaluationRequestGoldenRunMethodEnum = /*@__PURE__*/ S.String;
+export const RunEvaluationRequestGoldenRunMethodEnum = S.String;
 
 /** Configuration for running an evaluation for a specific persona. */
 export interface PersonaRunConfig {
@@ -4218,8 +4201,7 @@ export type ScheduledEvaluationRunSchedulingConfigFrequencyEnum =
   | "DAILY"
   | "WEEKLY"
   | "BIWEEKLY";
-export const ScheduledEvaluationRunSchedulingConfigFrequencyEnum =
-  /*@__PURE__*/ S.String;
+export const ScheduledEvaluationRunSchedulingConfigFrequencyEnum = S.String;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -4352,13 +4334,13 @@ export type DataStoreTypeEnum =
   | "UNSTRUCTURED"
   | "FAQ"
   | "CONNECTOR";
-export const DataStoreTypeEnum = /*@__PURE__*/ S.String;
+export const DataStoreTypeEnum = S.String;
 
 export type DataStoreDocumentProcessingModeEnum =
   | "DOCUMENT_PROCESSING_MODE_UNSPECIFIED"
   | "DOCUMENTS"
   | "CHUNKS";
-export const DataStoreDocumentProcessingModeEnum = /*@__PURE__*/ S.String;
+export const DataStoreDocumentProcessingModeEnum = S.String;
 
 /** A DataStore resource in Vertex AI Search. */
 export interface DataStore {
@@ -4431,7 +4413,7 @@ export type DataStoreToolBoostSpecConditionBoostSpecBoostControlSpecInterpolatio
   | "INTERPOLATION_TYPE_UNSPECIFIED"
   | "LINEAR";
 export const DataStoreToolBoostSpecConditionBoostSpecBoostControlSpecInterpolationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable). */
 export interface DataStoreToolBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
@@ -4463,7 +4445,7 @@ export type DataStoreToolBoostSpecConditionBoostSpecBoostControlSpecAttributeTyp
   | "NUMERICAL"
   | "FRESHNESS";
 export const DataStoreToolBoostSpecConditionBoostSpecBoostControlSpecAttributeTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above. */
 export interface DataStoreToolBoostSpecConditionBoostSpecBoostControlSpec {
@@ -4572,7 +4554,7 @@ export type DataStoreToolFilterParameterBehaviorEnum =
   | "FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED"
   | "ALWAYS_INCLUDE"
   | "NEVER_INCLUDE";
-export const DataStoreToolFilterParameterBehaviorEnum = /*@__PURE__*/ S.String;
+export const DataStoreToolFilterParameterBehaviorEnum = S.String;
 
 /** Rewriter configuration. */
 export interface DataStoreToolRewriterConfig {
@@ -4629,8 +4611,7 @@ export type DataStoreToolModalityConfigModalityTypeEnum =
   | "MODALITY_TYPE_UNSPECIFIED"
   | "TEXT"
   | "AUDIO";
-export const DataStoreToolModalityConfigModalityTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DataStoreToolModalityConfigModalityTypeEnum = S.String;
 
 /** Summarization configuration. */
 export interface DataStoreToolSummarizationConfig {
@@ -4719,7 +4700,7 @@ export type FileSearchToolCorpusTypeEnum =
   | "CORPUS_TYPE_UNSPECIFIED"
   | "USER_OWNED"
   | "FULLY_MANAGED";
-export const FileSearchToolCorpusTypeEnum = /*@__PURE__*/ S.String;
+export const FileSearchToolCorpusTypeEnum = S.String;
 
 /** The file search tool allows the agent to search across the files uploaded by the app/agent developer. It has presets to give relatively good quality search over the uploaded files and summarization of the retrieved results. */
 export interface FileSearchTool {
@@ -4748,7 +4729,7 @@ export type ActionEntityOperationOperationEnum =
   | "CREATE"
   | "UPDATE"
   | "DELETE";
-export const ActionEntityOperationOperationEnum = /*@__PURE__*/ S.String;
+export const ActionEntityOperationOperationEnum = S.String;
 
 /** Entity CRUD operation specification. */
 export interface ActionEntityOperation {
@@ -4961,7 +4942,7 @@ export type ApiKeyConfigRequestLocationEnum =
   | "REQUEST_LOCATION_UNSPECIFIED"
   | "HEADER"
   | "QUERY_STRING";
-export const ApiKeyConfigRequestLocationEnum = /*@__PURE__*/ S.String;
+export const ApiKeyConfigRequestLocationEnum = S.String;
 
 /** Configurations for authentication with API key. */
 export interface ApiKeyConfig {
@@ -4987,7 +4968,7 @@ export const ServiceAgentIdTokenAuthConfig = CancelOperationRequest;
 export type OAuthConfigOauthGrantTypeEnum =
   | "OAUTH_GRANT_TYPE_UNSPECIFIED"
   | "CLIENT_CREDENTIAL";
-export const OAuthConfigOauthGrantTypeEnum = /*@__PURE__*/ S.String;
+export const OAuthConfigOauthGrantTypeEnum = S.String;
 
 /** Configurations for authentication with OAuth. */
 export interface OAuthConfig {
@@ -5120,7 +5101,7 @@ export type WidgetToolDataMappingModeEnum =
   | "MODE_UNSPECIFIED"
   | "FIELD_MAPPING"
   | "PYTHON_SCRIPT";
-export const WidgetToolDataMappingModeEnum = /*@__PURE__*/ S.String;
+export const WidgetToolDataMappingModeEnum = S.String;
 
 /** Configuration for mapping data from a source tool to the widget's input parameters. */
 export interface WidgetToolDataMapping {
@@ -5152,7 +5133,7 @@ export type WidgetToolTextResponseConfigTypeEnum =
   | "NONE"
   | "LLM_GENERATED"
   | "STATIC";
-export const WidgetToolTextResponseConfigTypeEnum = /*@__PURE__*/ S.String;
+export const WidgetToolTextResponseConfigTypeEnum = S.String;
 
 /** Configuration for the text response returned with the widget. */
 export interface WidgetToolTextResponseConfig {
@@ -5187,7 +5168,7 @@ export type WidgetToolWidgetTypeEnum =
   | "APPOINTMENT_DETAILS"
   | "APPOINTMENT_SCHEDULER"
   | "CONTACT_FORM";
-export const WidgetToolWidgetTypeEnum = /*@__PURE__*/ S.String;
+export const WidgetToolWidgetTypeEnum = S.String;
 
 /** Represents a widget tool that the agent can invoke. When the tool is chosen by the agent, agent will return the widget to the client. The client is responsible for processing the widget and generating the next user query to continue the interaction with the agent. */
 export interface WidgetTool {
@@ -5327,7 +5308,7 @@ export type McpToolStateEnum =
   | "ACTIVE"
   | "INACTIVE"
   | "STALE";
-export const McpToolStateEnum = /*@__PURE__*/ S.String;
+export const McpToolStateEnum = S.String;
 
 /** An MCP tool. See https://modelcontextprotocol.io/specification/2025-06-18/server/tools for more details. */
 export interface McpTool {
@@ -5443,7 +5424,7 @@ export type ToolExecutionTypeEnum =
   | "EXECUTION_TYPE_UNSPECIFIED"
   | "SYNCHRONOUS"
   | "ASYNCHRONOUS";
-export const ToolExecutionTypeEnum = /*@__PURE__*/ S.String;
+export const ToolExecutionTypeEnum = S.String;
 
 /** A tool represents an action that the CES agent can take to achieve certain goals. */
 export interface Tool {
@@ -5641,7 +5622,7 @@ export type ToolsetExecutionTypeEnum =
   | "EXECUTION_TYPE_UNSPECIFIED"
   | "SYNCHRONOUS"
   | "ASYNCHRONOUS";
-export const ToolsetExecutionTypeEnum = /*@__PURE__*/ S.String;
+export const ToolsetExecutionTypeEnum = S.String;
 
 /** A toolset that contains a list of tools that are defined by an OpenAPI schema. */
 export interface OpenApiToolset {
@@ -5895,8 +5876,7 @@ export type DeleteProjectsLocationsAppsConversationsSourceEnum =
   | "SIMULATOR"
   | "EVAL"
   | "AGENT_TOOL";
-export const DeleteProjectsLocationsAppsConversationsSourceEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteProjectsLocationsAppsConversationsSourceEnum = S.String;
 
 export interface DeleteProjectsLocationsAppsConversationsRequest {
   /** Required. The resource name of the conversation to delete. */
@@ -6243,7 +6223,7 @@ export type MockConfigUnmatchedToolCallBehaviorEnum =
   | "UNMATCHED_TOOL_CALL_BEHAVIOR_UNSPECIFIED"
   | "FAIL"
   | "PASS_THROUGH";
-export const MockConfigUnmatchedToolCallBehaviorEnum = /*@__PURE__*/ S.String;
+export const MockConfigUnmatchedToolCallBehaviorEnum = S.String;
 
 /** Mock tool calls configuration for the session. */
 export interface MockConfig {
@@ -6418,7 +6398,7 @@ export type ExportAppRequestExportFormatEnum =
   | "EXPORT_FORMAT_UNSPECIFIED"
   | "JSON"
   | "YAML";
-export const ExportAppRequestExportFormatEnum = /*@__PURE__*/ S.String;
+export const ExportAppRequestExportFormatEnum = S.String;
 
 /** Request message for AgentService.ExportApp. */
 export interface ExportAppRequest {
@@ -6465,7 +6445,7 @@ export type ExportOptionsExportFormatEnum =
   | "EXPORT_FORMAT_UNSPECIFIED"
   | "JSON"
   | "YAML";
-export const ExportOptionsExportFormatEnum = /*@__PURE__*/ S.String;
+export const ExportOptionsExportFormatEnum = S.String;
 
 /** Options for exporting CES evaluation resources. */
 export interface ExportOptions {
@@ -6737,7 +6717,7 @@ export type GenerateAppResourceRequestQualityReportGenerationConfigAlgorithmEnum
   | "APP_CENTRIC"
   | "AGENT_CENTRIC";
 export const GenerateAppResourceRequestQualityReportGenerationConfigAlgorithmEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The configuration to be used for quality report generation. */
 export interface GenerateAppResourceRequestQualityReportGenerationConfig {
@@ -7046,14 +7026,13 @@ export type GenerateEvaluationRequestSourceEnum =
   | "SIMULATOR"
   | "EVAL"
   | "AGENT_TOOL";
-export const GenerateEvaluationRequestSourceEnum = /*@__PURE__*/ S.String;
+export const GenerateEvaluationRequestSourceEnum = S.String;
 
 export type GenerateEvaluationRequestEvaluationTypeEnum =
   | "EVALUATION_TYPE_UNSPECIFIED"
   | "GOLDEN"
   | "SCENARIO";
-export const GenerateEvaluationRequestEvaluationTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GenerateEvaluationRequestEvaluationTypeEnum = S.String;
 
 /** Request message for EvaluationService.GenerateEvaluation. */
 export interface GenerateEvaluationRequest {
@@ -7791,8 +7770,7 @@ export type GetProjectsLocationsAppsConversationsSourceEnum =
   | "SIMULATOR"
   | "EVAL"
   | "AGENT_TOOL";
-export const GetProjectsLocationsAppsConversationsSourceEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsAppsConversationsSourceEnum = S.String;
 
 export interface GetProjectsLocationsAppsConversationsRequest {
   /** Required. The resource name of the conversation to retrieve. */
@@ -7827,7 +7805,7 @@ export type ConversationInputTypesItemEnum =
   | "INPUT_TYPE_BLOB"
   | "INPUT_TYPE_TOOL_RESPONSE"
   | "INPUT_TYPE_VARIABLES";
-export const ConversationInputTypesItemEnum = /*@__PURE__*/ S.String;
+export const ConversationInputTypesItemEnum = S.String;
 
 export type ConversationInputTypesItemEnumList =
   Array<ConversationInputTypesItemEnum>;
@@ -7840,7 +7818,7 @@ export type ConversationChannelTypeEnum =
   | "TEXT"
   | "AUDIO"
   | "MULTIMODAL";
-export const ConversationChannelTypeEnum = /*@__PURE__*/ S.String;
+export const ConversationChannelTypeEnum = S.String;
 
 /** All information about a single turn in the conversation. */
 export interface ConversationTurn {
@@ -7872,7 +7850,7 @@ export type ConversationSourceEnum =
   | "SIMULATOR"
   | "EVAL"
   | "AGENT_TOOL";
-export const ConversationSourceEnum = /*@__PURE__*/ S.String;
+export const ConversationSourceEnum = S.String;
 
 /** A conversation represents an interaction between an end user and the CES app. */
 export interface Conversation {
@@ -8001,7 +7979,7 @@ export type EvaluationRunGoldenRunMethodEnum =
   | "GOLDEN_RUN_METHOD_UNSPECIFIED"
   | "STABLE"
   | "NAIVE";
-export const EvaluationRunGoldenRunMethodEnum = /*@__PURE__*/ S.String;
+export const EvaluationRunGoldenRunMethodEnum = S.String;
 
 /** The progress of the evaluation run. */
 export interface EvaluationRunProgress {
@@ -8038,7 +8016,7 @@ export type EvaluationRunStateEnum =
   | "COMPLETED"
   | "ERROR"
   | "CANCELLED";
-export const EvaluationRunStateEnum = /*@__PURE__*/ S.String;
+export const EvaluationRunStateEnum = S.String;
 
 /** Latency metrics for a component. */
 export interface LatencyReportLatencyMetrics {
@@ -8213,7 +8191,7 @@ export type EvaluationRunEvaluationTypeEnum =
   | "GOLDEN"
   | "SCENARIO"
   | "MIXED";
-export const EvaluationRunEvaluationTypeEnum = /*@__PURE__*/ S.String;
+export const EvaluationRunEvaluationTypeEnum = S.String;
 
 /** An evaluation run represents an all the evaluation results from an evaluation execution. */
 export interface EvaluationRun {
@@ -8492,7 +8470,7 @@ export type EndpointControlPolicyEnforcementScopeEnum =
   | "ENFORCEMENT_SCOPE_UNSPECIFIED"
   | "VPCSC_ONLY"
   | "ALWAYS";
-export const EndpointControlPolicyEnforcementScopeEnum = /*@__PURE__*/ S.String;
+export const EndpointControlPolicyEnforcementScopeEnum = S.String;
 
 /** Defines project/location level endpoint control policy. */
 export interface EndpointControlPolicy {
@@ -8540,7 +8518,7 @@ export type ImportAppRequestImportOptionsConflictResolutionStrategyEnum =
   | "REPLACE"
   | "OVERWRITE";
 export const ImportAppRequestImportOptionsConflictResolutionStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration options for the app import process. These options control how the import behaves, particularly when conflicts arise with existing app data. */
 export interface ImportAppRequestImportOptions {
@@ -8638,7 +8616,7 @@ export type ImportEvaluationsRequestImportOptionsConflictResolutionStrategyEnum 
   | "SKIP"
   | "DUPLICATE";
 export const ImportEvaluationsRequestImportOptionsConflictResolutionStrategyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration options for the evaluation import process. These options control how the import behaves, particularly when conflicts arise with existing evaluations data. */
 export interface ImportEvaluationsRequestImportOptions {
@@ -8910,8 +8888,7 @@ export type ListProjectsLocationsAppsConversationsSourcesEnum =
   | "SIMULATOR"
   | "EVAL"
   | "AGENT_TOOL";
-export const ListProjectsLocationsAppsConversationsSourcesEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsAppsConversationsSourcesEnum = S.String;
 
 export type ListProjectsLocationsAppsConversationsSourcesEnumList = Array<
   ListProjectsLocationsAppsConversationsSourcesEnum | (string & {})
@@ -8927,8 +8904,7 @@ export type ListProjectsLocationsAppsConversationsSourceEnum =
   | "SIMULATOR"
   | "EVAL"
   | "AGENT_TOOL";
-export const ListProjectsLocationsAppsConversationsSourceEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsAppsConversationsSourceEnum = S.String;
 
 export interface ListProjectsLocationsAppsConversationsRequest {
   /** Optional. Indicate the sources of the conversations. If not set, all available sources will be applied by default. */
@@ -10321,7 +10297,7 @@ export type LfA2aV1MessageRoleEnum =
   | "ROLE_UNSPECIFIED"
   | "ROLE_USER"
   | "ROLE_AGENT";
-export const LfA2aV1MessageRoleEnum = /*@__PURE__*/ S.String;
+export const LfA2aV1MessageRoleEnum = S.String;
 
 /** `Part` represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON). */
 export interface LfA2aV1Part {
@@ -10539,7 +10515,7 @@ export type LfA2aV1TaskStatusStateEnum =
   | "TASK_STATE_INPUT_REQUIRED"
   | "TASK_STATE_REJECTED"
   | "TASK_STATE_AUTH_REQUIRED";
-export const LfA2aV1TaskStatusStateEnum = /*@__PURE__*/ S.String;
+export const LfA2aV1TaskStatusStateEnum = S.String;
 
 /** A container for the status of a task */
 export interface LfA2aV1TaskStatus {

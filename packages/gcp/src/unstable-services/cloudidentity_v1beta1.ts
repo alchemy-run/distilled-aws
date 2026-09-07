@@ -368,13 +368,13 @@ export type DeviceDeviceTypeEnum =
   | "MAC_OS"
   | "LINUX"
   | "CHROME_OS";
-export const DeviceDeviceTypeEnum = /*@__PURE__*/ S.String;
+export const DeviceDeviceTypeEnum = S.String;
 
 export type DeviceOwnerTypeEnum =
   | "DEVICE_OWNERSHIP_UNSPECIFIED"
   | "COMPANY"
   | "BYOD";
-export const DeviceOwnerTypeEnum = /*@__PURE__*/ S.String;
+export const DeviceOwnerTypeEnum = S.String;
 
 export type AntivirusInfoProductStateEnum =
   | "PRODUCT_STATE_UNSPECIFIED"
@@ -382,7 +382,7 @@ export type AntivirusInfoProductStateEnum =
   | "PRODUCT_STATE_OFF"
   | "PRODUCT_STATE_SNOOZED"
   | "PRODUCT_STATE_EXPIRED";
-export const AntivirusInfoProductStateEnum = /*@__PURE__*/ S.String;
+export const AntivirusInfoProductStateEnum = S.String;
 
 /** Resource representing the anti-virus information of a Device. */
 export interface AntivirusInfo {
@@ -418,7 +418,7 @@ export type DeviceClientTypesItemEnum =
   | "ENDPOINT_VERIFICATION"
   | "WINDOWS_ADVANCED"
   | "GOOGLE_CREDENTIALS_PROVIDER_FOR_WINDOWS";
-export const DeviceClientTypesItemEnum = /*@__PURE__*/ S.String;
+export const DeviceClientTypesItemEnum = S.String;
 
 export type DeviceClientTypesItemEnumList = Array<
   DeviceClientTypesItemEnum | (string & {})
@@ -431,15 +431,14 @@ export type DeviceCompromisedStateEnum =
   | "COMPROMISED_STATE_UNSPECIFIED"
   | "COMPROMISED"
   | "UNCOMPROMISED";
-export const DeviceCompromisedStateEnum = /*@__PURE__*/ S.String;
+export const DeviceCompromisedStateEnum = S.String;
 
 export type BrowserInfoSafeBrowsingProtectionLevelEnum =
   | "SAFE_BROWSING_LEVEL_UNSPECIFIED"
   | "DISABLED"
   | "STANDARD"
   | "ENHANCED";
-export const BrowserInfoSafeBrowsingProtectionLevelEnum =
-  /*@__PURE__*/ S.String;
+export const BrowserInfoSafeBrowsingProtectionLevelEnum = S.String;
 
 export type ChromePolicySourceEnum =
   | "SOURCE_UNKNOWN"
@@ -453,13 +452,13 @@ export type ChromePolicySourceEnum =
   | "COMMAND_LINE"
   | "CLOUD_FROM_ASH"
   | "RESTRICTED_MANAGED_GUEST_SESSION_OVERRIDE";
-export const ChromePolicySourceEnum = /*@__PURE__*/ S.String;
+export const ChromePolicySourceEnum = S.String;
 
 export type ChromePolicyScopeEnum = "SCOPE_UNKNOWN" | "USER" | "MACHINE";
-export const ChromePolicyScopeEnum = /*@__PURE__*/ S.String;
+export const ChromePolicyScopeEnum = S.String;
 
 export type PolicyConflictScopeEnum = "SCOPE_UNKNOWN" | "USER" | "MACHINE";
-export const PolicyConflictScopeEnum = /*@__PURE__*/ S.String;
+export const PolicyConflictScopeEnum = S.String;
 
 export type PolicyConflictSourceEnum =
   | "SOURCE_UNKNOWN"
@@ -473,7 +472,7 @@ export type PolicyConflictSourceEnum =
   | "COMMAND_LINE"
   | "CLOUD_FROM_ASH"
   | "RESTRICTED_MANAGED_GUEST_SESSION_OVERRIDE";
-export const PolicyConflictSourceEnum = /*@__PURE__*/ S.String;
+export const PolicyConflictSourceEnum = S.String;
 
 /** Represents a policy value from a source that was not applied because a higher-priority source took precedence. */
 export interface PolicyConflict {
@@ -530,8 +529,7 @@ export type BrowserInfoPasswordProtectionWarningTriggerEnum =
   | "PROTECTION_OFF"
   | "PASSWORD_REUSE"
   | "PHISHING_REUSE";
-export const BrowserInfoPasswordProtectionWarningTriggerEnum =
-  /*@__PURE__*/ S.String;
+export const BrowserInfoPasswordProtectionWarningTriggerEnum = S.String;
 
 export type BrowserInfoBrowserManagementStateEnum =
   | "UNSPECIFIED"
@@ -539,7 +537,7 @@ export type BrowserInfoBrowserManagementStateEnum =
   | "MANAGED_BY_OTHER_DOMAIN"
   | "PROFILE_MANAGED"
   | "BROWSER_MANAGED";
-export const BrowserInfoBrowserManagementStateEnum = /*@__PURE__*/ S.String;
+export const BrowserInfoBrowserManagementStateEnum = S.String;
 
 /** Browser-specific fields reported by clients on the device, such as [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1). */
 export interface BrowserInfo {
@@ -633,8 +631,7 @@ export type WindowsSpecificDeviceAttributesSecureBootModeEnum =
   | "SECURE_BOOT_MODE_UNKNOWN"
   | "SECURE_BOOT_MODE_ENABLED"
   | "SECURE_BOOT_MODE_DISABLED";
-export const WindowsSpecificDeviceAttributesSecureBootModeEnum =
-  /*@__PURE__*/ S.String;
+export const WindowsSpecificDeviceAttributesSecureBootModeEnum = S.String;
 
 /** Represents the Windows specific attributes of a Device. */
 export interface WindowsSpecificDeviceAttributes {
@@ -667,7 +664,7 @@ export type AndroidAttributesOwnershipPrivilegeEnum =
   | "DEVICE_ADMINISTRATOR"
   | "PROFILE_OWNER"
   | "DEVICE_OWNER";
-export const AndroidAttributesOwnershipPrivilegeEnum = /*@__PURE__*/ S.String;
+export const AndroidAttributesOwnershipPrivilegeEnum = S.String;
 
 /** Resource representing the Android specific attributes of a Device. */
 export interface AndroidAttributes {
@@ -707,7 +704,7 @@ export type CertificateAttributesValidationStateEnum =
   | "CERTIFICATE_VALIDATION_STATE_UNSPECIFIED"
   | "VALIDATION_SUCCESSFUL"
   | "VALIDATION_FAILED";
-export const CertificateAttributesValidationStateEnum = /*@__PURE__*/ S.String;
+export const CertificateAttributesValidationStateEnum = S.String;
 
 /** CertificateTemplate (v3 Extension in X.509). */
 export interface CertificateTemplate {
@@ -798,21 +795,21 @@ export type DeviceManagementStateEnum =
   | "UNPROVISIONED"
   | "WIPING"
   | "WIPED";
-export const DeviceManagementStateEnum = /*@__PURE__*/ S.String;
+export const DeviceManagementStateEnum = S.String;
 
 export type DeviceEncryptionStateEnum =
   | "ENCRYPTION_STATE_UNSPECIFIED"
   | "UNSUPPORTED_BY_DEVICE"
   | "ENCRYPTED"
   | "NOT_ENCRYPTED";
-export const DeviceEncryptionStateEnum = /*@__PURE__*/ S.String;
+export const DeviceEncryptionStateEnum = S.String;
 
 export type DeviceOsFirewallStatusEnum =
   | "OS_FIREWALL_STATUS_UNSPECIFIED"
   | "OS_FIREWALL_STATUS_UNKNOWN"
   | "OS_FIREWALL_STATUS_ENABLED"
   | "OS_FIREWALL_STATUS_DISABLED";
-export const DeviceOsFirewallStatusEnum = /*@__PURE__*/ S.String;
+export const DeviceOsFirewallStatusEnum = S.String;
 
 /** A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user. Important: Device API scopes require that you use domain-wide delegation to access the API. For more information, see [Set up the Devices API](https://cloud.google.com/identity/docs/how-to/setup-devices). */
 export interface Device {
@@ -975,14 +972,14 @@ export type CreateGroupsInitialGroupConfigEnum =
   | "INITIAL_GROUP_CONFIG_UNSPECIFIED"
   | "WITH_INITIAL_OWNER"
   | "EMPTY";
-export const CreateGroupsInitialGroupConfigEnum = /*@__PURE__*/ S.String;
+export const CreateGroupsInitialGroupConfigEnum = S.String;
 
 export type DynamicGroupStatusStatusEnum =
   | "STATUS_UNSPECIFIED"
   | "UP_TO_DATE"
   | "UPDATING_MEMBERSHIPS"
   | "INVALID_QUERY";
-export const DynamicGroupStatusStatusEnum = /*@__PURE__*/ S.String;
+export const DynamicGroupStatusStatusEnum = S.String;
 
 /** The current status of a dynamic group along with timestamp. */
 export interface DynamicGroupStatus {
@@ -1003,7 +1000,7 @@ export const DynamicGroupStatus = /*@__PURE__*/ S.suspend(() =>
 export type DynamicGroupQueryResourceTypeEnum =
   | "RESOURCE_TYPE_UNSPECIFIED"
   | "USER";
-export const DynamicGroupQueryResourceTypeEnum = /*@__PURE__*/ S.String;
+export const DynamicGroupQueryResourceTypeEnum = S.String;
 
 /** Defines a query on a resource. */
 export interface DynamicGroupQuery {
@@ -1181,7 +1178,7 @@ export type MembershipDeliverySettingEnum =
   | "DAILY"
   | "NONE"
   | "DISABLED";
-export const MembershipDeliverySettingEnum = /*@__PURE__*/ S.String;
+export const MembershipDeliverySettingEnum = S.String;
 
 /** The `MembershipRole` expiry details. */
 export interface ExpiryDetail {
@@ -1200,8 +1197,7 @@ export type MembershipRoleRestrictionEvaluationStateEnum =
   | "FORWARD_COMPLIANT"
   | "NON_COMPLIANT"
   | "EVALUATING";
-export const MembershipRoleRestrictionEvaluationStateEnum =
-  /*@__PURE__*/ S.String;
+export const MembershipRoleRestrictionEvaluationStateEnum = S.String;
 
 /** The evaluated state of this restriction. */
 export interface MembershipRoleRestrictionEvaluation {
@@ -1262,7 +1258,7 @@ export type MembershipTypeEnum =
   | "CBCM_BROWSER"
   | "CHROME_OS_DEVICE"
   | "OTHER";
-export const MembershipTypeEnum = /*@__PURE__*/ S.String;
+export const MembershipTypeEnum = S.String;
 
 /** A membership within the Cloud Identity Groups API. A `Membership` defines a relationship between a `Group` and an entity belonging to that `Group`, referred to as a "member". */
 export interface Membership {
@@ -1474,12 +1470,12 @@ export type InboundSsoAssignmentSsoModeEnum =
   | "SAML_SSO"
   | "OIDC_SSO"
   | "DOMAIN_WIDE_SAML_IF_ENABLED";
-export const InboundSsoAssignmentSsoModeEnum = /*@__PURE__*/ S.String;
+export const InboundSsoAssignmentSsoModeEnum = S.String;
 
 export type SignInBehaviorRedirectConditionEnum =
   | "REDIRECT_CONDITION_UNSPECIFIED"
   | "NEVER";
-export const SignInBehaviorRedirectConditionEnum = /*@__PURE__*/ S.String;
+export const SignInBehaviorRedirectConditionEnum = S.String;
 
 /** Controls sign-in behavior. */
 export interface SignInBehavior {
@@ -1604,7 +1600,7 @@ export const Setting = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Setting" }) as any as S.Schema<Setting>;
 
 export type PolicyTypeEnum = "POLICY_TYPE_UNSPECIFIED" | "SYSTEM" | "ADMIN";
-export const PolicyTypeEnum = /*@__PURE__*/ S.String;
+export const PolicyTypeEnum = S.String;
 
 /** A Policy resource binds an instance of a single Setting with the scope of a PolicyQuery. The Setting instance will be applied to all entities that satisfy the query. */
 export interface Policy {
@@ -1876,7 +1872,7 @@ export type UserInvitationStateEnum =
   | "INVITED"
   | "ACCEPTED"
   | "DECLINED";
-export const UserInvitationStateEnum = /*@__PURE__*/ S.String;
+export const UserInvitationStateEnum = S.String;
 
 /** The `UserInvitation` resource represents an email that can be sent to an unmanaged user account inviting them to join the customer's Google Workspace or Cloud Identity account. An unmanaged account shares an email address domain with the Google Workspace or Cloud Identity account but is not managed by it yet. If the user accepts the `UserInvitation`, the user account will become managed. */
 export interface UserInvitation {
@@ -1944,7 +1940,7 @@ export type DeviceUserCompromisedStateEnum =
   | "COMPROMISED_STATE_UNSPECIFIED"
   | "COMPROMISED"
   | "NOT_COMPROMISED";
-export const DeviceUserCompromisedStateEnum = /*@__PURE__*/ S.String;
+export const DeviceUserCompromisedStateEnum = S.String;
 
 export type DeviceUserManagementStateEnum =
   | "MANAGEMENT_STATE_UNSPECIFIED"
@@ -1954,13 +1950,13 @@ export type DeviceUserManagementStateEnum =
   | "BLOCKED"
   | "PENDING_APPROVAL"
   | "UNENROLLED";
-export const DeviceUserManagementStateEnum = /*@__PURE__*/ S.String;
+export const DeviceUserManagementStateEnum = S.String;
 
 export type DeviceUserPasswordStateEnum =
   | "PASSWORD_STATE_UNSPECIFIED"
   | "PASSWORD_SET"
   | "PASSWORD_NOT_SET";
-export const DeviceUserPasswordStateEnum = /*@__PURE__*/ S.String;
+export const DeviceUserPasswordStateEnum = S.String;
 
 /** Represents a user's use of a Device in the Cloud Identity Devices API. A DeviceUser is a resource representing a user's use of a Device */
 export interface DeviceUser {
@@ -2053,7 +2049,7 @@ export type ClientStateOwnerTypeEnum =
   | "OWNER_TYPE_UNSPECIFIED"
   | "OWNER_TYPE_CUSTOMER"
   | "OWNER_TYPE_PARTNER";
-export const ClientStateOwnerTypeEnum = /*@__PURE__*/ S.String;
+export const ClientStateOwnerTypeEnum = S.String;
 
 export type ClientStateHealthScoreEnum =
   | "HEALTH_SCORE_UNSPECIFIED"
@@ -2062,19 +2058,19 @@ export type ClientStateHealthScoreEnum =
   | "NEUTRAL"
   | "GOOD"
   | "VERY_GOOD";
-export const ClientStateHealthScoreEnum = /*@__PURE__*/ S.String;
+export const ClientStateHealthScoreEnum = S.String;
 
 export type ClientStateComplianceStateEnum =
   | "COMPLIANCE_STATE_UNSPECIFIED"
   | "COMPLIANT"
   | "NON_COMPLIANT";
-export const ClientStateComplianceStateEnum = /*@__PURE__*/ S.String;
+export const ClientStateComplianceStateEnum = S.String;
 
 export type ClientStateManagedEnum =
   | "MANAGED_STATE_UNSPECIFIED"
   | "MANAGED"
   | "UNMANAGED";
-export const ClientStateManagedEnum = /*@__PURE__*/ S.String;
+export const ClientStateManagedEnum = S.String;
 
 /** Represents the state associated with an API client calling the Devices API. Resource representing ClientState and supports updates from API users */
 export interface ClientState {
@@ -2342,7 +2338,7 @@ export type RestrictionEvaluationStateEnum =
   | "COMPLIANT"
   | "FORWARD_COMPLIANT"
   | "NON_COMPLIANT";
-export const RestrictionEvaluationStateEnum = /*@__PURE__*/ S.String;
+export const RestrictionEvaluationStateEnum = S.String;
 
 /** The evaluated state of this restriction. */
 export interface RestrictionEvaluation {
@@ -2521,7 +2517,7 @@ export type ListDevicesViewEnum =
   | "VIEW_UNSPECIFIED"
   | "COMPANY_INVENTORY"
   | "USER_ASSIGNED_DEVICES";
-export const ListDevicesViewEnum = /*@__PURE__*/ S.String;
+export const ListDevicesViewEnum = S.String;
 
 export interface ListDevicesRequest {
   /** Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. */
@@ -2632,7 +2628,7 @@ export const ListDeviceUsersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDeviceUsersResponse>;
 
 export type ListGroupsViewEnum = "VIEW_UNSPECIFIED" | "BASIC" | "FULL";
-export const ListGroupsViewEnum = /*@__PURE__*/ S.String;
+export const ListGroupsViewEnum = S.String;
 
 export interface ListGroupsRequest {
   /** The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`. Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`. */
@@ -2683,7 +2679,7 @@ export const ListGroupsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGroupsResponse>;
 
 export type ListGroupsMembershipsViewEnum = "BASIC" | "FULL";
-export const ListGroupsMembershipsViewEnum = /*@__PURE__*/ S.String;
+export const ListGroupsMembershipsViewEnum = S.String;
 
 export interface ListGroupsMembershipsRequest {
   /** The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`. Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`. */
@@ -2945,7 +2941,7 @@ export const ListOrgUnitsMembershipsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOrgUnitsMembershipsRequest>;
 
 export type OrgMembershipTypeEnum = "ENTITY_TYPE_UNSPECIFIED" | "SHARED_DRIVE";
-export const OrgMembershipTypeEnum = /*@__PURE__*/ S.String;
+export const OrgMembershipTypeEnum = S.String;
 
 /** A membership in an OrgUnit. An `OrgMembership` defines a relationship between an `OrgUnit` and an entity belonging to that `OrgUnit`, referred to as a "member". */
 export interface OrgMembership {
@@ -3504,7 +3500,7 @@ export const SearchDirectGroupsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SearchDirectGroupsResponse>;
 
 export type SearchGroupsViewEnum = "BASIC" | "FULL";
-export const SearchGroupsViewEnum = /*@__PURE__*/ S.String;
+export const SearchGroupsViewEnum = S.String;
 
 export interface SearchGroupsRequest {
   /** The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`. Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`. */
@@ -3585,7 +3581,7 @@ export type GroupRelationRelationTypeEnum =
   | "DIRECT"
   | "INDIRECT"
   | "DIRECT_AND_INDIRECT";
-export const GroupRelationRelationTypeEnum = /*@__PURE__*/ S.String;
+export const GroupRelationRelationTypeEnum = S.String;
 
 /** Message representing the role of a TransitiveMembership. */
 export interface TransitiveMembershipRole {
@@ -3682,7 +3678,7 @@ export type MemberRelationRelationTypeEnum =
   | "DIRECT"
   | "INDIRECT"
   | "DIRECT_AND_INDIRECT";
-export const MemberRelationRelationTypeEnum = /*@__PURE__*/ S.String;
+export const MemberRelationRelationTypeEnum = S.String;
 
 /** Message representing a transitive membership of a group. */
 export interface MemberRelation {

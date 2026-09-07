@@ -542,7 +542,7 @@ export type PayloadFormatIndicator =
   | "UNSPECIFIED_BYTES"
   | "UTF8_DATA"
   | (string & {});
-export const PayloadFormatIndicator = /*@__PURE__*/ S.String;
+export const PayloadFormatIndicator = S.String;
 
 export type ContentType = string;
 export type ResponseTopic = string;

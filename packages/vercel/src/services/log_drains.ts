@@ -42,8 +42,7 @@ export class NotFound
 
 /** The delivery log format */
 export type CreateConfigurableLogDrainRequestDeliveryFormat = "json" | "ndjson";
-export const CreateConfigurableLogDrainRequestDeliveryFormat =
-  /*@__PURE__*/ S.String;
+export const CreateConfigurableLogDrainRequestDeliveryFormat = S.String;
 
 /** Headers to be sent together with the request */
 export type CreateConfigurableLogDrainRequestHeadersMap = {
@@ -68,8 +67,7 @@ export type CreateConfigurableLogDrainRequestSourcesItem =
   | "edge"
   | "external"
   | "firewall";
-export const CreateConfigurableLogDrainRequestSourcesItem =
-  /*@__PURE__*/ S.String;
+export const CreateConfigurableLogDrainRequestSourcesItem = S.String;
 
 export type CreateConfigurableLogDrainRequestSourcesList = Array<
   CreateConfigurableLogDrainRequestSourcesItem | (string & {})
@@ -82,8 +80,7 @@ export const CreateConfigurableLogDrainRequestSourcesList =
 export type CreateConfigurableLogDrainRequestEnvironmentsItem =
   | "preview"
   | "production";
-export const CreateConfigurableLogDrainRequestEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+export const CreateConfigurableLogDrainRequestEnvironmentsItem = S.String;
 
 export type CreateConfigurableLogDrainRequestEnvironmentsList = Array<
   CreateConfigurableLogDrainRequestEnvironmentsItem | (string & {})
@@ -148,7 +145,7 @@ export const CreateLogDrainRequestProjectIdsList = /*@__PURE__*/ S.Array(
 
 /** The delivery log format */
 export type CreateLogDrainRequestDeliveryFormat = "json" | "ndjson";
-export const CreateLogDrainRequestDeliveryFormat = /*@__PURE__*/ S.String;
+export const CreateLogDrainRequestDeliveryFormat = S.String;
 
 export type CreateLogDrainRequestSourcesItem =
   | "static"
@@ -157,7 +154,7 @@ export type CreateLogDrainRequestSourcesItem =
   | "edge"
   | "external"
   | "firewall";
-export const CreateLogDrainRequestSourcesItem = /*@__PURE__*/ S.String;
+export const CreateLogDrainRequestSourcesItem = S.String;
 
 export type CreateLogDrainRequestSourcesList = Array<
   CreateLogDrainRequestSourcesItem | (string & {})
@@ -176,7 +173,7 @@ export const CreateLogDrainRequestHeadersMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CreateLogDrainRequestHeadersMap>;
 
 export type CreateLogDrainRequestEnvironmentsItem = "preview" | "production";
-export const CreateLogDrainRequestEnvironmentsItem = /*@__PURE__*/ S.String;
+export const CreateLogDrainRequestEnvironmentsItem = S.String;
 
 export type CreateLogDrainRequestEnvironmentsList = Array<
   CreateLogDrainRequestEnvironmentsItem | (string & {})
@@ -228,7 +225,7 @@ export type CreateLogDrainResponseDeliveryFormat =
   | "json"
   | "ndjson"
   | "protobuf";
-export const CreateLogDrainResponseDeliveryFormat = /*@__PURE__*/ S.String;
+export const CreateLogDrainResponseDeliveryFormat = S.String;
 
 /** The identifier of the projects this log drain is associated with */
 export type CreateLogDrainResponseProjectIdsList = Array<string>;
@@ -245,7 +242,7 @@ export type CreateLogDrainResponseSourcesItem =
   | "lambda"
   | "redirect"
   | "static";
-export const CreateLogDrainResponseSourcesItem = /*@__PURE__*/ S.String;
+export const CreateLogDrainResponseSourcesItem = S.String;
 
 /** The sources from which logs are currently being delivered to this log drain. */
 export type CreateLogDrainResponseSourcesList =
@@ -256,7 +253,7 @@ export const CreateLogDrainResponseSourcesList = /*@__PURE__*/ S.Array(
 
 /** Whether the log drain was created by an integration or by a user */
 export type CreateLogDrainResponseCreatedFrom = "integration" | "self-served";
-export const CreateLogDrainResponseCreatedFrom = /*@__PURE__*/ S.String;
+export const CreateLogDrainResponseCreatedFrom = S.String;
 
 /** The headers to send with the request */
 export type CreateLogDrainResponseHeadersMap = {
@@ -269,7 +266,7 @@ export const CreateLogDrainResponseHeadersMap = /*@__PURE__*/ S.Record(
 
 /** The environment of log drain */
 export type CreateLogDrainResponseEnvironmentsItem = "preview" | "production";
-export const CreateLogDrainResponseEnvironmentsItem = /*@__PURE__*/ S.String;
+export const CreateLogDrainResponseEnvironmentsItem = S.String;
 
 /** The environment of log drain */
 export type CreateLogDrainResponseEnvironmentsList =
@@ -279,7 +276,7 @@ export const CreateLogDrainResponseEnvironmentsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateLogDrainResponseEnvironmentsList>;
 
 export type CreateLogDrainResponseSourceCase0Kind = "self-served";
-export const CreateLogDrainResponseSourceCase0Kind = /*@__PURE__*/ S.String;
+export const CreateLogDrainResponseSourceCase0Kind = S.String;
 
 export interface CreateLogDrainResponseSourceCase0 {
   kind: CreateLogDrainResponseSourceCase0Kind;
@@ -293,7 +290,7 @@ export const CreateLogDrainResponseSourceCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLogDrainResponseSourceCase0>;
 
 export type CreateLogDrainResponseSourceCase1Kind = "integration";
-export const CreateLogDrainResponseSourceCase1Kind = /*@__PURE__*/ S.String;
+export const CreateLogDrainResponseSourceCase1Kind = S.String;
 
 export interface CreateLogDrainResponseSourceCase1 {
   kind: CreateLogDrainResponseSourceCase1Kind;
@@ -318,7 +315,7 @@ export type CreateLogDrainResponseSource =
   | CreateLogDrainResponseSourceCase0
   | CreateLogDrainResponseSourceCase1;
 export const CreateLogDrainResponseSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateLogDrainResponseSource>;
+  S.Unknown as any as S.Schema<CreateLogDrainResponseSource>;
 
 export interface CreateLogDrainResponse {
   /** The oauth2 client application id that created this log drain */
@@ -530,7 +527,7 @@ export type GetAllLogDrainsResponseBodyCase0ItemProjectsMetadataItemFramework =
   | "xmcp"
   | "zola";
 export const GetAllLogDrainsResponseBodyCase0ItemProjectsMetadataItemFramework =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase0ItemProjectsMetadataItem {
   id: string;
@@ -604,8 +601,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemStatus =
   | "disabled"
   | "enabled"
   | "errored";
-export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemStatus = S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDisabledReason =
   | "account-plan-downgrade"
@@ -614,7 +610,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDisabledReason =
   | "feature-not-available"
   | "limits-exceeded";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDisabledReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSchemas {
   log?: unknown;
@@ -643,19 +639,19 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSchemas =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Type =
   "http";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Encoding =
   | "json"
   | "ndjson";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Compression =
   | "gzip"
   | "none";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0HeadersMap =
   { [key: string]: string | undefined };
@@ -668,7 +664,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Headers
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0SecretCase1 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0SecretCase1Kind;
@@ -687,7 +683,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Secret =
   | string
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0SecretCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Secret>;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0Type;
@@ -720,7 +716,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase0 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Type =
   "otlphttp";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Endpoint {
   traces: string;
@@ -739,7 +735,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Encoding
   | "json"
   | "proto";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1HeadersMap =
   { [key: string]: string | undefined };
@@ -752,7 +748,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Headers
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1SecretCase1 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1SecretCase1Kind;
@@ -771,7 +767,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Secret =
   | string
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1SecretCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Secret>;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Type;
@@ -801,7 +797,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase2Type =
   "clickhouse";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase2 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase2Type;
@@ -822,30 +818,30 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase2 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3Type =
   "s3";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3Encoding =
   | "json"
   | "ndjson";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3Compression =
   "none";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3FileStructure =
   "hive";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -856,7 +852,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3ObjectAc
   | "public-read"
   | "public-read-write";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3Type;
@@ -896,12 +892,12 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase4Type =
   "internal";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase4Target =
   "vercel-otel-traces-db";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase4 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase4Type;
@@ -925,18 +921,18 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDelivery =
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase3
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase4;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDelivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDelivery>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDelivery>;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSamplingItemType =
   "head_sampling";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSamplingItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSamplingItemEnv =
   | "preview"
   | "production";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSamplingItemEnv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSamplingItem {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSamplingItemType;
@@ -968,7 +964,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSamplingList =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase0Kind =
   "self-served";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase0 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase0Kind;
@@ -985,7 +981,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase0 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase1Kind =
   "integration";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase1 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase1Kind;
@@ -1011,17 +1007,17 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSource =
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase0
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSourceCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSource>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSource>;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2Version =
   "v2";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2Version =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0Type =
   "basic";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -1054,7 +1050,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0Lo
   | "redirect"
   | "static";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0LogSourcesList =
   Array<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0LogSourcesItem>;
@@ -1084,7 +1080,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0De
   | "preview"
   | "production";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0DeploymentEnvironmentsList =
   Array<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -1136,7 +1132,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase1Type =
   "odata";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase1 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase1Type;
@@ -1157,7 +1153,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2Filter =
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase0
   | GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2FilterCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2Filter>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2Filter>;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2 {
   version: GetAllLogDrainsResponseBodyCase1DrainsCase0ItemFilterV2Version;
@@ -1243,8 +1239,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemStatus =
   | "disabled"
   | "enabled"
   | "errored";
-export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemStatus =
-  /*@__PURE__*/ S.String;
+export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemStatus = S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDisabledReason =
   | "account-plan-downgrade"
@@ -1253,7 +1248,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDisabledReason =
   | "feature-not-available"
   | "limits-exceeded";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDisabledReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSchemas =
   GetAllLogDrainsResponseBodyCase1DrainsCase0ItemSchemas;
@@ -1263,19 +1258,19 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSchemas =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Type =
   "http";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Encoding =
   | "json"
   | "ndjson";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Encoding =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Compression =
   | "gzip"
   | "none";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0HeadersMap =
   { [key: string]: string | undefined };
@@ -1288,7 +1283,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Headers
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0SecretCase1 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0SecretCase1Kind;
@@ -1307,7 +1302,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Secret =
   | string
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0SecretCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Secret>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Secret>;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0Type;
@@ -1340,7 +1335,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase0 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Type =
   "otlphttp";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Endpoint =
   GetAllLogDrainsResponseBodyCase1DrainsCase0ItemDeliveryCase1Endpoint;
@@ -1351,7 +1346,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Encoding
   | "json"
   | "proto";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Encoding =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1HeadersMap =
   { [key: string]: string | undefined };
@@ -1364,7 +1359,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Headers
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1SecretCase1Kind =
   "INTEGRATION_SECRET";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1SecretCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1SecretCase1 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1SecretCase1Kind;
@@ -1383,7 +1378,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Secret =
   | string
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1SecretCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Secret =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Secret>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Secret>;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1Type;
@@ -1413,7 +1408,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase1 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase2Type =
   "clickhouse";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase2 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase2Type;
@@ -1434,30 +1429,30 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase2 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3Type =
   "s3";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3Encoding =
   | "json"
   | "ndjson";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3Encoding =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3Compression =
   "none";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3Compression =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3FileStructure =
   "hive";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3FileStructure =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3ServerSideEncryption =
   | "AES256"
   | "aws:kms"
   | "aws:kms:dsse";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3ServerSideEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3ObjectAcl =
   | "authenticated-read"
@@ -1468,7 +1463,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3ObjectAc
   | "public-read"
   | "public-read-write";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3ObjectAcl =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3Type;
@@ -1508,12 +1503,12 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase4Type =
   "internal";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase4Target =
   "vercel-otel-traces-db";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase4Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase4 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase4Type;
@@ -1537,18 +1532,18 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDelivery =
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase3
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDeliveryCase4;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDelivery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDelivery>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemDelivery>;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSamplingItemType =
   "head_sampling";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSamplingItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSamplingItemEnv =
   | "preview"
   | "production";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSamplingItemEnv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSamplingItem {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSamplingItemType;
@@ -1580,7 +1575,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSamplingList =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase0Kind =
   "self-served";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase0 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase0Kind;
@@ -1597,7 +1592,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase0 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase1Kind =
   "integration";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase1 {
   kind: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase1Kind;
@@ -1623,17 +1618,17 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSource =
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase0
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSourceCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSource>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemSource>;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2Version =
   "v2";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2Version =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0Type =
   "basic";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0ProjectIdsList =
   Array<string>;
@@ -1666,7 +1661,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0Lo
   | "redirect"
   | "static";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0LogSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0LogSourcesList =
   Array<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0LogSourcesItem>;
@@ -1696,7 +1691,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0De
   | "preview"
   | "production";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0DeploymentEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0DeploymentEnvironmentsList =
   Array<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0DeploymentEnvironmentsItem>;
@@ -1748,7 +1743,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase1Type =
   "odata";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase1 {
   type: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase1Type;
@@ -1769,7 +1764,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2Filter =
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase0
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2FilterCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2Filter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2Filter>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2Filter>;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2 {
   version: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2Version;
@@ -1788,13 +1783,13 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemFilterV2 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0Access =
   "all";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0Access =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0ManagedBy =
   | "drain"
   | "integration";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0ManagedBy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0 {
   access: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0Access;
@@ -1816,7 +1811,7 @@ export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0 =
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1Access =
   "some";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1Access =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1ProjectIdsList =
   Array<string>;
@@ -1829,7 +1824,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1Man
   | "drain"
   | "integration";
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1ManagedBy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1 {
   access: GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1Access;
@@ -1855,7 +1850,7 @@ export type GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccess =
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase0
   | GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccessCase1;
 export const GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccess =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccess>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1DrainsCase1ItemProjectAccess>;
 
 export interface GetAllLogDrainsResponseBodyCase1DrainsCase1Item {
   id: string;
@@ -1930,7 +1925,7 @@ export type GetAllLogDrainsResponseBodyCase1Drains =
   | GetAllLogDrainsResponseBodyCase1DrainsCase0List
   | GetAllLogDrainsResponseBodyCase1DrainsCase1List;
 export const GetAllLogDrainsResponseBodyCase1Drains =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1Drains>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBodyCase1Drains>;
 
 export interface GetAllLogDrainsResponseBodyCase1 {
   drains: GetAllLogDrainsResponseBodyCase1Drains;
@@ -1947,7 +1942,7 @@ export type GetAllLogDrainsResponseBody =
   | GetAllLogDrainsResponseBodyCase0List
   | GetAllLogDrainsResponseBodyCase1;
 export const GetAllLogDrainsResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetAllLogDrainsResponseBody>;
+  S.Unknown as any as S.Schema<GetAllLogDrainsResponseBody>;
 
 export type GetAllLogDrainsResponse = GetAllLogDrainsResponseBody;
 export const GetAllLogDrainsResponse = /*@__PURE__*/ S.suspend(() =>
@@ -2049,7 +2044,7 @@ export type GetConfigurableLogDrainResponseProjectsMetadataItemFramework =
   | "xmcp"
   | "zola";
 export const GetConfigurableLogDrainResponseProjectsMetadataItemFramework =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetConfigurableLogDrainResponseProjectsMetadataItem {
   id: string;
@@ -2125,8 +2120,7 @@ export type GetIntegrationLogDrainsResponseBodyItemDeliveryFormat =
   | "json"
   | "ndjson"
   | "protobuf";
-export const GetIntegrationLogDrainsResponseBodyItemDeliveryFormat =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationLogDrainsResponseBodyItemDeliveryFormat = S.String;
 
 /** The identifier of the projects this log drain is associated with */
 export type GetIntegrationLogDrainsResponseBodyItemProjectIdsList =
@@ -2145,8 +2139,7 @@ export type GetIntegrationLogDrainsResponseBodyItemSourcesItem =
   | "lambda"
   | "redirect"
   | "static";
-export const GetIntegrationLogDrainsResponseBodyItemSourcesItem =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationLogDrainsResponseBodyItemSourcesItem = S.String;
 
 /** The sources from which logs are currently being delivered to this log drain. */
 export type GetIntegrationLogDrainsResponseBodyItemSourcesList =
@@ -2160,8 +2153,7 @@ export const GetIntegrationLogDrainsResponseBodyItemSourcesList =
 export type GetIntegrationLogDrainsResponseBodyItemCreatedFrom =
   | "integration"
   | "self-served";
-export const GetIntegrationLogDrainsResponseBodyItemCreatedFrom =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationLogDrainsResponseBodyItemCreatedFrom = S.String;
 
 /** The headers to send with the request */
 export type GetIntegrationLogDrainsResponseBodyItemHeadersMap = {
@@ -2177,8 +2169,7 @@ export const GetIntegrationLogDrainsResponseBodyItemHeadersMap =
 export type GetIntegrationLogDrainsResponseBodyItemEnvironmentsItem =
   | "preview"
   | "production";
-export const GetIntegrationLogDrainsResponseBodyItemEnvironmentsItem =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationLogDrainsResponseBodyItemEnvironmentsItem = S.String;
 
 /** The environment of log drain */
 export type GetIntegrationLogDrainsResponseBodyItemEnvironmentsList =
@@ -2190,8 +2181,7 @@ export const GetIntegrationLogDrainsResponseBodyItemEnvironmentsList =
 
 export type GetIntegrationLogDrainsResponseBodyItemSourceCase0Kind =
   "self-served";
-export const GetIntegrationLogDrainsResponseBodyItemSourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationLogDrainsResponseBodyItemSourceCase0Kind = S.String;
 
 export interface GetIntegrationLogDrainsResponseBodyItemSourceCase0 {
   kind: GetIntegrationLogDrainsResponseBodyItemSourceCase0Kind;
@@ -2207,8 +2197,7 @@ export const GetIntegrationLogDrainsResponseBodyItemSourceCase0 =
 
 export type GetIntegrationLogDrainsResponseBodyItemSourceCase1Kind =
   "integration";
-export const GetIntegrationLogDrainsResponseBodyItemSourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetIntegrationLogDrainsResponseBodyItemSourceCase1Kind = S.String;
 
 export interface GetIntegrationLogDrainsResponseBodyItemSourceCase1 {
   kind: GetIntegrationLogDrainsResponseBodyItemSourceCase1Kind;
@@ -2234,7 +2223,7 @@ export type GetIntegrationLogDrainsResponseBodyItemSource =
   | GetIntegrationLogDrainsResponseBodyItemSourceCase0
   | GetIntegrationLogDrainsResponseBodyItemSourceCase1;
 export const GetIntegrationLogDrainsResponseBodyItemSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetIntegrationLogDrainsResponseBodyItemSource>;
+  S.Unknown as any as S.Schema<GetIntegrationLogDrainsResponseBodyItemSource>;
 
 export interface GetIntegrationLogDrainsResponseBodyItem {
   /** The oauth2 client application id that created this log drain */

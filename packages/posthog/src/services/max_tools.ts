@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `trends` - trends * `funnel` - funnel * `retention` - retention * `sql` - sql */
 export type InsightTypeEnum = "trends" | "funnel" | "retention" | "sql";
-export const InsightTypeEnum = /*@__PURE__*/ S.String;
+export const InsightTypeEnum = S.String;
 
 export interface MaxToolsCreateAndQueryInsightCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

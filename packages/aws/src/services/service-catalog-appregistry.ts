@@ -168,14 +168,14 @@ export const AssociateAttributeGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssociateAttributeGroupResponse",
 }) as any as S.Schema<AssociateAttributeGroupResponse>;
 export type ResourceType = "CFN_STACK" | "RESOURCE_TAG_VALUE" | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type ResourceSpecifier = string;
 export type AssociationOption =
   | "APPLY_APPLICATION_TAG"
   | "SKIP_APPLICATION_TAG"
   | (string & {});
-export const AssociationOption = /*@__PURE__*/ S.String;
+export const AssociationOption = S.String;
 
 export type Options = AssociationOption[];
 export const Options = /*@__PURE__*/ S.Array(AssociationOption);
@@ -558,7 +558,7 @@ export type ResourceGroupState =
   | "UPDATE_COMPLETE"
   | "UPDATE_FAILED"
   | (string & {});
-export const ResourceGroupState = /*@__PURE__*/ S.String;
+export const ResourceGroupState = S.String;
 
 export interface ResourceGroup {
   state?: ResourceGroupState;
@@ -621,7 +621,7 @@ export type ResourceItemStatus =
   | "IN_PROGRESS"
   | "SKIPPED"
   | (string & {});
-export const ResourceItemStatus = /*@__PURE__*/ S.String;
+export const ResourceItemStatus = S.String;
 
 export type GetAssociatedResourceFilter = ResourceItemStatus[];
 export const GetAssociatedResourceFilter =
@@ -690,7 +690,7 @@ export type ApplicationTagStatus =
   | "SUCCESS"
   | "FAILURE"
   | (string & {});
-export const ApplicationTagStatus = /*@__PURE__*/ S.String;
+export const ApplicationTagStatus = S.String;
 
 export type ResourcesListItemErrorMessage = string;
 export type ResourceItemType = string;
@@ -1136,7 +1136,7 @@ export const SyncResourceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SyncResourceRequest",
 }) as any as S.Schema<SyncResourceRequest>;
 export type SyncAction = "START_SYNC" | "NO_ACTION" | (string & {});
-export const SyncAction = /*@__PURE__*/ S.String;
+export const SyncAction = S.String;
 
 export interface SyncResourceResponse {
   applicationArn?: string;

@@ -12,13 +12,13 @@ import * as Retry from "../retry.ts";
 export type { PosthogOpError, PosthogOpContext };
 
 export type ListIngestionWarningsV2RequestOrderBy = "count" | "last_seen";
-export const ListIngestionWarningsV2RequestOrderBy = /*@__PURE__*/ S.String;
+export const ListIngestionWarningsV2RequestOrderBy = S.String;
 
 export type ListIngestionWarningsV2RequestSeverity =
   | "info"
   | "warning"
   | "error";
-export const ListIngestionWarningsV2RequestSeverity = /*@__PURE__*/ S.String;
+export const ListIngestionWarningsV2RequestSeverity = S.String;
 
 export interface ListIngestionWarningsV2Request {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

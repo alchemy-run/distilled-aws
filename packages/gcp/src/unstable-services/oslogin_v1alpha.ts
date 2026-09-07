@@ -110,8 +110,7 @@ export type DeleteUsersProjectsOperatingSystemTypeEnum =
   | "OPERATING_SYSTEM_TYPE_UNSPECIFIED"
   | "LINUX"
   | "WINDOWS";
-export const DeleteUsersProjectsOperatingSystemTypeEnum =
-  /*@__PURE__*/ S.String;
+export const DeleteUsersProjectsOperatingSystemTypeEnum = S.String;
 
 export interface DeleteUsersProjectsRequest {
   /** Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`. */
@@ -166,14 +165,13 @@ export type GetLoginProfileUsersOperatingSystemTypeEnum =
   | "OPERATING_SYSTEM_TYPE_UNSPECIFIED"
   | "LINUX"
   | "WINDOWS";
-export const GetLoginProfileUsersOperatingSystemTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GetLoginProfileUsersOperatingSystemTypeEnum = S.String;
 
 export type GetLoginProfileUsersViewEnum =
   | "LOGIN_PROFILE_VIEW_UNSPECIFIED"
   | "BASIC"
   | "SECURITY_KEY";
-export const GetLoginProfileUsersViewEnum = /*@__PURE__*/ S.String;
+export const GetLoginProfileUsersViewEnum = S.String;
 
 export interface GetLoginProfileUsersRequest {
   /** Required. The project ID of the Google Cloud Platform project. */
@@ -213,7 +211,7 @@ export type PosixAccountOperatingSystemTypeEnum =
   | "OPERATING_SYSTEM_TYPE_UNSPECIFIED"
   | "LINUX"
   | "WINDOWS";
-export const PosixAccountOperatingSystemTypeEnum = /*@__PURE__*/ S.String;
+export const PosixAccountOperatingSystemTypeEnum = S.String;
 
 /** The POSIX account information associated with a Google account. */
 export interface PosixAccount {
@@ -361,7 +359,7 @@ export type ImportSshPublicKeyUsersViewEnum =
   | "LOGIN_PROFILE_VIEW_UNSPECIFIED"
   | "BASIC"
   | "SECURITY_KEY";
-export const ImportSshPublicKeyUsersViewEnum = /*@__PURE__*/ S.String;
+export const ImportSshPublicKeyUsersViewEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

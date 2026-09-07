@@ -255,7 +255,7 @@ export type DelegationComment = string | redacted.Redacted<string>;
 export type ControlSetId = string;
 export type IamArn = string;
 export type RoleType = "PROCESS_OWNER" | "RESOURCE_OWNER" | (string & {});
-export const RoleType = /*@__PURE__*/ S.String;
+export const RoleType = S.String;
 
 export interface CreateDelegationRequest {
   comment?: string | redacted.Redacted<string>;
@@ -308,7 +308,7 @@ export type DelegationStatus =
   | "UNDER_REVIEW"
   | "COMPLETE"
   | (string & {});
-export const DelegationStatus = /*@__PURE__*/ S.String;
+export const DelegationStatus = S.String;
 
 export type CreatedBy = string | redacted.Redacted<string>;
 export interface Delegation {
@@ -548,7 +548,7 @@ export const BatchImportEvidenceToAssessmentControlResponse =
   }) as any as S.Schema<BatchImportEvidenceToAssessmentControlResponse>;
 export type AssessmentDescription = string | redacted.Redacted<string>;
 export type AssessmentReportDestinationType = "S3" | (string & {});
-export const AssessmentReportDestinationType = /*@__PURE__*/ S.String;
+export const AssessmentReportDestinationType = S.String;
 
 export interface AssessmentReportsDestination {
   destinationType?: AssessmentReportDestinationType;
@@ -648,7 +648,7 @@ export const CreateAssessmentRequest = /*@__PURE__*/ S.suspend(() =>
 export type AuditManagerArn = string;
 export type ComplianceType = string | redacted.Redacted<string>;
 export type AssessmentStatus = "ACTIVE" | "INACTIVE" | (string & {});
-export const AssessmentStatus = /*@__PURE__*/ S.String;
+export const AssessmentStatus = S.String;
 
 export interface AssessmentMetadata {
   name?: string | redacted.Redacted<string>;
@@ -704,7 +704,7 @@ export type ControlSetStatus =
   | "UNDER_REVIEW"
   | "REVIEWED"
   | (string & {});
-export const ControlSetStatus = /*@__PURE__*/ S.String;
+export const ControlSetStatus = S.String;
 
 export type ControlName = string;
 export type ControlDescription = string | redacted.Redacted<string>;
@@ -713,7 +713,7 @@ export type ControlStatus =
   | "REVIEWED"
   | "INACTIVE"
   | (string & {});
-export const ControlStatus = /*@__PURE__*/ S.String;
+export const ControlStatus = S.String;
 
 export type ControlResponse =
   | "MANUAL"
@@ -721,7 +721,7 @@ export type ControlResponse =
   | "DEFER"
   | "IGNORE"
   | (string & {});
-export const ControlResponse = /*@__PURE__*/ S.String;
+export const ControlResponse = S.String;
 
 export type Username = string | redacted.Redacted<string>;
 export type ControlCommentBody = string | redacted.Redacted<string>;
@@ -897,11 +897,11 @@ export const CreateAssessmentFrameworkRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateAssessmentFrameworkRequest",
 }) as any as S.Schema<CreateAssessmentFrameworkRequest>;
 export type FrameworkType = "Standard" | "Custom" | (string & {});
-export const FrameworkType = /*@__PURE__*/ S.String;
+export const FrameworkType = S.String;
 
 export type ControlSources = string;
 export type ControlType = "Standard" | "Custom" | "Core" | (string & {});
-export const ControlType = /*@__PURE__*/ S.String;
+export const ControlType = S.String;
 
 export type TestingInformation = string | redacted.Redacted<string>;
 export type ActionPlanTitle = string | redacted.Redacted<string>;
@@ -912,7 +912,7 @@ export type SourceSetUpOption =
   | "System_Controls_Mapping"
   | "Procedural_Controls_Mapping"
   | (string & {});
-export const SourceSetUpOption = /*@__PURE__*/ S.String;
+export const SourceSetUpOption = S.String;
 
 export type SourceType =
   | "AWS_Cloudtrail"
@@ -923,14 +923,14 @@ export type SourceType =
   | "Common_Control"
   | "Core_Control"
   | (string & {});
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 export type KeywordInputType =
   | "SELECT_FROM_LIST"
   | "UPLOAD_FILE"
   | "INPUT_TEXT"
   | (string & {});
-export const KeywordInputType = /*@__PURE__*/ S.String;
+export const KeywordInputType = S.String;
 
 export type KeywordValue = string;
 export interface SourceKeyword {
@@ -944,7 +944,7 @@ export const SourceKeyword = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SourceKeyword" }) as any as S.Schema<SourceKeyword>;
 export type SourceFrequency = "DAILY" | "WEEKLY" | "MONTHLY" | (string & {});
-export const SourceFrequency = /*@__PURE__*/ S.String;
+export const SourceFrequency = S.String;
 
 export type TroubleshootingText = string | redacted.Redacted<string>;
 export interface ControlMappingSource {
@@ -976,7 +976,7 @@ export const ControlMappingSources =
   /*@__PURE__*/ S.Array(ControlMappingSource);
 export type LastUpdatedBy = string | redacted.Redacted<string>;
 export type ControlState = "ACTIVE" | "END_OF_SUPPORT" | (string & {});
-export const ControlState = /*@__PURE__*/ S.String;
+export const ControlState = S.String;
 
 export interface Control {
   arn?: string;
@@ -1107,7 +1107,7 @@ export type AssessmentReportStatus =
   | "IN_PROGRESS"
   | "FAILED"
   | (string & {});
-export const AssessmentReportStatus = /*@__PURE__*/ S.String;
+export const AssessmentReportStatus = S.String;
 
 export interface AssessmentReport {
   id?: string;
@@ -1255,7 +1255,7 @@ export const DeleteAssessmentFrameworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAssessmentFrameworkResponse",
 }) as any as S.Schema<DeleteAssessmentFrameworkResponse>;
 export type ShareRequestType = "SENT" | "RECEIVED" | (string & {});
-export const ShareRequestType = /*@__PURE__*/ S.String;
+export const ShareRequestType = S.String;
 
 export interface DeleteAssessmentFrameworkShareRequest {
   requestId: string;
@@ -1361,7 +1361,7 @@ export type AccountStatus =
   | "INACTIVE"
   | "PENDING_ACTIVATION"
   | (string & {});
-export const AccountStatus = /*@__PURE__*/ S.String;
+export const AccountStatus = S.String;
 
 export interface DeregisterAccountResponse {
   status?: AccountStatus;
@@ -1578,7 +1578,7 @@ export type ObjectTypeEnum =
   | "DELEGATION"
   | "ASSESSMENT_REPORT"
   | (string & {});
-export const ObjectTypeEnum = /*@__PURE__*/ S.String;
+export const ObjectTypeEnum = S.String;
 
 export type ActionEnum =
   | "CREATE"
@@ -1590,7 +1590,7 @@ export type ActionEnum =
   | "REVIEWED"
   | "IMPORT_EVIDENCE"
   | (string & {});
-export const ActionEnum = /*@__PURE__*/ S.String;
+export const ActionEnum = S.String;
 
 export interface ChangeLog {
   objectType?: ObjectTypeEnum;
@@ -2206,7 +2206,7 @@ export type SettingAttribute =
   | "DEREGISTRATION_POLICY"
   | "DEFAULT_EXPORT_DESTINATION"
   | (string & {});
-export const SettingAttribute = /*@__PURE__*/ S.String;
+export const SettingAttribute = S.String;
 
 export interface GetSettingsRequest {
   attribute: SettingAttribute;
@@ -2234,14 +2234,14 @@ export type EvidenceFinderEnablementStatus =
   | "ENABLE_IN_PROGRESS"
   | "DISABLE_IN_PROGRESS"
   | (string & {});
-export const EvidenceFinderEnablementStatus = /*@__PURE__*/ S.String;
+export const EvidenceFinderEnablementStatus = S.String;
 
 export type EvidenceFinderBackfillStatus =
   | "NOT_STARTED"
   | "IN_PROGRESS"
   | "COMPLETED"
   | (string & {});
-export const EvidenceFinderBackfillStatus = /*@__PURE__*/ S.String;
+export const EvidenceFinderBackfillStatus = S.String;
 
 export interface EvidenceFinderEnablement {
   eventDataStoreArn?: string;
@@ -2260,7 +2260,7 @@ export const EvidenceFinderEnablement = /*@__PURE__*/ S.suspend(() =>
   identifier: "EvidenceFinderEnablement",
 }) as any as S.Schema<EvidenceFinderEnablement>;
 export type DeleteResources = "ALL" | "DEFAULT" | (string & {});
-export const DeleteResources = /*@__PURE__*/ S.String;
+export const DeleteResources = S.String;
 
 export interface DeregistrationPolicy {
   deleteResources?: DeleteResources;
@@ -2271,7 +2271,7 @@ export const DeregistrationPolicy = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeregistrationPolicy",
 }) as any as S.Schema<DeregistrationPolicy>;
 export type ExportDestinationType = "S3" | (string & {});
-export const ExportDestinationType = /*@__PURE__*/ S.String;
+export const ExportDestinationType = S.String;
 
 export interface DefaultExportDestination {
   destinationType?: ExportDestinationType;
@@ -2502,7 +2502,7 @@ export type ShareRequestStatus =
   | "DECLINED"
   | "REVOKED"
   | (string & {});
-export const ShareRequestStatus = /*@__PURE__*/ S.String;
+export const ShareRequestStatus = S.String;
 
 export type Region = string;
 export type ShareRequestComment = string;
@@ -2911,7 +2911,7 @@ export type DataSourceType =
   | "AWS_API_Call"
   | "MANUAL"
   | (string & {});
-export const DataSourceType = /*@__PURE__*/ S.String;
+export const DataSourceType = S.String;
 
 export interface ListKeywordsForDataSourceRequest {
   source: DataSourceType;
@@ -3362,7 +3362,7 @@ export type ShareRequestAction =
   | "DECLINE"
   | "REVOKE"
   | (string & {});
-export const ShareRequestAction = /*@__PURE__*/ S.String;
+export const ShareRequestAction = S.String;
 
 export interface UpdateAssessmentFrameworkShareRequest {
   requestId: string;
@@ -3559,7 +3559,7 @@ export type ValidationExceptionReason =
   | "fieldValidationFailed"
   | "other"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

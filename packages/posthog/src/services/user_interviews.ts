@@ -19,7 +19,7 @@ export const CreateUserInterviewRequestIntervieweeEmailsList =
 
 /** * `abandoned` - Abandoned * `off-topic` - Off-topic */
 export type UserInterviewClassificationEnum = "abandoned" | "off-topic";
-export const UserInterviewClassificationEnum = /*@__PURE__*/ S.String;
+export const UserInterviewClassificationEnum = S.String;
 
 /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
 export type CreateUserInterviewRequestClassificationsList = Array<
@@ -76,14 +76,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -351,7 +351,7 @@ export const UserInterviewsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** * `transcript` - transcript * `summary` - summary */
 export type UserInterviewSearchDocumentTypeEnum = "transcript" | "summary";
-export const UserInterviewSearchDocumentTypeEnum = /*@__PURE__*/ S.String;
+export const UserInterviewSearchDocumentTypeEnum = S.String;
 
 /** Which document types to search across. Omit to default to both `transcript` and `summary`. Pass a non-empty subset to restrict the search. */
 export type UserInterviewsSearchCreateRequestDocumentTypesList = Array<

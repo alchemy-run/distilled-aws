@@ -101,8 +101,7 @@ export type GoogleCloudDocumentaiV1beta3RevisionRefRevisionCaseEnum =
   | "LATEST_HUMAN_REVIEW"
   | "LATEST_TIMESTAMP"
   | "BASE_OCR_REVISION";
-export const GoogleCloudDocumentaiV1beta3RevisionRefRevisionCaseEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3RevisionRefRevisionCaseEnum = S.String;
 
 /** The revision reference specifies which revision on the document to read. */
 export interface GoogleCloudDocumentaiV1beta3RevisionRef {
@@ -583,16 +582,14 @@ export type GoogleCloudDocumentaiV1beta3SummaryOptionsFormatEnum =
   | "FORMAT_UNSPECIFIED"
   | "PARAGRAPH"
   | "BULLETS";
-export const GoogleCloudDocumentaiV1beta3SummaryOptionsFormatEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3SummaryOptionsFormatEnum = S.String;
 
 export type GoogleCloudDocumentaiV1beta3SummaryOptionsLengthEnum =
   | "LENGTH_UNSPECIFIED"
   | "BRIEF"
   | "MODERATE"
   | "COMPREHENSIVE";
-export const GoogleCloudDocumentaiV1beta3SummaryOptionsLengthEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3SummaryOptionsLengthEnum = S.String;
 
 /** Metadata for document summarization. */
 export interface GoogleCloudDocumentaiV1beta3SummaryOptions {
@@ -650,7 +647,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypePropertyMethodEn
   | "DERIVE"
   | "RELAXED_EXTRACT";
 export const GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypePropertyMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypePropertyOccurrenceTypeEnum =
   | "OCCURRENCE_TYPE_UNSPECIFIED"
@@ -659,7 +656,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypePropertyOccurren
   | "REQUIRED_ONCE"
   | "REQUIRED_MULTIPLE";
 export const GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypePropertyOccurrenceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines properties that can be part of the entity type. */
 export interface GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty {
@@ -1055,8 +1052,7 @@ export type GoogleCloudDocumentaiV1beta3ProcessorStateEnum =
   | "CREATING"
   | "FAILED"
   | "DELETING";
-export const GoogleCloudDocumentaiV1beta3ProcessorStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3ProcessorStateEnum = S.String;
 
 /** The first-class citizen for Document AI. Each processor defines how to extract structural information from a document. */
 export interface GoogleCloudDocumentaiV1beta3Processor {
@@ -1500,7 +1496,7 @@ export type GoogleCloudDocumentaiV1beta3ProcessorTypeLaunchStageEnum =
   | "GA"
   | "DEPRECATED";
 export const GoogleCloudDocumentaiV1beta3ProcessorTypeLaunchStageEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A processor type is responsible for performing a certain document understanding task on a certain type of document. */
 export interface GoogleCloudDocumentaiV1beta3ProcessorType {
@@ -1566,7 +1562,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutputValidation
   | "VALIDATION_RESULT_TYPE_SKIPPED"
   | "VALIDATION_RESULT_TYPE_NOT_APPLICABLE";
 export const GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutputValidationResultValidationResultTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Validation result for a single validation rule. */
 export interface GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutputValidationResult {
@@ -1678,7 +1674,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentPageAnchorPageRefLayoutTypeEnum 
   | "TABLE"
   | "FORM_FIELD";
 export const GoogleCloudDocumentaiV1beta3DocumentPageAnchorPageRefLayoutTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image. */
 export interface GoogleCloudDocumentaiV1beta3Vertex {
@@ -1796,8 +1792,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentProvenanceTypeEnum =
   | "EVAL_REQUESTED"
   | "EVAL_APPROVED"
   | "EVAL_SKIPPED";
-export const GoogleCloudDocumentaiV1beta3DocumentProvenanceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3DocumentProvenanceTypeEnum = S.String;
 
 /** The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations. */
 export interface GoogleCloudDocumentaiV1beta3DocumentProvenanceParent {
@@ -2025,8 +2020,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentEntityMethodEnum =
   | "METHOD_UNSPECIFIED"
   | "EXTRACT"
   | "DERIVE";
-export const GoogleCloudDocumentaiV1beta3DocumentEntityMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3DocumentEntityMethodEnum = S.String;
 
 /** An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location. */
 export interface GoogleCloudDocumentaiV1beta3DocumentEntity {
@@ -2598,7 +2592,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentPageLayoutOrientationEnum =
   | "PAGE_DOWN"
   | "PAGE_LEFT";
 export const GoogleCloudDocumentaiV1beta3DocumentPageLayoutOrientationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Visual element describing a layout unit on a page. */
 export interface GoogleCloudDocumentaiV1beta3DocumentPageLayout {
@@ -2826,7 +2820,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentPageTokenDetectedBreakTypeEnum =
   | "WIDE_SPACE"
   | "HYPHEN";
 export const GoogleCloudDocumentaiV1beta3DocumentPageTokenDetectedBreakTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Detected break at the end of a Token. */
 export interface GoogleCloudDocumentaiV1beta3DocumentPageTokenDetectedBreak {
@@ -3892,7 +3886,7 @@ export type GetDocumentProjectsLocationsProcessorsDatasetDocumentId_revisionRef_
   | "LATEST_TIMESTAMP"
   | "BASE_OCR_REVISION";
 export const GetDocumentProjectsLocationsProcessorsDatasetDocumentId_revisionRef_revisionCaseEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDocumentProjectsLocationsProcessorsDatasetRequest {
   /** If set, only fields listed here will be returned. Otherwise, all fields will be returned by default. */
@@ -4067,7 +4061,7 @@ export type GoogleCloudDocumentaiV1beta3ProcessorVersionModelTypeEnum =
   | "MODEL_TYPE_GENERATIVE"
   | "MODEL_TYPE_CUSTOM";
 export const GoogleCloudDocumentaiV1beta3ProcessorVersionModelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information for a pretrained Google-managed foundation model. */
 export interface GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo {
@@ -4092,7 +4086,7 @@ export type GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenA
   | "VERSIONED_FOUNDATION"
   | "FINE_TUNED";
 export const GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfoCustomModelTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs. */
 export interface GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo {
@@ -4147,8 +4141,7 @@ export type GoogleCloudDocumentaiV1beta3ProcessorVersionStateEnum =
   | "DELETING"
   | "FAILED"
   | "IMPORTING";
-export const GoogleCloudDocumentaiV1beta3ProcessorVersionStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3ProcessorVersionStateEnum = S.String;
 
 /** Information about the upcoming deprecation of this processor version. */
 export interface GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo {
@@ -4372,7 +4365,7 @@ export type GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetricsMetricsT
   | "METRICS_TYPE_UNSPECIFIED"
   | "AGGREGATE";
 export const GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetricsMetricsTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metrics across multiple confidence levels. */
 export interface GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics {
@@ -4564,7 +4557,7 @@ export type GoogleCloudDocumentaiV1beta3ImportDocumentsRequestBatchDocumentsImpo
   | "DATASET_SPLIT_TEST"
   | "DATASET_SPLIT_UNASSIGNED";
 export const GoogleCloudDocumentaiV1beta3ImportDocumentsRequestBatchDocumentsImportConfigDatasetSplitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The config for auto-split. */
 export interface GoogleCloudDocumentaiV1beta3ImportDocumentsRequestBatchDocumentsImportConfigAutoSplitConfig {
@@ -4778,7 +4771,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentMetadataDatasetTypeEnum =
   | "DATASET_SPLIT_TEST"
   | "DATASET_SPLIT_UNASSIGNED";
 export const GoogleCloudDocumentaiV1beta3DocumentMetadataDatasetTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDocumentaiV1beta3DocumentMetadataLabelingStateEnum =
   | "DOCUMENT_LABELING_STATE_UNSPECIFIED"
@@ -4786,7 +4779,7 @@ export type GoogleCloudDocumentaiV1beta3DocumentMetadataLabelingStateEnum =
   | "DOCUMENT_UNLABELED"
   | "DOCUMENT_AUTO_LABELED";
 export const GoogleCloudDocumentaiV1beta3DocumentMetadataLabelingStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata about a document. */
 export interface GoogleCloudDocumentaiV1beta3DocumentMetadata {
@@ -5363,8 +5356,7 @@ export type GoogleCloudDocumentaiV1beta3HumanReviewStatusStateEnum =
   | "VALIDATION_PASSED"
   | "IN_PROGRESS"
   | "ERROR";
-export const GoogleCloudDocumentaiV1beta3HumanReviewStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3HumanReviewStatusStateEnum = S.String;
 
 /** The status of human review on a processed document. */
 export interface GoogleCloudDocumentaiV1beta3HumanReviewStatus {
@@ -5436,7 +5428,7 @@ export type GoogleCloudDocumentaiV1beta3ReviewDocumentRequestPriorityEnum =
   | "DEFAULT"
   | "URGENT";
 export const GoogleCloudDocumentaiV1beta3ReviewDocumentRequestPriorityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for the ReviewDocument method. */
 export interface GoogleCloudDocumentaiV1beta3ReviewDocumentRequest {
@@ -5581,7 +5573,7 @@ export type GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocume
   | "MODEL_BASED"
   | "TEMPLATE_BASED";
 export const GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocumentExtractionOptionsTrainingMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options to control the training of the Custom Document Extraction (CDE) Processor. */
 export interface GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocumentExtractionOptions {
@@ -5716,8 +5708,7 @@ export type GoogleCloudDocumentaiV1beta3DatasetStateEnum =
   | "UNINITIALIZED"
   | "INITIALIZING"
   | "INITIALIZED";
-export const GoogleCloudDocumentaiV1beta3DatasetStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1beta3DatasetStateEnum = S.String;
 
 /** Configuration specific to the Document AI Warehouse-based implementation. */
 export interface GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig {

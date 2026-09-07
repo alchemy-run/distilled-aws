@@ -75,7 +75,7 @@ export type GoogleIamV1AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const GoogleIamV1AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const GoogleIamV1AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1AuditLogConfig {
@@ -191,7 +191,7 @@ export type GoogleCloudContentwarehouseV1DocumentContentCategoryEnum =
   | "CONTENT_CATEGORY_AUDIO"
   | "CONTENT_CATEGORY_VIDEO";
 export const GoogleCloudContentwarehouseV1DocumentContentCategoryEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContentwarehouseV1DocumentRawDocumentFileTypeEnum =
   | "RAW_DOCUMENT_FILE_TYPE_UNSPECIFIED"
@@ -202,7 +202,7 @@ export type GoogleCloudContentwarehouseV1DocumentRawDocumentFileTypeEnum =
   | "RAW_DOCUMENT_FILE_TYPE_TEXT"
   | "RAW_DOCUMENT_FILE_TYPE_TIFF";
 export const GoogleCloudContentwarehouseV1DocumentRawDocumentFileTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -538,7 +538,7 @@ export type GoogleCloudDocumentaiV1DocumentPageLayoutOrientationEnum =
   | "PAGE_DOWN"
   | "PAGE_LEFT";
 export const GoogleCloudDocumentaiV1DocumentPageLayoutOrientationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image. */
 export interface GoogleCloudDocumentaiV1Vertex {
@@ -723,8 +723,7 @@ export type GoogleCloudDocumentaiV1DocumentProvenanceTypeEnum =
   | "EVAL_REQUESTED"
   | "EVAL_APPROVED"
   | "EVAL_SKIPPED";
-export const GoogleCloudDocumentaiV1DocumentProvenanceTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDocumentaiV1DocumentProvenanceTypeEnum = S.String;
 
 /** Structure to identify provenance relationships between annotations in different revisions. */
 export interface GoogleCloudDocumentaiV1DocumentProvenance {
@@ -1083,7 +1082,7 @@ export type GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreakTypeEnum =
   | "WIDE_SPACE"
   | "HYPHEN";
 export const GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreakTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Detected break at the end of a Token. */
 export interface GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreak {
@@ -1567,7 +1566,7 @@ export type GoogleCloudDocumentaiV1DocumentPageAnchorPageRefLayoutTypeEnum =
   | "TABLE"
   | "FORM_FIELD";
 export const GoogleCloudDocumentaiV1DocumentPageAnchorPageRefLayoutTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a weak reference to a page element within a document. */
 export interface GoogleCloudDocumentaiV1DocumentPageAnchorPageRef {
@@ -2479,7 +2478,7 @@ export type GoogleCloudContentwarehouseV1ActionOutputActionStateEnum =
   | "ACTION_TIMED_OUT"
   | "ACTION_PENDING";
 export const GoogleCloudContentwarehouseV1ActionOutputActionStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents the result of executing an action. */
 export interface GoogleCloudContentwarehouseV1ActionOutput {
@@ -2564,7 +2563,7 @@ export type GoogleCloudContentwarehouseV1AccessControlActionOperationTypeEnum =
   | "REMOVE_POLICY_BINDING"
   | "REPLACE_POLICY_BINDING";
 export const GoogleCloudContentwarehouseV1AccessControlActionOperationTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents the action responsible for access control list management operations. */
 export interface GoogleCloudContentwarehouseV1AccessControlAction {
@@ -2681,8 +2680,7 @@ export type GoogleCloudContentwarehouseV1RuleTriggerTypeEnum =
   | "ON_UPDATE"
   | "ON_CREATE_LINK"
   | "ON_DELETE_LINK";
-export const GoogleCloudContentwarehouseV1RuleTriggerTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContentwarehouseV1RuleTriggerTypeEnum = S.String;
 
 /** Represents the rule for a content warehouse trigger. */
 export interface GoogleCloudContentwarehouseV1Rule {
@@ -2955,7 +2953,7 @@ export type GoogleCloudContentwarehouseV1PropertyDefinitionRetrievalImportanceEn
   | "LOW"
   | "LOWEST";
 export const GoogleCloudContentwarehouseV1PropertyDefinitionRetrievalImportanceEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configurations for a date time property. */
 export type GoogleCloudContentwarehouseV1DateTimeTypeOptions =
@@ -3158,8 +3156,7 @@ export type GoogleCloudContentwarehouseV1DocumentLinkStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "SOFT_DELETED";
-export const GoogleCloudContentwarehouseV1DocumentLinkStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContentwarehouseV1DocumentLinkStateEnum = S.String;
 
 /** A document-link between source and target document. */
 export interface GoogleCloudContentwarehouseV1DocumentLink {
@@ -3751,14 +3748,14 @@ export type GoogleCloudContentwarehouseV1ProjectStatusAccessControlModeEnum =
   | "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID"
   | "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI";
 export const GoogleCloudContentwarehouseV1ProjectStatusAccessControlModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContentwarehouseV1ProjectStatusDatabaseTypeEnum =
   | "DB_UNKNOWN"
   | "DB_INFRA_SPANNER"
   | "DB_CLOUD_SQL_POSTGRES";
 export const GoogleCloudContentwarehouseV1ProjectStatusDatabaseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContentwarehouseV1ProjectStatusStateEnum =
   | "PROJECT_STATE_UNSPECIFIED"
@@ -3769,8 +3766,7 @@ export type GoogleCloudContentwarehouseV1ProjectStatusStateEnum =
   | "PROJECT_STATE_DELETING_FAILED"
   | "PROJECT_STATE_DELETED"
   | "PROJECT_STATE_NOT_FOUND";
-export const GoogleCloudContentwarehouseV1ProjectStatusStateEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContentwarehouseV1ProjectStatusStateEnum = S.String;
 
 /** Status of a project, including the project state, dbType, aclMode and etc. */
 export interface GoogleCloudContentwarehouseV1ProjectStatus {
@@ -3811,7 +3807,7 @@ export type GoogleCloudContentwarehouseV1InitializeProjectRequestDocumentCreator
   | "DOCUMENT_EDITOR"
   | "DOCUMENT_VIEWER";
 export const GoogleCloudContentwarehouseV1InitializeProjectRequestDocumentCreatorDefaultRoleEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContentwarehouseV1InitializeProjectRequestAccessControlModeEnum =
   | "ACL_MODE_UNKNOWN"
@@ -3819,14 +3815,14 @@ export type GoogleCloudContentwarehouseV1InitializeProjectRequestAccessControlMo
   | "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID"
   | "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI";
 export const GoogleCloudContentwarehouseV1InitializeProjectRequestAccessControlModeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContentwarehouseV1InitializeProjectRequestDatabaseTypeEnum =
   | "DB_UNKNOWN"
   | "DB_INFRA_SPANNER"
   | "DB_CLOUD_SQL_POSTGRES";
 export const GoogleCloudContentwarehouseV1InitializeProjectRequestDatabaseTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Request message for projectService.InitializeProject */
 export interface GoogleCloudContentwarehouseV1InitializeProjectRequest {
@@ -4206,7 +4202,7 @@ export type GoogleCloudContentwarehouseV1UpdateOptionsUpdateTypeEnum =
   | "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES"
   | "UPDATE_TYPE_MERGE_AND_REPLACE_OR_INSERT_PROPERTIES_BY_NAMES";
 export const GoogleCloudContentwarehouseV1UpdateOptionsUpdateTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Options for merging updated fields. */
 export interface GoogleCloudContentwarehouseV1MergeFieldsOptions {
@@ -4670,13 +4666,13 @@ export type GoogleCloudContentwarehouseV1SearchDocumentsRequestTotalResultSizeEn
   | "ESTIMATED_SIZE"
   | "ACTUAL_SIZE";
 export const GoogleCloudContentwarehouseV1SearchDocumentsRequestTotalResultSizeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudContentwarehouseV1HistogramQueryPropertyNameFilterYAxisEnum =
   | "HISTOGRAM_YAXIS_DOCUMENT"
   | "HISTOGRAM_YAXIS_PROPERTY";
 export const GoogleCloudContentwarehouseV1HistogramQueryPropertyNameFilterYAxisEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GoogleCloudContentwarehouseV1HistogramQueryPropertyNameFilter {
   /** This filter specifies the exact document schema(s) Document.document_schema_name to run histogram query against. It is optional. It will perform histogram for property names for all the document schemas if it is not set. At most 10 document schema names are allowed. Format: projects/{project_number}/locations/{location}/documentSchemas/{document_schema_id}. */
@@ -4814,8 +4810,7 @@ export type GoogleCloudContentwarehouseV1TimeFilterTimeFieldEnum =
   | "CREATE_TIME"
   | "UPDATE_TIME"
   | "DISPOSITION_TIME";
-export const GoogleCloudContentwarehouseV1TimeFilterTimeFieldEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContentwarehouseV1TimeFilterTimeFieldEnum = S.String;
 
 /** Filter on create timestamp or update timestamp of documents. */
 export interface GoogleCloudContentwarehouseV1TimeFilter {
@@ -4850,8 +4845,7 @@ export type GoogleCloudContentwarehouseV1FileTypeFilterFileTypeEnum =
   | "FOLDER"
   | "DOCUMENT"
   | "ROOT_FOLDER";
-export const GoogleCloudContentwarehouseV1FileTypeFilterFileTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudContentwarehouseV1FileTypeFilterFileTypeEnum = S.String;
 
 /** Filter for the specific types of documents returned. */
 export interface GoogleCloudContentwarehouseV1FileTypeFilter {

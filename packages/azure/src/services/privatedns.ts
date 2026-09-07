@@ -53,7 +53,7 @@ export type DeleteRecordSetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const DeleteRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+export const DeleteRecordSetRequestRecordType = S.String;
 
 export interface DeleteRecordSetRequest {
   /** The ID of the target subscription. */
@@ -159,7 +159,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -167,7 +167,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -203,7 +203,7 @@ export type ProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Represents the properties of the Private DNS zone. */
 export interface PrivateZoneProperties {
@@ -290,7 +290,7 @@ export type GetRecordSetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const GetRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+export const GetRecordSetRequestRecordType = S.String;
 
 export interface GetRecordSetRequest {
   /** The ID of the target subscription. */
@@ -606,11 +606,11 @@ export const SubResource = /*@__PURE__*/ S.suspend(() =>
 
 /** The resolution policy on the virtual network link. Only applicable for virtual network links to privatelink zones, and for A,AAAA,CNAME queries. When set to 'NxDomainRedirect', Azure DNS resolver falls back to public resolution if private dns query resolution results in non-existent domain response. */
 export type ResolutionPolicy = "Default" | "NxDomainRedirect";
-export const ResolutionPolicy = /*@__PURE__*/ S.String;
+export const ResolutionPolicy = S.String;
 
 /** The status of the virtual network link to the Private DNS zone. Possible values are 'InProgress' and 'Done'. This is a read-only property and any attempt to set this value will be ignored. */
 export type VirtualNetworkLinkState = "InProgress" | "Completed";
-export const VirtualNetworkLinkState = /*@__PURE__*/ S.String;
+export const VirtualNetworkLinkState = S.String;
 
 /** Represents the properties of the Private DNS zone. */
 export interface VirtualNetworkLinkProperties {
@@ -797,7 +797,7 @@ export type ListRecordSetByTypeRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const ListRecordSetByTypeRequestRecordType = /*@__PURE__*/ S.String;
+export const ListRecordSetByTypeRequestRecordType = S.String;
 
 export interface ListRecordSetByTypeRequest {
   /** The ID of the target subscription. */
@@ -1112,7 +1112,7 @@ export type RecordSetsCreateOrUpdateRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsCreateOrUpdateRequestRecordType = /*@__PURE__*/ S.String;
+export const RecordSetsCreateOrUpdateRequestRecordType = S.String;
 
 /** The metadata attached to the record set. */
 export type RecordSetPropertiesInputMetadataMap = {
@@ -1360,7 +1360,7 @@ export type UpdateRecordSetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const UpdateRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+export const UpdateRecordSetRequestRecordType = S.String;
 
 export interface UpdateRecordSetRequest {
   /** The ID of the target subscription. */

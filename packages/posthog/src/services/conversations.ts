@@ -63,7 +63,7 @@ export type TicketStatusEnum =
   | "pending"
   | "on_hold"
   | "resolved";
-export const TicketStatusEnum = /*@__PURE__*/ S.String;
+export const TicketStatusEnum = S.String;
 
 export interface ConversationsTicketsBulkUpdateStatusCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -121,7 +121,7 @@ export const ConversationsTicketsBulkUpdateTagsCreateRequestIdsList =
 
 /** * `add` - add * `remove` - remove * `set` - set */
 export type BulkUpdateTagsActionEnum = "add" | "remove" | "set";
-export const BulkUpdateTagsActionEnum = /*@__PURE__*/ S.String;
+export const BulkUpdateTagsActionEnum = S.String;
 
 /** Tag names to add, remove, or set. */
 export type ConversationsTicketsBulkUpdateTagsCreateRequestTagsList =
@@ -302,7 +302,7 @@ export const ConversationsViewsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** * `good` - good * `bad` - bad */
 export type RatingEnum = "good" | "bad";
-export const RatingEnum = /*@__PURE__*/ S.String;
+export const RatingEnum = S.String;
 
 export interface CreateConversationsTicketsAiFeedbackRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -481,7 +481,7 @@ export const TicketViewFiltersStatusList = /*@__PURE__*/ S.Array(
 
 /** * `low` - Low * `medium` - Medium * `high` - High * `critical` - Critical */
 export type TicketPriorityEnum = "low" | "medium" | "high" | "critical";
-export const TicketPriorityEnum = /*@__PURE__*/ S.String;
+export const TicketPriorityEnum = S.String;
 
 /** Ticket priorities to include. Empty or omitted means all priorities. */
 export type TicketViewFiltersPriorityList = Array<
@@ -499,11 +499,11 @@ export type TicketChannelFilterEnum =
   | "teams"
   | "github"
   | "all";
-export const TicketChannelFilterEnum = /*@__PURE__*/ S.String;
+export const TicketChannelFilterEnum = S.String;
 
 /** * `breached` - breached * `at-risk` - at-risk * `on-track` - on-track * `all` - all */
 export type TicketSlaFilterEnum = "breached" | "at-risk" | "on-track" | "all";
-export const TicketSlaFilterEnum = /*@__PURE__*/ S.String;
+export const TicketSlaFilterEnum = S.String;
 
 /** * `persisted` - persisted * `escalated_with_best` - escalated_with_best * `escalated_no_reply` - escalated_no_reply * `skipped_unactionable` - skipped_unactionable * `blocked_unsafe` - blocked_unsafe * `blocked_unsafe_reply` - blocked_unsafe_reply * `in_progress` - in_progress */
 export type AiTriageResultEnum =
@@ -514,7 +514,7 @@ export type AiTriageResultEnum =
   | "blocked_unsafe"
   | "blocked_unsafe_reply"
   | "in_progress";
-export const AiTriageResultEnum = /*@__PURE__*/ S.String;
+export const AiTriageResultEnum = S.String;
 
 /** AI triage outcomes to include. 'in_progress' matches tickets still being triaged. */
 export type TicketViewFiltersAiTriageResultList = Array<
@@ -525,14 +525,14 @@ export const TicketViewFiltersAiTriageResultList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TicketViewFiltersAiTriageResultList>;
 
 export type TicketViewFiltersAssigneeItemCase0 = "me" | "unassigned";
-export const TicketViewFiltersAssigneeItemCase0 = /*@__PURE__*/ S.String;
+export const TicketViewFiltersAssigneeItemCase0 = S.String;
 
 export type TicketViewFiltersAssigneeItemCase1Type = "user" | "role";
-export const TicketViewFiltersAssigneeItemCase1Type = /*@__PURE__*/ S.String;
+export const TicketViewFiltersAssigneeItemCase1Type = S.String;
 
 export type TicketViewFiltersAssigneeItemCase1Id = string | number;
 export const TicketViewFiltersAssigneeItemCase1Id =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketViewFiltersAssigneeItemCase1Id>;
+  S.Unknown as any as S.Schema<TicketViewFiltersAssigneeItemCase1Id>;
 
 export interface TicketViewFiltersAssigneeItemCase1 {
   type: TicketViewFiltersAssigneeItemCase1Type | (string & {});
@@ -551,7 +551,7 @@ export type TicketViewFiltersAssigneeItem =
   | TicketViewFiltersAssigneeItemCase0
   | TicketViewFiltersAssigneeItemCase1;
 export const TicketViewFiltersAssigneeItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketViewFiltersAssigneeItem>;
+  S.Unknown as any as S.Schema<TicketViewFiltersAssigneeItem>;
 
 /** Assignees to match (any of): 'unassigned', 'me' (resolved to the requesting user), or an object with type ('user' or 'role') and id. The legacy single-value shape is accepted and normalized to a list. */
 export type TicketViewFiltersAssigneeList =
@@ -568,7 +568,7 @@ export const TicketViewFiltersTagsList = /*@__PURE__*/ S.Array(
 
 /** * `any` - any * `all` - all */
 export type TicketTagsMatchEnum = "any" | "all";
-export const TicketTagsMatchEnum = /*@__PURE__*/ S.String;
+export const TicketTagsMatchEnum = S.String;
 
 /** Tickets carrying any of these tags are excluded. */
 export type TicketViewFiltersTagsExcludeList = Array<string>;
@@ -578,7 +578,7 @@ export const TicketViewFiltersTagsExcludeList = /*@__PURE__*/ S.Array(
 
 /** * `1` - 1 * `-1` - -1 */
 export type TicketSortOrderEnum = 1 | -1;
-export const TicketSortOrderEnum = /*@__PURE__*/ S.Number;
+export const TicketSortOrderEnum = S.Number;
 
 export interface TicketViewSorting {
   /** Ticket column to sort by (updated_at, sla_due_at, snoozed_until, created_at, ticket_number). Unknown columns fall back to updated_at. */
@@ -687,14 +687,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -767,7 +767,7 @@ export const GetConversationsTicketRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `widget` - Widget * `email` - Email * `slack` - Slack * `teams` - Microsoft Teams * `github` - GitHub */
 export type ChannelEnum = "widget" | "email" | "slack" | "teams" | "github";
-export const ChannelEnum = /*@__PURE__*/ S.String;
+export const ChannelEnum = S.String;
 
 /** * `slack_channel_message` - Channel message * `slack_bot_mention` - Bot mention * `slack_emoji_reaction` - Emoji reaction * `teams_channel_message` - Teams channel message * `teams_bot_mention` - Teams bot mention * `widget_embedded` - Widget * `widget_api` - API * `github_issue` - GitHub issue */
 export type ChannelDetailEnum =
@@ -779,12 +779,11 @@ export type ChannelDetailEnum =
   | "widget_embedded"
   | "widget_api"
   | "github_issue";
-export const ChannelDetailEnum = /*@__PURE__*/ S.String;
+export const ChannelDetailEnum = S.String;
 
 /** Ticket priority: low, medium, high, or critical. Null if unset. * `low` - Low * `medium` - Medium * `high` - High * `critical` - Critical */
 export type TicketPriority = TicketPriorityEnum | BlankEnum;
-export const TicketPriority =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketPriority>;
+export const TicketPriority = S.Unknown as any as S.Schema<TicketPriority>;
 
 export type TicketAssignmentUserMap = { [key: string]: string | undefined };
 export const TicketAssignmentUserMap = /*@__PURE__*/ S.Record(
@@ -1013,8 +1012,7 @@ export type ListConversationsTicketsRequestChannelDetail =
   | "teams_channel_message"
   | "widget_api"
   | "widget_embedded";
-export const ListConversationsTicketsRequestChannelDetail =
-  /*@__PURE__*/ S.String;
+export const ListConversationsTicketsRequestChannelDetail = S.String;
 
 export type ListConversationsTicketsRequestChannelSource =
   | "email"
@@ -1022,8 +1020,7 @@ export type ListConversationsTicketsRequestChannelSource =
   | "slack"
   | "teams"
   | "widget";
-export const ListConversationsTicketsRequestChannelSource =
-  /*@__PURE__*/ S.String;
+export const ListConversationsTicketsRequestChannelSource = S.String;
 
 export type ListConversationsTicketsRequestOrderBy =
   | "-created_at"
@@ -1034,13 +1031,13 @@ export type ListConversationsTicketsRequestOrderBy =
   | "sla_due_at"
   | "ticket_number"
   | "updated_at";
-export const ListConversationsTicketsRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListConversationsTicketsRequestOrderBy = S.String;
 
 export type ListConversationsTicketsRequestSla =
   | "at-risk"
   | "breached"
   | "on-track";
-export const ListConversationsTicketsRequestSla = /*@__PURE__*/ S.String;
+export const ListConversationsTicketsRequestSla = S.String;
 
 export interface ListConversationsTicketsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1249,7 +1246,7 @@ export type UpdateConversationsTicketRequestPriority =
   | TicketPriorityEnum
   | BlankEnum;
 export const UpdateConversationsTicketRequestPriority =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConversationsTicketRequestPriority>;
+  S.Unknown as any as S.Schema<UpdateConversationsTicketRequestPriority>;
 
 export interface UserTicketAssigneeRequest {
   /** Assign the ticket to a user. */
@@ -1285,7 +1282,7 @@ export type TicketAssigneeRequest =
   | UserTicketAssigneeRequest
   | RoleTicketAssigneeRequest;
 export const TicketAssigneeRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TicketAssigneeRequest>;
+  S.Unknown as any as S.Schema<TicketAssigneeRequest>;
 
 /** Tag names to set on the ticket. */
 export type UpdateConversationsTicketRequestTagsList = Array<string>;
@@ -1377,7 +1374,7 @@ export type UpdateConversationsTicketsPartialRequestPriority =
   | TicketPriorityEnum
   | BlankEnum;
 export const UpdateConversationsTicketsPartialRequestPriority =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateConversationsTicketsPartialRequestPriority>;
+  S.Unknown as any as S.Schema<UpdateConversationsTicketsPartialRequestPriority>;
 
 /** Tag names to set on the ticket. */
 export type UpdateConversationsTicketsPartialRequestTagsList = Array<string>;

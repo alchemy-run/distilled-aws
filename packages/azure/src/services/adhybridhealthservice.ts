@@ -219,7 +219,7 @@ export type AddAddsServicesServiceMemberRequestServerReportedMonitoringLevel =
   | "Full"
   | "Off";
 export const AddAddsServicesServiceMemberRequestServerReportedMonitoringLevel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AddAddsServicesServiceMemberRequest {
   /** The name of the service under which the server is to be onboarded. */
@@ -327,8 +327,7 @@ export type ServiceMemberServerReportedMonitoringLevel =
   | "Partial"
   | "Full"
   | "Off";
-export const ServiceMemberServerReportedMonitoringLevel =
-  /*@__PURE__*/ S.String;
+export const ServiceMemberServerReportedMonitoringLevel = S.String;
 
 /** The server properties for a given service. */
 export interface ServiceMember {
@@ -734,8 +733,7 @@ export type AddServiceMemberRequestServerReportedMonitoringLevel =
   | "Partial"
   | "Full"
   | "Off";
-export const AddServiceMemberRequestServerReportedMonitoringLevel =
-  /*@__PURE__*/ S.String;
+export const AddServiceMemberRequestServerReportedMonitoringLevel = S.String;
 
 export interface AddServiceMemberRequest {
   /** The name of the service under which the server is to be onboarded. */
@@ -1784,12 +1782,10 @@ export const GetServiceTenantWhitelistingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServiceTenantWhitelistingRequest>;
 
 export type ListAdDomainServiceMembersRequestNextPartitionKey = " ";
-export const ListAdDomainServiceMembersRequestNextPartitionKey =
-  /*@__PURE__*/ S.String;
+export const ListAdDomainServiceMembersRequestNextPartitionKey = S.String;
 
 export type ListAdDomainServiceMembersRequestNextRowKey = " ";
-export const ListAdDomainServiceMembersRequestNextRowKey =
-  /*@__PURE__*/ S.String;
+export const ListAdDomainServiceMembersRequestNextRowKey = S.String;
 
 export interface ListAdDomainServiceMembersRequest {
   /** The name of the service. */
@@ -1919,8 +1915,7 @@ export type AddsServiceMemberServerReportedMonitoringLevel =
   | "Partial"
   | "Full"
   | "Off";
-export const AddsServiceMemberServerReportedMonitoringLevel =
-  /*@__PURE__*/ S.String;
+export const AddsServiceMemberServerReportedMonitoringLevel = S.String;
 
 /** The server details for ADDS service. */
 export interface AddsServiceMember {
@@ -2488,11 +2483,10 @@ export const ReplicationDetailsList = /*@__PURE__*/ S.suspend(() =>
 
 export type ListAddsServiceReplicationSummaryRequestNextPartitionKey = " ";
 export const ListAddsServiceReplicationSummaryRequestNextPartitionKey =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListAddsServiceReplicationSummaryRequestNextRowKey = " ";
-export const ListAddsServiceReplicationSummaryRequestNextRowKey =
-  /*@__PURE__*/ S.String;
+export const ListAddsServiceReplicationSummaryRequestNextRowKey = S.String;
 
 export interface ListAddsServiceReplicationSummaryRequest {
   /** The name of the service. */
@@ -2624,7 +2618,7 @@ export const ListAddsServiceServerAlertsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The alert level which indicates the severity of the alert. */
 export type AlertLevel = "Warning" | "Error" | "PreWarning";
-export const AlertLevel = /*@__PURE__*/ S.String;
+export const AlertLevel = S.String;
 
 /** The alert state which can be either active or resolved with multiple resolution types. */
 export type AlertState =
@@ -2633,7 +2627,7 @@ export type AlertState =
   | "ResolvedManually"
   | "ResolvedByTimer"
   | "ResolvedByStateChange";
-export const AlertState = /*@__PURE__*/ S.String;
+export const AlertState = S.String;
 
 /** The help link which contains more information related to an alert. */
 export interface HelpLink {
@@ -2952,7 +2946,7 @@ export type DimensionHealth =
   | "Error"
   | "NotMonitored"
   | "Missing";
-export const DimensionHealth = /*@__PURE__*/ S.String;
+export const DimensionHealth = S.String;
 
 /** The connector object error. */
 export interface Dimension {

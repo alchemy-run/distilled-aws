@@ -127,7 +127,7 @@ export const CardRequestInputBillingAddress = /*@__PURE__*/ S.suspend(() =>
 
 /** The phone type. */
 export type PhoneType = "FAX" | "HOME" | "MOBILE" | "OTHER" | "PAGER";
-export const PhoneType = /*@__PURE__*/ S.String;
+export const PhoneType = S.String;
 
 export interface CardCustomerPhonePhoneNumber {
   /** The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN). */
@@ -202,7 +202,7 @@ export const CardCustomer = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines how and when the payment source gets vaulted. */
 export type StoreInVaultInstruction = "ON_SUCCESS";
-export const StoreInVaultInstruction = /*@__PURE__*/ S.String;
+export const StoreInVaultInstruction = S.String;
 
 export interface CardRequestInputAttributesVault {
   store_in_vault?: StoreInVaultInstruction | (string & {});
@@ -221,8 +221,7 @@ export type CardRequestInputAttributesVerificationMethod =
   | "SCA_WHEN_REQUIRED"
   | "3D_SECURE"
   | "AVS_CVV";
-export const CardRequestInputAttributesVerificationMethod =
-  /*@__PURE__*/ S.String;
+export const CardRequestInputAttributesVerificationMethod = S.String;
 
 export interface CardRequestInputAttributesVerification {
   /** The method used for card verification. */
@@ -254,18 +253,18 @@ export const CardRequestInputAttributes = /*@__PURE__*/ S.suspend(() =>
 
 /** The person or party who initiated or triggered the payment. */
 export type PaymentInitiator = "CUSTOMER" | "MERCHANT";
-export const PaymentInitiator = /*@__PURE__*/ S.String;
+export const PaymentInitiator = S.String;
 
 /** Indicates the type of the stored payment_source payment. */
 export type StoredPaymentSourcePaymentType =
   | "ONE_TIME"
   | "RECURRING"
   | "UNSCHEDULED";
-export const StoredPaymentSourcePaymentType = /*@__PURE__*/ S.String;
+export const StoredPaymentSourcePaymentType = S.String;
 
 /** Indicates if this is a `first` or `subsequent` payment using a stored payment source (also referred to as stored credential or card on file). */
 export type StoredPaymentSourceUsageType = "FIRST" | "SUBSEQUENT" | "DERIVED";
-export const StoredPaymentSourceUsageType = /*@__PURE__*/ S.String;
+export const StoredPaymentSourceUsageType = S.String;
 
 /** Reference values used by the card network to identify a transaction. */
 export interface NetworkTransaction {
@@ -314,7 +313,7 @@ export type EciFlag =
   | "FULLY_AUTHENTICATED_TRANSACTION"
   | "ATTEMPTED_AUTHENTICATION_TRANSACTION"
   | "NON_3D_SECURE_TRANSACTION";
-export const EciFlag = /*@__PURE__*/ S.String;
+export const EciFlag = S.String;
 
 export interface CardRequestInputNetworkToken {
   /** Third party network token number. */
@@ -396,7 +395,7 @@ export const CardRequestInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The tokenization method that generated the ID. */
 export type TokenType = "BILLING_AGREEMENT";
-export const TokenType = /*@__PURE__*/ S.String;
+export const TokenType = S.String;
 
 /** The tokenized payment source to fund a payment. */
 export interface Token {
@@ -428,7 +427,7 @@ export type AuthorizeOrderRequestPaymentSourcePaypalTaxInfoTaxIdType =
   | "BR_CPF"
   | "BR_CNPJ";
 export const AuthorizeOrderRequestPaymentSourcePaypalTaxInfoTaxIdType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourcePaypalTaxInfo {
   /** The customer's tax ID value. */
@@ -488,7 +487,7 @@ export type AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultUsagePattern 
   | "INSTALLMENT_PREPAID"
   | "INSTALLMENT_POSTPAID";
 export const AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultUsagePattern =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingName =
   CardCustomerName;
@@ -522,7 +521,7 @@ export type AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingType 
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
 export const AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount {
   currency_code: string;
@@ -623,14 +622,14 @@ export type AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultUsageType =
   | "MERCHANT"
   | "PLATFORM";
 export const AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultUsageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The customer type associated with the PayPal payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultCustomerType =
   | "CONSUMER"
   | "BUSINESS";
 export const AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultCustomerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourcePaypalAttributesVault {
   store_in_vault?: StoreInVaultInstruction | (string & {});
@@ -695,16 +694,14 @@ export type PaypalWalletExperienceContextInputShippingPreference =
   | "GET_FROM_FILE"
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
-export const PaypalWalletExperienceContextInputShippingPreference =
-  /*@__PURE__*/ S.String;
+export const PaypalWalletExperienceContextInputShippingPreference = S.String;
 
 /** The preference to display the contact information (buyer’s shipping email & phone number) on PayPal's checkout for easy merchant-buyer communication. */
 export type PaypalWalletExperienceContextInputContactPreference =
   | "NO_CONTACT_INFO"
   | "UPDATE_CONTACT_INFO"
   | "RETAIN_CONTACT_INFO";
-export const PaypalWalletExperienceContextInputContactPreference =
-  /*@__PURE__*/ S.String;
+export const PaypalWalletExperienceContextInputContactPreference = S.String;
 
 /** Merchant provided, buyer's native app preferences to app switch to the PayPal consumer app. */
 export interface NativeAppContextInput {}
@@ -747,29 +744,27 @@ export type PaypalWalletExperienceContextInputLandingPage =
   | "GUEST_CHECKOUT"
   | "NO_PREFERENCE"
   | "BILLING";
-export const PaypalWalletExperienceContextInputLandingPage =
-  /*@__PURE__*/ S.String;
+export const PaypalWalletExperienceContextInputLandingPage = S.String;
 
 /** Configures a <strong>Continue</strong> or <strong>Pay Now</strong> checkout flow. */
 export type PaypalWalletExperienceContextInputUserAction =
   | "CONTINUE"
   | "PAY_NOW";
-export const PaypalWalletExperienceContextInputUserAction =
-  /*@__PURE__*/ S.String;
+export const PaypalWalletExperienceContextInputUserAction = S.String;
 
 /** The merchant-preferred payment methods. */
 export type PaypalWalletExperienceContextInputPaymentMethodPreference =
   | "UNRESTRICTED"
   | "IMMEDIATE_PAYMENT_REQUIRED";
 export const PaypalWalletExperienceContextInputPaymentMethodPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** CallBack event. */
 export type PaypalWalletExperienceContextInputOrderUpdateCallbackConfigCallbackEventsItem =
   | "SHIPPING_ADDRESS"
   | "SHIPPING_OPTIONS";
 export const PaypalWalletExperienceContextInputOrderUpdateCallbackConfigCallbackEventsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of callback events merchant can subscribe to for the corresponding callback url. */
 export type PaypalWalletExperienceContextInputOrderUpdateCallbackConfigCallbackEventsList =
@@ -867,7 +862,7 @@ export type ChargePattern =
   | "UNSCHEDULED_POSTPAID"
   | "INSTALLMENT_PREPAID"
   | "INSTALLMENT_POSTPAID";
-export const ChargePattern = /*@__PURE__*/ S.String;
+export const ChargePattern = S.String;
 
 /** Provides additional details to process a payment using the PayPal wallet billing agreement or a vaulted payment method that has been stored or is intended to be stored. */
 export interface PaypalWalletStoredCredential {
@@ -927,7 +922,7 @@ export type AuthorizeOrderRequestPaymentSourceBancontactExperienceContextShippin
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceBancontactExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceBancontactExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -979,7 +974,7 @@ export type AuthorizeOrderRequestPaymentSourceBlikExperienceContextShippingPrefe
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceBlikExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceBlikExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1077,7 +1072,7 @@ export type AuthorizeOrderRequestPaymentSourceEpsExperienceContextShippingPrefer
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceEpsExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceEpsExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1129,7 +1124,7 @@ export type AuthorizeOrderRequestPaymentSourceGiropayExperienceContextShippingPr
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceGiropayExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceGiropayExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1181,7 +1176,7 @@ export type AuthorizeOrderRequestPaymentSourceIdealExperienceContextShippingPref
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceIdealExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceIdealExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1235,7 +1230,7 @@ export type AuthorizeOrderRequestPaymentSourceMybankExperienceContextShippingPre
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceMybankExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceMybankExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1287,7 +1282,7 @@ export type AuthorizeOrderRequestPaymentSourceP24ExperienceContextShippingPrefer
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceP24ExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceP24ExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1341,7 +1336,7 @@ export type AuthorizeOrderRequestPaymentSourceSofortExperienceContextShippingPre
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceSofortExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceSofortExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1393,7 +1388,7 @@ export type AuthorizeOrderRequestPaymentSourceTrustlyExperienceContextShippingPr
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const AuthorizeOrderRequestPaymentSourceTrustlyExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceTrustlyExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -1474,7 +1469,7 @@ export type AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenTokenizedCar
   | "3D_SECURE"
   | "AVS_CVV";
 export const AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenTokenizedCardAttributesVerificationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenTokenizedCardAttributesVerification {
   /** The method used for card verification. */
@@ -1554,7 +1549,7 @@ export type AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenPaymentDataT
   | "3DSECURE"
   | "EMV";
 export const AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenPaymentDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenPaymentData {
   /** Online payment cryptogram, as defined by 3D Secure. The pattern is defined by an external party and supports Unicode. */
@@ -1761,7 +1756,7 @@ export const AuthorizeOrderRequestPaymentSourceGooglePayCard =
 export type AuthorizeOrderRequestPaymentSourceGooglePayDecryptedTokenPaymentMethod =
   "CARD";
 export const AuthorizeOrderRequestPaymentSourceGooglePayDecryptedTokenPaymentMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The non-portable additional address details include fine-grain address information for Compliance, Risk, and other scenarios. This isn't portable with common third-party and open source applications. This can include data that is redundant with core fields. For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`. */
 export type AuthorizeOrderRequestPaymentSourceGooglePayDecryptedTokenCardBillingAddressAddressDetails =
@@ -1804,7 +1799,7 @@ export type AuthorizeOrderRequestPaymentSourceGooglePayDecryptedTokenAuthenticat
   | "PAN_ONLY"
   | "CRYPTOGRAM_3DS";
 export const AuthorizeOrderRequestPaymentSourceGooglePayDecryptedTokenAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceGooglePayDecryptedToken {
   /** A unique ID that identifies the message in case it needs to be revoked or located at a later time. */
@@ -1898,15 +1893,14 @@ export type VenmoWalletExperienceContextShippingPreference =
   | "GET_FROM_FILE"
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
-export const VenmoWalletExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+export const VenmoWalletExperienceContextShippingPreference = S.String;
 
 /** CallBack event. */
 export type VenmoWalletExperienceContextOrderUpdateCallbackConfigCallbackEventsItem =
   | "SHIPPING_ADDRESS"
   | "SHIPPING_OPTIONS";
 export const VenmoWalletExperienceContextOrderUpdateCallbackConfigCallbackEventsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of callback events merchant can subscribe to for the corresponding callback url. */
 export type VenmoWalletExperienceContextOrderUpdateCallbackConfigCallbackEventsList =
@@ -1938,7 +1932,7 @@ export const VenmoWalletExperienceContextOrderUpdateCallbackConfig =
 
 /** Configures a <strong>Continue</strong> or <strong>Pay Now</strong> checkout flow. */
 export type VenmoWalletExperienceContextUserAction = "CONTINUE" | "PAY_NOW";
-export const VenmoWalletExperienceContextUserAction = /*@__PURE__*/ S.String;
+export const VenmoWalletExperienceContextUserAction = S.String;
 
 /** Customizes the buyer experience during the approval process for payment with Venmo.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>shipping_preference</code> during partner account setup, which overrides the request values.</blockquote> */
 export interface VenmoWalletExperienceContext {
@@ -1989,21 +1983,21 @@ export type AuthorizeOrderRequestPaymentSourceVenmoAttributesVaultUsagePattern =
   | "THRESHOLD_PREPAID"
   | "THRESHOLD_POSTPAID";
 export const AuthorizeOrderRequestPaymentSourceVenmoAttributesVaultUsagePattern =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The usage type associated with the Venmo payment token. */
 export type AuthorizeOrderRequestPaymentSourceVenmoAttributesVaultUsageType =
   | "MERCHANT"
   | "PLATFORM";
 export const AuthorizeOrderRequestPaymentSourceVenmoAttributesVaultUsageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The customer type associated with the Venmo payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type AuthorizeOrderRequestPaymentSourceVenmoAttributesVaultCustomerType =
   | "CONSUMER"
   | "BUSINESS";
 export const AuthorizeOrderRequestPaymentSourceVenmoAttributesVaultCustomerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderRequestPaymentSourceVenmoAttributesVault {
   store_in_vault: StoreInVaultInstruction | (string & {});
@@ -2215,7 +2209,7 @@ export const CardResponseAvailableNetworksList = /*@__PURE__*/ S.Array(
 
 /** Liability shift indicator. The outcome of the issuer's authentication. */
 export type LiabilityShift = "NO" | "POSSIBLE" | "UNKNOWN";
-export const LiabilityShift = /*@__PURE__*/ S.String;
+export const LiabilityShift = S.String;
 
 /** Results of 3D Secure Authentication. */
 export interface ThreeDSecureAuthenticationResponse {
@@ -2247,7 +2241,7 @@ export const AuthenticationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The vault status. */
 export type CardVaultResponseStatus = "VAULTED" | "CREATED" | "APPROVED";
-export const CardVaultResponseStatus = /*@__PURE__*/ S.String;
+export const CardVaultResponseStatus = S.String;
 
 export type CardVaultResponseCustomerPhonePhoneNumber =
   CardCustomerPhonePhoneNumber;
@@ -2297,7 +2291,7 @@ export type CardVaultResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const CardVaultResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const CardVaultResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CardVaultResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -2623,7 +2617,7 @@ export const CardResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The account status indicates whether the buyer has verified the financial details associated with their PayPal account. */
 export type PaypalWalletResponseAccountStatus = "VERIFIED" | "UNVERIFIED";
-export const PaypalWalletResponseAccountStatus = /*@__PURE__*/ S.String;
+export const PaypalWalletResponseAccountStatus = S.String;
 
 export type PaypalWalletResponseName = CardCustomerName;
 export const PaypalWalletResponseName = CardCustomerName;
@@ -2633,7 +2627,7 @@ export const PaypalWalletResponsePhoneNumber = CardCustomerPhonePhoneNumber;
 
 /** The customer's tax ID type. */
 export type PaypalWalletResponseTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const PaypalWalletResponseTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const PaypalWalletResponseTaxInfoTaxIdType = S.String;
 
 export interface PaypalWalletResponseTaxInfo {
   /** The customer's tax ID value. */
@@ -2664,7 +2658,7 @@ export type PaypalWalletVaultResponseStatus =
   | "VAULTED"
   | "CREATED"
   | "APPROVED";
-export const PaypalWalletVaultResponseStatus = /*@__PURE__*/ S.String;
+export const PaypalWalletVaultResponseStatus = S.String;
 
 export type PaypalWalletVaultResponseCustomerPhonePhoneNumber =
   CardCustomerPhonePhoneNumber;
@@ -2692,7 +2686,7 @@ export type PaypalWalletVaultResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const PaypalWalletVaultResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const PaypalWalletVaultResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type PaypalWalletVaultResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -3016,7 +3010,7 @@ export type PaypalWalletResponseExperienceStatus =
   | "IN_PROGRESS"
   | "CANCELED"
   | "APPROVED";
-export const PaypalWalletResponseExperienceStatus = /*@__PURE__*/ S.String;
+export const PaypalWalletResponseExperienceStatus = S.String;
 
 /** The PayPal Wallet response. */
 export interface PaypalWalletResponse {
@@ -3269,7 +3263,7 @@ export const ApplePayCard = /*@__PURE__*/ S.suspend(() =>
 
 /** The vault status. */
 export type VaultResponseStatus = "VAULTED" | "CREATED" | "APPROVED";
-export const VaultResponseStatus = /*@__PURE__*/ S.String;
+export const VaultResponseStatus = S.String;
 
 export type VaultResponseCustomerPhonePhoneNumber =
   CardCustomerPhonePhoneNumber;
@@ -3295,7 +3289,7 @@ export type VaultResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const VaultResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const VaultResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type VaultResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -3628,11 +3622,11 @@ export const VenmoWalletResponseAddress = CardRequestInputBillingAddress;
 
 /** Merchant preference on how the buyer can navigate back to merchant website post approving the transaction on the Venmo App. */
 export type VenmoWalletResponseReturnFlow = "AUTO" | "MANUAL";
-export const VenmoWalletResponseReturnFlow = /*@__PURE__*/ S.String;
+export const VenmoWalletResponseReturnFlow = S.String;
 
 /** The vault status. */
 export type VenmoVaultResponseStatus = "VAULTED" | "CREATED" | "APPROVED";
-export const VenmoVaultResponseStatus = /*@__PURE__*/ S.String;
+export const VenmoVaultResponseStatus = S.String;
 
 export type VenmoVaultResponseCustomerPhonePhoneNumber =
   CardCustomerPhonePhoneNumber;
@@ -3658,7 +3652,7 @@ export type VenmoVaultResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const VenmoVaultResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const VenmoVaultResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type VenmoVaultResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -3933,7 +3927,7 @@ export type CryptoExperienceContextShippingPreference =
   | "GET_FROM_FILE"
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
-export const CryptoExperienceContextShippingPreference = /*@__PURE__*/ S.String;
+export const CryptoExperienceContextShippingPreference = S.String;
 
 export interface CryptoExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -4011,7 +4005,7 @@ export const AuthorizeOrderResponsePaymentSource = /*@__PURE__*/ S.suspend(() =>
 
 /** The intent to either capture payment immediately or authorize a payment for an order after order creation. */
 export type CheckoutPaymentIntent = "CAPTURE" | "AUTHORIZE";
-export const CheckoutPaymentIntent = /*@__PURE__*/ S.String;
+export const CheckoutPaymentIntent = S.String;
 
 export type PayerName = CardCustomerName;
 export const PayerName = CardCustomerName;
@@ -4024,7 +4018,7 @@ export const PayerPhone = CardVaultResponseCustomerPhone;
 
 /** The customer's tax ID type. */
 export type PayerTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const PayerTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const PayerTaxInfoTaxIdType = S.String;
 
 export interface PayerTaxInfo {
   /** The customer's tax ID value. */
@@ -4233,7 +4227,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemItemsItemCategory =
   | "PHYSICAL_GOODS"
   | "DONATION";
 export const AuthorizeOrderResponsePurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Universal Product Code type. */
 export type AuthorizeOrderResponsePurchaseUnitsItemItemsItemUpcType =
@@ -4244,8 +4238,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const AuthorizeOrderResponsePurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const AuthorizeOrderResponsePurchaseUnitsItemItemsItemUpcType = S.String;
 
 export interface AuthorizeOrderResponsePurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -4265,7 +4258,7 @@ export const AuthorizeOrderResponsePurchaseUnitsItemItemsItemUpc =
 
 /** The tenure type of the billing cycle identifies if the billing cycle is a trial(free or discounted) or regular billing cycle. */
 export type BillingCycleTenureType = "REGULAR" | "TRIAL";
-export const BillingCycleTenureType = /*@__PURE__*/ S.String;
+export const BillingCycleTenureType = S.String;
 
 export type BillingCyclePricingSchemePrice =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -4277,7 +4270,7 @@ export type BillingCyclePricingSchemePricingModel =
   | "FIXED"
   | "VARIABLE"
   | "AUTO_RELOAD";
-export const BillingCyclePricingSchemePricingModel = /*@__PURE__*/ S.String;
+export const BillingCyclePricingSchemePricingModel = S.String;
 
 export type BillingCyclePricingSchemeReloadThresholdAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -4424,8 +4417,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const AuthorizeOrderResponsePurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const AuthorizeOrderResponsePurchaseUnitsItemShippingType = S.String;
 
 export type AuthorizeOrderResponsePurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -4458,7 +4450,7 @@ export const AuthorizeOrderResponsePurchaseUnitsItemShippingAddress =
 
 /** The status of the item shipment. */
 export type TrackerStatus = "CANCELLED" | "SHIPPED";
-export const TrackerStatus = /*@__PURE__*/ S.String;
+export const TrackerStatus = S.String;
 
 /** The Universal Product Code type. */
 export type TrackerItemsItemUpcType =
@@ -4469,7 +4461,7 @@ export type TrackerItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const TrackerItemsItemUpcType = /*@__PURE__*/ S.String;
+export const TrackerItemsItemUpcType = S.String;
 
 export interface TrackerItemsItemUpc {
   /** The Universal Product Code type. */
@@ -4528,7 +4520,7 @@ export type TrackerLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const TrackerLinksItemMethod = /*@__PURE__*/ S.String;
+export const TrackerLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type TrackerLinksItemSchemaAllOfList = Array<unknown>;
@@ -4849,8 +4841,7 @@ export type Level3CardProcessingDataLineItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const Level3CardProcessingDataLineItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const Level3CardProcessingDataLineItemsItemUpcType = S.String;
 
 export interface Level3CardProcessingDataLineItemsItemUpc {
   /** The Universal Product Code type. */
@@ -5044,14 +5035,14 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSta
   | "VOIDED"
   | "PENDING";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -5080,14 +5071,14 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSel
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesList =
@@ -5129,7 +5120,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLin
   | "OPTIONS"
   | "PATCH";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemSchemaAllOfList =
@@ -5403,7 +5394,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemPro
   | "3"
   | "4";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
@@ -5422,7 +5413,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemPro
   | "3"
   | "4";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
@@ -5581,7 +5572,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemPro
   | "PPVE"
   | "PPVT";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
@@ -5601,7 +5592,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemPro
   | "40"
   | "43";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -5703,7 +5694,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
   | "REFUNDED"
   | "FAILED";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
@@ -5720,7 +5711,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDet
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -5749,14 +5740,14 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerPro
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesList =
@@ -5894,7 +5885,7 @@ export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerRe
 
 /** The funds that are held on behalf of the merchant. */
 export type DisbursementMode = "INSTANT" | "DELAYED";
-export const DisbursementMode = /*@__PURE__*/ S.String;
+export const DisbursementMode = S.String;
 
 /** The HTTP method required to make the related call. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod =
@@ -5907,7 +5898,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItem
   | "OPTIONS"
   | "PATCH";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemSchemaAllOfList =
@@ -6181,7 +6172,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessor
   | "3"
   | "4";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
@@ -6200,7 +6191,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessor
   | "3"
   | "4";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
@@ -6359,7 +6350,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessor
   | "PPVE"
   | "PPVT";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
@@ -6379,7 +6370,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessor
   | "40"
   | "43";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -6485,13 +6476,13 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
   | "PENDING"
   | "COMPLETED";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
   "ECHECK";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -6675,7 +6666,7 @@ export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemM
   | "OPTIONS"
   | "PATCH";
 export const AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type AuthorizeOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemSchemaAllOfList =
@@ -7071,7 +7062,7 @@ export type AuthorizeOrderResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const AuthorizeOrderResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const AuthorizeOrderResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type AuthorizeOrderResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -7332,8 +7323,7 @@ export const CaptureOrderRequestPaymentSourcePaypalPhone = CardCustomerPhone;
 export type CaptureOrderRequestPaymentSourcePaypalTaxInfoTaxIdType =
   | "BR_CPF"
   | "BR_CNPJ";
-export const CaptureOrderRequestPaymentSourcePaypalTaxInfoTaxIdType =
-  /*@__PURE__*/ S.String;
+export const CaptureOrderRequestPaymentSourcePaypalTaxInfoTaxIdType = S.String;
 
 export interface CaptureOrderRequestPaymentSourcePaypalTaxInfo {
   /** The customer's tax ID value. */
@@ -7379,7 +7369,7 @@ export type CaptureOrderRequestPaymentSourcePaypalAttributesVaultUsagePattern =
   | "INSTALLMENT_PREPAID"
   | "INSTALLMENT_POSTPAID";
 export const CaptureOrderRequestPaymentSourcePaypalAttributesVaultUsagePattern =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CaptureOrderRequestPaymentSourcePaypalAttributesVaultShippingName =
   CardCustomerName;
@@ -7398,7 +7388,7 @@ export type CaptureOrderRequestPaymentSourcePaypalAttributesVaultShippingType =
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
 export const CaptureOrderRequestPaymentSourcePaypalAttributesVaultShippingType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CaptureOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -7466,14 +7456,14 @@ export type CaptureOrderRequestPaymentSourcePaypalAttributesVaultUsageType =
   | "MERCHANT"
   | "PLATFORM";
 export const CaptureOrderRequestPaymentSourcePaypalAttributesVaultUsageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The customer type associated with the PayPal payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type CaptureOrderRequestPaymentSourcePaypalAttributesVaultCustomerType =
   | "CONSUMER"
   | "BUSINESS";
 export const CaptureOrderRequestPaymentSourcePaypalAttributesVaultCustomerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourcePaypalAttributesVault {
   store_in_vault?: StoreInVaultInstruction | (string & {});
@@ -7569,7 +7559,7 @@ export type CaptureOrderRequestPaymentSourceBancontactExperienceContextShippingP
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceBancontactExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceBancontactExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -7621,7 +7611,7 @@ export type CaptureOrderRequestPaymentSourceBlikExperienceContextShippingPrefere
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceBlikExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceBlikExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -7694,7 +7684,7 @@ export type CaptureOrderRequestPaymentSourceEpsExperienceContextShippingPreferen
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceEpsExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceEpsExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -7745,7 +7735,7 @@ export type CaptureOrderRequestPaymentSourceGiropayExperienceContextShippingPref
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceGiropayExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceGiropayExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -7797,7 +7787,7 @@ export type CaptureOrderRequestPaymentSourceIdealExperienceContextShippingPrefer
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceIdealExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceIdealExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -7851,7 +7841,7 @@ export type CaptureOrderRequestPaymentSourceMybankExperienceContextShippingPrefe
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceMybankExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceMybankExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -7903,7 +7893,7 @@ export type CaptureOrderRequestPaymentSourceP24ExperienceContextShippingPreferen
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceP24ExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceP24ExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -7956,7 +7946,7 @@ export type CaptureOrderRequestPaymentSourceSofortExperienceContextShippingPrefe
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceSofortExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceSofortExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -8008,7 +7998,7 @@ export type CaptureOrderRequestPaymentSourceTrustlyExperienceContextShippingPref
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const CaptureOrderRequestPaymentSourceTrustlyExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceTrustlyExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -8089,7 +8079,7 @@ export type CaptureOrderRequestPaymentSourceApplePayDecryptedTokenTokenizedCardA
   | "3D_SECURE"
   | "AVS_CVV";
 export const CaptureOrderRequestPaymentSourceApplePayDecryptedTokenTokenizedCardAttributesVerificationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceApplePayDecryptedTokenTokenizedCardAttributesVerification {
   /** The method used for card verification. */
@@ -8169,7 +8159,7 @@ export type CaptureOrderRequestPaymentSourceApplePayDecryptedTokenPaymentDataTyp
   | "3DSECURE"
   | "EMV";
 export const CaptureOrderRequestPaymentSourceApplePayDecryptedTokenPaymentDataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CaptureOrderRequestPaymentSourceApplePayDecryptedTokenPaymentData =
   AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenPaymentData;
@@ -8263,7 +8253,7 @@ export const CaptureOrderRequestPaymentSourceGooglePayCard =
 export type CaptureOrderRequestPaymentSourceGooglePayDecryptedTokenPaymentMethod =
   "CARD";
 export const CaptureOrderRequestPaymentSourceGooglePayDecryptedTokenPaymentMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The non-portable additional address details include fine-grain address information for Compliance, Risk, and other scenarios. This isn't portable with common third-party and open source applications. This can include data that is redundant with core fields. For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`. */
 export type CaptureOrderRequestPaymentSourceGooglePayDecryptedTokenCardBillingAddressAddressDetails =
@@ -8287,7 +8277,7 @@ export type CaptureOrderRequestPaymentSourceGooglePayDecryptedTokenAuthenticatio
   | "PAN_ONLY"
   | "CRYPTOGRAM_3DS";
 export const CaptureOrderRequestPaymentSourceGooglePayDecryptedTokenAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceGooglePayDecryptedToken {
   /** A unique ID that identifies the message in case it needs to be revoked or located at a later time. */
@@ -8370,21 +8360,21 @@ export type CaptureOrderRequestPaymentSourceVenmoAttributesVaultUsagePattern =
   | "THRESHOLD_PREPAID"
   | "THRESHOLD_POSTPAID";
 export const CaptureOrderRequestPaymentSourceVenmoAttributesVaultUsagePattern =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The usage type associated with the Venmo payment token. */
 export type CaptureOrderRequestPaymentSourceVenmoAttributesVaultUsageType =
   | "MERCHANT"
   | "PLATFORM";
 export const CaptureOrderRequestPaymentSourceVenmoAttributesVaultUsageType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The customer type associated with the Venmo payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type CaptureOrderRequestPaymentSourceVenmoAttributesVaultCustomerType =
   | "CONSUMER"
   | "BUSINESS";
 export const CaptureOrderRequestPaymentSourceVenmoAttributesVaultCustomerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderRequestPaymentSourceVenmoAttributesVault {
   store_in_vault: StoreInVaultInstruction | (string & {});
@@ -8564,7 +8554,7 @@ export const CaptureOrderResponsePayerPhone = CardVaultResponseCustomerPhone;
 
 /** The customer's tax ID type. */
 export type CaptureOrderResponsePayerTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const CaptureOrderResponsePayerTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const CaptureOrderResponsePayerTaxInfoTaxIdType = S.String;
 
 export interface CaptureOrderResponsePayerTaxInfo {
   /** The customer's tax ID value. */
@@ -8633,8 +8623,7 @@ export type CaptureOrderResponsePurchaseUnitsItemItemsItemCategory =
   | "DIGITAL_GOODS"
   | "PHYSICAL_GOODS"
   | "DONATION";
-export const CaptureOrderResponsePurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+export const CaptureOrderResponsePurchaseUnitsItemItemsItemCategory = S.String;
 
 /** The Universal Product Code type. */
 export type CaptureOrderResponsePurchaseUnitsItemItemsItemUpcType =
@@ -8645,8 +8634,7 @@ export type CaptureOrderResponsePurchaseUnitsItemItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const CaptureOrderResponsePurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const CaptureOrderResponsePurchaseUnitsItemItemsItemUpcType = S.String;
 
 export interface CaptureOrderResponsePurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -8732,8 +8720,7 @@ export type CaptureOrderResponsePurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const CaptureOrderResponsePurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const CaptureOrderResponsePurchaseUnitsItemShippingType = S.String;
 
 export type CaptureOrderResponsePurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -8829,14 +8816,14 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatu
   | "VOIDED"
   | "PENDING";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -8865,14 +8852,14 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSelle
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesList =
@@ -8914,7 +8901,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinks
   | "OPTIONS"
   | "PATCH";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemSchemaAllOfList =
@@ -9188,7 +9175,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "3"
   | "4";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
@@ -9207,7 +9194,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "3"
   | "4";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
@@ -9366,7 +9353,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "PPVE"
   | "PPVT";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
@@ -9386,7 +9373,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "40"
   | "43";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -9488,7 +9475,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
   | "REFUNDED"
   | "FAILED";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
@@ -9505,7 +9492,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetai
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -9534,14 +9521,14 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProte
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesList =
@@ -9675,7 +9662,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMe
   | "OPTIONS"
   | "PATCH";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemSchemaAllOfList =
@@ -9949,7 +9936,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "3"
   | "4";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
@@ -9968,7 +9955,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "3"
   | "4";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
@@ -10127,7 +10114,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "PPVE"
   | "PPVT";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
@@ -10147,7 +10134,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "40"
   | "43";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -10253,13 +10240,13 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
   | "PENDING"
   | "COMPLETED";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
   "ECHECK";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -10425,7 +10412,7 @@ export type CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMet
   | "OPTIONS"
   | "PATCH";
 export const CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CaptureOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemSchemaAllOfList =
@@ -10821,7 +10808,7 @@ export type CaptureOrderResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const CaptureOrderResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const CaptureOrderResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CaptureOrderResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -11075,7 +11062,7 @@ export const PaymentSourceInputPaypalPhone = CardCustomerPhone;
 
 /** The customer's tax ID type. */
 export type PaymentSourceInputPaypalTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const PaymentSourceInputPaypalTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const PaymentSourceInputPaypalTaxInfoTaxIdType = S.String;
 
 export interface PaymentSourceInputPaypalTaxInfo {
   /** The customer's tax ID value. */
@@ -11115,8 +11102,7 @@ export type PaymentSourceInputPaypalAttributesVaultUsagePattern =
   | "UNSCHEDULED_POSTPAID"
   | "INSTALLMENT_PREPAID"
   | "INSTALLMENT_POSTPAID";
-export const PaymentSourceInputPaypalAttributesVaultUsagePattern =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputPaypalAttributesVaultUsagePattern = S.String;
 
 export type PaymentSourceInputPaypalAttributesVaultShippingName =
   CardCustomerName;
@@ -11134,8 +11120,7 @@ export type PaymentSourceInputPaypalAttributesVaultShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const PaymentSourceInputPaypalAttributesVaultShippingType =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputPaypalAttributesVaultShippingType = S.String;
 
 export type PaymentSourceInputPaypalAttributesVaultShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -11198,15 +11183,13 @@ export const PaymentSourceInputPaypalAttributesVaultShipping =
 export type PaymentSourceInputPaypalAttributesVaultUsageType =
   | "MERCHANT"
   | "PLATFORM";
-export const PaymentSourceInputPaypalAttributesVaultUsageType =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputPaypalAttributesVaultUsageType = S.String;
 
 /** The customer type associated with the PayPal payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type PaymentSourceInputPaypalAttributesVaultCustomerType =
   | "CONSUMER"
   | "BUSINESS";
-export const PaymentSourceInputPaypalAttributesVaultCustomerType =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputPaypalAttributesVaultCustomerType = S.String;
 
 export interface PaymentSourceInputPaypalAttributesVault {
   store_in_vault?: StoreInVaultInstruction | (string & {});
@@ -11295,7 +11278,7 @@ export type PaymentSourceInputBancontactExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputBancontactExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputBancontactExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11346,7 +11329,7 @@ export type PaymentSourceInputBlikExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputBlikExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputBlikExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11416,7 +11399,7 @@ export type PaymentSourceInputEpsExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputEpsExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputEpsExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11465,7 +11448,7 @@ export type PaymentSourceInputGiropayExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputGiropayExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputGiropayExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11514,7 +11497,7 @@ export type PaymentSourceInputIdealExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputIdealExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputIdealExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11565,7 +11548,7 @@ export type PaymentSourceInputMybankExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputMybankExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputMybankExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11614,7 +11597,7 @@ export type PaymentSourceInputP24ExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputP24ExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputP24ExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11665,7 +11648,7 @@ export type PaymentSourceInputSofortExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputSofortExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputSofortExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11714,7 +11697,7 @@ export type PaymentSourceInputTrustlyExperienceContextShippingPreference =
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
 export const PaymentSourceInputTrustlyExperienceContextShippingPreference =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputTrustlyExperienceContext {
   /** The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode. */
@@ -11792,7 +11775,7 @@ export type PaymentSourceInputApplePayDecryptedTokenTokenizedCardAttributesVerif
   | "3D_SECURE"
   | "AVS_CVV";
 export const PaymentSourceInputApplePayDecryptedTokenTokenizedCardAttributesVerificationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputApplePayDecryptedTokenTokenizedCardAttributesVerification {
   /** The method used for card verification. */
@@ -11870,8 +11853,7 @@ export const PaymentSourceInputApplePayDecryptedTokenTokenizedCard =
 export type PaymentSourceInputApplePayDecryptedTokenPaymentDataType =
   | "3DSECURE"
   | "EMV";
-export const PaymentSourceInputApplePayDecryptedTokenPaymentDataType =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputApplePayDecryptedTokenPaymentDataType = S.String;
 
 export type PaymentSourceInputApplePayDecryptedTokenPaymentData =
   AuthorizeOrderRequestPaymentSourceApplePayDecryptedTokenPaymentData;
@@ -11959,8 +11941,7 @@ export const PaymentSourceInputGooglePayCard =
 
 /** The type of the payment credential. Currently, only CARD is supported. */
 export type PaymentSourceInputGooglePayDecryptedTokenPaymentMethod = "CARD";
-export const PaymentSourceInputGooglePayDecryptedTokenPaymentMethod =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputGooglePayDecryptedTokenPaymentMethod = S.String;
 
 /** The non-portable additional address details include fine-grain address information for Compliance, Risk, and other scenarios. This isn't portable with common third-party and open source applications. This can include data that is redundant with core fields. For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`. */
 export type PaymentSourceInputGooglePayDecryptedTokenCardBillingAddressAddressDetails =
@@ -11984,7 +11965,7 @@ export type PaymentSourceInputGooglePayDecryptedTokenAuthenticationMethod =
   | "PAN_ONLY"
   | "CRYPTOGRAM_3DS";
 export const PaymentSourceInputGooglePayDecryptedTokenAuthenticationMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PaymentSourceInputGooglePayDecryptedToken {
   /** A unique ID that identifies the message in case it needs to be revoked or located at a later time. */
@@ -12062,22 +12043,19 @@ export type PaymentSourceInputVenmoAttributesVaultUsagePattern =
   | "RECURRING_POSTPAID"
   | "THRESHOLD_PREPAID"
   | "THRESHOLD_POSTPAID";
-export const PaymentSourceInputVenmoAttributesVaultUsagePattern =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputVenmoAttributesVaultUsagePattern = S.String;
 
 /** The usage type associated with the Venmo payment token. */
 export type PaymentSourceInputVenmoAttributesVaultUsageType =
   | "MERCHANT"
   | "PLATFORM";
-export const PaymentSourceInputVenmoAttributesVaultUsageType =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputVenmoAttributesVaultUsageType = S.String;
 
 /** The customer type associated with the Venmo payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer. */
 export type PaymentSourceInputVenmoAttributesVaultCustomerType =
   | "CONSUMER"
   | "BUSINESS";
-export const PaymentSourceInputVenmoAttributesVaultCustomerType =
-  /*@__PURE__*/ S.String;
+export const PaymentSourceInputVenmoAttributesVaultCustomerType = S.String;
 
 export interface PaymentSourceInputVenmoAttributesVault {
   store_in_vault: StoreInVaultInstruction | (string & {});
@@ -12275,7 +12253,7 @@ export const ConfirmOrderResponsePayerPhone = CardVaultResponseCustomerPhone;
 
 /** The customer's tax ID type. */
 export type ConfirmOrderResponsePayerTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const ConfirmOrderResponsePayerTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const ConfirmOrderResponsePayerTaxInfoTaxIdType = S.String;
 
 export interface ConfirmOrderResponsePayerTaxInfo {
   /** The customer's tax ID value. */
@@ -12344,8 +12322,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemItemsItemCategory =
   | "DIGITAL_GOODS"
   | "PHYSICAL_GOODS"
   | "DONATION";
-export const ConfirmOrderResponsePurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+export const ConfirmOrderResponsePurchaseUnitsItemItemsItemCategory = S.String;
 
 /** The Universal Product Code type. */
 export type ConfirmOrderResponsePurchaseUnitsItemItemsItemUpcType =
@@ -12356,8 +12333,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const ConfirmOrderResponsePurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const ConfirmOrderResponsePurchaseUnitsItemItemsItemUpcType = S.String;
 
 export interface ConfirmOrderResponsePurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -12443,8 +12419,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const ConfirmOrderResponsePurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const ConfirmOrderResponsePurchaseUnitsItemShippingType = S.String;
 
 export type ConfirmOrderResponsePurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -12540,14 +12515,14 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatu
   | "VOIDED"
   | "PENDING";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -12576,14 +12551,14 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSelle
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesList =
@@ -12625,7 +12600,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinks
   | "OPTIONS"
   | "PATCH";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemSchemaAllOfList =
@@ -12899,7 +12874,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "3"
   | "4";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
@@ -12918,7 +12893,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "3"
   | "4";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
@@ -13077,7 +13052,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "PPVE"
   | "PPVT";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
@@ -13097,7 +13072,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProce
   | "40"
   | "43";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfirmOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -13199,7 +13174,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
   | "REFUNDED"
   | "FAILED";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
@@ -13216,7 +13191,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetai
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -13245,14 +13220,14 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProte
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesList =
@@ -13386,7 +13361,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMe
   | "OPTIONS"
   | "PATCH";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemSchemaAllOfList =
@@ -13660,7 +13635,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "3"
   | "4";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
@@ -13679,7 +13654,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "3"
   | "4";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
@@ -13838,7 +13813,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "PPVE"
   | "PPVT";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
@@ -13858,7 +13833,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRe
   | "40"
   | "43";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfirmOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -13964,13 +13939,13 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
   | "PENDING"
   | "COMPLETED";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
   "ECHECK";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -14136,7 +14111,7 @@ export type ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMet
   | "OPTIONS"
   | "PATCH";
 export const ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type ConfirmOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemSchemaAllOfList =
@@ -14532,7 +14507,7 @@ export type ConfirmOrderResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const ConfirmOrderResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const ConfirmOrderResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type ConfirmOrderResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -14786,7 +14761,7 @@ export const CreateOrderRequestPayerPhone = CardCustomerPhone;
 
 /** The customer's tax ID type. */
 export type CreateOrderRequestPayerTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const CreateOrderRequestPayerTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const CreateOrderRequestPayerTaxInfoTaxIdType = S.String;
 
 export interface CreateOrderRequestPayerTaxInfo {
   /** The customer's tax ID value. */
@@ -14858,8 +14833,7 @@ export type CreateOrderRequestPurchaseUnitsItemItemsItemCategory =
   | "DIGITAL_GOODS"
   | "PHYSICAL_GOODS"
   | "DONATION";
-export const CreateOrderRequestPurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+export const CreateOrderRequestPurchaseUnitsItemItemsItemCategory = S.String;
 
 /** The Universal Product Code type. */
 export type CreateOrderRequestPurchaseUnitsItemItemsItemUpcType =
@@ -14870,8 +14844,7 @@ export type CreateOrderRequestPurchaseUnitsItemItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const CreateOrderRequestPurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const CreateOrderRequestPurchaseUnitsItemItemsItemUpcType = S.String;
 
 export interface CreateOrderRequestPurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -14957,8 +14930,7 @@ export type CreateOrderRequestPurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const CreateOrderRequestPurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const CreateOrderRequestPurchaseUnitsItemShippingType = S.String;
 
 export type CreateOrderRequestPurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -15083,29 +15055,26 @@ export type CreateOrderRequestApplicationContextLandingPage =
   | "LOGIN"
   | "BILLING"
   | "NO_PREFERENCE";
-export const CreateOrderRequestApplicationContextLandingPage =
-  /*@__PURE__*/ S.String;
+export const CreateOrderRequestApplicationContextLandingPage = S.String;
 
 /** DEPRECATED. DEPRECATED. The shipping preference:<ul><li>Displays the shipping address to the customer.</li><li>Enables the customer to choose an address on the PayPal site.</li><li>Restricts the customer from changing the address during the payment-approval process.</li></ul>. The fields in `application_context` are now available in the `experience_context` object under the `payment_source` which supports them (eg. `payment_source.paypal.experience_context.shipping_preference`). Please specify this field in the `experience_context` object instead of the `application_context` object. <b>DEPRECATED</b><br><table><tr><th>See</th><th>Since Version</th></tr><tr><td>payment_source.paypal.experience_context.shipping_preference</td><td>2.9</td></tr></table> */
 export type CreateOrderRequestApplicationContextShippingPreference =
   | "GET_FROM_FILE"
   | "NO_SHIPPING"
   | "SET_PROVIDED_ADDRESS";
-export const CreateOrderRequestApplicationContextShippingPreference =
-  /*@__PURE__*/ S.String;
+export const CreateOrderRequestApplicationContextShippingPreference = S.String;
 
 /** DEPRECATED. Configures a <strong>Continue</strong> or <strong>Pay Now</strong> checkout flow. The fields in `application_context` are now available in the `experience_context` object under the `payment_source` which supports them (eg. `payment_source.paypal.experience_context.user_action`). Please specify this field in the `experience_context` object instead of the `application_context` object. */
 export type CreateOrderRequestApplicationContextUserAction =
   | "CONTINUE"
   | "PAY_NOW";
-export const CreateOrderRequestApplicationContextUserAction =
-  /*@__PURE__*/ S.String;
+export const CreateOrderRequestApplicationContextUserAction = S.String;
 
 /** The merchant-preferred payment methods. */
 export type PayeePaymentMethodPreference =
   | "UNRESTRICTED"
   | "IMMEDIATE_PAYMENT_REQUIRED";
-export const PayeePaymentMethodPreference = /*@__PURE__*/ S.String;
+export const PayeePaymentMethodPreference = S.String;
 
 /** NACHA (the regulatory body governing the ACH network) requires that API callers (merchants, partners) obtain the consumer’s explicit authorization before initiating a transaction. To stay compliant, you’ll need to make sure that you retain a compliant authorization for each transaction that you originate to the ACH Network using this API. ACH transactions are categorized (using SEC codes) by how you capture authorization from the Receiver (the person whose bank account is being debited or credited). PayPal supports the following SEC codes. */
 export type CreateOrderRequestApplicationContextPaymentMethodStandardEntryClassCode =
@@ -15114,7 +15083,7 @@ export type CreateOrderRequestApplicationContextPaymentMethodStandardEntryClassC
   | "CCD"
   | "PPD";
 export const CreateOrderRequestApplicationContextPaymentMethodStandardEntryClassCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrderRequestApplicationContextPaymentMethod {
   payee_preferred?: PayeePaymentMethodPreference | (string & {});
@@ -15236,7 +15205,7 @@ export const CreateOrderResponsePayerPhone = CardVaultResponseCustomerPhone;
 
 /** The customer's tax ID type. */
 export type CreateOrderResponsePayerTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const CreateOrderResponsePayerTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const CreateOrderResponsePayerTaxInfoTaxIdType = S.String;
 
 export interface CreateOrderResponsePayerTaxInfo {
   /** The customer's tax ID value. */
@@ -15305,8 +15274,7 @@ export type CreateOrderResponsePurchaseUnitsItemItemsItemCategory =
   | "DIGITAL_GOODS"
   | "PHYSICAL_GOODS"
   | "DONATION";
-export const CreateOrderResponsePurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+export const CreateOrderResponsePurchaseUnitsItemItemsItemCategory = S.String;
 
 /** The Universal Product Code type. */
 export type CreateOrderResponsePurchaseUnitsItemItemsItemUpcType =
@@ -15317,8 +15285,7 @@ export type CreateOrderResponsePurchaseUnitsItemItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const CreateOrderResponsePurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const CreateOrderResponsePurchaseUnitsItemItemsItemUpcType = S.String;
 
 export interface CreateOrderResponsePurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -15403,8 +15370,7 @@ export type CreateOrderResponsePurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const CreateOrderResponsePurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const CreateOrderResponsePurchaseUnitsItemShippingType = S.String;
 
 export type CreateOrderResponsePurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -15500,14 +15466,14 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus
   | "VOIDED"
   | "PENDING";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -15536,14 +15502,14 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSeller
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesList =
@@ -15585,7 +15551,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksI
   | "OPTIONS"
   | "PATCH";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemSchemaAllOfList =
@@ -15859,7 +15825,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProces
   | "3"
   | "4";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
@@ -15878,7 +15844,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProces
   | "3"
   | "4";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
@@ -16037,7 +16003,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProces
   | "PPVE"
   | "PPVT";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
@@ -16057,7 +16023,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProces
   | "40"
   | "43";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -16159,7 +16125,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
   | "REFUNDED"
   | "FAILED";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
@@ -16176,7 +16142,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetail
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -16205,14 +16171,14 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtec
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesList =
@@ -16346,7 +16312,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMet
   | "OPTIONS"
   | "PATCH";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemSchemaAllOfList =
@@ -16620,7 +16586,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRes
   | "3"
   | "4";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
@@ -16639,7 +16605,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRes
   | "3"
   | "4";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
@@ -16798,7 +16764,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRes
   | "PPVE"
   | "PPVT";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
@@ -16818,7 +16784,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRes
   | "40"
   | "43";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -16924,13 +16890,13 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
   | "PENDING"
   | "COMPLETED";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
   "ECHECK";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -17096,7 +17062,7 @@ export type CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMeth
   | "OPTIONS"
   | "PATCH";
 export const CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemSchemaAllOfList =
@@ -17492,7 +17458,7 @@ export type CreateOrderResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const CreateOrderResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const CreateOrderResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrderResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -19147,7 +19113,7 @@ export type ShipmentCarrier =
   | "SFYDEXPRESS"
   | "TOPTRANS"
   | "OTHER";
-export const ShipmentCarrier = /*@__PURE__*/ S.String;
+export const ShipmentCarrier = S.String;
 
 /** The Universal Product Code type. */
 export type CreateOrdersTrackRequestItemsItemUpcType =
@@ -19158,7 +19124,7 @@ export type CreateOrdersTrackRequestItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const CreateOrdersTrackRequestItemsItemUpcType = /*@__PURE__*/ S.String;
+export const CreateOrdersTrackRequestItemsItemUpcType = S.String;
 
 export interface CreateOrdersTrackRequestItemsItemUpc {
   /** The Universal Product Code type. */
@@ -19266,8 +19232,7 @@ export const CreateOrdersTrackResponsePayerPhone =
 export type CreateOrdersTrackResponsePayerTaxInfoTaxIdType =
   | "BR_CPF"
   | "BR_CNPJ";
-export const CreateOrdersTrackResponsePayerTaxInfoTaxIdType =
-  /*@__PURE__*/ S.String;
+export const CreateOrdersTrackResponsePayerTaxInfoTaxIdType = S.String;
 
 export interface CreateOrdersTrackResponsePayerTaxInfo {
   /** The customer's tax ID value. */
@@ -19340,7 +19305,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemItemsItemCategory =
   | "PHYSICAL_GOODS"
   | "DONATION";
 export const CreateOrdersTrackResponsePurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The Universal Product Code type. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemItemsItemUpcType =
@@ -19352,7 +19317,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemItemsItemUpcType =
   | "UPC-2"
   | "UPC-5";
 export const CreateOrdersTrackResponsePurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrdersTrackResponsePurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -19438,8 +19403,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const CreateOrdersTrackResponsePurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const CreateOrdersTrackResponsePurchaseUnitsItemShippingType = S.String;
 
 export type CreateOrdersTrackResponsePurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -19535,14 +19499,14 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItem
   | "VOIDED"
   | "PENDING";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -19571,14 +19535,14 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItem
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesList =
@@ -19620,7 +19584,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItem
   | "OPTIONS"
   | "PATCH";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemSchemaAllOfList =
@@ -19894,7 +19858,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItem
   | "3"
   | "4";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
@@ -19913,7 +19877,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItem
   | "3"
   | "4";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
@@ -20072,7 +20036,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItem
   | "PPVE"
   | "PPVT";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
@@ -20092,7 +20056,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItem
   | "40"
   | "43";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrdersTrackResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -20194,7 +20158,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemStatus
   | "REFUNDED"
   | "FAILED";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
@@ -20211,7 +20175,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemStatus
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -20240,14 +20204,14 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemSeller
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesList =
@@ -20381,7 +20345,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemLinksI
   | "OPTIONS"
   | "PATCH";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemSchemaAllOfList =
@@ -20655,7 +20619,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProces
   | "3"
   | "4";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
@@ -20674,7 +20638,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProces
   | "3"
   | "4";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
@@ -20833,7 +20797,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProces
   | "PPVE"
   | "PPVT";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
@@ -20853,7 +20817,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProces
   | "40"
   | "43";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrdersTrackResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -20960,13 +20924,13 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemStatus 
   | "PENDING"
   | "COMPLETED";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
   "ECHECK";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -21132,7 +21096,7 @@ export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemLinksIt
   | "OPTIONS"
   | "PATCH";
 export const CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrdersTrackResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemSchemaAllOfList =
@@ -21528,7 +21492,7 @@ export type CreateOrdersTrackResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const CreateOrdersTrackResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const CreateOrdersTrackResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type CreateOrdersTrackResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -21817,7 +21781,7 @@ export const GetOrderResponsePayerPhone = CardVaultResponseCustomerPhone;
 
 /** The customer's tax ID type. */
 export type GetOrderResponsePayerTaxInfoTaxIdType = "BR_CPF" | "BR_CNPJ";
-export const GetOrderResponsePayerTaxInfoTaxIdType = /*@__PURE__*/ S.String;
+export const GetOrderResponsePayerTaxInfoTaxIdType = S.String;
 
 export interface GetOrderResponsePayerTaxInfo {
   /** The customer's tax ID value. */
@@ -21886,8 +21850,7 @@ export type GetOrderResponsePurchaseUnitsItemItemsItemCategory =
   | "DIGITAL_GOODS"
   | "PHYSICAL_GOODS"
   | "DONATION";
-export const GetOrderResponsePurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponsePurchaseUnitsItemItemsItemCategory = S.String;
 
 /** The Universal Product Code type. */
 export type GetOrderResponsePurchaseUnitsItemItemsItemUpcType =
@@ -21898,8 +21861,7 @@ export type GetOrderResponsePurchaseUnitsItemItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const GetOrderResponsePurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponsePurchaseUnitsItemItemsItemUpcType = S.String;
 
 export interface GetOrderResponsePurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -21980,8 +21942,7 @@ export type GetOrderResponsePurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const GetOrderResponsePurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const GetOrderResponsePurchaseUnitsItemShippingType = S.String;
 
 export type GetOrderResponsePurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;
@@ -22075,14 +22036,14 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus =
   | "VOIDED"
   | "PENDING";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the authorized status is `PENDING`. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
   | "PENDING_REVIEW"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemStatusDetails {
   /** The reason why the authorized status is `PENDING`. */
@@ -22111,14 +22072,14 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerPro
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemSellerProtectionDisputeCategoriesList =
@@ -22160,7 +22121,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItem
   | "OPTIONS"
   | "PATCH";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemLinksItemSchemaAllOfList =
@@ -22434,7 +22395,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessor
   | "3"
   | "4";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
@@ -22453,7 +22414,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessor
   | "3"
   | "4";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
@@ -22612,7 +22573,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessor
   | "PPVE"
   | "PPVT";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
@@ -22632,7 +22593,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessor
   | "40"
   | "43";
 export const GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponsePurchaseUnitsItemPaymentsAuthorizationsItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -22733,7 +22694,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
   | "REFUNDED"
   | "FAILED";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
@@ -22750,7 +22711,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsRe
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
@@ -22779,14 +22740,14 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectio
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The condition that is covered for the transaction. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of conditions that are covered for the transaction. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemSellerProtectionDisputeCategoriesList =
@@ -22920,7 +22881,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod
   | "OPTIONS"
   | "PATCH";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemLinksItemSchemaAllOfList =
@@ -23194,7 +23155,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRespon
   | "3"
   | "4";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
@@ -23213,7 +23174,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRespon
   | "3"
   | "4";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
@@ -23372,7 +23333,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRespon
   | "PPVE"
   | "PPVT";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
@@ -23392,7 +23353,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorRespon
   | "40"
   | "43";
 export const GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponsePurchaseUnitsItemPaymentsCapturesItemProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
@@ -23498,13 +23459,13 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
   | "PENDING"
   | "COMPLETED";
 export const GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
   "ECHECK";
 export const GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetailsReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
@@ -23670,7 +23631,7 @@ export type GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMethod 
   | "OPTIONS"
   | "PATCH";
 export const GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemMethod =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type GetOrderResponsePurchaseUnitsItemPaymentsRefundsItemLinksItemSchemaAllOfList =
@@ -24062,7 +24023,7 @@ export type GetOrderResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const GetOrderResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const GetOrderResponseLinksItemMethod = S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
 export type GetOrderResponseLinksItemSchemaAllOfList = Array<unknown>;
@@ -24306,7 +24267,7 @@ export type PatchRequestItemOp =
   | "move"
   | "copy"
   | "test";
-export const PatchRequestItemOp = /*@__PURE__*/ S.String;
+export const PatchRequestItemOp = S.String;
 
 export interface PatchRequestItem {
   /** The operation. */
@@ -24442,8 +24403,7 @@ export type ServerCallbackRequestPurchaseUnitsItemItemsItemCategory =
   | "DIGITAL_GOODS"
   | "PHYSICAL_GOODS"
   | "DONATION";
-export const ServerCallbackRequestPurchaseUnitsItemItemsItemCategory =
-  /*@__PURE__*/ S.String;
+export const ServerCallbackRequestPurchaseUnitsItemItemsItemCategory = S.String;
 
 /** The Universal Product Code type. */
 export type ServerCallbackRequestPurchaseUnitsItemItemsItemUpcType =
@@ -24454,8 +24414,7 @@ export type ServerCallbackRequestPurchaseUnitsItemItemsItemUpcType =
   | "UPC-E"
   | "UPC-2"
   | "UPC-5";
-export const ServerCallbackRequestPurchaseUnitsItemItemsItemUpcType =
-  /*@__PURE__*/ S.String;
+export const ServerCallbackRequestPurchaseUnitsItemItemsItemUpcType = S.String;
 
 export interface ServerCallbackRequestPurchaseUnitsItemItemsItemUpc {
   /** The Universal Product Code type. */
@@ -24543,8 +24502,7 @@ export type ServerCallbackRequestPurchaseUnitsItemShippingType =
   | "PICKUP_IN_PERSON"
   | "PICKUP_IN_STORE"
   | "PICKUP_FROM_PERSON";
-export const ServerCallbackRequestPurchaseUnitsItemShippingType =
-  /*@__PURE__*/ S.String;
+export const ServerCallbackRequestPurchaseUnitsItemShippingType = S.String;
 
 export type ServerCallbackRequestPurchaseUnitsItemShippingOptionsItemAmount =
   AuthorizeOrderRequestPaymentSourcePaypalAttributesVaultShippingOptionsItemAmount;

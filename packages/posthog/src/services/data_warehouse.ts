@@ -433,11 +433,11 @@ export type ManagedWarehouseReadinessStateEnum =
   | "up_to_date"
   | "needs_attention"
   | "sync_paused";
-export const ManagedWarehouseReadinessStateEnum = /*@__PURE__*/ S.String;
+export const ManagedWarehouseReadinessStateEnum = S.String;
 
 /** * `events` - events * `persons` - persons */
 export type DatasetEnum = "events" | "persons";
-export const DatasetEnum = /*@__PURE__*/ S.String;
+export const DatasetEnum = S.String;
 
 export interface ManagedWarehouseDatasetStatus {
   /** Warehouse dataset represented by this status. * `events` - events * `persons` - persons */
@@ -774,7 +774,7 @@ export type GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric =
   | "storage_bytes"
   | "worker_crash_rate";
 export const GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow =
   | "1h"
@@ -783,7 +783,7 @@ export type GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow =
   | "7d"
   | "30d";
 export const GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -933,7 +933,7 @@ export const GetDataWarehouseManagedWarehouseSourceSchemaRequest =
 
 /** * `copy` - copy * `register` - register */
 export type WorkflowTypeEnum = "copy" | "register";
-export const WorkflowTypeEnum = /*@__PURE__*/ S.String;
+export const WorkflowTypeEnum = S.String;
 
 /** * `running` - running * `completed` - completed * `failed` - failed * `skipped` - skipped * `stale` - stale */
 export type WorkflowStatusEnum =
@@ -942,7 +942,7 @@ export type WorkflowStatusEnum =
   | "failed"
   | "skipped"
   | "stale";
-export const WorkflowStatusEnum = /*@__PURE__*/ S.String;
+export const WorkflowStatusEnum = S.String;
 
 export interface ManagedWarehouseSourceTableStatus {
   /** Imported source schema identifier. */
@@ -1118,7 +1118,7 @@ export type WarehouseStatusResponseStateEnum =
   | "failed"
   | "deleting"
   | "deleted";
-export const WarehouseStatusResponseStateEnum = /*@__PURE__*/ S.String;
+export const WarehouseStatusResponseStateEnum = S.String;
 
 export interface WarehouseConnection {
   /** Connection host — the warehouse name is the SNI subdomain, e.g. my-warehouse.dw.us.postwh.com */

@@ -430,8 +430,7 @@ export const MinimalRepositoryTopicsList = /*@__PURE__*/ S.Array(
 export type MinimalRepositoryPullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const MinimalRepositoryPullRequestCreationPolicy =
-  /*@__PURE__*/ S.String;
+export const MinimalRepositoryPullRequestCreationPolicy = S.String;
 
 export interface MinimalRepositoryPermissions {
   admin?: boolean;
@@ -490,7 +489,7 @@ export const MinimalRepositoryLicense = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MinimalRepositoryLicense>;
 
 export type SecurityAndAnalysisAdvancedSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisAdvancedSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisAdvancedSecurityStatus = S.String;
 
 /** Enable or disable GitHub Advanced Security for the repository. For standalone Code Scanning or Secret Protection products, this parameter cannot be used. */
 export interface SecurityAndAnalysisAdvancedSecurity {
@@ -505,7 +504,7 @@ export const SecurityAndAnalysisAdvancedSecurity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecurityAndAnalysisAdvancedSecurity>;
 
 export type SecurityAndAnalysisCodeSecurityStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisCodeSecurityStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisCodeSecurityStatus = S.String;
 
 export interface SecurityAndAnalysisCodeSecurity {
   status?: SecurityAndAnalysisCodeSecurityStatus;
@@ -522,8 +521,7 @@ export const SecurityAndAnalysisCodeSecurity = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisDependabotSecurityUpdatesStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisDependabotSecurityUpdatesStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisDependabotSecurityUpdatesStatus = S.String;
 
 /** Enable or disable Dependabot security updates for the repository. */
 export interface SecurityAndAnalysisDependabotSecurityUpdates {
@@ -540,7 +538,7 @@ export const SecurityAndAnalysisDependabotSecurityUpdates =
   }) as any as S.Schema<SecurityAndAnalysisDependabotSecurityUpdates>;
 
 export type SecurityAndAnalysisSecretScanningStatus = "enabled" | "disabled";
-export const SecurityAndAnalysisSecretScanningStatus = /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanning {
   status?: SecurityAndAnalysisSecretScanningStatus;
@@ -556,8 +554,7 @@ export const SecurityAndAnalysisSecretScanning = /*@__PURE__*/ S.suspend(() =>
 export type SecurityAndAnalysisSecretScanningPushProtectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningPushProtectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningPushProtectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningPushProtection {
   status?: SecurityAndAnalysisSecretScanningPushProtectionStatus;
@@ -575,7 +572,7 @@ export type SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningNonProviderPatternsStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningNonProviderPatterns {
   status?: SecurityAndAnalysisSecretScanningNonProviderPatternsStatus;
@@ -594,8 +591,7 @@ export const SecurityAndAnalysisSecretScanningNonProviderPatterns =
 export type SecurityAndAnalysisSecretScanningAiDetectionStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningAiDetectionStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningAiDetectionStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningAiDetection {
   status?: SecurityAndAnalysisSecretScanningAiDetectionStatus;
@@ -613,7 +609,7 @@ export type SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
   | "enabled"
   | "disabled";
 export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedAlertDismissal {
   status?: SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus;
@@ -632,8 +628,7 @@ export const SecurityAndAnalysisSecretScanningDelegatedAlertDismissal =
 export type SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
   | "enabled"
   | "disabled";
-export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus =
-  /*@__PURE__*/ S.String;
+export const SecurityAndAnalysisSecretScanningDelegatedBypassStatus = S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypass {
   status?: SecurityAndAnalysisSecretScanningDelegatedBypassStatus;
@@ -654,14 +649,14 @@ export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem
   | "TEAM"
   | "ROLE";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The bypass mode for the reviewer */
 export type SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
   | "ALWAYS"
   | "EXEMPT";
 export const SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem {
   /** The ID of the team or role selected as a bypass reviewer */
@@ -1131,7 +1126,7 @@ export const DeleteEvent = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DeleteEvent" }) as any as S.Schema<DeleteEvent>;
 
 export type DiscussionAnswerChosenByType = "Bot" | "User" | "Organization";
-export const DiscussionAnswerChosenByType = /*@__PURE__*/ S.String;
+export const DiscussionAnswerChosenByType = S.String;
 
 export interface DiscussionAnswerChosenBy {
   avatar_url?: string;
@@ -1196,7 +1191,7 @@ export type DiscussionAuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const DiscussionAuthorAssociation = /*@__PURE__*/ S.String;
+export const DiscussionAuthorAssociation = S.String;
 
 export interface DiscussionCategory {
   created_at: string;
@@ -1263,7 +1258,7 @@ export type DiscussionState =
   | "locked"
   | "converting"
   | "transferring";
-export const DiscussionState = /*@__PURE__*/ S.String;
+export const DiscussionState = S.String;
 
 /** The reason for the current state */
 export type DiscussionStateReason =
@@ -1271,10 +1266,10 @@ export type DiscussionStateReason =
   | "outdated"
   | "duplicate"
   | "reopened";
-export const DiscussionStateReason = /*@__PURE__*/ S.String;
+export const DiscussionStateReason = S.String;
 
 export type DiscussionUserType = "Bot" | "User" | "Organization";
-export const DiscussionUserType = /*@__PURE__*/ S.String;
+export const DiscussionUserType = S.String;
 
 export interface DiscussionUser {
   avatar_url?: string;
@@ -1436,7 +1431,7 @@ export type IssueStateReason =
   | "reopened"
   | "not_planned"
   | "duplicate";
-export const IssueStateReason = /*@__PURE__*/ S.String;
+export const IssueStateReason = S.String;
 
 /** A GitHub user. */
 export type NullableSimpleUser = SimpleUser;
@@ -1466,8 +1461,7 @@ export const IssueLabelsItemCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssueLabelsItemCase1>;
 
 export type IssueLabelsItem = string | IssueLabelsItemCase1;
-export const IssueLabelsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueLabelsItem>;
+export const IssueLabelsItem = S.Unknown as any as S.Schema<IssueLabelsItem>;
 
 /** Labels to associate with this issue; pass one or more label names to replace the set of labels on this issue; send an empty array to clear all labels from the issue; note that the labels are silently dropped for users without push access to the repository */
 export type IssueLabelsList = Array<IssueLabelsItem>;
@@ -1482,7 +1476,7 @@ export const IssueAssigneesList = /*@__PURE__*/ S.Array(
 
 /** The state of the milestone. */
 export type NullableMilestoneState = "open" | "closed";
-export const NullableMilestoneState = /*@__PURE__*/ S.String;
+export const NullableMilestoneState = S.String;
 
 /** A collection of related issues and pull requests. */
 export interface NullableMilestone {
@@ -1558,7 +1552,7 @@ export type IssueTypeColor =
   | "red"
   | "pink"
   | "purple";
-export const IssueTypeColor = /*@__PURE__*/ S.String;
+export const IssueTypeColor = S.String;
 
 /** The type assigned to the issue. This is only present for issues in repositories where issue types are supported. */
 export interface IssueType {
@@ -1640,28 +1634,28 @@ export const RepositoryTopicsList = /*@__PURE__*/ S.Array(
 
 /** The policy controlling who can create pull requests: all or collaborators_only. */
 export type RepositoryPullRequestCreationPolicy = "all" | "collaborators_only";
-export const RepositoryPullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const RepositoryPullRequestCreationPolicy = S.String;
 
 /** The default value for a squash merge commit title: - `PR_TITLE` - default to the pull request's title. - `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit). */
 export type RepositorySquashMergeCommitTitle =
   | "PR_TITLE"
   | "COMMIT_OR_PR_TITLE";
-export const RepositorySquashMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitTitle = S.String;
 
 /** The default value for a squash merge commit message: - `PR_BODY` - default to the pull request's body. - `COMMIT_MESSAGES` - default to the branch's commit messages. - `BLANK` - default to a blank commit message. */
 export type RepositorySquashMergeCommitMessage =
   | "PR_BODY"
   | "COMMIT_MESSAGES"
   | "BLANK";
-export const RepositorySquashMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositorySquashMergeCommitMessage = S.String;
 
 /** The default value for a merge commit title. - `PR_TITLE` - default to the pull request's title. - `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name). */
 export type RepositoryMergeCommitTitle = "PR_TITLE" | "MERGE_MESSAGE";
-export const RepositoryMergeCommitTitle = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitTitle = S.String;
 
 /** The default value for a merge commit message. - `PR_TITLE` - default to the pull request's title. - `PR_BODY` - default to the pull request's body. - `BLANK` - default to a blank commit message. */
 export type RepositoryMergeCommitMessage = "PR_BODY" | "PR_TITLE" | "BLANK";
-export const RepositoryMergeCommitMessage = /*@__PURE__*/ S.String;
+export const RepositoryMergeCommitMessage = S.String;
 
 /** The status of the code search index for this repository */
 export interface RepositoryCodeSearchIndexStatus {
@@ -1949,7 +1943,7 @@ export const Enterprise = /*@__PURE__*/ S.suspend(() =>
 
 export type NullableIntegrationOwner = SimpleUser | Enterprise;
 export const NullableIntegrationOwner =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<NullableIntegrationOwner>;
+  S.Unknown as any as S.Schema<NullableIntegrationOwner>;
 
 /** The set of permissions for the GitHub app */
 export interface NullableIntegrationPermissions {
@@ -2031,7 +2025,7 @@ export type AuthorAssociation =
   | "MEMBER"
   | "NONE"
   | "OWNER";
-export const AuthorAssociation = /*@__PURE__*/ S.String;
+export const AuthorAssociation = S.String;
 
 export interface ReactionRollup {
   url: string;
@@ -2171,12 +2165,12 @@ export type IssueFieldValueDataType =
   | "multi_select"
   | "number"
   | "date";
-export const IssueFieldValueDataType = /*@__PURE__*/ S.String;
+export const IssueFieldValueDataType = S.String;
 
 /** The value of the issue field */
 export type IssueFieldValueValue = string | number | number;
 export const IssueFieldValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueFieldValueValue>;
+  S.Unknown as any as S.Schema<IssueFieldValueValue>;
 
 /** Details about the selected option (only present for single_select fields) */
 export interface IssueFieldValueSingleSelectOption {
@@ -2396,7 +2390,7 @@ export const IssueCommentEvent = /*@__PURE__*/ S.suspend(() =>
 export type ForkEventForkeePullRequestCreationPolicy =
   | "all"
   | "collaborators_only";
-export const ForkEventForkeePullRequestCreationPolicy = /*@__PURE__*/ S.String;
+export const ForkEventForkeePullRequestCreationPolicy = S.String;
 
 export type ForkEventForkeeTopicsList = Array<string>;
 export const ForkEventForkeeTopicsList = /*@__PURE__*/ S.Array(
@@ -2745,8 +2739,7 @@ export type PullRequestReviewCommentEventCommentUserType =
   | "Bot"
   | "User"
   | "Organization";
-export const PullRequestReviewCommentEventCommentUserType =
-  /*@__PURE__*/ S.String;
+export const PullRequestReviewCommentEventCommentUserType = S.String;
 
 export interface PullRequestReviewCommentEventCommentUser {
   avatar_url?: string;
@@ -3054,7 +3047,7 @@ export const CommitCommentEvent = /*@__PURE__*/ S.suspend(() =>
 
 /** State of the release asset. */
 export type ReleaseAssetState = "uploaded" | "open";
-export const ReleaseAssetState = /*@__PURE__*/ S.String;
+export const ReleaseAssetState = S.String;
 
 /** Data related to a release. */
 export interface ReleaseAsset {
@@ -3205,8 +3198,7 @@ export type EventPayload =
   | CommitCommentEvent
   | ReleaseEvent
   | WatchEvent;
-export const EventPayload =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventPayload>;
+export const EventPayload = S.Unknown as any as S.Schema<EventPayload>;
 
 /** Event */
 export interface Event {
@@ -3646,14 +3638,12 @@ export const ListRepoNotificationsForAuthenticatedUserResponse =
 export type ListReposStarredByAuthenticatedUserRequestSort =
   | "created"
   | "updated";
-export const ListReposStarredByAuthenticatedUserRequestSort =
-  /*@__PURE__*/ S.String;
+export const ListReposStarredByAuthenticatedUserRequestSort = S.String;
 
 export type ListReposStarredByAuthenticatedUserRequestDirection =
   | "asc"
   | "desc";
-export const ListReposStarredByAuthenticatedUserRequestDirection =
-  /*@__PURE__*/ S.String;
+export const ListReposStarredByAuthenticatedUserRequestDirection = S.String;
 
 export interface ListReposStarredByAuthenticatedUserRequest {
   /** The property to sort the results by. `created` means when the repository was starred. `updated` means when the repository was last pushed to. */
@@ -3702,10 +3692,10 @@ export const ListReposStarredByAuthenticatedUserResponse =
   }) as any as S.Schema<ListReposStarredByAuthenticatedUserResponse>;
 
 export type ListReposStarredByUserRequestSort = "created" | "updated";
-export const ListReposStarredByUserRequestSort = /*@__PURE__*/ S.String;
+export const ListReposStarredByUserRequestSort = S.String;
 
 export type ListReposStarredByUserRequestDirection = "asc" | "desc";
-export const ListReposStarredByUserRequestDirection = /*@__PURE__*/ S.String;
+export const ListReposStarredByUserRequestDirection = S.String;
 
 export interface ListReposStarredByUserRequest {
   /** The handle for the GitHub user account. */
@@ -3766,7 +3756,7 @@ export type ListReposStarredByUserResponseBody =
   | ListReposStarredByUserResponseBodyCase0List
   | ListReposStarredByUserResponseBodyCase1List;
 export const ListReposStarredByUserResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListReposStarredByUserResponseBody>;
+  S.Unknown as any as S.Schema<ListReposStarredByUserResponseBody>;
 
 export type ListReposStarredByUserResponse = ListReposStarredByUserResponseBody;
 export const ListReposStarredByUserResponse = /*@__PURE__*/ S.suspend(() =>
@@ -3865,7 +3855,7 @@ export type ListStargazersForRepoResponseBody =
   | ListStargazersForRepoResponseBodyCase0List
   | ListStargazersForRepoResponseBodyCase1List;
 export const ListStargazersForRepoResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListStargazersForRepoResponseBody>;
+  S.Unknown as any as S.Schema<ListStargazersForRepoResponseBody>;
 
 export type ListStargazersForRepoResponse = ListStargazersForRepoResponseBody;
 export const ListStargazersForRepoResponse = /*@__PURE__*/ S.suspend(() =>

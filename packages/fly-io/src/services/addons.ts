@@ -204,7 +204,7 @@ export type AddOnType =
   | "upstash_redis"
   | "upstash_vector"
   | "wafris";
-export const AddOnType = /*@__PURE__*/ S.String;
+export const AddOnType = S.String;
 
 export interface AddOnPlansRequest {
   after?: string | null;

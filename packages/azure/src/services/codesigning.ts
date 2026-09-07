@@ -40,7 +40,7 @@ export const CheckCodeSigningAccountNameAvailabilityRequest =
 
 /** The reason that an artifact signing account name could not be used. The Reason element is only returned if nameAvailable is false. */
 export type NameUnavailabilityReason = "AccountNameInvalid" | "AlreadyExists";
-export const NameUnavailabilityReason = /*@__PURE__*/ S.String;
+export const NameUnavailabilityReason = S.String;
 
 /** The CheckNameAvailability operation response. */
 export interface CheckNameAvailabilityResult {
@@ -68,7 +68,7 @@ export type ProfileType =
   | "PrivateTrustCIPolicy"
   | "VBSEnclave"
   | "PublicTrustTest";
-export const ProfileType = /*@__PURE__*/ S.String;
+export const ProfileType = S.String;
 
 /** Properties of the certificate profile. */
 export interface CertificateProfilePropertiesInput {
@@ -138,7 +138,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -146,7 +146,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -182,19 +182,19 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Status of the certificate profiles. */
 export type CertificateProfileStatus = "Active" | "Disabled" | "Suspended";
-export const CertificateProfileStatus = /*@__PURE__*/ S.String;
+export const CertificateProfileStatus = S.String;
 
 /** Status of the certificate */
 export type CertificateStatus = "Active" | "Expired" | "Revoked";
-export const CertificateStatus = /*@__PURE__*/ S.String;
+export const CertificateStatus = S.String;
 
 /** Revocation status of the certificate. */
 export type RevocationStatus = "Succeeded" | "InProgress" | "Failed";
-export const RevocationStatus = /*@__PURE__*/ S.String;
+export const RevocationStatus = S.String;
 
 /** Revocation details of the certificate. */
 export interface Revocation {
@@ -336,7 +336,7 @@ export const CreateCodeSigningAccountRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Name of the sku. */
 export type SkuName = "Basic" | "Premium";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** SKU of the artifact signing account. */
 export interface AccountSku {
@@ -851,11 +851,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

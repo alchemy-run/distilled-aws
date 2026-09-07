@@ -113,7 +113,7 @@ export type ParametersTypeEnum =
   | "UNIQUE_REACH_AUDIENCE"
   | "FULL_PATH"
   | "PATH_ATTRIBUTION";
-export const ParametersTypeEnum = /*@__PURE__*/ S.String;
+export const ParametersTypeEnum = S.String;
 
 /** Parameters of a generated report. */
 export interface Parameters {
@@ -177,7 +177,7 @@ export type DataRangeRangeEnum =
   | "ALL_TIME"
   | "LAST_14_DAYS"
   | "LAST_60_DAYS";
-export const DataRangeRangeEnum = /*@__PURE__*/ S.String;
+export const DataRangeRangeEnum = S.String;
 
 /** The date range to be reported on. */
 export interface DataRange {
@@ -197,7 +197,7 @@ export const DataRange = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DataRange" }) as any as S.Schema<DataRange>;
 
 export type QueryMetadataFormatEnum = "FORMAT_UNSPECIFIED" | "CSV" | "XLSX";
-export const QueryMetadataFormatEnum = /*@__PURE__*/ S.String;
+export const QueryMetadataFormatEnum = S.String;
 
 /** The metadata of the query. */
 export interface QueryMetadata {
@@ -231,7 +231,7 @@ export type QueryScheduleFrequencyEnum =
   | "MONTHLY"
   | "QUARTERLY"
   | "YEARLY";
-export const QueryScheduleFrequencyEnum = /*@__PURE__*/ S.String;
+export const QueryScheduleFrequencyEnum = S.String;
 
 /** Settings on when and how frequently to run a query. */
 export interface QuerySchedule {
@@ -370,7 +370,7 @@ export const ReportKey = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ReportKey" }) as any as S.Schema<ReportKey>;
 
 export type ReportStatusFormatEnum = "FORMAT_UNSPECIFIED" | "CSV" | "XLSX";
-export const ReportStatusFormatEnum = /*@__PURE__*/ S.String;
+export const ReportStatusFormatEnum = S.String;
 
 export type ReportStatusStateEnum =
   | "STATE_UNSPECIFIED"
@@ -378,7 +378,7 @@ export type ReportStatusStateEnum =
   | "RUNNING"
   | "DONE"
   | "FAILED";
-export const ReportStatusStateEnum = /*@__PURE__*/ S.String;
+export const ReportStatusStateEnum = S.String;
 
 /** The status of a report. */
 export interface ReportStatus {

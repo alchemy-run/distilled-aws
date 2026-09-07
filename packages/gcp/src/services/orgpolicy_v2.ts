@@ -243,8 +243,7 @@ export type GoogleCloudOrgpolicyV2CustomConstraintActionTypeEnum =
   | "ACTION_TYPE_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GoogleCloudOrgpolicyV2CustomConstraintActionTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudOrgpolicyV2CustomConstraintActionTypeEnum = S.String;
 
 export type GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnum =
   | "METHOD_TYPE_UNSPECIFIED"
@@ -254,7 +253,7 @@ export type GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnum =
   | "REMOVE_GRANT"
   | "GOVERN_TAGS";
 export const GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudOrgpolicyV2CustomConstraintMethodTypesItemEnumList =
   Array<
@@ -624,7 +623,7 @@ export type GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodType
   | "REMOVE_GRANT"
   | "GOVERN_TAGS";
 export const GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodTypesItemEnumList =
   Array<GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionMethodTypesItemEnum>;
@@ -639,7 +638,7 @@ export type GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterT
   | "STRING"
   | "BOOLEAN";
 export const GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines Metadata structure. */
 export interface GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata {
@@ -662,7 +661,7 @@ export type GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterI
   | "STRING"
   | "BOOLEAN";
 export const GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines a parameter structure. */
 export interface GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter {
@@ -714,7 +713,7 @@ export type GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionActionType
   | "ALLOW"
   | "DENY";
 export const GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionActionTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Custom constraint definition. Defines this as a managed constraint. */
 export interface GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition {
@@ -785,8 +784,7 @@ export type GoogleCloudOrgpolicyV2ConstraintConstraintDefaultEnum =
   | "CONSTRAINT_DEFAULT_UNSPECIFIED"
   | "ALLOW"
   | "DENY";
-export const GoogleCloudOrgpolicyV2ConstraintConstraintDefaultEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudOrgpolicyV2ConstraintConstraintDefaultEnum = S.String;
 
 /** A constraint describes a way to restrict a resource's configuration. For example, you could enforce a constraint that controls which Google Cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. Constraints can be configured by the organization policy administrator to fit the needs of the organization by setting a policy that includes constraints at different locations in the organization's resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules, see `Policy`. Constraints have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a policy being defined or inherited for the resource in question. */
 export interface GoogleCloudOrgpolicyV2Constraint {

@@ -107,7 +107,7 @@ export type AccountColor =
   | "orange"
   | "red"
   | (string & {});
-export const AccountColor = /*@__PURE__*/ S.String;
+export const AccountColor = S.String;
 
 export type Service = string;
 export type ServiceList = string[];

@@ -76,7 +76,7 @@ export const AddDataFlowDebugSessionDataFlowRequestDataFlowsList =
 
 /** Linked service reference type. */
 export type Type = "LinkedServiceReference";
-export const Type = /*@__PURE__*/ S.String;
+export const Type = S.String;
 
 /** Arguments for LinkedService. */
 export type LinkedServiceReferenceParametersMap = {
@@ -115,7 +115,7 @@ export type ParameterType =
   | "Bool"
   | "Array"
   | "SecureString";
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 /** Definition of a single parameter for an entity. */
 export interface ParameterSpecification {
@@ -217,7 +217,7 @@ export const AddDataFlowDebugSessionDataFlowRequestDatasetsList =
 
 /** Type of integration runtime. */
 export type IntegrationRuntimeReferenceType = "IntegrationRuntimeReference";
-export const IntegrationRuntimeReferenceType = /*@__PURE__*/ S.String;
+export const IntegrationRuntimeReferenceType = S.String;
 
 /** Arguments for integration runtime. */
 export type IntegrationRuntimeReferenceParametersMap = {
@@ -620,7 +620,7 @@ export const MapperSourceConnectionsInfoSourceEntitiesList =
 
 /** Type of connection via linked service or dataset. */
 export type ConnectionType = "linkedservicetype";
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 /** List of name/value pairs for connection properties. */
 export type MapperConnectionCommonDslConnectorPropertiesList =
@@ -705,7 +705,7 @@ export const MapperConnectionReference = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the CDC attribute mapping. Note: 'Advanced' mapping type is also saved as 'Derived'. */
 export type MappingType = "Direct" | "Derived" | "Aggregate";
-export const MappingType = /*@__PURE__*/ S.String;
+export const MappingType = S.String;
 
 /** Attribute reference details for the referred column. */
 export interface MapperAttributeReference {
@@ -858,7 +858,7 @@ export const ChangeDataCaptureTargetConnectionsInfoList = /*@__PURE__*/ S.Array(
 
 /** Frequency of period in terms of 'Hour', 'Minute' or 'Second'. */
 export type FrequencyType = "Hour" | "Minute" | "Second";
-export const FrequencyType = /*@__PURE__*/ S.String;
+export const FrequencyType = S.String;
 
 /** CDC policy recurrence details. */
 export interface MapperPolicyRecurrence {
@@ -959,7 +959,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -967,7 +967,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -1060,7 +1060,7 @@ export const ChangeDataCaptureStatusResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of integration runtime. */
 export type IntegrationRuntimeType = "Managed" | "SelfHosted";
-export const IntegrationRuntimeType = /*@__PURE__*/ S.String;
+export const IntegrationRuntimeType = S.String;
 
 /** Azure Data Factory nested object which serves as a compute resource for activities. */
 export interface IntegrationRuntime {
@@ -1197,7 +1197,7 @@ export type IntegrationRuntimeState =
   | "Limited"
   | "Offline"
   | "AccessDenied";
-export const IntegrationRuntimeState = /*@__PURE__*/ S.String;
+export const IntegrationRuntimeState = S.String;
 
 /** Integration runtime status. */
 export interface IntegrationRuntimeStatus {
@@ -2197,7 +2197,7 @@ export type DataFlowDebugCommandType =
   | "executePreviewQuery"
   | "executeStatisticsQuery"
   | "executeExpressionQuery";
-export const DataFlowDebugCommandType = /*@__PURE__*/ S.String;
+export const DataFlowDebugCommandType = S.String;
 
 /** Array of column names. */
 export type DataFlowDebugCommandPayloadColumnsList = Array<string>;
@@ -2451,7 +2451,7 @@ export type GlobalParameterType =
   | "Float"
   | "Bool"
   | "Array";
-export const GlobalParameterType = /*@__PURE__*/ S.String;
+export const GlobalParameterType = S.String;
 
 /** Definition of a single parameter for an entity. */
 export interface GlobalParameterSpecification {
@@ -2515,7 +2515,7 @@ export const EncryptionConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether or not public network access is allowed for the data factory. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** Factory resource properties. */
 export interface FactoryProperties {
@@ -2556,7 +2556,7 @@ export type FactoryIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const FactoryIdentityType = /*@__PURE__*/ S.String;
+export const FactoryIdentityType = S.String;
 
 /** List of user assigned identities for the factory. */
 export type FactoryIdentityUserAssignedIdentitiesMap = {
@@ -3563,7 +3563,7 @@ export type SelfHostedIntegrationRuntimeNodeStatus =
   | "Upgrading"
   | "Initializing"
   | "InitializeFailed";
-export const SelfHostedIntegrationRuntimeNodeStatus = /*@__PURE__*/ S.String;
+export const SelfHostedIntegrationRuntimeNodeStatus = S.String;
 
 /** The integration runtime capabilities dictionary */
 export type SelfHostedIntegrationRuntimeNodeCapabilitiesMap = {
@@ -3577,7 +3577,7 @@ export const SelfHostedIntegrationRuntimeNodeCapabilitiesMap =
 
 /** The result of the last integration runtime node update. */
 export type IntegrationRuntimeUpdateResult = "None" | "Succeed" | "Fail";
-export const IntegrationRuntimeUpdateResult = /*@__PURE__*/ S.String;
+export const IntegrationRuntimeUpdateResult = S.String;
 
 /** Properties of Self-hosted integration runtime node. */
 export interface SelfHostedIntegrationRuntimeNode {
@@ -3724,7 +3724,7 @@ export type SsisObjectMetadataType =
   | "Project"
   | "Package"
   | "Environment";
-export const SsisObjectMetadataType = /*@__PURE__*/ S.String;
+export const SsisObjectMetadataType = S.String;
 
 /** SSIS object metadata. */
 export interface SsisObjectMetadata {
@@ -4065,18 +4065,18 @@ export const GetPipelineRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Activity state. This is an optional property and if not provided, the state will be Active by default. */
 export type ActivityState = "Active" | "Inactive";
-export const ActivityState = /*@__PURE__*/ S.String;
+export const ActivityState = S.String;
 
 /** Status result of the activity when the state is set to Inactive. This is an optional property and if not provided when the activity is inactive, the status will be Succeeded by default. */
 export type ActivityOnInactiveMarkAs = "Succeeded" | "Failed" | "Skipped";
-export const ActivityOnInactiveMarkAs = /*@__PURE__*/ S.String;
+export const ActivityOnInactiveMarkAs = S.String;
 
 export type DependencyCondition =
   | "Succeeded"
   | "Failed"
   | "Skipped"
   | "Completed";
-export const DependencyCondition = /*@__PURE__*/ S.String;
+export const DependencyCondition = S.String;
 
 /** Match-Condition for the dependency. */
 export type ActivityDependencyDependencyConditionsList = Array<
@@ -4174,7 +4174,7 @@ export const PipelineParametersMap = /*@__PURE__*/ S.Record(
 
 /** Variable type. */
 export type VariableType = "String" | "Bool" | "Array";
-export const VariableType = /*@__PURE__*/ S.String;
+export const VariableType = S.String;
 
 /** Definition of a single variable for a Pipeline. */
 export interface VariableSpecification {
@@ -4661,7 +4661,7 @@ export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enumerates possible state of Triggers. */
 export type TriggerRuntimeState = "Started" | "Stopped" | "Disabled";
-export const TriggerRuntimeState = /*@__PURE__*/ S.String;
+export const TriggerRuntimeState = S.String;
 
 /** List of tags that can be used for describing the trigger. */
 export type TriggerAnnotationsList = Array<unknown>;
@@ -4752,7 +4752,7 @@ export type EventSubscriptionStatus =
   | "Deprovisioning"
   | "Disabled"
   | "Unknown";
-export const EventSubscriptionStatus = /*@__PURE__*/ S.String;
+export const EventSubscriptionStatus = S.String;
 
 /** Defines the response of a trigger subscription operation. */
 export interface TriggerSubscriptionOperationStatus {
@@ -6617,11 +6617,11 @@ export type RunQueryFilterOperand =
   | "TriggerRunTimestamp"
   | "RunGroupId"
   | "LatestOnly";
-export const RunQueryFilterOperand = /*@__PURE__*/ S.String;
+export const RunQueryFilterOperand = S.String;
 
 /** Operator to be used for filter. */
 export type RunQueryFilterOperator = "Equals" | "NotEquals" | "In" | "NotIn";
-export const RunQueryFilterOperator = /*@__PURE__*/ S.String;
+export const RunQueryFilterOperator = S.String;
 
 /** List of filter values. */
 export type RunQueryFilterValuesList = Array<string>;
@@ -6665,11 +6665,11 @@ export type RunQueryOrderByField =
   | "ActivityRunEnd"
   | "TriggerName"
   | "TriggerRunTimestamp";
-export const RunQueryOrderByField = /*@__PURE__*/ S.String;
+export const RunQueryOrderByField = S.String;
 
 /** Sorting order of the parameter. */
 export type RunQueryOrder = "ASC" | "DESC";
-export const RunQueryOrder = /*@__PURE__*/ S.String;
+export const RunQueryOrder = S.String;
 
 /** An object to provide order by options for listing runs. */
 export interface RunQueryOrderBy {
@@ -6958,7 +6958,7 @@ export const SsisObjectMetadataStatusResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The name of the authentication key to regenerate. */
 export type IntegrationRuntimeAuthKeyName = "authKey1" | "authKey2";
-export const IntegrationRuntimeAuthKeyName = /*@__PURE__*/ S.String;
+export const IntegrationRuntimeAuthKeyName = S.String;
 
 export interface RegenerateIntegrationRuntimeAuthKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7479,7 +7479,7 @@ export const TriggerRunsQueryByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Trigger run status. */
 export type TriggerRunStatus = "Succeeded" | "Failed" | "Inprogress";
-export const TriggerRunStatus = /*@__PURE__*/ S.String;
+export const TriggerRunStatus = S.String;
 
 /** List of property name and value related to trigger run. Name, value pair depends on type of trigger. */
 export type TriggerRunPropertiesMap = { [key: string]: string | undefined };
@@ -7849,7 +7849,7 @@ export const UpdateFactoryResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The state of integration runtime auto update. */
 export type IntegrationRuntimeAutoUpdate = "On" | "Off";
-export const IntegrationRuntimeAutoUpdate = /*@__PURE__*/ S.String;
+export const IntegrationRuntimeAutoUpdate = S.String;
 
 export interface UpdateIntegrationRuntimeRequest {
   /** The ID of the target subscription. The value must be an UUID. */

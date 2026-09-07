@@ -308,10 +308,10 @@ export type AccountTargeting =
   | "single-account"
   | "multi-account"
   | (string & {});
-export const AccountTargeting = /*@__PURE__*/ S.String;
+export const AccountTargeting = S.String;
 
 export type EmptyTargetResolutionMode = "fail" | "skip" | (string & {});
-export const EmptyTargetResolutionMode = /*@__PURE__*/ S.String;
+export const EmptyTargetResolutionMode = S.String;
 
 export interface CreateExperimentTemplateExperimentOptionsInput {
   accountTargeting?: AccountTargeting;
@@ -902,7 +902,7 @@ export type ExperimentStatus =
   | "failed"
   | "cancelled"
   | (string & {});
-export const ExperimentStatus = /*@__PURE__*/ S.String;
+export const ExperimentStatus = S.String;
 
 export type ExperimentStatusReason = string;
 export type ExperimentErrorAccountId = string;
@@ -1025,7 +1025,7 @@ export type ExperimentActionStatus =
   | "failed"
   | "skipped"
   | (string & {});
-export const ExperimentActionStatus = /*@__PURE__*/ S.String;
+export const ExperimentActionStatus = S.String;
 
 export type ExperimentActionStatusReason = string;
 export interface ExperimentActionState {
@@ -1122,7 +1122,7 @@ export const ExperimentLogConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExperimentLogConfiguration",
 }) as any as S.Schema<ExperimentLogConfiguration>;
 export type ActionsMode = "skip-all" | "run-all" | (string & {});
-export const ActionsMode = /*@__PURE__*/ S.String;
+export const ActionsMode = S.String;
 
 export interface ExperimentOptions {
   accountTargeting?: AccountTargeting;
@@ -1213,7 +1213,7 @@ export type ExperimentReportStatus =
   | "cancelled"
   | "failed"
   | (string & {});
-export const ExperimentReportStatus = /*@__PURE__*/ S.String;
+export const ExperimentReportStatus = S.String;
 
 export type ExperimentReportReason = string;
 export type ExperimentReportErrorCode = string;
@@ -1415,7 +1415,7 @@ export type SafetyLeverStatus =
   | "engaged"
   | "engaging"
   | (string & {});
-export const SafetyLeverStatus = /*@__PURE__*/ S.String;
+export const SafetyLeverStatus = S.String;
 
 export type SafetyLeverStatusReason = string;
 export interface SafetyLeverState {
@@ -2267,7 +2267,7 @@ export const UpdateExperimentTemplateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateExperimentTemplateResponse",
 }) as any as S.Schema<UpdateExperimentTemplateResponse>;
 export type SafetyLeverStatusInput = "disengaged" | "engaged" | (string & {});
-export const SafetyLeverStatusInput = /*@__PURE__*/ S.String;
+export const SafetyLeverStatusInput = S.String;
 
 export interface UpdateSafetyLeverStateInput {
   status: SafetyLeverStatusInput;

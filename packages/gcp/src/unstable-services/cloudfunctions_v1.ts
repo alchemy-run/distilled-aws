@@ -123,7 +123,7 @@ export type CloudFunctionDockerRegistryEnum =
   | "DOCKER_REGISTRY_UNSPECIFIED"
   | "CONTAINER_REGISTRY"
   | "ARTIFACT_REGISTRY";
-export const CloudFunctionDockerRegistryEnum = /*@__PURE__*/ S.String;
+export const CloudFunctionDockerRegistryEnum = S.String;
 
 export type CloudFunctionStatusEnum =
   | "CLOUD_FUNCTION_STATUS_UNSPECIFIED"
@@ -132,20 +132,19 @@ export type CloudFunctionStatusEnum =
   | "DEPLOY_IN_PROGRESS"
   | "DELETE_IN_PROGRESS"
   | "UNKNOWN";
-export const CloudFunctionStatusEnum = /*@__PURE__*/ S.String;
+export const CloudFunctionStatusEnum = S.String;
 
 export type CloudFunctionVpcConnectorEgressSettingsEnum =
   | "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED"
   | "PRIVATE_RANGES_ONLY"
   | "ALL_TRAFFIC";
-export const CloudFunctionVpcConnectorEgressSettingsEnum =
-  /*@__PURE__*/ S.String;
+export const CloudFunctionVpcConnectorEgressSettingsEnum = S.String;
 
 export type HttpsTriggerSecurityLevelEnum =
   | "SECURITY_LEVEL_UNSPECIFIED"
   | "SECURE_ALWAYS"
   | "SECURE_OPTIONAL";
-export const HttpsTriggerSecurityLevelEnum = /*@__PURE__*/ S.String;
+export const HttpsTriggerSecurityLevelEnum = S.String;
 
 /** Describes HttpsTrigger, could be used to connect web hooks to function. */
 export interface HttpsTrigger {
@@ -191,7 +190,7 @@ export type CloudFunctionIngressSettingsEnum =
   | "ALLOW_ALL"
   | "ALLOW_INTERNAL_ONLY"
   | "ALLOW_INTERNAL_AND_GCLB";
-export const CloudFunctionIngressSettingsEnum = /*@__PURE__*/ S.String;
+export const CloudFunctionIngressSettingsEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -701,7 +700,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

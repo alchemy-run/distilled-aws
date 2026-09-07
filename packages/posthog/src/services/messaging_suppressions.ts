@@ -39,7 +39,7 @@ export const GetMessagingSuppressionsSuppressionRequest =
 
 /** * `BOUNCE` - Bounce * `MANUAL` - Manual * `COMPLAINT` - Complaint */
 export type SuppressionSourceEnum = "BOUNCE" | "MANUAL" | "COMPLAINT";
-export const SuppressionSourceEnum = /*@__PURE__*/ S.String;
+export const SuppressionSourceEnum = S.String;
 
 export interface MessageSuppression {
   /** Server-assigned UUID for this suppression entry. */

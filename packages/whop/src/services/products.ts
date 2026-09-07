@@ -55,11 +55,11 @@ export type CreateProductRequestCustomCta =
   | "get_offer"
   | "apply_now"
   | "complete_order";
-export const CreateProductRequestCustomCta = /*@__PURE__*/ S.String;
+export const CreateProductRequestCustomCta = S.String;
 
 /** The enrollment status in the global affiliate program. */
 export type CreateProductRequestGlobalAffiliateStatus = "enabled" | "disabled";
-export const CreateProductRequestGlobalAffiliateStatus = /*@__PURE__*/ S.String;
+export const CreateProductRequestGlobalAffiliateStatus = S.String;
 
 /** Labels used to group products into collections. Stored lowercased and de-duplicated. Maximum 20 labels, 50 characters each. */
 export type CreateProductRequestLabelsList = Array<string>;
@@ -69,7 +69,7 @@ export const CreateProductRequestLabelsList = /*@__PURE__*/ S.Array(
 
 /** The enrollment status in the member affiliate program. */
 export type CreateProductRequestMemberAffiliateStatus = "enabled" | "disabled";
-export const CreateProductRequestMemberAffiliateStatus = /*@__PURE__*/ S.String;
+export const CreateProductRequestMemberAffiliateStatus = S.String;
 
 export interface CreateProductRequest {
   /** The unique identifier of the account to create this product for. */
@@ -163,7 +163,7 @@ export type ProductCustomCta =
   | "get_offer"
   | "apply_now"
   | "complete_order";
-export const ProductCustomCta = /*@__PURE__*/ S.String;
+export const ProductCustomCta = S.String;
 
 export interface Money {
   /** The amount in major units, as an exact decimal string — `"10.00"` is ten dollars. A string so no float rounds it in transit. */
@@ -186,7 +186,7 @@ export const Money = /*@__PURE__*/ S.suspend(() =>
 
 /** Billing model for this plan: `one_time` or `renewal`. */
 export type ProductPublicPlanPlanType = "renewal" | "one_time";
-export const ProductPublicPlanPlanType = /*@__PURE__*/ S.String;
+export const ProductPublicPlanPlanType = S.String;
 
 /** Where this plan can be seen. `visible` plans appear on the product page. */
 export type ProductPublicPlanVisibility =
@@ -194,7 +194,7 @@ export type ProductPublicPlanVisibility =
   | "hidden"
   | "archived"
   | "quick_link";
-export const ProductPublicPlanVisibility = /*@__PURE__*/ S.String;
+export const ProductPublicPlanVisibility = S.String;
 
 export interface ProductPublicPlan {
   /** Number of days between recurring charges, such as 30 for monthly or 365 for annual. `null` for one-time plans. */
@@ -257,7 +257,7 @@ export const ProductGalleryImagesList = /*@__PURE__*/ S.Array(
 
 /** Enrollment status in the global affiliate program. */
 export type ProductGlobalAffiliateStatus = "enabled" | "disabled";
-export const ProductGlobalAffiliateStatus = /*@__PURE__*/ S.String;
+export const ProductGlobalAffiliateStatus = S.String;
 
 export type ProductLabelsList = Array<string>;
 export const ProductLabelsList = /*@__PURE__*/ S.Array(
@@ -269,11 +269,11 @@ export type ProductMarketplaceStatus =
   | "not_available"
   | "pending_review"
   | "live_marketplace";
-export const ProductMarketplaceStatus = /*@__PURE__*/ S.String;
+export const ProductMarketplaceStatus = S.String;
 
 /** Enrollment status in the member affiliate program. */
 export type ProductMemberAffiliateStatus = "enabled" | "disabled";
-export const ProductMemberAffiliateStatus = /*@__PURE__*/ S.String;
+export const ProductMemberAffiliateStatus = S.String;
 
 export interface Product {
   /** Account that sells this product. */
@@ -401,7 +401,7 @@ export const GetProductRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProductRequest>;
 
 export type ListProductsRequestPlanTypesItem = "renewal" | "one_time";
-export const ListProductsRequestPlanTypesItem = /*@__PURE__*/ S.String;
+export const ListProductsRequestPlanTypesItem = S.String;
 
 export type ListProductsRequestPlanTypesList = Array<
   ListProductsRequestPlanTypesItem | (string & {})
@@ -426,7 +426,7 @@ export const ListProductsRequestLabelsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListProductsRequestLabelsList>;
 
 export type ListProductsRequestDirection = "asc" | "desc";
-export const ListProductsRequestDirection = /*@__PURE__*/ S.String;
+export const ListProductsRequestDirection = S.String;
 
 export interface ListProductsRequest {
   /** The unique identifier of the account to list products for. Omit to search the public marketplace. */

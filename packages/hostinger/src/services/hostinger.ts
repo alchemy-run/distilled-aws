@@ -137,7 +137,7 @@ export type VPSV1ActionActionResourceState =
   | "delayed"
   | "sent"
   | "created";
-export const VPSV1ActionActionResourceState = /*@__PURE__*/ S.String;
+export const VPSV1ActionActionResourceState = S.String;
 
 export interface VPSV1ActionActionResource {
   /** Action ID */
@@ -338,7 +338,7 @@ export const AssignReachAContactToATagV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** How the tag came about. `custom` covers the tags you create yourself, `form` covers the ones Reach creates for its forms. */
 export type ReachV1ContactsTagsTagResourceType = "form" | "custom";
-export const ReachV1ContactsTagsTagResourceType = /*@__PURE__*/ S.String;
+export const ReachV1ContactsTagsTagResourceType = S.String;
 
 export interface ReachV1ContactsTagsTagResource {
   uuid?: string;
@@ -425,8 +425,7 @@ export type BillingGetCatalogItemListV1RequestCategory =
   | "DOMAIN"
   | "VPS"
   | "EMAIL";
-export const BillingGetCatalogItemListV1RequestCategory =
-  /*@__PURE__*/ S.String;
+export const BillingGetCatalogItemListV1RequestCategory = S.String;
 
 export interface BillingGetCatalogItemListV1Request {
   /** Filter catalog items by category */
@@ -452,8 +451,7 @@ export type BillingV1CatalogCatalogItemPriceResourcePeriodUnit =
   | "month"
   | "year"
   | "none";
-export const BillingV1CatalogCatalogItemPriceResourcePeriodUnit =
-  /*@__PURE__*/ S.String;
+export const BillingV1CatalogCatalogItemPriceResourcePeriodUnit = S.String;
 
 export interface BillingV1CatalogCatalogItemPriceResource {
   /** Price item ID */
@@ -609,8 +607,7 @@ export type BillingV1SubscriptionSubscriptionResourceStatus =
   | "transferred"
   | "in_trial"
   | "future";
-export const BillingV1SubscriptionSubscriptionResourceStatus =
-  /*@__PURE__*/ S.String;
+export const BillingV1SubscriptionSubscriptionResourceStatus = S.String;
 
 export interface BillingV1SubscriptionSubscriptionResource {
   /** Subscription ID */
@@ -1045,7 +1042,7 @@ export type DomainsV1PortfolioClaimResourceStatus =
   | "deleted"
   | "suspended"
   | "failed";
-export const DomainsV1PortfolioClaimResourceStatus = /*@__PURE__*/ S.String;
+export const DomainsV1PortfolioClaimResourceStatus = S.String;
 
 export interface DomainsV1PortfolioClaimResource {
   /** Domain name */
@@ -1136,8 +1133,7 @@ export const CreateAgencyHostingANewWebsiteV1RequestSettings =
 export type CreateAgencyHostingANewWebsiteV1RequestType =
   | "horizons"
   | "node-static";
-export const CreateAgencyHostingANewWebsiteV1RequestType =
-  /*@__PURE__*/ S.String;
+export const CreateAgencyHostingANewWebsiteV1RequestType = S.String;
 
 export interface CreateAgencyHostingANewWebsiteV1RequestWordpressAdmin {
   user: string;
@@ -1483,7 +1479,7 @@ export type BillingV1OrderOrderResourceStatus =
   | "awaiting_payment"
   | "payment_initiated"
   | "fraud_refund";
-export const BillingV1OrderOrderResourceStatus = /*@__PURE__*/ S.String;
+export const BillingV1OrderOrderResourceStatus = S.String;
 
 export interface BillingV1OrderOrderBillingAddressResource {
   first_name?: string;
@@ -1551,8 +1547,7 @@ export const BillingV1OrderOrderResource = /*@__PURE__*/ S.suspend(() =>
 
 /** Redirect type */
 export type CreateDomainDomainForwardingV1RequestRedirectType = "301" | "302";
-export const CreateDomainDomainForwardingV1RequestRedirectType =
-  /*@__PURE__*/ S.String;
+export const CreateDomainDomainForwardingV1RequestRedirectType = S.String;
 
 export interface CreateDomainDomainForwardingV1Request {
   /** Domain name */
@@ -1579,8 +1574,7 @@ export const CreateDomainDomainForwardingV1Request = /*@__PURE__*/ S.suspend(
 
 /** Redirect type */
 export type DomainsV1ForwardingForwardingResourceRedirectType = "301" | "302";
-export const DomainsV1ForwardingForwardingResourceRedirectType =
-  /*@__PURE__*/ S.String;
+export const DomainsV1ForwardingForwardingResourceRedirectType = S.String;
 
 export interface DomainsV1ForwardingForwardingResource {
   /** Domain name */
@@ -1611,8 +1605,7 @@ export const DomainsV1ForwardingForwardingResource = /*@__PURE__*/ S.suspend(
 export type CreateDomainWHOISProfileV1RequestEntityType =
   | "individual"
   | "organization";
-export const CreateDomainWHOISProfileV1RequestEntityType =
-  /*@__PURE__*/ S.String;
+export const CreateDomainWHOISProfileV1RequestEntityType = S.String;
 
 export interface CreateDomainWHOISProfileV1Request {
   /** TLD of the domain (without leading dot) */
@@ -1642,7 +1635,7 @@ export const CreateDomainWHOISProfileV1Request = /*@__PURE__*/ S.suspend(() =>
 export type DomainsV1WHOISProfileResourceEntityType =
   | "individual"
   | "organization";
-export const DomainsV1WHOISProfileResourceEntityType = /*@__PURE__*/ S.String;
+export const DomainsV1WHOISProfileResourceEntityType = S.String;
 
 export interface DomainsV1WHOISProfileResource {
   /** WHOIS Profile ID */
@@ -1680,12 +1673,11 @@ export type CreateEcommerceADiscountV1RequestType =
   | "percentage"
   | "fixed"
   | "free_shipping";
-export const CreateEcommerceADiscountV1RequestType = /*@__PURE__*/ S.String;
+export const CreateEcommerceADiscountV1RequestType = S.String;
 
 /** Whether the discount applies to the cart total or to each eligible item. */
 export type CreateEcommerceADiscountV1RequestAllocation = "total" | "item";
-export const CreateEcommerceADiscountV1RequestAllocation =
-  /*@__PURE__*/ S.String;
+export const CreateEcommerceADiscountV1RequestAllocation = S.String;
 
 export interface CreateEcommerceADiscountV1Request {
   /** The ID of the store to create the discount for. */
@@ -1740,12 +1732,11 @@ export type EcommerceV1DiscountDiscountResourceType =
   | "percentage"
   | "fixed"
   | "free_shipping";
-export const EcommerceV1DiscountDiscountResourceType = /*@__PURE__*/ S.String;
+export const EcommerceV1DiscountDiscountResourceType = S.String;
 
 /** Whether the discount applies to the cart total or to each item, or null. */
 export type EcommerceV1DiscountDiscountResourceAllocation = "total" | "item";
-export const EcommerceV1DiscountDiscountResourceAllocation =
-  /*@__PURE__*/ S.String;
+export const EcommerceV1DiscountDiscountResourceAllocation = S.String;
 
 export interface EcommerceV1DiscountDiscountResource {
   /** The discount ID, required by every other discount endpoint. */
@@ -1989,7 +1980,7 @@ export const EcommerceV1VariantVariantResponseResource =
 
 /** Sales channel type. "custom" is a headless channel: it requires a name and takes an optional public url. "quick-link" is a one-page store whose handle is auto-generated; it supports neither name nor url. */
 export type CreateEcommerceASalesChannelV1RequestType = "custom" | "quick-link";
-export const CreateEcommerceASalesChannelV1RequestType = /*@__PURE__*/ S.String;
+export const CreateEcommerceASalesChannelV1RequestType = S.String;
 
 export interface CreateEcommerceASalesChannelV1Request {
   /** The ID of the store to create the sales channel for. */
@@ -2028,7 +2019,7 @@ export type EcommerceV1SalesChannelSalesChannelCreationResourceSalesChannelType 
   | "quick-link"
   | "wordpress";
 export const EcommerceV1SalesChannelSalesChannelCreationResourceSalesChannelType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EcommerceV1SalesChannelSalesChannelCreationResourceSalesChannel {
   /** Sales channel ID */
@@ -2116,8 +2107,7 @@ export const CreateEcommerceDigitalProductV1Request = /*@__PURE__*/ S.suspend(
 export type EcommerceV1ProductProductCreationResourceProductType =
   | "physical"
   | "digital";
-export const EcommerceV1ProductProductCreationResourceProductType =
-  /*@__PURE__*/ S.String;
+export const EcommerceV1ProductProductCreationResourceProductType = S.String;
 
 export interface EcommerceV1ProductProductCreationResourceProduct {
   /** Product ID. */
@@ -2195,8 +2185,7 @@ export const CreateEcommercePhysicalProductV1Request = /*@__PURE__*/ S.suspend(
 
 /** Sales channel type. Only "custom" channels can be created via the API. */
 export type CreateEcommerceStoreV1RequestSalesChannelType = "custom";
-export const CreateEcommerceStoreV1RequestSalesChannelType =
-  /*@__PURE__*/ S.String;
+export const CreateEcommerceStoreV1RequestSalesChannelType = S.String;
 
 export interface CreateEcommerceStoreV1RequestSalesChannel {
   /** Sales channel type. Only "custom" channels can be created via the API. */
@@ -2275,8 +2264,7 @@ export type EcommerceV1StoreStoreCreationResourceSalesChannelType =
   | "custom"
   | "quick-link"
   | "wordpress";
-export const EcommerceV1StoreStoreCreationResourceSalesChannelType =
-  /*@__PURE__*/ S.String;
+export const EcommerceV1StoreStoreCreationResourceSalesChannelType = S.String;
 
 export interface EcommerceV1StoreStoreCreationResourceSalesChannel {
   /** Sales channel ID */
@@ -2314,8 +2302,7 @@ export const EcommerceV1StoreStoreCreationResource = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<EcommerceV1StoreStoreCreationResource>;
 
 export type CreateHorizonWebsiteV1RequestMessageItemType = "text";
-export const CreateHorizonWebsiteV1RequestMessageItemType =
-  /*@__PURE__*/ S.String;
+export const CreateHorizonWebsiteV1RequestMessageItemType = S.String;
 
 export interface CreateHorizonWebsiteV1RequestMessageItem {
   type: CreateHorizonWebsiteV1RequestMessageItemType | (string & {});
@@ -2756,8 +2743,7 @@ export const MailV1ApiTokensApiTokenScopeResource = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<MailV1ApiTokensApiTokenScopeResource>;
 
 export type MailV1ApiTokensApiTokenCreatedResourceType = "api_token" | "oauth";
-export const MailV1ApiTokensApiTokenCreatedResourceType =
-  /*@__PURE__*/ S.String;
+export const MailV1ApiTokensApiTokenCreatedResourceType = S.String;
 
 export interface MailV1ApiTokensApiTokenCreatedResource {
   /** Unique API token identifier */
@@ -2990,7 +2976,7 @@ export const CreateMailMailboxV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** Mailbox status */
 export type MailV1MailboxesMailboxResourceStatus = "active" | "suspended";
-export const MailV1MailboxesMailboxResourceStatus = /*@__PURE__*/ S.String;
+export const MailV1MailboxesMailboxResourceStatus = S.String;
 
 export interface MailV1MailboxesMailboxProtocolsResource {
   is_imap_enabled?: boolean;
@@ -3087,7 +3073,7 @@ export const MailV1MailboxesMailboxResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MailV1MailboxesMailboxResource>;
 
 export type CreateMailWebhookV1RequestEventsItem = "message.received";
-export const CreateMailWebhookV1RequestEventsItem = /*@__PURE__*/ S.String;
+export const CreateMailWebhookV1RequestEventsItem = S.String;
 
 /** Events that trigger this webhook */
 export type CreateMailWebhookV1RequestEventsList = Array<
@@ -3099,7 +3085,7 @@ export const CreateMailWebhookV1RequestEventsList = /*@__PURE__*/ S.Array(
 
 /** Initial status of the webhook */
 export type CreateMailWebhookV1RequestStatus = "active" | "disabled" | "paused";
-export const CreateMailWebhookV1RequestStatus = /*@__PURE__*/ S.String;
+export const CreateMailWebhookV1RequestStatus = S.String;
 
 export interface CreateMailWebhookV1Request {
   /** Mailbox resource ID */
@@ -3149,8 +3135,7 @@ export const MailV1WebhooksWebhookMailboxResource = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<MailV1WebhooksWebhookMailboxResource>;
 
 export type MailV1WebhooksWebhookCreatedResourceEventsItem = "message.received";
-export const MailV1WebhooksWebhookCreatedResourceEventsItem =
-  /*@__PURE__*/ S.String;
+export const MailV1WebhooksWebhookCreatedResourceEventsItem = S.String;
 
 /** Events that trigger this webhook */
 export type MailV1WebhooksWebhookCreatedResourceEventsList =
@@ -3165,8 +3150,7 @@ export type MailV1WebhooksWebhookCreatedResourceStatus =
   | "active"
   | "disabled"
   | "paused";
-export const MailV1WebhooksWebhookCreatedResourceStatus =
-  /*@__PURE__*/ S.String;
+export const MailV1WebhooksWebhookCreatedResourceStatus = S.String;
 
 export interface MailV1WebhooksWebhookCreatedResource {
   /** Unique webhook identifier */
@@ -3212,7 +3196,7 @@ export type CreateReachAContactFieldV1RequestType =
   | "date"
   | "single_choice"
   | "multi_choice";
-export const CreateReachAContactFieldV1RequestType = /*@__PURE__*/ S.String;
+export const CreateReachAContactFieldV1RequestType = S.String;
 
 /** Required for single_choice and multi_choice, ignored for the scalar types. Labels must be unique regardless of casing. */
 export type CreateReachAContactFieldV1RequestOptionsList = Array<string>;
@@ -3253,8 +3237,7 @@ export type ReachV1ContactsFieldsContactFieldResourceType =
   | "date"
   | "single_choice"
   | "multi_choice";
-export const ReachV1ContactsFieldsContactFieldResourceType =
-  /*@__PURE__*/ S.String;
+export const ReachV1ContactsFieldsContactFieldResourceType = S.String;
 
 export interface ReachV1ContactsFieldsContactFieldOptionResource {
   uuid?: string;
@@ -3332,7 +3315,7 @@ export type CreateReachAProfileSegmentV1RequestConditionsItemOperator =
   | "unsubscribed"
   | "not_unsubscribed";
 export const CreateReachAProfileSegmentV1RequestConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateReachAProfileSegmentV1RequestConditionsItem {
   /** A built-in contact attribute, or `cf:{fieldUuid}` to target a custom contact field. Custom fields are addressed by field UUID; their slug is not accepted. Built-in attributes: `email`, `note`, `domain`, `source`, `opt_in_method`, `subscription_status`, `subscribed_at`, `unsubscribed_at`, `created_at`, `tag`, `campaigns`, `processed`, `opened`, `clicked`, `delivered`, `bounced`, `soft_bounced`, `dropped`. Which operators are accepted depends on the attribute. */
@@ -3364,7 +3347,7 @@ export const CreateReachAProfileSegmentV1RequestConditionsList =
 
 /** How to combine multiple conditions */
 export type CreateReachAProfileSegmentV1RequestLogic = "AND" | "OR";
-export const CreateReachAProfileSegmentV1RequestLogic = /*@__PURE__*/ S.String;
+export const CreateReachAProfileSegmentV1RequestLogic = S.String;
 
 export interface CreateReachAProfileSegmentV1Request {
   /** Profile uuid parameter */
@@ -3471,10 +3454,10 @@ export type CreateVPSFirewallRuleV1RequestProtocol =
   | "HTTPS"
   | "MySQL"
   | "PostgreSQL";
-export const CreateVPSFirewallRuleV1RequestProtocol = /*@__PURE__*/ S.String;
+export const CreateVPSFirewallRuleV1RequestProtocol = S.String;
 
 export type CreateVPSFirewallRuleV1RequestSource = "any" | "custom";
-export const CreateVPSFirewallRuleV1RequestSource = /*@__PURE__*/ S.String;
+export const CreateVPSFirewallRuleV1RequestSource = S.String;
 
 export interface CreateVPSFirewallRuleV1Request {
   /** Firewall ID */
@@ -3506,7 +3489,7 @@ export const CreateVPSFirewallRuleV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** Firewall rule action */
 export type VPSV1FirewallFirewallRuleResourceAction = "accept" | "drop";
-export const VPSV1FirewallFirewallRuleResourceAction = /*@__PURE__*/ S.String;
+export const VPSV1FirewallFirewallRuleResourceAction = S.String;
 
 /** Firewall rule protocol */
 export type VPSV1FirewallFirewallRuleResourceProtocol =
@@ -3523,7 +3506,7 @@ export type VPSV1FirewallFirewallRuleResourceProtocol =
   | "HTTPS"
   | "MySQL"
   | "PostgreSQL";
-export const VPSV1FirewallFirewallRuleResourceProtocol = /*@__PURE__*/ S.String;
+export const VPSV1FirewallFirewallRuleResourceProtocol = S.String;
 
 export interface VPSV1FirewallFirewallRuleResource {
   /** Firewall rule ID */
@@ -3858,8 +3841,7 @@ export type DeleteDNSDNSRecordsV1RequestFiltersItemType =
   | "SOA"
   | "SRV"
   | "CAA";
-export const DeleteDNSDNSRecordsV1RequestFiltersItemType =
-  /*@__PURE__*/ S.String;
+export const DeleteDNSDNSRecordsV1RequestFiltersItemType = S.String;
 
 export interface DeleteDNSDNSRecordsV1RequestFiltersItem {
   /** Name of the record */
@@ -4814,7 +4796,7 @@ export type DomainsChangeWHOISProfileForDomainV1RequestChangeForItem =
   | "billing"
   | "tech";
 export const DomainsChangeWHOISProfileForDomainV1RequestChangeForItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Contact roles to repoint to the new WHOIS profile */
 export type DomainsChangeWHOISProfileForDomainV1RequestChangeForList = Array<
@@ -4860,7 +4842,7 @@ export type DomainsV1DomainDomainResourceType =
   | "free_domain"
   | "domain_transfer"
   | "free_domain_transfer";
-export const DomainsV1DomainDomainResourceType = /*@__PURE__*/ S.String;
+export const DomainsV1DomainDomainResourceType = S.String;
 
 export type DomainsV1DomainDomainResourceStatus =
   | "active"
@@ -4871,7 +4853,7 @@ export type DomainsV1DomainDomainResourceStatus =
   | "deleted"
   | "suspended"
   | "failed";
-export const DomainsV1DomainDomainResourceStatus = /*@__PURE__*/ S.String;
+export const DomainsV1DomainDomainResourceStatus = S.String;
 
 export interface DomainsV1DomainDomainResource {
   /** Domain ID */
@@ -4929,7 +4911,7 @@ export type DomainsV1MoveMoveResourceStatus =
   | "initiated"
   | "activating"
   | "completed";
-export const DomainsV1MoveMoveResourceStatus = /*@__PURE__*/ S.String;
+export const DomainsV1MoveMoveResourceStatus = S.String;
 
 export interface DomainsV1MoveMoveResource {
   /** Domain name */
@@ -5630,8 +5612,7 @@ export const GetAgencyHostingWebsiteDetailsV1Request = /*@__PURE__*/ S.suspend(
 export type AgencyHostingV1WebsitesWebsiteResourceState =
   | "active"
   | "suspended";
-export const AgencyHostingV1WebsitesWebsiteResourceState =
-  /*@__PURE__*/ S.String;
+export const AgencyHostingV1WebsitesWebsiteResourceState = S.String;
 
 export type AgencyHostingV1WebsitesWebsiteDomainDetailsResourceNameserversList =
   Array<string>;
@@ -6061,8 +6042,7 @@ export const GetAgencyHostingWebsiteSetupStatusV1Request =
 export type AgencyHostingV1SetupsWebsiteSetupStatusResourceStatus =
   | "running"
   | "completed";
-export const AgencyHostingV1SetupsWebsiteSetupStatusResourceStatus =
-  /*@__PURE__*/ S.String;
+export const AgencyHostingV1SetupsWebsiteSetupStatusResourceStatus = S.String;
 
 export interface AgencyHostingV1SetupsWebsiteSetupStatusResource {
   /** UID of the website created by the setup, available once provisioning completes */
@@ -6168,7 +6148,7 @@ export type DNSV1ZoneRecordResourceType =
   | "SOA"
   | "SRV"
   | "CAA";
-export const DNSV1ZoneRecordResourceType = /*@__PURE__*/ S.String;
+export const DNSV1ZoneRecordResourceType = S.String;
 
 export interface DNSV1ZoneRecordResource {
   /** Name of the record (use `@` for wildcard name) */
@@ -6304,8 +6284,7 @@ export type DomainsV1DomainDomainExtendedResourceStatus =
   | "deleted"
   | "suspended"
   | "failed";
-export const DomainsV1DomainDomainExtendedResourceStatus =
-  /*@__PURE__*/ S.String;
+export const DomainsV1DomainDomainExtendedResourceStatus = S.String;
 
 /** Name servers */
 export interface DomainsV1DomainDomainExtendedResourceNameServers {
@@ -6499,7 +6478,7 @@ export type DomainsV1IRTPVerificationResourceStatus =
   | "pending"
   | "completed"
   | "canceled";
-export const DomainsV1IRTPVerificationResourceStatus = /*@__PURE__*/ S.String;
+export const DomainsV1IRTPVerificationResourceStatus = S.String;
 
 export interface DomainsV1IRTPVerificationResource {
   /** Domain name */
@@ -7068,7 +7047,7 @@ export const HorizonsV1WebsitesWebsiteUrlResource = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<HorizonsV1WebsitesWebsiteUrlResource>;
 
 export type GetHostingAIOptionStatusV1RequestOption = "llmstxt" | "web2agent";
-export const GetHostingAIOptionStatusV1RequestOption = /*@__PURE__*/ S.String;
+export const GetHostingAIOptionStatusV1RequestOption = S.String;
 
 export interface GetHostingAIOptionStatusV1Request {
   username: string;
@@ -7247,8 +7226,7 @@ export const GetHostingMaintenanceStatusV1Request = /*@__PURE__*/ S.suspend(
 export type WordPressV1MaintenanceMaintenanceStatusResourceStatus =
   | "enabled"
   | "disabled";
-export const WordPressV1MaintenanceMaintenanceStatusResourceStatus =
-  /*@__PURE__*/ S.String;
+export const WordPressV1MaintenanceMaintenanceStatusResourceStatus = S.String;
 
 export interface WordPressV1MaintenanceMaintenanceStatusResource {
   /** Current maintenance mode status for the WordPress installation */
@@ -7288,8 +7266,7 @@ export const GetHostingMemcachedObjectCacheStatusV1Request =
 export type WordPressV1MemcachedMemcachedStatusResourceStatus =
   | "active"
   | "inactive";
-export const WordPressV1MemcachedMemcachedStatusResourceStatus =
-  /*@__PURE__*/ S.String;
+export const WordPressV1MemcachedMemcachedStatusResourceStatus = S.String;
 
 export interface WordPressV1MemcachedMemcachedStatusResource {
   /** Current Memcached object cache status for the WordPress installation */
@@ -7769,7 +7746,7 @@ export const GetMailWebhookV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMailWebhookV1Request>;
 
 export type MailV1WebhooksWebhookResourceEventsItem = "message.received";
-export const MailV1WebhooksWebhookResourceEventsItem = /*@__PURE__*/ S.String;
+export const MailV1WebhooksWebhookResourceEventsItem = S.String;
 
 /** Events that trigger this webhook */
 export type MailV1WebhooksWebhookResourceEventsList =
@@ -7783,7 +7760,7 @@ export type MailV1WebhooksWebhookResourceStatus =
   | "active"
   | "disabled"
   | "paused";
-export const MailV1WebhooksWebhookResourceStatus = /*@__PURE__*/ S.String;
+export const MailV1WebhooksWebhookResourceStatus = S.String;
 
 export interface MailV1WebhooksWebhookResource {
   /** Unique webhook identifier */
@@ -7844,8 +7821,7 @@ export type ReachV1AutomationsAutomationResourceStatus =
   | "active"
   | "paused"
   | "draft";
-export const ReachV1AutomationsAutomationResourceStatus =
-  /*@__PURE__*/ S.String;
+export const ReachV1AutomationsAutomationResourceStatus = S.String;
 
 /** What kind of workflow this is. `custom` automations are the ones built from scratch. */
 export type ReachV1AutomationsAutomationResourceType =
@@ -7861,7 +7837,7 @@ export type ReachV1AutomationsAutomationResourceType =
   | "re_engagement_non_clickers"
   | "form_submitted"
   | "custom";
-export const ReachV1AutomationsAutomationResourceType = /*@__PURE__*/ S.String;
+export const ReachV1AutomationsAutomationResourceType = S.String;
 
 /** Counts of contacts moving through the automation. These are not email engagement metrics. Automations expose no sent, open or click counters - use the campaign statistics endpoint for those. */
 export interface ReachV1AutomationsAutomationEventsResource {
@@ -7943,15 +7919,13 @@ export type ReachV1CampaignsCampaignDetailsResourceStatus =
   | "sending"
   | "publish"
   | "failed";
-export const ReachV1CampaignsCampaignDetailsResourceStatus =
-  /*@__PURE__*/ S.String;
+export const ReachV1CampaignsCampaignDetailsResourceStatus = S.String;
 
 export type ReachV1CampaignsCampaignDetailsResourceType =
   | "campaign"
   | "automation"
   | "double_opt_in";
-export const ReachV1CampaignsCampaignDetailsResourceType =
-  /*@__PURE__*/ S.String;
+export const ReachV1CampaignsCampaignDetailsResourceType = S.String;
 
 /** Delivery progress. While the campaign is `sending`, `total_sent` climbs towards the estimate. */
 export interface ReachV1CampaignsCampaignDeliveryResource {
@@ -8130,8 +8104,7 @@ export type ReachV1ProfilesDomainsSendingDomainResourceStatus =
   | "inactive"
   | "pending"
   | "blocked";
-export const ReachV1ProfilesDomainsSendingDomainResourceStatus =
-  /*@__PURE__*/ S.String;
+export const ReachV1ProfilesDomainsSendingDomainResourceStatus = S.String;
 
 /** A sender address on the connected domain that is no longer allowed to send. */
 export interface ReachV1ProfilesDomainsSuspendedSenderEmailResource {
@@ -8215,8 +8188,7 @@ export type ReachV1ContactsContactDetailsResourceSubscriptionStatus =
   | "unsubscribed"
   | "confirmed"
   | "pending";
-export const ReachV1ContactsContactDetailsResourceSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+export const ReachV1ContactsContactDetailsResourceSubscriptionStatus = S.String;
 
 export type ReachV1ContactsContactDetailsResourceSource =
   | "sync"
@@ -8226,8 +8198,7 @@ export type ReachV1ContactsContactDetailsResourceSource =
   | "form"
   | "checkout"
   | "horizons";
-export const ReachV1ContactsContactDetailsResourceSource =
-  /*@__PURE__*/ S.String;
+export const ReachV1ContactsContactDetailsResourceSource = S.String;
 
 export type ReachV1ContactsContactDetailsResourceTagsList =
   Array<ReachV1ContactsTagsTagResource>;
@@ -8242,8 +8213,7 @@ export type ReachV1ContactsFieldsContactFieldValueResourceType =
   | "date"
   | "single_choice"
   | "multi_choice";
-export const ReachV1ContactsFieldsContactFieldValueResourceType =
-  /*@__PURE__*/ S.String;
+export const ReachV1ContactsFieldsContactFieldValueResourceType = S.String;
 
 /** Chosen options for the choice field types, empty for the scalar types */
 export type ReachV1ContactsFieldsContactFieldValueResourceSelectedOptionUuidsList =
@@ -8368,10 +8338,10 @@ export type ReachV1FormsFormDetailsResourceStatus =
   | "active"
   | "paused"
   | "draft";
-export const ReachV1FormsFormDetailsResourceStatus = /*@__PURE__*/ S.String;
+export const ReachV1FormsFormDetailsResourceStatus = S.String;
 
 export type ReachV1FormsFormDetailsResourceType = "form";
-export const ReachV1FormsFormDetailsResourceType = /*@__PURE__*/ S.String;
+export const ReachV1FormsFormDetailsResourceType = S.String;
 
 /** The rendered form template. There is no ready-made embed snippet - either serve the HTML behind `url` or build your own embed around the form uuid. All fields stay null until the template has been generated. */
 export interface ReachV1FormsFormTemplateDetailsResource {
@@ -8398,7 +8368,7 @@ export type ReachV1FormsFormTagResourceType =
   | "custom"
   | "import"
   | "system";
-export const ReachV1FormsFormTagResourceType = /*@__PURE__*/ S.String;
+export const ReachV1FormsFormTagResourceType = S.String;
 
 /** A tag applied to every contact this form captures. */
 export interface ReachV1FormsFormTagResource {
@@ -9106,7 +9076,7 @@ export type VPSV1DockerManagerContainerResourceState =
   | "paused"
   | "dead"
   | "stopping";
-export const VPSV1DockerManagerContainerResourceState = /*@__PURE__*/ S.String;
+export const VPSV1DockerManagerContainerResourceState = S.String;
 
 /** Container health status */
 export type VPSV1DockerManagerContainerResourceHealth =
@@ -9114,7 +9084,7 @@ export type VPSV1DockerManagerContainerResourceHealth =
   | "healthy"
   | "unhealthy"
   | "";
-export const VPSV1DockerManagerContainerResourceHealth = /*@__PURE__*/ S.String;
+export const VPSV1DockerManagerContainerResourceHealth = S.String;
 
 /** Port mapping type - published (accessible from host), exposed (only internal), or range variants */
 export type VPSV1DockerManagerContainerPortResourceType =
@@ -9122,13 +9092,11 @@ export type VPSV1DockerManagerContainerPortResourceType =
   | "published_range"
   | "exposed"
   | "exposed_range";
-export const VPSV1DockerManagerContainerPortResourceType =
-  /*@__PURE__*/ S.String;
+export const VPSV1DockerManagerContainerPortResourceType = S.String;
 
 /** Network protocol used for communication */
 export type VPSV1DockerManagerContainerPortResourceProtocol = "tcp" | "udp";
-export const VPSV1DockerManagerContainerPortResourceProtocol =
-  /*@__PURE__*/ S.String;
+export const VPSV1DockerManagerContainerPortResourceProtocol = S.String;
 
 export interface VPSV1DockerManagerContainerPortResource {
   /** Port mapping type - published (accessible from host), exposed (only internal), or range variants */
@@ -9562,14 +9530,12 @@ export type VPSV1VirtualMachineVirtualMachineResourceState =
   | "restoring"
   | "recovery"
   | "stopping_recovery";
-export const VPSV1VirtualMachineVirtualMachineResourceState =
-  /*@__PURE__*/ S.String;
+export const VPSV1VirtualMachineVirtualMachineResourceState = S.String;
 
 export type VPSV1VirtualMachineVirtualMachineResourceActionsLock =
   | "unlocked"
   | "locked";
-export const VPSV1VirtualMachineVirtualMachineResourceActionsLock =
-  /*@__PURE__*/ S.String;
+export const VPSV1VirtualMachineVirtualMachineResourceActionsLock = S.String;
 
 export interface VPSV1IPAddressIPAddressResource {
   /** IP address ID */
@@ -9833,16 +9799,14 @@ export type HostingV1NodeJsBuildSettingsResourceAppType =
   | "react-router"
   | "nitro"
   | "other";
-export const HostingV1NodeJsBuildSettingsResourceAppType =
-  /*@__PURE__*/ S.String;
+export const HostingV1NodeJsBuildSettingsResourceAppType = S.String;
 
 /** Package manager */
 export type HostingV1NodeJsBuildSettingsResourcePackageManager =
   | "npm"
   | "yarn"
   | "pnpm";
-export const HostingV1NodeJsBuildSettingsResourcePackageManager =
-  /*@__PURE__*/ S.String;
+export const HostingV1NodeJsBuildSettingsResourcePackageManager = S.String;
 
 /** The scripts configured in the package.json file */
 export type HostingV1NodeJsBuildSettingsResourceAvailableScriptsList =
@@ -9895,7 +9859,7 @@ export type HostingListWebsiteFilesAndDirectoriesV1RequestFileTypesItem =
   | "symlink"
   | "other";
 export const HostingListWebsiteFilesAndDirectoriesV1RequestFileTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type HostingListWebsiteFilesAndDirectoriesV1RequestFileTypesList = Array<
   HostingListWebsiteFilesAndDirectoriesV1RequestFileTypesItem | (string & {})
@@ -9951,7 +9915,7 @@ export type HostingV1FilesFilesResourceItemsItemType =
   | "directory"
   | "symlink"
   | "other";
-export const HostingV1FilesFilesResourceItemsItemType = /*@__PURE__*/ S.String;
+export const HostingV1FilesFilesResourceItemsItemType = S.String;
 
 export interface HostingV1FilesFilesResourceItemsItem {
   /** Entry name. */
@@ -10092,7 +10056,7 @@ export type InstallHostingWordPressThemeV1RequestFont =
   | "creative"
   | "dynamic"
   | "default";
-export const InstallHostingWordPressThemeV1RequestFont = /*@__PURE__*/ S.String;
+export const InstallHostingWordPressThemeV1RequestFont = S.String;
 
 export interface InstallHostingWordPressThemeV1Request {
   username: string;
@@ -10132,8 +10096,7 @@ export type InstallHostingWordPressV1RequestAutoUpdates =
   | "all"
   | "none"
   | "minor";
-export const InstallHostingWordPressV1RequestAutoUpdates =
-  /*@__PURE__*/ S.String;
+export const InstallHostingWordPressV1RequestAutoUpdates = S.String;
 
 /** WordPress admin credentials */
 export interface InstallHostingWordPressV1RequestCredentials {
@@ -10242,7 +10205,7 @@ export type ListAgencyHostingAgencyPlanOrderDiskUsageMetricsV1RequestTimeFrameDa
   | 14
   | 30;
 export const ListAgencyHostingAgencyPlanOrderDiskUsageMetricsV1RequestTimeFrameDays =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface ListAgencyHostingAgencyPlanOrderDiskUsageMetricsV1Request {
   /** Agency Plan order ID */
@@ -10344,8 +10307,7 @@ export type ListAgencyHostingAgencyPlanWebsitesV1RequestStatesItem =
   | "suspended"
   | "deleting"
   | "deleted";
-export const ListAgencyHostingAgencyPlanWebsitesV1RequestStatesItem =
-  /*@__PURE__*/ S.String;
+export const ListAgencyHostingAgencyPlanWebsitesV1RequestStatesItem = S.String;
 
 export type ListAgencyHostingAgencyPlanWebsitesV1RequestStatesList = Array<
   ListAgencyHostingAgencyPlanWebsitesV1RequestStatesItem | (string & {})
@@ -10362,7 +10324,7 @@ export type ListAgencyHostingAgencyPlanWebsitesV1RequestWebsiteTypesItem =
   | "nodejs"
   | "other";
 export const ListAgencyHostingAgencyPlanWebsitesV1RequestWebsiteTypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListAgencyHostingAgencyPlanWebsitesV1RequestWebsiteTypesList =
   Array<
@@ -10422,8 +10384,7 @@ export type AgencyHostingV1WebsitesWebsiteListItemResourcePlatform =
   | "h5g"
   | "builder"
   | "u4s";
-export const AgencyHostingV1WebsitesWebsiteListItemResourcePlatform =
-  /*@__PURE__*/ S.String;
+export const AgencyHostingV1WebsitesWebsiteListItemResourcePlatform = S.String;
 
 /** Website plan details */
 export interface AgencyHostingV1WebsitesPlanResource {
@@ -10449,15 +10410,13 @@ export type AgencyHostingV1WebsitesH5gWebsiteDetailsResourceType =
   | "nodejs"
   | "u4s"
   | "other";
-export const AgencyHostingV1WebsitesH5gWebsiteDetailsResourceType =
-  /*@__PURE__*/ S.String;
+export const AgencyHostingV1WebsitesH5gWebsiteDetailsResourceType = S.String;
 
 /** Website state */
 export type AgencyHostingV1WebsitesH5gWebsiteDetailsResourceState =
   | "active"
   | "suspended";
-export const AgencyHostingV1WebsitesH5gWebsiteDetailsResourceState =
-  /*@__PURE__*/ S.String;
+export const AgencyHostingV1WebsitesH5gWebsiteDetailsResourceState = S.String;
 
 /** Website domains */
 export type AgencyHostingV1WebsitesH5gWebsiteDetailsResourceDomainsList =
@@ -10558,8 +10517,7 @@ export const AgencyHostingV1WebsitesBuilderWebsiteDetailsResource =
 export type AgencyHostingV1WebsitesU4sWebsiteDetailsResourceType =
   | "u4s"
   | "horizons";
-export const AgencyHostingV1WebsitesU4sWebsiteDetailsResourceType =
-  /*@__PURE__*/ S.String;
+export const AgencyHostingV1WebsitesU4sWebsiteDetailsResourceType = S.String;
 
 /** Application domains */
 export type AgencyHostingV1WebsitesU4sWebsiteDetailsResourceDomainsList =
@@ -10614,7 +10572,7 @@ export type AgencyHostingV1WebsitesWebsiteListItemResourceDetails =
   | AgencyHostingV1WebsitesBuilderWebsiteDetailsResource
   | AgencyHostingV1WebsitesU4sWebsiteDetailsResource;
 export const AgencyHostingV1WebsitesWebsiteListItemResourceDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AgencyHostingV1WebsitesWebsiteListItemResourceDetails>;
+  S.Unknown as any as S.Schema<AgencyHostingV1WebsitesWebsiteListItemResourceDetails>;
 
 /** Website item. The `details` shape differs per platform — see the `platform` field. */
 export interface AgencyHostingV1WebsitesWebsiteListItemResource {
@@ -10943,7 +10901,7 @@ export type ListAgencyHostingOrderResourceUsageMetricsV1RequestTimeFrameHours =
   | 336
   | 720;
 export const ListAgencyHostingOrderResourceUsageMetricsV1RequestTimeFrameHours =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export interface ListAgencyHostingOrderResourceUsageMetricsV1Request {
   /** Agency Plan order ID */
@@ -11200,7 +11158,7 @@ export type AgencyHostingV1PhpExtensionResourceState =
   | "enabled"
   | "disabled"
   | "built-in";
-export const AgencyHostingV1PhpExtensionResourceState = /*@__PURE__*/ S.String;
+export const AgencyHostingV1PhpExtensionResourceState = S.String;
 
 export interface AgencyHostingV1PhpExtensionResource {
   /** PHP extension name. */
@@ -11264,7 +11222,7 @@ export const AgencyHostingV1PhpOptionResourceAllowedValuesList =
 
 /** Whether the option takes a single value or a list of values. */
 export type AgencyHostingV1PhpOptionResourceType = "value" | "list";
-export const AgencyHostingV1PhpOptionResourceType = /*@__PURE__*/ S.String;
+export const AgencyHostingV1PhpOptionResourceType = S.String;
 
 export interface AgencyHostingV1PhpOptionResource {
   /** php.ini directive name. */
@@ -11429,8 +11387,7 @@ export type AgencyHostingV1WebsitesWebsiteProcessResourceStatus =
   | "running"
   | "completed"
   | "failed";
-export const AgencyHostingV1WebsitesWebsiteProcessResourceStatus =
-  /*@__PURE__*/ S.String;
+export const AgencyHostingV1WebsitesWebsiteProcessResourceStatus = S.String;
 
 export interface AgencyHostingV1WebsitesWebsiteProcessResource {
   /** Process ID */
@@ -11469,7 +11426,7 @@ export const ListAgencyHostingWebsiteProcessesV1Response =
   }) as any as S.Schema<ListAgencyHostingWebsiteProcessesV1Response>;
 
 export type ListEcommerceDiscountsV1RequestIsDisabled = "true" | "false";
-export const ListEcommerceDiscountsV1RequestIsDisabled = /*@__PURE__*/ S.String;
+export const ListEcommerceDiscountsV1RequestIsDisabled = S.String;
 
 export interface ListEcommerceDiscountsV1Request {
   /** The ID of the store to list discounts for. */
@@ -11532,7 +11489,7 @@ export type ListEcommerceProductsV1RequestStatusItem =
   | "published"
   | "rejected"
   | "archived";
-export const ListEcommerceProductsV1RequestStatusItem = /*@__PURE__*/ S.String;
+export const ListEcommerceProductsV1RequestStatusItem = S.String;
 
 export type ListEcommerceProductsV1RequestStatusList = Array<
   ListEcommerceProductsV1RequestStatusItem | (string & {})
@@ -11542,7 +11499,7 @@ export const ListEcommerceProductsV1RequestStatusList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListEcommerceProductsV1RequestStatusList>;
 
 export type ListEcommerceProductsV1RequestIncludeItem = "variants" | "media";
-export const ListEcommerceProductsV1RequestIncludeItem = /*@__PURE__*/ S.String;
+export const ListEcommerceProductsV1RequestIncludeItem = S.String;
 
 export type ListEcommerceProductsV1RequestIncludeList = Array<
   ListEcommerceProductsV1RequestIncludeItem | (string & {})
@@ -11597,7 +11554,7 @@ export type EcommerceV1ProductProductResourceStatus =
   | "published"
   | "rejected"
   | "archived";
-export const EcommerceV1ProductProductResourceStatus = /*@__PURE__*/ S.String;
+export const EcommerceV1ProductProductResourceStatus = S.String;
 
 /** Effective price bounds across the product's variants. */
 export interface EcommerceV1ProductProductResourcePriceRange {
@@ -11856,7 +11813,7 @@ export type EcommerceV1SalesChannelSalesChannelListResourceSalesChannelsItemType
   | "quick-link"
   | "wordpress";
 export const EcommerceV1SalesChannelSalesChannelListResourceSalesChannelsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EcommerceV1SalesChannelSalesChannelListResourceSalesChannelsItem {
   /** Sales channel ID */
@@ -11921,8 +11878,7 @@ export type ListEcommerceStoreOrdersV1RequestStatusItem =
   | "archived"
   | "canceled"
   | "requires_action";
-export const ListEcommerceStoreOrdersV1RequestStatusItem =
-  /*@__PURE__*/ S.String;
+export const ListEcommerceStoreOrdersV1RequestStatusItem = S.String;
 
 export type ListEcommerceStoreOrdersV1RequestStatusList = Array<
   ListEcommerceStoreOrdersV1RequestStatusItem | (string & {})
@@ -11941,8 +11897,7 @@ export type ListEcommerceStoreOrdersV1RequestPaymentStatusItem =
   | "canceled"
   | "requires_action"
   | "not_required";
-export const ListEcommerceStoreOrdersV1RequestPaymentStatusItem =
-  /*@__PURE__*/ S.String;
+export const ListEcommerceStoreOrdersV1RequestPaymentStatusItem = S.String;
 
 export type ListEcommerceStoreOrdersV1RequestPaymentStatusList = Array<
   ListEcommerceStoreOrdersV1RequestPaymentStatusItem | (string & {})
@@ -11962,8 +11917,7 @@ export type ListEcommerceStoreOrdersV1RequestFulfillmentStatusItem =
   | "returned"
   | "canceled"
   | "requires_action";
-export const ListEcommerceStoreOrdersV1RequestFulfillmentStatusItem =
-  /*@__PURE__*/ S.String;
+export const ListEcommerceStoreOrdersV1RequestFulfillmentStatusItem = S.String;
 
 export type ListEcommerceStoreOrdersV1RequestFulfillmentStatusList = Array<
   ListEcommerceStoreOrdersV1RequestFulfillmentStatusItem | (string & {})
@@ -12073,7 +12027,7 @@ export type EcommerceV1PaymentProviderPaymentProviderListResourceDataConnectedIt
   | "new"
   | "invalid";
 export const EcommerceV1PaymentProviderPaymentProviderListResourceDataConnectedItemStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EcommerceV1PaymentProviderPaymentProviderListResourceDataConnectedItem {
   /** The store payment provider row ID. */
@@ -12396,8 +12350,7 @@ export const ListHostingAvailableWordPressCoreUpdatesV1Request =
 
 /** Update type */
 export type WordPressV1InstallationsUpdateResourceType = "major" | "minor";
-export const WordPressV1InstallationsUpdateResourceType =
-  /*@__PURE__*/ S.String;
+export const WordPressV1InstallationsUpdateResourceType = S.String;
 
 export interface WordPressV1InstallationsUpdateResource {
   /** Available WordPress core version */
@@ -12572,8 +12525,7 @@ export const ListHostingDatabaseRemoteConnectionsV1Response =
   }) as any as S.Schema<ListHostingDatabaseRemoteConnectionsV1Response>;
 
 export type ListHostingInstalledWordPressPluginsV1RequestCategory = "cache";
-export const ListHostingInstalledWordPressPluginsV1RequestCategory =
-  /*@__PURE__*/ S.String;
+export const ListHostingInstalledWordPressPluginsV1RequestCategory = S.String;
 
 export interface ListHostingInstalledWordPressPluginsV1Request {
   username: string;
@@ -12607,8 +12559,7 @@ export const ListHostingInstalledWordPressPluginsV1Request =
 export type WordPressV1PluginsInstalledPluginResourceStatus =
   | "active"
   | "inactive";
-export const WordPressV1PluginsInstalledPluginResourceStatus =
-  /*@__PURE__*/ S.String;
+export const WordPressV1PluginsInstalledPluginResourceStatus = S.String;
 
 /** Known vulnerabilities affecting the installed version */
 export type WordPressV1PluginsInstalledPluginResourceVulnerabilitiesList =
@@ -12690,8 +12641,7 @@ export const ListHostingInstalledWordPressThemesV1Request =
 export type WordPressV1ThemesInstalledThemeResourceStatus =
   | "active"
   | "inactive";
-export const WordPressV1ThemesInstalledThemeResourceStatus =
-  /*@__PURE__*/ S.String;
+export const WordPressV1ThemesInstalledThemeResourceStatus = S.String;
 
 /** Known vulnerabilities affecting the installed version */
 export type WordPressV1ThemesInstalledThemeResourceVulnerabilitiesList =
@@ -12752,8 +12702,7 @@ export type ListHostingNodeJSBuildsV1RequestStatesItem =
   | "running"
   | "completed"
   | "failed";
-export const ListHostingNodeJSBuildsV1RequestStatesItem =
-  /*@__PURE__*/ S.String;
+export const ListHostingNodeJSBuildsV1RequestStatesItem = S.String;
 
 export type ListHostingNodeJSBuildsV1RequestStatesList = Array<
   ListHostingNodeJSBuildsV1RequestStatesItem | (string & {})
@@ -12799,7 +12748,7 @@ export type HostingV1NodeJsBuildResourceState =
   | "running"
   | "completed"
   | "failed";
-export const HostingV1NodeJsBuildResourceState = /*@__PURE__*/ S.String;
+export const HostingV1NodeJsBuildResourceState = S.String;
 
 /** Node.js application type */
 export type HostingV1NodeJsBuildOptionsResourceAppType =
@@ -12822,21 +12771,18 @@ export type HostingV1NodeJsBuildOptionsResourceAppType =
   | "react-router"
   | "nitro"
   | "other";
-export const HostingV1NodeJsBuildOptionsResourceAppType =
-  /*@__PURE__*/ S.String;
+export const HostingV1NodeJsBuildOptionsResourceAppType = S.String;
 
 /** Package manager */
 export type HostingV1NodeJsBuildOptionsResourcePackageManager =
   | "npm"
   | "yarn"
   | "pnpm";
-export const HostingV1NodeJsBuildOptionsResourcePackageManager =
-  /*@__PURE__*/ S.String;
+export const HostingV1NodeJsBuildOptionsResourcePackageManager = S.String;
 
 /** Source type for the build */
 export type HostingV1NodeJsBuildOptionsResourceSourceType = "archive";
-export const HostingV1NodeJsBuildOptionsResourceSourceType =
-  /*@__PURE__*/ S.String;
+export const HostingV1NodeJsBuildOptionsResourceSourceType = S.String;
 
 export interface HostingV1NodeJsSourceOptionsResource {
   /** Present if sourceType is "archive" */
@@ -12991,8 +12937,7 @@ export type ListHostingNodeJsVulnerabilitiesV1RequestSeveritiesItem =
   | "high"
   | "critical"
   | "unknown";
-export const ListHostingNodeJsVulnerabilitiesV1RequestSeveritiesItem =
-  /*@__PURE__*/ S.String;
+export const ListHostingNodeJsVulnerabilitiesV1RequestSeveritiesItem = S.String;
 
 export type ListHostingNodeJsVulnerabilitiesV1RequestSeveritiesList = Array<
   ListHostingNodeJsVulnerabilitiesV1RequestSeveritiesItem | (string & {})
@@ -13035,8 +12980,7 @@ export type HostingV1NodeJsVulnerabilityResourceSeverity =
   | "high"
   | "critical"
   | "unknown";
-export const HostingV1NodeJsVulnerabilityResourceSeverity =
-  /*@__PURE__*/ S.String;
+export const HostingV1NodeJsVulnerabilityResourceSeverity = S.String;
 
 export interface HostingV1NodeJsVulnerabilityResource {
   /** Name of the affected npm package */
@@ -13114,7 +13058,7 @@ export type ListHostingOrdersV1RequestStatusesItem =
   | "deleting"
   | "deleted"
   | "suspended";
-export const ListHostingOrdersV1RequestStatusesItem = /*@__PURE__*/ S.String;
+export const ListHostingOrdersV1RequestStatusesItem = S.String;
 
 export type ListHostingOrdersV1RequestStatusesList = Array<
   ListHostingOrdersV1RequestStatusesItem | (string & {})
@@ -13240,7 +13184,7 @@ export type WordPressV1PluginsSuggestedPluginGroupResourceWebsiteType =
   | "other"
   | "default";
 export const WordPressV1PluginsSuggestedPluginGroupResourceWebsiteType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface WordPressV1PluginsSuggestedPluginResource {
   /** Plugin slug used when installing the plugin */
@@ -13353,7 +13297,7 @@ export const ListHostingWebsiteParkedDomainsV1Request = /*@__PURE__*/ S.suspend(
 
 /** Whether the parked value is a domain name or an IP address (IPv4 or IPv6) */
 export type HostingV1DomainsParkedDomainResourceType = "domain" | "ip";
-export const HostingV1DomainsParkedDomainResourceType = /*@__PURE__*/ S.String;
+export const HostingV1DomainsParkedDomainResourceType = S.String;
 
 export interface HostingV1DomainsParkedDomainResource {
   /** Website username */
@@ -13510,8 +13454,7 @@ export type ListHostingWebsitesV1RequestWebsiteTypesItem =
   | "horizons"
   | "nodejs"
   | "other";
-export const ListHostingWebsitesV1RequestWebsiteTypesItem =
-  /*@__PURE__*/ S.String;
+export const ListHostingWebsitesV1RequestWebsiteTypesItem = S.String;
 
 export type ListHostingWebsitesV1RequestWebsiteTypesList = Array<
   ListHostingWebsitesV1RequestWebsiteTypesItem | (string & {})
@@ -13561,7 +13504,7 @@ export type HostingV1WebsitesWebsiteResourceVhostType =
   | "addon"
   | "parked"
   | "subdomain";
-export const HostingV1WebsitesWebsiteResourceVhostType = /*@__PURE__*/ S.String;
+export const HostingV1WebsitesWebsiteResourceVhostType = S.String;
 
 /** Type of website detected on the underlying platform. */
 export type HostingV1WebsitesWebsiteResourceWebsiteType =
@@ -13570,8 +13513,7 @@ export type HostingV1WebsitesWebsiteResourceWebsiteType =
   | "horizons"
   | "nodejs"
   | "other";
-export const HostingV1WebsitesWebsiteResourceWebsiteType =
-  /*@__PURE__*/ S.String;
+export const HostingV1WebsitesWebsiteResourceWebsiteType = S.String;
 
 export interface HostingV1WebsitesWebsiteResource {
   /** Website domain. Null for U4S websites with no domain attached. */
@@ -13639,8 +13581,7 @@ export type ListHostingWordPressInstallationsV1RequestOwnership =
   | "owned"
   | "managed"
   | "all";
-export const ListHostingWordPressInstallationsV1RequestOwnership =
-  /*@__PURE__*/ S.String;
+export const ListHostingWordPressInstallationsV1RequestOwnership = S.String;
 
 export interface ListHostingWordPressInstallationsV1Request {
   /** Filter by specific username */
@@ -13806,10 +13747,10 @@ export const ListHostingWordPressThemesV1Response = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListHostingWordPressThemesV1Response>;
 
 export type ListMailAccessLogsV1RequestStatus = "Successful" | "Failed";
-export const ListMailAccessLogsV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListMailAccessLogsV1RequestStatus = S.String;
 
 export type ListMailAccessLogsV1RequestProtocol = "imap" | "pop3" | "smtp";
-export const ListMailAccessLogsV1RequestProtocol = /*@__PURE__*/ S.String;
+export const ListMailAccessLogsV1RequestProtocol = S.String;
 
 export interface ListMailAccessLogsV1Request {
   /** Order resource ID */
@@ -13925,7 +13866,7 @@ export const ListMailAccessLogsV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMailAccessLogsV1Response>;
 
 export type ListMailActionLogsV1RequestStatus = "Successful" | "Failed";
-export const ListMailActionLogsV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListMailActionLogsV1RequestStatus = S.String;
 
 export interface ListMailActionLogsV1Request {
   /** Order resource ID */
@@ -13967,8 +13908,7 @@ export const ListMailActionLogsV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMailActionLogsV1Request>;
 
 export type MailV1LogsActionActionLogResourceResponseStatus = "OK" | "Fail";
-export const MailV1LogsActionActionLogResourceResponseStatus =
-  /*@__PURE__*/ S.String;
+export const MailV1LogsActionActionLogResourceResponseStatus = S.String;
 
 export interface MailV1LogsActionActionLogResource {
   action?: string;
@@ -14079,7 +14019,7 @@ export const ListMailAPITokensV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMailAPITokensV1Request>;
 
 export type MailV1ApiTokensApiTokenResourceType = "api_token" | "oauth";
-export const MailV1ApiTokensApiTokenResourceType = /*@__PURE__*/ S.String;
+export const MailV1ApiTokensApiTokenResourceType = S.String;
 
 export interface MailV1ApiTokensApiTokenResource {
   /** Unique API token identifier */
@@ -14261,7 +14201,7 @@ export const ListMailForwardersV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMailForwardersV1Response>;
 
 export type ListMailInboundLogsV1RequestStatus = "Successful" | "Failed";
-export const ListMailInboundLogsV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListMailInboundLogsV1RequestStatus = S.String;
 
 export interface ListMailInboundLogsV1Request {
   /** Order resource ID */
@@ -14398,7 +14338,7 @@ export type ListMailMailboxActionLogsV1RequestEvent =
   | "MailboxCreate"
   | "MailboxDelete"
   | "MailboxRename";
-export const ListMailMailboxActionLogsV1RequestEvent = /*@__PURE__*/ S.String;
+export const ListMailMailboxActionLogsV1RequestEvent = S.String;
 
 export interface ListMailMailboxActionLogsV1Request {
   /** Order resource ID */
@@ -14447,8 +14387,7 @@ export type MailV1LogsMailboxActionsMailboxActionLogResourceEvent =
   | "MailboxCreate"
   | "MailboxDelete"
   | "MailboxRename";
-export const MailV1LogsMailboxActionsMailboxActionLogResourceEvent =
-  /*@__PURE__*/ S.String;
+export const MailV1LogsMailboxActionsMailboxActionLogResourceEvent = S.String;
 
 export interface MailV1LogsMailboxActionsMailboxActionLogResource {
   folder?: string;
@@ -14496,7 +14435,7 @@ export const ListMailMailboxActionLogsV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMailMailboxActionLogsV1Response>;
 
 export type ListMailMailboxesV1RequestSort = "address" | "-address";
-export const ListMailMailboxesV1RequestSort = /*@__PURE__*/ S.String;
+export const ListMailMailboxesV1RequestSort = S.String;
 
 export interface ListMailMailboxesV1Request {
   /** Order resource ID */
@@ -14552,14 +14491,14 @@ export type ListMailOrdersV1RequestStatus =
   | "pending_setup"
   | "active"
   | "suspended";
-export const ListMailOrdersV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListMailOrdersV1RequestStatus = S.String;
 
 export type ListMailOrdersV1RequestSort =
   | "created_at"
   | "-created_at"
   | "expires_at"
   | "-expires_at";
-export const ListMailOrdersV1RequestSort = /*@__PURE__*/ S.String;
+export const ListMailOrdersV1RequestSort = S.String;
 
 export interface ListMailOrdersV1Request {
   /** Filter orders by domain name (exact match) */
@@ -14593,7 +14532,7 @@ export type MailV1OrdersOrderResourceStatus =
   | "pending_setup"
   | "active"
   | "suspended";
-export const MailV1OrdersOrderResourceStatus = /*@__PURE__*/ S.String;
+export const MailV1OrdersOrderResourceStatus = S.String;
 
 export interface MailV1OrdersOrderDomainResource {
   /** Domain resource ID */
@@ -14679,7 +14618,7 @@ export const ListMailOrdersV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListMailOrdersV1Response>;
 
 export type ListMailOutboundLogsV1RequestStatus = "Successful" | "Failed";
-export const ListMailOutboundLogsV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListMailOutboundLogsV1RequestStatus = S.String;
 
 export interface ListMailOutboundLogsV1Request {
   /** Order resource ID */
@@ -14819,7 +14758,7 @@ export const ListMailWebhookDeliveryLogsV1Response = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListMailWebhookDeliveryLogsV1Response>;
 
 export type ListMailWebhooksV1RequestStatus = "active" | "disabled" | "paused";
-export const ListMailWebhooksV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListMailWebhooksV1RequestStatus = S.String;
 
 export interface ListMailWebhooksV1Request {
   /** Order resource ID */
@@ -14897,8 +14836,7 @@ export type ReachV1AutomationsStepsAutomationStepResourceType =
   | "trigger"
   | "action"
   | "conditional";
-export const ReachV1AutomationsStepsAutomationStepResourceType =
-  /*@__PURE__*/ S.String;
+export const ReachV1AutomationsStepsAutomationStepResourceType = S.String;
 
 /** The concrete trigger, action, decision or delay this step performs. */
 export type ReachV1AutomationsStepsAutomationStepResourceValue =
@@ -14911,8 +14849,7 @@ export type ReachV1AutomationsStepsAutomationStepResourceValue =
   | "send_campaign"
   | "decision"
   | "delay";
-export const ReachV1AutomationsStepsAutomationStepResourceValue =
-  /*@__PURE__*/ S.String;
+export const ReachV1AutomationsStepsAutomationStepResourceValue = S.String;
 
 export interface ReachV1AutomationsStepsAutomationStepResource {
   uuid?: string;
@@ -14958,11 +14895,10 @@ export const ListReachAutomationStepsV1Response = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReachAutomationStepsV1Response>;
 
 export type ListReachAutomationsV1RequestStatus = "active" | "paused" | "draft";
-export const ListReachAutomationsV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListReachAutomationsV1RequestStatus = S.String;
 
 export type ListReachAutomationsV1RequestSortDirection = "asc" | "desc";
-export const ListReachAutomationsV1RequestSortDirection =
-  /*@__PURE__*/ S.String;
+export const ListReachAutomationsV1RequestSortDirection = S.String;
 
 export interface ListReachAutomationsV1Request {
   /** Profile uuid parameter */
@@ -15022,16 +14958,16 @@ export type ListReachCampaignsV1RequestStatus =
   | "sending"
   | "publish"
   | "failed";
-export const ListReachCampaignsV1RequestStatus = /*@__PURE__*/ S.String;
+export const ListReachCampaignsV1RequestStatus = S.String;
 
 export type ListReachCampaignsV1RequestType =
   | "campaign"
   | "automation"
   | "double_opt_in";
-export const ListReachCampaignsV1RequestType = /*@__PURE__*/ S.String;
+export const ListReachCampaignsV1RequestType = S.String;
 
 export type ListReachCampaignsV1RequestSortDirection = "asc" | "desc";
-export const ListReachCampaignsV1RequestSortDirection = /*@__PURE__*/ S.String;
+export const ListReachCampaignsV1RequestSortDirection = S.String;
 
 export interface ListReachCampaignsV1Request {
   /** Profile uuid parameter */
@@ -15075,13 +15011,13 @@ export type ReachV1CampaignsCampaignResourceStatus =
   | "sending"
   | "publish"
   | "failed";
-export const ReachV1CampaignsCampaignResourceStatus = /*@__PURE__*/ S.String;
+export const ReachV1CampaignsCampaignResourceStatus = S.String;
 
 export type ReachV1CampaignsCampaignResourceType =
   | "campaign"
   | "automation"
   | "double_opt_in";
-export const ReachV1CampaignsCampaignResourceType = /*@__PURE__*/ S.String;
+export const ReachV1CampaignsCampaignResourceType = S.String;
 
 /** Headline engagement rates. The statistics endpoint carries the full breakdown. */
 export interface ReachV1CampaignsCampaignSummaryStatisticsResource {
@@ -15223,10 +15159,10 @@ export const ListReachFormsV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** A `paused` form keeps its template online but stops accepting submissions. */
 export type ReachV1FormsFormResourceStatus = "active" | "paused" | "draft";
-export const ReachV1FormsFormResourceStatus = /*@__PURE__*/ S.String;
+export const ReachV1FormsFormResourceStatus = S.String;
 
 export type ReachV1FormsFormResourceType = "form";
-export const ReachV1FormsFormResourceType = /*@__PURE__*/ S.String;
+export const ReachV1FormsFormResourceType = S.String;
 
 /** The rendered form template. Both fields stay null until the template has been generated. */
 export interface ReachV1FormsFormTemplateResource {
@@ -15312,8 +15248,7 @@ export type ReachV1ProfilesFeaturesPlanFeatureResourceFeature =
   | "RemoveSignature"
   | "Collaborators"
   | "HtmlCodeEditor";
-export const ReachV1ProfilesFeaturesPlanFeatureResourceFeature =
-  /*@__PURE__*/ S.String;
+export const ReachV1ProfilesFeaturesPlanFeatureResourceFeature = S.String;
 
 /** Whether a single plan feature can be used on the profile. */
 export interface ReachV1ProfilesFeaturesPlanFeatureResource {
@@ -15355,8 +15290,7 @@ export type ListReachProfileContactsV1RequestSubscriptionStatus =
   | "unsubscribed"
   | "confirmed"
   | "pending";
-export const ListReachProfileContactsV1RequestSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+export const ListReachProfileContactsV1RequestSubscriptionStatus = S.String;
 
 export interface ListReachProfileContactsV1Request {
   /** Profile uuid parameter */
@@ -15400,8 +15334,7 @@ export type ReachV1ContactsProfileContactResourceSubscriptionStatus =
   | "unsubscribed"
   | "confirmed"
   | "pending";
-export const ReachV1ContactsProfileContactResourceSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+export const ReachV1ContactsProfileContactResourceSubscriptionStatus = S.String;
 
 export type ReachV1ContactsProfileContactResourceSource =
   | "sync"
@@ -15411,8 +15344,7 @@ export type ReachV1ContactsProfileContactResourceSource =
   | "form"
   | "checkout"
   | "horizons";
-export const ReachV1ContactsProfileContactResourceSource =
-  /*@__PURE__*/ S.String;
+export const ReachV1ContactsProfileContactResourceSource = S.String;
 
 export interface ReachV1ContactsProfileContactResource {
   uuid?: string;
@@ -15500,7 +15432,7 @@ export type ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus
   | "confirmed"
   | "pending";
 export const ReachV1ContactsSegmentsSegmentationContactResourceSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReachV1ContactsSegmentsSegmentationContactResourceSource =
   | "sync"
@@ -15511,7 +15443,7 @@ export type ReachV1ContactsSegmentsSegmentationContactResourceSource =
   | "checkout"
   | "horizons";
 export const ReachV1ContactsSegmentsSegmentationContactResourceSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReachV1ContactsSegmentsSegmentationContactResource {
   uuid?: string;
@@ -15566,8 +15498,7 @@ export const ListReachProfileSegmentContactsV1Response =
   }) as any as S.Schema<ListReachProfileSegmentContactsV1Response>;
 
 export type ListReachProfileSegmentsV1RequestCountType = "all" | "subscribed";
-export const ListReachProfileSegmentsV1RequestCountType =
-  /*@__PURE__*/ S.String;
+export const ListReachProfileSegmentsV1RequestCountType = S.String;
 
 export interface ListReachProfileSegmentsV1Request {
   /** Profile uuid parameter */
@@ -15788,7 +15719,7 @@ export type ReachV1ContactsSegmentsSegmentFilterAttributeResourceType =
   | "contact_field_values"
   | "contact_field_selections";
 export const ReachV1ContactsSegmentsSegmentFilterAttributeResourceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Value to send as the condition `operator`. */
 export type ReachV1ContactsSegmentsSegmentFilterOperatorResourceOperator =
@@ -15819,7 +15750,7 @@ export type ReachV1ContactsSegmentsSegmentFilterOperatorResourceOperator =
   | "unsubscribed"
   | "not_unsubscribed";
 export const ReachV1ContactsSegmentsSegmentFilterOperatorResourceOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Shape of the value this operator expects, useful for rendering an input. */
 export type ReachV1ContactsSegmentsSegmentFilterOperatorResourceInputType =
@@ -15828,7 +15759,7 @@ export type ReachV1ContactsSegmentsSegmentFilterOperatorResourceInputType =
   | "date"
   | "select";
 export const ReachV1ContactsSegmentsSegmentFilterOperatorResourceInputType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The values this operator accepts, keyed by the value to send. Only present when the operator is constrained to a fixed set, such as a tag or campaign picker. */
 export type ReachV1ContactsSegmentsSegmentFilterOperatorResourceEnumValuesMap =
@@ -16087,7 +16018,7 @@ export type PreviewReachContactsMatchingConditionsV1RequestConditionsItemOperato
   | "unsubscribed"
   | "not_unsubscribed";
 export const PreviewReachContactsMatchingConditionsV1RequestConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PreviewReachContactsMatchingConditionsV1RequestConditionsItem {
   /** A built-in contact attribute, or `cf:{fieldUuid}` to target a custom contact field. Which operators are accepted depends on the attribute, so read the segment filter attributes endpoint for the authoritative list. */
@@ -16120,8 +16051,7 @@ export const PreviewReachContactsMatchingConditionsV1RequestConditionsList =
 
 /** How to combine multiple conditions */
 export type PreviewReachContactsMatchingConditionsV1RequestLogic = "AND" | "OR";
-export const PreviewReachContactsMatchingConditionsV1RequestLogic =
-  /*@__PURE__*/ S.String;
+export const PreviewReachContactsMatchingConditionsV1RequestLogic = S.String;
 
 export type PreviewReachContactsMatchingConditionsV1RequestSortBy =
   | "email"
@@ -16129,14 +16059,13 @@ export type PreviewReachContactsMatchingConditionsV1RequestSortBy =
   | "surname"
   | "phone"
   | "subscription_status";
-export const PreviewReachContactsMatchingConditionsV1RequestSortBy =
-  /*@__PURE__*/ S.String;
+export const PreviewReachContactsMatchingConditionsV1RequestSortBy = S.String;
 
 export type PreviewReachContactsMatchingConditionsV1RequestSortDirection =
   | "asc"
   | "desc";
 export const PreviewReachContactsMatchingConditionsV1RequestSortDirection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface PreviewReachContactsMatchingConditionsV1Request {
   /** Profile uuid parameter */
@@ -16394,8 +16323,7 @@ export const RegenerateMailWebhookSecretV1Request = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RegenerateMailWebhookSecretV1Request>;
 
 export type MailV1WebhooksWebhookSecretResourceEventsItem = "message.received";
-export const MailV1WebhooksWebhookSecretResourceEventsItem =
-  /*@__PURE__*/ S.String;
+export const MailV1WebhooksWebhookSecretResourceEventsItem = S.String;
 
 /** Events that trigger this webhook */
 export type MailV1WebhooksWebhookSecretResourceEventsList =
@@ -16410,7 +16338,7 @@ export type MailV1WebhooksWebhookSecretResourceStatus =
   | "active"
   | "disabled"
   | "paused";
-export const MailV1WebhooksWebhookSecretResourceStatus = /*@__PURE__*/ S.String;
+export const MailV1WebhooksWebhookSecretResourceStatus = S.String;
 
 export interface MailV1WebhooksWebhookSecretResource {
   /** Unique webhook identifier */
@@ -16705,10 +16633,10 @@ export type VPSV1FirewallRulesStoreRequestProtocol =
   | "HTTPS"
   | "MySQL"
   | "PostgreSQL";
-export const VPSV1FirewallRulesStoreRequestProtocol = /*@__PURE__*/ S.String;
+export const VPSV1FirewallRulesStoreRequestProtocol = S.String;
 
 export type VPSV1FirewallRulesStoreRequestSource = "any" | "custom";
-export const VPSV1FirewallRulesStoreRequestSource = /*@__PURE__*/ S.String;
+export const VPSV1FirewallRulesStoreRequestSource = S.String;
 
 export interface VPSV1FirewallRulesStoreRequest {
   protocol: VPSV1FirewallRulesStoreRequestProtocol | (string & {});
@@ -17179,7 +17107,7 @@ export const EcommerceV1ShippingShippingResource = /*@__PURE__*/ S.suspend(() =>
 
 /** AI option name */
 export type SetHostingAIOptionStatusV1RequestOption = "llmstxt" | "web2agent";
-export const SetHostingAIOptionStatusV1RequestOption = /*@__PURE__*/ S.String;
+export const SetHostingAIOptionStatusV1RequestOption = S.String;
 
 export interface SetHostingAIOptionStatusV1Request {
   username: string;
@@ -17295,8 +17223,7 @@ export const SetVPSRootPasswordV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** Node.js version */
 export type StartHostingNodeJsBuildV1RequestNodeVersion = 18 | 20 | 22 | 24;
-export const StartHostingNodeJsBuildV1RequestNodeVersion =
-  /*@__PURE__*/ S.Number;
+export const StartHostingNodeJsBuildV1RequestNodeVersion = S.Number;
 
 /** Node.js application type */
 export type StartHostingNodeJsBuildV1RequestAppType =
@@ -17319,20 +17246,18 @@ export type StartHostingNodeJsBuildV1RequestAppType =
   | "react-router"
   | "nitro"
   | "other";
-export const StartHostingNodeJsBuildV1RequestAppType = /*@__PURE__*/ S.String;
+export const StartHostingNodeJsBuildV1RequestAppType = S.String;
 
 /** Package manager */
 export type StartHostingNodeJsBuildV1RequestPackageManager =
   | "npm"
   | "yarn"
   | "pnpm";
-export const StartHostingNodeJsBuildV1RequestPackageManager =
-  /*@__PURE__*/ S.String;
+export const StartHostingNodeJsBuildV1RequestPackageManager = S.String;
 
 /** The source type of the files */
 export type StartHostingNodeJsBuildV1RequestSourceType = "archive";
-export const StartHostingNodeJsBuildV1RequestSourceType =
-  /*@__PURE__*/ S.String;
+export const StartHostingNodeJsBuildV1RequestSourceType = S.String;
 
 /** Source-specific options */
 export interface StartHostingNodeJsBuildV1RequestSourceOptions {
@@ -17827,7 +17752,7 @@ export type UpdateDNSDNSRecordsV1RequestZoneItemType =
   | "SOA"
   | "SRV"
   | "CAA";
-export const UpdateDNSDNSRecordsV1RequestZoneItemType = /*@__PURE__*/ S.String;
+export const UpdateDNSDNSRecordsV1RequestZoneItemType = S.String;
 
 export interface UpdateDNSDNSRecordsV1RequestZoneItem {
   /** Name of the record (use `@` for wildcard name) */
@@ -17878,8 +17803,7 @@ export const UpdateDNSDNSRecordsV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** Redirect type */
 export type UpdateDomainDomainForwardingV1RequestRedirectType = "301" | "302";
-export const UpdateDomainDomainForwardingV1RequestRedirectType =
-  /*@__PURE__*/ S.String;
+export const UpdateDomainDomainForwardingV1RequestRedirectType = S.String;
 
 export interface UpdateDomainDomainForwardingV1Request {
   /** Domain name */
@@ -17944,7 +17868,7 @@ export type UpdateEcommerceAProductV1RequestStatus =
   | "draft"
   | "published"
   | "archived";
-export const UpdateEcommerceAProductV1RequestStatus = /*@__PURE__*/ S.String;
+export const UpdateEcommerceAProductV1RequestStatus = S.String;
 
 export interface UpdateEcommerceAProductV1Request {
   /** The ID of the store that owns the product. */
@@ -18134,7 +18058,7 @@ export type EcommerceV1SalesChannelSalesChannelUpdateResourceSalesChannelType =
   | "quick-link"
   | "wordpress";
 export const EcommerceV1SalesChannelSalesChannelUpdateResourceSalesChannelType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EcommerceV1SalesChannelSalesChannelUpdateResourceSalesChannel {
   /** Sales channel ID */
@@ -18190,8 +18114,7 @@ export type UpdateHostingHostingerWordPressPluginV1RequestSlug =
   | "hostinger-affiliate-plugin"
   | "hostinger-easy-onboarding"
   | "hostinger-reach";
-export const UpdateHostingHostingerWordPressPluginV1RequestSlug =
-  /*@__PURE__*/ S.String;
+export const UpdateHostingHostingerWordPressPluginV1RequestSlug = S.String;
 
 export interface UpdateHostingHostingerWordPressPluginV1Request {
   username: string;
@@ -18259,7 +18182,7 @@ export const UpdateHostingPHPExtensionsV1Request = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateHostingPHPOptionsV1RequestOptionsValue = string | number;
 export const UpdateHostingPHPOptionsV1RequestOptionsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateHostingPHPOptionsV1RequestOptionsValue>;
+  S.Unknown as any as S.Schema<UpdateHostingPHPOptionsV1RequestOptionsValue>;
 
 /** Map of PHP options to update, keyed by option name. Only include options you want to change. */
 export type UpdateHostingPHPOptionsV1RequestOptionsMap = {
@@ -18439,7 +18362,7 @@ export const UpdateMailAutoreplyV1Request = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMailAutoreplyV1Request>;
 
 export type UpdateMailWebhookV1RequestEventsItem = "message.received";
-export const UpdateMailWebhookV1RequestEventsItem = /*@__PURE__*/ S.String;
+export const UpdateMailWebhookV1RequestEventsItem = S.String;
 
 /** Replaces the full list of subscribed events */
 export type UpdateMailWebhookV1RequestEventsList = Array<
@@ -18451,7 +18374,7 @@ export const UpdateMailWebhookV1RequestEventsList = /*@__PURE__*/ S.Array(
 
 /** New status for the webhook */
 export type UpdateMailWebhookV1RequestStatus = "active" | "disabled" | "paused";
-export const UpdateMailWebhookV1RequestStatus = /*@__PURE__*/ S.String;
+export const UpdateMailWebhookV1RequestStatus = S.String;
 
 export interface UpdateMailWebhookV1Request {
   /** Webhook ID (returned when the webhook was created) */
@@ -18539,8 +18462,7 @@ export type UpdateReachAContactV1RequestSubscriptionStatus =
   | "unsubscribed"
   | "confirmed"
   | "pending";
-export const UpdateReachAContactV1RequestSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+export const UpdateReachAContactV1RequestSubscriptionStatus = S.String;
 
 /** For the choice field types */
 export type UpdateReachAContactV1RequestFieldsItemSelectedOptionUuidsList =
@@ -18625,7 +18547,7 @@ export type ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus =
   | "confirmed"
   | "pending";
 export const ReachV1ContactsProfileContactUpdateResourceSubscriptionStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReachV1ContactsProfileContactUpdateResource {
   uuid?: string;
@@ -18683,7 +18605,7 @@ export type UpdateReachAProfileSegmentV1RequestConditionsItemOperator =
   | "unsubscribed"
   | "not_unsubscribed";
 export const UpdateReachAProfileSegmentV1RequestConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateReachAProfileSegmentV1RequestConditionsItem {
   /** A built-in contact attribute, or `cf:{fieldUuid}` to target a custom contact field. Custom fields are addressed by field UUID; their slug is not accepted. Built-in attributes: `email`, `note`, `domain`, `source`, `opt_in_method`, `subscription_status`, `subscribed_at`, `unsubscribed_at`, `created_at`, `tag`, `campaigns`, `processed`, `opened`, `clicked`, `delivered`, `bounced`, `soft_bounced`, `dropped`. Which operators are accepted depends on the attribute. */
@@ -18715,7 +18637,7 @@ export const UpdateReachAProfileSegmentV1RequestConditionsList =
 
 /** How to combine multiple conditions. Required when conditions are given. */
 export type UpdateReachAProfileSegmentV1RequestLogic = "AND" | "OR";
-export const UpdateReachAProfileSegmentV1RequestLogic = /*@__PURE__*/ S.String;
+export const UpdateReachAProfileSegmentV1RequestLogic = S.String;
 
 export interface UpdateReachAProfileSegmentV1Request {
   /** Profile uuid parameter */
@@ -18760,10 +18682,10 @@ export type UpdateVPSFirewallRuleV1RequestProtocol =
   | "HTTPS"
   | "MySQL"
   | "PostgreSQL";
-export const UpdateVPSFirewallRuleV1RequestProtocol = /*@__PURE__*/ S.String;
+export const UpdateVPSFirewallRuleV1RequestProtocol = S.String;
 
 export type UpdateVPSFirewallRuleV1RequestSource = "any" | "custom";
-export const UpdateVPSFirewallRuleV1RequestSource = /*@__PURE__*/ S.String;
+export const UpdateVPSFirewallRuleV1RequestSource = S.String;
 
 export interface UpdateVPSFirewallRuleV1Request {
   /** Firewall ID */
@@ -18842,8 +18764,7 @@ export type ValidateDNSDNSRecordsV1RequestZoneItemType =
   | "SOA"
   | "SRV"
   | "CAA";
-export const ValidateDNSDNSRecordsV1RequestZoneItemType =
-  /*@__PURE__*/ S.String;
+export const ValidateDNSDNSRecordsV1RequestZoneItemType = S.String;
 
 export interface ValidateDNSDNSRecordsV1RequestZoneItem {
   /** Name of the record (use `@` for wildcard name) */
@@ -19158,7 +19079,7 @@ export type VPSV1DockerManagerProjectResourceState =
   | "created"
   | "mixed"
   | "unknown";
-export const VPSV1DockerManagerProjectResourceState = /*@__PURE__*/ S.String;
+export const VPSV1DockerManagerProjectResourceState = S.String;
 
 export interface VPSV1DockerManagerProjectResource {
   /** Docker Compose project name (derived from directory name or compose file) */

@@ -190,7 +190,7 @@ export type CalculatePlanTaxRequestTaxIdsItemType =
   | "zm_tin"
   | "zw_tin"
   | "sr_fin";
-export const CalculatePlanTaxRequestTaxIdsItemType = /*@__PURE__*/ S.String;
+export const CalculatePlanTaxRequestTaxIdsItemType = S.String;
 
 export interface CalculatePlanTaxRequestTaxIdsItem {
   /** Tax ID type, such as `eu_vat` for an EU VAT number. */
@@ -242,11 +242,11 @@ export const CalculatePlanTaxRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether Whop calculated tax for this preview. `not_calculated` means no tax could be determined, so `tax_amount` is 0 and `total` equals `subtotal`. */
 export type CalculatePlanTaxResponseStatus = "calculated" | "not_calculated";
-export const CalculatePlanTaxResponseStatus = /*@__PURE__*/ S.String;
+export const CalculatePlanTaxResponseStatus = S.String;
 
 /** Whether tax is added on top of the plan price or already included in it for this buyer's location. */
 export type CalculatePlanTaxResponseTaxBehavior = "exclusive" | "inclusive";
-export const CalculatePlanTaxResponseTaxBehavior = /*@__PURE__*/ S.String;
+export const CalculatePlanTaxResponseTaxBehavior = S.String;
 
 export interface CalculatePlanTaxResponse {
   /** Three-letter ISO 4217 currency code for the returned amounts. */
@@ -277,8 +277,7 @@ export const CalculatePlanTaxResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the custom field. */
 export type CreatePlanRequestCustomFieldsItemFieldType = "text";
-export const CreatePlanRequestCustomFieldsItemFieldType =
-  /*@__PURE__*/ S.String;
+export const CreatePlanRequestCustomFieldsItemFieldType = S.String;
 
 export interface CreatePlanRequestCustomFieldsItem {
   /** The type of the custom field. */
@@ -367,7 +366,7 @@ export const CreatePlanRequestPaymentMethodConfiguration =
 export type CreatePlanRequestThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const CreatePlanRequestThreeDsLevel = /*@__PURE__*/ S.String;
+export const CreatePlanRequestThreeDsLevel = S.String;
 
 export interface CreatePlanRequest {
   /** The unique identifier of the account to create this plan for. Defaults to the caller's account. */
@@ -563,11 +562,11 @@ export type PlanCurrency =
   | "awg"
   | "whop_usd"
   | "xau";
-export const PlanCurrency = /*@__PURE__*/ S.String;
+export const PlanCurrency = S.String;
 
 /** Custom field input type. */
 export type PlanCustomFieldFieldType = "text";
-export const PlanCustomFieldFieldType = /*@__PURE__*/ S.String;
+export const PlanCustomFieldFieldType = S.String;
 
 export interface PlanCustomField {
   /** Custom field input type. */
@@ -634,23 +633,23 @@ export const CheckoutSessionPaymentMethodConfiguration =
 
 /** Billing model for this plan. */
 export type PlanPlanType = "renewal" | "one_time";
-export const PlanPlanType = /*@__PURE__*/ S.String;
+export const PlanPlanType = S.String;
 
 /** Sales method for this plan. */
 export type PlanReleaseMethod = "buy_now" | "waitlist";
-export const PlanReleaseMethod = /*@__PURE__*/ S.String;
+export const PlanReleaseMethod = S.String;
 
 /** How tax is handled for this plan, including whether tax is included in the price, added at checkout, or not configured. */
 export type PlanTaxType = "inclusive" | "exclusive" | "unspecified";
-export const PlanTaxType = /*@__PURE__*/ S.String;
+export const PlanTaxType = S.String;
 
 /** 3D Secure behavior for this plan; `null` inherits the account default. */
 export type PlanThreeDsLevel = "mandate_challenge" | "frictionless";
-export const PlanThreeDsLevel = /*@__PURE__*/ S.String;
+export const PlanThreeDsLevel = S.String;
 
 /** Controls where this plan can be seen. When `hidden`, the plan is reachable only by its direct link. */
 export type PlanVisibility = "visible" | "hidden" | "archived" | "quick_link";
-export const PlanVisibility = /*@__PURE__*/ S.String;
+export const PlanVisibility = S.String;
 
 export interface Plan {
   /** Account that sells this plan; `null` for standalone invoice plans. */
@@ -818,7 +817,7 @@ export const GetPlanRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetPlanRequest" }) as any as S.Schema<GetPlanRequest>;
 
 export type ListPlansRequestDirection = "asc" | "desc";
-export const ListPlansRequestDirection = /*@__PURE__*/ S.String;
+export const ListPlansRequestDirection = S.String;
 
 export type ListPlansRequestOrder =
   | "id"
@@ -826,7 +825,7 @@ export type ListPlansRequestOrder =
   | "created_at"
   | "internal_notes"
   | "expiration_days";
-export const ListPlansRequestOrder = /*@__PURE__*/ S.String;
+export const ListPlansRequestOrder = S.String;
 
 export type ListPlansRequestReleaseMethodsList = Array<string>;
 export const ListPlansRequestReleaseMethodsList = /*@__PURE__*/ S.Array(
@@ -905,15 +904,15 @@ export const PlanListItemCustomFieldsList = /*@__PURE__*/ S.Array(
 
 /** Billing model for this plan. */
 export type PlanListItemPlanType = "renewal" | "one_time";
-export const PlanListItemPlanType = /*@__PURE__*/ S.String;
+export const PlanListItemPlanType = S.String;
 
 /** Sales method for this plan. */
 export type PlanListItemReleaseMethod = "buy_now" | "waitlist";
-export const PlanListItemReleaseMethod = /*@__PURE__*/ S.String;
+export const PlanListItemReleaseMethod = S.String;
 
 /** 3D Secure behavior for this plan; `null` inherits the account default. */
 export type PlanListItemThreeDsLevel = "mandate_challenge" | "frictionless";
-export const PlanListItemThreeDsLevel = /*@__PURE__*/ S.String;
+export const PlanListItemThreeDsLevel = S.String;
 
 /** Controls where this plan can be seen. When `hidden`, the plan is reachable only by its direct link. */
 export type PlanListItemVisibility =
@@ -921,7 +920,7 @@ export type PlanListItemVisibility =
   | "hidden"
   | "archived"
   | "quick_link";
-export const PlanListItemVisibility = /*@__PURE__*/ S.String;
+export const PlanListItemVisibility = S.String;
 
 export interface PlanListItem {
   /** Account that sells this plan; `null` for standalone invoice plans. */
@@ -1074,8 +1073,7 @@ export const ListPlansResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the custom field. */
 export type UpdatePlanRequestCustomFieldsItemFieldType = "text";
-export const UpdatePlanRequestCustomFieldsItemFieldType =
-  /*@__PURE__*/ S.String;
+export const UpdatePlanRequestCustomFieldsItemFieldType = S.String;
 
 export interface UpdatePlanRequestCustomFieldsItem {
   /** The type of the custom field. */
@@ -1154,7 +1152,7 @@ export const UpdatePlanRequestPaymentMethodConfiguration =
 export type UpdatePlanRequestThreeDsLevel =
   | "mandate_challenge"
   | "frictionless";
-export const UpdatePlanRequestThreeDsLevel = /*@__PURE__*/ S.String;
+export const UpdatePlanRequestThreeDsLevel = S.String;
 
 export interface UpdatePlanRequest {
   /** Plan ID, prefixed `plan_`. */

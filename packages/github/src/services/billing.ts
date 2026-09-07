@@ -80,20 +80,16 @@ export type CreateOrganizationBudgetRequestBudgetScope =
   | "repository"
   | "multi_user_customer"
   | "user";
-export const CreateOrganizationBudgetRequestBudgetScope =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationBudgetRequestBudgetScope = S.String;
 
 export type CreateOrganizationBudgetRequestBudgetTypeCase0 = "BundlePricing";
-export const CreateOrganizationBudgetRequestBudgetTypeCase0 =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationBudgetRequestBudgetTypeCase0 = S.String;
 
 export type CreateOrganizationBudgetRequestBudgetTypeCase1 = "ProductPricing";
-export const CreateOrganizationBudgetRequestBudgetTypeCase1 =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationBudgetRequestBudgetTypeCase1 = S.String;
 
 export type CreateOrganizationBudgetRequestBudgetTypeCase2 = "SkuPricing";
-export const CreateOrganizationBudgetRequestBudgetTypeCase2 =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationBudgetRequestBudgetTypeCase2 = S.String;
 
 /** The type of pricing model used by the budget. Determines how `budget_product_sku` is interpreted. - `BundlePricing`: Covers all AI credit SKUs. Set `budget_product_sku` to `ai_credits`. - `ProductPricing`: Covers all SKUs that belong to a product. Set `budget_product_sku` to a product such as `actions` or `packages`. - `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU such as `actions_linux`. */
 export type CreateOrganizationBudgetRequestBudgetType =
@@ -101,7 +97,7 @@ export type CreateOrganizationBudgetRequestBudgetType =
   | CreateOrganizationBudgetRequestBudgetTypeCase1
   | CreateOrganizationBudgetRequestBudgetTypeCase2;
 export const CreateOrganizationBudgetRequestBudgetType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationBudgetRequestBudgetType>;
+  S.Unknown as any as S.Schema<CreateOrganizationBudgetRequestBudgetType>;
 
 export interface CreateOrganizationBudgetRequest {
   /** The organization name. The name is not case sensitive. */
@@ -156,20 +152,20 @@ export type CreateBudgetBudgetBudgetScope =
   | "multi_user_customer"
   | "multi_user_cost_center"
   | "user";
-export const CreateBudgetBudgetBudgetScope = /*@__PURE__*/ S.String;
+export const CreateBudgetBudgetBudgetScope = S.String;
 
 export type CreateBudgetBudgetBudgetTypeCase0 = "ProductPricing";
-export const CreateBudgetBudgetBudgetTypeCase0 = /*@__PURE__*/ S.String;
+export const CreateBudgetBudgetBudgetTypeCase0 = S.String;
 
 export type CreateBudgetBudgetBudgetTypeCase1 = "SkuPricing";
-export const CreateBudgetBudgetBudgetTypeCase1 = /*@__PURE__*/ S.String;
+export const CreateBudgetBudgetBudgetTypeCase1 = S.String;
 
 /** The type of pricing for the budget */
 export type CreateBudgetBudgetBudgetType =
   | CreateBudgetBudgetBudgetTypeCase0
   | CreateBudgetBudgetBudgetTypeCase1;
 export const CreateBudgetBudgetBudgetType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateBudgetBudgetBudgetType>;
+  S.Unknown as any as S.Schema<CreateBudgetBudgetBudgetType>;
 
 /** Array of user login names who will receive alerts. Rejected for user-scope as alerting is always disabled for them. */
 export type CreateBudgetBudgetBudgetAlertingAlertRecipientsList = Array<string>;
@@ -283,7 +279,7 @@ export type GetAllBudgetsOrgRequestScope =
   | "cost_center"
   | "multi_user_customer"
   | "user";
-export const GetAllBudgetsOrgRequestScope = /*@__PURE__*/ S.String;
+export const GetAllBudgetsOrgRequestScope = S.String;
 
 export interface GetAllBudgetsOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -316,15 +312,14 @@ export const GetAllBudgetsOrgRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAllBudgetsOrgRequest>;
 
 export type BudgetBudgetTypeCase0 = "SkuPricing";
-export const BudgetBudgetTypeCase0 = /*@__PURE__*/ S.String;
+export const BudgetBudgetTypeCase0 = S.String;
 
 export type BudgetBudgetTypeCase1 = "ProductPricing";
-export const BudgetBudgetTypeCase1 = /*@__PURE__*/ S.String;
+export const BudgetBudgetTypeCase1 = S.String;
 
 /** The type of pricing for the budget */
 export type BudgetBudgetType = BudgetBudgetTypeCase0 | BudgetBudgetTypeCase1;
-export const BudgetBudgetType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BudgetBudgetType>;
+export const BudgetBudgetType = S.Unknown as any as S.Schema<BudgetBudgetType>;
 
 /** The scope of the budget */
 export type BudgetBudgetScope =
@@ -335,7 +330,7 @@ export type BudgetBudgetScope =
   | "multi_user_customer"
   | "multi_user_cost_center"
   | "user";
-export const BudgetBudgetScope = /*@__PURE__*/ S.String;
+export const BudgetBudgetScope = S.String;
 
 /** Array of user login names who will receive alerts. Ignored for user-scope as alerting is disabled for them. */
 export type BudgetBudgetAlertingAlertRecipientsList = Array<string>;
@@ -474,20 +469,20 @@ export type GetBudgetBudgetScope =
   | "multi_user_customer"
   | "multi_user_cost_center"
   | "user";
-export const GetBudgetBudgetScope = /*@__PURE__*/ S.String;
+export const GetBudgetBudgetScope = S.String;
 
 export type GetBudgetBudgetTypeCase0 = "ProductPricing";
-export const GetBudgetBudgetTypeCase0 = /*@__PURE__*/ S.String;
+export const GetBudgetBudgetTypeCase0 = S.String;
 
 export type GetBudgetBudgetTypeCase1 = "SkuPricing";
-export const GetBudgetBudgetTypeCase1 = /*@__PURE__*/ S.String;
+export const GetBudgetBudgetTypeCase1 = S.String;
 
 /** The type of pricing for the budget */
 export type GetBudgetBudgetType =
   | GetBudgetBudgetTypeCase0
   | GetBudgetBudgetTypeCase1;
 export const GetBudgetBudgetType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetBudgetBudgetType>;
+  S.Unknown as any as S.Schema<GetBudgetBudgetType>;
 
 /** Array of user login names who will receive alerts. Present but not applicable for user-scope as alerting is always disabled for them. */
 export type GetBudgetBudgetAlertingAlertRecipientsList = Array<string>;
@@ -1298,16 +1293,16 @@ export type UpdateBudgetOrgRequestBudgetScope =
   | "cost_center"
   | "multi_user_customer"
   | "user";
-export const UpdateBudgetOrgRequestBudgetScope = /*@__PURE__*/ S.String;
+export const UpdateBudgetOrgRequestBudgetScope = S.String;
 
 export type UpdateBudgetOrgRequestBudgetTypeCase0 = "BundlePricing";
-export const UpdateBudgetOrgRequestBudgetTypeCase0 = /*@__PURE__*/ S.String;
+export const UpdateBudgetOrgRequestBudgetTypeCase0 = S.String;
 
 export type UpdateBudgetOrgRequestBudgetTypeCase1 = "ProductPricing";
-export const UpdateBudgetOrgRequestBudgetTypeCase1 = /*@__PURE__*/ S.String;
+export const UpdateBudgetOrgRequestBudgetTypeCase1 = S.String;
 
 export type UpdateBudgetOrgRequestBudgetTypeCase2 = "SkuPricing";
-export const UpdateBudgetOrgRequestBudgetTypeCase2 = /*@__PURE__*/ S.String;
+export const UpdateBudgetOrgRequestBudgetTypeCase2 = S.String;
 
 /** The type of pricing model used by the budget. Determines how `budget_product_sku` is interpreted. - `BundlePricing`: Covers all AI credit SKUs. Set `budget_product_sku` to `ai_credits`. - `ProductPricing`: Covers all SKUs that belong to a product. Set `budget_product_sku` to a product such as `actions` or `packages`. - `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU such as `actions_linux`. */
 export type UpdateBudgetOrgRequestBudgetType =
@@ -1315,17 +1310,17 @@ export type UpdateBudgetOrgRequestBudgetType =
   | UpdateBudgetOrgRequestBudgetTypeCase1
   | UpdateBudgetOrgRequestBudgetTypeCase2;
 export const UpdateBudgetOrgRequestBudgetType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBudgetOrgRequestBudgetType>;
+  S.Unknown as any as S.Schema<UpdateBudgetOrgRequestBudgetType>;
 
 export type UpdateBudgetOrgRequestExpiresAtCase1 = 0;
-export const UpdateBudgetOrgRequestExpiresAtCase1 = /*@__PURE__*/ S.Number;
+export const UpdateBudgetOrgRequestExpiresAtCase1 = S.Number;
 
 /** The date the budget will expire in `YYYY-MM-DD` format. Only dates in the future are accepted. If not set, the budget will not expire. Setting to `null` or `0` will remove the expiration date from a budget if set. Only supported for budgets with `budget_scope` of `user` */
 export type UpdateBudgetOrgRequestExpiresAt =
   | string
   | UpdateBudgetOrgRequestExpiresAtCase1;
 export const UpdateBudgetOrgRequestExpiresAt =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBudgetOrgRequestExpiresAt>;
+  S.Unknown as any as S.Schema<UpdateBudgetOrgRequestExpiresAt>;
 
 export interface UpdateBudgetOrgRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1383,20 +1378,20 @@ export type UpdateBudgetBudgetBudgetScope =
   | "multi_user_customer"
   | "multi_user_cost_center"
   | "user";
-export const UpdateBudgetBudgetBudgetScope = /*@__PURE__*/ S.String;
+export const UpdateBudgetBudgetBudgetScope = S.String;
 
 export type UpdateBudgetBudgetBudgetTypeCase0 = "ProductPricing";
-export const UpdateBudgetBudgetBudgetTypeCase0 = /*@__PURE__*/ S.String;
+export const UpdateBudgetBudgetBudgetTypeCase0 = S.String;
 
 export type UpdateBudgetBudgetBudgetTypeCase1 = "SkuPricing";
-export const UpdateBudgetBudgetBudgetTypeCase1 = /*@__PURE__*/ S.String;
+export const UpdateBudgetBudgetBudgetTypeCase1 = S.String;
 
 /** The type of pricing for the budget */
 export type UpdateBudgetBudgetBudgetType =
   | UpdateBudgetBudgetBudgetTypeCase0
   | UpdateBudgetBudgetBudgetTypeCase1;
 export const UpdateBudgetBudgetBudgetType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateBudgetBudgetBudgetType>;
+  S.Unknown as any as S.Schema<UpdateBudgetBudgetBudgetType>;
 
 /** Array of user login names who will receive alerts. Ignored for user-scope as alerting is always disabled for them. */
 export type UpdateBudgetBudgetBudgetAlertingAlertRecipientsList = Array<string>;

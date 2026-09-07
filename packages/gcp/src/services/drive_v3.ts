@@ -106,7 +106,7 @@ export type ApprovalFileContentChangeBehaviorEnum =
   | "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED"
   | "RESET_APPROVAL"
   | "NO_APPROVAL_ACTION";
-export const ApprovalFileContentChangeBehaviorEnum = /*@__PURE__*/ S.String;
+export const ApprovalFileContentChangeBehaviorEnum = S.String;
 
 export type ApprovalStatusEnum =
   | "STATUS_UNSPECIFIED"
@@ -114,7 +114,7 @@ export type ApprovalStatusEnum =
   | "APPROVED"
   | "CANCELLED"
   | "DECLINED";
-export const ApprovalStatusEnum = /*@__PURE__*/ S.String;
+export const ApprovalStatusEnum = S.String;
 
 /** Information about a Drive user. */
 export interface User {
@@ -147,7 +147,7 @@ export type ReviewerResponseResponseEnum =
   | "NO_RESPONSE"
   | "APPROVED"
   | "DECLINED";
-export const ReviewerResponseResponseEnum = /*@__PURE__*/ S.String;
+export const ReviewerResponseResponseEnum = S.String;
 
 /** A response on an approval made by a specific reviewer. */
 export interface ReviewerResponse {
@@ -3279,7 +3279,7 @@ export const DriveList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DriveList" }) as any as S.Schema<DriveList>;
 
 export type ListFilesCorpusEnum = "domain" | "user";
-export const ListFilesCorpusEnum = /*@__PURE__*/ S.String;
+export const ListFilesCorpusEnum = S.String;
 
 export interface ListFilesRequest {
   /** Specifies a collection of items (files or documents) to which the query applies. Supported items include: * `user` * `domain` * `drive` * `allDrives` Prefer `user` or `drive` to `allDrives` for efficiency. By default, corpora is set to `user`. However, this can change depending on the filter set through the `q` parameter. For more information, see [File organization](https://developers.google.com/workspace/drive/api/guides/about-files#file-organization). */
@@ -3805,7 +3805,7 @@ export type ResolveAccessProposalRequestActionEnum =
   | "ACTION_UNSPECIFIED"
   | "ACCEPT"
   | "DENY";
-export const ResolveAccessProposalRequestActionEnum = /*@__PURE__*/ S.String;
+export const ResolveAccessProposalRequestActionEnum = S.String;
 
 /** Request message for resolving an AccessProposal on a file. */
 export interface ResolveAccessProposalRequest {
@@ -3864,8 +3864,7 @@ export type StartApprovalRequestFileContentChangeBehaviorEnum =
   | "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED"
   | "RESET_APPROVAL"
   | "NO_APPROVAL_ACTION";
-export const StartApprovalRequestFileContentChangeBehaviorEnum =
-  /*@__PURE__*/ S.String;
+export const StartApprovalRequestFileContentChangeBehaviorEnum = S.String;
 
 /** Allows creating an approval on a file. */
 export interface StartApprovalRequest {

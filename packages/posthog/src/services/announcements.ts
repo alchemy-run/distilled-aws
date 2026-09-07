@@ -48,7 +48,7 @@ export type AnnouncementStatusEnum =
   | "sent"
   | "partially_failed"
   | "failed";
-export const AnnouncementStatusEnum = /*@__PURE__*/ S.String;
+export const AnnouncementStatusEnum = S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -67,14 +67,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -103,7 +103,7 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 
 /** * `pending` - Pending * `sent` - Sent * `failed` - Failed */
 export type AnnouncementDeliveryStatusEnum = "pending" | "sent" | "failed";
-export const AnnouncementDeliveryStatusEnum = /*@__PURE__*/ S.String;
+export const AnnouncementDeliveryStatusEnum = S.String;
 
 export interface AnnouncementDelivery {
   id: string;

@@ -72,7 +72,7 @@ export type GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequestConclus
   | "UNVALIDATED_VERSION_USED"
   | "UNUSED";
 export const GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequestConclusionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The request for sending validation feedback. */
 export interface GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequest {
@@ -240,7 +240,7 @@ export type GoogleMapsAddressvalidationV1VerdictPossibleNextActionEnum =
   | "CONFIRM"
   | "ACCEPT";
 export const GoogleMapsAddressvalidationV1VerdictPossibleNextActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleMapsAddressvalidationV1VerdictGeocodeGranularityEnum =
   | "GRANULARITY_UNSPECIFIED"
@@ -251,7 +251,7 @@ export type GoogleMapsAddressvalidationV1VerdictGeocodeGranularityEnum =
   | "ROUTE"
   | "OTHER";
 export const GoogleMapsAddressvalidationV1VerdictGeocodeGranularityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleMapsAddressvalidationV1VerdictInputGranularityEnum =
   | "GRANULARITY_UNSPECIFIED"
@@ -262,7 +262,7 @@ export type GoogleMapsAddressvalidationV1VerdictInputGranularityEnum =
   | "ROUTE"
   | "OTHER";
 export const GoogleMapsAddressvalidationV1VerdictInputGranularityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleMapsAddressvalidationV1VerdictValidationGranularityEnum =
   | "GRANULARITY_UNSPECIFIED"
@@ -273,7 +273,7 @@ export type GoogleMapsAddressvalidationV1VerdictValidationGranularityEnum =
   | "ROUTE"
   | "OTHER";
 export const GoogleMapsAddressvalidationV1VerdictValidationGranularityEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** High level overview of the address validation result and geocode. */
 export interface GoogleMapsAddressvalidationV1Verdict {
@@ -364,7 +364,7 @@ export type GoogleMapsAddressvalidationV1AddressComponentConfirmationLevelEnum =
   | "UNCONFIRMED_BUT_PLAUSIBLE"
   | "UNCONFIRMED_AND_SUSPICIOUS";
 export const GoogleMapsAddressvalidationV1AddressComponentConfirmationLevelEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents an address component, such as a street, city, or state. */
 export interface GoogleMapsAddressvalidationV1AddressComponent {

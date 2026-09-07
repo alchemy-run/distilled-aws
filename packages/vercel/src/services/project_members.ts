@@ -35,7 +35,7 @@ export type AddProjectMemberRequestRole =
   | "ADMIN"
   | "PROJECT_VIEWER"
   | "PROJECT_DEVELOPER";
-export const AddProjectMemberRequestRole = /*@__PURE__*/ S.String;
+export const AddProjectMemberRequestRole = S.String;
 
 export interface AddProjectMemberRequest {
   /** The ID or name of the Project. */
@@ -126,8 +126,7 @@ export type GetProjectMembersResponseBodyCase1MembersItemRole =
   | "PROJECT_DEVELOPER"
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
-export const GetProjectMembersResponseBodyCase1MembersItemRole =
-  /*@__PURE__*/ S.String;
+export const GetProjectMembersResponseBodyCase1MembersItemRole = S.String;
 
 /** Role of this user in the project. */
 export type GetProjectMembersResponseBodyCase1MembersItemComputedProjectRole =
@@ -136,7 +135,7 @@ export type GetProjectMembersResponseBodyCase1MembersItemComputedProjectRole =
   | "PROJECT_GUEST"
   | "PROJECT_VIEWER";
 export const GetProjectMembersResponseBodyCase1MembersItemComputedProjectRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The role of this user in the team. */
 export type GetProjectMembersResponseBodyCase1MembersItemTeamRole =
@@ -148,8 +147,7 @@ export type GetProjectMembersResponseBodyCase1MembersItemTeamRole =
   | "SECURITY"
   | "VIEWER"
   | "VIEWER_FOR_PLUS";
-export const GetProjectMembersResponseBodyCase1MembersItemTeamRole =
-  /*@__PURE__*/ S.String;
+export const GetProjectMembersResponseBodyCase1MembersItemTeamRole = S.String;
 
 export interface GetProjectMembersResponseBodyCase1MembersItem {
   /** ID of the file for the Avatar of this member. */
@@ -235,7 +233,7 @@ export type GetProjectMembersResponseBody =
   | unknown
   | GetProjectMembersResponseBodyCase1;
 export const GetProjectMembersResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetProjectMembersResponseBody>;
+  S.Unknown as any as S.Schema<GetProjectMembersResponseBody>;
 
 export type GetProjectMembersResponse = GetProjectMembersResponseBody;
 export const GetProjectMembersResponse = /*@__PURE__*/ S.suspend(() =>

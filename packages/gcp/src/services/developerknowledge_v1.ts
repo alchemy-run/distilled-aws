@@ -142,7 +142,7 @@ export type DocumentViewEnum =
   | "DOCUMENT_VIEW_BASIC"
   | "DOCUMENT_VIEW_FULL"
   | "DOCUMENT_VIEW_CONTENT";
-export const DocumentViewEnum = /*@__PURE__*/ S.String;
+export const DocumentViewEnum = S.String;
 
 /** A Document represents a page of documentation in the Developer Knowledge corpus, like the page at https://docs.cloud.google.com/storage/docs/creating-buckets. */
 export interface Document {
@@ -273,7 +273,7 @@ export type BatchGetDocumentsViewEnum =
   | "DOCUMENT_VIEW_BASIC"
   | "DOCUMENT_VIEW_FULL"
   | "DOCUMENT_VIEW_CONTENT";
-export const BatchGetDocumentsViewEnum = /*@__PURE__*/ S.String;
+export const BatchGetDocumentsViewEnum = S.String;
 
 export interface BatchGetDocumentsRequest {
   /** Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error. */
@@ -319,7 +319,7 @@ export type GetDocumentsViewEnum =
   | "DOCUMENT_VIEW_BASIC"
   | "DOCUMENT_VIEW_FULL"
   | "DOCUMENT_VIEW_CONTENT";
-export const GetDocumentsViewEnum = /*@__PURE__*/ S.String;
+export const GetDocumentsViewEnum = S.String;
 
 export interface GetDocumentsRequest {
   /** Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error. */

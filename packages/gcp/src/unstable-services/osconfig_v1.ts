@@ -199,7 +199,7 @@ export type PatchRolloutModeEnum =
   | "MODE_UNSPECIFIED"
   | "ZONE_BY_ZONE"
   | "CONCURRENT_ZONES";
-export const PatchRolloutModeEnum = /*@__PURE__*/ S.String;
+export const PatchRolloutModeEnum = S.String;
 
 /** Patch rollout configuration specifications. Contains details on the concurrency control when applying patch(es) to all targeted VMs. */
 export interface PatchRollout {
@@ -225,7 +225,7 @@ export type PatchJobStateEnum =
   | "COMPLETED_WITH_ERRORS"
   | "CANCELED"
   | "TIMED_OUT";
-export const PatchJobStateEnum = /*@__PURE__*/ S.String;
+export const PatchJobStateEnum = S.String;
 
 export type WindowsUpdateSettingsClassificationsItemEnum =
   | "CLASSIFICATION_UNSPECIFIED"
@@ -238,8 +238,7 @@ export type WindowsUpdateSettingsClassificationsItemEnum =
   | "TOOL"
   | "UPDATE_ROLLUP"
   | "UPDATE";
-export const WindowsUpdateSettingsClassificationsItemEnum =
-  /*@__PURE__*/ S.String;
+export const WindowsUpdateSettingsClassificationsItemEnum = S.String;
 
 export type WindowsUpdateSettingsClassificationsItemEnumList = Array<
   WindowsUpdateSettingsClassificationsItemEnum | (string & {})
@@ -297,7 +296,7 @@ export type ExecStepConfigInterpreterEnum =
   | "NONE"
   | "SHELL"
   | "POWERSHELL";
-export const ExecStepConfigInterpreterEnum = /*@__PURE__*/ S.String;
+export const ExecStepConfigInterpreterEnum = S.String;
 
 /** Common configurations for an ExecStep. */
 export interface ExecStepConfig {
@@ -334,7 +333,7 @@ export const ExecStep = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ExecStep" }) as any as S.Schema<ExecStep>;
 
 export type AptSettingsTypeEnum = "TYPE_UNSPECIFIED" | "DIST" | "UPGRADE";
-export const AptSettingsTypeEnum = /*@__PURE__*/ S.String;
+export const AptSettingsTypeEnum = S.String;
 
 /** Apt patching is completed by executing `apt-get update && apt-get upgrade`. Additional options can be set to control how this is executed. */
 export interface AptSettings {
@@ -358,7 +357,7 @@ export type PatchConfigRebootConfigEnum =
   | "DEFAULT"
   | "ALWAYS"
   | "NEVER";
-export const PatchConfigRebootConfigEnum = /*@__PURE__*/ S.String;
+export const PatchConfigRebootConfigEnum = S.String;
 
 /** Yum patching is performed by executing `yum update`. Additional options can be set to control how this is executed. Note that not all settings are supported on all platforms. */
 export interface YumSettings {
@@ -565,7 +564,7 @@ export type OSPolicyAssignmentRolloutStateEnum =
   | "CANCELLING"
   | "CANCELLED"
   | "SUCCEEDED";
-export const OSPolicyAssignmentRolloutStateEnum = /*@__PURE__*/ S.String;
+export const OSPolicyAssignmentRolloutStateEnum = S.String;
 
 /** Filtering criteria to select VMs based on inventory details. */
 export interface OSPolicyInventoryFilter {
@@ -713,8 +712,7 @@ export type OSPolicyResourcePackageResourceDesiredStateEnum =
   | "DESIRED_STATE_UNSPECIFIED"
   | "INSTALLED"
   | "REMOVED";
-export const OSPolicyResourcePackageResourceDesiredStateEnum =
-  /*@__PURE__*/ S.String;
+export const OSPolicyResourcePackageResourceDesiredStateEnum = S.String;
 
 /** An RPM package file. RPM packages only support INSTALLED state. */
 export interface OSPolicyResourcePackageResourceRPM {
@@ -773,8 +771,7 @@ export type OSPolicyResourceExecResourceExecInterpreterEnum =
   | "NONE"
   | "SHELL"
   | "POWERSHELL";
-export const OSPolicyResourceExecResourceExecInterpreterEnum =
-  /*@__PURE__*/ S.String;
+export const OSPolicyResourceExecResourceExecInterpreterEnum = S.String;
 
 /** A file or script to execute. */
 export interface OSPolicyResourceExecResourceExec {
@@ -822,7 +819,7 @@ export type OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum =
   | "DEB"
   | "DEB_SRC";
 export const OSPolicyResourceRepositoryResourceAptRepositoryArchiveTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a single apt package repository. These will be added to a repo file that will be managed at `/etc/apt/sources.list.d/google_osconfig.list`. */
 export interface OSPolicyResourceRepositoryResourceAptRepository {
@@ -944,7 +941,7 @@ export type OSPolicyResourceFileResourceStateEnum =
   | "PRESENT"
   | "ABSENT"
   | "CONTENTS_MATCH";
-export const OSPolicyResourceFileResourceStateEnum = /*@__PURE__*/ S.String;
+export const OSPolicyResourceFileResourceStateEnum = S.String;
 
 /** A resource that manages the state of a file. */
 export interface OSPolicyResourceFileResource {
@@ -1026,7 +1023,7 @@ export type OSPolicyModeEnum =
   | "MODE_UNSPECIFIED"
   | "VALIDATION"
   | "ENFORCEMENT";
-export const OSPolicyModeEnum = /*@__PURE__*/ S.String;
+export const OSPolicyModeEnum = S.String;
 
 /** An OS policy defines the desired state configuration for a VM. */
 export interface OSPolicy {
@@ -1257,7 +1254,7 @@ export type RecurringScheduleFrequencyEnum =
   | "WEEKLY"
   | "MONTHLY"
   | "DAILY";
-export const RecurringScheduleFrequencyEnum = /*@__PURE__*/ S.String;
+export const RecurringScheduleFrequencyEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -1288,7 +1285,7 @@ export type WeeklyScheduleDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeeklyScheduleDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const WeeklyScheduleDayOfWeekEnum = S.String;
 
 /** Represents a weekly schedule. */
 export interface WeeklySchedule {
@@ -1310,7 +1307,7 @@ export type WeekDayOfMonthDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const WeekDayOfMonthDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const WeekDayOfMonthDayOfWeekEnum = S.String;
 
 /** Represents one week day in a month. An example is "the 4th Sunday". */
 export interface WeekDayOfMonth {
@@ -1413,7 +1410,7 @@ export type PatchDeploymentStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "PAUSED";
-export const PatchDeploymentStateEnum = /*@__PURE__*/ S.String;
+export const PatchDeploymentStateEnum = S.String;
 
 /** Patch deployments are configurations that individual patch jobs use to complete a patch. These configurations include instance filter, package repository settings, and a schedule. For more information about creating and managing patch deployments, see [Scheduling patch jobs](https://cloud.google.com/compute/docs/os-patch-management/schedule-patch-jobs). */
 export interface PatchDeployment {
@@ -1602,8 +1599,7 @@ export type ProjectFeatureSettingsPatchAndConfigFeatureSetEnum =
   | "PATCH_AND_CONFIG_FEATURE_SET_UNSPECIFIED"
   | "OSCONFIG_B"
   | "OSCONFIG_C";
-export const ProjectFeatureSettingsPatchAndConfigFeatureSetEnum =
-  /*@__PURE__*/ S.String;
+export const ProjectFeatureSettingsPatchAndConfigFeatureSetEnum = S.String;
 
 /** ProjectFeatureSettings represents the VM Manager feature settings in a project. For more information, see Enable full VM Manager functionality. */
 export interface ProjectFeatureSettings {
@@ -1629,8 +1625,7 @@ export type GetProjectsLocationsInstancesInventoriesViewEnum =
   | "INVENTORY_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsInstancesInventoriesViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsInstancesInventoriesViewEnum = S.String;
 
 export interface GetProjectsLocationsInstancesInventoriesRequest {
   /** Required. API resource name for inventory resource. Format: `projects/{project}/locations/{location}/instances/{instance}/inventory` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance}`, either Compute Engine `instance-id` or `instance-name` can be provided. */
@@ -1899,13 +1894,13 @@ export const InventorySoftwarePackage = /*@__PURE__*/ S.suspend(() =>
 export type InventoryItemOriginTypeEnum =
   | "ORIGIN_TYPE_UNSPECIFIED"
   | "INVENTORY_REPORT";
-export const InventoryItemOriginTypeEnum = /*@__PURE__*/ S.String;
+export const InventoryItemOriginTypeEnum = S.String;
 
 export type InventoryItemTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "INSTALLED_PACKAGE"
   | "AVAILABLE_PACKAGE";
-export const InventoryItemTypeEnum = /*@__PURE__*/ S.String;
+export const InventoryItemTypeEnum = S.String;
 
 /** A single piece of inventory on a VM. */
 export interface InventoryItem {
@@ -1987,7 +1982,7 @@ export type OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance
   | "COMPLIANT"
   | "NON_COMPLIANT";
 export const OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceComplianceStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStepTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -1996,7 +1991,7 @@ export type OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance
   | "DESIRED_STATE_ENFORCEMENT"
   | "DESIRED_STATE_CHECK_POST_ENFORCEMENT";
 export const OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStepTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Step performed by the OS Config agent for configuring an `OSPolicy` resource to its desired state. */
 export interface OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep {
@@ -2085,7 +2080,7 @@ export type OSPolicyAssignmentReportOSPolicyComplianceComplianceStateEnum =
   | "COMPLIANT"
   | "NON_COMPLIANT";
 export const OSPolicyAssignmentReportOSPolicyComplianceComplianceStateEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Compliance data for an OS policy */
 export interface OSPolicyAssignmentReportOSPolicyCompliance {
@@ -2175,7 +2170,7 @@ export type CVSSv3IntegrityImpactEnum =
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const CVSSv3IntegrityImpactEnum = /*@__PURE__*/ S.String;
+export const CVSSv3IntegrityImpactEnum = S.String;
 
 export type CVSSv3AttackVectorEnum =
   | "ATTACK_VECTOR_UNSPECIFIED"
@@ -2183,46 +2178,46 @@ export type CVSSv3AttackVectorEnum =
   | "ATTACK_VECTOR_ADJACENT"
   | "ATTACK_VECTOR_LOCAL"
   | "ATTACK_VECTOR_PHYSICAL";
-export const CVSSv3AttackVectorEnum = /*@__PURE__*/ S.String;
+export const CVSSv3AttackVectorEnum = S.String;
 
 export type CVSSv3UserInteractionEnum =
   | "USER_INTERACTION_UNSPECIFIED"
   | "USER_INTERACTION_NONE"
   | "USER_INTERACTION_REQUIRED";
-export const CVSSv3UserInteractionEnum = /*@__PURE__*/ S.String;
+export const CVSSv3UserInteractionEnum = S.String;
 
 export type CVSSv3PrivilegesRequiredEnum =
   | "PRIVILEGES_REQUIRED_UNSPECIFIED"
   | "PRIVILEGES_REQUIRED_NONE"
   | "PRIVILEGES_REQUIRED_LOW"
   | "PRIVILEGES_REQUIRED_HIGH";
-export const CVSSv3PrivilegesRequiredEnum = /*@__PURE__*/ S.String;
+export const CVSSv3PrivilegesRequiredEnum = S.String;
 
 export type CVSSv3ConfidentialityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const CVSSv3ConfidentialityImpactEnum = /*@__PURE__*/ S.String;
+export const CVSSv3ConfidentialityImpactEnum = S.String;
 
 export type CVSSv3ScopeEnum =
   | "SCOPE_UNSPECIFIED"
   | "SCOPE_UNCHANGED"
   | "SCOPE_CHANGED";
-export const CVSSv3ScopeEnum = /*@__PURE__*/ S.String;
+export const CVSSv3ScopeEnum = S.String;
 
 export type CVSSv3AvailabilityImpactEnum =
   | "IMPACT_UNSPECIFIED"
   | "IMPACT_HIGH"
   | "IMPACT_LOW"
   | "IMPACT_NONE";
-export const CVSSv3AvailabilityImpactEnum = /*@__PURE__*/ S.String;
+export const CVSSv3AvailabilityImpactEnum = S.String;
 
 export type CVSSv3AttackComplexityEnum =
   | "ATTACK_COMPLEXITY_UNSPECIFIED"
   | "ATTACK_COMPLEXITY_LOW"
   | "ATTACK_COMPLEXITY_HIGH";
-export const CVSSv3AttackComplexityEnum = /*@__PURE__*/ S.String;
+export const CVSSv3AttackComplexityEnum = S.String;
 
 /** Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document */
 export interface CVSSv3 {
@@ -2391,8 +2386,7 @@ export type VulnerabilityReportHighestUpgradableCveSeverityEnum =
   | "MEDIUM"
   | "HIGH"
   | "CRITICAL";
-export const VulnerabilityReportHighestUpgradableCveSeverityEnum =
-  /*@__PURE__*/ S.String;
+export const VulnerabilityReportHighestUpgradableCveSeverityEnum = S.String;
 
 /** This API resource represents the vulnerability report for a specified Compute Engine virtual machine (VM) instance at a given point in time. For more information, see [Vulnerability reports](https://cloud.google.com/compute/docs/instances/os-inventory-management#vulnerability-reports). */
 export interface VulnerabilityReport {
@@ -2496,8 +2490,7 @@ export type ListProjectsLocationsInstancesInventoriesViewEnum =
   | "INVENTORY_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsInstancesInventoriesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsInstancesInventoriesViewEnum = S.String;
 
 export interface ListProjectsLocationsInstancesInventoriesRequest {
   /** If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response. */
@@ -2838,7 +2831,7 @@ export type PatchJobInstanceDetailsStateEnum =
   | "RUNNING_POST_PATCH_STEP"
   | "NO_AGENT_DETECTED"
   | "SKIPPED";
-export const PatchJobInstanceDetailsStateEnum = /*@__PURE__*/ S.String;
+export const PatchJobInstanceDetailsStateEnum = S.String;
 
 /** Patch details for a VM instance. For more information about reviewing VM instance details, see [Listing all VM instance details for a specific patch job](https://cloud.google.com/compute/docs/os-patch-management/manage-patch-jobs#list-instance-details). */
 export interface PatchJobInstanceDetails {

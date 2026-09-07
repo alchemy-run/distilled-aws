@@ -25,7 +25,7 @@ export const CreateCertificateRequestLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Choose between uploading a Certificate in PEM format or requesting a managed *Let's Encrypt* Certificate. */
 export type CreateCertificateRequestType = "uploaded" | "managed";
-export const CreateCertificateRequestType = /*@__PURE__*/ S.String;
+export const CreateCertificateRequestType = S.String;
 
 /** Domains and subdomains that should be contained in the Certificate issued by *Let's Encrypt*. Required for type `managed` Certificates. */
 export type CreateCertificateRequestDomainNamesList = Array<string>;
@@ -72,7 +72,7 @@ export const CreateCertificateResponseCertificateLabelsMap =
 
 /** Type of the Certificate. */
 export type CreateCertificateResponseCertificateType = "uploaded" | "managed";
-export const CreateCertificateResponseCertificateType = /*@__PURE__*/ S.String;
+export const CreateCertificateResponseCertificateType = S.String;
 
 /** Domains and subdomains covered by the Certificate. */
 export type CreateCertificateResponseCertificateDomainNamesList = Array<string>;
@@ -86,8 +86,7 @@ export type CreateCertificateResponseCertificateStatusIssuance =
   | "pending"
   | "completed"
   | "failed";
-export const CreateCertificateResponseCertificateStatusIssuance =
-  /*@__PURE__*/ S.String;
+export const CreateCertificateResponseCertificateStatusIssuance = S.String;
 
 /** Status of the renewal process of the Certificate. */
 export type CreateCertificateResponseCertificateStatusRenewal =
@@ -95,8 +94,7 @@ export type CreateCertificateResponseCertificateStatusRenewal =
   | "pending"
   | "failed"
   | "unavailable";
-export const CreateCertificateResponseCertificateStatusRenewal =
-  /*@__PURE__*/ S.String;
+export const CreateCertificateResponseCertificateStatusRenewal = S.String;
 
 /** If issuance or renewal reports `failed`, this property contains information about what happened. */
 export interface CreateCertificateResponseCertificateStatusError {
@@ -210,7 +208,7 @@ export type CreateCertificateResponseActionStatus =
   | "running"
   | "success"
   | "error";
-export const CreateCertificateResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateCertificateResponseActionStatus = S.String;
 
 export interface CreateCertificateResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -342,7 +340,7 @@ export const GetCertificateResponseCertificateLabelsMap =
 
 /** Type of the Certificate. */
 export type GetCertificateResponseCertificateType = "uploaded" | "managed";
-export const GetCertificateResponseCertificateType = /*@__PURE__*/ S.String;
+export const GetCertificateResponseCertificateType = S.String;
 
 /** Domains and subdomains covered by the Certificate. */
 export type GetCertificateResponseCertificateDomainNamesList = Array<string>;
@@ -356,8 +354,7 @@ export type GetCertificateResponseCertificateStatusIssuance =
   | "pending"
   | "completed"
   | "failed";
-export const GetCertificateResponseCertificateStatusIssuance =
-  /*@__PURE__*/ S.String;
+export const GetCertificateResponseCertificateStatusIssuance = S.String;
 
 /** Status of the renewal process of the Certificate. */
 export type GetCertificateResponseCertificateStatusRenewal =
@@ -365,8 +362,7 @@ export type GetCertificateResponseCertificateStatusRenewal =
   | "pending"
   | "failed"
   | "unavailable";
-export const GetCertificateResponseCertificateStatusRenewal =
-  /*@__PURE__*/ S.String;
+export const GetCertificateResponseCertificateStatusRenewal = S.String;
 
 /** If issuance or renewal reports `failed`, this property contains information about what happened. */
 export type GetCertificateResponseCertificateStatusError =
@@ -475,7 +471,7 @@ export type ListCertificatesRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListCertificatesRequestSortItem = /*@__PURE__*/ S.String;
+export const ListCertificatesRequestSortItem = S.String;
 
 export type ListCertificatesRequestSortList = Array<
   ListCertificatesRequestSortItem | (string & {})
@@ -486,7 +482,7 @@ export const ListCertificatesRequestSortList = /*@__PURE__*/ S.Array(
 
 /** Type of the Certificate. */
 export type ListCertificatesRequestTypeItem = "uploaded" | "managed";
-export const ListCertificatesRequestTypeItem = /*@__PURE__*/ S.String;
+export const ListCertificatesRequestTypeItem = S.String;
 
 export type ListCertificatesRequestTypeList = Array<
   ListCertificatesRequestTypeItem | (string & {})
@@ -536,8 +532,7 @@ export const ListCertificatesResponseCertificatesItemLabelsMap =
 export type ListCertificatesResponseCertificatesItemType =
   | "uploaded"
   | "managed";
-export const ListCertificatesResponseCertificatesItemType =
-  /*@__PURE__*/ S.String;
+export const ListCertificatesResponseCertificatesItemType = S.String;
 
 /** Domains and subdomains covered by the Certificate. */
 export type ListCertificatesResponseCertificatesItemDomainNamesList =
@@ -552,8 +547,7 @@ export type ListCertificatesResponseCertificatesItemStatusIssuance =
   | "pending"
   | "completed"
   | "failed";
-export const ListCertificatesResponseCertificatesItemStatusIssuance =
-  /*@__PURE__*/ S.String;
+export const ListCertificatesResponseCertificatesItemStatusIssuance = S.String;
 
 /** Status of the renewal process of the Certificate. */
 export type ListCertificatesResponseCertificatesItemStatusRenewal =
@@ -561,8 +555,7 @@ export type ListCertificatesResponseCertificatesItemStatusRenewal =
   | "pending"
   | "failed"
   | "unavailable";
-export const ListCertificatesResponseCertificatesItemStatusRenewal =
-  /*@__PURE__*/ S.String;
+export const ListCertificatesResponseCertificatesItemStatusRenewal = S.String;
 
 /** If issuance or renewal reports `failed`, this property contains information about what happened. */
 export type ListCertificatesResponseCertificatesItemStatusError =
@@ -756,7 +749,7 @@ export const UpdateCertificateResponseCertificateLabelsMap =
 
 /** Type of the Certificate. */
 export type UpdateCertificateResponseCertificateType = "uploaded" | "managed";
-export const UpdateCertificateResponseCertificateType = /*@__PURE__*/ S.String;
+export const UpdateCertificateResponseCertificateType = S.String;
 
 /** Domains and subdomains covered by the Certificate. */
 export type UpdateCertificateResponseCertificateDomainNamesList = Array<string>;
@@ -770,8 +763,7 @@ export type UpdateCertificateResponseCertificateStatusIssuance =
   | "pending"
   | "completed"
   | "failed";
-export const UpdateCertificateResponseCertificateStatusIssuance =
-  /*@__PURE__*/ S.String;
+export const UpdateCertificateResponseCertificateStatusIssuance = S.String;
 
 /** Status of the renewal process of the Certificate. */
 export type UpdateCertificateResponseCertificateStatusRenewal =
@@ -779,8 +771,7 @@ export type UpdateCertificateResponseCertificateStatusRenewal =
   | "pending"
   | "failed"
   | "unavailable";
-export const UpdateCertificateResponseCertificateStatusRenewal =
-  /*@__PURE__*/ S.String;
+export const UpdateCertificateResponseCertificateStatusRenewal = S.String;
 
 /** If issuance or renewal reports `failed`, this property contains information about what happened. */
 export type UpdateCertificateResponseCertificateStatusError =

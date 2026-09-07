@@ -57,7 +57,7 @@ export type AddOrganizationMemberRequestOrgRole =
   | "manager"
   | "owner"
   | "admin";
-export const AddOrganizationMemberRequestOrgRole = /*@__PURE__*/ S.String;
+export const AddOrganizationMemberRequestOrgRole = S.String;
 
 export type AddOrganizationMemberRequestTeamRolesItemMap = {
   [key: string]: unknown | undefined;
@@ -436,7 +436,7 @@ export const AddOrganizationMemberTeamResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the source. * `http` - SymbolServer (HTTP) * `gcs` - Google Cloud Storage * `s3` - Amazon S3 */
 export type AddProjectSymbolSourceRequestType = "http" | "gcs" | "s3";
-export const AddProjectSymbolSourceRequestType = /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceRequestType = S.String;
 
 /** The source's layout type. * `native` * `symstore` * `symstore_index2` * `ssqp` * `unified` * `debuginfod` * `slashsymbols` */
 export type AddProjectSymbolSourceRequestLayoutType =
@@ -447,14 +447,14 @@ export type AddProjectSymbolSourceRequestLayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const AddProjectSymbolSourceRequestLayoutType = /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceRequestLayoutType = S.String;
 
 /** The source's casing rules. * `lowercase` * `uppercase` * `default` */
 export type AddProjectSymbolSourceRequestLayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const AddProjectSymbolSourceRequestLayoutCasing = /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceRequestLayoutCasing = S.String;
 
 /** Layout settings for the source. This is required for HTTP, GCS, and S3 sources. **`type`** ***(string)*** - The layout of the folder structure. The options are: - `native` - Platform-Specific (SymStore / GDB / LLVM) - `symstore` - Microsoft SymStore - `symstore_index2` - Microsoft SymStore (with index2.txt) - `ssqp` - Microsoft SSQP - `unified` - Unified Symbol Server Layout - `debuginfod` - debuginfod **`casing`** ***(string)*** - The layout of the folder structure. The options are: - `default` - Default (mixed case) - `uppercase` - Uppercase - `lowercase` - Lowercase ```json { "layout": { "type": "native" "casing": "default" } } ``` */
 export interface AddProjectSymbolSourceRequestLayout {
@@ -490,8 +490,7 @@ export type AddProjectSymbolSourceRequestFiltersFiletypesItem =
   | "il2cpp"
   | "proguard"
   | "dartsymbolmap";
-export const AddProjectSymbolSourceRequestFiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceRequestFiltersFiletypesItem = S.String;
 
 /** The file types enabled for the source. */
 export type AddProjectSymbolSourceRequestFiltersFiletypesList = Array<
@@ -555,7 +554,7 @@ export type AddProjectSymbolSourceRequestRegion =
   | "sa-east-1"
   | "us-gov-east-1"
   | "us-gov-west-1";
-export const AddProjectSymbolSourceRequestRegion = /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceRequestRegion = S.String;
 
 export interface AddProjectSymbolSourceRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -624,8 +623,7 @@ export const AddProjectSymbolSourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddProjectSymbolSourceRequest>;
 
 export type AddProjectSymbolSourceResponseBodyCase0Type = "http";
-export const AddProjectSymbolSourceResponseBodyCase0Type =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase0Type = S.String;
 
 export interface AddProjectSymbolSourceResponseBodyCase0Password {
   hidden_secret?: boolean;
@@ -647,15 +645,13 @@ export type AddProjectSymbolSourceResponseBodyCase0LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const AddProjectSymbolSourceResponseBodyCase0LayoutType =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase0LayoutType = S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase0LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const AddProjectSymbolSourceResponseBodyCase0LayoutCasing =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase0LayoutCasing = S.String;
 
 export interface AddProjectSymbolSourceResponseBodyCase0Layout {
   type: AddProjectSymbolSourceResponseBodyCase0LayoutType;
@@ -689,7 +685,7 @@ export type AddProjectSymbolSourceResponseBodyCase0FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const AddProjectSymbolSourceResponseBodyCase0FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase0FiltersFiletypesList =
   Array<AddProjectSymbolSourceResponseBodyCase0FiltersFiletypesItem>;
@@ -767,8 +763,7 @@ export const AddProjectSymbolSourceResponseBodyCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AddProjectSymbolSourceResponseBodyCase0>;
 
 export type AddProjectSymbolSourceResponseBodyCase1Type = "s3";
-export const AddProjectSymbolSourceResponseBodyCase1Type =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase1Type = S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase1SecretKey =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -783,15 +778,13 @@ export type AddProjectSymbolSourceResponseBodyCase1LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const AddProjectSymbolSourceResponseBodyCase1LayoutType =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase1LayoutType = S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase1LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const AddProjectSymbolSourceResponseBodyCase1LayoutCasing =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase1LayoutCasing = S.String;
 
 export interface AddProjectSymbolSourceResponseBodyCase1Layout {
   type: AddProjectSymbolSourceResponseBodyCase1LayoutType;
@@ -825,7 +818,7 @@ export type AddProjectSymbolSourceResponseBodyCase1FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const AddProjectSymbolSourceResponseBodyCase1FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase1FiltersFiletypesList =
   Array<AddProjectSymbolSourceResponseBodyCase1FiltersFiletypesItem>;
@@ -907,8 +900,7 @@ export const AddProjectSymbolSourceResponseBodyCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AddProjectSymbolSourceResponseBodyCase1>;
 
 export type AddProjectSymbolSourceResponseBodyCase2Type = "gcs";
-export const AddProjectSymbolSourceResponseBodyCase2Type =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase2Type = S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase2PrivateKey =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -923,15 +915,13 @@ export type AddProjectSymbolSourceResponseBodyCase2LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const AddProjectSymbolSourceResponseBodyCase2LayoutType =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase2LayoutType = S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase2LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const AddProjectSymbolSourceResponseBodyCase2LayoutCasing =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase2LayoutCasing = S.String;
 
 export interface AddProjectSymbolSourceResponseBodyCase2Layout {
   type: AddProjectSymbolSourceResponseBodyCase2LayoutType;
@@ -965,7 +955,7 @@ export type AddProjectSymbolSourceResponseBodyCase2FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const AddProjectSymbolSourceResponseBodyCase2FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type AddProjectSymbolSourceResponseBodyCase2FiltersFiletypesList =
   Array<AddProjectSymbolSourceResponseBodyCase2FiltersFiletypesItem>;
@@ -1045,8 +1035,7 @@ export const AddProjectSymbolSourceResponseBodyCase2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AddProjectSymbolSourceResponseBodyCase2>;
 
 export type AddProjectSymbolSourceResponseBodyCase3Type = "appStoreConnect";
-export const AddProjectSymbolSourceResponseBodyCase3Type =
-  /*@__PURE__*/ S.String;
+export const AddProjectSymbolSourceResponseBodyCase3Type = S.String;
 
 export interface AddProjectSymbolSourceResponseBodyCase3 {
   type: AddProjectSymbolSourceResponseBodyCase3Type;
@@ -1082,7 +1071,7 @@ export type AddProjectSymbolSourceResponseBody =
   | AddProjectSymbolSourceResponseBodyCase2
   | AddProjectSymbolSourceResponseBodyCase3;
 export const AddProjectSymbolSourceResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddProjectSymbolSourceResponseBody>;
+  S.Unknown as any as S.Schema<AddProjectSymbolSourceResponseBody>;
 
 export type AddProjectSymbolSourceResponse = AddProjectSymbolSourceResponseBody;
 export const AddProjectSymbolSourceResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1325,7 +1314,7 @@ export type BulkMutateAListOfIssuesResponseStatus =
   | "resolved"
   | "unresolved"
   | "ignored";
-export const BulkMutateAListOfIssuesResponseStatus = /*@__PURE__*/ S.String;
+export const BulkMutateAListOfIssuesResponseStatus = S.String;
 
 export interface BulkMutateAListOfIssuesResponse {
   isPublic: boolean;
@@ -1517,7 +1506,7 @@ export type CreateOrganizationDashboardRequestWidgetsItemDisplayType =
   | "agents_traces_table"
   | "heatmap";
 export const CreateOrganizationDashboardRequestWidgetsItemDisplayType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateOrganizationDashboardRequestWidgetsItemQueriesItemFieldsList =
   Array<string>;
@@ -1662,8 +1651,7 @@ export type CreateOrganizationDashboardRequestWidgetsItemWidgetType =
   | "logs"
   | "tracemetrics"
   | "preprod-app-size";
-export const CreateOrganizationDashboardRequestWidgetsItemWidgetType =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationDashboardRequestWidgetsItemWidgetType = S.String;
 
 /** Widget grid layout position and dimensions for dashboard creation. The dashboard uses a 6-column grid. Required keys: x, y, w, h. Constraints: x (0-5), y (>= 0), w (1-6), h (>= 1), and x + w <= 6. */
 export interface CreateOrganizationDashboardRequestWidgetsItemLayout {
@@ -1692,15 +1680,13 @@ export const CreateOrganizationDashboardRequestWidgetsItemLayout =
 export type CreateOrganizationDashboardRequestWidgetsItemAxisRange =
   | "auto"
   | "dataMin";
-export const CreateOrganizationDashboardRequestWidgetsItemAxisRange =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationDashboardRequestWidgetsItemAxisRange = S.String;
 
 /** * `default` * `breakdown` */
 export type CreateOrganizationDashboardRequestWidgetsItemLegendType =
   | "default"
   | "breakdown";
-export const CreateOrganizationDashboardRequestWidgetsItemLegendType =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationDashboardRequestWidgetsItemLegendType = S.String;
 
 /** Allows parameters to be defined in snake case, but passed as camel case. Errors are output in camel case. */
 export interface CreateOrganizationDashboardRequestWidgetsItem {
@@ -2161,7 +2147,7 @@ export type CreateOrganizationDashboardResponseWidgetsItemLegendType =
   | "default"
   | "breakdown";
 export const CreateOrganizationDashboardResponseWidgetsItemLegendType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateOrganizationDashboardResponseWidgetsItemExploreUrlsList =
   Array<string>;
@@ -2196,7 +2182,7 @@ export type CreateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquat
   | string
   | CreateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValueCase1List;
 export const CreateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue>;
+  S.Unknown as any as S.Schema<CreateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue>;
 
 export type CreateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemMap =
   {
@@ -2446,8 +2432,7 @@ export type CreateOrganizationDiscoverSavedQueryRequestQueryDataset =
   | "discover"
   | "error-events"
   | "transaction-like";
-export const CreateOrganizationDiscoverSavedQueryRequestQueryDataset =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationDiscoverSavedQueryRequestQueryDataset = S.String;
 
 /** The fields, functions, or equations that can be requested for the query. At most 20 fields can be selected per request. Each field can be one of the following types: - A built-in key field. See possible fields in the [properties table](/product/sentry-basics/search/searchable-properties/#properties-table), under any field that is an event property. - example: `field=transaction` - A tag. Tags should use the `tag[]` formatting to avoid ambiguity with any fields - example: `field=tag[isEnterprise]` - A function which will be in the format of `function_name(parameters,...)`. See possible functions in the [query builder documentation](/product/discover-queries/query-builder/#stacking-functions). - when a function is included, Discover will group by any tags or fields - example: `field=count_if(transaction.duration,greater,300)` - An equation when prefixed with `equation|`. Read more about [equations here](/product/discover-queries/query-builder/query-equations/). - example: `field=equation|count_if(transaction.duration,greater,300) / count() * 100` */
 export type CreateOrganizationDiscoverSavedQueryRequestFieldsList =
@@ -2800,8 +2785,7 @@ export type CreateOrganizationExternalUserRequestProvider =
   | "gitlab"
   | "msteams"
   | "custom_scm";
-export const CreateOrganizationExternalUserRequestProvider =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationExternalUserRequestProvider = S.String;
 
 export interface CreateOrganizationExternalUserRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -2866,8 +2850,7 @@ export type CreateOrganizationForwardingRequestProvider =
   | "segment"
   | "sqs"
   | "splunk";
-export const CreateOrganizationForwardingRequestProvider =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationForwardingRequestProvider = S.String;
 
 /** The configuration for the data forwarder, specific to the provider type. For a 'sqs' provider, the required keys are queue_url, region, access_key, secret_key. If using a FIFO queue, you must also provide a message_group_id, though s3_bucket is optional. For a 'segment' provider, the required keys are write_key. For a 'splunk' provider, the required keys are instance_url, index, source, token. */
 export type CreateOrganizationForwardingRequestConfigMap = {
@@ -3045,8 +3028,7 @@ export const CreateOrganizationForwardingResponse = /*@__PURE__*/ S.suspend(
 export type CreateOrganizationMonitorRequestConfigScheduleType =
   | "crontab"
   | "interval";
-export const CreateOrganizationMonitorRequestConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationMonitorRequestConfigScheduleType = S.String;
 
 /** tz database style timezone string * `Africa/Abidjan` * `Africa/Accra` * `Africa/Addis_Ababa` * `Africa/Algiers` * `Africa/Asmara` * `Africa/Asmera` * `Africa/Bamako` * `Africa/Bangui` * `Africa/Banjul` * `Africa/Bissau` * `Africa/Blantyre` * `Africa/Brazzaville` * `Africa/Bujumbura` * `Africa/Cairo` * `Africa/Casablanca` * `Africa/Ceuta` * `Africa/Conakry` * `Africa/Dakar` * `Africa/Dar_es_Salaam` * `Africa/Djibouti` * `Africa/Douala` * `Africa/El_Aaiun` * `Africa/Freetown` * `Africa/Gaborone` * `Africa/Harare` * `Africa/Johannesburg` * `Africa/Juba` * `Africa/Kampala` * `Africa/Khartoum` * `Africa/Kigali` * `Africa/Kinshasa` * `Africa/Lagos` * `Africa/Libreville` * `Africa/Lome` * `Africa/Luanda` * `Africa/Lubumbashi` * `Africa/Lusaka` * `Africa/Malabo` * `Africa/Maputo` * `Africa/Maseru` * `Africa/Mbabane` * `Africa/Mogadishu` * `Africa/Monrovia` * `Africa/Nairobi` * `Africa/Ndjamena` * `Africa/Niamey` * `Africa/Nouakchott` * `Africa/Ouagadougou` * `Africa/Porto-Novo` * `Africa/Sao_Tome` * `Africa/Timbuktu` * `Africa/Tripoli` * `Africa/Tunis` * `Africa/Windhoek` * `America/Adak` * `America/Anchorage` * `America/Anguilla` * `America/Antigua` * `America/Araguaina` * `America/Argentina/Buenos_Aires` * `America/Argentina/Catamarca` * `America/Argentina/ComodRivadavia` * `America/Argentina/Cordoba` * `America/Argentina/Jujuy` * `America/Argentina/La_Rioja` * `America/Argentina/Mendoza` * `America/Argentina/Rio_Gallegos` * `America/Argentina/Salta` * `America/Argentina/San_Juan` * `America/Argentina/San_Luis` * `America/Argentina/Tucuman` * `America/Argentina/Ushuaia` * `America/Aruba` * `America/Asuncion` * `America/Atikokan` * `America/Atka` * `America/Bahia` * `America/Bahia_Banderas` * `America/Barbados` * `America/Belem` * `America/Belize` * `America/Blanc-Sablon` * `America/Boa_Vista` * `America/Bogota` * `America/Boise` * `America/Buenos_Aires` * `America/Cambridge_Bay` * `America/Campo_Grande` * `America/Cancun` * `America/Caracas` * `America/Catamarca` * `America/Cayenne` * `America/Cayman` * `America/Chicago` * `America/Chihuahua` * `America/Ciudad_Juarez` * `America/Coral_Harbour` * `America/Cordoba` * `America/Costa_Rica` * `America/Coyhaique` * `America/Creston` * `America/Cuiaba` * `America/Curacao` * `America/Danmarkshavn` * `America/Dawson` * `America/Dawson_Creek` * `America/Denver` * `America/Detroit` * `America/Dominica` * `America/Edmonton` * `America/Eirunepe` * `America/El_Salvador` * `America/Ensenada` * `America/Fort_Nelson` * `America/Fort_Wayne` * `America/Fortaleza` * `America/Glace_Bay` * `America/Godthab` * `America/Goose_Bay` * `America/Grand_Turk` * `America/Grenada` * `America/Guadeloupe` * `America/Guatemala` * `America/Guayaquil` * `America/Guyana` * `America/Halifax` * `America/Havana` * `America/Hermosillo` * `America/Indiana/Indianapolis` * `America/Indiana/Knox` * `America/Indiana/Marengo` * `America/Indiana/Petersburg` * `America/Indiana/Tell_City` * `America/Indiana/Vevay` * `America/Indiana/Vincennes` * `America/Indiana/Winamac` * `America/Indianapolis` * `America/Inuvik` * `America/Iqaluit` * `America/Jamaica` * `America/Jujuy` * `America/Juneau` * `America/Kentucky/Louisville` * `America/Kentucky/Monticello` * `America/Knox_IN` * `America/Kralendijk` * `America/La_Paz` * `America/Lima` * `America/Los_Angeles` * `America/Louisville` * `America/Lower_Princes` * `America/Maceio` * `America/Managua` * `America/Manaus` * `America/Marigot` * `America/Martinique` * `America/Matamoros` * `America/Mazatlan` * `America/Mendoza` * `America/Menominee` * `America/Merida` * `America/Metlakatla` * `America/Mexico_City` * `America/Miquelon` * `America/Moncton` * `America/Monterrey` * `America/Montevideo` * `America/Montreal` * `America/Montserrat` * `America/Nassau` * `America/New_York` * `America/Nipigon` * `America/Nome` * `America/Noronha` * `America/North_Dakota/Beulah` * `America/North_Dakota/Center` * `America/North_Dakota/New_Salem` * `America/Nuuk` * `America/Ojinaga` * `America/Panama` * `America/Pangnirtung` * `America/Paramaribo` * `America/Phoenix` * `America/Port-au-Prince` * `America/Port_of_Spain` * `America/Porto_Acre` * `America/Porto_Velho` * `America/Puerto_Rico` * `America/Punta_Arenas` * `America/Rainy_River` * `America/Rankin_Inlet` * `America/Recife` * `America/Regina` * `America/Resolute` * `America/Rio_Branco` * `America/Rosario` * `America/Santa_Isabel` * `America/Santarem` * `America/Santiago` * `America/Santo_Domingo` * `America/Sao_Paulo` * `America/Scoresbysund` * `America/Shiprock` * `America/Sitka` * `America/St_Barthelemy` * `America/St_Johns` * `America/St_Kitts` * `America/St_Lucia` * `America/St_Thomas` * `America/St_Vincent` * `America/Swift_Current` * `America/Tegucigalpa` * `America/Thule` * `America/Thunder_Bay` * `America/Tijuana` * `America/Toronto` * `America/Tortola` * `America/Vancouver` * `America/Virgin` * `America/Whitehorse` * `America/Winnipeg` * `America/Yakutat` * `America/Yellowknife` * `Antarctica/Casey` * `Antarctica/Davis` * `Antarctica/DumontDUrville` * `Antarctica/Macquarie` * `Antarctica/Mawson` * `Antarctica/McMurdo` * `Antarctica/Palmer` * `Antarctica/Rothera` * `Antarctica/South_Pole` * `Antarctica/Syowa` * `Antarctica/Troll` * `Antarctica/Vostok` * `Arctic/Longyearbyen` * `Asia/Aden` * `Asia/Almaty` * `Asia/Amman` * `Asia/Anadyr` * `Asia/Aqtau` * `Asia/Aqtobe` * `Asia/Ashgabat` * `Asia/Ashkhabad` * `Asia/Atyrau` * `Asia/Baghdad` * `Asia/Bahrain` * `Asia/Baku` * `Asia/Bangkok` * `Asia/Barnaul` * `Asia/Beirut` * `Asia/Bishkek` * `Asia/Brunei` * `Asia/Calcutta` * `Asia/Chita` * `Asia/Choibalsan` * `Asia/Chongqing` * `Asia/Chungking` * `Asia/Colombo` * `Asia/Dacca` * `Asia/Damascus` * `Asia/Dhaka` * `Asia/Dili` * `Asia/Dubai` * `Asia/Dushanbe` * `Asia/Famagusta` * `Asia/Gaza` * `Asia/Harbin` * `Asia/Hebron` * `Asia/Ho_Chi_Minh` * `Asia/Hong_Kong` * `Asia/Hovd` * `Asia/Irkutsk` * `Asia/Istanbul` * `Asia/Jakarta` * `Asia/Jayapura` * `Asia/Jerusalem` * `Asia/Kabul` * `Asia/Kamchatka` * `Asia/Karachi` * `Asia/Kashgar` * `Asia/Kathmandu` * `Asia/Katmandu` * `Asia/Khandyga` * `Asia/Kolkata` * `Asia/Krasnoyarsk` * `Asia/Kuala_Lumpur` * `Asia/Kuching` * `Asia/Kuwait` * `Asia/Macao` * `Asia/Macau` * `Asia/Magadan` * `Asia/Makassar` * `Asia/Manila` * `Asia/Muscat` * `Asia/Nicosia` * `Asia/Novokuznetsk` * `Asia/Novosibirsk` * `Asia/Omsk` * `Asia/Oral` * `Asia/Phnom_Penh` * `Asia/Pontianak` * `Asia/Pyongyang` * `Asia/Qatar` * `Asia/Qostanay` * `Asia/Qyzylorda` * `Asia/Rangoon` * `Asia/Riyadh` * `Asia/Saigon` * `Asia/Sakhalin` * `Asia/Samarkand` * `Asia/Seoul` * `Asia/Shanghai` * `Asia/Singapore` * `Asia/Srednekolymsk` * `Asia/Taipei` * `Asia/Tashkent` * `Asia/Tbilisi` * `Asia/Tehran` * `Asia/Tel_Aviv` * `Asia/Thimbu` * `Asia/Thimphu` * `Asia/Tokyo` * `Asia/Tomsk` * `Asia/Ujung_Pandang` * `Asia/Ulaanbaatar` * `Asia/Ulan_Bator` * `Asia/Urumqi` * `Asia/Ust-Nera` * `Asia/Vientiane` * `Asia/Vladivostok` * `Asia/Yakutsk` * `Asia/Yangon` * `Asia/Yekaterinburg` * `Asia/Yerevan` * `Atlantic/Azores` * `Atlantic/Bermuda` * `Atlantic/Canary` * `Atlantic/Cape_Verde` * `Atlantic/Faeroe` * `Atlantic/Faroe` * `Atlantic/Jan_Mayen` * `Atlantic/Madeira` * `Atlantic/Reykjavik` * `Atlantic/South_Georgia` * `Atlantic/St_Helena` * `Atlantic/Stanley` * `Australia/ACT` * `Australia/Adelaide` * `Australia/Brisbane` * `Australia/Broken_Hill` * `Australia/Canberra` * `Australia/Currie` * `Australia/Darwin` * `Australia/Eucla` * `Australia/Hobart` * `Australia/LHI` * `Australia/Lindeman` * `Australia/Lord_Howe` * `Australia/Melbourne` * `Australia/NSW` * `Australia/North` * `Australia/Perth` * `Australia/Queensland` * `Australia/South` * `Australia/Sydney` * `Australia/Tasmania` * `Australia/Victoria` * `Australia/West` * `Australia/Yancowinna` * `Brazil/Acre` * `Brazil/DeNoronha` * `Brazil/East` * `Brazil/West` * `CET` * `CST6CDT` * `Canada/Atlantic` * `Canada/Central` * `Canada/Eastern` * `Canada/Mountain` * `Canada/Newfoundland` * `Canada/Pacific` * `Canada/Saskatchewan` * `Canada/Yukon` * `Chile/Continental` * `Chile/EasterIsland` * `Cuba` * `EET` * `EST` * `EST5EDT` * `Egypt` * `Eire` * `Etc/GMT` * `Etc/GMT+0` * `Etc/GMT+1` * `Etc/GMT+10` * `Etc/GMT+11` * `Etc/GMT+12` * `Etc/GMT+2` * `Etc/GMT+3` * `Etc/GMT+4` * `Etc/GMT+5` * `Etc/GMT+6` * `Etc/GMT+7` * `Etc/GMT+8` * `Etc/GMT+9` * `Etc/GMT-0` * `Etc/GMT-1` * `Etc/GMT-10` * `Etc/GMT-11` * `Etc/GMT-12` * `Etc/GMT-13` * `Etc/GMT-14` * `Etc/GMT-2` * `Etc/GMT-3` * `Etc/GMT-4` * `Etc/GMT-5` * `Etc/GMT-6` * `Etc/GMT-7` * `Etc/GMT-8` * `Etc/GMT-9` * `Etc/GMT0` * `Etc/Greenwich` * `Etc/UCT` * `Etc/UTC` * `Etc/Universal` * `Etc/Zulu` * `Europe/Amsterdam` * `Europe/Andorra` * `Europe/Astrakhan` * `Europe/Athens` * `Europe/Belfast` * `Europe/Belgrade` * `Europe/Berlin` * `Europe/Bratislava` * `Europe/Brussels` * `Europe/Bucharest` * `Europe/Budapest` * `Europe/Busingen` * `Europe/Chisinau` * `Europe/Copenhagen` * `Europe/Dublin` * `Europe/Gibraltar` * `Europe/Guernsey` * `Europe/Helsinki` * `Europe/Isle_of_Man` * `Europe/Istanbul` * `Europe/Jersey` * `Europe/Kaliningrad` * `Europe/Kiev` * `Europe/Kirov` * `Europe/Kyiv` * `Europe/Lisbon` * `Europe/Ljubljana` * `Europe/London` * `Europe/Luxembourg` * `Europe/Madrid` * `Europe/Malta` * `Europe/Mariehamn` * `Europe/Minsk` * `Europe/Monaco` * `Europe/Moscow` * `Europe/Nicosia` * `Europe/Oslo` * `Europe/Paris` * `Europe/Podgorica` * `Europe/Prague` * `Europe/Riga` * `Europe/Rome` * `Europe/Samara` * `Europe/San_Marino` * `Europe/Sarajevo` * `Europe/Saratov` * `Europe/Simferopol` * `Europe/Skopje` * `Europe/Sofia` * `Europe/Stockholm` * `Europe/Tallinn` * `Europe/Tirane` * `Europe/Tiraspol` * `Europe/Ulyanovsk` * `Europe/Uzhgorod` * `Europe/Vaduz` * `Europe/Vatican` * `Europe/Vienna` * `Europe/Vilnius` * `Europe/Volgograd` * `Europe/Warsaw` * `Europe/Zagreb` * `Europe/Zaporozhye` * `Europe/Zurich` * `GB` * `GB-Eire` * `GMT` * `GMT+0` * `GMT-0` * `GMT0` * `Greenwich` * `HST` * `Hongkong` * `Iceland` * `Indian/Antananarivo` * `Indian/Chagos` * `Indian/Christmas` * `Indian/Cocos` * `Indian/Comoro` * `Indian/Kerguelen` * `Indian/Mahe` * `Indian/Maldives` * `Indian/Mauritius` * `Indian/Mayotte` * `Indian/Reunion` * `Iran` * `Israel` * `Jamaica` * `Japan` * `Kwajalein` * `Libya` * `MET` * `MST` * `MST7MDT` * `Mexico/BajaNorte` * `Mexico/BajaSur` * `Mexico/General` * `NZ` * `NZ-CHAT` * `Navajo` * `PRC` * `PST8PDT` * `Pacific/Apia` * `Pacific/Auckland` * `Pacific/Bougainville` * `Pacific/Chatham` * `Pacific/Chuuk` * `Pacific/Easter` * `Pacific/Efate` * `Pacific/Enderbury` * `Pacific/Fakaofo` * `Pacific/Fiji` * `Pacific/Funafuti` * `Pacific/Galapagos` * `Pacific/Gambier` * `Pacific/Guadalcanal` * `Pacific/Guam` * `Pacific/Honolulu` * `Pacific/Johnston` * `Pacific/Kanton` * `Pacific/Kiritimati` * `Pacific/Kosrae` * `Pacific/Kwajalein` * `Pacific/Majuro` * `Pacific/Marquesas` * `Pacific/Midway` * `Pacific/Nauru` * `Pacific/Niue` * `Pacific/Norfolk` * `Pacific/Noumea` * `Pacific/Pago_Pago` * `Pacific/Palau` * `Pacific/Pitcairn` * `Pacific/Pohnpei` * `Pacific/Ponape` * `Pacific/Port_Moresby` * `Pacific/Rarotonga` * `Pacific/Saipan` * `Pacific/Samoa` * `Pacific/Tahiti` * `Pacific/Tarawa` * `Pacific/Tongatapu` * `Pacific/Truk` * `Pacific/Wake` * `Pacific/Wallis` * `Pacific/Yap` * `Poland` * `Portugal` * `ROC` * `ROK` * `Singapore` * `Turkey` * `UCT` * `US/Alaska` * `US/Aleutian` * `US/Arizona` * `US/Central` * `US/East-Indiana` * `US/Eastern` * `US/Hawaii` * `US/Indiana-Starke` * `US/Michigan` * `US/Mountain` * `US/Pacific` * `US/Samoa` * `UTC` * `Universal` * `W-SU` * `WET` * `Zulu` * `localtime` */
 export type CreateOrganizationMonitorRequestConfigTimezone =
@@ -3649,8 +3631,7 @@ export type CreateOrganizationMonitorRequestConfigTimezone =
   | "Zulu"
   | "localtime"
   | "";
-export const CreateOrganizationMonitorRequestConfigTimezone =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationMonitorRequestConfigTimezone = S.String;
 
 export interface CreateOrganizationMonitorRequestConfig {
   /** Currently supports "crontab" or "interval" * `crontab` * `interval` */
@@ -3689,7 +3670,7 @@ export const CreateOrganizationMonitorRequestConfig = /*@__PURE__*/ S.suspend(
 
 /** Status of the monitor. Disabled monitors will not accept events and will not count towards the monitor quota. * `active` * `disabled` */
 export type CreateOrganizationMonitorRequestStatus = "active" | "disabled";
-export const CreateOrganizationMonitorRequestStatus = /*@__PURE__*/ S.String;
+export const CreateOrganizationMonitorRequestStatus = S.String;
 
 export interface CreateOrganizationMonitorRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -3768,8 +3749,7 @@ export const CreateOrganizationMonitorResponseAlertRule =
 export type CreateOrganizationMonitorResponseConfigScheduleType =
   | "crontab"
   | "interval";
-export const CreateOrganizationMonitorResponseConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationMonitorResponseConfigScheduleType = S.String;
 
 export type CreateOrganizationMonitorResponseConfigScheduleCase1List =
   Array<number>;
@@ -3782,7 +3762,7 @@ export type CreateOrganizationMonitorResponseConfigSchedule =
   | string
   | CreateOrganizationMonitorResponseConfigScheduleCase1List;
 export const CreateOrganizationMonitorResponseConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationMonitorResponseConfigSchedule>;
+  S.Unknown as any as S.Schema<CreateOrganizationMonitorResponseConfigSchedule>;
 
 export interface CreateOrganizationMonitorResponseConfig {
   schedule_type: CreateOrganizationMonitorResponseConfigScheduleType;
@@ -3980,8 +3960,7 @@ export const CreateOrganizationMonitorResponseEnvironments =
   }) as any as S.Schema<CreateOrganizationMonitorResponseEnvironments>;
 
 export type CreateOrganizationMonitorResponseOwnerType = "user" | "team";
-export const CreateOrganizationMonitorResponseOwnerType =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationMonitorResponseOwnerType = S.String;
 
 export interface CreateOrganizationMonitorResponseOwner {
   type: CreateOrganizationMonitorResponseOwnerType;
@@ -4357,7 +4336,7 @@ export type CreateOrganizationProjectDetectorRequestConditionGroupLogicType =
   | "all"
   | "none";
 export const CreateOrganizationProjectDetectorRequestConditionGroupLogicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateOrganizationProjectDetectorRequestConditionGroupConditionsList =
   Array<unknown>;
@@ -4447,8 +4426,7 @@ export const CreateOrganizationProjectDetectorRequest = /*@__PURE__*/ S.suspend(
 export type CreateOrganizationProjectDetectorResponseOwnerType =
   | "user"
   | "team";
-export const CreateOrganizationProjectDetectorResponseOwnerType =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationProjectDetectorResponseOwnerType = S.String;
 
 export interface CreateOrganizationProjectDetectorResponseOwner {
   type: CreateOrganizationProjectDetectorResponseOwnerType;
@@ -4947,7 +4925,7 @@ export type CreateOrganizationReleaseResponseAuthorsItem =
   | CreateOrganizationReleaseResponseAuthorsItemCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const CreateOrganizationReleaseResponseAuthorsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationReleaseResponseAuthorsItem>;
+  S.Unknown as any as S.Schema<CreateOrganizationReleaseResponseAuthorsItem>;
 
 export type CreateOrganizationReleaseResponseAuthorsList =
   Array<CreateOrganizationReleaseResponseAuthorsItem>;
@@ -5563,8 +5541,7 @@ export type CreateOrganizationWorkflowRequestTriggersLogicType =
   | "any-short"
   | "all"
   | "none";
-export const CreateOrganizationWorkflowRequestTriggersLogicType =
-  /*@__PURE__*/ S.String;
+export const CreateOrganizationWorkflowRequestTriggersLogicType = S.String;
 
 export type CreateOrganizationWorkflowRequestTriggersConditionsList =
   Array<unknown>;
@@ -5602,7 +5579,7 @@ export type CreateOrganizationWorkflowRequestActionFiltersItemLogicType =
   | "all"
   | "none";
 export const CreateOrganizationWorkflowRequestActionFiltersItemLogicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateOrganizationWorkflowRequestActionFiltersItemConditionsList =
   Array<unknown>;
@@ -5710,7 +5687,7 @@ export type CreateOrganizationWorkflowResponseTriggersConditionsCase0ItemCompari
   | boolean
   | number;
 export const CreateOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison>;
 
 export interface CreateOrganizationWorkflowResponseTriggersConditionsCase0Item {
   id: string;
@@ -5749,7 +5726,7 @@ export type CreateOrganizationWorkflowResponseTriggersConditions =
   | CreateOrganizationWorkflowResponseTriggersConditionsCase0List
   | CreateOrganizationWorkflowResponseTriggersConditionsCase1List;
 export const CreateOrganizationWorkflowResponseTriggersConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseTriggersConditions>;
+  S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseTriggersConditions>;
 
 export type CreateOrganizationWorkflowResponseTriggersActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -5811,7 +5788,7 @@ export type CreateOrganizationWorkflowResponseTriggersActions =
   | CreateOrganizationWorkflowResponseTriggersActionsCase0List
   | CreateOrganizationWorkflowResponseTriggersActionsCase1List;
 export const CreateOrganizationWorkflowResponseTriggersActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseTriggersActions>;
+  S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseTriggersActions>;
 
 export interface CreateOrganizationWorkflowResponseTriggers {
   id?: string;
@@ -5839,7 +5816,7 @@ export type CreateOrganizationWorkflowResponseActionFiltersItemConditionsCase0It
   | boolean
   | number;
 export const CreateOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison>;
 
 export interface CreateOrganizationWorkflowResponseActionFiltersItemConditionsCase0Item {
   id: string;
@@ -5879,7 +5856,7 @@ export type CreateOrganizationWorkflowResponseActionFiltersItemConditions =
   | CreateOrganizationWorkflowResponseActionFiltersItemConditionsCase0List
   | CreateOrganizationWorkflowResponseActionFiltersItemConditionsCase1List;
 export const CreateOrganizationWorkflowResponseActionFiltersItemConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseActionFiltersItemConditions>;
+  S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseActionFiltersItemConditions>;
 
 export type CreateOrganizationWorkflowResponseActionFiltersItemActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -5942,7 +5919,7 @@ export type CreateOrganizationWorkflowResponseActionFiltersItemActions =
   | CreateOrganizationWorkflowResponseActionFiltersItemActionsCase0List
   | CreateOrganizationWorkflowResponseActionFiltersItemActionsCase1List;
 export const CreateOrganizationWorkflowResponseActionFiltersItemActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseActionFiltersItemActions>;
+  S.Unknown as any as S.Schema<CreateOrganizationWorkflowResponseActionFiltersItemActions>;
 
 export interface CreateOrganizationWorkflowResponseActionFiltersItem {
   id?: string;
@@ -6100,7 +6077,7 @@ export type CreateProjectKeyRequestUseCase =
   | "profiling"
   | "tempest"
   | "demo";
-export const CreateProjectKeyRequestUseCase = /*@__PURE__*/ S.String;
+export const CreateProjectKeyRequestUseCase = S.String;
 
 export interface CreateProjectKeyRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -6266,7 +6243,7 @@ export type CreateProjectPreprodSizeAnalysisSkippedStatusCheckRequestProvider =
   | "github"
   | "github_enterprise";
 export const CreateProjectPreprodSizeAnalysisSkippedStatusCheckRequestProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateProjectPreprodSizeAnalysisSkippedStatusCheckRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -6313,7 +6290,7 @@ export type CreateProjectPreprodSnapshotSkippedStatusCheckRequestProvider =
   | "github"
   | "github_enterprise";
 export const CreateProjectPreprodSnapshotSkippedStatusCheckRequestProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateProjectPreprodSnapshotSkippedStatusCheckRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -6461,7 +6438,7 @@ export type CreateTeamExternalTeamRequestProvider =
   | "gitlab"
   | "msteams"
   | "custom_scm";
-export const CreateTeamExternalTeamRequestProvider = /*@__PURE__*/ S.String;
+export const CreateTeamExternalTeamRequestProvider = S.String;
 
 export interface CreateTeamExternalTeamRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -6797,7 +6774,7 @@ export const DeleteOrganizationDetectorResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type DeleteOrganizationDetectorsRequestProjectItem = number | string;
 export const DeleteOrganizationDetectorsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteOrganizationDetectorsRequestProjectItem>;
+  S.Unknown as any as S.Schema<DeleteOrganizationDetectorsRequestProjectItem>;
 
 export type DeleteOrganizationDetectorsRequestProjectList =
   Array<DeleteOrganizationDetectorsRequestProjectItem>;
@@ -7000,7 +6977,7 @@ export const DeleteOrganizationIssuesRequestEnvironmentList =
 
 export type DeleteOrganizationIssuesRequestProjectItem = number | string;
 export const DeleteOrganizationIssuesRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteOrganizationIssuesRequestProjectItem>;
+  S.Unknown as any as S.Schema<DeleteOrganizationIssuesRequestProjectItem>;
 
 export type DeleteOrganizationIssuesRequestProjectList =
   Array<DeleteOrganizationIssuesRequestProjectItem>;
@@ -7021,7 +6998,7 @@ export type DeleteOrganizationIssuesRequestSort =
   | "recommended"
   | "trends"
   | "user";
-export const DeleteOrganizationIssuesRequestSort = /*@__PURE__*/ S.String;
+export const DeleteOrganizationIssuesRequestSort = S.String;
 
 export interface DeleteOrganizationIssuesRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -7426,7 +7403,7 @@ export const DeleteOrganizationWorkflowsRequestIdList = /*@__PURE__*/ S.Array(
 
 export type DeleteOrganizationWorkflowsRequestProjectItem = number | string;
 export const DeleteOrganizationWorkflowsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DeleteOrganizationWorkflowsRequestProjectItem>;
+  S.Unknown as any as S.Schema<DeleteOrganizationWorkflowsRequestProjectItem>;
 
 export type DeleteOrganizationWorkflowsRequestProjectList =
   Array<DeleteOrganizationWorkflowsRequestProjectItem>;
@@ -7966,8 +7943,7 @@ export const EnableSpikeProtectionResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetAnIntegrationSIssueConfigForAnIssueRequestAction =
   | "create"
   | "link";
-export const GetAnIntegrationSIssueConfigForAnIssueRequestAction =
-  /*@__PURE__*/ S.String;
+export const GetAnIntegrationSIssueConfigForAnIssueRequestAction = S.String;
 
 export interface GetAnIntegrationSIssueConfigForAnIssueRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -8658,8 +8634,7 @@ export const GetOrganizationDashboardResponseWidgetsItemLayoutMap =
 export type GetOrganizationDashboardResponseWidgetsItemLegendType =
   | "default"
   | "breakdown";
-export const GetOrganizationDashboardResponseWidgetsItemLegendType =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationDashboardResponseWidgetsItemLegendType = S.String;
 
 export type GetOrganizationDashboardResponseWidgetsItemExploreUrlsList =
   Array<string>;
@@ -8694,7 +8669,7 @@ export type GetOrganizationDashboardResponseWidgetsItemChangedReasonItemEquation
   | string
   | GetOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValueCase1List;
 export const GetOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue>;
+  S.Unknown as any as S.Schema<GetOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue>;
 
 export type GetOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemMap =
   {
@@ -8949,7 +8924,7 @@ export const GetOrganizationDetectorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrganizationDetectorRequest>;
 
 export type GetOrganizationDetectorResponseOwnerType = "user" | "team";
-export const GetOrganizationDetectorResponseOwnerType = /*@__PURE__*/ S.String;
+export const GetOrganizationDetectorResponseOwnerType = S.String;
 
 export interface GetOrganizationDetectorResponseOwner {
   type: GetOrganizationDetectorResponseOwnerType;
@@ -9395,7 +9370,7 @@ export type GetOrganizationIssueRequestExpandItem =
   | "latestEventHasAttachments"
   | "owners"
   | "sentryAppIssues";
-export const GetOrganizationIssueRequestExpandItem = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueRequestExpandItem = S.String;
 
 export type GetOrganizationIssueRequestExpandList = Array<
   GetOrganizationIssueRequestExpandItem | (string & {})
@@ -9408,7 +9383,7 @@ export type GetOrganizationIssueRequestCollapseItem =
   | "release"
   | "stats"
   | "tags";
-export const GetOrganizationIssueRequestCollapseItem = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueRequestCollapseItem = S.String;
 
 export type GetOrganizationIssueRequestCollapseList = Array<
   GetOrganizationIssueRequestCollapseItem | (string & {})
@@ -9487,7 +9462,7 @@ export type GetOrganizationIssueResponseLevel =
   | "error"
   | "fatal"
   | "unknown";
-export const GetOrganizationIssueResponseLevel = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueResponseLevel = S.String;
 
 export type GetOrganizationIssueResponseStatus =
   | "resolved"
@@ -9496,7 +9471,7 @@ export type GetOrganizationIssueResponseStatus =
   | "pending_merge"
   | "reprocessing"
   | "unresolved";
-export const GetOrganizationIssueResponseStatus = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueResponseStatus = S.String;
 
 export type GetOrganizationIssueResponseStatusDetailsActorIdentitiesItemOrganization =
   AddOrganizationMemberResponseUserIdentitiesItemOrganization;
@@ -9665,10 +9640,10 @@ export type GetOrganizationIssueResponseSubstatus =
   | "ongoing"
   | "regressed"
   | "new";
-export const GetOrganizationIssueResponseSubstatus = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueResponseSubstatus = S.String;
 
 export type GetOrganizationIssueResponsePriority = "low" | "medium" | "high";
-export const GetOrganizationIssueResponsePriority = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueResponsePriority = S.String;
 
 export interface GetOrganizationIssueResponseProject {
   id: string;
@@ -9698,7 +9673,7 @@ export type GetOrganizationIssueResponseType =
   | "transaction"
   | "generic"
   | "feedback";
-export const GetOrganizationIssueResponseType = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueResponseType = S.String;
 
 export type GetOrganizationIssueResponseMetadataMap = {
   [key: string]: unknown | undefined;
@@ -9709,8 +9684,7 @@ export const GetOrganizationIssueResponseMetadataMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<GetOrganizationIssueResponseMetadataMap>;
 
 export type GetOrganizationIssueResponseAssignedToType = "user" | "team";
-export const GetOrganizationIssueResponseAssignedToType =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationIssueResponseAssignedToType = S.String;
 
 export interface GetOrganizationIssueResponseAssignedTo {
   type: GetOrganizationIssueResponseAssignedToType;
@@ -10092,8 +10066,7 @@ export const GetOrganizationIssueResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetOrganizationIssueAutofixStateRequestLlmFormat =
   | "markdown"
   | "xml";
-export const GetOrganizationIssueAutofixStateRequestLlmFormat =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationIssueAutofixStateRequestLlmFormat = S.String;
 
 export interface GetOrganizationIssueAutofixStateRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -10125,8 +10098,7 @@ export const GetOrganizationIssueAutofixStateRequest = /*@__PURE__*/ S.suspend(
 export type GetOrganizationIssueAutofixStateResponseFormattedFormat =
   | "markdown"
   | "xml";
-export const GetOrganizationIssueAutofixStateResponseFormattedFormat =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationIssueAutofixStateResponseFormattedFormat = S.String;
 
 /** The ``formatted`` field the mixin adds to a response when ``?llmFormat`` is requested. */
 export interface GetOrganizationIssueAutofixStateResponseFormatted {
@@ -10171,7 +10143,7 @@ export type GetOrganizationIssueEventRequestEventId =
   | "latest"
   | "oldest"
   | "recommended";
-export const GetOrganizationIssueEventRequestEventId = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueEventRequestEventId = S.String;
 
 export type GetOrganizationIssueEventRequestEnvironmentList = Array<string>;
 export const GetOrganizationIssueEventRequestEnvironmentList =
@@ -10180,7 +10152,7 @@ export const GetOrganizationIssueEventRequestEnvironmentList =
   ) as any as S.Schema<GetOrganizationIssueEventRequestEnvironmentList>;
 
 export type GetOrganizationIssueEventRequestLlmFormat = "markdown" | "xml";
-export const GetOrganizationIssueEventRequestLlmFormat = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueEventRequestLlmFormat = S.String;
 
 export interface GetOrganizationIssueEventRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -10338,7 +10310,7 @@ export type GetOrganizationIssueEventResponseType =
   | "transaction"
   | "generic"
   | "feedback";
-export const GetOrganizationIssueEventResponseType = /*@__PURE__*/ S.String;
+export const GetOrganizationIssueEventResponseType = S.String;
 
 export type GetOrganizationIssueEventResponseMetadataMap = {
   [key: string]: unknown | undefined;
@@ -10719,8 +10691,7 @@ export const GetOrganizationIssueEventResponseResolvedWithList =
 export type GetOrganizationIssueEventResponseFormattedFormat =
   | "markdown"
   | "xml";
-export const GetOrganizationIssueEventResponseFormattedFormat =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationIssueEventResponseFormattedFormat = S.String;
 
 /** The ``formatted`` field the mixin adds to a response when ``?llmFormat`` is requested. */
 export interface GetOrganizationIssueEventResponseFormatted {
@@ -11285,8 +11256,7 @@ export const GetOrganizationMonitorResponseAlertRule = /*@__PURE__*/ S.suspend(
 export type GetOrganizationMonitorResponseConfigScheduleType =
   | "crontab"
   | "interval";
-export const GetOrganizationMonitorResponseConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationMonitorResponseConfigScheduleType = S.String;
 
 export type GetOrganizationMonitorResponseConfigScheduleCase1List =
   Array<number>;
@@ -11299,7 +11269,7 @@ export type GetOrganizationMonitorResponseConfigSchedule =
   | string
   | GetOrganizationMonitorResponseConfigScheduleCase1List;
 export const GetOrganizationMonitorResponseConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationMonitorResponseConfigSchedule>;
+  S.Unknown as any as S.Schema<GetOrganizationMonitorResponseConfigSchedule>;
 
 export interface GetOrganizationMonitorResponseConfig {
   schedule_type: GetOrganizationMonitorResponseConfigScheduleType;
@@ -11450,7 +11420,7 @@ export const GetOrganizationMonitorResponseEnvironments =
   CreateOrganizationMonitorResponseEnvironments;
 
 export type GetOrganizationMonitorResponseOwnerType = "user" | "team";
-export const GetOrganizationMonitorResponseOwnerType = /*@__PURE__*/ S.String;
+export const GetOrganizationMonitorResponseOwnerType = S.String;
 
 export interface GetOrganizationMonitorResponseOwner {
   type: GetOrganizationMonitorResponseOwnerType;
@@ -12088,7 +12058,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseImagesItemCanvasTheme 
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseImagesItemCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseImagesItem {
   key?: string;
@@ -12129,7 +12099,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseAddedItemCanvasTheme =
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseAddedItemCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseAddedItem {
   key?: string;
@@ -12170,7 +12140,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseRemovedItemCanvasTheme
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseRemovedItemCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseRemovedItem {
   key?: string;
@@ -12211,7 +12181,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseRenamedItemBaseImageCa
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseRenamedItemBaseImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseRenamedItemBaseImage {
   key?: string;
@@ -12246,7 +12216,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseRenamedItemHeadImageCa
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseRenamedItemHeadImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseRenamedItemHeadImage {
   key?: string;
@@ -12310,7 +12280,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseChangedItemBaseImageCa
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseChangedItemBaseImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseChangedItemBaseImage {
   key?: string;
@@ -12345,7 +12315,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseChangedItemHeadImageCa
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseChangedItemHeadImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseChangedItemHeadImage {
   key?: string;
@@ -12409,7 +12379,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseUnchangedItemCanvasThe
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseUnchangedItemCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseUnchangedItem {
   key?: string;
@@ -12450,7 +12420,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseErroredItemBaseImageCa
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseErroredItemBaseImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseErroredItemBaseImage {
   key?: string;
@@ -12485,7 +12455,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseErroredItemHeadImageCa
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseErroredItemHeadImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseErroredItemHeadImage {
   key?: string;
@@ -12549,7 +12519,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseSkippedItemCanvasTheme
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotResponseSkippedItemCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseSkippedItem {
   key?: string;
@@ -12590,7 +12560,7 @@ export type GetOrganizationPreprodArtifactSnapshotResponseApproversItemSource =
   | "sentry"
   | "github";
 export const GetOrganizationPreprodArtifactSnapshotResponseApproversItemSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotResponseApproversItem {
   id?: string | null;
@@ -12742,7 +12712,7 @@ export type GetOrganizationPreprodArtifactSnapshotImageResponseHeadImageCanvasTh
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotImageResponseHeadImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetOrganizationPreprodArtifactSnapshotImageResponseHeadImageTagsMap =
   { [key: string]: string | undefined };
@@ -12796,7 +12766,7 @@ export type GetOrganizationPreprodArtifactSnapshotImageResponseBaseImageCanvasTh
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotImageResponseBaseImageCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetOrganizationPreprodArtifactSnapshotImageResponseBaseImageTagsMap =
   { [key: string]: string | undefined };
@@ -12878,7 +12848,7 @@ export type GetOrganizationPreprodArtifactSnapshotLatestBaseRequestProject =
   | number
   | string;
 export const GetOrganizationPreprodArtifactSnapshotLatestBaseRequestProject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationPreprodArtifactSnapshotLatestBaseRequestProject>;
+  S.Unknown as any as S.Schema<GetOrganizationPreprodArtifactSnapshotLatestBaseRequestProject>;
 
 export interface GetOrganizationPreprodArtifactSnapshotLatestBaseRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -12919,7 +12889,7 @@ export type GetOrganizationPreprodArtifactSnapshotLatestBaseResponseImagesItemCa
   | "light"
   | "dark";
 export const GetOrganizationPreprodArtifactSnapshotLatestBaseResponseImagesItemCanvasTheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationPreprodArtifactSnapshotLatestBaseResponseImagesItem {
   key?: string;
@@ -13018,7 +12988,7 @@ export type GetOrganizationProfilingFlamegraphRequestProjectItem =
   | number
   | string;
 export const GetOrganizationProfilingFlamegraphRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationProfilingFlamegraphRequestProjectItem>;
+  S.Unknown as any as S.Schema<GetOrganizationProfilingFlamegraphRequestProjectItem>;
 
 export type GetOrganizationProfilingFlamegraphRequestProjectList =
   Array<GetOrganizationProfilingFlamegraphRequestProjectItem>;
@@ -13039,12 +13009,10 @@ export type GetOrganizationProfilingFlamegraphRequestDataSource =
   | "profiles"
   | "spans"
   | "transactions";
-export const GetOrganizationProfilingFlamegraphRequestDataSource =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationProfilingFlamegraphRequestDataSource = S.String;
 
 export type GetOrganizationProfilingFlamegraphRequestExpandItem = "metrics";
-export const GetOrganizationProfilingFlamegraphRequestExpandItem =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationProfilingFlamegraphRequestExpandItem = S.String;
 
 export type GetOrganizationProfilingFlamegraphRequestExpandList = Array<
   GetOrganizationProfilingFlamegraphRequestExpandItem | (string & {})
@@ -13132,7 +13100,7 @@ export const GetOrganizationProfilingFlamegraphResponse =
 
 export type GetOrganizationReleaseRequestProject = number | string;
 export const GetOrganizationReleaseRequestProject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationReleaseRequestProject>;
+  S.Unknown as any as S.Schema<GetOrganizationReleaseRequestProject>;
 
 export type GetOrganizationReleaseRequestSummaryStatsPeriod =
   | "14d"
@@ -13144,8 +13112,7 @@ export type GetOrganizationReleaseRequestSummaryStatsPeriod =
   | "48h"
   | "7d"
   | "90d";
-export const GetOrganizationReleaseRequestSummaryStatsPeriod =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationReleaseRequestSummaryStatsPeriod = S.String;
 
 export type GetOrganizationReleaseRequestHealthStatsPeriod =
   | "14d"
@@ -13157,8 +13124,7 @@ export type GetOrganizationReleaseRequestHealthStatsPeriod =
   | "48h"
   | "7d"
   | "90d";
-export const GetOrganizationReleaseRequestHealthStatsPeriod =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationReleaseRequestHealthStatsPeriod = S.String;
 
 export type GetOrganizationReleaseRequestSort =
   | "crash_free_sessions"
@@ -13166,10 +13132,10 @@ export type GetOrganizationReleaseRequestSort =
   | "date"
   | "sessions"
   | "users";
-export const GetOrganizationReleaseRequestSort = /*@__PURE__*/ S.String;
+export const GetOrganizationReleaseRequestSort = S.String;
 
 export type GetOrganizationReleaseRequestStatus = "archived" | "open";
-export const GetOrganizationReleaseRequestStatus = /*@__PURE__*/ S.String;
+export const GetOrganizationReleaseRequestStatus = S.String;
 
 export interface GetOrganizationReleaseRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -13422,7 +13388,7 @@ export type GetOrganizationReleaseResponseAuthorsItem =
   | GetOrganizationReleaseResponseAuthorsItemCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const GetOrganizationReleaseResponseAuthorsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationReleaseResponseAuthorsItem>;
+  S.Unknown as any as S.Schema<GetOrganizationReleaseResponseAuthorsItem>;
 
 export type GetOrganizationReleaseResponseAuthorsList =
   Array<GetOrganizationReleaseResponseAuthorsItem>;
@@ -13688,7 +13654,7 @@ export type GetOrganizationReplayRequestFieldItem =
   | "count_warnings"
   | "count_infos"
   | "has_viewed";
-export const GetOrganizationReplayRequestFieldItem = /*@__PURE__*/ S.String;
+export const GetOrganizationReplayRequestFieldItem = S.String;
 
 export type GetOrganizationReplayRequestFieldList = Array<
   GetOrganizationReplayRequestFieldItem | (string & {})
@@ -13699,7 +13665,7 @@ export const GetOrganizationReplayRequestFieldList = /*@__PURE__*/ S.Array(
 
 export type GetOrganizationReplayRequestProjectItem = number | string;
 export const GetOrganizationReplayRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationReplayRequestProjectItem>;
+  S.Unknown as any as S.Schema<GetOrganizationReplayRequestProjectItem>;
 
 export type GetOrganizationReplayRequestProjectList =
   Array<GetOrganizationReplayRequestProjectItem>;
@@ -13827,7 +13793,7 @@ export type GetOrganizationReplayResponseDataTags =
   | GetOrganizationReplayResponseDataTagsCase0Map
   | GetOrganizationReplayResponseDataTagsCase1List;
 export const GetOrganizationReplayResponseDataTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationReplayResponseDataTags>;
+  S.Unknown as any as S.Schema<GetOrganizationReplayResponseDataTags>;
 
 export interface GetOrganizationReplayResponseDataUserGeo {
   city?: string | null;
@@ -14050,8 +14016,7 @@ export type GetOrganizationReplayCountRequestDataSource =
   | "events"
   | "search_issues"
   | "spans";
-export const GetOrganizationReplayCountRequestDataSource =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationReplayCountRequestDataSource = S.String;
 
 export type GetOrganizationReplayCountRequestEnvironmentList = Array<string>;
 export const GetOrganizationReplayCountRequestEnvironmentList =
@@ -14061,7 +14026,7 @@ export const GetOrganizationReplayCountRequestEnvironmentList =
 
 export type GetOrganizationReplayCountRequestProjectItem = number | string;
 export const GetOrganizationReplayCountRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationReplayCountRequestProjectItem>;
+  S.Unknown as any as S.Schema<GetOrganizationReplayCountRequestProjectItem>;
 
 export type GetOrganizationReplayCountRequestProjectList =
   Array<GetOrganizationReplayCountRequestProjectItem>;
@@ -14330,7 +14295,7 @@ export const GetOrganizationSessionsRequestEnvironmentList =
 
 export type GetOrganizationSessionsRequestProjectItem = number | string;
 export const GetOrganizationSessionsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationSessionsRequestProjectItem>;
+  S.Unknown as any as S.Schema<GetOrganizationSessionsRequestProjectItem>;
 
 export type GetOrganizationSessionsRequestProjectList =
   Array<GetOrganizationSessionsRequestProjectItem>;
@@ -14501,7 +14466,7 @@ export const GetOrganizationSessionsResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetOrganizationStatsSummaryRequestField =
   | "sum(quantity)"
   | "sum(times_seen)";
-export const GetOrganizationStatsSummaryRequestField = /*@__PURE__*/ S.String;
+export const GetOrganizationStatsSummaryRequestField = S.String;
 
 export type GetOrganizationStatsSummaryRequestProjectList = Array<unknown>;
 export const GetOrganizationStatsSummaryRequestProjectList =
@@ -14515,8 +14480,7 @@ export type GetOrganizationStatsSummaryRequestCategory =
   | "attachment"
   | "replays"
   | "profiles";
-export const GetOrganizationStatsSummaryRequestCategory =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationStatsSummaryRequestCategory = S.String;
 
 export type GetOrganizationStatsSummaryRequestOutcome =
   | "accepted"
@@ -14526,7 +14490,7 @@ export type GetOrganizationStatsSummaryRequestOutcome =
   | "abuse"
   | "client_discard"
   | "cardinality_limited";
-export const GetOrganizationStatsSummaryRequestOutcome = /*@__PURE__*/ S.String;
+export const GetOrganizationStatsSummaryRequestOutcome = S.String;
 
 export interface GetOrganizationStatsSummaryRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -14643,7 +14607,7 @@ export const GetOrganizationTraceRequestAdditionalAttributesList =
   ) as any as S.Schema<GetOrganizationTraceRequestAdditionalAttributesList>;
 
 export type GetOrganizationTraceRequestIncludeUptime = "0" | "1";
-export const GetOrganizationTraceRequestIncludeUptime = /*@__PURE__*/ S.String;
+export const GetOrganizationTraceRequestIncludeUptime = S.String;
 
 export interface GetOrganizationTraceRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -14692,8 +14656,7 @@ export const GetOrganizationTraceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrganizationTraceRequest>;
 
 export type GetOrganizationTraceResponseBodyItemCase0EventType = "span";
-export const GetOrganizationTraceResponseBodyItemCase0EventType =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationTraceResponseBodyItemCase0EventType = S.String;
 
 /** Fields shared by every item in a trace. Entries in `children` are full spans at runtime; only the shared fields are documented here. */
 export interface GetOrganizationTraceResponseBodyItemCase0ChildrenItem {
@@ -14727,7 +14690,7 @@ export type GetOrganizationTraceResponseBodyItemCase0ErrorsItemEventType =
   | "error"
   | "occurrence";
 export const GetOrganizationTraceResponseBodyItemCase0ErrorsItemEventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationTraceResponseBodyItemCase0ErrorsItem {
   description: string;
@@ -14776,7 +14739,7 @@ export type GetOrganizationTraceResponseBodyItemCase0OccurrencesItemEventType =
   | "error"
   | "occurrence";
 export const GetOrganizationTraceResponseBodyItemCase0OccurrencesItemEventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationTraceResponseBodyItemCase0OccurrencesItem {
   description: string;
@@ -14923,8 +14886,7 @@ export const GetOrganizationTraceResponseBodyItemCase0 =
 export type GetOrganizationTraceResponseBodyItemCase1EventType =
   | "error"
   | "occurrence";
-export const GetOrganizationTraceResponseBodyItemCase1EventType =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationTraceResponseBodyItemCase1EventType = S.String;
 
 export interface GetOrganizationTraceResponseBodyItemCase1 {
   description: string;
@@ -14963,8 +14925,7 @@ export const GetOrganizationTraceResponseBodyItemCase1 =
   }) as any as S.Schema<GetOrganizationTraceResponseBodyItemCase1>;
 
 export type GetOrganizationTraceResponseBodyItemCase2EventType = "uptime_check";
-export const GetOrganizationTraceResponseBodyItemCase2EventType =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationTraceResponseBodyItemCase2EventType = S.String;
 
 /** Fields shared by every item in a trace. Entries in `children` are full spans at runtime; only the shared fields are documented here. */
 export type GetOrganizationTraceResponseBodyItemCase2ChildrenItem =
@@ -14983,7 +14944,7 @@ export type GetOrganizationTraceResponseBodyItemCase2ErrorsItemEventType =
   | "error"
   | "occurrence";
 export const GetOrganizationTraceResponseBodyItemCase2ErrorsItemEventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationTraceResponseBodyItemCase2ErrorsItem {
   description: string;
@@ -15032,7 +14993,7 @@ export type GetOrganizationTraceResponseBodyItemCase2OccurrencesItemEventType =
   | "error"
   | "occurrence";
 export const GetOrganizationTraceResponseBodyItemCase2OccurrencesItemEventType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrganizationTraceResponseBodyItemCase2OccurrencesItem {
   description: string;
@@ -15137,7 +15098,7 @@ export type GetOrganizationTraceResponseBodyItem =
   | GetOrganizationTraceResponseBodyItemCase1
   | GetOrganizationTraceResponseBodyItemCase2;
 export const GetOrganizationTraceResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationTraceResponseBodyItem>;
+  S.Unknown as any as S.Schema<GetOrganizationTraceResponseBodyItem>;
 
 export type GetOrganizationTraceResponseBodyList =
   Array<GetOrganizationTraceResponseBodyItem>;
@@ -15153,8 +15114,7 @@ export const GetOrganizationTraceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrganizationTraceResponse>;
 
 export type GetOrganizationTraceMetaRequestIncludeUptime = "0" | "1";
-export const GetOrganizationTraceMetaRequestIncludeUptime =
-  /*@__PURE__*/ S.String;
+export const GetOrganizationTraceMetaRequestIncludeUptime = S.String;
 
 export interface GetOrganizationTraceMetaRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -15267,7 +15227,7 @@ export type GetOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison
   | boolean
   | number;
 export const GetOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison>;
 
 export interface GetOrganizationWorkflowResponseTriggersConditionsCase0Item {
   id: string;
@@ -15306,7 +15266,7 @@ export type GetOrganizationWorkflowResponseTriggersConditions =
   | GetOrganizationWorkflowResponseTriggersConditionsCase0List
   | GetOrganizationWorkflowResponseTriggersConditionsCase1List;
 export const GetOrganizationWorkflowResponseTriggersConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseTriggersConditions>;
+  S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseTriggersConditions>;
 
 export type GetOrganizationWorkflowResponseTriggersActionsCase0ItemDataMap = {
   [key: string]: string | undefined;
@@ -15370,7 +15330,7 @@ export type GetOrganizationWorkflowResponseTriggersActions =
   | GetOrganizationWorkflowResponseTriggersActionsCase0List
   | GetOrganizationWorkflowResponseTriggersActionsCase1List;
 export const GetOrganizationWorkflowResponseTriggersActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseTriggersActions>;
+  S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseTriggersActions>;
 
 export interface GetOrganizationWorkflowResponseTriggers {
   id?: string;
@@ -15396,7 +15356,7 @@ export type GetOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemC
   | boolean
   | number;
 export const GetOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison>;
 
 export interface GetOrganizationWorkflowResponseActionFiltersItemConditionsCase0Item {
   id: string;
@@ -15436,7 +15396,7 @@ export type GetOrganizationWorkflowResponseActionFiltersItemConditions =
   | GetOrganizationWorkflowResponseActionFiltersItemConditionsCase0List
   | GetOrganizationWorkflowResponseActionFiltersItemConditionsCase1List;
 export const GetOrganizationWorkflowResponseActionFiltersItemConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseActionFiltersItemConditions>;
+  S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseActionFiltersItemConditions>;
 
 export type GetOrganizationWorkflowResponseActionFiltersItemActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -15499,7 +15459,7 @@ export type GetOrganizationWorkflowResponseActionFiltersItemActions =
   | GetOrganizationWorkflowResponseActionFiltersItemActionsCase0List
   | GetOrganizationWorkflowResponseActionFiltersItemActionsCase1List;
 export const GetOrganizationWorkflowResponseActionFiltersItemActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseActionFiltersItemActions>;
+  S.Unknown as any as S.Schema<GetOrganizationWorkflowResponseActionFiltersItemActions>;
 
 export interface GetOrganizationWorkflowResponseActionFiltersItem {
   id?: string;
@@ -15814,7 +15774,7 @@ export const GetProjectResponseBuiltinSymbolSourcesList = /*@__PURE__*/ S.Array(
 
 export type GetProjectResponseDynamicSamplingBiasesItemValue = string | boolean;
 export const GetProjectResponseDynamicSamplingBiasesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetProjectResponseDynamicSamplingBiasesItemValue>;
+  S.Unknown as any as S.Schema<GetProjectResponseDynamicSamplingBiasesItemValue>;
 
 export type GetProjectResponseDynamicSamplingBiasesItemMap = {
   [key: string]: GetProjectResponseDynamicSamplingBiasesItemValue | undefined;
@@ -16179,7 +16139,7 @@ export type GetProjectEventResponseType =
   | "transaction"
   | "generic"
   | "feedback";
-export const GetProjectEventResponseType = /*@__PURE__*/ S.String;
+export const GetProjectEventResponseType = S.String;
 
 export type GetProjectEventResponseMetadataMap = {
   [key: string]: unknown | undefined;
@@ -16667,14 +16627,14 @@ export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemRelease
   | "wrong-dist"
   | "unsuccessful";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemReleaseProcessSourceFileLookupResult =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemReleaseProcessSourceMapLookupResult =
   | "found"
   | "wrong-dist"
   | "unsuccessful";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemReleaseProcessSourceMapLookupResult =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemReleaseProcess {
   abs_path: string;
@@ -16705,7 +16665,7 @@ export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemReleas
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase0Status =
   "success";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase0Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase0 {
   url: string;
@@ -16726,7 +16686,7 @@ export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapi
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase1Status =
   "not_attempted";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase1Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase1 {
   url: string;
@@ -16747,7 +16707,7 @@ export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapi
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase2Status =
   "failure";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase2Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase2Reason =
   | "not_found"
@@ -16758,7 +16718,7 @@ export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapin
   | "download_error"
   | "other";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase2Reason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase2 {
   url: string;
@@ -16787,12 +16747,12 @@ export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapin
   | GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFileCase2
   | unknown;
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFile =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFile>;
+  S.Unknown as any as S.Schema<GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFile>;
 
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase0Status =
   "success";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase0Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase0 {
   url: string;
@@ -16813,7 +16773,7 @@ export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapi
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase1Status =
   "not_attempted";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase1Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase1 {
   url: string;
@@ -16834,7 +16794,7 @@ export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapi
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase2Status =
   "failure";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase2Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase2Reason =
   | "not_found"
@@ -16845,7 +16805,7 @@ export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapin
   | "download_error"
   | "other";
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase2Reason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase2 {
   url: string;
@@ -16874,7 +16834,7 @@ export type GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapin
   | GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMapCase2
   | unknown;
 export const GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMap =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMap>;
+  S.Unknown as any as S.Schema<GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceMap>;
 
 export interface GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcess {
   source_file: GetProjectEventSourceMapDebugResponseExceptionsItemFramesItemScrapingProcessSourceFile;
@@ -16944,8 +16904,7 @@ export type GetProjectEventSourceMapDebugResponseSdkDebugIdSupport =
   | "unofficial-sdk"
   | "needs-upgrade"
   | "full";
-export const GetProjectEventSourceMapDebugResponseSdkDebugIdSupport =
-  /*@__PURE__*/ S.String;
+export const GetProjectEventSourceMapDebugResponseSdkDebugIdSupport = S.String;
 
 export interface GetProjectEventSourceMapDebugResponse {
   dist: string | null;
@@ -16984,7 +16943,7 @@ export type GetProjectInstallableBuildLatestRequestBuildNumber =
   | number
   | string;
 export const GetProjectInstallableBuildLatestRequestBuildNumber =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetProjectInstallableBuildLatestRequestBuildNumber>;
+  S.Unknown as any as S.Schema<GetProjectInstallableBuildLatestRequestBuildNumber>;
 
 export type GetProjectInstallableBuildLatestRequestInstallGroupsList =
   Array<string>;
@@ -17340,8 +17299,7 @@ export const GetProjectMonitorResponseAlertRule = /*@__PURE__*/ S.suspend(() =>
 export type GetProjectMonitorResponseConfigScheduleType =
   | "crontab"
   | "interval";
-export const GetProjectMonitorResponseConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const GetProjectMonitorResponseConfigScheduleType = S.String;
 
 export type GetProjectMonitorResponseConfigScheduleCase1List = Array<number>;
 export const GetProjectMonitorResponseConfigScheduleCase1List =
@@ -17353,7 +17311,7 @@ export type GetProjectMonitorResponseConfigSchedule =
   | string
   | GetProjectMonitorResponseConfigScheduleCase1List;
 export const GetProjectMonitorResponseConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetProjectMonitorResponseConfigSchedule>;
+  S.Unknown as any as S.Schema<GetProjectMonitorResponseConfigSchedule>;
 
 export interface GetProjectMonitorResponseConfig {
   schedule_type: GetProjectMonitorResponseConfigScheduleType;
@@ -17501,7 +17459,7 @@ export const GetProjectMonitorResponseEnvironments =
   CreateOrganizationMonitorResponseEnvironments;
 
 export type GetProjectMonitorResponseOwnerType = "user" | "team";
-export const GetProjectMonitorResponseOwnerType = /*@__PURE__*/ S.String;
+export const GetProjectMonitorResponseOwnerType = S.String;
 
 export interface GetProjectMonitorResponseOwner {
   type: GetProjectMonitorResponseOwnerType;
@@ -17696,14 +17654,14 @@ export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemMetric
   | "install_size"
   | "download_size";
 export const GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemMetric =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemMeasurement =
   | "absolute"
   | "absolute_diff"
   | "relative_diff";
 export const GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemMeasurement =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemFiltersItemKey =
   | "app_id"
@@ -17711,7 +17669,7 @@ export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemFilter
   | "git_head_ref"
   | "platform_name";
 export const GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemFiltersItemKey =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemFiltersItemConditionsItemOperator =
   | "contains"
@@ -17727,7 +17685,7 @@ export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemFilter
   | "notStartsWith"
   | "startsWith";
 export const GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemFiltersItemConditionsItemOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemFiltersItemConditionsItemValuesList =
   Array<string>;
@@ -17790,7 +17748,7 @@ export type GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemArtifa
   | "app_clip_artifact"
   | "all_artifacts";
 export const GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItemArtifactType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectPreprodSizeAnalysisStatusCheckRulesResponseRulesItem {
   id: string;
@@ -18569,8 +18527,7 @@ export const GetTeamResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type GetTraceItemStatisticsRequestStatsTypeItem =
   "attributeDistributions";
-export const GetTraceItemStatisticsRequestStatsTypeItem =
-  /*@__PURE__*/ S.String;
+export const GetTraceItemStatisticsRequestStatsTypeItem = S.String;
 
 export type GetTraceItemStatisticsRequestStatsTypeList = Array<
   GetTraceItemStatisticsRequestStatsTypeItem | (string & {})
@@ -18581,7 +18538,7 @@ export const GetTraceItemStatisticsRequestStatsTypeList = /*@__PURE__*/ S.Array(
 
 export type GetTraceItemStatisticsRequestProjectItem = number | string;
 export const GetTraceItemStatisticsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTraceItemStatisticsRequestProjectItem>;
+  S.Unknown as any as S.Schema<GetTraceItemStatisticsRequestProjectItem>;
 
 export type GetTraceItemStatisticsRequestProjectList =
   Array<GetTraceItemStatisticsRequestProjectItem>;
@@ -18596,7 +18553,7 @@ export const GetTraceItemStatisticsRequestEnvironmentList =
   ) as any as S.Schema<GetTraceItemStatisticsRequestEnvironmentList>;
 
 export type GetTraceItemStatisticsRequestItemType = "occurrences" | "spans";
-export const GetTraceItemStatisticsRequestItemType = /*@__PURE__*/ S.String;
+export const GetTraceItemStatisticsRequestItemType = S.String;
 
 export interface GetTraceItemStatisticsRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -19115,8 +19072,7 @@ export type ListOrganizationDashboardsRequestFilterItem =
   | "owned"
   | "shared"
   | "showHidden";
-export const ListOrganizationDashboardsRequestFilterItem =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationDashboardsRequestFilterItem = S.String;
 
 export type ListOrganizationDashboardsRequestFilterList = Array<
   ListOrganizationDashboardsRequestFilterItem | (string & {})
@@ -19127,7 +19083,7 @@ export const ListOrganizationDashboardsRequestFilterList =
   ) as any as S.Schema<ListOrganizationDashboardsRequestFilterList>;
 
 export type ListOrganizationDashboardsRequestPin = "favorites";
-export const ListOrganizationDashboardsRequestPin = /*@__PURE__*/ S.String;
+export const ListOrganizationDashboardsRequestPin = S.String;
 
 export interface ListOrganizationDashboardsRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -19444,7 +19400,7 @@ export const ListOrganizationDashboardsResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type ListOrganizationDetectorsRequestProjectItem = number | string;
 export const ListOrganizationDetectorsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationDetectorsRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationDetectorsRequestProjectItem>;
 
 export type ListOrganizationDetectorsRequestProjectList =
   Array<ListOrganizationDetectorsRequestProjectItem>;
@@ -19499,8 +19455,7 @@ export const ListOrganizationDetectorsRequest = /*@__PURE__*/ S.suspend(() =>
 export type ListOrganizationDetectorsResponseBodyItemOwnerType =
   | "user"
   | "team";
-export const ListOrganizationDetectorsResponseBodyItemOwnerType =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationDetectorsResponseBodyItemOwnerType = S.String;
 
 export interface ListOrganizationDetectorsResponseBodyItemOwner {
   type: ListOrganizationDetectorsResponseBodyItemOwnerType;
@@ -19933,8 +19888,7 @@ export type ListOrganizationEnvironmentsRequestVisibility =
   | "all"
   | "hidden"
   | "visible";
-export const ListOrganizationEnvironmentsRequestVisibility =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationEnvironmentsRequestVisibility = S.String;
 
 export interface ListOrganizationEnvironmentsRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -19991,7 +19945,7 @@ export type ListOrganizationEventsRequestDataset =
   | "spans"
   | "tracemetrics"
   | "uptime_results";
-export const ListOrganizationEventsRequestDataset = /*@__PURE__*/ S.String;
+export const ListOrganizationEventsRequestDataset = S.String;
 
 export type ListOrganizationEventsRequestEnvironmentList = Array<string>;
 export const ListOrganizationEventsRequestEnvironmentList =
@@ -20001,7 +19955,7 @@ export const ListOrganizationEventsRequestEnvironmentList =
 
 export type ListOrganizationEventsRequestProjectItem = number | string;
 export const ListOrganizationEventsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationEventsRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationEventsRequestProjectItem>;
 
 export type ListOrganizationEventsRequestProjectList =
   Array<ListOrganizationEventsRequestProjectItem>;
@@ -20163,8 +20117,7 @@ export type ListOrganizationEventsTimeseriesRequestDataset =
   | "spans"
   | "tracemetrics"
   | "uptime_results";
-export const ListOrganizationEventsTimeseriesRequestDataset =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationEventsTimeseriesRequestDataset = S.String;
 
 export type ListOrganizationEventsTimeseriesRequestEnvironmentList =
   Array<string>;
@@ -20177,7 +20130,7 @@ export type ListOrganizationEventsTimeseriesRequestProjectItem =
   | number
   | string;
 export const ListOrganizationEventsTimeseriesRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationEventsTimeseriesRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationEventsTimeseriesRequestProjectItem>;
 
 export type ListOrganizationEventsTimeseriesRequestProjectList =
   Array<ListOrganizationEventsTimeseriesRequestProjectItem>;
@@ -20196,17 +20149,16 @@ export type ListOrganizationEventsTimeseriesRequestDisableAggregateExtrapolation
   | "0"
   | "1";
 export const ListOrganizationEventsTimeseriesRequestDisableAggregateExtrapolation =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationEventsTimeseriesRequestPreventMetricAggregates =
   | "0"
   | "1";
 export const ListOrganizationEventsTimeseriesRequestPreventMetricAggregates =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationEventsTimeseriesRequestExcludeOther = "0" | "1";
-export const ListOrganizationEventsTimeseriesRequestExcludeOther =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationEventsTimeseriesRequestExcludeOther = S.String;
 
 export interface ListOrganizationEventsTimeseriesRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -20317,7 +20269,7 @@ export type ListOrganizationEventsTimeseriesResponseTimeSeriesItemValuesItemConf
   | "low"
   | "high";
 export const ListOrganizationEventsTimeseriesResponseTimeSeriesItemValuesItemConfidence =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListOrganizationEventsTimeseriesResponseTimeSeriesItemValuesItem {
   timestamp: number;
@@ -20362,7 +20314,7 @@ export type ListOrganizationEventsTimeseriesResponseTimeSeriesItemGroupByItemVal
   | number
   | unknown;
 export const ListOrganizationEventsTimeseriesResponseTimeSeriesItemGroupByItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationEventsTimeseriesResponseTimeSeriesItemGroupByItemValue>;
+  S.Unknown as any as S.Schema<ListOrganizationEventsTimeseriesResponseTimeSeriesItemGroupByItemValue>;
 
 export interface ListOrganizationEventsTimeseriesResponseTimeSeriesItemGroupByItem {
   key: string;
@@ -20391,7 +20343,7 @@ export type ListOrganizationEventsTimeseriesResponseTimeSeriesItemMetaDataScanne
   | "partial"
   | "full";
 export const ListOrganizationEventsTimeseriesResponseTimeSeriesItemMetaDataScanned =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListOrganizationEventsTimeseriesResponseTimeSeriesItemMeta {
   order?: number;
@@ -21058,7 +21010,7 @@ export type ListOrganizationIssueHashesResponseBodyItemLatestEventCase0Type =
   | "generic"
   | "feedback";
 export const ListOrganizationIssueHashesResponseBodyItemLatestEventCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationIssueHashesResponseBodyItemLatestEventCase0MetadataMap =
   { [key: string]: unknown | undefined };
@@ -21452,7 +21404,7 @@ export type ListOrganizationIssueHashesResponseBodyItemLatestEvent =
   | ListOrganizationIssueHashesResponseBodyItemLatestEventCase1
   | unknown;
 export const ListOrganizationIssueHashesResponseBodyItemLatestEvent =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationIssueHashesResponseBodyItemLatestEvent>;
+  S.Unknown as any as S.Schema<ListOrganizationIssueHashesResponseBodyItemLatestEvent>;
 
 export interface ListOrganizationIssueHashesResponseBodyItem {
   id: string;
@@ -21495,7 +21447,7 @@ export const ListOrganizationIssuesRequestEnvironmentList =
 
 export type ListOrganizationIssuesRequestProjectItem = number | string;
 export const ListOrganizationIssuesRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationIssuesRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationIssuesRequestProjectItem>;
 
 export type ListOrganizationIssuesRequestProjectList =
   Array<ListOrganizationIssuesRequestProjectItem>;
@@ -21508,12 +21460,10 @@ export type ListOrganizationIssuesRequestGroupStatsPeriod =
   | "14d"
   | "24h"
   | "auto";
-export const ListOrganizationIssuesRequestGroupStatsPeriod =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesRequestGroupStatsPeriod = S.String;
 
 export type ListOrganizationIssuesRequestShortIdLookup = "0" | "1";
-export const ListOrganizationIssuesRequestShortIdLookup =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesRequestShortIdLookup = S.String;
 
 export type ListOrganizationIssuesRequestSort =
   | "date"
@@ -21523,7 +21473,7 @@ export type ListOrganizationIssuesRequestSort =
   | "recommended"
   | "trends"
   | "user";
-export const ListOrganizationIssuesRequestSort = /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesRequestSort = S.String;
 
 export type ListOrganizationIssuesRequestExpandItem =
   | "inbox"
@@ -21532,7 +21482,7 @@ export type ListOrganizationIssuesRequestExpandItem =
   | "owners"
   | "sentryAppIssues"
   | "sessions";
-export const ListOrganizationIssuesRequestExpandItem = /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesRequestExpandItem = S.String;
 
 export type ListOrganizationIssuesRequestExpandList = Array<
   ListOrganizationIssuesRequestExpandItem | (string & {})
@@ -21547,7 +21497,7 @@ export type ListOrganizationIssuesRequestCollapseItem =
   | "lifetime"
   | "stats"
   | "unhandled";
-export const ListOrganizationIssuesRequestCollapseItem = /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesRequestCollapseItem = S.String;
 
 export type ListOrganizationIssuesRequestCollapseList = Array<
   ListOrganizationIssuesRequestCollapseItem | (string & {})
@@ -21636,8 +21586,7 @@ export type ListOrganizationIssuesResponseBodyItemLevel =
   | "error"
   | "fatal"
   | "unknown";
-export const ListOrganizationIssuesResponseBodyItemLevel =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesResponseBodyItemLevel = S.String;
 
 export type ListOrganizationIssuesResponseBodyItemStatus =
   | "resolved"
@@ -21646,8 +21595,7 @@ export type ListOrganizationIssuesResponseBodyItemStatus =
   | "pending_merge"
   | "reprocessing"
   | "unresolved";
-export const ListOrganizationIssuesResponseBodyItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesResponseBodyItemStatus = S.String;
 
 export type ListOrganizationIssuesResponseBodyItemStatusDetailsActorIdentitiesItemOrganization =
   AddOrganizationMemberResponseUserIdentitiesItemOrganization;
@@ -21808,15 +21756,13 @@ export type ListOrganizationIssuesResponseBodyItemSubstatus =
   | "ongoing"
   | "regressed"
   | "new";
-export const ListOrganizationIssuesResponseBodyItemSubstatus =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesResponseBodyItemSubstatus = S.String;
 
 export type ListOrganizationIssuesResponseBodyItemPriority =
   | "low"
   | "medium"
   | "high";
-export const ListOrganizationIssuesResponseBodyItemPriority =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesResponseBodyItemPriority = S.String;
 
 export type ListOrganizationIssuesResponseBodyItemProject =
   GetOrganizationIssueResponseProject;
@@ -21834,8 +21780,7 @@ export type ListOrganizationIssuesResponseBodyItemType =
   | "transaction"
   | "generic"
   | "feedback";
-export const ListOrganizationIssuesResponseBodyItemType =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesResponseBodyItemType = S.String;
 
 export type ListOrganizationIssuesResponseBodyItemMetadataMap = {
   [key: string]: unknown | undefined;
@@ -21849,8 +21794,7 @@ export const ListOrganizationIssuesResponseBodyItemMetadataMap =
 export type ListOrganizationIssuesResponseBodyItemAssignedToType =
   | "user"
   | "team";
-export const ListOrganizationIssuesResponseBodyItemAssignedToType =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationIssuesResponseBodyItemAssignedToType = S.String;
 
 export interface ListOrganizationIssuesResponseBodyItemAssignedTo {
   type: ListOrganizationIssuesResponseBodyItemAssignedToType;
@@ -22113,7 +22057,7 @@ export type ListOrganizationIssueTagValuesRequestSort =
   | "count"
   | "date"
   | "id";
-export const ListOrganizationIssueTagValuesRequestSort = /*@__PURE__*/ S.String;
+export const ListOrganizationIssueTagValuesRequestSort = S.String;
 
 export type ListOrganizationIssueTagValuesRequestEnvironmentList =
   Array<string>;
@@ -22416,7 +22360,7 @@ export type ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigSchedule
   | "crontab"
   | "interval";
 export const ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigScheduleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigScheduleCase1List =
   Array<number>;
@@ -22429,7 +22373,7 @@ export type ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigSchedule
   | string
   | ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigScheduleCase1List;
 export const ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigSchedule>;
+  S.Unknown as any as S.Schema<ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigSchedule>;
 
 export interface ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfig {
   schedule_type: ListOrganizationMonitorCheckinsResponseBodyItemMonitorConfigScheduleType;
@@ -22514,7 +22458,7 @@ export const ListOrganizationMonitorCheckinsResponse = /*@__PURE__*/ S.suspend(
 
 export type ListOrganizationMonitorsRequestProjectItem = number | string;
 export const ListOrganizationMonitorsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationMonitorsRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationMonitorsRequestProjectItem>;
 
 export type ListOrganizationMonitorsRequestProjectList =
   Array<ListOrganizationMonitorsRequestProjectItem>;
@@ -22592,7 +22536,7 @@ export type ListOrganizationMonitorsResponseBodyItemConfigScheduleType =
   | "crontab"
   | "interval";
 export const ListOrganizationMonitorsResponseBodyItemConfigScheduleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationMonitorsResponseBodyItemConfigScheduleCase1List =
   Array<number>;
@@ -22605,7 +22549,7 @@ export type ListOrganizationMonitorsResponseBodyItemConfigSchedule =
   | string
   | ListOrganizationMonitorsResponseBodyItemConfigScheduleCase1List;
 export const ListOrganizationMonitorsResponseBodyItemConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationMonitorsResponseBodyItemConfigSchedule>;
+  S.Unknown as any as S.Schema<ListOrganizationMonitorsResponseBodyItemConfigSchedule>;
 
 export interface ListOrganizationMonitorsResponseBodyItemConfig {
   schedule_type: ListOrganizationMonitorsResponseBodyItemConfigScheduleType;
@@ -22758,8 +22702,7 @@ export const ListOrganizationMonitorsResponseBodyItemEnvironments =
   CreateOrganizationMonitorResponseEnvironments;
 
 export type ListOrganizationMonitorsResponseBodyItemOwnerType = "user" | "team";
-export const ListOrganizationMonitorsResponseBodyItemOwnerType =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationMonitorsResponseBodyItemOwnerType = S.String;
 
 export interface ListOrganizationMonitorsResponseBodyItemOwner {
   type: ListOrganizationMonitorsResponseBodyItemOwnerType;
@@ -22831,7 +22774,7 @@ export type ListOrganizationNotificationsActionsRequestProjectItem =
   | number
   | string;
 export const ListOrganizationNotificationsActionsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationNotificationsActionsRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationNotificationsActionsRequestProjectItem>;
 
 export type ListOrganizationNotificationsActionsRequestProjectList =
   Array<ListOrganizationNotificationsActionsRequestProjectItem>;
@@ -22971,7 +22914,7 @@ export const ListOrganizationProfilingChunksResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListOrganizationProfilingChunksResponse>;
 
 export type ListOrganizationProjectKeysRequestStatus = "active" | "inactive";
-export const ListOrganizationProjectKeysRequestStatus = /*@__PURE__*/ S.String;
+export const ListOrganizationProjectKeysRequestStatus = S.String;
 
 export interface ListOrganizationProjectKeysRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -23398,7 +23341,7 @@ export type ListOrganizationReleaseCommitsResponseBodyItemPullRequestStatus =
   | "draft"
   | "unknown";
 export const ListOrganizationReleaseCommitsResponseBodyItemPullRequestStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationReleaseCommitsResponseBodyItemPullRequestRepositoryProviderMap =
   { [key: string]: string | undefined };
@@ -23590,7 +23533,7 @@ export type ListOrganizationReleaseCommitsResponseBodyItemPullRequestAuthor =
   | ListOrganizationReleaseCommitsResponseBodyItemPullRequestAuthorCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const ListOrganizationReleaseCommitsResponseBodyItemPullRequestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReleaseCommitsResponseBodyItemPullRequestAuthor>;
+  S.Unknown as any as S.Schema<ListOrganizationReleaseCommitsResponseBodyItemPullRequestAuthor>;
 
 export interface ListOrganizationReleaseCommitsResponseBodyItemPullRequest {
   id: string;
@@ -23812,7 +23755,7 @@ export type ListOrganizationReleaseCommitsResponseBodyItemAuthor =
   | CreateOrganizationReleaseResponseAuthorsItemCase1
   | unknown;
 export const ListOrganizationReleaseCommitsResponseBodyItemAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReleaseCommitsResponseBodyItemAuthor>;
+  S.Unknown as any as S.Schema<ListOrganizationReleaseCommitsResponseBodyItemAuthor>;
 
 export interface ListOrganizationReleaseCommitsResponseBodyItemReleasesItem {
   version: string;
@@ -24055,7 +23998,7 @@ export const ListOrganizationReleaseFilesResponse = /*@__PURE__*/ S.suspend(
 
 export type ListOrganizationReleasesRequestProjectItem = number | string;
 export const ListOrganizationReleasesRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReleasesRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationReleasesRequestProjectItem>;
 
 export type ListOrganizationReleasesRequestProjectList =
   Array<ListOrganizationReleasesRequestProjectItem>;
@@ -24304,7 +24247,7 @@ export type ListOrganizationReleasesResponseBodyItemAuthorsItem =
   | ListOrganizationReleasesResponseBodyItemAuthorsItemCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const ListOrganizationReleasesResponseBodyItemAuthorsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReleasesResponseBodyItemAuthorsItem>;
+  S.Unknown as any as S.Schema<ListOrganizationReleasesResponseBodyItemAuthorsItem>;
 
 export type ListOrganizationReleasesResponseBodyItemAuthorsList =
   Array<ListOrganizationReleasesResponseBodyItemAuthorsItem>;
@@ -24526,7 +24469,7 @@ export type ListOrganizationReleaseThresholdStatusesRequestProjectItem =
   | number
   | string;
 export const ListOrganizationReleaseThresholdStatusesRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReleaseThresholdStatusesRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationReleaseThresholdStatusesRequestProjectItem>;
 
 export type ListOrganizationReleaseThresholdStatusesRequestProjectList =
   Array<ListOrganizationReleaseThresholdStatusesRequestProjectItem>;
@@ -24613,20 +24556,20 @@ export type ListOrganizationReleaseThresholdStatusesResponseBodyValueItemThresho
   | "crash_free_session_rate"
   | "crash_free_user_rate";
 export const ListOrganizationReleaseThresholdStatusesResponseBodyValueItemThresholdType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationReleaseThresholdStatusesResponseBodyValueItemTriggerType =
   | "over"
   | "under";
 export const ListOrganizationReleaseThresholdStatusesResponseBodyValueItemTriggerType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationReleaseThresholdStatusesResponseBodyValueItemMetricValue =
   | number
   | number
   | unknown;
 export const ListOrganizationReleaseThresholdStatusesResponseBodyValueItemMetricValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReleaseThresholdStatusesResponseBodyValueItemMetricValue>;
+  S.Unknown as any as S.Schema<ListOrganizationReleaseThresholdStatusesResponseBodyValueItemMetricValue>;
 
 export interface ListOrganizationReleaseThresholdStatusesResponseBodyValueItem {
   id?: string;
@@ -24744,7 +24687,7 @@ export type ListOrganizationReplaysRequestFieldItem =
   | "count_warnings"
   | "count_infos"
   | "has_viewed";
-export const ListOrganizationReplaysRequestFieldItem = /*@__PURE__*/ S.String;
+export const ListOrganizationReplaysRequestFieldItem = S.String;
 
 export type ListOrganizationReplaysRequestFieldList = Array<
   ListOrganizationReplaysRequestFieldItem | (string & {})
@@ -24755,7 +24698,7 @@ export const ListOrganizationReplaysRequestFieldList = /*@__PURE__*/ S.Array(
 
 export type ListOrganizationReplaysRequestProjectItem = number | string;
 export const ListOrganizationReplaysRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReplaysRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationReplaysRequestProjectItem>;
 
 export type ListOrganizationReplaysRequestProjectList =
   Array<ListOrganizationReplaysRequestProjectItem>;
@@ -24882,7 +24825,7 @@ export type ListOrganizationReplaysResponseDataItemTags =
   | ListOrganizationReplaysResponseDataItemTagsCase0Map
   | ListOrganizationReplaysResponseDataItemTagsCase1List;
 export const ListOrganizationReplaysResponseDataItemTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReplaysResponseDataItemTags>;
+  S.Unknown as any as S.Schema<ListOrganizationReplaysResponseDataItemTags>;
 
 export type ListOrganizationReplaysResponseDataItemUserGeo =
   GetOrganizationReplayResponseDataUserGeo;
@@ -25062,7 +25005,7 @@ export const ListOrganizationReplaySelectorsRequestEnvironmentList =
 
 export type ListOrganizationReplaySelectorsRequestProjectItem = number | string;
 export const ListOrganizationReplaySelectorsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationReplaySelectorsRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationReplaySelectorsRequestProjectItem>;
 
 export type ListOrganizationReplaySelectorsRequestProjectList =
   Array<ListOrganizationReplaySelectorsRequestProjectItem>;
@@ -25246,7 +25189,7 @@ export type ListOrganizationRepoCommitsResponseBodyItemPullRequestStatus =
   | "draft"
   | "unknown";
 export const ListOrganizationRepoCommitsResponseBodyItemPullRequestStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationRepoCommitsResponseBodyItemPullRequestRepositoryProviderMap =
   { [key: string]: string | undefined };
@@ -25438,7 +25381,7 @@ export type ListOrganizationRepoCommitsResponseBodyItemPullRequestAuthor =
   | ListOrganizationRepoCommitsResponseBodyItemPullRequestAuthorCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const ListOrganizationRepoCommitsResponseBodyItemPullRequestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationRepoCommitsResponseBodyItemPullRequestAuthor>;
+  S.Unknown as any as S.Schema<ListOrganizationRepoCommitsResponseBodyItemPullRequestAuthor>;
 
 export interface ListOrganizationRepoCommitsResponseBodyItemPullRequest {
   id: string;
@@ -25657,7 +25600,7 @@ export type ListOrganizationRepoCommitsResponseBodyItemAuthor =
   | CreateOrganizationReleaseResponseAuthorsItemCase1
   | unknown;
 export const ListOrganizationRepoCommitsResponseBodyItemAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationRepoCommitsResponseBodyItemAuthor>;
+  S.Unknown as any as S.Schema<ListOrganizationRepoCommitsResponseBodyItemAuthor>;
 
 export interface ListOrganizationRepoCommitsResponseBodyItem {
   id: string;
@@ -25703,7 +25646,7 @@ export const ListOrganizationRepoCommitsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOrganizationRepoCommitsResponse>;
 
 export type ListOrganizationReposRequestStatus = "active" | "deleted";
-export const ListOrganizationReposRequestStatus = /*@__PURE__*/ S.String;
+export const ListOrganizationReposRequestStatus = S.String;
 
 export type ListOrganizationReposRequestExpandList = Array<string>;
 export const ListOrganizationReposRequestExpandList = /*@__PURE__*/ S.Array(
@@ -26366,7 +26309,7 @@ export type ListOrganizationStatsV2RequestGroupByItem =
   | "category"
   | "reason"
   | "project";
-export const ListOrganizationStatsV2RequestGroupByItem = /*@__PURE__*/ S.String;
+export const ListOrganizationStatsV2RequestGroupByItem = S.String;
 
 export type ListOrganizationStatsV2RequestGroupByList = Array<
   ListOrganizationStatsV2RequestGroupByItem | (string & {})
@@ -26378,7 +26321,7 @@ export const ListOrganizationStatsV2RequestGroupByList = /*@__PURE__*/ S.Array(
 export type ListOrganizationStatsV2RequestField =
   | "sum(quantity)"
   | "sum(times_seen)";
-export const ListOrganizationStatsV2RequestField = /*@__PURE__*/ S.String;
+export const ListOrganizationStatsV2RequestField = S.String;
 
 export type ListOrganizationStatsV2RequestProjectList = Array<unknown>;
 export const ListOrganizationStatsV2RequestProjectList = /*@__PURE__*/ S.Array(
@@ -26396,7 +26339,7 @@ export type ListOrganizationStatsV2RequestCategory =
   | "profile_chunk"
   | "profile_chunk_ui"
   | "monitor";
-export const ListOrganizationStatsV2RequestCategory = /*@__PURE__*/ S.String;
+export const ListOrganizationStatsV2RequestCategory = S.String;
 
 export type ListOrganizationStatsV2RequestOutcome =
   | "accepted"
@@ -26406,7 +26349,7 @@ export type ListOrganizationStatsV2RequestOutcome =
   | "abuse"
   | "client_discard"
   | "cardinality_limited";
-export const ListOrganizationStatsV2RequestOutcome = /*@__PURE__*/ S.String;
+export const ListOrganizationStatsV2RequestOutcome = S.String;
 
 export interface ListOrganizationStatsV2Request {
   /** The ID or slug of the organization the resource belongs to. */
@@ -26534,7 +26477,7 @@ export const ListOrganizationStatsV2Response = /*@__PURE__*/ S.suspend(() =>
 
 export type ListOrganizationTagsRequestProjectItem = number | string;
 export const ListOrganizationTagsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationTagsRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationTagsRequestProjectItem>;
 
 export type ListOrganizationTagsRequestProjectList =
   Array<ListOrganizationTagsRequestProjectItem>;
@@ -26552,14 +26495,13 @@ export type ListOrganizationTagsRequestDataset =
   | "events"
   | "replays"
   | "search_issues";
-export const ListOrganizationTagsRequestDataset = /*@__PURE__*/ S.String;
+export const ListOrganizationTagsRequestDataset = S.String;
 
 export type ListOrganizationTagsRequestUseCache = "0" | "1";
-export const ListOrganizationTagsRequestUseCache = /*@__PURE__*/ S.String;
+export const ListOrganizationTagsRequestUseCache = S.String;
 
 export type ListOrganizationTagsRequestUseFlagsBackend = "0" | "1";
-export const ListOrganizationTagsRequestUseFlagsBackend =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationTagsRequestUseFlagsBackend = S.String;
 
 export interface ListOrganizationTagsRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -27013,7 +26955,7 @@ export type ListOrganizationTraceItemAttributesRequestProjectItem =
   | number
   | string;
 export const ListOrganizationTraceItemAttributesRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationTraceItemAttributesRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationTraceItemAttributesRequestProjectItem>;
 
 export type ListOrganizationTraceItemAttributesRequestProjectList =
   Array<ListOrganizationTraceItemAttributesRequestProjectItem>;
@@ -27028,8 +26970,7 @@ export type ListOrganizationTraceItemAttributesRequestDataset =
   | "processing_errors"
   | "spans"
   | "tracemetrics";
-export const ListOrganizationTraceItemAttributesRequestDataset =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationTraceItemAttributesRequestDataset = S.String;
 
 export type ListOrganizationTraceItemAttributesRequestItemType =
   | "logs"
@@ -27037,8 +26978,7 @@ export type ListOrganizationTraceItemAttributesRequestItemType =
   | "processing_errors"
   | "spans"
   | "tracemetrics";
-export const ListOrganizationTraceItemAttributesRequestItemType =
-  /*@__PURE__*/ S.String;
+export const ListOrganizationTraceItemAttributesRequestItemType = S.String;
 
 export type ListOrganizationTraceItemAttributesRequestAttributeTypeItem =
   | "array"
@@ -27046,7 +26986,7 @@ export type ListOrganizationTraceItemAttributesRequestAttributeTypeItem =
   | "number"
   | "string";
 export const ListOrganizationTraceItemAttributesRequestAttributeTypeItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListOrganizationTraceItemAttributesRequestAttributeTypeList = Array<
   ListOrganizationTraceItemAttributesRequestAttributeTypeItem | (string & {})
@@ -27133,7 +27073,7 @@ export type ListOrganizationTraceItemAttributesResponseBodyItemAttributeSourceSo
   | "sentry"
   | "user";
 export const ListOrganizationTraceItemAttributesResponseBodyItemAttributeSourceSourceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListOrganizationTraceItemAttributesResponseBodyItemAttributeSource {
   source_type: ListOrganizationTraceItemAttributesResponseBodyItemAttributeSourceSourceType;
@@ -27157,7 +27097,7 @@ export type ListOrganizationTraceItemAttributesResponseBodyItemAttributeType =
   | "boolean"
   | "array";
 export const ListOrganizationTraceItemAttributesResponseBodyItemAttributeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListOrganizationTraceItemAttributesResponseBodyItem {
   key: string;
@@ -27554,7 +27494,7 @@ export const ListOrganizationWorkflowsRequestDetectorList =
 
 export type ListOrganizationWorkflowsRequestProjectItem = number | string;
 export const ListOrganizationWorkflowsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationWorkflowsRequestProjectItem>;
+  S.Unknown as any as S.Schema<ListOrganizationWorkflowsRequestProjectItem>;
 
 export type ListOrganizationWorkflowsRequestProjectList =
   Array<ListOrganizationWorkflowsRequestProjectItem>;
@@ -27610,7 +27550,7 @@ export type ListOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0Item
   | boolean
   | number;
 export const ListOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0ItemComparison>;
 
 export interface ListOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0Item {
   id: string;
@@ -27650,7 +27590,7 @@ export type ListOrganizationWorkflowsResponseBodyItemTriggersConditions =
   | ListOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0List
   | ListOrganizationWorkflowsResponseBodyItemTriggersConditionsCase1List;
 export const ListOrganizationWorkflowsResponseBodyItemTriggersConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemTriggersConditions>;
+  S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemTriggersConditions>;
 
 export type ListOrganizationWorkflowsResponseBodyItemTriggersActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -27713,7 +27653,7 @@ export type ListOrganizationWorkflowsResponseBodyItemTriggersActions =
   | ListOrganizationWorkflowsResponseBodyItemTriggersActionsCase0List
   | ListOrganizationWorkflowsResponseBodyItemTriggersActionsCase1List;
 export const ListOrganizationWorkflowsResponseBodyItemTriggersActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemTriggersActions>;
+  S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemTriggersActions>;
 
 export interface ListOrganizationWorkflowsResponseBodyItemTriggers {
   id?: string;
@@ -27743,7 +27683,7 @@ export type ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions
   | boolean
   | number;
 export const ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0ItemComparison>;
 
 export interface ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0Item {
   id: string;
@@ -27783,7 +27723,7 @@ export type ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions
   | ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0List
   | ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase1List;
 export const ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions>;
+  S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions>;
 
 export type ListOrganizationWorkflowsResponseBodyItemActionFiltersItemActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -27846,7 +27786,7 @@ export type ListOrganizationWorkflowsResponseBodyItemActionFiltersItemActions =
   | ListOrganizationWorkflowsResponseBodyItemActionFiltersItemActionsCase0List
   | ListOrganizationWorkflowsResponseBodyItemActionFiltersItemActionsCase1List;
 export const ListOrganizationWorkflowsResponseBodyItemActionFiltersItemActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemActionFiltersItemActions>;
+  S.Unknown as any as S.Schema<ListOrganizationWorkflowsResponseBodyItemActionFiltersItemActions>;
 
 export interface ListOrganizationWorkflowsResponseBodyItemActionFiltersItem {
   id?: string;
@@ -28065,7 +28005,7 @@ export type ListProjectEnvironmentsRequestVisibility =
   | "all"
   | "hidden"
   | "visible";
-export const ListProjectEnvironmentsRequestVisibility = /*@__PURE__*/ S.String;
+export const ListProjectEnvironmentsRequestVisibility = S.String;
 
 export interface ListProjectEnvironmentsRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -28378,7 +28318,7 @@ export type ListProjectFiltersResponseBodyItemActive =
   | boolean
   | ListProjectFiltersResponseBodyItemActiveCase1List;
 export const ListProjectFiltersResponseBodyItemActive =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListProjectFiltersResponseBodyItemActive>;
+  S.Unknown as any as S.Schema<ListProjectFiltersResponseBodyItemActive>;
 
 export interface ListProjectFiltersResponseBodyItem {
   id: string;
@@ -28755,7 +28695,7 @@ export type ListProjectMonitorCheckinsResponseBodyItemMonitorConfigScheduleType 
   | "crontab"
   | "interval";
 export const ListProjectMonitorCheckinsResponseBodyItemMonitorConfigScheduleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectMonitorCheckinsResponseBodyItemMonitorConfigScheduleCase1List =
   Array<number>;
@@ -28768,7 +28708,7 @@ export type ListProjectMonitorCheckinsResponseBodyItemMonitorConfigSchedule =
   | string
   | ListProjectMonitorCheckinsResponseBodyItemMonitorConfigScheduleCase1List;
 export const ListProjectMonitorCheckinsResponseBodyItemMonitorConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListProjectMonitorCheckinsResponseBodyItemMonitorConfigSchedule>;
+  S.Unknown as any as S.Schema<ListProjectMonitorCheckinsResponseBodyItemMonitorConfigSchedule>;
 
 export interface ListProjectMonitorCheckinsResponseBodyItemMonitorConfig {
   schedule_type: ListProjectMonitorCheckinsResponseBodyItemMonitorConfigScheduleType;
@@ -28879,7 +28819,7 @@ export type ListProjectReleaseCommitsResponseBodyItemPullRequestStatus =
   | "draft"
   | "unknown";
 export const ListProjectReleaseCommitsResponseBodyItemPullRequestStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectReleaseCommitsResponseBodyItemPullRequestRepositoryProviderMap =
   { [key: string]: string | undefined };
@@ -29071,7 +29011,7 @@ export type ListProjectReleaseCommitsResponseBodyItemPullRequestAuthor =
   | ListProjectReleaseCommitsResponseBodyItemPullRequestAuthorCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const ListProjectReleaseCommitsResponseBodyItemPullRequestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListProjectReleaseCommitsResponseBodyItemPullRequestAuthor>;
+  S.Unknown as any as S.Schema<ListProjectReleaseCommitsResponseBodyItemPullRequestAuthor>;
 
 export interface ListProjectReleaseCommitsResponseBodyItemPullRequest {
   id: string;
@@ -29290,7 +29230,7 @@ export type ListProjectReleaseCommitsResponseBodyItemAuthor =
   | CreateOrganizationReleaseResponseAuthorsItemCase1
   | unknown;
 export const ListProjectReleaseCommitsResponseBodyItemAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListProjectReleaseCommitsResponseBodyItemAuthor>;
+  S.Unknown as any as S.Schema<ListProjectReleaseCommitsResponseBodyItemAuthor>;
 
 export type ListProjectReleaseCommitsResponseBodyItemReleasesItem =
   ListOrganizationReleaseCommitsResponseBodyItemReleasesItem;
@@ -29677,7 +29617,7 @@ export type ListProjectReleasesResponseBodyItemAuthorsItem =
   | ListProjectReleasesResponseBodyItemAuthorsItemCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const ListProjectReleasesResponseBodyItemAuthorsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListProjectReleasesResponseBodyItemAuthorsItem>;
+  S.Unknown as any as S.Schema<ListProjectReleasesResponseBodyItemAuthorsItem>;
 
 export type ListProjectReleasesResponseBodyItemAuthorsList =
   Array<ListProjectReleasesResponseBodyItemAuthorsItem>;
@@ -30149,10 +30089,10 @@ export type ListProjectStatsRequestStat =
   | "generated"
   | "received"
   | "rejected";
-export const ListProjectStatsRequestStat = /*@__PURE__*/ S.String;
+export const ListProjectStatsRequestStat = S.String;
 
 export type ListProjectStatsRequestResolution = "10s" | "1d" | "1h";
-export const ListProjectStatsRequestResolution = /*@__PURE__*/ S.String;
+export const ListProjectStatsRequestResolution = S.String;
 
 export interface ListProjectStatsRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -30230,8 +30170,7 @@ export const ListProjectSymbolSourcesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProjectSymbolSourcesRequest>;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase0Type = "http";
-export const ListProjectSymbolSourcesResponseBodyItemCase0Type =
-  /*@__PURE__*/ S.String;
+export const ListProjectSymbolSourcesResponseBodyItemCase0Type = S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase0Password =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -30246,15 +30185,14 @@ export type ListProjectSymbolSourcesResponseBodyItemCase0LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const ListProjectSymbolSourcesResponseBodyItemCase0LayoutType =
-  /*@__PURE__*/ S.String;
+export const ListProjectSymbolSourcesResponseBodyItemCase0LayoutType = S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase0LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
 export const ListProjectSymbolSourcesResponseBodyItemCase0LayoutCasing =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectSymbolSourcesResponseBodyItemCase0Layout {
   type: ListProjectSymbolSourcesResponseBodyItemCase0LayoutType;
@@ -30290,7 +30228,7 @@ export type ListProjectSymbolSourcesResponseBodyItemCase0FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const ListProjectSymbolSourcesResponseBodyItemCase0FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase0FiltersFiletypesList =
   Array<ListProjectSymbolSourcesResponseBodyItemCase0FiltersFiletypesItem>;
@@ -30368,8 +30306,7 @@ export const ListProjectSymbolSourcesResponseBodyItemCase0 =
   }) as any as S.Schema<ListProjectSymbolSourcesResponseBodyItemCase0>;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase1Type = "s3";
-export const ListProjectSymbolSourcesResponseBodyItemCase1Type =
-  /*@__PURE__*/ S.String;
+export const ListProjectSymbolSourcesResponseBodyItemCase1Type = S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase1SecretKey =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -30384,15 +30321,14 @@ export type ListProjectSymbolSourcesResponseBodyItemCase1LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const ListProjectSymbolSourcesResponseBodyItemCase1LayoutType =
-  /*@__PURE__*/ S.String;
+export const ListProjectSymbolSourcesResponseBodyItemCase1LayoutType = S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase1LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
 export const ListProjectSymbolSourcesResponseBodyItemCase1LayoutCasing =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectSymbolSourcesResponseBodyItemCase1Layout {
   type: ListProjectSymbolSourcesResponseBodyItemCase1LayoutType;
@@ -30428,7 +30364,7 @@ export type ListProjectSymbolSourcesResponseBodyItemCase1FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const ListProjectSymbolSourcesResponseBodyItemCase1FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase1FiltersFiletypesList =
   Array<ListProjectSymbolSourcesResponseBodyItemCase1FiltersFiletypesItem>;
@@ -30510,8 +30446,7 @@ export const ListProjectSymbolSourcesResponseBodyItemCase1 =
   }) as any as S.Schema<ListProjectSymbolSourcesResponseBodyItemCase1>;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase2Type = "gcs";
-export const ListProjectSymbolSourcesResponseBodyItemCase2Type =
-  /*@__PURE__*/ S.String;
+export const ListProjectSymbolSourcesResponseBodyItemCase2Type = S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase2PrivateKey =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -30526,15 +30461,14 @@ export type ListProjectSymbolSourcesResponseBodyItemCase2LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const ListProjectSymbolSourcesResponseBodyItemCase2LayoutType =
-  /*@__PURE__*/ S.String;
+export const ListProjectSymbolSourcesResponseBodyItemCase2LayoutType = S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase2LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
 export const ListProjectSymbolSourcesResponseBodyItemCase2LayoutCasing =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectSymbolSourcesResponseBodyItemCase2Layout {
   type: ListProjectSymbolSourcesResponseBodyItemCase2LayoutType;
@@ -30570,7 +30504,7 @@ export type ListProjectSymbolSourcesResponseBodyItemCase2FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const ListProjectSymbolSourcesResponseBodyItemCase2FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListProjectSymbolSourcesResponseBodyItemCase2FiltersFiletypesList =
   Array<ListProjectSymbolSourcesResponseBodyItemCase2FiltersFiletypesItem>;
@@ -30651,8 +30585,7 @@ export const ListProjectSymbolSourcesResponseBodyItemCase2 =
 
 export type ListProjectSymbolSourcesResponseBodyItemCase3Type =
   "appStoreConnect";
-export const ListProjectSymbolSourcesResponseBodyItemCase3Type =
-  /*@__PURE__*/ S.String;
+export const ListProjectSymbolSourcesResponseBodyItemCase3Type = S.String;
 
 export interface ListProjectSymbolSourcesResponseBodyItemCase3 {
   type: ListProjectSymbolSourcesResponseBodyItemCase3Type;
@@ -30688,7 +30621,7 @@ export type ListProjectSymbolSourcesResponseBodyItem =
   | ListProjectSymbolSourcesResponseBodyItemCase2
   | ListProjectSymbolSourcesResponseBodyItemCase3;
 export const ListProjectSymbolSourcesResponseBodyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListProjectSymbolSourcesResponseBodyItem>;
+  S.Unknown as any as S.Schema<ListProjectSymbolSourcesResponseBodyItem>;
 
 export type ListProjectSymbolSourcesResponseBodyList =
   Array<ListProjectSymbolSourcesResponseBodyItem>;
@@ -31365,8 +31298,7 @@ export type ProvisionOrganizationScimV2UserRequestSentryOrgRole =
   | "member"
   | "manager"
   | "admin";
-export const ProvisionOrganizationScimV2UserRequestSentryOrgRole =
-  /*@__PURE__*/ S.String;
+export const ProvisionOrganizationScimV2UserRequestSentryOrgRole = S.String;
 
 export interface ProvisionOrganizationScimV2UserRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -31669,8 +31601,7 @@ export type ResolveOrganizationEventIdResponseEventType =
   | "transaction"
   | "generic"
   | "feedback";
-export const ResolveOrganizationEventIdResponseEventType =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationEventIdResponseEventType = S.String;
 
 export type ResolveOrganizationEventIdResponseEventMetadataMap = {
   [key: string]: unknown | undefined;
@@ -31951,8 +31882,7 @@ export type ResolveOrganizationShortIdRequestCollapseItem =
   | "lifetime"
   | "stats"
   | "unhandled";
-export const ResolveOrganizationShortIdRequestCollapseItem =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationShortIdRequestCollapseItem = S.String;
 
 export type ResolveOrganizationShortIdRequestCollapseList = Array<
   ResolveOrganizationShortIdRequestCollapseItem | (string & {})
@@ -32001,8 +31931,7 @@ export type ResolveOrganizationShortIdResponseGroupLevel =
   | "error"
   | "fatal"
   | "unknown";
-export const ResolveOrganizationShortIdResponseGroupLevel =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationShortIdResponseGroupLevel = S.String;
 
 export type ResolveOrganizationShortIdResponseGroupStatus =
   | "resolved"
@@ -32011,8 +31940,7 @@ export type ResolveOrganizationShortIdResponseGroupStatus =
   | "pending_merge"
   | "reprocessing"
   | "unresolved";
-export const ResolveOrganizationShortIdResponseGroupStatus =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationShortIdResponseGroupStatus = S.String;
 
 export type ResolveOrganizationShortIdResponseGroupStatusDetailsActorIdentitiesItemOrganization =
   AddOrganizationMemberResponseUserIdentitiesItemOrganization;
@@ -32173,15 +32101,13 @@ export type ResolveOrganizationShortIdResponseGroupSubstatus =
   | "ongoing"
   | "regressed"
   | "new";
-export const ResolveOrganizationShortIdResponseGroupSubstatus =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationShortIdResponseGroupSubstatus = S.String;
 
 export type ResolveOrganizationShortIdResponseGroupPriority =
   | "low"
   | "medium"
   | "high";
-export const ResolveOrganizationShortIdResponseGroupPriority =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationShortIdResponseGroupPriority = S.String;
 
 export type ResolveOrganizationShortIdResponseGroupProject =
   GetOrganizationIssueResponseProject;
@@ -32199,8 +32125,7 @@ export type ResolveOrganizationShortIdResponseGroupType =
   | "transaction"
   | "generic"
   | "feedback";
-export const ResolveOrganizationShortIdResponseGroupType =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationShortIdResponseGroupType = S.String;
 
 export type ResolveOrganizationShortIdResponseGroupMetadataMap = {
   [key: string]: unknown | undefined;
@@ -32214,8 +32139,7 @@ export const ResolveOrganizationShortIdResponseGroupMetadataMap =
 export type ResolveOrganizationShortIdResponseGroupAssignedToType =
   | "user"
   | "team";
-export const ResolveOrganizationShortIdResponseGroupAssignedToType =
-  /*@__PURE__*/ S.String;
+export const ResolveOrganizationShortIdResponseGroupAssignedToType = S.String;
 
 export interface ResolveOrganizationShortIdResponseGroupAssignedTo {
   type: ResolveOrganizationShortIdResponseGroupAssignedToType;
@@ -32363,7 +32287,7 @@ export type StartOrganizationIssueAutofixRequestStep =
   | "pr_iteration"
   | "open_pr"
   | "coding_agent_handoff";
-export const StartOrganizationIssueAutofixRequestStep = /*@__PURE__*/ S.String;
+export const StartOrganizationIssueAutofixRequestStep = S.String;
 
 /** Where the issue fix process should stop. If not provided, will run to root cause. * `root_cause` * `solution` * `code_changes` * `open_pr` */
 export type StartOrganizationIssueAutofixRequestStoppingPoint =
@@ -32371,8 +32295,7 @@ export type StartOrganizationIssueAutofixRequestStoppingPoint =
   | "solution"
   | "code_changes"
   | "open_pr";
-export const StartOrganizationIssueAutofixRequestStoppingPoint =
-  /*@__PURE__*/ S.String;
+export const StartOrganizationIssueAutofixRequestStoppingPoint = S.String;
 
 export interface StartOrganizationIssueAutofixRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -32543,7 +32466,7 @@ export type UpdateOrganizationRequestDefaultRole =
   | "admin"
   | "manager"
   | "owner";
-export const UpdateOrganizationRequestDefaultRole = /*@__PURE__*/ S.String;
+export const UpdateOrganizationRequestDefaultRole = S.String;
 
 /** The role required to download event attachments, such as native crash reports or log files. * `member` - Member * `admin` - Admin * `manager` - Manager * `owner` - Owner */
 export type UpdateOrganizationRequestAttachmentsRole =
@@ -32551,7 +32474,7 @@ export type UpdateOrganizationRequestAttachmentsRole =
   | "admin"
   | "manager"
   | "owner";
-export const UpdateOrganizationRequestAttachmentsRole = /*@__PURE__*/ S.String;
+export const UpdateOrganizationRequestAttachmentsRole = S.String;
 
 /** The role required to download debug information files, ProGuard mappings and source maps. * `member` - Member * `admin` - Admin * `manager` - Manager * `owner` - Owner */
 export type UpdateOrganizationRequestDebugFilesRole =
@@ -32559,7 +32482,7 @@ export type UpdateOrganizationRequestDebugFilesRole =
   | "admin"
   | "manager"
   | "owner";
-export const UpdateOrganizationRequestDebugFilesRole = /*@__PURE__*/ S.String;
+export const UpdateOrganizationRequestDebugFilesRole = S.String;
 
 /** A list of user IDs who have permission to access replay data. Requires the hasGranularReplayPermissions flag to be true to be enforced. */
 export type UpdateOrganizationRequestReplayAccessMembersList = Array<number>;
@@ -32570,7 +32493,7 @@ export const UpdateOrganizationRequestReplayAccessMembersList =
 
 /** The type of display picture for the organization. * `letter_avatar` - Use initials * `upload` - Upload an image */
 export type UpdateOrganizationRequestAvatarType = "letter_avatar" | "upload";
-export const UpdateOrganizationRequestAvatarType = /*@__PURE__*/ S.String;
+export const UpdateOrganizationRequestAvatarType = S.String;
 
 /** How many native crash reports (such as Minidumps for improved processing and download in issue details) to store per issue. * `0` - Disabled * `1` - 1 per issue * `5` - 5 per issue * `10` - 10 per issue * `20` - 20 per issue * `50` - 50 per issue * `100` - 100 per issue * `-1` - Unlimited */
 export type UpdateOrganizationRequestStoreCrashReports =
@@ -32582,8 +32505,7 @@ export type UpdateOrganizationRequestStoreCrashReports =
   | 50
   | 100
   | -1;
-export const UpdateOrganizationRequestStoreCrashReports =
-  /*@__PURE__*/ S.Number;
+export const UpdateOrganizationRequestStoreCrashReports = S.Number;
 
 /** A list of additional global field names to match against when scrubbing data for all projects. */
 export type UpdateOrganizationRequestSensitiveFieldsList = Array<string>;
@@ -33571,7 +33493,7 @@ export type UpdateOrganizationDashboardRequestWidgetsItemDisplayType =
   | "agents_traces_table"
   | "heatmap";
 export const UpdateOrganizationDashboardRequestWidgetsItemDisplayType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateOrganizationDashboardRequestWidgetsItemQueriesItemFieldsList =
   Array<string>;
@@ -33696,8 +33618,7 @@ export type UpdateOrganizationDashboardRequestWidgetsItemWidgetType =
   | "logs"
   | "tracemetrics"
   | "preprod-app-size";
-export const UpdateOrganizationDashboardRequestWidgetsItemWidgetType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationDashboardRequestWidgetsItemWidgetType = S.String;
 
 /** Widget grid layout position and dimensions. The dashboard uses a 6-column grid. Required keys: x, y, w, h, minH. Constraints: x (0-5), y (>= 0), w (1-6), h (>= 1), minH (>= 1), and x + w <= 6. */
 export interface UpdateOrganizationDashboardRequestWidgetsItemLayout {
@@ -33729,15 +33650,13 @@ export const UpdateOrganizationDashboardRequestWidgetsItemLayout =
 export type UpdateOrganizationDashboardRequestWidgetsItemAxisRange =
   | "auto"
   | "dataMin";
-export const UpdateOrganizationDashboardRequestWidgetsItemAxisRange =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationDashboardRequestWidgetsItemAxisRange = S.String;
 
 /** * `default` * `breakdown` */
 export type UpdateOrganizationDashboardRequestWidgetsItemLegendType =
   | "default"
   | "breakdown";
-export const UpdateOrganizationDashboardRequestWidgetsItemLegendType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationDashboardRequestWidgetsItemLegendType = S.String;
 
 /** Allows parameters to be defined in snake case, but passed as camel case. Errors are output in camel case. */
 export interface UpdateOrganizationDashboardRequestWidgetsItem {
@@ -34176,7 +34095,7 @@ export type UpdateOrganizationDashboardResponseWidgetsItemLegendType =
   | "default"
   | "breakdown";
 export const UpdateOrganizationDashboardResponseWidgetsItemLegendType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateOrganizationDashboardResponseWidgetsItemExploreUrlsList =
   Array<string>;
@@ -34211,7 +34130,7 @@ export type UpdateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquat
   | string
   | UpdateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValueCase1List;
 export const UpdateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue>;
+  S.Unknown as any as S.Schema<UpdateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemValue>;
 
 export type UpdateOrganizationDashboardResponseWidgetsItemChangedReasonItemEquationsItemMap =
   {
@@ -34479,7 +34398,7 @@ export type UpdateOrganizationDetectorRequestConditionGroupLogicType =
   | "all"
   | "none";
 export const UpdateOrganizationDetectorRequestConditionGroupLogicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateOrganizationDetectorRequestConditionGroupConditionsList =
   Array<unknown>;
@@ -34561,8 +34480,7 @@ export const UpdateOrganizationDetectorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOrganizationDetectorRequest>;
 
 export type UpdateOrganizationDetectorResponseOwnerType = "user" | "team";
-export const UpdateOrganizationDetectorResponseOwnerType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationDetectorResponseOwnerType = S.String;
 
 export interface UpdateOrganizationDetectorResponseOwner {
   type: UpdateOrganizationDetectorResponseOwnerType;
@@ -34676,7 +34594,7 @@ export const UpdateOrganizationDetectorResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type UpdateOrganizationDetectorsRequestProjectItem = number | string;
 export const UpdateOrganizationDetectorsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationDetectorsRequestProjectItem>;
+  S.Unknown as any as S.Schema<UpdateOrganizationDetectorsRequestProjectItem>;
 
 export type UpdateOrganizationDetectorsRequestProjectList =
   Array<UpdateOrganizationDetectorsRequestProjectItem>;
@@ -34725,8 +34643,7 @@ export const UpdateOrganizationDetectorsRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateOrganizationDetectorsResponseBodyItemOwnerType =
   | "user"
   | "team";
-export const UpdateOrganizationDetectorsResponseBodyItemOwnerType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationDetectorsResponseBodyItemOwnerType = S.String;
 
 export interface UpdateOrganizationDetectorsResponseBodyItemOwner {
   type: UpdateOrganizationDetectorsResponseBodyItemOwnerType;
@@ -34874,8 +34791,7 @@ export type UpdateOrganizationDiscoverSavedQueryRequestQueryDataset =
   | "discover"
   | "error-events"
   | "transaction-like";
-export const UpdateOrganizationDiscoverSavedQueryRequestQueryDataset =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationDiscoverSavedQueryRequestQueryDataset = S.String;
 
 /** The fields, functions, or equations that can be requested for the query. At most 20 fields can be selected per request. Each field can be one of the following types: - A built-in key field. See possible fields in the [properties table](/product/sentry-basics/search/searchable-properties/#properties-table), under any field that is an event property. - example: `field=transaction` - A tag. Tags should use the `tag[]` formatting to avoid ambiguity with any fields - example: `field=tag[isEnterprise]` - A function which will be in the format of `function_name(parameters,...)`. See possible functions in the [query builder documentation](/product/discover-queries/query-builder/#stacking-functions). - when a function is included, Discover will group by any tags or fields - example: `field=count_if(transaction.duration,greater,300)` - An equation when prefixed with `equation|`. Read more about [equations here](/product/discover-queries/query-builder/query-equations/). - example: `field=equation|count_if(transaction.duration,greater,300) / count() * 100` */
 export type UpdateOrganizationDiscoverSavedQueryRequestFieldsList =
@@ -35231,8 +35147,7 @@ export type UpdateOrganizationExternalUserRequestProvider =
   | "gitlab"
   | "msteams"
   | "custom_scm";
-export const UpdateOrganizationExternalUserRequestProvider =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationExternalUserRequestProvider = S.String;
 
 export interface UpdateOrganizationExternalUserRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -35300,8 +35215,7 @@ export type UpdateOrganizationForwardingRequestProvider =
   | "segment"
   | "sqs"
   | "splunk";
-export const UpdateOrganizationForwardingRequestProvider =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationForwardingRequestProvider = S.String;
 
 /** The configuration for the data forwarder, specific to the provider type. For a 'sqs' provider, the required keys are queue_url, region, access_key, secret_key. If using a FIFO queue, you must also provide a message_group_id, though s3_bucket is optional. For a 'segment' provider, the required keys are write_key. For a 'splunk' provider, the required keys are instance_url, index, source, token. */
 export type UpdateOrganizationForwardingRequestConfigMap = {
@@ -35474,7 +35388,7 @@ export type UpdateOrganizationIssueRequestStatus =
   | "ignored"
   | "resolvedInNextRelease"
   | "muted";
-export const UpdateOrganizationIssueRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueRequestStatus = S.String;
 
 export interface UpdateOrganizationIssueRequestStatusDetailsInCommit {
   /** The SHA of the resolving commit. */
@@ -35535,11 +35449,11 @@ export type UpdateOrganizationIssueRequestSubstatus =
   | "ongoing"
   | "regressed"
   | "new";
-export const UpdateOrganizationIssueRequestSubstatus = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueRequestSubstatus = S.String;
 
 /** The priority that should be set for the issues * `low` * `medium` * `high` */
 export type UpdateOrganizationIssueRequestPriority = "low" | "medium" | "high";
-export const UpdateOrganizationIssueRequestPriority = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueRequestPriority = S.String;
 
 export interface UpdateOrganizationIssueRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -35611,7 +35525,7 @@ export type UpdateOrganizationIssueResponseLevel =
   | "error"
   | "fatal"
   | "unknown";
-export const UpdateOrganizationIssueResponseLevel = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueResponseLevel = S.String;
 
 export type UpdateOrganizationIssueResponseStatus =
   | "resolved"
@@ -35620,7 +35534,7 @@ export type UpdateOrganizationIssueResponseStatus =
   | "pending_merge"
   | "reprocessing"
   | "unresolved";
-export const UpdateOrganizationIssueResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueResponseStatus = S.String;
 
 export type UpdateOrganizationIssueResponseStatusDetailsActorIdentitiesItemOrganization =
   AddOrganizationMemberResponseUserIdentitiesItemOrganization;
@@ -35779,10 +35693,10 @@ export type UpdateOrganizationIssueResponseSubstatus =
   | "ongoing"
   | "regressed"
   | "new";
-export const UpdateOrganizationIssueResponseSubstatus = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueResponseSubstatus = S.String;
 
 export type UpdateOrganizationIssueResponsePriority = "low" | "medium" | "high";
-export const UpdateOrganizationIssueResponsePriority = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueResponsePriority = S.String;
 
 export type UpdateOrganizationIssueResponseProject =
   GetOrganizationIssueResponseProject;
@@ -35800,7 +35714,7 @@ export type UpdateOrganizationIssueResponseType =
   | "transaction"
   | "generic"
   | "feedback";
-export const UpdateOrganizationIssueResponseType = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueResponseType = S.String;
 
 export type UpdateOrganizationIssueResponseMetadataMap = {
   [key: string]: unknown | undefined;
@@ -35812,8 +35726,7 @@ export const UpdateOrganizationIssueResponseMetadataMap =
   ) as any as S.Schema<UpdateOrganizationIssueResponseMetadataMap>;
 
 export type UpdateOrganizationIssueResponseAssignedToType = "user" | "team";
-export const UpdateOrganizationIssueResponseAssignedToType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssueResponseAssignedToType = S.String;
 
 export interface UpdateOrganizationIssueResponseAssignedTo {
   type: UpdateOrganizationIssueResponseAssignedToType;
@@ -35941,7 +35854,7 @@ export const UpdateOrganizationIssuesRequestEnvironmentList =
 
 export type UpdateOrganizationIssuesRequestProjectItem = number | string;
 export const UpdateOrganizationIssuesRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationIssuesRequestProjectItem>;
+  S.Unknown as any as S.Schema<UpdateOrganizationIssuesRequestProjectItem>;
 
 export type UpdateOrganizationIssuesRequestProjectList =
   Array<UpdateOrganizationIssuesRequestProjectItem>;
@@ -35962,7 +35875,7 @@ export type UpdateOrganizationIssuesRequestSort =
   | "recommended"
   | "trends"
   | "user";
-export const UpdateOrganizationIssuesRequestSort = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssuesRequestSort = S.String;
 
 /** Limit mutations to only issues with the given status. * `resolved` * `unresolved` * `ignored` * `resolvedInNextRelease` * `muted` */
 export type UpdateOrganizationIssuesRequestStatus =
@@ -35971,7 +35884,7 @@ export type UpdateOrganizationIssuesRequestStatus =
   | "ignored"
   | "resolvedInNextRelease"
   | "muted";
-export const UpdateOrganizationIssuesRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssuesRequestStatus = S.String;
 
 export type UpdateOrganizationIssuesRequestStatusDetailsInCommit =
   UpdateOrganizationIssueRequestStatusDetailsInCommit;
@@ -35992,11 +35905,11 @@ export type UpdateOrganizationIssuesRequestSubstatus =
   | "ongoing"
   | "regressed"
   | "new";
-export const UpdateOrganizationIssuesRequestSubstatus = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssuesRequestSubstatus = S.String;
 
 /** The priority that should be set for the issues * `low` * `medium` * `high` */
 export type UpdateOrganizationIssuesRequestPriority = "low" | "medium" | "high";
-export const UpdateOrganizationIssuesRequestPriority = /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssuesRequestPriority = S.String;
 
 export interface UpdateOrganizationIssuesRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -36078,8 +35991,7 @@ export const UpdateOrganizationIssuesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOrganizationIssuesRequest>;
 
 export type UpdateOrganizationIssuesResponseAssignedToType = "user" | "team";
-export const UpdateOrganizationIssuesResponseAssignedToType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationIssuesResponseAssignedToType = S.String;
 
 export interface UpdateOrganizationIssuesResponseAssignedTo {
   type: UpdateOrganizationIssuesResponseAssignedToType;
@@ -36212,7 +36124,7 @@ export type UpdateOrganizationMemberRequestOrgRole =
   | "manager"
   | "owner"
   | "admin";
-export const UpdateOrganizationMemberRequestOrgRole = /*@__PURE__*/ S.String;
+export const UpdateOrganizationMemberRequestOrgRole = S.String;
 
 export type UpdateOrganizationMemberRequestTeamRolesItemMap = {
   [key: string]: unknown | undefined;
@@ -36548,8 +36460,7 @@ export const UpdateOrganizationMemberResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateOrganizationMemberTeamRequestTeamRole =
   | "contributor"
   | "admin";
-export const UpdateOrganizationMemberTeamRequestTeamRole =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationMemberTeamRequestTeamRole = S.String;
 
 export interface UpdateOrganizationMemberTeamRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -36581,8 +36492,7 @@ export const UpdateOrganizationMemberTeamRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateOrganizationMemberTeamResponseTeamRole =
   | "contributor"
   | "admin";
-export const UpdateOrganizationMemberTeamResponseTeamRole =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationMemberTeamResponseTeamRole = S.String;
 
 export interface UpdateOrganizationMemberTeamResponse {
   isActive: boolean;
@@ -36602,8 +36512,7 @@ export const UpdateOrganizationMemberTeamResponse = /*@__PURE__*/ S.suspend(
 export type UpdateOrganizationMonitorRequestConfigScheduleType =
   | "crontab"
   | "interval";
-export const UpdateOrganizationMonitorRequestConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationMonitorRequestConfigScheduleType = S.String;
 
 /** tz database style timezone string * `Africa/Abidjan` * `Africa/Accra` * `Africa/Addis_Ababa` * `Africa/Algiers` * `Africa/Asmara` * `Africa/Asmera` * `Africa/Bamako` * `Africa/Bangui` * `Africa/Banjul` * `Africa/Bissau` * `Africa/Blantyre` * `Africa/Brazzaville` * `Africa/Bujumbura` * `Africa/Cairo` * `Africa/Casablanca` * `Africa/Ceuta` * `Africa/Conakry` * `Africa/Dakar` * `Africa/Dar_es_Salaam` * `Africa/Djibouti` * `Africa/Douala` * `Africa/El_Aaiun` * `Africa/Freetown` * `Africa/Gaborone` * `Africa/Harare` * `Africa/Johannesburg` * `Africa/Juba` * `Africa/Kampala` * `Africa/Khartoum` * `Africa/Kigali` * `Africa/Kinshasa` * `Africa/Lagos` * `Africa/Libreville` * `Africa/Lome` * `Africa/Luanda` * `Africa/Lubumbashi` * `Africa/Lusaka` * `Africa/Malabo` * `Africa/Maputo` * `Africa/Maseru` * `Africa/Mbabane` * `Africa/Mogadishu` * `Africa/Monrovia` * `Africa/Nairobi` * `Africa/Ndjamena` * `Africa/Niamey` * `Africa/Nouakchott` * `Africa/Ouagadougou` * `Africa/Porto-Novo` * `Africa/Sao_Tome` * `Africa/Timbuktu` * `Africa/Tripoli` * `Africa/Tunis` * `Africa/Windhoek` * `America/Adak` * `America/Anchorage` * `America/Anguilla` * `America/Antigua` * `America/Araguaina` * `America/Argentina/Buenos_Aires` * `America/Argentina/Catamarca` * `America/Argentina/ComodRivadavia` * `America/Argentina/Cordoba` * `America/Argentina/Jujuy` * `America/Argentina/La_Rioja` * `America/Argentina/Mendoza` * `America/Argentina/Rio_Gallegos` * `America/Argentina/Salta` * `America/Argentina/San_Juan` * `America/Argentina/San_Luis` * `America/Argentina/Tucuman` * `America/Argentina/Ushuaia` * `America/Aruba` * `America/Asuncion` * `America/Atikokan` * `America/Atka` * `America/Bahia` * `America/Bahia_Banderas` * `America/Barbados` * `America/Belem` * `America/Belize` * `America/Blanc-Sablon` * `America/Boa_Vista` * `America/Bogota` * `America/Boise` * `America/Buenos_Aires` * `America/Cambridge_Bay` * `America/Campo_Grande` * `America/Cancun` * `America/Caracas` * `America/Catamarca` * `America/Cayenne` * `America/Cayman` * `America/Chicago` * `America/Chihuahua` * `America/Ciudad_Juarez` * `America/Coral_Harbour` * `America/Cordoba` * `America/Costa_Rica` * `America/Coyhaique` * `America/Creston` * `America/Cuiaba` * `America/Curacao` * `America/Danmarkshavn` * `America/Dawson` * `America/Dawson_Creek` * `America/Denver` * `America/Detroit` * `America/Dominica` * `America/Edmonton` * `America/Eirunepe` * `America/El_Salvador` * `America/Ensenada` * `America/Fort_Nelson` * `America/Fort_Wayne` * `America/Fortaleza` * `America/Glace_Bay` * `America/Godthab` * `America/Goose_Bay` * `America/Grand_Turk` * `America/Grenada` * `America/Guadeloupe` * `America/Guatemala` * `America/Guayaquil` * `America/Guyana` * `America/Halifax` * `America/Havana` * `America/Hermosillo` * `America/Indiana/Indianapolis` * `America/Indiana/Knox` * `America/Indiana/Marengo` * `America/Indiana/Petersburg` * `America/Indiana/Tell_City` * `America/Indiana/Vevay` * `America/Indiana/Vincennes` * `America/Indiana/Winamac` * `America/Indianapolis` * `America/Inuvik` * `America/Iqaluit` * `America/Jamaica` * `America/Jujuy` * `America/Juneau` * `America/Kentucky/Louisville` * `America/Kentucky/Monticello` * `America/Knox_IN` * `America/Kralendijk` * `America/La_Paz` * `America/Lima` * `America/Los_Angeles` * `America/Louisville` * `America/Lower_Princes` * `America/Maceio` * `America/Managua` * `America/Manaus` * `America/Marigot` * `America/Martinique` * `America/Matamoros` * `America/Mazatlan` * `America/Mendoza` * `America/Menominee` * `America/Merida` * `America/Metlakatla` * `America/Mexico_City` * `America/Miquelon` * `America/Moncton` * `America/Monterrey` * `America/Montevideo` * `America/Montreal` * `America/Montserrat` * `America/Nassau` * `America/New_York` * `America/Nipigon` * `America/Nome` * `America/Noronha` * `America/North_Dakota/Beulah` * `America/North_Dakota/Center` * `America/North_Dakota/New_Salem` * `America/Nuuk` * `America/Ojinaga` * `America/Panama` * `America/Pangnirtung` * `America/Paramaribo` * `America/Phoenix` * `America/Port-au-Prince` * `America/Port_of_Spain` * `America/Porto_Acre` * `America/Porto_Velho` * `America/Puerto_Rico` * `America/Punta_Arenas` * `America/Rainy_River` * `America/Rankin_Inlet` * `America/Recife` * `America/Regina` * `America/Resolute` * `America/Rio_Branco` * `America/Rosario` * `America/Santa_Isabel` * `America/Santarem` * `America/Santiago` * `America/Santo_Domingo` * `America/Sao_Paulo` * `America/Scoresbysund` * `America/Shiprock` * `America/Sitka` * `America/St_Barthelemy` * `America/St_Johns` * `America/St_Kitts` * `America/St_Lucia` * `America/St_Thomas` * `America/St_Vincent` * `America/Swift_Current` * `America/Tegucigalpa` * `America/Thule` * `America/Thunder_Bay` * `America/Tijuana` * `America/Toronto` * `America/Tortola` * `America/Vancouver` * `America/Virgin` * `America/Whitehorse` * `America/Winnipeg` * `America/Yakutat` * `America/Yellowknife` * `Antarctica/Casey` * `Antarctica/Davis` * `Antarctica/DumontDUrville` * `Antarctica/Macquarie` * `Antarctica/Mawson` * `Antarctica/McMurdo` * `Antarctica/Palmer` * `Antarctica/Rothera` * `Antarctica/South_Pole` * `Antarctica/Syowa` * `Antarctica/Troll` * `Antarctica/Vostok` * `Arctic/Longyearbyen` * `Asia/Aden` * `Asia/Almaty` * `Asia/Amman` * `Asia/Anadyr` * `Asia/Aqtau` * `Asia/Aqtobe` * `Asia/Ashgabat` * `Asia/Ashkhabad` * `Asia/Atyrau` * `Asia/Baghdad` * `Asia/Bahrain` * `Asia/Baku` * `Asia/Bangkok` * `Asia/Barnaul` * `Asia/Beirut` * `Asia/Bishkek` * `Asia/Brunei` * `Asia/Calcutta` * `Asia/Chita` * `Asia/Choibalsan` * `Asia/Chongqing` * `Asia/Chungking` * `Asia/Colombo` * `Asia/Dacca` * `Asia/Damascus` * `Asia/Dhaka` * `Asia/Dili` * `Asia/Dubai` * `Asia/Dushanbe` * `Asia/Famagusta` * `Asia/Gaza` * `Asia/Harbin` * `Asia/Hebron` * `Asia/Ho_Chi_Minh` * `Asia/Hong_Kong` * `Asia/Hovd` * `Asia/Irkutsk` * `Asia/Istanbul` * `Asia/Jakarta` * `Asia/Jayapura` * `Asia/Jerusalem` * `Asia/Kabul` * `Asia/Kamchatka` * `Asia/Karachi` * `Asia/Kashgar` * `Asia/Kathmandu` * `Asia/Katmandu` * `Asia/Khandyga` * `Asia/Kolkata` * `Asia/Krasnoyarsk` * `Asia/Kuala_Lumpur` * `Asia/Kuching` * `Asia/Kuwait` * `Asia/Macao` * `Asia/Macau` * `Asia/Magadan` * `Asia/Makassar` * `Asia/Manila` * `Asia/Muscat` * `Asia/Nicosia` * `Asia/Novokuznetsk` * `Asia/Novosibirsk` * `Asia/Omsk` * `Asia/Oral` * `Asia/Phnom_Penh` * `Asia/Pontianak` * `Asia/Pyongyang` * `Asia/Qatar` * `Asia/Qostanay` * `Asia/Qyzylorda` * `Asia/Rangoon` * `Asia/Riyadh` * `Asia/Saigon` * `Asia/Sakhalin` * `Asia/Samarkand` * `Asia/Seoul` * `Asia/Shanghai` * `Asia/Singapore` * `Asia/Srednekolymsk` * `Asia/Taipei` * `Asia/Tashkent` * `Asia/Tbilisi` * `Asia/Tehran` * `Asia/Tel_Aviv` * `Asia/Thimbu` * `Asia/Thimphu` * `Asia/Tokyo` * `Asia/Tomsk` * `Asia/Ujung_Pandang` * `Asia/Ulaanbaatar` * `Asia/Ulan_Bator` * `Asia/Urumqi` * `Asia/Ust-Nera` * `Asia/Vientiane` * `Asia/Vladivostok` * `Asia/Yakutsk` * `Asia/Yangon` * `Asia/Yekaterinburg` * `Asia/Yerevan` * `Atlantic/Azores` * `Atlantic/Bermuda` * `Atlantic/Canary` * `Atlantic/Cape_Verde` * `Atlantic/Faeroe` * `Atlantic/Faroe` * `Atlantic/Jan_Mayen` * `Atlantic/Madeira` * `Atlantic/Reykjavik` * `Atlantic/South_Georgia` * `Atlantic/St_Helena` * `Atlantic/Stanley` * `Australia/ACT` * `Australia/Adelaide` * `Australia/Brisbane` * `Australia/Broken_Hill` * `Australia/Canberra` * `Australia/Currie` * `Australia/Darwin` * `Australia/Eucla` * `Australia/Hobart` * `Australia/LHI` * `Australia/Lindeman` * `Australia/Lord_Howe` * `Australia/Melbourne` * `Australia/NSW` * `Australia/North` * `Australia/Perth` * `Australia/Queensland` * `Australia/South` * `Australia/Sydney` * `Australia/Tasmania` * `Australia/Victoria` * `Australia/West` * `Australia/Yancowinna` * `Brazil/Acre` * `Brazil/DeNoronha` * `Brazil/East` * `Brazil/West` * `CET` * `CST6CDT` * `Canada/Atlantic` * `Canada/Central` * `Canada/Eastern` * `Canada/Mountain` * `Canada/Newfoundland` * `Canada/Pacific` * `Canada/Saskatchewan` * `Canada/Yukon` * `Chile/Continental` * `Chile/EasterIsland` * `Cuba` * `EET` * `EST` * `EST5EDT` * `Egypt` * `Eire` * `Etc/GMT` * `Etc/GMT+0` * `Etc/GMT+1` * `Etc/GMT+10` * `Etc/GMT+11` * `Etc/GMT+12` * `Etc/GMT+2` * `Etc/GMT+3` * `Etc/GMT+4` * `Etc/GMT+5` * `Etc/GMT+6` * `Etc/GMT+7` * `Etc/GMT+8` * `Etc/GMT+9` * `Etc/GMT-0` * `Etc/GMT-1` * `Etc/GMT-10` * `Etc/GMT-11` * `Etc/GMT-12` * `Etc/GMT-13` * `Etc/GMT-14` * `Etc/GMT-2` * `Etc/GMT-3` * `Etc/GMT-4` * `Etc/GMT-5` * `Etc/GMT-6` * `Etc/GMT-7` * `Etc/GMT-8` * `Etc/GMT-9` * `Etc/GMT0` * `Etc/Greenwich` * `Etc/UCT` * `Etc/UTC` * `Etc/Universal` * `Etc/Zulu` * `Europe/Amsterdam` * `Europe/Andorra` * `Europe/Astrakhan` * `Europe/Athens` * `Europe/Belfast` * `Europe/Belgrade` * `Europe/Berlin` * `Europe/Bratislava` * `Europe/Brussels` * `Europe/Bucharest` * `Europe/Budapest` * `Europe/Busingen` * `Europe/Chisinau` * `Europe/Copenhagen` * `Europe/Dublin` * `Europe/Gibraltar` * `Europe/Guernsey` * `Europe/Helsinki` * `Europe/Isle_of_Man` * `Europe/Istanbul` * `Europe/Jersey` * `Europe/Kaliningrad` * `Europe/Kiev` * `Europe/Kirov` * `Europe/Kyiv` * `Europe/Lisbon` * `Europe/Ljubljana` * `Europe/London` * `Europe/Luxembourg` * `Europe/Madrid` * `Europe/Malta` * `Europe/Mariehamn` * `Europe/Minsk` * `Europe/Monaco` * `Europe/Moscow` * `Europe/Nicosia` * `Europe/Oslo` * `Europe/Paris` * `Europe/Podgorica` * `Europe/Prague` * `Europe/Riga` * `Europe/Rome` * `Europe/Samara` * `Europe/San_Marino` * `Europe/Sarajevo` * `Europe/Saratov` * `Europe/Simferopol` * `Europe/Skopje` * `Europe/Sofia` * `Europe/Stockholm` * `Europe/Tallinn` * `Europe/Tirane` * `Europe/Tiraspol` * `Europe/Ulyanovsk` * `Europe/Uzhgorod` * `Europe/Vaduz` * `Europe/Vatican` * `Europe/Vienna` * `Europe/Vilnius` * `Europe/Volgograd` * `Europe/Warsaw` * `Europe/Zagreb` * `Europe/Zaporozhye` * `Europe/Zurich` * `GB` * `GB-Eire` * `GMT` * `GMT+0` * `GMT-0` * `GMT0` * `Greenwich` * `HST` * `Hongkong` * `Iceland` * `Indian/Antananarivo` * `Indian/Chagos` * `Indian/Christmas` * `Indian/Cocos` * `Indian/Comoro` * `Indian/Kerguelen` * `Indian/Mahe` * `Indian/Maldives` * `Indian/Mauritius` * `Indian/Mayotte` * `Indian/Reunion` * `Iran` * `Israel` * `Jamaica` * `Japan` * `Kwajalein` * `Libya` * `MET` * `MST` * `MST7MDT` * `Mexico/BajaNorte` * `Mexico/BajaSur` * `Mexico/General` * `NZ` * `NZ-CHAT` * `Navajo` * `PRC` * `PST8PDT` * `Pacific/Apia` * `Pacific/Auckland` * `Pacific/Bougainville` * `Pacific/Chatham` * `Pacific/Chuuk` * `Pacific/Easter` * `Pacific/Efate` * `Pacific/Enderbury` * `Pacific/Fakaofo` * `Pacific/Fiji` * `Pacific/Funafuti` * `Pacific/Galapagos` * `Pacific/Gambier` * `Pacific/Guadalcanal` * `Pacific/Guam` * `Pacific/Honolulu` * `Pacific/Johnston` * `Pacific/Kanton` * `Pacific/Kiritimati` * `Pacific/Kosrae` * `Pacific/Kwajalein` * `Pacific/Majuro` * `Pacific/Marquesas` * `Pacific/Midway` * `Pacific/Nauru` * `Pacific/Niue` * `Pacific/Norfolk` * `Pacific/Noumea` * `Pacific/Pago_Pago` * `Pacific/Palau` * `Pacific/Pitcairn` * `Pacific/Pohnpei` * `Pacific/Ponape` * `Pacific/Port_Moresby` * `Pacific/Rarotonga` * `Pacific/Saipan` * `Pacific/Samoa` * `Pacific/Tahiti` * `Pacific/Tarawa` * `Pacific/Tongatapu` * `Pacific/Truk` * `Pacific/Wake` * `Pacific/Wallis` * `Pacific/Yap` * `Poland` * `Portugal` * `ROC` * `ROK` * `Singapore` * `Turkey` * `UCT` * `US/Alaska` * `US/Aleutian` * `US/Arizona` * `US/Central` * `US/East-Indiana` * `US/Eastern` * `US/Hawaii` * `US/Indiana-Starke` * `US/Michigan` * `US/Mountain` * `US/Pacific` * `US/Samoa` * `UTC` * `Universal` * `W-SU` * `WET` * `Zulu` * `localtime` */
 export type UpdateOrganizationMonitorRequestConfigTimezone =
@@ -37206,8 +37115,7 @@ export type UpdateOrganizationMonitorRequestConfigTimezone =
   | "Zulu"
   | "localtime"
   | "";
-export const UpdateOrganizationMonitorRequestConfigTimezone =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationMonitorRequestConfigTimezone = S.String;
 
 export interface UpdateOrganizationMonitorRequestConfig {
   /** Currently supports "crontab" or "interval" * `crontab` * `interval` */
@@ -37246,7 +37154,7 @@ export const UpdateOrganizationMonitorRequestConfig = /*@__PURE__*/ S.suspend(
 
 /** Status of the monitor. Disabled monitors will not accept events and will not count towards the monitor quota. * `active` * `disabled` */
 export type UpdateOrganizationMonitorRequestStatus = "active" | "disabled";
-export const UpdateOrganizationMonitorRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateOrganizationMonitorRequestStatus = S.String;
 
 export interface UpdateOrganizationMonitorRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -37319,8 +37227,7 @@ export const UpdateOrganizationMonitorResponseAlertRule =
 export type UpdateOrganizationMonitorResponseConfigScheduleType =
   | "crontab"
   | "interval";
-export const UpdateOrganizationMonitorResponseConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationMonitorResponseConfigScheduleType = S.String;
 
 export type UpdateOrganizationMonitorResponseConfigScheduleCase1List =
   Array<number>;
@@ -37333,7 +37240,7 @@ export type UpdateOrganizationMonitorResponseConfigSchedule =
   | string
   | UpdateOrganizationMonitorResponseConfigScheduleCase1List;
 export const UpdateOrganizationMonitorResponseConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationMonitorResponseConfigSchedule>;
+  S.Unknown as any as S.Schema<UpdateOrganizationMonitorResponseConfigSchedule>;
 
 export interface UpdateOrganizationMonitorResponseConfig {
   schedule_type: UpdateOrganizationMonitorResponseConfigScheduleType;
@@ -37485,8 +37392,7 @@ export const UpdateOrganizationMonitorResponseEnvironments =
   CreateOrganizationMonitorResponseEnvironments;
 
 export type UpdateOrganizationMonitorResponseOwnerType = "user" | "team";
-export const UpdateOrganizationMonitorResponseOwnerType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationMonitorResponseOwnerType = S.String;
 
 export interface UpdateOrganizationMonitorResponseOwner {
   type: UpdateOrganizationMonitorResponseOwnerType;
@@ -37885,7 +37791,7 @@ export type UpdateOrganizationReleaseResponseAuthorsItem =
   | UpdateOrganizationReleaseResponseAuthorsItemCase0
   | CreateOrganizationReleaseResponseAuthorsItemCase1;
 export const UpdateOrganizationReleaseResponseAuthorsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationReleaseResponseAuthorsItem>;
+  S.Unknown as any as S.Schema<UpdateOrganizationReleaseResponseAuthorsItem>;
 
 export type UpdateOrganizationReleaseResponseAuthorsList =
   Array<UpdateOrganizationReleaseResponseAuthorsItem>;
@@ -38266,8 +38172,7 @@ export type UpdateOrganizationWorkflowRequestTriggersLogicType =
   | "any-short"
   | "all"
   | "none";
-export const UpdateOrganizationWorkflowRequestTriggersLogicType =
-  /*@__PURE__*/ S.String;
+export const UpdateOrganizationWorkflowRequestTriggersLogicType = S.String;
 
 export type UpdateOrganizationWorkflowRequestTriggersConditionsList =
   Array<unknown>;
@@ -38305,7 +38210,7 @@ export type UpdateOrganizationWorkflowRequestActionFiltersItemLogicType =
   | "all"
   | "none";
 export const UpdateOrganizationWorkflowRequestActionFiltersItemLogicType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateOrganizationWorkflowRequestActionFiltersItemConditionsList =
   Array<unknown>;
@@ -38416,7 +38321,7 @@ export type UpdateOrganizationWorkflowResponseTriggersConditionsCase0ItemCompari
   | boolean
   | number;
 export const UpdateOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseTriggersConditionsCase0ItemComparison>;
 
 export interface UpdateOrganizationWorkflowResponseTriggersConditionsCase0Item {
   id: string;
@@ -38455,7 +38360,7 @@ export type UpdateOrganizationWorkflowResponseTriggersConditions =
   | UpdateOrganizationWorkflowResponseTriggersConditionsCase0List
   | UpdateOrganizationWorkflowResponseTriggersConditionsCase1List;
 export const UpdateOrganizationWorkflowResponseTriggersConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseTriggersConditions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseTriggersConditions>;
 
 export type UpdateOrganizationWorkflowResponseTriggersActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -38517,7 +38422,7 @@ export type UpdateOrganizationWorkflowResponseTriggersActions =
   | UpdateOrganizationWorkflowResponseTriggersActionsCase0List
   | UpdateOrganizationWorkflowResponseTriggersActionsCase1List;
 export const UpdateOrganizationWorkflowResponseTriggersActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseTriggersActions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseTriggersActions>;
 
 export interface UpdateOrganizationWorkflowResponseTriggers {
   id?: string;
@@ -38545,7 +38450,7 @@ export type UpdateOrganizationWorkflowResponseActionFiltersItemConditionsCase0It
   | boolean
   | number;
 export const UpdateOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseActionFiltersItemConditionsCase0ItemComparison>;
 
 export interface UpdateOrganizationWorkflowResponseActionFiltersItemConditionsCase0Item {
   id: string;
@@ -38585,7 +38490,7 @@ export type UpdateOrganizationWorkflowResponseActionFiltersItemConditions =
   | UpdateOrganizationWorkflowResponseActionFiltersItemConditionsCase0List
   | UpdateOrganizationWorkflowResponseActionFiltersItemConditionsCase1List;
 export const UpdateOrganizationWorkflowResponseActionFiltersItemConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseActionFiltersItemConditions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseActionFiltersItemConditions>;
 
 export type UpdateOrganizationWorkflowResponseActionFiltersItemActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -38648,7 +38553,7 @@ export type UpdateOrganizationWorkflowResponseActionFiltersItemActions =
   | UpdateOrganizationWorkflowResponseActionFiltersItemActionsCase0List
   | UpdateOrganizationWorkflowResponseActionFiltersItemActionsCase1List;
 export const UpdateOrganizationWorkflowResponseActionFiltersItemActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseActionFiltersItemActions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowResponseActionFiltersItemActions>;
 
 export interface UpdateOrganizationWorkflowResponseActionFiltersItem {
   id?: string;
@@ -38742,7 +38647,7 @@ export const UpdateOrganizationWorkflowsRequestIdList = /*@__PURE__*/ S.Array(
 
 export type UpdateOrganizationWorkflowsRequestProjectItem = number | string;
 export const UpdateOrganizationWorkflowsRequestProjectItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsRequestProjectItem>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsRequestProjectItem>;
 
 export type UpdateOrganizationWorkflowsRequestProjectList =
   Array<UpdateOrganizationWorkflowsRequestProjectItem>;
@@ -38787,7 +38692,7 @@ export type UpdateOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0It
   | boolean
   | number;
 export const UpdateOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0ItemComparison>;
 
 export interface UpdateOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0Item {
   id: string;
@@ -38827,7 +38732,7 @@ export type UpdateOrganizationWorkflowsResponseBodyItemTriggersConditions =
   | UpdateOrganizationWorkflowsResponseBodyItemTriggersConditionsCase0List
   | UpdateOrganizationWorkflowsResponseBodyItemTriggersConditionsCase1List;
 export const UpdateOrganizationWorkflowsResponseBodyItemTriggersConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemTriggersConditions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemTriggersConditions>;
 
 export type UpdateOrganizationWorkflowsResponseBodyItemTriggersActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -38890,7 +38795,7 @@ export type UpdateOrganizationWorkflowsResponseBodyItemTriggersActions =
   | UpdateOrganizationWorkflowsResponseBodyItemTriggersActionsCase0List
   | UpdateOrganizationWorkflowsResponseBodyItemTriggersActionsCase1List;
 export const UpdateOrganizationWorkflowsResponseBodyItemTriggersActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemTriggersActions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemTriggersActions>;
 
 export interface UpdateOrganizationWorkflowsResponseBodyItemTriggers {
   id?: string;
@@ -38920,7 +38825,7 @@ export type UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditio
   | boolean
   | number;
 export const UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0ItemComparison =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0ItemComparison>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0ItemComparison>;
 
 export interface UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0Item {
   id: string;
@@ -38960,7 +38865,7 @@ export type UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditio
   | UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase0List
   | UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditionsCase1List;
 export const UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemConditions>;
 
 export type UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemActionsCase0ItemDataMap =
   { [key: string]: string | undefined };
@@ -39023,7 +38928,7 @@ export type UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemActions 
   | UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemActionsCase0List
   | UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemActionsCase1List;
 export const UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemActions =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemActions>;
+  S.Unknown as any as S.Schema<UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItemActions>;
 
 export interface UpdateOrganizationWorkflowsResponseBodyItemActionFiltersItem {
   id?: string;
@@ -39422,7 +39327,7 @@ export type UpdateProjectResponseDynamicSamplingBiasesItemValue =
   | string
   | boolean;
 export const UpdateProjectResponseDynamicSamplingBiasesItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateProjectResponseDynamicSamplingBiasesItemValue>;
+  S.Unknown as any as S.Schema<UpdateProjectResponseDynamicSamplingBiasesItemValue>;
 
 export type UpdateProjectResponseDynamicSamplingBiasesItemMap = {
   [key: string]:
@@ -39684,7 +39589,7 @@ export type UpdateProjectFilterRequestSubfiltersItem =
   | "safari_pre_6"
   | "opera_mini_pre_8"
   | "edge_pre_79";
-export const UpdateProjectFilterRequestSubfiltersItem = /*@__PURE__*/ S.String;
+export const UpdateProjectFilterRequestSubfiltersItem = S.String;
 
 /** Specifies which legacy browser filters should be active. Anything excluded from the list will be disabled. The options are: - `ie` - Internet Explorer Version 11 and lower - `edge` - Edge Version 110 and lower - `safari` - Safari Version 15 and lower - `firefox` - Firefox Version 110 and lower - `chrome` - Chrome Version 110 and lower - `opera` - Opera Version 99 and lower - `android` - Android Version 3 and lower - `opera_mini` - Opera Mini Version 34 and lower Deprecated options: - `ie_pre_9` - Internet Explorer Version 8 and lower - `ie9` - Internet Explorer Version 9 - `ie10` - Internet Explorer Version 10 - `ie11` - Internet Explorer Version 11 - `safari_pre_6` - Safari Version 5 and lower - `opera_pre_15` - Opera Version 14 and lower - `opera_mini_pre_8` - Opera Mini Version 8 and lower - `android_pre_4` - Android Version 3 and lower - `edge_pre_79` - Edge Version 18 and lower (non Chromium based) */
 export type UpdateProjectFilterRequestSubfiltersList = Array<
@@ -39738,7 +39643,7 @@ export const UpdateProjectKeyRequestRateLimit =
 
 /** The Sentry Javascript SDK version to use. The currently supported options are: * `latest` - Most recent version * `7.x` - Version 7 releases */
 export type UpdateProjectKeyRequestBrowserSdkVersion = "latest" | "7.x";
-export const UpdateProjectKeyRequestBrowserSdkVersion = /*@__PURE__*/ S.String;
+export const UpdateProjectKeyRequestBrowserSdkVersion = S.String;
 
 /** Configures multiple options for the Javascript Loader Script. - `Performance Monitoring` - `Debug Bundles & Logging` - `Session Replay` - Note that the loader will load the ES6 bundle instead of the ES5 bundle. - `User Feedback` - Note that the loader will load the ES6 bundle instead of the ES5 bundle. - `Logs and Metrics` - Note that the loader will load the ES6 bundle instead of the ES5 bundle. Requires SDK >= 10.0.0. ```json { "dynamicSdkLoaderOptions": { "hasReplay": true, "hasPerformance": true, "hasDebug": true, "hasFeedback": true, "hasLogsAndMetrics": true } } ``` */
 export interface UpdateProjectKeyRequestDynamicSdkLoaderOptions {
@@ -39880,8 +39785,7 @@ export const UpdateProjectKeyResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateProjectMonitorRequestConfigScheduleType =
   | "crontab"
   | "interval";
-export const UpdateProjectMonitorRequestConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectMonitorRequestConfigScheduleType = S.String;
 
 /** tz database style timezone string * `Africa/Abidjan` * `Africa/Accra` * `Africa/Addis_Ababa` * `Africa/Algiers` * `Africa/Asmara` * `Africa/Asmera` * `Africa/Bamako` * `Africa/Bangui` * `Africa/Banjul` * `Africa/Bissau` * `Africa/Blantyre` * `Africa/Brazzaville` * `Africa/Bujumbura` * `Africa/Cairo` * `Africa/Casablanca` * `Africa/Ceuta` * `Africa/Conakry` * `Africa/Dakar` * `Africa/Dar_es_Salaam` * `Africa/Djibouti` * `Africa/Douala` * `Africa/El_Aaiun` * `Africa/Freetown` * `Africa/Gaborone` * `Africa/Harare` * `Africa/Johannesburg` * `Africa/Juba` * `Africa/Kampala` * `Africa/Khartoum` * `Africa/Kigali` * `Africa/Kinshasa` * `Africa/Lagos` * `Africa/Libreville` * `Africa/Lome` * `Africa/Luanda` * `Africa/Lubumbashi` * `Africa/Lusaka` * `Africa/Malabo` * `Africa/Maputo` * `Africa/Maseru` * `Africa/Mbabane` * `Africa/Mogadishu` * `Africa/Monrovia` * `Africa/Nairobi` * `Africa/Ndjamena` * `Africa/Niamey` * `Africa/Nouakchott` * `Africa/Ouagadougou` * `Africa/Porto-Novo` * `Africa/Sao_Tome` * `Africa/Timbuktu` * `Africa/Tripoli` * `Africa/Tunis` * `Africa/Windhoek` * `America/Adak` * `America/Anchorage` * `America/Anguilla` * `America/Antigua` * `America/Araguaina` * `America/Argentina/Buenos_Aires` * `America/Argentina/Catamarca` * `America/Argentina/ComodRivadavia` * `America/Argentina/Cordoba` * `America/Argentina/Jujuy` * `America/Argentina/La_Rioja` * `America/Argentina/Mendoza` * `America/Argentina/Rio_Gallegos` * `America/Argentina/Salta` * `America/Argentina/San_Juan` * `America/Argentina/San_Luis` * `America/Argentina/Tucuman` * `America/Argentina/Ushuaia` * `America/Aruba` * `America/Asuncion` * `America/Atikokan` * `America/Atka` * `America/Bahia` * `America/Bahia_Banderas` * `America/Barbados` * `America/Belem` * `America/Belize` * `America/Blanc-Sablon` * `America/Boa_Vista` * `America/Bogota` * `America/Boise` * `America/Buenos_Aires` * `America/Cambridge_Bay` * `America/Campo_Grande` * `America/Cancun` * `America/Caracas` * `America/Catamarca` * `America/Cayenne` * `America/Cayman` * `America/Chicago` * `America/Chihuahua` * `America/Ciudad_Juarez` * `America/Coral_Harbour` * `America/Cordoba` * `America/Costa_Rica` * `America/Coyhaique` * `America/Creston` * `America/Cuiaba` * `America/Curacao` * `America/Danmarkshavn` * `America/Dawson` * `America/Dawson_Creek` * `America/Denver` * `America/Detroit` * `America/Dominica` * `America/Edmonton` * `America/Eirunepe` * `America/El_Salvador` * `America/Ensenada` * `America/Fort_Nelson` * `America/Fort_Wayne` * `America/Fortaleza` * `America/Glace_Bay` * `America/Godthab` * `America/Goose_Bay` * `America/Grand_Turk` * `America/Grenada` * `America/Guadeloupe` * `America/Guatemala` * `America/Guayaquil` * `America/Guyana` * `America/Halifax` * `America/Havana` * `America/Hermosillo` * `America/Indiana/Indianapolis` * `America/Indiana/Knox` * `America/Indiana/Marengo` * `America/Indiana/Petersburg` * `America/Indiana/Tell_City` * `America/Indiana/Vevay` * `America/Indiana/Vincennes` * `America/Indiana/Winamac` * `America/Indianapolis` * `America/Inuvik` * `America/Iqaluit` * `America/Jamaica` * `America/Jujuy` * `America/Juneau` * `America/Kentucky/Louisville` * `America/Kentucky/Monticello` * `America/Knox_IN` * `America/Kralendijk` * `America/La_Paz` * `America/Lima` * `America/Los_Angeles` * `America/Louisville` * `America/Lower_Princes` * `America/Maceio` * `America/Managua` * `America/Manaus` * `America/Marigot` * `America/Martinique` * `America/Matamoros` * `America/Mazatlan` * `America/Mendoza` * `America/Menominee` * `America/Merida` * `America/Metlakatla` * `America/Mexico_City` * `America/Miquelon` * `America/Moncton` * `America/Monterrey` * `America/Montevideo` * `America/Montreal` * `America/Montserrat` * `America/Nassau` * `America/New_York` * `America/Nipigon` * `America/Nome` * `America/Noronha` * `America/North_Dakota/Beulah` * `America/North_Dakota/Center` * `America/North_Dakota/New_Salem` * `America/Nuuk` * `America/Ojinaga` * `America/Panama` * `America/Pangnirtung` * `America/Paramaribo` * `America/Phoenix` * `America/Port-au-Prince` * `America/Port_of_Spain` * `America/Porto_Acre` * `America/Porto_Velho` * `America/Puerto_Rico` * `America/Punta_Arenas` * `America/Rainy_River` * `America/Rankin_Inlet` * `America/Recife` * `America/Regina` * `America/Resolute` * `America/Rio_Branco` * `America/Rosario` * `America/Santa_Isabel` * `America/Santarem` * `America/Santiago` * `America/Santo_Domingo` * `America/Sao_Paulo` * `America/Scoresbysund` * `America/Shiprock` * `America/Sitka` * `America/St_Barthelemy` * `America/St_Johns` * `America/St_Kitts` * `America/St_Lucia` * `America/St_Thomas` * `America/St_Vincent` * `America/Swift_Current` * `America/Tegucigalpa` * `America/Thule` * `America/Thunder_Bay` * `America/Tijuana` * `America/Toronto` * `America/Tortola` * `America/Vancouver` * `America/Virgin` * `America/Whitehorse` * `America/Winnipeg` * `America/Yakutat` * `America/Yellowknife` * `Antarctica/Casey` * `Antarctica/Davis` * `Antarctica/DumontDUrville` * `Antarctica/Macquarie` * `Antarctica/Mawson` * `Antarctica/McMurdo` * `Antarctica/Palmer` * `Antarctica/Rothera` * `Antarctica/South_Pole` * `Antarctica/Syowa` * `Antarctica/Troll` * `Antarctica/Vostok` * `Arctic/Longyearbyen` * `Asia/Aden` * `Asia/Almaty` * `Asia/Amman` * `Asia/Anadyr` * `Asia/Aqtau` * `Asia/Aqtobe` * `Asia/Ashgabat` * `Asia/Ashkhabad` * `Asia/Atyrau` * `Asia/Baghdad` * `Asia/Bahrain` * `Asia/Baku` * `Asia/Bangkok` * `Asia/Barnaul` * `Asia/Beirut` * `Asia/Bishkek` * `Asia/Brunei` * `Asia/Calcutta` * `Asia/Chita` * `Asia/Choibalsan` * `Asia/Chongqing` * `Asia/Chungking` * `Asia/Colombo` * `Asia/Dacca` * `Asia/Damascus` * `Asia/Dhaka` * `Asia/Dili` * `Asia/Dubai` * `Asia/Dushanbe` * `Asia/Famagusta` * `Asia/Gaza` * `Asia/Harbin` * `Asia/Hebron` * `Asia/Ho_Chi_Minh` * `Asia/Hong_Kong` * `Asia/Hovd` * `Asia/Irkutsk` * `Asia/Istanbul` * `Asia/Jakarta` * `Asia/Jayapura` * `Asia/Jerusalem` * `Asia/Kabul` * `Asia/Kamchatka` * `Asia/Karachi` * `Asia/Kashgar` * `Asia/Kathmandu` * `Asia/Katmandu` * `Asia/Khandyga` * `Asia/Kolkata` * `Asia/Krasnoyarsk` * `Asia/Kuala_Lumpur` * `Asia/Kuching` * `Asia/Kuwait` * `Asia/Macao` * `Asia/Macau` * `Asia/Magadan` * `Asia/Makassar` * `Asia/Manila` * `Asia/Muscat` * `Asia/Nicosia` * `Asia/Novokuznetsk` * `Asia/Novosibirsk` * `Asia/Omsk` * `Asia/Oral` * `Asia/Phnom_Penh` * `Asia/Pontianak` * `Asia/Pyongyang` * `Asia/Qatar` * `Asia/Qostanay` * `Asia/Qyzylorda` * `Asia/Rangoon` * `Asia/Riyadh` * `Asia/Saigon` * `Asia/Sakhalin` * `Asia/Samarkand` * `Asia/Seoul` * `Asia/Shanghai` * `Asia/Singapore` * `Asia/Srednekolymsk` * `Asia/Taipei` * `Asia/Tashkent` * `Asia/Tbilisi` * `Asia/Tehran` * `Asia/Tel_Aviv` * `Asia/Thimbu` * `Asia/Thimphu` * `Asia/Tokyo` * `Asia/Tomsk` * `Asia/Ujung_Pandang` * `Asia/Ulaanbaatar` * `Asia/Ulan_Bator` * `Asia/Urumqi` * `Asia/Ust-Nera` * `Asia/Vientiane` * `Asia/Vladivostok` * `Asia/Yakutsk` * `Asia/Yangon` * `Asia/Yekaterinburg` * `Asia/Yerevan` * `Atlantic/Azores` * `Atlantic/Bermuda` * `Atlantic/Canary` * `Atlantic/Cape_Verde` * `Atlantic/Faeroe` * `Atlantic/Faroe` * `Atlantic/Jan_Mayen` * `Atlantic/Madeira` * `Atlantic/Reykjavik` * `Atlantic/South_Georgia` * `Atlantic/St_Helena` * `Atlantic/Stanley` * `Australia/ACT` * `Australia/Adelaide` * `Australia/Brisbane` * `Australia/Broken_Hill` * `Australia/Canberra` * `Australia/Currie` * `Australia/Darwin` * `Australia/Eucla` * `Australia/Hobart` * `Australia/LHI` * `Australia/Lindeman` * `Australia/Lord_Howe` * `Australia/Melbourne` * `Australia/NSW` * `Australia/North` * `Australia/Perth` * `Australia/Queensland` * `Australia/South` * `Australia/Sydney` * `Australia/Tasmania` * `Australia/Victoria` * `Australia/West` * `Australia/Yancowinna` * `Brazil/Acre` * `Brazil/DeNoronha` * `Brazil/East` * `Brazil/West` * `CET` * `CST6CDT` * `Canada/Atlantic` * `Canada/Central` * `Canada/Eastern` * `Canada/Mountain` * `Canada/Newfoundland` * `Canada/Pacific` * `Canada/Saskatchewan` * `Canada/Yukon` * `Chile/Continental` * `Chile/EasterIsland` * `Cuba` * `EET` * `EST` * `EST5EDT` * `Egypt` * `Eire` * `Etc/GMT` * `Etc/GMT+0` * `Etc/GMT+1` * `Etc/GMT+10` * `Etc/GMT+11` * `Etc/GMT+12` * `Etc/GMT+2` * `Etc/GMT+3` * `Etc/GMT+4` * `Etc/GMT+5` * `Etc/GMT+6` * `Etc/GMT+7` * `Etc/GMT+8` * `Etc/GMT+9` * `Etc/GMT-0` * `Etc/GMT-1` * `Etc/GMT-10` * `Etc/GMT-11` * `Etc/GMT-12` * `Etc/GMT-13` * `Etc/GMT-14` * `Etc/GMT-2` * `Etc/GMT-3` * `Etc/GMT-4` * `Etc/GMT-5` * `Etc/GMT-6` * `Etc/GMT-7` * `Etc/GMT-8` * `Etc/GMT-9` * `Etc/GMT0` * `Etc/Greenwich` * `Etc/UCT` * `Etc/UTC` * `Etc/Universal` * `Etc/Zulu` * `Europe/Amsterdam` * `Europe/Andorra` * `Europe/Astrakhan` * `Europe/Athens` * `Europe/Belfast` * `Europe/Belgrade` * `Europe/Berlin` * `Europe/Bratislava` * `Europe/Brussels` * `Europe/Bucharest` * `Europe/Budapest` * `Europe/Busingen` * `Europe/Chisinau` * `Europe/Copenhagen` * `Europe/Dublin` * `Europe/Gibraltar` * `Europe/Guernsey` * `Europe/Helsinki` * `Europe/Isle_of_Man` * `Europe/Istanbul` * `Europe/Jersey` * `Europe/Kaliningrad` * `Europe/Kiev` * `Europe/Kirov` * `Europe/Kyiv` * `Europe/Lisbon` * `Europe/Ljubljana` * `Europe/London` * `Europe/Luxembourg` * `Europe/Madrid` * `Europe/Malta` * `Europe/Mariehamn` * `Europe/Minsk` * `Europe/Monaco` * `Europe/Moscow` * `Europe/Nicosia` * `Europe/Oslo` * `Europe/Paris` * `Europe/Podgorica` * `Europe/Prague` * `Europe/Riga` * `Europe/Rome` * `Europe/Samara` * `Europe/San_Marino` * `Europe/Sarajevo` * `Europe/Saratov` * `Europe/Simferopol` * `Europe/Skopje` * `Europe/Sofia` * `Europe/Stockholm` * `Europe/Tallinn` * `Europe/Tirane` * `Europe/Tiraspol` * `Europe/Ulyanovsk` * `Europe/Uzhgorod` * `Europe/Vaduz` * `Europe/Vatican` * `Europe/Vienna` * `Europe/Vilnius` * `Europe/Volgograd` * `Europe/Warsaw` * `Europe/Zagreb` * `Europe/Zaporozhye` * `Europe/Zurich` * `GB` * `GB-Eire` * `GMT` * `GMT+0` * `GMT-0` * `GMT0` * `Greenwich` * `HST` * `Hongkong` * `Iceland` * `Indian/Antananarivo` * `Indian/Chagos` * `Indian/Christmas` * `Indian/Cocos` * `Indian/Comoro` * `Indian/Kerguelen` * `Indian/Mahe` * `Indian/Maldives` * `Indian/Mauritius` * `Indian/Mayotte` * `Indian/Reunion` * `Iran` * `Israel` * `Jamaica` * `Japan` * `Kwajalein` * `Libya` * `MET` * `MST` * `MST7MDT` * `Mexico/BajaNorte` * `Mexico/BajaSur` * `Mexico/General` * `NZ` * `NZ-CHAT` * `Navajo` * `PRC` * `PST8PDT` * `Pacific/Apia` * `Pacific/Auckland` * `Pacific/Bougainville` * `Pacific/Chatham` * `Pacific/Chuuk` * `Pacific/Easter` * `Pacific/Efate` * `Pacific/Enderbury` * `Pacific/Fakaofo` * `Pacific/Fiji` * `Pacific/Funafuti` * `Pacific/Galapagos` * `Pacific/Gambier` * `Pacific/Guadalcanal` * `Pacific/Guam` * `Pacific/Honolulu` * `Pacific/Johnston` * `Pacific/Kanton` * `Pacific/Kiritimati` * `Pacific/Kosrae` * `Pacific/Kwajalein` * `Pacific/Majuro` * `Pacific/Marquesas` * `Pacific/Midway` * `Pacific/Nauru` * `Pacific/Niue` * `Pacific/Norfolk` * `Pacific/Noumea` * `Pacific/Pago_Pago` * `Pacific/Palau` * `Pacific/Pitcairn` * `Pacific/Pohnpei` * `Pacific/Ponape` * `Pacific/Port_Moresby` * `Pacific/Rarotonga` * `Pacific/Saipan` * `Pacific/Samoa` * `Pacific/Tahiti` * `Pacific/Tarawa` * `Pacific/Tongatapu` * `Pacific/Truk` * `Pacific/Wake` * `Pacific/Wallis` * `Pacific/Yap` * `Poland` * `Portugal` * `ROC` * `ROK` * `Singapore` * `Turkey` * `UCT` * `US/Alaska` * `US/Aleutian` * `US/Arizona` * `US/Central` * `US/East-Indiana` * `US/Eastern` * `US/Hawaii` * `US/Indiana-Starke` * `US/Michigan` * `US/Mountain` * `US/Pacific` * `US/Samoa` * `UTC` * `Universal` * `W-SU` * `WET` * `Zulu` * `localtime` */
 export type UpdateProjectMonitorRequestConfigTimezone =
@@ -40484,7 +40388,7 @@ export type UpdateProjectMonitorRequestConfigTimezone =
   | "Zulu"
   | "localtime"
   | "";
-export const UpdateProjectMonitorRequestConfigTimezone = /*@__PURE__*/ S.String;
+export const UpdateProjectMonitorRequestConfigTimezone = S.String;
 
 export interface UpdateProjectMonitorRequestConfig {
   /** Currently supports "crontab" or "interval" * `crontab` * `interval` */
@@ -40518,7 +40422,7 @@ export const UpdateProjectMonitorRequestConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the monitor. Disabled monitors will not accept events and will not count towards the monitor quota. * `active` * `disabled` */
 export type UpdateProjectMonitorRequestStatus = "active" | "disabled";
-export const UpdateProjectMonitorRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateProjectMonitorRequestStatus = S.String;
 
 export interface UpdateProjectMonitorRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -40594,8 +40498,7 @@ export const UpdateProjectMonitorResponseAlertRule = /*@__PURE__*/ S.suspend(
 export type UpdateProjectMonitorResponseConfigScheduleType =
   | "crontab"
   | "interval";
-export const UpdateProjectMonitorResponseConfigScheduleType =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectMonitorResponseConfigScheduleType = S.String;
 
 export type UpdateProjectMonitorResponseConfigScheduleCase1List = Array<number>;
 export const UpdateProjectMonitorResponseConfigScheduleCase1List =
@@ -40607,7 +40510,7 @@ export type UpdateProjectMonitorResponseConfigSchedule =
   | string
   | UpdateProjectMonitorResponseConfigScheduleCase1List;
 export const UpdateProjectMonitorResponseConfigSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateProjectMonitorResponseConfigSchedule>;
+  S.Unknown as any as S.Schema<UpdateProjectMonitorResponseConfigSchedule>;
 
 export interface UpdateProjectMonitorResponseConfig {
   schedule_type: UpdateProjectMonitorResponseConfigScheduleType;
@@ -40756,7 +40659,7 @@ export const UpdateProjectMonitorResponseEnvironments =
   CreateOrganizationMonitorResponseEnvironments;
 
 export type UpdateProjectMonitorResponseOwnerType = "user" | "team";
-export const UpdateProjectMonitorResponseOwnerType = /*@__PURE__*/ S.String;
+export const UpdateProjectMonitorResponseOwnerType = S.String;
 
 export interface UpdateProjectMonitorResponseOwner {
   type: UpdateProjectMonitorResponseOwnerType;
@@ -40912,7 +40815,7 @@ export const UpdateProjectReleaseFileResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of the source. * `http` - SymbolServer (HTTP) * `gcs` - Google Cloud Storage * `s3` - Amazon S3 */
 export type UpdateProjectSymbolSourceRequestType = "http" | "gcs" | "s3";
-export const UpdateProjectSymbolSourceRequestType = /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceRequestType = S.String;
 
 /** The source's layout type. * `native` * `symstore` * `symstore_index2` * `ssqp` * `unified` * `debuginfod` * `slashsymbols` */
 export type UpdateProjectSymbolSourceRequestLayoutType =
@@ -40923,16 +40826,14 @@ export type UpdateProjectSymbolSourceRequestLayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const UpdateProjectSymbolSourceRequestLayoutType =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceRequestLayoutType = S.String;
 
 /** The source's casing rules. * `lowercase` * `uppercase` * `default` */
 export type UpdateProjectSymbolSourceRequestLayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const UpdateProjectSymbolSourceRequestLayoutCasing =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceRequestLayoutCasing = S.String;
 
 /** Layout settings for the source. This is required for HTTP, GCS, and S3 sources. **`type`** ***(string)*** - The layout of the folder structure. The options are: - `native` - Platform-Specific (SymStore / GDB / LLVM) - `symstore` - Microsoft SymStore - `symstore_index2` - Microsoft SymStore (with index2.txt) - `ssqp` - Microsoft SSQP - `unified` - Unified Symbol Server Layout - `debuginfod` - debuginfod **`casing`** ***(string)*** - The layout of the folder structure. The options are: - `default` - Default (mixed case) - `uppercase` - Uppercase - `lowercase` - Lowercase ```json { "layout": { "type": "native" "casing": "default" } } ``` */
 export interface UpdateProjectSymbolSourceRequestLayout {
@@ -40969,8 +40870,7 @@ export type UpdateProjectSymbolSourceRequestFiltersFiletypesItem =
   | "il2cpp"
   | "proguard"
   | "dartsymbolmap";
-export const UpdateProjectSymbolSourceRequestFiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceRequestFiltersFiletypesItem = S.String;
 
 /** The file types enabled for the source. */
 export type UpdateProjectSymbolSourceRequestFiltersFiletypesList = Array<
@@ -41036,7 +40936,7 @@ export type UpdateProjectSymbolSourceRequestRegion =
   | "sa-east-1"
   | "us-gov-east-1"
   | "us-gov-west-1";
-export const UpdateProjectSymbolSourceRequestRegion = /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceRequestRegion = S.String;
 
 export interface UpdateProjectSymbolSourceRequest {
   /** The ID or slug of the organization the resource belongs to. */
@@ -41105,8 +41005,7 @@ export const UpdateProjectSymbolSourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProjectSymbolSourceRequest>;
 
 export type UpdateProjectSymbolSourceResponseBodyCase0Type = "http";
-export const UpdateProjectSymbolSourceResponseBodyCase0Type =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase0Type = S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase0Password =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -41121,15 +41020,13 @@ export type UpdateProjectSymbolSourceResponseBodyCase0LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const UpdateProjectSymbolSourceResponseBodyCase0LayoutType =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase0LayoutType = S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase0LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const UpdateProjectSymbolSourceResponseBodyCase0LayoutCasing =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase0LayoutCasing = S.String;
 
 export interface UpdateProjectSymbolSourceResponseBodyCase0Layout {
   type: UpdateProjectSymbolSourceResponseBodyCase0LayoutType;
@@ -41165,7 +41062,7 @@ export type UpdateProjectSymbolSourceResponseBodyCase0FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const UpdateProjectSymbolSourceResponseBodyCase0FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase0FiltersFiletypesList =
   Array<UpdateProjectSymbolSourceResponseBodyCase0FiltersFiletypesItem>;
@@ -41243,8 +41140,7 @@ export const UpdateProjectSymbolSourceResponseBodyCase0 =
   }) as any as S.Schema<UpdateProjectSymbolSourceResponseBodyCase0>;
 
 export type UpdateProjectSymbolSourceResponseBodyCase1Type = "s3";
-export const UpdateProjectSymbolSourceResponseBodyCase1Type =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase1Type = S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase1SecretKey =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -41259,15 +41155,13 @@ export type UpdateProjectSymbolSourceResponseBodyCase1LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const UpdateProjectSymbolSourceResponseBodyCase1LayoutType =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase1LayoutType = S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase1LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const UpdateProjectSymbolSourceResponseBodyCase1LayoutCasing =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase1LayoutCasing = S.String;
 
 export interface UpdateProjectSymbolSourceResponseBodyCase1Layout {
   type: UpdateProjectSymbolSourceResponseBodyCase1LayoutType;
@@ -41303,7 +41197,7 @@ export type UpdateProjectSymbolSourceResponseBodyCase1FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const UpdateProjectSymbolSourceResponseBodyCase1FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase1FiltersFiletypesList =
   Array<UpdateProjectSymbolSourceResponseBodyCase1FiltersFiletypesItem>;
@@ -41385,8 +41279,7 @@ export const UpdateProjectSymbolSourceResponseBodyCase1 =
   }) as any as S.Schema<UpdateProjectSymbolSourceResponseBodyCase1>;
 
 export type UpdateProjectSymbolSourceResponseBodyCase2Type = "gcs";
-export const UpdateProjectSymbolSourceResponseBodyCase2Type =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase2Type = S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase2PrivateKey =
   AddProjectSymbolSourceResponseBodyCase0Password;
@@ -41401,15 +41294,13 @@ export type UpdateProjectSymbolSourceResponseBodyCase2LayoutType =
   | "unified"
   | "debuginfod"
   | "slashsymbols";
-export const UpdateProjectSymbolSourceResponseBodyCase2LayoutType =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase2LayoutType = S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase2LayoutCasing =
   | "lowercase"
   | "uppercase"
   | "default";
-export const UpdateProjectSymbolSourceResponseBodyCase2LayoutCasing =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase2LayoutCasing = S.String;
 
 export interface UpdateProjectSymbolSourceResponseBodyCase2Layout {
   type: UpdateProjectSymbolSourceResponseBodyCase2LayoutType;
@@ -41445,7 +41336,7 @@ export type UpdateProjectSymbolSourceResponseBodyCase2FiltersFiletypesItem =
   | "proguard"
   | "dartsymbolmap";
 export const UpdateProjectSymbolSourceResponseBodyCase2FiltersFiletypesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateProjectSymbolSourceResponseBodyCase2FiltersFiletypesList =
   Array<UpdateProjectSymbolSourceResponseBodyCase2FiltersFiletypesItem>;
@@ -41525,8 +41416,7 @@ export const UpdateProjectSymbolSourceResponseBodyCase2 =
   }) as any as S.Schema<UpdateProjectSymbolSourceResponseBodyCase2>;
 
 export type UpdateProjectSymbolSourceResponseBodyCase3Type = "appStoreConnect";
-export const UpdateProjectSymbolSourceResponseBodyCase3Type =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectSymbolSourceResponseBodyCase3Type = S.String;
 
 export interface UpdateProjectSymbolSourceResponseBodyCase3 {
   type: UpdateProjectSymbolSourceResponseBodyCase3Type;
@@ -41562,7 +41452,7 @@ export type UpdateProjectSymbolSourceResponseBody =
   | UpdateProjectSymbolSourceResponseBodyCase2
   | UpdateProjectSymbolSourceResponseBodyCase3;
 export const UpdateProjectSymbolSourceResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateProjectSymbolSourceResponseBody>;
+  S.Unknown as any as S.Schema<UpdateProjectSymbolSourceResponseBody>;
 
 export type UpdateProjectSymbolSourceResponse =
   UpdateProjectSymbolSourceResponseBody;
@@ -42077,7 +41967,7 @@ export type UpdateTeamExternalTeamRequestProvider =
   | "gitlab"
   | "msteams"
   | "custom_scm";
-export const UpdateTeamExternalTeamRequestProvider = /*@__PURE__*/ S.String;
+export const UpdateTeamExternalTeamRequestProvider = S.String;
 
 export interface UpdateTeamExternalTeamRequest {
   /** The ID or slug of the organization the resource belongs to. */

@@ -78,14 +78,13 @@ export type GoogleCloudAssetV1p7beta1ExportAssetsRequestContentTypeEnum =
   | "ACCESS_POLICY"
   | "RELATIONSHIP";
 export const GoogleCloudAssetV1p7beta1ExportAssetsRequestContentTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudAssetV1p7beta1PartitionSpecPartitionKeyEnum =
   | "PARTITION_KEY_UNSPECIFIED"
   | "READ_TIME"
   | "REQUEST_TIME";
-export const GoogleCloudAssetV1p7beta1PartitionSpecPartitionKeyEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudAssetV1p7beta1PartitionSpecPartitionKeyEnum = S.String;
 
 /** Specifications of BigQuery partitioned table as export destination. */
 export interface GoogleCloudAssetV1p7beta1PartitionSpec {

@@ -23,7 +23,7 @@ export const AccountsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The name of the SKU, in standard format (such as S0). */
 export type SkuInputName = "S0" | "S1" | "G2";
-export const SkuInputName = /*@__PURE__*/ S.String;
+export const SkuInputName = S.String;
 
 /** The SKU of the Maps Account. */
 export interface SkuInput {
@@ -38,7 +38,7 @@ export const SkuInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The Kind of the Maps Account. */
 export type Kind = "Gen1" | "Gen2";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType =
@@ -46,7 +46,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned, UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -139,7 +139,7 @@ export type MapsAccountPropertiesInputEncryptionInfrastructureEncryption =
   | "enabled"
   | "disabled";
 export const MapsAccountPropertiesInputEncryptionInfrastructureEncryption =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Values can be systemAssignedIdentity or userAssignedIdentity */
 export type CustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
@@ -147,7 +147,7 @@ export type CustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
   | "userAssignedIdentity"
   | "delegatedResourceIdentity";
 export const CustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault. */
 export interface CustomerManagedKeyEncryptionKeyEncryptionKeyIdentity {
@@ -287,7 +287,7 @@ export const AccountsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The name of the SKU, in standard format (such as S0). */
 export type SkuName = "S0" | "S1" | "G2";
-export const SkuName = /*@__PURE__*/ S.String;
+export const SkuName = S.String;
 
 /** The SKU of the Maps Account. */
 export interface Sku {
@@ -309,8 +309,7 @@ export type AccountsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const AccountsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type AccountsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -319,7 +318,7 @@ export type AccountsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const AccountsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface AccountsCreateOrUpdateResponseSystemData {
@@ -404,8 +403,7 @@ export const AccountsCreateOrUpdateResponseIdentity = /*@__PURE__*/ S.suspend(
 export type MapsAccountPropertiesEncryptionInfrastructureEncryption =
   | "enabled"
   | "disabled";
-export const MapsAccountPropertiesEncryptionInfrastructureEncryption =
-  /*@__PURE__*/ S.String;
+export const MapsAccountPropertiesEncryptionInfrastructureEncryption = S.String;
 
 /** (Optional) Discouraged to include in resource definition. Only needed where it is possible to disable platform (AKA infrastructure) encryption. Azure SQL TDE is an example of this. Values are enabled and disabled. */
 export interface MapsAccountPropertiesEncryption {
@@ -581,8 +579,7 @@ export type CreatorsCreateOrUpdateResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreatorsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const CreatorsCreateOrUpdateResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreatorsCreateOrUpdateResponseSystemDataLastModifiedByType =
@@ -591,7 +588,7 @@ export type CreatorsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "ManagedIdentity"
   | "Key";
 export const CreatorsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreatorsCreateOrUpdateResponseSystemData {
@@ -761,7 +758,7 @@ export type GetAccountResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAccountResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetAccountResponseSystemDataLastModifiedByType =
@@ -769,8 +766,7 @@ export type GetAccountResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetAccountResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetAccountResponseSystemData {
@@ -887,7 +883,7 @@ export type GetCreatorResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCreatorResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetCreatorResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type GetCreatorResponseSystemDataLastModifiedByType =
@@ -895,8 +891,7 @@ export type GetCreatorResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const GetCreatorResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const GetCreatorResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface GetCreatorResponseSystemData {
@@ -993,7 +988,7 @@ export type MapsAccountSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const MapsAccountSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const MapsAccountSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type MapsAccountSystemDataLastModifiedByType =
@@ -1001,7 +996,7 @@ export type MapsAccountSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const MapsAccountSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const MapsAccountSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface MapsAccountSystemData {
@@ -1164,7 +1159,7 @@ export type ListAccountSasRequestSigningKey =
   | "primaryKey"
   | "secondaryKey"
   | "managedIdentity";
-export const ListAccountSasRequestSigningKey = /*@__PURE__*/ S.String;
+export const ListAccountSasRequestSigningKey = S.String;
 
 /** Optional, allows control of which region locations are permitted access to Azure Maps REST APIs with the SAS token. Example: "eastus", "westus2". Omitting this parameter will allow all region locations to be accessible. */
 export type ListAccountSasRequestRegionsList = Array<string>;
@@ -1266,7 +1261,7 @@ export type CreatorSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreatorSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const CreatorSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type CreatorSystemDataLastModifiedByType =
@@ -1274,7 +1269,7 @@ export type CreatorSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CreatorSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const CreatorSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface CreatorSystemData {
@@ -1576,7 +1571,7 @@ export const ListMapSubscriptionOperationsRequest = /*@__PURE__*/ S.suspend(
 
 /** Whether the operation refers to the primary or secondary key. */
 export type RegenerateAccountKeysRequestKeyType = "primary" | "secondary";
-export const RegenerateAccountKeysRequestKeyType = /*@__PURE__*/ S.String;
+export const RegenerateAccountKeysRequestKeyType = S.String;
 
 export interface RegenerateAccountKeysRequest {
   /** The ID of the target subscription. */
@@ -1674,8 +1669,7 @@ export type UpdateAccountResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateAccountResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateAccountResponseSystemDataLastModifiedByType =
@@ -1683,8 +1677,7 @@ export type UpdateAccountResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateAccountResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateAccountResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateAccountResponseSystemData {
@@ -1817,8 +1810,7 @@ export type UpdateCreatorResponseSystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateCreatorResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateCreatorResponseSystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type UpdateCreatorResponseSystemDataLastModifiedByType =
@@ -1826,8 +1818,7 @@ export type UpdateCreatorResponseSystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const UpdateCreatorResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
+export const UpdateCreatorResponseSystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface UpdateCreatorResponseSystemData {

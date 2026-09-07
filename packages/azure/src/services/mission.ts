@@ -14,7 +14,7 @@ export type { AzureOpError, AzureOpContext };
 
 /** Specifies the action performed by the approver */
 export type ActionPerformed = "Approved" | "Rejected";
-export const ActionPerformed = /*@__PURE__*/ S.String;
+export const ActionPerformed = S.String;
 
 /** Approver Metadata for approvals request. */
 export interface ApproverInput {
@@ -46,7 +46,7 @@ export type RequestMetadataApprovalStatus =
   | "Pending"
   | "Deleted"
   | "Expired";
-export const RequestMetadataApprovalStatus = /*@__PURE__*/ S.String;
+export const RequestMetadataApprovalStatus = S.String;
 
 /** Request Metadata for approvals request. */
 export interface RequestMetadata {
@@ -132,7 +132,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -140,7 +140,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -179,7 +179,7 @@ export type ProvisioningState =
   | "NotSpecified"
   | "Running"
   | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Indicates if this approver is part of a mandatory approver group with list of Entra IDs */
 export type ApproverMandatoryApprovalGroupMembershipIdsList = Array<string>;
@@ -446,7 +446,7 @@ export type ServiceIdentifier =
   | "PrivateDNSZones"
   | "ServiceBus"
   | "Storage";
-export const ServiceIdentifier = /*@__PURE__*/ S.String;
+export const ServiceIdentifier = S.String;
 
 /** Governance option for this service (Allow, Deny, ExceptionOnly, or NotApplicable). */
 export type GovernedServiceItemInputOption =
@@ -454,18 +454,18 @@ export type GovernedServiceItemInputOption =
   | "Deny"
   | "ExceptionOnly"
   | "NotApplicable";
-export const GovernedServiceItemInputOption = /*@__PURE__*/ S.String;
+export const GovernedServiceItemInputOption = S.String;
 
 /** Initiative enforcement (Enabled or Disabled). */
 export type GovernedServiceItemInputEnforcement = "Enabled" | "Disabled";
-export const GovernedServiceItemInputEnforcement = /*@__PURE__*/ S.String;
+export const GovernedServiceItemInputEnforcement = S.String;
 
 /** Enforcement mode for policy. AuditOnly, Enforce, or None. */
 export type GovernedServiceItemInputPolicyAction =
   | "AuditOnly"
   | "Enforce"
   | "None";
-export const GovernedServiceItemInputPolicyAction = /*@__PURE__*/ S.String;
+export const GovernedServiceItemInputPolicyAction = S.String;
 
 /** GovernedServiceItem Properties */
 export interface GovernedServiceItemInput {
@@ -499,11 +499,11 @@ export const CommunityPropertiesInputGovernedServiceListList =
 
 /** Policy override setting for the community. Specifies whether to apply enclave-specific policies or disable policy enforcement. */
 export type CommunityPropertiesInputPolicyOverride = "Enclave" | "None";
-export const CommunityPropertiesInputPolicyOverride = /*@__PURE__*/ S.String;
+export const CommunityPropertiesInputPolicyOverride = S.String;
 
 /** The type of the object id. We currently allow users, groups, and service principals */
 export type PrincipalType = "User" | "Group" | "ServicePrincipal";
-export const PrincipalType = /*@__PURE__*/ S.String;
+export const PrincipalType = S.String;
 
 /** Principal for maintenance mode or role assignments */
 export interface Principal {
@@ -557,11 +557,11 @@ export type CommunityPropertiesInputFirewallSku =
   | "Basic"
   | "Standard"
   | "Premium";
-export const CommunityPropertiesInputFirewallSku = /*@__PURE__*/ S.String;
+export const CommunityPropertiesInputFirewallSku = S.String;
 
 /** Approval Policy. */
 export type ApprovalPolicy = "Required" | "NotRequired";
-export const ApprovalPolicy = /*@__PURE__*/ S.String;
+export const ApprovalPolicy = S.String;
 
 /** List of mandatory approvers for this approval setting. */
 export type ApprovalSettingConfigurationMandatoryApproversList =
@@ -630,7 +630,7 @@ export type MaintenanceModeConfigurationModelMode =
   | "Off"
   | "General"
   | "Advanced";
-export const MaintenanceModeConfigurationModelMode = /*@__PURE__*/ S.String;
+export const MaintenanceModeConfigurationModelMode = S.String;
 
 /** The user, group or service principal object affected by Maintenance Mode */
 export type MaintenanceModeConfigurationModelPrincipalsList = Array<Principal>;
@@ -644,8 +644,7 @@ export type MaintenanceModeConfigurationModelJustification =
   | "Networking"
   | "Governance"
   | "Off";
-export const MaintenanceModeConfigurationModelJustification =
-  /*@__PURE__*/ S.String;
+export const MaintenanceModeConfigurationModelJustification = S.String;
 
 /** Maintenance Mode */
 export interface MaintenanceModeConfigurationModel {
@@ -673,7 +672,7 @@ export type MonitoringDestinationDestinationType =
   | "CommunityWorkspace"
   | "EnclaveWorkspace"
   | "CustomWorkspace";
-export const MonitoringDestinationDestinationType = /*@__PURE__*/ S.String;
+export const MonitoringDestinationDestinationType = S.String;
 
 /** Monitoring destination configuration with multiple workspaces */
 export interface MonitoringDestination {
@@ -776,7 +775,7 @@ export type ManagedServiceIdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -911,15 +910,15 @@ export type GovernedServiceItemOption =
   | "Deny"
   | "ExceptionOnly"
   | "NotApplicable";
-export const GovernedServiceItemOption = /*@__PURE__*/ S.String;
+export const GovernedServiceItemOption = S.String;
 
 /** Initiative enforcement (Enabled or Disabled). */
 export type GovernedServiceItemEnforcement = "Enabled" | "Disabled";
-export const GovernedServiceItemEnforcement = /*@__PURE__*/ S.String;
+export const GovernedServiceItemEnforcement = S.String;
 
 /** Enforcement mode for policy. AuditOnly, Enforce, or None. */
 export type GovernedServiceItemPolicyAction = "AuditOnly" | "Enforce" | "None";
-export const GovernedServiceItemPolicyAction = /*@__PURE__*/ S.String;
+export const GovernedServiceItemPolicyAction = S.String;
 
 /** Initiatives associated with this service. */
 export type GovernedServiceItemInitiativesList = Array<string>;
@@ -964,7 +963,7 @@ export const CommunityPropertiesGovernedServiceListList = /*@__PURE__*/ S.Array(
 
 /** Policy override setting for the community. Specifies whether to apply enclave-specific policies or disable policy enforcement. */
 export type CommunityPropertiesPolicyOverride = "Enclave" | "None";
-export const CommunityPropertiesPolicyOverride = /*@__PURE__*/ S.String;
+export const CommunityPropertiesPolicyOverride = S.String;
 
 /** Community role assignments */
 export type CommunityPropertiesCommunityRoleAssignmentsList =
@@ -976,7 +975,7 @@ export const CommunityPropertiesCommunityRoleAssignmentsList =
 
 /** SKU of the community's Azure Firewall (Basic, Standard, Premium). Standard is the default */
 export type CommunityPropertiesFirewallSku = "Basic" | "Standard" | "Premium";
-export const CommunityPropertiesFirewallSku = /*@__PURE__*/ S.String;
+export const CommunityPropertiesFirewallSku = S.String;
 
 /** Resource tags. */
 export type DedicatedHubResourceTagsMap = { [key: string]: string | undefined };
@@ -987,7 +986,7 @@ export const DedicatedHubResourceTagsMap = /*@__PURE__*/ S.Record(
 
 /** Specifies the designation of the dedicated hub. */
 export type Designation = "Pooled" | "Reserved";
-export const Designation = /*@__PURE__*/ S.String;
+export const Designation = S.String;
 
 /** Describes the properties of a Dedicated Hub. */
 export interface DedicatedHubProperties {
@@ -1213,7 +1212,7 @@ export type DestinationType =
   | "IPAddress"
   | "PrivateNetwork"
   | "ServiceTag";
-export const DestinationType = /*@__PURE__*/ S.String;
+export const DestinationType = S.String;
 
 /** Community Endpoint Protocol Enum */
 export type CommunityEndpointProtocol =
@@ -1225,7 +1224,7 @@ export type CommunityEndpointProtocol =
   | "AH"
   | "HTTPS"
   | "HTTP";
-export const CommunityEndpointProtocol = /*@__PURE__*/ S.String;
+export const CommunityEndpointProtocol = S.String;
 
 /** Protocols. Options specified by Endpoint Protocol Enum. */
 export type CommunityEndpointDestinationRuleProtocolsList = Array<
@@ -1274,7 +1273,7 @@ export const CommunityEndpointPropertiesInputRuleCollectionList =
 
 /** Update Mode */
 export type UpdateMode = "Automatic" | "Manual";
-export const UpdateMode = /*@__PURE__*/ S.String;
+export const UpdateMode = S.String;
 
 /** Community Endpoint Resource properties */
 export interface CommunityEndpointPropertiesInput {
@@ -1417,14 +1416,14 @@ export type CommunityEndpointsHandleApprovalCreationRequestResourceRequestAction
   | "Update"
   | "Reset";
 export const CommunityEndpointsHandleApprovalCreationRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Approval status indicating 'Approved' or 'Rejected' */
 export type CommunityEndpointsHandleApprovalCreationRequestApprovalStatus =
   | "Approved"
   | "Rejected";
 export const CommunityEndpointsHandleApprovalCreationRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CommunityEndpointsHandleApprovalCreationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1489,7 +1488,7 @@ export type CommunityEndpointsHandleApprovalDeletionRequestResourceRequestAction
   | "Delete"
   | "Update";
 export const CommunityEndpointsHandleApprovalDeletionRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CommunityEndpointsHandleApprovalDeletionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2010,7 +2009,7 @@ export type EnclaveConnectionState =
   | "Failed"
   | "Connected"
   | "Disconnected";
-export const EnclaveConnectionState = /*@__PURE__*/ S.String;
+export const EnclaveConnectionState = S.String;
 
 /** List of resource ids modified by enclave Connections. */
 export type EnclaveConnectionPropertiesResourceCollectionList = Array<string>;
@@ -2093,14 +2092,14 @@ export type EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction 
   | "Update"
   | "Reset";
 export const EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Approval status indicating 'Approved' or 'Rejected' */
 export type EnclaveConnectionHandleApprovalCreationRequestApprovalStatus =
   | "Approved"
   | "Rejected";
 export const EnclaveConnectionHandleApprovalCreationRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EnclaveConnectionHandleApprovalCreationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2149,7 +2148,7 @@ export type EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction 
   | "Delete"
   | "Update";
 export const EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EnclaveConnectionHandleApprovalDeletionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2201,7 +2200,7 @@ export type EnclaveEndpointProtocol =
   | "ICMP"
   | "ESP"
   | "AH";
-export const EnclaveEndpointProtocol = /*@__PURE__*/ S.String;
+export const EnclaveEndpointProtocol = S.String;
 
 /** Protocols. Options specified by Endpoint Protocol Enum. */
 export type EnclaveEndpointDestinationRuleProtocolsList = Array<
@@ -2383,14 +2382,14 @@ export type EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction =
   | "Update"
   | "Reset";
 export const EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Approval status indicating 'Approved' or 'Rejected' */
 export type EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus =
   | "Approved"
   | "Rejected";
 export const EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EnclaveEndpointsHandleApprovalCreationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2442,7 +2441,7 @@ export type EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction =
   | "Delete"
   | "Update";
 export const EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface EnclaveEndpointsHandleApprovalDeletionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2905,11 +2904,11 @@ export type TransitHubState =
   | "PendingUpdate"
   | "Active"
   | "Failed";
-export const TransitHubState = /*@__PURE__*/ S.String;
+export const TransitHubState = S.String;
 
 /** Specifies the type of the transitOption. */
 export type TransitOptionType = "ExpressRoute" | "Gateway" | "Peering";
-export const TransitOptionType = /*@__PURE__*/ S.String;
+export const TransitOptionType = S.String;
 
 /** TransitOptionParams Properties */
 export interface TransitOptionParams {
@@ -2949,7 +2948,7 @@ export const TransitHubPropertiesResourceCollectionList = /*@__PURE__*/ S.Array(
 
 /** Specifies the security provider for the transit hub. */
 export type SecurityProvider = "None" | "AzureFirewall";
-export const SecurityProvider = /*@__PURE__*/ S.String;
+export const SecurityProvider = S.String;
 
 /** Describes the properties of an Transit Hub. */
 export interface TransitHubProperties {
@@ -3154,12 +3153,11 @@ export const VirtualEnclavePropertiesManagedOnBehalfOfConfiguration =
 export type VirtualEnclavePropertiesWorkloadResourceVisibility =
   | "Enabled"
   | "Disabled";
-export const VirtualEnclavePropertiesWorkloadResourceVisibility =
-  /*@__PURE__*/ S.String;
+export const VirtualEnclavePropertiesWorkloadResourceVisibility = S.String;
 
 /** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
 export type VirtualEnclavePropertiesRbacInheritance = "Enabled" | "Disabled";
-export const VirtualEnclavePropertiesRbacInheritance = /*@__PURE__*/ S.String;
+export const VirtualEnclavePropertiesRbacInheritance = S.String;
 
 /** Enclave role assignments */
 export type VirtualEnclavePropertiesEnclaveRoleAssignmentsList =
@@ -3198,8 +3196,7 @@ export type EnclaveDefaultSettingsModelDiagnosticDestination =
   | "CommunityOnly"
   | "EnclaveOnly"
   | "Both";
-export const EnclaveDefaultSettingsModelDiagnosticDestination =
-  /*@__PURE__*/ S.String;
+export const EnclaveDefaultSettingsModelDiagnosticDestination = S.String;
 
 /** Virtual Enclave Default Settings */
 export interface EnclaveDefaultSettingsModel {
@@ -4100,11 +4097,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {
@@ -4480,8 +4477,7 @@ export const ListWorkloadBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 export type NotifyApprovalInitiatorRequestApprovalStatus =
   | "Approved"
   | "Rejected";
-export const NotifyApprovalInitiatorRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
+export const NotifyApprovalInitiatorRequestApprovalStatus = S.String;
 
 export interface NotifyApprovalInitiatorRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -4625,7 +4621,7 @@ export type ApprovalStatus =
   | "Pending"
   | "Deleted"
   | "Expired";
-export const ApprovalStatus = /*@__PURE__*/ S.String;
+export const ApprovalStatus = S.String;
 
 /** Request Metadata patch properties. */
 export interface RequestMetadataUpdatableProperties {
@@ -4746,8 +4742,7 @@ export const CommunityPatchPropertiesInputGovernedServiceListList =
 
 /** Policy override setting for the community. Specifies whether to apply enclave-specific policies or disable policy enforcement. */
 export type CommunityPatchPropertiesInputPolicyOverride = "Enclave" | "None";
-export const CommunityPatchPropertiesInputPolicyOverride =
-  /*@__PURE__*/ S.String;
+export const CommunityPatchPropertiesInputPolicyOverride = S.String;
 
 /** Community role assignments */
 export type CommunityPatchPropertiesInputCommunityRoleAssignmentsList =
@@ -4759,7 +4754,7 @@ export const CommunityPatchPropertiesInputCommunityRoleAssignmentsList =
 
 /** Azure Firewall SKU */
 export type FirewallSKU = "Basic" | "Standard" | "Premium";
-export const FirewallSKU = /*@__PURE__*/ S.String;
+export const FirewallSKU = S.String;
 
 /** Granular ApprovalSettings Patch Properties */
 export type ApprovalSettingsPatchProperties = ApprovalSettings;
@@ -4772,8 +4767,7 @@ export type MaintenanceModeConfigurationPatchModelMode =
   | "Off"
   | "General"
   | "Advanced";
-export const MaintenanceModeConfigurationPatchModelMode =
-  /*@__PURE__*/ S.String;
+export const MaintenanceModeConfigurationPatchModelMode = S.String;
 
 /** The user, group or service principal object affected by Maintenance Mode */
 export type MaintenanceModeConfigurationPatchModelPrincipalsList =
@@ -4788,8 +4782,7 @@ export type MaintenanceModeConfigurationPatchModelJustification =
   | "Networking"
   | "Governance"
   | "Off";
-export const MaintenanceModeConfigurationPatchModelJustification =
-  /*@__PURE__*/ S.String;
+export const MaintenanceModeConfigurationPatchModelJustification = S.String;
 
 /** Maintenance Mode Patch Model */
 export interface MaintenanceModeConfigurationPatchModel {
@@ -4822,7 +4815,7 @@ export type MonitoringDestinationType =
   | "CommunityWorkspace"
   | "EnclaveWorkspace"
   | "CustomWorkspace";
-export const MonitoringDestinationType = /*@__PURE__*/ S.String;
+export const MonitoringDestinationType = S.String;
 
 /** Monitoring Destination Patch Model */
 export interface MonitoringDestinationPatchModel {
@@ -4955,7 +4948,7 @@ export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
 export const AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** User assigned identity properties */
 export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue =
@@ -5562,11 +5555,11 @@ export const UpdateTransitHubResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Resource Visibility Mode */
 export type ResourceVisibilityMode = "Enabled" | "Disabled";
-export const ResourceVisibilityMode = /*@__PURE__*/ S.String;
+export const ResourceVisibilityMode = S.String;
 
 /** Rbac Inheritance Mode */
 export type RbacInheritanceMode = "Enabled" | "Disabled";
-export const RbacInheritanceMode = /*@__PURE__*/ S.String;
+export const RbacInheritanceMode = S.String;
 
 /** Enclave role assignments */
 export type VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList =
@@ -5594,7 +5587,7 @@ export const VirtualEnclavePatchPropertiesInputGovernedServiceListList =
 
 /** Specifies the destination of where to store diagnostic logs. */
 export type DiagnosticDestination = "CommunityOnly" | "EnclaveOnly" | "Both";
-export const DiagnosticDestination = /*@__PURE__*/ S.String;
+export const DiagnosticDestination = S.String;
 
 /** Virtual Enclave Default Settings */
 export interface EnclaveDefaultSettingsPatchModel {
@@ -5880,15 +5873,13 @@ export const VirtualEnclaveCreateOrUpdateRequestTagsMap =
 export type VirtualEnclavePropertiesInputWorkloadResourceVisibility =
   | "Enabled"
   | "Disabled";
-export const VirtualEnclavePropertiesInputWorkloadResourceVisibility =
-  /*@__PURE__*/ S.String;
+export const VirtualEnclavePropertiesInputWorkloadResourceVisibility = S.String;
 
 /** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
 export type VirtualEnclavePropertiesInputRbacInheritance =
   | "Enabled"
   | "Disabled";
-export const VirtualEnclavePropertiesInputRbacInheritance =
-  /*@__PURE__*/ S.String;
+export const VirtualEnclavePropertiesInputRbacInheritance = S.String;
 
 /** Enclave role assignments */
 export type VirtualEnclavePropertiesInputEnclaveRoleAssignmentsList =
@@ -5919,8 +5910,7 @@ export type EnclaveDefaultSettingsModelInputDiagnosticDestination =
   | "CommunityOnly"
   | "EnclaveOnly"
   | "Both";
-export const EnclaveDefaultSettingsModelInputDiagnosticDestination =
-  /*@__PURE__*/ S.String;
+export const EnclaveDefaultSettingsModelInputDiagnosticDestination = S.String;
 
 /** Virtual Enclave Default Settings */
 export interface EnclaveDefaultSettingsModelInput {
@@ -6100,14 +6090,14 @@ export type VirtualEnclaveHandleApprovalCreationRequestResourceRequestAction =
   | "Update"
   | "Reset";
 export const VirtualEnclaveHandleApprovalCreationRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Approval status indicating 'Approved' or 'Rejected' */
 export type VirtualEnclaveHandleApprovalCreationRequestApprovalStatus =
   | "Approved"
   | "Rejected";
 export const VirtualEnclaveHandleApprovalCreationRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VirtualEnclaveHandleApprovalCreationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6155,7 +6145,7 @@ export type VirtualEnclaveHandleApprovalDeletionRequestResourceRequestAction =
   | "Delete"
   | "Update";
 export const VirtualEnclaveHandleApprovalDeletionRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface VirtualEnclaveHandleApprovalDeletionRequest {
   /** The ID of the target subscription. The value must be an UUID. */

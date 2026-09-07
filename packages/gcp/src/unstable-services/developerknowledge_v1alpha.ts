@@ -142,7 +142,7 @@ export type DocumentViewEnum =
   | "DOCUMENT_VIEW_BASIC"
   | "DOCUMENT_VIEW_FULL"
   | "DOCUMENT_VIEW_CONTENT";
-export const DocumentViewEnum = /*@__PURE__*/ S.String;
+export const DocumentViewEnum = S.String;
 
 /** A Document represents a page of documentation in the Developer Knowledge corpus, like the page at https://docs.cloud.google.com/storage/docs/creating-buckets. */
 export interface Document {
@@ -268,7 +268,7 @@ export type BatchGetDocumentsViewEnum =
   | "DOCUMENT_VIEW_BASIC"
   | "DOCUMENT_VIEW_FULL"
   | "DOCUMENT_VIEW_CONTENT";
-export const BatchGetDocumentsViewEnum = /*@__PURE__*/ S.String;
+export const BatchGetDocumentsViewEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -319,7 +319,7 @@ export type GetDocumentsViewEnum =
   | "DOCUMENT_VIEW_BASIC"
   | "DOCUMENT_VIEW_FULL"
   | "DOCUMENT_VIEW_CONTENT";
-export const GetDocumentsViewEnum = /*@__PURE__*/ S.String;
+export const GetDocumentsViewEnum = S.String;
 
 export interface GetDocumentsRequest {
   /** Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.GetDocument defaults to `DOCUMENT_VIEW_CONTENT`. */

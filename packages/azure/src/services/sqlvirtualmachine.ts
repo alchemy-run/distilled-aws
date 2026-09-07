@@ -98,19 +98,19 @@ export const AvailabilityGroupListenerPropertiesInputMultiSubnetIpConfigurations
 
 /** Replica Role in availability group. */
 export type Role = "Primary" | "Secondary";
-export const Role = /*@__PURE__*/ S.String;
+export const Role = S.String;
 
 /** Replica commit mode in availability group. */
 export type Commit = "Synchronous_Commit" | "Asynchronous_Commit";
-export const Commit = /*@__PURE__*/ S.String;
+export const Commit = S.String;
 
 /** Replica failover mode in availability group. */
 export type Failover = "Automatic" | "Manual";
-export const Failover = /*@__PURE__*/ S.String;
+export const Failover = S.String;
 
 /** Replica readable secondary mode in availability group. */
 export type ReadableSecondary = "No" | "All" | "Read_Only";
-export const ReadableSecondary = /*@__PURE__*/ S.String;
+export const ReadableSecondary = S.String;
 
 /** Availability group replica configuration. */
 export interface AgReplica {
@@ -225,7 +225,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -233,7 +233,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -567,18 +567,17 @@ export const GetSqlVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** SQL Server license type. */
 export type SqlServerLicenseType = "PAYG" | "AHUB" | "DR";
-export const SqlServerLicenseType = /*@__PURE__*/ S.String;
+export const SqlServerLicenseType = S.String;
 
 /** SQL Server Management type. NOTE: This parameter is not used anymore. API will automatically detect the Sql Management, refrain from using it. */
 export type SqlManagementMode = "Full" | "LightWeight" | "NoAgent";
-export const SqlManagementMode = /*@__PURE__*/ S.String;
+export const SqlManagementMode = S.String;
 
 /** SQL IaaS Agent least privilege mode. */
 export type SqlVirtualMachinePropertiesLeastPrivilegeMode =
   | "Enabled"
   | "NotSet";
-export const SqlVirtualMachinePropertiesLeastPrivilegeMode =
-  /*@__PURE__*/ S.String;
+export const SqlVirtualMachinePropertiesLeastPrivilegeMode = S.String;
 
 /** SQL Server edition type. */
 export type SqlImageSku =
@@ -587,7 +586,7 @@ export type SqlImageSku =
   | "Standard"
   | "Enterprise"
   | "Web";
-export const SqlImageSku = /*@__PURE__*/ S.String;
+export const SqlImageSku = S.String;
 
 /** Domain credentials for setting up Windows Server Failover Cluster for SQL availability group. */
 export interface WsfcDomainCredentials {
@@ -622,13 +621,13 @@ export type DayOfWeek =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 /** Additional Patch to be enable or enabled on the SQL Virtual Machine. */
 export type AutoPatchingSettingsAdditionalVmPatch =
   | "NotSet"
   | "MicrosoftUpdate";
-export const AutoPatchingSettingsAdditionalVmPatch = /*@__PURE__*/ S.String;
+export const AutoPatchingSettingsAdditionalVmPatch = S.String;
 
 /** Set a patching window during which Windows and SQL patches will be applied. */
 export interface AutoPatchingSettings {
@@ -657,11 +656,11 @@ export const AutoPatchingSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Backup schedule type. */
 export type BackupScheduleType = "Manual" | "Automated";
-export const BackupScheduleType = /*@__PURE__*/ S.String;
+export const BackupScheduleType = S.String;
 
 /** Frequency of full backups. In both cases, full backups begin during the next scheduled time window. */
 export type FullBackupFrequencyType = "Daily" | "Weekly";
-export const FullBackupFrequencyType = /*@__PURE__*/ S.String;
+export const FullBackupFrequencyType = S.String;
 
 export type AutoBackupDaysOfWeek =
   | "Monday"
@@ -671,7 +670,7 @@ export type AutoBackupDaysOfWeek =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const AutoBackupDaysOfWeek = /*@__PURE__*/ S.String;
+export const AutoBackupDaysOfWeek = S.String;
 
 /** Days of the week for the backups when FullBackupFrequency is set to Weekly. */
 export type AutoBackupSettingsDaysOfWeekList = Array<
@@ -760,7 +759,7 @@ export const KeyVaultCredentialSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** SQL Server connectivity option. */
 export type ConnectivityType = "LOCAL" | "PRIVATE" | "PUBLIC";
-export const ConnectivityType = /*@__PURE__*/ S.String;
+export const ConnectivityType = S.String;
 
 /** Set the access level and network port settings for SQL Server. */
 export interface SqlConnectivityUpdateSettings {
@@ -786,7 +785,7 @@ export const SqlConnectivityUpdateSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** SQL Server workload type. */
 export type SqlWorkloadType = "GENERAL" | "OLTP" | "DW";
-export const SqlWorkloadType = /*@__PURE__*/ S.String;
+export const SqlWorkloadType = S.String;
 
 /** Set workload type to optimize storage for SQL Server. */
 export interface SqlWorkloadTypeUpdateSettings {
@@ -803,7 +802,7 @@ export const SqlWorkloadTypeUpdateSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Disk configuration to apply to SQL Server. */
 export type DiskConfigurationType = "NEW" | "EXTEND" | "ADD";
-export const DiskConfigurationType = /*@__PURE__*/ S.String;
+export const DiskConfigurationType = S.String;
 
 /** Set disk storage settings for SQL Server. */
 export interface SqlStorageUpdateSettings {
@@ -986,7 +985,7 @@ export const SQLTempDbSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Storage workload type. */
 export type StorageWorkloadType = "GENERAL" | "OLTP" | "DW";
-export const StorageWorkloadType = /*@__PURE__*/ S.String;
+export const StorageWorkloadType = S.String;
 
 /** Storage Configurations for SQL Data, Log and TempDb. */
 export interface StorageConfigurationSettings {
@@ -1021,8 +1020,7 @@ export const StorageConfigurationSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** SQL VM troubleshooting scenario. */
 export type TroubleshootingStatusTroubleshootingScenario = "UnhealthyReplica";
-export const TroubleshootingStatusTroubleshootingScenario =
-  /*@__PURE__*/ S.String;
+export const TroubleshootingStatusTroubleshootingScenario = S.String;
 
 /** SQL VM Troubleshoot UnhealthyReplica scenario information. */
 export interface UnhealthyReplicaInfo {
@@ -1089,7 +1087,7 @@ export type AssessmentDayOfWeek =
   | "Friday"
   | "Saturday"
   | "Sunday";
-export const AssessmentDayOfWeek = /*@__PURE__*/ S.String;
+export const AssessmentDayOfWeek = S.String;
 
 /** Set assessment schedule for SQL Server. */
 export interface Schedule {
@@ -1135,11 +1133,11 @@ export const AssessmentSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Additional VM Patching solution enabled on the Virtual Machine */
 export type AdditionalOsPatch = "WU" | "WUMU" | "WSUS";
-export const AdditionalOsPatch = /*@__PURE__*/ S.String;
+export const AdditionalOsPatch = S.String;
 
 /** Identity type of the virtual machine. Specify None to opt-out of Managed Identities. */
 export type VmIdentityType = "None" | "SystemAssigned" | "UserAssigned";
-export const VmIdentityType = /*@__PURE__*/ S.String;
+export const VmIdentityType = S.String;
 
 /** Virtual Machine Identity details used for Sql IaaS extension configurations. */
 export interface VirtualMachineIdentity {
@@ -1159,7 +1157,7 @@ export const VirtualMachineIdentity = /*@__PURE__*/ S.suspend(() =>
 
 /** Operating System of the current SQL Virtual Machine. */
 export type OsType = "Windows" | "Linux";
-export const OsType = /*@__PURE__*/ S.String;
+export const OsType = S.String;
 
 /** The SQL virtual machine properties. */
 export interface SqlVirtualMachineProperties {
@@ -1244,7 +1242,7 @@ export type IdentityType =
   | "SystemAssigned"
   | "UserAssigned"
   | "SystemAssigned,UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
+export const IdentityType = S.String;
 
 /** Azure Active Directory identity configuration for a resource. */
 export interface ResourceIdentity {
@@ -1334,23 +1332,23 @@ export const GetSqlVirtualMachineGroupResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** SQL image sku. */
 export type SqlVmGroupImageSku = "Developer" | "Enterprise";
-export const SqlVmGroupImageSku = /*@__PURE__*/ S.String;
+export const SqlVmGroupImageSku = S.String;
 
 /** Scale type. */
 export type ScaleType = "HA";
-export const ScaleType = /*@__PURE__*/ S.String;
+export const ScaleType = S.String;
 
 /** Type of cluster manager: Windows Server Failover Cluster (WSFC), implied by the scale type of the group and the OS type. */
 export type ClusterManagerType = "WSFC";
-export const ClusterManagerType = /*@__PURE__*/ S.String;
+export const ClusterManagerType = S.String;
 
 /** Cluster type. */
 export type ClusterConfiguration = "Domainful";
-export const ClusterConfiguration = /*@__PURE__*/ S.String;
+export const ClusterConfiguration = S.String;
 
 /** Cluster subnet type. */
 export type ClusterSubnetType = "SingleSubnet" | "MultiSubnet";
-export const ClusterSubnetType = /*@__PURE__*/ S.String;
+export const ClusterSubnetType = S.String;
 
 /** Active Directory account details to operate Windows Server Failover Cluster. */
 export interface WsfcDomainProfile {
@@ -1566,7 +1564,7 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation. */
 export type OperationOrigin = "user" | "system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Additional descriptions for the operation. */
 export type OperationPropertiesMap = { [key: string]: unknown | undefined };
@@ -2005,8 +2003,7 @@ export const SqlVirtualMachinesCreateOrUpdateRequestTagsMap =
 export type SqlVirtualMachinePropertiesInputLeastPrivilegeMode =
   | "Enabled"
   | "NotSet";
-export const SqlVirtualMachinePropertiesInputLeastPrivilegeMode =
-  /*@__PURE__*/ S.String;
+export const SqlVirtualMachinePropertiesInputLeastPrivilegeMode = S.String;
 
 /** The SQL virtual machine properties. */
 export interface SqlVirtualMachinePropertiesInput {
@@ -2174,7 +2171,7 @@ export const SqlVirtualMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 export type SqlVirtualMachineTroubleshootTroubleshootRequestTroubleshootingScenario =
   "UnhealthyReplica";
 export const SqlVirtualMachineTroubleshootTroubleshootRequestTroubleshootingScenario =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SqlVirtualMachineTroubleshootTroubleshootRequest {
   /** The ID of the target subscription. */
@@ -2220,8 +2217,7 @@ export const SqlVirtualMachineTroubleshootTroubleshootRequest =
 
 /** SQL VM troubleshooting scenario. */
 export type SqlVmTroubleshootingTroubleshootingScenario = "UnhealthyReplica";
-export const SqlVmTroubleshootingTroubleshootingScenario =
-  /*@__PURE__*/ S.String;
+export const SqlVmTroubleshootingTroubleshootingScenario = S.String;
 
 /** Details required for SQL VM troubleshooting */
 export interface SqlVmTroubleshooting {

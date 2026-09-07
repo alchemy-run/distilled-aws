@@ -201,15 +201,15 @@ export const TeamPermissions = /*@__PURE__*/ S.suspend(() =>
 
 /** The ownership type of the team */
 export type TeamType = "enterprise" | "organization";
-export const TeamType = /*@__PURE__*/ S.String;
+export const TeamType = S.String;
 
 /** How the team's access to the repository was granted. This property is only present when the team is returned in a repository context, such as `GET /repos/{owner}/{repo}/teams`. */
 export type TeamAccessSource = "direct" | "organization" | "enterprise";
-export const TeamAccessSource = /*@__PURE__*/ S.String;
+export const TeamAccessSource = S.String;
 
 /** The ownership type of the team */
 export type NullableTeamSimpleType = "enterprise" | "organization";
-export const NullableTeamSimpleType = /*@__PURE__*/ S.String;
+export const NullableTeamSimpleType = S.String;
 
 /** Groups of organization members that gives permissions on specified repositories. */
 export interface NullableTeamSimple {
@@ -320,7 +320,7 @@ export const CampaignSummaryTeamManagersList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether a campaign is open or closed */
 export type CampaignState = "open" | "closed";
-export const CampaignState = /*@__PURE__*/ S.String;
+export const CampaignState = S.String;
 
 export interface CampaignSummaryAlertStats {
   /** The number of open alerts */
@@ -437,14 +437,14 @@ export const GetCampaignSummaryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCampaignSummaryRequest>;
 
 export type ListOrgCampaignsRequestDirection = "asc" | "desc";
-export const ListOrgCampaignsRequestDirection = /*@__PURE__*/ S.String;
+export const ListOrgCampaignsRequestDirection = S.String;
 
 export type ListOrgCampaignsRequestSort =
   | "created"
   | "updated"
   | "ends_at"
   | "published";
-export const ListOrgCampaignsRequestSort = /*@__PURE__*/ S.String;
+export const ListOrgCampaignsRequestSort = S.String;
 
 export interface ListOrgCampaignsRequest {
   /** The organization name. The name is not case sensitive. */

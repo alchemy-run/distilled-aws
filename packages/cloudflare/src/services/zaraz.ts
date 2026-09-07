@@ -998,7 +998,7 @@ export const GetWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkflowRequest>;
 
 export type WorkflowGetResult = "realtime" | "preview";
-export const WorkflowGetResult = /*@__PURE__*/ S.String;
+export const WorkflowGetResult = S.String;
 
 export type GetWorkflowResponse = WorkflowGetResult;
 export const GetWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1016,10 +1016,10 @@ export type HistoryListRequestSortField =
   | "description"
   | "created_at"
   | "updated_at";
-export const HistoryListRequestSortField = /*@__PURE__*/ S.String;
+export const HistoryListRequestSortField = S.String;
 
 export type HistoryListRequestSortOrder = "DESC" | "ASC";
-export const HistoryListRequestSortOrder = /*@__PURE__*/ S.String;
+export const HistoryListRequestSortOrder = S.String;
 
 export interface ListHistoriesRequest {
   /** Identifier. */
@@ -1861,7 +1861,7 @@ export const PutHistoryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutHistoryResponse>;
 
 export type UpdateRequestWorkflow = "realtime" | "preview";
-export const UpdateRequestWorkflow = /*@__PURE__*/ S.String;
+export const UpdateRequestWorkflow = S.String;
 
 export interface PutZarazRequest {
   /** Identifier. */
@@ -1887,7 +1887,7 @@ export const PutZarazRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutZarazRequest>;
 
 export type UpdateResult = "realtime" | "preview";
-export const UpdateResult = /*@__PURE__*/ S.String;
+export const UpdateResult = S.String;
 
 export type PutZarazResponse = UpdateResult;
 export const PutZarazResponse = /*@__PURE__*/ S.suspend(() =>

@@ -89,7 +89,7 @@ export const InsightsThresholdBounds = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsightsThresholdBounds>;
 
 export type InsightThresholdType = "absolute" | "percentage";
-export const InsightThresholdType = /*@__PURE__*/ S.String;
+export const InsightThresholdType = S.String;
 
 export interface InsightThreshold {
   bounds?: InsightsThresholdBounds | null;
@@ -122,7 +122,7 @@ export type AlertConditionType =
   | "absolute_value"
   | "relative_increase"
   | "relative_decrease";
-export const AlertConditionType = /*@__PURE__*/ S.String;
+export const AlertConditionType = S.String;
 
 export interface AlertCondition {
   type?: AlertConditionType | (string & {});
@@ -151,7 +151,7 @@ export const TrendsAlertConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TrendsAlertConfig>;
 
 export type HogQLAlertEvaluation = "last_row" | "first_row" | "any_row";
-export const HogQLAlertEvaluation = /*@__PURE__*/ S.String;
+export const HogQLAlertEvaluation = S.String;
 
 export interface HogQLAlertConfig {
   /** Name of the result column to evaluate. When unset, the single numeric column is used (an error if the result has more than one numeric column). */
@@ -176,7 +176,7 @@ export const HogQLAlertConfig = /*@__PURE__*/ S.suspend(() =>
 export type FunnelConversionMetric =
   | "conversion_from_start"
   | "conversion_from_previous";
-export const FunnelConversionMetric = /*@__PURE__*/ S.String;
+export const FunnelConversionMetric = S.String;
 
 export interface FunnelsAlertConfig {
   /** When true, evaluate the current (still in-progress) period; by default only completed periods are used. */
@@ -217,8 +217,7 @@ export type AlertConfigUnion =
   | HogQLAlertConfig
   | FunnelsAlertConfig
   | MetricsAlertConfig;
-export const AlertConfigUnion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AlertConfigUnion>;
+export const AlertConfigUnion = S.Unknown as any as S.Schema<AlertConfigUnion>;
 
 export interface PreprocessingConfig {
   /** Order of differencing. 0 = raw values, 1 = first-order diffs (default: 0) */
@@ -365,7 +364,7 @@ export const IsolationForestDetectorConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IsolationForestDetectorConfig>;
 
 export type Method = "largest" | "mean" | "median";
-export const Method = /*@__PURE__*/ S.String;
+export const Method = S.String;
 
 export interface KNNDetectorConfig {
   /** Distance method: 'largest', 'mean', 'median' (default: 'largest') */
@@ -482,7 +481,7 @@ export type EnsembleDetectorConfigDetectorsItem =
   | OCSVMDetectorConfig
   | ECODDetectorConfig;
 export const EnsembleDetectorConfigDetectorsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnsembleDetectorConfigDetectorsItem>;
+  S.Unknown as any as S.Schema<EnsembleDetectorConfigDetectorsItem>;
 
 /** Sub-detector configurations (minimum 2) */
 export type EnsembleDetectorConfigDetectorsList =
@@ -492,7 +491,7 @@ export const EnsembleDetectorConfigDetectorsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<EnsembleDetectorConfigDetectorsList>;
 
 export type EnsembleOperator = "and" | "or";
-export const EnsembleOperator = /*@__PURE__*/ S.String;
+export const EnsembleOperator = S.String;
 
 export interface EnsembleDetectorConfig {
   /** Sub-detector configurations (minimum 2) */
@@ -526,8 +525,7 @@ export type DetectorConfig =
   | LOFDetectorConfig
   | OCSVMDetectorConfig
   | ECODDetectorConfig;
-export const DetectorConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DetectorConfig>;
+export const DetectorConfig = S.Unknown as any as S.Schema<DetectorConfig>;
 
 /** * `real_time` - real_time * `every_15_minutes` - every_15_minutes * `hourly` - hourly * `daily` - daily * `weekly` - weekly * `monthly` - monthly */
 export type CalculationIntervalEnum =
@@ -537,7 +535,7 @@ export type CalculationIntervalEnum =
   | "daily"
   | "weekly"
   | "monthly";
-export const CalculationIntervalEnum = /*@__PURE__*/ S.String;
+export const CalculationIntervalEnum = S.String;
 
 export interface AlertScheduleRestrictionWindow {
   /** Start time HH:MM (24-hour, project timezone). Inclusive. Each window must span ≥ 30 minutes on the local daily timeline (half-open [start, end)). */
@@ -575,7 +573,7 @@ export const AlertScheduleRestriction = /*@__PURE__*/ S.suspend(() =>
 
 /** * `notify` - Notify * `suppress` - Suppress */
 export type InvestigationInconclusiveActionEnum = "notify" | "suppress";
-export const InvestigationInconclusiveActionEnum = /*@__PURE__*/ S.String;
+export const InvestigationInconclusiveActionEnum = S.String;
 
 export interface CreateAlertRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -660,14 +658,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -723,7 +721,7 @@ export type AlertCheckStateEnum =
   | "Not firing"
   | "Errored"
   | "Snoozed";
-export const AlertCheckStateEnum = /*@__PURE__*/ S.String;
+export const AlertCheckStateEnum = S.String;
 
 export type AlertCheckErrorMap = { [key: string]: string | undefined };
 export const AlertCheckErrorMap = /*@__PURE__*/ S.Record(
@@ -738,14 +736,14 @@ export type InvestigationStatusEnum =
   | "done"
   | "failed"
   | "skipped";
-export const InvestigationStatusEnum = /*@__PURE__*/ S.String;
+export const InvestigationStatusEnum = S.String;
 
 /** * `true_positive` - true_positive * `false_positive` - false_positive * `inconclusive` - inconclusive */
 export type InvestigationVerdictEnum =
   | "true_positive"
   | "false_positive"
   | "inconclusive";
-export const InvestigationVerdictEnum = /*@__PURE__*/ S.String;
+export const InvestigationVerdictEnum = S.String;
 
 export interface AlertDelivery {
   /** Delivery channel: 'email' or 'hog_function' (destinations). */
@@ -833,7 +831,7 @@ export const AlertChecksList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AlertChecksList>;
 
 export type SearchMatchTypeEnum = "exact" | "similar";
-export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
+export const SearchMatchTypeEnum = S.String;
 
 export interface Alert {
   id?: string;
@@ -924,7 +922,7 @@ export const Alert = /*@__PURE__*/ S.suspend(() =>
 /** Numeric insight ID or saved insight short ID to simulate the detector on. */
 export type CreateAlertsSimulateRequestInsight = number | string;
 export const CreateAlertsSimulateRequestInsight =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAlertsSimulateRequestInsight>;
+  S.Unknown as any as S.Schema<CreateAlertsSimulateRequestInsight>;
 
 export interface CreateAlertsSimulateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

@@ -304,7 +304,7 @@ export type ApplicationStatus =
   | "IN_PROGRESS"
   | "COMPLETED"
   | (string & {});
-export const ApplicationStatus = /*@__PURE__*/ S.String;
+export const ApplicationStatus = S.String;
 
 export type UpdateDateTime = Date;
 export interface DescribeApplicationStateResult {
@@ -341,7 +341,7 @@ export type Status =
   | "FAILED"
   | "COMPLETED"
   | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export type ProgressPercent = number;
 export interface Task {
@@ -368,7 +368,7 @@ export type ResourceAttributeType =
   | "BIOS_ID"
   | "MOTHERBOARD_SERIAL_NUMBER"
   | (string & {});
-export const ResourceAttributeType = /*@__PURE__*/ S.String;
+export const ResourceAttributeType = S.String;
 
 export type ResourceAttributeValue = string;
 export interface ResourceAttribute {
@@ -689,7 +689,7 @@ export const ListMigrationTaskUpdatesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListMigrationTaskUpdatesRequest",
 }) as any as S.Schema<ListMigrationTaskUpdatesRequest>;
 export type UpdateType = "MIGRATION_TASK_STATE_UPDATED" | (string & {});
-export const UpdateType = /*@__PURE__*/ S.String;
+export const UpdateType = S.String;
 
 export interface MigrationTaskUpdate {
   UpdateDateTime?: Date;

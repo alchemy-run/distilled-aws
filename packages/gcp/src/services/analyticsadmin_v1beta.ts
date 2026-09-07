@@ -191,8 +191,7 @@ export type GoogleAnalyticsAdminV1betaPropertyServiceLevelEnum =
   | "SERVICE_LEVEL_UNSPECIFIED"
   | "GOOGLE_ANALYTICS_STANDARD"
   | "GOOGLE_ANALYTICS_360";
-export const GoogleAnalyticsAdminV1betaPropertyServiceLevelEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaPropertyServiceLevelEnum = S.String;
 
 export type GoogleAnalyticsAdminV1betaPropertyIndustryCategoryEnum =
   | "INDUSTRY_CATEGORY_UNSPECIFIED"
@@ -222,16 +221,14 @@ export type GoogleAnalyticsAdminV1betaPropertyIndustryCategoryEnum =
   | "SPORTS"
   | "JOBS_AND_EDUCATION"
   | "SHOPPING";
-export const GoogleAnalyticsAdminV1betaPropertyIndustryCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaPropertyIndustryCategoryEnum = S.String;
 
 export type GoogleAnalyticsAdminV1betaPropertyPropertyTypeEnum =
   | "PROPERTY_TYPE_UNSPECIFIED"
   | "PROPERTY_TYPE_ORDINARY"
   | "PROPERTY_TYPE_SUBPROPERTY"
   | "PROPERTY_TYPE_ROLLUP";
-export const GoogleAnalyticsAdminV1betaPropertyPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaPropertyPropertyTypeEnum = S.String;
 
 /** A resource message representing a Google Analytics property. */
 export interface GoogleAnalyticsAdminV1betaProperty {
@@ -317,7 +314,7 @@ export type GoogleAnalyticsAdminV1betaConversionEventCountingMethodEnum =
   | "ONCE_PER_EVENT"
   | "ONCE_PER_SESSION";
 export const GoogleAnalyticsAdminV1betaConversionEventCountingMethodEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Defines a default value/currency for a conversion event. Both value and currency must be provided. */
 export interface GoogleAnalyticsAdminV1betaConversionEventDefaultConversionValue {
@@ -404,8 +401,7 @@ export type GoogleAnalyticsAdminV1betaCustomDimensionScopeEnum =
   | "EVENT"
   | "USER"
   | "ITEM";
-export const GoogleAnalyticsAdminV1betaCustomDimensionScopeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaCustomDimensionScopeEnum = S.String;
 
 /** A definition for a CustomDimension. */
 export interface GoogleAnalyticsAdminV1betaCustomDimension {
@@ -463,8 +459,7 @@ export const CreatePropertiesCustomDimensionsRequest = /*@__PURE__*/ S.suspend(
 export type GoogleAnalyticsAdminV1betaCustomMetricScopeEnum =
   | "METRIC_SCOPE_UNSPECIFIED"
   | "EVENT";
-export const GoogleAnalyticsAdminV1betaCustomMetricScopeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaCustomMetricScopeEnum = S.String;
 
 export type GoogleAnalyticsAdminV1betaCustomMetricMeasurementUnitEnum =
   | "MEASUREMENT_UNIT_UNSPECIFIED"
@@ -479,14 +474,14 @@ export type GoogleAnalyticsAdminV1betaCustomMetricMeasurementUnitEnum =
   | "MINUTES"
   | "HOURS";
 export const GoogleAnalyticsAdminV1betaCustomMetricMeasurementUnitEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1betaCustomMetricRestrictedMetricTypeItemEnum =
   | "RESTRICTED_METRIC_TYPE_UNSPECIFIED"
   | "COST_DATA"
   | "REVENUE_DATA";
 export const GoogleAnalyticsAdminV1betaCustomMetricRestrictedMetricTypeItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1betaCustomMetricRestrictedMetricTypeItemEnumList =
   Array<
@@ -582,8 +577,7 @@ export type GoogleAnalyticsAdminV1betaDataStreamTypeEnum =
   | "WEB_DATA_STREAM"
   | "ANDROID_APP_DATA_STREAM"
   | "IOS_APP_DATA_STREAM";
-export const GoogleAnalyticsAdminV1betaDataStreamTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaDataStreamTypeEnum = S.String;
 
 /** Data specific to Android app streams. */
 export interface GoogleAnalyticsAdminV1betaDataStreamAndroidAppStreamData {
@@ -849,8 +843,7 @@ export type GoogleAnalyticsAdminV1betaKeyEventCountingMethodEnum =
   | "COUNTING_METHOD_UNSPECIFIED"
   | "ONCE_PER_EVENT"
   | "ONCE_PER_SESSION";
-export const GoogleAnalyticsAdminV1betaKeyEventCountingMethodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaKeyEventCountingMethodEnum = S.String;
 
 /** A key event in a Google Analytics property. */
 export interface GoogleAnalyticsAdminV1betaKeyEvent {
@@ -1132,7 +1125,7 @@ export type GoogleAnalyticsAdminV1betaDataRetentionSettingsEventDataRetentionEnu
   | "THIRTY_EIGHT_MONTHS"
   | "FIFTY_MONTHS";
 export const GoogleAnalyticsAdminV1betaDataRetentionSettingsEventDataRetentionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1betaDataRetentionSettingsUserDataRetentionEnum =
   | "RETENTION_DURATION_UNSPECIFIED"
@@ -1142,7 +1135,7 @@ export type GoogleAnalyticsAdminV1betaDataRetentionSettingsUserDataRetentionEnum
   | "THIRTY_EIGHT_MONTHS"
   | "FIFTY_MONTHS";
 export const GoogleAnalyticsAdminV1betaDataRetentionSettingsUserDataRetentionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Settings values for data retention. This is a singleton resource. */
 export interface GoogleAnalyticsAdminV1betaDataRetentionSettings {
@@ -1426,7 +1419,7 @@ export type GoogleAnalyticsAdminV1betaPropertySummaryPropertyTypeEnum =
   | "PROPERTY_TYPE_SUBPROPERTY"
   | "PROPERTY_TYPE_ROLLUP";
 export const GoogleAnalyticsAdminV1betaPropertySummaryPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A virtual resource representing metadata for a Google Analytics property. */
 export interface GoogleAnalyticsAdminV1betaPropertySummary {
@@ -2267,7 +2260,7 @@ export type GoogleAnalyticsAdminV1betaAccessNumericFilterOperationEnum =
   | "GREATER_THAN"
   | "GREATER_THAN_OR_EQUAL";
 export const GoogleAnalyticsAdminV1betaAccessNumericFilterOperationEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** To represent a number. */
 export interface GoogleAnalyticsAdminV1betaNumericValue {
@@ -2333,7 +2326,7 @@ export type GoogleAnalyticsAdminV1betaAccessStringFilterMatchTypeEnum =
   | "FULL_REGEXP"
   | "PARTIAL_REGEXP";
 export const GoogleAnalyticsAdminV1betaAccessStringFilterMatchTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The filter for strings. */
 export interface GoogleAnalyticsAdminV1betaAccessStringFilter {
@@ -2440,7 +2433,7 @@ export type GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderByOrderTypeEnum
   | "CASE_INSENSITIVE_ALPHANUMERIC"
   | "NUMERIC";
 export const GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderByOrderTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Sorts by dimension values. */
 export interface GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy {
@@ -2872,7 +2865,7 @@ export type GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequestResourceTy
   | "DATA_STREAM"
   | "ATTRIBUTION_SETTINGS";
 export const GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequestResourceTypeItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequestResourceTypeItemEnumList =
   Array<
@@ -2890,7 +2883,7 @@ export type GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequestActionItem
   | "UPDATED"
   | "DELETED";
 export const GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequestActionItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequestActionItemEnumList =
   Array<
@@ -3012,8 +3005,7 @@ export type GoogleAnalyticsAdminV1betaChangeHistoryChangeActionEnum =
   | "CREATED"
   | "UPDATED"
   | "DELETED";
-export const GoogleAnalyticsAdminV1betaChangeHistoryChangeActionEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleAnalyticsAdminV1betaChangeHistoryChangeActionEnum = S.String;
 
 /** A description of a change to a single Google Analytics resource. */
 export interface GoogleAnalyticsAdminV1betaChangeHistoryChange {
@@ -3057,7 +3049,7 @@ export type GoogleAnalyticsAdminV1betaChangeHistoryEventActorTypeEnum =
   | "SYSTEM"
   | "SUPPORT";
 export const GoogleAnalyticsAdminV1betaChangeHistoryEventActorTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A set of changes within a Google Analytics account or its child properties that resulted from the same cause. Common causes would be updates made in the Google Analytics UI, changes from customer support, or automatic Google Analytics system changes. */
 export interface GoogleAnalyticsAdminV1betaChangeHistoryEvent {

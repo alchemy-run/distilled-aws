@@ -176,7 +176,7 @@ export const Tag = /*@__PURE__*/ S.suspend(() =>
 export type TagList = Tag[];
 export const TagList = /*@__PURE__*/ S.Array(Tag);
 export type ConnectionType = "CONNECT_SSH" | "CONNECT_SSM" | (string & {});
-export const ConnectionType = /*@__PURE__*/ S.String;
+export const ConnectionType = S.String;
 
 export interface CreateEnvironmentEC2Request {
   name: string;
@@ -220,7 +220,7 @@ export const CreateEnvironmentEC2Result = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateEnvironmentEC2Result",
 }) as any as S.Schema<CreateEnvironmentEC2Result>;
 export type MemberPermissions = "read-write" | "read-only" | (string & {});
-export const MemberPermissions = /*@__PURE__*/ S.String;
+export const MemberPermissions = S.String;
 
 export interface CreateEnvironmentMembershipRequest {
   environmentId: string;
@@ -239,7 +239,7 @@ export const CreateEnvironmentMembershipRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateEnvironmentMembershipRequest",
 }) as any as S.Schema<CreateEnvironmentMembershipRequest>;
 export type Permissions = "owner" | "read-write" | "read-only" | (string & {});
-export const Permissions = /*@__PURE__*/ S.String;
+export const Permissions = S.String;
 
 export interface EnvironmentMember {
   permissions: Permissions;
@@ -352,7 +352,7 @@ export const DescribeEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DescribeEnvironmentsRequest",
 }) as any as S.Schema<DescribeEnvironmentsRequest>;
 export type EnvironmentType = "ssh" | "ec2" | (string & {});
-export const EnvironmentType = /*@__PURE__*/ S.String;
+export const EnvironmentType = S.String;
 
 export type EnvironmentLifecycleStatus =
   | "CREATING"
@@ -361,7 +361,7 @@ export type EnvironmentLifecycleStatus =
   | "DELETING"
   | "DELETE_FAILED"
   | (string & {});
-export const EnvironmentLifecycleStatus = /*@__PURE__*/ S.String;
+export const EnvironmentLifecycleStatus = S.String;
 
 export interface EnvironmentLifecycle {
   status?: EnvironmentLifecycleStatus;
@@ -390,7 +390,7 @@ export type ManagedCredentialsStatus =
   | "FAILED_REMOVAL_BY_COLLABORATOR"
   | "FAILED_REMOVAL_BY_OWNER"
   | (string & {});
-export const ManagedCredentialsStatus = /*@__PURE__*/ S.String;
+export const ManagedCredentialsStatus = S.String;
 
 export interface Environment {
   id?: string;
@@ -445,7 +445,7 @@ export type EnvironmentStatus =
   | "stopped"
   | "deleting"
   | (string & {});
-export const EnvironmentStatus = /*@__PURE__*/ S.String;
+export const EnvironmentStatus = S.String;
 
 export interface DescribeEnvironmentStatusResult {
   status: EnvironmentStatus;
@@ -540,7 +540,7 @@ export const UntagResourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UntagResourceResponse",
 }) as any as S.Schema<UntagResourceResponse>;
 export type ManagedCredentialsAction = "ENABLE" | "DISABLE" | (string & {});
-export const ManagedCredentialsAction = /*@__PURE__*/ S.String;
+export const ManagedCredentialsAction = S.String;
 
 export interface UpdateEnvironmentRequest {
   environmentId: string;

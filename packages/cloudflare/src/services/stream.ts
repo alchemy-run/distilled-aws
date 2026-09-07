@@ -118,7 +118,7 @@ export const CopyAudioTrackRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CopyAudioTrackRequest>;
 
 export type AudioTracksCopyResponseStatus = "queued" | "ready" | "error";
-export const AudioTracksCopyResponseStatus = /*@__PURE__*/ S.String;
+export const AudioTracksCopyResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CopyAudioTrackResponse {
@@ -172,7 +172,7 @@ export type CaptionsLanguageCreateResponseStatus =
   | "ready"
   | "inprogress"
   | "error";
-export const CaptionsLanguageCreateResponseStatus = /*@__PURE__*/ S.String;
+export const CaptionsLanguageCreateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateCaptionLanguageResponse {
@@ -333,7 +333,7 @@ export type ClipCreateResponseStatusState =
   | "ready"
   | "error"
   | "live-inprogress";
-export const ClipCreateResponseStatusState = /*@__PURE__*/ S.String;
+export const ClipCreateResponseStatusState = S.String;
 
 export interface ClipCreateResponseStatus {
   /** Specifies why the video failed to encode. This field is empty if the video is not in an `error` state. Preferred for programmatic use. */
@@ -565,7 +565,7 @@ export type CopyCreateResponseStatusState =
   | "ready"
   | "error"
   | "live-inprogress";
-export const CopyCreateResponseStatusState = /*@__PURE__*/ S.String;
+export const CopyCreateResponseStatusState = S.String;
 
 export interface CopyCreateResponseStatus {
   /** Specifies why the video failed to encode. This field is empty if the video is not in an `error` state. Preferred for programmatic use. */
@@ -785,7 +785,7 @@ export type DownloadsCreateResponseAudioStatus =
   | "ready"
   | "inprogress"
   | "error";
-export const DownloadsCreateResponseAudioStatus = /*@__PURE__*/ S.String;
+export const DownloadsCreateResponseAudioStatus = S.String;
 
 export interface DownloadsCreateResponseAudio {
   /** Indicates the progress as a percentage between 0 and 100. */
@@ -809,7 +809,7 @@ export type DownloadsCreateResponseDefaultStatus =
   | "ready"
   | "inprogress"
   | "error";
-export const DownloadsCreateResponseDefaultStatus = /*@__PURE__*/ S.String;
+export const DownloadsCreateResponseDefaultStatus = S.String;
 
 export interface DownloadsCreateResponseDefault {
   /** Indicates the progress as a percentage between 0 and 100. */
@@ -894,7 +894,7 @@ export const LiveInputsCreateRequestRecordingAllowedOriginsList =
   ) as any as S.Schema<LiveInputsCreateRequestRecordingAllowedOriginsList>;
 
 export type LiveInputsCreateRequestRecordingMode = "off" | "automatic";
-export const LiveInputsCreateRequestRecordingMode = /*@__PURE__*/ S.String;
+export const LiveInputsCreateRequestRecordingMode = S.String;
 
 export interface LiveInputsCreateRequestRecording {
   /** Lists the origins allowed to display videos created with this input. Enter allowed origin domains in an array and use `*` for wildcard subdomains. An empty array allows videos to be viewed on any origin. */
@@ -967,7 +967,7 @@ export const LiveInputsCreateResponseRecordingAllowedOriginsList =
   ) as any as S.Schema<LiveInputsCreateResponseRecordingAllowedOriginsList>;
 
 export type LiveInputsCreateResponseRecordingMode = "off" | "automatic";
-export const LiveInputsCreateResponseRecordingMode = /*@__PURE__*/ S.String;
+export const LiveInputsCreateResponseRecordingMode = S.String;
 
 export interface LiveInputsCreateResponseRecording {
   /** Lists the origins allowed to display videos created with this input. Enter allowed origin domains in an array and use `*` for wildcard subdomains. An empty array allows videos to be viewed on any origin. */
@@ -1071,7 +1071,7 @@ export type LiveInputsCreateResponseStatus =
   | "failed_to_connect"
   | "failed_to_reconnect"
   | "new_configuration_accepted";
-export const LiveInputsCreateResponseStatus = /*@__PURE__*/ S.String;
+export const LiveInputsCreateResponseStatus = S.String;
 
 export interface LiveInputsCreateResponseWebRTC {
   /** The WebRTC URL you provide to the broadcaster, which they stream live video to. */
@@ -1213,7 +1213,7 @@ export const CreateLiveInputOutputResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateLiveInputOutputResponse>;
 
 export type CreateRequestTusResumable = "1.0.0";
-export const CreateRequestTusResumable = /*@__PURE__*/ S.String;
+export const CreateRequestTusResumable = S.String;
 
 export interface CreateStreamRequest {
   /** The account identifier tag. */
@@ -1258,7 +1258,7 @@ export const CreateStreamResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateStreamResponse>;
 
 export type TokenCreateRequestAccessRulesItemAction = "allow" | "block";
-export const TokenCreateRequestAccessRulesItemAction = /*@__PURE__*/ S.String;
+export const TokenCreateRequestAccessRulesItemAction = S.String;
 
 export type TokenCreateRequestAccessRulesItemCountryList = Array<string>;
 export const TokenCreateRequestAccessRulesItemCountryList =
@@ -1275,7 +1275,7 @@ export type TokenCreateRequestAccessRulesItemType =
   | "any"
   | "ip.src"
   | "ip.geoip.country";
-export const TokenCreateRequestAccessRulesItemType = /*@__PURE__*/ S.String;
+export const TokenCreateRequestAccessRulesItemType = S.String;
 
 export interface TokenCreateRequestAccessRulesItem {
   /** The action to take when a request matches a rule. If the action is `block`, the signed token blocks views for viewers matching the rule. */
@@ -1827,7 +1827,7 @@ export type EditResponseStatusState =
   | "ready"
   | "error"
   | "live-inprogress";
-export const EditResponseStatusState = /*@__PURE__*/ S.String;
+export const EditResponseStatusState = S.String;
 
 export interface EditResponseStatus {
   /** Specifies why the video failed to encode. This field is empty if the video is not in an `error` state. Preferred for programmatic use. */
@@ -1965,7 +1965,7 @@ export type AudioTracksGetResponseAudioItemStatus =
   | "queued"
   | "ready"
   | "error";
-export const AudioTracksGetResponseAudioItemStatus = /*@__PURE__*/ S.String;
+export const AudioTracksGetResponseAudioItemStatus = S.String;
 
 export interface AudioTracksGetResponseAudioItem {
   /** Denotes whether the audio track will be played by default in a player. */
@@ -2031,7 +2031,7 @@ export const GetCaptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCaptionRequest>;
 
 export type CaptionsGetResultItemStatus = "ready" | "inprogress" | "error";
-export const CaptionsGetResultItemStatus = /*@__PURE__*/ S.String;
+export const CaptionsGetResultItemStatus = S.String;
 
 export interface CaptionsGetResultItem {
   /** Whether the caption was generated via AI. */
@@ -2104,7 +2104,7 @@ export type CaptionsLanguageGetResponseStatus =
   | "ready"
   | "inprogress"
   | "error";
-export const CaptionsLanguageGetResponseStatus = /*@__PURE__*/ S.String;
+export const CaptionsLanguageGetResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetCaptionLanguageResponse {
@@ -2185,7 +2185,7 @@ export const GetDownloadRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDownloadRequest>;
 
 export type DownloadsGetResponseAudioStatus = "ready" | "inprogress" | "error";
-export const DownloadsGetResponseAudioStatus = /*@__PURE__*/ S.String;
+export const DownloadsGetResponseAudioStatus = S.String;
 
 export interface DownloadsGetResponseAudio {
   /** Indicates the progress as a percentage between 0 and 100. */
@@ -2209,7 +2209,7 @@ export type DownloadsGetResponseDefaultStatus =
   | "ready"
   | "inprogress"
   | "error";
-export const DownloadsGetResponseDefaultStatus = /*@__PURE__*/ S.String;
+export const DownloadsGetResponseDefaultStatus = S.String;
 
 export interface DownloadsGetResponseDefault {
   /** Indicates the progress as a percentage between 0 and 100. */
@@ -2359,7 +2359,7 @@ export const LiveInputsGetResponseRecordingAllowedOriginsList =
   ) as any as S.Schema<LiveInputsGetResponseRecordingAllowedOriginsList>;
 
 export type LiveInputsGetResponseRecordingMode = "off" | "automatic";
-export const LiveInputsGetResponseRecordingMode = /*@__PURE__*/ S.String;
+export const LiveInputsGetResponseRecordingMode = S.String;
 
 export interface LiveInputsGetResponseRecording {
   /** Lists the origins allowed to display videos created with this input. Enter allowed origin domains in an array and use `*` for wildcard subdomains. An empty array allows videos to be viewed on any origin. */
@@ -2412,7 +2412,7 @@ export type LiveInputsGetResponseStatus =
   | "failed_to_connect"
   | "failed_to_reconnect"
   | "new_configuration_accepted";
-export const LiveInputsGetResponseStatus = /*@__PURE__*/ S.String;
+export const LiveInputsGetResponseStatus = S.String;
 
 export type LiveInputsGetResponseWebRTC = LiveInputsCreateResponseWebRTC;
 export const LiveInputsGetResponseWebRTC = LiveInputsCreateResponseWebRTC;
@@ -2527,7 +2527,7 @@ export type GetResponseStatusState =
   | "ready"
   | "error"
   | "live-inprogress";
-export const GetResponseStatusState = /*@__PURE__*/ S.String;
+export const GetResponseStatusState = S.String;
 
 export interface GetResponseStatus {
   /** Specifies why the video failed to encode. This field is empty if the video is not in an `error` state. Preferred for programmatic use. */
@@ -2891,7 +2891,7 @@ export type ListRequestStatus =
   | "ready"
   | "error"
   | "live-inprogress";
-export const ListRequestStatus = /*@__PURE__*/ S.String;
+export const ListRequestStatus = S.String;
 
 export interface ListStreamsRequest {
   /** The account identifier tag. */
@@ -2980,7 +2980,7 @@ export type ListResultItemStatusState =
   | "ready"
   | "error"
   | "live-inprogress";
-export const ListResultItemStatusState = /*@__PURE__*/ S.String;
+export const ListResultItemStatusState = S.String;
 
 export interface ListResultItemStatus {
   /** Specifies why the video failed to encode. This field is empty if the video is not in an `error` state. Preferred for programmatic use. */
@@ -3184,7 +3184,7 @@ export const PatchAudioTrackRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchAudioTrackRequest>;
 
 export type AudioTracksEditResponseStatus = "queued" | "ready" | "error";
-export const AudioTracksEditResponseStatus = /*@__PURE__*/ S.String;
+export const AudioTracksEditResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchAudioTrackResponse {
@@ -3325,7 +3325,7 @@ export type CaptionsLanguageUpdateResponseStatus =
   | "ready"
   | "inprogress"
   | "error";
-export const CaptionsLanguageUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const CaptionsLanguageUpdateResponseStatus = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateCaptionLanguageResponse {
@@ -3356,7 +3356,7 @@ export const LiveInputsUpdateRequestRecordingAllowedOriginsList =
   ) as any as S.Schema<LiveInputsUpdateRequestRecordingAllowedOriginsList>;
 
 export type LiveInputsUpdateRequestRecordingMode = "off" | "automatic";
-export const LiveInputsUpdateRequestRecordingMode = /*@__PURE__*/ S.String;
+export const LiveInputsUpdateRequestRecordingMode = S.String;
 
 export interface LiveInputsUpdateRequestRecording {
   /** Lists the origins allowed to display videos created with this input. Enter allowed origin domains in an array and use `*` for wildcard subdomains. An empty array allows videos to be viewed on any origin. */
@@ -3432,7 +3432,7 @@ export const LiveInputsUpdateResponseRecordingAllowedOriginsList =
   ) as any as S.Schema<LiveInputsUpdateResponseRecordingAllowedOriginsList>;
 
 export type LiveInputsUpdateResponseRecordingMode = "off" | "automatic";
-export const LiveInputsUpdateResponseRecordingMode = /*@__PURE__*/ S.String;
+export const LiveInputsUpdateResponseRecordingMode = S.String;
 
 export interface LiveInputsUpdateResponseRecording {
   /** Lists the origins allowed to display videos created with this input. Enter allowed origin domains in an array and use `*` for wildcard subdomains. An empty array allows videos to be viewed on any origin. */
@@ -3485,7 +3485,7 @@ export type LiveInputsUpdateResponseStatus =
   | "failed_to_connect"
   | "failed_to_reconnect"
   | "new_configuration_accepted";
-export const LiveInputsUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const LiveInputsUpdateResponseStatus = S.String;
 
 export type LiveInputsUpdateResponseWebRTC = LiveInputsCreateResponseWebRTC;
 export const LiveInputsUpdateResponseWebRTC = LiveInputsCreateResponseWebRTC;

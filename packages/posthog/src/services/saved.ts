@@ -47,7 +47,7 @@ export const CreateSavedRequestWidthsList = /*@__PURE__*/ S.Array(
 
 /** * `screenshot` - Screenshot * `iframe` - Iframe * `recording` - Recording */
 export type SavedHeatmapTypeEnum = "screenshot" | "iframe" | "recording";
-export const SavedHeatmapTypeEnum = /*@__PURE__*/ S.String;
+export const SavedHeatmapTypeEnum = S.String;
 
 export interface CreateSavedRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -96,11 +96,11 @@ export const HeatmapScreenshotResponseTargetWidthsList = /*@__PURE__*/ S.Array(
 
 /** * `server` - Server * `toolbar` - Toolbar */
 export type SavedHeatmapSourceEnum = "server" | "toolbar";
-export const SavedHeatmapSourceEnum = /*@__PURE__*/ S.String;
+export const SavedHeatmapSourceEnum = S.String;
 
 /** * `processing` - Processing * `completed` - Completed * `failed` - Failed */
 export type SavedHeatmapStatusEnum = "processing" | "completed" | "failed";
-export const SavedHeatmapStatusEnum = /*@__PURE__*/ S.String;
+export const SavedHeatmapStatusEnum = S.String;
 
 export interface HeatmapSnapshotMetadata {
   /** Viewport width (CSS pixels) this screenshot was rendered at. */
@@ -141,14 +141,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -307,11 +307,11 @@ export const CreateSavedPreflightRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `allowed` - allowed * `blocked` - blocked * `unknown` - unknown */
 export type FramingEnum = "allowed" | "blocked" | "unknown";
-export const FramingEnum = /*@__PURE__*/ S.String;
+export const FramingEnum = S.String;
 
 /** * `x_frame_options` - x_frame_options * `frame_ancestors` - frame_ancestors */
 export type BlockedByEnum = "x_frame_options" | "frame_ancestors";
-export const BlockedByEnum = /*@__PURE__*/ S.String;
+export const BlockedByEnum = S.String;
 
 export interface HeatmapPreflightResponse {
   /** Whether the page can be embedded in the live preview iframe. 'blocked' means the site's own headers forbid it, so only a screenshot or session recording background can work. 'unknown' means we could not tell, for example because the page was unreachable or redirected. * `allowed` - allowed * `blocked` - blocked * `unknown` - unknown */

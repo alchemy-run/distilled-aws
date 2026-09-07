@@ -122,7 +122,7 @@ export const ReviewProduct = /*@__PURE__*/ S.suspend(() =>
 
 /** The statuses a review can have */
 export type ReviewStatus = "pending" | "published" | "removed";
-export const ReviewStatus = /*@__PURE__*/ S.String;
+export const ReviewStatus = S.String;
 
 /** The user account of the person who wrote this review. */
 export interface ReviewUser {

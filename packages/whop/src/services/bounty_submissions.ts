@@ -89,8 +89,7 @@ export const CreateBountySubmissionRequestDeliverableFileIdsList =
 export type CreateBountySubmissionRequestDeliverableType =
   | "content_url"
   | "media";
-export const CreateBountySubmissionRequestDeliverableType =
-  /*@__PURE__*/ S.String;
+export const CreateBountySubmissionRequestDeliverableType = S.String;
 
 /** Links to the posted work, up to 10. Combinable with `file_ids` and `caption`. */
 export type CreateBountySubmissionRequestDeliverableUrlsList = Array<string>;
@@ -184,7 +183,7 @@ export type BountyCaptureClipStatus =
   | "verifying"
   | "ready"
   | "failed";
-export const BountyCaptureClipStatus = /*@__PURE__*/ S.String;
+export const BountyCaptureClipStatus = S.String;
 
 export interface BountyCaptureClip {
   /** The bounty submission (attempt) this clip belongs to, prefixed `btys_`. */
@@ -247,7 +246,7 @@ export type BountySubmissionDeliverableType =
   | "content_url"
   | "media"
   | "data_capture";
-export const BountySubmissionDeliverableType = /*@__PURE__*/ S.String;
+export const BountySubmissionDeliverableType = S.String;
 
 export type BountySubmissionDeliverableUrlsList = Array<string>;
 export const BountySubmissionDeliverableUrlsList = /*@__PURE__*/ S.Array(
@@ -260,7 +259,7 @@ export type BountySubmissionFileAttachmentType =
   | "video"
   | "audio"
   | "other";
-export const BountySubmissionFileAttachmentType = /*@__PURE__*/ S.String;
+export const BountySubmissionFileAttachmentType = S.String;
 
 export interface BountySubmissionFile {
   /** Broad kind of file. */
@@ -297,8 +296,7 @@ export type BountySubmissionLivestreamFeedRecordingStatus =
   | "processing"
   | "completed"
   | "failed";
-export const BountySubmissionLivestreamFeedRecordingStatus =
-  /*@__PURE__*/ S.String;
+export const BountySubmissionLivestreamFeedRecordingStatus = S.String;
 
 export interface BountySubmissionLivestreamFeed {
   /** When the proof livestream ended, as an ISO 8601 timestamp. `null` while it is still live — a feed with a `started_at` and no `ended_at` is streaming right now. */
@@ -336,7 +334,7 @@ export type BountySubmissionStatus =
   | "submitted"
   | "approved"
   | "denied";
-export const BountySubmissionStatus = /*@__PURE__*/ S.String;
+export const BountySubmissionStatus = S.String;
 
 export interface UserProfilePicture {
   /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
@@ -475,13 +473,13 @@ export type ListBountySubmissionsRequestStatus =
   | "submitted"
   | "approved"
   | "denied";
-export const ListBountySubmissionsRequestStatus = /*@__PURE__*/ S.String;
+export const ListBountySubmissionsRequestStatus = S.String;
 
 export type ListBountySubmissionsRequestOrder = "created_at" | "updated_at";
-export const ListBountySubmissionsRequestOrder = /*@__PURE__*/ S.String;
+export const ListBountySubmissionsRequestOrder = S.String;
 
 export type ListBountySubmissionsRequestDirection = "asc" | "desc";
-export const ListBountySubmissionsRequestDirection = /*@__PURE__*/ S.String;
+export const ListBountySubmissionsRequestDirection = S.String;
 
 export interface ListBountySubmissionsRequest {
   /** Scope the list to submissions on this account's bounties (`biz_` tag). Requires read access to the account. */

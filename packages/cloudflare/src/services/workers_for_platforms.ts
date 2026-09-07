@@ -241,7 +241,7 @@ export class VectorizeIndexNotFound
 export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
   "secret_text";
 export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText {
   /** A JavaScript variable name for the binding. */
@@ -269,12 +269,12 @@ export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFor
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
   "secret_key";
 export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
   | "encrypt"
@@ -286,7 +286,7 @@ export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsa
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList =
   Array<
@@ -396,7 +396,7 @@ export const BulkUpdateDispatchNamespaceScriptSecretsRequest =
 export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType =
   "secret_text";
 export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText {
   /** A JavaScript variable name for the binding. */
@@ -423,12 +423,12 @@ export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat =
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType =
   "secret_key";
 export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
   | "encrypt"
@@ -440,7 +440,7 @@ export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem 
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
   Array<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem>;
@@ -1004,7 +1004,7 @@ export type DispatchNamespacesScriptsGetResponseScriptObservabilityTracesPropaga
   | "authenticated"
   | "accept";
 export const DispatchNamespacesScriptsGetResponseScriptObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -1072,14 +1072,14 @@ export const DispatchNamespacesScriptsGetResponseScriptObservability =
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase0Mode =
   "smart";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase0Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase0Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase0Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase0 {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -1111,7 +1111,7 @@ export type DispatchNamespacesScriptsGetResponseScriptPlacementCase1Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase1Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase1 {
   /** Cloud region for targeted placement in format 'provider:region'. */
@@ -1143,7 +1143,7 @@ export type DispatchNamespacesScriptsGetResponseScriptPlacementCase2Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase2Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase2 {
   /** HTTP hostname for targeted placement. */
@@ -1175,7 +1175,7 @@ export type DispatchNamespacesScriptsGetResponseScriptPlacementCase3Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase3Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase3 {
   /** TCP host and port for targeted placement. */
@@ -1205,14 +1205,14 @@ export const DispatchNamespacesScriptsGetResponseScriptPlacementCase3 =
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase4Mode =
   "targeted";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase4Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase4Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase4 {
   /** Targeted placement mode. */
@@ -1245,14 +1245,14 @@ export const DispatchNamespacesScriptsGetResponseScriptPlacementCase4 =
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase5Mode =
   "targeted";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase5Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase5Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -1285,14 +1285,14 @@ export const DispatchNamespacesScriptsGetResponseScriptPlacementCase5 =
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase6Mode =
   "targeted";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase6Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase6Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -1325,7 +1325,7 @@ export const DispatchNamespacesScriptsGetResponseScriptPlacementCase6 =
 export type DispatchNamespacesScriptsGetResponseScriptPlacementCase7Mode =
   "targeted";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase7TargetItemRegion {
   /** Cloud region in format 'provider:region'. */
@@ -1390,7 +1390,7 @@ export type DispatchNamespacesScriptsGetResponseScriptPlacementCase7Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementCase7Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScriptPlacementCase7 {
   /** Targeted placement mode. */
@@ -1447,15 +1447,14 @@ export const DispatchNamespacesScriptsGetResponseScriptPlacement =
 export type DispatchNamespacesScriptsGetResponseScriptPlacementMode =
   | "smart"
   | "targeted";
-export const DispatchNamespacesScriptsGetResponseScriptPlacementMode =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsGetResponseScriptPlacementMode = S.String;
 
 export type DispatchNamespacesScriptsGetResponseScriptPlacementStatus =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsGetResponseScriptPlacementStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsGetResponseScriptTagsList = Array<string>;
 export const DispatchNamespacesScriptsGetResponseScriptTagsList =
@@ -1493,8 +1492,7 @@ export type DispatchNamespacesScriptsGetResponseScriptUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const DispatchNamespacesScriptsGetResponseScriptUsageModel =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsGetResponseScriptUsageModel = S.String;
 
 export interface DispatchNamespacesScriptsGetResponseScript {
   /** The name used to identify the script. */
@@ -1665,8 +1663,7 @@ export const GetDispatchNamespaceScriptBindingRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDispatchNamespaceScriptBindingRequest>;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemAIType = "ai";
-export const DispatchNamespacesScriptsBindingsGetResultItemAIType =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsBindingsGetResultItemAIType = S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemAI {
   /** A JavaScript variable name for the binding. */
@@ -1687,7 +1684,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemAI =
 export type DispatchNamespacesScriptsBindingsGetResultItemAISearchType =
   "ai_search";
 export const DispatchNamespacesScriptsBindingsGetResultItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -1714,7 +1711,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemAISearch =
 export type DispatchNamespacesScriptsBindingsGetResultItemAISearchNamespaceType =
   "ai_search_namespace";
 export const DispatchNamespacesScriptsBindingsGetResultItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -1739,7 +1736,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemAISearchNamespace =
 export type DispatchNamespacesScriptsBindingsGetResultItemAnalyticsEngineType =
   "analytics_engine";
 export const DispatchNamespacesScriptsBindingsGetResultItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -1762,7 +1759,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemAnalyticsEngine =
 
 export type DispatchNamespacesScriptsBindingsGetResultItemAssetsType = "assets";
 export const DispatchNamespacesScriptsBindingsGetResultItemAssetsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -1783,7 +1780,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemAssets =
 export type DispatchNamespacesScriptsBindingsGetResultItemBrowserType =
   "browser";
 export const DispatchNamespacesScriptsBindingsGetResultItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -1802,8 +1799,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemBrowser =
   }) as any as S.Schema<DispatchNamespacesScriptsBindingsGetResultItemBrowser>;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemD1Type = "d1";
-export const DispatchNamespacesScriptsBindingsGetResultItemD1Type =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsBindingsGetResultItemD1Type = S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -1830,7 +1826,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemD1 =
 export type DispatchNamespacesScriptsBindingsGetResultItemDataBlobType =
   "data_blob";
 export const DispatchNamespacesScriptsBindingsGetResultItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -1854,7 +1850,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemDataBlob =
 export type DispatchNamespacesScriptsBindingsGetResultItemDispatchNamespaceType =
   "dispatch_namespace";
 export const DispatchNamespacesScriptsBindingsGetResultItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemDispatchNamespaceOutboundParamsItem {
   /** Name of the parameter. */
@@ -1952,7 +1948,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemDispatchNamespace =
 export type DispatchNamespacesScriptsBindingsGetResultItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const DispatchNamespacesScriptsBindingsGetResultItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -1991,7 +1987,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemDurableObjectNamespac
 export type DispatchNamespacesScriptsBindingsGetResultItemHyperdriveType =
   "hyperdrive";
 export const DispatchNamespacesScriptsBindingsGetResultItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -2015,7 +2011,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemHyperdrive =
 export type DispatchNamespacesScriptsBindingsGetResultItemInheritType =
   "inherit";
 export const DispatchNamespacesScriptsBindingsGetResultItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemInherit {
   /** The name of the inherited binding. */
@@ -2041,7 +2037,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemInherit =
 
 export type DispatchNamespacesScriptsBindingsGetResultItemImagesType = "images";
 export const DispatchNamespacesScriptsBindingsGetResultItemImagesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemImages {
   /** A JavaScript variable name for the binding. */
@@ -2060,8 +2056,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemImages =
   }) as any as S.Schema<DispatchNamespacesScriptsBindingsGetResultItemImages>;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemJsonType = "json";
-export const DispatchNamespacesScriptsBindingsGetResultItemJsonType =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsBindingsGetResultItemJsonType = S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemJson {
   /** JSON data to use. */
@@ -2085,7 +2080,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemJson =
 export type DispatchNamespacesScriptsBindingsGetResultItemKVNamespaceType =
   "kv_namespace";
 export const DispatchNamespacesScriptsBindingsGetResultItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -2107,8 +2102,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemKVNamespace =
   }) as any as S.Schema<DispatchNamespacesScriptsBindingsGetResultItemKVNamespace>;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemMediaType = "media";
-export const DispatchNamespacesScriptsBindingsGetResultItemMediaType =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsBindingsGetResultItemMediaType = S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -2129,7 +2123,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemMedia =
 export type DispatchNamespacesScriptsBindingsGetResultItemMTLSCertificateType =
   "mtls_certificate";
 export const DispatchNamespacesScriptsBindingsGetResultItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -2153,7 +2147,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemMTLSCertificate =
 export type DispatchNamespacesScriptsBindingsGetResultItemPlainTextType =
   "plain_text";
 export const DispatchNamespacesScriptsBindingsGetResultItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -2177,7 +2171,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemPlainText =
 export type DispatchNamespacesScriptsBindingsGetResultItemPipelinesType =
   "pipelines";
 export const DispatchNamespacesScriptsBindingsGetResultItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -2199,8 +2193,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemPipelines =
   }) as any as S.Schema<DispatchNamespacesScriptsBindingsGetResultItemPipelines>;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemQueueType = "queue";
-export const DispatchNamespacesScriptsBindingsGetResultItemQueueType =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsBindingsGetResultItemQueueType = S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -2245,7 +2238,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemRatelimitSimple =
 export type DispatchNamespacesScriptsBindingsGetResultItemRatelimitType =
   "ratelimit";
 export const DispatchNamespacesScriptsBindingsGetResultItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -2272,14 +2265,14 @@ export const DispatchNamespacesScriptsBindingsGetResultItemRatelimit =
 export type DispatchNamespacesScriptsBindingsGetResultItemR2BucketType =
   "r2_bucket";
 export const DispatchNamespacesScriptsBindingsGetResultItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const DispatchNamespacesScriptsBindingsGetResultItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -2310,7 +2303,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemR2Bucket =
 export type DispatchNamespacesScriptsBindingsGetResultItemSecretTextType =
   "secret_text";
 export const DispatchNamespacesScriptsBindingsGetResultItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -2334,7 +2327,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemSecretText =
 export type DispatchNamespacesScriptsBindingsGetResultItemSendEmailType =
   "send_email";
 export const DispatchNamespacesScriptsBindingsGetResultItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -2388,7 +2381,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemSendEmail =
 export type DispatchNamespacesScriptsBindingsGetResultItemServiceType =
   "service";
 export const DispatchNamespacesScriptsBindingsGetResultItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemService {
   /** A JavaScript variable name for the binding. */
@@ -2418,7 +2411,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemService =
 export type DispatchNamespacesScriptsBindingsGetResultItemTextBlobType =
   "text_blob";
 export const DispatchNamespacesScriptsBindingsGetResultItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -2442,7 +2435,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemTextBlob =
 export type DispatchNamespacesScriptsBindingsGetResultItemVectorizeType =
   "vectorize";
 export const DispatchNamespacesScriptsBindingsGetResultItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -2466,7 +2459,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemVectorize =
 export type DispatchNamespacesScriptsBindingsGetResultItemVersionMetadataType =
   "version_metadata";
 export const DispatchNamespacesScriptsBindingsGetResultItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -2487,7 +2480,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemVersionMetadata =
 export type DispatchNamespacesScriptsBindingsGetResultItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const DispatchNamespacesScriptsBindingsGetResultItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -2515,7 +2508,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemSecretsStoreSecret =
 export type DispatchNamespacesScriptsBindingsGetResultItemFlagshipType =
   "flagship";
 export const DispatchNamespacesScriptsBindingsGetResultItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -2542,12 +2535,12 @@ export type DispatchNamespacesScriptsBindingsGetResultItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsBindingsGetResultItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemSecretKeyType =
   "secret_key";
 export const DispatchNamespacesScriptsBindingsGetResultItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemSecretKeyUsagesItem =
   | "encrypt"
@@ -2559,7 +2552,7 @@ export type DispatchNamespacesScriptsBindingsGetResultItemSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsBindingsGetResultItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsBindingsGetResultItemSecretKeyUsagesList =
   Array<DispatchNamespacesScriptsBindingsGetResultItemSecretKeyUsagesItem>;
@@ -2602,7 +2595,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemSecretKey =
 export type DispatchNamespacesScriptsBindingsGetResultItemWorkflowType =
   "workflow";
 export const DispatchNamespacesScriptsBindingsGetResultItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -2632,7 +2625,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemWorkflow =
 export type DispatchNamespacesScriptsBindingsGetResultItemWasmModuleType =
   "wasm_module";
 export const DispatchNamespacesScriptsBindingsGetResultItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -2656,7 +2649,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemWasmModule =
 export type DispatchNamespacesScriptsBindingsGetResultItemVPCServiceType =
   "vpc_service";
 export const DispatchNamespacesScriptsBindingsGetResultItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -2680,7 +2673,7 @@ export const DispatchNamespacesScriptsBindingsGetResultItemVPCService =
 export type DispatchNamespacesScriptsBindingsGetResultItemVPCNetworkType =
   "vpc_network";
 export const DispatchNamespacesScriptsBindingsGetResultItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsBindingsGetResultItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -2890,8 +2883,7 @@ export const GetDispatchNamespaceScriptSecretRequest = /*@__PURE__*/ S.suspend(
 
 export type DispatchNamespacesScriptsSecretsGetResultSecretTextType =
   "secret_text";
-export const DispatchNamespacesScriptsSecretsGetResultSecretTextType =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsSecretsGetResultSecretTextType = S.String;
 
 export interface DispatchNamespacesScriptsSecretsGetResultSecretText {
   /** A JavaScript variable name for the binding. */
@@ -2918,12 +2910,11 @@ export type DispatchNamespacesScriptsSecretsGetResultSecretKeyFormat =
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsSecretsGetResultSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsGetResultSecretKeyType =
   "secret_key";
-export const DispatchNamespacesScriptsSecretsGetResultSecretKeyType =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsSecretsGetResultSecretKeyType = S.String;
 
 export type DispatchNamespacesScriptsSecretsGetResultSecretKeyUsagesItem =
   | "encrypt"
@@ -2935,7 +2926,7 @@ export type DispatchNamespacesScriptsSecretsGetResultSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsSecretsGetResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsGetResultSecretKeyUsagesList =
   Array<DispatchNamespacesScriptsSecretsGetResultSecretKeyUsagesItem>;
@@ -3028,7 +3019,7 @@ export const GetDispatchNamespaceScriptSettingRequest = /*@__PURE__*/ S.suspend(
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemAIType =
   "ai";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -3049,7 +3040,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAI =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearchType =
   "ai_search";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -3077,7 +3068,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearch =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -3102,7 +3093,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAISearchNam
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -3127,7 +3118,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAnalyticsEn
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemAssetsType =
   "assets";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -3149,7 +3140,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemAssets =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemBrowserType =
   "browser";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -3171,7 +3162,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemBrowser =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemD1Type =
   "d1";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -3198,7 +3189,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemD1 =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemDataBlobType =
   "data_blob";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -3223,7 +3214,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemDataBlob =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemDispatchNamespaceOutboundParamsItem =
   DispatchNamespacesScriptsBindingsGetResultItemDispatchNamespaceOutboundParamsItem;
@@ -3297,7 +3288,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemDispatchNam
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -3336,7 +3327,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemDurableObje
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemHyperdriveType =
   "hyperdrive";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -3361,7 +3352,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemHyperdrive 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemInheritType =
   "inherit";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -3389,7 +3380,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemInherit =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemImagesType =
   "images";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -3411,7 +3402,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemImages =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemJsonType =
   "json";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemJson {
   /** JSON data to use. */
@@ -3435,7 +3426,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemJson =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemKVNamespaceType =
   "kv_namespace";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -3460,7 +3451,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemKVNamespace
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemMediaType =
   "media";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -3481,7 +3472,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemMedia =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -3506,7 +3497,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemMTLSCertifi
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemPlainTextType =
   "plain_text";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -3531,7 +3522,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemPlainText =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemPipelinesType =
   "pipelines";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -3556,7 +3547,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemPipelines =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemQueueType =
   "queue";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -3585,7 +3576,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemRatelimitSi
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemRatelimitType =
   "ratelimit";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -3613,14 +3604,14 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemRatelimit =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemR2BucketType =
   "r2_bucket";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -3652,7 +3643,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemR2Bucket =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretTextType =
   "secret_text";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -3677,7 +3668,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretText 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSendEmailType =
   "send_email";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -3732,7 +3723,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSendEmail =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemServiceType =
   "service";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -3763,7 +3754,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemService =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemTextBlobType =
   "text_blob";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -3788,7 +3779,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemTextBlob =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemVectorizeType =
   "vectorize";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -3813,7 +3804,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemVectorize =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemVersionMetadataType =
   "version_metadata";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -3835,7 +3826,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemVersionMeta
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -3863,7 +3854,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretsStor
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemFlagshipType =
   "flagship";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -3891,12 +3882,12 @@ export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyFor
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyType =
   "secret_key";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -3908,7 +3899,7 @@ export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyUsa
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyUsagesList =
   Array<DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKeyUsagesItem>;
@@ -3954,7 +3945,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemSecretKey =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemWorkflowType =
   "workflow";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -3985,7 +3976,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemWorkflow =
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemWasmModuleType =
   "wasm_module";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -4010,7 +4001,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemWasmModule 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemVPCServiceType =
   "vpc_service";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -4035,7 +4026,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemVPCService 
 export type DispatchNamespacesScriptsSettingsGetResponseBindingsItemVPCNetworkType =
   "vpc_network";
 export const DispatchNamespacesScriptsSettingsGetResponseBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -4174,7 +4165,7 @@ export type DispatchNamespacesScriptsSettingsGetResponseExportsValueType =
   | "worker"
   | "durable-object";
 export const DispatchNamespacesScriptsSettingsGetResponseExportsValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseExportsValueCache {
   /** Whether caching is enabled for this entrypoint. */
@@ -4543,7 +4534,7 @@ export type DispatchNamespacesScriptsSettingsGetResponseObservabilityTracesPropa
   | "authenticated"
   | "accept";
 export const DispatchNamespacesScriptsSettingsGetResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -4614,7 +4605,7 @@ export const DispatchNamespacesScriptsSettingsGetResponseObservability =
 export type DispatchNamespacesScriptsSettingsGetResponsePlacementModeMode =
   "smart";
 export const DispatchNamespacesScriptsSettingsGetResponsePlacementModeMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponsePlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -4663,7 +4654,7 @@ export const DispatchNamespacesScriptsSettingsGetResponsePlacementHost =
 export type DispatchNamespacesScriptsSettingsGetResponsePlacementCase4Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsGetResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -4684,7 +4675,7 @@ export const DispatchNamespacesScriptsSettingsGetResponsePlacementCase4 =
 export type DispatchNamespacesScriptsSettingsGetResponsePlacementCase5Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsGetResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -4705,7 +4696,7 @@ export const DispatchNamespacesScriptsSettingsGetResponsePlacementCase5 =
 export type DispatchNamespacesScriptsSettingsGetResponsePlacementCase6Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsGetResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsGetResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -4726,7 +4717,7 @@ export const DispatchNamespacesScriptsSettingsGetResponsePlacementCase6 =
 export type DispatchNamespacesScriptsSettingsGetResponsePlacementCase7Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsGetResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsGetResponsePlacementCase7TargetItemRegion =
   DispatchNamespacesScriptsGetResponseScriptPlacementCase7TargetItemRegion;
@@ -4822,8 +4813,7 @@ export type DispatchNamespacesScriptsSettingsGetResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const DispatchNamespacesScriptsSettingsGetResponseUsageModel =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsSettingsGetResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDispatchNamespaceScriptSettingResponse {
@@ -5015,7 +5005,7 @@ export const ListDispatchNamespaceScriptSecretsRequest =
 export type DispatchNamespacesScriptsSecretsListResultItemSecretTextType =
   "secret_text";
 export const DispatchNamespacesScriptsSecretsListResultItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSecretsListResultItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -5042,12 +5032,12 @@ export type DispatchNamespacesScriptsSecretsListResultItemSecretKeyFormat =
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsSecretsListResultItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsListResultItemSecretKeyType =
   "secret_key";
 export const DispatchNamespacesScriptsSecretsListResultItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsListResultItemSecretKeyUsagesItem =
   | "encrypt"
@@ -5059,7 +5049,7 @@ export type DispatchNamespacesScriptsSecretsListResultItemSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsSecretsListResultItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsListResultItemSecretKeyUsagesList =
   Array<DispatchNamespacesScriptsSecretsListResultItemSecretKeyUsagesItem>;
@@ -5216,7 +5206,7 @@ export const PatchDispatchNamespaceScriptSettingRequest =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemAIType =
   "ai";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAIType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemAI {
   /** A JavaScript variable name for the binding. */
@@ -5237,7 +5227,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAI =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearchType =
   "ai_search";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearchType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearch {
   /** The user-chosen instance name. Must exist at deploy time. The worker can search, chat, update, and manage items/jobs on this instance. */
@@ -5265,7 +5255,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearch =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearchNamespaceType =
   "ai_search_namespace";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearchNamespace {
   /** A JavaScript variable name for the binding. */
@@ -5290,7 +5280,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAISearchNa
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemAnalyticsEngineType =
   "analytics_engine";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAnalyticsEngineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemAnalyticsEngine {
   /** The name of the dataset to bind to. */
@@ -5315,7 +5305,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAnalyticsE
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemAssetsType =
   "assets";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAssetsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemAssets {
   /** A JavaScript variable name for the binding. */
@@ -5337,7 +5327,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemAssets =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemBrowserType =
   "browser";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemBrowserType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemBrowser {
   /** A JavaScript variable name for the binding. */
@@ -5359,7 +5349,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemBrowser =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemD1Type =
   "d1";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemD1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemD1 {
   /** Identifier of the D1 database to bind to. */
@@ -5386,7 +5376,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemD1 =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemDataBlobType =
   "data_blob";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemDataBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemDataBlob {
   /** A JavaScript variable name for the binding. */
@@ -5411,7 +5401,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemDataBlob =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemDispatchNamespaceType =
   "dispatch_namespace";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemDispatchNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemDispatchNamespaceOutboundParamsItem =
   DispatchNamespacesScriptsBindingsGetResultItemDispatchNamespaceOutboundParamsItem;
@@ -5485,7 +5475,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemDispatchNa
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemDurableObjectNamespaceType =
   "durable_object_namespace";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemDurableObjectNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemDurableObjectNamespace {
   /** A JavaScript variable name for the binding. */
@@ -5524,7 +5514,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemDurableObj
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemHyperdriveType =
   "hyperdrive";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemHyperdriveType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemHyperdrive {
   /** Identifier of the Hyperdrive connection to bind to. */
@@ -5549,7 +5539,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemHyperdrive
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemInheritType =
   "inherit";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemInheritType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemInherit {
   /** The name of the inherited binding. */
@@ -5577,7 +5567,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemInherit =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemImagesType =
   "images";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemImagesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemImages {
   /** A JavaScript variable name for the binding. */
@@ -5599,7 +5589,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemImages =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemJsonType =
   "json";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemJsonType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemJson {
   /** JSON data to use. */
@@ -5623,7 +5613,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemJson =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemKVNamespaceType =
   "kv_namespace";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemKVNamespaceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemKVNamespace {
   /** A JavaScript variable name for the binding. */
@@ -5648,7 +5638,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemKVNamespac
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemMediaType =
   "media";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemMediaType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemMedia {
   /** A JavaScript variable name for the binding. */
@@ -5670,7 +5660,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemMedia =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemMTLSCertificateType =
   "mtls_certificate";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemMTLSCertificateType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemMTLSCertificate {
   /** Identifier of the certificate to bind to. */
@@ -5695,7 +5685,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemMTLSCertif
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemPlainTextType =
   "plain_text";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemPlainTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemPlainText {
   /** A JavaScript variable name for the binding. */
@@ -5720,7 +5710,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemPlainText 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemPipelinesType =
   "pipelines";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemPipelinesType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemPipelines {
   /** A JavaScript variable name for the binding. */
@@ -5745,7 +5735,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemPipelines 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemQueueType =
   "queue";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemQueueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemQueue {
   /** A JavaScript variable name for the binding. */
@@ -5775,7 +5765,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemRatelimitS
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemRatelimitType =
   "ratelimit";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemRatelimitType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemRatelimit {
   /** A JavaScript variable name for the binding. */
@@ -5803,14 +5793,14 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemRatelimit 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemR2BucketType =
   "r2_bucket";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemR2BucketType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemR2BucketJurisdiction =
   | "eu"
   | "fedramp"
   | "fedramp-high";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemR2BucketJurisdiction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemR2Bucket {
   /** R2 bucket to bind to. */
@@ -5842,7 +5832,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemR2Bucket =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretTextType =
   "secret_text";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretText {
   /** A JavaScript variable name for the binding. */
@@ -5867,7 +5857,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretText
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSendEmailType =
   "send_email";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSendEmailType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSendEmailAllowedDestinationAddressesList =
   Array<string>;
@@ -5922,7 +5912,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSendEmail 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemServiceType =
   "service";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemService {
   /** A JavaScript variable name for the binding. */
@@ -5953,7 +5943,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemService =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemTextBlobType =
   "text_blob";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemTextBlobType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemTextBlob {
   /** A JavaScript variable name for the binding. */
@@ -5978,7 +5968,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemTextBlob =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemVectorizeType =
   "vectorize";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemVectorizeType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemVectorize {
   /** Name of the Vectorize index to bind to. */
@@ -6003,7 +5993,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemVectorize 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemVersionMetadataType =
   "version_metadata";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemVersionMetadataType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemVersionMetadata {
   /** A JavaScript variable name for the binding. */
@@ -6025,7 +6015,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemVersionMet
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretsStoreSecretType =
   "secrets_store_secret";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretsStoreSecretType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretsStoreSecret {
   /** A JavaScript variable name for the binding. */
@@ -6053,7 +6043,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretsSto
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemFlagshipType =
   "flagship";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemFlagshipType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemFlagship {
   /** ID of the Flagship app to bind to for feature flag evaluation. */
@@ -6081,12 +6071,12 @@ export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyFo
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyType =
   "secret_key";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyUsagesItem =
   | "encrypt"
@@ -6098,7 +6088,7 @@ export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyUs
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyUsagesList =
   Array<DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKeyUsagesItem>;
@@ -6144,7 +6134,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemSecretKey 
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemWorkflowType =
   "workflow";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemWorkflowType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemWorkflow {
   /** A JavaScript variable name for the binding. */
@@ -6175,7 +6165,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemWorkflow =
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemWasmModuleType =
   "wasm_module";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemWasmModuleType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemWasmModule {
   /** A JavaScript variable name for the binding. */
@@ -6200,7 +6190,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemWasmModule
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemVPCServiceType =
   "vpc_service";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemVPCServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemVPCService {
   /** A JavaScript variable name for the binding. */
@@ -6225,7 +6215,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemVPCService
 export type DispatchNamespacesScriptsSettingsEditResponseBindingsItemVPCNetworkType =
   "vpc_network";
 export const DispatchNamespacesScriptsSettingsEditResponseBindingsItemVPCNetworkType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseBindingsItemVPCNetwork {
   /** A JavaScript variable name for the binding. */
@@ -6364,7 +6354,7 @@ export type DispatchNamespacesScriptsSettingsEditResponseExportsValueType =
   | "worker"
   | "durable-object";
 export const DispatchNamespacesScriptsSettingsEditResponseExportsValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponseExportsValueCache =
   DispatchNamespacesScriptsSettingsGetResponseExportsValueCache;
@@ -6693,7 +6683,7 @@ export type DispatchNamespacesScriptsSettingsEditResponseObservabilityTracesProp
   | "authenticated"
   | "accept";
 export const DispatchNamespacesScriptsSettingsEditResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -6766,7 +6756,7 @@ export const DispatchNamespacesScriptsSettingsEditResponseObservability =
 export type DispatchNamespacesScriptsSettingsEditResponsePlacementModeMode =
   "smart";
 export const DispatchNamespacesScriptsSettingsEditResponsePlacementModeMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponsePlacementMode {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -6799,7 +6789,7 @@ export const DispatchNamespacesScriptsSettingsEditResponsePlacementHost =
 export type DispatchNamespacesScriptsSettingsEditResponsePlacementCase4Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsEditResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -6820,7 +6810,7 @@ export const DispatchNamespacesScriptsSettingsEditResponsePlacementCase4 =
 export type DispatchNamespacesScriptsSettingsEditResponsePlacementCase5Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsEditResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -6841,7 +6831,7 @@ export const DispatchNamespacesScriptsSettingsEditResponsePlacementCase5 =
 export type DispatchNamespacesScriptsSettingsEditResponsePlacementCase6Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsEditResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSettingsEditResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -6862,7 +6852,7 @@ export const DispatchNamespacesScriptsSettingsEditResponsePlacementCase6 =
 export type DispatchNamespacesScriptsSettingsEditResponsePlacementCase7Mode =
   "targeted";
 export const DispatchNamespacesScriptsSettingsEditResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSettingsEditResponsePlacementCase7TargetItemRegion =
   DispatchNamespacesScriptsGetResponseScriptPlacementCase7TargetItemRegion;
@@ -6958,8 +6948,7 @@ export type DispatchNamespacesScriptsSettingsEditResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const DispatchNamespacesScriptsSettingsEditResponseUsageModel =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsSettingsEditResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchDispatchNamespaceScriptSettingResponse {
@@ -7044,8 +7033,7 @@ export const PatchDispatchNamespaceScriptSettingResponse =
   }) as any as S.Schema<PatchDispatchNamespaceScriptSettingResponse>;
 
 export type DispatchNamespacesScriptsUpdateRequestBindingsInherit = "strict";
-export const DispatchNamespacesScriptsUpdateRequestBindingsInherit =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsUpdateRequestBindingsInherit = S.String;
 
 export type PutDispatchNamespaceScriptMetadataStringList = Array<string>;
 export const PutDispatchNamespaceScriptMetadataStringList =
@@ -8405,7 +8393,7 @@ export type DispatchNamespacesScriptsUpdateResponseObservabilityTracesPropagatio
   | "authenticated"
   | "accept";
 export const DispatchNamespacesScriptsUpdateResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -8472,14 +8460,14 @@ export const DispatchNamespacesScriptsUpdateResponseObservability =
 
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase0Mode = "smart";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase0Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase0Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase0Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase0 {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -8509,7 +8497,7 @@ export type DispatchNamespacesScriptsUpdateResponsePlacementCase1Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase1Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase1 {
   /** Cloud region for targeted placement in format 'provider:region'. */
@@ -8539,7 +8527,7 @@ export type DispatchNamespacesScriptsUpdateResponsePlacementCase2Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase2Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase2 {
   /** HTTP hostname for targeted placement. */
@@ -8569,7 +8557,7 @@ export type DispatchNamespacesScriptsUpdateResponsePlacementCase3Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase3Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase3 {
   /** TCP host and port for targeted placement. */
@@ -8597,14 +8585,14 @@ export const DispatchNamespacesScriptsUpdateResponsePlacementCase3 =
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase4Mode =
   "targeted";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase4Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase4Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -8635,14 +8623,14 @@ export const DispatchNamespacesScriptsUpdateResponsePlacementCase4 =
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase5Mode =
   "targeted";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase5Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase5Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -8673,14 +8661,14 @@ export const DispatchNamespacesScriptsUpdateResponsePlacementCase5 =
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase6Mode =
   "targeted";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase6Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase6Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -8711,7 +8699,7 @@ export const DispatchNamespacesScriptsUpdateResponsePlacementCase6 =
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase7Mode =
   "targeted";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsUpdateResponsePlacementCase7TargetItemRegion =
   DispatchNamespacesScriptsGetResponseScriptPlacementCase7TargetItemRegion;
@@ -8749,7 +8737,7 @@ export type DispatchNamespacesScriptsUpdateResponsePlacementCase7Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsUpdateResponsePlacementCase7Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsUpdateResponsePlacementCase7 {
   /** Targeted placement mode. */
@@ -8803,15 +8791,13 @@ export const DispatchNamespacesScriptsUpdateResponsePlacement =
 export type DispatchNamespacesScriptsUpdateResponsePlacementMode =
   | "smart"
   | "targeted";
-export const DispatchNamespacesScriptsUpdateResponsePlacementMode =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsUpdateResponsePlacementMode = S.String;
 
 export type DispatchNamespacesScriptsUpdateResponsePlacementStatus =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
-export const DispatchNamespacesScriptsUpdateResponsePlacementStatus =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsUpdateResponsePlacementStatus = S.String;
 
 export type DispatchNamespacesScriptsUpdateResponseTagsList = Array<string>;
 export const DispatchNamespacesScriptsUpdateResponseTagsList =
@@ -8835,8 +8821,7 @@ export type DispatchNamespacesScriptsUpdateResponseUsageModel =
   | "standard"
   | "bundled"
   | "unbound";
-export const DispatchNamespacesScriptsUpdateResponseUsageModel =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsUpdateResponseUsageModel = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutDispatchNamespaceScriptResponse {
@@ -9094,7 +9079,7 @@ export type DispatchNamespacesScriptsContentUpdateResponseObservabilityTracesPro
   | "authenticated"
   | "accept";
 export const DispatchNamespacesScriptsContentUpdateResponseObservabilityTracesPropagationPolicy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponseObservabilityTraces {
   /** A list of destinations where traces will be exported to. */
@@ -9167,14 +9152,14 @@ export const DispatchNamespacesScriptsContentUpdateResponseObservability =
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase0Mode =
   "smart";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase0Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase0Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase0Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase0 {
   /** Enables [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement). */
@@ -9206,7 +9191,7 @@ export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase1Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase1Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase1 {
   /** Cloud region for targeted placement in format 'provider:region'. */
@@ -9238,7 +9223,7 @@ export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase2Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase2Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase2 {
   /** HTTP hostname for targeted placement. */
@@ -9270,7 +9255,7 @@ export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase3Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase3Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase3 {
   /** TCP host and port for targeted placement. */
@@ -9300,14 +9285,14 @@ export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase3 =
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase4Mode =
   "targeted";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase4Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase4Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase4Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase4 {
   /** Targeted placement mode. */
@@ -9340,14 +9325,14 @@ export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase4 =
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase5Mode =
   "targeted";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase5Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase5Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase5Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase5 {
   /** HTTP hostname for targeted placement. */
@@ -9380,14 +9365,14 @@ export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase5 =
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase6Mode =
   "targeted";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase6Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase6Status =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase6Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase6 {
   /** TCP host and port for targeted placement. */
@@ -9420,7 +9405,7 @@ export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase6 =
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase7Mode =
   "targeted";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase7Mode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase7TargetItemRegion =
   DispatchNamespacesScriptsGetResponseScriptPlacementCase7TargetItemRegion;
@@ -9458,7 +9443,7 @@ export type DispatchNamespacesScriptsContentUpdateResponsePlacementCase7Status =
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementCase7Status =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsContentUpdateResponsePlacementCase7 {
   /** Targeted placement mode. */
@@ -9516,14 +9501,14 @@ export type DispatchNamespacesScriptsContentUpdateResponsePlacementMode =
   | "smart"
   | "targeted";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsContentUpdateResponsePlacementStatus =
   | "SUCCESS"
   | "UNSUPPORTED_APPLICATION"
   | "INSUFFICIENT_INVOCATIONS";
 export const DispatchNamespacesScriptsContentUpdateResponsePlacementStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsContentUpdateResponseTagsList =
   Array<string>;
@@ -9549,7 +9534,7 @@ export type DispatchNamespacesScriptsContentUpdateResponseUsageModel =
   | "bundled"
   | "unbound";
 export const DispatchNamespacesScriptsContentUpdateResponseUsageModel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutDispatchNamespaceScriptContentResponse {
@@ -9673,16 +9658,14 @@ export const PutDispatchNamespaceScriptContentResponse =
 export type DispatchNamespacesScriptsSecretsUpdateRequestType =
   | "secret_text"
   | "secret_key";
-export const DispatchNamespacesScriptsSecretsUpdateRequestType =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsSecretsUpdateRequestType = S.String;
 
 export type DispatchNamespacesScriptsSecretsUpdateRequestFormat =
   | "raw"
   | "pkcs8"
   | "spki"
   | "jwk";
-export const DispatchNamespacesScriptsSecretsUpdateRequestFormat =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsSecretsUpdateRequestFormat = S.String;
 
 export type DispatchNamespacesScriptsSecretsUpdateRequestUsagesItem =
   | "encrypt"
@@ -9693,8 +9676,7 @@ export type DispatchNamespacesScriptsSecretsUpdateRequestUsagesItem =
   | "deriveBits"
   | "wrapKey"
   | "unwrapKey";
-export const DispatchNamespacesScriptsSecretsUpdateRequestUsagesItem =
-  /*@__PURE__*/ S.String;
+export const DispatchNamespacesScriptsSecretsUpdateRequestUsagesItem = S.String;
 
 export type DispatchNamespacesScriptsSecretsUpdateRequestUsagesList = Array<
   DispatchNamespacesScriptsSecretsUpdateRequestUsagesItem | (string & {})
@@ -9760,7 +9742,7 @@ export const PutDispatchNamespaceScriptSecretRequest = /*@__PURE__*/ S.suspend(
 export type DispatchNamespacesScriptsSecretsUpdateResultSecretTextType =
   "secret_text";
 export const DispatchNamespacesScriptsSecretsUpdateResultSecretTextType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DispatchNamespacesScriptsSecretsUpdateResultSecretText {
   /** A JavaScript variable name for the binding. */
@@ -9787,12 +9769,12 @@ export type DispatchNamespacesScriptsSecretsUpdateResultSecretKeyFormat =
   | "spki"
   | "jwk";
 export const DispatchNamespacesScriptsSecretsUpdateResultSecretKeyFormat =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsUpdateResultSecretKeyType =
   "secret_key";
 export const DispatchNamespacesScriptsSecretsUpdateResultSecretKeyType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsUpdateResultSecretKeyUsagesItem =
   | "encrypt"
@@ -9804,7 +9786,7 @@ export type DispatchNamespacesScriptsSecretsUpdateResultSecretKeyUsagesItem =
   | "wrapKey"
   | "unwrapKey";
 export const DispatchNamespacesScriptsSecretsUpdateResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DispatchNamespacesScriptsSecretsUpdateResultSecretKeyUsagesList =
   Array<DispatchNamespacesScriptsSecretsUpdateResultSecretKeyUsagesItem>;

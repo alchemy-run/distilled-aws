@@ -88,7 +88,7 @@ export type EmailProTaskFunctionEnum =
   | "unknown"
   | "unsuspendAccount"
   | "unsuspendService";
-export const EmailProTaskFunctionEnum = /*@__PURE__*/ S.String;
+export const EmailProTaskFunctionEnum = S.String;
 
 /** Task status */
 export type EmailProTaskStatusEnum =
@@ -97,7 +97,7 @@ export type EmailProTaskStatusEnum =
   | "done"
   | "error"
   | "todo";
-export const EmailProTaskStatusEnum = /*@__PURE__*/ S.String;
+export const EmailProTaskStatusEnum = S.String;
 
 /** Organization task details */
 export interface EmailProTask {
@@ -240,7 +240,7 @@ export const CreateEmailProChangeContactResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Domain type */
 export type EmailProDomainTypeEnum = "authoritative" | "nonAuthoritative";
-export const EmailProDomainTypeEnum = /*@__PURE__*/ S.String;
+export const EmailProDomainTypeEnum = S.String;
 
 export interface CreateEmailProDomainRequest {
   /** The internal name of your pro organization */
@@ -674,7 +674,7 @@ export const IamResourceMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Service Offer name */
 export type EmailProServiceOfferEnum = "emailpro";
-export const EmailProServiceOfferEnum = /*@__PURE__*/ S.String;
+export const EmailProServiceOfferEnum = S.String;
 
 /** Spam and Antyvirus configuration */
 export interface EmailProSpamAndVirusConfiguration {
@@ -716,7 +716,7 @@ export type EmailProServiceStateEnum =
   | "reopening"
   | "suspended"
   | "suspending";
-export const EmailProServiceStateEnum = /*@__PURE__*/ S.String;
+export const EmailProServiceStateEnum = S.String;
 
 /** Email pro service */
 export interface EmailProServiceNativeWithIAM {
@@ -808,7 +808,7 @@ export const GetEmailProAccountRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Mailing filter options availlable */
 export type EmailProMailingFilterEnum = "vaderetro";
-export const EmailProMailingFilterEnum = /*@__PURE__*/ S.String;
+export const EmailProMailingFilterEnum = S.String;
 
 /** Enable or disable anti-virus and anti-spam */
 export type EmailProAccountNativeMailingFilterList =
@@ -819,7 +819,7 @@ export const EmailProAccountNativeMailingFilterList = /*@__PURE__*/ S.Array(
 
 /** Renew period */
 export type EmailProRenewPeriodEnum = "monthly" | "yearly";
-export const EmailProRenewPeriodEnum = /*@__PURE__*/ S.String;
+export const EmailProRenewPeriodEnum = S.String;
 
 /** Current object state */
 export type EmailProObjectStateEnum =
@@ -830,7 +830,7 @@ export type EmailProObjectStateEnum =
   | "suspended"
   | "suspending"
   | "unknown";
-export const EmailProObjectStateEnum = /*@__PURE__*/ S.String;
+export const EmailProObjectStateEnum = S.String;
 
 /** Mailbox */
 export interface EmailProAccountNative {
@@ -1262,7 +1262,7 @@ export type EmailProDomainDkimDiagnosticsStateEnum =
   | "error"
   | "inProgress"
   | "toConfigure";
-export const EmailProDomainDkimDiagnosticsStateEnum = /*@__PURE__*/ S.String;
+export const EmailProDomainDkimDiagnosticsStateEnum = S.String;
 
 /** Dkim selectors and DNS configuration state */
 export interface EmailProDomainDkimDiagnostics {
@@ -1452,7 +1452,7 @@ export const GetEmailProDomainDkimRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Record type of the customer record */
 export type EmailProDkimRecordTypeEnum = "CNAME";
-export const EmailProDkimRecordTypeEnum = /*@__PURE__*/ S.String;
+export const EmailProDkimRecordTypeEnum = S.String;
 
 /** DKIM status */
 export type EmailProDkimStatusEnum =
@@ -1463,7 +1463,7 @@ export type EmailProDkimStatusEnum =
   | "ready"
   | "todo"
   | "waitingRecord";
-export const EmailProDkimStatusEnum = /*@__PURE__*/ S.String;
+export const EmailProDkimStatusEnum = S.String;
 
 /** DKIM for a domain */
 export interface EmailProDkim {
@@ -1580,7 +1580,7 @@ export type EmailProServerStateEnum =
   | "configurationPending"
   | "notConfigured"
   | "ok";
-export const EmailProServerStateEnum = /*@__PURE__*/ S.String;
+export const EmailProServerStateEnum = S.String;
 
 /** Server */
 export interface EmailProServer {
@@ -1682,7 +1682,7 @@ export type ServiceRenewalTypeEnum =
   | "manual"
   | "oneShot"
   | "option";
-export const ServiceRenewalTypeEnum = /*@__PURE__*/ S.String;
+export const ServiceRenewalTypeEnum = S.String;
 
 export type ServiceStateEnum =
   | "autorenewInProgress"
@@ -1691,7 +1691,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a Service */
 export interface ServicesService {
@@ -2082,7 +2082,7 @@ export type EmailProDisclaimerAttributeEnum =
   | "Title"
   | "UserLogonName"
   | "ZipCode";
-export const EmailProDisclaimerAttributeEnum = /*@__PURE__*/ S.String;
+export const EmailProDisclaimerAttributeEnum = S.String;
 
 export type ListEmailProDomainDisclaimerAttributeResponseBodyList =
   Array<EmailProDisclaimerAttributeEnum>;

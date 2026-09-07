@@ -68,8 +68,7 @@ export type CreateDeploymentCheckRunResponseBodyCase0Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const CreateDeploymentCheckRunResponseBodyCase0Requires =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase0Requires = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase0Blocks =
   | "build-start"
@@ -77,8 +76,7 @@ export type CreateDeploymentCheckRunResponseBodyCase0Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const CreateDeploymentCheckRunResponseBodyCase0Blocks =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase0Blocks = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase0TargetsList =
   Array<string>;
@@ -91,8 +89,7 @@ export type CreateDeploymentCheckRunResponseBodyCase0Status =
   | "completed"
   | "queued"
   | "running";
-export const CreateDeploymentCheckRunResponseBodyCase0Status =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase0Status = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase0Conclusion =
   | "canceled"
@@ -101,8 +98,7 @@ export type CreateDeploymentCheckRunResponseBodyCase0Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const CreateDeploymentCheckRunResponseBodyCase0Conclusion =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase0Conclusion = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase0OutputMap = {
   [key: string]: unknown | undefined;
@@ -116,7 +112,7 @@ export const CreateDeploymentCheckRunResponseBodyCase0OutputMap =
 export type CreateDeploymentCheckRunResponseBodyCase0SourceCase0Kind =
   "integration";
 export const CreateDeploymentCheckRunResponseBodyCase0SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDeploymentCheckRunResponseBodyCase0SourceCase0 {
   kind: CreateDeploymentCheckRunResponseBodyCase0SourceCase0Kind;
@@ -141,7 +137,7 @@ export const CreateDeploymentCheckRunResponseBodyCase0SourceCase0 =
 export type CreateDeploymentCheckRunResponseBodyCase0SourceCase1Kind =
   "webhook";
 export const CreateDeploymentCheckRunResponseBodyCase0SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDeploymentCheckRunResponseBodyCase0SourceCase1 {
   kind: CreateDeploymentCheckRunResponseBodyCase0SourceCase1Kind;
@@ -160,14 +156,14 @@ export const CreateDeploymentCheckRunResponseBodyCase0SourceCase1 =
 export type CreateDeploymentCheckRunResponseBodyCase0SourceCase2Kind =
   "git-provider";
 export const CreateDeploymentCheckRunResponseBodyCase0SourceCase2Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase0SourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
 export const CreateDeploymentCheckRunResponseBodyCase0SourceCase2Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDeploymentCheckRunResponseBodyCase0SourceCase2 {
   kind: CreateDeploymentCheckRunResponseBodyCase0SourceCase2Kind;
@@ -188,13 +184,13 @@ export const CreateDeploymentCheckRunResponseBodyCase0SourceCase2 =
 export type CreateDeploymentCheckRunResponseBodyCase0SourceCase3SubKind =
   "vercel-native-check";
 export const CreateDeploymentCheckRunResponseBodyCase0SourceCase3SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase0SourceCase3Origin =
   | "api"
   | "platform";
 export const CreateDeploymentCheckRunResponseBodyCase0SourceCase3Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Native Vercel checks — check definition and check run `source`. */
 export interface CreateDeploymentCheckRunResponseBodyCase0SourceCase3 {
@@ -221,7 +217,7 @@ export type CreateDeploymentCheckRunResponseBodyCase0Source =
   | CreateDeploymentCheckRunResponseBodyCase0SourceCase2
   | CreateDeploymentCheckRunResponseBodyCase0SourceCase3;
 export const CreateDeploymentCheckRunResponseBodyCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentCheckRunResponseBodyCase0Source>;
+  S.Unknown as any as S.Schema<CreateDeploymentCheckRunResponseBodyCase0Source>;
 
 /** Check run backed by a project-level `check` definition. */
 export interface CreateDeploymentCheckRunResponseBodyCase0 {
@@ -280,8 +276,7 @@ export type CreateDeploymentCheckRunResponseBodyCase1Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const CreateDeploymentCheckRunResponseBodyCase1Requires =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase1Requires = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase1Blocks =
   | "build-start"
@@ -289,8 +284,7 @@ export type CreateDeploymentCheckRunResponseBodyCase1Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const CreateDeploymentCheckRunResponseBodyCase1Blocks =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase1Blocks = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase1TargetsList =
   Array<string>;
@@ -303,8 +297,7 @@ export type CreateDeploymentCheckRunResponseBodyCase1Status =
   | "completed"
   | "queued"
   | "running";
-export const CreateDeploymentCheckRunResponseBodyCase1Status =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase1Status = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase1Conclusion =
   | "canceled"
@@ -313,8 +306,7 @@ export type CreateDeploymentCheckRunResponseBodyCase1Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const CreateDeploymentCheckRunResponseBodyCase1Conclusion =
-  /*@__PURE__*/ S.String;
+export const CreateDeploymentCheckRunResponseBodyCase1Conclusion = S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase1OutputMap = {
   [key: string]: unknown | undefined;
@@ -328,12 +320,12 @@ export const CreateDeploymentCheckRunResponseBodyCase1OutputMap =
 export type CreateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind =
   "vercel-ci";
 export const CreateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase1SourceCase0Origin =
   "config";
 export const CreateDeploymentCheckRunResponseBodyCase1SourceCase0Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config-driven CI task — check run `source` only (no parent check). */
 export interface CreateDeploymentCheckRunResponseBodyCase1SourceCase0 {
@@ -359,12 +351,12 @@ export const CreateDeploymentCheckRunResponseBodyCase1SourceCase0 =
 export type CreateDeploymentCheckRunResponseBodyCase1SourceCase1SubKind =
   "vercel-ci-sentinel";
 export const CreateDeploymentCheckRunResponseBodyCase1SourceCase1SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDeploymentCheckRunResponseBodyCase1SourceCase1Origin =
   "platform";
 export const CreateDeploymentCheckRunResponseBodyCase1SourceCase1Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** CI sentinel — check run `source` only (no parent check). */
 export interface CreateDeploymentCheckRunResponseBodyCase1SourceCase1 {
@@ -385,7 +377,7 @@ export type CreateDeploymentCheckRunResponseBodyCase1Source =
   | CreateDeploymentCheckRunResponseBodyCase1SourceCase0
   | CreateDeploymentCheckRunResponseBodyCase1SourceCase1;
 export const CreateDeploymentCheckRunResponseBodyCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentCheckRunResponseBodyCase1Source>;
+  S.Unknown as any as S.Schema<CreateDeploymentCheckRunResponseBodyCase1Source>;
 
 /** Vercel CI check run without a parent `check` (no `checkId` field). */
 export interface CreateDeploymentCheckRunResponseBodyCase1 {
@@ -442,7 +434,7 @@ export type CreateDeploymentCheckRunResponseBody =
   | CreateDeploymentCheckRunResponseBodyCase0
   | CreateDeploymentCheckRunResponseBodyCase1;
 export const CreateDeploymentCheckRunResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentCheckRunResponseBody>;
+  S.Unknown as any as S.Schema<CreateDeploymentCheckRunResponseBody>;
 
 export type CreateDeploymentCheckRunResponse =
   CreateDeploymentCheckRunResponseBody;
@@ -456,7 +448,7 @@ export type CreateProjectCheckRequestRequires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const CreateProjectCheckRequestRequires = /*@__PURE__*/ S.String;
+export const CreateProjectCheckRequestRequires = S.String;
 
 export type CreateProjectCheckRequestTargetsList = Array<string>;
 export const CreateProjectCheckRequestTargetsList = /*@__PURE__*/ S.Array(
@@ -469,7 +461,7 @@ export type CreateProjectCheckRequestBlocks =
   | "deployment-alias"
   | "deployment-promotion"
   | "none";
-export const CreateProjectCheckRequestBlocks = /*@__PURE__*/ S.String;
+export const CreateProjectCheckRequestBlocks = S.String;
 
 export interface CreateProjectCheckRequestSourceCase0 {
   kind?: string;
@@ -500,8 +492,7 @@ export const CreateProjectCheckRequestSourceCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateProjectCheckRequestSourceCase1>;
 
 export type CreateProjectCheckRequestSourceCase2Provider = "github";
-export const CreateProjectCheckRequestSourceCase2Provider =
-  /*@__PURE__*/ S.String;
+export const CreateProjectCheckRequestSourceCase2Provider = S.String;
 
 export interface CreateProjectCheckRequestSourceCase2 {
   kind: string;
@@ -524,7 +515,7 @@ export type CreateProjectCheckRequestSource =
   | CreateProjectCheckRequestSourceCase1
   | CreateProjectCheckRequestSourceCase2;
 export const CreateProjectCheckRequestSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateProjectCheckRequestSource>;
+  S.Unknown as any as S.Schema<CreateProjectCheckRequestSource>;
 
 export interface CreateProjectCheckRequest {
   projectIdOrName: string;
@@ -567,10 +558,10 @@ export type CreateProjectCheckResponseRequires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const CreateProjectCheckResponseRequires = /*@__PURE__*/ S.String;
+export const CreateProjectCheckResponseRequires = S.String;
 
 export type CreateProjectCheckResponseSourceCase0Kind = "integration";
-export const CreateProjectCheckResponseSourceCase0Kind = /*@__PURE__*/ S.String;
+export const CreateProjectCheckResponseSourceCase0Kind = S.String;
 
 export interface CreateProjectCheckResponseSourceCase0 {
   kind: CreateProjectCheckResponseSourceCase0Kind;
@@ -593,7 +584,7 @@ export const CreateProjectCheckResponseSourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateProjectCheckResponseSourceCase0>;
 
 export type CreateProjectCheckResponseSourceCase1Kind = "webhook";
-export const CreateProjectCheckResponseSourceCase1Kind = /*@__PURE__*/ S.String;
+export const CreateProjectCheckResponseSourceCase1Kind = S.String;
 
 export interface CreateProjectCheckResponseSourceCase1 {
   kind: CreateProjectCheckResponseSourceCase1Kind;
@@ -610,14 +601,13 @@ export const CreateProjectCheckResponseSourceCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateProjectCheckResponseSourceCase1>;
 
 export type CreateProjectCheckResponseSourceCase2Kind = "git-provider";
-export const CreateProjectCheckResponseSourceCase2Kind = /*@__PURE__*/ S.String;
+export const CreateProjectCheckResponseSourceCase2Kind = S.String;
 
 export type CreateProjectCheckResponseSourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
-export const CreateProjectCheckResponseSourceCase2Provider =
-  /*@__PURE__*/ S.String;
+export const CreateProjectCheckResponseSourceCase2Provider = S.String;
 
 export interface CreateProjectCheckResponseSourceCase2 {
   kind: CreateProjectCheckResponseSourceCase2Kind;
@@ -640,7 +630,7 @@ export type CreateProjectCheckResponseSource =
   | CreateProjectCheckResponseSourceCase1
   | CreateProjectCheckResponseSourceCase2;
 export const CreateProjectCheckResponseSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateProjectCheckResponseSource>;
+  S.Unknown as any as S.Schema<CreateProjectCheckResponseSource>;
 
 export type CreateProjectCheckResponseBlocks =
   | "build-start"
@@ -648,7 +638,7 @@ export type CreateProjectCheckResponseBlocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const CreateProjectCheckResponseBlocks = /*@__PURE__*/ S.String;
+export const CreateProjectCheckResponseBlocks = S.String;
 
 export type CreateProjectCheckResponseTargetsList = Array<string>;
 export const CreateProjectCheckResponseTargetsList = /*@__PURE__*/ S.Array(
@@ -663,7 +653,7 @@ export type CreateProjectCheckResponseSourceKind =
   | "integration"
   | "webhook"
   | "git-provider";
-export const CreateProjectCheckResponseSourceKind = /*@__PURE__*/ S.String;
+export const CreateProjectCheckResponseSourceKind = S.String;
 
 export interface CreateProjectCheckResponse {
   id: string;
@@ -770,8 +760,7 @@ export type GetDeploymentCheckRunResponseBodyCase0Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const GetDeploymentCheckRunResponseBodyCase0Requires =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0Requires = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase0Blocks =
   | "build-start"
@@ -779,8 +768,7 @@ export type GetDeploymentCheckRunResponseBodyCase0Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const GetDeploymentCheckRunResponseBodyCase0Blocks =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0Blocks = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase0TargetsList = Array<string>;
 export const GetDeploymentCheckRunResponseBodyCase0TargetsList =
@@ -792,8 +780,7 @@ export type GetDeploymentCheckRunResponseBodyCase0Status =
   | "completed"
   | "queued"
   | "running";
-export const GetDeploymentCheckRunResponseBodyCase0Status =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0Status = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase0Conclusion =
   | "canceled"
@@ -802,8 +789,7 @@ export type GetDeploymentCheckRunResponseBodyCase0Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const GetDeploymentCheckRunResponseBodyCase0Conclusion =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0Conclusion = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase0OutputMap = {
   [key: string]: unknown | undefined;
@@ -816,8 +802,7 @@ export const GetDeploymentCheckRunResponseBodyCase0OutputMap =
 
 export type GetDeploymentCheckRunResponseBodyCase0SourceCase0Kind =
   "integration";
-export const GetDeploymentCheckRunResponseBodyCase0SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0SourceCase0Kind = S.String;
 
 export interface GetDeploymentCheckRunResponseBodyCase0SourceCase0 {
   kind: GetDeploymentCheckRunResponseBodyCase0SourceCase0Kind;
@@ -840,8 +825,7 @@ export const GetDeploymentCheckRunResponseBodyCase0SourceCase0 =
   }) as any as S.Schema<GetDeploymentCheckRunResponseBodyCase0SourceCase0>;
 
 export type GetDeploymentCheckRunResponseBodyCase0SourceCase1Kind = "webhook";
-export const GetDeploymentCheckRunResponseBodyCase0SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0SourceCase1Kind = S.String;
 
 export interface GetDeploymentCheckRunResponseBodyCase0SourceCase1 {
   kind: GetDeploymentCheckRunResponseBodyCase0SourceCase1Kind;
@@ -859,15 +843,14 @@ export const GetDeploymentCheckRunResponseBodyCase0SourceCase1 =
 
 export type GetDeploymentCheckRunResponseBodyCase0SourceCase2Kind =
   "git-provider";
-export const GetDeploymentCheckRunResponseBodyCase0SourceCase2Kind =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0SourceCase2Kind = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase0SourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
 export const GetDeploymentCheckRunResponseBodyCase0SourceCase2Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDeploymentCheckRunResponseBodyCase0SourceCase2 {
   kind: GetDeploymentCheckRunResponseBodyCase0SourceCase2Kind;
@@ -888,13 +871,12 @@ export const GetDeploymentCheckRunResponseBodyCase0SourceCase2 =
 export type GetDeploymentCheckRunResponseBodyCase0SourceCase3SubKind =
   "vercel-native-check";
 export const GetDeploymentCheckRunResponseBodyCase0SourceCase3SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase0SourceCase3Origin =
   | "api"
   | "platform";
-export const GetDeploymentCheckRunResponseBodyCase0SourceCase3Origin =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase0SourceCase3Origin = S.String;
 
 /** Native Vercel checks — check definition and check run `source`. */
 export interface GetDeploymentCheckRunResponseBodyCase0SourceCase3 {
@@ -921,7 +903,7 @@ export type GetDeploymentCheckRunResponseBodyCase0Source =
   | GetDeploymentCheckRunResponseBodyCase0SourceCase2
   | GetDeploymentCheckRunResponseBodyCase0SourceCase3;
 export const GetDeploymentCheckRunResponseBodyCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeploymentCheckRunResponseBodyCase0Source>;
+  S.Unknown as any as S.Schema<GetDeploymentCheckRunResponseBodyCase0Source>;
 
 /** Check run backed by a project-level `check` definition. */
 export interface GetDeploymentCheckRunResponseBodyCase0 {
@@ -978,8 +960,7 @@ export type GetDeploymentCheckRunResponseBodyCase1Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const GetDeploymentCheckRunResponseBodyCase1Requires =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase1Requires = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase1Blocks =
   | "build-start"
@@ -987,8 +968,7 @@ export type GetDeploymentCheckRunResponseBodyCase1Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const GetDeploymentCheckRunResponseBodyCase1Blocks =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase1Blocks = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase1TargetsList = Array<string>;
 export const GetDeploymentCheckRunResponseBodyCase1TargetsList =
@@ -1000,8 +980,7 @@ export type GetDeploymentCheckRunResponseBodyCase1Status =
   | "completed"
   | "queued"
   | "running";
-export const GetDeploymentCheckRunResponseBodyCase1Status =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase1Status = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase1Conclusion =
   | "canceled"
@@ -1010,8 +989,7 @@ export type GetDeploymentCheckRunResponseBodyCase1Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const GetDeploymentCheckRunResponseBodyCase1Conclusion =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase1Conclusion = S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase1OutputMap = {
   [key: string]: unknown | undefined;
@@ -1025,11 +1003,10 @@ export const GetDeploymentCheckRunResponseBodyCase1OutputMap =
 export type GetDeploymentCheckRunResponseBodyCase1SourceCase0SubKind =
   "vercel-ci";
 export const GetDeploymentCheckRunResponseBodyCase1SourceCase0SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase1SourceCase0Origin = "config";
-export const GetDeploymentCheckRunResponseBodyCase1SourceCase0Origin =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase1SourceCase0Origin = S.String;
 
 /** Config-driven CI task — check run `source` only (no parent check). */
 export interface GetDeploymentCheckRunResponseBodyCase1SourceCase0 {
@@ -1055,12 +1032,11 @@ export const GetDeploymentCheckRunResponseBodyCase1SourceCase0 =
 export type GetDeploymentCheckRunResponseBodyCase1SourceCase1SubKind =
   "vercel-ci-sentinel";
 export const GetDeploymentCheckRunResponseBodyCase1SourceCase1SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDeploymentCheckRunResponseBodyCase1SourceCase1Origin =
   "platform";
-export const GetDeploymentCheckRunResponseBodyCase1SourceCase1Origin =
-  /*@__PURE__*/ S.String;
+export const GetDeploymentCheckRunResponseBodyCase1SourceCase1Origin = S.String;
 
 /** CI sentinel — check run `source` only (no parent check). */
 export interface GetDeploymentCheckRunResponseBodyCase1SourceCase1 {
@@ -1081,7 +1057,7 @@ export type GetDeploymentCheckRunResponseBodyCase1Source =
   | GetDeploymentCheckRunResponseBodyCase1SourceCase0
   | GetDeploymentCheckRunResponseBodyCase1SourceCase1;
 export const GetDeploymentCheckRunResponseBodyCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeploymentCheckRunResponseBodyCase1Source>;
+  S.Unknown as any as S.Schema<GetDeploymentCheckRunResponseBodyCase1Source>;
 
 /** Vercel CI check run without a parent `check` (no `checkId` field). */
 export interface GetDeploymentCheckRunResponseBodyCase1 {
@@ -1136,7 +1112,7 @@ export type GetDeploymentCheckRunResponseBody =
   | GetDeploymentCheckRunResponseBodyCase0
   | GetDeploymentCheckRunResponseBodyCase1;
 export const GetDeploymentCheckRunResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeploymentCheckRunResponseBody>;
+  S.Unknown as any as S.Schema<GetDeploymentCheckRunResponseBody>;
 
 export type GetDeploymentCheckRunResponse = GetDeploymentCheckRunResponseBody;
 export const GetDeploymentCheckRunResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1175,10 +1151,10 @@ export type GetProjectCheckResponseRequires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const GetProjectCheckResponseRequires = /*@__PURE__*/ S.String;
+export const GetProjectCheckResponseRequires = S.String;
 
 export type GetProjectCheckResponseSourceCase0Kind = "integration";
-export const GetProjectCheckResponseSourceCase0Kind = /*@__PURE__*/ S.String;
+export const GetProjectCheckResponseSourceCase0Kind = S.String;
 
 export interface GetProjectCheckResponseSourceCase0 {
   kind: GetProjectCheckResponseSourceCase0Kind;
@@ -1200,7 +1176,7 @@ export const GetProjectCheckResponseSourceCase0 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectCheckResponseSourceCase0>;
 
 export type GetProjectCheckResponseSourceCase1Kind = "webhook";
-export const GetProjectCheckResponseSourceCase1Kind = /*@__PURE__*/ S.String;
+export const GetProjectCheckResponseSourceCase1Kind = S.String;
 
 export interface GetProjectCheckResponseSourceCase1 {
   kind: GetProjectCheckResponseSourceCase1Kind;
@@ -1216,14 +1192,13 @@ export const GetProjectCheckResponseSourceCase1 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectCheckResponseSourceCase1>;
 
 export type GetProjectCheckResponseSourceCase2Kind = "git-provider";
-export const GetProjectCheckResponseSourceCase2Kind = /*@__PURE__*/ S.String;
+export const GetProjectCheckResponseSourceCase2Kind = S.String;
 
 export type GetProjectCheckResponseSourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
-export const GetProjectCheckResponseSourceCase2Provider =
-  /*@__PURE__*/ S.String;
+export const GetProjectCheckResponseSourceCase2Provider = S.String;
 
 export interface GetProjectCheckResponseSourceCase2 {
   kind: GetProjectCheckResponseSourceCase2Kind;
@@ -1245,7 +1220,7 @@ export type GetProjectCheckResponseSource =
   | GetProjectCheckResponseSourceCase1
   | GetProjectCheckResponseSourceCase2;
 export const GetProjectCheckResponseSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetProjectCheckResponseSource>;
+  S.Unknown as any as S.Schema<GetProjectCheckResponseSource>;
 
 export type GetProjectCheckResponseBlocks =
   | "build-start"
@@ -1253,7 +1228,7 @@ export type GetProjectCheckResponseBlocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const GetProjectCheckResponseBlocks = /*@__PURE__*/ S.String;
+export const GetProjectCheckResponseBlocks = S.String;
 
 export type GetProjectCheckResponseTargetsList = Array<string>;
 export const GetProjectCheckResponseTargetsList = /*@__PURE__*/ S.Array(
@@ -1268,7 +1243,7 @@ export type GetProjectCheckResponseSourceKind =
   | "integration"
   | "webhook"
   | "git-provider";
-export const GetProjectCheckResponseSourceKind = /*@__PURE__*/ S.String;
+export const GetProjectCheckResponseSourceKind = S.String;
 
 export interface GetProjectCheckResponse {
   id: string;
@@ -1339,8 +1314,7 @@ export type ListCheckRunsResponseRunsItemCase0Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const ListCheckRunsResponseRunsItemCase0Requires =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0Requires = S.String;
 
 export type ListCheckRunsResponseRunsItemCase0Blocks =
   | "build-start"
@@ -1348,7 +1322,7 @@ export type ListCheckRunsResponseRunsItemCase0Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const ListCheckRunsResponseRunsItemCase0Blocks = /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0Blocks = S.String;
 
 export type ListCheckRunsResponseRunsItemCase0TargetsList = Array<string>;
 export const ListCheckRunsResponseRunsItemCase0TargetsList =
@@ -1360,7 +1334,7 @@ export type ListCheckRunsResponseRunsItemCase0Status =
   | "completed"
   | "queued"
   | "running";
-export const ListCheckRunsResponseRunsItemCase0Status = /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0Status = S.String;
 
 export type ListCheckRunsResponseRunsItemCase0Conclusion =
   | "canceled"
@@ -1369,8 +1343,7 @@ export type ListCheckRunsResponseRunsItemCase0Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const ListCheckRunsResponseRunsItemCase0Conclusion =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0Conclusion = S.String;
 
 export type ListCheckRunsResponseRunsItemCase0OutputMap = {
   [key: string]: unknown | undefined;
@@ -1382,8 +1355,7 @@ export const ListCheckRunsResponseRunsItemCase0OutputMap =
   ) as any as S.Schema<ListCheckRunsResponseRunsItemCase0OutputMap>;
 
 export type ListCheckRunsResponseRunsItemCase0SourceCase0Kind = "integration";
-export const ListCheckRunsResponseRunsItemCase0SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0SourceCase0Kind = S.String;
 
 export interface ListCheckRunsResponseRunsItemCase0SourceCase0 {
   kind: ListCheckRunsResponseRunsItemCase0SourceCase0Kind;
@@ -1406,8 +1378,7 @@ export const ListCheckRunsResponseRunsItemCase0SourceCase0 =
   }) as any as S.Schema<ListCheckRunsResponseRunsItemCase0SourceCase0>;
 
 export type ListCheckRunsResponseRunsItemCase0SourceCase1Kind = "webhook";
-export const ListCheckRunsResponseRunsItemCase0SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0SourceCase1Kind = S.String;
 
 export interface ListCheckRunsResponseRunsItemCase0SourceCase1 {
   kind: ListCheckRunsResponseRunsItemCase0SourceCase1Kind;
@@ -1424,15 +1395,13 @@ export const ListCheckRunsResponseRunsItemCase0SourceCase1 =
   }) as any as S.Schema<ListCheckRunsResponseRunsItemCase0SourceCase1>;
 
 export type ListCheckRunsResponseRunsItemCase0SourceCase2Kind = "git-provider";
-export const ListCheckRunsResponseRunsItemCase0SourceCase2Kind =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0SourceCase2Kind = S.String;
 
 export type ListCheckRunsResponseRunsItemCase0SourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
-export const ListCheckRunsResponseRunsItemCase0SourceCase2Provider =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0SourceCase2Provider = S.String;
 
 export interface ListCheckRunsResponseRunsItemCase0SourceCase2 {
   kind: ListCheckRunsResponseRunsItemCase0SourceCase2Kind;
@@ -1452,14 +1421,12 @@ export const ListCheckRunsResponseRunsItemCase0SourceCase2 =
 
 export type ListCheckRunsResponseRunsItemCase0SourceCase3SubKind =
   "vercel-native-check";
-export const ListCheckRunsResponseRunsItemCase0SourceCase3SubKind =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0SourceCase3SubKind = S.String;
 
 export type ListCheckRunsResponseRunsItemCase0SourceCase3Origin =
   | "api"
   | "platform";
-export const ListCheckRunsResponseRunsItemCase0SourceCase3Origin =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase0SourceCase3Origin = S.String;
 
 /** Native Vercel checks — check definition and check run `source`. */
 export interface ListCheckRunsResponseRunsItemCase0SourceCase3 {
@@ -1482,7 +1449,7 @@ export type ListCheckRunsResponseRunsItemCase0Source =
   | ListCheckRunsResponseRunsItemCase0SourceCase2
   | ListCheckRunsResponseRunsItemCase0SourceCase3;
 export const ListCheckRunsResponseRunsItemCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListCheckRunsResponseRunsItemCase0Source>;
+  S.Unknown as any as S.Schema<ListCheckRunsResponseRunsItemCase0Source>;
 
 /** Check run backed by a project-level `check` definition. */
 export interface ListCheckRunsResponseRunsItemCase0 {
@@ -1538,8 +1505,7 @@ export type ListCheckRunsResponseRunsItemCase1Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const ListCheckRunsResponseRunsItemCase1Requires =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1Requires = S.String;
 
 export type ListCheckRunsResponseRunsItemCase1Blocks =
   | "build-start"
@@ -1547,7 +1513,7 @@ export type ListCheckRunsResponseRunsItemCase1Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const ListCheckRunsResponseRunsItemCase1Blocks = /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1Blocks = S.String;
 
 export type ListCheckRunsResponseRunsItemCase1TargetsList = Array<string>;
 export const ListCheckRunsResponseRunsItemCase1TargetsList =
@@ -1559,7 +1525,7 @@ export type ListCheckRunsResponseRunsItemCase1Status =
   | "completed"
   | "queued"
   | "running";
-export const ListCheckRunsResponseRunsItemCase1Status = /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1Status = S.String;
 
 export type ListCheckRunsResponseRunsItemCase1Conclusion =
   | "canceled"
@@ -1568,8 +1534,7 @@ export type ListCheckRunsResponseRunsItemCase1Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const ListCheckRunsResponseRunsItemCase1Conclusion =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1Conclusion = S.String;
 
 export type ListCheckRunsResponseRunsItemCase1OutputMap = {
   [key: string]: unknown | undefined;
@@ -1581,12 +1546,10 @@ export const ListCheckRunsResponseRunsItemCase1OutputMap =
   ) as any as S.Schema<ListCheckRunsResponseRunsItemCase1OutputMap>;
 
 export type ListCheckRunsResponseRunsItemCase1SourceCase0SubKind = "vercel-ci";
-export const ListCheckRunsResponseRunsItemCase1SourceCase0SubKind =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1SourceCase0SubKind = S.String;
 
 export type ListCheckRunsResponseRunsItemCase1SourceCase0Origin = "config";
-export const ListCheckRunsResponseRunsItemCase1SourceCase0Origin =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1SourceCase0Origin = S.String;
 
 /** Config-driven CI task — check run `source` only (no parent check). */
 export interface ListCheckRunsResponseRunsItemCase1SourceCase0 {
@@ -1611,12 +1574,10 @@ export const ListCheckRunsResponseRunsItemCase1SourceCase0 =
 
 export type ListCheckRunsResponseRunsItemCase1SourceCase1SubKind =
   "vercel-ci-sentinel";
-export const ListCheckRunsResponseRunsItemCase1SourceCase1SubKind =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1SourceCase1SubKind = S.String;
 
 export type ListCheckRunsResponseRunsItemCase1SourceCase1Origin = "platform";
-export const ListCheckRunsResponseRunsItemCase1SourceCase1Origin =
-  /*@__PURE__*/ S.String;
+export const ListCheckRunsResponseRunsItemCase1SourceCase1Origin = S.String;
 
 /** CI sentinel — check run `source` only (no parent check). */
 export interface ListCheckRunsResponseRunsItemCase1SourceCase1 {
@@ -1637,7 +1598,7 @@ export type ListCheckRunsResponseRunsItemCase1Source =
   | ListCheckRunsResponseRunsItemCase1SourceCase0
   | ListCheckRunsResponseRunsItemCase1SourceCase1;
 export const ListCheckRunsResponseRunsItemCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListCheckRunsResponseRunsItemCase1Source>;
+  S.Unknown as any as S.Schema<ListCheckRunsResponseRunsItemCase1Source>;
 
 /** Vercel CI check run without a parent `check` (no `checkId` field). */
 export interface ListCheckRunsResponseRunsItemCase1 {
@@ -1691,7 +1652,7 @@ export type ListCheckRunsResponseRunsItem =
   | ListCheckRunsResponseRunsItemCase0
   | ListCheckRunsResponseRunsItemCase1;
 export const ListCheckRunsResponseRunsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListCheckRunsResponseRunsItem>;
+  S.Unknown as any as S.Schema<ListCheckRunsResponseRunsItem>;
 
 export type ListCheckRunsResponseRunsList =
   Array<ListCheckRunsResponseRunsItem>;
@@ -1737,8 +1698,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase0Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const ListDeploymentCheckRunsResponseRunsItemCase0Requires =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase0Requires = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase0Blocks =
   | "build-start"
@@ -1746,8 +1706,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase0Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const ListDeploymentCheckRunsResponseRunsItemCase0Blocks =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase0Blocks = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase0TargetsList =
   Array<string>;
@@ -1760,8 +1719,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase0Status =
   | "completed"
   | "queued"
   | "running";
-export const ListDeploymentCheckRunsResponseRunsItemCase0Status =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase0Status = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase0Conclusion =
   | "canceled"
@@ -1770,8 +1728,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase0Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const ListDeploymentCheckRunsResponseRunsItemCase0Conclusion =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase0Conclusion = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase0OutputMap = {
   [key: string]: unknown | undefined;
@@ -1785,7 +1742,7 @@ export const ListDeploymentCheckRunsResponseRunsItemCase0OutputMap =
 export type ListDeploymentCheckRunsResponseRunsItemCase0SourceCase0Kind =
   "integration";
 export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDeploymentCheckRunsResponseRunsItemCase0SourceCase0 {
   kind: ListDeploymentCheckRunsResponseRunsItemCase0SourceCase0Kind;
@@ -1810,7 +1767,7 @@ export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase0 =
 export type ListDeploymentCheckRunsResponseRunsItemCase0SourceCase1Kind =
   "webhook";
 export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDeploymentCheckRunsResponseRunsItemCase0SourceCase1 {
   kind: ListDeploymentCheckRunsResponseRunsItemCase0SourceCase1Kind;
@@ -1829,14 +1786,14 @@ export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase1 =
 export type ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2Kind =
   "git-provider";
 export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
 export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2 {
   kind: ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2Kind;
@@ -1857,13 +1814,13 @@ export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2 =
 export type ListDeploymentCheckRunsResponseRunsItemCase0SourceCase3SubKind =
   "vercel-native-check";
 export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase3SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase0SourceCase3Origin =
   | "api"
   | "platform";
 export const ListDeploymentCheckRunsResponseRunsItemCase0SourceCase3Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Native Vercel checks — check definition and check run `source`. */
 export interface ListDeploymentCheckRunsResponseRunsItemCase0SourceCase3 {
@@ -1890,7 +1847,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase0Source =
   | ListDeploymentCheckRunsResponseRunsItemCase0SourceCase2
   | ListDeploymentCheckRunsResponseRunsItemCase0SourceCase3;
 export const ListDeploymentCheckRunsResponseRunsItemCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeploymentCheckRunsResponseRunsItemCase0Source>;
+  S.Unknown as any as S.Schema<ListDeploymentCheckRunsResponseRunsItemCase0Source>;
 
 /** Check run backed by a project-level `check` definition. */
 export interface ListDeploymentCheckRunsResponseRunsItemCase0 {
@@ -1953,8 +1910,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase1Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const ListDeploymentCheckRunsResponseRunsItemCase1Requires =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase1Requires = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase1Blocks =
   | "build-start"
@@ -1962,8 +1918,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase1Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const ListDeploymentCheckRunsResponseRunsItemCase1Blocks =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase1Blocks = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase1TargetsList =
   Array<string>;
@@ -1976,8 +1931,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase1Status =
   | "completed"
   | "queued"
   | "running";
-export const ListDeploymentCheckRunsResponseRunsItemCase1Status =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase1Status = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase1Conclusion =
   | "canceled"
@@ -1986,8 +1940,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase1Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const ListDeploymentCheckRunsResponseRunsItemCase1Conclusion =
-  /*@__PURE__*/ S.String;
+export const ListDeploymentCheckRunsResponseRunsItemCase1Conclusion = S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase1OutputMap = {
   [key: string]: unknown | undefined;
@@ -2001,12 +1954,12 @@ export const ListDeploymentCheckRunsResponseRunsItemCase1OutputMap =
 export type ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0SubKind =
   "vercel-ci";
 export const ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0Origin =
   "config";
 export const ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config-driven CI task — check run `source` only (no parent check). */
 export interface ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0 {
@@ -2032,12 +1985,12 @@ export const ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0 =
 export type ListDeploymentCheckRunsResponseRunsItemCase1SourceCase1SubKind =
   "vercel-ci-sentinel";
 export const ListDeploymentCheckRunsResponseRunsItemCase1SourceCase1SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDeploymentCheckRunsResponseRunsItemCase1SourceCase1Origin =
   "platform";
 export const ListDeploymentCheckRunsResponseRunsItemCase1SourceCase1Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** CI sentinel — check run `source` only (no parent check). */
 export interface ListDeploymentCheckRunsResponseRunsItemCase1SourceCase1 {
@@ -2058,7 +2011,7 @@ export type ListDeploymentCheckRunsResponseRunsItemCase1Source =
   | ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0
   | ListDeploymentCheckRunsResponseRunsItemCase1SourceCase1;
 export const ListDeploymentCheckRunsResponseRunsItemCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeploymentCheckRunsResponseRunsItemCase1Source>;
+  S.Unknown as any as S.Schema<ListDeploymentCheckRunsResponseRunsItemCase1Source>;
 
 /** Vercel CI check run without a parent `check` (no `checkId` field). */
 export interface ListDeploymentCheckRunsResponseRunsItemCase1 {
@@ -2119,7 +2072,7 @@ export type ListDeploymentCheckRunsResponseRunsItem =
   | ListDeploymentCheckRunsResponseRunsItemCase0
   | ListDeploymentCheckRunsResponseRunsItemCase1;
 export const ListDeploymentCheckRunsResponseRunsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDeploymentCheckRunsResponseRunsItem>;
+  S.Unknown as any as S.Schema<ListDeploymentCheckRunsResponseRunsItem>;
 
 export type ListDeploymentCheckRunsResponseRunsList =
   Array<ListDeploymentCheckRunsResponseRunsItem>;
@@ -2144,7 +2097,7 @@ export type ListProjectChecksRequestBlocks =
   | "deployment-alias"
   | "deployment-promotion"
   | "none";
-export const ListProjectChecksRequestBlocks = /*@__PURE__*/ S.String;
+export const ListProjectChecksRequestBlocks = S.String;
 
 export interface ListProjectChecksRequest {
   projectIdOrName: string;
@@ -2175,12 +2128,10 @@ export type ListProjectChecksResponseChecksItemRequires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const ListProjectChecksResponseChecksItemRequires =
-  /*@__PURE__*/ S.String;
+export const ListProjectChecksResponseChecksItemRequires = S.String;
 
 export type ListProjectChecksResponseChecksItemSourceCase0Kind = "integration";
-export const ListProjectChecksResponseChecksItemSourceCase0Kind =
-  /*@__PURE__*/ S.String;
+export const ListProjectChecksResponseChecksItemSourceCase0Kind = S.String;
 
 export interface ListProjectChecksResponseChecksItemSourceCase0 {
   kind: ListProjectChecksResponseChecksItemSourceCase0Kind;
@@ -2203,8 +2154,7 @@ export const ListProjectChecksResponseChecksItemSourceCase0 =
   }) as any as S.Schema<ListProjectChecksResponseChecksItemSourceCase0>;
 
 export type ListProjectChecksResponseChecksItemSourceCase1Kind = "webhook";
-export const ListProjectChecksResponseChecksItemSourceCase1Kind =
-  /*@__PURE__*/ S.String;
+export const ListProjectChecksResponseChecksItemSourceCase1Kind = S.String;
 
 export interface ListProjectChecksResponseChecksItemSourceCase1 {
   kind: ListProjectChecksResponseChecksItemSourceCase1Kind;
@@ -2221,15 +2171,13 @@ export const ListProjectChecksResponseChecksItemSourceCase1 =
   }) as any as S.Schema<ListProjectChecksResponseChecksItemSourceCase1>;
 
 export type ListProjectChecksResponseChecksItemSourceCase2Kind = "git-provider";
-export const ListProjectChecksResponseChecksItemSourceCase2Kind =
-  /*@__PURE__*/ S.String;
+export const ListProjectChecksResponseChecksItemSourceCase2Kind = S.String;
 
 export type ListProjectChecksResponseChecksItemSourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
-export const ListProjectChecksResponseChecksItemSourceCase2Provider =
-  /*@__PURE__*/ S.String;
+export const ListProjectChecksResponseChecksItemSourceCase2Provider = S.String;
 
 export interface ListProjectChecksResponseChecksItemSourceCase2 {
   kind: ListProjectChecksResponseChecksItemSourceCase2Kind;
@@ -2252,7 +2200,7 @@ export type ListProjectChecksResponseChecksItemSource =
   | ListProjectChecksResponseChecksItemSourceCase1
   | ListProjectChecksResponseChecksItemSourceCase2;
 export const ListProjectChecksResponseChecksItemSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListProjectChecksResponseChecksItemSource>;
+  S.Unknown as any as S.Schema<ListProjectChecksResponseChecksItemSource>;
 
 export type ListProjectChecksResponseChecksItemBlocks =
   | "build-start"
@@ -2260,7 +2208,7 @@ export type ListProjectChecksResponseChecksItemBlocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const ListProjectChecksResponseChecksItemBlocks = /*@__PURE__*/ S.String;
+export const ListProjectChecksResponseChecksItemBlocks = S.String;
 
 export type ListProjectChecksResponseChecksItemTargetsList = Array<string>;
 export const ListProjectChecksResponseChecksItemTargetsList =
@@ -2276,8 +2224,7 @@ export type ListProjectChecksResponseChecksItemSourceKind =
   | "integration"
   | "webhook"
   | "git-provider";
-export const ListProjectChecksResponseChecksItemSourceKind =
-  /*@__PURE__*/ S.String;
+export const ListProjectChecksResponseChecksItemSourceKind = S.String;
 
 export interface ListProjectChecksResponseChecksItem {
   id: string;
@@ -2339,7 +2286,7 @@ export type UpdateDeploymentCheckRunRequestStatus =
   | "queued"
   | "running"
   | "completed";
-export const UpdateDeploymentCheckRunRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunRequestStatus = S.String;
 
 export type UpdateDeploymentCheckRunRequestConclusion =
   | "canceled"
@@ -2348,7 +2295,7 @@ export type UpdateDeploymentCheckRunRequestConclusion =
   | "failed"
   | "neutral"
   | "succeeded";
-export const UpdateDeploymentCheckRunRequestConclusion = /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunRequestConclusion = S.String;
 
 export interface UpdateDeploymentCheckRunRequest {
   deploymentId: string;
@@ -2393,8 +2340,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase0Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const UpdateDeploymentCheckRunResponseBodyCase0Requires =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase0Requires = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase0Blocks =
   | "build-start"
@@ -2402,8 +2348,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase0Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const UpdateDeploymentCheckRunResponseBodyCase0Blocks =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase0Blocks = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase0TargetsList =
   Array<string>;
@@ -2416,8 +2361,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase0Status =
   | "completed"
   | "queued"
   | "running";
-export const UpdateDeploymentCheckRunResponseBodyCase0Status =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase0Status = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase0Conclusion =
   | "canceled"
@@ -2426,8 +2370,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase0Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const UpdateDeploymentCheckRunResponseBodyCase0Conclusion =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase0Conclusion = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase0OutputMap = {
   [key: string]: unknown | undefined;
@@ -2441,7 +2384,7 @@ export const UpdateDeploymentCheckRunResponseBodyCase0OutputMap =
 export type UpdateDeploymentCheckRunResponseBodyCase0SourceCase0Kind =
   "integration";
 export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase0Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDeploymentCheckRunResponseBodyCase0SourceCase0 {
   kind: UpdateDeploymentCheckRunResponseBodyCase0SourceCase0Kind;
@@ -2466,7 +2409,7 @@ export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase0 =
 export type UpdateDeploymentCheckRunResponseBodyCase0SourceCase1Kind =
   "webhook";
 export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase1Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDeploymentCheckRunResponseBodyCase0SourceCase1 {
   kind: UpdateDeploymentCheckRunResponseBodyCase0SourceCase1Kind;
@@ -2485,14 +2428,14 @@ export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase1 =
 export type UpdateDeploymentCheckRunResponseBodyCase0SourceCase2Kind =
   "git-provider";
 export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase2Kind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase0SourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
 export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase2Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateDeploymentCheckRunResponseBodyCase0SourceCase2 {
   kind: UpdateDeploymentCheckRunResponseBodyCase0SourceCase2Kind;
@@ -2513,13 +2456,13 @@ export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase2 =
 export type UpdateDeploymentCheckRunResponseBodyCase0SourceCase3SubKind =
   "vercel-native-check";
 export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase3SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase0SourceCase3Origin =
   | "api"
   | "platform";
 export const UpdateDeploymentCheckRunResponseBodyCase0SourceCase3Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Native Vercel checks — check definition and check run `source`. */
 export interface UpdateDeploymentCheckRunResponseBodyCase0SourceCase3 {
@@ -2546,7 +2489,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase0Source =
   | UpdateDeploymentCheckRunResponseBodyCase0SourceCase2
   | UpdateDeploymentCheckRunResponseBodyCase0SourceCase3;
 export const UpdateDeploymentCheckRunResponseBodyCase0Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDeploymentCheckRunResponseBodyCase0Source>;
+  S.Unknown as any as S.Schema<UpdateDeploymentCheckRunResponseBodyCase0Source>;
 
 /** Check run backed by a project-level `check` definition. */
 export interface UpdateDeploymentCheckRunResponseBodyCase0 {
@@ -2605,8 +2548,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase1Requires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const UpdateDeploymentCheckRunResponseBodyCase1Requires =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase1Requires = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase1Blocks =
   | "build-start"
@@ -2614,8 +2556,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase1Blocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const UpdateDeploymentCheckRunResponseBodyCase1Blocks =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase1Blocks = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase1TargetsList =
   Array<string>;
@@ -2628,8 +2569,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase1Status =
   | "completed"
   | "queued"
   | "running";
-export const UpdateDeploymentCheckRunResponseBodyCase1Status =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase1Status = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase1Conclusion =
   | "canceled"
@@ -2638,8 +2578,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase1Conclusion =
   | "skipped"
   | "succeeded"
   | "timeout";
-export const UpdateDeploymentCheckRunResponseBodyCase1Conclusion =
-  /*@__PURE__*/ S.String;
+export const UpdateDeploymentCheckRunResponseBodyCase1Conclusion = S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase1OutputMap = {
   [key: string]: unknown | undefined;
@@ -2653,12 +2592,12 @@ export const UpdateDeploymentCheckRunResponseBodyCase1OutputMap =
 export type UpdateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind =
   "vercel-ci";
 export const UpdateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase1SourceCase0Origin =
   "config";
 export const UpdateDeploymentCheckRunResponseBodyCase1SourceCase0Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Config-driven CI task — check run `source` only (no parent check). */
 export interface UpdateDeploymentCheckRunResponseBodyCase1SourceCase0 {
@@ -2684,12 +2623,12 @@ export const UpdateDeploymentCheckRunResponseBodyCase1SourceCase0 =
 export type UpdateDeploymentCheckRunResponseBodyCase1SourceCase1SubKind =
   "vercel-ci-sentinel";
 export const UpdateDeploymentCheckRunResponseBodyCase1SourceCase1SubKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateDeploymentCheckRunResponseBodyCase1SourceCase1Origin =
   "platform";
 export const UpdateDeploymentCheckRunResponseBodyCase1SourceCase1Origin =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** CI sentinel — check run `source` only (no parent check). */
 export interface UpdateDeploymentCheckRunResponseBodyCase1SourceCase1 {
@@ -2710,7 +2649,7 @@ export type UpdateDeploymentCheckRunResponseBodyCase1Source =
   | UpdateDeploymentCheckRunResponseBodyCase1SourceCase0
   | UpdateDeploymentCheckRunResponseBodyCase1SourceCase1;
 export const UpdateDeploymentCheckRunResponseBodyCase1Source =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDeploymentCheckRunResponseBodyCase1Source>;
+  S.Unknown as any as S.Schema<UpdateDeploymentCheckRunResponseBodyCase1Source>;
 
 /** Vercel CI check run without a parent `check` (no `checkId` field). */
 export interface UpdateDeploymentCheckRunResponseBodyCase1 {
@@ -2767,7 +2706,7 @@ export type UpdateDeploymentCheckRunResponseBody =
   | UpdateDeploymentCheckRunResponseBodyCase0
   | UpdateDeploymentCheckRunResponseBodyCase1;
 export const UpdateDeploymentCheckRunResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDeploymentCheckRunResponseBody>;
+  S.Unknown as any as S.Schema<UpdateDeploymentCheckRunResponseBody>;
 
 export type UpdateDeploymentCheckRunResponse =
   UpdateDeploymentCheckRunResponseBody;
@@ -2780,7 +2719,7 @@ export const UpdateDeploymentCheckRunResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateProjectCheckRequestRequires =
   | "build-ready"
   | "deployment-url";
-export const UpdateProjectCheckRequestRequires = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckRequestRequires = S.String;
 
 export type UpdateProjectCheckRequestTargetsList = Array<string>;
 export const UpdateProjectCheckRequestTargetsList = /*@__PURE__*/ S.Array(
@@ -2793,7 +2732,7 @@ export type UpdateProjectCheckRequestBlocks =
   | "deployment-alias"
   | "deployment-promotion"
   | "none";
-export const UpdateProjectCheckRequestBlocks = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckRequestBlocks = S.String;
 
 export interface UpdateProjectCheckRequest {
   projectIdOrName: string;
@@ -2836,10 +2775,10 @@ export type UpdateProjectCheckResponseRequires =
   | "build-ready"
   | "deployment-url"
   | "none";
-export const UpdateProjectCheckResponseRequires = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckResponseRequires = S.String;
 
 export type UpdateProjectCheckResponseSourceCase0Kind = "integration";
-export const UpdateProjectCheckResponseSourceCase0Kind = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckResponseSourceCase0Kind = S.String;
 
 export interface UpdateProjectCheckResponseSourceCase0 {
   kind: UpdateProjectCheckResponseSourceCase0Kind;
@@ -2862,7 +2801,7 @@ export const UpdateProjectCheckResponseSourceCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateProjectCheckResponseSourceCase0>;
 
 export type UpdateProjectCheckResponseSourceCase1Kind = "webhook";
-export const UpdateProjectCheckResponseSourceCase1Kind = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckResponseSourceCase1Kind = S.String;
 
 export interface UpdateProjectCheckResponseSourceCase1 {
   kind: UpdateProjectCheckResponseSourceCase1Kind;
@@ -2879,14 +2818,13 @@ export const UpdateProjectCheckResponseSourceCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateProjectCheckResponseSourceCase1>;
 
 export type UpdateProjectCheckResponseSourceCase2Kind = "git-provider";
-export const UpdateProjectCheckResponseSourceCase2Kind = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckResponseSourceCase2Kind = S.String;
 
 export type UpdateProjectCheckResponseSourceCase2Provider =
   | "bitbucket"
   | "github"
   | "gitlab";
-export const UpdateProjectCheckResponseSourceCase2Provider =
-  /*@__PURE__*/ S.String;
+export const UpdateProjectCheckResponseSourceCase2Provider = S.String;
 
 export interface UpdateProjectCheckResponseSourceCase2 {
   kind: UpdateProjectCheckResponseSourceCase2Kind;
@@ -2909,7 +2847,7 @@ export type UpdateProjectCheckResponseSource =
   | UpdateProjectCheckResponseSourceCase1
   | UpdateProjectCheckResponseSourceCase2;
 export const UpdateProjectCheckResponseSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateProjectCheckResponseSource>;
+  S.Unknown as any as S.Schema<UpdateProjectCheckResponseSource>;
 
 export type UpdateProjectCheckResponseBlocks =
   | "build-start"
@@ -2917,7 +2855,7 @@ export type UpdateProjectCheckResponseBlocks =
   | "deployment-promotion"
   | "deployment-start"
   | "none";
-export const UpdateProjectCheckResponseBlocks = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckResponseBlocks = S.String;
 
 export type UpdateProjectCheckResponseTargetsList = Array<string>;
 export const UpdateProjectCheckResponseTargetsList = /*@__PURE__*/ S.Array(
@@ -2932,7 +2870,7 @@ export type UpdateProjectCheckResponseSourceKind =
   | "integration"
   | "webhook"
   | "git-provider";
-export const UpdateProjectCheckResponseSourceKind = /*@__PURE__*/ S.String;
+export const UpdateProjectCheckResponseSourceKind = S.String;
 
 export interface UpdateProjectCheckResponse {
   id: string;

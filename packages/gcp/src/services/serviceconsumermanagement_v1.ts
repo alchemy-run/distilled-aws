@@ -407,7 +407,7 @@ export type TenantResourceStatusEnum =
   | "PENDING_DELETE"
   | "FAILED"
   | "DELETED";
-export const TenantResourceStatusEnum = /*@__PURE__*/ S.String;
+export const TenantResourceStatusEnum = S.String;
 
 /** Resource constituting the TenancyUnit. */
 export interface TenantResource {

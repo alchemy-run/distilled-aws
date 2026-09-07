@@ -60,7 +60,7 @@ export type CreateEventRequestActionSource =
   | "system_generated"
   | "business_messaging"
   | "other";
-export const CreateEventRequestActionSource = /*@__PURE__*/ S.String;
+export const CreateEventRequestActionSource = S.String;
 
 /** Tracking and attribution context. */
 export interface CreateEventRequestContext {
@@ -257,11 +257,11 @@ export type CreateEventRequestCurrency =
   | "awg"
   | "whop_usd"
   | "xau";
-export const CreateEventRequestCurrency = /*@__PURE__*/ S.String;
+export const CreateEventRequestCurrency = S.String;
 
 /** Gender */
 export type CreateEventRequestUserGender = "male" | "female";
-export const CreateEventRequestUserGender = /*@__PURE__*/ S.String;
+export const CreateEventRequestUserGender = S.String;
 
 /** User identity and profile data. */
 export interface CreateEventRequestUser {
@@ -436,7 +436,7 @@ export const GetPulseRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The underlying event recorded. Every movement on this feed is a ledger line, so switch on `type` rather than this. */
 export type GetPulseResponseDataItemEventName = "ledger_line.created";
-export const GetPulseResponseDataItemEventName = /*@__PURE__*/ S.String;
+export const GetPulseResponseDataItemEventName = S.String;
 
 /** What moved: a purchase, an affiliate commission, Whop card spend, ad spend, app revenue, an off-platform sale, a wallet deposit, a card load, a claimed drop, a transfer between accounts, or a referral bonus. */
 export type GetPulseResponseDataItemType =
@@ -451,7 +451,7 @@ export type GetPulseResponseDataItemType =
   | "airdrop_claim"
   | "transfer"
   | "referral_bonus";
-export const GetPulseResponseDataItemType = /*@__PURE__*/ S.String;
+export const GetPulseResponseDataItemType = S.String;
 
 /** Coarse location, shaped like the event `user` block. It belongs to the owner of the wallet the money moved into or out of — the party the event is about, never their counterparty. Omitted entirely when nothing is known. */
 export interface GetPulseResponseDataItemUser {
@@ -531,10 +531,10 @@ export const GetPulseResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPulseResponse>;
 
 export type ListEventsRequestDirection = "asc" | "desc";
-export const ListEventsRequestDirection = /*@__PURE__*/ S.String;
+export const ListEventsRequestDirection = S.String;
 
 export type ListEventsRequestAttributionModel = "last_touch" | "first_touch";
-export const ListEventsRequestAttributionModel = /*@__PURE__*/ S.String;
+export const ListEventsRequestAttributionModel = S.String;
 
 export interface ListEventsRequest {
   /** Any hard identifier of the person: a person ID (prsn_*), user ID, email, phone number, or a tracking cookie value (wuid, anonymous ID, fbp/fbc/ttp/ga). Omit to list recent events for the account. */
@@ -610,8 +610,7 @@ export type ListEventsResponseDataItemContextSourceType =
   | "lead_form"
   | "external_ad_click"
   | "referrer";
-export const ListEventsResponseDataItemContextSourceType =
-  /*@__PURE__*/ S.String;
+export const ListEventsResponseDataItemContextSourceType = S.String;
 
 export interface ListEventsResponseDataItemContext {
   ad_campaign_id?: string | null;
@@ -772,14 +771,12 @@ export const ListEventsResponseDataItemRelatedApp = /*@__PURE__*/ S.suspend(
 export type ListEventsResponseDataItemRelatedAudienceAudienceType =
   | "custom"
   | "lookalike";
-export const ListEventsResponseDataItemRelatedAudienceAudienceType =
-  /*@__PURE__*/ S.String;
+export const ListEventsResponseDataItemRelatedAudienceAudienceType = S.String;
 
 export type ListEventsResponseDataItemRelatedAudienceSourceType =
   | "csv_upload"
   | "people_filter";
-export const ListEventsResponseDataItemRelatedAudienceSourceType =
-  /*@__PURE__*/ S.String;
+export const ListEventsResponseDataItemRelatedAudienceSourceType = S.String;
 
 /** The saved audience this event came from. Present on the identify events an audience ingest writes for each of its members. */
 export interface ListEventsResponseDataItemRelatedAudience {

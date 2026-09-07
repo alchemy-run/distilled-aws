@@ -171,7 +171,7 @@ export type StatusType =
   | "IN_PROGRESS"
   | "STOPPED"
   | (string & {});
-export const StatusType = /*@__PURE__*/ S.String;
+export const StatusType = S.String;
 
 export type BuildBatchPhaseType =
   | "SUBMITTED"
@@ -182,7 +182,7 @@ export type BuildBatchPhaseType =
   | "FAILED"
   | "STOPPED"
   | (string & {});
-export const BuildBatchPhaseType = /*@__PURE__*/ S.String;
+export const BuildBatchPhaseType = S.String;
 
 export interface PhaseContext {
   statusCode?: string;
@@ -226,7 +226,7 @@ export type SourceType =
   | "GITHUB_ENTERPRISE"
   | "NO_SOURCE"
   | (string & {});
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 export type GitCloneDepth = number;
 export interface GitSubmodulesConfig {
@@ -242,7 +242,7 @@ export type SourceAuthType =
   | "CODECONNECTIONS"
   | "SECRETS_MANAGER"
   | (string & {});
-export const SourceAuthType = /*@__PURE__*/ S.String;
+export const SourceAuthType = S.String;
 
 export interface SourceAuth {
   type: SourceAuthType;
@@ -301,7 +301,7 @@ export type ProjectSecondarySourceVersions = ProjectSourceVersion[];
 export const ProjectSecondarySourceVersions =
   /*@__PURE__*/ S.Array(ProjectSourceVersion);
 export type BucketOwnerAccess = "NONE" | "READ_ONLY" | "FULL" | (string & {});
-export const BucketOwnerAccess = /*@__PURE__*/ S.String;
+export const BucketOwnerAccess = S.String;
 
 export interface BuildArtifacts {
   location?: string;
@@ -326,14 +326,14 @@ export const BuildArtifacts = /*@__PURE__*/ S.suspend(() =>
 export type BuildArtifactsList = BuildArtifacts[];
 export const BuildArtifactsList = /*@__PURE__*/ S.Array(BuildArtifacts);
 export type CacheType = "NO_CACHE" | "S3" | "LOCAL" | (string & {});
-export const CacheType = /*@__PURE__*/ S.String;
+export const CacheType = S.String;
 
 export type CacheMode =
   | "LOCAL_DOCKER_LAYER_CACHE"
   | "LOCAL_SOURCE_CACHE"
   | "LOCAL_CUSTOM_CACHE"
   | (string & {});
-export const CacheMode = /*@__PURE__*/ S.String;
+export const CacheMode = S.String;
 
 export type ProjectCacheModes = CacheMode[];
 export const ProjectCacheModes = /*@__PURE__*/ S.Array(CacheMode);
@@ -365,7 +365,7 @@ export type EnvironmentType =
   | "WINDOWS_EC2"
   | "MAC_ARM"
   | (string & {});
-export const EnvironmentType = /*@__PURE__*/ S.String;
+export const EnvironmentType = S.String;
 
 export type ComputeType =
   | "BUILD_GENERAL1_SMALL"
@@ -381,10 +381,10 @@ export type ComputeType =
   | "ATTRIBUTE_BASED_COMPUTE"
   | "CUSTOM_INSTANCE_TYPE"
   | (string & {});
-export const ComputeType = /*@__PURE__*/ S.String;
+export const ComputeType = S.String;
 
 export type MachineType = "GENERAL" | "NVME" | (string & {});
-export const MachineType = /*@__PURE__*/ S.String;
+export const MachineType = S.String;
 
 export interface ComputeConfiguration {
   vCpu?: number;
@@ -415,7 +415,7 @@ export type EnvironmentVariableType =
   | "PARAMETER_STORE"
   | "SECRETS_MANAGER"
   | (string & {});
-export const EnvironmentVariableType = /*@__PURE__*/ S.String;
+export const EnvironmentVariableType = S.String;
 
 export interface EnvironmentVariable {
   name: string;
@@ -434,7 +434,7 @@ export const EnvironmentVariable = /*@__PURE__*/ S.suspend(() =>
 export type EnvironmentVariables = EnvironmentVariable[];
 export const EnvironmentVariables = /*@__PURE__*/ S.Array(EnvironmentVariable);
 export type CredentialProviderType = "SECRETS_MANAGER" | (string & {});
-export const CredentialProviderType = /*@__PURE__*/ S.String;
+export const CredentialProviderType = S.String;
 
 export interface RegistryCredential {
   credential: string;
@@ -452,7 +452,7 @@ export type ImagePullCredentialsType =
   | "CODEBUILD"
   | "SERVICE_ROLE"
   | (string & {});
-export const ImagePullCredentialsType = /*@__PURE__*/ S.String;
+export const ImagePullCredentialsType = S.String;
 
 export type SecurityGroupIds = string[];
 export const SecurityGroupIds = /*@__PURE__*/ S.Array(S.String);
@@ -482,7 +482,7 @@ export type HostKernel =
   | "LINUX_KERNEL_6"
   | "LINUX_KERNEL_LATEST"
   | (string & {});
-export const HostKernel = /*@__PURE__*/ S.String;
+export const HostKernel = S.String;
 
 export interface ProjectEnvironment {
   type: EnvironmentType;
@@ -517,7 +517,7 @@ export const ProjectEnvironment = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProjectEnvironment",
 }) as any as S.Schema<ProjectEnvironment>;
 export type LogsConfigStatusType = "ENABLED" | "DISABLED" | (string & {});
-export const LogsConfigStatusType = /*@__PURE__*/ S.String;
+export const LogsConfigStatusType = S.String;
 
 export interface CloudWatchLogsConfig {
   status: LogsConfigStatusType;
@@ -572,7 +572,7 @@ export const VpcConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "VpcConfig" }) as any as S.Schema<VpcConfig>;
 export type FileSystemType = "EFS" | (string & {});
-export const FileSystemType = /*@__PURE__*/ S.String;
+export const FileSystemType = S.String;
 
 export interface ProjectFileSystemLocation {
   type?: FileSystemType;
@@ -618,7 +618,7 @@ export type BatchReportModeType =
   | "REPORT_INDIVIDUAL_BUILDS"
   | "REPORT_AGGREGATED_BATCH"
   | (string & {});
-export const BatchReportModeType = /*@__PURE__*/ S.String;
+export const BatchReportModeType = S.String;
 
 export interface ProjectBuildBatchConfig {
   serviceRole?: string;
@@ -645,7 +645,7 @@ export type ArtifactsType =
   | "S3"
   | "NO_ARTIFACTS"
   | (string & {});
-export const ArtifactsType = /*@__PURE__*/ S.String;
+export const ArtifactsType = S.String;
 
 export interface ResolvedArtifact {
   type?: ArtifactsType;
@@ -807,7 +807,7 @@ export type BuildPhaseType =
   | "FINALIZING"
   | "COMPLETED"
   | (string & {});
-export const BuildPhaseType = /*@__PURE__*/ S.String;
+export const BuildPhaseType = S.String;
 
 export interface BuildPhase {
   phaseType?: BuildPhaseType;
@@ -1006,7 +1006,7 @@ export const BatchGetCommandExecutionsInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchGetCommandExecutionsInput>;
 export type SensitiveNonEmptyString = string | redacted.Redacted<string>;
 export type CommandType = "SHELL" | (string & {});
-export const CommandType = /*@__PURE__*/ S.String;
+export const CommandType = S.String;
 
 export interface CommandExecution {
   id?: string;
@@ -1079,7 +1079,7 @@ export type FleetStatusCode =
   | "UPDATE_ROLLBACK_FAILED"
   | "ACTIVE"
   | (string & {});
-export const FleetStatusCode = /*@__PURE__*/ S.String;
+export const FleetStatusCode = S.String;
 
 export type FleetContextCode =
   | "CREATE_FAILED"
@@ -1088,7 +1088,7 @@ export type FleetContextCode =
   | "PENDING_DELETION"
   | "INSUFFICIENT_CAPACITY"
   | (string & {});
-export const FleetContextCode = /*@__PURE__*/ S.String;
+export const FleetContextCode = S.String;
 
 export interface FleetStatus {
   statusCode?: FleetStatusCode;
@@ -1104,10 +1104,10 @@ export const FleetStatus = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "FleetStatus" }) as any as S.Schema<FleetStatus>;
 export type FleetCapacity = number;
 export type FleetScalingType = "TARGET_TRACKING_SCALING" | (string & {});
-export const FleetScalingType = /*@__PURE__*/ S.String;
+export const FleetScalingType = S.String;
 
 export type FleetScalingMetricType = "FLEET_UTILIZATION_RATE" | (string & {});
-export const FleetScalingMetricType = /*@__PURE__*/ S.String;
+export const FleetScalingMetricType = S.String;
 
 export interface TargetTrackingScalingConfiguration {
   metricType?: FleetScalingMetricType;
@@ -1145,16 +1145,16 @@ export const ScalingConfigurationOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScalingConfigurationOutput",
 }) as any as S.Schema<ScalingConfigurationOutput>;
 export type FleetOverflowBehavior = "QUEUE" | "ON_DEMAND" | (string & {});
-export const FleetOverflowBehavior = /*@__PURE__*/ S.String;
+export const FleetOverflowBehavior = S.String;
 
 export type FleetProxyRuleBehavior = "ALLOW_ALL" | "DENY_ALL" | (string & {});
-export const FleetProxyRuleBehavior = /*@__PURE__*/ S.String;
+export const FleetProxyRuleBehavior = S.String;
 
 export type FleetProxyRuleType = "DOMAIN" | "IP" | (string & {});
-export const FleetProxyRuleType = /*@__PURE__*/ S.String;
+export const FleetProxyRuleType = S.String;
 
 export type FleetProxyRuleEffectType = "ALLOW" | "DENY" | (string & {});
-export const FleetProxyRuleEffectType = /*@__PURE__*/ S.String;
+export const FleetProxyRuleEffectType = S.String;
 
 export type FleetProxyRuleEntities = string[];
 export const FleetProxyRuleEntities = /*@__PURE__*/ S.Array(S.String);
@@ -1264,10 +1264,10 @@ export const BatchGetProjectsInput = /*@__PURE__*/ S.suspend(() =>
 export type ProjectName = string;
 export type ProjectDescription = string;
 export type ArtifactNamespace = "NONE" | "BUILD_ID" | (string & {});
-export const ArtifactNamespace = /*@__PURE__*/ S.String;
+export const ArtifactNamespace = S.String;
 
 export type ArtifactPackaging = "NONE" | "ZIP" | (string & {});
-export const ArtifactPackaging = /*@__PURE__*/ S.String;
+export const ArtifactPackaging = S.String;
 
 export interface ProjectArtifacts {
   type: ArtifactsType;
@@ -1314,7 +1314,7 @@ export type WebhookFilterType =
   | "REPOSITORY_NAME"
   | "ORGANIZATION_NAME"
   | (string & {});
-export const WebhookFilterType = /*@__PURE__*/ S.String;
+export const WebhookFilterType = S.String;
 
 export interface WebhookFilter {
   type: WebhookFilterType;
@@ -1337,14 +1337,14 @@ export type WebhookBuildType =
   | "BUILD_BATCH"
   | "RUNNER_BUILDKITE_BUILD"
   | (string & {});
-export const WebhookBuildType = /*@__PURE__*/ S.String;
+export const WebhookBuildType = S.String;
 
 export type WebhookScopeType =
   | "GITHUB_ORGANIZATION"
   | "GITHUB_GLOBAL"
   | "GITLAB_GROUP"
   | (string & {});
-export const WebhookScopeType = /*@__PURE__*/ S.String;
+export const WebhookScopeType = S.String;
 
 export interface ScopeConfiguration {
   name: string;
@@ -1366,14 +1366,14 @@ export type WebhookStatus =
   | "ACTIVE"
   | "DELETING"
   | (string & {});
-export const WebhookStatus = /*@__PURE__*/ S.String;
+export const WebhookStatus = S.String;
 
 export type PullRequestBuildCommentApproval =
   | "DISABLED"
   | "ALL_PULL_REQUESTS"
   | "FORK_PULL_REQUESTS"
   | (string & {});
-export const PullRequestBuildCommentApproval = /*@__PURE__*/ S.String;
+export const PullRequestBuildCommentApproval = S.String;
 
 export type PullRequestBuildApproverRole =
   | "GITHUB_READ"
@@ -1391,7 +1391,7 @@ export type PullRequestBuildApproverRole =
   | "BITBUCKET_WRITE"
   | "BITBUCKET_ADMIN"
   | (string & {});
-export const PullRequestBuildApproverRole = /*@__PURE__*/ S.String;
+export const PullRequestBuildApproverRole = S.String;
 
 export type PullRequestBuildApproverRoles = PullRequestBuildApproverRole[];
 export const PullRequestBuildApproverRoles = /*@__PURE__*/ S.Array(
@@ -1452,7 +1452,7 @@ export const ProjectBadge = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ProjectBadge" }) as any as S.Schema<ProjectBadge>;
 export type ProjectVisibilityType = "PUBLIC_READ" | "PRIVATE" | (string & {});
-export const ProjectVisibilityType = /*@__PURE__*/ S.String;
+export const ProjectVisibilityType = S.String;
 
 export interface Project {
   name?: string;
@@ -1546,13 +1546,13 @@ export const BatchGetReportGroupsInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchGetReportGroupsInput>;
 export type ReportGroupName = string;
 export type ReportType = "TEST" | "CODE_COVERAGE" | (string & {});
-export const ReportType = /*@__PURE__*/ S.String;
+export const ReportType = S.String;
 
 export type ReportExportConfigType = "S3" | "NO_EXPORT" | (string & {});
-export const ReportExportConfigType = /*@__PURE__*/ S.String;
+export const ReportExportConfigType = S.String;
 
 export type ReportPackagingType = "ZIP" | "NONE" | (string & {});
-export const ReportPackagingType = /*@__PURE__*/ S.String;
+export const ReportPackagingType = S.String;
 
 export interface S3ReportExportConfig {
   bucket?: string;
@@ -1587,7 +1587,7 @@ export const ReportExportConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReportExportConfig",
 }) as any as S.Schema<ReportExportConfig>;
 export type ReportGroupStatusType = "ACTIVE" | "DELETING" | (string & {});
-export const ReportGroupStatusType = /*@__PURE__*/ S.String;
+export const ReportGroupStatusType = S.String;
 
 export interface ReportGroup {
   arn?: string;
@@ -1644,7 +1644,7 @@ export type ReportStatusType =
   | "INCOMPLETE"
   | "DELETING"
   | (string & {});
-export const ReportStatusType = /*@__PURE__*/ S.String;
+export const ReportStatusType = S.String;
 
 export type ReportStatusCounts = { [key: string]: number | undefined };
 export const ReportStatusCounts = /*@__PURE__*/ S.Record(
@@ -2168,13 +2168,13 @@ export const DeleteWebhookOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteWebhookOutput>;
 export type PageSize = number;
 export type SortOrderType = "ASCENDING" | "DESCENDING" | (string & {});
-export const SortOrderType = /*@__PURE__*/ S.String;
+export const SortOrderType = S.String;
 
 export type ReportCodeCoverageSortByType =
   | "LINE_COVERAGE_PERCENTAGE"
   | "FILE_PATH"
   | (string & {});
-export const ReportCodeCoverageSortByType = /*@__PURE__*/ S.String;
+export const ReportCodeCoverageSortByType = S.String;
 
 export interface DescribeCodeCoveragesInput {
   reportArn: string;
@@ -2314,7 +2314,7 @@ export type ReportGroupTrendFieldType =
   | "BRANCHES_COVERED"
   | "BRANCHES_MISSED"
   | (string & {});
-export const ReportGroupTrendFieldType = /*@__PURE__*/ S.String;
+export const ReportGroupTrendFieldType = S.String;
 
 export interface GetReportGroupTrendInput {
   reportGroupArn: string;
@@ -2395,7 +2395,7 @@ export type ServerType =
   | "GITLAB"
   | "GITLAB_SELF_MANAGED"
   | (string & {});
-export const ServerType = /*@__PURE__*/ S.String;
+export const ServerType = S.String;
 
 export type AuthType =
   | "OAUTH"
@@ -2404,7 +2404,7 @@ export type AuthType =
   | "CODECONNECTIONS"
   | "SECRETS_MANAGER"
   | (string & {});
-export const AuthType = /*@__PURE__*/ S.String;
+export const AuthType = S.String;
 
 export interface ImportSourceCredentialsInput {
   username?: string;
@@ -2609,7 +2609,7 @@ export type PlatformType =
   | "UBUNTU"
   | "WINDOWS_SERVER"
   | (string & {});
-export const PlatformType = /*@__PURE__*/ S.String;
+export const PlatformType = S.String;
 
 export type LanguageType =
   | "JAVA"
@@ -2623,7 +2623,7 @@ export type LanguageType =
   | "BASE"
   | "PHP"
   | (string & {});
-export const LanguageType = /*@__PURE__*/ S.String;
+export const LanguageType = S.String;
 
 export type ImageVersions = string[];
 export const ImageVersions = /*@__PURE__*/ S.Array(S.String);
@@ -2684,7 +2684,7 @@ export type FleetSortByType =
   | "CREATED_TIME"
   | "LAST_MODIFIED_TIME"
   | (string & {});
-export const FleetSortByType = /*@__PURE__*/ S.String;
+export const FleetSortByType = S.String;
 
 export interface ListFleetsInput {
   nextToken?: string | redacted.Redacted<string>;
@@ -2720,7 +2720,7 @@ export type ProjectSortByType =
   | "CREATED_TIME"
   | "LAST_MODIFIED_TIME"
   | (string & {});
-export const ProjectSortByType = /*@__PURE__*/ S.String;
+export const ProjectSortByType = S.String;
 
 export interface ListProjectsInput {
   sortBy?: ProjectSortByType;
@@ -2755,7 +2755,7 @@ export type ReportGroupSortByType =
   | "CREATED_TIME"
   | "LAST_MODIFIED_TIME"
   | (string & {});
-export const ReportGroupSortByType = /*@__PURE__*/ S.String;
+export const ReportGroupSortByType = S.String;
 
 export interface ListReportGroupsInput {
   sortOrder?: SortOrderType;
@@ -2908,7 +2908,7 @@ export const ListSandboxesForProjectOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSandboxesForProjectOutput",
 }) as any as S.Schema<ListSandboxesForProjectOutput>;
 export type SharedResourceSortByType = "ARN" | "MODIFIED_TIME" | (string & {});
-export const SharedResourceSortByType = /*@__PURE__*/ S.String;
+export const SharedResourceSortByType = S.String;
 
 export interface ListSharedProjectsInput {
   sortBy?: SharedResourceSortByType;
@@ -3053,7 +3053,7 @@ export type RetryBuildBatchType =
   | "RETRY_ALL_BUILDS"
   | "RETRY_FAILED_BUILDS"
   | (string & {});
-export const RetryBuildBatchType = /*@__PURE__*/ S.String;
+export const RetryBuildBatchType = S.String;
 
 export interface RetryBuildBatchInput {
   id?: string;

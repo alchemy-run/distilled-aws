@@ -1675,7 +1675,7 @@ export type ManagedWorkgroupStatus =
   | "AVAILABLE"
   | "NOT_AVAILABLE"
   | (string & {});
-export const ManagedWorkgroupStatus = /*@__PURE__*/ S.String;
+export const ManagedWorkgroupStatus = S.String;
 
 export interface ManagedWorkgroupListItem {
   managedWorkgroupName?: string;

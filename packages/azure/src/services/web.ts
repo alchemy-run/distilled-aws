@@ -70,7 +70,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -78,7 +78,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -449,7 +449,7 @@ export const SitePropertiesHostNamesList = /*@__PURE__*/ S.Array(
 
 /** State indicating whether the app has exceeded its quota usage. Read-only. */
 export type UsageState = "Normal" | "Exceeded";
-export const UsageState = /*@__PURE__*/ S.String;
+export const UsageState = S.String;
 
 /** Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise, the app is not served on those hostnames. */
 export type SitePropertiesEnabledHostNamesList = Array<string>;
@@ -462,15 +462,15 @@ export type SiteAvailabilityState =
   | "Normal"
   | "Limited"
   | "DisasterRecoveryMode";
-export const SiteAvailabilityState = /*@__PURE__*/ S.String;
+export const SiteAvailabilityState = S.String;
 
 /** SSL type */
 export type SslState = "Disabled" | "SniEnabled" | "IpBasedEnabled";
-export const SslState = /*@__PURE__*/ S.String;
+export const SslState = S.String;
 
 /** Indicates whether the hostname is a standard or repository hostname. */
 export type HostType = "Standard" | "Repository";
-export const HostType = /*@__PURE__*/ S.String;
+export const HostType = S.String;
 
 /** SSL-enabled hostname. */
 export interface HostNameSslState {
@@ -610,7 +610,7 @@ export type ConnectionStringType =
   | "DocDb"
   | "RedisCache"
   | "PostgreSQL";
-export const ConnectionStringType = /*@__PURE__*/ S.String;
+export const ConnectionStringType = S.String;
 
 /** Database connection string information. */
 export interface ConnStringInfo {
@@ -694,11 +694,11 @@ export type ScmType =
   | "OneDrive"
   | "VSO"
   | "VSTSRM";
-export const ScmType = /*@__PURE__*/ S.String;
+export const ScmType = S.String;
 
 /** Managed pipeline mode. */
 export type ManagedPipelineMode = "Integrated" | "Classic";
-export const ManagedPipelineMode = /*@__PURE__*/ S.String;
+export const ManagedPipelineMode = S.String;
 
 /** Directory for virtual application. */
 export interface VirtualDirectory {
@@ -759,7 +759,7 @@ export type SiteLoadBalancing =
   | "RequestHash"
   | "PerSiteRoundRobin"
   | "LeastRequestsWithTieBreaker";
-export const SiteLoadBalancing = /*@__PURE__*/ S.String;
+export const SiteLoadBalancing = S.String;
 
 /** Routing rules for ramp up testing. This rule allows to redirect static traffic % to a slot or to gradually change routing % based on performance. */
 export interface RampUpRule {
@@ -964,7 +964,7 @@ export const AutoHealTriggers = /*@__PURE__*/ S.suspend(() =>
 
 /** Predefined action to be taken. */
 export type AutoHealActionType = "Recycle" | "LogEvent" | "CustomAction";
-export const AutoHealActionType = /*@__PURE__*/ S.String;
+export const AutoHealActionType = S.String;
 
 /** Custom action to be executed when an auto heal rule is triggered. */
 export interface AutoHealCustomAction {
@@ -1108,7 +1108,7 @@ export const ApiManagementConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Defines what this IP filter will be used for. This is to support IP filtering on proxies. */
 export type IpFilterTag = "Default" | "XffProxy" | "ServiceTag";
-export const IpFilterTag = /*@__PURE__*/ S.String;
+export const IpFilterTag = S.String;
 
 export type IpSecurityRestrictionHeadersValueList = Array<string>;
 export const IpSecurityRestrictionHeadersValueList = /*@__PURE__*/ S.Array(
@@ -1175,7 +1175,7 @@ export const SiteConfigIpSecurityRestrictionsList = /*@__PURE__*/ S.Array(
 
 /** Default action for main access restriction if no rules are matched. */
 export type DefaultAction = "Allow" | "Deny";
-export const DefaultAction = /*@__PURE__*/ S.String;
+export const DefaultAction = S.String;
 
 /** IP security restrictions for scm. */
 export type SiteConfigScmIpSecurityRestrictionsList =
@@ -1186,7 +1186,7 @@ export const SiteConfigScmIpSecurityRestrictionsList = /*@__PURE__*/ S.Array(
 
 /** MinTlsVersion: configures the minimum version of TLS required for SSL requests */
 export type SupportedTlsVersions = "1.0" | "1.1" | "1.2" | "1.3";
-export const SupportedTlsVersions = /*@__PURE__*/ S.String;
+export const SupportedTlsVersions = S.String;
 
 /** The minimum strength TLS cipher suite allowed for an application */
 export type TlsCipherSuites =
@@ -1207,15 +1207,15 @@ export type TlsCipherSuites =
   | "TLS_RSA_WITH_AES_128_CBC_SHA256"
   | "TLS_RSA_WITH_AES_256_CBC_SHA"
   | "TLS_RSA_WITH_AES_128_CBC_SHA";
-export const TlsCipherSuites = /*@__PURE__*/ S.String;
+export const TlsCipherSuites = S.String;
 
 /** State of FTP / FTPS service */
 export type FtpsState = "AllAllowed" | "FtpsOnly" | "Disabled";
-export const FtpsState = /*@__PURE__*/ S.String;
+export const FtpsState = S.String;
 
 /** Type of storage. */
 export type AzureStorageType = "AzureFiles" | "AzureBlob";
-export const AzureStorageType = /*@__PURE__*/ S.String;
+export const AzureStorageType = S.String;
 
 /** State of the storage account. */
 export type AzureStorageState =
@@ -1223,11 +1223,11 @@ export type AzureStorageState =
   | "InvalidCredentials"
   | "InvalidShare"
   | "NotValidated";
-export const AzureStorageState = /*@__PURE__*/ S.String;
+export const AzureStorageState = S.String;
 
 /** Mounting protocol to use for the storage account. */
 export type AzureStorageProtocol = "Smb" | "Http" | "Nfs";
-export const AzureStorageProtocol = /*@__PURE__*/ S.String;
+export const AzureStorageProtocol = S.String;
 
 /** Azure Files or Blob Storage access information value for dictionary storage. */
 export interface AzureStorageInfoValue {
@@ -1500,14 +1500,14 @@ export const SiteConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Property to select Azure Storage type. Available options: blobContainer. */
 export type FunctionsDeploymentStorageType = "blobContainer";
-export const FunctionsDeploymentStorageType = /*@__PURE__*/ S.String;
+export const FunctionsDeploymentStorageType = S.String;
 
 /** Property to select authentication type to access the selected storage account. Available options: SystemAssignedIdentity, UserAssignedIdentity, StorageAccountConnectionString. */
 export type AuthenticationType =
   | "SystemAssignedIdentity"
   | "UserAssignedIdentity"
   | "StorageAccountConnectionString";
-export const AuthenticationType = /*@__PURE__*/ S.String;
+export const AuthenticationType = S.String;
 
 /** Authentication method to access the storage account for deployment. */
 export interface FunctionsDeploymentStorageAuthentication {
@@ -1570,7 +1570,7 @@ export type RuntimeName =
   | "python"
   | "go"
   | "custom";
-export const RuntimeName = /*@__PURE__*/ S.String;
+export const RuntimeName = S.String;
 
 /** Function app runtime name and version. */
 export interface FunctionsRuntime {
@@ -1664,7 +1664,7 @@ export const FunctionsScaleAndConcurrency = /*@__PURE__*/ S.suspend(() =>
 
 /** Function app site update strategy type. Available options: Recreate, RollingUpdate */
 export type SiteUpdateStrategyType = "Recreate" | "RollingUpdate";
-export const SiteUpdateStrategyType = /*@__PURE__*/ S.String;
+export const SiteUpdateStrategyType = S.String;
 
 /** Function app site update strategy configuration for deployments and site config updates. */
 export interface FunctionsSiteUpdateStrategy {
@@ -1703,7 +1703,7 @@ export const FunctionAppConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Sets the log level for the Dapr sidecar. Allowed values are debug, info, warn, error. Default is info. */
 export type DaprLogLevel = "info" | "debug" | "warn" | "error";
-export const DaprLogLevel = /*@__PURE__*/ S.String;
+export const DaprLogLevel = S.String;
 
 /** App Dapr configuration. */
 export interface DaprConfig {
@@ -1872,11 +1872,11 @@ export type ClientCertMode =
   | "Required"
   | "Optional"
   | "OptionalInteractiveUser";
-export const ClientCertMode = /*@__PURE__*/ S.String;
+export const ClientCertMode = S.String;
 
 /** Specifies the IP mode of the app. */
 export type IPMode = "IPv4" | "IPv6" | "IPv4AndIPv6";
-export const IPMode = /*@__PURE__*/ S.String;
+export const IPMode = S.String;
 
 /** Application setting overrides for cloned app. If specified, these settings override the settings cloned from source app. Otherwise, application settings from source app are retained. */
 export type CloningInfoAppSettingsOverridesMap = {
@@ -1952,7 +1952,7 @@ export type RedundancyMode =
   | "Failover"
   | "ActiveActive"
   | "GeoRedundant";
-export const RedundancyMode = /*@__PURE__*/ S.String;
+export const RedundancyMode = S.String;
 
 /** Specifies the scope of uniqueness for the default hostname during resource creation */
 export type AutoGeneratedDomainNameLabelScope =
@@ -1960,11 +1960,11 @@ export type AutoGeneratedDomainNameLabelScope =
   | "SubscriptionReuse"
   | "ResourceGroupReuse"
   | "NoReuse";
-export const AutoGeneratedDomainNameLabelScope = /*@__PURE__*/ S.String;
+export const AutoGeneratedDomainNameLabelScope = S.String;
 
 /** The platform release channel for the site. */
 export type PlatformReleaseChannel = "Latest" | "Standard" | "Extended";
-export const PlatformReleaseChannel = /*@__PURE__*/ S.String;
+export const PlatformReleaseChannel = S.String;
 
 /** Site resource specific properties */
 export interface SiteProperties {
@@ -2164,7 +2164,7 @@ export type ManagedServiceIdentityType =
   | "UserAssigned"
   | "SystemAssigned, UserAssigned"
   | "None";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** User Assigned identity. */
 export interface UserAssignedIdentity {
@@ -2324,7 +2324,7 @@ export type LoadBalancingMode =
   | "Web"
   | "Publishing"
   | "Web, Publishing";
-export const LoadBalancingMode = /*@__PURE__*/ S.String;
+export const LoadBalancingMode = S.String;
 
 /** Custom settings for changing the behavior of the App Service Environment. */
 export type AppServiceEnvironmentInputClusterSettingsList =
@@ -2348,8 +2348,7 @@ export type AppServiceEnvironmentInputUpgradePreference =
   | "Early"
   | "Late"
   | "Manual";
-export const AppServiceEnvironmentInputUpgradePreference =
-  /*@__PURE__*/ S.String;
+export const AppServiceEnvironmentInputUpgradePreference = S.String;
 
 /** CustomDnsSuffixConfiguration resource specific properties */
 export interface CustomDnsSuffixConfigurationPropertiesInput {
@@ -2534,7 +2533,7 @@ export type ProvisioningState =
   | "Canceled"
   | "InProgress"
   | "Deleting";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** Current status of the App Service Environment. */
 export type HostingEnvironmentStatus =
@@ -2542,7 +2541,7 @@ export type HostingEnvironmentStatus =
   | "Ready"
   | "Scaling"
   | "Deleting";
-export const HostingEnvironmentStatus = /*@__PURE__*/ S.String;
+export const HostingEnvironmentStatus = S.String;
 
 /** Specification for using a Virtual Network. */
 export interface VirtualNetworkProfile {
@@ -2585,14 +2584,14 @@ export type AppServiceEnvironmentUpgradePreference =
   | "Early"
   | "Late"
   | "Manual";
-export const AppServiceEnvironmentUpgradePreference = /*@__PURE__*/ S.String;
+export const AppServiceEnvironmentUpgradePreference = S.String;
 
 export type CustomDnsSuffixProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Degraded"
   | "InProgress";
-export const CustomDnsSuffixProvisioningState = /*@__PURE__*/ S.String;
+export const CustomDnsSuffixProvisioningState = S.String;
 
 /** CustomDnsSuffixConfiguration resource specific properties */
 export interface CustomDnsSuffixConfigurationProperties {
@@ -2743,7 +2742,7 @@ export const AseV3NetworkingConfiguration = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether an upgrade is available for this App Service Environment. */
 export type UpgradeAvailability = "None" | "Ready";
-export const UpgradeAvailability = /*@__PURE__*/ S.String;
+export const UpgradeAvailability = S.String;
 
 /** Description of an App Service Environment. */
 export interface AppServiceEnvironment {
@@ -2853,7 +2852,7 @@ export const AppServiceEnvironmentsCreateOrUpdateResponse =
 
 /** Shared/dedicated workers. */
 export type ComputeModeOptions = "Shared" | "Dedicated" | "Dynamic";
-export const ComputeModeOptions = /*@__PURE__*/ S.String;
+export const ComputeModeOptions = S.String;
 
 /** Worker pool of an App Service Environment. */
 export interface WorkerPoolInput {
@@ -3296,7 +3295,7 @@ export type RegistryAdapterType =
   | "Multi_String"
   | "DWord"
   | "QWord";
-export const RegistryAdapterType = /*@__PURE__*/ S.String;
+export const RegistryAdapterType = S.String;
 
 /** Object to hold key vault reference and the resolution status */
 export interface KeyVaultReferenceWithStatus {
@@ -3343,7 +3342,7 @@ export const AppServicePlanPropertiesInputRegistryAdaptersList =
 
 /** Type of the install script. */
 export type InstallScriptType = "RemoteAzureBlob" | "PlatformStorage";
-export const InstallScriptType = /*@__PURE__*/ S.String;
+export const InstallScriptType = S.String;
 
 /** Object to hold install script reference. */
 export interface InstallScriptSource {
@@ -3398,7 +3397,7 @@ export const ServerFarmNetworkSettings = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of the storage mount. */
 export type StorageMountType = "AzureFiles" | "LocalStorage" | "FileShare";
-export const StorageMountType = /*@__PURE__*/ S.String;
+export const StorageMountType = S.String;
 
 /** Server farm storage mount configuration. */
 export interface StorageMount {
@@ -3616,7 +3615,7 @@ export const AppServicePlansCreateOrUpdateResponseTagsMap =
 
 /** App Service plan status. */
 export type StatusOptions = "Ready" | "Pending" | "Creating";
-export const StatusOptions = /*@__PURE__*/ S.String;
+export const StatusOptions = S.String;
 
 /** Specification for a Kubernetes Environment to use for this resource. */
 export interface KubeEnvironmentProfile {
@@ -3805,7 +3804,7 @@ export const AppServicePlansCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** The type of route this is: DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918 INHERITED - Routes inherited from the real Virtual Network routes STATIC - Static route set on the app only These values will be used for syncing an app's routes with those from a Virtual Network. */
 export type RouteType = "DEFAULT" | "INHERITED" | "STATIC";
-export const RouteType = /*@__PURE__*/ S.String;
+export const RouteType = S.String;
 
 /** VnetRoute resource specific properties */
 export interface VnetRouteProperties {
@@ -3928,7 +3927,7 @@ export type OperationStatus =
   | "Succeeded"
   | "TimedOut"
   | "Created";
-export const OperationStatus = /*@__PURE__*/ S.String;
+export const OperationStatus = S.String;
 
 /** Parameters for the template. */
 export type ErrorEntityParametersList = Array<string>;
@@ -4170,7 +4169,7 @@ export type KeyVaultSecretStatus =
   | "UnknownError"
   | "ExternalPrivateKey"
   | "Unknown";
-export const KeyVaultSecretStatus = /*@__PURE__*/ S.String;
+export const KeyVaultSecretStatus = S.String;
 
 /** Certificate resource specific properties */
 export interface CertificateProperties {
@@ -4288,7 +4287,7 @@ export type CheckNameResourceTypes =
   | "Microsoft.Web/sites/slots"
   | "Microsoft.Web/hostingEnvironments"
   | "Microsoft.Web/publishingUsers";
-export const CheckNameResourceTypes = /*@__PURE__*/ S.String;
+export const CheckNameResourceTypes = S.String;
 
 export interface CheckNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4323,7 +4322,7 @@ export const CheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable. */
 export type InAvailabilityReasonType = "Invalid" | "AlreadyExists";
-export const InAvailabilityReasonType = /*@__PURE__*/ S.String;
+export const InAvailabilityReasonType = S.String;
 
 /** Information regarding availability of a resource name. */
 export interface ResourceNameAvailability {
@@ -7624,14 +7623,14 @@ export type IssueType =
   | "UserIssue"
   | "PlatformIssue"
   | "Other";
-export const IssueType = /*@__PURE__*/ S.String;
+export const IssueType = S.String;
 
 /** Type of Solution */
 export type SolutionType =
   | "QuickSolution"
   | "DeepInvestigation"
   | "BestPractices";
-export const SolutionType = /*@__PURE__*/ S.String;
+export const SolutionType = S.String;
 
 export type SolutionDataItemList = Array<NameValuePair>;
 export const SolutionDataItemList = /*@__PURE__*/ S.Array(
@@ -10055,7 +10054,7 @@ export const DetectorInfoAnalysisTypeList = /*@__PURE__*/ S.Array(
 
 /** Whether this detector is an Analysis Detector or not. */
 export type DetectorType = "Detector" | "Analysis" | "CategoryOverview";
-export const DetectorType = /*@__PURE__*/ S.String;
+export const DetectorType = S.String;
 
 /** Definition of Detector */
 export interface DetectorInfo {
@@ -10175,7 +10174,7 @@ export type RenderingType =
   | "SummaryCard"
   | "SearchComponent"
   | "AppInsightEnablement";
-export const RenderingType = /*@__PURE__*/ S.String;
+export const RenderingType = S.String;
 
 /** Instructions for rendering the data */
 export interface Rendering {
@@ -10221,7 +10220,7 @@ export type InsightStatus =
   | "Info"
   | "Success"
   | "None";
-export const InsightStatus = /*@__PURE__*/ S.String;
+export const InsightStatus = S.String;
 
 /** Identify the status of the most severe insight generated by the detector. */
 export interface Status {
@@ -11120,13 +11119,13 @@ export type KubeEnvironmentProvisioningState =
   | "ScheduledForDelete"
   | "UpgradeRequested"
   | "UpgradeFailed";
-export const KubeEnvironmentProvisioningState = /*@__PURE__*/ S.String;
+export const KubeEnvironmentProvisioningState = S.String;
 
 export type StorageType = "LocalNode" | "NetworkFileSystem";
-export const StorageType = /*@__PURE__*/ S.String;
+export const StorageType = S.String;
 
 export type FrontEndServiceType = "NodePort" | "LoadBalancer";
-export const FrontEndServiceType = /*@__PURE__*/ S.String;
+export const FrontEndServiceType = S.String;
 
 export interface FrontEndConfiguration {
   kind?: FrontEndServiceType | (string & {});
@@ -11296,8 +11295,7 @@ export type GetProviderAvailableStacksRequestOsTypeSelected =
   | "WindowsFunctions"
   | "LinuxFunctions"
   | "All";
-export const GetProviderAvailableStacksRequestOsTypeSelected =
-  /*@__PURE__*/ S.String;
+export const GetProviderAvailableStacksRequestOsTypeSelected = S.String;
 
 export interface GetProviderAvailableStacksRequest {
   osTypeSelected?:
@@ -11512,8 +11510,7 @@ export type GetProviderAvailableStacksOnPremRequestOsTypeSelected =
   | "WindowsFunctions"
   | "LinuxFunctions"
   | "All";
-export const GetProviderAvailableStacksOnPremRequestOsTypeSelected =
-  /*@__PURE__*/ S.String;
+export const GetProviderAvailableStacksOnPremRequestOsTypeSelected = S.String;
 
 export interface GetProviderAvailableStacksOnPremRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11545,8 +11542,7 @@ export type GetProviderFunctionAppStacksRequestStackOsType =
   | "Windows"
   | "Linux"
   | "All";
-export const GetProviderFunctionAppStacksRequestStackOsType =
-  /*@__PURE__*/ S.String;
+export const GetProviderFunctionAppStacksRequestStackOsType = S.String;
 
 export interface GetProviderFunctionAppStacksRequest {
   /** Stack OS Type */
@@ -11768,7 +11764,7 @@ export const FunctionAppStackPropertiesMajorVersionsList =
 
 /** Function App stack preferred OS. */
 export type StackPreferredOs = "Windows" | "Linux";
-export const StackPreferredOs = /*@__PURE__*/ S.String;
+export const StackPreferredOs = S.String;
 
 /** FunctionAppStack resource specific properties */
 export interface FunctionAppStackProperties {
@@ -11847,7 +11843,7 @@ export type GetProviderFunctionAppStacksForLocationRequestStackOsType =
   | "Linux"
   | "All";
 export const GetProviderFunctionAppStacksForLocationRequestStackOsType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProviderFunctionAppStacksForLocationRequest {
   /** The name of the Azure region. */
@@ -11882,7 +11878,7 @@ export type GetProviderWebAppStacksRequestStackOsType =
   | "Windows"
   | "Linux"
   | "All";
-export const GetProviderWebAppStacksRequestStackOsType = /*@__PURE__*/ S.String;
+export const GetProviderWebAppStacksRequestStackOsType = S.String;
 
 export interface GetProviderWebAppStacksRequest {
   /** Stack OS Type */
@@ -12157,8 +12153,7 @@ export type GetProviderWebAppStacksForLocationRequestStackOsType =
   | "Windows"
   | "Linux"
   | "All";
-export const GetProviderWebAppStacksForLocationRequestStackOsType =
-  /*@__PURE__*/ S.String;
+export const GetProviderWebAppStacksForLocationRequestStackOsType = S.String;
 
 export interface GetProviderWebAppStacksForLocationRequest {
   /** The name of the Azure region. */
@@ -12292,11 +12287,11 @@ export type NotificationLevel =
   | "Warning"
   | "Information"
   | "NonUrgentSuggestion";
-export const NotificationLevel = /*@__PURE__*/ S.String;
+export const NotificationLevel = S.String;
 
 /** List of channels that this recommendation can apply. */
 export type Channels = "Notification" | "Api" | "Email" | "Webhook" | "All";
-export const Channels = /*@__PURE__*/ S.String;
+export const Channels = S.String;
 
 /** The list of category tags that this recommendation rule belongs to. */
 export type RecommendationRulePropertiesCategoryTagsList = Array<string>;
@@ -13162,8 +13157,7 @@ export const GetSourceControlResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSourceControlResponse>;
 
 export type GetStaticSiteBasicAuthRequestBasicAuthName = "default";
-export const GetStaticSiteBasicAuthRequestBasicAuthName =
-  /*@__PURE__*/ S.String;
+export const GetStaticSiteBasicAuthRequestBasicAuthName = S.String;
 
 export interface GetStaticSiteBasicAuthRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14306,7 +14300,7 @@ export const StaticSitePrivateEndpointConnectionsList = /*@__PURE__*/ S.Array(
 
 /** State indicating whether staging environments are allowed or not allowed for a static web app. */
 export type StagingEnvironmentPolicy = "Enabled" | "Disabled";
-export const StagingEnvironmentPolicy = /*@__PURE__*/ S.String;
+export const StagingEnvironmentPolicy = S.String;
 
 /** Template Options for the static site. */
 export interface StaticSiteTemplateOptions {
@@ -14404,7 +14398,7 @@ export type EnterpriseGradeCdnStatus =
   | "Enabling"
   | "Disabled"
   | "Disabling";
-export const EnterpriseGradeCdnStatus = /*@__PURE__*/ S.String;
+export const EnterpriseGradeCdnStatus = S.String;
 
 /** A list of configuration files associated with this database connection. */
 export type DatabaseConnectionOverviewConfigurationFilesList =
@@ -14699,7 +14693,7 @@ export type BuildStatus =
   | "Failed"
   | "Deleting"
   | "Detached";
-export const BuildStatus = /*@__PURE__*/ S.String;
+export const BuildStatus = S.String;
 
 /** User provided function apps registered with the static site build */
 export type StaticSiteBuildARMResourcePropertiesUserProvidedFunctionAppsList =
@@ -14915,7 +14909,7 @@ export type CustomDomainStatus =
   | "Failed"
   | "Deleting"
   | "Unhealthy";
-export const CustomDomainStatus = /*@__PURE__*/ S.String;
+export const CustomDomainStatus = S.String;
 
 /** StaticSiteCustomDomainOverviewARMResource resource specific properties */
 export interface StaticSiteCustomDomainOverviewARMResourceProperties {
@@ -15532,10 +15526,10 @@ export type ResolveStatus =
   | "OtherReasons"
   | "FetchTimedOut"
   | "UnauthorizedClient";
-export const ResolveStatus = /*@__PURE__*/ S.String;
+export const ResolveStatus = S.String;
 
 export type ApiKVReferencePropertiesSource = "KeyVault";
-export const ApiKVReferencePropertiesSource = /*@__PURE__*/ S.String;
+export const ApiKVReferencePropertiesSource = S.String;
 
 /** ApiKVReference resource specific properties */
 export interface ApiKVReferenceProperties {
@@ -15784,7 +15778,7 @@ export const GetWebAppAuthSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 export type UnauthenticatedClientAction =
   | "RedirectToLoginPage"
   | "AllowAnonymous";
-export const UnauthenticatedClientAction = /*@__PURE__*/ S.String;
+export const UnauthenticatedClientAction = S.String;
 
 /** External URLs that can be redirected to as part of logging in or logging out of the app. Note that the query string part of the URL is ignored. This is an advanced setting typically only needed by Windows Store application backends. Note that URLs within the current domain are always implicitly allowed. */
 export type SiteAuthSettingsPropertiesAllowedExternalRedirectUrlsList =
@@ -15802,7 +15796,7 @@ export type BuiltInAuthenticationProvider =
   | "MicrosoftAccount"
   | "Twitter"
   | "Github";
-export const BuiltInAuthenticationProvider = /*@__PURE__*/ S.String;
+export const BuiltInAuthenticationProvider = S.String;
 
 /** Allowed audience values to consider when validating JSON Web Tokens issued by Azure Active Directory. Note that the <code>ClientID</code> value is always considered an allowed audience, regardless of this setting. */
 export type SiteAuthSettingsPropertiesAllowedAudiencesList = Array<string>;
@@ -16109,7 +16103,7 @@ export type UnauthenticatedClientActionV2 =
   | "AllowAnonymous"
   | "Return401"
   | "Return403";
-export const UnauthenticatedClientActionV2 = /*@__PURE__*/ S.String;
+export const UnauthenticatedClientActionV2 = S.String;
 
 /** The paths for which unauthenticated flow would not be redirected to the login page. */
 export type GlobalValidationExcludedPathsList = Array<string>;
@@ -16557,7 +16551,7 @@ export const AzureStaticWebApps = /*@__PURE__*/ S.suspend(() =>
 
 /** The method that should be used to authenticate the user. */
 export type OpenIdConnectClientCredentialMethod = "ClientSecretPost";
-export const OpenIdConnectClientCredentialMethod = /*@__PURE__*/ S.String;
+export const OpenIdConnectClientCredentialMethod = S.String;
 
 /** The authentication client credentials of the custom Open ID Connect provider. */
 export interface OpenIdConnectClientCredential {
@@ -16776,7 +16770,7 @@ export const LoginAllowedExternalRedirectUrlsList = /*@__PURE__*/ S.Array(
 export type CookieExpirationConvention =
   | "FixedTime"
   | "IdentityProviderDerived";
-export const CookieExpirationConvention = /*@__PURE__*/ S.String;
+export const CookieExpirationConvention = S.String;
 
 /** The configuration settings of the session cookie's expiration. */
 export interface CookieExpiration {
@@ -16851,7 +16845,7 @@ export const HttpSettingsRoutes = /*@__PURE__*/ S.suspend(() =>
 
 /** The convention used to determine the url of the request made. */
 export type ForwardProxyConvention = "NoProxy" | "Standard" | "Custom";
-export const ForwardProxyConvention = /*@__PURE__*/ S.String;
+export const ForwardProxyConvention = S.String;
 
 /** The configuration settings of a forward proxy used to make the requests. */
 export interface ForwardProxy {
@@ -17132,7 +17126,7 @@ export const GetWebAppBackupConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The unit of time for how often the backup should be executed (e.g. for weekly backup, this should be set to Day and FrequencyInterval should be set to 7) */
 export type BackupScheduleFrequencyUnit = "Day" | "Hour";
-export const BackupScheduleFrequencyUnit = /*@__PURE__*/ S.String;
+export const BackupScheduleFrequencyUnit = S.String;
 
 /** Description of a backup schedule. Describes how often should be the backup performed and what should be the retention policy. */
 export interface BackupSchedule {
@@ -17162,7 +17156,7 @@ export const BackupSchedule = /*@__PURE__*/ S.suspend(() =>
 
 /** Database type (e.g. SqlAzure / MySql). */
 export type DatabaseType = "SqlAzure" | "MySql" | "LocalMySql" | "PostgreSql";
-export const DatabaseType = /*@__PURE__*/ S.String;
+export const DatabaseType = S.String;
 
 /** Database backup settings. */
 export interface DatabaseBackupSetting {
@@ -17335,7 +17329,7 @@ export type BackupItemStatus =
   | "DeleteInProgress"
   | "DeleteFailed"
   | "Deleted";
-export const BackupItemStatus = /*@__PURE__*/ S.String;
+export const BackupItemStatus = S.String;
 
 /** List of databases included in the backup. */
 export type BackupItemPropertiesDatabasesList = Array<DatabaseBackupSetting>;
@@ -17807,11 +17801,11 @@ export type ContinuousWebJobStatus =
   | "Running"
   | "PendingRestart"
   | "Stopped";
-export const ContinuousWebJobStatus = /*@__PURE__*/ S.String;
+export const ContinuousWebJobStatus = S.String;
 
 /** Job type. */
 export type WebJobType = "Continuous" | "Triggered";
-export const WebJobType = /*@__PURE__*/ S.String;
+export const WebJobType = S.String;
 
 /** Job settings. */
 export type ContinuousWebJobPropertiesSettingsMap = {
@@ -18095,7 +18089,7 @@ export type FileSystemApplicationLogsConfigLevel =
   | "Information"
   | "Warning"
   | "Error";
-export const FileSystemApplicationLogsConfigLevel = /*@__PURE__*/ S.String;
+export const FileSystemApplicationLogsConfigLevel = S.String;
 
 /** Application logs to file system configuration. */
 export interface FileSystemApplicationLogsConfig {
@@ -18112,7 +18106,7 @@ export const FileSystemApplicationLogsConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Log level. */
 export type LogLevel = "Off" | "Verbose" | "Information" | "Warning" | "Error";
-export const LogLevel = /*@__PURE__*/ S.String;
+export const LogLevel = S.String;
 
 /** Application logs to Azure table storage configuration. */
 export interface AzureTableStorageApplicationLogsConfig {
@@ -18743,15 +18737,15 @@ export const GetWebAppHostNameBindingRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Azure resource type. */
 export type AzureResourceType = "Website" | "TrafficManager";
-export const AzureResourceType = /*@__PURE__*/ S.String;
+export const AzureResourceType = S.String;
 
 /** Custom DNS record type. */
 export type CustomHostNameDnsRecordType = "CName" | "A";
-export const CustomHostNameDnsRecordType = /*@__PURE__*/ S.String;
+export const CustomHostNameDnsRecordType = S.String;
 
 /** Hostname type. */
 export type HostNameType = "Verified" | "Managed";
-export const HostNameType = /*@__PURE__*/ S.String;
+export const HostNameType = S.String;
 
 /** HostNameBinding resource specific properties */
 export interface HostNameBindingProperties {
@@ -19085,7 +19079,7 @@ export const GetWebAppInstanceInfoRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWebAppInstanceInfoRequest>;
 
 export type SiteRuntimeState = "READY" | "STOPPED" | "UNKNOWN";
-export const SiteRuntimeState = /*@__PURE__*/ S.String;
+export const SiteRuntimeState = S.String;
 
 export type ContainerCpuUsagePerCpuUsageList = Array<number>;
 export const ContainerCpuUsagePerCpuUsageList = /*@__PURE__*/ S.Array(
@@ -20002,7 +19996,7 @@ export type WorkflowState =
   | "Disabled"
   | "Deleted"
   | "Suspended";
-export const WorkflowState = /*@__PURE__*/ S.String;
+export const WorkflowState = S.String;
 
 /** Gets or sets the workflow health state. */
 export type WorkflowHealthState =
@@ -20010,7 +20004,7 @@ export type WorkflowHealthState =
   | "Healthy"
   | "Unhealthy"
   | "Unknown";
-export const WorkflowHealthState = /*@__PURE__*/ S.String;
+export const WorkflowHealthState = S.String;
 
 /** Represents the workflow health. */
 export interface WorkflowHealth {
@@ -21153,7 +21147,7 @@ export type DeploymentBuildStatus =
   | "StartPollingWithRestart"
   | "RuntimeStarting"
   | "RuntimeSuccessful";
-export const DeploymentBuildStatus = /*@__PURE__*/ S.String;
+export const DeploymentBuildStatus = S.String;
 
 /** List of URLs pointing to logs for instances which failed to provision. */
 export type CsmDeploymentStatusPropertiesFailedInstancesLogsList =
@@ -21263,7 +21257,7 @@ export type PublicCertificateLocation =
   | "CurrentUserMy"
   | "LocalMachineMy"
   | "Unknown";
-export const PublicCertificateLocation = /*@__PURE__*/ S.String;
+export const PublicCertificateLocation = S.String;
 
 /** PublicCertificate resource specific properties */
 export interface PublicCertificateProperties {
@@ -21821,7 +21815,7 @@ export type AuthType =
   | "UserCredentials"
   | "SystemIdentity"
   | "UserAssigned";
-export const AuthType = /*@__PURE__*/ S.String;
+export const AuthType = S.String;
 
 export interface VolumeMount {
   /** Sub path in the volume where volume is mounted from. */
@@ -22037,7 +22031,7 @@ export const GetWebAppSiteExtensionRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Site extension type. */
 export type SiteExtensionType = "Gallery" | "WebRoot";
-export const SiteExtensionType = /*@__PURE__*/ S.String;
+export const SiteExtensionType = S.String;
 
 /** List of authors. */
 export type SiteExtensionInfoPropertiesAuthorsList = Array<string>;
@@ -22821,7 +22815,7 @@ export type TriggeredWebJobStatus =
   | "Error"
   | "Aborted"
   | "Running";
-export const TriggeredWebJobStatus = /*@__PURE__*/ S.String;
+export const TriggeredWebJobStatus = S.String;
 
 /** Triggered Web Job Run Information. */
 export interface TriggeredJobRun {
@@ -23710,7 +23704,7 @@ export type WorkflowStatus =
   | "TimedOut"
   | "Aborted"
   | "Ignored";
-export const WorkflowStatus = /*@__PURE__*/ S.String;
+export const WorkflowStatus = S.String;
 
 /** The correlation property. */
 export interface Correlation {
@@ -23842,7 +23836,7 @@ export type ParameterType =
   | "Array"
   | "Object"
   | "SecureObject";
-export const ParameterType = /*@__PURE__*/ S.String;
+export const ParameterType = S.String;
 
 /** The workflow output parameter. */
 export interface WorkflowOutputParameter {
@@ -24547,7 +24541,7 @@ export type WorkflowTriggerProvisioningState =
   | "Unregistering"
   | "Unregistered"
   | "Completed";
-export const WorkflowTriggerProvisioningState = /*@__PURE__*/ S.String;
+export const WorkflowTriggerProvisioningState = S.String;
 
 /** The recurrence frequency. */
 export type RecurrenceFrequency =
@@ -24559,7 +24553,7 @@ export type RecurrenceFrequency =
   | "Week"
   | "Month"
   | "Year";
-export const RecurrenceFrequency = /*@__PURE__*/ S.String;
+export const RecurrenceFrequency = S.String;
 
 /** The minutes. */
 export type RecurrenceScheduleMinutesList = Array<number>;
@@ -24581,7 +24575,7 @@ export type DaysOfWeek =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const DaysOfWeek = /*@__PURE__*/ S.String;
+export const DaysOfWeek = S.String;
 
 /** The days of the week. */
 export type RecurrenceScheduleWeekDaysList = Array<DaysOfWeek>;
@@ -24604,7 +24598,7 @@ export type DayOfWeek =
   | "Thursday"
   | "Friday"
   | "Saturday";
-export const DayOfWeek = /*@__PURE__*/ S.String;
+export const DayOfWeek = S.String;
 
 /** The recurrence schedule occurrence. */
 export interface RecurrenceScheduleOccurrence {
@@ -24956,7 +24950,7 @@ export type WorkflowProvisioningState =
   | "Pending"
   | "Waiting"
   | "InProgress";
-export const WorkflowProvisioningState = /*@__PURE__*/ S.String;
+export const WorkflowProvisioningState = S.String;
 
 /** The ip address. */
 export interface IpAddress {
@@ -25034,7 +25028,7 @@ export const FlowAccessControlConfigurationPolicyAllowedCallerIpAddressesList =
 
 /** Open authentication policy provider type. */
 export type OpenAuthenticationProviderType = "AAD";
-export const OpenAuthenticationProviderType = /*@__PURE__*/ S.String;
+export const OpenAuthenticationProviderType = S.String;
 
 /** Open authentication policy claim. */
 export interface OpenAuthenticationPolicyClaim {
@@ -25147,7 +25141,7 @@ export type WorkflowSkuName =
   | "Basic"
   | "Standard"
   | "Premium";
-export const WorkflowSkuName = /*@__PURE__*/ S.String;
+export const WorkflowSkuName = S.String;
 
 /** The sku type. */
 export interface WorkflowSku {
@@ -25882,7 +25876,7 @@ export type WorkerSizeOptions =
   | "NestedSmall"
   | "NestedSmallLinux"
   | "Default";
-export const WorkerSizeOptions = /*@__PURE__*/ S.String;
+export const WorkerSizeOptions = S.String;
 
 /** Stamp capacity information. */
 export interface StampCapacity {
@@ -28187,7 +28181,7 @@ export type ListGeoRegionsRequestSku =
   | "ElasticPremium"
   | "ElasticIsolated"
   | "FlexConsumption";
-export const ListGeoRegionsRequestSku = /*@__PURE__*/ S.String;
+export const ListGeoRegionsRequestSku = S.String;
 
 export interface ListGeoRegionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -28403,7 +28397,7 @@ export type AppServicePlanRestrictions =
   | "Basic"
   | "Standard"
   | "Premium";
-export const AppServicePlanRestrictions = /*@__PURE__*/ S.String;
+export const AppServicePlanRestrictions = S.String;
 
 /** PremierAddOnOffer resource specific properties */
 export interface PremierAddOnOfferProperties {
@@ -28761,7 +28755,7 @@ export const ListRecommendationHistoryForHostingEnvironmentRequest =
 
 /** Name of a resource type this recommendation applies, e.g. Subscription, ServerFarm, Site. */
 export type ResourceScopeType = "ServerFarm" | "Subscription" | "WebSite";
-export const ResourceScopeType = /*@__PURE__*/ S.String;
+export const ResourceScopeType = S.String;
 
 /** The list of category tags that this recommendation belongs to. */
 export type RecommendationPropertiesCategoryTagsList = Array<string>;
@@ -29813,7 +29807,7 @@ export const ListStaticSiteStaticSiteBuildFunctionsRequest =
 
 /** The trigger type of the function */
 export type TriggerTypes = "HttpTrigger" | "Unknown";
-export const TriggerTypes = /*@__PURE__*/ S.String;
+export const TriggerTypes = S.String;
 
 /** StaticSiteFunctionOverviewARMResource resource specific properties */
 export interface StaticSiteFunctionOverviewARMResourceProperties {
@@ -30637,7 +30631,7 @@ export const ListWebAppBackupsSlotRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The unit of time for how often the backup should be executed (e.g. for weekly backup, this should be set to Day and FrequencyInterval should be set to 7) */
 export type BackupScheduleInputFrequencyUnit = "Day" | "Hour";
-export const BackupScheduleInputFrequencyUnit = /*@__PURE__*/ S.String;
+export const BackupScheduleInputFrequencyUnit = S.String;
 
 /** Description of a backup schedule. Describes how often should be the backup performed and what should be the retention policy. */
 export interface BackupScheduleInput {
@@ -33688,7 +33682,7 @@ export const ListWebAppPublishingCredentialsSlotResponse =
 
 /** Name of the format. Valid values are: FileZilla3 WebDeploy -- default Ftp */
 export type PublishingProfileFormat = "FileZilla3" | "WebDeploy" | "Ftp";
-export const PublishingProfileFormat = /*@__PURE__*/ S.String;
+export const PublishingProfileFormat = S.String;
 
 export interface ListWebAppPublishingProfileXmlWithSecretsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -36326,7 +36320,7 @@ export const WorkflowVersionListResult = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of migration operation to be done */
 export type MySqlMigrationType = "LocalToRemote" | "RemoteToLocal";
-export const MySqlMigrationType = /*@__PURE__*/ S.String;
+export const MySqlMigrationType = S.String;
 
 /** MigrateMySqlRequest resource specific properties */
 export interface MigrateMySqlRequestProperties {
@@ -36930,7 +36924,7 @@ export const RecoverWebAppSiteConfigurationSnapshotSlotResponse =
 
 /** The key type. */
 export type KeyType = "NotSpecified" | "Primary" | "Secondary";
-export const KeyType = /*@__PURE__*/ S.String;
+export const KeyType = S.String;
 
 export interface RegenerateWorkflowAccessKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -37533,7 +37527,7 @@ export type RestoreRequestPropertiesOperationType =
   | "Relocation"
   | "Snapshot"
   | "CloudFS";
-export const RestoreRequestPropertiesOperationType = /*@__PURE__*/ S.String;
+export const RestoreRequestPropertiesOperationType = S.String;
 
 /** RestoreRequest resource specific properties */
 export interface RestoreRequestProperties {
@@ -38793,8 +38787,7 @@ export const StaticSitesApproveOrRejectPrivateEndpointConnectionResponse =
   }) as any as S.Schema<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>;
 
 export type StaticSitesCreateOrUpdateBasicAuthRequestBasicAuthName = "default";
-export const StaticSitesCreateOrUpdateBasicAuthRequestBasicAuthName =
-  /*@__PURE__*/ S.String;
+export const StaticSitesCreateOrUpdateBasicAuthRequestBasicAuthName = S.String;
 
 /** The list of enabled environments for Basic Auth if ApplicableEnvironmentsMode is set to SpecifiedEnvironments. */
 export type StaticSiteBasicAuthPropertiesARMResourcePropertiesInputEnvironmentsList =
@@ -45125,7 +45118,7 @@ export type ValidateResourceTypes =
   | "ServerFarm"
   | "Site"
   | "Microsoft.Web/hostingEnvironments";
-export const ValidateResourceTypes = /*@__PURE__*/ S.String;
+export const ValidateResourceTypes = S.String;
 
 /** App properties used for validation. */
 export interface ValidatePropertiesInput {
@@ -45444,7 +45437,7 @@ export const WorkflowPropertiesInputParametersMap = /*@__PURE__*/ S.Record(
 
 /** The workflow kind. */
 export type Kind = "Stateful" | "Stateless";
-export const Kind = /*@__PURE__*/ S.String;
+export const Kind = S.String;
 
 /** The workflow properties. */
 export interface WorkflowPropertiesInput {
@@ -45921,7 +45914,7 @@ export const WebAppsAnalyzeCustomHostnameRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** DNS verification test result. */
 export type DnsVerificationTestResult = "Passed" | "Failed" | "Skipped";
-export const DnsVerificationTestResult = /*@__PURE__*/ S.String;
+export const DnsVerificationTestResult = S.String;
 
 /** CName records controller can see for this hostname. */
 export type CustomHostnameAnalysisResultPropertiesCNameRecordsList =
@@ -46481,7 +46474,7 @@ export type MSDeployProvisioningState =
   | "succeeded"
   | "failed"
   | "canceled";
-export const MSDeployProvisioningState = /*@__PURE__*/ S.String;
+export const MSDeployProvisioningState = S.String;
 
 /** MSDeployStatus resource specific properties */
 export interface MSDeployStatusProperties {
@@ -49002,7 +48995,7 @@ export const WebAppsGetInstanceMSDeployLogRequest = /*@__PURE__*/ S.suspend(
 
 /** Log entry type */
 export type MSDeployLogEntryType = "Message" | "Warning" | "Error";
-export const MSDeployLogEntryType = /*@__PURE__*/ S.String;
+export const MSDeployLogEntryType = S.String;
 
 /** MSDeploy log entry */
 export interface MSDeployLogEntry {
@@ -49839,7 +49832,7 @@ export type CloneAbilityResult =
   | "Cloneable"
   | "PartiallyCloneable"
   | "NotCloneable";
-export const CloneAbilityResult = /*@__PURE__*/ S.String;
+export const CloneAbilityResult = S.String;
 
 /** An app cloneability criterion. */
 export interface SiteCloneabilityCriterion {

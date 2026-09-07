@@ -16,10 +16,10 @@ export type ChangeStatusRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const ChangeStatusRequestRepoType = /*@__PURE__*/ S.String;
+export const ChangeStatusRequestRepoType = S.String;
 
 export type ChangeStatusRequestStatus = "open" | "closed";
-export const ChangeStatusRequestStatus = /*@__PURE__*/ S.String;
+export const ChangeStatusRequestStatus = S.String;
 
 export interface ChangeStatusRequest {
   repoType: ChangeStatusRequestRepoType | (string & {});
@@ -53,15 +53,14 @@ export type ChangeStatusResponseNewStatusAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ChangeStatusResponseNewStatusAuthorPlan = /*@__PURE__*/ S.String;
+export const ChangeStatusResponseNewStatusAuthorPlan = S.String;
 
 export type ChangeStatusResponseNewStatusAuthorPrimaryOrgPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const ChangeStatusResponseNewStatusAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const ChangeStatusResponseNewStatusAuthorPrimaryOrgPlan = S.String;
 
 export type ChangeStatusResponseNewStatusAuthorPrimaryOrgUserRole =
   | "admin"
@@ -69,8 +68,7 @@ export type ChangeStatusResponseNewStatusAuthorPrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const ChangeStatusResponseNewStatusAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const ChangeStatusResponseNewStatusAuthorPrimaryOrgUserRole = S.String;
 
 export interface ChangeStatusResponseNewStatusAuthorPrimaryOrg {
   avatarUrl: string;
@@ -190,7 +188,7 @@ export type ChangeStatusResponseNewStatusDataStatus =
   | "open"
   | "closed"
   | "merged";
-export const ChangeStatusResponseNewStatusDataStatus = /*@__PURE__*/ S.String;
+export const ChangeStatusResponseNewStatusDataStatus = S.String;
 
 export interface ChangeStatusResponseNewStatusData {
   status: ChangeStatusResponseNewStatusDataStatus;
@@ -240,7 +238,7 @@ export type ChangeTitleRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const ChangeTitleRequestRepoType = /*@__PURE__*/ S.String;
+export const ChangeTitleRequestRepoType = S.String;
 
 export interface ChangeTitleRequest {
   repoType: ChangeTitleRequestRepoType | (string & {});
@@ -272,15 +270,14 @@ export type ChangeTitleResponseNewTitleAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ChangeTitleResponseNewTitleAuthorPlan = /*@__PURE__*/ S.String;
+export const ChangeTitleResponseNewTitleAuthorPlan = S.String;
 
 export type ChangeTitleResponseNewTitleAuthorPrimaryOrgPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const ChangeTitleResponseNewTitleAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const ChangeTitleResponseNewTitleAuthorPrimaryOrgPlan = S.String;
 
 export type ChangeTitleResponseNewTitleAuthorPrimaryOrgUserRole =
   | "admin"
@@ -288,8 +285,7 @@ export type ChangeTitleResponseNewTitleAuthorPrimaryOrgUserRole =
   | "contributor"
   | "read"
   | "no_access";
-export const ChangeTitleResponseNewTitleAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+export const ChangeTitleResponseNewTitleAuthorPrimaryOrgUserRole = S.String;
 
 export interface ChangeTitleResponseNewTitleAuthorPrimaryOrg {
   avatarUrl: string;
@@ -439,16 +435,14 @@ export type CreateBlogCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateBlogCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const CreateBlogCommentResponseNewMessageAuthorPlan = S.String;
 
 export type CreateBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const CreateBlogCommentResponseNewMessageAuthorPrimaryOrgPlan = S.String;
 
 export type CreateBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -457,7 +451,7 @@ export type CreateBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const CreateBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateBlogCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -556,8 +550,7 @@ export type CreateBlogCommentResponseNewMessageDataHiddenReason =
   | "Resolved"
   | "Off-Topic"
   | "Low Quality";
-export const CreateBlogCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+export const CreateBlogCommentResponseNewMessageDataHiddenReason = S.String;
 
 export type CreateBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -565,7 +558,7 @@ export type CreateBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "plus"
   | "academia";
 export const CreateBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateBlogCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -607,7 +600,7 @@ export type CreateBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPl
   | "plus"
   | "academia";
 export const CreateBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -616,7 +609,7 @@ export type CreateBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUs
   | "read"
   | "no_access";
 export const CreateBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -695,7 +688,7 @@ export type CreateBlogCommentResponseNewMessageDataLatestAuthor =
   | CreateBlogCommentResponseNewMessageDataLatestAuthorCase0
   | CreateBlogCommentResponseNewMessageDataLatestAuthorCase1;
 export const CreateBlogCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateBlogCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<CreateBlogCommentResponseNewMessageDataLatestAuthor>;
 
 export interface CreateBlogCommentResponseNewMessageDataLatest {
   raw: string;
@@ -742,7 +735,7 @@ export type CreateBlogCommentResponseNewMessageDataReactionsItemReaction =
   | "😔"
   | "🤯";
 export const CreateBlogCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateBlogCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -885,8 +878,7 @@ export type CreateCommunityBlogCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateCommunityBlogCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const CreateCommunityBlogCommentResponseNewMessageAuthorPlan = S.String;
 
 export type CreateCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
@@ -894,7 +886,7 @@ export type CreateCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const CreateCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -903,7 +895,7 @@ export type CreateCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole
   | "read"
   | "no_access";
 export const CreateCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCommunityBlogCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -1005,7 +997,7 @@ export type CreateCommunityBlogCommentResponseNewMessageDataHiddenReason =
   | "Off-Topic"
   | "Low Quality";
 export const CreateCommunityBlogCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -1013,7 +1005,7 @@ export type CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0Pla
   | "plus"
   | "academia";
 export const CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -1056,7 +1048,7 @@ export type CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1Pri
   | "plus"
   | "academia";
 export const CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -1065,7 +1057,7 @@ export type CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1Pri
   | "read"
   | "no_access";
 export const CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -1145,7 +1137,7 @@ export type CreateCommunityBlogCommentResponseNewMessageDataLatestAuthor =
   | CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0
   | CreateCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1;
 export const CreateCommunityBlogCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateCommunityBlogCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<CreateCommunityBlogCommentResponseNewMessageDataLatestAuthor>;
 
 export interface CreateCommunityBlogCommentResponseNewMessageDataLatest {
   raw: string;
@@ -1195,7 +1187,7 @@ export type CreateCommunityBlogCommentResponseNewMessageDataReactionsItemReactio
   | "😔"
   | "🤯";
 export const CreateCommunityBlogCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateCommunityBlogCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -1311,7 +1303,7 @@ export type CreateDiscussionCommentRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const CreateDiscussionCommentRequestRepoType = /*@__PURE__*/ S.String;
+export const CreateDiscussionCommentRequestRepoType = S.String;
 
 export interface CreateDiscussionCommentRequest {
   repoType: CreateDiscussionCommentRequestRepoType | (string & {});
@@ -1343,8 +1335,7 @@ export type CreateDiscussionCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const CreateDiscussionCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const CreateDiscussionCommentResponseNewMessageAuthorPlan = S.String;
 
 export type CreateDiscussionCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
@@ -1352,7 +1343,7 @@ export type CreateDiscussionCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const CreateDiscussionCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDiscussionCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -1361,7 +1352,7 @@ export type CreateDiscussionCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const CreateDiscussionCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDiscussionCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -1463,7 +1454,7 @@ export type CreateDiscussionCommentResponseNewMessageDataHiddenReason =
   | "Off-Topic"
   | "Low Quality";
 export const CreateDiscussionCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -1471,7 +1462,7 @@ export type CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "plus"
   | "academia";
 export const CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -1514,7 +1505,7 @@ export type CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase1Primar
   | "plus"
   | "academia";
 export const CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -1523,7 +1514,7 @@ export type CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase1Primar
   | "read"
   | "no_access";
 export const CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -1603,7 +1594,7 @@ export type CreateDiscussionCommentResponseNewMessageDataLatestAuthor =
   | CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase0
   | CreateDiscussionCommentResponseNewMessageDataLatestAuthorCase1;
 export const CreateDiscussionCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDiscussionCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<CreateDiscussionCommentResponseNewMessageDataLatestAuthor>;
 
 export interface CreateDiscussionCommentResponseNewMessageDataLatest {
   raw: string;
@@ -1653,7 +1644,7 @@ export type CreateDiscussionCommentResponseNewMessageDataReactionsItemReaction =
   | "😔"
   | "🤯";
 export const CreateDiscussionCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateDiscussionCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -1769,7 +1760,7 @@ export type CreateNewDiscussionRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const CreateNewDiscussionRequestRepoType = /*@__PURE__*/ S.String;
+export const CreateNewDiscussionRequestRepoType = S.String;
 
 export interface CreateNewDiscussionRequest {
   repoType: CreateNewDiscussionRequestRepoType | (string & {});
@@ -1849,8 +1840,7 @@ export type CreatePaperCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const CreatePaperCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const CreatePaperCommentResponseNewMessageAuthorPlan = S.String;
 
 export type CreatePaperCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
@@ -1858,7 +1848,7 @@ export type CreatePaperCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const CreatePaperCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreatePaperCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -1867,7 +1857,7 @@ export type CreatePaperCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const CreatePaperCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePaperCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -1968,8 +1958,7 @@ export type CreatePaperCommentResponseNewMessageDataHiddenReason =
   | "Resolved"
   | "Off-Topic"
   | "Low Quality";
-export const CreatePaperCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+export const CreatePaperCommentResponseNewMessageDataHiddenReason = S.String;
 
 export type CreatePaperCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -1977,7 +1966,7 @@ export type CreatePaperCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "plus"
   | "academia";
 export const CreatePaperCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePaperCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -2019,7 +2008,7 @@ export type CreatePaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgP
   | "plus"
   | "academia";
 export const CreatePaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreatePaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -2028,7 +2017,7 @@ export type CreatePaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgU
   | "read"
   | "no_access";
 export const CreatePaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -2107,7 +2096,7 @@ export type CreatePaperCommentResponseNewMessageDataLatestAuthor =
   | CreatePaperCommentResponseNewMessageDataLatestAuthorCase0
   | CreatePaperCommentResponseNewMessageDataLatestAuthorCase1;
 export const CreatePaperCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreatePaperCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<CreatePaperCommentResponseNewMessageDataLatestAuthor>;
 
 export interface CreatePaperCommentResponseNewMessageDataLatest {
   raw: string;
@@ -2154,7 +2143,7 @@ export type CreatePaperCommentResponseNewMessageDataReactionsItemReaction =
   | "😔"
   | "🤯";
 export const CreatePaperCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreatePaperCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -2289,16 +2278,14 @@ export type CreatePostCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const CreatePostCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const CreatePostCommentResponseNewMessageAuthorPlan = S.String;
 
 export type CreatePostCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const CreatePostCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const CreatePostCommentResponseNewMessageAuthorPrimaryOrgPlan = S.String;
 
 export type CreatePostCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -2307,7 +2294,7 @@ export type CreatePostCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const CreatePostCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePostCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -2406,8 +2393,7 @@ export type CreatePostCommentResponseNewMessageDataHiddenReason =
   | "Resolved"
   | "Off-Topic"
   | "Low Quality";
-export const CreatePostCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+export const CreatePostCommentResponseNewMessageDataHiddenReason = S.String;
 
 export type CreatePostCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -2415,7 +2401,7 @@ export type CreatePostCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "plus"
   | "academia";
 export const CreatePostCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePostCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -2457,7 +2443,7 @@ export type CreatePostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPl
   | "plus"
   | "academia";
 export const CreatePostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreatePostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -2466,7 +2452,7 @@ export type CreatePostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUs
   | "read"
   | "no_access";
 export const CreatePostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreatePostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -2545,7 +2531,7 @@ export type CreatePostCommentResponseNewMessageDataLatestAuthor =
   | CreatePostCommentResponseNewMessageDataLatestAuthorCase0
   | CreatePostCommentResponseNewMessageDataLatestAuthorCase1;
 export const CreatePostCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreatePostCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<CreatePostCommentResponseNewMessageDataLatestAuthor>;
 
 export interface CreatePostCommentResponseNewMessageDataLatest {
   raw: string;
@@ -2592,7 +2578,7 @@ export type CreatePostCommentResponseNewMessageDataReactionsItemReaction =
   | "😔"
   | "🤯";
 export const CreatePostCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreatePostCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -2705,7 +2691,7 @@ export type DeleteDiscussionRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const DeleteDiscussionRequestRepoType = /*@__PURE__*/ S.String;
+export const DeleteDiscussionRequestRepoType = S.String;
 
 export interface DeleteDiscussionRequest {
   repoType: DeleteDiscussionRequestRepoType | (string & {});
@@ -2768,7 +2754,7 @@ export type DeletePrRefRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const DeletePrRefRequestRepoType = /*@__PURE__*/ S.String;
+export const DeletePrRefRequestRepoType = S.String;
 
 export interface DeletePrRefRequest {
   repoType: DeletePrRefRequestRepoType | (string & {});
@@ -2805,7 +2791,7 @@ export type GetDiscussionDetailsRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const GetDiscussionDetailsRequestRepoType = /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsRequestRepoType = S.String;
 
 export interface GetDiscussionDetailsRequest {
   repoType: GetDiscussionDetailsRequestRepoType | (string & {});
@@ -2835,8 +2821,7 @@ export type GetDiscussionDetailsResponseAuthorCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseAuthorCase0Plan = S.String;
 
 export interface GetDiscussionDetailsResponseAuthorCase0 {
   _id: string;
@@ -2875,8 +2860,7 @@ export type GetDiscussionDetailsResponseAuthorCase1PrimaryOrgPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseAuthorCase1PrimaryOrgPlan = S.String;
 
 export type GetDiscussionDetailsResponseAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -2885,7 +2869,7 @@ export type GetDiscussionDetailsResponseAuthorCase1PrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -2959,14 +2943,14 @@ export type GetDiscussionDetailsResponseAuthor =
   | GetDiscussionDetailsResponseAuthorCase0
   | GetDiscussionDetailsResponseAuthorCase1;
 export const GetDiscussionDetailsResponseAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDiscussionDetailsResponseAuthor>;
+  S.Unknown as any as S.Schema<GetDiscussionDetailsResponseAuthor>;
 
 export type GetDiscussionDetailsResponseOrgPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseOrgPlan = /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseOrgPlan = S.String;
 
 export interface GetDiscussionDetailsResponseOrg {
   avatarUrl: string;
@@ -2998,7 +2982,7 @@ export const GetDiscussionDetailsResponseOrg = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDiscussionDetailsResponseOrg>;
 
 export type RepoIdType = "dataset" | "model" | "space" | "bucket" | "kernel";
-export const RepoIdType = /*@__PURE__*/ S.String;
+export const RepoIdType = S.String;
 
 export interface RepoId {
   name: string;
@@ -3016,15 +3000,14 @@ export type GetDiscussionDetailsResponseStatus =
   | "open"
   | "closed"
   | "merged";
-export const GetDiscussionDetailsResponseStatus = /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseStatus = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase0AuthorPlan =
   | "team"
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase0AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase0AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase0AuthorPrimaryOrgPlan =
   | "team"
@@ -3032,7 +3015,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase0AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase0AuthorPrimaryOrgUserRole =
   | "admin"
@@ -3041,7 +3024,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase0AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase0AuthorPrimaryOrg {
   avatarUrl: string;
@@ -3143,7 +3126,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0DataHiddenReason =
   | "Off-Topic"
   | "Low Quality";
 export const GetDiscussionDetailsResponseEventsItemCase0DataHiddenReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase0Plan =
   | "team"
@@ -3151,7 +3134,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase0Plan
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase0 {
   _id: string;
@@ -3194,7 +3177,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase1Prim
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -3203,7 +3186,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase1Prim
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -3283,7 +3266,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthor =
   | GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase0
   | GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthorCase1;
 export const GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthor>;
+  S.Unknown as any as S.Schema<GetDiscussionDetailsResponseEventsItemCase0DataLatestAuthor>;
 
 export interface GetDiscussionDetailsResponseEventsItemCase0DataLatest {
   raw: string;
@@ -3333,7 +3316,7 @@ export type GetDiscussionDetailsResponseEventsItemCase0DataReactionsItemReaction
   | "😔"
   | "🤯";
 export const GetDiscussionDetailsResponseEventsItemCase0DataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase0DataReactionsItemUsersList =
   Array<string>;
@@ -3438,8 +3421,7 @@ export type GetDiscussionDetailsResponseEventsItemCase1AuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase1AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase1AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase1AuthorPrimaryOrgPlan =
   | "team"
@@ -3447,7 +3429,7 @@ export type GetDiscussionDetailsResponseEventsItemCase1AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase1AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase1AuthorPrimaryOrgUserRole =
   | "admin"
@@ -3456,7 +3438,7 @@ export type GetDiscussionDetailsResponseEventsItemCase1AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase1AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase1AuthorPrimaryOrg {
   avatarUrl: string;
@@ -3555,8 +3537,7 @@ export type GetDiscussionDetailsResponseEventsItemCase1DataStatus =
   | "open"
   | "closed"
   | "merged";
-export const GetDiscussionDetailsResponseEventsItemCase1DataStatus =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase1DataStatus = S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase1Data {
   status: GetDiscussionDetailsResponseEventsItemCase1DataStatus;
@@ -3597,8 +3578,7 @@ export type GetDiscussionDetailsResponseEventsItemCase2AuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase2AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase2AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase2AuthorPrimaryOrgPlan =
   | "team"
@@ -3606,7 +3586,7 @@ export type GetDiscussionDetailsResponseEventsItemCase2AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase2AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase2AuthorPrimaryOrgUserRole =
   | "admin"
@@ -3615,7 +3595,7 @@ export type GetDiscussionDetailsResponseEventsItemCase2AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase2AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase2AuthorPrimaryOrg {
   avatarUrl: string;
@@ -3748,8 +3728,7 @@ export type GetDiscussionDetailsResponseEventsItemCase3AuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase3AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase3AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase3AuthorPrimaryOrgPlan =
   | "team"
@@ -3757,7 +3736,7 @@ export type GetDiscussionDetailsResponseEventsItemCase3AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase3AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase3AuthorPrimaryOrgUserRole =
   | "admin"
@@ -3766,7 +3745,7 @@ export type GetDiscussionDetailsResponseEventsItemCase3AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase3AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase3AuthorPrimaryOrg {
   avatarUrl: string;
@@ -3890,8 +3869,7 @@ export type GetDiscussionDetailsResponseEventsItemCase4AuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase4AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase4AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase4AuthorPrimaryOrgPlan =
   | "team"
@@ -3899,7 +3877,7 @@ export type GetDiscussionDetailsResponseEventsItemCase4AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase4AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase4AuthorPrimaryOrgUserRole =
   | "admin"
@@ -3908,7 +3886,7 @@ export type GetDiscussionDetailsResponseEventsItemCase4AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase4AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase4AuthorPrimaryOrg {
   avatarUrl: string;
@@ -4039,8 +4017,7 @@ export type GetDiscussionDetailsResponseEventsItemCase5AuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase5AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase5AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase5AuthorPrimaryOrgPlan =
   | "team"
@@ -4048,7 +4025,7 @@ export type GetDiscussionDetailsResponseEventsItemCase5AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase5AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase5AuthorPrimaryOrgUserRole =
   | "admin"
@@ -4057,7 +4034,7 @@ export type GetDiscussionDetailsResponseEventsItemCase5AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase5AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase5AuthorPrimaryOrg {
   avatarUrl: string;
@@ -4188,8 +4165,7 @@ export type GetDiscussionDetailsResponseEventsItemCase6AuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase6AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase6AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase6AuthorPrimaryOrgPlan =
   | "team"
@@ -4197,7 +4173,7 @@ export type GetDiscussionDetailsResponseEventsItemCase6AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase6AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase6AuthorPrimaryOrgUserRole =
   | "admin"
@@ -4206,7 +4182,7 @@ export type GetDiscussionDetailsResponseEventsItemCase6AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase6AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase6AuthorPrimaryOrg {
   avatarUrl: string;
@@ -4337,8 +4313,7 @@ export type GetDiscussionDetailsResponseEventsItemCase7AuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const GetDiscussionDetailsResponseEventsItemCase7AuthorPlan =
-  /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseEventsItemCase7AuthorPlan = S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase7AuthorPrimaryOrgPlan =
   | "team"
@@ -4346,7 +4321,7 @@ export type GetDiscussionDetailsResponseEventsItemCase7AuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const GetDiscussionDetailsResponseEventsItemCase7AuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetDiscussionDetailsResponseEventsItemCase7AuthorPrimaryOrgUserRole =
   | "admin"
@@ -4355,7 +4330,7 @@ export type GetDiscussionDetailsResponseEventsItemCase7AuthorPrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const GetDiscussionDetailsResponseEventsItemCase7AuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetDiscussionDetailsResponseEventsItemCase7AuthorPrimaryOrg {
   avatarUrl: string;
@@ -4479,7 +4454,7 @@ export type GetDiscussionDetailsResponseEventsItem =
   | GetDiscussionDetailsResponseEventsItemCase6
   | GetDiscussionDetailsResponseEventsItemCase7;
 export const GetDiscussionDetailsResponseEventsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDiscussionDetailsResponseEventsItem>;
+  S.Unknown as any as S.Schema<GetDiscussionDetailsResponseEventsItem>;
 
 export type GetDiscussionDetailsResponseEventsList =
   Array<GetDiscussionDetailsResponseEventsItem>;
@@ -4492,7 +4467,7 @@ export type GetDiscussionDetailsResponseCollection =
   | "paper_discussions"
   | "social_posts"
   | "community_blogs";
-export const GetDiscussionDetailsResponseCollection = /*@__PURE__*/ S.String;
+export const GetDiscussionDetailsResponseCollection = S.String;
 
 export type GetDiscussionDetailsResponseFilesWithConflictsCase0List =
   Array<string>;
@@ -4506,7 +4481,7 @@ export type GetDiscussionDetailsResponseFilesWithConflicts =
   | GetDiscussionDetailsResponseFilesWithConflictsCase0List
   | unknown;
 export const GetDiscussionDetailsResponseFilesWithConflicts =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetDiscussionDetailsResponseFilesWithConflicts>;
+  S.Unknown as any as S.Schema<GetDiscussionDetailsResponseFilesWithConflicts>;
 
 export interface GetDiscussionDetailsResponseChanges {
   base: string;
@@ -4578,19 +4553,19 @@ export type ListDiscussionsRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const ListDiscussionsRequestRepoType = /*@__PURE__*/ S.String;
+export const ListDiscussionsRequestRepoType = S.String;
 
 export type ListDiscussionsRequestType = "all" | "discussion" | "pull_request";
-export const ListDiscussionsRequestType = /*@__PURE__*/ S.String;
+export const ListDiscussionsRequestType = S.String;
 
 export type ListDiscussionsRequestStatus = "all" | "open" | "closed";
-export const ListDiscussionsRequestStatus = /*@__PURE__*/ S.String;
+export const ListDiscussionsRequestStatus = S.String;
 
 export type ListDiscussionsRequestSort =
   | "recently-created"
   | "trending"
   | "reactions";
-export const ListDiscussionsRequestSort = /*@__PURE__*/ S.String;
+export const ListDiscussionsRequestSort = S.String;
 
 export interface ListDiscussionsRequest {
   repoType: ListDiscussionsRequestRepoType | (string & {});
@@ -4630,8 +4605,7 @@ export type ListDiscussionsResponseDiscussionsItemAuthorCase0Plan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ListDiscussionsResponseDiscussionsItemAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+export const ListDiscussionsResponseDiscussionsItemAuthorCase0Plan = S.String;
 
 export interface ListDiscussionsResponseDiscussionsItemAuthorCase0 {
   _id: string;
@@ -4671,7 +4645,7 @@ export type ListDiscussionsResponseDiscussionsItemAuthorCase1PrimaryOrgPlan =
   | "plus"
   | "academia";
 export const ListDiscussionsResponseDiscussionsItemAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListDiscussionsResponseDiscussionsItemAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -4680,7 +4654,7 @@ export type ListDiscussionsResponseDiscussionsItemAuthorCase1PrimaryOrgUserRole 
   | "read"
   | "no_access";
 export const ListDiscussionsResponseDiscussionsItemAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDiscussionsResponseDiscussionsItemAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -4758,7 +4732,7 @@ export type ListDiscussionsResponseDiscussionsItemAuthor =
   | ListDiscussionsResponseDiscussionsItemAuthorCase0
   | ListDiscussionsResponseDiscussionsItemAuthorCase1;
 export const ListDiscussionsResponseDiscussionsItemAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListDiscussionsResponseDiscussionsItemAuthor>;
+  S.Unknown as any as S.Schema<ListDiscussionsResponseDiscussionsItemAuthor>;
 
 export type ListDiscussionsResponseDiscussionsItemTopReactionsItemReaction =
   | "🔥"
@@ -4774,7 +4748,7 @@ export type ListDiscussionsResponseDiscussionsItemTopReactionsItemReaction =
   | "😔"
   | "🤯";
 export const ListDiscussionsResponseDiscussionsItemTopReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListDiscussionsResponseDiscussionsItemTopReactionsItem {
   reaction: ListDiscussionsResponseDiscussionsItemTopReactionsItemReaction;
@@ -4802,14 +4776,12 @@ export type ListDiscussionsResponseDiscussionsItemStatus =
   | "open"
   | "closed"
   | "merged";
-export const ListDiscussionsResponseDiscussionsItemStatus =
-  /*@__PURE__*/ S.String;
+export const ListDiscussionsResponseDiscussionsItemStatus = S.String;
 
 export type ListDiscussionsResponseDiscussionsItemRepoOwnerType =
   | "org"
   | "user";
-export const ListDiscussionsResponseDiscussionsItemRepoOwnerType =
-  /*@__PURE__*/ S.String;
+export const ListDiscussionsResponseDiscussionsItemRepoOwnerType = S.String;
 
 export interface ListDiscussionsResponseDiscussionsItemRepoOwner {
   name: string;
@@ -4892,7 +4864,7 @@ export type MergePullRequestRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const MergePullRequestRequestRepoType = /*@__PURE__*/ S.String;
+export const MergePullRequestRequestRepoType = S.String;
 
 export interface MergePullRequestRequest {
   repoType: MergePullRequestRequestRepoType | (string & {});
@@ -4931,7 +4903,7 @@ export type PinDiscussionRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const PinDiscussionRequestRepoType = /*@__PURE__*/ S.String;
+export const PinDiscussionRequestRepoType = S.String;
 
 export interface PinDiscussionRequest {
   repoType: PinDiscussionRequestRepoType | (string & {});
@@ -4970,7 +4942,7 @@ export type PrStorageEstimateRequestRepoType =
   | "spaces"
   | "datasets"
   | "kernels";
-export const PrStorageEstimateRequestRepoType = /*@__PURE__*/ S.String;
+export const PrStorageEstimateRequestRepoType = S.String;
 
 export interface PrStorageEstimateRequest {
   repoType: PrStorageEstimateRequestRepoType | (string & {});
@@ -5036,8 +5008,7 @@ export type ReplyToBlogCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ReplyToBlogCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const ReplyToBlogCommentResponseNewMessageAuthorPlan = S.String;
 
 export type ReplyToBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
@@ -5045,7 +5016,7 @@ export type ReplyToBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const ReplyToBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -5054,7 +5025,7 @@ export type ReplyToBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const ReplyToBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToBlogCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -5155,8 +5126,7 @@ export type ReplyToBlogCommentResponseNewMessageDataHiddenReason =
   | "Resolved"
   | "Off-Topic"
   | "Low Quality";
-export const ReplyToBlogCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+export const ReplyToBlogCommentResponseNewMessageDataHiddenReason = S.String;
 
 export type ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -5164,7 +5134,7 @@ export type ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "plus"
   | "academia";
 export const ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -5206,7 +5176,7 @@ export type ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgP
   | "plus"
   | "academia";
 export const ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -5215,7 +5185,7 @@ export type ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgU
   | "read"
   | "no_access";
 export const ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -5294,7 +5264,7 @@ export type ReplyToBlogCommentResponseNewMessageDataLatestAuthor =
   | ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase0
   | ReplyToBlogCommentResponseNewMessageDataLatestAuthorCase1;
 export const ReplyToBlogCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplyToBlogCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<ReplyToBlogCommentResponseNewMessageDataLatestAuthor>;
 
 export interface ReplyToBlogCommentResponseNewMessageDataLatest {
   raw: string;
@@ -5341,7 +5311,7 @@ export type ReplyToBlogCommentResponseNewMessageDataReactionsItemReaction =
   | "😔"
   | "🤯";
 export const ReplyToBlogCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToBlogCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -5478,8 +5448,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ReplyToCommunityBlogCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const ReplyToCommunityBlogCommentResponseNewMessageAuthorPlan = S.String;
 
 export type ReplyToCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
@@ -5487,7 +5456,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const ReplyToCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -5496,7 +5465,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgUserRol
   | "read"
   | "no_access";
 export const ReplyToCommunityBlogCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToCommunityBlogCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -5598,7 +5567,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageDataHiddenReason =
   | "Off-Topic"
   | "Low Quality";
 export const ReplyToCommunityBlogCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -5606,7 +5575,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0Pl
   | "plus"
   | "academia";
 export const ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -5649,7 +5618,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1Pr
   | "plus"
   | "academia";
 export const ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -5658,7 +5627,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1Pr
   | "read"
   | "no_access";
 export const ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -5738,7 +5707,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthor =
   | ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase0
   | ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthorCase1;
 export const ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<ReplyToCommunityBlogCommentResponseNewMessageDataLatestAuthor>;
 
 export interface ReplyToCommunityBlogCommentResponseNewMessageDataLatest {
   raw: string;
@@ -5788,7 +5757,7 @@ export type ReplyToCommunityBlogCommentResponseNewMessageDataReactionsItemReacti
   | "😔"
   | "🤯";
 export const ReplyToCommunityBlogCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToCommunityBlogCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -5926,8 +5895,7 @@ export type ReplyToPaperCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ReplyToPaperCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const ReplyToPaperCommentResponseNewMessageAuthorPlan = S.String;
 
 export type ReplyToPaperCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
@@ -5935,7 +5903,7 @@ export type ReplyToPaperCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const ReplyToPaperCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToPaperCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -5944,7 +5912,7 @@ export type ReplyToPaperCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const ReplyToPaperCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToPaperCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -6045,8 +6013,7 @@ export type ReplyToPaperCommentResponseNewMessageDataHiddenReason =
   | "Resolved"
   | "Off-Topic"
   | "Low Quality";
-export const ReplyToPaperCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+export const ReplyToPaperCommentResponseNewMessageDataHiddenReason = S.String;
 
 export type ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -6054,7 +6021,7 @@ export type ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "plus"
   | "academia";
 export const ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -6096,7 +6063,7 @@ export type ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg
   | "plus"
   | "academia";
 export const ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -6105,7 +6072,7 @@ export type ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg
   | "read"
   | "no_access";
 export const ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -6184,7 +6151,7 @@ export type ReplyToPaperCommentResponseNewMessageDataLatestAuthor =
   | ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase0
   | ReplyToPaperCommentResponseNewMessageDataLatestAuthorCase1;
 export const ReplyToPaperCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplyToPaperCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<ReplyToPaperCommentResponseNewMessageDataLatestAuthor>;
 
 export interface ReplyToPaperCommentResponseNewMessageDataLatest {
   raw: string;
@@ -6232,7 +6199,7 @@ export type ReplyToPaperCommentResponseNewMessageDataReactionsItemReaction =
   | "😔"
   | "🤯";
 export const ReplyToPaperCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToPaperCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;
@@ -6369,8 +6336,7 @@ export type ReplyToPostCommentResponseNewMessageAuthorPlan =
   | "enterprise"
   | "plus"
   | "academia";
-export const ReplyToPostCommentResponseNewMessageAuthorPlan =
-  /*@__PURE__*/ S.String;
+export const ReplyToPostCommentResponseNewMessageAuthorPlan = S.String;
 
 export type ReplyToPostCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "team"
@@ -6378,7 +6344,7 @@ export type ReplyToPostCommentResponseNewMessageAuthorPrimaryOrgPlan =
   | "plus"
   | "academia";
 export const ReplyToPostCommentResponseNewMessageAuthorPrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToPostCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "admin"
@@ -6387,7 +6353,7 @@ export type ReplyToPostCommentResponseNewMessageAuthorPrimaryOrgUserRole =
   | "read"
   | "no_access";
 export const ReplyToPostCommentResponseNewMessageAuthorPrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToPostCommentResponseNewMessageAuthorPrimaryOrg {
   avatarUrl: string;
@@ -6488,8 +6454,7 @@ export type ReplyToPostCommentResponseNewMessageDataHiddenReason =
   | "Resolved"
   | "Off-Topic"
   | "Low Quality";
-export const ReplyToPostCommentResponseNewMessageDataHiddenReason =
-  /*@__PURE__*/ S.String;
+export const ReplyToPostCommentResponseNewMessageDataHiddenReason = S.String;
 
 export type ReplyToPostCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "team"
@@ -6497,7 +6462,7 @@ export type ReplyToPostCommentResponseNewMessageDataLatestAuthorCase0Plan =
   | "plus"
   | "academia";
 export const ReplyToPostCommentResponseNewMessageDataLatestAuthorCase0Plan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToPostCommentResponseNewMessageDataLatestAuthorCase0 {
   _id: string;
@@ -6539,7 +6504,7 @@ export type ReplyToPostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgP
   | "plus"
   | "academia";
 export const ReplyToPostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToPostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
   | "admin"
@@ -6548,7 +6513,7 @@ export type ReplyToPostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgU
   | "read"
   | "no_access";
 export const ReplyToPostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrgUserRole =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ReplyToPostCommentResponseNewMessageDataLatestAuthorCase1PrimaryOrg {
   avatarUrl: string;
@@ -6627,7 +6592,7 @@ export type ReplyToPostCommentResponseNewMessageDataLatestAuthor =
   | ReplyToPostCommentResponseNewMessageDataLatestAuthorCase0
   | ReplyToPostCommentResponseNewMessageDataLatestAuthorCase1;
 export const ReplyToPostCommentResponseNewMessageDataLatestAuthor =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ReplyToPostCommentResponseNewMessageDataLatestAuthor>;
+  S.Unknown as any as S.Schema<ReplyToPostCommentResponseNewMessageDataLatestAuthor>;
 
 export interface ReplyToPostCommentResponseNewMessageDataLatest {
   raw: string;
@@ -6674,7 +6639,7 @@ export type ReplyToPostCommentResponseNewMessageDataReactionsItemReaction =
   | "😔"
   | "🤯";
 export const ReplyToPostCommentResponseNewMessageDataReactionsItemReaction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ReplyToPostCommentResponseNewMessageDataReactionsItemUsersList =
   Array<string>;

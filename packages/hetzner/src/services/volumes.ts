@@ -111,7 +111,7 @@ export const CreateVolumeResponseVolumeLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Status of the Volume. */
 export type CreateVolumeResponseVolumeStatus = "available" | "creating";
-export const CreateVolumeResponseVolumeStatus = /*@__PURE__*/ S.String;
+export const CreateVolumeResponseVolumeStatus = S.String;
 
 export interface CreateVolumeResponseVolume {
   /** ID of the [Volume](#tag/volumes). */
@@ -157,7 +157,7 @@ export const CreateVolumeResponseVolume = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Action. */
 export type CreateVolumeResponseActionStatus = "running" | "success" | "error";
-export const CreateVolumeResponseActionStatus = /*@__PURE__*/ S.String;
+export const CreateVolumeResponseActionStatus = S.String;
 
 export interface CreateVolumeResponseActionResourcesItem {
   /** ID of the Resource. */
@@ -236,7 +236,7 @@ export type CreateVolumeResponseNextActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const CreateVolumeResponseNextActionsItemStatus = /*@__PURE__*/ S.String;
+export const CreateVolumeResponseNextActionsItemStatus = S.String;
 
 export type CreateVolumeResponseNextActionsItemResourcesItem =
   CreateVolumeResponseActionResourcesItem;
@@ -365,7 +365,7 @@ export const GetVolumeResponseVolumeLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Status of the Volume. */
 export type GetVolumeResponseVolumeStatus = "available" | "creating";
-export const GetVolumeResponseVolumeStatus = /*@__PURE__*/ S.String;
+export const GetVolumeResponseVolumeStatus = S.String;
 
 export interface GetVolumeResponseVolume {
   /** ID of the [Volume](#tag/volumes). */
@@ -422,7 +422,7 @@ export const GetVolumeResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the Volume. */
 export type ListVolumesRequestStatusItem = "available" | "creating";
-export const ListVolumesRequestStatusItem = /*@__PURE__*/ S.String;
+export const ListVolumesRequestStatusItem = S.String;
 
 export type ListVolumesRequestStatusList = Array<
   ListVolumesRequestStatusItem | (string & {})
@@ -441,7 +441,7 @@ export type ListVolumesRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListVolumesRequestSortItem = /*@__PURE__*/ S.String;
+export const ListVolumesRequestSortItem = S.String;
 
 export type ListVolumesRequestSortList = Array<
   ListVolumesRequestSortItem | (string & {})
@@ -500,7 +500,7 @@ export const ListVolumesResponseVolumesItemLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Status of the Volume. */
 export type ListVolumesResponseVolumesItemStatus = "available" | "creating";
-export const ListVolumesResponseVolumesItemStatus = /*@__PURE__*/ S.String;
+export const ListVolumesResponseVolumesItemStatus = S.String;
 
 export interface ListVolumesResponseVolumesItem {
   /** ID of the [Volume](#tag/volumes). */
@@ -653,7 +653,7 @@ export const UpdateVolumeResponseVolumeLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Status of the Volume. */
 export type UpdateVolumeResponseVolumeStatus = "available" | "creating";
-export const UpdateVolumeResponseVolumeStatus = /*@__PURE__*/ S.String;
+export const UpdateVolumeResponseVolumeStatus = S.String;
 
 export interface UpdateVolumeResponseVolume {
   /** ID of the [Volume](#tag/volumes). */

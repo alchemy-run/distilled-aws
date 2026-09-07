@@ -19,7 +19,7 @@ export type ServiceTerminationFutureUseEnum =
   | "SUBSCRIBE_AN_OTHER_SERVICE"
   | "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
   | "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR";
-export const ServiceTerminationFutureUseEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationFutureUseEnum = S.String;
 
 /** All reasons you can provide for a service termination */
 export type ServiceTerminationReasonEnum =
@@ -37,7 +37,7 @@ export type ServiceTerminationReasonEnum =
   | "TOO_EXPENSIVE"
   | "TOO_HARD_TO_USE"
   | "UNSATIFIED_BY_CUSTOMER_SUPPORT";
-export const ServiceTerminationReasonEnum = /*@__PURE__*/ S.String;
+export const ServiceTerminationReasonEnum = S.String;
 
 export interface ConfirmVrackTerminationRequest {
   /** The internal name of your vrack */
@@ -144,7 +144,7 @@ export type VrackTaskStatusEnum =
   | "done"
   | "init"
   | "todo";
-export const VrackTaskStatusEnum = /*@__PURE__*/ S.String;
+export const VrackTaskStatusEnum = S.String;
 
 /** vrack tasks */
 export interface VrackTask {
@@ -1033,7 +1033,7 @@ export type VrackVrackZoneEnum =
   | "was1"
   | "waw"
   | "yyz";
-export const VrackVrackZoneEnum = /*@__PURE__*/ S.String;
+export const VrackVrackZoneEnum = S.String;
 
 /** IP block in vrack */
 export interface VrackIp {
@@ -1151,7 +1151,7 @@ export const GetVrackIpv6BridgedSubrangeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible values for slaac */
 export type VrackSlaacEnum = "disabled" | "enabled";
-export const VrackSlaacEnum = /*@__PURE__*/ S.String;
+export const VrackSlaacEnum = S.String;
 
 /** Bridged subrange within your IP v6 block */
 export interface VrackBridgedSubrange {
@@ -1342,7 +1342,7 @@ export type ServiceStateEnum =
   | "ok"
   | "pendingDebt"
   | "unPaid";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** Details about a non-expiring Service */
 export interface ServicesNonExpiringService {
@@ -1524,7 +1524,7 @@ export type VrackAllowedServiceEnum =
   | "ovhCloudConnect"
   | "vmwareCloudDirectorVirtualDataCenter"
   | "vrackServices";
-export const VrackAllowedServiceEnum = /*@__PURE__*/ S.String;
+export const VrackAllowedServiceEnum = S.String;
 
 export interface ListVrackAllowedServicesRequest {
   /** The internal name of your vrack */

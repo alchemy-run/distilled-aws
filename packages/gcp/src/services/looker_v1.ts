@@ -105,7 +105,7 @@ export type EncryptionConfigKmsKeyStateEnum =
   | "KMS_KEY_STATE_UNSPECIFIED"
   | "VALID"
   | "REVOKED";
-export const EncryptionConfigKmsKeyStateEnum = /*@__PURE__*/ S.String;
+export const EncryptionConfigKmsKeyStateEnum = S.String;
 
 /** Encryption configuration (i.e. CMEK). */
 export interface EncryptionConfig {
@@ -138,7 +138,7 @@ export type ServiceAttachmentConnectionStatusEnum =
   | "REJECTED"
   | "NEEDS_ATTENTION"
   | "CLOSED";
-export const ServiceAttachmentConnectionStatusEnum = /*@__PURE__*/ S.String;
+export const ServiceAttachmentConnectionStatusEnum = S.String;
 
 /** Service attachment configuration. */
 export interface ServiceAttachment {
@@ -227,7 +227,7 @@ export type InstanceStateEnum =
   | "DELETING"
   | "EXPORTING"
   | "IMPORTING";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
 export interface TimeOfDay {
@@ -382,17 +382,17 @@ export type InstanceSoftDeleteReasonEnum =
   | "BILLING_ACCOUNT_ISSUE"
   | "TRIAL_EXPIRED"
   | "CUSTOMER_REQUEST";
-export const InstanceSoftDeleteReasonEnum = /*@__PURE__*/ S.String;
+export const InstanceSoftDeleteReasonEnum = S.String;
 
 export type InstanceReleaseChannelEnum =
   | "RELEASE_CHANNEL_UNSPECIFIED"
   | "RAPID"
   | "REGULAR"
   | "STABLE";
-export const InstanceReleaseChannelEnum = /*@__PURE__*/ S.String;
+export const InstanceReleaseChannelEnum = S.String;
 
 export type InstanceClassTypeEnum = "CLASS_TYPE_UNSPECIFIED" | "R1" | "P1";
-export const InstanceClassTypeEnum = /*@__PURE__*/ S.String;
+export const InstanceClassTypeEnum = S.String;
 
 export type CustomDomainStateEnum =
   | "CUSTOM_DOMAIN_STATE_UNSPECIFIED"
@@ -402,7 +402,7 @@ export type CustomDomainStateEnum =
   | "AVAILABLE"
   | "UNAVAILABLE"
   | "UNKNOWN";
-export const CustomDomainStateEnum = /*@__PURE__*/ S.String;
+export const CustomDomainStateEnum = S.String;
 
 /** Custom domain information. */
 export interface CustomDomain {
@@ -427,7 +427,7 @@ export type MaintenanceWindowDayOfWeekEnum =
   | "FRIDAY"
   | "SATURDAY"
   | "SUNDAY";
-export const MaintenanceWindowDayOfWeekEnum = /*@__PURE__*/ S.String;
+export const MaintenanceWindowDayOfWeekEnum = S.String;
 
 /** Specifies the recurring maintenance window. */
 export interface MaintenanceWindow {
@@ -458,7 +458,7 @@ export type InstancePlatformEditionEnum =
   | "LOOKER_CORE_TRIAL_STANDARD"
   | "LOOKER_CORE_TRIAL_ENTERPRISE"
   | "LOOKER_CORE_TRIAL_EMBED";
-export const InstancePlatformEditionEnum = /*@__PURE__*/ S.String;
+export const InstancePlatformEditionEnum = S.String;
 
 /** Looker instance OAuth login settings. */
 export interface OAuthConfig {
@@ -687,7 +687,7 @@ export type InstanceBackupStateEnum =
   | "DELETING"
   | "ACTIVE"
   | "FAILED";
-export const InstanceBackupStateEnum = /*@__PURE__*/ S.String;
+export const InstanceBackupStateEnum = S.String;
 
 /** The details of a backup resource. */
 export interface InstanceBackup {

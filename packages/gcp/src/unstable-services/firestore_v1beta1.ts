@@ -80,7 +80,7 @@ export type ReadWriteConcurrencyModeEnum =
   | "CONCURRENCY_MODE_UNSPECIFIED"
   | "OPTIMISTIC"
   | "PESSIMISTIC";
-export const ReadWriteConcurrencyModeEnum = /*@__PURE__*/ S.String;
+export const ReadWriteConcurrencyModeEnum = S.String;
 
 /** Options for a transaction that can be used to read and write documents. */
 export interface ReadWrite {
@@ -236,7 +236,7 @@ export const MapValue = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MapValue" }) as any as S.Schema<MapValue>;
 
 export type ValueNullValueEnum = "NULL_VALUE";
-export const ValueNullValueEnum = /*@__PURE__*/ S.String;
+export const ValueNullValueEnum = S.String;
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
@@ -403,7 +403,7 @@ export const Precondition = /*@__PURE__*/ S.suspend(() =>
 export type FieldTransformSetToServerValueEnum =
   | "SERVER_VALUE_UNSPECIFIED"
   | "REQUEST_TIME";
-export const FieldTransformSetToServerValueEnum = /*@__PURE__*/ S.String;
+export const FieldTransformSetToServerValueEnum = S.String;
 
 /** A transformation of a field of the document. */
 export interface FieldTransform {
@@ -744,8 +744,7 @@ export type GoogleFirestoreAdminV1beta1IndexFieldModeEnum =
   | "ASCENDING"
   | "DESCENDING"
   | "ARRAY_CONTAINS";
-export const GoogleFirestoreAdminV1beta1IndexFieldModeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1beta1IndexFieldModeEnum = S.String;
 
 /** A field of an index. */
 export interface GoogleFirestoreAdminV1beta1IndexField {
@@ -775,7 +774,7 @@ export type GoogleFirestoreAdminV1beta1IndexStateEnum =
   | "CREATING"
   | "READY"
   | "ERROR";
-export const GoogleFirestoreAdminV1beta1IndexStateEnum = /*@__PURE__*/ S.String;
+export const GoogleFirestoreAdminV1beta1IndexStateEnum = S.String;
 
 /** An index definition. */
 export interface GoogleFirestoreAdminV1beta1Index {
@@ -1290,7 +1289,7 @@ export type OrderDirectionEnum =
   | "DIRECTION_UNSPECIFIED"
   | "ASCENDING"
   | "DESCENDING";
-export const OrderDirectionEnum = /*@__PURE__*/ S.String;
+export const OrderDirectionEnum = S.String;
 
 /** A reference to a field in a document, ex: `stats.operations`. */
 export interface FieldReference {
@@ -1355,7 +1354,7 @@ export type FieldFilterOpEnum =
   | "IN"
   | "ARRAY_CONTAINS_ANY"
   | "NOT_IN";
-export const FieldFilterOpEnum = /*@__PURE__*/ S.String;
+export const FieldFilterOpEnum = S.String;
 
 /** A filter on a specific field. */
 export interface FieldFilter {
@@ -1380,7 +1379,7 @@ export type UnaryFilterOpEnum =
   | "IS_NULL"
   | "IS_NOT_NAN"
   | "IS_NOT_NULL";
-export const UnaryFilterOpEnum = /*@__PURE__*/ S.String;
+export const UnaryFilterOpEnum = S.String;
 
 /** A filter with a single operand. */
 export interface UnaryFilter {
@@ -1397,7 +1396,7 @@ export const UnaryFilter = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UnaryFilter" }) as any as S.Schema<UnaryFilter>;
 
 export type CompositeFilterOpEnum = "OPERATOR_UNSPECIFIED" | "AND" | "OR";
-export const CompositeFilterOpEnum = /*@__PURE__*/ S.String;
+export const CompositeFilterOpEnum = S.String;
 
 export type FilterList = Array<Filter>;
 export const FilterList = /*@__PURE__*/ S.Array(
@@ -1458,7 +1457,7 @@ export type FindNearestDistanceMeasureEnum =
   | "EUCLIDEAN"
   | "COSINE"
   | "DOT_PRODUCT";
-export const FindNearestDistanceMeasureEnum = /*@__PURE__*/ S.String;
+export const FindNearestDistanceMeasureEnum = S.String;
 
 /** Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries. */
 export interface FindNearest {
@@ -1653,7 +1652,7 @@ export type TargetChangeTargetChangeTypeEnum =
   | "REMOVE"
   | "CURRENT"
   | "RESET";
-export const TargetChangeTargetChangeTypeEnum = /*@__PURE__*/ S.String;
+export const TargetChangeTargetChangeTypeEnum = S.String;
 
 /** Targets being watched have changed. */
 export interface TargetChange {

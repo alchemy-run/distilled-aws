@@ -16,11 +16,11 @@ export type { AzureOpError, AzureOpContext };
 export type AdvancedThreatProtectionSettingsUpdatePutRequestAdvancedThreatProtectionName =
   "Default";
 export const AdvancedThreatProtectionSettingsUpdatePutRequestAdvancedThreatProtectionName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Specifies the state of the Advanced Threat Protection, whether it is enabled or disabled on the server. */
 export type AdvancedThreatProtectionState = "Enabled" | "Disabled";
-export const AdvancedThreatProtectionState = /*@__PURE__*/ S.String;
+export const AdvancedThreatProtectionState = S.String;
 
 /** Properties of an Advanced Threat Protection setting. */
 export interface AdvancedThreatProtectionPropertiesInput {
@@ -79,7 +79,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -87,7 +87,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -121,7 +121,7 @@ export type AdvancedThreatProtectionProvisioningState =
   | "Updating"
   | "Canceled"
   | "Failed";
-export const AdvancedThreatProtectionProvisioningState = /*@__PURE__*/ S.String;
+export const AdvancedThreatProtectionProvisioningState = S.String;
 
 /** Properties of an Advanced Threat Protection setting. */
 export interface AdvancedThreatProtectionProperties {
@@ -170,11 +170,11 @@ export const AdvancedThreatProtectionSettingsUpdatePutResponse =
 export type AzureADAdministratorsCreateOrUpdateRequestAdministratorName =
   "ActiveDirectory";
 export const AzureADAdministratorsCreateOrUpdateRequestAdministratorName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Type of the sever administrator. */
 export type AdministratorType = "ActiveDirectory";
-export const AdministratorType = /*@__PURE__*/ S.String;
+export const AdministratorType = S.String;
 
 /** The properties of an administrator. */
 export interface AdministratorProperties {
@@ -265,7 +265,7 @@ export const AzureADAdministratorsCreateOrUpdateResponse =
 
 /** Source of the configuration. */
 export type ConfigurationSource = "system-default" | "user-override";
-export const ConfigurationSource = /*@__PURE__*/ S.String;
+export const ConfigurationSource = S.String;
 
 /** The properties of a configuration. */
 export interface ConfigurationPropertiesInput {
@@ -319,15 +319,15 @@ export const ConfigurationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** If is the configuration read only. */
 export type IsReadOnly = "True" | "False";
-export const IsReadOnly = /*@__PURE__*/ S.String;
+export const IsReadOnly = S.String;
 
 /** If is the configuration pending restart or not. */
 export type IsConfigPendingRestart = "True" | "False";
-export const IsConfigPendingRestart = /*@__PURE__*/ S.String;
+export const IsConfigPendingRestart = S.String;
 
 /** If is the configuration dynamic. */
 export type IsDynamicConfig = "True" | "False";
-export const IsDynamicConfig = /*@__PURE__*/ S.String;
+export const IsDynamicConfig = S.String;
 
 /** The properties of a configuration. */
 export interface ConfigurationProperties {
@@ -399,7 +399,7 @@ export const ConfigurationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 
 /** Backup Format for the current backup. (CollatedFormat is INTERNAL – DO NOT USE) */
 export type BackupFormat = "CollatedFormat" | "Raw";
-export const BackupFormat = /*@__PURE__*/ S.String;
+export const BackupFormat = S.String;
 
 /** Backup Settings */
 export interface BackupSettings {
@@ -579,7 +579,7 @@ export type OperationStatus =
   | "Failed"
   | "CancelInProgress"
   | "Canceled";
-export const OperationStatus = /*@__PURE__*/ S.String;
+export const OperationStatus = S.String;
 
 export interface CreateBackupAndExportResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -621,7 +621,7 @@ export const CreateBackupAndExportResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBackupAndExportResponse>;
 
 export type BackupType = "FULL";
-export const BackupType = /*@__PURE__*/ S.String;
+export const BackupType = S.String;
 
 /** The current provisioning state. */
 export type ProvisioningState =
@@ -630,7 +630,7 @@ export type ProvisioningState =
   | "Deleting"
   | "Failed"
   | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+export const ProvisioningState = S.String;
 
 /** The properties of a server backup. */
 export interface ServerBackupPropertiesV2 {
@@ -720,7 +720,7 @@ export const CreateServerRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** The major version of a server. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7 */
 export type ServerVersion = "5.7" | "8.0.21";
-export const ServerVersion = /*@__PURE__*/ S.String;
+export const ServerVersion = S.String;
 
 /** The mode to create a new MySQL server. */
 export type CreateMode =
@@ -728,15 +728,15 @@ export type CreateMode =
   | "PointInTimeRestore"
   | "Replica"
   | "GeoRestore";
-export const CreateMode = /*@__PURE__*/ S.String;
+export const CreateMode = S.String;
 
 /** The replication role. */
 export type ReplicationRole = "None" | "Source" | "Replica";
-export const ReplicationRole = /*@__PURE__*/ S.String;
+export const ReplicationRole = S.String;
 
 /** The key type, AzureKeyVault for enable cmk, SystemManaged for disable cmk. */
 export type DataEncryptionType = "AzureKeyVault" | "SystemManaged";
-export const DataEncryptionType = /*@__PURE__*/ S.String;
+export const DataEncryptionType = S.String;
 
 /** The date encryption for cmk. */
 export interface DataEncryption {
@@ -763,21 +763,21 @@ export const DataEncryption = /*@__PURE__*/ S.suspend(() =>
 
 /** Enable Storage Auto Grow or not. */
 export type StorageInputAutoGrow = "Enabled" | "Disabled";
-export const StorageInputAutoGrow = /*@__PURE__*/ S.String;
+export const StorageInputAutoGrow = S.String;
 
 /** Enable Log On Disk or not. */
 export type StorageInputLogOnDisk = "Enabled" | "Disabled";
-export const StorageInputLogOnDisk = /*@__PURE__*/ S.String;
+export const StorageInputLogOnDisk = S.String;
 
 /** Enable IO Auto Scaling or not. */
 export type StorageInputAutoIoScaling = "Enabled" | "Disabled";
-export const StorageInputAutoIoScaling = /*@__PURE__*/ S.String;
+export const StorageInputAutoIoScaling = S.String;
 
 /** The redundant type of the server storage. The parameter is used for server creation. */
 export type StorageInputStorageRedundancy =
   | "LocalRedundancy"
   | "ZoneRedundancy";
-export const StorageInputStorageRedundancy = /*@__PURE__*/ S.String;
+export const StorageInputStorageRedundancy = S.String;
 
 /** Storage Profile properties of a server */
 export interface StorageInput {
@@ -807,7 +807,7 @@ export const StorageInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether or not geo redundant backup is enabled. */
 export type BackupInputGeoRedundantBackup = "Enabled" | "Disabled";
-export const BackupInputGeoRedundantBackup = /*@__PURE__*/ S.String;
+export const BackupInputGeoRedundantBackup = S.String;
 
 /** Storage Profile properties of a server */
 export interface BackupInput {
@@ -828,7 +828,7 @@ export const BackupInput = /*@__PURE__*/ S.suspend(() =>
 
 /** High availability mode for a server. */
 export type HighAvailabilityMode = "Disabled" | "ZoneRedundant" | "SameZone";
-export const HighAvailabilityMode = /*@__PURE__*/ S.String;
+export const HighAvailabilityMode = S.String;
 
 /** The state of server high availability. */
 export type HighAvailabilityState =
@@ -837,7 +837,7 @@ export type HighAvailabilityState =
   | "Healthy"
   | "FailingOver"
   | "RemovingStandby";
-export const HighAvailabilityState = /*@__PURE__*/ S.String;
+export const HighAvailabilityState = S.String;
 
 /** High availability properties of a server */
 export interface HighAvailability {
@@ -860,7 +860,7 @@ export const HighAvailability = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate whether value is 'Enabled' or 'Disabled' */
 export type EnableStatusEnum = "Enabled" | "Disabled";
-export const EnableStatusEnum = /*@__PURE__*/ S.String;
+export const EnableStatusEnum = S.String;
 
 /** Network related properties of a server */
 export interface Network {
@@ -881,7 +881,7 @@ export const Network = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum to indicate the patch strategy of a server */
 export type PatchStrategy = "Regular" | "VirtualCanary";
-export const PatchStrategy = /*@__PURE__*/ S.String;
+export const PatchStrategy = S.String;
 
 /** Maintenance policy of a server. */
 export interface MaintenancePolicy {
@@ -898,7 +898,7 @@ export const MaintenancePolicy = /*@__PURE__*/ S.suspend(() =>
 
 /** The batch of maintenance when enabled the custom managed maintenance window of a server. */
 export type BatchOfMaintenance = "Default" | "Batch1" | "Batch2";
-export const BatchOfMaintenance = /*@__PURE__*/ S.String;
+export const BatchOfMaintenance = S.String;
 
 /** Maintenance window of a server. */
 export interface MaintenanceWindow {
@@ -927,7 +927,7 @@ export const MaintenanceWindow = /*@__PURE__*/ S.suspend(() =>
 
 /** Storage type of import source. */
 export type ImportSourceStorageType = "AzureBlob";
-export const ImportSourceStorageType = /*@__PURE__*/ S.String;
+export const ImportSourceStorageType = S.String;
 
 /** Import source related properties. */
 export interface ImportSourceProperties {
@@ -1014,7 +1014,7 @@ export const ServerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of managed service identity. */
 export type ManagedServiceIdentityType = "UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+export const ManagedServiceIdentityType = S.String;
 
 /** Metadata of user assigned identity. */
 export interface UserAssignedIdentityInput {}
@@ -1054,7 +1054,7 @@ export const MySQLServerIdentityInput = /*@__PURE__*/ S.suspend(() =>
 
 /** The tier of the particular SKU, e.g. GeneralPurpose. */
 export type ServerSkuTier = "Burstable" | "GeneralPurpose" | "MemoryOptimized";
-export const ServerSkuTier = /*@__PURE__*/ S.String;
+export const ServerSkuTier = S.String;
 
 /** Billing information related properties of a server. */
 export interface MySQLServerSku {
@@ -1126,23 +1126,23 @@ export type ServerState =
   | "Stopping"
   | "Stopped"
   | "Updating";
-export const ServerState = /*@__PURE__*/ S.String;
+export const ServerState = S.String;
 
 /** Enable Storage Auto Grow or not. */
 export type StorageAutoGrow = "Enabled" | "Disabled";
-export const StorageAutoGrow = /*@__PURE__*/ S.String;
+export const StorageAutoGrow = S.String;
 
 /** Enable Log On Disk or not. */
 export type StorageLogOnDisk = "Enabled" | "Disabled";
-export const StorageLogOnDisk = /*@__PURE__*/ S.String;
+export const StorageLogOnDisk = S.String;
 
 /** Enable IO Auto Scaling or not. */
 export type StorageAutoIoScaling = "Enabled" | "Disabled";
-export const StorageAutoIoScaling = /*@__PURE__*/ S.String;
+export const StorageAutoIoScaling = S.String;
 
 /** The redundant type of the server storage. The parameter is used for server creation. */
 export type StorageStorageRedundancy = "LocalRedundancy" | "ZoneRedundancy";
-export const StorageStorageRedundancy = /*@__PURE__*/ S.String;
+export const StorageStorageRedundancy = S.String;
 
 /** Storage Profile properties of a server */
 export interface Storage {
@@ -1175,7 +1175,7 @@ export const Storage = /*@__PURE__*/ S.suspend(() =>
 
 /** Whether or not geo redundant backup is enabled. */
 export type BackupGeoRedundantBackup = "Enabled" | "Disabled";
-export const BackupGeoRedundantBackup = /*@__PURE__*/ S.String;
+export const BackupGeoRedundantBackup = S.String;
 
 /** Storage Profile properties of a server */
 export interface Backup {
@@ -1222,7 +1222,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -1249,8 +1249,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -1545,8 +1544,7 @@ export const DatabasesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type DeleteAzureADAdministratorRequestAdministratorName =
   "ActiveDirectory";
-export const DeleteAzureADAdministratorRequestAdministratorName =
-  /*@__PURE__*/ S.String;
+export const DeleteAzureADAdministratorRequestAdministratorName = S.String;
 
 export interface DeleteAzureADAdministratorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2079,7 +2077,7 @@ export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName =
   "Default";
 export const GetAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetAdvancedThreatProtectionSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2141,8 +2139,7 @@ export const GetAdvancedThreatProtectionSettingsResponse =
   }) as any as S.Schema<GetAdvancedThreatProtectionSettingsResponse>;
 
 export type GetAzureADAdministratorRequestAdministratorName = "ActiveDirectory";
-export const GetAzureADAdministratorRequestAdministratorName =
-  /*@__PURE__*/ S.String;
+export const GetAzureADAdministratorRequestAdministratorName = S.String;
 
 export interface GetAzureADAdministratorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2809,7 +2806,7 @@ export const GetOperationProgressResponseOperationsList = /*@__PURE__*/ S.Array(
 export type ObjectType =
   | "BackupAndExportResponse"
   | "ImportFromStorageResponse";
-export const ObjectType = /*@__PURE__*/ S.String;
+export const ObjectType = S.String;
 
 /** Represents the response properties specific to the operation */
 export interface OperationProgressResponseType {
@@ -3183,7 +3180,7 @@ export const GetServerKeyRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The key type like 'AzureKeyVault'. */
 export type ServerKeyPropertiesServerKeyType = "AzureKeyVault";
-export const ServerKeyPropertiesServerKeyType = /*@__PURE__*/ S.String;
+export const ServerKeyPropertiesServerKeyType = S.String;
 
 /** Properties for a key execution. */
 export interface ServerKeyProperties {
@@ -4105,7 +4102,7 @@ export type MaintenanceType =
   | "MinorVersionUpgrade"
   | "SecurityPatches"
   | "HotFixes";
-export const MaintenanceType = /*@__PURE__*/ S.String;
+export const MaintenanceType = S.String;
 
 /** The current status of this maintenance. */
 export type MaintenanceState =
@@ -4115,7 +4112,7 @@ export type MaintenanceState =
   | "Processing"
   | "Completed"
   | "Canceled";
-export const MaintenanceState = /*@__PURE__*/ S.String;
+export const MaintenanceState = S.String;
 
 /** The current provisioning state. */
 export type MaintenanceProvisioningState =
@@ -4123,7 +4120,7 @@ export type MaintenanceProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const MaintenanceProvisioningState = /*@__PURE__*/ S.String;
+export const MaintenanceProvisioningState = S.String;
 
 /** The properties of a maintenance resource. */
 export interface MaintenanceProperties {
@@ -4251,7 +4248,7 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type Origin = "user" | "system" | "user,system";
-export const Origin = /*@__PURE__*/ S.String;
+export const Origin = S.String;
 
 /** Additional descriptions for the operation. */
 export type OperationPropertiesMap = { [key: string]: unknown | undefined };
@@ -4887,7 +4884,7 @@ export const RestartServerResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The key type like 'AzureKeyVault'. */
 export type ServerKeyPropertiesInputServerKeyType = "AzureKeyVault";
-export const ServerKeyPropertiesInputServerKeyType = /*@__PURE__*/ S.String;
+export const ServerKeyPropertiesInputServerKeyType = S.String;
 
 /** Properties for a key execution. */
 export interface ServerKeyPropertiesInput {
@@ -5180,7 +5177,7 @@ export const StopServerResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName =
   "Default";
 export const UpdateAdvancedThreatProtectionSettingsRequestAdvancedThreatProtectionName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Properties of Advanced Threat Protection that can be updated. */
 export interface AdvancedThreatProtectionUpdateProperties {
@@ -5355,7 +5352,7 @@ export const UpdateConfigurationBatchRequestValueList = /*@__PURE__*/ S.Array(
 
 /** Whether to reset all server parameters to default. */
 export type ResetAllToDefault = "True" | "False";
-export const ResetAllToDefault = /*@__PURE__*/ S.String;
+export const ResetAllToDefault = S.String;
 
 export interface UpdateConfigurationBatchRequest {
   /** The ID of the target subscription. The value must be an UUID. */

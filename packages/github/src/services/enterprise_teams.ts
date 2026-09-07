@@ -23,20 +23,20 @@ export class Forbidden
 
 /** Retired: this field is no longer supported. Whether the enterprise team should be reflected in each organization. This value cannot be set. */
 export type CreateRequestSyncToOrganizations = "all" | "disabled";
-export const CreateRequestSyncToOrganizations = /*@__PURE__*/ S.String;
+export const CreateRequestSyncToOrganizations = S.String;
 
 /** Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`. `disabled`: The team is not assigned to any organizations. This is the default when you create a new team. `selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/enterprise-team-organizations#add-organization-assignments) endpoint. `all`: The team is assigned to all current and future organizations in the enterprise. */
 export type CreateRequestOrganizationSelectionType =
   | "disabled"
   | "selected"
   | "all";
-export const CreateRequestOrganizationSelectionType = /*@__PURE__*/ S.String;
+export const CreateRequestOrganizationSelectionType = S.String;
 
 /** The notification setting the team is set to. The options are: * `notifications_enabled` - team members receive notifications when the team is @mentioned. * `notifications_disabled` - no one receives notifications. Default: `notifications_enabled` */
 export type CreateRequestNotificationSetting =
   | "notifications_enabled"
   | "notifications_disabled";
-export const CreateRequestNotificationSetting = /*@__PURE__*/ S.String;
+export const CreateRequestNotificationSetting = S.String;
 
 export interface CreateRequest {
   /** The slug version of the enterprise name. */
@@ -80,7 +80,7 @@ export const CreateRequest = /*@__PURE__*/ S.suspend(() =>
 export type EnterpriseTeamNotificationSetting =
   | "notifications_enabled"
   | "notifications_disabled";
-export const EnterpriseTeamNotificationSetting = /*@__PURE__*/ S.String;
+export const EnterpriseTeamNotificationSetting = S.String;
 
 /** Group of enterprise owners and/or members */
 export interface EnterpriseTeam {
@@ -168,8 +168,7 @@ export const GetRequest = /*@__PURE__*/ S.suspend(() =>
 export type EnterpriseTeamWithMemberCountNotificationSetting =
   | "notifications_enabled"
   | "notifications_disabled";
-export const EnterpriseTeamWithMemberCountNotificationSetting =
-  /*@__PURE__*/ S.String;
+export const EnterpriseTeamWithMemberCountNotificationSetting = S.String;
 
 /** Group of enterprise owners and/or members */
 export interface EnterpriseTeamWithMemberCount {
@@ -251,20 +250,20 @@ export const ListResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Retired: this field is no longer supported. Whether the enterprise team should be reflected in each organization. This value cannot be changed. */
 export type UpdateRequestSyncToOrganizations = "all" | "disabled";
-export const UpdateRequestSyncToOrganizations = /*@__PURE__*/ S.String;
+export const UpdateRequestSyncToOrganizations = S.String;
 
 /** Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`. `disabled`: The team is not assigned to any organizations. This is the default when you create a new team. `selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/enterprise-team-organizations#add-organization-assignments). `all`: The team is assigned to all current and future organizations in the enterprise. */
 export type UpdateRequestOrganizationSelectionType =
   | "disabled"
   | "selected"
   | "all";
-export const UpdateRequestOrganizationSelectionType = /*@__PURE__*/ S.String;
+export const UpdateRequestOrganizationSelectionType = S.String;
 
 /** The notification setting the team is set to. The options are: * `notifications_enabled` - team members receive notifications when the team is @mentioned. * `notifications_disabled` - no one receives notifications. */
 export type UpdateRequestNotificationSetting =
   | "notifications_enabled"
   | "notifications_disabled";
-export const UpdateRequestNotificationSetting = /*@__PURE__*/ S.String;
+export const UpdateRequestNotificationSetting = S.String;
 
 export interface UpdateRequest {
   /** The slug version of the enterprise name. */

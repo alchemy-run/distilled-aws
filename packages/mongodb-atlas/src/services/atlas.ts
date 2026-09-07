@@ -147,7 +147,7 @@ export type AppServiceEventTypeViewAlertable =
   | "SYNC_FAILURE"
   | "TRIGGER_FAILURE"
   | "TRIGGER_AUTO_RESUMED";
-export const AppServiceEventTypeViewAlertable = /*@__PURE__*/ S.String;
+export const AppServiceEventTypeViewAlertable = S.String;
 
 export interface Link {
   /** Uniform Resource Locator (URL) that points another API resource to which this response has some relationship. This URL often begins with `https://cloud.mongodb.com/api/atlas`. */
@@ -174,7 +174,7 @@ export type AppServiceAlertViewStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const AppServiceAlertViewStatus = /*@__PURE__*/ S.String;
+export const AppServiceAlertViewStatus = S.String;
 
 /** App Services alert notifies different activities about a BAAS application. */
 export interface AppServiceAlertView {
@@ -230,7 +230,7 @@ export const AppServiceAlertView = /*@__PURE__*/ S.suspend(() =>
 /** Event type that triggers an alert. */
 export type ClusterEventTypeViewForNdsGroupAlertable =
   "CLUSTER_MONGOS_IS_MISSING";
-export const ClusterEventTypeViewForNdsGroupAlertable = /*@__PURE__*/ S.String;
+export const ClusterEventTypeViewForNdsGroupAlertable = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ClusterAlertViewForNdsGroupLinksList = Array<Link>;
@@ -244,7 +244,7 @@ export type ClusterAlertViewForNdsGroupStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const ClusterAlertViewForNdsGroupStatus = /*@__PURE__*/ S.String;
+export const ClusterAlertViewForNdsGroupStatus = S.String;
 
 /** Cluster alert notifies different activities and conditions about cluster of mongod hosts. */
 export interface ClusterAlertViewForNdsGroup {
@@ -323,7 +323,7 @@ export type HostEventTypeViewForNdsGroupAlertable =
   | "HOST_SECURITY_CHECKUP_NOT_MET"
   | "ALERT_HOST_SSH_SESSION_STARTED"
   | "PROFILER_CONFIGURED_TOO_WIDELY";
-export const HostEventTypeViewForNdsGroupAlertable = /*@__PURE__*/ S.String;
+export const HostEventTypeViewForNdsGroupAlertable = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type HostAlertViewForNdsGroupLinksList = Array<Link>;
@@ -337,7 +337,7 @@ export type HostAlertViewForNdsGroupStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const HostAlertViewForNdsGroupStatus = /*@__PURE__*/ S.String;
+export const HostAlertViewForNdsGroupStatus = S.String;
 
 /** Host alert notifies about activities on mongod host. */
 export interface HostAlertViewForNdsGroup {
@@ -437,7 +437,7 @@ export type HostMetricValueUnits =
   | "thousand"
   | "million"
   | "billion";
-export const HostMetricValueUnits = /*@__PURE__*/ S.String;
+export const HostMetricValueUnits = S.String;
 
 /** Value of the metric that triggered the alert. The resource returns this parameter for alerts of events impacting hosts. */
 export interface HostMetricValue {
@@ -457,7 +457,7 @@ export const HostMetricValue = /*@__PURE__*/ S.suspend(() =>
 
 /** Event type that triggers an alert. */
 export type FlexMetricEventTypeViewAlertable = "OUTSIDE_FLEX_METRIC_THRESHOLD";
-export const FlexMetricEventTypeViewAlertable = /*@__PURE__*/ S.String;
+export const FlexMetricEventTypeViewAlertable = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type FlexMetricAlertLinksList = Array<Link>;
@@ -471,7 +471,7 @@ export type FlexMetricAlertStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const FlexMetricAlertStatus = /*@__PURE__*/ S.String;
+export const FlexMetricAlertStatus = S.String;
 
 /** Flex Metric Alert notifies about changes of measurements or metrics for a Flex cluster. */
 export interface FlexMetricAlert {
@@ -534,7 +534,7 @@ export const FlexMetricAlert = /*@__PURE__*/ S.suspend(() =>
 
 /** Event type that triggers an alert. */
 export type HostMetricEventTypeViewAlertable = "OUTSIDE_METRIC_THRESHOLD";
-export const HostMetricEventTypeViewAlertable = /*@__PURE__*/ S.String;
+export const HostMetricEventTypeViewAlertable = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type HostMetricAlertLinksList = Array<Link>;
@@ -548,7 +548,7 @@ export type HostMetricAlertStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const HostMetricAlertStatus = /*@__PURE__*/ S.String;
+export const HostMetricAlertStatus = S.String;
 
 /** Host Metric Alert notifies about changes of measurements or metrics for mongod host. */
 export interface HostMetricAlert {
@@ -623,8 +623,7 @@ export type ReplicaSetEventTypeViewForNdsGroupAlertable =
   | "TOO_MANY_ELECTIONS"
   | "TOO_FEW_HEALTHY_MEMBERS"
   | "TOO_MANY_UNHEALTHY_MEMBERS";
-export const ReplicaSetEventTypeViewForNdsGroupAlertable =
-  /*@__PURE__*/ S.String;
+export const ReplicaSetEventTypeViewForNdsGroupAlertable = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ReplicaSetAlertViewForNdsGroupLinksList = Array<Link>;
@@ -645,7 +644,7 @@ export type ReplicaSetAlertViewForNdsGroupStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const ReplicaSetAlertViewForNdsGroupStatus = /*@__PURE__*/ S.String;
+export const ReplicaSetAlertViewForNdsGroupStatus = S.String;
 
 /** Replica Set alert notifies about different activities on replica set of mongod instances. */
 export interface ReplicaSetAlertViewForNdsGroup {
@@ -728,7 +727,7 @@ export type StreamProcessorAlertViewForNdsGroupStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const StreamProcessorAlertViewForNdsGroupStatus = /*@__PURE__*/ S.String;
+export const StreamProcessorAlertViewForNdsGroupStatus = S.String;
 
 /** Stream Processor alert notifies about activities on Stream Processor in Atlas Streams. */
 export interface StreamProcessorAlertViewForNdsGroup {
@@ -800,8 +799,7 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase0 =
   | "DAILY_BILLING_CHANGE_OVER_THRESHOLD"
   | "WEEKLY_BILLING_CHANGE_OVER_THRESHOLD"
   | "MONTHLY_BILLING_CHANGE_OVER_THRESHOLD";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase0 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase0 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase1 =
   | "CPS_SNAPSHOT_STARTED"
@@ -828,8 +826,7 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase1 =
   | "CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED"
   | "CPS_OPLOG_BEHIND"
   | "CPS_OPLOG_CAUGHT_UP";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase1 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase1 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase2 =
   | "AWS_ENCRYPTION_KEY_NEEDS_ROTATION"
@@ -838,8 +835,7 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase2 =
   | "AWS_ENCRYPTION_KEY_INVALID"
   | "AZURE_ENCRYPTION_KEY_INVALID"
   | "GCP_ENCRYPTION_KEY_INVALID";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase2 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase2 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase3 =
   | "FTS_INDEX_DELETION_FAILED"
@@ -849,8 +845,7 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase3 =
   | "FTS_INDEX_STALE"
   | "FTS_INDEXES_RESTORE_FAILED"
   | "FTS_INDEXES_SYNONYM_MAPPING_INVALID";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase3 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase3 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase4 =
   | "USERS_WITHOUT_MULTI_FACTOR_AUTH"
@@ -860,12 +855,10 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase4 =
   | "GROUP_SERVICE_ACCOUNT_SECRETS_EXPIRED"
   | "ACTIVE_LEGACY_TLS_CONNECTIONS"
   | "WEBHOOK_TEMPLATE_RENDER_FAILED";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase4 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase4 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase5 = "MONGOTUNE_ALERT";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase5 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase5 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase6 =
   | "CLUSTER_INSTANCE_STOP_START"
@@ -882,8 +875,7 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase6 =
   | "LOG_STREAMING_EXPORT_FAILED_NONRETRYABLE"
   | "LOG_STREAMING_EXPORT_FAILED_RETRIES_EXHAUSTED"
   | "LOG_STREAMING_REPLAY_FAILED";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase6 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase6 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase7 =
   | "MAINTENANCE_IN_ADVANCED"
@@ -891,52 +883,44 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase7 =
   | "MAINTENANCE_STARTED"
   | "MAINTENANCE_COMPLETED"
   | "MAINTENANCE_NO_LONGER_NEEDED";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase7 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase7 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase8 =
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_CHECK"
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK"
   | "NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase8 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase8 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase9 =
   | "ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK"
   | "ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase9 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase9 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase10 =
   "OUTSIDE_SERVERLESS_METRIC_THRESHOLD";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase10 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase10 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase11 =
   "OUTSIDE_FLEX_METRIC_THRESHOLD";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase11 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase11 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase12 =
   | "JOINED_GROUP"
   | "REMOVED_FROM_GROUP"
   | "USER_ROLES_CHANGED_AUDIT";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase12 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase12 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase13 =
   | "TAGS_MODIFIED"
   | "CLUSTER_TAGS_MODIFIED"
   | "GROUP_TAGS_MODIFIED";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase13 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase13 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase14 =
   | "STREAM_PROCESSOR_STATE_IS_FAILED"
   | "STREAM_PROCESSOR_AUTOSCALE_INITIATED"
   | "OUTSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase14 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase14 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase15 =
   | "COMPUTE_AUTO_SCALE_INITIATED_BASE"
@@ -957,8 +941,7 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase15 =
   | "CLUSTER_RESHARDING_COMPLETED"
   | "COMPUTE_AUTO_SCALE_DOWNSCALE_SKIPPED_FALLBACK_BASE"
   | "COMPUTE_AUTO_SCALE_DOWNSCALE_SKIPPED_FALLBACK_ANALYTICS";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase15 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase15 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase16 =
   | "CPS_DATA_PROTECTION_ENABLE_REQUESTED"
@@ -968,13 +951,11 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase16 =
   | "CPS_DATA_PROTECTION_DISABLE_REQUESTED"
   | "CPS_DATA_PROTECTION_DISABLED"
   | "CPS_DATA_PROTECTION_APPROVED_FOR_DISABLEMENT";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase16 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase16 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase17 =
   "RESOURCE_POLICY_VIOLATED";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase17 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase17 = S.String;
 
 export type DefaultAlertViewForNdsGroupEventTypeNameCase18 =
   | "HOST_DOWN"
@@ -998,8 +979,7 @@ export type DefaultAlertViewForNdsGroupEventTypeNameCase18 =
   | "HOST_SECURITY_CHECKUP_NOT_MET"
   | "ALERT_HOST_SSH_SESSION_STARTED"
   | "PROFILER_CONFIGURED_TOO_WIDELY";
-export const DefaultAlertViewForNdsGroupEventTypeNameCase18 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupEventTypeNameCase18 = S.String;
 
 /** Incident that triggered this alert. */
 export type DefaultAlertViewForNdsGroupEventTypeName =
@@ -1023,7 +1003,7 @@ export type DefaultAlertViewForNdsGroupEventTypeName =
   | DefaultAlertViewForNdsGroupEventTypeNameCase17
   | DefaultAlertViewForNdsGroupEventTypeNameCase18;
 export const DefaultAlertViewForNdsGroupEventTypeName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DefaultAlertViewForNdsGroupEventTypeName>;
+  S.Unknown as any as S.Schema<DefaultAlertViewForNdsGroupEventTypeName>;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DefaultAlertViewForNdsGroupLinksList = Array<Link>;
@@ -1037,7 +1017,7 @@ export type DefaultAlertViewForNdsGroupStatus =
   | "CLOSED"
   | "OPEN"
   | "TRACKING";
-export const DefaultAlertViewForNdsGroupStatus = /*@__PURE__*/ S.String;
+export const DefaultAlertViewForNdsGroupStatus = S.String;
 
 /** Other alerts which don't have extra details beside of basic one. */
 export interface DefaultAlertViewForNdsGroup {
@@ -1101,7 +1081,7 @@ export type AlertViewForNdsGroup =
   | StreamProcessorAlertViewForNdsGroup
   | DefaultAlertViewForNdsGroup;
 export const AlertViewForNdsGroup =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AlertViewForNdsGroup>;
+  S.Unknown as any as S.Schema<AlertViewForNdsGroup>;
 
 export type AcknowledgeGroupAlertResponse = AlertViewForNdsGroup;
 export const AcknowledgeGroupAlertResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1318,8 +1298,7 @@ export type GroupPendingUserResponseOrgMembershipStatus =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const GroupPendingUserResponseOrgMembershipStatus =
-  /*@__PURE__*/ S.String;
+export const GroupPendingUserResponseOrgMembershipStatus = S.String;
 
 /** One or more project-level roles assigned to the MongoDB Cloud user. */
 export type GroupPendingUserResponseRolesList = Array<string>;
@@ -1381,8 +1360,7 @@ export type GroupActiveUserResponseOrgMembershipStatus =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const GroupActiveUserResponseOrgMembershipStatus =
-  /*@__PURE__*/ S.String;
+export const GroupActiveUserResponseOrgMembershipStatus = S.String;
 
 /** One or more project-level roles assigned to the MongoDB Cloud user. */
 export type GroupActiveUserResponseRolesList = Array<string>;
@@ -1442,7 +1420,7 @@ export type GroupUserResponse =
   | GroupPendingUserResponse
   | GroupActiveUserResponse;
 export const GroupUserResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupUserResponse>;
+  S.Unknown as any as S.Schema<GroupUserResponse>;
 
 /** One or more project-level roles to assign the MongoDB Cloud user. */
 export type AddGroupUsersRequestRolesList = Array<string>;
@@ -1518,7 +1496,7 @@ export type OrgPendingUserResponseOrgMembershipStatus =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const OrgPendingUserResponseOrgMembershipStatus = /*@__PURE__*/ S.String;
+export const OrgPendingUserResponseOrgMembershipStatus = S.String;
 
 /** One or more project-level roles assigned to the MongoDB Cloud user. */
 export type GroupRoleAssignmentGroupRolesList = Array<string>;
@@ -1558,7 +1536,7 @@ export type OrgUserRolesResponseOrgRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY"
   | "ORG_MEMBER";
-export const OrgUserRolesResponseOrgRolesItem = /*@__PURE__*/ S.String;
+export const OrgUserRolesResponseOrgRolesItem = S.String;
 
 /** One or more organization-level roles assigned to the MongoDB Cloud user. */
 export type OrgUserRolesResponseOrgRolesList =
@@ -1647,7 +1625,7 @@ export type OrgActiveUserResponseOrgMembershipStatus =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const OrgActiveUserResponseOrgMembershipStatus = /*@__PURE__*/ S.String;
+export const OrgActiveUserResponseOrgMembershipStatus = S.String;
 
 /** List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs. */
 export type OrgActiveUserResponseTeamIdsList = Array<string>;
@@ -1706,8 +1684,7 @@ export const OrgActiveUserResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OrgActiveUserResponse>;
 
 export type OrgUserResponse = OrgPendingUserResponse | OrgActiveUserResponse;
-export const OrgUserResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OrgUserResponse>;
+export const OrgUserResponse = S.Unknown as any as S.Schema<OrgUserResponse>;
 
 /** Organization-level role. */
 export type AddOrgUserRoleRequestOrgRole =
@@ -1718,7 +1695,7 @@ export type AddOrgUserRoleRequestOrgRole =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY"
   | "ORG_MEMBER";
-export const AddOrgUserRoleRequestOrgRole = /*@__PURE__*/ S.String;
+export const AddOrgUserRoleRequestOrgRole = S.String;
 
 export interface AddOrgUserRoleRequest {
   /** Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [`/orgs`](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. */
@@ -1757,7 +1734,7 @@ export type AuthorizeGroupCloudProviderAccessRoleRequestProviderName =
   | "AZURE"
   | "GCP";
 export const AuthorizeGroupCloudProviderAccessRoleRequestProviderName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface AuthorizeGroupCloudProviderAccessRoleRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -1800,8 +1777,7 @@ export type CloudProviderAccessFeatureUsageFeatureType =
   | "EXPORT_SNAPSHOT"
   | "PUSH_BASED_LOG_EXPORT"
   | "ATLAS_LOG_INTEGRATION";
-export const CloudProviderAccessFeatureUsageFeatureType =
-  /*@__PURE__*/ S.String;
+export const CloudProviderAccessFeatureUsageFeatureType = S.String;
 
 /** MongoDB Cloud features associated with this Amazon Web Services (AWS) Identity and Access Management (IAM) role. */
 export interface CloudProviderAccessFeatureUsage {
@@ -1830,11 +1806,11 @@ export type CloudProviderAccessAWSIAMRoleStatus =
   | "COMPLETE"
   | "FAILED"
   | "NOT_INITIATED";
-export const CloudProviderAccessAWSIAMRoleStatus = /*@__PURE__*/ S.String;
+export const CloudProviderAccessAWSIAMRoleStatus = S.String;
 
 /** Human-readable label that identifies the cloud provider of the role. */
 export type CloudProviderAccessAWSIAMRoleProviderName = "AWS" | "AZURE" | "GCP";
-export const CloudProviderAccessAWSIAMRoleProviderName = /*@__PURE__*/ S.String;
+export const CloudProviderAccessAWSIAMRoleProviderName = S.String;
 
 /** Details that describe the features linked to the Amazon Web Services (AWS) Identity and Access Management (IAM) role. */
 export interface CloudProviderAccessAWSIAMRole {
@@ -1905,16 +1881,14 @@ export type CloudProviderAccessAzureServicePrincipalStatus =
   | "COMPLETE"
   | "FAILED"
   | "NOT_INITIATED";
-export const CloudProviderAccessAzureServicePrincipalStatus =
-  /*@__PURE__*/ S.String;
+export const CloudProviderAccessAzureServicePrincipalStatus = S.String;
 
 /** Human-readable label that identifies the cloud provider of the role. */
 export type CloudProviderAccessAzureServicePrincipalProviderName =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const CloudProviderAccessAzureServicePrincipalProviderName =
-  /*@__PURE__*/ S.String;
+export const CloudProviderAccessAzureServicePrincipalProviderName = S.String;
 
 /** Details that describe the features linked to the Azure Service Principal. */
 export interface CloudProviderAccessAzureServicePrincipal {
@@ -1988,16 +1962,14 @@ export type CloudProviderAccessGCPServiceAccountStatus =
   | "COMPLETE"
   | "FAILED"
   | "NOT_INITIATED";
-export const CloudProviderAccessGCPServiceAccountStatus =
-  /*@__PURE__*/ S.String;
+export const CloudProviderAccessGCPServiceAccountStatus = S.String;
 
 /** Human-readable label that identifies the cloud provider of the role. */
 export type CloudProviderAccessGCPServiceAccountProviderName =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const CloudProviderAccessGCPServiceAccountProviderName =
-  /*@__PURE__*/ S.String;
+export const CloudProviderAccessGCPServiceAccountProviderName = S.String;
 
 /** Details that describe the features linked to the GCP Service Account. */
 export interface CloudProviderAccessGCPServiceAccount {
@@ -2063,7 +2035,7 @@ export type CloudProviderAccessRole =
   | CloudProviderAccessAzureServicePrincipal
   | CloudProviderAccessGCPServiceAccount;
 export const CloudProviderAccessRole =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CloudProviderAccessRole>;
+  S.Unknown as any as S.Schema<CloudProviderAccessRole>;
 
 export interface CancelGroupClusterBackupRestoreJobRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -2194,21 +2166,19 @@ export type CreateFederationSettingIdentityProviderRequestAuthorizationType =
   | "GROUP"
   | "USER";
 export const CreateFederationSettingIdentityProviderRequestAuthorizationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** String enum that indicates the type of the identity provider. Default is WORKFORCE. */
 export type CreateFederationSettingIdentityProviderRequestIdpType =
   | "WORKFORCE"
   | "WORKLOAD";
-export const CreateFederationSettingIdentityProviderRequestIdpType =
-  /*@__PURE__*/ S.String;
+export const CreateFederationSettingIdentityProviderRequestIdpType = S.String;
 
 /** String enum that indicates the protocol of the identity provider. Either SAML or OIDC. */
 export type CreateFederationSettingIdentityProviderRequestProtocol =
   | "SAML"
   | "OIDC";
-export const CreateFederationSettingIdentityProviderRequestProtocol =
-  /*@__PURE__*/ S.String;
+export const CreateFederationSettingIdentityProviderRequestProtocol = S.String;
 
 export interface CreateFederationSettingIdentityProviderRequest {
   /** Unique 24-hexadecimal digit string that identifies your federation. */
@@ -2301,7 +2271,7 @@ export type ConnectedOrgConfigPostAuthRoleGrantsItem =
   | "ORG_BILLING_READ_ONLY"
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY";
-export const ConnectedOrgConfigPostAuthRoleGrantsItem = /*@__PURE__*/ S.String;
+export const ConnectedOrgConfigPostAuthRoleGrantsItem = S.String;
 
 /** Atlas roles that are granted to a user in this organization after authenticating. Roles are a human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific MongoDB Cloud user. These roles can only be organization specific roles. */
 export type ConnectedOrgConfigPostAuthRoleGrantsList =
@@ -2397,19 +2367,17 @@ export type FederationOidcWorkforceIdentityProviderAuthorizationType =
   | "GROUP"
   | "USER";
 export const FederationOidcWorkforceIdentityProviderAuthorizationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** String enum that indicates the type of the identity provider. Default is WORKFORCE. */
 export type FederationOidcWorkforceIdentityProviderIdpType =
   | "WORKFORCE"
   | "WORKLOAD";
-export const FederationOidcWorkforceIdentityProviderIdpType =
-  /*@__PURE__*/ S.String;
+export const FederationOidcWorkforceIdentityProviderIdpType = S.String;
 
 /** String enum that indicates the protocol of the identity provider. Either SAML or OIDC. */
 export type FederationOidcWorkforceIdentityProviderProtocol = "SAML" | "OIDC";
-export const FederationOidcWorkforceIdentityProviderProtocol =
-  /*@__PURE__*/ S.String;
+export const FederationOidcWorkforceIdentityProviderProtocol = S.String;
 
 /** Scopes that MongoDB applications will request from the authorization endpoint. */
 export type FederationOidcWorkforceIdentityProviderRequestedScopesList =
@@ -2500,20 +2468,17 @@ export const FederationOidcWorkloadIdentityProviderAssociatedOrgsList =
 export type FederationOidcWorkloadIdentityProviderAuthorizationType =
   | "GROUP"
   | "USER";
-export const FederationOidcWorkloadIdentityProviderAuthorizationType =
-  /*@__PURE__*/ S.String;
+export const FederationOidcWorkloadIdentityProviderAuthorizationType = S.String;
 
 /** String enum that indicates the type of the identity provider. Default is WORKFORCE. */
 export type FederationOidcWorkloadIdentityProviderIdpType =
   | "WORKFORCE"
   | "WORKLOAD";
-export const FederationOidcWorkloadIdentityProviderIdpType =
-  /*@__PURE__*/ S.String;
+export const FederationOidcWorkloadIdentityProviderIdpType = S.String;
 
 /** String enum that indicates the protocol of the identity provider. Either SAML or OIDC. */
 export type FederationOidcWorkloadIdentityProviderProtocol = "SAML" | "OIDC";
-export const FederationOidcWorkloadIdentityProviderProtocol =
-  /*@__PURE__*/ S.String;
+export const FederationOidcWorkloadIdentityProviderProtocol = S.String;
 
 export interface FederationOidcWorkloadIdentityProvider {
   /** List that contains the connected organization configurations associated with the identity provider. */
@@ -2575,13 +2540,13 @@ export type FederationOidcIdentityProvider =
   | FederationOidcWorkforceIdentityProvider
   | FederationOidcWorkloadIdentityProvider;
 export const FederationOidcIdentityProvider =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FederationOidcIdentityProvider>;
+  S.Unknown as any as S.Schema<FederationOidcIdentityProvider>;
 
 /** Applies to Atlas for Government only. In Commercial Atlas, this field will be rejected in requests and missing in responses. This field sets restrictions on available regions in the project. `COMMERCIAL_FEDRAMP_REGIONS_ONLY`: Only allows deployments in FedRAMP Moderate regions. `GOV_REGIONS_ONLY`: Only allows deployments in GovCloud regions. */
 export type CreateGroupRequestRegionUsageRestrictions =
   | "COMMERCIAL_FEDRAMP_REGIONS_ONLY"
   | "GOV_REGIONS_ONLY";
-export const CreateGroupRequestRegionUsageRestrictions = /*@__PURE__*/ S.String;
+export const CreateGroupRequestRegionUsageRestrictions = S.String;
 
 /** Key-value pair that tags and categorizes a MongoDB Cloud organization, project, or cluster. For example, `environment : production`. */
 export interface ResourceTag {
@@ -2657,7 +2622,7 @@ export const GroupLinksList = /*@__PURE__*/ S.Array(
 export type GroupRegionUsageRestrictions =
   | "COMMERCIAL_FEDRAMP_REGIONS_ONLY"
   | "GOV_REGIONS_ONLY";
-export const GroupRegionUsageRestrictions = /*@__PURE__*/ S.String;
+export const GroupRegionUsageRestrictions = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. */
 export type GroupTagsList = Array<ResourceTag>;
@@ -2834,11 +2799,11 @@ export const PaginatedNetworkAccessView = /*@__PURE__*/ S.suspend(() =>
 
 /** Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions. */
 export type CreateGroupAiModelApiKeyRequestCloud = "ANY";
-export const CreateGroupAiModelApiKeyRequestCloud = /*@__PURE__*/ S.String;
+export const CreateGroupAiModelApiKeyRequestCloud = S.String;
 
 /** Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions. */
 export type CreateGroupAiModelApiKeyRequestGeography = "ANY";
-export const CreateGroupAiModelApiKeyRequestGeography = /*@__PURE__*/ S.String;
+export const CreateGroupAiModelApiKeyRequestGeography = S.String;
 
 export interface CreateGroupAiModelApiKeyRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -2922,7 +2887,7 @@ export const AiModelApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase0 =
   "CREDIT_CARD_ABOUT_TO_EXPIRE";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase1 =
   | "CPS_SNAPSHOT_STARTED"
@@ -2947,7 +2912,7 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase1 =
   | "CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED"
   | "CPS_OPLOG_CAUGHT_UP";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase2 =
   | "CPS_DATA_PROTECTION_ENABLE_REQUESTED"
@@ -2958,7 +2923,7 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase2 =
   | "CPS_DATA_PROTECTION_DISABLED"
   | "CPS_DATA_PROTECTION_APPROVED_FOR_DISABLEMENT";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase2 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase3 =
   | "FTS_INDEX_DELETION_FAILED"
@@ -2969,7 +2934,7 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase3 =
   | "FTS_INDEXES_RESTORE_FAILED"
   | "FTS_INDEXES_SYNONYM_MAPPING_INVALID";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase3 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase4 =
   | "USERS_WITHOUT_MULTI_FACTOR_AUTH"
@@ -2980,12 +2945,12 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase4 =
   | "ACTIVE_LEGACY_TLS_CONNECTIONS"
   | "WEBHOOK_TEMPLATE_RENDER_FAILED";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase4 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase5 =
   "MONGOTUNE_ALERT";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase5 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase6 =
   | "CLUSTER_INSTANCE_STOP_START"
@@ -3003,7 +2968,7 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase6 =
   | "LOG_STREAMING_EXPORT_FAILED_RETRIES_EXHAUSTED"
   | "LOG_STREAMING_REPLAY_FAILED";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase6 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase7 =
   | "MAINTENANCE_IN_ADVANCED"
@@ -3012,34 +2977,34 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase7 =
   | "MAINTENANCE_COMPLETED"
   | "MAINTENANCE_NO_LONGER_NEEDED";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase7 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase8 =
   | "ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK"
   | "ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase8 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase9 =
   | "JOINED_GROUP"
   | "REMOVED_FROM_GROUP"
   | "USER_ROLES_CHANGED_AUDIT";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase9 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase10 =
   | "TAGS_MODIFIED"
   | "CLUSTER_TAGS_MODIFIED"
   | "GROUP_TAGS_MODIFIED";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase10 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase11 =
   | "STREAM_PROCESSOR_STATE_IS_FAILED"
   | "STREAM_PROCESSOR_AUTOSCALE_INITIATED"
   | "OUTSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase11 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase12 =
   | "COMPUTE_AUTO_SCALE_INITIATED_BASE"
@@ -3061,12 +3026,12 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase12 =
   | "CLUSTER_AUTO_SHARDING_INITIATED"
   | "CLUSTER_RESHARDING_COMPLETED";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase12 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase13 =
   "RESOURCE_POLICY_VIOLATED";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase13 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase14 =
   | "HOST_DOWN"
@@ -3091,7 +3056,7 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase14 =
   | "ALERT_HOST_SSH_SESSION_STARTED"
   | "PROFILER_CONFIGURED_TOO_WIDELY";
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase14 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Incident that triggered this alert. */
 export type DefaultAlertConfigViewForNdsGroupInputEventTypeName =
@@ -3111,7 +3076,7 @@ export type DefaultAlertConfigViewForNdsGroupInputEventTypeName =
   | DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase13
   | DefaultAlertConfigViewForNdsGroupInputEventTypeNameCase14;
 export const DefaultAlertConfigViewForNdsGroupInputEventTypeName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DefaultAlertConfigViewForNdsGroupInputEventTypeName>;
+  S.Unknown as any as S.Schema<DefaultAlertConfigViewForNdsGroupInputEventTypeName>;
 
 /** Comparison operator to apply when checking the current metric value against **matcher[n].value**. The `REGEX` operator only supports inclusive matches. Use the `NOT_CONTAINS` operator to exclude values. */
 export type AlertMatcherOperator =
@@ -3122,7 +3087,7 @@ export type AlertMatcherOperator =
   | "NOT_EQUALS"
   | "NOT_CONTAINS"
   | "REGEX";
-export const AlertMatcherOperator = /*@__PURE__*/ S.String;
+export const AlertMatcherOperator = S.String;
 
 /** Rules to apply when comparing an target instance against this alert configuration. */
 export interface AlertMatcher {
@@ -3157,11 +3122,11 @@ export type DatadogNotificationDatadogRegion =
   | "US5"
   | "AP1"
   | "US1_FED";
-export const DatadogNotificationDatadogRegion = /*@__PURE__*/ S.String;
+export const DatadogNotificationDatadogRegion = S.String;
 
 /** Human-readable label that displays the alert notification type. */
 export type DatadogNotificationTypeName = "DATADOG";
-export const DatadogNotificationTypeName = /*@__PURE__*/ S.String;
+export const DatadogNotificationTypeName = S.String;
 
 /** Datadog notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface DatadogNotification {
@@ -3196,7 +3161,7 @@ export const DatadogNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type EmailNotificationTypeName = "EMAIL";
-export const EmailNotificationTypeName = /*@__PURE__*/ S.String;
+export const EmailNotificationTypeName = S.String;
 
 /** Email notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface EmailNotification {
@@ -3231,7 +3196,7 @@ export const GroupNotificationRolesList = /*@__PURE__*/ S.Array(
 
 /** Human-readable label that displays the alert notification type. */
 export type GroupNotificationTypeName = "GROUP";
-export const GroupNotificationTypeName = /*@__PURE__*/ S.String;
+export const GroupNotificationTypeName = S.String;
 
 /** Group notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface GroupNotification {
@@ -3266,7 +3231,7 @@ export const GroupNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type HipChatNotificationTypeName = "HIP_CHAT";
-export const HipChatNotificationTypeName = /*@__PURE__*/ S.String;
+export const HipChatNotificationTypeName = S.String;
 
 /** HipChat notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface HipChatNotification {
@@ -3301,7 +3266,7 @@ export const HipChatNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type MicrosoftTeamsNotificationTypeName = "MICROSOFT_TEAMS";
-export const MicrosoftTeamsNotificationTypeName = /*@__PURE__*/ S.String;
+export const MicrosoftTeamsNotificationTypeName = S.String;
 
 /** Microsoft Teams notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface MicrosoftTeamsNotification {
@@ -3333,11 +3298,11 @@ export const MicrosoftTeamsNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** OpsGenie region that indicates which API Uniform Resource Locator (URL) to use. */
 export type OpsGenieNotificationOpsGenieRegion = "US" | "EU";
-export const OpsGenieNotificationOpsGenieRegion = /*@__PURE__*/ S.String;
+export const OpsGenieNotificationOpsGenieRegion = S.String;
 
 /** Human-readable label that displays the alert notification type. */
 export type OpsGenieNotificationTypeName = "OPS_GENIE";
-export const OpsGenieNotificationTypeName = /*@__PURE__*/ S.String;
+export const OpsGenieNotificationTypeName = S.String;
 
 /** OpsGenie notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface OpsGenieNotification {
@@ -3378,7 +3343,7 @@ export type OrgNotificationRolesItem =
   | "ORG_BILLING_ADMIN"
   | "ORG_BILLING_READ_ONLY"
   | "ORG_READ_ONLY";
-export const OrgNotificationRolesItem = /*@__PURE__*/ S.String;
+export const OrgNotificationRolesItem = S.String;
 
 /** List that contains the one or more organization roles that receive the configured alert. This parameter is available when `"notifications.[n].typeName" : "GROUP"` or `"notifications.[n].typeName" : "ORG"`. If you include this parameter, MongoDB Cloud sends alerts only to users assigned the roles you specify in the array. If you omit this parameter, MongoDB Cloud sends alerts to users assigned any role. */
 export type OrgNotificationRolesList = Array<
@@ -3390,7 +3355,7 @@ export const OrgNotificationRolesList = /*@__PURE__*/ S.Array(
 
 /** Human-readable label that displays the alert notification type. */
 export type OrgNotificationTypeName = "ORG";
-export const OrgNotificationTypeName = /*@__PURE__*/ S.String;
+export const OrgNotificationTypeName = S.String;
 
 /** Organization notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface OrgNotification {
@@ -3425,11 +3390,11 @@ export const OrgNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** PagerDuty region that indicates which API Uniform Resource Locator (URL) to use. */
 export type PagerDutyNotificationRegion = "US" | "EU";
-export const PagerDutyNotificationRegion = /*@__PURE__*/ S.String;
+export const PagerDutyNotificationRegion = S.String;
 
 /** Human-readable label that displays the alert notification type. */
 export type PagerDutyNotificationTypeName = "PAGER_DUTY";
-export const PagerDutyNotificationTypeName = /*@__PURE__*/ S.String;
+export const PagerDutyNotificationTypeName = S.String;
 
 /** PagerDuty notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface PagerDutyNotification {
@@ -3464,7 +3429,7 @@ export const PagerDutyNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type SlackNotificationTypeName = "SLACK";
-export const SlackNotificationTypeName = /*@__PURE__*/ S.String;
+export const SlackNotificationTypeName = S.String;
 
 /** Slack notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface SlackNotification {
@@ -3499,7 +3464,7 @@ export const SlackNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type SMSNotificationTypeName = "SMS";
-export const SMSNotificationTypeName = /*@__PURE__*/ S.String;
+export const SMSNotificationTypeName = S.String;
 
 /** SMS notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface SMSNotification {
@@ -3528,7 +3493,7 @@ export const SMSNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type TeamNotificationTypeName = "TEAM";
-export const TeamNotificationTypeName = /*@__PURE__*/ S.String;
+export const TeamNotificationTypeName = S.String;
 
 /** Team notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface TeamNotification {
@@ -3566,7 +3531,7 @@ export const TeamNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type UserNotificationTypeName = "USER";
-export const UserNotificationTypeName = /*@__PURE__*/ S.String;
+export const UserNotificationTypeName = S.String;
 
 /** User notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface UserNotification {
@@ -3601,7 +3566,7 @@ export const UserNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type VictorOpsNotificationTypeName = "VICTOR_OPS";
-export const VictorOpsNotificationTypeName = /*@__PURE__*/ S.String;
+export const VictorOpsNotificationTypeName = S.String;
 
 /** VictorOps notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface VictorOpsNotification {
@@ -3636,7 +3601,7 @@ export const VictorOpsNotification = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that displays the alert notification type. */
 export type WebhookNotificationTypeName = "WEBHOOK";
-export const WebhookNotificationTypeName = /*@__PURE__*/ S.String;
+export const WebhookNotificationTypeName = S.String;
 
 /** Webhook notification configuration for MongoDB Cloud to send information when an event triggers an alert condition. */
 export interface WebhookNotification {
@@ -3692,7 +3657,7 @@ export type AlertsNotificationRootForGroup =
   | VictorOpsNotification
   | WebhookNotification;
 export const AlertsNotificationRootForGroup =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AlertsNotificationRootForGroup>;
+  S.Unknown as any as S.Schema<AlertsNotificationRootForGroup>;
 
 /** List that contains the targets that MongoDB Cloud sends notifications. */
 export type DefaultAlertConfigViewForNdsGroupInputNotificationsList =
@@ -3704,7 +3669,7 @@ export const DefaultAlertConfigViewForNdsGroupInputNotificationsList =
 
 /** Severity of the event. */
 export type EventSeverity = "INFO" | "WARNING" | "ERROR" | "CRITICAL";
-export const EventSeverity = /*@__PURE__*/ S.String;
+export const EventSeverity = S.String;
 
 /** Other alerts which don't have extra details beside of basic one. */
 export interface DefaultAlertConfigViewForNdsGroupInput {
@@ -3743,12 +3708,11 @@ export type AppServiceEventTypeViewAlertableNoThreshold =
   | "TRIGGER_AUTO_RESUMED"
   | "DEPLOYMENT_MODEL_CHANGE_SUCCESS"
   | "DEPLOYMENT_MODEL_CHANGE_FAILURE";
-export const AppServiceEventTypeViewAlertableNoThreshold =
-  /*@__PURE__*/ S.String;
+export const AppServiceEventTypeViewAlertableNoThreshold = S.String;
 
 /** Name of the parameter in the target object that MongoDB Cloud checks. The parameter must match all rules for MongoDB Cloud to check for alert configurations. */
 export type AppServiceMetricMatcherField = "APPLICATION_ID";
-export const AppServiceMetricMatcherField = /*@__PURE__*/ S.String;
+export const AppServiceMetricMatcherField = S.String;
 
 /** Comparison operator to apply when checking the current metric value against **matcher[n].value**. The `REGEX` operator only supports inclusive matches. Use the `NOT_CONTAINS` operator to exclude values. */
 export type AppServiceMetricMatcherOperator =
@@ -3759,7 +3723,7 @@ export type AppServiceMetricMatcherOperator =
   | "NOT_EQUALS"
   | "NOT_CONTAINS"
   | "REGEX";
-export const AppServiceMetricMatcherOperator = /*@__PURE__*/ S.String;
+export const AppServiceMetricMatcherOperator = S.String;
 
 /** Rules to apply when comparing an app service metric against this alert configuration. */
 export interface AppServiceMetricMatcher {
@@ -3824,8 +3788,7 @@ export const AppServiceAlertConfigViewForNdsGroupInput =
 /** Event type that triggers an alert. */
 export type AppServiceEventTypeViewAlertableWithThreshold =
   "OUTSIDE_REALM_METRIC_THRESHOLD";
-export const AppServiceEventTypeViewAlertableWithThreshold =
-  /*@__PURE__*/ S.String;
+export const AppServiceEventTypeViewAlertableWithThreshold = S.String;
 
 /** List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the `eventTypeName` specifies an event for a host, replica set, or sharded cluster. */
 export type AppServiceMetricAlertConfigViewForNdsGroupInputMatchersList =
@@ -3837,15 +3800,15 @@ export const AppServiceMetricAlertConfigViewForNdsGroupInputMatchersList =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type RawMetricThresholdViewMode = "AVERAGE";
-export const RawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const RawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type RawMetricThresholdViewOperator = "LESS_THAN" | "GREATER_THAN";
-export const RawMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const RawMetricThresholdViewOperator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type RawMetricUnits = "RAW";
-export const RawMetricUnits = /*@__PURE__*/ S.String;
+export const RawMetricUnits = S.String;
 
 export interface RawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -3872,11 +3835,11 @@ export const RawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DataMetricThresholdViewMode = "AVERAGE";
-export const DataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const DataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DataMetricThresholdViewOperator = "LESS_THAN" | "GREATER_THAN";
-export const DataMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const DataMetricThresholdViewOperator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type DataMetricUnits =
@@ -3890,7 +3853,7 @@ export type DataMetricUnits =
   | "GIGABYTES"
   | "TERABYTES"
   | "PETABYTES";
-export const DataMetricUnits = /*@__PURE__*/ S.String;
+export const DataMetricUnits = S.String;
 
 export interface DataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -3917,11 +3880,11 @@ export const DataMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type TimeMetricThresholdViewMode = "AVERAGE";
-export const TimeMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const TimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type TimeMetricThresholdViewOperator = "LESS_THAN" | "GREATER_THAN";
-export const TimeMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const TimeMetricThresholdViewOperator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type TimeMetricUnits =
@@ -3932,7 +3895,7 @@ export type TimeMetricUnits =
   | "MINUTES"
   | "HOURS"
   | "DAYS";
-export const TimeMetricUnits = /*@__PURE__*/ S.String;
+export const TimeMetricUnits = S.String;
 
 export interface TimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -3963,7 +3926,7 @@ export type AppServiceMetricThreshold =
   | DataMetricThresholdView
   | TimeMetricThresholdView;
 export const AppServiceMetricThreshold =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AppServiceMetricThreshold>;
+  S.Unknown as any as S.Schema<AppServiceMetricThreshold>;
 
 /** List that contains the targets that MongoDB Cloud sends notifications. */
 export type AppServiceMetricAlertConfigViewForNdsGroupInputNotificationsList =
@@ -4009,8 +3972,7 @@ export type BillingEventTypeViewAlertableWithThreshold =
   | "DAILY_BILLING_CHANGE_OVER_THRESHOLD"
   | "WEEKLY_BILLING_CHANGE_OVER_THRESHOLD"
   | "MONTHLY_BILLING_CHANGE_OVER_THRESHOLD";
-export const BillingEventTypeViewAlertableWithThreshold =
-  /*@__PURE__*/ S.String;
+export const BillingEventTypeViewAlertableWithThreshold = S.String;
 
 /** Matching conditions for target resources. */
 export type BillingThresholdAlertConfigViewForNdsGroupInputMatchersList =
@@ -4030,7 +3992,7 @@ export const BillingThresholdAlertConfigViewForNdsGroupInputNotificationsList =
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GreaterThanRawThresholdOperator = "GREATER_THAN";
-export const GreaterThanRawThresholdOperator = /*@__PURE__*/ S.String;
+export const GreaterThanRawThresholdOperator = S.String;
 
 /** A Limit that triggers an alert when greater than a number. */
 export interface GreaterThanRawThreshold {
@@ -4081,7 +4043,7 @@ export const BillingThresholdAlertConfigViewForNdsGroupInput =
 
 /** Name of the parameter in the target object that MongoDB Cloud checks. The parameter must match all rules for MongoDB Cloud to check for alert configurations. */
 export type ClusterMatcherField = "CLUSTER_NAME";
-export const ClusterMatcherField = /*@__PURE__*/ S.String;
+export const ClusterMatcherField = S.String;
 
 /** Comparison operator to apply when checking the current metric value against **matcher[n].value**. The `REGEX` operator only supports inclusive matches. Use the `NOT_CONTAINS` operator to exclude values. */
 export type ClusterMatcherOperator =
@@ -4092,7 +4054,7 @@ export type ClusterMatcherOperator =
   | "NOT_EQUALS"
   | "NOT_CONTAINS"
   | "REGEX";
-export const ClusterMatcherOperator = /*@__PURE__*/ S.String;
+export const ClusterMatcherOperator = S.String;
 
 /** Rules to apply when comparing an cluster against this alert configuration. */
 export interface ClusterMatcher {
@@ -4155,8 +4117,7 @@ export type CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold =
   | "CPS_SNAPSHOT_BEHIND"
   | "CPS_PREV_SNAPSHOT_OLD"
   | "CPS_OPLOG_BEHIND";
-export const CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold =
-  /*@__PURE__*/ S.String;
+export const CpsBackupEventTypeViewForNdsGroupAlertableWithThreshold = S.String;
 
 /** Matching conditions for target resources. */
 export type CpsBackupThresholdAlertConfigViewForNdsGroupInputMatchersList =
@@ -4176,7 +4137,7 @@ export const CpsBackupThresholdAlertConfigViewForNdsGroupInputNotificationsList 
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GreaterThanTimeThresholdOperator = "GREATER_THAN";
-export const GreaterThanTimeThresholdOperator = /*@__PURE__*/ S.String;
+export const GreaterThanTimeThresholdOperator = S.String;
 
 /** A Limit that triggers an alert when greater than a time period. */
 export interface GreaterThanTimeThreshold {
@@ -4235,7 +4196,7 @@ export type EncryptionKeyEventTypeViewAlertable =
   | "AWS_ENCRYPTION_KEY_INVALID"
   | "AZURE_ENCRYPTION_KEY_INVALID"
   | "GCP_ENCRYPTION_KEY_INVALID";
-export const EncryptionKeyEventTypeViewAlertable = /*@__PURE__*/ S.String;
+export const EncryptionKeyEventTypeViewAlertable = S.String;
 
 /** Matching conditions for target resources. */
 export type EncryptionKeyAlertConfigViewForNdsGroupInputMatchersList =
@@ -4255,11 +4216,11 @@ export const EncryptionKeyAlertConfigViewForNdsGroupInputNotificationsList =
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GreaterThanDaysThresholdViewOperator = "GREATER_THAN";
-export const GreaterThanDaysThresholdViewOperator = /*@__PURE__*/ S.String;
+export const GreaterThanDaysThresholdViewOperator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type GreaterThanDaysThresholdViewUnits = "DAYS";
-export const GreaterThanDaysThresholdViewUnits = /*@__PURE__*/ S.String;
+export const GreaterThanDaysThresholdViewUnits = S.String;
 
 /** Threshold value that triggers an alert. */
 export interface GreaterThanDaysThresholdView {
@@ -4317,7 +4278,7 @@ export type HostMatcherField =
   | "HOSTNAME_AND_PORT"
   | "REPLICA_SET_NAME"
   | "ATLAS_NODE_TYPE";
-export const HostMatcherField = /*@__PURE__*/ S.String;
+export const HostMatcherField = S.String;
 
 /** Comparison operator to apply when checking the current metric value against **matcher[n].value**. The `REGEX` operator only supports inclusive matches. Use the `NOT_CONTAINS` operator to exclude values. */
 export type HostMatcherOperator =
@@ -4328,7 +4289,7 @@ export type HostMatcherOperator =
   | "NOT_EQUALS"
   | "NOT_CONTAINS"
   | "REGEX";
-export const HostMatcherOperator = /*@__PURE__*/ S.String;
+export const HostMatcherOperator = S.String;
 
 /** Value to match or exceed using the specified `matchers.operator`. */
 export type MatcherHostType =
@@ -4339,7 +4300,7 @@ export type MatcherHostType =
   | "MONGOS"
   | "CONFIG"
   | "MONGOT";
-export const MatcherHostType = /*@__PURE__*/ S.String;
+export const MatcherHostType = S.String;
 
 /** Rules to apply when comparing an host against this alert configuration. */
 export interface HostMatcher {
@@ -4405,14 +4366,13 @@ export const HostMetricAlertConfigViewForNdsGroupInputMatchersList =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type AssertRegularRawMetricThresholdViewMode = "AVERAGE";
-export const AssertRegularRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const AssertRegularRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type AssertRegularRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const AssertRegularRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const AssertRegularRawMetricThresholdViewOperator = S.String;
 
 export interface AssertRegularRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4439,14 +4399,13 @@ export const AssertRegularRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type AssertWarningRawMetricThresholdViewMode = "AVERAGE";
-export const AssertWarningRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const AssertWarningRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type AssertWarningRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const AssertWarningRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const AssertWarningRawMetricThresholdViewOperator = S.String;
 
 export interface AssertWarningRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4473,13 +4432,13 @@ export const AssertWarningRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type AssertMsgRawMetricThresholdViewMode = "AVERAGE";
-export const AssertMsgRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const AssertMsgRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type AssertMsgRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const AssertMsgRawMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const AssertMsgRawMetricThresholdViewOperator = S.String;
 
 export interface AssertMsgRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4506,13 +4465,13 @@ export const AssertMsgRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type AssertUserRawMetricThresholdViewMode = "AVERAGE";
-export const AssertUserRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const AssertUserRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type AssertUserRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const AssertUserRawMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const AssertUserRawMetricThresholdViewOperator = S.String;
 
 export interface AssertUserRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4539,14 +4498,13 @@ export const AssertUserRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterCmdRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterCmdRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const OpCounterCmdRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterCmdRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterCmdRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterCmdRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterCmdRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4573,14 +4531,13 @@ export const OpCounterCmdRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterQueryRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterQueryRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const OpCounterQueryRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterQueryRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterQueryRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterQueryRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterQueryRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4608,14 +4565,13 @@ export const OpCounterQueryRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterUpdateRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterUpdateRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const OpCounterUpdateRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterUpdateRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterUpdateRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterUpdateRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterUpdateRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4643,14 +4599,13 @@ export const OpCounterUpdateRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterDeleteRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterDeleteRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const OpCounterDeleteRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterDeleteRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterDeleteRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterDeleteRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterDeleteRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4678,15 +4633,13 @@ export const OpCounterDeleteRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterTtlDeletedRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterTtlDeletedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OpCounterTtlDeletedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterTtlDeletedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterTtlDeletedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterTtlDeletedRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterTtlDeletedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4714,14 +4667,13 @@ export const OpCounterTtlDeletedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterInsertRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterInsertRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const OpCounterInsertRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterInsertRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterInsertRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterInsertRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterInsertRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4749,15 +4701,13 @@ export const OpCounterInsertRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterGetMoreRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterGetMoreRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OpCounterGetMoreRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterGetMoreRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterGetMoreRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterGetMoreRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterGetMoreRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4785,15 +4735,13 @@ export const OpCounterGetMoreRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterReplCmdRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterReplCmdRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplCmdRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterReplCmdRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterReplCmdRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplCmdRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterReplCmdRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4821,15 +4769,13 @@ export const OpCounterReplCmdRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterReplUpdateRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterReplUpdateRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplUpdateRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterReplUpdateRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterReplUpdateRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplUpdateRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterReplUpdateRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4857,15 +4803,13 @@ export const OpCounterReplUpdateRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterReplDeleteRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterReplDeleteRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplDeleteRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterReplDeleteRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterReplDeleteRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplDeleteRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterReplDeleteRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4893,15 +4837,13 @@ export const OpCounterReplDeleteRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OpCounterReplInsertRawMetricThresholdViewMode = "AVERAGE";
-export const OpCounterReplInsertRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplInsertRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OpCounterReplInsertRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OpCounterReplInsertRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OpCounterReplInsertRawMetricThresholdViewOperator = S.String;
 
 export interface OpCounterReplInsertRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4929,15 +4871,13 @@ export const OpCounterReplInsertRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsMemoryResidentDataMetricThresholdViewMode = "AVERAGE";
-export const FtsMemoryResidentDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsMemoryResidentDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsMemoryResidentDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsMemoryResidentDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsMemoryResidentDataMetricThresholdViewOperator = S.String;
 
 export interface FtsMemoryResidentDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -4965,15 +4905,13 @@ export const FtsMemoryResidentDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsMemoryVirtualDataMetricThresholdViewMode = "AVERAGE";
-export const FtsMemoryVirtualDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsMemoryVirtualDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsMemoryVirtualDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsMemoryVirtualDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsMemoryVirtualDataMetricThresholdViewOperator = S.String;
 
 export interface FtsMemoryVirtualDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5001,15 +4939,13 @@ export const FtsMemoryVirtualDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsMemoryMappedDataMetricThresholdViewMode = "AVERAGE";
-export const FtsMemoryMappedDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsMemoryMappedDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsMemoryMappedDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsMemoryMappedDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsMemoryMappedDataMetricThresholdViewOperator = S.String;
 
 export interface FtsMemoryMappedDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5037,15 +4973,13 @@ export const FtsMemoryMappedDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsProcessCpuUserRawMetricThresholdViewMode = "AVERAGE";
-export const FtsProcessCpuUserRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsProcessCpuUserRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsProcessCpuUserRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsProcessCpuUserRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsProcessCpuUserRawMetricThresholdViewOperator = S.String;
 
 export interface FtsProcessCpuUserRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5073,15 +5007,13 @@ export const FtsProcessCpuUserRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsProcessCpuKernelRawMetricThresholdViewMode = "AVERAGE";
-export const FtsProcessCpuKernelRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsProcessCpuKernelRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsProcessCpuKernelRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsProcessCpuKernelRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsProcessCpuKernelRawMetricThresholdViewOperator = S.String;
 
 export interface FtsProcessCpuKernelRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5109,15 +5041,14 @@ export const FtsProcessCpuKernelRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NormalizedFtsProcessCpuUserRawMetricThresholdViewMode = "AVERAGE";
-export const NormalizedFtsProcessCpuUserRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const NormalizedFtsProcessCpuUserRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NormalizedFtsProcessCpuUserRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const NormalizedFtsProcessCpuUserRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NormalizedFtsProcessCpuUserRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5149,15 +5080,14 @@ export const NormalizedFtsProcessCpuUserRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NormalizedFtsProcessCpuKernelRawMetricThresholdViewMode = "AVERAGE";
-export const NormalizedFtsProcessCpuKernelRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const NormalizedFtsProcessCpuKernelRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NormalizedFtsProcessCpuKernelRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const NormalizedFtsProcessCpuKernelRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface NormalizedFtsProcessCpuKernelRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5191,15 +5121,13 @@ export const NormalizedFtsProcessCpuKernelRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SystemMemoryPercentUsedRawMetricThresholdViewMode = "AVERAGE";
-export const SystemMemoryPercentUsedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SystemMemoryPercentUsedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SystemMemoryPercentUsedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SystemMemoryPercentUsedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SystemMemoryPercentUsedRawMetricThresholdViewOperator = S.String;
 
 export interface SystemMemoryPercentUsedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5231,14 +5159,13 @@ export const SystemMemoryPercentUsedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MemoryResidentDataMetricThresholdViewMode = "AVERAGE";
-export const MemoryResidentDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MemoryResidentDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MemoryResidentDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MemoryResidentDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MemoryResidentDataMetricThresholdViewOperator = S.String;
 
 export interface MemoryResidentDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5266,14 +5193,13 @@ export const MemoryResidentDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MemoryVirtualDataMetricThresholdViewMode = "AVERAGE";
-export const MemoryVirtualDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MemoryVirtualDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MemoryVirtualDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MemoryVirtualDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MemoryVirtualDataMetricThresholdViewOperator = S.String;
 
 export interface MemoryVirtualDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5301,14 +5227,13 @@ export const MemoryVirtualDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MemoryMappedDataMetricThresholdViewMode = "AVERAGE";
-export const MemoryMappedDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MemoryMappedDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MemoryMappedDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MemoryMappedDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MemoryMappedDataMetricThresholdViewOperator = S.String;
 
 export interface MemoryMappedDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5335,14 +5260,13 @@ export const MemoryMappedDataMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ComputedMemoryDataMetricThresholdViewMode = "AVERAGE";
-export const ComputedMemoryDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const ComputedMemoryDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ComputedMemoryDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ComputedMemoryDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ComputedMemoryDataMetricThresholdViewOperator = S.String;
 
 export interface ComputedMemoryDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5370,15 +5294,14 @@ export const ComputedMemoryDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type IndexCountersBtreeAccessesRawMetricThresholdViewMode = "AVERAGE";
-export const IndexCountersBtreeAccessesRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const IndexCountersBtreeAccessesRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type IndexCountersBtreeAccessesRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const IndexCountersBtreeAccessesRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IndexCountersBtreeAccessesRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5410,15 +5333,13 @@ export const IndexCountersBtreeAccessesRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type IndexCountersBtreeHitsRawMetricThresholdViewMode = "AVERAGE";
-export const IndexCountersBtreeHitsRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const IndexCountersBtreeHitsRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type IndexCountersBtreeHitsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const IndexCountersBtreeHitsRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const IndexCountersBtreeHitsRawMetricThresholdViewOperator = S.String;
 
 export interface IndexCountersBtreeHitsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5450,15 +5371,13 @@ export const IndexCountersBtreeHitsRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type IndexCountersBtreeMissesRawMetricThresholdViewMode = "AVERAGE";
-export const IndexCountersBtreeMissesRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const IndexCountersBtreeMissesRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type IndexCountersBtreeMissesRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const IndexCountersBtreeMissesRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const IndexCountersBtreeMissesRawMetricThresholdViewOperator = S.String;
 
 export interface IndexCountersBtreeMissesRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5490,15 +5409,14 @@ export const IndexCountersBtreeMissesRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type IndexCountersBtreeMissRatioRawMetricThresholdViewMode = "AVERAGE";
-export const IndexCountersBtreeMissRatioRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const IndexCountersBtreeMissRatioRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type IndexCountersBtreeMissRatioRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const IndexCountersBtreeMissRatioRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface IndexCountersBtreeMissRatioRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5530,15 +5448,13 @@ export const IndexCountersBtreeMissRatioRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type GlobalLockPercentageRawMetricThresholdViewMode = "AVERAGE";
-export const GlobalLockPercentageRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const GlobalLockPercentageRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GlobalLockPercentageRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const GlobalLockPercentageRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const GlobalLockPercentageRawMetricThresholdViewOperator = S.String;
 
 export interface GlobalLockPercentageRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5566,13 +5482,13 @@ export const GlobalLockPercentageRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ConnectionsRawMetricThresholdViewMode = "AVERAGE";
-export const ConnectionsRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const ConnectionsRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ConnectionsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ConnectionsRawMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const ConnectionsRawMetricThresholdViewOperator = S.String;
 
 export interface ConnectionsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5601,13 +5517,13 @@ export const ConnectionsRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 export type ConnectionsEstablishmentRateLimitRejectedRawMetricThresholdViewMode =
   "AVERAGE";
 export const ConnectionsEstablishmentRateLimitRejectedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ConnectionsEstablishmentRateLimitRejectedRawMetricThresholdViewOperator =
   "GREATER_THAN";
 export const ConnectionsEstablishmentRateLimitRejectedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ConnectionsEstablishmentRateLimitRejectedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5644,14 +5560,13 @@ export const ConnectionsEstablishmentRateLimitRejectedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ConnectionsMaxRawMetricThresholdViewMode = "AVERAGE";
-export const ConnectionsMaxRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const ConnectionsMaxRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ConnectionsMaxRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ConnectionsMaxRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ConnectionsMaxRawMetricThresholdViewOperator = S.String;
 
 export interface ConnectionsMaxRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5679,15 +5594,13 @@ export const ConnectionsMaxRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ConnectionsPercentRawMetricThresholdViewMode = "AVERAGE";
-export const ConnectionsPercentRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ConnectionsPercentRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ConnectionsPercentRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ConnectionsPercentRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ConnectionsPercentRawMetricThresholdViewOperator = S.String;
 
 export interface ConnectionsPercentRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5715,15 +5628,13 @@ export const ConnectionsPercentRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type GlobalAccessesNotInMemoryRawMetricThresholdViewMode = "AVERAGE";
-export const GlobalAccessesNotInMemoryRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const GlobalAccessesNotInMemoryRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GlobalAccessesNotInMemoryRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const GlobalAccessesNotInMemoryRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const GlobalAccessesNotInMemoryRawMetricThresholdViewOperator = S.String;
 
 export interface GlobalAccessesNotInMemoryRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5757,14 +5668,14 @@ export const GlobalAccessesNotInMemoryRawMetricThresholdView =
 export type GlobalPageFaultExceptionsThrownRawMetricThresholdViewMode =
   "AVERAGE";
 export const GlobalPageFaultExceptionsThrownRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GlobalPageFaultExceptionsThrownRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const GlobalPageFaultExceptionsThrownRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GlobalPageFaultExceptionsThrownRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5800,15 +5711,14 @@ export const GlobalPageFaultExceptionsThrownRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type GlobalLockCurrentQueueTotalRawMetricThresholdViewMode = "AVERAGE";
-export const GlobalLockCurrentQueueTotalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const GlobalLockCurrentQueueTotalRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GlobalLockCurrentQueueTotalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const GlobalLockCurrentQueueTotalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GlobalLockCurrentQueueTotalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5840,15 +5750,14 @@ export const GlobalLockCurrentQueueTotalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type GlobalLockCurrentQueueReadersRawMetricThresholdViewMode = "AVERAGE";
-export const GlobalLockCurrentQueueReadersRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const GlobalLockCurrentQueueReadersRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GlobalLockCurrentQueueReadersRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const GlobalLockCurrentQueueReadersRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GlobalLockCurrentQueueReadersRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5882,15 +5791,14 @@ export const GlobalLockCurrentQueueReadersRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type GlobalLockCurrentQueueWritersRawMetricThresholdViewMode = "AVERAGE";
-export const GlobalLockCurrentQueueWritersRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const GlobalLockCurrentQueueWritersRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type GlobalLockCurrentQueueWritersRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const GlobalLockCurrentQueueWritersRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GlobalLockCurrentQueueWritersRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5924,15 +5832,13 @@ export const GlobalLockCurrentQueueWritersRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type CursorsTotalOpenRawMetricThresholdViewMode = "AVERAGE";
-export const CursorsTotalOpenRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const CursorsTotalOpenRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type CursorsTotalOpenRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const CursorsTotalOpenRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const CursorsTotalOpenRawMetricThresholdViewOperator = S.String;
 
 export interface CursorsTotalOpenRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5960,15 +5866,13 @@ export const CursorsTotalOpenRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type CursorsTotalTimedOutRawMetricThresholdViewMode = "AVERAGE";
-export const CursorsTotalTimedOutRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const CursorsTotalTimedOutRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type CursorsTotalTimedOutRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const CursorsTotalTimedOutRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const CursorsTotalTimedOutRawMetricThresholdViewOperator = S.String;
 
 export interface CursorsTotalTimedOutRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -5996,15 +5900,14 @@ export const CursorsTotalTimedOutRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type CursorsTotalClientCursorsSizeRawMetricThresholdViewMode = "AVERAGE";
-export const CursorsTotalClientCursorsSizeRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const CursorsTotalClientCursorsSizeRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type CursorsTotalClientCursorsSizeRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const CursorsTotalClientCursorsSizeRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CursorsTotalClientCursorsSizeRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6038,14 +5941,13 @@ export const CursorsTotalClientCursorsSizeRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NetworkBytesInDataMetricThresholdViewMode = "AVERAGE";
-export const NetworkBytesInDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const NetworkBytesInDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NetworkBytesInDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const NetworkBytesInDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const NetworkBytesInDataMetricThresholdViewOperator = S.String;
 
 export interface NetworkBytesInDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6073,15 +5975,13 @@ export const NetworkBytesInDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NetworkBytesOutDataMetricThresholdViewMode = "AVERAGE";
-export const NetworkBytesOutDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const NetworkBytesOutDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NetworkBytesOutDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const NetworkBytesOutDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const NetworkBytesOutDataMetricThresholdViewOperator = S.String;
 
 export interface NetworkBytesOutDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6109,15 +6009,13 @@ export const NetworkBytesOutDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NetworkNumRequestsRawMetricThresholdViewMode = "AVERAGE";
-export const NetworkNumRequestsRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const NetworkNumRequestsRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NetworkNumRequestsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const NetworkNumRequestsRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const NetworkNumRequestsRawMetricThresholdViewOperator = S.String;
 
 export interface NetworkNumRequestsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6145,15 +6043,13 @@ export const NetworkNumRequestsRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OplogMasterTimeTimeMetricThresholdViewMode = "AVERAGE";
-export const OplogMasterTimeTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OplogMasterTimeTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OplogMasterTimeTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OplogMasterTimeTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OplogMasterTimeTimeMetricThresholdViewOperator = S.String;
 
 export interface OplogMasterTimeTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6181,15 +6077,14 @@ export const OplogMasterTimeTimeMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OplogMasterTimeEstimatedTtlTimeMetricThresholdViewMode = "AVERAGE";
-export const OplogMasterTimeEstimatedTtlTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OplogMasterTimeEstimatedTtlTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OplogMasterTimeEstimatedTtlTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const OplogMasterTimeEstimatedTtlTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OplogMasterTimeEstimatedTtlTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6221,15 +6116,13 @@ export const OplogMasterTimeEstimatedTtlTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OplogSlaveLagMasterTimeTimeMetricThresholdViewMode = "AVERAGE";
-export const OplogSlaveLagMasterTimeTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OplogSlaveLagMasterTimeTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OplogSlaveLagMasterTimeTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OplogSlaveLagMasterTimeTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OplogSlaveLagMasterTimeTimeMetricThresholdViewOperator = S.String;
 
 export interface OplogSlaveLagMasterTimeTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6261,15 +6154,13 @@ export const OplogSlaveLagMasterTimeTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OplogMasterLagTimeDiffTimeMetricThresholdViewMode = "AVERAGE";
-export const OplogMasterLagTimeDiffTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OplogMasterLagTimeDiffTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OplogMasterLagTimeDiffTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OplogMasterLagTimeDiffTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OplogMasterLagTimeDiffTimeMetricThresholdViewOperator = S.String;
 
 export interface OplogMasterLagTimeDiffTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6301,15 +6192,13 @@ export const OplogMasterLagTimeDiffTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OplogRateGbPerHourDataMetricThresholdViewMode = "AVERAGE";
-export const OplogRateGbPerHourDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OplogRateGbPerHourDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OplogRateGbPerHourDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OplogRateGbPerHourDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OplogRateGbPerHourDataMetricThresholdViewOperator = S.String;
 
 export interface OplogRateGbPerHourDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6337,15 +6226,13 @@ export const OplogRateGbPerHourDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ExtraInfoPageFaultsRawMetricThresholdViewMode = "AVERAGE";
-export const ExtraInfoPageFaultsRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ExtraInfoPageFaultsRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ExtraInfoPageFaultsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ExtraInfoPageFaultsRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ExtraInfoPageFaultsRawMetricThresholdViewOperator = S.String;
 
 export interface ExtraInfoPageFaultsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6373,14 +6260,13 @@ export const ExtraInfoPageFaultsRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DbStorageTotalDataMetricThresholdViewMode = "AVERAGE";
-export const DbStorageTotalDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const DbStorageTotalDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DbStorageTotalDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DbStorageTotalDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DbStorageTotalDataMetricThresholdViewOperator = S.String;
 
 export interface DbStorageTotalDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6408,15 +6294,13 @@ export const DbStorageTotalDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DbDataSizeTotalDataMetricThresholdViewMode = "AVERAGE";
-export const DbDataSizeTotalDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DbDataSizeTotalDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DbDataSizeTotalDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DbDataSizeTotalDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DbDataSizeTotalDataMetricThresholdViewOperator = S.String;
 
 export interface DbDataSizeTotalDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6444,15 +6328,13 @@ export const DbDataSizeTotalDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DbDataSizeTotalWoSystemDataMetricThresholdViewMode = "AVERAGE";
-export const DbDataSizeTotalWoSystemDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DbDataSizeTotalWoSystemDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DbDataSizeTotalWoSystemDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DbDataSizeTotalWoSystemDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DbDataSizeTotalWoSystemDataMetricThresholdViewOperator = S.String;
 
 export interface DbDataSizeTotalWoSystemDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6484,15 +6366,13 @@ export const DbDataSizeTotalWoSystemDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DbIndexSizeTotalDataMetricThresholdViewMode = "AVERAGE";
-export const DbIndexSizeTotalDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DbIndexSizeTotalDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DbIndexSizeTotalDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DbIndexSizeTotalDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DbIndexSizeTotalDataMetricThresholdViewOperator = S.String;
 
 export interface DbIndexSizeTotalDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6520,15 +6400,14 @@ export const DbIndexSizeTotalDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type JournalingCommitsInWriteLockRawMetricThresholdViewMode = "AVERAGE";
-export const JournalingCommitsInWriteLockRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const JournalingCommitsInWriteLockRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type JournalingCommitsInWriteLockRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const JournalingCommitsInWriteLockRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface JournalingCommitsInWriteLockRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6560,14 +6439,13 @@ export const JournalingCommitsInWriteLockRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type JournalingMbDataMetricThresholdViewMode = "AVERAGE";
-export const JournalingMbDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const JournalingMbDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type JournalingMbDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const JournalingMbDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const JournalingMbDataMetricThresholdViewOperator = S.String;
 
 export interface JournalingMbDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6594,15 +6472,14 @@ export const JournalingMbDataMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type JournalingWriteDataFilesMbDataMetricThresholdViewMode = "AVERAGE";
-export const JournalingWriteDataFilesMbDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const JournalingWriteDataFilesMbDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type JournalingWriteDataFilesMbDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const JournalingWriteDataFilesMbDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface JournalingWriteDataFilesMbDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6634,15 +6511,13 @@ export const JournalingWriteDataFilesMbDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type TicketsAvailableReadsRawMetricThresholdViewMode = "AVERAGE";
-export const TicketsAvailableReadsRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const TicketsAvailableReadsRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type TicketsAvailableReadsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const TicketsAvailableReadsRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const TicketsAvailableReadsRawMetricThresholdViewOperator = S.String;
 
 export interface TicketsAvailableReadsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6672,15 +6547,13 @@ export const TicketsAvailableReadsRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type TicketsAvailableWritesRawMetricThresholdViewMode = "AVERAGE";
-export const TicketsAvailableWritesRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const TicketsAvailableWritesRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type TicketsAvailableWritesRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const TicketsAvailableWritesRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const TicketsAvailableWritesRawMetricThresholdViewOperator = S.String;
 
 export interface TicketsAvailableWritesRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6712,15 +6585,13 @@ export const TicketsAvailableWritesRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type CacheUsageDirtyDataMetricThresholdViewMode = "AVERAGE";
-export const CacheUsageDirtyDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const CacheUsageDirtyDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type CacheUsageDirtyDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const CacheUsageDirtyDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const CacheUsageDirtyDataMetricThresholdViewOperator = S.String;
 
 export interface CacheUsageDirtyDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6748,14 +6619,13 @@ export const CacheUsageDirtyDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type CacheUsageUsedDataMetricThresholdViewMode = "AVERAGE";
-export const CacheUsageUsedDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const CacheUsageUsedDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type CacheUsageUsedDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const CacheUsageUsedDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const CacheUsageUsedDataMetricThresholdViewOperator = S.String;
 
 export interface CacheUsageUsedDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6783,15 +6653,13 @@ export const CacheUsageUsedDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type CacheBytesReadIntoDataMetricThresholdViewMode = "AVERAGE";
-export const CacheBytesReadIntoDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const CacheBytesReadIntoDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type CacheBytesReadIntoDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const CacheBytesReadIntoDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const CacheBytesReadIntoDataMetricThresholdViewOperator = S.String;
 
 export interface CacheBytesReadIntoDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6819,15 +6687,13 @@ export const CacheBytesReadIntoDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type CacheBytesWrittenFromDataMetricThresholdViewMode = "AVERAGE";
-export const CacheBytesWrittenFromDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const CacheBytesWrittenFromDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type CacheBytesWrittenFromDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const CacheBytesWrittenFromDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const CacheBytesWrittenFromDataMetricThresholdViewOperator = S.String;
 
 export interface CacheBytesWrittenFromDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6859,15 +6725,13 @@ export const CacheBytesWrittenFromDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NormalizedSystemCpuUserRawMetricThresholdViewMode = "AVERAGE";
-export const NormalizedSystemCpuUserRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const NormalizedSystemCpuUserRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NormalizedSystemCpuUserRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const NormalizedSystemCpuUserRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const NormalizedSystemCpuUserRawMetricThresholdViewOperator = S.String;
 
 export interface NormalizedSystemCpuUserRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6899,15 +6763,13 @@ export const NormalizedSystemCpuUserRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NormalizedSystemCpuStealRawMetricThresholdViewMode = "AVERAGE";
-export const NormalizedSystemCpuStealRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const NormalizedSystemCpuStealRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NormalizedSystemCpuStealRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const NormalizedSystemCpuStealRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const NormalizedSystemCpuStealRawMetricThresholdViewOperator = S.String;
 
 export interface NormalizedSystemCpuStealRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6939,15 +6801,14 @@ export const NormalizedSystemCpuStealRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionSpaceUsedDataRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionSpaceUsedDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionSpaceUsedDataRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionSpaceUsedDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionSpaceUsedDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionSpaceUsedDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -6979,15 +6840,14 @@ export const DiskPartitionSpaceUsedDataRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionSpaceUsedIndexRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionSpaceUsedIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionSpaceUsedIndexRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionSpaceUsedIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionSpaceUsedIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionSpaceUsedIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7019,15 +6879,14 @@ export const DiskPartitionSpaceUsedIndexRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionSpaceUsedJournalRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionSpaceUsedJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionSpaceUsedJournalRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionSpaceUsedJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionSpaceUsedJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionSpaceUsedJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7061,15 +6920,13 @@ export const DiskPartitionSpaceUsedJournalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionReadIopsDataRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionReadIopsDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionReadIopsDataRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionReadIopsDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DiskPartitionReadIopsDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionReadIopsDataRawMetricThresholdViewOperator = S.String;
 
 export interface DiskPartitionReadIopsDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7101,15 +6958,14 @@ export const DiskPartitionReadIopsDataRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionReadIopsIndexRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionReadIopsIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionReadIopsIndexRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionReadIopsIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionReadIopsIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionReadIopsIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7141,15 +6997,14 @@ export const DiskPartitionReadIopsIndexRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionReadIopsJournalRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionReadIopsJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionReadIopsJournalRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionReadIopsJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionReadIopsJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionReadIopsJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7181,15 +7036,14 @@ export const DiskPartitionReadIopsJournalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionWriteIopsDataRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionWriteIopsDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionWriteIopsDataRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionWriteIopsDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionWriteIopsDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionWriteIopsDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7221,15 +7075,14 @@ export const DiskPartitionWriteIopsDataRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionWriteIopsIndexRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionWriteIopsIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionWriteIopsIndexRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionWriteIopsIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionWriteIopsIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionWriteIopsIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7261,15 +7114,14 @@ export const DiskPartitionWriteIopsIndexRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionWriteIopsJournalRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionWriteIopsJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionWriteIopsJournalRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionWriteIopsJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionWriteIopsJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionWriteIopsJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7303,15 +7155,14 @@ export const DiskPartitionWriteIopsJournalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionReadLatencyDataTimeMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionReadLatencyDataTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionReadLatencyDataTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionReadLatencyDataTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionReadLatencyDataTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionReadLatencyDataTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7347,14 +7198,14 @@ export const DiskPartitionReadLatencyDataTimeMetricThresholdView =
 export type DiskPartitionReadLatencyIndexTimeMetricThresholdViewMode =
   "AVERAGE";
 export const DiskPartitionReadLatencyIndexTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionReadLatencyIndexTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionReadLatencyIndexTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionReadLatencyIndexTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7392,14 +7243,14 @@ export const DiskPartitionReadLatencyIndexTimeMetricThresholdView =
 export type DiskPartitionReadLatencyJournalTimeMetricThresholdViewMode =
   "AVERAGE";
 export const DiskPartitionReadLatencyJournalTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionReadLatencyJournalTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionReadLatencyJournalTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionReadLatencyJournalTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7437,14 +7288,14 @@ export const DiskPartitionReadLatencyJournalTimeMetricThresholdView =
 export type DiskPartitionWriteLatencyDataTimeMetricThresholdViewMode =
   "AVERAGE";
 export const DiskPartitionWriteLatencyDataTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionWriteLatencyDataTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionWriteLatencyDataTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionWriteLatencyDataTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7482,14 +7333,14 @@ export const DiskPartitionWriteLatencyDataTimeMetricThresholdView =
 export type DiskPartitionWriteLatencyIndexTimeMetricThresholdViewMode =
   "AVERAGE";
 export const DiskPartitionWriteLatencyIndexTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionWriteLatencyIndexTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionWriteLatencyIndexTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionWriteLatencyIndexTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7527,14 +7378,14 @@ export const DiskPartitionWriteLatencyIndexTimeMetricThresholdView =
 export type DiskPartitionWriteLatencyJournalTimeMetricThresholdViewMode =
   "AVERAGE";
 export const DiskPartitionWriteLatencyJournalTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionWriteLatencyJournalTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionWriteLatencyJournalTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionWriteLatencyJournalTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7570,15 +7421,14 @@ export const DiskPartitionWriteLatencyJournalTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionQueueDepthDataRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionQueueDepthDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionQueueDepthDataRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionQueueDepthDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionQueueDepthDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionQueueDepthDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7610,15 +7460,14 @@ export const DiskPartitionQueueDepthDataRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DiskPartitionQueueDepthIndexRawMetricThresholdViewMode = "AVERAGE";
-export const DiskPartitionQueueDepthIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DiskPartitionQueueDepthIndexRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionQueueDepthIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionQueueDepthIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionQueueDepthIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7652,14 +7501,14 @@ export const DiskPartitionQueueDepthIndexRawMetricThresholdView =
 export type DiskPartitionQueueDepthJournalRawMetricThresholdViewMode =
   "AVERAGE";
 export const DiskPartitionQueueDepthJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DiskPartitionQueueDepthJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const DiskPartitionQueueDepthJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DiskPartitionQueueDepthJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7695,15 +7544,13 @@ export const DiskPartitionQueueDepthJournalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsDiskUtilizationDataMetricThresholdViewMode = "AVERAGE";
-export const FtsDiskUtilizationDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsDiskUtilizationDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsDiskUtilizationDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsDiskUtilizationDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsDiskUtilizationDataMetricThresholdViewOperator = S.String;
 
 export interface FtsDiskUtilizationDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7731,14 +7578,13 @@ export const FtsDiskUtilizationDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MuninCpuUserRawMetricThresholdViewMode = "AVERAGE";
-export const MuninCpuUserRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MuninCpuUserRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MuninCpuUserRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MuninCpuUserRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MuninCpuUserRawMetricThresholdViewOperator = S.String;
 
 export interface MuninCpuUserRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7765,14 +7611,13 @@ export const MuninCpuUserRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MuninCpuNiceRawMetricThresholdViewMode = "AVERAGE";
-export const MuninCpuNiceRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MuninCpuNiceRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MuninCpuNiceRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MuninCpuNiceRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MuninCpuNiceRawMetricThresholdViewOperator = S.String;
 
 export interface MuninCpuNiceRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7799,14 +7644,13 @@ export const MuninCpuNiceRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MuninCpuSystemRawMetricThresholdViewMode = "AVERAGE";
-export const MuninCpuSystemRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MuninCpuSystemRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MuninCpuSystemRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MuninCpuSystemRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MuninCpuSystemRawMetricThresholdViewOperator = S.String;
 
 export interface MuninCpuSystemRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7834,14 +7678,13 @@ export const MuninCpuSystemRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MuninCpuIowaitRawMetricThresholdViewMode = "AVERAGE";
-export const MuninCpuIowaitRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MuninCpuIowaitRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MuninCpuIowaitRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MuninCpuIowaitRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MuninCpuIowaitRawMetricThresholdViewOperator = S.String;
 
 export interface MuninCpuIowaitRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7869,13 +7712,13 @@ export const MuninCpuIowaitRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MuninCpuIrqRawMetricThresholdViewMode = "AVERAGE";
-export const MuninCpuIrqRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MuninCpuIrqRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MuninCpuIrqRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MuninCpuIrqRawMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const MuninCpuIrqRawMetricThresholdViewOperator = S.String;
 
 export interface MuninCpuIrqRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7902,14 +7745,13 @@ export const MuninCpuIrqRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MuninCpuSoftirqRawMetricThresholdViewMode = "AVERAGE";
-export const MuninCpuSoftirqRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MuninCpuSoftirqRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MuninCpuSoftirqRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MuninCpuSoftirqRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MuninCpuSoftirqRawMetricThresholdViewOperator = S.String;
 
 export interface MuninCpuSoftirqRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7937,14 +7779,13 @@ export const MuninCpuSoftirqRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MuninCpuStealRawMetricThresholdViewMode = "AVERAGE";
-export const MuninCpuStealRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const MuninCpuStealRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MuninCpuStealRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MuninCpuStealRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MuninCpuStealRawMetricThresholdViewOperator = S.String;
 
 export interface MuninCpuStealRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -7971,15 +7812,13 @@ export const MuninCpuStealRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DocumentReturnedRawMetricThresholdViewMode = "AVERAGE";
-export const DocumentReturnedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DocumentReturnedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DocumentReturnedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DocumentReturnedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DocumentReturnedRawMetricThresholdViewOperator = S.String;
 
 export interface DocumentReturnedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8007,15 +7846,13 @@ export const DocumentReturnedRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DocumentInsertedRawMetricThresholdViewMode = "AVERAGE";
-export const DocumentInsertedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const DocumentInsertedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DocumentInsertedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DocumentInsertedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DocumentInsertedRawMetricThresholdViewOperator = S.String;
 
 export interface DocumentInsertedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8043,14 +7880,13 @@ export const DocumentInsertedRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DocumentUpdatedRawMetricThresholdViewMode = "AVERAGE";
-export const DocumentUpdatedRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const DocumentUpdatedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DocumentUpdatedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DocumentUpdatedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DocumentUpdatedRawMetricThresholdViewOperator = S.String;
 
 export interface DocumentUpdatedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8078,14 +7914,13 @@ export const DocumentUpdatedRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DocumentDeletedRawMetricThresholdViewMode = "AVERAGE";
-export const DocumentDeletedRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const DocumentDeletedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DocumentDeletedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const DocumentDeletedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const DocumentDeletedRawMetricThresholdViewOperator = S.String;
 
 export interface DocumentDeletedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8113,15 +7948,13 @@ export const DocumentDeletedRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OperationsScanAndOrderRawMetricThresholdViewMode = "AVERAGE";
-export const OperationsScanAndOrderRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OperationsScanAndOrderRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OperationsScanAndOrderRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OperationsScanAndOrderRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OperationsScanAndOrderRawMetricThresholdViewOperator = S.String;
 
 export interface OperationsScanAndOrderRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8153,15 +7986,13 @@ export const OperationsScanAndOrderRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type QueryExecutorScannedRawMetricThresholdViewMode = "AVERAGE";
-export const QueryExecutorScannedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const QueryExecutorScannedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type QueryExecutorScannedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const QueryExecutorScannedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const QueryExecutorScannedRawMetricThresholdViewOperator = S.String;
 
 export interface QueryExecutorScannedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8189,15 +8020,14 @@ export const QueryExecutorScannedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type QueryExecutorScannedObjectsRawMetricThresholdViewMode = "AVERAGE";
-export const QueryExecutorScannedObjectsRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const QueryExecutorScannedObjectsRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type QueryExecutorScannedObjectsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const QueryExecutorScannedObjectsRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface QueryExecutorScannedObjectsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8231,14 +8061,14 @@ export const QueryExecutorScannedObjectsRawMetricThresholdView =
 export type OperationThrottlingRejectedOperationsRawMetricThresholdViewMode =
   "AVERAGE";
 export const OperationThrottlingRejectedOperationsRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OperationThrottlingRejectedOperationsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const OperationThrottlingRejectedOperationsRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface OperationThrottlingRejectedOperationsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8274,15 +8104,14 @@ export const OperationThrottlingRejectedOperationsRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type QuerySpillToDiskDuringSortRawMetricThresholdViewMode = "AVERAGE";
-export const QuerySpillToDiskDuringSortRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const QuerySpillToDiskDuringSortRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type QuerySpillToDiskDuringSortRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const QuerySpillToDiskDuringSortRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface QuerySpillToDiskDuringSortRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8314,15 +8143,13 @@ export const QuerySpillToDiskDuringSortRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type OperationsQueriesKilledRawMetricThresholdViewMode = "AVERAGE";
-export const OperationsQueriesKilledRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const OperationsQueriesKilledRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type OperationsQueriesKilledRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const OperationsQueriesKilledRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const OperationsQueriesKilledRawMetricThresholdViewOperator = S.String;
 
 export interface OperationsQueriesKilledRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8356,14 +8183,14 @@ export const OperationsQueriesKilledRawMetricThresholdView =
 export type QueryTargetingScannedPerReturnedRawMetricThresholdViewMode =
   "AVERAGE";
 export const QueryTargetingScannedPerReturnedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type QueryTargetingScannedPerReturnedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const QueryTargetingScannedPerReturnedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface QueryTargetingScannedPerReturnedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8401,14 +8228,14 @@ export const QueryTargetingScannedPerReturnedRawMetricThresholdView =
 export type QueryTargetingScannedObjectsPerReturnedRawMetricThresholdViewMode =
   "AVERAGE";
 export const QueryTargetingScannedObjectsPerReturnedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type QueryTargetingScannedObjectsPerReturnedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const QueryTargetingScannedObjectsPerReturnedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface QueryTargetingScannedObjectsPerReturnedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8444,15 +8271,13 @@ export const QueryTargetingScannedObjectsPerReturnedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type AvgReadExecutionTimeTimeMetricThresholdViewMode = "AVERAGE";
-export const AvgReadExecutionTimeTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const AvgReadExecutionTimeTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type AvgReadExecutionTimeTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const AvgReadExecutionTimeTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const AvgReadExecutionTimeTimeMetricThresholdViewOperator = S.String;
 
 export interface AvgReadExecutionTimeTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8482,15 +8307,13 @@ export const AvgReadExecutionTimeTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type AvgWriteExecutionTimeTimeMetricThresholdViewMode = "AVERAGE";
-export const AvgWriteExecutionTimeTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const AvgWriteExecutionTimeTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type AvgWriteExecutionTimeTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const AvgWriteExecutionTimeTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const AvgWriteExecutionTimeTimeMetricThresholdViewOperator = S.String;
 
 export interface AvgWriteExecutionTimeTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8522,15 +8345,13 @@ export const AvgWriteExecutionTimeTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type AvgCommandExecutionTimeTimeMetricThresholdViewMode = "AVERAGE";
-export const AvgCommandExecutionTimeTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const AvgCommandExecutionTimeTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type AvgCommandExecutionTimeTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const AvgCommandExecutionTimeTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const AvgCommandExecutionTimeTimeMetricThresholdViewOperator = S.String;
 
 export interface AvgCommandExecutionTimeTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8562,14 +8383,13 @@ export const AvgCommandExecutionTimeTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type LogicalSizeDataMetricThresholdViewMode = "AVERAGE";
-export const LogicalSizeDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const LogicalSizeDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type LogicalSizeDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const LogicalSizeDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const LogicalSizeDataMetricThresholdViewOperator = S.String;
 
 export interface LogicalSizeDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8596,15 +8416,13 @@ export const LogicalSizeDataMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type RestartsInLastHourRawMetricThresholdViewMode = "AVERAGE";
-export const RestartsInLastHourRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const RestartsInLastHourRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type RestartsInLastHourRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const RestartsInLastHourRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const RestartsInLastHourRawMetricThresholdViewOperator = S.String;
 
 export interface RestartsInLastHourRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8632,15 +8450,13 @@ export const RestartsInLastHourRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SystemMemoryUsedDataMetricThresholdViewMode = "AVERAGE";
-export const SystemMemoryUsedDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SystemMemoryUsedDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SystemMemoryUsedDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SystemMemoryUsedDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SystemMemoryUsedDataMetricThresholdViewOperator = S.String;
 
 export interface SystemMemoryUsedDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8668,15 +8484,13 @@ export const SystemMemoryUsedDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SystemMemoryAvailableDataMetricThresholdViewMode = "AVERAGE";
-export const SystemMemoryAvailableDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SystemMemoryAvailableDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SystemMemoryAvailableDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SystemMemoryAvailableDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SystemMemoryAvailableDataMetricThresholdViewOperator = S.String;
 
 export interface SystemMemoryAvailableDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8708,14 +8522,13 @@ export const SystemMemoryAvailableDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SwapUsageUsedDataMetricThresholdViewMode = "AVERAGE";
-export const SwapUsageUsedDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const SwapUsageUsedDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SwapUsageUsedDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SwapUsageUsedDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SwapUsageUsedDataMetricThresholdViewOperator = S.String;
 
 export interface SwapUsageUsedDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8743,14 +8556,13 @@ export const SwapUsageUsedDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SwapUsageFreeDataMetricThresholdViewMode = "AVERAGE";
-export const SwapUsageFreeDataMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const SwapUsageFreeDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SwapUsageFreeDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SwapUsageFreeDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SwapUsageFreeDataMetricThresholdViewOperator = S.String;
 
 export interface SwapUsageFreeDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8778,15 +8590,13 @@ export const SwapUsageFreeDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SystemNetworkInDataMetricThresholdViewMode = "AVERAGE";
-export const SystemNetworkInDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SystemNetworkInDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SystemNetworkInDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SystemNetworkInDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SystemNetworkInDataMetricThresholdViewOperator = S.String;
 
 export interface SystemNetworkInDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8814,15 +8624,13 @@ export const SystemNetworkInDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SystemNetworkOutDataMetricThresholdViewMode = "AVERAGE";
-export const SystemNetworkOutDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SystemNetworkOutDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SystemNetworkOutDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SystemNetworkOutDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SystemNetworkOutDataMetricThresholdViewOperator = S.String;
 
 export interface SystemNetworkOutDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8850,15 +8658,14 @@ export const SystemNetworkOutDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxNormalizedSystemCpuUserRawMetricThresholdViewMode = "AVERAGE";
-export const MaxNormalizedSystemCpuUserRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxNormalizedSystemCpuUserRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxNormalizedSystemCpuUserRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxNormalizedSystemCpuUserRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxNormalizedSystemCpuUserRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8890,15 +8697,14 @@ export const MaxNormalizedSystemCpuUserRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxNormalizedSystemCpuStealRawMetricThresholdViewMode = "AVERAGE";
-export const MaxNormalizedSystemCpuStealRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxNormalizedSystemCpuStealRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxNormalizedSystemCpuStealRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxNormalizedSystemCpuStealRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxNormalizedSystemCpuStealRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8930,15 +8736,14 @@ export const MaxNormalizedSystemCpuStealRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxDiskPartitionSpaceUsedDataRawMetricThresholdViewMode = "AVERAGE";
-export const MaxDiskPartitionSpaceUsedDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxDiskPartitionSpaceUsedDataRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionSpaceUsedDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionSpaceUsedDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionSpaceUsedDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -8974,14 +8779,14 @@ export const MaxDiskPartitionSpaceUsedDataRawMetricThresholdView =
 export type MaxDiskPartitionSpaceUsedIndexRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionSpaceUsedIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionSpaceUsedIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionSpaceUsedIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionSpaceUsedIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9019,14 +8824,14 @@ export const MaxDiskPartitionSpaceUsedIndexRawMetricThresholdView =
 export type MaxDiskPartitionSpaceUsedJournalRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionSpaceUsedJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionSpaceUsedJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionSpaceUsedJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionSpaceUsedJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9062,15 +8867,14 @@ export const MaxDiskPartitionSpaceUsedJournalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxDiskPartitionReadIopsDataRawMetricThresholdViewMode = "AVERAGE";
-export const MaxDiskPartitionReadIopsDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxDiskPartitionReadIopsDataRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionReadIopsDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionReadIopsDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionReadIopsDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9102,15 +8906,14 @@ export const MaxDiskPartitionReadIopsDataRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxDiskPartitionReadIopsIndexRawMetricThresholdViewMode = "AVERAGE";
-export const MaxDiskPartitionReadIopsIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxDiskPartitionReadIopsIndexRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionReadIopsIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionReadIopsIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionReadIopsIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9146,14 +8949,14 @@ export const MaxDiskPartitionReadIopsIndexRawMetricThresholdView =
 export type MaxDiskPartitionReadIopsJournalRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionReadIopsJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionReadIopsJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionReadIopsJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionReadIopsJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9189,15 +8992,14 @@ export const MaxDiskPartitionReadIopsJournalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxDiskPartitionWriteIopsDataRawMetricThresholdViewMode = "AVERAGE";
-export const MaxDiskPartitionWriteIopsDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxDiskPartitionWriteIopsDataRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionWriteIopsDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionWriteIopsDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionWriteIopsDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9233,14 +9035,14 @@ export const MaxDiskPartitionWriteIopsDataRawMetricThresholdView =
 export type MaxDiskPartitionWriteIopsIndexRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionWriteIopsIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionWriteIopsIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionWriteIopsIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionWriteIopsIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9278,14 +9080,14 @@ export const MaxDiskPartitionWriteIopsIndexRawMetricThresholdView =
 export type MaxDiskPartitionWriteIopsJournalRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionWriteIopsJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionWriteIopsJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionWriteIopsJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionWriteIopsJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9323,14 +9125,14 @@ export const MaxDiskPartitionWriteIopsJournalRawMetricThresholdView =
 export type MaxDiskPartitionReadLatencyDataTimeMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionReadLatencyDataTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionReadLatencyDataTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionReadLatencyDataTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionReadLatencyDataTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9368,14 +9170,14 @@ export const MaxDiskPartitionReadLatencyDataTimeMetricThresholdView =
 export type MaxDiskPartitionReadLatencyIndexTimeMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionReadLatencyIndexTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionReadLatencyIndexTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionReadLatencyIndexTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionReadLatencyIndexTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9413,14 +9215,14 @@ export const MaxDiskPartitionReadLatencyIndexTimeMetricThresholdView =
 export type MaxDiskPartitionReadLatencyJournalTimeMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionReadLatencyJournalTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionReadLatencyJournalTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionReadLatencyJournalTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionReadLatencyJournalTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9458,14 +9260,14 @@ export const MaxDiskPartitionReadLatencyJournalTimeMetricThresholdView =
 export type MaxDiskPartitionWriteLatencyDataTimeMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionWriteLatencyDataTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionWriteLatencyDataTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionWriteLatencyDataTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionWriteLatencyDataTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9503,14 +9305,14 @@ export const MaxDiskPartitionWriteLatencyDataTimeMetricThresholdView =
 export type MaxDiskPartitionWriteLatencyIndexTimeMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionWriteLatencyIndexTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionWriteLatencyIndexTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionWriteLatencyIndexTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionWriteLatencyIndexTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9548,14 +9350,14 @@ export const MaxDiskPartitionWriteLatencyIndexTimeMetricThresholdView =
 export type MaxDiskPartitionWriteLatencyJournalTimeMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionWriteLatencyJournalTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionWriteLatencyJournalTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionWriteLatencyJournalTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionWriteLatencyJournalTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9593,14 +9395,14 @@ export const MaxDiskPartitionWriteLatencyJournalTimeMetricThresholdView =
 export type MaxDiskPartitionQueueDepthDataRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionQueueDepthDataRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionQueueDepthDataRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionQueueDepthDataRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionQueueDepthDataRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9638,14 +9440,14 @@ export const MaxDiskPartitionQueueDepthDataRawMetricThresholdView =
 export type MaxDiskPartitionQueueDepthIndexRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionQueueDepthIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionQueueDepthIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionQueueDepthIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionQueueDepthIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9683,14 +9485,14 @@ export const MaxDiskPartitionQueueDepthIndexRawMetricThresholdView =
 export type MaxDiskPartitionQueueDepthJournalRawMetricThresholdViewMode =
   "AVERAGE";
 export const MaxDiskPartitionQueueDepthJournalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxDiskPartitionQueueDepthJournalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxDiskPartitionQueueDepthJournalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxDiskPartitionQueueDepthJournalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9726,15 +9528,14 @@ export const MaxDiskPartitionQueueDepthJournalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxSystemMemoryPercentUsedRawMetricThresholdViewMode = "AVERAGE";
-export const MaxSystemMemoryPercentUsedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxSystemMemoryPercentUsedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxSystemMemoryPercentUsedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const MaxSystemMemoryPercentUsedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface MaxSystemMemoryPercentUsedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9766,15 +9567,13 @@ export const MaxSystemMemoryPercentUsedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxSystemMemoryUsedDataMetricThresholdViewMode = "AVERAGE";
-export const MaxSystemMemoryUsedDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxSystemMemoryUsedDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxSystemMemoryUsedDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MaxSystemMemoryUsedDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MaxSystemMemoryUsedDataMetricThresholdViewOperator = S.String;
 
 export interface MaxSystemMemoryUsedDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9802,15 +9601,13 @@ export const MaxSystemMemoryUsedDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxSystemMemoryAvailableDataMetricThresholdViewMode = "AVERAGE";
-export const MaxSystemMemoryAvailableDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxSystemMemoryAvailableDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxSystemMemoryAvailableDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MaxSystemMemoryAvailableDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MaxSystemMemoryAvailableDataMetricThresholdViewOperator = S.String;
 
 export interface MaxSystemMemoryAvailableDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9842,15 +9639,13 @@ export const MaxSystemMemoryAvailableDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxSwapUsageUsedDataMetricThresholdViewMode = "AVERAGE";
-export const MaxSwapUsageUsedDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxSwapUsageUsedDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxSwapUsageUsedDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MaxSwapUsageUsedDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MaxSwapUsageUsedDataMetricThresholdViewOperator = S.String;
 
 export interface MaxSwapUsageUsedDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9878,15 +9673,13 @@ export const MaxSwapUsageUsedDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxSwapUsageFreeDataMetricThresholdViewMode = "AVERAGE";
-export const MaxSwapUsageFreeDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxSwapUsageFreeDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxSwapUsageFreeDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MaxSwapUsageFreeDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MaxSwapUsageFreeDataMetricThresholdViewOperator = S.String;
 
 export interface MaxSwapUsageFreeDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9914,15 +9707,13 @@ export const MaxSwapUsageFreeDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxSystemNetworkInDataMetricThresholdViewMode = "AVERAGE";
-export const MaxSystemNetworkInDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxSystemNetworkInDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxSystemNetworkInDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MaxSystemNetworkInDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MaxSystemNetworkInDataMetricThresholdViewOperator = S.String;
 
 export interface MaxSystemNetworkInDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9950,15 +9741,13 @@ export const MaxSystemNetworkInDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type MaxSystemNetworkOutDataMetricThresholdViewMode = "AVERAGE";
-export const MaxSystemNetworkOutDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const MaxSystemNetworkOutDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type MaxSystemNetworkOutDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const MaxSystemNetworkOutDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const MaxSystemNetworkOutDataMetricThresholdViewOperator = S.String;
 
 export interface MaxSystemNetworkOutDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -9986,15 +9775,13 @@ export const MaxSystemNetworkOutDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchIndexSizeDataMetricThresholdViewMode = "AVERAGE";
-export const SearchIndexSizeDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchIndexSizeDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchIndexSizeDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchIndexSizeDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchIndexSizeDataMetricThresholdViewOperator = S.String;
 
 export interface SearchIndexSizeDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10022,15 +9809,13 @@ export const SearchIndexSizeDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchMaxFieldsIndexedRawMetricThresholdViewMode = "AVERAGE";
-export const SearchMaxFieldsIndexedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchMaxFieldsIndexedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchMaxFieldsIndexedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchMaxFieldsIndexedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchMaxFieldsIndexedRawMetricThresholdViewOperator = S.String;
 
 export interface SearchMaxFieldsIndexedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10062,15 +9847,13 @@ export const SearchMaxFieldsIndexedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchProcessThrottlingRawMetricThresholdViewMode = "AVERAGE";
-export const SearchProcessThrottlingRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchProcessThrottlingRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchProcessThrottlingRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchProcessThrottlingRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchProcessThrottlingRawMetricThresholdViewOperator = S.String;
 
 export interface SearchProcessThrottlingRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10102,15 +9885,14 @@ export const SearchProcessThrottlingRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchNumberOfFieldsInIndexRawMetricThresholdViewMode = "AVERAGE";
-export const SearchNumberOfFieldsInIndexRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchNumberOfFieldsInIndexRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchNumberOfFieldsInIndexRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const SearchNumberOfFieldsInIndexRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SearchNumberOfFieldsInIndexRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10142,15 +9924,14 @@ export const SearchNumberOfFieldsInIndexRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchMaxNgramFieldsIndexedRawMetricThresholdViewMode = "AVERAGE";
-export const SearchMaxNgramFieldsIndexedRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchMaxNgramFieldsIndexedRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchMaxNgramFieldsIndexedRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const SearchMaxNgramFieldsIndexedRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SearchMaxNgramFieldsIndexedRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10182,15 +9963,13 @@ export const SearchMaxNgramFieldsIndexedRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchReplicationLagTimeMetricThresholdViewMode = "AVERAGE";
-export const SearchReplicationLagTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchReplicationLagTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchReplicationLagTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchReplicationLagTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchReplicationLagTimeMetricThresholdViewOperator = S.String;
 
 export interface SearchReplicationLagTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10220,15 +9999,15 @@ export const SearchReplicationLagTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type NumberMetricThresholdViewMode = "AVERAGE";
-export const NumberMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const NumberMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type NumberMetricThresholdViewOperator = "LESS_THAN" | "GREATER_THAN";
-export const NumberMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const NumberMetricThresholdViewOperator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type NumberMetricUnits = "COUNT" | "THOUSAND" | "MILLION" | "BILLION";
-export const NumberMetricUnits = /*@__PURE__*/ S.String;
+export const NumberMetricUnits = S.String;
 
 export interface NumberMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10255,15 +10034,13 @@ export const NumberMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchOpCounterInsertRawMetricThresholdViewMode = "AVERAGE";
-export const SearchOpCounterInsertRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterInsertRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchOpCounterInsertRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchOpCounterInsertRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterInsertRawMetricThresholdViewOperator = S.String;
 
 export interface SearchOpCounterInsertRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10293,15 +10070,13 @@ export const SearchOpCounterInsertRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchOpCounterDeleteRawMetricThresholdViewMode = "AVERAGE";
-export const SearchOpCounterDeleteRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterDeleteRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchOpCounterDeleteRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchOpCounterDeleteRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterDeleteRawMetricThresholdViewOperator = S.String;
 
 export interface SearchOpCounterDeleteRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10331,15 +10106,13 @@ export const SearchOpCounterDeleteRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchOpCounterUpdateRawMetricThresholdViewMode = "AVERAGE";
-export const SearchOpCounterUpdateRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterUpdateRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchOpCounterUpdateRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchOpCounterUpdateRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterUpdateRawMetricThresholdViewOperator = S.String;
 
 export interface SearchOpCounterUpdateRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10369,15 +10142,13 @@ export const SearchOpCounterUpdateRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchOpCounterGetMoreRawMetricThresholdViewMode = "AVERAGE";
-export const SearchOpCounterGetMoreRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterGetMoreRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchOpCounterGetMoreRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const SearchOpCounterGetMoreRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const SearchOpCounterGetMoreRawMetricThresholdViewOperator = S.String;
 
 export interface SearchOpCounterGetMoreRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10409,15 +10180,14 @@ export const SearchOpCounterGetMoreRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchNumberOfQueriesTotalRawMetricThresholdViewMode = "AVERAGE";
-export const SearchNumberOfQueriesTotalRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchNumberOfQueriesTotalRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchNumberOfQueriesTotalRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const SearchNumberOfQueriesTotalRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SearchNumberOfQueriesTotalRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10449,15 +10219,14 @@ export const SearchNumberOfQueriesTotalRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchNumberOfQueriesErrorRawMetricThresholdViewMode = "AVERAGE";
-export const SearchNumberOfQueriesErrorRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchNumberOfQueriesErrorRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchNumberOfQueriesErrorRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const SearchNumberOfQueriesErrorRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SearchNumberOfQueriesErrorRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10489,15 +10258,14 @@ export const SearchNumberOfQueriesErrorRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type SearchNumberOfQueriesSuccessRawMetricThresholdViewMode = "AVERAGE";
-export const SearchNumberOfQueriesSuccessRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const SearchNumberOfQueriesSuccessRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type SearchNumberOfQueriesSuccessRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const SearchNumberOfQueriesSuccessRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface SearchNumberOfQueriesSuccessRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10529,15 +10297,13 @@ export const SearchNumberOfQueriesSuccessRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsJvmMaxMemoryDataMetricThresholdViewMode = "AVERAGE";
-export const FtsJvmMaxMemoryDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsJvmMaxMemoryDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsJvmMaxMemoryDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsJvmMaxMemoryDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsJvmMaxMemoryDataMetricThresholdViewOperator = S.String;
 
 export interface FtsJvmMaxMemoryDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10565,15 +10331,13 @@ export const FtsJvmMaxMemoryDataMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FtsJvmCurrentMemoryDataMetricThresholdViewMode = "AVERAGE";
-export const FtsJvmCurrentMemoryDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FtsJvmCurrentMemoryDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FtsJvmCurrentMemoryDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FtsJvmCurrentMemoryDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FtsJvmCurrentMemoryDataMetricThresholdViewOperator = S.String;
 
 export interface FtsJvmCurrentMemoryDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -10763,7 +10527,7 @@ export type HostMetricThreshold =
   | FtsJvmMaxMemoryDataMetricThresholdView
   | FtsJvmCurrentMemoryDataMetricThresholdView;
 export const HostMetricThreshold =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HostMetricThreshold>;
+  S.Unknown as any as S.Schema<HostMetricThreshold>;
 
 /** List that contains the targets that MongoDB Cloud sends notifications. */
 export type HostMetricAlertConfigViewForNdsGroupInputNotificationsList =
@@ -10803,7 +10567,7 @@ export const HostMetricAlertConfigViewForNdsGroupInput =
 
 /** Event type that triggers an alert. */
 export type MongotuneEventTypeViewAlertable = "MONGOTUNE_ALERT";
-export const MongotuneEventTypeViewAlertable = /*@__PURE__*/ S.String;
+export const MongotuneEventTypeViewAlertable = S.String;
 
 /** Matching conditions for target resources. */
 export type MongotuneAlertConfigViewForNdsGroupInputMatchersList =
@@ -10867,11 +10631,11 @@ export type NDSAutoScalingAuditTypeViewAlertable =
   | "PREDICTIVE_COMPUTE_AUTO_SCALE_OPLOG_FAIL_BASE"
   | "CLUSTER_AUTO_SHARDING_INITIATED"
   | "CLUSTER_RESHARDING_COMPLETED";
-export const NDSAutoScalingAuditTypeViewAlertable = /*@__PURE__*/ S.String;
+export const NDSAutoScalingAuditTypeViewAlertable = S.String;
 
 /** Name of the parameter in the target object that MongoDB Cloud checks. The parameter must match all rules for MongoDB Cloud to check for alert configurations. */
 export type NDSAutoscalingMatcherField = "CLUSTER_NAME";
-export const NDSAutoscalingMatcherField = /*@__PURE__*/ S.String;
+export const NDSAutoscalingMatcherField = S.String;
 
 /** Comparison operator to apply when checking the current metric value against **matcher[n].value**. The `REGEX` operator only supports inclusive matches. Use the `NOT_CONTAINS` operator to exclude values. */
 export type NDSAutoscalingMatcherOperator =
@@ -10882,7 +10646,7 @@ export type NDSAutoscalingMatcherOperator =
   | "NOT_EQUALS"
   | "NOT_CONTAINS"
   | "REGEX";
-export const NDSAutoscalingMatcherOperator = /*@__PURE__*/ S.String;
+export const NDSAutoscalingMatcherOperator = S.String;
 
 /** Rules to apply when comparing a cluster against this alert configuration. */
 export interface NDSAutoscalingMatcher {
@@ -10950,8 +10714,7 @@ export type NDSX509UserAuthenticationEventTypeViewAlertable =
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_CHECK"
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK"
   | "NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK";
-export const NDSX509UserAuthenticationEventTypeViewAlertable =
-  /*@__PURE__*/ S.String;
+export const NDSX509UserAuthenticationEventTypeViewAlertable = S.String;
 
 /** Matching conditions for target resources. */
 export type NDSX509UserAuthenticationAlertConfigViewForNdsGroupInputMatchersList =
@@ -10971,11 +10734,11 @@ export const NDSX509UserAuthenticationAlertConfigViewForNdsGroupInputNotificatio
 
 /** Comparison operator to apply when checking the current metric value. */
 export type LessThanDaysThresholdViewOperator = "LESS_THAN";
-export const LessThanDaysThresholdViewOperator = /*@__PURE__*/ S.String;
+export const LessThanDaysThresholdViewOperator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type LessThanDaysThresholdViewUnits = "DAYS";
-export const LessThanDaysThresholdViewUnits = /*@__PURE__*/ S.String;
+export const LessThanDaysThresholdViewUnits = S.String;
 
 /** Threshold value that triggers an alert. */
 export interface LessThanDaysThresholdView {
@@ -11031,15 +10794,14 @@ export const NDSX509UserAuthenticationAlertConfigViewForNdsGroupInput =
 export type ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold =
   | "NO_PRIMARY"
   | "PRIMARY_ELECTED";
-export const ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold =
-  /*@__PURE__*/ S.String;
+export const ReplicaSetEventTypeViewForNdsGroupAlertableNoThreshold = S.String;
 
 /** Name of the parameter in the target object that MongoDB Cloud checks. The parameter must match all rules for MongoDB Cloud to check for alert configurations. */
 export type ReplicaSetMatcherField =
   | "REPLICA_SET_NAME"
   | "SHARD_NAME"
   | "CLUSTER_NAME";
-export const ReplicaSetMatcherField = /*@__PURE__*/ S.String;
+export const ReplicaSetMatcherField = S.String;
 
 /** Comparison operator to apply when checking the current metric value against **matcher[n].value**. The `REGEX` operator only supports inclusive matches. Use the `NOT_CONTAINS` operator to exclude values. */
 export type ReplicaSetMatcherOperator =
@@ -11050,7 +10812,7 @@ export type ReplicaSetMatcherOperator =
   | "NOT_EQUALS"
   | "NOT_CONTAINS"
   | "REGEX";
-export const ReplicaSetMatcherOperator = /*@__PURE__*/ S.String;
+export const ReplicaSetMatcherOperator = S.String;
 
 /** Rules to apply when comparing an replica set against this alert configuration. */
 export interface ReplicaSetMatcher {
@@ -11088,7 +10850,7 @@ export const ReplicaSetAlertConfigViewForNdsGroupInputNotificationsList =
 
 /** Comparison operator to apply when checking the current metric value. */
 export type Operator = "<" | ">";
-export const Operator = /*@__PURE__*/ S.String;
+export const Operator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type AlertsThresholdIntegerUnits =
@@ -11128,7 +10890,7 @@ export type AlertsThresholdIntegerUnits =
   | "thousand"
   | "million"
   | "billion";
-export const AlertsThresholdIntegerUnits = /*@__PURE__*/ S.String;
+export const AlertsThresholdIntegerUnits = S.String;
 
 /** A Limit that triggers an alert when exceeded. The resource returns this parameter when `eventTypeName` has not been set to `OUTSIDE_METRIC_THRESHOLD`. */
 export interface AlertsThresholdInteger {
@@ -11185,7 +10947,7 @@ export type ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold =
   | "TOO_FEW_HEALTHY_MEMBERS"
   | "TOO_MANY_UNHEALTHY_MEMBERS";
 export const ReplicaSetEventTypeViewForNdsGroupAlertableWithThreshold =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. You can filter using the matchers array if the `eventTypeName` specifies an event for a host, replica set, or sharded cluster. */
 export type ReplicaSetThresholdAlertConfigViewForNdsGroupInputMatchersList =
@@ -11237,7 +10999,7 @@ export const ReplicaSetThresholdAlertConfigViewForNdsGroupInput =
 /** Event type that triggers an alert. */
 export type ServerlessEventTypeViewAlertable =
   "OUTSIDE_SERVERLESS_METRIC_THRESHOLD";
-export const ServerlessEventTypeViewAlertable = /*@__PURE__*/ S.String;
+export const ServerlessEventTypeViewAlertable = S.String;
 
 /** Matching conditions for target resources. */
 export type ServerlessMetricAlertConfigViewForNdsGroupInputMatchersList =
@@ -11251,14 +11013,14 @@ export const ServerlessMetricAlertConfigViewForNdsGroupInputMatchersList =
 export type ServerlessAVGCommandExecutionTimeMetricThresholdViewMode =
   "AVERAGE";
 export const ServerlessAVGCommandExecutionTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessAVGCommandExecutionTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const ServerlessAVGCommandExecutionTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ServerlessAVGCommandExecutionTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11294,15 +11056,14 @@ export const ServerlessAVGCommandExecutionTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessAVGWriteExecutionTimeMetricThresholdViewMode = "AVERAGE";
-export const ServerlessAVGWriteExecutionTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessAVGWriteExecutionTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessAVGWriteExecutionTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const ServerlessAVGWriteExecutionTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ServerlessAVGWriteExecutionTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11334,15 +11095,13 @@ export const ServerlessAVGWriteExecutionTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessTotalWriteUnitsRPUMetricThresholdViewMode = "AVERAGE";
-export const ServerlessTotalWriteUnitsRPUMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessTotalWriteUnitsRPUMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessTotalWriteUnitsRPUMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ServerlessTotalWriteUnitsRPUMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ServerlessTotalWriteUnitsRPUMetricThresholdViewOperator = S.String;
 
 /** Element used to express the quantity. This can be an element of time, storage capacity, and the like. */
 export type ServerlessMetricUnits =
@@ -11352,7 +11111,7 @@ export type ServerlessMetricUnits =
   | "WPU"
   | "THOUSAND_WPU"
   | "MILLION_WPU";
-export const ServerlessMetricUnits = /*@__PURE__*/ S.String;
+export const ServerlessMetricUnits = S.String;
 
 export interface ServerlessTotalWriteUnitsRPUMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11384,11 +11143,11 @@ export const ServerlessTotalWriteUnitsRPUMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type RPUMetricThresholdViewMode = "AVERAGE";
-export const RPUMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const RPUMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type RPUMetricThresholdViewOperator = "LESS_THAN" | "GREATER_THAN";
-export const RPUMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const RPUMetricThresholdViewOperator = S.String;
 
 export interface RPUMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11415,15 +11174,13 @@ export const RPUMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessOpCounterUpdateRawMetricThresholdViewMode = "AVERAGE";
-export const ServerlessOpCounterUpdateRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterUpdateRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessOpCounterUpdateRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ServerlessOpCounterUpdateRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterUpdateRawMetricThresholdViewOperator = S.String;
 
 export interface ServerlessOpCounterUpdateRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11455,15 +11212,13 @@ export const ServerlessOpCounterUpdateRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessOpCounterQueryRawMetricThresholdViewMode = "AVERAGE";
-export const ServerlessOpCounterQueryRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterQueryRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessOpCounterQueryRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ServerlessOpCounterQueryRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterQueryRawMetricThresholdViewOperator = S.String;
 
 export interface ServerlessOpCounterQueryRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11495,15 +11250,13 @@ export const ServerlessOpCounterQueryRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessOpCounterInsertRawMetricThresholdViewMode = "AVERAGE";
-export const ServerlessOpCounterInsertRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterInsertRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessOpCounterInsertRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ServerlessOpCounterInsertRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterInsertRawMetricThresholdViewOperator = S.String;
 
 export interface ServerlessOpCounterInsertRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11535,15 +11288,14 @@ export const ServerlessOpCounterInsertRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessOpCounterGetMoreRawMetricThresholdViewMode = "AVERAGE";
-export const ServerlessOpCounterGetMoreRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterGetMoreRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessOpCounterGetMoreRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const ServerlessOpCounterGetMoreRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ServerlessOpCounterGetMoreRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11575,15 +11327,13 @@ export const ServerlessOpCounterGetMoreRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessOpCounterDeleteRawMetricThresholdViewMode = "AVERAGE";
-export const ServerlessOpCounterDeleteRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterDeleteRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessOpCounterDeleteRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ServerlessOpCounterDeleteRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterDeleteRawMetricThresholdViewOperator = S.String;
 
 export interface ServerlessOpCounterDeleteRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11615,15 +11365,13 @@ export const ServerlessOpCounterDeleteRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessOpCounterCDMRawMetricThresholdViewMode = "AVERAGE";
-export const ServerlessOpCounterCDMRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterCDMRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessOpCounterCDMRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ServerlessOpCounterCDMRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ServerlessOpCounterCDMRawMetricThresholdViewOperator = S.String;
 
 export interface ServerlessOpCounterCDMRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11655,15 +11403,14 @@ export const ServerlessOpCounterCDMRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessNetworkNumRequestRawMetricThresholdViewMode = "AVERAGE";
-export const ServerlessNetworkNumRequestRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessNetworkNumRequestRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessNetworkNumRequestRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const ServerlessNetworkNumRequestRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ServerlessNetworkNumRequestRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11695,15 +11442,14 @@ export const ServerlessNetworkNumRequestRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessNetworkBytesOutDataMetricThresholdViewMode = "AVERAGE";
-export const ServerlessNetworkBytesOutDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessNetworkBytesOutDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessNetworkBytesOutDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const ServerlessNetworkBytesOutDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ServerlessNetworkBytesOutDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11735,15 +11481,13 @@ export const ServerlessNetworkBytesOutDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type ServerlessNetworkBytesInDataMetricThresholdViewMode = "AVERAGE";
-export const ServerlessNetworkBytesInDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const ServerlessNetworkBytesInDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessNetworkBytesInDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const ServerlessNetworkBytesInDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const ServerlessNetworkBytesInDataMetricThresholdViewOperator = S.String;
 
 export interface ServerlessNetworkBytesInDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11777,14 +11521,14 @@ export const ServerlessNetworkBytesInDataMetricThresholdView =
 export type ServerlessConnectionPercentageRawMetricThresholdViewMode =
   "AVERAGE";
 export const ServerlessConnectionPercentageRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type ServerlessConnectionPercentageRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
 export const ServerlessConnectionPercentageRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ServerlessConnectionPercentageRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11838,7 +11582,7 @@ export type ServerlessMetricThreshold =
   | ServerlessConnectionPercentageRawMetricThresholdView
   | RawMetricThresholdView;
 export const ServerlessMetricThreshold =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ServerlessMetricThreshold>;
+  S.Unknown as any as S.Schema<ServerlessMetricThreshold>;
 
 /** List that contains the targets that MongoDB Cloud sends notifications. */
 export type ServerlessMetricAlertConfigViewForNdsGroupInputNotificationsList =
@@ -11887,15 +11631,13 @@ export const FlexMetricAlertConfigViewForNdsGroupInputMatchersList =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexConnectionPercentRawMetricThresholdViewMode = "AVERAGE";
-export const FlexConnectionPercentRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexConnectionPercentRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexConnectionPercentRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexConnectionPercentRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexConnectionPercentRawMetricThresholdViewOperator = S.String;
 
 export interface FlexConnectionPercentRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11925,15 +11667,13 @@ export const FlexConnectionPercentRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexNetworkBytesInDataMetricThresholdViewMode = "AVERAGE";
-export const FlexNetworkBytesInDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexNetworkBytesInDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexNetworkBytesInDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexNetworkBytesInDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexNetworkBytesInDataMetricThresholdViewOperator = S.String;
 
 export interface FlexNetworkBytesInDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11961,15 +11701,13 @@ export const FlexNetworkBytesInDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexNetworkBytesOutDataMetricThresholdViewMode = "AVERAGE";
-export const FlexNetworkBytesOutDataMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexNetworkBytesOutDataMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexNetworkBytesOutDataMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexNetworkBytesOutDataMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexNetworkBytesOutDataMetricThresholdViewOperator = S.String;
 
 export interface FlexNetworkBytesOutDataMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -11997,15 +11735,13 @@ export const FlexNetworkBytesOutDataMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexNetworkNumRequestsRawMetricThresholdViewMode = "AVERAGE";
-export const FlexNetworkNumRequestsRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexNetworkNumRequestsRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexNetworkNumRequestsRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexNetworkNumRequestsRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexNetworkNumRequestsRawMetricThresholdViewOperator = S.String;
 
 export interface FlexNetworkNumRequestsRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12037,15 +11773,13 @@ export const FlexNetworkNumRequestsRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexOpCounterCMDRawMetricThresholdViewMode = "AVERAGE";
-export const FlexOpCounterCMDRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterCMDRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexOpCounterCMDRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexOpCounterCMDRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterCMDRawMetricThresholdViewOperator = S.String;
 
 export interface FlexOpCounterCMDRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12073,15 +11807,13 @@ export const FlexOpCounterCMDRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexOpCounterDeleteRawMetricThresholdViewMode = "AVERAGE";
-export const FlexOpCounterDeleteRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterDeleteRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexOpCounterDeleteRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexOpCounterDeleteRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterDeleteRawMetricThresholdViewOperator = S.String;
 
 export interface FlexOpCounterDeleteRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12109,15 +11841,13 @@ export const FlexOpCounterDeleteRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexOpCounterInsertRawMetricThresholdViewMode = "AVERAGE";
-export const FlexOpCounterInsertRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterInsertRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexOpCounterInsertRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexOpCounterInsertRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterInsertRawMetricThresholdViewOperator = S.String;
 
 export interface FlexOpCounterInsertRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12145,15 +11875,13 @@ export const FlexOpCounterInsertRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexOpCounterQueryRawMetricThresholdViewMode = "AVERAGE";
-export const FlexOpCounterQueryRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterQueryRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexOpCounterQueryRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexOpCounterQueryRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterQueryRawMetricThresholdViewOperator = S.String;
 
 export interface FlexOpCounterQueryRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12181,15 +11909,13 @@ export const FlexOpCounterQueryRawMetricThresholdView = /*@__PURE__*/ S.suspend(
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexOpCounterUpdateRawMetricThresholdViewMode = "AVERAGE";
-export const FlexOpCounterUpdateRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterUpdateRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexOpCounterUpdateRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexOpCounterUpdateRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterUpdateRawMetricThresholdViewOperator = S.String;
 
 export interface FlexOpCounterUpdateRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12217,15 +11943,13 @@ export const FlexOpCounterUpdateRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexOpCounterGetMoreRawMetricThresholdViewMode = "AVERAGE";
-export const FlexOpCounterGetMoreRawMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterGetMoreRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexOpCounterGetMoreRawMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexOpCounterGetMoreRawMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexOpCounterGetMoreRawMetricThresholdViewOperator = S.String;
 
 export interface FlexOpCounterGetMoreRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12253,15 +11977,13 @@ export const FlexOpCounterGetMoreRawMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexAVGWriteExecutionTimeMetricThresholdViewMode = "AVERAGE";
-export const FlexAVGWriteExecutionTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexAVGWriteExecutionTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexAVGWriteExecutionTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexAVGWriteExecutionTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexAVGWriteExecutionTimeMetricThresholdViewOperator = S.String;
 
 export interface FlexAVGWriteExecutionTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12293,15 +12015,13 @@ export const FlexAVGWriteExecutionTimeMetricThresholdView =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type FlexAVGCommandExecutionTimeMetricThresholdViewMode = "AVERAGE";
-export const FlexAVGCommandExecutionTimeMetricThresholdViewMode =
-  /*@__PURE__*/ S.String;
+export const FlexAVGCommandExecutionTimeMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type FlexAVGCommandExecutionTimeMetricThresholdViewOperator =
   | "LESS_THAN"
   | "GREATER_THAN";
-export const FlexAVGCommandExecutionTimeMetricThresholdViewOperator =
-  /*@__PURE__*/ S.String;
+export const FlexAVGCommandExecutionTimeMetricThresholdViewOperator = S.String;
 
 export interface FlexAVGCommandExecutionTimeMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12349,7 +12069,7 @@ export type FlexClusterMetricThreshold =
   | FlexAVGWriteExecutionTimeMetricThresholdView
   | FlexAVGCommandExecutionTimeMetricThresholdView;
 export const FlexClusterMetricThreshold =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FlexClusterMetricThreshold>;
+  S.Unknown as any as S.Schema<FlexClusterMetricThreshold>;
 
 /** List that contains the targets that MongoDB Cloud sends notifications. */
 export type FlexMetricAlertConfigViewForNdsGroupInputNotificationsList =
@@ -12391,12 +12111,11 @@ export const FlexMetricAlertConfigViewForNdsGroupInput =
 export type StreamProcessorEventTypeViewAlertableNoThreshold =
   | "STREAM_PROCESSOR_STATE_IS_FAILED"
   | "STREAM_PROCESSOR_AUTOSCALE_INITIATED";
-export const StreamProcessorEventTypeViewAlertableNoThreshold =
-  /*@__PURE__*/ S.String;
+export const StreamProcessorEventTypeViewAlertableNoThreshold = S.String;
 
 /** Name of the parameter in the target object that MongoDB Cloud checks. The parameter must match all rules for MongoDB Cloud to check for alert configurations. */
 export type StreamsMatcherField = "INSTANCE_NAME" | "PROCESSOR_NAME";
-export const StreamsMatcherField = /*@__PURE__*/ S.String;
+export const StreamsMatcherField = S.String;
 
 /** Comparison operator to apply when checking the current metric value against **matcher[n].value**. The `REGEX` operator only supports inclusive matches. Use the `NOT_CONTAINS` operator to exclude values. */
 export type StreamsMatcherOperator =
@@ -12407,7 +12126,7 @@ export type StreamsMatcherOperator =
   | "NOT_EQUALS"
   | "NOT_CONTAINS"
   | "REGEX";
-export const StreamsMatcherOperator = /*@__PURE__*/ S.String;
+export const StreamsMatcherOperator = S.String;
 
 /** Rules to apply when comparing a stream processing workspace or stream processor against this alert configuration. */
 export interface StreamsMatcher {
@@ -12473,8 +12192,7 @@ export const StreamProcessorAlertConfigViewForNdsGroupInput =
 /** Event type that triggers an alert. */
 export type StreamProcessorEventTypeViewAlertableWithThreshold =
   "OUTSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD";
-export const StreamProcessorEventTypeViewAlertableWithThreshold =
-  /*@__PURE__*/ S.String;
+export const StreamProcessorEventTypeViewAlertableWithThreshold = S.String;
 
 /** List of rules that determine whether MongoDB Cloud checks an object for the alert configuration. */
 export type StreamProcessorMetricAlertConfigViewForNdsGroupInputMatchersList =
@@ -12486,11 +12204,11 @@ export const StreamProcessorMetricAlertConfigViewForNdsGroupInputMatchersList =
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type KafkaRawMetricThresholdViewMode = "AVERAGE";
-export const KafkaRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const KafkaRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type KafkaRawMetricThresholdViewOperator = "LESS_THAN" | "GREATER_THAN";
-export const KafkaRawMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const KafkaRawMetricThresholdViewOperator = S.String;
 
 export interface KafkaRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12517,11 +12235,11 @@ export const KafkaRawMetricThresholdView = /*@__PURE__*/ S.suspend(() =>
 
 /** MongoDB Cloud computes the current metric value as an average. */
 export type DLQRawMetricThresholdViewMode = "AVERAGE";
-export const DLQRawMetricThresholdViewMode = /*@__PURE__*/ S.String;
+export const DLQRawMetricThresholdViewMode = S.String;
 
 /** Comparison operator to apply when checking the current metric value. */
 export type DLQRawMetricThresholdViewOperator = "LESS_THAN" | "GREATER_THAN";
-export const DLQRawMetricThresholdViewOperator = /*@__PURE__*/ S.String;
+export const DLQRawMetricThresholdViewOperator = S.String;
 
 export interface DLQRawMetricThresholdView {
   /** Human-readable label that identifies the metric against which MongoDB Cloud checks the configured `metricThreshold.threshold`. */
@@ -12553,7 +12271,7 @@ export type StreamProcessorMetricThreshold =
   | DLQRawMetricThresholdView
   | RawMetricThresholdView;
 export const StreamProcessorMetricThreshold =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StreamProcessorMetricThreshold>;
+  S.Unknown as any as S.Schema<StreamProcessorMetricThreshold>;
 
 /** List that contains the targets that MongoDB Cloud sends notifications. */
 export type StreamProcessorMetricAlertConfigViewForNdsGroupInputNotificationsList =
@@ -12614,7 +12332,7 @@ export type GroupAlertsConfigInput =
   | StreamProcessorAlertConfigViewForNdsGroupInput
   | StreamProcessorMetricAlertConfigViewForNdsGroupInput;
 export const GroupAlertsConfigInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupAlertsConfigInput>;
+  S.Unknown as any as S.Schema<GroupAlertsConfigInput>;
 
 export interface CreateGroupAlertConfigRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -12645,8 +12363,7 @@ export const CreateGroupAlertConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase0 =
   "CREDIT_CARD_ABOUT_TO_EXPIRE";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase0 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase0 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase1 =
   | "CPS_SNAPSHOT_STARTED"
@@ -12670,8 +12387,7 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase1 =
   | "CPS_AUTO_EXPORT_FAILED"
   | "CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED"
   | "CPS_OPLOG_CAUGHT_UP";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase1 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase1 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase2 =
   | "CPS_DATA_PROTECTION_ENABLE_REQUESTED"
@@ -12681,8 +12397,7 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase2 =
   | "CPS_DATA_PROTECTION_DISABLE_REQUESTED"
   | "CPS_DATA_PROTECTION_DISABLED"
   | "CPS_DATA_PROTECTION_APPROVED_FOR_DISABLEMENT";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase2 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase2 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase3 =
   | "FTS_INDEX_DELETION_FAILED"
@@ -12692,8 +12407,7 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase3 =
   | "FTS_INDEX_STALE"
   | "FTS_INDEXES_RESTORE_FAILED"
   | "FTS_INDEXES_SYNONYM_MAPPING_INVALID";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase3 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase3 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase4 =
   | "USERS_WITHOUT_MULTI_FACTOR_AUTH"
@@ -12703,13 +12417,11 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase4 =
   | "GROUP_SERVICE_ACCOUNT_SECRETS_EXPIRED"
   | "ACTIVE_LEGACY_TLS_CONNECTIONS"
   | "WEBHOOK_TEMPLATE_RENDER_FAILED";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase4 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase4 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase5 =
   "MONGOTUNE_ALERT";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase5 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase5 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase6 =
   | "CLUSTER_INSTANCE_STOP_START"
@@ -12726,8 +12438,7 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase6 =
   | "LOG_STREAMING_EXPORT_FAILED_NONRETRYABLE"
   | "LOG_STREAMING_EXPORT_FAILED_RETRIES_EXHAUSTED"
   | "LOG_STREAMING_REPLAY_FAILED";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase6 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase6 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase7 =
   | "MAINTENANCE_IN_ADVANCED"
@@ -12735,35 +12446,30 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase7 =
   | "MAINTENANCE_STARTED"
   | "MAINTENANCE_COMPLETED"
   | "MAINTENANCE_NO_LONGER_NEEDED";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase7 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase7 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase8 =
   | "ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK"
   | "ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase8 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase8 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase9 =
   | "JOINED_GROUP"
   | "REMOVED_FROM_GROUP"
   | "USER_ROLES_CHANGED_AUDIT";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase9 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase9 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase10 =
   | "TAGS_MODIFIED"
   | "CLUSTER_TAGS_MODIFIED"
   | "GROUP_TAGS_MODIFIED";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase10 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase10 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase11 =
   | "STREAM_PROCESSOR_STATE_IS_FAILED"
   | "STREAM_PROCESSOR_AUTOSCALE_INITIATED"
   | "OUTSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase11 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase11 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase12 =
   | "COMPUTE_AUTO_SCALE_INITIATED_BASE"
@@ -12784,13 +12490,11 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase12 =
   | "PREDICTIVE_COMPUTE_AUTO_SCALE_OPLOG_FAIL_BASE"
   | "CLUSTER_AUTO_SHARDING_INITIATED"
   | "CLUSTER_RESHARDING_COMPLETED";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase12 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase12 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase13 =
   "RESOURCE_POLICY_VIOLATED";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase13 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase13 = S.String;
 
 export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase14 =
   | "HOST_DOWN"
@@ -12814,8 +12518,7 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeNameCase14 =
   | "HOST_SECURITY_CHECKUP_NOT_MET"
   | "ALERT_HOST_SSH_SESSION_STARTED"
   | "PROFILER_CONFIGURED_TOO_WIDELY";
-export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase14 =
-  /*@__PURE__*/ S.String;
+export const DefaultAlertConfigViewForNdsGroupEventTypeNameCase14 = S.String;
 
 /** Incident that triggered this alert. */
 export type DefaultAlertConfigViewForNdsGroupEventTypeName =
@@ -12835,7 +12538,7 @@ export type DefaultAlertConfigViewForNdsGroupEventTypeName =
   | DefaultAlertConfigViewForNdsGroupEventTypeNameCase13
   | DefaultAlertConfigViewForNdsGroupEventTypeNameCase14;
 export const DefaultAlertConfigViewForNdsGroupEventTypeName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DefaultAlertConfigViewForNdsGroupEventTypeName>;
+  S.Unknown as any as S.Schema<DefaultAlertConfigViewForNdsGroupEventTypeName>;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DefaultAlertConfigViewForNdsGroupLinksList = Array<Link>;
@@ -14020,7 +13723,7 @@ export type GroupAlertsConfig =
   | StreamProcessorAlertConfigViewForNdsGroup
   | StreamProcessorMetricAlertConfigViewForNdsGroup;
 export const GroupAlertsConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GroupAlertsConfig>;
+  S.Unknown as any as S.Schema<GroupAlertsConfig>;
 
 export type CreateGroupAlertConfigResponse = GroupAlertsConfig;
 export const CreateGroupAlertConfigResponse = /*@__PURE__*/ S.suspend(() =>
@@ -14130,8 +13833,7 @@ export type CreateGroupBackupExportBucketRequestCloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const CreateGroupBackupExportBucketRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+export const CreateGroupBackupExportBucketRequestCloudProvider = S.String;
 
 export interface CreateGroupBackupExportBucketRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -14169,8 +13871,7 @@ export type DiskBackupSnapshotExportBucketResponseCloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const DiskBackupSnapshotExportBucketResponseCloudProvider =
-  /*@__PURE__*/ S.String;
+export const DiskBackupSnapshotExportBucketResponseCloudProvider = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DiskBackupSnapshotExportBucketResponseLinksList = Array<Link>;
@@ -14203,8 +13904,7 @@ export const DiskBackupSnapshotExportBucketResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DiskBackupSnapshotExportBucketResponse>;
 
 export type CreateGroupBackupPrivateEndpointRequestCloudProvider = "AWS";
-export const CreateGroupBackupPrivateEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+export const CreateGroupBackupPrivateEndpointRequestCloudProvider = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type CreateGroupBackupPrivateEndpointRequestRegionName =
@@ -14235,8 +13935,7 @@ export type CreateGroupBackupPrivateEndpointRequestRegionName =
   | "AF_SOUTH_1"
   | "EU_SOUTH_1"
   | "GLOBAL";
-export const CreateGroupBackupPrivateEndpointRequestRegionName =
-  /*@__PURE__*/ S.String;
+export const CreateGroupBackupPrivateEndpointRequestRegionName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type CreateGroupBackupPrivateEndpointRequestVpcRegionName =
@@ -14267,8 +13966,7 @@ export type CreateGroupBackupPrivateEndpointRequestVpcRegionName =
   | "AF_SOUTH_1"
   | "EU_SOUTH_1"
   | "GLOBAL";
-export const CreateGroupBackupPrivateEndpointRequestVpcRegionName =
-  /*@__PURE__*/ S.String;
+export const CreateGroupBackupPrivateEndpointRequestVpcRegionName = S.String;
 
 export interface CreateGroupBackupPrivateEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -14317,8 +14015,7 @@ export const CreateGroupBackupPrivateEndpointRequest = /*@__PURE__*/ S.suspend(
 
 /** Human-readable label that identifies the cloud provider. */
 export type ObjectStoragePrivateEndpointResponseCloudProvider = "AWS";
-export const ObjectStoragePrivateEndpointResponseCloudProvider =
-  /*@__PURE__*/ S.String;
+export const ObjectStoragePrivateEndpointResponseCloudProvider = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type ObjectStoragePrivateEndpointResponseRegionName =
@@ -14349,8 +14046,7 @@ export type ObjectStoragePrivateEndpointResponseRegionName =
   | "AF_SOUTH_1"
   | "EU_SOUTH_1"
   | "GLOBAL";
-export const ObjectStoragePrivateEndpointResponseRegionName =
-  /*@__PURE__*/ S.String;
+export const ObjectStoragePrivateEndpointResponseRegionName = S.String;
 
 /** State of the Object Storage private endpoint. */
 export type ObjectStoragePrivateEndpointResponseStatus =
@@ -14360,8 +14056,7 @@ export type ObjectStoragePrivateEndpointResponseStatus =
   | "FAILED"
   | "PENDING_RECREATION"
   | "DELETING";
-export const ObjectStoragePrivateEndpointResponseStatus =
-  /*@__PURE__*/ S.String;
+export const ObjectStoragePrivateEndpointResponseStatus = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type ObjectStoragePrivateEndpointResponseVpcRegionName =
@@ -14392,8 +14087,7 @@ export type ObjectStoragePrivateEndpointResponseVpcRegionName =
   | "AF_SOUTH_1"
   | "EU_SOUTH_1"
   | "GLOBAL";
-export const ObjectStoragePrivateEndpointResponseVpcRegionName =
-  /*@__PURE__*/ S.String;
+export const ObjectStoragePrivateEndpointResponseVpcRegionName = S.String;
 
 export interface ObjectStoragePrivateEndpointResponse {
   /** Human-readable label that identifies the cloud provider. */
@@ -14435,8 +14129,7 @@ export type CreateGroupCloudProviderAccessRequestProviderName =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const CreateGroupCloudProviderAccessRequestProviderName =
-  /*@__PURE__*/ S.String;
+export const CreateGroupCloudProviderAccessRequestProviderName = S.String;
 
 export interface CreateGroupCloudProviderAccessRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -14471,13 +14164,13 @@ export const CreateGroupCloudProviderAccessRequest = /*@__PURE__*/ S.suspend(
 
 /** Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. ``ENABLED`` means the cluster explicitly opts in to adaptive capacity. ``DISABLED`` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. ``null`` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op. */
 export type CreateGroupClusterRequestAdaptiveCapacity = "ENABLED" | "DISABLED";
-export const CreateGroupClusterRequestAdaptiveCapacity = /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestAdaptiveCapacity = S.String;
 
 export type ApiAtlasClusterAdvancedConfigurationViewCustomOpensslCipherConfigTls12Item =
   | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
   | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256";
 export const ApiAtlasClusterAdvancedConfigurationViewCustomOpensslCipherConfigTls12Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The custom OpenSSL cipher suite list for TLS 1.2. Requires `tlsCipherConfigMode` = `CUSTOM`; when `tlsCipherConfigMode` is omitted, supplying a non-empty list infers `CUSTOM`. */
 export type ApiAtlasClusterAdvancedConfigurationViewCustomOpensslCipherConfigTls12List =
@@ -14496,7 +14189,7 @@ export type ApiAtlasClusterAdvancedConfigurationViewCustomOpensslCipherConfigTls
   | "TLS_AES_128_GCM_SHA256"
   | "TLS_AES_128_CCM_SHA256";
 export const ApiAtlasClusterAdvancedConfigurationViewCustomOpensslCipherConfigTls13Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The custom OpenSSL cipher suite list for TLS 1.3. Requires `tlsCipherConfigMode` = `CUSTOM`; when `tlsCipherConfigMode` is omitted, supplying a non-empty list infers `CUSTOM`. */
 export type ApiAtlasClusterAdvancedConfigurationViewCustomOpensslCipherConfigTls13List =
@@ -14516,14 +14209,14 @@ export type ApiAtlasClusterAdvancedConfigurationViewMinimumEnabledTlsProtocol =
   | "TLS1_2"
   | "TLS1_3";
 export const ApiAtlasClusterAdvancedConfigurationViewMinimumEnabledTlsProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The TLS cipher suite configuration mode. The default mode uses the default cipher suites. The custom mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. */
 export type ApiAtlasClusterAdvancedConfigurationViewTlsCipherConfigMode =
   | "CUSTOM"
   | "DEFAULT";
 export const ApiAtlasClusterAdvancedConfigurationViewTlsCipherConfigMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Group of settings that configures a subset of the advanced configuration details. */
 export interface ApiAtlasClusterAdvancedConfigurationView {
@@ -14562,7 +14255,7 @@ export const ApiAtlasClusterAdvancedConfigurationView = /*@__PURE__*/ S.suspend(
 
 /** Data source node designated for the MongoDB Connector for Business Intelligence on MongoDB Cloud. The MongoDB Connector for Business Intelligence on MongoDB Cloud reads data from the primary, secondary, or analytics node based on your read preferences. Defaults to `ANALYTICS` node, or `SECONDARY` if there are no `ANALYTICS` nodes. */
 export type BiConnectorReadPreference = "PRIMARY" | "SECONDARY" | "ANALYTICS";
-export const BiConnectorReadPreference = /*@__PURE__*/ S.String;
+export const BiConnectorReadPreference = S.String;
 
 /** Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster. */
 export interface BiConnector {
@@ -14583,21 +14276,20 @@ export type CreateGroupClusterRequestClusterType =
   | "REPLICASET"
   | "SHARDED"
   | "GEOSHARDED";
-export const CreateGroupClusterRequestClusterType = /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestClusterType = S.String;
 
 /** Config Server Management Mode for creating or updating a sharded cluster. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. */
 export type CreateGroupClusterRequestConfigServerManagementMode =
   | "ATLAS_MANAGED"
   | "FIXED_TO_DEDICATED";
-export const CreateGroupClusterRequestConfigServerManagementMode =
-  /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestConfigServerManagementMode = S.String;
 
 /** Disk warming mode selection. */
 export type CreateGroupClusterRequestDiskWarmingMode =
   | "FULLY_WARMED"
   | "VISIBLE_EARLIER"
   | "ENHANCED_FULLY_WARMED";
-export const CreateGroupClusterRequestDiskWarmingMode = /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestDiskWarmingMode = S.String;
 
 /** Cloud service provider that manages your customer keys to provide an additional layer of encryption at rest for the cluster. To enable customer key management for encryption at rest, the cluster `replicationSpecs[n].regionConfigs[m].{type}Specs.instanceSize` setting must be `M10` or higher and `"backupEnabled" : false` or omitted entirely. */
 export type CreateGroupClusterRequestEncryptionAtRestProvider =
@@ -14605,8 +14297,7 @@ export type CreateGroupClusterRequestEncryptionAtRestProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const CreateGroupClusterRequestEncryptionAtRestProvider =
-  /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestEncryptionAtRestProvider = S.String;
 
 /** Human-readable labels applied to this MongoDB Cloud component. */
 export interface ComponentLabel {
@@ -14633,8 +14324,7 @@ export type CreateGroupClusterRequestReplicaSetScalingStrategy =
   | "SEQUENTIAL"
   | "WORKLOAD_TYPE"
   | "NODE_TYPE";
-export const CreateGroupClusterRequestReplicaSetScalingStrategy =
-  /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestReplicaSetScalingStrategy = S.String;
 
 /** Options that determine how this cluster handles CPU scaling. */
 export interface AdvancedComputeAutoScalingInput {
@@ -14684,15 +14374,14 @@ export type AWSRegionConfig20240805InputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AWSRegionConfig20240805InputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805InputBackingProviderName = S.String;
 
 /** Type of storage you want to attach to your AWS-provisioned cluster. - `STANDARD` volume types can't exceed the default input/output operations per second (IOPS) rate for the selected volume size. - `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size. - `HIGH_PERFORMANCE` volume types use IO2 EBS volumes and must fall within the allowable IOPS range for the selected volume size. NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type AWSHardwareSpec20240805InputEbsVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const AWSHardwareSpec20240805InputEbsVolumeType = /*@__PURE__*/ S.String;
+export const AWSHardwareSpec20240805InputEbsVolumeType = S.String;
 
 /** Hardware specification for the instance sizes in this region in this shard. Each instance size has a default storage and memory capacity. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards. */
 export type AWSHardwareSpec20240805InputInstanceSize =
@@ -14743,7 +14432,7 @@ export type AWSHardwareSpec20240805InputInstanceSize =
   | "M80_NVME_GEN_2"
   | "M200_NVME_GEN_2"
   | "M400_NVME_GEN_2";
-export const AWSHardwareSpec20240805InputInstanceSize = /*@__PURE__*/ S.String;
+export const AWSHardwareSpec20240805InputInstanceSize = S.String;
 
 /** Hardware specifications for nodes deployed in the region. */
 export interface AWSHardwareSpec20240805Input {
@@ -14794,7 +14483,7 @@ export type AzureHardwareSpec20240805InstanceSize =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const AzureHardwareSpec20240805InstanceSize = /*@__PURE__*/ S.String;
+export const AzureHardwareSpec20240805InstanceSize = S.String;
 
 export interface AzureHardwareSpec20240805 {
   /** Target throughput desired for storage attached to your Azure-provisioned cluster. Change this parameter if you: - set `replicationSpecs[n].regionConfigs[m].providerName` : `Azure`. - set `replicationSpecs[n].regionConfigs[m].electableSpecs.instanceSize` : `M40` or greater not including `Mxx_NVME` tiers. The maximum input/output operations per second (IOPS) depend on the selected `.instanceSize` and `.diskSizeGB`. This parameter defaults to the cluster tier's standard IOPS value. Changing this value impacts cluster cost. */
@@ -14853,7 +14542,7 @@ export type GCPHardwareSpec20240805InstanceSize =
   | "R200_GEN_2"
   | "R300_GEN_2"
   | "R400_GEN_2";
-export const GCPHardwareSpec20240805InstanceSize = /*@__PURE__*/ S.String;
+export const GCPHardwareSpec20240805InstanceSize = S.String;
 
 export interface GCPHardwareSpec20240805 {
   /** Storage capacity of instance data volumes expressed in gigabytes. Increase this number to add capacity. This value must be equal for all shards and node types. This value is not configurable on M0/M2/M5 clusters. MongoDB Cloud requires this parameter if you set `replicationSpecs`. If you specify a disk size below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. */
@@ -14875,8 +14564,7 @@ export const GCPHardwareSpec20240805 = /*@__PURE__*/ S.suspend(() =>
 
 /** Hardware specification for the instances in this M0/M2/M5 tier cluster. */
 export type TenantHardwareSpec20240805InputInstanceSize = "M0" | "M2" | "M5";
-export const TenantHardwareSpec20240805InputInstanceSize =
-  /*@__PURE__*/ S.String;
+export const TenantHardwareSpec20240805InputInstanceSize = S.String;
 
 export interface TenantHardwareSpec20240805Input {
   /** Storage capacity of instance data volumes expressed in gigabytes. Increase this number to add capacity. This value must be equal for all shards and node types. This value is not configurable on M0/M2/M5 clusters. MongoDB Cloud requires this parameter if you set `replicationSpecs`. If you specify a disk size below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. */
@@ -14900,7 +14588,7 @@ export type HardwareSpec20240805Input =
   | GCPHardwareSpec20240805
   | TenantHardwareSpec20240805Input;
 export const HardwareSpec20240805Input =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HardwareSpec20240805Input>;
+  S.Unknown as any as S.Schema<HardwareSpec20240805Input>;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type AWSRegionConfig20240805InputProviderName =
@@ -14908,7 +14596,7 @@ export type AWSRegionConfig20240805InputProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const AWSRegionConfig20240805InputProviderName = /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805InputProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type AWSRegionConfig20240805InputRegionNameCase0 =
@@ -14951,8 +14639,7 @@ export type AWSRegionConfig20240805InputRegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AWSRegionConfig20240805InputRegionNameCase0 =
-  /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805InputRegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type AWSRegionConfig20240805InputRegionNameCase1 =
@@ -15012,8 +14699,7 @@ export type AWSRegionConfig20240805InputRegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AWSRegionConfig20240805InputRegionNameCase1 =
-  /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805InputRegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type AWSRegionConfig20240805InputRegionNameCase2 =
@@ -15067,8 +14753,7 @@ export type AWSRegionConfig20240805InputRegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const AWSRegionConfig20240805InputRegionNameCase2 =
-  /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805InputRegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type AWSRegionConfig20240805InputRegionName =
@@ -15076,7 +14761,7 @@ export type AWSRegionConfig20240805InputRegionName =
   | AWSRegionConfig20240805InputRegionNameCase1
   | AWSRegionConfig20240805InputRegionNameCase2;
 export const AWSRegionConfig20240805InputRegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSRegionConfig20240805InputRegionName>;
+  S.Unknown as any as S.Schema<AWSRegionConfig20240805InputRegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface AWSRegionConfig20240805Input {
@@ -15115,8 +14800,7 @@ export type AzureRegionConfig20240805InputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AzureRegionConfig20240805InputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805InputBackingProviderName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type AzureRegionConfig20240805InputProviderName =
@@ -15124,8 +14808,7 @@ export type AzureRegionConfig20240805InputProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const AzureRegionConfig20240805InputProviderName =
-  /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805InputProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type AzureRegionConfig20240805InputRegionNameCase0 =
@@ -15168,8 +14851,7 @@ export type AzureRegionConfig20240805InputRegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AzureRegionConfig20240805InputRegionNameCase0 =
-  /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805InputRegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type AzureRegionConfig20240805InputRegionNameCase1 =
@@ -15229,8 +14911,7 @@ export type AzureRegionConfig20240805InputRegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AzureRegionConfig20240805InputRegionNameCase1 =
-  /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805InputRegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type AzureRegionConfig20240805InputRegionNameCase2 =
@@ -15284,8 +14965,7 @@ export type AzureRegionConfig20240805InputRegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const AzureRegionConfig20240805InputRegionNameCase2 =
-  /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805InputRegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type AzureRegionConfig20240805InputRegionName =
@@ -15293,7 +14973,7 @@ export type AzureRegionConfig20240805InputRegionName =
   | AzureRegionConfig20240805InputRegionNameCase1
   | AzureRegionConfig20240805InputRegionNameCase2;
 export const AzureRegionConfig20240805InputRegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AzureRegionConfig20240805InputRegionName>;
+  S.Unknown as any as S.Schema<AzureRegionConfig20240805InputRegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface AzureRegionConfig20240805Input {
@@ -15332,8 +15012,7 @@ export type GCPRegionConfig20240805InputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const GCPRegionConfig20240805InputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805InputBackingProviderName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type GCPRegionConfig20240805InputProviderName =
@@ -15341,7 +15020,7 @@ export type GCPRegionConfig20240805InputProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const GCPRegionConfig20240805InputProviderName = /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805InputProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type GCPRegionConfig20240805InputRegionNameCase0 =
@@ -15384,8 +15063,7 @@ export type GCPRegionConfig20240805InputRegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const GCPRegionConfig20240805InputRegionNameCase0 =
-  /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805InputRegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type GCPRegionConfig20240805InputRegionNameCase1 =
@@ -15445,8 +15123,7 @@ export type GCPRegionConfig20240805InputRegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const GCPRegionConfig20240805InputRegionNameCase1 =
-  /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805InputRegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type GCPRegionConfig20240805InputRegionNameCase2 =
@@ -15500,8 +15177,7 @@ export type GCPRegionConfig20240805InputRegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const GCPRegionConfig20240805InputRegionNameCase2 =
-  /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805InputRegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type GCPRegionConfig20240805InputRegionName =
@@ -15509,7 +15185,7 @@ export type GCPRegionConfig20240805InputRegionName =
   | GCPRegionConfig20240805InputRegionNameCase1
   | GCPRegionConfig20240805InputRegionNameCase2;
 export const GCPRegionConfig20240805InputRegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GCPRegionConfig20240805InputRegionName>;
+  S.Unknown as any as S.Schema<GCPRegionConfig20240805InputRegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface GCPRegionConfig20240805Input {
@@ -15548,8 +15224,7 @@ export type TenantRegionConfig20240805InputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const TenantRegionConfig20240805InputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805InputBackingProviderName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type TenantRegionConfig20240805InputProviderName =
@@ -15557,8 +15232,7 @@ export type TenantRegionConfig20240805InputProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const TenantRegionConfig20240805InputProviderName =
-  /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805InputProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type TenantRegionConfig20240805InputRegionNameCase0 =
@@ -15601,8 +15275,7 @@ export type TenantRegionConfig20240805InputRegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const TenantRegionConfig20240805InputRegionNameCase0 =
-  /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805InputRegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type TenantRegionConfig20240805InputRegionNameCase1 =
@@ -15662,8 +15335,7 @@ export type TenantRegionConfig20240805InputRegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const TenantRegionConfig20240805InputRegionNameCase1 =
-  /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805InputRegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type TenantRegionConfig20240805InputRegionNameCase2 =
@@ -15717,8 +15389,7 @@ export type TenantRegionConfig20240805InputRegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const TenantRegionConfig20240805InputRegionNameCase2 =
-  /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805InputRegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type TenantRegionConfig20240805InputRegionName =
@@ -15726,7 +15397,7 @@ export type TenantRegionConfig20240805InputRegionName =
   | TenantRegionConfig20240805InputRegionNameCase1
   | TenantRegionConfig20240805InputRegionNameCase2;
 export const TenantRegionConfig20240805InputRegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TenantRegionConfig20240805InputRegionName>;
+  S.Unknown as any as S.Schema<TenantRegionConfig20240805InputRegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface TenantRegionConfig20240805Input {
@@ -15767,7 +15438,7 @@ export type CloudRegionConfig20240805Input =
   | GCPRegionConfig20240805Input
   | TenantRegionConfig20240805Input;
 export const CloudRegionConfig20240805Input =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CloudRegionConfig20240805Input>;
+  S.Unknown as any as S.Schema<CloudRegionConfig20240805Input>;
 
 /** Hardware specifications for nodes set for a given region. Each `regionConfigs` object must be unique by region and cloud provider within the `replicationSpec`. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that MongoDB Cloud deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. Tenant clusters only require `electableSpecs`. Dedicated clusters can specify any of these specifications, but must have at least one `electableSpecs` object within a `replicationSpec`. **Example:** If you set `replicationSpecs[n].regionConfigs[m].analyticsSpecs.instanceSize` : `M30`, set `replicationSpecs[n].regionConfigs[m].electableSpecs.instanceSize` : `M30` if you have electable nodes and `replicationSpecs[n].regionConfigs[m].readOnlySpecs.instanceSize` : `M30` if you have read-only nodes. */
 export type ReplicationSpec20240805InputRegionConfigsList =
@@ -15803,7 +15474,7 @@ export const CreateGroupClusterRequestReplicationSpecsList =
 
 /** Root Certificate Authority that MongoDB Atlas cluster uses. MongoDB Cloud supports Internet Security Research Group. */
 export type CreateGroupClusterRequestRootCertType = "ISRGROOTX1";
-export const CreateGroupClusterRequestRootCertType = /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestRootCertType = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. */
 export type CreateGroupClusterRequestTagsList = Array<ResourceTag>;
@@ -15815,8 +15486,7 @@ export const CreateGroupClusterRequestTagsList = /*@__PURE__*/ S.Array(
 export type CreateGroupClusterRequestVersionReleaseSystem =
   | "LTS"
   | "CONTINUOUS";
-export const CreateGroupClusterRequestVersionReleaseSystem =
-  /*@__PURE__*/ S.String;
+export const CreateGroupClusterRequestVersionReleaseSystem = S.String;
 
 export interface CreateGroupClusterRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -15936,29 +15606,26 @@ export const CreateGroupClusterRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. ``ENABLED`` means the cluster explicitly opts in to adaptive capacity. ``DISABLED`` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. ``null`` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op. */
 export type ClusterDescription20240805AdaptiveCapacity = "ENABLED" | "DISABLED";
-export const ClusterDescription20240805AdaptiveCapacity =
-  /*@__PURE__*/ S.String;
+export const ClusterDescription20240805AdaptiveCapacity = S.String;
 
 /** Configuration of nodes that comprise the cluster. */
 export type ClusterDescription20240805ClusterType =
   | "REPLICASET"
   | "SHARDED"
   | "GEOSHARDED";
-export const ClusterDescription20240805ClusterType = /*@__PURE__*/ S.String;
+export const ClusterDescription20240805ClusterType = S.String;
 
 /** Config Server Management Mode for creating or updating a sharded cluster. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. */
 export type ClusterDescription20240805ConfigServerManagementMode =
   | "ATLAS_MANAGED"
   | "FIXED_TO_DEDICATED";
-export const ClusterDescription20240805ConfigServerManagementMode =
-  /*@__PURE__*/ S.String;
+export const ClusterDescription20240805ConfigServerManagementMode = S.String;
 
 /** Describes a sharded cluster's config server type. */
 export type ClusterDescription20240805ConfigServerType =
   | "DEDICATED"
   | "EMBEDDED";
-export const ClusterDescription20240805ConfigServerType =
-  /*@__PURE__*/ S.String;
+export const ClusterDescription20240805ConfigServerType = S.String;
 
 /** Private endpoint-aware connection strings that use AWS-hosted clusters with Amazon Web Services (AWS) PrivateLink. Each key identifies an Amazon Web Services (AWS) interface endpoint. Each value identifies the related `mongodb://` connection string that you use to connect to MongoDB Cloud through the interface endpoint that the key names. */
 export type ClusterConnectionStringsAwsPrivateLinkMap = {
@@ -15985,7 +15652,7 @@ export type ClusterDescriptionConnectionStringsPrivateEndpointEndpointProviderNa
   | "AZURE"
   | "GCP";
 export const ClusterDescriptionConnectionStringsPrivateEndpointEndpointProviderName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Details of a private endpoint deployed for this cluster. */
 export interface ClusterDescriptionConnectionStringsPrivateEndpointEndpoint {
@@ -16021,8 +15688,7 @@ export const ClusterDescriptionConnectionStringsPrivateEndpointEndpointsList =
 export type ClusterDescriptionConnectionStringsPrivateEndpointType =
   | "MONGOD"
   | "MONGOS";
-export const ClusterDescriptionConnectionStringsPrivateEndpointType =
-  /*@__PURE__*/ S.String;
+export const ClusterDescriptionConnectionStringsPrivateEndpointType = S.String;
 
 /** Private endpoint-aware connection string that you can use to connect to this cluster through a private endpoint. */
 export interface ClusterDescriptionConnectionStringsPrivateEndpoint {
@@ -16096,7 +15762,7 @@ export type ClusterDescription20240805DiskWarmingMode =
   | "FULLY_WARMED"
   | "VISIBLE_EARLIER"
   | "ENHANCED_FULLY_WARMED";
-export const ClusterDescription20240805DiskWarmingMode = /*@__PURE__*/ S.String;
+export const ClusterDescription20240805DiskWarmingMode = S.String;
 
 export type BaseCloudProviderInstanceSizeCase0 =
   | "M10"
@@ -16146,7 +15812,7 @@ export type BaseCloudProviderInstanceSizeCase0 =
   | "M80_NVME_GEN_2"
   | "M200_NVME_GEN_2"
   | "M400_NVME_GEN_2";
-export const BaseCloudProviderInstanceSizeCase0 = /*@__PURE__*/ S.String;
+export const BaseCloudProviderInstanceSizeCase0 = S.String;
 
 export type BaseCloudProviderInstanceSizeCase1 =
   | "M10"
@@ -16171,7 +15837,7 @@ export type BaseCloudProviderInstanceSizeCase1 =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const BaseCloudProviderInstanceSizeCase1 = /*@__PURE__*/ S.String;
+export const BaseCloudProviderInstanceSizeCase1 = S.String;
 
 export type BaseCloudProviderInstanceSizeCase2 =
   | "M10"
@@ -16208,7 +15874,7 @@ export type BaseCloudProviderInstanceSizeCase2 =
   | "R200_GEN_2"
   | "R300_GEN_2"
   | "R400_GEN_2";
-export const BaseCloudProviderInstanceSizeCase2 = /*@__PURE__*/ S.String;
+export const BaseCloudProviderInstanceSizeCase2 = S.String;
 
 /** Instance size boundary to which your cluster can automatically scale. */
 export type BaseCloudProviderInstanceSize =
@@ -16216,7 +15882,7 @@ export type BaseCloudProviderInstanceSize =
   | BaseCloudProviderInstanceSizeCase1
   | BaseCloudProviderInstanceSizeCase2;
 export const BaseCloudProviderInstanceSize =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BaseCloudProviderInstanceSize>;
+  S.Unknown as any as S.Schema<BaseCloudProviderInstanceSize>;
 
 /** Options that determine how this cluster handles CPU scaling. */
 export interface AdvancedComputeAutoScaling {
@@ -16257,7 +15923,7 @@ export type AWSHardwareSpec20240805EbsVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const AWSHardwareSpec20240805EbsVolumeType = /*@__PURE__*/ S.String;
+export const AWSHardwareSpec20240805EbsVolumeType = S.String;
 
 /** Hardware specification for the instance sizes in this region in this shard. Each instance size has a default storage and memory capacity. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards. */
 export type AWSHardwareSpec20240805InstanceSize =
@@ -16308,7 +15974,7 @@ export type AWSHardwareSpec20240805InstanceSize =
   | "M80_NVME_GEN_2"
   | "M200_NVME_GEN_2"
   | "M400_NVME_GEN_2";
-export const AWSHardwareSpec20240805InstanceSize = /*@__PURE__*/ S.String;
+export const AWSHardwareSpec20240805InstanceSize = S.String;
 
 /** Hardware specifications for nodes deployed in the region. */
 export interface AWSHardwareSpec20240805 {
@@ -16344,15 +16010,14 @@ export type DedicatedHardwareSpec20240805 =
   | AzureHardwareSpec20240805
   | GCPHardwareSpec20240805;
 export const DedicatedHardwareSpec20240805 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DedicatedHardwareSpec20240805>;
+  S.Unknown as any as S.Schema<DedicatedHardwareSpec20240805>;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant cluster. The resource returns this parameter when `providerName` is `TENANT` and `electableSpecs.instanceSize` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of `M2` or `M5` will create a Flex cluster instead. Support for the `instanceSize` of `M2` or `M5` will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type AWSRegionConfig20240805BackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AWSRegionConfig20240805BackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805BackingProviderName = S.String;
 
 /** The true tenant instance size. This is present to support backwards compatibility for deprecated provider types and/or instance sizes. */
 export type TenantHardwareSpec20240805EffectiveInstanceSize =
@@ -16360,12 +16025,11 @@ export type TenantHardwareSpec20240805EffectiveInstanceSize =
   | "M2"
   | "M5"
   | "M0";
-export const TenantHardwareSpec20240805EffectiveInstanceSize =
-  /*@__PURE__*/ S.String;
+export const TenantHardwareSpec20240805EffectiveInstanceSize = S.String;
 
 /** Hardware specification for the instances in this M0/M2/M5 tier cluster. */
 export type TenantHardwareSpec20240805InstanceSize = "M0" | "M2" | "M5";
-export const TenantHardwareSpec20240805InstanceSize = /*@__PURE__*/ S.String;
+export const TenantHardwareSpec20240805InstanceSize = S.String;
 
 export interface TenantHardwareSpec20240805 {
   /** Storage capacity of instance data volumes expressed in gigabytes. Increase this number to add capacity. This value must be equal for all shards and node types. This value is not configurable on M0/M2/M5 clusters. MongoDB Cloud requires this parameter if you set `replicationSpecs`. If you specify a disk size below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. */
@@ -16394,7 +16058,7 @@ export type HardwareSpec20240805 =
   | GCPHardwareSpec20240805
   | TenantHardwareSpec20240805;
 export const HardwareSpec20240805 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<HardwareSpec20240805>;
+  S.Unknown as any as S.Schema<HardwareSpec20240805>;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type AWSRegionConfig20240805ProviderName =
@@ -16402,7 +16066,7 @@ export type AWSRegionConfig20240805ProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const AWSRegionConfig20240805ProviderName = /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805ProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type AWSRegionConfig20240805RegionNameCase0 =
@@ -16445,7 +16109,7 @@ export type AWSRegionConfig20240805RegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AWSRegionConfig20240805RegionNameCase0 = /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805RegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type AWSRegionConfig20240805RegionNameCase1 =
@@ -16505,7 +16169,7 @@ export type AWSRegionConfig20240805RegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AWSRegionConfig20240805RegionNameCase1 = /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805RegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type AWSRegionConfig20240805RegionNameCase2 =
@@ -16559,7 +16223,7 @@ export type AWSRegionConfig20240805RegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const AWSRegionConfig20240805RegionNameCase2 = /*@__PURE__*/ S.String;
+export const AWSRegionConfig20240805RegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type AWSRegionConfig20240805RegionName =
@@ -16567,7 +16231,7 @@ export type AWSRegionConfig20240805RegionName =
   | AWSRegionConfig20240805RegionNameCase1
   | AWSRegionConfig20240805RegionNameCase2;
 export const AWSRegionConfig20240805RegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSRegionConfig20240805RegionName>;
+  S.Unknown as any as S.Schema<AWSRegionConfig20240805RegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface AWSRegionConfig20240805 {
@@ -16612,8 +16276,7 @@ export type AzureRegionConfig20240805BackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AzureRegionConfig20240805BackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805BackingProviderName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type AzureRegionConfig20240805ProviderName =
@@ -16621,7 +16284,7 @@ export type AzureRegionConfig20240805ProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const AzureRegionConfig20240805ProviderName = /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805ProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type AzureRegionConfig20240805RegionNameCase0 =
@@ -16664,7 +16327,7 @@ export type AzureRegionConfig20240805RegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AzureRegionConfig20240805RegionNameCase0 = /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805RegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type AzureRegionConfig20240805RegionNameCase1 =
@@ -16724,7 +16387,7 @@ export type AzureRegionConfig20240805RegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AzureRegionConfig20240805RegionNameCase1 = /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805RegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type AzureRegionConfig20240805RegionNameCase2 =
@@ -16778,7 +16441,7 @@ export type AzureRegionConfig20240805RegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const AzureRegionConfig20240805RegionNameCase2 = /*@__PURE__*/ S.String;
+export const AzureRegionConfig20240805RegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type AzureRegionConfig20240805RegionName =
@@ -16786,7 +16449,7 @@ export type AzureRegionConfig20240805RegionName =
   | AzureRegionConfig20240805RegionNameCase1
   | AzureRegionConfig20240805RegionNameCase2;
 export const AzureRegionConfig20240805RegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AzureRegionConfig20240805RegionName>;
+  S.Unknown as any as S.Schema<AzureRegionConfig20240805RegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface AzureRegionConfig20240805 {
@@ -16833,8 +16496,7 @@ export type GCPRegionConfig20240805BackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const GCPRegionConfig20240805BackingProviderName =
-  /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805BackingProviderName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type GCPRegionConfig20240805ProviderName =
@@ -16842,7 +16504,7 @@ export type GCPRegionConfig20240805ProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const GCPRegionConfig20240805ProviderName = /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805ProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type GCPRegionConfig20240805RegionNameCase0 =
@@ -16885,7 +16547,7 @@ export type GCPRegionConfig20240805RegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const GCPRegionConfig20240805RegionNameCase0 = /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805RegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type GCPRegionConfig20240805RegionNameCase1 =
@@ -16945,7 +16607,7 @@ export type GCPRegionConfig20240805RegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const GCPRegionConfig20240805RegionNameCase1 = /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805RegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type GCPRegionConfig20240805RegionNameCase2 =
@@ -16999,7 +16661,7 @@ export type GCPRegionConfig20240805RegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const GCPRegionConfig20240805RegionNameCase2 = /*@__PURE__*/ S.String;
+export const GCPRegionConfig20240805RegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type GCPRegionConfig20240805RegionName =
@@ -17007,7 +16669,7 @@ export type GCPRegionConfig20240805RegionName =
   | GCPRegionConfig20240805RegionNameCase1
   | GCPRegionConfig20240805RegionNameCase2;
 export const GCPRegionConfig20240805RegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GCPRegionConfig20240805RegionName>;
+  S.Unknown as any as S.Schema<GCPRegionConfig20240805RegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface GCPRegionConfig20240805 {
@@ -17052,8 +16714,7 @@ export type TenantRegionConfig20240805BackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const TenantRegionConfig20240805BackingProviderName =
-  /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805BackingProviderName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisions the hosts. Set dedicated clusters to `AWS`, `GCP`, `AZURE` or `TENANT`. */
 export type TenantRegionConfig20240805ProviderName =
@@ -17061,7 +16722,7 @@ export type TenantRegionConfig20240805ProviderName =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const TenantRegionConfig20240805ProviderName = /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805ProviderName = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type TenantRegionConfig20240805RegionNameCase0 =
@@ -17104,7 +16765,7 @@ export type TenantRegionConfig20240805RegionNameCase0 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const TenantRegionConfig20240805RegionNameCase0 = /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805RegionNameCase0 = S.String;
 
 /** Microsoft Azure Regions. */
 export type TenantRegionConfig20240805RegionNameCase1 =
@@ -17164,7 +16825,7 @@ export type TenantRegionConfig20240805RegionNameCase1 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const TenantRegionConfig20240805RegionNameCase1 = /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805RegionNameCase1 = S.String;
 
 /** Google Compute Regions. */
 export type TenantRegionConfig20240805RegionNameCase2 =
@@ -17218,7 +16879,7 @@ export type TenantRegionConfig20240805RegionNameCase2 =
   | "ASIA_SOUTH_1"
   | "ASIA_SOUTH_2"
   | "ASIA_SOUTHEAST_2";
-export const TenantRegionConfig20240805RegionNameCase2 = /*@__PURE__*/ S.String;
+export const TenantRegionConfig20240805RegionNameCase2 = S.String;
 
 /** Physical location of your MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. The region name is only returned in the response for single-region clusters. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. It assigns the VPC a Classless Inter-Domain Routing (CIDR) block. To limit a new VPC peering connection to one Classless Inter-Domain Routing (CIDR) block and region, create the connection first. Deploy the cluster after the connection starts. GCP Clusters and Multi-region clusters require one VPC peering connection for each region. MongoDB nodes can use only the peering connection that resides in the same region as the nodes to communicate with the peered VPC. */
 export type TenantRegionConfig20240805RegionName =
@@ -17226,7 +16887,7 @@ export type TenantRegionConfig20240805RegionName =
   | TenantRegionConfig20240805RegionNameCase1
   | TenantRegionConfig20240805RegionNameCase2;
 export const TenantRegionConfig20240805RegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TenantRegionConfig20240805RegionName>;
+  S.Unknown as any as S.Schema<TenantRegionConfig20240805RegionName>;
 
 /** Details that explain how MongoDB Cloud replicates data in one region on the specified MongoDB database. */
 export interface TenantRegionConfig20240805 {
@@ -17275,7 +16936,7 @@ export type CloudRegionConfig20240805 =
   | GCPRegionConfig20240805
   | TenantRegionConfig20240805;
 export const CloudRegionConfig20240805 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CloudRegionConfig20240805>;
+  S.Unknown as any as S.Schema<CloudRegionConfig20240805>;
 
 /** Hardware specifications for nodes set for a given region. Each `regionConfigs` object must be unique by region and cloud provider within the `replicationSpec`. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that MongoDB Cloud deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. Tenant clusters only require `electableSpecs`. Dedicated clusters can specify any of these specifications, but must have at least one `electableSpecs` object within a `replicationSpec`. **Example:** If you set `replicationSpecs[n].regionConfigs[m].analyticsSpecs.instanceSize` : `M30`, set `replicationSpecs[n].regionConfigs[m].electableSpecs.instanceSize` : `M30` if you have electable nodes and `replicationSpecs[n].regionConfigs[m].readOnlySpecs.instanceSize` : `M30` if you have read-only nodes. */
 export type ReplicationSpec20240805RegionConfigsList =
@@ -17320,16 +16981,14 @@ export type ClusterDescription20240805EncryptionAtRestProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const ClusterDescription20240805EncryptionAtRestProvider =
-  /*@__PURE__*/ S.String;
+export const ClusterDescription20240805EncryptionAtRestProvider = S.String;
 
 /** Internal classification of the cluster's role. Possible values: `NONE` (regular user cluster), `SYSTEM_CLUSTER` (system cluster for backup), `INTERNAL_SHADOW_CLUSTER` (internal use shadow cluster for testing). */
 export type ClusterDescription20240805InternalClusterRole =
   | "NONE"
   | "SYSTEM_CLUSTER"
   | "INTERNAL_SHADOW_CLUSTER";
-export const ClusterDescription20240805InternalClusterRole =
-  /*@__PURE__*/ S.String;
+export const ClusterDescription20240805InternalClusterRole = S.String;
 
 /** Collection of key-value pairs between 1 to 255 characters in length that tag and categorize the cluster. The MongoDB Cloud console doesn't display your labels. Cluster labels are deprecated and will be removed in a future release. We strongly recommend that you use Resource Tags instead. */
 export type ClusterDescription20240805LabelsList = Array<ComponentLabel>;
@@ -17348,7 +17007,7 @@ export type EmployeeAccessGrantViewGrantType =
   | "CLUSTER_DATABASE_LOGS"
   | "CLUSTER_INFRASTRUCTURE"
   | "CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA";
-export const EmployeeAccessGrantViewGrantType = /*@__PURE__*/ S.String;
+export const EmployeeAccessGrantViewGrantType = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type EmployeeAccessGrantViewLinksList = Array<Link>;
@@ -17380,8 +17039,7 @@ export type ClusterDescription20240805ReplicaSetScalingStrategy =
   | "SEQUENTIAL"
   | "WORKLOAD_TYPE"
   | "NODE_TYPE";
-export const ClusterDescription20240805ReplicaSetScalingStrategy =
-  /*@__PURE__*/ S.String;
+export const ClusterDescription20240805ReplicaSetScalingStrategy = S.String;
 
 /** List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. */
 export type ClusterDescription20240805ReplicationSpecsList =
@@ -17393,7 +17051,7 @@ export const ClusterDescription20240805ReplicationSpecsList =
 
 /** Root Certificate Authority that MongoDB Atlas cluster uses. MongoDB Cloud supports Internet Security Research Group. */
 export type ClusterDescription20240805RootCertType = "ISRGROOTX1";
-export const ClusterDescription20240805RootCertType = /*@__PURE__*/ S.String;
+export const ClusterDescription20240805RootCertType = S.String;
 
 /** Human-readable label that indicates any current activity being taken on this cluster by the Atlas control plane. With the exception of CREATING and DELETING states, clusters should always be available and have a Primary node even when in states indicating ongoing activity. - `IDLE`: Atlas is making no changes to this cluster and all changes requested via the UI or API can be assumed to have been applied. - `CREATING`: A cluster being provisioned for the very first time returns state CREATING until it is ready for connections. Ensure IP Access List and DB Users are configured before attempting to connect. - `UPDATING`: A change requested via the UI, API, AutoScaling, or other scheduled activity is taking place. - `DELETING`: The cluster is in the process of deletion and will soon be deleted. - `REPAIRING`: One or more nodes in the cluster are being returned to service by the Atlas control plane. Other nodes should continue to provide service as normal. */
 export type ClusterDescription20240805StateName =
@@ -17402,7 +17060,7 @@ export type ClusterDescription20240805StateName =
   | "UPDATING"
   | "DELETING"
   | "REPAIRING";
-export const ClusterDescription20240805StateName = /*@__PURE__*/ S.String;
+export const ClusterDescription20240805StateName = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. */
 export type ClusterDescription20240805TagsList = Array<ResourceTag>;
@@ -17414,8 +17072,7 @@ export const ClusterDescription20240805TagsList = /*@__PURE__*/ S.Array(
 export type ClusterDescription20240805VersionReleaseSystem =
   | "LTS"
   | "CONTINUOUS";
-export const ClusterDescription20240805VersionReleaseSystem =
-  /*@__PURE__*/ S.String;
+export const ClusterDescription20240805VersionReleaseSystem = S.String;
 
 /** Configuration of a MongoDB Atlas cluster, including its replication topology, instance sizing, storage, and operational settings. */
 export interface ClusterDescription20240805 {
@@ -17663,7 +17320,7 @@ export type DiskBackupExportJobState =
   | "InProgress"
   | "Queued"
   | "Successful";
-export const DiskBackupExportJobState = /*@__PURE__*/ S.String;
+export const DiskBackupExportJobState = S.String;
 
 /** State reason of the Job. This is set when the job state is "Failed". */
 export interface StateReason {
@@ -17727,8 +17384,7 @@ export type CreateGroupClusterBackupRestoreJobRequestDeliveryType =
   | "automated"
   | "download"
   | "pointInTime";
-export const CreateGroupClusterBackupRestoreJobRequestDeliveryType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupClusterBackupRestoreJobRequestDeliveryType = S.String;
 
 export interface CreateGroupClusterBackupRestoreJobRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -17838,7 +17494,7 @@ export type DiskBackupSnapshotRestoreJobDeliveryType =
   | "automated"
   | "download"
   | "pointInTime";
-export const DiskBackupSnapshotRestoreJobDeliveryType = /*@__PURE__*/ S.String;
+export const DiskBackupSnapshotRestoreJobDeliveryType = S.String;
 
 /** One or more Uniform Resource Locators (URLs) that point to the compressed snapshot files for manual download. MongoDB Cloud returns this parameter when `"deliveryType" : "download"`. */
 export type DiskBackupSnapshotRestoreJobDeliveryUrlList = Array<string>;
@@ -17982,14 +17638,14 @@ export type CreateGroupClusterCollectionRestoreJobRequestIndexStrategy =
   | "NONE"
   | "ALL_EXCEPT_TTL";
 export const CreateGroupClusterCollectionRestoreJobRequestIndexStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore. */
 export type CreateGroupClusterCollectionRestoreJobRequestWriteStrategy =
   | "CREATE_NEW"
   | "OVERWRITE_EXISTING";
 export const CreateGroupClusterCollectionRestoreJobRequestWriteStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateGroupClusterCollectionRestoreJobRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -18087,8 +17743,7 @@ export type ApiAtlasCollectionRestoreJobIndexStatusState =
   | "SUCCESSFUL"
   | "FAILED"
   | "NOT_RESTORED";
-export const ApiAtlasCollectionRestoreJobIndexStatusState =
-  /*@__PURE__*/ S.String;
+export const ApiAtlasCollectionRestoreJobIndexStatusState = S.String;
 
 /** Overall index build status for a collection restore job. */
 export interface ApiAtlasCollectionRestoreJobIndexStatus {
@@ -18112,8 +17767,7 @@ export type ApiAtlasCollectionRestoreJobResponseIndexStrategy =
   | "ALL"
   | "NONE"
   | "ALL_EXCEPT_TTL";
-export const ApiAtlasCollectionRestoreJobResponseIndexStrategy =
-  /*@__PURE__*/ S.String;
+export const ApiAtlasCollectionRestoreJobResponseIndexStrategy = S.String;
 
 /** Current state of the collection restore job. */
 export type ApiAtlasCollectionRestoreJobResponseState =
@@ -18123,14 +17777,13 @@ export type ApiAtlasCollectionRestoreJobResponseState =
   | "SUCCESSFUL"
   | "CANCELED"
   | "FAILED";
-export const ApiAtlasCollectionRestoreJobResponseState = /*@__PURE__*/ S.String;
+export const ApiAtlasCollectionRestoreJobResponseState = S.String;
 
 /** Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore. */
 export type ApiAtlasCollectionRestoreJobResponseWriteStrategy =
   | "CREATE_NEW"
   | "OVERWRITE_EXISTING";
-export const ApiAtlasCollectionRestoreJobResponseWriteStrategy =
-  /*@__PURE__*/ S.String;
+export const ApiAtlasCollectionRestoreJobResponseWriteStrategy = S.String;
 
 /** Collection restore job summary including the list of databases and collections in the restore scope (up to 100 items each). */
 export interface ApiAtlasCollectionRestoreJobResponse {
@@ -18378,11 +18031,11 @@ export const CreateGroupClusterGlobalWriteManagedNamespaceRequest =
 
 /** Method to handle whitespace and punctuation as base characters for purposes of comparison. `"non-ignorable"` will evaluate Whitespace and Punctuation as Base Characters. `"shifted"` will not, MongoDB Cloud distinguishes these characters when `"strength" > 3`. */
 export type CollationAlternate = "non-ignorable" | "shifted";
-export const CollationAlternate = /*@__PURE__*/ S.String;
+export const CollationAlternate = S.String;
 
 /** Method to handle sort order of case differences during tertiary level comparisons. `"upper"` sorts Uppercase before lowercase. `"lower"` sorts Lowercase before uppercase. `"off"` is similar to "lower" with slight differences. */
 export type CollationCaseFirst = "lower" | "off" | "upper";
-export const CollationCaseFirst = /*@__PURE__*/ S.String;
+export const CollationCaseFirst = S.String;
 
 /** International Components for Unicode (ICU) code that represents a localized language. To specify simple binary comparison, set `"locale" : "simple"`. */
 export type CollationLocale =
@@ -18496,11 +18149,11 @@ export type CollationLocale =
   | "yo"
   | "zu"
   | "simple";
-export const CollationLocale = /*@__PURE__*/ S.String;
+export const CollationLocale = S.String;
 
 /** Field that indicates which characters can be ignored when `"alternate" : "shifted"`.`"punct"` ignores both whitespace and punctuation. `"space"` ignores whitespace. This has no affect if `"alternate" : "non-ignorable"`. */
 export type CollationMaxVariable = "punct" | "space";
-export const CollationMaxVariable = /*@__PURE__*/ S.String;
+export const CollationMaxVariable = S.String;
 
 /** One or more settings that specify language-specific rules to compare strings within this index. */
 export interface Collation {
@@ -18702,12 +18355,11 @@ export const CreateGroupClusterIndexRollingIndexResponse =
 export type CreateGroupClusterOnlineArchiveRequestCollectionType =
   | "TIMESERIES"
   | "STANDARD";
-export const CreateGroupClusterOnlineArchiveRequestCollectionType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupClusterOnlineArchiveRequestCollectionType = S.String;
 
 /** Means by which MongoDB Cloud selects data to archive. Data can be chosen using the age of the data or a MongoDB query. `DATE` selects documents to archive based on a date. `CUSTOM` selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support `CUSTOM` when `"collectionType": "TIMESERIES"`. */
 export type CriteriaViewType = "DATE" | "CUSTOM";
-export const CriteriaViewType = /*@__PURE__*/ S.String;
+export const CriteriaViewType = S.String;
 
 /** Rules by which MongoDB Cloud archives data. Use the `criteria.type` field to choose how MongoDB Cloud selects data to archive. Choose data using the age of the data or a MongoDB query. `"criteria.type": "DATE"` selects documents to archive based on a date. `"criteria.type": "CUSTOM"` selects documents to archive based on a custom JSON query. MongoDB Cloud doesn't support `"criteria.type": "CUSTOM"` when `"collectionType": "TIMESERIES"`. */
 export interface CriteriaView {
@@ -18735,7 +18387,7 @@ export const DataExpirationRuleView = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` or `GCP` may be selected only if it is the Cloud service provider for the cluster and no archives for any other cloud provider have been created for the cluster. */
 export type CreateDataProcessRegionViewCloudProvider = "AWS" | "AZURE" | "GCP";
-export const CreateDataProcessRegionViewCloudProvider = /*@__PURE__*/ S.String;
+export const CreateDataProcessRegionViewCloudProvider = S.String;
 
 /** Settings to configure the region where you wish to store your archived data. */
 export interface CreateDataProcessRegionView {
@@ -18776,7 +18428,7 @@ export const CreateGroupClusterOnlineArchiveRequestPartitionFieldsList =
 
 /** Type of schedule. */
 export type DailyScheduleViewType = "DEFAULT" | "DAILY" | "WEEKLY" | "MONTHLY";
-export const DailyScheduleViewType = /*@__PURE__*/ S.String;
+export const DailyScheduleViewType = S.String;
 
 export interface DailyScheduleView {
   /** Hour of the day when the scheduled window to run one online archive ends. This field uses the UTC time zone. The window must have a duration of at least two hours. If the end time is before or equal to the start time, the window extends to the next day. */
@@ -18810,7 +18462,7 @@ export const DailyScheduleView = /*@__PURE__*/ S.suspend(() =>
 
 /** Type of schedule. */
 export type WeeklyScheduleViewType = "DEFAULT" | "DAILY" | "WEEKLY" | "MONTHLY";
-export const WeeklyScheduleViewType = /*@__PURE__*/ S.String;
+export const WeeklyScheduleViewType = S.String;
 
 export interface WeeklyScheduleView {
   /** Hour of the day when the scheduled window to run one online archive ends. This field uses the UTC time zone. The window must have a duration of at least two hours. If the end time is before or equal to the start time, the window extends to the next day. */
@@ -18848,7 +18500,7 @@ export type MonthlyScheduleViewType =
   | "DAILY"
   | "WEEKLY"
   | "MONTHLY";
-export const MonthlyScheduleViewType = /*@__PURE__*/ S.String;
+export const MonthlyScheduleViewType = S.String;
 
 export interface MonthlyScheduleView {
   /** Hour of the day when the scheduled window to run one online archive ends. This field uses the UTC time zone. The window must have a duration of at least two hours. If the end time is before or equal to the start time, the window extends to the next day. */
@@ -18886,7 +18538,7 @@ export type OnlineArchiveSchedule =
   | WeeklyScheduleView
   | MonthlyScheduleView;
 export const OnlineArchiveSchedule =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<OnlineArchiveSchedule>;
+  S.Unknown as any as S.Schema<OnlineArchiveSchedule>;
 
 export interface CreateGroupClusterOnlineArchiveRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -18948,11 +18600,11 @@ export const CreateGroupClusterOnlineArchiveRequest = /*@__PURE__*/ S.suspend(
 
 /** Classification of MongoDB database collection that you want to return. If you set this parameter to `TIMESERIES`, set `"criteria.type" : "date"` and `"criteria.dateFormat" : "ISODATE"`. */
 export type BackupOnlineArchiveCollectionType = "TIMESERIES" | "STANDARD";
-export const BackupOnlineArchiveCollectionType = /*@__PURE__*/ S.String;
+export const BackupOnlineArchiveCollectionType = S.String;
 
 /** Human-readable label that identifies the Cloud service provider where you store your archived data. */
 export type DataProcessRegionViewCloudProvider = "AWS" | "AZURE" | "GCP";
-export const DataProcessRegionViewCloudProvider = /*@__PURE__*/ S.String;
+export const DataProcessRegionViewCloudProvider = S.String;
 
 /** Settings to configure the region where you wish to store your archived data. */
 export interface DataProcessRegionView {
@@ -18975,7 +18627,7 @@ export type PartitionFieldViewFieldType =
   | "objectId"
   | "string"
   | "uuid";
-export const PartitionFieldViewFieldType = /*@__PURE__*/ S.String;
+export const PartitionFieldViewFieldType = S.String;
 
 /** Metadata to partition this online archive. */
 export interface PartitionFieldView {
@@ -19010,7 +18662,7 @@ export type BackupOnlineArchiveState =
   | "PAUSED"
   | "DELETED"
   | "ORPHANED";
-export const BackupOnlineArchiveState = /*@__PURE__*/ S.String;
+export const BackupOnlineArchiveState = S.String;
 
 export interface BackupOnlineArchive {
   /** Unique 24-hexadecimal digit string that identifies the online archive. */
@@ -19131,8 +18783,7 @@ export type ApiSearchDeploymentRequestSpecViewCloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const ApiSearchDeploymentRequestSpecViewCloudProvider =
-  /*@__PURE__*/ S.String;
+export const ApiSearchDeploymentRequestSpecViewCloudProvider = S.String;
 
 /** Hardware specification for the Search Node instance sizes. */
 export type ApiSearchDeploymentRequestSpecViewInstanceSize =
@@ -19162,8 +18813,7 @@ export type ApiSearchDeploymentRequestSpecViewInstanceSize =
   | "S60_STORAGE_NVME"
   | "S80_STORAGE_NVME"
   | "S90_STORAGE_NVME";
-export const ApiSearchDeploymentRequestSpecViewInstanceSize =
-  /*@__PURE__*/ S.String;
+export const ApiSearchDeploymentRequestSpecViewInstanceSize = S.String;
 
 export interface ApiSearchDeploymentRequestSpecView {
   /** Cloud service provider that hosts the Search Nodes in this region. Required when a region is specified. */
@@ -19239,8 +18889,7 @@ export type ApiSearchDeploymentEffectiveSpecViewCloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const ApiSearchDeploymentEffectiveSpecViewCloudProvider =
-  /*@__PURE__*/ S.String;
+export const ApiSearchDeploymentEffectiveSpecViewCloudProvider = S.String;
 
 /** Hardware specification for the Search Node instance sizes. */
 export type ApiSearchDeploymentEffectiveSpecViewInstanceSize =
@@ -19270,8 +18919,7 @@ export type ApiSearchDeploymentEffectiveSpecViewInstanceSize =
   | "S60_STORAGE_NVME"
   | "S80_STORAGE_NVME"
   | "S90_STORAGE_NVME";
-export const ApiSearchDeploymentEffectiveSpecViewInstanceSize =
-  /*@__PURE__*/ S.String;
+export const ApiSearchDeploymentEffectiveSpecViewInstanceSize = S.String;
 
 export interface ApiSearchDeploymentEffectiveSpecView {
   /** Cloud service provider on which Search Nodes are provisioned. */
@@ -19313,8 +18961,7 @@ export type ApiSearchDeploymentResponseViewEncryptionAtRestProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const ApiSearchDeploymentResponseViewEncryptionAtRestProvider =
-  /*@__PURE__*/ S.String;
+export const ApiSearchDeploymentResponseViewEncryptionAtRestProvider = S.String;
 
 /** Hardware specification for the Search Node instance sizes. */
 export type ApiSearchDeploymentSpecViewInstanceSize =
@@ -19344,7 +18991,7 @@ export type ApiSearchDeploymentSpecViewInstanceSize =
   | "S60_STORAGE_NVME"
   | "S80_STORAGE_NVME"
   | "S90_STORAGE_NVME";
-export const ApiSearchDeploymentSpecViewInstanceSize = /*@__PURE__*/ S.String;
+export const ApiSearchDeploymentSpecViewInstanceSize = S.String;
 
 /** Hardware specification for the Search Nodes that back a search deployment. */
 export interface ApiSearchDeploymentSpecView {
@@ -19374,7 +19021,7 @@ export type ApiSearchDeploymentResponseViewStateName =
   | "IDLE"
   | "PAUSED"
   | "UPDATING";
-export const ApiSearchDeploymentResponseViewStateName = /*@__PURE__*/ S.String;
+export const ApiSearchDeploymentResponseViewStateName = S.String;
 
 export interface ApiSearchDeploymentResponseView {
   /** List of settings that configure the Search Nodes for your cluster, with per-region detail including the region name and cloud provider. */
@@ -19411,7 +19058,7 @@ export const ApiSearchDeploymentResponseView = /*@__PURE__*/ S.suspend(() =>
 export type CreateGroupClusterSearchIndexRequestType =
   | "search"
   | "vectorSearch";
-export const CreateGroupClusterSearchIndexRequestType = /*@__PURE__*/ S.String;
+export const CreateGroupClusterSearchIndexRequestType = S.String;
 
 export interface CreateGroupClusterSearchIndexRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -19495,7 +19142,7 @@ export type SearchIndexResponseStatus =
   | "BUILDING"
   | "READY"
   | "DOES_NOT_EXIST";
-export const SearchIndexResponseStatus = /*@__PURE__*/ S.String;
+export const SearchIndexResponseStatus = S.String;
 
 /** Condition of the search index when you made this request. - `DELETING`: The index is being deleted. - `FAILED` The index build failed. Indexes can enter the FAILED state due to an invalid index definition. - `STALE`: The index is queryable but has stopped replicating data from the indexed collection. Searches on the index may return out-of-date data. - `PENDING`: Atlas has not yet started building the index. - `BUILDING`: Atlas is building or re-building the index after an edit. - `READY`: The index is ready and can support queries. */
 export type SearchMainIndexStatusDetailStatus =
@@ -19506,7 +19153,7 @@ export type SearchMainIndexStatusDetailStatus =
   | "BUILDING"
   | "READY"
   | "DOES_NOT_EXIST";
-export const SearchMainIndexStatusDetailStatus = /*@__PURE__*/ S.String;
+export const SearchMainIndexStatusDetailStatus = S.String;
 
 /** Contains status information about the active index. */
 export interface SearchMainIndexStatusDetail {
@@ -19540,7 +19187,7 @@ export type SearchStagedIndexStatusDetailStatus =
   | "BUILDING"
   | "READY"
   | "DOES_NOT_EXIST";
-export const SearchStagedIndexStatusDetailStatus = /*@__PURE__*/ S.String;
+export const SearchStagedIndexStatusDetailStatus = S.String;
 
 /** Contains status information about an index building in the background. */
 export interface SearchStagedIndexStatusDetail {
@@ -19574,7 +19221,7 @@ export type SearchHostStatusDetailStatus =
   | "BUILDING"
   | "READY"
   | "DOES_NOT_EXIST";
-export const SearchHostStatusDetailStatus = /*@__PURE__*/ S.String;
+export const SearchHostStatusDetailStatus = S.String;
 
 export interface SearchHostStatusDetail {
   /** Hostname that corresponds to the status detail. */
@@ -19606,7 +19253,7 @@ export const SearchIndexResponseStatusDetailList = /*@__PURE__*/ S.Array(
 
 /** Type of the index. The default type is search. */
 export type SearchIndexResponseType = "search" | "vectorSearch";
-export const SearchIndexResponseType = /*@__PURE__*/ S.String;
+export const SearchIndexResponseType = S.String;
 
 export interface SearchIndexResponse {
   /** Label that identifies the collection that contains one or more Atlas Search indexes. */
@@ -19652,7 +19299,7 @@ export type CreateGroupContainerRequestProviderName =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const CreateGroupContainerRequestProviderName = /*@__PURE__*/ S.String;
+export const CreateGroupContainerRequestProviderName = S.String;
 
 export interface CreateGroupContainerRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -19722,7 +19369,7 @@ export type AzureCloudProviderContainerRegionsItem =
   | "US_SOUTH_1"
   | "WESTERN_EUROPE"
   | "WESTERN_US";
-export const AzureCloudProviderContainerRegionsItem = /*@__PURE__*/ S.String;
+export const AzureCloudProviderContainerRegionsItem = S.String;
 
 /** List of GCP regions to which you want to deploy this MongoDB Cloud network peering container. In this MongoDB Cloud project, you can deploy clusters only to the GCP regions in this list. To deploy MongoDB Cloud clusters to other GCP regions, create additional projects. */
 export type AzureCloudProviderContainerRegionsList =
@@ -19772,7 +19419,7 @@ export type AzureCloudProviderContainerRegionName =
   | "GLOBAL"
   | "US_GOV_WEST_1"
   | "US_GOV_EAST_1";
-export const AzureCloudProviderContainerRegionName = /*@__PURE__*/ S.String;
+export const AzureCloudProviderContainerRegionName = S.String;
 
 /** Cloud service provider that serves the requested network peering containers. */
 export type AzureCloudProviderContainerProviderName =
@@ -19781,7 +19428,7 @@ export type AzureCloudProviderContainerProviderName =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const AzureCloudProviderContainerProviderName = /*@__PURE__*/ S.String;
+export const AzureCloudProviderContainerProviderName = S.String;
 
 /** Azure region to which MongoDB Cloud deployed this network peering container. */
 export type AzureCloudProviderContainerRegion =
@@ -19845,7 +19492,7 @@ export type AzureCloudProviderContainerRegion =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AzureCloudProviderContainerRegion = /*@__PURE__*/ S.String;
+export const AzureCloudProviderContainerRegion = S.String;
 
 /** Collection of settings that configures the network container for a virtual private connection on Amazon Web Services. */
 export interface AzureCloudProviderContainer {
@@ -19933,7 +19580,7 @@ export type GCPCloudProviderContainerRegionsItem =
   | "US_SOUTH_1"
   | "WESTERN_EUROPE"
   | "WESTERN_US";
-export const GCPCloudProviderContainerRegionsItem = /*@__PURE__*/ S.String;
+export const GCPCloudProviderContainerRegionsItem = S.String;
 
 /** List of GCP regions to which you want to deploy this MongoDB Cloud network peering container. In this MongoDB Cloud project, you can deploy clusters only to the GCP regions in this list. To deploy MongoDB Cloud clusters to other GCP regions, create additional projects. */
 export type GCPCloudProviderContainerRegionsList =
@@ -19983,7 +19630,7 @@ export type GCPCloudProviderContainerRegionName =
   | "GLOBAL"
   | "US_GOV_WEST_1"
   | "US_GOV_EAST_1";
-export const GCPCloudProviderContainerRegionName = /*@__PURE__*/ S.String;
+export const GCPCloudProviderContainerRegionName = S.String;
 
 /** Cloud service provider that serves the requested network peering containers. */
 export type GCPCloudProviderContainerProviderName =
@@ -19992,7 +19639,7 @@ export type GCPCloudProviderContainerProviderName =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const GCPCloudProviderContainerProviderName = /*@__PURE__*/ S.String;
+export const GCPCloudProviderContainerProviderName = S.String;
 
 /** Azure region to which MongoDB Cloud deployed this network peering container. */
 export type GCPCloudProviderContainerRegion =
@@ -20056,7 +19703,7 @@ export type GCPCloudProviderContainerRegion =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const GCPCloudProviderContainerRegion = /*@__PURE__*/ S.String;
+export const GCPCloudProviderContainerRegion = S.String;
 
 /** Collection of settings that configures the network container for a virtual private connection on Amazon Web Services. */
 export interface GCPCloudProviderContainer {
@@ -20144,7 +19791,7 @@ export type AWSCloudProviderContainerRegionsItem =
   | "US_SOUTH_1"
   | "WESTERN_EUROPE"
   | "WESTERN_US";
-export const AWSCloudProviderContainerRegionsItem = /*@__PURE__*/ S.String;
+export const AWSCloudProviderContainerRegionsItem = S.String;
 
 /** List of GCP regions to which you want to deploy this MongoDB Cloud network peering container. In this MongoDB Cloud project, you can deploy clusters only to the GCP regions in this list. To deploy MongoDB Cloud clusters to other GCP regions, create additional projects. */
 export type AWSCloudProviderContainerRegionsList =
@@ -20194,7 +19841,7 @@ export type AWSCloudProviderContainerRegionName =
   | "GLOBAL"
   | "US_GOV_WEST_1"
   | "US_GOV_EAST_1";
-export const AWSCloudProviderContainerRegionName = /*@__PURE__*/ S.String;
+export const AWSCloudProviderContainerRegionName = S.String;
 
 /** Cloud service provider that serves the requested network peering containers. */
 export type AWSCloudProviderContainerProviderName =
@@ -20203,7 +19850,7 @@ export type AWSCloudProviderContainerProviderName =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const AWSCloudProviderContainerProviderName = /*@__PURE__*/ S.String;
+export const AWSCloudProviderContainerProviderName = S.String;
 
 /** Azure region to which MongoDB Cloud deployed this network peering container. */
 export type AWSCloudProviderContainerRegion =
@@ -20267,7 +19914,7 @@ export type AWSCloudProviderContainerRegion =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AWSCloudProviderContainerRegion = /*@__PURE__*/ S.String;
+export const AWSCloudProviderContainerRegion = S.String;
 
 /** Collection of settings that configures the network container for a virtual private connection on Amazon Web Services. */
 export interface AWSCloudProviderContainer {
@@ -20321,7 +19968,7 @@ export type CloudProviderContainer =
   | GCPCloudProviderContainer
   | AWSCloudProviderContainer;
 export const CloudProviderContainer =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CloudProviderContainer>;
+  S.Unknown as any as S.Schema<CloudProviderContainer>;
 
 /** Human-readable label that identifies the privilege action. */
 export type DatabasePrivilegeActionAction =
@@ -20405,7 +20052,7 @@ export type DatabasePrivilegeActionAction =
   | "DROP_SEARCH_INDEX"
   | "LIST_SEARCH_INDEXES"
   | "UPDATE_SEARCH_INDEX";
-export const DatabasePrivilegeActionAction = /*@__PURE__*/ S.String;
+export const DatabasePrivilegeActionAction = S.String;
 
 /** Namespace to which this database user has access. */
 export interface DatabasePermittedNamespaceResource {
@@ -20526,12 +20173,11 @@ export const CreateGroupCustomDbRoleRoleResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that indicates whether the new database user authenticates with the Amazon Web Services (AWS) Identity and Access Management (IAM) credentials associated with the user or the user's role. */
 export type CreateGroupDatabaseUserRequestAwsIAMType = "NONE" | "USER" | "ROLE";
-export const CreateGroupDatabaseUserRequestAwsIAMType = /*@__PURE__*/ S.String;
+export const CreateGroupDatabaseUserRequestAwsIAMType = S.String;
 
 /** The database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, LDAP, or OIDC Workload this value should be `$external`. If the user authenticates with SCRAM-SHA or OIDC Workforce, this value should be `admin`. */
 export type CreateGroupDatabaseUserRequestDatabaseName = "admin" | "$external";
-export const CreateGroupDatabaseUserRequestDatabaseName =
-  /*@__PURE__*/ S.String;
+export const CreateGroupDatabaseUserRequestDatabaseName = S.String;
 
 /** List that contains the key-value pairs for tagging and categorizing the MongoDB database user. The labels that you define do not appear in the console. */
 export type CreateGroupDatabaseUserRequestLabelsList = Array<ComponentLabel>;
@@ -20544,16 +20190,14 @@ export type CreateGroupDatabaseUserRequestLdapAuthType =
   | "NONE"
   | "GROUP"
   | "USER";
-export const CreateGroupDatabaseUserRequestLdapAuthType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupDatabaseUserRequestLdapAuthType = S.String;
 
 /** Human-readable label that indicates whether the new database user or group authenticates with OIDC federated authentication. To create a federated authentication user, specify the value of USER in this field. To create a federated authentication group, specify the value of `IDP_GROUP` in this field. */
 export type CreateGroupDatabaseUserRequestOidcAuthType =
   | "NONE"
   | "IDP_GROUP"
   | "USER";
-export const CreateGroupDatabaseUserRequestOidcAuthType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupDatabaseUserRequestOidcAuthType = S.String;
 
 /** Human-readable label that identifies a group of privileges assigned to a database user. This value can either be a built-in role or a custom role. */
 export type DatabaseUserRoleRoleName =
@@ -20568,7 +20212,7 @@ export type DatabaseUserRoleRoleName =
   | "readWrite"
   | "readWriteAnyDatabase"
   | "<a custom role name>";
-export const DatabaseUserRoleRoleName = /*@__PURE__*/ S.String;
+export const DatabaseUserRoleRoleName = S.String;
 
 /** Range of resources available to this database user. */
 export interface DatabaseUserRole {
@@ -20597,7 +20241,7 @@ export const CreateGroupDatabaseUserRequestRolesList = /*@__PURE__*/ S.Array(
 
 /** Category of resource that this database user can access. */
 export type UserScopeType = "CLUSTER" | "DATA_LAKE" | "STREAM";
-export const UserScopeType = /*@__PURE__*/ S.String;
+export const UserScopeType = S.String;
 
 /** Range of resources available to this database user. */
 export interface UserScope {
@@ -20624,7 +20268,7 @@ export type CreateGroupDatabaseUserRequestX509Type =
   | "NONE"
   | "CUSTOMER"
   | "MANAGED";
-export const CreateGroupDatabaseUserRequestX509Type = /*@__PURE__*/ S.String;
+export const CreateGroupDatabaseUserRequestX509Type = S.String;
 
 export interface CreateGroupDatabaseUserRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -20689,11 +20333,11 @@ export const CreateGroupDatabaseUserRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that indicates whether the new database user authenticates with the Amazon Web Services (AWS) Identity and Access Management (IAM) credentials associated with the user or the user's role. */
 export type CloudDatabaseUserOutputAwsIAMType = "NONE" | "USER" | "ROLE";
-export const CloudDatabaseUserOutputAwsIAMType = /*@__PURE__*/ S.String;
+export const CloudDatabaseUserOutputAwsIAMType = S.String;
 
 /** The database against which the database user authenticates. Database users must provide both a username and authentication database to log into MongoDB. If the user authenticates with AWS IAM, x.509, LDAP, or OIDC Workload this value should be `$external`. If the user authenticates with SCRAM-SHA or OIDC Workforce, this value should be `admin`. */
 export type CloudDatabaseUserOutputDatabaseName = "admin" | "$external";
-export const CloudDatabaseUserOutputDatabaseName = /*@__PURE__*/ S.String;
+export const CloudDatabaseUserOutputDatabaseName = S.String;
 
 /** List that contains the key-value pairs for tagging and categorizing the MongoDB database user. The labels that you define do not appear in the console. */
 export type CloudDatabaseUserOutputLabelsList = Array<ComponentLabel>;
@@ -20703,7 +20347,7 @@ export const CloudDatabaseUserOutputLabelsList = /*@__PURE__*/ S.Array(
 
 /** Part of the Lightweight Directory Access Protocol (LDAP) record that the database uses to authenticate this database user on the LDAP host. */
 export type CloudDatabaseUserOutputLdapAuthType = "NONE" | "GROUP" | "USER";
-export const CloudDatabaseUserOutputLdapAuthType = /*@__PURE__*/ S.String;
+export const CloudDatabaseUserOutputLdapAuthType = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type CloudDatabaseUserOutputLinksList = Array<Link>;
@@ -20713,7 +20357,7 @@ export const CloudDatabaseUserOutputLinksList = /*@__PURE__*/ S.Array(
 
 /** Human-readable label that indicates whether the new database user or group authenticates with OIDC federated authentication. To create a federated authentication user, specify the value of USER in this field. To create a federated authentication group, specify the value of `IDP_GROUP` in this field. */
 export type CloudDatabaseUserOutputOidcAuthType = "NONE" | "IDP_GROUP" | "USER";
-export const CloudDatabaseUserOutputOidcAuthType = /*@__PURE__*/ S.String;
+export const CloudDatabaseUserOutputOidcAuthType = S.String;
 
 /** List that provides the pairings of one role with one applicable database. */
 export type CloudDatabaseUserOutputRolesList = Array<DatabaseUserRole>;
@@ -20729,7 +20373,7 @@ export const CloudDatabaseUserOutputScopesList = /*@__PURE__*/ S.Array(
 
 /** X.509 method that MongoDB Cloud uses to authenticate the database user. - For application-managed X.509, specify `MANAGED`. - For self-managed X.509, specify `CUSTOMER`. Users created with the `CUSTOMER` method require a Common Name (CN) in the **username** parameter. You must create externally authenticated users on the `$external` database. */
 export type CloudDatabaseUserOutputX509Type = "NONE" | "CUSTOMER" | "MANAGED";
-export const CloudDatabaseUserOutputX509Type = /*@__PURE__*/ S.String;
+export const CloudDatabaseUserOutputX509Type = S.String;
 
 export interface CloudDatabaseUserOutput {
   /** Human-readable label that indicates whether the new database user authenticates with the Amazon Web Services (AWS) Identity and Access Management (IAM) credentials associated with the user or the user's role. */
@@ -20868,7 +20512,7 @@ export const DataLakeCloudProviderConfigInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Name of the cloud service that hosts the Federated Database Instance's infrastructure. */
 export type DataLakeDataProcessRegionCloudProvider = "AWS" | "AZURE" | "GCP";
-export const DataLakeDataProcessRegionCloudProvider = /*@__PURE__*/ S.String;
+export const DataLakeDataProcessRegionCloudProvider = S.String;
 
 /** Atlas Data Federation AWS Regions. */
 export type ApiAtlasDataLakeAWSRegionView =
@@ -20884,18 +20528,18 @@ export type ApiAtlasDataLakeAWSRegionView =
   | "TOKYO_JPN"
   | "SEOUL_KOR"
   | "SINGAPORE_SGP";
-export const ApiAtlasDataLakeAWSRegionView = /*@__PURE__*/ S.String;
+export const ApiAtlasDataLakeAWSRegionView = S.String;
 
 /** Atlas Data Federation Azure Regions. */
 export type AtlasDataFederationAzureRegion =
   | "VIRGINIA_USA"
   | "AMSTERDAM_NLD"
   | "SAOPAULO_BRA";
-export const AtlasDataFederationAzureRegion = /*@__PURE__*/ S.String;
+export const AtlasDataFederationAzureRegion = S.String;
 
 /** Atlas Data Federation GCP Regions. */
 export type AtlasDataFederationGCPRegion = "IOWA_USA" | "BELGIUM_EU";
-export const AtlasDataFederationGCPRegion = /*@__PURE__*/ S.String;
+export const AtlasDataFederationGCPRegion = S.String;
 
 /** Name of the region to which the data lake routes client connections. */
 export type BaseAtlasDataLakeRegion =
@@ -20903,7 +20547,7 @@ export type BaseAtlasDataLakeRegion =
   | AtlasDataFederationAzureRegion
   | AtlasDataFederationGCPRegion;
 export const BaseAtlasDataLakeRegion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BaseAtlasDataLakeRegion>;
+  S.Unknown as any as S.Schema<BaseAtlasDataLakeRegion>;
 
 /** Information about the cloud provider region to which the Federated Database Instance routes client connections. */
 export interface DataLakeDataProcessRegion {
@@ -20940,8 +20584,7 @@ export type DataLakeDatabaseDataSourceSettingsDefaultFormat =
   | ".tsv"
   | ".tsv.bz2"
   | ".tsv.gz";
-export const DataLakeDatabaseDataSourceSettingsDefaultFormat =
-  /*@__PURE__*/ S.String;
+export const DataLakeDatabaseDataSourceSettingsDefaultFormat = S.String;
 
 /** URLs of the publicly accessible data files. You can't specify URLs that require authentication. Atlas Data Lake creates a partition for each URL. If empty or omitted, Data Lake uses the URLs from the store specified in the **dataSources.storeName** parameter. */
 export type DataLakeDatabaseDataSourceSettingsUrlsList = Array<string>;
@@ -21119,7 +20762,7 @@ export type DataLakeS3StoreSettingsInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeS3StoreSettingsInputRegion = /*@__PURE__*/ S.String;
+export const DataLakeS3StoreSettingsInputRegion = S.String;
 
 /** Read Concern level that specifies the consistency and availability of the data read. */
 export type DataLakeAtlasStoreReadConcernLevel =
@@ -21128,7 +20771,7 @@ export type DataLakeAtlasStoreReadConcernLevel =
   | "LINEARIZABLE"
   | "SNAPSHOT"
   | "AVAILABLE";
-export const DataLakeAtlasStoreReadConcernLevel = /*@__PURE__*/ S.String;
+export const DataLakeAtlasStoreReadConcernLevel = S.String;
 
 /** MongoDB Cloud cluster read concern, which determines the consistency and isolation properties of the data read from an Atlas cluster. */
 export interface DataLakeAtlasStoreReadConcern {
@@ -21150,7 +20793,7 @@ export type DataLakeAtlasStoreReadPreferenceMode =
   | "secondary"
   | "secondaryPreferred"
   | "nearest";
-export const DataLakeAtlasStoreReadPreferenceMode = /*@__PURE__*/ S.String;
+export const DataLakeAtlasStoreReadPreferenceMode = S.String;
 
 export interface DataLakeAtlasStoreReadPreferenceTag {
   /** Human-readable label of the tag. */
@@ -21213,7 +20856,7 @@ export type DataLakeS3StoreSettingsInputAdditionalStorageClassesItem =
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
 export const DataLakeS3StoreSettingsInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeS3StoreSettingsInputAdditionalStorageClassesList = Array<
@@ -21322,7 +20965,7 @@ export type DataLakeDLSAWSStoreInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeDLSAWSStoreInputRegion = /*@__PURE__*/ S.String;
+export const DataLakeDLSAWSStoreInputRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeDLSAWSStoreInputUrlsList = Array<string>;
@@ -21335,8 +20978,7 @@ export type DataLakeDLSAWSStoreInputAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeDLSAWSStoreInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeDLSAWSStoreInputAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeDLSAWSStoreInputAdditionalStorageClassesList = Array<
@@ -21445,7 +21087,7 @@ export type DataLakeDLSAzureStoreInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeDLSAzureStoreInputRegion = /*@__PURE__*/ S.String;
+export const DataLakeDLSAzureStoreInputRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeDLSAzureStoreInputUrlsList = Array<string>;
@@ -21458,8 +21100,7 @@ export type DataLakeDLSAzureStoreInputAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeDLSAzureStoreInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeDLSAzureStoreInputAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeDLSAzureStoreInputAdditionalStorageClassesList = Array<
@@ -21568,7 +21209,7 @@ export type DataLakeDLSGCPStoreInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeDLSGCPStoreInputRegion = /*@__PURE__*/ S.String;
+export const DataLakeDLSGCPStoreInputRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeDLSGCPStoreInputUrlsList = Array<string>;
@@ -21581,8 +21222,7 @@ export type DataLakeDLSGCPStoreInputAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeDLSGCPStoreInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeDLSGCPStoreInputAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeDLSGCPStoreInputAdditionalStorageClassesList = Array<
@@ -21691,7 +21331,7 @@ export type DataLakeAtlasStoreInstanceInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeAtlasStoreInstanceInputRegion = /*@__PURE__*/ S.String;
+export const DataLakeAtlasStoreInstanceInputRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeAtlasStoreInstanceInputUrlsList = Array<string>;
@@ -21705,7 +21345,7 @@ export type DataLakeAtlasStoreInstanceInputAdditionalStorageClassesItem =
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
 export const DataLakeAtlasStoreInstanceInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeAtlasStoreInstanceInputAdditionalStorageClassesList = Array<
@@ -21814,7 +21454,7 @@ export type DataLakeHTTPStoreInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeHTTPStoreInputRegion = /*@__PURE__*/ S.String;
+export const DataLakeHTTPStoreInputRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeHTTPStoreInputUrlsList = Array<string>;
@@ -21827,8 +21467,7 @@ export type DataLakeHTTPStoreInputAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeHTTPStoreInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeHTTPStoreInputAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeHTTPStoreInputAdditionalStorageClassesList = Array<
@@ -21937,7 +21576,7 @@ export type DataLakeAzureBlobStoreInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeAzureBlobStoreInputRegion = /*@__PURE__*/ S.String;
+export const DataLakeAzureBlobStoreInputRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeAzureBlobStoreInputUrlsList = Array<string>;
@@ -21950,8 +21589,7 @@ export type DataLakeAzureBlobStoreInputAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeAzureBlobStoreInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeAzureBlobStoreInputAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeAzureBlobStoreInputAdditionalStorageClassesList = Array<
@@ -22060,8 +21698,7 @@ export type DataLakeGoogleCloudStorageStoreInputRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeGoogleCloudStorageStoreInputRegion =
-  /*@__PURE__*/ S.String;
+export const DataLakeGoogleCloudStorageStoreInputRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeGoogleCloudStorageStoreInputUrlsList = Array<string>;
@@ -22076,7 +21713,7 @@ export type DataLakeGoogleCloudStorageStoreInputAdditionalStorageClassesItem =
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
 export const DataLakeGoogleCloudStorageStoreInputAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeGoogleCloudStorageStoreInputAdditionalStorageClassesList =
@@ -22163,7 +21800,7 @@ export type DataLakeStoreSettingsInput =
   | DataLakeAzureBlobStoreInput
   | DataLakeGoogleCloudStorageStoreInput;
 export const DataLakeStoreSettingsInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataLakeStoreSettingsInput>;
+  S.Unknown as any as S.Schema<DataLakeStoreSettingsInput>;
 
 /** Array that contains the data stores for the data lake. */
 export type DataLakeStorageInputStoresList = Array<DataLakeStoreSettingsInput>;
@@ -22335,7 +21972,7 @@ export const DataLakeTenantOutputPrivateEndpointHostnamesList =
 
 /** Label that indicates the status of the Federated Database Instance. */
 export type DataLakeTenantOutputState = "UNVERIFIED" | "ACTIVE" | "DELETED";
-export const DataLakeTenantOutputState = /*@__PURE__*/ S.String;
+export const DataLakeTenantOutputState = S.String;
 
 /** Array that contains the queryable databases and collections for this data lake. */
 export type DataLakeStorageDatabasesList = Array<DataLakeDatabaseInstance>;
@@ -22379,7 +22016,7 @@ export type DataLakeS3StoreSettingsRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeS3StoreSettingsRegion = /*@__PURE__*/ S.String;
+export const DataLakeS3StoreSettingsRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeS3StoreSettingsUrlsList = Array<string>;
@@ -22392,8 +22029,7 @@ export type DataLakeS3StoreSettingsAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeS3StoreSettingsAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeS3StoreSettingsAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeS3StoreSettingsAdditionalStorageClassesList =
@@ -22504,7 +22140,7 @@ export type DataLakeDLSAWSStoreRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeDLSAWSStoreRegion = /*@__PURE__*/ S.String;
+export const DataLakeDLSAWSStoreRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeDLSAWSStoreUrlsList = Array<string>;
@@ -22517,8 +22153,7 @@ export type DataLakeDLSAWSStoreAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeDLSAWSStoreAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeDLSAWSStoreAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeDLSAWSStoreAdditionalStorageClassesList =
@@ -22629,7 +22264,7 @@ export type DataLakeDLSAzureStoreRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeDLSAzureStoreRegion = /*@__PURE__*/ S.String;
+export const DataLakeDLSAzureStoreRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeDLSAzureStoreUrlsList = Array<string>;
@@ -22642,8 +22277,7 @@ export type DataLakeDLSAzureStoreAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeDLSAzureStoreAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeDLSAzureStoreAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeDLSAzureStoreAdditionalStorageClassesList =
@@ -22754,7 +22388,7 @@ export type DataLakeDLSGCPStoreRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeDLSGCPStoreRegion = /*@__PURE__*/ S.String;
+export const DataLakeDLSGCPStoreRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeDLSGCPStoreUrlsList = Array<string>;
@@ -22767,8 +22401,7 @@ export type DataLakeDLSGCPStoreAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeDLSGCPStoreAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeDLSGCPStoreAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeDLSGCPStoreAdditionalStorageClassesList =
@@ -22879,7 +22512,7 @@ export type DataLakeAtlasStoreInstanceRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeAtlasStoreInstanceRegion = /*@__PURE__*/ S.String;
+export const DataLakeAtlasStoreInstanceRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeAtlasStoreInstanceUrlsList = Array<string>;
@@ -22892,8 +22525,7 @@ export type DataLakeAtlasStoreInstanceAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeAtlasStoreInstanceAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeAtlasStoreInstanceAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeAtlasStoreInstanceAdditionalStorageClassesList =
@@ -23004,7 +22636,7 @@ export type DataLakeHTTPStoreRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeHTTPStoreRegion = /*@__PURE__*/ S.String;
+export const DataLakeHTTPStoreRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeHTTPStoreUrlsList = Array<string>;
@@ -23017,8 +22649,7 @@ export type DataLakeHTTPStoreAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeHTTPStoreAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeHTTPStoreAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeHTTPStoreAdditionalStorageClassesList =
@@ -23129,7 +22760,7 @@ export type DataLakeAzureBlobStoreRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeAzureBlobStoreRegion = /*@__PURE__*/ S.String;
+export const DataLakeAzureBlobStoreRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeAzureBlobStoreUrlsList = Array<string>;
@@ -23142,8 +22773,7 @@ export type DataLakeAzureBlobStoreAdditionalStorageClassesItem =
   | "STANDARD"
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
-export const DataLakeAzureBlobStoreAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+export const DataLakeAzureBlobStoreAdditionalStorageClassesItem = S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeAzureBlobStoreAdditionalStorageClassesList =
@@ -23254,7 +22884,7 @@ export type DataLakeGoogleCloudStorageStoreRegion =
   | "IL_CENTRAL_1"
   | "CA_WEST_1"
   | "GLOBAL";
-export const DataLakeGoogleCloudStorageStoreRegion = /*@__PURE__*/ S.String;
+export const DataLakeGoogleCloudStorageStoreRegion = S.String;
 
 /** Comma-separated list of publicly accessible HTTP URLs where data is stored. You can't specify URLs that require authentication. */
 export type DataLakeGoogleCloudStorageStoreUrlsList = Array<string>;
@@ -23268,7 +22898,7 @@ export type DataLakeGoogleCloudStorageStoreAdditionalStorageClassesItem =
   | "INTELLIGENT_TIERING"
   | "STANDARD_IA";
 export const DataLakeGoogleCloudStorageStoreAdditionalStorageClassesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of AWS S3 [storage classes](https://aws.amazon.com/s3/storage-classes/). Atlas Data Lake includes the files in these storage classes in the query results. */
 export type DataLakeGoogleCloudStorageStoreAdditionalStorageClassesList =
@@ -23354,7 +22984,7 @@ export type DataLakeStoreSettings =
   | DataLakeAzureBlobStore
   | DataLakeGoogleCloudStorageStore;
 export const DataLakeStoreSettings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DataLakeStoreSettings>;
+  S.Unknown as any as S.Schema<DataLakeStoreSettings>;
 
 /** Array that contains the data stores for the data lake. */
 export type DataLakeStorageStoresList = Array<DataLakeStoreSettings>;
@@ -23414,7 +23044,7 @@ export type CreateGroupEncryptionAtRestPrivateEndpointRequestCloudProvider =
   | "AZURE"
   | "AWS";
 export const CreateGroupEncryptionAtRestPrivateEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Microsoft Azure Regions. */
 export type CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase0 =
@@ -23475,7 +23105,7 @@ export type CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase0 =
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
 export const CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase1 =
@@ -23519,14 +23149,14 @@ export type CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase1 =
   | "MX_CENTRAL_1"
   | "GLOBAL";
 export const CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Cloud provider region in which the Encryption At Rest private endpoint is located. */
 export type CreateGroupEncryptionAtRestPrivateEndpointRequestRegionName =
   | CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase0
   | CreateGroupEncryptionAtRestPrivateEndpointRequestRegionNameCase1;
 export const CreateGroupEncryptionAtRestPrivateEndpointRequestRegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateGroupEncryptionAtRestPrivateEndpointRequestRegionName>;
+  S.Unknown as any as S.Schema<CreateGroupEncryptionAtRestPrivateEndpointRequestRegionName>;
 
 export interface CreateGroupEncryptionAtRestPrivateEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -23579,7 +23209,7 @@ export type FlexProviderSettingsCreate20241113InputBackingProviderName =
   | "AZURE"
   | "GCP";
 export const FlexProviderSettingsCreate20241113InputBackingProviderName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Group of cloud provider settings that configure the provisioned MongoDB flex cluster. */
 export interface FlexProviderSettingsCreate20241113Input {
@@ -23658,7 +23288,7 @@ export const FlexBackupSettings20241113 = /*@__PURE__*/ S.suspend(() =>
 
 /** Flex cluster topology. */
 export type FlexClusterDescription20241113ClusterType = "REPLICASET";
-export const FlexClusterDescription20241113ClusterType = /*@__PURE__*/ S.String;
+export const FlexClusterDescription20241113ClusterType = S.String;
 
 /** Collection of Uniform Resource Locators that point to the MongoDB database. */
 export interface FlexConnectionStrings20241113 {
@@ -23687,12 +23317,11 @@ export type FlexProviderSettings20241113BackingProviderName =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const FlexProviderSettings20241113BackingProviderName =
-  /*@__PURE__*/ S.String;
+export const FlexProviderSettings20241113BackingProviderName = S.String;
 
 /** Human-readable label that identifies the provider type. */
 export type FlexProviderSettings20241113ProviderName = "FLEX";
-export const FlexProviderSettings20241113ProviderName = /*@__PURE__*/ S.String;
+export const FlexProviderSettings20241113ProviderName = S.String;
 
 /** Group of cloud provider settings that configure the provisioned MongoDB flex cluster. */
 export interface FlexProviderSettings20241113 {
@@ -23725,7 +23354,7 @@ export type FlexClusterDescription20241113StateName =
   | "UPDATING"
   | "DELETING"
   | "REPAIRING";
-export const FlexClusterDescription20241113StateName = /*@__PURE__*/ S.String;
+export const FlexClusterDescription20241113StateName = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance. */
 export type FlexClusterDescription20241113TagsList = Array<ResourceTag>;
@@ -23735,8 +23364,7 @@ export const FlexClusterDescription20241113TagsList = /*@__PURE__*/ S.Array(
 
 /** Method by which the cluster maintains the MongoDB versions. */
 export type FlexClusterDescription20241113VersionReleaseSystem = "LTS";
-export const FlexClusterDescription20241113VersionReleaseSystem =
-  /*@__PURE__*/ S.String;
+export const FlexClusterDescription20241113VersionReleaseSystem = S.String;
 
 /** Group of settings that configure a MongoDB Flex cluster. */
 export interface FlexClusterDescription20241113 {
@@ -23829,7 +23457,7 @@ export const CreateGroupFlexClusterBackupRestoreJobRequest =
 
 /** Means by which this resource returns the snapshot to the requesting MongoDB Cloud user. */
 export type FlexBackupRestoreJob20241113DeliveryType = "RESTORE" | "DOWNLOAD";
-export const FlexBackupRestoreJob20241113DeliveryType = /*@__PURE__*/ S.String;
+export const FlexBackupRestoreJob20241113DeliveryType = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type FlexBackupRestoreJob20241113LinksList = Array<Link>;
@@ -23844,7 +23472,7 @@ export type FlexBackupRestoreJob20241113Status =
   | "RUNNING"
   | "FAILED"
   | "COMPLETED";
-export const FlexBackupRestoreJob20241113Status = /*@__PURE__*/ S.String;
+export const FlexBackupRestoreJob20241113Status = S.String;
 
 /** Details for one restore job of a flex cluster. */
 export interface FlexBackupRestoreJob20241113 {
@@ -23909,8 +23537,7 @@ export type CreateGroupIntegrationRequestIntegrationType =
   | "HIP_CHAT"
   | "PROMETHEUS"
   | "MICROSOFT_TEAMS";
-export const CreateGroupIntegrationRequestIntegrationType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupIntegrationRequestIntegrationType = S.String;
 
 /** Integration type. */
 export type CreateGroupIntegrationRequestType =
@@ -23924,7 +23551,7 @@ export type CreateGroupIntegrationRequestType =
   | "HIP_CHAT"
   | "PROMETHEUS"
   | "MICROSOFT_TEAMS";
-export const CreateGroupIntegrationRequestType = /*@__PURE__*/ S.String;
+export const CreateGroupIntegrationRequestType = S.String;
 
 export interface CreateGroupIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -23979,11 +23606,11 @@ export const PaginatedIntegrationViewOutputLinksList = /*@__PURE__*/ S.Array(
 
 /** PagerDuty region that indicates the API Uniform Resource Locator (URL) to use. */
 export type PagerDutyRegion = "US" | "EU";
-export const PagerDutyRegion = /*@__PURE__*/ S.String;
+export const PagerDutyRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type PagerDutyType = "PAGER_DUTY";
-export const PagerDutyType = /*@__PURE__*/ S.String;
+export const PagerDutyType = S.String;
 
 /** Details to integrate one PagerDuty account with one MongoDB Cloud project. */
 export interface PagerDuty {
@@ -24007,7 +23634,7 @@ export const PagerDuty = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type SlackType = "SLACK";
-export const SlackType = /*@__PURE__*/ S.String;
+export const SlackType = S.String;
 
 /** Details to integrate one Slack account with one MongoDB Cloud project. */
 export interface Slack {
@@ -24034,11 +23661,11 @@ export const Slack = /*@__PURE__*/ S.suspend(() =>
 
 /** Two-letter code that indicates which regional URL MongoDB uses to access the Datadog API. */
 export type DatadogRegion = "US" | "EU" | "US3" | "US5" | "AP1" | "US1_FED";
-export const DatadogRegion = /*@__PURE__*/ S.String;
+export const DatadogRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type DatadogType = "DATADOG";
-export const DatadogType = /*@__PURE__*/ S.String;
+export const DatadogType = S.String;
 
 /** Details to integrate one Datadog account with one MongoDB Cloud project. */
 export interface Datadog {
@@ -24077,7 +23704,7 @@ export const Datadog = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type NewRelicType = "NEW_RELIC";
-export const NewRelicType = /*@__PURE__*/ S.String;
+export const NewRelicType = S.String;
 
 /** Details to integrate one New Relic account with one MongoDB Cloud project. ***IMPORTANT**: Effective Wednesday, June 16th, 2021, New Relic no longer supports the plugin-based integration with MongoDB. We do not recommend that you sign up for the plugin-based integration. Consider configuring an alternative monitoring integration before June 16th to maintain visibility into your MongoDB deployments. */
 export interface NewRelic {
@@ -24107,11 +23734,11 @@ export const NewRelic = /*@__PURE__*/ S.suspend(() =>
 
 /** Two-letter code that indicates which regional URL MongoDB uses to access the OpsGenie API. */
 export type OpsGenieRegion = "US" | "EU";
-export const OpsGenieRegion = /*@__PURE__*/ S.String;
+export const OpsGenieRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type OpsGenieType = "OPS_GENIE";
-export const OpsGenieType = /*@__PURE__*/ S.String;
+export const OpsGenieType = S.String;
 
 /** Details to integrate one OpsGenie account with one MongoDB Cloud project. */
 export interface OpsGenie {
@@ -24135,7 +23762,7 @@ export const OpsGenie = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type VictorOpsType = "VICTOR_OPS";
-export const VictorOpsType = /*@__PURE__*/ S.String;
+export const VictorOpsType = S.String;
 
 /** Details to integrate one Splunk On-Call account with one MongoDB Cloud project. */
 export interface VictorOps {
@@ -24159,7 +23786,7 @@ export const VictorOps = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type WebhookType = "WEBHOOK";
-export const WebhookType = /*@__PURE__*/ S.String;
+export const WebhookType = S.String;
 
 /** Details to integrate one webhook with one MongoDB Cloud project. */
 export interface Webhook {
@@ -24189,11 +23816,11 @@ export const Webhook = /*@__PURE__*/ S.suspend(() =>
 
 /** Desired method to discover the Prometheus service. */
 export type PrometheusOutputServiceDiscovery = "http" | "file";
-export const PrometheusOutputServiceDiscovery = /*@__PURE__*/ S.String;
+export const PrometheusOutputServiceDiscovery = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type PrometheusOutputType = "PROMETHEUS";
-export const PrometheusOutputType = /*@__PURE__*/ S.String;
+export const PrometheusOutputType = S.String;
 
 /** Details to integrate one Prometheus account with one MongoDB Cloud project. */
 export interface PrometheusOutput {
@@ -24225,7 +23852,7 @@ export const PrometheusOutput = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the third-party service integration type. */
 export type MicrosoftTeamsType = "MICROSOFT_TEAMS";
-export const MicrosoftTeamsType = /*@__PURE__*/ S.String;
+export const MicrosoftTeamsType = S.String;
 
 /** Details to integrate one Microsoft Teams account with one MongoDB Cloud project. */
 export interface MicrosoftTeams {
@@ -24256,7 +23883,7 @@ export type ThirdPartyIntegrationOutput =
   | PrometheusOutput
   | MicrosoftTeams;
 export const ThirdPartyIntegrationOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ThirdPartyIntegrationOutput>;
+  S.Unknown as any as S.Schema<ThirdPartyIntegrationOutput>;
 
 /** List of returned documents that MongoDB Cloud provides when completing this request. */
 export type PaginatedIntegrationViewOutputResultsList =
@@ -24288,7 +23915,7 @@ export type DestinationHostnameSchemaType =
   | "PUBLIC"
   | "PRIVATE_LINK"
   | "VPC_PEERING";
-export const DestinationHostnameSchemaType = /*@__PURE__*/ S.String;
+export const DestinationHostnameSchemaType = S.String;
 
 /** Document that describes the destination of the migration. */
 export interface Destination {
@@ -24457,7 +24084,7 @@ export type LiveMigrationResponseStatus =
   | "FAILED"
   | "COMPLETE"
   | "EXPIRED";
-export const LiveMigrationResponseStatus = /*@__PURE__*/ S.String;
+export const LiveMigrationResponseStatus = S.String;
 
 export interface LiveMigrationResponse {
   /** Unique 24-hexadecimal digit string that identifies the migration job. */
@@ -24488,8 +24115,7 @@ export type CreateGroupLogIntegrationRequestLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const CreateGroupLogIntegrationRequestLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const CreateGroupLogIntegrationRequestLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type CreateGroupLogIntegrationRequestLogTypesList = Array<
@@ -24508,7 +24134,7 @@ export type CreateGroupLogIntegrationRequestType =
   | "OTEL_LOG_EXPORT"
   | "SPLUNK_LOG_EXPORT"
   | "AZURE_LOG_EXPORT";
-export const CreateGroupLogIntegrationRequestType = /*@__PURE__*/ S.String;
+export const CreateGroupLogIntegrationRequestType = S.String;
 
 export interface CreateGroupLogIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -24550,11 +24176,11 @@ export type S3LogIntegrationResponseOutputRegion =
   | "AP1"
   | "AP2"
   | "US1_FED";
-export const S3LogIntegrationResponseOutputRegion = /*@__PURE__*/ S.String;
+export const S3LogIntegrationResponseOutputRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created. */
 export type S3LogIntegrationResponseOutputType = "DATADOG_LOG_EXPORT";
-export const S3LogIntegrationResponseOutputType = /*@__PURE__*/ S.String;
+export const S3LogIntegrationResponseOutputType = S.String;
 
 /** HTTP header with name and value. */
 export interface HeaderOutput {
@@ -24580,8 +24206,7 @@ export type S3LogIntegrationResponseOutputLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const S3LogIntegrationResponseOutputLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const S3LogIntegrationResponseOutputLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type S3LogIntegrationResponseOutputLogTypesList =
@@ -24662,11 +24287,11 @@ export type DatadogLogIntegrationResponseOutputRegion =
   | "AP1"
   | "AP2"
   | "US1_FED";
-export const DatadogLogIntegrationResponseOutputRegion = /*@__PURE__*/ S.String;
+export const DatadogLogIntegrationResponseOutputRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created. */
 export type DatadogLogIntegrationResponseOutputType = "DATADOG_LOG_EXPORT";
-export const DatadogLogIntegrationResponseOutputType = /*@__PURE__*/ S.String;
+export const DatadogLogIntegrationResponseOutputType = S.String;
 
 /** HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB. */
 export type DatadogLogIntegrationResponseOutputOtelSuppliedHeadersList =
@@ -24681,8 +24306,7 @@ export type DatadogLogIntegrationResponseOutputLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const DatadogLogIntegrationResponseOutputLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const DatadogLogIntegrationResponseOutputLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type DatadogLogIntegrationResponseOutputLogTypesList =
@@ -24764,11 +24388,11 @@ export type GcsLogIntegrationResponseOutputRegion =
   | "AP1"
   | "AP2"
   | "US1_FED";
-export const GcsLogIntegrationResponseOutputRegion = /*@__PURE__*/ S.String;
+export const GcsLogIntegrationResponseOutputRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created. */
 export type GcsLogIntegrationResponseOutputType = "DATADOG_LOG_EXPORT";
-export const GcsLogIntegrationResponseOutputType = /*@__PURE__*/ S.String;
+export const GcsLogIntegrationResponseOutputType = S.String;
 
 /** HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB. */
 export type GcsLogIntegrationResponseOutputOtelSuppliedHeadersList =
@@ -24783,8 +24407,7 @@ export type GcsLogIntegrationResponseOutputLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const GcsLogIntegrationResponseOutputLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const GcsLogIntegrationResponseOutputLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type GcsLogIntegrationResponseOutputLogTypesList =
@@ -24866,11 +24489,11 @@ export type OtelLogIntegrationResponseOutputRegion =
   | "AP1"
   | "AP2"
   | "US1_FED";
-export const OtelLogIntegrationResponseOutputRegion = /*@__PURE__*/ S.String;
+export const OtelLogIntegrationResponseOutputRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created. */
 export type OtelLogIntegrationResponseOutputType = "DATADOG_LOG_EXPORT";
-export const OtelLogIntegrationResponseOutputType = /*@__PURE__*/ S.String;
+export const OtelLogIntegrationResponseOutputType = S.String;
 
 /** HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB. */
 export type OtelLogIntegrationResponseOutputOtelSuppliedHeadersList =
@@ -24885,8 +24508,7 @@ export type OtelLogIntegrationResponseOutputLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const OtelLogIntegrationResponseOutputLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const OtelLogIntegrationResponseOutputLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type OtelLogIntegrationResponseOutputLogTypesList =
@@ -24967,11 +24589,11 @@ export type SplunkLogIntegrationResponseOutputRegion =
   | "AP1"
   | "AP2"
   | "US1_FED";
-export const SplunkLogIntegrationResponseOutputRegion = /*@__PURE__*/ S.String;
+export const SplunkLogIntegrationResponseOutputRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created. */
 export type SplunkLogIntegrationResponseOutputType = "DATADOG_LOG_EXPORT";
-export const SplunkLogIntegrationResponseOutputType = /*@__PURE__*/ S.String;
+export const SplunkLogIntegrationResponseOutputType = S.String;
 
 /** HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB. */
 export type SplunkLogIntegrationResponseOutputOtelSuppliedHeadersList =
@@ -24986,8 +24608,7 @@ export type SplunkLogIntegrationResponseOutputLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const SplunkLogIntegrationResponseOutputLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const SplunkLogIntegrationResponseOutputLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type SplunkLogIntegrationResponseOutputLogTypesList =
@@ -25069,11 +24690,11 @@ export type AzureLogIntegrationResponseOutputRegion =
   | "AP1"
   | "AP2"
   | "US1_FED";
-export const AzureLogIntegrationResponseOutputRegion = /*@__PURE__*/ S.String;
+export const AzureLogIntegrationResponseOutputRegion = S.String;
 
 /** Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created. */
 export type AzureLogIntegrationResponseOutputType = "DATADOG_LOG_EXPORT";
-export const AzureLogIntegrationResponseOutputType = /*@__PURE__*/ S.String;
+export const AzureLogIntegrationResponseOutputType = S.String;
 
 /** HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB. */
 export type AzureLogIntegrationResponseOutputOtelSuppliedHeadersList =
@@ -25088,8 +24709,7 @@ export type AzureLogIntegrationResponseOutputLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const AzureLogIntegrationResponseOutputLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const AzureLogIntegrationResponseOutputLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type AzureLogIntegrationResponseOutputLogTypesList =
@@ -25171,7 +24791,7 @@ export type LogIntegrationResponseOutput =
   | SplunkLogIntegrationResponseOutput
   | AzureLogIntegrationResponseOutput;
 export const LogIntegrationResponseOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<LogIntegrationResponseOutput>;
+  S.Unknown as any as S.Schema<LogIntegrationResponseOutput>;
 
 export interface ServiceAccountIPAccessListEntryInput {
   /** Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request. */
@@ -25355,12 +24975,11 @@ export type CreateGroupMetricIntegrationRequestAggregationTemporality =
   | "DELTA"
   | "CUMULATIVE";
 export const CreateGroupMetricIntegrationRequestAggregationTemporality =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. */
 export type CreateGroupMetricIntegrationRequestAuthType = "HEADER";
-export const CreateGroupMetricIntegrationRequestAuthType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupMetricIntegrationRequestAuthType = S.String;
 
 /** HTTP header with name and value. */
 export interface Header {
@@ -25385,15 +25004,13 @@ export const CreateGroupMetricIntegrationRequestHeadersList =
 
 /** Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created. */
 export type CreateGroupMetricIntegrationRequestIntegrationType = "OTEL";
-export const CreateGroupMetricIntegrationRequestIntegrationType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupMetricIntegrationRequestIntegrationType = S.String;
 
 export type CreateGroupMetricIntegrationRequestMetricSelectionItem =
   | "ATLAS_STREAM_PROCESSING"
   | "MONGODB_METRICS"
   | "HARDWARE_METRICS";
-export const CreateGroupMetricIntegrationRequestMetricSelectionItem =
-  /*@__PURE__*/ S.String;
+export const CreateGroupMetricIntegrationRequestMetricSelectionItem = S.String;
 
 /** Array of metric categories to export. Determines which types of metrics are sent to the integration. */
 export type CreateGroupMetricIntegrationRequestMetricSelectionList = Array<
@@ -25409,8 +25026,7 @@ export type CreateGroupMetricIntegrationRequestProviderType =
   | "CUSTOM"
   | "DYNATRACE"
   | "NEW_RELIC";
-export const CreateGroupMetricIntegrationRequestProviderType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupMetricIntegrationRequestProviderType = S.String;
 
 export interface CreateGroupMetricIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -25467,12 +25083,11 @@ export const CreateGroupMetricIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 export type MetricIntegrationResponseAggregationTemporality =
   | "DELTA"
   | "CUMULATIVE";
-export const MetricIntegrationResponseAggregationTemporality =
-  /*@__PURE__*/ S.String;
+export const MetricIntegrationResponseAggregationTemporality = S.String;
 
 /** Authentication method the integration uses when exporting metrics to the endpoint. */
 export type MetricIntegrationResponseAuthType = "HEADER";
-export const MetricIntegrationResponseAuthType = /*@__PURE__*/ S.String;
+export const MetricIntegrationResponseAuthType = S.String;
 
 /** HTTP header with a redacted value. */
 export interface RedactedHeader {
@@ -25498,14 +25113,13 @@ export const MetricIntegrationResponseHeadersRedactedList =
 
 /** Type of metric integration. Identifies which protocol will be used for the integration. */
 export type MetricIntegrationResponseIntegrationType = "OTEL";
-export const MetricIntegrationResponseIntegrationType = /*@__PURE__*/ S.String;
+export const MetricIntegrationResponseIntegrationType = S.String;
 
 export type MetricIntegrationResponseMetricSelectionItem =
   | "ATLAS_STREAM_PROCESSING"
   | "MONGODB_METRICS"
   | "HARDWARE_METRICS";
-export const MetricIntegrationResponseMetricSelectionItem =
-  /*@__PURE__*/ S.String;
+export const MetricIntegrationResponseMetricSelectionItem = S.String;
 
 /** Array of metric categories to export. Determines which types of metrics are sent to the integration. */
 export type MetricIntegrationResponseMetricSelectionList =
@@ -25520,7 +25134,7 @@ export type MetricIntegrationResponseProviderType =
   | "CUSTOM"
   | "DYNATRACE"
   | "NEW_RELIC";
-export const MetricIntegrationResponseProviderType = /*@__PURE__*/ S.String;
+export const MetricIntegrationResponseProviderType = S.String;
 
 /** Response schema for metric integration operations. */
 export interface MetricIntegrationResponse {
@@ -25558,7 +25172,7 @@ export const MetricIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Cloud service provider that serves the requested network peering connection. */
 export type CreateGroupPeerRequestProviderName = "AWS" | "AZURE" | "GCP";
-export const CreateGroupPeerRequestProviderName = /*@__PURE__*/ S.String;
+export const CreateGroupPeerRequestProviderName = S.String;
 
 export interface CreateGroupPeerRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -25596,16 +25210,14 @@ export type AwsNetworkPeeringConnectionSettingsErrorStateName =
   | "REJECTED"
   | "EXPIRED"
   | "INVALID_ARGUMENT";
-export const AwsNetworkPeeringConnectionSettingsErrorStateName =
-  /*@__PURE__*/ S.String;
+export const AwsNetworkPeeringConnectionSettingsErrorStateName = S.String;
 
 /** Cloud service provider that serves the requested network peering connection. */
 export type AwsNetworkPeeringConnectionSettingsProviderName =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const AwsNetworkPeeringConnectionSettingsProviderName =
-  /*@__PURE__*/ S.String;
+export const AwsNetworkPeeringConnectionSettingsProviderName = S.String;
 
 /** State of the network peering connection at the time you made the request. */
 export type AwsNetworkPeeringConnectionSettingsStatusName =
@@ -25615,8 +25227,7 @@ export type AwsNetworkPeeringConnectionSettingsStatusName =
   | "FINALIZING"
   | "AVAILABLE"
   | "TERMINATING";
-export const AwsNetworkPeeringConnectionSettingsStatusName =
-  /*@__PURE__*/ S.String;
+export const AwsNetworkPeeringConnectionSettingsStatusName = S.String;
 
 /** Group of Network Peering connection settings. */
 export interface AwsNetworkPeeringConnectionSettings {
@@ -25665,8 +25276,7 @@ export type AzureNetworkPeeringConnectionSettingsProviderName =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const AzureNetworkPeeringConnectionSettingsProviderName =
-  /*@__PURE__*/ S.String;
+export const AzureNetworkPeeringConnectionSettingsProviderName = S.String;
 
 /** State of the network peering connection at the time you made the request. */
 export type AzureNetworkPeeringConnectionSettingsStatus =
@@ -25675,8 +25285,7 @@ export type AzureNetworkPeeringConnectionSettingsStatus =
   | "FAILED"
   | "DELETION_FAILED"
   | "DELETING";
-export const AzureNetworkPeeringConnectionSettingsStatus =
-  /*@__PURE__*/ S.String;
+export const AzureNetworkPeeringConnectionSettingsStatus = S.String;
 
 /** Group of Network Peering connection settings. */
 export interface AzureNetworkPeeringConnectionSettings {
@@ -25723,8 +25332,7 @@ export type GCPNetworkPeeringConnectionSettingsProviderName =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const GCPNetworkPeeringConnectionSettingsProviderName =
-  /*@__PURE__*/ S.String;
+export const GCPNetworkPeeringConnectionSettingsProviderName = S.String;
 
 /** State of the network peering connection at the time you made the request. */
 export type GCPNetworkPeeringConnectionSettingsStatus =
@@ -25733,7 +25341,7 @@ export type GCPNetworkPeeringConnectionSettingsStatus =
   | "AVAILABLE"
   | "FAILED"
   | "DELETING";
-export const GCPNetworkPeeringConnectionSettingsStatus = /*@__PURE__*/ S.String;
+export const GCPNetworkPeeringConnectionSettingsStatus = S.String;
 
 /** Group of Network Peering connection settings. */
 export interface GCPNetworkPeeringConnectionSettings {
@@ -25771,7 +25379,7 @@ export type BaseNetworkPeeringConnectionSettings =
   | AzureNetworkPeeringConnectionSettings
   | GCPNetworkPeeringConnectionSettings;
 export const BaseNetworkPeeringConnectionSettings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BaseNetworkPeeringConnectionSettings>;
+  S.Unknown as any as S.Schema<BaseNetworkPeeringConnectionSettings>;
 
 /** Human-readable label that identifies the cloud service provider for which you want to create the private endpoint service. */
 export type CreateGroupPrivateEndpointEndpointServiceRequestProviderName =
@@ -25779,7 +25387,7 @@ export type CreateGroupPrivateEndpointEndpointServiceRequestProviderName =
   | "AZURE"
   | "GCP";
 export const CreateGroupPrivateEndpointEndpointServiceRequestProviderName =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of regions that the endpoint service supports. Native cross region support is implemented for AWS only. */
 export type CreateGroupPrivateEndpointEndpointServiceRequestSupportedRemoteRegionsList =
@@ -25836,7 +25444,7 @@ export const CreateGroupPrivateEndpointEndpointServiceRequest =
 
 /** Cloud service provider that serves the requested endpoint service. */
 export type EndpointServiceCloudProvider = "AWS" | "AZURE" | "GCP";
-export const EndpointServiceCloudProvider = /*@__PURE__*/ S.String;
+export const EndpointServiceCloudProvider = S.String;
 
 /** State of the Private Endpoint Service connection when MongoDB Cloud received this request. */
 export type EndpointServiceStatus =
@@ -25845,7 +25453,7 @@ export type EndpointServiceStatus =
   | "WAITING_FOR_USER"
   | "FAILED"
   | "DELETING";
-export const EndpointServiceStatus = /*@__PURE__*/ S.String;
+export const EndpointServiceStatus = S.String;
 
 export interface EndpointService {
   /** Cloud service provider that serves the requested endpoint service. */
@@ -25876,7 +25484,7 @@ export type CreateGroupPrivateEndpointEndpointServiceEndpointRequestCloudProvide
   | "AZURE"
   | "GCP";
 export const CreateGroupPrivateEndpointEndpointServiceEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateGroupPrivateEndpointEndpointServiceEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -25917,7 +25525,7 @@ export const CreateGroupPrivateEndpointEndpointServiceEndpointRequest =
 
 /** Cloud service provider that serves the requested endpoint. */
 export type PrivateLinkEndpointCloudProvider = "AWS" | "AZURE" | "GCP";
-export const PrivateLinkEndpointCloudProvider = /*@__PURE__*/ S.String;
+export const PrivateLinkEndpointCloudProvider = S.String;
 
 export interface PrivateLinkEndpoint {
   /** Cloud service provider that serves the requested endpoint. */
@@ -25945,7 +25553,7 @@ export type CreateGroupPrivateNetworkSettingEndpointIdRequestProvider =
   | "AWS"
   | "AZURE";
 export const CreateGroupPrivateNetworkSettingEndpointIdRequestProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Status of the private endpoint connection request. */
 export type CreateGroupPrivateNetworkSettingEndpointIdRequestStatus =
@@ -25953,13 +25561,11 @@ export type CreateGroupPrivateNetworkSettingEndpointIdRequestStatus =
   | "OK"
   | "FAILED"
   | "DELETING";
-export const CreateGroupPrivateNetworkSettingEndpointIdRequestStatus =
-  /*@__PURE__*/ S.String;
+export const CreateGroupPrivateNetworkSettingEndpointIdRequestStatus = S.String;
 
 /** Human-readable label that identifies the resource type associated with this private endpoint. */
 export type CreateGroupPrivateNetworkSettingEndpointIdRequestType = "DATA_LAKE";
-export const CreateGroupPrivateNetworkSettingEndpointIdRequestType =
-  /*@__PURE__*/ S.String;
+export const CreateGroupPrivateNetworkSettingEndpointIdRequestType = S.String;
 
 export interface CreateGroupPrivateNetworkSettingEndpointIdRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -26034,7 +25640,7 @@ export const PaginatedPrivateNetworkEndpointIdEntryViewLinksList =
 
 /** Human-readable label that identifies the cloud service provider. Atlas Data Lake supports Amazon Web Services and Azure. */
 export type PrivateNetworkEndpointIdEntryProvider = "AWS" | "AZURE";
-export const PrivateNetworkEndpointIdEntryProvider = /*@__PURE__*/ S.String;
+export const PrivateNetworkEndpointIdEntryProvider = S.String;
 
 /** Status of the private endpoint connection request. */
 export type PrivateNetworkEndpointIdEntryStatus =
@@ -26042,11 +25648,11 @@ export type PrivateNetworkEndpointIdEntryStatus =
   | "OK"
   | "FAILED"
   | "DELETING";
-export const PrivateNetworkEndpointIdEntryStatus = /*@__PURE__*/ S.String;
+export const PrivateNetworkEndpointIdEntryStatus = S.String;
 
 /** Human-readable label that identifies the resource type associated with this private endpoint. */
 export type PrivateNetworkEndpointIdEntryType = "DATA_LAKE";
-export const PrivateNetworkEndpointIdEntryType = /*@__PURE__*/ S.String;
+export const PrivateNetworkEndpointIdEntryType = S.String;
 
 export interface PrivateNetworkEndpointIdEntry {
   /** Link ID that identifies the Azure private endpoint connection. */
@@ -26322,7 +25928,7 @@ export type CreateGroupStreamConnectionRequestType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const CreateGroupStreamConnectionRequestType = /*@__PURE__*/ S.String;
+export const CreateGroupStreamConnectionRequestType = S.String;
 
 export interface CreateGroupStreamConnectionRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -26369,7 +25975,7 @@ export const DBRoleToExecuteLinksList = /*@__PURE__*/ S.Array(
 
 /** Type of the DB role. Can be either Built In or Custom. */
 export type DBRoleToExecuteType = "BUILT_IN" | "CUSTOM";
-export const DBRoleToExecuteType = /*@__PURE__*/ S.String;
+export const DBRoleToExecuteType = S.String;
 
 /** Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster. */
 export interface DBRoleToExecute {
@@ -26481,7 +26087,7 @@ export type StreamsKafkaNetworkingAccessType =
   | "VPC"
   | "PRIVATE_LINK"
   | "TRANSIT_GATEWAY";
-export const StreamsKafkaNetworkingAccessType = /*@__PURE__*/ S.String;
+export const StreamsKafkaNetworkingAccessType = S.String;
 
 /** Information about networking access. */
 export interface StreamsKafkaNetworkingAccess {
@@ -26574,8 +26180,7 @@ export const StreamsPublicPrivateLinkNetworkingAccessLinksList =
 export type StreamsPublicPrivateLinkNetworkingAccessType =
   | "PUBLIC"
   | "PRIVATE_LINK";
-export const StreamsPublicPrivateLinkNetworkingAccessType =
-  /*@__PURE__*/ S.String;
+export const StreamsPublicPrivateLinkNetworkingAccessType = S.String;
 
 /** Information about networking access. */
 export interface StreamsPublicPrivateLinkNetworkingAccess {
@@ -26621,13 +26226,13 @@ export const StreamsPublicPrivateLinkNetworking = /*@__PURE__*/ S.suspend(() =>
 
 /** The Schema Registry provider. */
 export type StreamsClusterConnectionOutputProvider = "CONFLUENT";
-export const StreamsClusterConnectionOutputProvider = /*@__PURE__*/ S.String;
+export const StreamsClusterConnectionOutputProvider = S.String;
 
 /** Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. */
 export type ConfluentUserInfoAuthenticationOutputType =
   | "USER_INFO"
   | "SASL_INHERIT";
-export const ConfluentUserInfoAuthenticationOutputType = /*@__PURE__*/ S.String;
+export const ConfluentUserInfoAuthenticationOutputType = S.String;
 
 /** Authentication details for type `USER_INFO` with username and password for Confluent Schema Registry. */
 export interface ConfluentUserInfoAuthenticationOutput {
@@ -26650,7 +26255,7 @@ export const ConfluentUserInfoAuthenticationOutput = /*@__PURE__*/ S.suspend(
 export type SchemaRegistryAuthenticationOutput =
   ConfluentUserInfoAuthenticationOutput;
 export const SchemaRegistryAuthenticationOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SchemaRegistryAuthenticationOutput>;
+  S.Unknown as any as S.Schema<SchemaRegistryAuthenticationOutput>;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsClusterConnectionOutputSchemaRegistryUrlsList =
@@ -26722,7 +26327,7 @@ export type StreamsClusterConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsClusterConnectionOutputState = /*@__PURE__*/ S.String;
+export const StreamsClusterConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsClusterConnectionOutputType =
@@ -26735,7 +26340,7 @@ export type StreamsClusterConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsClusterConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsClusterConnectionOutputType = S.String;
 
 export interface StreamsClusterConnectionOutput {
   /** Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting. */
@@ -26830,7 +26435,7 @@ export const StreamsKafkaConnectionOutputHeadersMap = /*@__PURE__*/ S.Record(
 
 /** The Schema Registry provider. */
 export type StreamsKafkaConnectionOutputProvider = "CONFLUENT";
-export const StreamsKafkaConnectionOutputProvider = /*@__PURE__*/ S.String;
+export const StreamsKafkaConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsKafkaConnectionOutputSchemaRegistryUrlsList = Array<string>;
@@ -26851,7 +26456,7 @@ export type StreamsKafkaConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsKafkaConnectionOutputState = /*@__PURE__*/ S.String;
+export const StreamsKafkaConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsKafkaConnectionOutputType =
@@ -26864,7 +26469,7 @@ export type StreamsKafkaConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsKafkaConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsKafkaConnectionOutputType = S.String;
 
 export interface StreamsKafkaConnectionOutput {
   /** Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting. */
@@ -26959,7 +26564,7 @@ export const StreamsHttpsConnectionOutputHeadersMap = /*@__PURE__*/ S.Record(
 
 /** The Schema Registry provider. */
 export type StreamsHttpsConnectionOutputProvider = "CONFLUENT";
-export const StreamsHttpsConnectionOutputProvider = /*@__PURE__*/ S.String;
+export const StreamsHttpsConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsHttpsConnectionOutputSchemaRegistryUrlsList = Array<string>;
@@ -26980,7 +26585,7 @@ export type StreamsHttpsConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsHttpsConnectionOutputState = /*@__PURE__*/ S.String;
+export const StreamsHttpsConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsHttpsConnectionOutputType =
@@ -26993,7 +26598,7 @@ export type StreamsHttpsConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsHttpsConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsHttpsConnectionOutputType = S.String;
 
 export interface StreamsHttpsConnectionOutput {
   /** Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting. */
@@ -27089,7 +26694,7 @@ export const StreamsAWSLambdaConnectionOutputHeadersMap =
 
 /** The Schema Registry provider. */
 export type StreamsAWSLambdaConnectionOutputProvider = "CONFLUENT";
-export const StreamsAWSLambdaConnectionOutputProvider = /*@__PURE__*/ S.String;
+export const StreamsAWSLambdaConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsAWSLambdaConnectionOutputSchemaRegistryUrlsList =
@@ -27111,7 +26716,7 @@ export type StreamsAWSLambdaConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsAWSLambdaConnectionOutputState = /*@__PURE__*/ S.String;
+export const StreamsAWSLambdaConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsAWSLambdaConnectionOutputType =
@@ -27124,7 +26729,7 @@ export type StreamsAWSLambdaConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsAWSLambdaConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsAWSLambdaConnectionOutputType = S.String;
 
 /** The configuration for AWS Lambda connections. */
 export interface StreamsAWSLambdaConnectionOutput {
@@ -27220,7 +26825,7 @@ export const StreamsS3ConnectionOutputHeadersMap = /*@__PURE__*/ S.Record(
 
 /** The Schema Registry provider. */
 export type StreamsS3ConnectionOutputProvider = "CONFLUENT";
-export const StreamsS3ConnectionOutputProvider = /*@__PURE__*/ S.String;
+export const StreamsS3ConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsS3ConnectionOutputSchemaRegistryUrlsList = Array<string>;
@@ -27241,7 +26846,7 @@ export type StreamsS3ConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsS3ConnectionOutputState = /*@__PURE__*/ S.String;
+export const StreamsS3ConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsS3ConnectionOutputType =
@@ -27254,7 +26859,7 @@ export type StreamsS3ConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsS3ConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsS3ConnectionOutputType = S.String;
 
 /** The configuration for S3 connections. */
 export interface StreamsS3ConnectionOutput {
@@ -27352,8 +26957,7 @@ export const StreamsAWSKinesisDataStreamsConnectionOutputHeadersMap =
 
 /** The Schema Registry provider. */
 export type StreamsAWSKinesisDataStreamsConnectionOutputProvider = "CONFLUENT";
-export const StreamsAWSKinesisDataStreamsConnectionOutputProvider =
-  /*@__PURE__*/ S.String;
+export const StreamsAWSKinesisDataStreamsConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsAWSKinesisDataStreamsConnectionOutputSchemaRegistryUrlsList =
@@ -27376,8 +26980,7 @@ export type StreamsAWSKinesisDataStreamsConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsAWSKinesisDataStreamsConnectionOutputState =
-  /*@__PURE__*/ S.String;
+export const StreamsAWSKinesisDataStreamsConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsAWSKinesisDataStreamsConnectionOutputType =
@@ -27390,8 +26993,7 @@ export type StreamsAWSKinesisDataStreamsConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsAWSKinesisDataStreamsConnectionOutputType =
-  /*@__PURE__*/ S.String;
+export const StreamsAWSKinesisDataStreamsConnectionOutputType = S.String;
 
 /** The configuration for AWS Kinesis Data Stream connections. */
 export interface StreamsAWSKinesisDataStreamsConnectionOutput {
@@ -27494,8 +27096,7 @@ export const StreamsSchemaRegistryConnectionOutputHeadersMap =
 
 /** The Schema Registry provider. */
 export type StreamsSchemaRegistryConnectionOutputProvider = "CONFLUENT";
-export const StreamsSchemaRegistryConnectionOutputProvider =
-  /*@__PURE__*/ S.String;
+export const StreamsSchemaRegistryConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsSchemaRegistryConnectionOutputSchemaRegistryUrlsList =
@@ -27518,8 +27119,7 @@ export type StreamsSchemaRegistryConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsSchemaRegistryConnectionOutputState =
-  /*@__PURE__*/ S.String;
+export const StreamsSchemaRegistryConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsSchemaRegistryConnectionOutputType =
@@ -27532,7 +27132,7 @@ export type StreamsSchemaRegistryConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsSchemaRegistryConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsSchemaRegistryConnectionOutputType = S.String;
 
 /** The configuration for Schema Registry connections. */
 export interface StreamsSchemaRegistryConnectionOutput {
@@ -27628,8 +27228,7 @@ export const StreamsAzureBlobStorageConnectionOutputHeadersMap =
 
 /** The Schema Registry provider. */
 export type StreamsAzureBlobStorageConnectionOutputProvider = "CONFLUENT";
-export const StreamsAzureBlobStorageConnectionOutputProvider =
-  /*@__PURE__*/ S.String;
+export const StreamsAzureBlobStorageConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsAzureBlobStorageConnectionOutputSchemaRegistryUrlsList =
@@ -27652,8 +27251,7 @@ export type StreamsAzureBlobStorageConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsAzureBlobStorageConnectionOutputState =
-  /*@__PURE__*/ S.String;
+export const StreamsAzureBlobStorageConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsAzureBlobStorageConnectionOutputType =
@@ -27666,8 +27264,7 @@ export type StreamsAzureBlobStorageConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsAzureBlobStorageConnectionOutputType =
-  /*@__PURE__*/ S.String;
+export const StreamsAzureBlobStorageConnectionOutputType = S.String;
 
 /** The configuration for Azure Blob Storage connections. */
 export interface StreamsAzureBlobStorageConnectionOutput {
@@ -27765,7 +27362,7 @@ export const StreamsGCPPubSubConnectionOutputHeadersMap =
 
 /** The Schema Registry provider. */
 export type StreamsGCPPubSubConnectionOutputProvider = "CONFLUENT";
-export const StreamsGCPPubSubConnectionOutputProvider = /*@__PURE__*/ S.String;
+export const StreamsGCPPubSubConnectionOutputProvider = S.String;
 
 /** List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port. */
 export type StreamsGCPPubSubConnectionOutputSchemaRegistryUrlsList =
@@ -27787,7 +27384,7 @@ export type StreamsGCPPubSubConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsGCPPubSubConnectionOutputState = /*@__PURE__*/ S.String;
+export const StreamsGCPPubSubConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsGCPPubSubConnectionOutputType =
@@ -27800,7 +27397,7 @@ export type StreamsGCPPubSubConnectionOutputType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const StreamsGCPPubSubConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsGCPPubSubConnectionOutputType = S.String;
 
 /** The configuration for GCP Pub/Sub connections. */
 export interface StreamsGCPPubSubConnectionOutput {
@@ -27888,14 +27485,14 @@ export type StreamsConnectionOutput =
   | StreamsAzureBlobStorageConnectionOutput
   | StreamsGCPPubSubConnectionOutput;
 export const StreamsConnectionOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StreamsConnectionOutput>;
+  S.Unknown as any as S.Schema<StreamsConnectionOutput>;
 
 /** Connection type. */
 export type CreateGroupStreamConnectionFailoverConnectionRequestType =
   | "Kafka"
   | "Cluster";
 export const CreateGroupStreamConnectionFailoverConnectionRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateGroupStreamConnectionFailoverConnectionRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -27965,13 +27562,11 @@ export type StreamsFailoverClusterConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsFailoverClusterConnectionOutputState =
-  /*@__PURE__*/ S.String;
+export const StreamsFailoverClusterConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsFailoverClusterConnectionOutputType = "Kafka" | "Cluster";
-export const StreamsFailoverClusterConnectionOutputType =
-  /*@__PURE__*/ S.String;
+export const StreamsFailoverClusterConnectionOutputType = S.String;
 
 export interface StreamsFailoverClusterConnectionOutput {
   authentication?: StreamsKafkaAuthenticationOutput;
@@ -28044,11 +27639,11 @@ export type StreamsFailoverKafkaConnectionOutputState =
   | "READY"
   | "DELETING"
   | "FAILED";
-export const StreamsFailoverKafkaConnectionOutputState = /*@__PURE__*/ S.String;
+export const StreamsFailoverKafkaConnectionOutputState = S.String;
 
 /** Connection type. */
 export type StreamsFailoverKafkaConnectionOutputType = "Kafka" | "Cluster";
-export const StreamsFailoverKafkaConnectionOutputType = /*@__PURE__*/ S.String;
+export const StreamsFailoverKafkaConnectionOutputType = S.String;
 
 export interface StreamsFailoverKafkaConnectionOutput {
   authentication?: StreamsKafkaAuthenticationOutput;
@@ -28103,7 +27698,7 @@ export type StreamsFailoverConnectionOutput =
   | StreamsFailoverClusterConnectionOutput
   | StreamsFailoverKafkaConnectionOutput;
 export const StreamsFailoverConnectionOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<StreamsFailoverConnectionOutput>;
+  S.Unknown as any as S.Schema<StreamsFailoverConnectionOutput>;
 
 /** Authentication mechanism to use with this private networking connection. */
 export type CreateGroupStreamPrivateLinkConnectionRequestAuthenticationScheme =
@@ -28111,7 +27706,7 @@ export type CreateGroupStreamPrivateLinkConnectionRequestAuthenticationScheme =
   | "SASL_SCRAM"
   | "IAM";
 export const CreateGroupStreamPrivateLinkConnectionRequestAuthenticationScheme =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Azure Resource IDs of each availability zone for the Azure Confluent cluster. */
 export type CreateGroupStreamPrivateLinkConnectionRequestAzureResourceIdsList =
@@ -28221,8 +27816,7 @@ export type StreamsPrivateLinkConnectionAuthenticationScheme =
   | "TLS"
   | "SASL_SCRAM"
   | "IAM";
-export const StreamsPrivateLinkConnectionAuthenticationScheme =
-  /*@__PURE__*/ S.String;
+export const StreamsPrivateLinkConnectionAuthenticationScheme = S.String;
 
 /** Azure Resource IDs of each availability zone for the Azure Confluent cluster. */
 export type StreamsPrivateLinkConnectionAzureResourceIdsList = Array<string>;
@@ -28338,7 +27932,7 @@ export type StreamsAutoscalingInputMaxTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamsAutoscalingInputMaxTier = /*@__PURE__*/ S.String;
+export const StreamsAutoscalingInputMaxTier = S.String;
 
 /** Tier floor for autoscaling (scale-down limit). - **Omitted:** - On `CREATE`: falls back to the workspace default tier (there is no current bound to preserve). - On `MODIFY` or `:startWith`: the current bound is preserved. - **`null`** on `CREATE`, `MODIFY`, or `:startWith`: resets the bound to the workspace default tier. - **A tier value** on `CREATE`, `MODIFY`, or `:startWith`: sets the bound to that tier. */
 export type StreamsAutoscalingInputMinTier =
@@ -28347,7 +27941,7 @@ export type StreamsAutoscalingInputMinTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamsAutoscalingInputMinTier = /*@__PURE__*/ S.String;
+export const StreamsAutoscalingInputMinTier = S.String;
 
 /** Autoscaling configuration for a stream processor. */
 export interface StreamsAutoscalingInput {
@@ -28421,7 +28015,7 @@ export type CreateGroupStreamProcessorRequestTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const CreateGroupStreamProcessorRequestTier = /*@__PURE__*/ S.String;
+export const CreateGroupStreamProcessorRequestTier = S.String;
 
 export interface CreateGroupStreamProcessorRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -28472,7 +28066,7 @@ export type StreamsProcessorEffectiveTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamsProcessorEffectiveTier = /*@__PURE__*/ S.String;
+export const StreamsProcessorEffectiveTier = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type StreamsProcessorLinksList = Array<Link>;
@@ -28493,7 +28087,7 @@ export type StreamsAutoscalingMaxTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamsAutoscalingMaxTier = /*@__PURE__*/ S.String;
+export const StreamsAutoscalingMaxTier = S.String;
 
 /** Tier floor for autoscaling (scale-down limit). - **Omitted:** - On `CREATE`: falls back to the workspace default tier (there is no current bound to preserve). - On `MODIFY` or `:startWith`: the current bound is preserved. - **`null`** on `CREATE`, `MODIFY`, or `:startWith`: resets the bound to the workspace default tier. - **A tier value** on `CREATE`, `MODIFY`, or `:startWith`: sets the bound to that tier. */
 export type StreamsAutoscalingMinTier =
@@ -28502,7 +28096,7 @@ export type StreamsAutoscalingMinTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamsAutoscalingMinTier = /*@__PURE__*/ S.String;
+export const StreamsAutoscalingMinTier = S.String;
 
 /** Autoscaling configuration for a stream processor. */
 export interface StreamsAutoscaling {
@@ -28581,7 +28175,7 @@ export const StreamsProcessorPipelineList = /*@__PURE__*/ S.Array(
 
 /** Selected tier for the Stream Workspace. Configures Memory or VCPU allowances. */
 export type StreamsProcessorTier = "SP50" | "SP30" | "SP10" | "SP5" | "SP2";
-export const StreamsProcessorTier = /*@__PURE__*/ S.String;
+export const StreamsProcessorTier = S.String;
 
 /** An atlas stream processor. */
 export interface StreamsProcessor {
@@ -28623,8 +28217,7 @@ export type StreamsDataProcessRegionInputCloudProvider =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const StreamsDataProcessRegionInputCloudProvider =
-  /*@__PURE__*/ S.String;
+export const StreamsDataProcessRegionInputCloudProvider = S.String;
 
 /** Atlas Streams AWS Regions. */
 export type ApiStreamsAWSRegionView =
@@ -28642,7 +28235,7 @@ export type ApiStreamsAWSRegionView =
   | "SINGAPORE_SGP"
   | "PARIS_FRA"
   | "SEOUL_KOR";
-export const ApiStreamsAWSRegionView = /*@__PURE__*/ S.String;
+export const ApiStreamsAWSRegionView = S.String;
 
 /** Atlas Streams Azure Regions. */
 export type ApiStreamsAzureRegionView =
@@ -28655,7 +28248,7 @@ export type ApiStreamsAzureRegionView =
   | "northeurope"
   | "eastasia"
   | "southeastasia";
-export const ApiStreamsAzureRegionView = /*@__PURE__*/ S.String;
+export const ApiStreamsAzureRegionView = S.String;
 
 /** Atlas Streams GCP Regions. */
 export type ApiStreamsGCPRegionView =
@@ -28663,7 +28256,7 @@ export type ApiStreamsGCPRegionView =
   | "EUROPE_WEST1"
   | "US_EAST4"
   | "US_WEST1";
-export const ApiStreamsGCPRegionView = /*@__PURE__*/ S.String;
+export const ApiStreamsGCPRegionView = S.String;
 
 /** Name of the cloud provider region hosting Atlas Stream Processing. */
 export type BaseStreamsRegion =
@@ -28671,7 +28264,7 @@ export type BaseStreamsRegion =
   | ApiStreamsAzureRegionView
   | ApiStreamsGCPRegionView;
 export const BaseStreamsRegion =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BaseStreamsRegion>;
+  S.Unknown as any as S.Schema<BaseStreamsRegion>;
 
 /** Information about the cloud provider region in which MongoDB Cloud processes the stream. */
 export interface StreamsDataProcessRegionInput {
@@ -28716,11 +28309,11 @@ export type StreamConfigInputMaxTierSize =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamConfigInputMaxTierSize = /*@__PURE__*/ S.String;
+export const StreamConfigInputMaxTierSize = S.String;
 
 /** Selected tier for the Stream Workspace. Configures Memory or VCPU allowances. */
 export type StreamConfigInputTier = "SP50" | "SP30" | "SP10" | "SP5" | "SP2";
-export const StreamConfigInputTier = /*@__PURE__*/ S.String;
+export const StreamConfigInputTier = S.String;
 
 /** Configuration options for an Atlas Stream Processing Workspace. */
 export interface StreamConfigInput {
@@ -28790,7 +28383,7 @@ export type StreamsDataProcessRegionCloudProvider =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const StreamsDataProcessRegionCloudProvider = /*@__PURE__*/ S.String;
+export const StreamsDataProcessRegionCloudProvider = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type StreamsDataProcessRegionLinksList = Array<Link>;
@@ -28865,11 +28458,11 @@ export const StreamConfigLinksList = /*@__PURE__*/ S.Array(
 
 /** Max tier size for the Stream Workspace. Configures Memory or VCPU allowances. */
 export type StreamConfigMaxTierSize = "SP50" | "SP30" | "SP10" | "SP5" | "SP2";
-export const StreamConfigMaxTierSize = /*@__PURE__*/ S.String;
+export const StreamConfigMaxTierSize = S.String;
 
 /** Selected tier for the Stream Workspace. Configures Memory or VCPU allowances. */
 export type StreamConfigTier = "SP50" | "SP30" | "SP10" | "SP5" | "SP2";
-export const StreamConfigTier = /*@__PURE__*/ S.String;
+export const StreamConfigTier = S.String;
 
 /** Configuration options for an Atlas Stream Processing Workspace. */
 export interface StreamConfig {
@@ -28932,7 +28525,7 @@ export type CreateAtlasOrganizationApiKeyRolesItem =
   | "ORG_BILLING_READ_ONLY"
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY";
-export const CreateAtlasOrganizationApiKeyRolesItem = /*@__PURE__*/ S.String;
+export const CreateAtlasOrganizationApiKeyRolesItem = S.String;
 
 /** List of roles to grant this API key. If you provide this list, provide a minimum of one role and ensure each role applies to this organization. */
 export type CreateAtlasOrganizationApiKeyRolesList = Array<
@@ -28967,7 +28560,7 @@ export type OrgServiceAccountRequestRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_GROUP_CREATOR"
   | "ORG_OWNER";
-export const OrgServiceAccountRequestRolesItem = /*@__PURE__*/ S.String;
+export const OrgServiceAccountRequestRolesItem = S.String;
 
 /** A list of organization-level roles for the Service Account. */
 export type OrgServiceAccountRequestRolesList = Array<
@@ -29077,7 +28670,7 @@ export type OrgServiceAccountRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_GROUP_CREATOR"
   | "ORG_OWNER";
-export const OrgServiceAccountRolesItem = /*@__PURE__*/ S.String;
+export const OrgServiceAccountRolesItem = S.String;
 
 /** A list of Organization roles associated with the Service Account. */
 export type OrgServiceAccountRolesList = Array<OrgServiceAccountRolesItem>;
@@ -29151,7 +28744,7 @@ export type CreateOrgApiKeyRequestRolesItem =
   | "ORG_BILLING_READ_ONLY"
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY";
-export const CreateOrgApiKeyRequestRolesItem = /*@__PURE__*/ S.String;
+export const CreateOrgApiKeyRequestRolesItem = S.String;
 
 /** List of roles to grant this API key. If you provide this list, provide a minimum of one role and ensure each role applies to this organization. */
 export type CreateOrgApiKeyRequestRolesList = Array<
@@ -29338,8 +28931,7 @@ export type CreateOrgBillingCostExplorerUsageProcessRequestGroupBy =
   | "projects"
   | "clusters"
   | "services";
-export const CreateOrgBillingCostExplorerUsageProcessRequestGroupBy =
-  /*@__PURE__*/ S.String;
+export const CreateOrgBillingCostExplorerUsageProcessRequestGroupBy = S.String;
 
 /** The list of organizations to be included in the Cost Explorer Query. */
 export type CreateOrgBillingCostExplorerUsageProcessRequestOrganizationsList =
@@ -29382,7 +28974,7 @@ export type CreateOrgBillingCostExplorerUsageProcessRequestServicesItem =
   | "Support"
   | "Credits";
 export const CreateOrgBillingCostExplorerUsageProcessRequestServicesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The list of SKU services to be included in the Cost Explorer Query. */
 export type CreateOrgBillingCostExplorerUsageProcessRequestServicesList = Array<
@@ -29460,11 +29052,11 @@ export const CreateOrgBillingCostExplorerUsageProcessResponse =
 
 /** Format of the report. */
 export type CreateOrgInvoiceReportRequestReportFormat = "CSV";
-export const CreateOrgInvoiceReportRequestReportFormat = /*@__PURE__*/ S.String;
+export const CreateOrgInvoiceReportRequestReportFormat = S.String;
 
 /** Type of report to generate. */
 export type CreateOrgInvoiceReportRequestReportType = "FOCUS";
-export const CreateOrgInvoiceReportRequestReportType = /*@__PURE__*/ S.String;
+export const CreateOrgInvoiceReportRequestReportType = S.String;
 
 export interface CreateOrgInvoiceReportRequest {
   /** Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [`/orgs`](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. */
@@ -29499,11 +29091,11 @@ export const CreateOrgInvoiceReportRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Format of the generated report. */
 export type InvoiceReportResponseReportFormat = "CSV";
-export const InvoiceReportResponseReportFormat = /*@__PURE__*/ S.String;
+export const InvoiceReportResponseReportFormat = S.String;
 
 /** Type of the generated report. */
 export type InvoiceReportResponseReportType = "FOCUS";
-export const InvoiceReportResponseReportType = /*@__PURE__*/ S.String;
+export const InvoiceReportResponseReportType = S.String;
 
 /** Current state of the report generation. */
 export type InvoiceReportResponseState =
@@ -29511,7 +29103,7 @@ export type InvoiceReportResponseState =
   | "RUNNING"
   | "SUCCEEDED"
   | "FAILED";
-export const InvoiceReportResponseState = /*@__PURE__*/ S.String;
+export const InvoiceReportResponseState = S.String;
 
 /** Status and details of a previously requested invoice report. */
 export interface InvoiceReportResponse {
@@ -29615,7 +29207,7 @@ export type CreateOrgMcpConfigRequestRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_GROUP_CREATOR"
   | "ORG_OWNER";
-export const CreateOrgMcpConfigRequestRolesItem = /*@__PURE__*/ S.String;
+export const CreateOrgMcpConfigRequestRolesItem = S.String;
 
 /** List of organization roles to assign to this MCP configuration. */
 export type CreateOrgMcpConfigRequestRolesList = Array<
@@ -29669,7 +29261,7 @@ export type OrgMcpConfigResponseRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_GROUP_CREATOR"
   | "ORG_OWNER";
-export const OrgMcpConfigResponseRolesItem = /*@__PURE__*/ S.String;
+export const OrgMcpConfigResponseRolesItem = S.String;
 
 /** List of organization roles associated with this MCP configuration. */
 export type OrgMcpConfigResponseRolesList =
@@ -29866,7 +29458,7 @@ export type CreateOrgServiceAccountRequestRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_GROUP_CREATOR"
   | "ORG_OWNER";
-export const CreateOrgServiceAccountRequestRolesItem = /*@__PURE__*/ S.String;
+export const CreateOrgServiceAccountRequestRolesItem = S.String;
 
 /** A list of organization-level roles for the Service Account. */
 export type CreateOrgServiceAccountRequestRolesList = Array<
@@ -30077,7 +29669,7 @@ export type OrgUserRolesRequestOrgRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY"
   | "ORG_MEMBER";
-export const OrgUserRolesRequestOrgRolesItem = /*@__PURE__*/ S.String;
+export const OrgUserRolesRequestOrgRolesItem = S.String;
 
 /** One or more organization level roles to assign the MongoDB Cloud user. */
 export type OrgUserRolesRequestOrgRolesList = Array<
@@ -30184,7 +29776,7 @@ export type DeauthorizeGroupCloudProviderAccessRoleRequestCloudProvider =
   | "AZURE"
   | "GCP";
 export const DeauthorizeGroupCloudProviderAccessRoleRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeauthorizeGroupCloudProviderAccessRoleRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -30522,8 +30114,7 @@ export const DeleteGroupBackupExportBucketResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteGroupBackupExportBucketResponse>;
 
 export type DeleteGroupBackupPrivateEndpointRequestCloudProvider = "AWS";
-export const DeleteGroupBackupPrivateEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+export const DeleteGroupBackupPrivateEndpointRequestCloudProvider = S.String;
 
 export interface DeleteGroupBackupPrivateEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -30637,8 +30228,7 @@ export type DiskBackupCopySetting20240805CloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const DiskBackupCopySetting20240805CloudProvider =
-  /*@__PURE__*/ S.String;
+export const DiskBackupCopySetting20240805CloudProvider = S.String;
 
 /** Unit of time in which MongoDB Cloud measures snapshot copy retention. */
 export type DiskBackupTimeBasedCopyPolicyItemRetentionUnit =
@@ -30646,8 +30236,7 @@ export type DiskBackupTimeBasedCopyPolicyItemRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const DiskBackupTimeBasedCopyPolicyItemRetentionUnit =
-  /*@__PURE__*/ S.String;
+export const DiskBackupTimeBasedCopyPolicyItemRetentionUnit = S.String;
 
 /** Human-readable label that identifies the frequency type associated with the copy policy. */
 export type DiskBackupTimeBasedCopyPolicyItemFrequencyType =
@@ -30657,8 +30246,7 @@ export type DiskBackupTimeBasedCopyPolicyItemFrequencyType =
   | "monthly"
   | "yearly"
   | "ondemand";
-export const DiskBackupTimeBasedCopyPolicyItemFrequencyType =
-  /*@__PURE__*/ S.String;
+export const DiskBackupTimeBasedCopyPolicyItemFrequencyType = S.String;
 
 /** Specifications for one time-based copy policy item. */
 export interface DiskBackupTimeBasedCopyPolicyItem {
@@ -30685,7 +30273,7 @@ export const DiskBackupTimeBasedCopyPolicyItem = /*@__PURE__*/ S.suspend(() =>
 /** Specifications for one copy policy item. */
 export type DiskBackupCopyPolicyItem = DiskBackupTimeBasedCopyPolicyItem;
 export const DiskBackupCopyPolicyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiskBackupCopyPolicyItem>;
+  S.Unknown as any as S.Schema<DiskBackupCopyPolicyItem>;
 
 /** List that contains a document for each copy policy item. Allowed only when `copyPolicyItemsEnabled` is true. Responses omit this field when `copyPolicyItemsEnabled` is false or omitted. */
 export type DiskBackupCopySetting20240805CopyPolicyItemsList =
@@ -30702,8 +30290,7 @@ export type DiskBackupCopySetting20240805FrequenciesItem =
   | "MONTHLY"
   | "YEARLY"
   | "ON_DEMAND";
-export const DiskBackupCopySetting20240805FrequenciesItem =
-  /*@__PURE__*/ S.String;
+export const DiskBackupCopySetting20240805FrequenciesItem = S.String;
 
 /** Deprecated: use `copyPolicyItems`, which defines which snapshots to copy and their retention. Allowed only when `copyPolicyItemsEnabled` is false or omitted. Responses omit this field when `copyPolicyItemsEnabled` is true. */
 export type DiskBackupCopySetting20240805FrequenciesList =
@@ -30756,7 +30343,7 @@ export const DiskBackupSnapshotSchedule20240805OutputCopySettingsList =
 
 /** Human-readable label that indicates the rate at which the export policy item occurs. */
 export type AutoExportPolicyViewFrequencyType = "monthly" | "yearly";
-export const AutoExportPolicyViewFrequencyType = /*@__PURE__*/ S.String;
+export const AutoExportPolicyViewFrequencyType = S.String;
 
 /** Policy for automatically exporting Cloud Backup Snapshots. */
 export interface AutoExportPolicyView {
@@ -30782,7 +30369,7 @@ export type ExtraRetentionSettingFrequencyType =
   | "MONTHLY"
   | "YEARLY"
   | "ON_DEMAND";
-export const ExtraRetentionSettingFrequencyType = /*@__PURE__*/ S.String;
+export const ExtraRetentionSettingFrequencyType = S.String;
 
 /** Extra retention setting item in the desired backup policy. */
 export interface ExtraRetentionSetting {
@@ -30846,7 +30433,7 @@ export type DiskBackupApiPolicyItemFrequencyInterval =
   | 27
   | 28
   | 40;
-export const DiskBackupApiPolicyItemFrequencyInterval = /*@__PURE__*/ S.Number;
+export const DiskBackupApiPolicyItemFrequencyInterval = S.Number;
 
 /** Human-readable label that identifies the frequency type associated with the backup policy. */
 export type DiskBackupApiPolicyItemFrequencyType =
@@ -30856,7 +30443,7 @@ export type DiskBackupApiPolicyItemFrequencyType =
   | "monthly"
   | "yearly"
   | "ondemand";
-export const DiskBackupApiPolicyItemFrequencyType = /*@__PURE__*/ S.String;
+export const DiskBackupApiPolicyItemFrequencyType = S.String;
 
 /** Unit of time in which MongoDB Cloud measures Snapshot retention. */
 export type DiskBackupApiPolicyItemRetentionUnit =
@@ -30864,7 +30451,7 @@ export type DiskBackupApiPolicyItemRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const DiskBackupApiPolicyItemRetentionUnit = /*@__PURE__*/ S.String;
+export const DiskBackupApiPolicyItemRetentionUnit = S.String;
 
 /** Specifications for one policy. */
 export interface DiskBackupApiPolicyItem {
@@ -31466,8 +31053,7 @@ export type DeleteGroupDataFederationLimitRequestLimitName =
   | "bytesProcessed.daily"
   | "bytesProcessed.weekly"
   | "bytesProcessed.monthly";
-export const DeleteGroupDataFederationLimitRequestLimitName =
-  /*@__PURE__*/ S.String;
+export const DeleteGroupDataFederationLimitRequestLimitName = S.String;
 
 export interface DeleteGroupDataFederationLimitRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -31551,8 +31137,7 @@ export type DeleteGroupIntegrationRequestIntegrationType =
   | "HIP_CHAT"
   | "PROMETHEUS"
   | "MICROSOFT_TEAMS";
-export const DeleteGroupIntegrationRequestIntegrationType =
-  /*@__PURE__*/ S.String;
+export const DeleteGroupIntegrationRequestIntegrationType = S.String;
 
 export interface DeleteGroupIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -31605,7 +31190,7 @@ export type DeleteGroupLimitRequestLimitName =
   | "dataFederation.bytesProcessed.monthly"
   | "atlas.project.deployment.privateServiceConnectionsPerRegionGroup"
   | "atlas.project.deployment.privateServiceConnectionsSubnetMask";
-export const DeleteGroupLimitRequestLimitName = /*@__PURE__*/ S.String;
+export const DeleteGroupLimitRequestLimitName = S.String;
 
 export interface DeleteGroupLimitRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -31816,7 +31401,7 @@ export type DeleteGroupPrivateEndpointEndpointServiceRequestCloudProvider =
   | "AZURE"
   | "GCP";
 export const DeleteGroupPrivateEndpointEndpointServiceRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteGroupPrivateEndpointEndpointServiceRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -31866,7 +31451,7 @@ export type DeleteGroupPrivateEndpointEndpointServiceEndpointRequestCloudProvide
   | "AZURE"
   | "GCP";
 export const DeleteGroupPrivateEndpointEndpointServiceEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface DeleteGroupPrivateEndpointEndpointServiceEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -32789,7 +32374,7 @@ export type DownloadGroupClusterLogRequestLogName =
   | "mongos"
   | "mongodb-audit-log"
   | "mongos-audit-log";
-export const DownloadGroupClusterLogRequestLogName = /*@__PURE__*/ S.String;
+export const DownloadGroupClusterLogRequestLogName = S.String;
 
 export interface DownloadGroupClusterLogRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -33088,13 +32673,11 @@ export type AtlasClusterOutageSimulationOutageFilterCloudProvider =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AtlasClusterOutageSimulationOutageFilterCloudProvider =
-  /*@__PURE__*/ S.String;
+export const AtlasClusterOutageSimulationOutageFilterCloudProvider = S.String;
 
 /** The type of cluster outage to simulate. `REGION` simulates a cluster outage for a region. */
 export type AtlasClusterOutageSimulationOutageFilterType = "REGION";
-export const AtlasClusterOutageSimulationOutageFilterType =
-  /*@__PURE__*/ S.String;
+export const AtlasClusterOutageSimulationOutageFilterType = S.String;
 
 export interface AtlasClusterOutageSimulationOutageFilter {
   /** The cloud provider of the region that undergoes the outage simulation. */
@@ -33134,7 +32717,7 @@ export type ClusterOutageSimulationState =
   | "RECOVERY_REQUESTED"
   | "RECOVERING"
   | "COMPLETE";
-export const ClusterOutageSimulationState = /*@__PURE__*/ S.String;
+export const ClusterOutageSimulationState = S.String;
 
 export interface ClusterOutageSimulation {
   /** Human-readable label that identifies the cluster that undergoes outage simulation. */
@@ -33264,7 +32847,7 @@ export const FederationSamlIdentityProviderAssociatedOrgsList =
 
 /** String enum that indicates the type of the identity provider. Default is WORKFORCE. */
 export type FederationSamlIdentityProviderIdpType = "WORKFORCE" | "WORKLOAD";
-export const FederationSamlIdentityProviderIdpType = /*@__PURE__*/ S.String;
+export const FederationSamlIdentityProviderIdpType = S.String;
 
 export interface X509Certificate {
   /** Latest date that the certificate is valid. This parameter expresses its value in the ISO 8601 timestamp format in UTC. */
@@ -33303,25 +32886,24 @@ export const PemFileInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** String enum that indicates the protocol of the identity provider. Either SAML or OIDC. */
 export type FederationSamlIdentityProviderProtocol = "SAML" | "OIDC";
-export const FederationSamlIdentityProviderProtocol = /*@__PURE__*/ S.String;
+export const FederationSamlIdentityProviderProtocol = S.String;
 
 /** SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. */
 export type FederationSamlIdentityProviderRequestBinding =
   | "HTTP-POST"
   | "HTTP-REDIRECT";
-export const FederationSamlIdentityProviderRequestBinding =
-  /*@__PURE__*/ S.String;
+export const FederationSamlIdentityProviderRequestBinding = S.String;
 
 /** Signature algorithm that Federated Authentication uses to encrypt the identity provider signature. */
 export type FederationSamlIdentityProviderResponseSignatureAlgorithm =
   | "SHA-1"
   | "SHA-256";
 export const FederationSamlIdentityProviderResponseSignatureAlgorithm =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** String enum that indicates whether the identity provider is active. */
 export type FederationSamlIdentityProviderStatus = "ACTIVE" | "INACTIVE";
-export const FederationSamlIdentityProviderStatus = /*@__PURE__*/ S.String;
+export const FederationSamlIdentityProviderStatus = S.String;
 
 export interface FederationSamlIdentityProvider {
   /** URL that points to where to send the SAML response. */
@@ -33402,7 +32984,7 @@ export type FederationIdentityProvider =
   | FederationOidcWorkforceIdentityProvider
   | FederationOidcWorkloadIdentityProvider;
 export const FederationIdentityProvider =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FederationIdentityProvider>;
+  S.Unknown as any as S.Schema<FederationIdentityProvider>;
 
 export interface GetFederationSettingIdentityProviderMetadataRequest {
   /** Unique 24-hexadecimal digit string that identifies your federation. */
@@ -33519,7 +33101,7 @@ export type NetworkPermissionEntryStatusSTATUS =
   | "PENDING"
   | "FAILED"
   | "ACTIVE";
-export const NetworkPermissionEntryStatusSTATUS = /*@__PURE__*/ S.String;
+export const NetworkPermissionEntryStatusSTATUS = S.String;
 
 export interface NetworkPermissionEntryStatus {
   /** State of the access list entry when MongoDB Cloud made this request. `ACTIVE`: This access list entry applies to all relevant cloud providers. `PENDING`: MongoDB Cloud has started to add access list entry. This access list entry may not apply to all cloud providers at the time of this request. `FAILED`: MongoDB Cloud didn't succeed in adding this access list entry. */
@@ -33536,7 +33118,7 @@ export const NetworkPermissionEntryStatus = /*@__PURE__*/ S.suspend(() =>
 export type EventTypeForNdsGroupCase0 =
   | "ALERT_ACKNOWLEDGED_AUDIT"
   | "ALERT_UNACKNOWLEDGED_AUDIT";
-export const EventTypeForNdsGroupCase0 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase0 = S.String;
 
 export type EventTypeForNdsGroupCase1 =
   | "ALERT_CONFIG_DISABLED_AUDIT"
@@ -33544,7 +33126,7 @@ export type EventTypeForNdsGroupCase1 =
   | "ALERT_CONFIG_ADDED_AUDIT"
   | "ALERT_CONFIG_DELETED_AUDIT"
   | "ALERT_CONFIG_CHANGED_AUDIT";
-export const EventTypeForNdsGroupCase1 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase1 = S.String;
 
 export type EventTypeForNdsGroupCase2 =
   | "API_KEY_CREATED"
@@ -33557,7 +33139,7 @@ export type EventTypeForNdsGroupCase2 =
   | "API_KEY_REMOVED_FROM_GROUP"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const EventTypeForNdsGroupCase2 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase2 = S.String;
 
 export type EventTypeForNdsGroupCase3 =
   | "SERVICE_ACCOUNT_CREATED"
@@ -33572,7 +33154,7 @@ export type EventTypeForNdsGroupCase3 =
   | "SERVICE_ACCOUNT_SECRET_DELETED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const EventTypeForNdsGroupCase3 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase3 = S.String;
 
 export type EventTypeForNdsGroupCase4 =
   | "URL_CONFIRMATION"
@@ -33587,7 +33169,7 @@ export type EventTypeForNdsGroupCase4 =
   | "SYNC_FAILURE"
   | "TRIGGER_FAILURE"
   | "TRIGGER_AUTO_RESUMED";
-export const EventTypeForNdsGroupCase4 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase4 = S.String;
 
 export type EventTypeForNdsGroupCase5 =
   | "AUTO_INDEXING_ENABLED"
@@ -33598,23 +33180,23 @@ export type EventTypeForNdsGroupCase5 =
   | "AUTO_INDEXING_FAILED_INDEX_BUILD"
   | "AUTO_INDEXING_COMPLETED_INDEX_BUILD"
   | "AUTO_INDEXING_STARTED_INDEX_BUILD";
-export const EventTypeForNdsGroupCase5 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase5 = S.String;
 
 export type EventTypeForNdsGroupCase6 = "AUTOMATION_CONFIG_PUBLISHED_AUDIT";
-export const EventTypeForNdsGroupCase6 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase6 = S.String;
 
 export type EventTypeForNdsGroupCase7 =
   | "PEER_CREATED"
   | "PEER_DELETED"
   | "PEER_UPDATED";
-export const EventTypeForNdsGroupCase7 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase7 = S.String;
 
 export type EventTypeForNdsGroupCase8 =
   | "AZURE_PEER_CREATED"
   | "AZURE_PEER_UPDATED"
   | "AZURE_PEER_ACTIVE"
   | "AZURE_PEER_DELETED";
-export const EventTypeForNdsGroupCase8 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase8 = S.String;
 
 export type EventTypeForNdsGroupCase9 =
   | "CREDIT_CARD_CURRENT"
@@ -33629,7 +33211,7 @@ export type EventTypeForNdsGroupCase9 =
   | "WEEKLY_BILLING_CHANGE_OVER_THRESHOLD"
   | "MONTHLY_BILLING_CHANGE_NORMAL"
   | "MONTHLY_BILLING_CHANGE_OVER_THRESHOLD";
-export const EventTypeForNdsGroupCase9 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase9 = S.String;
 
 export type EventTypeForNdsGroupCase10 =
   | "CLUSTER_CONNECTION_GET_DATABASES"
@@ -33643,12 +33225,12 @@ export type EventTypeForNdsGroupCase10 =
   | "CLUSTER_CONNECTION_SAMPLE_COLLECTION_FIELD_NAMES_AND_TYPES"
   | "CLUSTER_CONNECTION_FIND_DOCUMENTS"
   | "CLUSTER_CONNECTION_GET_NAMESPACES_AND_PROJECT_SQL_SCHEMA_DATA";
-export const EventTypeForNdsGroupCase10 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase10 = S.String;
 
 export type EventTypeForNdsGroupCase11 =
   | "CLUSTER_MONGOS_IS_PRESENT"
   | "CLUSTER_MONGOS_IS_MISSING";
-export const EventTypeForNdsGroupCase11 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase11 = S.String;
 
 export type EventTypeForNdsGroupCase12 =
   | "CPS_SNAPSHOT_STARTED"
@@ -33675,17 +33257,17 @@ export type EventTypeForNdsGroupCase12 =
   | "CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED"
   | "CPS_OPLOG_BEHIND"
   | "CPS_OPLOG_CAUGHT_UP";
-export const EventTypeForNdsGroupCase12 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase12 = S.String;
 
 export type EventTypeForNdsGroupCase13 =
   | "DATA_EXPLORER"
   | "DATA_EXPLORER_CRUD_ATTEMPT"
   | "DATA_EXPLORER_CRUD_ERROR"
   | "DATA_EXPLORER_CRUD";
-export const EventTypeForNdsGroupCase13 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase13 = S.String;
 
 export type EventTypeForNdsGroupCase14 = "DATA_EXPLORER_SESSION_CREATED";
-export const EventTypeForNdsGroupCase14 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase14 = S.String;
 
 export type EventTypeForNdsGroupCase15 =
   | "CPS_DATA_PROTECTION_ENABLE_REQUESTED"
@@ -33695,7 +33277,7 @@ export type EventTypeForNdsGroupCase15 =
   | "CPS_DATA_PROTECTION_DISABLE_REQUESTED"
   | "CPS_DATA_PROTECTION_DISABLED"
   | "CPS_DATA_PROTECTION_APPROVED_FOR_DISABLEMENT";
-export const EventTypeForNdsGroupCase15 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase15 = S.String;
 
 export type EventTypeForNdsGroupCase16 =
   | "CPS_RESTORE_REQUESTED_AUDIT"
@@ -33711,7 +33293,7 @@ export type EventTypeForNdsGroupCase16 =
   | "CPS_ON_DEMAND_SNAPSHOT_REQUESTED"
   | "CPS_OPLOG_CAUGHT_UP_AUDIT"
   | "CPS_OPLOG_BEHIND_AUDIT";
-export const EventTypeForNdsGroupCase16 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase16 = S.String;
 
 export type EventTypeForNdsGroupCase17 =
   | "AWS_ENCRYPTION_KEY_ROTATED"
@@ -33726,12 +33308,12 @@ export type EventTypeForNdsGroupCase17 =
   | "AZURE_ENCRYPTION_KEY_INVALID"
   | "GCP_ENCRYPTION_KEY_VALID"
   | "GCP_ENCRYPTION_KEY_INVALID";
-export const EventTypeForNdsGroupCase17 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase17 = S.String;
 
 export type EventTypeForNdsGroupCase18 =
   | "BUCKET_CREATED_AUDIT"
   | "BUCKET_DELETED_AUDIT";
-export const EventTypeForNdsGroupCase18 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase18 = S.String;
 
 export type EventTypeForNdsGroupCase19 =
   | "FTS_INDEX_DELETION_FAILED"
@@ -33748,7 +33330,7 @@ export type EventTypeForNdsGroupCase19 =
   | "FTS_INDEXES_RESTORED"
   | "FTS_INDEXES_RESTORE_FAILED"
   | "FTS_INDEXES_SYNONYM_MAPPING_INVALID";
-export const EventTypeForNdsGroupCase19 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase19 = S.String;
 
 export type EventTypeForNdsGroupCase20 =
   | "GCP_PEER_CREATED"
@@ -33756,7 +33338,7 @@ export type EventTypeForNdsGroupCase20 =
   | "GCP_PEER_UPDATED"
   | "GCP_PEER_ACTIVE"
   | "GCP_PEER_INACTIVE";
-export const EventTypeForNdsGroupCase20 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase20 = S.String;
 
 export type EventTypeForNdsGroupCase21 =
   | "DATA_EXPLORER_ENABLED"
@@ -33777,7 +33359,7 @@ export type EventTypeForNdsGroupCase21 =
   | "GROUP_CHARTS_UPGRADED"
   | "GROUP_CHARTS_RESET"
   | "GROUP_DEFAULT_ALERTS_SETTINGS_CHANGED";
-export const EventTypeForNdsGroupCase21 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase21 = S.String;
 
 export type EventTypeForNdsGroupCase22 =
   | "PAID_IN_FULL"
@@ -33795,12 +33377,12 @@ export type EventTypeForNdsGroupCase22 =
   | "ACTIVE_LEGACY_TLS_CONNECTIONS"
   | "NO_ACTIVE_LEGACY_TLS_CONNECTIONS"
   | "WEBHOOK_TEMPLATE_RENDER_FAILED";
-export const EventTypeForNdsGroupCase22 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase22 = S.String;
 
 export type EventTypeForNdsGroupCase23 =
   | "INTEGRATION_CONFIGURED"
   | "INTEGRATION_REMOVED";
-export const EventTypeForNdsGroupCase23 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase23 = S.String;
 
 export type EventTypeForNdsGroupCase24 =
   | "ATTEMPT_KILLOP_AUDIT"
@@ -33842,22 +33424,22 @@ export type EventTypeForNdsGroupCase24 =
   | "HOST_SSL_CERTIFICATE_STALE"
   | "HOST_SECURITY_CHECKUP_NOT_MET"
   | "PROFILER_CONFIGURED_TOO_WIDELY";
-export const EventTypeForNdsGroupCase24 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase24 = S.String;
 
 export type EventTypeForNdsGroupCase25 =
   | "INSIDE_METRIC_THRESHOLD"
   | "OUTSIDE_METRIC_THRESHOLD";
-export const EventTypeForNdsGroupCase25 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase25 = S.String;
 
 export type EventTypeForNdsGroupCase26 =
   | "ROLLING_INDEX_FAILED_INDEX_BUILD"
   | "ROLLING_INDEX_SUCCESS_INDEX_BUILD"
   | "INDEX_FAILED_INDEX_BUILD"
   | "INDEX_SUCCESS_INDEX_BUILD";
-export const EventTypeForNdsGroupCase26 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase26 = S.String;
 
 export type EventTypeForNdsGroupCase27 = "MONGOTUNE_INFO" | "MONGOTUNE_ALERT";
-export const EventTypeForNdsGroupCase27 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase27 = S.String;
 
 export type EventTypeForNdsGroupCase28 =
   | "CLUSTER_CREATED"
@@ -34161,7 +33743,7 @@ export type EventTypeForNdsGroupCase28 =
   | "VOLUME_IMPAIRED_RESOLVED"
   | "SQL_INTERFACE_ENABLED"
   | "SQL_INTERFACE_DISABLED";
-export const EventTypeForNdsGroupCase28 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase28 = S.String;
 
 export type EventTypeForNdsGroupCase29 =
   | "DB_CHECK_UPDATED"
@@ -34169,7 +33751,7 @@ export type EventTypeForNdsGroupCase29 =
   | "DB_CHECK_SCHEDULED_FOR_CLUSTER"
   | "DB_CHECK_DEFERRED_FOR_CLUSTER"
   | "CLUSTER_OPTED_OUT_OF_DB_CHECK";
-export const EventTypeForNdsGroupCase29 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase29 = S.String;
 
 export type EventTypeForNdsGroupCase30 =
   | "CLUSTER_SAMPLED_FOR_DATA_VALIDATION"
@@ -34178,7 +33760,7 @@ export type EventTypeForNdsGroupCase30 =
   | "REPLICA_SET_SAMPLED_FOR_INTER_NODE_DATA_VALIDATION"
   | "REPLICA_SET_OPTED_OUT_OF_INTER_NODE_DATA_VALIDATION"
   | "INTER_NODE_DATA_VALIDATION_SUBMITTED_FOR_REPLICA_SET";
-export const EventTypeForNdsGroupCase30 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase30 = S.String;
 
 export type EventTypeForNdsGroupCase31 =
   | "COMPUTE_AUTO_SCALE_INITIATED"
@@ -34200,7 +33782,7 @@ export type EventTypeForNdsGroupCase31 =
   | "PREDICTIVE_COMPUTE_AUTO_SCALE_OPLOG_FAIL_BASE"
   | "CLUSTER_AUTO_SHARDING_INITIATED"
   | "CLUSTER_RESHARDING_COMPLETED";
-export const EventTypeForNdsGroupCase31 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase31 = S.String;
 
 export type EventTypeForNdsGroupCase32 =
   | "MAINTENANCE_IN_ADVANCED"
@@ -34208,7 +33790,7 @@ export type EventTypeForNdsGroupCase32 =
   | "MAINTENANCE_STARTED"
   | "MAINTENANCE_COMPLETED"
   | "MAINTENANCE_NO_LONGER_NEEDED";
-export const EventTypeForNdsGroupCase32 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase32 = S.String;
 
 export type EventTypeForNdsGroupCase33 =
   | "SERVERLESS_AUTO_SCALING_INITIATED"
@@ -34218,7 +33800,7 @@ export type EventTypeForNdsGroupCase33 =
   | "SERVERLESS_MTM_DRAIN_INITIATED"
   | "SERVERLESS_MTM_DRAIN_COMPLETED"
   | "SERVERLESS_MTM_DRAIN_STOPPED";
-export const EventTypeForNdsGroupCase33 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase33 = S.String;
 
 export type EventTypeForNdsGroupCase34 =
   | "SERVERLESS_INSTANCE_CREATED"
@@ -34229,7 +33811,7 @@ export type EventTypeForNdsGroupCase34 =
   | "SERVERLESS_INSTANCE_DELETE_SUBMITTED"
   | "SERVERLESS_INSTANCE_DELETED"
   | "SERVERLESS_INSTANCE_UNBLOCKED";
-export const EventTypeForNdsGroupCase34 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase34 = S.String;
 
 export type EventTypeForNdsGroupCase35 =
   | "TENANT_ENDPOINT_CREATED"
@@ -34242,7 +33824,7 @@ export type EventTypeForNdsGroupCase35 =
   | "TENANT_ENDPOINT_DELETING"
   | "TENANT_ENDPOINT_DELETED"
   | "TENANT_ENDPOINT_EXPIRED";
-export const EventTypeForNdsGroupCase35 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase35 = S.String;
 
 export type EventTypeForNdsGroupCase36 =
   | "TENANT_ENDPOINT_SERVICE_DEPLOYMENT_CREATED"
@@ -34252,7 +33834,7 @@ export type EventTypeForNdsGroupCase36 =
   | "TENANT_ENDPOINT_SERVICE_DELETED"
   | "TENANT_ENDPOINT_SERVICE_DEPLOYMENT_DELETED"
   | "TENANT_ENDPOINT_SERVICE_DEPLOYMENT_NUM_DESIRED_ENDPOINT_SERVICES_INCREASED";
-export const EventTypeForNdsGroupCase36 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase36 = S.String;
 
 export type EventTypeForNdsGroupCase37 =
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_RESOLVED"
@@ -34261,7 +33843,7 @@ export type EventTypeForNdsGroupCase37 =
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK"
   | "NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_RESOLVED"
   | "NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK";
-export const EventTypeForNdsGroupCase37 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase37 = S.String;
 
 export type EventTypeForNdsGroupCase38 =
   | "ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK"
@@ -34269,7 +33851,7 @@ export type EventTypeForNdsGroupCase38 =
   | "ONLINE_ARCHIVE_UP_TO_DATE"
   | "ONLINE_ARCHIVE_DATA_EXPIRATION_RESOLVED"
   | "ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK";
-export const EventTypeForNdsGroupCase38 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase38 = S.String;
 
 export type EventTypeForNdsGroupCase39 =
   | "CROSS_REGION_SUPPORTED_REGION_MODIFIED"
@@ -34280,10 +33862,10 @@ export type EventTypeForNdsGroupCase39 =
   | "INTERFACE_ENDPOINT_DELETED"
   | "INTERFACE_ENDPOINT_PATCHED"
   | "INTERFACE_ENDPOINT_RETRIED";
-export const EventTypeForNdsGroupCase39 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase39 = S.String;
 
 export type EventTypeForNdsGroupCase40 = "PROACTIVE_OPERATION_EVENT_LOGGED";
-export const EventTypeForNdsGroupCase40 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase40 = S.String;
 
 export type EventTypeForNdsGroupCase41 =
   | "PRIMARY_ELECTED"
@@ -34294,13 +33876,13 @@ export type EventTypeForNdsGroupCase41 =
   | "TOO_MANY_ELECTIONS"
   | "TOO_FEW_HEALTHY_MEMBERS"
   | "TOO_MANY_UNHEALTHY_MEMBERS";
-export const EventTypeForNdsGroupCase41 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase41 = S.String;
 
 export type EventTypeForNdsGroupCase42 =
   | "SEARCH_DEPLOYMENT_CREATED"
   | "SEARCH_DEPLOYMENT_UPDATED"
   | "SEARCH_DEPLOYMENT_DELETED";
-export const EventTypeForNdsGroupCase42 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase42 = S.String;
 
 export type EventTypeForNdsGroupCase43 =
   | "SERVERLESS_DEPLOYMENT_CREATED"
@@ -34311,23 +33893,23 @@ export type EventTypeForNdsGroupCase43 =
   | "SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_LINKED"
   | "SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_UNLINKED"
   | "SERVERLESS_DEPLOYMENT_ENVOY_INSTANCE_UIS_KEYS_ROTATED";
-export const EventTypeForNdsGroupCase43 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase43 = S.String;
 
 export type EventTypeForNdsGroupCase44 =
   | "INSIDE_SERVERLESS_METRIC_THRESHOLD"
   | "OUTSIDE_SERVERLESS_METRIC_THRESHOLD";
-export const EventTypeForNdsGroupCase44 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase44 = S.String;
 
 export type EventTypeForNdsGroupCase45 =
   | "INSIDE_FLEX_METRIC_THRESHOLD"
   | "OUTSIDE_FLEX_METRIC_THRESHOLD";
-export const EventTypeForNdsGroupCase45 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase45 = S.String;
 
 export type EventTypeForNdsGroupCase46 = "SETUP_SERVERLESS_INITIATED";
-export const EventTypeForNdsGroupCase46 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase46 = S.String;
 
 export type EventTypeForNdsGroupCase47 = "MAX_PROCESSOR_COUNT_REACHED";
-export const EventTypeForNdsGroupCase47 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase47 = S.String;
 
 export type EventTypeForNdsGroupCase48 =
   | "STREAM_PROCESSOR_STATE_IS_FAILED"
@@ -34339,21 +33921,21 @@ export type EventTypeForNdsGroupCase48 =
   | "STREAM_PROCESSOR_MODIFIED"
   | "INSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD"
   | "OUTSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD";
-export const EventTypeForNdsGroupCase48 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase48 = S.String;
 
 export type EventTypeForNdsGroupCase49 = "CASE_CREATED";
-export const EventTypeForNdsGroupCase49 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase49 = S.String;
 
 export type EventTypeForNdsGroupCase50 =
   | "SUPPORT_EMAILS_SENT_SUCCESSFULLY"
   | "SUPPORT_EMAILS_SENT_FAILURE";
-export const EventTypeForNdsGroupCase50 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase50 = S.String;
 
 export type EventTypeForNdsGroupCase51 =
   | "TEAM_ADDED_TO_GROUP"
   | "TEAM_REMOVED_FROM_GROUP"
   | "TEAM_ROLES_MODIFIED";
-export const EventTypeForNdsGroupCase51 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase51 = S.String;
 
 export type EventTypeForNdsGroupCase52 =
   | "TENANT_SNAPSHOT_STARTED_AUDIT"
@@ -34362,7 +33944,7 @@ export type EventTypeForNdsGroupCase52 =
   | "TENANT_RESTORE_REQUESTED_AUDIT"
   | "TENANT_RESTORE_COMPLETED_AUDIT"
   | "TENANT_SNAPSHOT_DOWNLOAD_REQUESTED_AUDIT";
-export const EventTypeForNdsGroupCase52 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase52 = S.String;
 
 export type EventTypeForNdsGroupCase53 =
   | "JOINED_GROUP"
@@ -34373,7 +33955,7 @@ export type EventTypeForNdsGroupCase53 =
   | "USER_ROLES_CHANGED_AUDIT"
   | "JOIN_GROUP_REQUEST_DENIED_AUDIT"
   | "JOIN_GROUP_REQUEST_APPROVED_AUDIT";
-export const EventTypeForNdsGroupCase53 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase53 = S.String;
 
 export type EventTypeForNdsGroupCase54 =
   | "CLUSTER_FCV_FIXED"
@@ -34384,16 +33966,16 @@ export type EventTypeForNdsGroupCase54 =
   | "CLUSTER_BINARY_VERSION_UPGRADED"
   | "CLUSTER_OS_FIXED"
   | "CLUSTER_OS_UNFIXED";
-export const EventTypeForNdsGroupCase54 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase54 = S.String;
 
 export type EventTypeForNdsGroupCase55 =
   | "TAGS_MODIFIED"
   | "CLUSTER_TAGS_MODIFIED"
   | "GROUP_TAGS_MODIFIED";
-export const EventTypeForNdsGroupCase55 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase55 = S.String;
 
 export type EventTypeForNdsGroupCase56 = "EMPLOYEE_DOWNLOADED_CLUSTER_LOGS";
-export const EventTypeForNdsGroupCase56 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase56 = S.String;
 
 export type EventTypeForNdsGroupCase57 =
   | "CHARTS_API_SUCCESS"
@@ -34402,22 +33984,22 @@ export type EventTypeForNdsGroupCase57 =
   | "CHARTS_DASHBOARD_EXPORT_FAILED"
   | "CHARTS_DASHBOARD_IMPORTED"
   | "CHARTS_DASHBOARD_IMPORT_FAILED";
-export const EventTypeForNdsGroupCase57 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase57 = S.String;
 
 export type EventTypeForNdsGroupCase58 = "RESOURCE_POLICY_VIOLATED";
-export const EventTypeForNdsGroupCase58 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase58 = S.String;
 
 export type EventTypeForNdsGroupCase59 =
   | "QUERY_SHAPE_BLOCKED"
   | "QUERY_SHAPE_UNBLOCKED";
-export const EventTypeForNdsGroupCase59 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase59 = S.String;
 
 export type EventTypeForNdsGroupCase60 =
   | "SHARD_KEY_ANALYSIS_STARTED"
   | "SHARD_KEY_ANALYSIS_FINISHED"
   | "QUERY_SAMPLING_STARTED"
   | "QUERY_SAMPLING_STOPPED";
-export const EventTypeForNdsGroupCase60 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase60 = S.String;
 
 export type EventTypeForNdsGroupCase61 =
   | "AI_MODELS_APIS_API_KEY_CREATED"
@@ -34426,7 +34008,7 @@ export type EventTypeForNdsGroupCase61 =
   | "AI_MODELS_APIS_RATE_LIMIT_UPDATED"
   | "AI_MODELS_APIS_RATE_LIMIT_RESET"
   | "AI_MODELS_APIS_RATE_LIMIT_ADMIN_OVERRIDE";
-export const EventTypeForNdsGroupCase61 = /*@__PURE__*/ S.String;
+export const EventTypeForNdsGroupCase61 = S.String;
 
 export type EventTypeForNdsGroup =
   | EventTypeForNdsGroupCase0
@@ -34492,7 +34074,7 @@ export type EventTypeForNdsGroup =
   | EventTypeForNdsGroupCase60
   | EventTypeForNdsGroupCase61;
 export const EventTypeForNdsGroup =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventTypeForNdsGroup>;
+  S.Unknown as any as S.Schema<EventTypeForNdsGroup>;
 
 /** List of event types to filter the activity feed. */
 export type GetGroupActivityFeedRequestEventTypeList =
@@ -34570,12 +34152,12 @@ export const ActivityFeedLinkResponse = /*@__PURE__*/ S.suspend(() =>
 export type GetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
   "ANY";
 export const GetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
   "ANY";
 export const GetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -34987,7 +34569,7 @@ export type AuditLogConfigurationType =
   | "NONE"
   | "FILTER_BUILDER"
   | "FILTER_JSON";
-export const AuditLogConfigurationType = /*@__PURE__*/ S.String;
+export const AuditLogConfigurationType = S.String;
 
 export interface AuditLog {
   /** Flag that indicates whether someone set auditing to track successful authentications. This only applies to the `"atype" : "authCheck"` audit filter. Setting this parameter to `true` degrades cluster performance. */
@@ -35103,13 +34685,11 @@ export type BackupComplianceOnDemandPolicyItemFrequencyInterval =
   | 27
   | 28
   | 40;
-export const BackupComplianceOnDemandPolicyItemFrequencyInterval =
-  /*@__PURE__*/ S.Number;
+export const BackupComplianceOnDemandPolicyItemFrequencyInterval = S.Number;
 
 /** Human-readable label that identifies the frequency type associated with the backup policy. */
 export type BackupComplianceOnDemandPolicyItemFrequencyType = "ondemand";
-export const BackupComplianceOnDemandPolicyItemFrequencyType =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceOnDemandPolicyItemFrequencyType = S.String;
 
 /** Unit of time in which MongoDB Cloud measures snapshot retention. */
 export type BackupComplianceOnDemandPolicyItemRetentionUnit =
@@ -35117,8 +34697,7 @@ export type BackupComplianceOnDemandPolicyItemRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const BackupComplianceOnDemandPolicyItemRetentionUnit =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceOnDemandPolicyItemRetentionUnit = S.String;
 
 /** Specifications for on-demand policy. */
 export interface BackupComplianceOnDemandPolicyItem {
@@ -35176,8 +34755,7 @@ export type BackupComplianceScheduledPolicyItemFrequencyInterval =
   | 27
   | 28
   | 40;
-export const BackupComplianceScheduledPolicyItemFrequencyInterval =
-  /*@__PURE__*/ S.Number;
+export const BackupComplianceScheduledPolicyItemFrequencyInterval = S.Number;
 
 /** Human-readable label that identifies the frequency type associated with the backup policy. */
 export type BackupComplianceScheduledPolicyItemFrequencyType =
@@ -35186,8 +34764,7 @@ export type BackupComplianceScheduledPolicyItemFrequencyType =
   | "weekly"
   | "monthly"
   | "yearly";
-export const BackupComplianceScheduledPolicyItemFrequencyType =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceScheduledPolicyItemFrequencyType = S.String;
 
 /** Unit of time in which MongoDB Cloud measures Snapshot retention. */
 export type BackupComplianceScheduledPolicyItemRetentionUnit =
@@ -35195,8 +34772,7 @@ export type BackupComplianceScheduledPolicyItemRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const BackupComplianceScheduledPolicyItemRetentionUnit =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceScheduledPolicyItemRetentionUnit = S.String;
 
 /** Specifications for scheduled policy. */
 export interface BackupComplianceScheduledPolicyItem {
@@ -35237,7 +34813,7 @@ export type DataProtectionSettings20231001State =
   | "ENABLING"
   | "UPDATING"
   | "DISABLING";
-export const DataProtectionSettings20231001State = /*@__PURE__*/ S.String;
+export const DataProtectionSettings20231001State = S.String;
 
 export interface DataProtectionSettings20231001 {
   /** Email address of the user who authorized to update the Backup Compliance Policy settings. */
@@ -35317,8 +34893,7 @@ export const GetGroupBackupExportBucketRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGroupBackupExportBucketRequest>;
 
 export type GetGroupBackupPrivateEndpointRequestCloudProvider = "AWS";
-export const GetGroupBackupPrivateEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+export const GetGroupBackupPrivateEndpointRequestCloudProvider = S.String;
 
 export interface GetGroupBackupPrivateEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -35560,7 +35135,7 @@ export const GetGroupClusterBackupSnapshotRequest = /*@__PURE__*/ S.suspend(
 
 /** Human-readable label that identifies the cloud provider. */
 export type DiskBackupReplicaSetCloudProvider = "AWS" | "AZURE" | "GCP";
-export const DiskBackupReplicaSetCloudProvider = /*@__PURE__*/ S.String;
+export const DiskBackupReplicaSetCloudProvider = S.String;
 
 /** List that identifies the regions to which MongoDB Cloud copies the snapshot. */
 export type DiskBackupReplicaSetCopyRegionsList = Array<string>;
@@ -35575,7 +35150,7 @@ export type DiskBackupReplicaSetFrequencyType =
   | "weekly"
   | "monthly"
   | "yearly";
-export const DiskBackupReplicaSetFrequencyType = /*@__PURE__*/ S.String;
+export const DiskBackupReplicaSetFrequencyType = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DiskBackupReplicaSetLinksList = Array<Link>;
@@ -35594,7 +35169,7 @@ export type DiskBackupReplicaSetSnapshotType =
   | "onDemand"
   | "scheduled"
   | "fallback";
-export const DiskBackupReplicaSetSnapshotType = /*@__PURE__*/ S.String;
+export const DiskBackupReplicaSetSnapshotType = S.String;
 
 /** Human-readable label that indicates the stage of the backup process for this snapshot. */
 export type DiskBackupReplicaSetStatus =
@@ -35602,11 +35177,11 @@ export type DiskBackupReplicaSetStatus =
   | "inProgress"
   | "completed"
   | "failed";
-export const DiskBackupReplicaSetStatus = /*@__PURE__*/ S.String;
+export const DiskBackupReplicaSetStatus = S.String;
 
 /** Human-readable label that categorizes the cluster as a replica set or sharded cluster. */
 export type DiskBackupReplicaSetType = "replicaSet" | "shardedCluster";
-export const DiskBackupReplicaSetType = /*@__PURE__*/ S.String;
+export const DiskBackupReplicaSetType = S.String;
 
 /** Details of the replica set snapshot that MongoDB Cloud created. */
 export interface DiskBackupReplicaSet {
@@ -35817,8 +35392,7 @@ export const GetGroupClusterBackupSnapshotShardedClusterRequest =
 export type DiskBackupShardedClusterSnapshotConfigServerType =
   | "EMBEDDED"
   | "DEDICATED";
-export const DiskBackupShardedClusterSnapshotConfigServerType =
-  /*@__PURE__*/ S.String;
+export const DiskBackupShardedClusterSnapshotConfigServerType = S.String;
 
 /** Human-readable label that identifies how often this snapshot triggers. */
 export type DiskBackupShardedClusterSnapshotFrequencyType =
@@ -35827,8 +35401,7 @@ export type DiskBackupShardedClusterSnapshotFrequencyType =
   | "weekly"
   | "monthly"
   | "yearly";
-export const DiskBackupShardedClusterSnapshotFrequencyType =
-  /*@__PURE__*/ S.String;
+export const DiskBackupShardedClusterSnapshotFrequencyType = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DiskBackupShardedClusterSnapshotLinksList = Array<Link>;
@@ -35841,8 +35414,7 @@ export type DiskBackupShardedClusterSnapshotMemberCloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const DiskBackupShardedClusterSnapshotMemberCloudProvider =
-  /*@__PURE__*/ S.String;
+export const DiskBackupShardedClusterSnapshotMemberCloudProvider = S.String;
 
 export interface DiskBackupShardedClusterSnapshotMember {
   /** Human-readable label that identifies the cloud provider. */
@@ -35890,8 +35462,7 @@ export type DiskBackupShardedClusterSnapshotSnapshotType =
   | "onDemand"
   | "scheduled"
   | "fallback";
-export const DiskBackupShardedClusterSnapshotSnapshotType =
-  /*@__PURE__*/ S.String;
+export const DiskBackupShardedClusterSnapshotSnapshotType = S.String;
 
 /** Human-readable label that indicates the stage of the backup process for this snapshot. */
 export type DiskBackupShardedClusterSnapshotStatus =
@@ -35899,13 +35470,13 @@ export type DiskBackupShardedClusterSnapshotStatus =
   | "inProgress"
   | "completed"
   | "failed";
-export const DiskBackupShardedClusterSnapshotStatus = /*@__PURE__*/ S.String;
+export const DiskBackupShardedClusterSnapshotStatus = S.String;
 
 /** Human-readable label that categorizes the cluster as a replica set or sharded cluster. */
 export type DiskBackupShardedClusterSnapshotType =
   | "replicaSet"
   | "shardedCluster";
-export const DiskBackupShardedClusterSnapshotType = /*@__PURE__*/ S.String;
+export const DiskBackupShardedClusterSnapshotType = S.String;
 
 /** Details of the sharded cluster snapshot that MongoDB Cloud created. */
 export interface DiskBackupShardedClusterSnapshot {
@@ -36059,7 +35630,7 @@ export type ApiAtlasCollectionRestoreIndexStatusState =
   | "SUCCESSFUL"
   | "FAILED"
   | "NOT_RESTORED";
-export const ApiAtlasCollectionRestoreIndexStatusState = /*@__PURE__*/ S.String;
+export const ApiAtlasCollectionRestoreIndexStatusState = S.String;
 
 /** Index build status for a collection within a restore job. */
 export interface ApiAtlasCollectionRestoreIndexStatus {
@@ -36094,8 +35665,7 @@ export type ApiAtlasCollectionRestoreCollectionStateResponseState =
   | "ROLLBACK"
   | "NOT_RESTORED"
   | "FAILED";
-export const ApiAtlasCollectionRestoreCollectionStateResponseState =
-  /*@__PURE__*/ S.String;
+export const ApiAtlasCollectionRestoreCollectionStateResponseState = S.String;
 
 /** Collection-level state within a collection restore job. */
 export interface ApiAtlasCollectionRestoreCollectionStateResponse {
@@ -36132,8 +35702,7 @@ export type GetGroupClusterCollStatNamespacesRequestClusterView =
   | "PRIMARY"
   | "SECONDARY"
   | "INDIVIDUAL_PROCESS";
-export const GetGroupClusterCollStatNamespacesRequestClusterView =
-  /*@__PURE__*/ S.String;
+export const GetGroupClusterCollStatNamespacesRequestClusterView = S.String;
 
 export interface GetGroupClusterCollStatNamespacesRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -36354,7 +35923,7 @@ export type ClusterDescriptionProcessArgs20240805CustomOpensslCipherConfigTls12I
   | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
   | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256";
 export const ClusterDescriptionProcessArgs20240805CustomOpensslCipherConfigTls12Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The custom OpenSSL cipher suite list for TLS 1.2. Requires `tlsCipherConfigMode` = `CUSTOM`; when `tlsCipherConfigMode` is omitted, supplying a non-empty list infers `CUSTOM`. */
 export type ClusterDescriptionProcessArgs20240805CustomOpensslCipherConfigTls12List =
@@ -36370,7 +35939,7 @@ export type ClusterDescriptionProcessArgs20240805CustomOpensslCipherConfigTls13I
   | "TLS_AES_128_GCM_SHA256"
   | "TLS_AES_128_CCM_SHA256";
 export const ClusterDescriptionProcessArgs20240805CustomOpensslCipherConfigTls13Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The custom OpenSSL cipher suite list for TLS 1.3. Requires `tlsCipherConfigMode` = `CUSTOM`; when `tlsCipherConfigMode` is omitted, supplying a non-empty list infers `CUSTOM`. */
 export type ClusterDescriptionProcessArgs20240805CustomOpensslCipherConfigTls13List =
@@ -36387,14 +35956,14 @@ export type ClusterDescriptionProcessArgs20240805MinimumEnabledTlsProtocol =
   | "TLS1_2"
   | "TLS1_3";
 export const ClusterDescriptionProcessArgs20240805MinimumEnabledTlsProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The TLS cipher suite configuration mode. The default mode uses the default cipher suites. The custom mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. */
 export type ClusterDescriptionProcessArgs20240805TlsCipherConfigMode =
   | "CUSTOM"
   | "DEFAULT";
 export const ClusterDescriptionProcessArgs20240805TlsCipherConfigMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Advanced MongoDB process configuration options applied to the cluster. */
 export interface ClusterDescriptionProcessArgs20240805 {
@@ -36498,11 +36067,11 @@ export const GetGroupClusterQueryShapeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The MongoDB command type issued for a query shape. */
 export type QueryShapeResponseCommand = "FIND" | "DISTINCT" | "AGGREGATE";
-export const QueryShapeResponseCommand = /*@__PURE__*/ S.String;
+export const QueryShapeResponseCommand = S.String;
 
 /** The rejection status of a query shape. Use REJECTED to prevent the query shape from executing on the cluster, or UNREJECTED to allow it to execute. */
 export type QueryShapeResponseStatus = "REJECTED" | "UNREJECTED";
-export const QueryShapeResponseStatus = /*@__PURE__*/ S.String;
+export const QueryShapeResponseStatus = S.String;
 
 /** Response containing the details and status of a query shape. The query shape field may be null if the user lacks PII view access. */
 export interface QueryShapeResponse {
@@ -36605,7 +36174,7 @@ export const QueryShapeSeenMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** The MongoDB command issued for this query shape. */
 export type QueryStatsSummaryCommand = "find" | "distinct" | "aggregate";
-export const QueryStatsSummaryCommand = /*@__PURE__*/ S.String;
+export const QueryStatsSummaryCommand = S.String;
 
 /** A summary of execution statistics for a given query shape. */
 export interface QueryStatsSummary {
@@ -36821,7 +36390,7 @@ export const GetGroupClusterStatusRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** State of cluster at the time of this request. Atlas returns **Applied** if it completed adding a user to, or removing a user from, your cluster. Atlas returns **Pending** if it's still making the requested user changes. When status is **Pending**, new users can't log in. */
 export type ClusterStatusChangeStatus = "PENDING" | "APPLIED";
-export const ClusterStatusChangeStatus = /*@__PURE__*/ S.String;
+export const ClusterStatusChangeStatus = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ClusterStatusLinksList = Array<Link>;
@@ -36989,8 +36558,7 @@ export type GetGroupDataFederationLimitRequestLimitName =
   | "bytesProcessed.daily"
   | "bytesProcessed.weekly"
   | "bytesProcessed.monthly";
-export const GetGroupDataFederationLimitRequestLimitName =
-  /*@__PURE__*/ S.String;
+export const GetGroupDataFederationLimitRequestLimitName = S.String;
 
 export interface GetGroupDataFederationLimitRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -37027,8 +36595,7 @@ export const GetGroupDataFederationLimitRequest = /*@__PURE__*/ S.suspend(() =>
 export type DataFederationTenantQueryLimitOverrunPolicy =
   | "BLOCK"
   | "BLOCK_AND_KILL";
-export const DataFederationTenantQueryLimitOverrunPolicy =
-  /*@__PURE__*/ S.String;
+export const DataFederationTenantQueryLimitOverrunPolicy = S.String;
 
 /** Details of a tenant-level query limit for Data Federation. Query limit is the limit on the amount of usage during a time period based on cost. */
 export interface DataFederationTenantQueryLimit {
@@ -37273,7 +36840,7 @@ export type AWSKMSConfigurationOutputRegion =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AWSKMSConfigurationOutputRegion = /*@__PURE__*/ S.String;
+export const AWSKMSConfigurationOutputRegion = S.String;
 
 /** Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project. */
 export interface AWSKMSConfigurationOutput {
@@ -37308,7 +36875,7 @@ export type AzureKeyVaultOutputAzureEnvironment =
   | "AZURE"
   | "AZURE_CHINA"
   | "AZURE_US_GOVERNMENT";
-export const AzureKeyVaultOutputAzureEnvironment = /*@__PURE__*/ S.String;
+export const AzureKeyVaultOutputAzureEnvironment = S.String;
 
 /** Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV). */
 export interface AzureKeyVaultOutput {
@@ -37397,7 +36964,7 @@ export type GetGroupEncryptionAtRestPrivateEndpointRequestCloudProvider =
   | "AZURE"
   | "AWS";
 export const GetGroupEncryptionAtRestPrivateEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetGroupEncryptionAtRestPrivateEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -37438,8 +37005,7 @@ export const GetGroupEncryptionAtRestPrivateEndpointRequest =
 
 /** Human-readable label that identifies the cloud provider for the Encryption At Rest private endpoint. */
 export type AzureKeyVaultEARPrivateEndpointCloudProvider = "AZURE" | "AWS";
-export const AzureKeyVaultEARPrivateEndpointCloudProvider =
-  /*@__PURE__*/ S.String;
+export const AzureKeyVaultEARPrivateEndpointCloudProvider = S.String;
 
 /** Microsoft Azure Regions. */
 export type AzureKeyVaultEARPrivateEndpointRegionNameCase0 =
@@ -37499,8 +37065,7 @@ export type AzureKeyVaultEARPrivateEndpointRegionNameCase0 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AzureKeyVaultEARPrivateEndpointRegionNameCase0 =
-  /*@__PURE__*/ S.String;
+export const AzureKeyVaultEARPrivateEndpointRegionNameCase0 = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type AzureKeyVaultEARPrivateEndpointRegionNameCase1 =
@@ -37543,15 +37108,14 @@ export type AzureKeyVaultEARPrivateEndpointRegionNameCase1 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AzureKeyVaultEARPrivateEndpointRegionNameCase1 =
-  /*@__PURE__*/ S.String;
+export const AzureKeyVaultEARPrivateEndpointRegionNameCase1 = S.String;
 
 /** Cloud provider region in which the Encryption At Rest private endpoint is located. */
 export type AzureKeyVaultEARPrivateEndpointRegionName =
   | AzureKeyVaultEARPrivateEndpointRegionNameCase0
   | AzureKeyVaultEARPrivateEndpointRegionNameCase1;
 export const AzureKeyVaultEARPrivateEndpointRegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AzureKeyVaultEARPrivateEndpointRegionName>;
+  S.Unknown as any as S.Schema<AzureKeyVaultEARPrivateEndpointRegionName>;
 
 /** State of the Encryption At Rest private endpoint. */
 export type AzureKeyVaultEARPrivateEndpointStatus =
@@ -37561,7 +37125,7 @@ export type AzureKeyVaultEARPrivateEndpointStatus =
   | "FAILED"
   | "PENDING_RECREATION"
   | "DELETING";
-export const AzureKeyVaultEARPrivateEndpointStatus = /*@__PURE__*/ S.String;
+export const AzureKeyVaultEARPrivateEndpointStatus = S.String;
 
 /** Azure Key Vault Encryption At Rest Private Endpoint. */
 export interface AzureKeyVaultEARPrivateEndpoint {
@@ -37593,7 +37157,7 @@ export const AzureKeyVaultEARPrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the cloud provider for the Encryption At Rest private endpoint. */
 export type AWSKMSEARPrivateEndpointCloudProvider = "AZURE" | "AWS";
-export const AWSKMSEARPrivateEndpointCloudProvider = /*@__PURE__*/ S.String;
+export const AWSKMSEARPrivateEndpointCloudProvider = S.String;
 
 /** Microsoft Azure Regions. */
 export type AWSKMSEARPrivateEndpointRegionNameCase0 =
@@ -37653,7 +37217,7 @@ export type AWSKMSEARPrivateEndpointRegionNameCase0 =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AWSKMSEARPrivateEndpointRegionNameCase0 = /*@__PURE__*/ S.String;
+export const AWSKMSEARPrivateEndpointRegionNameCase0 = S.String;
 
 /** Physical location where MongoDB Cloud deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Cloud creates them as part of the deployment. MongoDB Cloud assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts. */
 export type AWSKMSEARPrivateEndpointRegionNameCase1 =
@@ -37696,14 +37260,14 @@ export type AWSKMSEARPrivateEndpointRegionNameCase1 =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AWSKMSEARPrivateEndpointRegionNameCase1 = /*@__PURE__*/ S.String;
+export const AWSKMSEARPrivateEndpointRegionNameCase1 = S.String;
 
 /** Cloud provider region in which the Encryption At Rest private endpoint is located. */
 export type AWSKMSEARPrivateEndpointRegionName =
   | AWSKMSEARPrivateEndpointRegionNameCase0
   | AWSKMSEARPrivateEndpointRegionNameCase1;
 export const AWSKMSEARPrivateEndpointRegionName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AWSKMSEARPrivateEndpointRegionName>;
+  S.Unknown as any as S.Schema<AWSKMSEARPrivateEndpointRegionName>;
 
 /** State of the Encryption At Rest private endpoint. */
 export type AWSKMSEARPrivateEndpointStatus =
@@ -37713,7 +37277,7 @@ export type AWSKMSEARPrivateEndpointStatus =
   | "FAILED"
   | "PENDING_RECREATION"
   | "DELETING";
-export const AWSKMSEARPrivateEndpointStatus = /*@__PURE__*/ S.String;
+export const AWSKMSEARPrivateEndpointStatus = S.String;
 
 /** AWS Key Management Service Encryption At Rest Private Endpoint. */
 export interface AWSKMSEARPrivateEndpoint {
@@ -37748,7 +37312,7 @@ export type EARPrivateEndpoint =
   | AzureKeyVaultEARPrivateEndpoint
   | AWSKMSEARPrivateEndpoint;
 export const EARPrivateEndpoint =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EARPrivateEndpoint>;
+  S.Unknown as any as S.Schema<EARPrivateEndpoint>;
 
 export interface GetGroupEventRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -37806,23 +37370,20 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase0 =
   | "AUTO_INDEXING_FAILED_INDEX_BUILD"
   | "AUTO_INDEXING_COMPLETED_INDEX_BUILD"
   | "AUTO_INDEXING_STARTED_INDEX_BUILD";
-export const DefaultEventViewForNdsGroupEventTypeNameCase0 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase0 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase1 =
   | "PEER_CREATED"
   | "PEER_DELETED"
   | "PEER_UPDATED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase1 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase1 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase2 =
   | "AZURE_PEER_CREATED"
   | "AZURE_PEER_UPDATED"
   | "AZURE_PEER_ACTIVE"
   | "AZURE_PEER_DELETED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase2 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase2 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase3 =
   | "CLUSTER_CONNECTION_GET_DATABASES"
@@ -37836,8 +37397,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase3 =
   | "CLUSTER_CONNECTION_SAMPLE_COLLECTION_FIELD_NAMES_AND_TYPES"
   | "CLUSTER_CONNECTION_FIND_DOCUMENTS"
   | "CLUSTER_CONNECTION_GET_NAMESPACES_AND_PROJECT_SQL_SCHEMA_DATA";
-export const DefaultEventViewForNdsGroupEventTypeNameCase3 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase3 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase4 =
   | "CPS_SNAPSHOT_STARTED"
@@ -37864,8 +37424,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase4 =
   | "CPS_SNAPSHOT_DOWNLOAD_REQUEST_FAILED"
   | "CPS_OPLOG_BEHIND"
   | "CPS_OPLOG_CAUGHT_UP";
-export const DefaultEventViewForNdsGroupEventTypeNameCase4 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase4 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase5 =
   | "CPS_DATA_PROTECTION_ENABLE_REQUESTED"
@@ -37875,8 +37434,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase5 =
   | "CPS_DATA_PROTECTION_DISABLE_REQUESTED"
   | "CPS_DATA_PROTECTION_DISABLED"
   | "CPS_DATA_PROTECTION_APPROVED_FOR_DISABLEMENT";
-export const DefaultEventViewForNdsGroupEventTypeNameCase5 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase5 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase6 =
   | "CPS_RESTORE_REQUESTED_AUDIT"
@@ -37892,8 +37450,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase6 =
   | "CPS_ON_DEMAND_SNAPSHOT_REQUESTED"
   | "CPS_OPLOG_CAUGHT_UP_AUDIT"
   | "CPS_OPLOG_BEHIND_AUDIT";
-export const DefaultEventViewForNdsGroupEventTypeNameCase6 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase6 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase7 =
   | "AWS_ENCRYPTION_KEY_ROTATED"
@@ -37908,14 +37465,12 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase7 =
   | "AZURE_ENCRYPTION_KEY_INVALID"
   | "GCP_ENCRYPTION_KEY_VALID"
   | "GCP_ENCRYPTION_KEY_INVALID";
-export const DefaultEventViewForNdsGroupEventTypeNameCase7 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase7 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase8 =
   | "BUCKET_CREATED_AUDIT"
   | "BUCKET_DELETED_AUDIT";
-export const DefaultEventViewForNdsGroupEventTypeNameCase8 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase8 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase9 =
   | "GCP_PEER_CREATED"
@@ -37923,8 +37478,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase9 =
   | "GCP_PEER_UPDATED"
   | "GCP_PEER_ACTIVE"
   | "GCP_PEER_INACTIVE";
-export const DefaultEventViewForNdsGroupEventTypeNameCase9 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase9 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase10 =
   | "DATA_EXPLORER_ENABLED"
@@ -37945,8 +37499,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase10 =
   | "GROUP_CHARTS_UPGRADED"
   | "GROUP_CHARTS_RESET"
   | "GROUP_DEFAULT_ALERTS_SETTINGS_CHANGED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase10 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase10 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase11 =
   | "PAID_IN_FULL"
@@ -37964,22 +37517,19 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase11 =
   | "ACTIVE_LEGACY_TLS_CONNECTIONS"
   | "NO_ACTIVE_LEGACY_TLS_CONNECTIONS"
   | "WEBHOOK_TEMPLATE_RENDER_FAILED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase11 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase11 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase12 =
   | "INTEGRATION_CONFIGURED"
   | "INTEGRATION_REMOVED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase12 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase12 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase13 =
   | "ROLLING_INDEX_FAILED_INDEX_BUILD"
   | "ROLLING_INDEX_SUCCESS_INDEX_BUILD"
   | "INDEX_FAILED_INDEX_BUILD"
   | "INDEX_SUCCESS_INDEX_BUILD";
-export const DefaultEventViewForNdsGroupEventTypeNameCase13 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase13 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase14 =
   | "DB_CHECK_UPDATED"
@@ -37987,8 +37537,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase14 =
   | "DB_CHECK_SCHEDULED_FOR_CLUSTER"
   | "DB_CHECK_DEFERRED_FOR_CLUSTER"
   | "CLUSTER_OPTED_OUT_OF_DB_CHECK";
-export const DefaultEventViewForNdsGroupEventTypeNameCase14 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase14 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase15 =
   | "CLUSTER_SAMPLED_FOR_DATA_VALIDATION"
@@ -37997,8 +37546,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase15 =
   | "REPLICA_SET_SAMPLED_FOR_INTER_NODE_DATA_VALIDATION"
   | "REPLICA_SET_OPTED_OUT_OF_INTER_NODE_DATA_VALIDATION"
   | "INTER_NODE_DATA_VALIDATION_SUBMITTED_FOR_REPLICA_SET";
-export const DefaultEventViewForNdsGroupEventTypeNameCase15 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase15 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase16 =
   | "MAINTENANCE_IN_ADVANCED"
@@ -38006,8 +37554,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase16 =
   | "MAINTENANCE_STARTED"
   | "MAINTENANCE_COMPLETED"
   | "MAINTENANCE_NO_LONGER_NEEDED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase16 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase16 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase17 =
   | "SERVERLESS_AUTO_SCALING_INITIATED"
@@ -38017,8 +37564,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase17 =
   | "SERVERLESS_MTM_DRAIN_INITIATED"
   | "SERVERLESS_MTM_DRAIN_COMPLETED"
   | "SERVERLESS_MTM_DRAIN_STOPPED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase17 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase17 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase18 =
   | "TENANT_ENDPOINT_SERVICE_DEPLOYMENT_CREATED"
@@ -38028,8 +37574,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase18 =
   | "TENANT_ENDPOINT_SERVICE_DELETED"
   | "TENANT_ENDPOINT_SERVICE_DEPLOYMENT_DELETED"
   | "TENANT_ENDPOINT_SERVICE_DEPLOYMENT_NUM_DESIRED_ENDPOINT_SERVICES_INCREASED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase18 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase18 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase19 =
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CA_EXPIRATION_RESOLVED"
@@ -38038,8 +37583,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase19 =
   | "NDS_X509_USER_AUTHENTICATION_CUSTOMER_CRL_EXPIRATION_CHECK"
   | "NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_RESOLVED"
   | "NDS_X509_USER_AUTHENTICATION_MANAGED_USER_CERTS_EXPIRATION_CHECK";
-export const DefaultEventViewForNdsGroupEventTypeNameCase19 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase19 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase20 =
   | "ONLINE_ARCHIVE_INSUFFICIENT_INDEXES_CHECK"
@@ -38047,8 +37591,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase20 =
   | "ONLINE_ARCHIVE_UP_TO_DATE"
   | "ONLINE_ARCHIVE_DATA_EXPIRATION_RESOLVED"
   | "ONLINE_ARCHIVE_MAX_CONSECUTIVE_OFFLOAD_WINDOWS_CHECK";
-export const DefaultEventViewForNdsGroupEventTypeNameCase20 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase20 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase21 =
   | "CROSS_REGION_SUPPORTED_REGION_MODIFIED"
@@ -38059,20 +37602,17 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase21 =
   | "INTERFACE_ENDPOINT_DELETED"
   | "INTERFACE_ENDPOINT_PATCHED"
   | "INTERFACE_ENDPOINT_RETRIED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase21 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase21 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase22 =
   "PROACTIVE_OPERATION_EVENT_LOGGED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase22 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase22 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase23 =
   | "SEARCH_DEPLOYMENT_CREATED"
   | "SEARCH_DEPLOYMENT_UPDATED"
   | "SEARCH_DEPLOYMENT_DELETED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase23 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase23 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase24 =
   | "SERVERLESS_DEPLOYMENT_CREATED"
@@ -38083,30 +37623,25 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase24 =
   | "SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_LINKED"
   | "SERVERLESS_DEPLOYMENT_ENDPOINT_SERVICE_UNLINKED"
   | "SERVERLESS_DEPLOYMENT_ENVOY_INSTANCE_UIS_KEYS_ROTATED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase24 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase24 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase25 =
   | "INSIDE_SERVERLESS_METRIC_THRESHOLD"
   | "OUTSIDE_SERVERLESS_METRIC_THRESHOLD";
-export const DefaultEventViewForNdsGroupEventTypeNameCase25 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase25 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase26 =
   | "INSIDE_FLEX_METRIC_THRESHOLD"
   | "OUTSIDE_FLEX_METRIC_THRESHOLD";
-export const DefaultEventViewForNdsGroupEventTypeNameCase26 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase26 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase27 =
   "SETUP_SERVERLESS_INITIATED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase27 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase27 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase28 =
   "MAX_PROCESSOR_COUNT_REACHED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase28 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase28 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase29 =
   | "STREAM_PROCESSOR_STATE_IS_FAILED"
@@ -38118,18 +37653,15 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase29 =
   | "STREAM_PROCESSOR_MODIFIED"
   | "INSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD"
   | "OUTSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD";
-export const DefaultEventViewForNdsGroupEventTypeNameCase29 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase29 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase30 = "CASE_CREATED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase30 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase30 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase31 =
   | "SUPPORT_EMAILS_SENT_SUCCESSFULLY"
   | "SUPPORT_EMAILS_SENT_FAILURE";
-export const DefaultEventViewForNdsGroupEventTypeNameCase31 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase31 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase32 =
   | "TENANT_SNAPSHOT_STARTED_AUDIT"
@@ -38138,8 +37670,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase32 =
   | "TENANT_RESTORE_REQUESTED_AUDIT"
   | "TENANT_RESTORE_COMPLETED_AUDIT"
   | "TENANT_SNAPSHOT_DOWNLOAD_REQUESTED_AUDIT";
-export const DefaultEventViewForNdsGroupEventTypeNameCase32 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase32 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase33 =
   | "CLUSTER_FCV_FIXED"
@@ -38150,33 +37681,28 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase33 =
   | "CLUSTER_BINARY_VERSION_UPGRADED"
   | "CLUSTER_OS_FIXED"
   | "CLUSTER_OS_UNFIXED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase33 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase33 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase34 =
   "EMPLOYEE_DOWNLOADED_CLUSTER_LOGS";
-export const DefaultEventViewForNdsGroupEventTypeNameCase34 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase34 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase35 =
   | "QUERY_SHAPE_BLOCKED"
   | "QUERY_SHAPE_UNBLOCKED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase35 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase35 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase36 =
   | "SHARD_KEY_ANALYSIS_STARTED"
   | "SHARD_KEY_ANALYSIS_FINISHED"
   | "QUERY_SAMPLING_STARTED"
   | "QUERY_SAMPLING_STOPPED";
-export const DefaultEventViewForNdsGroupEventTypeNameCase36 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase36 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase37 =
   | "MONGOTUNE_INFO"
   | "MONGOTUNE_ALERT";
-export const DefaultEventViewForNdsGroupEventTypeNameCase37 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase37 = S.String;
 
 export type DefaultEventViewForNdsGroupEventTypeNameCase38 =
   | "AI_MODELS_APIS_API_KEY_CREATED"
@@ -38185,8 +37711,7 @@ export type DefaultEventViewForNdsGroupEventTypeNameCase38 =
   | "AI_MODELS_APIS_RATE_LIMIT_UPDATED"
   | "AI_MODELS_APIS_RATE_LIMIT_RESET"
   | "AI_MODELS_APIS_RATE_LIMIT_ADMIN_OVERRIDE";
-export const DefaultEventViewForNdsGroupEventTypeNameCase38 =
-  /*@__PURE__*/ S.String;
+export const DefaultEventViewForNdsGroupEventTypeNameCase38 = S.String;
 
 /** Unique identifier of event type. */
 export type DefaultEventViewForNdsGroupEventTypeName =
@@ -38230,7 +37755,7 @@ export type DefaultEventViewForNdsGroupEventTypeName =
   | DefaultEventViewForNdsGroupEventTypeNameCase37
   | DefaultEventViewForNdsGroupEventTypeNameCase38;
 export const DefaultEventViewForNdsGroupEventTypeName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DefaultEventViewForNdsGroupEventTypeName>;
+  S.Unknown as any as S.Schema<DefaultEventViewForNdsGroupEventTypeName>;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DefaultEventViewForNdsGroupLinksList = Array<Link>;
@@ -38240,7 +37765,7 @@ export const DefaultEventViewForNdsGroupLinksList = /*@__PURE__*/ S.Array(
 
 /** Severity of the event. */
 export type RawSeverity = "INFO" | "WARNING" | "ERROR" | "CRITICAL";
-export const RawSeverity = /*@__PURE__*/ S.String;
+export const RawSeverity = S.String;
 
 /** Additional meta information captured about this event. The response returns this parameter as a JSON object when the query parameter `includeRaw=true`. The list of fields in the raw document may change. Don't rely on raw values for formal monitoring. */
 export interface Raw {
@@ -38334,7 +37859,7 @@ export const DefaultEventViewForNdsGroup = /*@__PURE__*/ S.suspend(() =>
 export type AlertAuditTypeView =
   | "ALERT_ACKNOWLEDGED_AUDIT"
   | "ALERT_UNACKNOWLEDGED_AUDIT";
-export const AlertAuditTypeView = /*@__PURE__*/ S.String;
+export const AlertAuditTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type AlertAuditLinksList = Array<Link>;
@@ -38399,7 +37924,7 @@ export type AlertConfigAuditTypeView =
   | "ALERT_CONFIG_ADDED_AUDIT"
   | "ALERT_CONFIG_DELETED_AUDIT"
   | "ALERT_CONFIG_CHANGED_AUDIT";
-export const AlertConfigAuditTypeView = /*@__PURE__*/ S.String;
+export const AlertConfigAuditTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type AlertConfigAuditLinksList = Array<Link>;
@@ -38471,7 +37996,7 @@ export type ApiUserEventTypeViewForNdsGroup =
   | "API_KEY_REMOVED_FROM_GROUP"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const ApiUserEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const ApiUserEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ApiUserEventViewForNdsGroupLinksList = Array<Link>;
@@ -38548,7 +38073,7 @@ export type ServiceAccountEventTypeViewForNdsGroup =
   | "SERVICE_ACCOUNT_SECRET_DELETED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const ServiceAccountEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const ServiceAccountEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ServiceAccountGroupEventsLinksList = Array<Link>;
@@ -38607,7 +38132,7 @@ export const ServiceAccountGroupEvents = /*@__PURE__*/ S.suspend(() =>
 
 /** Unique identifier of event type. */
 export type AutomationConfigEventTypeView = "AUTOMATION_CONFIG_PUBLISHED_AUDIT";
-export const AutomationConfigEventTypeView = /*@__PURE__*/ S.String;
+export const AutomationConfigEventTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type AutomationConfigEventViewLinksList = Array<Link>;
@@ -38678,7 +38203,7 @@ export type AppServiceEventTypeView =
   | "SYNC_FAILURE"
   | "TRIGGER_FAILURE"
   | "TRIGGER_AUTO_RESUMED";
-export const AppServiceEventTypeView = /*@__PURE__*/ S.String;
+export const AppServiceEventTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type AppServiceEventViewLinksList = Array<Link>;
@@ -38729,7 +38254,7 @@ export type BillingEventTypeViewForNdsGroup =
   | "WEEKLY_BILLING_CHANGE_OVER_THRESHOLD"
   | "MONTHLY_BILLING_CHANGE_NORMAL"
   | "MONTHLY_BILLING_CHANGE_OVER_THRESHOLD";
-export const BillingEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const BillingEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type BillingEventViewForNdsGroupLinksList = Array<Link>;
@@ -38796,7 +38321,7 @@ export const BillingEventViewForNdsGroup = /*@__PURE__*/ S.suspend(() =>
 export type ClusterEventTypeViewForNdsGroup =
   | "CLUSTER_MONGOS_IS_PRESENT"
   | "CLUSTER_MONGOS_IS_MISSING";
-export const ClusterEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const ClusterEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ClusterEventViewForNdsGroupLinksList = Array<Link>;
@@ -38842,7 +38367,7 @@ export type DataExplorerAccessedEventTypeView =
   | "DATA_EXPLORER_CRUD_ATTEMPT"
   | "DATA_EXPLORER_CRUD_ERROR"
   | "DATA_EXPLORER_CRUD";
-export const DataExplorerAccessedEventTypeView = /*@__PURE__*/ S.String;
+export const DataExplorerAccessedEventTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DataExplorerAccessedEventViewLinksList = Array<Link>;
@@ -38910,7 +38435,7 @@ export const DataExplorerAccessedEventView = /*@__PURE__*/ S.suspend(() =>
 
 /** Unique identifier of event type. */
 export type DataExplorerEventTypeView = "DATA_EXPLORER_SESSION_CREATED";
-export const DataExplorerEventTypeView = /*@__PURE__*/ S.String;
+export const DataExplorerEventTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DataExplorerEventLinksList = Array<Link>;
@@ -38986,7 +38511,7 @@ export type FTSIndexAuditTypeView =
   | "FTS_INDEXES_RESTORED"
   | "FTS_INDEXES_RESTORE_FAILED"
   | "FTS_INDEXES_SYNONYM_MAPPING_INVALID";
-export const FTSIndexAuditTypeView = /*@__PURE__*/ S.String;
+export const FTSIndexAuditTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type FTSIndexAuditViewLinksList = Array<Link>;
@@ -39084,7 +38609,7 @@ export type HostEventTypeViewForNdsGroup =
   | "HOST_SSL_CERTIFICATE_STALE"
   | "HOST_SECURITY_CHECKUP_NOT_MET"
   | "PROFILER_CONFIGURED_TOO_WIDELY";
-export const HostEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const HostEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type HostEventViewForNdsGroupLinksList = Array<Link>;
@@ -39160,7 +38685,7 @@ export const HostEventViewForNdsGroup = /*@__PURE__*/ S.suspend(() =>
 export type HostMetricEventTypeView =
   | "INSIDE_METRIC_THRESHOLD"
   | "OUTSIDE_METRIC_THRESHOLD";
-export const HostMetricEventTypeView = /*@__PURE__*/ S.String;
+export const HostMetricEventTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type HostMetricEventLinksList = Array<Link>;
@@ -39540,7 +39065,7 @@ export type NDSAuditTypeViewForNdsGroup =
   | "VOLUME_IMPAIRED_RESOLVED"
   | "SQL_INTERFACE_ENABLED"
   | "SQL_INTERFACE_DISABLED";
-export const NDSAuditTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const NDSAuditTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type NDSAuditViewForNdsGroupLinksList = Array<Link>;
@@ -39624,7 +39149,7 @@ export type NDSAutoScalingAuditTypeViewForNdsGroup =
   | "PREDICTIVE_COMPUTE_AUTO_SCALE_OPLOG_FAIL_BASE"
   | "CLUSTER_AUTO_SHARDING_INITIATED"
   | "CLUSTER_RESHARDING_COMPLETED";
-export const NDSAutoScalingAuditTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const NDSAutoScalingAuditTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type NDSAutoScalingAuditViewForNdsGroupLinksList = Array<Link>;
@@ -39692,7 +39217,7 @@ export type NDSServerlessInstanceAuditTypeView =
   | "SERVERLESS_INSTANCE_DELETE_SUBMITTED"
   | "SERVERLESS_INSTANCE_DELETED"
   | "SERVERLESS_INSTANCE_UNBLOCKED";
-export const NDSServerlessInstanceAuditTypeView = /*@__PURE__*/ S.String;
+export const NDSServerlessInstanceAuditTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type NDSServerlessInstanceAuditViewLinksList = Array<Link>;
@@ -39761,7 +39286,7 @@ export type NDSTenantEndpointAuditTypeView =
   | "TENANT_ENDPOINT_DELETING"
   | "TENANT_ENDPOINT_DELETED"
   | "TENANT_ENDPOINT_EXPIRED";
-export const NDSTenantEndpointAuditTypeView = /*@__PURE__*/ S.String;
+export const NDSTenantEndpointAuditTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type NDSTenantEndpointAuditViewLinksList = Array<Link>;
@@ -39834,7 +39359,7 @@ export type ReplicaSetEventTypeViewForNdsGroup =
   | "TOO_MANY_ELECTIONS"
   | "TOO_FEW_HEALTHY_MEMBERS"
   | "TOO_MANY_UNHEALTHY_MEMBERS";
-export const ReplicaSetEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const ReplicaSetEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ForNdsGroupLinksList = Array<Link>;
@@ -39886,7 +39411,7 @@ export type SearchDeploymentAuditTypeView =
   | "SEARCH_DEPLOYMENT_CREATED"
   | "SEARCH_DEPLOYMENT_UPDATED"
   | "SEARCH_DEPLOYMENT_DELETED";
-export const SearchDeploymentAuditTypeView = /*@__PURE__*/ S.String;
+export const SearchDeploymentAuditTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type SearchDeploymentAuditViewLinksList = Array<Link>;
@@ -39948,7 +39473,7 @@ export type TeamEventTypeViewForNdsGroup =
   | "TEAM_ADDED_TO_GROUP"
   | "TEAM_REMOVED_FROM_GROUP"
   | "TEAM_ROLES_MODIFIED";
-export const TeamEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const TeamEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type TeamEventViewForNdsGroupLinksList = Array<Link>;
@@ -40018,7 +39543,7 @@ export type UserEventTypeViewForNdsGroup =
   | "USER_ROLES_CHANGED_AUDIT"
   | "JOIN_GROUP_REQUEST_DENIED_AUDIT"
   | "JOIN_GROUP_REQUEST_APPROVED_AUDIT";
-export const UserEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const UserEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type UserEventViewForNdsGroupLinksList = Array<Link>;
@@ -40083,7 +39608,7 @@ export type ResourceEventTypeView =
   | "TAGS_MODIFIED"
   | "CLUSTER_TAGS_MODIFIED"
   | "GROUP_TAGS_MODIFIED";
-export const ResourceEventTypeView = /*@__PURE__*/ S.String;
+export const ResourceEventTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ResourceEventViewForNdsGroupLinksList = Array<Link>;
@@ -40148,7 +39673,7 @@ export const ResourceEventViewForNdsGroup = /*@__PURE__*/ S.suspend(() =>
 
 /** Unique identifier of event type. */
 export type StreamsEventTypeViewForNdsGroup = "MAX_PROCESSOR_COUNT_REACHED";
-export const StreamsEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const StreamsEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type StreamsEventViewForNdsGroupLinksList = Array<Link>;
@@ -40199,7 +39724,7 @@ export type StreamProcessorEventTypeViewForNdsGroup =
   | "STREAM_PROCESSOR_MODIFIED"
   | "INSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD"
   | "OUTSIDE_STREAM_PROCESSOR_METRIC_THRESHOLD";
-export const StreamProcessorEventTypeViewForNdsGroup = /*@__PURE__*/ S.String;
+export const StreamProcessorEventTypeViewForNdsGroup = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type StreamProcessorEventViewForNdsGroupLinksList = Array<Link>;
@@ -40269,7 +39794,7 @@ export type ChartsAuditTypeView =
   | "CHARTS_DASHBOARD_EXPORT_FAILED"
   | "CHARTS_DASHBOARD_IMPORTED"
   | "CHARTS_DASHBOARD_IMPORT_FAILED";
-export const ChartsAuditTypeView = /*@__PURE__*/ S.String;
+export const ChartsAuditTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ChartsAuditLinksList = Array<Link>;
@@ -40327,8 +39852,7 @@ export const ChartsAudit = /*@__PURE__*/ S.suspend(() =>
 /** Unique identifier of event type. */
 export type AtlasResourcePolicyAuditForNdsGroupEventTypeName =
   "RESOURCE_POLICY_VIOLATED";
-export const AtlasResourcePolicyAuditForNdsGroupEventTypeName =
-  /*@__PURE__*/ S.String;
+export const AtlasResourcePolicyAuditForNdsGroupEventTypeName = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type AtlasResourcePolicyAuditForNdsGroupLinksList = Array<Link>;
@@ -40435,7 +39959,7 @@ export type EventViewForNdsGroup =
   | ChartsAudit
   | AtlasResourcePolicyAuditForNdsGroup;
 export const EventViewForNdsGroup =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventViewForNdsGroup>;
+  S.Unknown as any as S.Schema<EventViewForNdsGroup>;
 
 export type GetGroupEventResponse = EventViewForNdsGroup;
 export const GetGroupEventResponse = /*@__PURE__*/ S.suspend(() =>
@@ -40546,7 +40070,7 @@ export type FlexBackupSnapshot20241113Status =
   | "RUNNING"
   | "FAILED"
   | "COMPLETED";
-export const FlexBackupSnapshot20241113Status = /*@__PURE__*/ S.String;
+export const FlexBackupSnapshot20241113Status = S.String;
 
 /** Details for one snapshot of a flex cluster. */
 export interface FlexBackupSnapshot20241113 {
@@ -40594,7 +40118,7 @@ export type GetGroupHostFtsMetricIndexMeasurementsRequestMetricsItem =
   | "REPLICATION_LAG"
   | "TOTAL_NUMBER_OF_QUERIES";
 export const GetGroupHostFtsMetricIndexMeasurementsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List that contains the measurements that MongoDB Atlas reports for the associated data series. */
 export type GetGroupHostFtsMetricIndexMeasurementsRequestMetricsList = Array<
@@ -40659,7 +40183,7 @@ export const GetGroupHostFtsMetricIndexMeasurementsRequest =
 
 /** Duration that specifies the interval between measurement data points. The parameter expresses its value in ISO 8601 timestamp format in UTC. If you set this parameter, you must set either **period** or **start** and **end**. */
 export type MeasurementsIndexesGranularity = "PT1M" | "PT5M" | "PT1H" | "P1D";
-export const MeasurementsIndexesGranularity = /*@__PURE__*/ S.String;
+export const MeasurementsIndexesGranularity = S.String;
 
 /** List that contains the Atlas Search index identifiers. */
 export type MeasurementsIndexesIndexIdsList = Array<string>;
@@ -40701,7 +40225,7 @@ export type MetricsMeasurementUnits =
   | "PERCENT"
   | "SCALAR"
   | "SCALAR_PER_SECOND";
-export const MetricsMeasurementUnits = /*@__PURE__*/ S.String;
+export const MetricsMeasurementUnits = S.String;
 
 export interface MetricsMeasurement {
   /** List that contains the value of, and metadata provided for, one data point generated at a particular moment in time. If no data point exists for a particular moment in time, the `value` parameter returns `null`. */
@@ -40787,7 +40311,7 @@ export type GetGroupIntegrationRequestIntegrationType =
   | "HIP_CHAT"
   | "PROMETHEUS"
   | "MICROSOFT_TEAMS";
-export const GetGroupIntegrationRequestIntegrationType = /*@__PURE__*/ S.String;
+export const GetGroupIntegrationRequestIntegrationType = S.String;
 
 export interface GetGroupIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -40937,7 +40461,7 @@ export type GetGroupLimitRequestLimitName =
   | "dataFederation.bytesProcessed.monthly"
   | "atlas.project.deployment.privateServiceConnectionsPerRegionGroup"
   | "atlas.project.deployment.privateServiceConnectionsSubnetMask";
-export const GetGroupLimitRequestLimitName = /*@__PURE__*/ S.String;
+export const GetGroupLimitRequestLimitName = S.String;
 
 export interface GetGroupLimitRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -41048,7 +40572,7 @@ export const GetGroupLiveMigrationValidateStatusRequest =
 
 /** State of the specified validation job returned at the time of the request. */
 export type LiveImportValidationStatus = "PENDING" | "SUCCESS" | "FAILED";
-export const LiveImportValidationStatus = /*@__PURE__*/ S.String;
+export const LiveImportValidationStatus = S.String;
 
 export interface LiveImportValidation {
   /** Unique 24-hexadecimal digit string that identifies the validation. */
@@ -41294,12 +40818,10 @@ export type GetGroupMongoDbVersionsRequestCloudProvider =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const GetGroupMongoDbVersionsRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+export const GetGroupMongoDbVersionsRequestCloudProvider = S.String;
 
 export type GetGroupMongoDbVersionsRequestDefaultStatus = "DEFAULT";
-export const GetGroupMongoDbVersionsRequestDefaultStatus =
-  /*@__PURE__*/ S.String;
+export const GetGroupMongoDbVersionsRequestDefaultStatus = S.String;
 
 export interface GetGroupMongoDbVersionsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -41357,11 +40879,11 @@ export type MdbAvailableVersionCloudProvider =
   | "AZURE"
   | "GCP"
   | "TENANT";
-export const MdbAvailableVersionCloudProvider = /*@__PURE__*/ S.String;
+export const MdbAvailableVersionCloudProvider = S.String;
 
 /** Whether the version is the current default for the Instance Size and Cloud Provider. */
 export type MdbAvailableVersionDefaultStatus = "DEFAULT" | "NOT_DEFAULT";
-export const MdbAvailableVersionDefaultStatus = /*@__PURE__*/ S.String;
+export const MdbAvailableVersionDefaultStatus = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type MdbAvailableVersionLinksList = Array<Link>;
@@ -41450,7 +40972,7 @@ export type GetGroupPrivateEndpointEndpointServiceRequestCloudProvider =
   | "AZURE"
   | "GCP";
 export const GetGroupPrivateEndpointEndpointServiceRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetGroupPrivateEndpointEndpointServiceRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -41494,7 +41016,7 @@ export type GetGroupPrivateEndpointEndpointServiceEndpointRequestCloudProvider =
   | "AZURE"
   | "GCP";
 export const GetGroupPrivateEndpointEndpointServiceEndpointRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetGroupPrivateEndpointEndpointServiceEndpointRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -41651,7 +41173,7 @@ export type ApiHostViewAtlasTypeName =
   | "SHARD_PRIMARY"
   | "SHARD_SECONDARY"
   | "NO_DATA";
-export const ApiHostViewAtlasTypeName = /*@__PURE__*/ S.String;
+export const ApiHostViewAtlasTypeName = S.String;
 
 export interface ApiHostViewAtlas {
   /** Date and time when MongoDB Cloud created this MongoDB process. This parameter expresses its value in the ISO 8601 timestamp format in UTC. */
@@ -41796,8 +41318,7 @@ export type GetGroupProcessDatabaseMeasurementsRequestMItem =
   | "DATABASE_EXTENT_COUNT"
   | "DATABASE_OBJECT_COUNT"
   | "DATABASE_VIEW_COUNT";
-export const GetGroupProcessDatabaseMeasurementsRequestMItem =
-  /*@__PURE__*/ S.String;
+export const GetGroupProcessDatabaseMeasurementsRequestMItem = S.String;
 
 export type GetGroupProcessDatabaseMeasurementsRequestMList = Array<
   GetGroupProcessDatabaseMeasurementsRequestMItem | (string & {})
@@ -41862,8 +41383,7 @@ export type ApiMeasurementsGeneralViewAtlasGranularity =
   | "PT5M"
   | "PT1H"
   | "P1D";
-export const ApiMeasurementsGeneralViewAtlasGranularity =
-  /*@__PURE__*/ S.String;
+export const ApiMeasurementsGeneralViewAtlasGranularity = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ApiMeasurementsGeneralViewAtlasLinksList = Array<Link>;
@@ -41893,7 +41413,7 @@ export type MetricsMeasurementAtlasUnits =
   | "PERCENT"
   | "SCALAR"
   | "SCALAR_PER_SECOND";
-export const MetricsMeasurementAtlasUnits = /*@__PURE__*/ S.String;
+export const MetricsMeasurementAtlasUnits = S.String;
 
 export interface MetricsMeasurementAtlas {
   /** List that contains the value of, and metadata provided for, one data point generated at a particular moment in time. If no data point exists for a particular moment in time, the `value` parameter returns `null`. */
@@ -42032,8 +41552,7 @@ export type GetGroupProcessDiskMeasurementsRequestMItem =
   | "DISK_PARTITION_THROUGHPUT_READ"
   | "DISK_PARTITION_THROUGHPUT_WRITE"
   | "DISK_QUEUE_DEPTH";
-export const GetGroupProcessDiskMeasurementsRequestMItem =
-  /*@__PURE__*/ S.String;
+export const GetGroupProcessDiskMeasurementsRequestMItem = S.String;
 
 export type GetGroupProcessDiskMeasurementsRequestMList = Array<
   GetGroupProcessDiskMeasurementsRequestMItem | (string & {})
@@ -42255,7 +41774,7 @@ export type GetGroupProcessMeasurementsRequestMItem =
   | "TRANSACTIONS_TOTAL_STARTED"
   | "CACHE_PRESSURE_PERCENTAGE"
   | "INGRESS_QUEUE_WAIT_TIME";
-export const GetGroupProcessMeasurementsRequestMItem = /*@__PURE__*/ S.String;
+export const GetGroupProcessMeasurementsRequestMItem = S.String;
 
 export type GetGroupProcessMeasurementsRequestMList = Array<
   GetGroupProcessMeasurementsRequestMItem | (string & {})
@@ -42334,7 +41853,7 @@ export const GetGroupSampleDatasetLoadRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Status of the sample dataset load job. */
 export type SampleDatasetStatusState = "WORKING" | "FAILED" | "COMPLETED";
-export const SampleDatasetStatusState = /*@__PURE__*/ S.String;
+export const SampleDatasetStatusState = S.String;
 
 export interface SampleDatasetStatus {
   /** Unique 24-hexadecimal character string that identifies this sample dataset. */
@@ -42583,8 +42102,7 @@ export type AccountDetails =
   | AWSAccountDetails
   | AzureAccountDetails
   | GCPAccountDetails;
-export const AccountDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountDetails>;
+export const AccountDetails = S.Unknown as any as S.Schema<AccountDetails>;
 
 export type GetGroupStreamAccountDetailsResponse = AccountDetails;
 export const GetGroupStreamAccountDetailsResponse = /*@__PURE__*/ S.suspend(
@@ -42720,7 +42238,7 @@ export type StreamsProcessorWithStatsEffectiveTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamsProcessorWithStatsEffectiveTier = /*@__PURE__*/ S.String;
+export const StreamsProcessorWithStatsEffectiveTier = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type StreamsProcessorWithStatsLinksList = Array<Link>;
@@ -42759,7 +42277,7 @@ export type StreamsProcessorWithStatsTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StreamsProcessorWithStatsTier = /*@__PURE__*/ S.String;
+export const StreamsProcessorWithStatsTier = S.String;
 
 /** An atlas stream processor with optional stats. */
 export interface StreamsProcessorWithStats {
@@ -42938,8 +42456,7 @@ export type GetGroupUserRequestOrgMembershipStatusesItem =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const GetGroupUserRequestOrgMembershipStatusesItem =
-  /*@__PURE__*/ S.String;
+export const GetGroupUserRequestOrgMembershipStatusesItem = S.String;
 
 export type GetGroupUserRequestOrgMembershipStatusesList = Array<
   GetGroupUserRequestOrgMembershipStatusesItem | (string & {})
@@ -43195,13 +42712,11 @@ export type LDAPVerifyConnectivityJobRequestOutputStatus =
   | "FAIL"
   | "PENDING"
   | "SUCCESS";
-export const LDAPVerifyConnectivityJobRequestOutputStatus =
-  /*@__PURE__*/ S.String;
+export const LDAPVerifyConnectivityJobRequestOutputStatus = S.String;
 
 /** Human-readable string that indicates the result of this verification test. */
 export type LDAPVerifyConnectivityJobRequestValidationStatus = "FAIL" | "OK";
-export const LDAPVerifyConnectivityJobRequestValidationStatus =
-  /*@__PURE__*/ S.String;
+export const LDAPVerifyConnectivityJobRequestValidationStatus = S.String;
 
 /** Human-readable label that identifies this verification test that MongoDB Cloud runs. */
 export type LDAPVerifyConnectivityJobRequestValidationValidationType =
@@ -43213,7 +42728,7 @@ export type LDAPVerifyConnectivityJobRequestValidationValidationType =
   | "SERVER_SPECIFIED"
   | "TEMPLATE";
 export const LDAPVerifyConnectivityJobRequestValidationValidationType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** One test that MongoDB Cloud runs to test verification of the provided Lightweight Directory Access Protocol (LDAP) over Transport Layer Security (TLS) configuration details. */
 export interface LDAPVerifyConnectivityJobRequestValidation {
@@ -43297,7 +42812,7 @@ export const GetOrgRequest = /*@__PURE__*/ S.suspend(() =>
 export type EventTypeForOrgCase0 =
   | "ALERT_ACKNOWLEDGED_AUDIT"
   | "ALERT_UNACKNOWLEDGED_AUDIT";
-export const EventTypeForOrgCase0 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase0 = S.String;
 
 export type EventTypeForOrgCase1 =
   | "ALERT_CONFIG_DISABLED_AUDIT"
@@ -43305,7 +42820,7 @@ export type EventTypeForOrgCase1 =
   | "ALERT_CONFIG_ADDED_AUDIT"
   | "ALERT_CONFIG_DELETED_AUDIT"
   | "ALERT_CONFIG_CHANGED_AUDIT";
-export const EventTypeForOrgCase1 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase1 = S.String;
 
 export type EventTypeForOrgCase2 =
   | "API_KEY_CREATED"
@@ -43318,7 +42833,7 @@ export type EventTypeForOrgCase2 =
   | "API_KEY_REMOVED_FROM_GROUP"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const EventTypeForOrgCase2 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase2 = S.String;
 
 export type EventTypeForOrgCase3 =
   | "SERVICE_ACCOUNT_CREATED"
@@ -43333,7 +42848,7 @@ export type EventTypeForOrgCase3 =
   | "SERVICE_ACCOUNT_SECRET_DELETED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const EventTypeForOrgCase3 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase3 = S.String;
 
 export type EventTypeForOrgCase4 =
   | "AWS_PAYMENT_PAID"
@@ -43416,7 +42931,7 @@ export type EventTypeForOrgCase4 =
   | "PAYMENT_METHOD_UNFLAGGED"
   | "MARKETPLACE_REFUND_ISSUED"
   | "PAYMENT_DUE_DATE_EXTENDED";
-export const EventTypeForOrgCase4 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase4 = S.String;
 
 export type EventTypeForOrgCase5 =
   | "FEDERATION_SETTINGS_CREATED"
@@ -43443,13 +42958,13 @@ export type EventTypeForOrgCase5 =
   | "ROLE_MAPPING_CREATED"
   | "ROLE_MAPPING_UPDATED"
   | "ROLE_MAPPING_DELETED";
-export const EventTypeForOrgCase5 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase5 = S.String;
 
 export type EventTypeForOrgCase6 =
   | "GROUP_DELETED"
   | "GROUP_CREATED"
   | "GROUP_MOVED";
-export const EventTypeForOrgCase6 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase6 = S.String;
 
 export type EventTypeForOrgCase7 =
   | "MLAB_MIGRATION_COMPLETED"
@@ -43468,14 +42983,14 @@ export type EventTypeForOrgCase7 =
   | "MLAB_MIGRATION_DUMP_AND_RESTORE_STARTED"
   | "MLAB_MIGRATION_SUPPORT_PLAN_SELECTED"
   | "MLAB_MIGRATION_SUPPORT_PLAN_OPTED_OUT";
-export const EventTypeForOrgCase7 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase7 = S.String;
 
 export type EventTypeForOrgCase8 =
   | "ORG_LIMIT_UPDATED"
   | "SHADOW_CLUSTER_ORG_OPT_IN"
   | "SHADOW_CLUSTER_ORG_OPT_OUT"
   | "ATLAS_MAINTENANCE_FLEET_ACTIVE_WAVE_CLOSED_BY_ADMIN";
-export const EventTypeForOrgCase8 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase8 = S.String;
 
 export type EventTypeForOrgCase9 =
   | "ORG_CREATED"
@@ -43561,7 +43076,7 @@ export type EventTypeForOrgCase9 =
   | "ORG_WAVE_ASSIGNMENT_MODE_MANUAL"
   | "ORG_WAVE_ASSIGNMENT_MODE_ENV_TAG_MAPPING"
   | "PROJECT_CREATED_VIA_ANIS";
-export const EventTypeForOrgCase9 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase9 = S.String;
 
 export type EventTypeForOrgCase10 =
   | "AWS_SELF_SERVE_ACCOUNT_LINKED"
@@ -43585,12 +43100,12 @@ export type EventTypeForOrgCase10 =
   | "VERCEL_INVOICE_OVERDUE"
   | "VERCEL_INVOICE_PAID"
   | "VERCEL_INVOICE_REFUNDED";
-export const EventTypeForOrgCase10 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase10 = S.String;
 
 export type EventTypeForOrgCase11 =
   | "SUPPORT_EMAILS_SENT_SUCCESSFULLY"
   | "SUPPORT_EMAILS_SENT_FAILURE";
-export const EventTypeForOrgCase11 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase11 = S.String;
 
 export type EventTypeForOrgCase12 =
   | "TEAM_CREATED"
@@ -43600,7 +43115,7 @@ export type EventTypeForOrgCase12 =
   | "TEAM_ADDED_TO_GROUP"
   | "TEAM_REMOVED_FROM_GROUP"
   | "TEAM_ROLES_MODIFIED";
-export const EventTypeForOrgCase12 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase12 = S.String;
 
 export type EventTypeForOrgCase13 =
   | "JOINED_ORG"
@@ -43613,23 +43128,23 @@ export type EventTypeForOrgCase13 =
   | "ORG_FLEX_CONSULTING_PURCHASED"
   | "ORG_FLEX_CONSULTING_PURCHASE_FAILED"
   | "INVITED_TO_TEAM";
-export const EventTypeForOrgCase13 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase13 = S.String;
 
 export type EventTypeForOrgCase14 = "TAGS_MODIFIED" | "GROUP_TAGS_MODIFIED";
-export const EventTypeForOrgCase14 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase14 = S.String;
 
 export type EventTypeForOrgCase15 =
   | "RESOURCE_POLICY_CREATED"
   | "RESOURCE_POLICY_MODIFIED"
   | "RESOURCE_POLICY_DELETED"
   | "RESOURCE_POLICY_VIOLATED";
-export const EventTypeForOrgCase15 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase15 = S.String;
 
 export type EventTypeForOrgCase16 =
   | "AI_MODELS_APIS_USAGE_TIER_UPDATED"
   | "AI_MODELS_APIS_RATE_LIMIT_ADMIN_OVERRIDE"
   | "AI_MODELS_APIS_FREE_TOKENS_ADMIN_ADJUSTED";
-export const EventTypeForOrgCase16 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase16 = S.String;
 
 export type EventTypeForOrgCase17 =
   | "OAUTH_CLIENT_CREATED"
@@ -43643,7 +43158,7 @@ export type EventTypeForOrgCase17 =
   | "OAUTH_TOKEN_REVOKED"
   | "OAUTH_USER_CONSENT_GRANTED"
   | "OAUTH_USER_CONSENT_REVOKED";
-export const EventTypeForOrgCase17 = /*@__PURE__*/ S.String;
+export const EventTypeForOrgCase17 = S.String;
 
 export type EventTypeForOrg =
   | EventTypeForOrgCase0
@@ -43664,8 +43179,7 @@ export type EventTypeForOrg =
   | EventTypeForOrgCase15
   | EventTypeForOrgCase16
   | EventTypeForOrgCase17;
-export const EventTypeForOrg =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventTypeForOrg>;
+export const EventTypeForOrg = S.Unknown as any as S.Schema<EventTypeForOrg>;
 
 /** List of event types to filter the activity feed. */
 export type GetOrgActivityFeedRequestEventTypeList = Array<EventTypeForOrg>;
@@ -43709,12 +43223,12 @@ export const GetOrgActivityFeedRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetOrgAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
   "ANY";
 export const GetOrgAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetOrgAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
   "ANY";
 export const GetOrgAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetOrgAiModelApiCloudGeographyModelGroupNameRateLimitsRequest {
   /** Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [`/orgs`](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. */
@@ -44015,15 +43529,13 @@ export type OrgDelegationSettingsResponseDelegatedMcpAccess =
   | "DISALLOWED"
   | "READ_ONLY"
   | "READ_WRITE";
-export const OrgDelegationSettingsResponseDelegatedMcpAccess =
-  /*@__PURE__*/ S.String;
+export const OrgDelegationSettingsResponseDelegatedMcpAccess = S.String;
 
 /** Policy that controls whether partner delegated access is permitted within this organization. Possible values are `DISALLOWED` and `READ_WRITE`. Defaults to `DISALLOWED`. */
 export type OrgDelegationSettingsResponseDelegatedPartnerAccess =
   | "DISALLOWED"
   | "READ_WRITE";
-export const OrgDelegationSettingsResponseDelegatedPartnerAccess =
-  /*@__PURE__*/ S.String;
+export const OrgDelegationSettingsResponseDelegatedPartnerAccess = S.String;
 
 export interface OrgDelegationSettingsResponse {
   /** Policy that controls how MCP (Model Context Protocol) delegated access is permitted within this organization. Possible values are `DISALLOWED`, `READ_ONLY`, and `READ_WRITE`. Defaults to `DISALLOWED`. */
@@ -44106,13 +43618,13 @@ export type DefaultEventViewForOrgEventTypeNameCase0 =
   | "ROLE_MAPPING_CREATED"
   | "ROLE_MAPPING_UPDATED"
   | "ROLE_MAPPING_DELETED";
-export const DefaultEventViewForOrgEventTypeNameCase0 = /*@__PURE__*/ S.String;
+export const DefaultEventViewForOrgEventTypeNameCase0 = S.String;
 
 export type DefaultEventViewForOrgEventTypeNameCase1 =
   | "GROUP_DELETED"
   | "GROUP_CREATED"
   | "GROUP_MOVED";
-export const DefaultEventViewForOrgEventTypeNameCase1 = /*@__PURE__*/ S.String;
+export const DefaultEventViewForOrgEventTypeNameCase1 = S.String;
 
 export type DefaultEventViewForOrgEventTypeNameCase2 =
   | "MLAB_MIGRATION_COMPLETED"
@@ -44131,7 +43643,7 @@ export type DefaultEventViewForOrgEventTypeNameCase2 =
   | "MLAB_MIGRATION_DUMP_AND_RESTORE_STARTED"
   | "MLAB_MIGRATION_SUPPORT_PLAN_SELECTED"
   | "MLAB_MIGRATION_SUPPORT_PLAN_OPTED_OUT";
-export const DefaultEventViewForOrgEventTypeNameCase2 = /*@__PURE__*/ S.String;
+export const DefaultEventViewForOrgEventTypeNameCase2 = S.String;
 
 export type DefaultEventViewForOrgEventTypeNameCase3 =
   | "AWS_SELF_SERVE_ACCOUNT_LINKED"
@@ -44155,18 +43667,18 @@ export type DefaultEventViewForOrgEventTypeNameCase3 =
   | "VERCEL_INVOICE_OVERDUE"
   | "VERCEL_INVOICE_PAID"
   | "VERCEL_INVOICE_REFUNDED";
-export const DefaultEventViewForOrgEventTypeNameCase3 = /*@__PURE__*/ S.String;
+export const DefaultEventViewForOrgEventTypeNameCase3 = S.String;
 
 export type DefaultEventViewForOrgEventTypeNameCase4 =
   | "SUPPORT_EMAILS_SENT_SUCCESSFULLY"
   | "SUPPORT_EMAILS_SENT_FAILURE";
-export const DefaultEventViewForOrgEventTypeNameCase4 = /*@__PURE__*/ S.String;
+export const DefaultEventViewForOrgEventTypeNameCase4 = S.String;
 
 export type DefaultEventViewForOrgEventTypeNameCase5 =
   | "AI_MODELS_APIS_USAGE_TIER_UPDATED"
   | "AI_MODELS_APIS_RATE_LIMIT_ADMIN_OVERRIDE"
   | "AI_MODELS_APIS_FREE_TOKENS_ADMIN_ADJUSTED";
-export const DefaultEventViewForOrgEventTypeNameCase5 = /*@__PURE__*/ S.String;
+export const DefaultEventViewForOrgEventTypeNameCase5 = S.String;
 
 export type DefaultEventViewForOrgEventTypeNameCase6 =
   | "OAUTH_CLIENT_CREATED"
@@ -44180,7 +43692,7 @@ export type DefaultEventViewForOrgEventTypeNameCase6 =
   | "OAUTH_TOKEN_REVOKED"
   | "OAUTH_USER_CONSENT_GRANTED"
   | "OAUTH_USER_CONSENT_REVOKED";
-export const DefaultEventViewForOrgEventTypeNameCase6 = /*@__PURE__*/ S.String;
+export const DefaultEventViewForOrgEventTypeNameCase6 = S.String;
 
 /** Unique identifier of event type. */
 export type DefaultEventViewForOrgEventTypeName =
@@ -44192,7 +43704,7 @@ export type DefaultEventViewForOrgEventTypeName =
   | DefaultEventViewForOrgEventTypeNameCase5
   | DefaultEventViewForOrgEventTypeNameCase6;
 export const DefaultEventViewForOrgEventTypeName =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DefaultEventViewForOrgEventTypeName>;
+  S.Unknown as any as S.Schema<DefaultEventViewForOrgEventTypeName>;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DefaultEventViewForOrgLinksList = Array<Link>;
@@ -44262,7 +43774,7 @@ export type ApiUserEventTypeViewForOrg =
   | "API_KEY_REMOVED_FROM_GROUP"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "API_KEY_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const ApiUserEventTypeViewForOrg = /*@__PURE__*/ S.String;
+export const ApiUserEventTypeViewForOrg = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ApiUserEventViewForOrgLinksList = Array<Link>;
@@ -44339,7 +43851,7 @@ export type ServiceAccountEventTypeViewForOrg =
   | "SERVICE_ACCOUNT_SECRET_DELETED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_ENABLED"
   | "SERVICE_ACCOUNT_UI_IP_ACCESS_LIST_INHERITANCE_DISABLED";
-export const ServiceAccountEventTypeViewForOrg = /*@__PURE__*/ S.String;
+export const ServiceAccountEventTypeViewForOrg = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ServiceAccountOrgEventsLinksList = Array<Link>;
@@ -44478,7 +43990,7 @@ export type BillingEventTypeViewForOrg =
   | "PAYMENT_METHOD_UNFLAGGED"
   | "MARKETPLACE_REFUND_ISSUED"
   | "PAYMENT_DUE_DATE_EXTENDED";
-export const BillingEventTypeViewForOrg = /*@__PURE__*/ S.String;
+export const BillingEventTypeViewForOrg = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type BillingEventViewForOrgLinksList = Array<Link>;
@@ -44547,7 +44059,7 @@ export type NDSAuditTypeViewForOrg =
   | "SHADOW_CLUSTER_ORG_OPT_IN"
   | "SHADOW_CLUSTER_ORG_OPT_OUT"
   | "ATLAS_MAINTENANCE_FLEET_ACTIVE_WAVE_CLOSED_BY_ADMIN";
-export const NDSAuditTypeViewForOrg = /*@__PURE__*/ S.String;
+export const NDSAuditTypeViewForOrg = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type NDSAuditViewForOrgLinksList = Array<Link>;
@@ -44695,7 +44207,7 @@ export type OrgEventTypeViewForOrg =
   | "ORG_WAVE_ASSIGNMENT_MODE_MANUAL"
   | "ORG_WAVE_ASSIGNMENT_MODE_ENV_TAG_MAPPING"
   | "PROJECT_CREATED_VIA_ANIS";
-export const OrgEventTypeViewForOrg = /*@__PURE__*/ S.String;
+export const OrgEventTypeViewForOrg = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type OrgEventViewForOrgLinksList = Array<Link>;
@@ -44764,7 +44276,7 @@ export type TeamEventTypeView =
   | "TEAM_ADDED_TO_GROUP"
   | "TEAM_REMOVED_FROM_GROUP"
   | "TEAM_ROLES_MODIFIED";
-export const TeamEventTypeView = /*@__PURE__*/ S.String;
+export const TeamEventTypeView = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type TeamEventLinksList = Array<Link>;
@@ -44834,7 +44346,7 @@ export type UserEventTypeViewForOrg =
   | "ORG_FLEX_CONSULTING_PURCHASED"
   | "ORG_FLEX_CONSULTING_PURCHASE_FAILED"
   | "INVITED_TO_TEAM";
-export const UserEventTypeViewForOrg = /*@__PURE__*/ S.String;
+export const UserEventTypeViewForOrg = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type UserEventViewForOrgLinksList = Array<Link>;
@@ -44898,7 +44410,7 @@ export const UserEventViewForOrg = /*@__PURE__*/ S.suspend(() =>
 export type ResourceEventTypeViewForOrg =
   | "TAGS_MODIFIED"
   | "GROUP_TAGS_MODIFIED";
-export const ResourceEventTypeViewForOrg = /*@__PURE__*/ S.String;
+export const ResourceEventTypeViewForOrg = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type ResourceEventViewForOrgLinksList = Array<Link>;
@@ -44967,8 +44479,7 @@ export type AtlasResourcePolicyAuditForOrgEventTypeName =
   | "RESOURCE_POLICY_MODIFIED"
   | "RESOURCE_POLICY_DELETED"
   | "RESOURCE_POLICY_VIOLATED";
-export const AtlasResourcePolicyAuditForOrgEventTypeName =
-  /*@__PURE__*/ S.String;
+export const AtlasResourcePolicyAuditForOrgEventTypeName = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type AtlasResourcePolicyAuditForOrgLinksList = Array<Link>;
@@ -45042,8 +44553,7 @@ export type EventViewForOrg =
   | UserEventViewForOrg
   | ResourceEventViewForOrg
   | AtlasResourcePolicyAuditForOrg;
-export const EventViewForOrg =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EventViewForOrg>;
+export const EventViewForOrg = S.Unknown as any as S.Schema<EventViewForOrg>;
 
 export type GetOrgEventResponse = EventViewForOrg;
 export const GetOrgEventResponse = /*@__PURE__*/ S.suspend(() =>
@@ -45085,8 +44595,7 @@ export const OrgFederationSettingsFederatedDomainsList = /*@__PURE__*/ S.Array(
 
 /** String enum that indicates whether the identity provider is active. */
 export type OrgFederationSettingsIdentityProviderStatus = "ACTIVE" | "INACTIVE";
-export const OrgFederationSettingsIdentityProviderStatus =
-  /*@__PURE__*/ S.String;
+export const OrgFederationSettingsIdentityProviderStatus = S.String;
 
 /** Details that define how to connect one MongoDB Cloud organization to one federated authentication service. */
 export interface OrgFederationSettings {
@@ -45212,7 +44721,7 @@ export const GetOrgInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Code identifying the cloud provider this line item's usage is attributed to. Values map as follows: AWS is Amazon Web Services, GCP is Google Cloud, AZURE is Microsoft Azure, and ATLAS is other Atlas usage not tied to a specific cloud provider. */
 export type InvoiceLineItemCloudProvider = "AWS" | "GCP" | "AZURE" | "ATLAS";
-export const InvoiceLineItemCloudProvider = /*@__PURE__*/ S.String;
+export const InvoiceLineItemCloudProvider = S.String;
 
 /** A map of key-value pairs corresponding to the tags associated with the line item resource. */
 export type InvoiceLineItemTagsValueList = Array<string>;
@@ -45327,7 +44836,7 @@ export type BillingPaymentStatusName =
   | "PROCESSING"
   | "PENDING_REVERSAL"
   | "REFUNDED";
-export const BillingPaymentStatusName = /*@__PURE__*/ S.String;
+export const BillingPaymentStatusName = S.String;
 
 /** Funds transferred to MongoDB to cover the specified service in this invoice. */
 export interface BillingPayment {
@@ -45409,7 +44918,7 @@ export type BillingInvoiceStatusName =
   | "FREE"
   | "PREPAID"
   | "INVOICED";
-export const BillingInvoiceStatusName = /*@__PURE__*/ S.String;
+export const BillingInvoiceStatusName = S.String;
 
 export interface BillingInvoice {
   /** Sum of services that the specified organization consumed in the period covered in this invoice. This parameter expresses its value in cents (100ths of one US Dollar). */
@@ -45670,8 +45179,7 @@ export type ApiAtlasNonCompliantResourceViewResourceType =
   | "DEPRECATED_CLUSTER"
   | "PROJECT"
   | "CLUSTER";
-export const ApiAtlasNonCompliantResourceViewResourceType =
-  /*@__PURE__*/ S.String;
+export const ApiAtlasNonCompliantResourceViewResourceType = S.String;
 
 export interface ApiAtlasNonCompliantResourceView {
   /** Unique 24-hexadecimal character string that identifies the organization the resource belongs to. */
@@ -46017,8 +45525,7 @@ export type GetOrgUserRequestOrgMembershipStatusesItem =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const GetOrgUserRequestOrgMembershipStatusesItem =
-  /*@__PURE__*/ S.String;
+export const GetOrgUserRequestOrgMembershipStatusesItem = S.String;
 
 export type GetOrgUserRequestOrgMembershipStatusesList = Array<
   GetOrgUserRequestOrgMembershipStatusesItem | (string & {})
@@ -46120,7 +45627,7 @@ export type RateLimitEndpointSetEndpointMethod =
   | "PUT"
   | "DELETE"
   | "PATCH";
-export const RateLimitEndpointSetEndpointMethod = /*@__PURE__*/ S.String;
+export const RateLimitEndpointSetEndpointMethod = S.String;
 
 export interface RateLimitEndpointSetEndpoint {
   /** The HTTP method of the endpoint. */
@@ -46183,7 +45690,7 @@ export type RateLimitEndpointSetResponseScope =
   | "GROUP"
   | "ORGANIZATION"
   | "USER";
-export const RateLimitEndpointSetResponseScope = /*@__PURE__*/ S.String;
+export const RateLimitEndpointSetResponseScope = S.String;
 
 export interface RateLimitEndpointSetResponse {
   capacity?: RateLimitEndpointSetCapacity;
@@ -46321,7 +45828,7 @@ export const ApiKey = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that identifies the service from which you requested this response. */
 export type SystemStatusAppName = "MongoDB Atlas";
-export const SystemStatusAppName = /*@__PURE__*/ S.String;
+export const SystemStatusAppName = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type SystemStatusLinksList = Array<Link>;
@@ -46373,8 +45880,7 @@ export type GrantGroupClusterMongoDbEmployeeAccessRequestGrantType =
   | "CLUSTER_DATABASE_LOGS"
   | "CLUSTER_INFRASTRUCTURE"
   | "CLUSTER_INFRASTRUCTURE_AND_APP_SERVICES_SYNC_DATA";
-export const GrantGroupClusterMongoDbEmployeeAccessRequestGrantType =
-  /*@__PURE__*/ S.String;
+export const GrantGroupClusterMongoDbEmployeeAccessRequestGrantType = S.String;
 
 export interface GrantGroupClusterMongoDbEmployeeAccessRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -46480,10 +45986,10 @@ export const ListAlertConfigMatcherFieldNamesRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListAlertConfigMatcherFieldNamesRequest>;
 
 export type MatcherFieldViewCase0 = "APPLICATION_ID";
-export const MatcherFieldViewCase0 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase0 = S.String;
 
 export type MatcherFieldViewCase1 = "CLUSTER_NAME";
-export const MatcherFieldViewCase1 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase1 = S.String;
 
 export type MatcherFieldViewCase2 =
   | "TYPE_NAME"
@@ -46492,25 +45998,25 @@ export type MatcherFieldViewCase2 =
   | "HOSTNAME_AND_PORT"
   | "REPLICA_SET_NAME"
   | "ATLAS_NODE_TYPE";
-export const MatcherFieldViewCase2 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase2 = S.String;
 
 export type MatcherFieldViewCase3 =
   | "REPLICA_SET_NAME"
   | "SHARD_NAME"
   | "CLUSTER_NAME";
-export const MatcherFieldViewCase3 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase3 = S.String;
 
 export type MatcherFieldViewCase4 = "INSTANCE_NAME" | "PROCESSOR_NAME";
-export const MatcherFieldViewCase4 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase4 = S.String;
 
 export type MatcherFieldViewCase5 = "RULE_ID";
-export const MatcherFieldViewCase5 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase5 = S.String;
 
 export type MatcherFieldViewCase6 = "SOFTWARE_TYPE";
-export const MatcherFieldViewCase6 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase6 = S.String;
 
 export type MatcherFieldViewCase7 = "CLUSTER_NAME";
-export const MatcherFieldViewCase7 = /*@__PURE__*/ S.String;
+export const MatcherFieldViewCase7 = S.String;
 
 export type MatcherFieldView =
   | MatcherFieldViewCase0
@@ -46521,8 +46027,7 @@ export type MatcherFieldView =
   | MatcherFieldViewCase5
   | MatcherFieldViewCase6
   | MatcherFieldViewCase7;
-export const MatcherFieldView =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MatcherFieldView>;
+export const MatcherFieldView = S.Unknown as any as S.Schema<MatcherFieldView>;
 
 export type ListAlertConfigMatcherFieldNamesResponseBodyList =
   Array<MatcherFieldView>;
@@ -46583,11 +46088,11 @@ export type CloudClusterAvailability =
   | "dead"
   | "unavailable"
   | "warning";
-export const CloudClusterAvailability = /*@__PURE__*/ S.String;
+export const CloudClusterAvailability = S.String;
 
 /** Human-readable label that indicates the cluster type. */
 export type CloudClusterType = "REPLICA_SET" | "SHARDED_CLUSTER";
-export const CloudClusterType = /*@__PURE__*/ S.String;
+export const CloudClusterType = S.String;
 
 /** List that contains the versions of MongoDB that each node in the cluster runs. */
 export type CloudClusterVersionsList = Array<string>;
@@ -47134,7 +46639,7 @@ export type ListFederationSettingIdentityProvidersRequestProtocolItem =
   | "SAML"
   | "OIDC";
 export const ListFederationSettingIdentityProvidersRequestProtocolItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFederationSettingIdentityProvidersRequestProtocolList = Array<
   ListFederationSettingIdentityProvidersRequestProtocolItem | (string & {})
@@ -47148,7 +46653,7 @@ export type ListFederationSettingIdentityProvidersRequestIdpTypeItem =
   | "WORKFORCE"
   | "WORKLOAD";
 export const ListFederationSettingIdentityProvidersRequestIdpTypeItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ListFederationSettingIdentityProvidersRequestIdpTypeList = Array<
   ListFederationSettingIdentityProvidersRequestIdpTypeItem | (string & {})
@@ -47369,7 +46874,7 @@ export const ListGroupAlertConfigsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGroupAlertConfigsRequest>;
 
 export type ListGroupAlertsRequestStatus = "OPEN" | "TRACKING" | "CLOSED";
-export const ListGroupAlertsRequestStatus = /*@__PURE__*/ S.String;
+export const ListGroupAlertsRequestStatus = S.String;
 
 export interface ListGroupAlertsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -47541,8 +47046,7 @@ export const PaginatedBackupSnapshotExportBucketsView = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PaginatedBackupSnapshotExportBucketsView>;
 
 export type ListGroupBackupPrivateEndpointsRequestCloudProvider = "AWS";
-export const ListGroupBackupPrivateEndpointsRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+export const ListGroupBackupPrivateEndpointsRequestCloudProvider = S.String;
 
 export interface ListGroupBackupPrivateEndpointsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -48148,7 +47652,7 @@ export type ListGroupClusterCollectionRestoreJobCollectionsRequestState =
   | "NOT_RESTORED"
   | "FAILED";
 export const ListGroupClusterCollectionRestoreJobCollectionsRequestState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListGroupClusterCollectionRestoreJobCollectionsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -48313,8 +47817,7 @@ export type ListGroupClusterCollStatMeasurementsRequestClusterView =
   | "PRIMARY"
   | "SECONDARY"
   | "INDIVIDUAL_PROCESS";
-export const ListGroupClusterCollStatMeasurementsRequestClusterView =
-  /*@__PURE__*/ S.String;
+export const ListGroupClusterCollStatMeasurementsRequestClusterView = S.String;
 
 /** Metric requested for the given cluster */
 export type ListGroupClusterCollStatMeasurementsRequestMetricsItem =
@@ -48342,8 +47845,7 @@ export type ListGroupClusterCollStatMeasurementsRequestMetricsItem =
   | "TOTAL_OPS_P50_VALUE"
   | "TOTAL_OPS_P95_VALUE"
   | "TOTAL_OPS_P99_VALUE";
-export const ListGroupClusterCollStatMeasurementsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+export const ListGroupClusterCollStatMeasurementsRequestMetricsItem = S.String;
 
 export type ListGroupClusterCollStatMeasurementsRequestMetricsList = Array<
   ListGroupClusterCollStatMeasurementsRequestMetricsItem | (string & {})
@@ -48412,8 +47914,7 @@ export type MeasurementsCollStatsLatencyClusterGranularity =
   | "PT5M"
   | "PT1H"
   | "P1D";
-export const MeasurementsCollStatsLatencyClusterGranularity =
-  /*@__PURE__*/ S.String;
+export const MeasurementsCollStatsLatencyClusterGranularity = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type MeasurementsCollStatsLatencyClusterLinksList = Array<Link>;
@@ -48848,7 +48349,7 @@ export type SchemaAdvisorTriggerDetailsTriggerType =
   | "DOC_SIZE_TOO_LARGE"
   | "NUM_INDEXES"
   | "QUERIES_CONTAIN_CASE_INSENSITIVE_REGEX";
-export const SchemaAdvisorTriggerDetailsTriggerType = /*@__PURE__*/ S.String;
+export const SchemaAdvisorTriggerDetailsTriggerType = S.String;
 
 export interface SchemaAdvisorTriggerDetails {
   /** Description of the trigger type. */
@@ -48904,8 +48405,7 @@ export type SchemaAdvisorItemRecommendationRecommendation =
   | "REDUCE_NUMBER_OF_NAMESPACES"
   | "OPTIMIZE_CASE_INSENSITIVE_REGEX_QUERIES"
   | "OPTIMIZE_TEXT_QUERIES";
-export const SchemaAdvisorItemRecommendationRecommendation =
-  /*@__PURE__*/ S.String;
+export const SchemaAdvisorItemRecommendationRecommendation = S.String;
 
 export interface SchemaAdvisorItemRecommendation {
   /** List that contains the namespaces and information on why those namespaces triggered the recommendation. */
@@ -49133,7 +48633,7 @@ export const PerformanceAdvisorIndexImpactList = /*@__PURE__*/ S.Array(
 
 /** One index key paired with its sort order. A value of `1` indicates an ascending sort order. A value of `-1` indicates a descending sort order. Keys in indexes with multiple keys appear in the same order that they appear in the index. */
 export type PerformanceAdvisorIndexIndexItemValue = 1 | -1;
-export const PerformanceAdvisorIndexIndexItemValue = /*@__PURE__*/ S.Number;
+export const PerformanceAdvisorIndexIndexItemValue = S.Number;
 
 /** One index key paired with its sort order. A value of `1` indicates an ascending sort order. A value of `-1` indicates a descending sort order. Keys in indexes with multiple keys appear in the same order that they appear in the index. */
 export type PerformanceAdvisorIndexIndexItemMap = {
@@ -49344,7 +48844,7 @@ export const CloudProviderRegionsInstanceSizesList = /*@__PURE__*/ S.Array(
 
 /** Human-readable label that identifies the Cloud provider. */
 export type CloudProviderRegionsProvider = "AWS" | "GCP" | "AZURE";
-export const CloudProviderRegionsProvider = /*@__PURE__*/ S.String;
+export const CloudProviderRegionsProvider = S.String;
 
 export interface CloudProviderRegions {
   /** List of instances sizes that this cloud provider supports. */
@@ -49407,7 +48907,7 @@ export type ListGroupClusterQueryShapeInsightSummariesRequestCommandsItem =
   | "distinct"
   | "aggregate";
 export const ListGroupClusterQueryShapeInsightSummariesRequestCommandsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** MongoDB commands from which to retrieve query statistics. To include multiple commands, pass the parameter multiple times delimited with an ampersand (`&`) between each command. Omit this parameter to return results for all supported commands. */
 export type ListGroupClusterQueryShapeInsightSummariesRequestCommandsList =
@@ -49437,7 +48937,7 @@ export type ListGroupClusterQueryShapeInsightSummariesRequestSeriesItem =
   | "P90_EXECUTION_TIME"
   | "P99_EXECUTION_TIME";
 export const ListGroupClusterQueryShapeInsightSummariesRequestSeriesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Query shape statistics data series to retrieve. A series represents a specific metric about query execution. To include multiple series, pass the parameter multiple times delimited with an ampersand (`&`) between each series. Omit this parameter to return results for all available series. The `P50_EXECUTION_TIME`, `P90_EXECUTION_TIME`, and `P99_EXECUTION_TIME` series are deprecated as the values they report may be inaccurate. They will be removed in a future release. */
 export type ListGroupClusterQueryShapeInsightSummariesRequestSeriesList = Array<
@@ -49549,7 +49049,7 @@ export const QueryStatsSummaryListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QueryStatsSummaryListResponse>;
 
 export type ListGroupClusterQueryShapesRequestStatus = "REJECTED";
-export const ListGroupClusterQueryShapesRequestStatus = /*@__PURE__*/ S.String;
+export const ListGroupClusterQueryShapesRequestStatus = S.String;
 
 export interface ListGroupClusterQueryShapesRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -49843,11 +49343,11 @@ export type CollStatsLatencyNamespaceMetricMetricName =
   | "TOTAL_OPS_P50_VALUE"
   | "TOTAL_OPS_P95_VALUE"
   | "TOTAL_OPS_P99_VALUE";
-export const CollStatsLatencyNamespaceMetricMetricName = /*@__PURE__*/ S.String;
+export const CollStatsLatencyNamespaceMetricMetricName = S.String;
 
 /** Unit of measurement that applies to this metric. */
 export type CollStatsLatencyNamespaceMetricUnits = "MILLISECONDS";
-export const CollStatsLatencyNamespaceMetricUnits = /*@__PURE__*/ S.String;
+export const CollStatsLatencyNamespaceMetricUnits = S.String;
 
 /** Coll Stats Latency metric name and its unit of measurement. */
 export interface CollStatsLatencyNamespaceMetric {
@@ -49960,7 +49460,7 @@ export const PaginatedCloudProviderContainerView = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedCloudProviderContainerView>;
 
 export type ListGroupContainersRequestProviderName = "AWS" | "AZURE" | "GCP";
-export const ListGroupContainersRequestProviderName = /*@__PURE__*/ S.String;
+export const ListGroupContainersRequestProviderName = S.String;
 
 export interface ListGroupContainersRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -50206,7 +49706,7 @@ export const PaginatedApiAtlasDatabaseUserViewOutput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PaginatedApiAtlasDatabaseUserViewOutput>;
 
 export type ListGroupDataFederationRequestType = "USER" | "ONLINE_ARCHIVE";
-export const ListGroupDataFederationRequestType = /*@__PURE__*/ S.String;
+export const ListGroupDataFederationRequestType = S.String;
 
 export interface ListGroupDataFederationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -50298,7 +49798,7 @@ export type ListGroupEncryptionAtRestPrivateEndpointsRequestCloudProvider =
   | "AZURE"
   | "AWS";
 export const ListGroupEncryptionAtRestPrivateEndpointsRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListGroupEncryptionAtRestPrivateEndpointsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -50707,7 +50207,7 @@ export type ListGroupHostFtsMetricIndexMeasurementsRequestMetricsItem =
   | "REPLICATION_LAG"
   | "TOTAL_NUMBER_OF_QUERIES";
 export const ListGroupHostFtsMetricIndexMeasurementsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List that contains the measurements that MongoDB Atlas reports for the associated data series. */
 export type ListGroupHostFtsMetricIndexMeasurementsRequestMetricsList = Array<
@@ -50779,8 +50279,7 @@ export type ListGroupHostFtsMetricMeasurementsRequestMetricsItem =
   | "JVM_CURRENT_MEMORY"
   | "JVM_MAX_MEMORY"
   | "PAGE_FAULTS";
-export const ListGroupHostFtsMetricMeasurementsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+export const ListGroupHostFtsMetricMeasurementsRequestMetricsItem = S.String;
 
 /** List that contains the metrics that you want MongoDB Atlas to report for the associated data series. If you don't set this parameter, this resource returns all hardware and status metrics for the associated data series. */
 export type ListGroupHostFtsMetricMeasurementsRequestMetricsList = Array<
@@ -50836,7 +50335,7 @@ export const ListGroupHostFtsMetricMeasurementsRequest =
 
 /** Duration that specifies the interval between measurement data points. The parameter expresses its value in ISO 8601 timestamp format in UTC. If you set this parameter, you must set either **period** or **start** and **end**. */
 export type MeasurementsNonIndexGranularity = "PT1M" | "PT5M" | "PT1H" | "P1D";
-export const MeasurementsNonIndexGranularity = /*@__PURE__*/ S.String;
+export const MeasurementsNonIndexGranularity = S.String;
 
 /** List that contains the Atlas Search hardware measurements. */
 export type MeasurementsNonIndexHardwareMeasurementsList =
@@ -50942,7 +50441,7 @@ export type FTSMetricMetricName =
   | "JVM_CURRENT_MEMORY"
   | "JVM_MAX_MEMORY"
   | "PAGE_FAULTS";
-export const FTSMetricMetricName = /*@__PURE__*/ S.String;
+export const FTSMetricMetricName = S.String;
 
 /** Unit of measurement that applies to this Atlas Search metric. */
 export type FTSMetricUnits =
@@ -50959,7 +50458,7 @@ export type FTSMetricUnits =
   | "SCALAR"
   | "SCALAR_PER_SECOND"
   | "SECONDS";
-export const FTSMetricUnits = /*@__PURE__*/ S.String;
+export const FTSMetricUnits = S.String;
 
 /** Measurement of one Atlas Search status when MongoDB Atlas received this request. */
 export interface FTSMetric {
@@ -51375,7 +50874,7 @@ export const PaginatedMetricIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedMetricIntegrationResponse>;
 
 export type ListGroupPeersRequestProviderName = "AWS" | "AZURE" | "GCP";
-export const ListGroupPeersRequestProviderName = /*@__PURE__*/ S.String;
+export const ListGroupPeersRequestProviderName = S.String;
 
 export interface ListGroupPeersRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -51451,7 +50950,7 @@ export type ListGroupPrivateEndpointEndpointServiceRequestCloudProvider =
   | "AZURE"
   | "GCP";
 export const ListGroupPrivateEndpointEndpointServiceRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListGroupPrivateEndpointEndpointServiceRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -51566,8 +51065,7 @@ export type ListGroupProcessCollStatMeasurementsRequestMetricsItem =
   | "TOTAL_OPS_P50_VALUE"
   | "TOTAL_OPS_P95_VALUE"
   | "TOTAL_OPS_P99_VALUE";
-export const ListGroupProcessCollStatMeasurementsRequestMetricsItem =
-  /*@__PURE__*/ S.String;
+export const ListGroupProcessCollStatMeasurementsRequestMetricsItem = S.String;
 
 export type ListGroupProcessCollStatMeasurementsRequestMetricsList = Array<
   ListGroupProcessCollStatMeasurementsRequestMetricsItem | (string & {})
@@ -51629,8 +51127,7 @@ export type MeasurementsCollStatsLatencyHostGranularity =
   | "PT5M"
   | "PT1H"
   | "P1D";
-export const MeasurementsCollStatsLatencyHostGranularity =
-  /*@__PURE__*/ S.String;
+export const MeasurementsCollStatsLatencyHostGranularity = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type MeasurementsCollStatsLatencyHostLinksList = Array<Link>;
@@ -51918,7 +51415,7 @@ export const ListGroupProcessPerformanceAdvisorNamespacesRequest =
 
 /** Human-readable label that identifies the type of namespace. */
 export type NamespaceObjType = "collection";
-export const NamespaceObjType = /*@__PURE__*/ S.String;
+export const NamespaceObjType = S.String;
 
 /** Human-readable label that identifies the namespace on the specified host. The resource expresses this parameter value as `<database>.<collection>`. */
 export interface NamespaceObj {
@@ -52363,7 +51860,7 @@ export type VPCPeeringConnectionLocalStatus =
   | "REQUEST_DELETE"
   | "DELETE_REQUESTED"
   | "ACTIVE";
-export const VPCPeeringConnectionLocalStatus = /*@__PURE__*/ S.String;
+export const VPCPeeringConnectionLocalStatus = S.String;
 
 /** Represents a VPC Peering connection on AWS. */
 export interface VPCPeeringConnection {
@@ -52787,8 +52284,7 @@ export type ListGroupUsersRequestOrgMembershipStatusesItem =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const ListGroupUsersRequestOrgMembershipStatusesItem =
-  /*@__PURE__*/ S.String;
+export const ListGroupUsersRequestOrgMembershipStatusesItem = S.String;
 
 export type ListGroupUsersRequestOrgMembershipStatusesList = Array<
   ListGroupUsersRequestOrgMembershipStatusesItem | (string & {})
@@ -53195,7 +52691,7 @@ export type ListOrgInvoicesRequestStatusNamesItem =
   | "FREE"
   | "PREPAID"
   | "INVOICED";
-export const ListOrgInvoicesRequestStatusNamesItem = /*@__PURE__*/ S.String;
+export const ListOrgInvoicesRequestStatusNamesItem = S.String;
 
 export type ListOrgInvoicesRequestStatusNamesList = Array<
   ListOrgInvoicesRequestStatusNamesItem | (string & {})
@@ -53205,10 +52701,10 @@ export const ListOrgInvoicesRequestStatusNamesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListOrgInvoicesRequestStatusNamesList>;
 
 export type ListOrgInvoicesRequestSortBy = "START_DATE" | "END_DATE";
-export const ListOrgInvoicesRequestSortBy = /*@__PURE__*/ S.String;
+export const ListOrgInvoicesRequestSortBy = S.String;
 
 export type ListOrgInvoicesRequestOrderBy = "desc" | "asc";
-export const ListOrgInvoicesRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListOrgInvoicesRequestOrderBy = S.String;
 
 export interface ListOrgInvoicesRequest {
   /** Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [`/orgs`](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. */
@@ -53293,7 +52789,7 @@ export type BillingInvoiceMetadataStatusName =
   | "FREE"
   | "PREPAID"
   | "INVOICED";
-export const BillingInvoiceMetadataStatusName = /*@__PURE__*/ S.String;
+export const BillingInvoiceMetadataStatusName = S.String;
 
 export interface BillingInvoiceMetadata {
   /** Sum of services that the specified organization consumed in the period covered in this invoice. This parameter expresses its value in cents (100ths of one US Dollar). */
@@ -53872,8 +53368,7 @@ export type ListOrgTeamUsersRequestOrgMembershipStatusesItem =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const ListOrgTeamUsersRequestOrgMembershipStatusesItem =
-  /*@__PURE__*/ S.String;
+export const ListOrgTeamUsersRequestOrgMembershipStatusesItem = S.String;
 
 export type ListOrgTeamUsersRequestOrgMembershipStatusesList = Array<
   ListOrgTeamUsersRequestOrgMembershipStatusesItem | (string & {})
@@ -53966,8 +53461,7 @@ export type ListOrgUsersRequestOrgMembershipStatusesItem =
   | "ACTIVE"
   | "INVITATION_EXPIRED"
   | "INVITATION_REJECTED";
-export const ListOrgUsersRequestOrgMembershipStatusesItem =
-  /*@__PURE__*/ S.String;
+export const ListOrgUsersRequestOrgMembershipStatusesItem = S.String;
 
 export type ListOrgUsersRequestOrgMembershipStatusesList = Array<
   ListOrgUsersRequestOrgMembershipStatusesItem | (string & {})
@@ -54541,7 +54035,7 @@ export type RemoveOrgUserRoleRequestOrgRole =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY"
   | "ORG_MEMBER";
-export const RemoveOrgUserRoleRequestOrgRole = /*@__PURE__*/ S.String;
+export const RemoveOrgUserRoleRequestOrgRole = S.String;
 
 export interface RemoveOrgUserRoleRequest {
   /** Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [`/orgs`](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. */
@@ -54609,7 +54103,7 @@ export type RequestGroupEncryptionAtRestPrivateEndpointDeletionRequestCloudProvi
   | "AZURE"
   | "AWS";
 export const RequestGroupEncryptionAtRestPrivateEndpointDeletionRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface RequestGroupEncryptionAtRestPrivateEndpointDeletionRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -54683,12 +54177,12 @@ export const RequestGroupSampleDatasetLoadRequest = /*@__PURE__*/ S.suspend(
 export type ResetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
   "ANY";
 export const ResetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type ResetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
   "ANY";
 export const ResetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ResetGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -54929,7 +54423,7 @@ export type UsageDetailsFilterRequestSkuServicesItem =
   | "Flex Consulting"
   | "Support"
   | "Credits";
-export const UsageDetailsFilterRequestSkuServicesItem = /*@__PURE__*/ S.String;
+export const UsageDetailsFilterRequestSkuServicesItem = S.String;
 
 /** The list of projects to be included in the Cost Explorer Query. */
 export type UsageDetailsFilterRequestSkuServicesList = Array<
@@ -54978,13 +54472,13 @@ export type SearchOrgInvoiceLineItemsRequestSortField =
   | "USAGE_DATES"
   | "BILL_DATES"
   | "TOTAL_PRICE_CENTS";
-export const SearchOrgInvoiceLineItemsRequestSortField = /*@__PURE__*/ S.String;
+export const SearchOrgInvoiceLineItemsRequestSortField = S.String;
 
 /** Specify the sort order (ascending / descending) used to specify how to sort query results. Defaults to descending. */
 export type SearchOrgInvoiceLineItemsRequestSortOrder =
   | "ASCENDING"
   | "DESCENDING";
-export const SearchOrgInvoiceLineItemsRequestSortOrder = /*@__PURE__*/ S.String;
+export const SearchOrgInvoiceLineItemsRequestSortOrder = S.String;
 
 export interface SearchOrgInvoiceLineItemsRequest {
   /** Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [`/orgs`](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. */
@@ -55055,8 +54549,7 @@ export type PublicApiUsageDetailsLineItemViewCloudProvider =
   | "GCP"
   | "AZURE"
   | "ATLAS";
-export const PublicApiUsageDetailsLineItemViewCloudProvider =
-  /*@__PURE__*/ S.String;
+export const PublicApiUsageDetailsLineItemViewCloudProvider = S.String;
 
 export interface PublicApiUsageDetailsLineItemView {
   additionalData?: AdditionalData;
@@ -55128,15 +54621,13 @@ export type SetGroupDataFederationLimitRequestLimitName =
   | "bytesProcessed.daily"
   | "bytesProcessed.weekly"
   | "bytesProcessed.monthly";
-export const SetGroupDataFederationLimitRequestLimitName =
-  /*@__PURE__*/ S.String;
+export const SetGroupDataFederationLimitRequestLimitName = S.String;
 
 /** Only used for Data Federation limits. Action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. */
 export type SetGroupDataFederationLimitRequestOverrunPolicy =
   | "BLOCK"
   | "BLOCK_AND_KILL";
-export const SetGroupDataFederationLimitRequestOverrunPolicy =
-  /*@__PURE__*/ S.String;
+export const SetGroupDataFederationLimitRequestOverrunPolicy = S.String;
 
 export interface SetGroupDataFederationLimitRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -55188,7 +54679,7 @@ export type SetGroupLimitRequestLimitName =
   | "dataFederation.bytesProcessed.monthly"
   | "atlas.project.deployment.privateServiceConnectionsPerRegionGroup"
   | "atlas.project.deployment.privateServiceConnectionsSubnetMask";
-export const SetGroupLimitRequestLimitName = /*@__PURE__*/ S.String;
+export const SetGroupLimitRequestLimitName = S.String;
 
 export interface SetGroupLimitRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -55303,7 +54794,7 @@ export const StartGroupStreamProcessorResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Strategy for the processor: GRACEFUL - attempt to stop the processor, error if processor cannot be stopped. if stop was successful, start the processor in the new region with the latest checkpoint. FORCED - attempt to stop the processor, proceed to starting the processor in the new region with checkpoints disabled regardless of whether or not the stop succeeds. */
 export type StreamsStartProcessorFailoverMode = "GRACEFUL" | "FORCED";
-export const StreamsStartProcessorFailoverMode = /*@__PURE__*/ S.String;
+export const StreamsStartProcessorFailoverMode = S.String;
 
 /** Failover options for starting a stream processor. */
 export interface StreamsStartProcessorFailover {
@@ -55334,7 +54825,7 @@ export type StartGroupStreamProcessorWithRequestTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const StartGroupStreamProcessorWithRequestTier = /*@__PURE__*/ S.String;
+export const StartGroupStreamProcessorWithRequestTier = S.String;
 
 export interface StartGroupStreamProcessorWithRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -55468,7 +54959,7 @@ export type DiskBackupSnapshotFrequencyType =
   | "weekly"
   | "monthly"
   | "yearly";
-export const DiskBackupSnapshotFrequencyType = /*@__PURE__*/ S.String;
+export const DiskBackupSnapshotFrequencyType = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DiskBackupSnapshotLinksList = Array<Link>;
@@ -55487,7 +54978,7 @@ export type DiskBackupSnapshotSnapshotType =
   | "onDemand"
   | "scheduled"
   | "fallback";
-export const DiskBackupSnapshotSnapshotType = /*@__PURE__*/ S.String;
+export const DiskBackupSnapshotSnapshotType = S.String;
 
 /** Human-readable label that indicates the stage of the backup process for this snapshot. */
 export type DiskBackupSnapshotStatus =
@@ -55495,11 +54986,11 @@ export type DiskBackupSnapshotStatus =
   | "inProgress"
   | "completed"
   | "failed";
-export const DiskBackupSnapshotStatus = /*@__PURE__*/ S.String;
+export const DiskBackupSnapshotStatus = S.String;
 
 /** Human-readable label that categorizes the cluster as a replica set or sharded cluster. */
 export type DiskBackupSnapshotType = "replicaSet" | "shardedCluster";
-export const DiskBackupSnapshotType = /*@__PURE__*/ S.String;
+export const DiskBackupSnapshotType = S.String;
 
 export interface DiskBackupSnapshot {
   /** Date and time when MongoDB Cloud took the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC. */
@@ -55553,31 +55044,28 @@ export const DiskBackupSnapshot = /*@__PURE__*/ S.suspend(() =>
 export type TenantGroupFlexClusterUpgradeRequestAdaptiveCapacity =
   | "ENABLED"
   | "DISABLED";
-export const TenantGroupFlexClusterUpgradeRequestAdaptiveCapacity =
-  /*@__PURE__*/ S.String;
+export const TenantGroupFlexClusterUpgradeRequestAdaptiveCapacity = S.String;
 
 /** Configuration of nodes that comprise the cluster. */
 export type TenantGroupFlexClusterUpgradeRequestClusterType =
   | "REPLICASET"
   | "SHARDED"
   | "GEOSHARDED";
-export const TenantGroupFlexClusterUpgradeRequestClusterType =
-  /*@__PURE__*/ S.String;
+export const TenantGroupFlexClusterUpgradeRequestClusterType = S.String;
 
 /** Config Server Management Mode for creating or updating a sharded cluster. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. */
 export type TenantGroupFlexClusterUpgradeRequestConfigServerManagementMode =
   | "ATLAS_MANAGED"
   | "FIXED_TO_DEDICATED";
 export const TenantGroupFlexClusterUpgradeRequestConfigServerManagementMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Disk warming mode selection. */
 export type TenantGroupFlexClusterUpgradeRequestDiskWarmingMode =
   | "FULLY_WARMED"
   | "VISIBLE_EARLIER"
   | "ENHANCED_FULLY_WARMED";
-export const TenantGroupFlexClusterUpgradeRequestDiskWarmingMode =
-  /*@__PURE__*/ S.String;
+export const TenantGroupFlexClusterUpgradeRequestDiskWarmingMode = S.String;
 
 /** Cloud service provider that manages your customer keys to provide an additional layer of encryption at rest for the cluster. To enable customer key management for encryption at rest, the cluster `replicationSpecs[n].regionConfigs[m].{type}Specs.instanceSize` setting must be `M10` or higher and `"backupEnabled" : false` or omitted entirely. */
 export type TenantGroupFlexClusterUpgradeRequestEncryptionAtRestProvider =
@@ -55586,7 +55074,7 @@ export type TenantGroupFlexClusterUpgradeRequestEncryptionAtRestProvider =
   | "AZURE"
   | "GCP";
 export const TenantGroupFlexClusterUpgradeRequestEncryptionAtRestProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of key-value pairs between 1 to 255 characters in length that tag and categorize the cluster. The MongoDB Cloud console doesn't display your labels. Cluster labels are deprecated and will be removed in a future release. We strongly recommend that you use Resource Tags instead. */
 export type TenantGroupFlexClusterUpgradeRequestLabelsList =
@@ -55602,7 +55090,7 @@ export type TenantGroupFlexClusterUpgradeRequestReplicaSetScalingStrategy =
   | "WORKLOAD_TYPE"
   | "NODE_TYPE";
 export const TenantGroupFlexClusterUpgradeRequestReplicaSetScalingStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. */
 export type TenantGroupFlexClusterUpgradeRequestReplicationSpecsList =
@@ -55614,8 +55102,7 @@ export const TenantGroupFlexClusterUpgradeRequestReplicationSpecsList =
 
 /** Root Certificate Authority that MongoDB Atlas cluster uses. MongoDB Cloud supports Internet Security Research Group. */
 export type TenantGroupFlexClusterUpgradeRequestRootCertType = "ISRGROOTX1";
-export const TenantGroupFlexClusterUpgradeRequestRootCertType =
-  /*@__PURE__*/ S.String;
+export const TenantGroupFlexClusterUpgradeRequestRootCertType = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. */
 export type TenantGroupFlexClusterUpgradeRequestTagsList = Array<ResourceTag>;
@@ -55629,7 +55116,7 @@ export type TenantGroupFlexClusterUpgradeRequestVersionReleaseSystem =
   | "LTS"
   | "CONTINUOUS";
 export const TenantGroupFlexClusterUpgradeRequestVersionReleaseSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface TenantGroupFlexClusterUpgradeRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -55983,7 +55470,7 @@ export type UpdateFederationSettingConnectedOrgConfigRequestPostAuthRoleGrantsIt
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY";
 export const UpdateFederationSettingConnectedOrgConfigRequestPostAuthRoleGrantsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Atlas roles that are granted to a user in this organization after authenticating. Roles are a human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific MongoDB Cloud user. These roles can only be organization specific roles. */
 export type UpdateFederationSettingConnectedOrgConfigRequestPostAuthRoleGrantsList =
@@ -56166,15 +55653,13 @@ export const UpdateFederationSettingConnectedOrgConfigRoleMappingRequest =
 export type UpdateFederationSettingIdentityProviderRequestIdpType =
   | "WORKFORCE"
   | "WORKLOAD";
-export const UpdateFederationSettingIdentityProviderRequestIdpType =
-  /*@__PURE__*/ S.String;
+export const UpdateFederationSettingIdentityProviderRequestIdpType = S.String;
 
 /** String enum that indicates the protocol of the identity provider. Either SAML or OIDC. */
 export type UpdateFederationSettingIdentityProviderRequestProtocol =
   | "SAML"
   | "OIDC";
-export const UpdateFederationSettingIdentityProviderRequestProtocol =
-  /*@__PURE__*/ S.String;
+export const UpdateFederationSettingIdentityProviderRequestProtocol = S.String;
 
 export interface UpdateFederationSettingIdentityProviderRequest {
   /** Unique 24-hexadecimal digit string that identifies your federation. */
@@ -56268,12 +55753,12 @@ export const UpdateGroupRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
   "ANY";
 export const UpdateGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestCloud =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type UpdateGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
   "ANY";
 export const UpdateGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequestGeography =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateGroupAiModelApiCloudGeographyModelGroupNameRateLimitsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -56511,12 +55996,11 @@ export type BackupComplianceOnDemandPolicyItemInputFrequencyInterval =
   | 28
   | 40;
 export const BackupComplianceOnDemandPolicyItemInputFrequencyInterval =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** Human-readable label that identifies the frequency type associated with the backup policy. */
 export type BackupComplianceOnDemandPolicyItemInputFrequencyType = "ondemand";
-export const BackupComplianceOnDemandPolicyItemInputFrequencyType =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceOnDemandPolicyItemInputFrequencyType = S.String;
 
 /** Unit of time in which MongoDB Cloud measures snapshot retention. */
 export type BackupComplianceOnDemandPolicyItemInputRetentionUnit =
@@ -56524,8 +56008,7 @@ export type BackupComplianceOnDemandPolicyItemInputRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const BackupComplianceOnDemandPolicyItemInputRetentionUnit =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceOnDemandPolicyItemInputRetentionUnit = S.String;
 
 /** Specifications for on-demand policy. */
 export interface BackupComplianceOnDemandPolicyItemInput {
@@ -56589,7 +56072,7 @@ export type BackupComplianceScheduledPolicyItemInputFrequencyInterval =
   | 28
   | 40;
 export const BackupComplianceScheduledPolicyItemInputFrequencyInterval =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** Human-readable label that identifies the frequency type associated with the backup policy. */
 export type BackupComplianceScheduledPolicyItemInputFrequencyType =
@@ -56598,8 +56081,7 @@ export type BackupComplianceScheduledPolicyItemInputFrequencyType =
   | "weekly"
   | "monthly"
   | "yearly";
-export const BackupComplianceScheduledPolicyItemInputFrequencyType =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceScheduledPolicyItemInputFrequencyType = S.String;
 
 /** Unit of time in which MongoDB Cloud measures Snapshot retention. */
 export type BackupComplianceScheduledPolicyItemInputRetentionUnit =
@@ -56607,8 +56089,7 @@ export type BackupComplianceScheduledPolicyItemInputRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const BackupComplianceScheduledPolicyItemInputRetentionUnit =
-  /*@__PURE__*/ S.String;
+export const BackupComplianceScheduledPolicyItemInputRetentionUnit = S.String;
 
 /** Specifications for scheduled policy. */
 export interface BackupComplianceScheduledPolicyItemInput {
@@ -56745,8 +56226,7 @@ export type DiskBackupSnapshotAWSExportBucketResponseCloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const DiskBackupSnapshotAWSExportBucketResponseCloudProvider =
-  /*@__PURE__*/ S.String;
+export const DiskBackupSnapshotAWSExportBucketResponseCloudProvider = S.String;
 
 /** List of one or more Uniform Resource Locators (URLs) that point to API sub-resources, related API resources, or both. RFC 5988 outlines these relationships. */
 export type DiskBackupSnapshotAWSExportBucketResponseLinksList = Array<Link>;
@@ -56788,28 +56268,27 @@ export const DiskBackupSnapshotAWSExportBucketResponse =
 
 /** Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. ``ENABLED`` means the cluster explicitly opts in to adaptive capacity. ``DISABLED`` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. ``null`` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op. */
 export type UpdateGroupClusterRequestAdaptiveCapacity = "ENABLED" | "DISABLED";
-export const UpdateGroupClusterRequestAdaptiveCapacity = /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestAdaptiveCapacity = S.String;
 
 /** Configuration of nodes that comprise the cluster. */
 export type UpdateGroupClusterRequestClusterType =
   | "REPLICASET"
   | "SHARDED"
   | "GEOSHARDED";
-export const UpdateGroupClusterRequestClusterType = /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestClusterType = S.String;
 
 /** Config Server Management Mode for creating or updating a sharded cluster. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. */
 export type UpdateGroupClusterRequestConfigServerManagementMode =
   | "ATLAS_MANAGED"
   | "FIXED_TO_DEDICATED";
-export const UpdateGroupClusterRequestConfigServerManagementMode =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestConfigServerManagementMode = S.String;
 
 /** Disk warming mode selection. */
 export type UpdateGroupClusterRequestDiskWarmingMode =
   | "FULLY_WARMED"
   | "VISIBLE_EARLIER"
   | "ENHANCED_FULLY_WARMED";
-export const UpdateGroupClusterRequestDiskWarmingMode = /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestDiskWarmingMode = S.String;
 
 /** Cloud service provider that manages your customer keys to provide an additional layer of encryption at rest for the cluster. To enable customer key management for encryption at rest, the cluster `replicationSpecs[n].regionConfigs[m].{type}Specs.instanceSize` setting must be `M10` or higher and `"backupEnabled" : false` or omitted entirely. */
 export type UpdateGroupClusterRequestEncryptionAtRestProvider =
@@ -56817,8 +56296,7 @@ export type UpdateGroupClusterRequestEncryptionAtRestProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const UpdateGroupClusterRequestEncryptionAtRestProvider =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestEncryptionAtRestProvider = S.String;
 
 /** Collection of key-value pairs between 1 to 255 characters in length that tag and categorize the cluster. The MongoDB Cloud console doesn't display your labels. Cluster labels are deprecated and will be removed in a future release. We strongly recommend that you use Resource Tags instead. */
 export type UpdateGroupClusterRequestLabelsList = Array<ComponentLabel>;
@@ -56831,8 +56309,7 @@ export type UpdateGroupClusterRequestReplicaSetScalingStrategy =
   | "SEQUENTIAL"
   | "WORKLOAD_TYPE"
   | "NODE_TYPE";
-export const UpdateGroupClusterRequestReplicaSetScalingStrategy =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestReplicaSetScalingStrategy = S.String;
 
 /** List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. */
 export type UpdateGroupClusterRequestReplicationSpecsList =
@@ -56844,7 +56321,7 @@ export const UpdateGroupClusterRequestReplicationSpecsList =
 
 /** Root Certificate Authority that MongoDB Atlas cluster uses. MongoDB Cloud supports Internet Security Research Group. */
 export type UpdateGroupClusterRequestRootCertType = "ISRGROOTX1";
-export const UpdateGroupClusterRequestRootCertType = /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestRootCertType = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. */
 export type UpdateGroupClusterRequestTagsList = Array<ResourceTag>;
@@ -56856,8 +56333,7 @@ export const UpdateGroupClusterRequestTagsList = /*@__PURE__*/ S.Array(
 export type UpdateGroupClusterRequestVersionReleaseSystem =
   | "LTS"
   | "CONTINUOUS";
-export const UpdateGroupClusterRequestVersionReleaseSystem =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupClusterRequestVersionReleaseSystem = S.String;
 
 export interface UpdateGroupClusterRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -56983,8 +56459,7 @@ export type DiskBackupCopySetting20240805InputCloudProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const DiskBackupCopySetting20240805InputCloudProvider =
-  /*@__PURE__*/ S.String;
+export const DiskBackupCopySetting20240805InputCloudProvider = S.String;
 
 /** Unit of time in which MongoDB Cloud measures snapshot copy retention. */
 export type DiskBackupTimeBasedCopyPolicyItemInputRetentionUnit =
@@ -56992,8 +56467,7 @@ export type DiskBackupTimeBasedCopyPolicyItemInputRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const DiskBackupTimeBasedCopyPolicyItemInputRetentionUnit =
-  /*@__PURE__*/ S.String;
+export const DiskBackupTimeBasedCopyPolicyItemInputRetentionUnit = S.String;
 
 /** Human-readable label that identifies the frequency type associated with the copy policy. */
 export type DiskBackupTimeBasedCopyPolicyItemInputFrequencyType =
@@ -57003,8 +56477,7 @@ export type DiskBackupTimeBasedCopyPolicyItemInputFrequencyType =
   | "monthly"
   | "yearly"
   | "ondemand";
-export const DiskBackupTimeBasedCopyPolicyItemInputFrequencyType =
-  /*@__PURE__*/ S.String;
+export const DiskBackupTimeBasedCopyPolicyItemInputFrequencyType = S.String;
 
 /** Specifications for one time-based copy policy item. */
 export interface DiskBackupTimeBasedCopyPolicyItemInput {
@@ -57034,7 +56507,7 @@ export const DiskBackupTimeBasedCopyPolicyItemInput = /*@__PURE__*/ S.suspend(
 export type DiskBackupCopyPolicyItemInput =
   DiskBackupTimeBasedCopyPolicyItemInput;
 export const DiskBackupCopyPolicyItemInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiskBackupCopyPolicyItemInput>;
+  S.Unknown as any as S.Schema<DiskBackupCopyPolicyItemInput>;
 
 /** List that contains a document for each copy policy item. Allowed only when `copyPolicyItemsEnabled` is true. Responses omit this field when `copyPolicyItemsEnabled` is false or omitted. */
 export type DiskBackupCopySetting20240805InputCopyPolicyItemsList =
@@ -57051,8 +56524,7 @@ export type DiskBackupCopySetting20240805InputFrequenciesItem =
   | "MONTHLY"
   | "YEARLY"
   | "ON_DEMAND";
-export const DiskBackupCopySetting20240805InputFrequenciesItem =
-  /*@__PURE__*/ S.String;
+export const DiskBackupCopySetting20240805InputFrequenciesItem = S.String;
 
 /** Deprecated: use `copyPolicyItems`, which defines which snapshots to copy and their retention. Allowed only when `copyPolicyItemsEnabled` is false or omitted. Responses omit this field when `copyPolicyItemsEnabled` is true. */
 export type DiskBackupCopySetting20240805InputFrequenciesList = Array<
@@ -57108,7 +56580,7 @@ export const UpdateGroupClusterBackupScheduleRequestCopySettingsList =
 
 /** Human-readable label that identifies the cloud provider for the deleted copy setting whose backup copies you want to delete. */
 export type DeleteCopiedBackups20240805CloudProvider = "AWS" | "AZURE" | "GCP";
-export const DeleteCopiedBackups20240805CloudProvider = /*@__PURE__*/ S.String;
+export const DeleteCopiedBackups20240805CloudProvider = S.String;
 
 /** Deleted copy setting whose backup copies need to also be deleted. */
 export interface DeleteCopiedBackups20240805 {
@@ -57176,8 +56648,7 @@ export type DiskBackupApiPolicyItemInputFrequencyInterval =
   | 27
   | 28
   | 40;
-export const DiskBackupApiPolicyItemInputFrequencyInterval =
-  /*@__PURE__*/ S.Number;
+export const DiskBackupApiPolicyItemInputFrequencyInterval = S.Number;
 
 /** Human-readable label that identifies the frequency type associated with the backup policy. */
 export type DiskBackupApiPolicyItemInputFrequencyType =
@@ -57187,7 +56658,7 @@ export type DiskBackupApiPolicyItemInputFrequencyType =
   | "monthly"
   | "yearly"
   | "ondemand";
-export const DiskBackupApiPolicyItemInputFrequencyType = /*@__PURE__*/ S.String;
+export const DiskBackupApiPolicyItemInputFrequencyType = S.String;
 
 /** Unit of time in which MongoDB Cloud measures Snapshot retention. */
 export type DiskBackupApiPolicyItemInputRetentionUnit =
@@ -57195,7 +56666,7 @@ export type DiskBackupApiPolicyItemInputRetentionUnit =
   | "weeks"
   | "months"
   | "years";
-export const DiskBackupApiPolicyItemInputRetentionUnit = /*@__PURE__*/ S.String;
+export const DiskBackupApiPolicyItemInputRetentionUnit = S.String;
 
 /** Specifications for one policy. */
 export interface DiskBackupApiPolicyItemInput {
@@ -57342,8 +56813,7 @@ export type UpdateGroupClusterBackupSnapshotRequestRetentionUnit =
   | "WEEKS"
   | "MONTHS"
   | "YEARS";
-export const UpdateGroupClusterBackupSnapshotRequestRetentionUnit =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupClusterBackupSnapshotRequestRetentionUnit = S.String;
 
 export interface UpdateGroupClusterBackupSnapshotRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -57469,7 +56939,7 @@ export type UpdateGroupClusterProcessArgsRequestCustomOpensslCipherConfigTls12It
   | "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
   | "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256";
 export const UpdateGroupClusterProcessArgsRequestCustomOpensslCipherConfigTls12Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The custom OpenSSL cipher suite list for TLS 1.2. Requires `tlsCipherConfigMode` = `CUSTOM`; when `tlsCipherConfigMode` is omitted, supplying a non-empty list infers `CUSTOM`. */
 export type UpdateGroupClusterProcessArgsRequestCustomOpensslCipherConfigTls12List =
@@ -57488,7 +56958,7 @@ export type UpdateGroupClusterProcessArgsRequestCustomOpensslCipherConfigTls13It
   | "TLS_AES_128_GCM_SHA256"
   | "TLS_AES_128_CCM_SHA256";
 export const UpdateGroupClusterProcessArgsRequestCustomOpensslCipherConfigTls13Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The custom OpenSSL cipher suite list for TLS 1.3. Requires `tlsCipherConfigMode` = `CUSTOM`; when `tlsCipherConfigMode` is omitted, supplying a non-empty list infers `CUSTOM`. */
 export type UpdateGroupClusterProcessArgsRequestCustomOpensslCipherConfigTls13List =
@@ -57508,14 +56978,13 @@ export type UpdateGroupClusterProcessArgsRequestMinimumEnabledTlsProtocol =
   | "TLS1_2"
   | "TLS1_3";
 export const UpdateGroupClusterProcessArgsRequestMinimumEnabledTlsProtocol =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The TLS cipher suite configuration mode. The default mode uses the default cipher suites. The custom mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. */
 export type UpdateGroupClusterProcessArgsRequestTlsCipherConfigMode =
   | "CUSTOM"
   | "DEFAULT";
-export const UpdateGroupClusterProcessArgsRequestTlsCipherConfigMode =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupClusterProcessArgsRequestTlsCipherConfigMode = S.String;
 
 export interface UpdateGroupClusterProcessArgsRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -57612,7 +57081,7 @@ export const UpdateGroupClusterProcessArgsRequest = /*@__PURE__*/ S.suspend(
 export type UpdateGroupClusterQueryShapeRequestStatus =
   | "REJECTED"
   | "UNREJECTED";
-export const UpdateGroupClusterQueryShapeRequestStatus = /*@__PURE__*/ S.String;
+export const UpdateGroupClusterQueryShapeRequestStatus = S.String;
 
 export interface UpdateGroupClusterQueryShapeRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -57739,7 +57208,7 @@ export type TextSearchIndexDefinitionAnalyzer =
   | "lucene.thai"
   | "lucene.turkish"
   | "lucene.ukrainian";
-export const TextSearchIndexDefinitionAnalyzer = /*@__PURE__*/ S.String;
+export const TextSearchIndexDefinitionAnalyzer = S.String;
 
 export type BasicDBObject = { [key: string]: unknown | undefined };
 export const BasicDBObject = /*@__PURE__*/ S.Record(
@@ -57864,7 +57333,7 @@ export type TextSearchIndexDefinitionSearchAnalyzer =
   | "lucene.thai"
   | "lucene.turkish"
   | "lucene.ukrainian";
-export const TextSearchIndexDefinitionSearchAnalyzer = /*@__PURE__*/ S.String;
+export const TextSearchIndexDefinitionSearchAnalyzer = S.String;
 
 /** Specific pre-defined method chosen to apply to the synonyms to be searched. */
 export type SearchSynonymMappingDefinitionAnalyzer =
@@ -57914,7 +57383,7 @@ export type SearchSynonymMappingDefinitionAnalyzer =
   | "lucene.thai"
   | "lucene.turkish"
   | "lucene.ukrainian";
-export const SearchSynonymMappingDefinitionAnalyzer = /*@__PURE__*/ S.String;
+export const SearchSynonymMappingDefinitionAnalyzer = S.String;
 
 /** Data set that stores words and their applicable synonyms. */
 export interface SynonymSource {
@@ -58047,7 +57516,7 @@ export type UpdateGroupClusterSearchIndexRequestDefinition =
   | TextSearchIndexDefinition
   | VectorSearchIndexDefinition;
 export const UpdateGroupClusterSearchIndexRequestDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGroupClusterSearchIndexRequestDefinition>;
+  S.Unknown as any as S.Schema<UpdateGroupClusterSearchIndexRequestDefinition>;
 
 export interface UpdateGroupClusterSearchIndexRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58089,7 +57558,7 @@ export type UpdateGroupClusterSearchIndexByNameRequestDefinition =
   | TextSearchIndexDefinition
   | VectorSearchIndexDefinition;
 export const UpdateGroupClusterSearchIndexByNameRequestDefinition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateGroupClusterSearchIndexByNameRequestDefinition>;
+  S.Unknown as any as S.Schema<UpdateGroupClusterSearchIndexByNameRequestDefinition>;
 
 export interface UpdateGroupClusterSearchIndexByNameRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58139,7 +57608,7 @@ export type UpdateGroupContainerRequestProviderName =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const UpdateGroupContainerRequestProviderName = /*@__PURE__*/ S.String;
+export const UpdateGroupContainerRequestProviderName = S.String;
 
 export interface UpdateGroupContainerRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58226,7 +57695,7 @@ export const UpdateGroupCustomDbRoleRoleRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Human-readable label that indicates whether the new database user authenticates with the Amazon Web Services (AWS) Identity and Access Management (IAM) credentials associated with the user or the user's role. */
 export type UpdateGroupDatabaseUserRequestAwsIAMType = "NONE" | "USER" | "ROLE";
-export const UpdateGroupDatabaseUserRequestAwsIAMType = /*@__PURE__*/ S.String;
+export const UpdateGroupDatabaseUserRequestAwsIAMType = S.String;
 
 /** List that contains the key-value pairs for tagging and categorizing the MongoDB database user. The labels that you define do not appear in the console. */
 export type UpdateGroupDatabaseUserRequestLabelsList = Array<ComponentLabel>;
@@ -58239,16 +57708,14 @@ export type UpdateGroupDatabaseUserRequestLdapAuthType =
   | "NONE"
   | "GROUP"
   | "USER";
-export const UpdateGroupDatabaseUserRequestLdapAuthType =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupDatabaseUserRequestLdapAuthType = S.String;
 
 /** Human-readable label that indicates whether the new database user or group authenticates with OIDC federated authentication. To create a federated authentication user, specify the value of USER in this field. To create a federated authentication group, specify the value of `IDP_GROUP` in this field. */
 export type UpdateGroupDatabaseUserRequestOidcAuthType =
   | "NONE"
   | "IDP_GROUP"
   | "USER";
-export const UpdateGroupDatabaseUserRequestOidcAuthType =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupDatabaseUserRequestOidcAuthType = S.String;
 
 /** List that provides the pairings of one role with one applicable database. */
 export type UpdateGroupDatabaseUserRequestRolesList = Array<DatabaseUserRole>;
@@ -58267,7 +57734,7 @@ export type UpdateGroupDatabaseUserRequestX509Type =
   | "NONE"
   | "CUSTOMER"
   | "MANAGED";
-export const UpdateGroupDatabaseUserRequestX509Type = /*@__PURE__*/ S.String;
+export const UpdateGroupDatabaseUserRequestX509Type = S.String;
 
 export interface UpdateGroupDatabaseUserRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58411,7 +57878,7 @@ export type AWSKMSConfigurationInputRegion =
   | "CA_WEST_1"
   | "MX_CENTRAL_1"
   | "GLOBAL";
-export const AWSKMSConfigurationInputRegion = /*@__PURE__*/ S.String;
+export const AWSKMSConfigurationInputRegion = S.String;
 
 /** Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project. */
 export interface AWSKMSConfigurationInput {
@@ -58449,7 +57916,7 @@ export type AzureKeyVaultInputAzureEnvironment =
   | "AZURE"
   | "AZURE_CHINA"
   | "AZURE_US_GOVERNMENT";
-export const AzureKeyVaultInputAzureEnvironment = /*@__PURE__*/ S.String;
+export const AzureKeyVaultInputAzureEnvironment = S.String;
 
 /** Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV). */
 export interface AzureKeyVaultInput {
@@ -58601,8 +58068,7 @@ export type UpdateGroupIntegrationRequestIntegrationType =
   | "HIP_CHAT"
   | "PROMETHEUS"
   | "MICROSOFT_TEAMS";
-export const UpdateGroupIntegrationRequestIntegrationType =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupIntegrationRequestIntegrationType = S.String;
 
 /** Integration type. */
 export type UpdateGroupIntegrationRequestType =
@@ -58616,7 +58082,7 @@ export type UpdateGroupIntegrationRequestType =
   | "HIP_CHAT"
   | "PROMETHEUS"
   | "MICROSOFT_TEAMS";
-export const UpdateGroupIntegrationRequestType = /*@__PURE__*/ S.String;
+export const UpdateGroupIntegrationRequestType = S.String;
 
 export interface UpdateGroupIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58668,8 +58134,7 @@ export type UpdateGroupLogIntegrationRequestLogTypesItem =
   | "MONGOS"
   | "MONGOD_AUDIT"
   | "MONGOS_AUDIT";
-export const UpdateGroupLogIntegrationRequestLogTypesItem =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupLogIntegrationRequestLogTypesItem = S.String;
 
 /** Array of log types exported by this integration. */
 export type UpdateGroupLogIntegrationRequestLogTypesList = Array<
@@ -58688,7 +58153,7 @@ export type UpdateGroupLogIntegrationRequestType =
   | "OTEL_LOG_EXPORT"
   | "SPLUNK_LOG_EXPORT"
   | "AZURE_LOG_EXPORT";
-export const UpdateGroupLogIntegrationRequestType = /*@__PURE__*/ S.String;
+export const UpdateGroupLogIntegrationRequestType = S.String;
 
 export interface UpdateGroupLogIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58820,12 +58285,11 @@ export type UpdateGroupMetricIntegrationRequestAggregationTemporality =
   | "DELTA"
   | "CUMULATIVE";
 export const UpdateGroupMetricIntegrationRequestAggregationTemporality =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. */
 export type UpdateGroupMetricIntegrationRequestAuthType = "HEADER";
-export const UpdateGroupMetricIntegrationRequestAuthType =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupMetricIntegrationRequestAuthType = S.String;
 
 /** HTTP headers for authentication and configuration. Total size limit 2KB. Required when `authType` is `HEADER`. */
 export type UpdateGroupMetricIntegrationRequestHeadersList = Array<Header>;
@@ -58836,15 +58300,13 @@ export const UpdateGroupMetricIntegrationRequestHeadersList =
 
 /** Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created. */
 export type UpdateGroupMetricIntegrationRequestIntegrationType = "OTEL";
-export const UpdateGroupMetricIntegrationRequestIntegrationType =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupMetricIntegrationRequestIntegrationType = S.String;
 
 export type UpdateGroupMetricIntegrationRequestMetricSelectionItem =
   | "ATLAS_STREAM_PROCESSING"
   | "MONGODB_METRICS"
   | "HARDWARE_METRICS";
-export const UpdateGroupMetricIntegrationRequestMetricSelectionItem =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupMetricIntegrationRequestMetricSelectionItem = S.String;
 
 /** Array of metric categories to export. Determines which types of metrics are sent to the integration. */
 export type UpdateGroupMetricIntegrationRequestMetricSelectionList = Array<
@@ -58860,8 +58322,7 @@ export type UpdateGroupMetricIntegrationRequestProviderType =
   | "CUSTOM"
   | "DYNATRACE"
   | "NEW_RELIC";
-export const UpdateGroupMetricIntegrationRequestProviderType =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupMetricIntegrationRequestProviderType = S.String;
 
 export interface UpdateGroupMetricIntegrationRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58919,7 +58380,7 @@ export const UpdateGroupMetricIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Cloud service provider that serves the requested network peering connection. */
 export type UpdateGroupPeerRequestProviderName = "AWS" | "AZURE" | "GCP";
-export const UpdateGroupPeerRequestProviderName = /*@__PURE__*/ S.String;
+export const UpdateGroupPeerRequestProviderName = S.String;
 
 export interface UpdateGroupPeerRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -58959,7 +58420,7 @@ export const UpdateGroupPeerRequest = /*@__PURE__*/ S.suspend(() =>
 export type UpdateGroupPrivateEndpointEndpointServiceRequestCloudProvider =
   "AWS";
 export const UpdateGroupPrivateEndpointEndpointServiceRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of regions that the endpoint service supports. Native cross region support is implemented for AWS only. */
 export type UpdateGroupPrivateEndpointEndpointServiceRequestSupportedRemoteRegionsList =
@@ -59126,7 +58587,7 @@ export type UpdateGroupStreamConnectionRequestType =
   | "AWSKinesisDataStreams"
   | "SchemaRegistry"
   | "GCPPubSub";
-export const UpdateGroupStreamConnectionRequestType = /*@__PURE__*/ S.String;
+export const UpdateGroupStreamConnectionRequestType = S.String;
 
 export interface UpdateGroupStreamConnectionRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -59173,7 +58634,7 @@ export type UpdateGroupStreamConnectionFailoverConnectionRequestType =
   | "Kafka"
   | "Cluster";
 export const UpdateGroupStreamConnectionFailoverConnectionRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateGroupStreamConnectionFailoverConnectionRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -59287,7 +58748,7 @@ export type UpdateGroupStreamProcessorRequestTier =
   | "SP10"
   | "SP5"
   | "SP2";
-export const UpdateGroupStreamProcessorRequestTier = /*@__PURE__*/ S.String;
+export const UpdateGroupStreamProcessorRequestTier = S.String;
 
 export interface UpdateGroupStreamProcessorRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -59341,8 +58802,7 @@ export type UpdateGroupStreamWorkspaceRequestCloudProvider =
   | "AZURE"
   | "TENANT"
   | "SERVERLESS";
-export const UpdateGroupStreamWorkspaceRequestCloudProvider =
-  /*@__PURE__*/ S.String;
+export const UpdateGroupStreamWorkspaceRequestCloudProvider = S.String;
 
 /** Failover regions for the stream workspace. */
 export type UpdateGroupStreamWorkspaceRequestFailoverRegionsList =
@@ -59354,14 +58814,14 @@ export const UpdateGroupStreamWorkspaceRequestFailoverRegionsList =
 
 /** Strategy for the processor: GRACEFUL - attempt to stop the processor, error if processor cannot be stopped. if stop was successful, start the processor in the new region with the latest checkpoint. FORCED - attempt to stop the processor, proceed to starting the processor in the new region with checkpoints disabled regardless of whether or not the stop succeeds. */
 export type StreamsProcessorStatusInputMode = "GRACEFUL" | "FORCED";
-export const StreamsProcessorStatusInputMode = /*@__PURE__*/ S.String;
+export const StreamsProcessorStatusInputMode = S.String;
 
 /** Represents the desired action to apply to stream processors within a workspace, such as starting all processors, stopping all processors, or performing a bulk regional failover. */
 export type StreamsProcessorStatusInputStatus =
   | "STARTED"
   | "STOPPED"
   | "FAILED_OVER";
-export const StreamsProcessorStatusInputStatus = /*@__PURE__*/ S.String;
+export const StreamsProcessorStatusInputStatus = S.String;
 
 /** Desired status change to apply to a tenant's stream processors. */
 export interface StreamsProcessorStatusInput {
@@ -59596,7 +59056,7 @@ export type UpdateOrgApiKeyRequestRolesItem =
   | "ORG_BILLING_READ_ONLY"
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_READ_ONLY";
-export const UpdateOrgApiKeyRequestRolesItem = /*@__PURE__*/ S.String;
+export const UpdateOrgApiKeyRequestRolesItem = S.String;
 
 /** List of roles to grant this API key. If you provide this list, provide a minimum of one role and ensure each role applies to this organization. */
 export type UpdateOrgApiKeyRequestRolesList = Array<
@@ -59645,15 +59105,14 @@ export type UpdateOrgDelegationSettingsRequestDelegatedMcpAccess =
   | "DISALLOWED"
   | "READ_ONLY"
   | "READ_WRITE";
-export const UpdateOrgDelegationSettingsRequestDelegatedMcpAccess =
-  /*@__PURE__*/ S.String;
+export const UpdateOrgDelegationSettingsRequestDelegatedMcpAccess = S.String;
 
 /** Policy that controls whether partner delegated access is permitted within this organization. Possible values are `DISALLOWED` and `READ_WRITE`. Defaults to `DISALLOWED`. */
 export type UpdateOrgDelegationSettingsRequestDelegatedPartnerAccess =
   | "DISALLOWED"
   | "READ_WRITE";
 export const UpdateOrgDelegationSettingsRequestDelegatedPartnerAccess =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpdateOrgDelegationSettingsRequest {
   /** Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [`/orgs`](#tag/Organizations/operation/listOrganizations) endpoint to retrieve all organizations to which the authenticated user has access. */
@@ -59718,7 +59177,7 @@ export type UpdateOrgMcpConfigRequestRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_GROUP_CREATOR"
   | "ORG_OWNER";
-export const UpdateOrgMcpConfigRequestRolesItem = /*@__PURE__*/ S.String;
+export const UpdateOrgMcpConfigRequestRolesItem = S.String;
 
 /** List of organization roles associated with this MCP configuration. If provided, replaces the existing list of roles. */
 export type UpdateOrgMcpConfigRequestRolesList = Array<
@@ -59815,7 +59274,7 @@ export type UpdateOrgServiceAccountRequestRolesItem =
   | "ORG_STREAM_PROCESSING_ADMIN"
   | "ORG_GROUP_CREATOR"
   | "ORG_OWNER";
-export const UpdateOrgServiceAccountRequestRolesItem = /*@__PURE__*/ S.String;
+export const UpdateOrgServiceAccountRequestRolesItem = S.String;
 
 /** A list of organization-level roles for the Service Account. */
 export type UpdateOrgServiceAccountRequestRolesList = Array<
@@ -59988,23 +59447,21 @@ export type UpgradeGroupClusterTenantUpgradeRequestClusterType =
   | "REPLICASET"
   | "SHARDED"
   | "GEOSHARDED";
-export const UpgradeGroupClusterTenantUpgradeRequestClusterType =
-  /*@__PURE__*/ S.String;
+export const UpgradeGroupClusterTenantUpgradeRequestClusterType = S.String;
 
 /** Config Server Management Mode for creating or updating a sharded cluster. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. */
 export type UpgradeGroupClusterTenantUpgradeRequestConfigServerManagementMode =
   | "ATLAS_MANAGED"
   | "FIXED_TO_DEDICATED";
 export const UpgradeGroupClusterTenantUpgradeRequestConfigServerManagementMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Disk warming mode selection. */
 export type UpgradeGroupClusterTenantUpgradeRequestDiskWarmingMode =
   | "FULLY_WARMED"
   | "VISIBLE_EARLIER"
   | "ENHANCED_FULLY_WARMED";
-export const UpgradeGroupClusterTenantUpgradeRequestDiskWarmingMode =
-  /*@__PURE__*/ S.String;
+export const UpgradeGroupClusterTenantUpgradeRequestDiskWarmingMode = S.String;
 
 /** Cloud service provider that manages your customer keys to provide an additional layer of encryption at rest for the cluster. To enable customer key management for encryption at rest, the cluster `replicationSpecs[n].regionConfigs[m].{type}Specs.instanceSize` setting must be `M10` or higher and `"backupEnabled" : false` or omitted entirely. */
 export type UpgradeGroupClusterTenantUpgradeRequestEncryptionAtRestProvider =
@@ -60013,7 +59470,7 @@ export type UpgradeGroupClusterTenantUpgradeRequestEncryptionAtRestProvider =
   | "AZURE"
   | "GCP";
 export const UpgradeGroupClusterTenantUpgradeRequestEncryptionAtRestProvider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Collection of key-value pairs between 1 to 255 characters in length that tag and categorize the cluster. The MongoDB Cloud console doesn't display your labels. Cluster labels are deprecated and will be removed in a future release. We strongly recommend that you use Resource Tags instead. */
 export type UpgradeGroupClusterTenantUpgradeRequestLabelsList =
@@ -60047,8 +59504,7 @@ export type AzureComputeAutoScalingRulesMaxInstanceSize =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const AzureComputeAutoScalingRulesMaxInstanceSize =
-  /*@__PURE__*/ S.String;
+export const AzureComputeAutoScalingRulesMaxInstanceSize = S.String;
 
 /** Minimum instance size to which your cluster can automatically scale. */
 export type AzureComputeAutoScalingRulesMinInstanceSize =
@@ -60074,8 +59530,7 @@ export type AzureComputeAutoScalingRulesMinInstanceSize =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const AzureComputeAutoScalingRulesMinInstanceSize =
-  /*@__PURE__*/ S.String;
+export const AzureComputeAutoScalingRulesMinInstanceSize = S.String;
 
 /** Collection of settings that configures how a cluster might scale its cluster tier and whether the cluster can scale down. Cluster tier auto-scaling is unavailable for clusters using Low CPU or NVME storage classes. */
 export interface AzureComputeAutoScalingRules {
@@ -60117,7 +59572,7 @@ export type AWSCloudProviderSettingsInputDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const AWSCloudProviderSettingsInputDiskTypeName = /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsInputDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type AWSCloudProviderSettingsInputInstanceSizeName =
@@ -60143,8 +59598,7 @@ export type AWSCloudProviderSettingsInputInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const AWSCloudProviderSettingsInputInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsInputInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type AWSCloudProviderSettingsInputRegionName =
@@ -60204,22 +59658,21 @@ export type AWSCloudProviderSettingsInputRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AWSCloudProviderSettingsInputRegionName = /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsInputRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type AWSCloudProviderSettingsInputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AWSCloudProviderSettingsInputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsInputBackingProviderName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type AWSCloudProviderSettingsInputVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const AWSCloudProviderSettingsInputVolumeType = /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsInputVolumeType = S.String;
 
 export interface AWSCloudProviderSettingsInput {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -60273,8 +59726,7 @@ export type AzureCloudProviderSettingsInputDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const AzureCloudProviderSettingsInputDiskTypeName =
-  /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsInputDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type AzureCloudProviderSettingsInputInstanceSizeName =
@@ -60300,8 +59752,7 @@ export type AzureCloudProviderSettingsInputInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const AzureCloudProviderSettingsInputInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsInputInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type AzureCloudProviderSettingsInputRegionName =
@@ -60361,22 +59812,21 @@ export type AzureCloudProviderSettingsInputRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AzureCloudProviderSettingsInputRegionName = /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsInputRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type AzureCloudProviderSettingsInputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AzureCloudProviderSettingsInputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsInputBackingProviderName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type AzureCloudProviderSettingsInputVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const AzureCloudProviderSettingsInputVolumeType = /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsInputVolumeType = S.String;
 
 export interface AzureCloudProviderSettingsInput {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -60432,7 +59882,7 @@ export type CloudGCPProviderSettingsInputDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const CloudGCPProviderSettingsInputDiskTypeName = /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsInputDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type CloudGCPProviderSettingsInputInstanceSizeName =
@@ -60458,8 +59908,7 @@ export type CloudGCPProviderSettingsInputInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const CloudGCPProviderSettingsInputInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsInputInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type CloudGCPProviderSettingsInputRegionName =
@@ -60519,22 +59968,21 @@ export type CloudGCPProviderSettingsInputRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const CloudGCPProviderSettingsInputRegionName = /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsInputRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type CloudGCPProviderSettingsInputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const CloudGCPProviderSettingsInputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsInputBackingProviderName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type CloudGCPProviderSettingsInputVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const CloudGCPProviderSettingsInputVolumeType = /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsInputVolumeType = S.String;
 
 export interface CloudGCPProviderSettingsInput {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -60588,8 +60036,7 @@ export type ClusterFreeProviderSettingsInputDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const ClusterFreeProviderSettingsInputDiskTypeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsInputDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type ClusterFreeProviderSettingsInputInstanceSizeName =
@@ -60615,8 +60062,7 @@ export type ClusterFreeProviderSettingsInputInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const ClusterFreeProviderSettingsInputInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsInputInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type ClusterFreeProviderSettingsInputRegionName =
@@ -60676,24 +60122,21 @@ export type ClusterFreeProviderSettingsInputRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const ClusterFreeProviderSettingsInputRegionName =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsInputRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type ClusterFreeProviderSettingsInputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const ClusterFreeProviderSettingsInputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsInputBackingProviderName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type ClusterFreeProviderSettingsInputVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const ClusterFreeProviderSettingsInputVolumeType =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsInputVolumeType = S.String;
 
 export interface ClusterFreeProviderSettingsInput {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -60749,8 +60192,7 @@ export type ClusterFlexProviderSettingsInputDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const ClusterFlexProviderSettingsInputDiskTypeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsInputDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type ClusterFlexProviderSettingsInputInstanceSizeName =
@@ -60776,8 +60218,7 @@ export type ClusterFlexProviderSettingsInputInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const ClusterFlexProviderSettingsInputInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsInputInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type ClusterFlexProviderSettingsInputRegionName =
@@ -60837,24 +60278,21 @@ export type ClusterFlexProviderSettingsInputRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const ClusterFlexProviderSettingsInputRegionName =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsInputRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type ClusterFlexProviderSettingsInputBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const ClusterFlexProviderSettingsInputBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsInputBackingProviderName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type ClusterFlexProviderSettingsInputVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const ClusterFlexProviderSettingsInputVolumeType =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsInputVolumeType = S.String;
 
 export interface ClusterFlexProviderSettingsInput {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -60906,7 +60344,7 @@ export type ClusterProviderSettingsInput =
   | ClusterFreeProviderSettingsInput
   | ClusterFlexProviderSettingsInput;
 export const ClusterProviderSettingsInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterProviderSettingsInput>;
+  S.Unknown as any as S.Schema<ClusterProviderSettingsInput>;
 
 /** Set this field to configure the replica set scaling mode for your cluster. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. */
 export type UpgradeGroupClusterTenantUpgradeRequestReplicaSetScalingStrategy =
@@ -60914,7 +60352,7 @@ export type UpgradeGroupClusterTenantUpgradeRequestReplicaSetScalingStrategy =
   | "WORKLOAD_TYPE"
   | "NODE_TYPE";
 export const UpgradeGroupClusterTenantUpgradeRequestReplicaSetScalingStrategy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Number of members that belong to the replica set. Each member retains a copy of your databases, providing high availability and data redundancy. Use `replicationSpecs` instead. */
 export type UpgradeGroupClusterTenantUpgradeRequestReplicationFactor =
@@ -60922,11 +60360,11 @@ export type UpgradeGroupClusterTenantUpgradeRequestReplicationFactor =
   | 5
   | 7;
 export const UpgradeGroupClusterTenantUpgradeRequestReplicationFactor =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** Number of electable nodes to deploy in the specified region. Electable nodes can become the primary and can facilitate local reads. Use `replicationSpecs[n].{region}.electableNodes` instead. */
 export type RegionSpecElectableNodes = 0 | 3 | 5 | 7;
-export const RegionSpecElectableNodes = /*@__PURE__*/ S.Number;
+export const RegionSpecElectableNodes = S.Number;
 
 /** Physical location where MongoDB Cloud provisions cluster nodes. */
 export interface RegionSpec {
@@ -60995,8 +60433,7 @@ export const UpgradeGroupClusterTenantUpgradeRequestReplicationSpecsList =
 
 /** Root Certificate Authority that MongoDB Atlas cluster uses. MongoDB Cloud supports Internet Security Research Group. */
 export type UpgradeGroupClusterTenantUpgradeRequestRootCertType = "ISRGROOTX1";
-export const UpgradeGroupClusterTenantUpgradeRequestRootCertType =
-  /*@__PURE__*/ S.String;
+export const UpgradeGroupClusterTenantUpgradeRequestRootCertType = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. */
 export type UpgradeGroupClusterTenantUpgradeRequestTagsList =
@@ -61011,7 +60448,7 @@ export type UpgradeGroupClusterTenantUpgradeRequestVersionReleaseSystem =
   | "LTS"
   | "CONTINUOUS";
 export const UpgradeGroupClusterTenantUpgradeRequestVersionReleaseSystem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface UpgradeGroupClusterTenantUpgradeRequest {
   /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
@@ -61165,25 +60602,24 @@ export type LegacyAtlasClusterClusterType =
   | "REPLICASET"
   | "SHARDED"
   | "GEOSHARDED";
-export const LegacyAtlasClusterClusterType = /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterClusterType = S.String;
 
 /** Config Server Management Mode for creating or updating a sharded cluster. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. */
 export type LegacyAtlasClusterConfigServerManagementMode =
   | "ATLAS_MANAGED"
   | "FIXED_TO_DEDICATED";
-export const LegacyAtlasClusterConfigServerManagementMode =
-  /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterConfigServerManagementMode = S.String;
 
 /** Describes a sharded cluster's config server type. */
 export type LegacyAtlasClusterConfigServerType = "DEDICATED" | "EMBEDDED";
-export const LegacyAtlasClusterConfigServerType = /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterConfigServerType = S.String;
 
 /** Disk warming mode selection. */
 export type LegacyAtlasClusterDiskWarmingMode =
   | "FULLY_WARMED"
   | "VISIBLE_EARLIER"
   | "ENHANCED_FULLY_WARMED";
-export const LegacyAtlasClusterDiskWarmingMode = /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterDiskWarmingMode = S.String;
 
 /** Cloud service provider that manages your customer keys to provide an additional layer of encryption at rest for the cluster. To enable customer key management for encryption at rest, the cluster `replicationSpecs[n].regionConfigs[m].{type}Specs.instanceSize` setting must be `M10` or higher and `"backupEnabled" : false` or omitted entirely. */
 export type LegacyAtlasClusterEncryptionAtRestProvider =
@@ -61191,8 +60627,7 @@ export type LegacyAtlasClusterEncryptionAtRestProvider =
   | "AWS"
   | "AZURE"
   | "GCP";
-export const LegacyAtlasClusterEncryptionAtRestProvider =
-  /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterEncryptionAtRestProvider = S.String;
 
 /** Collection of key-value pairs between 1 to 255 characters in length that tag and categorize the cluster. The MongoDB Cloud console doesn't display your labels. Cluster labels are deprecated and will be removed in a future release. We strongly recommend that you use Resource Tags instead. */
 export type LegacyAtlasClusterLabelsList = Array<ComponentLabel>;
@@ -61218,7 +60653,7 @@ export type AWSCloudProviderSettingsDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const AWSCloudProviderSettingsDiskTypeName = /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type AWSCloudProviderSettingsInstanceSizeName =
@@ -61244,7 +60679,7 @@ export type AWSCloudProviderSettingsInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const AWSCloudProviderSettingsInstanceSizeName = /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type AWSCloudProviderSettingsRegionName =
@@ -61304,15 +60739,14 @@ export type AWSCloudProviderSettingsRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AWSCloudProviderSettingsRegionName = /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type AWSCloudProviderSettingsBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AWSCloudProviderSettingsBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsBackingProviderName = S.String;
 
 /** The true tenant instance size. This is present to support backwards compatibility for deprecated provider types and/or instance sizes. */
 export type AWSCloudProviderSettingsEffectiveInstanceSizeName =
@@ -61320,15 +60754,14 @@ export type AWSCloudProviderSettingsEffectiveInstanceSizeName =
   | "M2"
   | "M5"
   | "M0";
-export const AWSCloudProviderSettingsEffectiveInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsEffectiveInstanceSizeName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type AWSCloudProviderSettingsVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const AWSCloudProviderSettingsVolumeType = /*@__PURE__*/ S.String;
+export const AWSCloudProviderSettingsVolumeType = S.String;
 
 export interface AWSCloudProviderSettings {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -61383,7 +60816,7 @@ export type AzureCloudProviderSettingsDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const AzureCloudProviderSettingsDiskTypeName = /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type AzureCloudProviderSettingsInstanceSizeName =
@@ -61409,8 +60842,7 @@ export type AzureCloudProviderSettingsInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const AzureCloudProviderSettingsInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type AzureCloudProviderSettingsRegionName =
@@ -61470,15 +60902,14 @@ export type AzureCloudProviderSettingsRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const AzureCloudProviderSettingsRegionName = /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type AzureCloudProviderSettingsBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const AzureCloudProviderSettingsBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsBackingProviderName = S.String;
 
 /** The true tenant instance size. This is present to support backwards compatibility for deprecated provider types and/or instance sizes. */
 export type AzureCloudProviderSettingsEffectiveInstanceSizeName =
@@ -61486,15 +60917,14 @@ export type AzureCloudProviderSettingsEffectiveInstanceSizeName =
   | "M2"
   | "M5"
   | "M0";
-export const AzureCloudProviderSettingsEffectiveInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsEffectiveInstanceSizeName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type AzureCloudProviderSettingsVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const AzureCloudProviderSettingsVolumeType = /*@__PURE__*/ S.String;
+export const AzureCloudProviderSettingsVolumeType = S.String;
 
 export interface AzureCloudProviderSettings {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -61549,7 +60979,7 @@ export type CloudGCPProviderSettingsDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const CloudGCPProviderSettingsDiskTypeName = /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type CloudGCPProviderSettingsInstanceSizeName =
@@ -61575,7 +61005,7 @@ export type CloudGCPProviderSettingsInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const CloudGCPProviderSettingsInstanceSizeName = /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type CloudGCPProviderSettingsRegionName =
@@ -61635,15 +61065,14 @@ export type CloudGCPProviderSettingsRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const CloudGCPProviderSettingsRegionName = /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type CloudGCPProviderSettingsBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const CloudGCPProviderSettingsBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsBackingProviderName = S.String;
 
 /** The true tenant instance size. This is present to support backwards compatibility for deprecated provider types and/or instance sizes. */
 export type CloudGCPProviderSettingsEffectiveInstanceSizeName =
@@ -61651,15 +61080,14 @@ export type CloudGCPProviderSettingsEffectiveInstanceSizeName =
   | "M2"
   | "M5"
   | "M0";
-export const CloudGCPProviderSettingsEffectiveInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsEffectiveInstanceSizeName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type CloudGCPProviderSettingsVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const CloudGCPProviderSettingsVolumeType = /*@__PURE__*/ S.String;
+export const CloudGCPProviderSettingsVolumeType = S.String;
 
 export interface CloudGCPProviderSettings {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -61714,7 +61142,7 @@ export type ClusterFreeProviderSettingsDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const ClusterFreeProviderSettingsDiskTypeName = /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type ClusterFreeProviderSettingsInstanceSizeName =
@@ -61740,8 +61168,7 @@ export type ClusterFreeProviderSettingsInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const ClusterFreeProviderSettingsInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type ClusterFreeProviderSettingsRegionName =
@@ -61801,15 +61228,14 @@ export type ClusterFreeProviderSettingsRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const ClusterFreeProviderSettingsRegionName = /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type ClusterFreeProviderSettingsBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const ClusterFreeProviderSettingsBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsBackingProviderName = S.String;
 
 /** The true tenant instance size. This is present to support backwards compatibility for deprecated provider types and/or instance sizes. */
 export type ClusterFreeProviderSettingsEffectiveInstanceSizeName =
@@ -61817,15 +61243,14 @@ export type ClusterFreeProviderSettingsEffectiveInstanceSizeName =
   | "M2"
   | "M5"
   | "M0";
-export const ClusterFreeProviderSettingsEffectiveInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsEffectiveInstanceSizeName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type ClusterFreeProviderSettingsVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const ClusterFreeProviderSettingsVolumeType = /*@__PURE__*/ S.String;
+export const ClusterFreeProviderSettingsVolumeType = S.String;
 
 export interface ClusterFreeProviderSettings {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -61880,7 +61305,7 @@ export type ClusterFlexProviderSettingsDiskTypeName =
   | "P30"
   | "P40"
   | "P50";
-export const ClusterFlexProviderSettingsDiskTypeName = /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsDiskTypeName = S.String;
 
 /** Cluster tier, with a default storage and memory capacity, that applies to all the data-bearing hosts in your cluster. */
 export type ClusterFlexProviderSettingsInstanceSizeName =
@@ -61906,8 +61331,7 @@ export type ClusterFlexProviderSettingsInstanceSizeName =
   | "M300_NVME"
   | "M400_NVME"
   | "M600_NVME";
-export const ClusterFlexProviderSettingsInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsInstanceSizeName = S.String;
 
 /** Microsoft Azure Regions. */
 export type ClusterFlexProviderSettingsRegionName =
@@ -61967,15 +61391,14 @@ export type ClusterFlexProviderSettingsRegionName =
   | "US_GOV_VIRGINIA"
   | "US_GOV_ARIZONA"
   | "US_GOV_TEXAS";
-export const ClusterFlexProviderSettingsRegionName = /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsRegionName = S.String;
 
 /** Cloud service provider on which MongoDB Cloud provisioned the multi-tenant host. The resource returns this parameter when `providerSettings.providerName` is `TENANT` and `providerSetting.instanceSizeName` is `M0`, `M2` or `M5`. Please note that using an `instanceSize` of M2 or M5 will create a Flex cluster instead. Support for the `instanceSize` of M2 or M5 will be discontinued in January 2026. We recommend using the Create Flex Cluster API for such configurations moving forward. */
 export type ClusterFlexProviderSettingsBackingProviderName =
   | "AWS"
   | "GCP"
   | "AZURE";
-export const ClusterFlexProviderSettingsBackingProviderName =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsBackingProviderName = S.String;
 
 /** The true tenant instance size. This is present to support backwards compatibility for deprecated provider types and/or instance sizes. */
 export type ClusterFlexProviderSettingsEffectiveInstanceSizeName =
@@ -61983,15 +61406,14 @@ export type ClusterFlexProviderSettingsEffectiveInstanceSizeName =
   | "M2"
   | "M5"
   | "M0";
-export const ClusterFlexProviderSettingsEffectiveInstanceSizeName =
-  /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsEffectiveInstanceSizeName = S.String;
 
 /** Disk Input/Output Operations per Second (IOPS) setting for Amazon Web Services (AWS) storage that you configure only for AWS. Specify whether Disk Input/Output Operations per Second (IOPS) must not exceed the default Input/Output Operations per Second (IOPS) rate for the selected volume size (`STANDARD`), or must fall within the allowable Input/Output Operations per Second (IOPS) range for the selected volume size (`PROVISIONED` or `HIGH_PERFORMANCE`). NVMe clusters require either `PROVISIONED` or `HIGH_PERFORMANCE`. */
 export type ClusterFlexProviderSettingsVolumeType =
   | "STANDARD"
   | "PROVISIONED"
   | "HIGH_PERFORMANCE";
-export const ClusterFlexProviderSettingsVolumeType = /*@__PURE__*/ S.String;
+export const ClusterFlexProviderSettingsVolumeType = S.String;
 
 export interface ClusterFlexProviderSettings {
   autoScaling?: CloudProviderAzureAutoScaling;
@@ -62042,19 +61464,18 @@ export type ClusterProviderSettings =
   | ClusterFreeProviderSettings
   | ClusterFlexProviderSettings;
 export const ClusterProviderSettings =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ClusterProviderSettings>;
+  S.Unknown as any as S.Schema<ClusterProviderSettings>;
 
 /** Set this field to configure the replica set scaling mode for your cluster. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. */
 export type LegacyAtlasClusterReplicaSetScalingStrategy =
   | "SEQUENTIAL"
   | "WORKLOAD_TYPE"
   | "NODE_TYPE";
-export const LegacyAtlasClusterReplicaSetScalingStrategy =
-  /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterReplicaSetScalingStrategy = S.String;
 
 /** Number of members that belong to the replica set. Each member retains a copy of your databases, providing high availability and data redundancy. Use `replicationSpecs` instead. */
 export type LegacyAtlasClusterReplicationFactor = 3 | 5 | 7;
-export const LegacyAtlasClusterReplicationFactor = /*@__PURE__*/ S.Number;
+export const LegacyAtlasClusterReplicationFactor = S.Number;
 
 /** Physical location where MongoDB Cloud provisions cluster nodes. */
 export type LegacyAtlasClusterReplicationSpecMap = {
@@ -62074,7 +61495,7 @@ export const LegacyAtlasClusterReplicationSpecsList = /*@__PURE__*/ S.Array(
 
 /** Root Certificate Authority that MongoDB Atlas cluster uses. MongoDB Cloud supports Internet Security Research Group. */
 export type LegacyAtlasClusterRootCertType = "ISRGROOTX1";
-export const LegacyAtlasClusterRootCertType = /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterRootCertType = S.String;
 
 /** Human-readable label that indicates any current activity being taken on this cluster by the Atlas control plane. With the exception of CREATING and DELETING states, clusters should always be available and have a Primary node even when in states indicating ongoing activity. - `IDLE`: Atlas is making no changes to this cluster and all changes requested via the UI or API can be assumed to have been applied. - `CREATING`: A cluster being provisioned for the very first time returns state CREATING until it is ready for connections. Ensure IP Access List and DB Users are configured before attempting to connect. - `UPDATING`: A change requested via the UI, API, AutoScaling, or other scheduled activity is taking place. - `DELETING`: The cluster is in the process of deletion and will soon be deleted. - `REPAIRING`: One or more nodes in the cluster are being returned to service by the Atlas control plane. Other nodes should continue to provide service as normal. */
 export type LegacyAtlasClusterStateName =
@@ -62083,7 +61504,7 @@ export type LegacyAtlasClusterStateName =
   | "UPDATING"
   | "DELETING"
   | "REPAIRING";
-export const LegacyAtlasClusterStateName = /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterStateName = S.String;
 
 /** List that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. */
 export type LegacyAtlasClusterTagsList = Array<ResourceTag>;
@@ -62093,7 +61514,7 @@ export const LegacyAtlasClusterTagsList = /*@__PURE__*/ S.Array(
 
 /** Method by which the cluster maintains the MongoDB versions. If value is `CONTINUOUS`, you must not specify `mongoDBMajorVersion`. */
 export type LegacyAtlasClusterVersionReleaseSystem = "LTS" | "CONTINUOUS";
-export const LegacyAtlasClusterVersionReleaseSystem = /*@__PURE__*/ S.String;
+export const LegacyAtlasClusterVersionReleaseSystem = S.String;
 
 /** Group of settings that configure a MongoDB cluster. */
 export interface LegacyAtlasCluster {

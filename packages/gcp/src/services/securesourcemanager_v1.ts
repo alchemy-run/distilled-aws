@@ -121,7 +121,7 @@ export type ReviewActionTypeEnum =
   | "COMMENT"
   | "CHANGE_REQUESTED"
   | "APPROVED";
-export const ReviewActionTypeEnum = /*@__PURE__*/ S.String;
+export const ReviewActionTypeEnum = S.String;
 
 /** The review summary comment. */
 export interface Review {
@@ -473,7 +473,7 @@ export type InstanceStateNoteEnum =
   | "STATE_NOTE_UNSPECIFIED"
   | "PAUSED_CMEK_UNAVAILABLE"
   | "INSTANCE_RESUMING";
-export const InstanceStateNoteEnum = /*@__PURE__*/ S.String;
+export const InstanceStateNoteEnum = S.String;
 
 export type InstanceStateEnum =
   | "STATE_UNSPECIFIED"
@@ -482,7 +482,7 @@ export type InstanceStateEnum =
   | "DELETING"
   | "PAUSED"
   | "UNKNOWN";
-export const InstanceStateEnum = /*@__PURE__*/ S.String;
+export const InstanceStateEnum = S.String;
 
 /** A resource that represents a Secure Source Manager instance. */
 export interface Instance {
@@ -788,7 +788,7 @@ export type HookEventsItemEnum =
   | "PUSH"
   | "PULL_REQUEST"
   | "PULL_REQUEST_COMMENT";
-export const HookEventsItemEnum = /*@__PURE__*/ S.String;
+export const HookEventsItemEnum = S.String;
 
 export type HookEventsItemEnumList = Array<HookEventsItemEnum | (string & {})>;
 export const HookEventsItemEnumList = /*@__PURE__*/ S.Array(
@@ -866,7 +866,7 @@ export const CreateProjectsLocationsRepositoriesHooksRequest =
   }) as any as S.Schema<CreateProjectsLocationsRepositoriesHooksRequest>;
 
 export type IssueStateEnum = "STATE_UNSPECIFIED" | "OPEN" | "CLOSED";
-export const IssueStateEnum = /*@__PURE__*/ S.String;
+export const IssueStateEnum = S.String;
 
 /** Metadata of an Issue. */
 export interface Issue {
@@ -983,7 +983,7 @@ export type PullRequestStateEnum =
   | "OPEN"
   | "CLOSED"
   | "MERGED";
-export const PullRequestStateEnum = /*@__PURE__*/ S.String;
+export const PullRequestStateEnum = S.String;
 
 /** Metadata of a PullRequest. PullRequest is the request from a user to merge a branch (head) into another branch (base). */
 export interface PullRequest {
@@ -1274,8 +1274,7 @@ export type FetchRefsProjectsLocationsRepositoriesTypeEnum =
   | "REF_TYPE_UNSPECIFIED"
   | "REF_TYPE_BRANCH"
   | "REF_TYPE_TAG";
-export const FetchRefsProjectsLocationsRepositoriesTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FetchRefsProjectsLocationsRepositoriesTypeEnum = S.String;
 
 export interface FetchRefsProjectsLocationsRepositoriesRequest {
   /** Optional. The type of reference to fetch (eg. branch, tag). By default, all references are returned. */
@@ -1311,7 +1310,7 @@ export type RefTypeEnum =
   | "REF_TYPE_UNSPECIFIED"
   | "REF_TYPE_BRANCH"
   | "REF_TYPE_TAG";
-export const RefTypeEnum = /*@__PURE__*/ S.String;
+export const RefTypeEnum = S.String;
 
 /** Ref represents a git reference within a repository. */
 export interface Ref {
@@ -1385,7 +1384,7 @@ export type TreeEntryTypeEnum =
   | "TREE"
   | "BLOB"
   | "COMMIT";
-export const TreeEntryTypeEnum = /*@__PURE__*/ S.String;
+export const TreeEntryTypeEnum = S.String;
 
 /** Represents an entry within a tree structure (like a Git tree). */
 export interface TreeEntry {
@@ -1500,7 +1499,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -1825,7 +1824,7 @@ export type FileDiffActionEnum =
   | "ADDED"
   | "MODIFIED"
   | "DELETED";
-export const FileDiffActionEnum = /*@__PURE__*/ S.String;
+export const FileDiffActionEnum = S.String;
 
 /** Metadata of a FileDiff. FileDiff represents a single file diff in a pull request. */
 export interface FileDiff {

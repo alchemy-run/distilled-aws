@@ -110,7 +110,7 @@ export type HubStateEnum =
   | "DELETING"
   | "UPDATING"
   | "FAILED";
-export const HubStateEnum = /*@__PURE__*/ S.String;
+export const HubStateEnum = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -242,7 +242,7 @@ export type InternalRangeOverlapsItemEnum =
   | "OVERLAP_UNSPECIFIED"
   | "OVERLAP_ROUTE_RANGE"
   | "OVERLAP_EXISTING_SUBNET_RANGE";
-export const InternalRangeOverlapsItemEnum = /*@__PURE__*/ S.String;
+export const InternalRangeOverlapsItemEnum = S.String;
 
 export type InternalRangeOverlapsItemEnumList = Array<
   InternalRangeOverlapsItemEnum | (string & {})
@@ -271,21 +271,21 @@ export type InternalRangeRangeStatusEnum =
   | "OBSOLETE"
   | "CREATING"
   | "DELETING";
-export const InternalRangeRangeStatusEnum = /*@__PURE__*/ S.String;
+export const InternalRangeRangeStatusEnum = S.String;
 
 export type InternalRangeUsageEnum =
   | "USAGE_UNSPECIFIED"
   | "FOR_VPC"
   | "EXTERNAL_TO_VPC"
   | "FOR_MIGRATION";
-export const InternalRangeUsageEnum = /*@__PURE__*/ S.String;
+export const InternalRangeUsageEnum = S.String;
 
 export type InternalRangePeeringEnum =
   | "PEERING_UNSPECIFIED"
   | "FOR_SELF"
   | "FOR_PEER"
   | "NOT_SHARED";
-export const InternalRangePeeringEnum = /*@__PURE__*/ S.String;
+export const InternalRangePeeringEnum = S.String;
 
 export type AllocationOptionsAllocationStrategyEnum =
   | "ALLOCATION_STRATEGY_UNSPECIFIED"
@@ -293,7 +293,7 @@ export type AllocationOptionsAllocationStrategyEnum =
   | "FIRST_AVAILABLE"
   | "RANDOM_FIRST_N_AVAILABLE"
   | "FIRST_SMALLEST_FITTING";
-export const AllocationOptionsAllocationStrategyEnum = /*@__PURE__*/ S.String;
+export const AllocationOptionsAllocationStrategyEnum = S.String;
 
 /** Range auto-allocation options, to be optionally used when CIDR block is not explicitly set. */
 export interface AllocationOptions {
@@ -431,7 +431,7 @@ export type SpokeStateEnum =
   | "DELETING"
   | "UPDATING"
   | "FAILED";
-export const SpokeStateEnum = /*@__PURE__*/ S.String;
+export const SpokeStateEnum = S.String;
 
 /** A Spoke is an abstraction of a network attachment being attached to a Hub. A Spoke can be underlying a VPN tunnel, a VLAN (interconnect) attachment, a Router appliance, etc. */
 export interface Spoke {
@@ -656,7 +656,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {

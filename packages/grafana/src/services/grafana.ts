@@ -183,7 +183,7 @@ export const AddDataSourceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddDataSourceResponse>;
 
 export type AddOrgInviteRequestRole = "None" | "Viewer" | "Editor" | "Admin";
-export const AddOrgInviteRequestRole = /*@__PURE__*/ S.String;
+export const AddOrgInviteRequestRole = S.String;
 
 export interface AddOrgInviteRequest {
   loginOrEmail?: string;
@@ -214,7 +214,7 @@ export const SuccessResponseBody = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SuccessResponseBody>;
 
 export type AddOrgUserRequestRole = "None" | "Viewer" | "Editor" | "Admin";
-export const AddOrgUserRequestRole = /*@__PURE__*/ S.String;
+export const AddOrgUserRequestRole = S.String;
 
 export interface AddOrgUserRequest {
   org_id: number;
@@ -236,7 +236,7 @@ export type AddOrgUserToCurrentOrgRequestRole =
   | "Viewer"
   | "Editor"
   | "Admin";
-export const AddOrgUserToCurrentOrgRequestRole = /*@__PURE__*/ S.String;
+export const AddOrgUserToCurrentOrgRequestRole = S.String;
 
 export interface AddOrgUserToCurrentOrgRequest {
   loginOrEmail?: string;
@@ -881,7 +881,7 @@ export const CorrelationConfigTargetMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<CorrelationConfigTargetMap>;
 
 export type TransformationType = "regex" | "logfmt";
-export const TransformationType = /*@__PURE__*/ S.String;
+export const TransformationType = S.String;
 
 export interface Transformation {
   expression?: string;
@@ -1076,7 +1076,7 @@ export const CreateDashboardSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of element to create, Use 1 for library panels or 2 for c. Description: - 1 - library panels */
 export type CreateLibraryElementRequestKind = 1;
-export const CreateLibraryElementRequestKind = /*@__PURE__*/ S.Number;
+export const CreateLibraryElementRequestKind = S.Number;
 
 export interface CreateLibraryElementRequest {
   /** ID of the folder where the library element is stored. Deprecated: use FolderUID instead */
@@ -1716,7 +1716,7 @@ export type CreateServiceAccountRequestRole =
   | "Viewer"
   | "Editor"
   | "Admin";
-export const CreateServiceAccountRequestRole = /*@__PURE__*/ S.String;
+export const CreateServiceAccountRequestRole = S.String;
 
 export interface CreateServiceAccountRequest {
   isDisabled?: boolean;
@@ -1814,7 +1814,7 @@ export type CreateSnapshotRequestResourceTypesItem =
   | "NOTIFICATION_TEMPLATE"
   | "MUTE_TIMING"
   | "PLUGIN";
-export const CreateSnapshotRequestResourceTypesItem = /*@__PURE__*/ S.String;
+export const CreateSnapshotRequestResourceTypesItem = S.String;
 
 export type CreateSnapshotRequestResourceTypesList = Array<
   CreateSnapshotRequestResourceTypesItem | (string & {})
@@ -2456,7 +2456,7 @@ export const GetAnnotationsRequestTagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GetAnnotationsRequestTagsList>;
 
 export type GetAnnotationsRequestType = "alert" | "annotation";
-export const GetAnnotationsRequestType = /*@__PURE__*/ S.String;
+export const GetAnnotationsRequestType = S.String;
 
 export interface GetAnnotationsRequest {
   /** Find annotations created after specific epoch datetime in milliseconds. */
@@ -3622,10 +3622,10 @@ export const LibraryElementConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LibraryElementConnectionsResponse>;
 
 export type GetLibraryElementsRequestKind = 1;
-export const GetLibraryElementsRequestKind = /*@__PURE__*/ S.Number;
+export const GetLibraryElementsRequestKind = S.Number;
 
 export type GetLibraryElementsRequestSortDirection = "alpha-asc" | "alpha-desc";
-export const GetLibraryElementsRequestSortDirection = /*@__PURE__*/ S.String;
+export const GetLibraryElementsRequestSortDirection = S.String;
 
 export interface GetLibraryElementsRequest {
   /** Part of the name or description searched for. */
@@ -3983,7 +3983,7 @@ export const GetPendingOrgInvitesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPendingOrgInvitesRequest>;
 
 export type TempUserDTORole = "None" | "Viewer" | "Editor" | "Admin";
-export const TempUserDTORole = /*@__PURE__*/ S.String;
+export const TempUserDTORole = S.String;
 
 export interface TempUserDTO {
   code?: string;
@@ -4472,7 +4472,7 @@ export type ResourceDependencyDTODependenciesItem =
   | "NOTIFICATION_TEMPLATE"
   | "MUTE_TIMING"
   | "PLUGIN";
-export const ResourceDependencyDTODependenciesItem = /*@__PURE__*/ S.String;
+export const ResourceDependencyDTODependenciesItem = S.String;
 
 export type ResourceDependencyDTODependenciesList =
   Array<ResourceDependencyDTODependenciesItem>;
@@ -4492,7 +4492,7 @@ export type ResourceDependencyDTOResourceType =
   | "NOTIFICATION_TEMPLATE"
   | "MUTE_TIMING"
   | "PLUGIN";
-export const ResourceDependencyDTOResourceType = /*@__PURE__*/ S.String;
+export const ResourceDependencyDTOResourceType = S.String;
 
 export interface ResourceDependencyDTO {
   dependencies?: ResourceDependencyDTODependenciesList;
@@ -4854,7 +4854,7 @@ export type SnapshotDTOStatus =
   | "CANCELED"
   | "ERROR"
   | "UNKNOWN";
-export const SnapshotDTOStatus = /*@__PURE__*/ S.String;
+export const SnapshotDTOStatus = S.String;
 
 /** Base snapshot without results */
 export interface SnapshotDTO {
@@ -4985,7 +4985,7 @@ export const GetSignedInUserOrgListRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSignedInUserOrgListRequest>;
 
 export type UserOrgDTORole = "None" | "Viewer" | "Editor" | "Admin";
-export const UserOrgDTORole = /*@__PURE__*/ S.String;
+export const UserOrgDTORole = S.String;
 
 export interface UserOrgDTO {
   name?: string;
@@ -5129,7 +5129,7 @@ export type MigrateDataResponseItemDTOErrorCode =
   | "UNEXPECTED_STATUS_CODE"
   | "INTERNAL_SERVICE_ERROR"
   | "GENERIC_ERROR";
-export const MigrateDataResponseItemDTOErrorCode = /*@__PURE__*/ S.String;
+export const MigrateDataResponseItemDTOErrorCode = S.String;
 
 export type MigrateDataResponseItemDTOStatus =
   | "OK"
@@ -5137,7 +5137,7 @@ export type MigrateDataResponseItemDTOStatus =
   | "ERROR"
   | "PENDING"
   | "UNKNOWN";
-export const MigrateDataResponseItemDTOStatus = /*@__PURE__*/ S.String;
+export const MigrateDataResponseItemDTOStatus = S.String;
 
 export type MigrateDataResponseItemDTOType =
   | "DASHBOARD"
@@ -5151,7 +5151,7 @@ export type MigrateDataResponseItemDTOType =
   | "NOTIFICATION_TEMPLATE"
   | "MUTE_TIMING"
   | "PLUGIN";
-export const MigrateDataResponseItemDTOType = /*@__PURE__*/ S.String;
+export const MigrateDataResponseItemDTOType = S.String;
 
 export interface MigrateDataResponseItemDTO {
   errorCode?: MigrateDataResponseItemDTOErrorCode;
@@ -5224,7 +5224,7 @@ export type GetSnapshotResponseDTOStatus =
   | "CANCELED"
   | "ERROR"
   | "UNKNOWN";
-export const GetSnapshotResponseDTOStatus = /*@__PURE__*/ S.String;
+export const GetSnapshotResponseDTOStatus = S.String;
 
 export interface GetSnapshotResponseDTO {
   created?: string;
@@ -7521,7 +7521,7 @@ export const RouteConvertPrometheusPostRuleGroupsResponse =
   }) as any as S.Schema<RouteConvertPrometheusPostRuleGroupsResponse>;
 
 export type RouteExportMuteTimingRequestFormat = "yaml" | "json" | "hcl";
-export const RouteExportMuteTimingRequestFormat = /*@__PURE__*/ S.String;
+export const RouteExportMuteTimingRequestFormat = S.String;
 
 export interface RouteExportMuteTimingRequest {
   /** Mute timing name */
@@ -7639,7 +7639,7 @@ export const AlertRuleExportDataList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AlertRuleExportDataList>;
 
 export type AlertRuleExportExecErrState = "OK" | "Alerting" | "Error";
-export const AlertRuleExportExecErrState = /*@__PURE__*/ S.String;
+export const AlertRuleExportExecErrState = S.String;
 
 export type AlertRuleExportLabelsMap = { [key: string]: string | undefined };
 export const AlertRuleExportLabelsMap = /*@__PURE__*/ S.Record(
@@ -7648,7 +7648,7 @@ export const AlertRuleExportLabelsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<AlertRuleExportLabelsMap>;
 
 export type AlertRuleExportNoDataState = "Alerting" | "NoData" | "OK";
-export const AlertRuleExportNoDataState = /*@__PURE__*/ S.String;
+export const AlertRuleExportNoDataState = S.String;
 
 export type AlertRuleNotificationSettingsExportActiveTimeIntervalsList =
   Array<string>;
@@ -8018,7 +8018,7 @@ export const AlertingFileExport = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AlertingFileExport>;
 
 export type RouteExportMuteTimingsRequestFormat = "yaml" | "json" | "hcl";
-export const RouteExportMuteTimingsRequestFormat = /*@__PURE__*/ S.String;
+export const RouteExportMuteTimingsRequestFormat = S.String;
 
 export interface RouteExportMuteTimingsRequest {
   /** Whether to initiate a download of the file or not. */
@@ -8042,7 +8042,7 @@ export const RouteExportMuteTimingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RouteExportMuteTimingsRequest>;
 
 export type RouteGetAlertRuleExportRequestFormat = "yaml" | "json" | "hcl";
-export const RouteGetAlertRuleExportRequestFormat = /*@__PURE__*/ S.String;
+export const RouteGetAlertRuleExportRequestFormat = S.String;
 
 export interface RouteGetAlertRuleExportRequest {
   /** Alert rule UID */
@@ -8069,7 +8069,7 @@ export const RouteGetAlertRuleExportRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RouteGetAlertRuleExportRequest>;
 
 export type RouteGetAlertRuleGroupExportRequestFormat = "yaml" | "json" | "hcl";
-export const RouteGetAlertRuleGroupExportRequestFormat = /*@__PURE__*/ S.String;
+export const RouteGetAlertRuleGroupExportRequestFormat = S.String;
 
 export interface RouteGetAlertRuleGroupExportRequest {
   FolderUID: string;
@@ -8099,7 +8099,7 @@ export const RouteGetAlertRuleGroupExportRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RouteGetAlertRuleGroupExportRequest>;
 
 export type RouteGetAlertRulesExportRequestFormat = "yaml" | "json" | "hcl";
-export const RouteGetAlertRulesExportRequestFormat = /*@__PURE__*/ S.String;
+export const RouteGetAlertRulesExportRequestFormat = S.String;
 
 export type RouteGetAlertRulesExportRequestFolderUidList = Array<string>;
 export const RouteGetAlertRulesExportRequestFolderUidList =
@@ -8140,7 +8140,7 @@ export const RouteGetAlertRulesExportRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RouteGetAlertRulesExportRequest>;
 
 export type RouteGetContactpointsExportRequestFormat = "yaml" | "json" | "hcl";
-export const RouteGetContactpointsExportRequestFormat = /*@__PURE__*/ S.String;
+export const RouteGetContactpointsExportRequestFormat = S.String;
 
 export interface RouteGetContactpointsExportRequest {
   /** Whether to initiate a download of the file or not. */
@@ -8226,7 +8226,7 @@ export const SearchRequestTagList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchRequestTagList>;
 
 export type SearchRequestType = "dash-folder" | "dash-db";
-export const SearchRequestType = /*@__PURE__*/ S.String;
+export const SearchRequestType = S.String;
 
 export type SearchRequestDashboardIdsList = Array<number>;
 export const SearchRequestDashboardIdsList = /*@__PURE__*/ S.Array(
@@ -8249,10 +8249,10 @@ export const SearchRequestFolderUIDsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchRequestFolderUIDsList>;
 
 export type SearchRequestPermission = "Edit" | "View";
-export const SearchRequestPermission = /*@__PURE__*/ S.String;
+export const SearchRequestPermission = S.String;
 
 export type SearchRequestSort = "alpha-asc" | "alpha-desc";
-export const SearchRequestSort = /*@__PURE__*/ S.String;
+export const SearchRequestSort = S.String;
 
 export interface SearchRequest {
   /** Search Query */
@@ -8598,7 +8598,7 @@ export const SearchQueriesRequestDatasourceUidList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SearchQueriesRequestDatasourceUidList>;
 
 export type SearchQueriesRequestSort = "time-desc" | "time-asc";
-export const SearchQueriesRequestSort = /*@__PURE__*/ S.String;
+export const SearchQueriesRequestSort = S.String;
 
 export interface SearchQueriesRequest {
   /** List of data source UIDs to search for */
@@ -9546,7 +9546,7 @@ export const UpdateDataSourceByUIDResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDataSourceByUIDResponse>;
 
 export type DashboardACLUpdateItemRole = "None" | "Viewer" | "Editor" | "Admin";
-export const DashboardACLUpdateItemRole = /*@__PURE__*/ S.String;
+export const DashboardACLUpdateItemRole = S.String;
 
 export interface DashboardACLUpdateItem {
   permission?: number;
@@ -9592,7 +9592,7 @@ export const UpdateFolderPermissionsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Kind of element to create, Use 1 for library panels or 2 for c. Description: - 1 - library panels */
 export type UpdateLibraryElementRequestKind = 1;
-export const UpdateLibraryElementRequestKind = /*@__PURE__*/ S.Number;
+export const UpdateLibraryElementRequestKind = S.Number;
 
 export interface UpdateLibraryElementRequest {
   library_element_uid: string;
@@ -9691,7 +9691,7 @@ export const UpdateOrgQuotaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOrgQuotaRequest>;
 
 export type UpdateOrgUserRequestRole = "None" | "Viewer" | "Editor" | "Admin";
-export const UpdateOrgUserRequestRole = /*@__PURE__*/ S.String;
+export const UpdateOrgUserRequestRole = S.String;
 
 export interface UpdateOrgUserRequest {
   org_id: number;
@@ -9719,7 +9719,7 @@ export type UpdateOrgUserForCurrentOrgRequestRole =
   | "Viewer"
   | "Editor"
   | "Admin";
-export const UpdateOrgUserForCurrentOrgRequestRole = /*@__PURE__*/ S.String;
+export const UpdateOrgUserForCurrentOrgRequestRole = S.String;
 
 export interface UpdateOrgUserForCurrentOrgRequest {
   user_id: number;
@@ -9874,7 +9874,7 @@ export type UpdateServiceAccountRequestRole =
   | "Viewer"
   | "Editor"
   | "Admin";
-export const UpdateServiceAccountRequestRole = /*@__PURE__*/ S.String;
+export const UpdateServiceAccountRequestRole = S.String;
 
 export interface UpdateServiceAccountRequest {
   serviceAccountId: number;
@@ -10097,7 +10097,7 @@ export const QueryHistoryPreference = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QueryHistoryPreference>;
 
 export type UpdateTeamPreferencesRequestTheme = "light" | "dark" | "system";
-export const UpdateTeamPreferencesRequestTheme = /*@__PURE__*/ S.String;
+export const UpdateTeamPreferencesRequestTheme = S.String;
 
 export interface UpdateTeamPreferencesRequest {
   team_id: string;

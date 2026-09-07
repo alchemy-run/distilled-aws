@@ -51,8 +51,7 @@ export type AddDistributionsPermissionsResponsePermissionType =
   | "app_collaborators"
   | "named_entities"
   | "system";
-export const AddDistributionsPermissionsResponsePermissionType =
-  /*@__PURE__*/ S.String;
+export const AddDistributionsPermissionsResponsePermissionType = S.String;
 
 export interface AddDistributionsPermissionsResponseUsersItem {
   user_id?: string;
@@ -229,8 +228,7 @@ export type ListDistributionsPermissionsResponsePermissionType =
   | "app_collaborators"
   | "named_entities"
   | "system";
-export const ListDistributionsPermissionsResponsePermissionType =
-  /*@__PURE__*/ S.String;
+export const ListDistributionsPermissionsResponsePermissionType = S.String;
 
 export type ListDistributionsPermissionsResponseUsersItem =
   AddDistributionsPermissionsResponseUsersItem;
@@ -368,8 +366,7 @@ export type RemoveDistributionsPermissionsResponsePermissionType =
   | "app_collaborators"
   | "named_entities"
   | "system";
-export const RemoveDistributionsPermissionsResponsePermissionType =
-  /*@__PURE__*/ S.String;
+export const RemoveDistributionsPermissionsResponsePermissionType = S.String;
 
 export type RemoveDistributionsPermissionsResponseUsersItem =
   AddDistributionsPermissionsResponseUsersItem;
@@ -406,8 +403,7 @@ export type SetDistributionsPermissionsRequestPermissionType =
   | "app_collaborators"
   | "named_entities"
   | "system";
-export const SetDistributionsPermissionsRequestPermissionType =
-  /*@__PURE__*/ S.String;
+export const SetDistributionsPermissionsRequestPermissionType = S.String;
 
 /** List of encoded user IDs */
 export type SetDistributionsPermissionsRequestUserIdsList = Array<string>;
@@ -475,8 +471,7 @@ export type SetDistributionsPermissionsResponsePermissionType =
   | "app_collaborators"
   | "named_entities"
   | "system";
-export const SetDistributionsPermissionsResponsePermissionType =
-  /*@__PURE__*/ S.String;
+export const SetDistributionsPermissionsResponsePermissionType = S.String;
 
 export type SetDistributionsPermissionsResponseUsersItem =
   AddDistributionsPermissionsResponseUsersItem;

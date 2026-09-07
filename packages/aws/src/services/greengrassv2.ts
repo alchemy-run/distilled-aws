@@ -418,7 +418,7 @@ export const ComponentPlatform = /*@__PURE__*/ S.suspend(() =>
 export type ComponentPlatformList = ComponentPlatform[];
 export const ComponentPlatformList = /*@__PURE__*/ S.Array(ComponentPlatform);
 export type ComponentDependencyType = "HARD" | "SOFT" | (string & {});
-export const ComponentDependencyType = /*@__PURE__*/ S.String;
+export const ComponentDependencyType = S.String;
 
 export interface ComponentDependencyRequirement {
   versionRequirement?: string;
@@ -441,7 +441,7 @@ export const ComponentDependencyMap = /*@__PURE__*/ S.Record(
 );
 export type TopicString = string;
 export type LambdaEventSourceType = "PUB_SUB" | "IOT_CORE" | (string & {});
-export const LambdaEventSourceType = /*@__PURE__*/ S.String;
+export const LambdaEventSourceType = S.String;
 
 export interface LambdaEventSource {
   topic: string;
@@ -457,7 +457,7 @@ export const LambdaEventSourceList = /*@__PURE__*/ S.Array(LambdaEventSource);
 export type OptionalInteger = number;
 export type OptionalBoolean = boolean;
 export type LambdaInputPayloadEncodingType = "json" | "binary" | (string & {});
-export const LambdaInputPayloadEncodingType = /*@__PURE__*/ S.String;
+export const LambdaInputPayloadEncodingType = S.String;
 
 export type LambdaExecArg = string;
 export type LambdaExecArgsList = string[];
@@ -471,11 +471,11 @@ export type LambdaIsolationMode =
   | "GreengrassContainer"
   | "NoContainer"
   | (string & {});
-export const LambdaIsolationMode = /*@__PURE__*/ S.String;
+export const LambdaIsolationMode = S.String;
 
 export type FileSystemPath = string;
 export type LambdaFilesystemPermission = "ro" | "rw" | (string & {});
-export const LambdaFilesystemPermission = /*@__PURE__*/ S.String;
+export const LambdaFilesystemPermission = S.String;
 
 export interface LambdaVolumeMount {
   sourcePath: string;
@@ -632,7 +632,7 @@ export type CloudComponentState =
   | "FAILED"
   | "DEPRECATED"
   | (string & {});
-export const CloudComponentState = /*@__PURE__*/ S.String;
+export const CloudComponentState = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
@@ -644,7 +644,7 @@ export type VendorGuidance =
   | "DISCONTINUED"
   | "DELETED"
   | (string & {});
-export const VendorGuidance = /*@__PURE__*/ S.String;
+export const VendorGuidance = S.String;
 
 export interface CloudComponentStatus {
   componentState?: CloudComponentState;
@@ -794,10 +794,10 @@ export type IoTJobExecutionFailureType =
   | "TIMED_OUT"
   | "ALL"
   | (string & {});
-export const IoTJobExecutionFailureType = /*@__PURE__*/ S.String;
+export const IoTJobExecutionFailureType = S.String;
 
 export type IoTJobAbortAction = "CANCEL" | (string & {});
-export const IoTJobAbortAction = /*@__PURE__*/ S.String;
+export const IoTJobAbortAction = S.String;
 
 export type IoTJobAbortThresholdPercentage = number;
 export type IoTJobMinimumNumberOfExecutedThings = number;
@@ -855,13 +855,13 @@ export type DeploymentFailureHandlingPolicy =
   | "ROLLBACK"
   | "DO_NOTHING"
   | (string & {});
-export const DeploymentFailureHandlingPolicy = /*@__PURE__*/ S.String;
+export const DeploymentFailureHandlingPolicy = S.String;
 
 export type DeploymentComponentUpdatePolicyAction =
   | "NOTIFY_COMPONENTS"
   | "SKIP_NOTIFY_COMPONENTS"
   | (string & {});
-export const DeploymentComponentUpdatePolicyAction = /*@__PURE__*/ S.String;
+export const DeploymentComponentUpdatePolicyAction = S.String;
 
 export interface DeploymentComponentUpdatePolicy {
   timeoutInSeconds?: number;
@@ -1104,7 +1104,7 @@ export const DisassociateServiceRoleFromAccountResponse =
     identifier: "DisassociateServiceRoleFromAccountResponse",
   }) as any as S.Schema<DisassociateServiceRoleFromAccountResponse>;
 export type RecipeOutputFormat = "JSON" | "YAML" | (string & {});
-export const RecipeOutputFormat = /*@__PURE__*/ S.String;
+export const RecipeOutputFormat = S.String;
 
 export interface GetComponentRequest {
   recipeOutputFormat?: RecipeOutputFormat;
@@ -1144,10 +1144,10 @@ export const GetComponentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetComponentResponse",
 }) as any as S.Schema<GetComponentResponse>;
 export type S3EndpointType = "REGIONAL" | "GLOBAL" | (string & {});
-export const S3EndpointType = /*@__PURE__*/ S.String;
+export const S3EndpointType = S.String;
 
 export type IotEndpointType = "fips" | "standard" | (string & {});
-export const IotEndpointType = /*@__PURE__*/ S.String;
+export const IotEndpointType = S.String;
 
 export interface GetComponentVersionArtifactRequest {
   arn: string;
@@ -1276,7 +1276,7 @@ export type CoreDevicePlatformString = string;
 export type CoreDeviceArchitectureString = string;
 export type CoreDeviceRuntimeString = string;
 export type CoreDeviceStatus = "HEALTHY" | "UNHEALTHY" | (string & {});
-export const CoreDeviceStatus = /*@__PURE__*/ S.String;
+export const CoreDeviceStatus = S.String;
 
 export interface GetCoreDeviceResponse {
   coreDeviceThingName?: string;
@@ -1332,7 +1332,7 @@ export type DeploymentStatus =
   | "FAILED"
   | "INACTIVE"
   | (string & {});
-export const DeploymentStatus = /*@__PURE__*/ S.String;
+export const DeploymentStatus = S.String;
 
 export type IsLatestForTarget = boolean;
 export interface GetDeploymentResponse {
@@ -1461,7 +1461,7 @@ export const ListClientDevicesAssociatedWithCoreDeviceResponse =
     identifier: "ListClientDevicesAssociatedWithCoreDeviceResponse",
   }) as any as S.Schema<ListClientDevicesAssociatedWithCoreDeviceResponse>;
 export type ComponentVisibilityScope = "PRIVATE" | "PUBLIC" | (string & {});
-export const ComponentVisibilityScope = /*@__PURE__*/ S.String;
+export const ComponentVisibilityScope = S.String;
 
 export interface ListComponentsRequest {
   scope?: ComponentVisibilityScope;
@@ -1653,7 +1653,7 @@ export const ListCoreDevicesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCoreDevicesResponse",
 }) as any as S.Schema<ListCoreDevicesResponse>;
 export type DeploymentHistoryFilter = "ALL" | "LATEST_ONLY" | (string & {});
-export const DeploymentHistoryFilter = /*@__PURE__*/ S.String;
+export const DeploymentHistoryFilter = S.String;
 
 export interface ListDeploymentsRequest {
   targetArn?: string;
@@ -1762,7 +1762,7 @@ export type EffectiveDeploymentExecutionStatus =
   | "REJECTED"
   | "SUCCEEDED"
   | (string & {});
-export const EffectiveDeploymentExecutionStatus = /*@__PURE__*/ S.String;
+export const EffectiveDeploymentExecutionStatus = S.String;
 
 export type Reason = string;
 export type EffectiveDeploymentErrorCode = string;
@@ -1829,7 +1829,7 @@ export const ListEffectiveDeploymentsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEffectiveDeploymentsResponse",
 }) as any as S.Schema<ListEffectiveDeploymentsResponse>;
 export type InstalledComponentTopologyFilter = "ALL" | "ROOT" | (string & {});
-export const InstalledComponentTopologyFilter = /*@__PURE__*/ S.String;
+export const InstalledComponentTopologyFilter = S.String;
 
 export interface ListInstalledComponentsRequest {
   coreDeviceThingName: string;
@@ -1871,7 +1871,7 @@ export type InstalledComponentLifecycleState =
   | "BROKEN"
   | "FINISHED"
   | (string & {});
-export const InstalledComponentLifecycleState = /*@__PURE__*/ S.String;
+export const InstalledComponentLifecycleState = S.String;
 
 export type LifecycleStateDetails = string;
 export type IsRoot = boolean;
@@ -2137,7 +2137,7 @@ export type ValidationExceptionReason =
   | "FIELD_VALIDATION_FAILED"
   | "OTHER"
   | (string & {});
-export const ValidationExceptionReason = /*@__PURE__*/ S.String;
+export const ValidationExceptionReason = S.String;
 
 export interface ValidationExceptionField {
   name: string;

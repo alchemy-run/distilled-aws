@@ -85,7 +85,7 @@ export type AnalyzeCreateRequestBundleMethod =
   | "ubiquitous"
   | "optimal"
   | "force";
-export const AnalyzeCreateRequestBundleMethod = /*@__PURE__*/ S.String;
+export const AnalyzeCreateRequestBundleMethod = S.String;
 
 export interface CreateAnalyzeRequest {
   /** Identifier. */
@@ -126,8 +126,7 @@ export type CertificatePacksCreateRequestCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const CertificatePacksCreateRequestCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksCreateRequestCertificateAuthority = S.String;
 
 export type CertificatePacksCreateRequestHostsList = Array<string>;
 export const CertificatePacksCreateRequestHostsList = /*@__PURE__*/ S.Array(
@@ -135,17 +134,16 @@ export const CertificatePacksCreateRequestHostsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CertificatePacksCreateRequestHostsList>;
 
 export type CertificatePacksCreateRequestType = "advanced";
-export const CertificatePacksCreateRequestType = /*@__PURE__*/ S.String;
+export const CertificatePacksCreateRequestType = S.String;
 
 export type CertificatePacksCreateRequestValidationMethod =
   | "txt"
   | "http"
   | "email";
-export const CertificatePacksCreateRequestValidationMethod =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksCreateRequestValidationMethod = S.String;
 
 export type CertificatePacksCreateRequestValidityDays = 14 | 30 | 90 | 365;
-export const CertificatePacksCreateRequestValidityDays = /*@__PURE__*/ S.Number;
+export const CertificatePacksCreateRequestValidityDays = S.Number;
 
 export interface CreateCertificatePackRequest {
   /** Identifier. */
@@ -210,7 +208,7 @@ export type CertificatePacksCreateResponseCertificatesItemGeoRestrictionsLabel =
   | "eu"
   | "highest_security";
 export const CertificatePacksCreateResponseCertificatesItemGeoRestrictionsLabel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CertificatePacksCreateResponseCertificatesItemGeoRestrictions {
   label?: CertificatePacksCreateResponseCertificatesItemGeoRestrictionsLabel | null;
@@ -314,7 +312,7 @@ export type CertificatePacksCreateResponseStatus =
   | "inactive"
   | "backup_issued"
   | "holding_deployment";
-export const CertificatePacksCreateResponseStatus = /*@__PURE__*/ S.String;
+export const CertificatePacksCreateResponseStatus = S.String;
 
 export type CertificatePacksCreateResponseType =
   | "mh_custom"
@@ -325,14 +323,13 @@ export type CertificatePacksCreateResponseType =
   | "total_tls"
   | "keyless"
   | "legacy_custom";
-export const CertificatePacksCreateResponseType = /*@__PURE__*/ S.String;
+export const CertificatePacksCreateResponseType = S.String;
 
 export type CertificatePacksCreateResponseCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const CertificatePacksCreateResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksCreateResponseCertificateAuthority = S.String;
 
 export type CertificatePacksCreateResponseDcvDelegationRecordsItemEmailsList =
   Array<string>;
@@ -410,8 +407,7 @@ export type CertificatePacksCreateResponseValidationMethod =
   | "txt"
   | "http"
   | "email";
-export const CertificatePacksCreateResponseValidationMethod =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksCreateResponseValidationMethod = S.String;
 
 export type CertificatePacksCreateResponseValidationRecordsItemEmailsList =
   Array<string>;
@@ -464,8 +460,7 @@ export const CertificatePacksCreateResponseValidationRecordsList =
   ) as any as S.Schema<CertificatePacksCreateResponseValidationRecordsList>;
 
 export type CertificatePacksCreateResponseValidityDays = 14 | 30 | 90 | 365;
-export const CertificatePacksCreateResponseValidityDays =
-  /*@__PURE__*/ S.Number;
+export const CertificatePacksCreateResponseValidityDays = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface CreateCertificatePackResponse {
@@ -600,7 +595,7 @@ export const GetAutomaticUpgraderRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAutomaticUpgraderRequest>;
 
 export type GetAutomaticUpgraderResponseValue = "auto" | "custom";
-export const GetAutomaticUpgraderResponseValue = /*@__PURE__*/ S.String;
+export const GetAutomaticUpgraderResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetAutomaticUpgraderResponse {
@@ -700,7 +695,7 @@ export type CertificatePacksGetResponseCertificatesItemGeoRestrictionsLabel =
   | "eu"
   | "highest_security";
 export const CertificatePacksGetResponseCertificatesItemGeoRestrictionsLabel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CertificatePacksGetResponseCertificatesItemGeoRestrictions {
   label?: CertificatePacksGetResponseCertificatesItemGeoRestrictionsLabel | null;
@@ -804,7 +799,7 @@ export type CertificatePacksGetResponseStatus =
   | "inactive"
   | "backup_issued"
   | "holding_deployment";
-export const CertificatePacksGetResponseStatus = /*@__PURE__*/ S.String;
+export const CertificatePacksGetResponseStatus = S.String;
 
 export type CertificatePacksGetResponseType =
   | "mh_custom"
@@ -815,14 +810,13 @@ export type CertificatePacksGetResponseType =
   | "total_tls"
   | "keyless"
   | "legacy_custom";
-export const CertificatePacksGetResponseType = /*@__PURE__*/ S.String;
+export const CertificatePacksGetResponseType = S.String;
 
 export type CertificatePacksGetResponseCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const CertificatePacksGetResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksGetResponseCertificateAuthority = S.String;
 
 export type CertificatePacksGetResponseDcvDelegationRecordsItemEmailsList =
   Array<string>;
@@ -891,8 +885,7 @@ export type CertificatePacksGetResponseValidationMethod =
   | "http"
   | "email"
   | "cname";
-export const CertificatePacksGetResponseValidationMethod =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksGetResponseValidationMethod = S.String;
 
 export type CertificatePacksGetResponseValidationRecordsItemEmailsList =
   Array<string>;
@@ -945,7 +938,7 @@ export const CertificatePacksGetResponseValidationRecordsList =
   ) as any as S.Schema<CertificatePacksGetResponseValidationRecordsList>;
 
 export type CertificatePacksGetResponseValidityDays = 14 | 30 | 90 | 365;
-export const CertificatePacksGetResponseValidityDays = /*@__PURE__*/ S.Number;
+export const CertificatePacksGetResponseValidityDays = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetCertificatePackResponse {
@@ -1136,36 +1129,33 @@ export type VerificationGetResultItemCertificateStatus =
   | "issuing"
   | "timing_out"
   | "pending_deployment";
-export const VerificationGetResultItemCertificateStatus =
-  /*@__PURE__*/ S.String;
+export const VerificationGetResultItemCertificateStatus = S.String;
 
 export type VerificationGetResultItemSignature =
   | "ECDSAWithSHA256"
   | "SHA1WithRSA"
   | "SHA256WithRSA";
-export const VerificationGetResultItemSignature = /*@__PURE__*/ S.String;
+export const VerificationGetResultItemSignature = S.String;
 
 export type VerificationGetResultItemValidationMethod =
   | "http"
   | "cname"
   | "txt";
-export const VerificationGetResultItemValidationMethod = /*@__PURE__*/ S.String;
+export const VerificationGetResultItemValidationMethod = S.String;
 
 export type VerificationGetResultItemVerificationInfoRecordName =
   | "record_name"
   | "http_url"
   | "cname"
   | "txt_name";
-export const VerificationGetResultItemVerificationInfoRecordName =
-  /*@__PURE__*/ S.String;
+export const VerificationGetResultItemVerificationInfoRecordName = S.String;
 
 export type VerificationGetResultItemVerificationInfoRecordTarget =
   | "record_value"
   | "http_body"
   | "cname_target"
   | "txt_value";
-export const VerificationGetResultItemVerificationInfoRecordTarget =
-  /*@__PURE__*/ S.String;
+export const VerificationGetResultItemVerificationInfoRecordTarget = S.String;
 
 export interface VerificationGetResultItemVerificationInfo {
   /** Name of CNAME record. */
@@ -1192,7 +1182,7 @@ export const VerificationGetResultItemVerificationInfo =
   }) as any as S.Schema<VerificationGetResultItemVerificationInfo>;
 
 export type VerificationGetResultItemVerificationType = "cname" | "meta tag";
-export const VerificationGetResultItemVerificationType = /*@__PURE__*/ S.String;
+export const VerificationGetResultItemVerificationType = S.String;
 
 export interface VerificationGetResultItem {
   /** Current status of certificate. */
@@ -1259,10 +1249,10 @@ export const GetVerificationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVerificationResponse>;
 
 export type CertificatePacksListRequestDeploy = "staging" | "production";
-export const CertificatePacksListRequestDeploy = /*@__PURE__*/ S.String;
+export const CertificatePacksListRequestDeploy = S.String;
 
 export type CertificatePacksListRequestStatus = "all";
-export const CertificatePacksListRequestStatus = /*@__PURE__*/ S.String;
+export const CertificatePacksListRequestStatus = S.String;
 
 export interface ListCertificatePacksRequest {
   /** Identifier. */
@@ -1308,7 +1298,7 @@ export type CertificatePacksListResultItemCertificatesItemGeoRestrictionsLabel =
   | "eu"
   | "highest_security";
 export const CertificatePacksListResultItemCertificatesItemGeoRestrictionsLabel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CertificatePacksListResultItemCertificatesItemGeoRestrictions {
   label?: CertificatePacksListResultItemCertificatesItemGeoRestrictionsLabel | null;
@@ -1412,7 +1402,7 @@ export type CertificatePacksListResultItemStatus =
   | "inactive"
   | "backup_issued"
   | "holding_deployment";
-export const CertificatePacksListResultItemStatus = /*@__PURE__*/ S.String;
+export const CertificatePacksListResultItemStatus = S.String;
 
 export type CertificatePacksListResultItemType =
   | "mh_custom"
@@ -1423,14 +1413,13 @@ export type CertificatePacksListResultItemType =
   | "total_tls"
   | "keyless"
   | "legacy_custom";
-export const CertificatePacksListResultItemType = /*@__PURE__*/ S.String;
+export const CertificatePacksListResultItemType = S.String;
 
 export type CertificatePacksListResultItemCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const CertificatePacksListResultItemCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksListResultItemCertificateAuthority = S.String;
 
 export type CertificatePacksListResultItemDcvDelegationRecordsItemEmailsList =
   Array<string>;
@@ -1500,8 +1489,7 @@ export type CertificatePacksListResultItemValidationMethod =
   | "txt"
   | "http"
   | "email";
-export const CertificatePacksListResultItemValidationMethod =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksListResultItemValidationMethod = S.String;
 
 export type CertificatePacksListResultItemValidationRecordsItemEmailsList =
   Array<string>;
@@ -1554,8 +1542,7 @@ export const CertificatePacksListResultItemValidationRecordsList =
   ) as any as S.Schema<CertificatePacksListResultItemValidationRecordsList>;
 
 export type CertificatePacksListResultItemValidityDays = 14 | 30 | 90 | 365;
-export const CertificatePacksListResultItemValidityDays =
-  /*@__PURE__*/ S.Number;
+export const CertificatePacksListResultItemValidityDays = S.Number;
 
 export interface CertificatePacksListResultItem {
   /** Identifier. */
@@ -1655,7 +1642,7 @@ export const ListCertificatePacksResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCertificatePacksResponse>;
 
 export type PatchAutomaticUpgraderRequestValue = "auto" | "custom";
-export const PatchAutomaticUpgraderRequestValue = /*@__PURE__*/ S.String;
+export const PatchAutomaticUpgraderRequestValue = S.String;
 
 export interface PatchAutomaticUpgraderRequest {
   zoneId: string;
@@ -1680,7 +1667,7 @@ export const PatchAutomaticUpgraderRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchAutomaticUpgraderRequest>;
 
 export type PatchAutomaticUpgraderResponseValue = "auto" | "custom";
-export const PatchAutomaticUpgraderResponseValue = /*@__PURE__*/ S.String;
+export const PatchAutomaticUpgraderResponseValue = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchAutomaticUpgraderResponse {
@@ -1788,7 +1775,7 @@ export type CertificatePacksEditResponseCertificatesItemGeoRestrictionsLabel =
   | "eu"
   | "highest_security";
 export const CertificatePacksEditResponseCertificatesItemGeoRestrictionsLabel =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CertificatePacksEditResponseCertificatesItemGeoRestrictions {
   label?: CertificatePacksEditResponseCertificatesItemGeoRestrictionsLabel | null;
@@ -1892,7 +1879,7 @@ export type CertificatePacksEditResponseStatus =
   | "inactive"
   | "backup_issued"
   | "holding_deployment";
-export const CertificatePacksEditResponseStatus = /*@__PURE__*/ S.String;
+export const CertificatePacksEditResponseStatus = S.String;
 
 export type CertificatePacksEditResponseType =
   | "mh_custom"
@@ -1903,14 +1890,13 @@ export type CertificatePacksEditResponseType =
   | "total_tls"
   | "keyless"
   | "legacy_custom";
-export const CertificatePacksEditResponseType = /*@__PURE__*/ S.String;
+export const CertificatePacksEditResponseType = S.String;
 
 export type CertificatePacksEditResponseCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const CertificatePacksEditResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksEditResponseCertificateAuthority = S.String;
 
 export type CertificatePacksEditResponseDcvDelegationRecordsItemEmailsList =
   Array<string>;
@@ -1980,8 +1966,7 @@ export type CertificatePacksEditResponseValidationMethod =
   | "txt"
   | "http"
   | "email";
-export const CertificatePacksEditResponseValidationMethod =
-  /*@__PURE__*/ S.String;
+export const CertificatePacksEditResponseValidationMethod = S.String;
 
 export type CertificatePacksEditResponseValidationRecordsItemEmailsList =
   Array<string>;
@@ -2034,7 +2019,7 @@ export const CertificatePacksEditResponseValidationRecordsList =
   ) as any as S.Schema<CertificatePacksEditResponseValidationRecordsList>;
 
 export type CertificatePacksEditResponseValidityDays = 14 | 30 | 90 | 365;
-export const CertificatePacksEditResponseValidityDays = /*@__PURE__*/ S.Number;
+export const CertificatePacksEditResponseValidityDays = S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchCertificatePackResponse {
@@ -2154,7 +2139,7 @@ export type VerificationEditRequestValidationMethod =
   | "cname"
   | "txt"
   | "email";
-export const VerificationEditRequestValidationMethod = /*@__PURE__*/ S.String;
+export const VerificationEditRequestValidationMethod = S.String;
 
 export interface PatchVerificationRequest {
   /** Identifier. */
@@ -2189,7 +2174,7 @@ export type VerificationEditResponseValidationMethod =
   | "cname"
   | "txt"
   | "email";
-export const VerificationEditResponseValidationMethod = /*@__PURE__*/ S.String;
+export const VerificationEditResponseValidationMethod = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchVerificationResponse {

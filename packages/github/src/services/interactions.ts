@@ -225,7 +225,7 @@ export type InteractionGroup =
   | "existing_users"
   | "contributors_only"
   | "collaborators_only";
-export const InteractionGroup = /*@__PURE__*/ S.String;
+export const InteractionGroup = S.String;
 
 /** Interaction limit settings. */
 export interface InteractionLimitResponse {
@@ -247,7 +247,7 @@ export type GetRestrictionsForAuthenticatedUserResponseBody =
   | InteractionLimitResponse
   | unknown;
 export const GetRestrictionsForAuthenticatedUserResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetRestrictionsForAuthenticatedUserResponseBody>;
+  S.Unknown as any as S.Schema<GetRestrictionsForAuthenticatedUserResponseBody>;
 
 export type GetRestrictionsForAuthenticatedUserResponse =
   GetRestrictionsForAuthenticatedUserResponseBody;
@@ -276,7 +276,7 @@ export type GetRestrictionsForOrgResponseBody =
   | InteractionLimitResponse
   | unknown;
 export const GetRestrictionsForOrgResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetRestrictionsForOrgResponseBody>;
+  S.Unknown as any as S.Schema<GetRestrictionsForOrgResponseBody>;
 
 export type GetRestrictionsForOrgResponse = GetRestrictionsForOrgResponseBody;
 export const GetRestrictionsForOrgResponse = /*@__PURE__*/ S.suspend(() =>
@@ -310,7 +310,7 @@ export type GetRestrictionsForRepoResponseBody =
   | InteractionLimitResponse
   | unknown;
 export const GetRestrictionsForRepoResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetRestrictionsForRepoResponseBody>;
+  S.Unknown as any as S.Schema<GetRestrictionsForRepoResponseBody>;
 
 export type GetRestrictionsForRepoResponse = GetRestrictionsForRepoResponseBody;
 export const GetRestrictionsForRepoResponse = /*@__PURE__*/ S.suspend(() =>
@@ -472,7 +472,7 @@ export type InteractionExpiry =
   | "one_week"
   | "one_month"
   | "six_months";
-export const InteractionExpiry = /*@__PURE__*/ S.String;
+export const InteractionExpiry = S.String;
 
 export interface SetRestrictionsForAuthenticatedUserRequest {
   limit: InteractionGroup | (string & {});

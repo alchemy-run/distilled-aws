@@ -160,7 +160,7 @@ export type CreateServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnum 
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const CreateServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnumList =
   Array<
@@ -241,7 +241,7 @@ export type CreateServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEn
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const CreateServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEnumList =
   Array<
@@ -291,7 +291,7 @@ export type DeleteServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnum 
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const DeleteServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DeleteServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnumList =
   Array<
@@ -337,7 +337,7 @@ export type DeleteServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEn
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const DeleteServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type DeleteServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEnumList =
   Array<
@@ -489,7 +489,7 @@ export const GetServicesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServicesRequest>;
 
 export type ServiceStateEnum = "STATE_UNSPECIFIED" | "DISABLED" | "ENABLED";
-export const ServiceStateEnum = /*@__PURE__*/ S.String;
+export const ServiceStateEnum = S.String;
 
 /** `SourceContext` represents information about the source of a protobuf element, like the file in which it is defined. */
 export interface SourceContext {
@@ -525,7 +525,7 @@ export type MethodSyntaxEnum =
   | "SYNTAX_PROTO2"
   | "SYNTAX_PROTO3"
   | "SYNTAX_EDITIONS";
-export const MethodSyntaxEnum = /*@__PURE__*/ S.String;
+export const MethodSyntaxEnum = S.String;
 
 /** Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
 export interface Method {
@@ -568,7 +568,7 @@ export type ApiSyntaxEnum =
   | "SYNTAX_PROTO2"
   | "SYNTAX_PROTO3"
   | "SYNTAX_EDITIONS";
-export const ApiSyntaxEnum = /*@__PURE__*/ S.String;
+export const ApiSyntaxEnum = S.String;
 
 /** Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**}:getAcl"; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**}"; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**}:getAcl"; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**}:getAcl"; } ... } */
 export interface Mixin {
@@ -625,7 +625,7 @@ export type ApiList = Array<Api>;
 export const ApiList = /*@__PURE__*/ S.Array(Api) as any as S.Schema<ApiList>;
 
 export type LabelDescriptorValueTypeEnum = "STRING" | "BOOL" | "INT64";
-export const LabelDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
+export const LabelDescriptorValueTypeEnum = S.String;
 
 /** A description of a label. */
 export interface LabelDescriptor {
@@ -660,8 +660,7 @@ export type MonitoredResourceDescriptorLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const MonitoredResourceDescriptorLaunchStageEnum =
-  /*@__PURE__*/ S.String;
+export const MonitoredResourceDescriptorLaunchStageEnum = S.String;
 
 /** An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `"gce_instance"` and specifies the use of the labels `"instance_id"` and `"zone"` to identify particular VM instances. Different APIs can support different monitored resource types. APIs generally provide a `list` method that returns the monitored resource descriptors used by the API. */
 export interface MonitoredResourceDescriptor {
@@ -832,7 +831,7 @@ export type QuotaLimitTrafficSourceEnum =
   | "TRAFFIC_SOURCE_UNSPECIFIED"
   | "TRAFFIC_SOURCE_NONAGENTIC"
   | "TRAFFIC_SOURCE_AGENTIC";
-export const QuotaLimitTrafficSourceEnum = /*@__PURE__*/ S.String;
+export const QuotaLimitTrafficSourceEnum = S.String;
 
 /** `QuotaLimit` defines a specific limit that applies over a specified duration for a limit type. There can be at most one limit for a duration and limit type combination defined within a `QuotaGroup`. */
 export interface QuotaLimit {
@@ -1161,7 +1160,7 @@ export type GetServicesConsumerQuotaMetricsViewEnum =
   | "QUOTA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetServicesConsumerQuotaMetricsViewEnum = /*@__PURE__*/ S.String;
+export const GetServicesConsumerQuotaMetricsViewEnum = S.String;
 
 export interface GetServicesConsumerQuotaMetricsRequest {
   /** The resource name of the quota. An example name would be: `projects/123/services/serviceusage.googleapis.com/consumerQuotaMetrics/serviceusage.googleapis.com%2Fmutate_requests` */
@@ -1265,7 +1264,7 @@ export type ConsumerQuotaLimitTrafficSourceEnum =
   | "TRAFFIC_SOURCE_UNSPECIFIED"
   | "TRAFFIC_SOURCE_NONAGENTIC"
   | "TRAFFIC_SOURCE_AGENTIC";
-export const ConsumerQuotaLimitTrafficSourceEnum = /*@__PURE__*/ S.String;
+export const ConsumerQuotaLimitTrafficSourceEnum = S.String;
 
 /** Consumer quota settings for a quota limit. */
 export interface ConsumerQuotaLimit {
@@ -1338,8 +1337,7 @@ export type GetServicesConsumerQuotaMetricsLimitsViewEnum =
   | "QUOTA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetServicesConsumerQuotaMetricsLimitsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetServicesConsumerQuotaMetricsLimitsViewEnum = S.String;
 
 export interface GetServicesConsumerQuotaMetricsLimitsRequest {
   /** The resource name of the quota limit. Use the quota limit resource name returned by previous ListConsumerQuotaMetrics and GetConsumerQuotaMetric API calls. */
@@ -1369,8 +1367,7 @@ export type ImportAdminOverridesRequestForceOnlyItemEnum =
   | "QUOTA_SAFETY_CHECK_UNSPECIFIED"
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
-export const ImportAdminOverridesRequestForceOnlyItemEnum =
-  /*@__PURE__*/ S.String;
+export const ImportAdminOverridesRequestForceOnlyItemEnum = S.String;
 
 export type ImportAdminOverridesRequestForceOnlyItemEnumList = Array<
   ImportAdminOverridesRequestForceOnlyItemEnum | (string & {})
@@ -1443,8 +1440,7 @@ export type ImportConsumerOverridesRequestForceOnlyItemEnum =
   | "QUOTA_SAFETY_CHECK_UNSPECIFIED"
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
-export const ImportConsumerOverridesRequestForceOnlyItemEnum =
-  /*@__PURE__*/ S.String;
+export const ImportConsumerOverridesRequestForceOnlyItemEnum = S.String;
 
 export type ImportConsumerOverridesRequestForceOnlyItemEnumList = Array<
   ImportConsumerOverridesRequestForceOnlyItemEnum | (string & {})
@@ -1601,7 +1597,7 @@ export type ListServicesConsumerQuotaMetricsViewEnum =
   | "QUOTA_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListServicesConsumerQuotaMetricsViewEnum = /*@__PURE__*/ S.String;
+export const ListServicesConsumerQuotaMetricsViewEnum = S.String;
 
 export interface ListServicesConsumerQuotaMetricsRequest {
   /** Requested size of the next page of data. */
@@ -1742,7 +1738,7 @@ export type PatchServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnum =
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const PatchServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchServicesConsumerQuotaMetricsLimitsAdminOverridesForceOnlyEnumList =
   Array<
@@ -1794,7 +1790,7 @@ export type PatchServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEnu
   | "LIMIT_DECREASE_BELOW_USAGE"
   | "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH";
 export const PatchServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type PatchServicesConsumerQuotaMetricsLimitsConsumerOverridesForceOnlyEnumList =
   Array<

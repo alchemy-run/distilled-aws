@@ -161,7 +161,7 @@ export type BatchChangeChromeOsDeviceStatusRequestChangeChromeOsDeviceStatusActi
   | "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DISABLE"
   | "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_REENABLE";
 export const BatchChangeChromeOsDeviceStatusRequestChangeChromeOsDeviceStatusActionEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type BatchChangeChromeOsDeviceStatusRequestDeprovisionReasonEnum =
   | "DEPROVISION_REASON_UNSPECIFIED"
@@ -176,7 +176,7 @@ export type BatchChangeChromeOsDeviceStatusRequestDeprovisionReasonEnum =
   | "DEPROVISION_REASON_NOT_REQUIRED"
   | "DEPROVISION_REASON_REPAIR_CENTER";
 export const BatchChangeChromeOsDeviceStatusRequestDeprovisionReasonEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -317,7 +317,7 @@ export type AuxiliaryMessageSeverityEnum =
   | "SEVERITY_INFO"
   | "SEVERITY_WARNING"
   | "SEVERITY_ERROR";
-export const AuxiliaryMessageSeverityEnum = /*@__PURE__*/ S.String;
+export const AuxiliaryMessageSeverityEnum = S.String;
 
 /** Auxiliary message about issues with printers or settings. Example: {message_type:AUXILIARY_MESSAGE_WARNING, field_mask:make_and_model, message:"Given printer is invalid or no longer supported."} */
 export interface AuxiliaryMessage {
@@ -460,7 +460,7 @@ export type FailureInfoErrorCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const FailureInfoErrorCodeEnum = /*@__PURE__*/ S.String;
+export const FailureInfoErrorCodeEnum = S.String;
 
 /** Info about failures */
 export interface FailureInfo {
@@ -606,7 +606,7 @@ export type PrintServerFailureInfoErrorCodeEnum =
   | "INTERNAL"
   | "UNAVAILABLE"
   | "DATA_LOSS";
-export const PrintServerFailureInfoErrorCodeEnum = /*@__PURE__*/ S.String;
+export const PrintServerFailureInfoErrorCodeEnum = S.String;
 
 /** Info about failures */
 export interface PrintServerFailureInfo {
@@ -1692,7 +1692,7 @@ export const Asp = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Asp" }) as any as S.Schema<Asp>;
 
 export type GetChromeosdevicesProjectionEnum = "BASIC" | "FULL";
-export const GetChromeosdevicesProjectionEnum = /*@__PURE__*/ S.String;
+export const GetChromeosdevicesProjectionEnum = S.String;
 
 export interface GetChromeosdevicesRequest {
   /** Determines whether the response contains the full list of properties or only a subset. */
@@ -1803,7 +1803,7 @@ export type ChromeOsDeviceOsVersionComplianceEnum =
   | "compliant"
   | "pending"
   | "notCompliant";
-export const ChromeOsDeviceOsVersionComplianceEnum = /*@__PURE__*/ S.String;
+export const ChromeOsDeviceOsVersionComplianceEnum = S.String;
 
 /** Information about the device's fan. */
 export interface FanInfo {
@@ -1874,7 +1874,7 @@ export type OsUpdateStatusStateEnum =
   | "updateStateNotStarted"
   | "updateStateDownloadInProgress"
   | "updateStateNeedReboot";
-export const OsUpdateStatusStateEnum = /*@__PURE__*/ S.String;
+export const OsUpdateStatusStateEnum = S.String;
 
 /** Contains information regarding the current OS update status. */
 export interface OsUpdateStatus {
@@ -1961,7 +1961,7 @@ export type ChromeOsDeviceDeviceLicenseTypeEnum =
   | "enterpriseUpgradeFixedTerm"
   | "educationUpgradePerpetual"
   | "educationUpgradeFixedTerm";
-export const ChromeOsDeviceDeviceLicenseTypeEnum = /*@__PURE__*/ S.String;
+export const ChromeOsDeviceDeviceLicenseTypeEnum = S.String;
 
 /** Information about the device's backlights. */
 export interface BacklightInfo {
@@ -1989,7 +1989,7 @@ export type ChromeOsDeviceChromeOsTypeEnum =
   | "chromeOsTypeUnspecified"
   | "chromeOsFlex"
   | "chromeOs";
-export const ChromeOsDeviceChromeOsTypeEnum = /*@__PURE__*/ S.String;
+export const ChromeOsDeviceChromeOsTypeEnum = S.String;
 
 export type ChromeOsDeviceDeprovisionReasonEnum =
   | "DEPROVISION_REASON_UNSPECIFIED"
@@ -2003,7 +2003,7 @@ export type ChromeOsDeviceDeprovisionReasonEnum =
   | "DEPROVISION_REASON_UPGRADE_TRANSFER"
   | "DEPROVISION_REASON_NOT_REQUIRED"
   | "DEPROVISION_REASON_REPAIR_CENTER";
-export const ChromeOsDeviceDeprovisionReasonEnum = /*@__PURE__*/ S.String;
+export const ChromeOsDeviceDeprovisionReasonEnum = S.String;
 
 /** Represents a data capacity with some amount of current usage in bytes. */
 export interface ByteUsage {
@@ -2416,7 +2416,7 @@ export type DirectoryChromeosdevicesCommandTypeEnum =
   | "CAPTURE_LOGS"
   | "FETCH_CRD_AVAILABILITY_INFO"
   | "FETCH_SUPPORT_PACKET";
-export const DirectoryChromeosdevicesCommandTypeEnum = /*@__PURE__*/ S.String;
+export const DirectoryChromeosdevicesCommandTypeEnum = S.String;
 
 export type DirectoryChromeosdevicesCommandStateEnum =
   | "STATE_UNSPECIFIED"
@@ -2426,15 +2426,14 @@ export type DirectoryChromeosdevicesCommandStateEnum =
   | "SENT_TO_CLIENT"
   | "ACKED_BY_CLIENT"
   | "EXECUTED_BY_CLIENT";
-export const DirectoryChromeosdevicesCommandStateEnum = /*@__PURE__*/ S.String;
+export const DirectoryChromeosdevicesCommandStateEnum = S.String;
 
 export type DirectoryChromeosdevicesCommandResultResultEnum =
   | "COMMAND_RESULT_TYPE_UNSPECIFIED"
   | "IGNORED"
   | "FAILURE"
   | "SUCCESS";
-export const DirectoryChromeosdevicesCommandResultResultEnum =
-  /*@__PURE__*/ S.String;
+export const DirectoryChromeosdevicesCommandResultResultEnum = S.String;
 
 /** The result of executing a command. */
 export interface DirectoryChromeosdevicesCommandResult {
@@ -2847,7 +2846,7 @@ export const Member = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Member" }) as any as S.Schema<Member>;
 
 export type GetMobiledevicesProjectionEnum = "BASIC" | "FULL";
-export const GetMobiledevicesProjectionEnum = /*@__PURE__*/ S.String;
+export const GetMobiledevicesProjectionEnum = S.String;
 
 export interface GetMobiledevicesRequest {
   /** The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users). */
@@ -3323,7 +3322,7 @@ export const GetRoleAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRoleAssignmentsRequest>;
 
 export type RoleAssignmentAssigneeTypeEnum = "user" | "group";
-export const RoleAssignmentAssigneeTypeEnum = /*@__PURE__*/ S.String;
+export const RoleAssignmentAssigneeTypeEnum = S.String;
 
 /** Defines an assignment of a role. */
 export interface RoleAssignment {
@@ -3593,10 +3592,10 @@ export const Token = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Token" }) as any as S.Schema<Token>;
 
 export type GetUsersViewTypeEnum = "admin_view" | "domain_public";
-export const GetUsersViewTypeEnum = /*@__PURE__*/ S.String;
+export const GetUsersViewTypeEnum = S.String;
 
 export type GetUsersProjectionEnum = "basic" | "custom" | "full";
-export const GetUsersProjectionEnum = /*@__PURE__*/ S.String;
+export const GetUsersProjectionEnum = S.String;
 
 export interface GetUsersRequest {
   /** Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin). */
@@ -3853,8 +3852,7 @@ export type InsertResourcesBuildingsCoordinatesSourceEnum =
   | "CLIENT_SPECIFIED"
   | "RESOLVED_FROM_ADDRESS"
   | "SOURCE_UNSPECIFIED";
-export const InsertResourcesBuildingsCoordinatesSourceEnum =
-  /*@__PURE__*/ S.String;
+export const InsertResourcesBuildingsCoordinatesSourceEnum = S.String;
 
 export interface InsertResourcesBuildingsRequest {
   /** The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID. */
@@ -4068,7 +4066,7 @@ export type DirectoryChromeosdevicesIssueCommandRequestCommandTypeEnum =
   | "FETCH_CRD_AVAILABILITY_INFO"
   | "FETCH_SUPPORT_PACKET";
 export const DirectoryChromeosdevicesIssueCommandRequestCommandTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A request for issuing a command. */
 export interface DirectoryChromeosdevicesIssueCommandRequest {
@@ -4170,10 +4168,10 @@ export const Asps = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Asps" }) as any as S.Schema<Asps>;
 
 export type ListChromeosdevicesSortOrderEnum = "ASCENDING" | "DESCENDING";
-export const ListChromeosdevicesSortOrderEnum = /*@__PURE__*/ S.String;
+export const ListChromeosdevicesSortOrderEnum = S.String;
 
 export type ListChromeosdevicesProjectionEnum = "BASIC" | "FULL";
-export const ListChromeosdevicesProjectionEnum = /*@__PURE__*/ S.String;
+export const ListChromeosdevicesProjectionEnum = S.String;
 
 export type ListChromeosdevicesOrderByEnum =
   | "annotatedLocation"
@@ -4182,7 +4180,7 @@ export type ListChromeosdevicesOrderByEnum =
   | "notes"
   | "serialNumber"
   | "status";
-export const ListChromeosdevicesOrderByEnum = /*@__PURE__*/ S.String;
+export const ListChromeosdevicesOrderByEnum = S.String;
 
 export interface ListChromeosdevicesRequest {
   /** The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users). */
@@ -4427,10 +4425,10 @@ export const Domains2 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Domains2" }) as any as S.Schema<Domains2>;
 
 export type ListGroupsSortOrderEnum = "ASCENDING" | "DESCENDING";
-export const ListGroupsSortOrderEnum = /*@__PURE__*/ S.String;
+export const ListGroupsSortOrderEnum = S.String;
 
 export type ListGroupsOrderByEnum = "email";
-export const ListGroupsOrderByEnum = /*@__PURE__*/ S.String;
+export const ListGroupsOrderByEnum = S.String;
 
 export interface ListGroupsRequest {
   /** Maximum number of results to return. Max allowed value is 200. */
@@ -4595,13 +4593,13 @@ export type ListMobiledevicesOrderByEnum =
   | "os"
   | "status"
   | "type";
-export const ListMobiledevicesOrderByEnum = /*@__PURE__*/ S.String;
+export const ListMobiledevicesOrderByEnum = S.String;
 
 export type ListMobiledevicesProjectionEnum = "BASIC" | "FULL";
-export const ListMobiledevicesProjectionEnum = /*@__PURE__*/ S.String;
+export const ListMobiledevicesProjectionEnum = S.String;
 
 export type ListMobiledevicesSortOrderEnum = "ASCENDING" | "DESCENDING";
-export const ListMobiledevicesSortOrderEnum = /*@__PURE__*/ S.String;
+export const ListMobiledevicesSortOrderEnum = S.String;
 
 export interface ListMobiledevicesRequest {
   /** Maximum number of results to return. Max allowed value is 100. */
@@ -4664,7 +4662,7 @@ export const MobileDevices = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MobileDevices" }) as any as S.Schema<MobileDevices>;
 
 export type ListOrgunitsTypeEnum = "all" | "children" | "allIncludingParent";
-export const ListOrgunitsTypeEnum = /*@__PURE__*/ S.String;
+export const ListOrgunitsTypeEnum = S.String;
 
 export interface ListOrgunitsRequest {
   /** The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users). */
@@ -5190,19 +5188,19 @@ export type ListUsersEventEnum =
   | "makeAdmin"
   | "undelete"
   | "update";
-export const ListUsersEventEnum = /*@__PURE__*/ S.String;
+export const ListUsersEventEnum = S.String;
 
 export type ListUsersSortOrderEnum = "ASCENDING" | "DESCENDING";
-export const ListUsersSortOrderEnum = /*@__PURE__*/ S.String;
+export const ListUsersSortOrderEnum = S.String;
 
 export type ListUsersOrderByEnum = "email" | "familyName" | "givenName";
-export const ListUsersOrderByEnum = /*@__PURE__*/ S.String;
+export const ListUsersOrderByEnum = S.String;
 
 export type ListUsersProjectionEnum = "basic" | "custom" | "full";
-export const ListUsersProjectionEnum = /*@__PURE__*/ S.String;
+export const ListUsersProjectionEnum = S.String;
 
 export type ListUsersViewTypeEnum = "admin_view" | "domain_public";
-export const ListUsersViewTypeEnum = /*@__PURE__*/ S.String;
+export const ListUsersViewTypeEnum = S.String;
 
 export interface ListUsersRequest {
   /** Event on which subscription is intended (if subscribing) */
@@ -5283,7 +5281,7 @@ export const Users = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Users" }) as any as S.Schema<Users>;
 
 export type ListUsersAliasesEventEnum = "add" | "delete";
-export const ListUsersAliasesEventEnum = /*@__PURE__*/ S.String;
+export const ListUsersAliasesEventEnum = S.String;
 
 export interface ListUsersAliasesRequest {
   /** Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID. */
@@ -5453,7 +5451,7 @@ export const MoveDevicesToOuChromeosdevicesResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<MoveDevicesToOuChromeosdevicesResponse>;
 
 export type PatchChromeosdevicesProjectionEnum = "BASIC" | "FULL";
-export const PatchChromeosdevicesProjectionEnum = /*@__PURE__*/ S.String;
+export const PatchChromeosdevicesProjectionEnum = S.String;
 
 export interface PatchChromeosdevicesRequest {
   /** The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users). */
@@ -5628,8 +5626,7 @@ export type PatchResourcesBuildingsCoordinatesSourceEnum =
   | "CLIENT_SPECIFIED"
   | "RESOLVED_FROM_ADDRESS"
   | "SOURCE_UNSPECIFIED";
-export const PatchResourcesBuildingsCoordinatesSourceEnum =
-  /*@__PURE__*/ S.String;
+export const PatchResourcesBuildingsCoordinatesSourceEnum = S.String;
 
 export interface PatchResourcesBuildingsRequest {
   /** Source from which Building.coordinates are derived. */
@@ -5999,7 +5996,7 @@ export const UndeleteUsersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UndeleteUsersResponse>;
 
 export type UpdateChromeosdevicesProjectionEnum = "BASIC" | "FULL";
-export const UpdateChromeosdevicesProjectionEnum = /*@__PURE__*/ S.String;
+export const UpdateChromeosdevicesProjectionEnum = S.String;
 
 export interface UpdateChromeosdevicesRequest {
   /** Determines whether the response contains the full list of properties or only a subset. */
@@ -6122,8 +6119,7 @@ export type UpdateResourcesBuildingsCoordinatesSourceEnum =
   | "CLIENT_SPECIFIED"
   | "RESOLVED_FROM_ADDRESS"
   | "SOURCE_UNSPECIFIED";
-export const UpdateResourcesBuildingsCoordinatesSourceEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateResourcesBuildingsCoordinatesSourceEnum = S.String;
 
 export interface UpdateResourcesBuildingsRequest {
   /** Source from which Building.coordinates are derived. */
@@ -6300,19 +6296,19 @@ export type WatchUsersEventEnum =
   | "makeAdmin"
   | "undelete"
   | "update";
-export const WatchUsersEventEnum = /*@__PURE__*/ S.String;
+export const WatchUsersEventEnum = S.String;
 
 export type WatchUsersViewTypeEnum = "admin_view" | "domain_public";
-export const WatchUsersViewTypeEnum = /*@__PURE__*/ S.String;
+export const WatchUsersViewTypeEnum = S.String;
 
 export type WatchUsersSortOrderEnum = "ASCENDING" | "DESCENDING";
-export const WatchUsersSortOrderEnum = /*@__PURE__*/ S.String;
+export const WatchUsersSortOrderEnum = S.String;
 
 export type WatchUsersOrderByEnum = "email" | "familyName" | "givenName";
-export const WatchUsersOrderByEnum = /*@__PURE__*/ S.String;
+export const WatchUsersOrderByEnum = S.String;
 
 export type WatchUsersProjectionEnum = "basic" | "custom" | "full";
-export const WatchUsersProjectionEnum = /*@__PURE__*/ S.String;
+export const WatchUsersProjectionEnum = S.String;
 
 export interface WatchUsersRequest {
   /** Events to watch for. */
@@ -6369,7 +6365,7 @@ export const WatchUsersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatchUsersRequest>;
 
 export type WatchUsersAliasesEventEnum = "add" | "delete";
-export const WatchUsersAliasesEventEnum = /*@__PURE__*/ S.String;
+export const WatchUsersAliasesEventEnum = S.String;
 
 export interface WatchUsersAliasesRequest {
   /** Events to watch for. */

@@ -203,7 +203,7 @@ export const Workflowexecutions_Error = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<Workflowexecutions_Error>;
 
 export type StateErrorTypeEnum = "TYPE_UNSPECIFIED" | "KMS_ERROR";
-export const StateErrorTypeEnum = /*@__PURE__*/ S.String;
+export const StateErrorTypeEnum = S.String;
 
 /** Describes an error related to the current state of the Execution resource. */
 export interface StateError {
@@ -223,14 +223,14 @@ export type ExecutionExecutionHistoryLevelEnum =
   | "EXECUTION_HISTORY_LEVEL_UNSPECIFIED"
   | "EXECUTION_HISTORY_BASIC"
   | "EXECUTION_HISTORY_DETAILED";
-export const ExecutionExecutionHistoryLevelEnum = /*@__PURE__*/ S.String;
+export const ExecutionExecutionHistoryLevelEnum = S.String;
 
 export type ExecutionCallLogLevelEnum =
   | "CALL_LOG_LEVEL_UNSPECIFIED"
   | "LOG_ALL_CALLS"
   | "LOG_ERRORS_ONLY"
   | "LOG_NONE";
-export const ExecutionCallLogLevelEnum = /*@__PURE__*/ S.String;
+export const ExecutionCallLogLevelEnum = S.String;
 
 export type ExecutionStateEnum =
   | "STATE_UNSPECIFIED"
@@ -240,7 +240,7 @@ export type ExecutionStateEnum =
   | "CANCELLED"
   | "UNAVAILABLE"
   | "QUEUED";
-export const ExecutionStateEnum = /*@__PURE__*/ S.String;
+export const ExecutionStateEnum = S.String;
 
 /** A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows). */
 export interface Execution {
@@ -389,8 +389,7 @@ export type GetProjectsLocationsWorkflowsExecutionsViewEnum =
   | "EXECUTION_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const GetProjectsLocationsWorkflowsExecutionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const GetProjectsLocationsWorkflowsExecutionsViewEnum = S.String;
 
 export interface GetProjectsLocationsWorkflowsExecutionsRequest {
   /** Required. Name of the execution to be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution} */
@@ -421,7 +420,7 @@ export type GetProjectsLocationsWorkflowsExecutionsStepEntriesViewEnum =
   | "EXECUTION_ENTRY_VIEW_BASIC"
   | "EXECUTION_ENTRY_VIEW_DETAILED";
 export const GetProjectsLocationsWorkflowsExecutionsStepEntriesViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetProjectsLocationsWorkflowsExecutionsStepEntriesRequest {
   /** Required. The name of the step entry to retrieve. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}/stepEntries/{step_entry} */
@@ -458,7 +457,7 @@ export type StepEntryMetadataProgressTypeEnum =
   | "PROGRESS_TYPE_RETRY"
   | "PROGRESS_TYPE_PARALLEL_FOR"
   | "PROGRESS_TYPE_PARALLEL_BRANCH";
-export const StepEntryMetadataProgressTypeEnum = /*@__PURE__*/ S.String;
+export const StepEntryMetadataProgressTypeEnum = S.String;
 
 /** StepEntryMetadata contains metadata information about this step. */
 export interface StepEntryMetadata {
@@ -505,7 +504,7 @@ export type StepEntryStateEnum =
   | "STATE_SUCCEEDED"
   | "STATE_FAILED"
   | "STATE_CANCELLED";
-export const StepEntryStateEnum = /*@__PURE__*/ S.String;
+export const StepEntryStateEnum = S.String;
 
 /** Exception describes why the step entry failed. */
 export interface Exception {
@@ -539,7 +538,7 @@ export type StepEntryStepTypeEnum =
   | "STEP_RETURN"
   | "STEP_RAISE"
   | "STEP_GOTO";
-export const StepEntryStepTypeEnum = /*@__PURE__*/ S.String;
+export const StepEntryStepTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -614,8 +613,7 @@ export type ListProjectsLocationsWorkflowsExecutionsViewEnum =
   | "EXECUTION_VIEW_UNSPECIFIED"
   | "BASIC"
   | "FULL";
-export const ListProjectsLocationsWorkflowsExecutionsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsWorkflowsExecutionsViewEnum = S.String;
 
 export interface ListProjectsLocationsWorkflowsExecutionsRequest {
   /** Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it. */
@@ -745,7 +743,7 @@ export type ListProjectsLocationsWorkflowsExecutionsStepEntriesViewEnum =
   | "EXECUTION_ENTRY_VIEW_BASIC"
   | "EXECUTION_ENTRY_VIEW_DETAILED";
 export const ListProjectsLocationsWorkflowsExecutionsStepEntriesViewEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface ListProjectsLocationsWorkflowsExecutionsStepEntriesRequest {
   /** Required. Name of the workflow execution to list entries for. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution} */

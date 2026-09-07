@@ -196,13 +196,13 @@ export type QuickSearchPostRequestLangCase0 =
   | "za"
   | "zh"
   | "zu";
-export const QuickSearchPostRequestLangCase0 = /*@__PURE__*/ S.String;
+export const QuickSearchPostRequestLangCase0 = S.String;
 
 export type QuickSearchPostRequestLang =
   | QuickSearchPostRequestLangCase0
   | string;
 export const QuickSearchPostRequestLang =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestLang>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestLang>;
 
 export type QuickSearchPostRequestLibraryCase0 =
   | "acestep"
@@ -452,13 +452,13 @@ export type QuickSearchPostRequestLibraryCase0 =
   | "yolov26"
   | "zonos"
   | "3dtopia-xl";
-export const QuickSearchPostRequestLibraryCase0 = /*@__PURE__*/ S.String;
+export const QuickSearchPostRequestLibraryCase0 = S.String;
 
 export type QuickSearchPostRequestLibrary =
   | QuickSearchPostRequestLibraryCase0
   | string;
 export const QuickSearchPostRequestLibrary =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestLibrary>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestLibrary>;
 
 export type QuickSearchPostRequestTypeCase0Item =
   | "model"
@@ -471,7 +471,7 @@ export type QuickSearchPostRequestTypeCase0Item =
   | "bucket"
   | "kernel"
   | "blog";
-export const QuickSearchPostRequestTypeCase0Item = /*@__PURE__*/ S.String;
+export const QuickSearchPostRequestTypeCase0Item = S.String;
 
 export type QuickSearchPostRequestTypeCase0List = Array<
   QuickSearchPostRequestTypeCase0Item | (string & {})
@@ -489,10 +489,10 @@ export type QuickSearchPostRequestType =
   | QuickSearchPostRequestTypeCase0List
   | QuickSearchPostRequestTypeCase1List;
 export const QuickSearchPostRequestType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestType>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestType>;
 
 export type QuickSearchPostRequestOrgsFilterCase0Item = "own" | "unwatched";
-export const QuickSearchPostRequestOrgsFilterCase0Item = /*@__PURE__*/ S.String;
+export const QuickSearchPostRequestOrgsFilterCase0Item = S.String;
 
 export type QuickSearchPostRequestOrgsFilterCase0List = Array<
   QuickSearchPostRequestOrgsFilterCase0Item | (string & {})
@@ -510,7 +510,7 @@ export type QuickSearchPostRequestOrgsFilter =
   | QuickSearchPostRequestOrgsFilterCase0List
   | QuickSearchPostRequestOrgsFilterCase1List;
 export const QuickSearchPostRequestOrgsFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestOrgsFilter>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestOrgsFilter>;
 
 export type QuickSearchPostRequestReposFilterCase0Item =
   | "skip_disabled"
@@ -518,8 +518,7 @@ export type QuickSearchPostRequestReposFilterCase0Item =
   | "own"
   | "own_orgs"
   | "granted_access";
-export const QuickSearchPostRequestReposFilterCase0Item =
-  /*@__PURE__*/ S.String;
+export const QuickSearchPostRequestReposFilterCase0Item = S.String;
 
 export type QuickSearchPostRequestReposFilterCase0List = Array<
   QuickSearchPostRequestReposFilterCase0Item | (string & {})
@@ -537,7 +536,7 @@ export type QuickSearchPostRequestReposFilter =
   | QuickSearchPostRequestReposFilterCase0List
   | QuickSearchPostRequestReposFilterCase1List;
 export const QuickSearchPostRequestReposFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestReposFilter>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestReposFilter>;
 
 export type QuickSearchPostRequestPipelinesCase0Item =
   | "text-classification"
@@ -597,7 +596,7 @@ export type QuickSearchPostRequestPipelinesCase0Item =
   | "any-to-any"
   | "video-to-video"
   | "other";
-export const QuickSearchPostRequestPipelinesCase0Item = /*@__PURE__*/ S.String;
+export const QuickSearchPostRequestPipelinesCase0Item = S.String;
 
 export type QuickSearchPostRequestPipelinesCase0List = Array<
   QuickSearchPostRequestPipelinesCase0Item | (string & {})
@@ -616,14 +615,14 @@ export type QuickSearchPostRequestPipelinesCase1 =
   | string
   | QuickSearchPostRequestPipelinesCase1Case1List;
 export const QuickSearchPostRequestPipelinesCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestPipelinesCase1>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestPipelinesCase1>;
 
 /** Comma-separated or array of pipeline types */
 export type QuickSearchPostRequestPipelines =
   | QuickSearchPostRequestPipelinesCase0List
   | QuickSearchPostRequestPipelinesCase1;
 export const QuickSearchPostRequestPipelines =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestPipelines>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestPipelines>;
 
 /** Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug */
 export type QuickSearchPostRequestExcludeList = Array<string>;
@@ -633,7 +632,7 @@ export const QuickSearchPostRequestExcludeList = /*@__PURE__*/ S.Array(
 
 export type QuickSearchPostRequestIncludeInvitees = boolean | unknown;
 export const QuickSearchPostRequestIncludeInvitees =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestIncludeInvitees>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestIncludeInvitees>;
 
 export type QuickSearchPostRequestRepoTypeCase0 =
   | "dataset"
@@ -641,13 +640,13 @@ export type QuickSearchPostRequestRepoTypeCase0 =
   | "space"
   | "bucket"
   | "kernel";
-export const QuickSearchPostRequestRepoTypeCase0 = /*@__PURE__*/ S.String;
+export const QuickSearchPostRequestRepoTypeCase0 = S.String;
 
 export type QuickSearchPostRequestRepoType =
   | QuickSearchPostRequestRepoTypeCase0
   | string;
 export const QuickSearchPostRequestRepoType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestRepoType>;
+  S.Unknown as any as S.Schema<QuickSearchPostRequestRepoType>;
 
 export type QuickSearchPostRequestSpacesTagsList = Array<string>;
 export const QuickSearchPostRequestSpacesTagsList = /*@__PURE__*/ S.Array(
@@ -1124,11 +1123,11 @@ export type SearchQuickRequestLangCase0 =
   | "za"
   | "zh"
   | "zu";
-export const SearchQuickRequestLangCase0 = /*@__PURE__*/ S.String;
+export const SearchQuickRequestLangCase0 = S.String;
 
 export type SearchQuickRequestLang = SearchQuickRequestLangCase0 | string;
 export const SearchQuickRequestLang =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestLang>;
+  S.Unknown as any as S.Schema<SearchQuickRequestLang>;
 
 export type SearchQuickRequestLibraryCase0 =
   | "acestep"
@@ -1378,11 +1377,11 @@ export type SearchQuickRequestLibraryCase0 =
   | "yolov26"
   | "zonos"
   | "3dtopia-xl";
-export const SearchQuickRequestLibraryCase0 = /*@__PURE__*/ S.String;
+export const SearchQuickRequestLibraryCase0 = S.String;
 
 export type SearchQuickRequestLibrary = SearchQuickRequestLibraryCase0 | string;
 export const SearchQuickRequestLibrary =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestLibrary>;
+  S.Unknown as any as S.Schema<SearchQuickRequestLibrary>;
 
 export type SearchQuickRequestTypeCase0Item =
   | "model"
@@ -1395,7 +1394,7 @@ export type SearchQuickRequestTypeCase0Item =
   | "bucket"
   | "kernel"
   | "blog";
-export const SearchQuickRequestTypeCase0Item = /*@__PURE__*/ S.String;
+export const SearchQuickRequestTypeCase0Item = S.String;
 
 export type SearchQuickRequestTypeCase0List = Array<
   SearchQuickRequestTypeCase0Item | (string & {})
@@ -1413,10 +1412,10 @@ export type SearchQuickRequestType =
   | SearchQuickRequestTypeCase0List
   | SearchQuickRequestTypeCase1List;
 export const SearchQuickRequestType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestType>;
+  S.Unknown as any as S.Schema<SearchQuickRequestType>;
 
 export type SearchQuickRequestOrgsFilterCase0Item = "own" | "unwatched";
-export const SearchQuickRequestOrgsFilterCase0Item = /*@__PURE__*/ S.String;
+export const SearchQuickRequestOrgsFilterCase0Item = S.String;
 
 export type SearchQuickRequestOrgsFilterCase0List = Array<
   SearchQuickRequestOrgsFilterCase0Item | (string & {})
@@ -1434,7 +1433,7 @@ export type SearchQuickRequestOrgsFilter =
   | SearchQuickRequestOrgsFilterCase0List
   | SearchQuickRequestOrgsFilterCase1List;
 export const SearchQuickRequestOrgsFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestOrgsFilter>;
+  S.Unknown as any as S.Schema<SearchQuickRequestOrgsFilter>;
 
 export type SearchQuickRequestReposFilterCase0Item =
   | "skip_disabled"
@@ -1442,7 +1441,7 @@ export type SearchQuickRequestReposFilterCase0Item =
   | "own"
   | "own_orgs"
   | "granted_access";
-export const SearchQuickRequestReposFilterCase0Item = /*@__PURE__*/ S.String;
+export const SearchQuickRequestReposFilterCase0Item = S.String;
 
 export type SearchQuickRequestReposFilterCase0List = Array<
   SearchQuickRequestReposFilterCase0Item | (string & {})
@@ -1460,7 +1459,7 @@ export type SearchQuickRequestReposFilter =
   | SearchQuickRequestReposFilterCase0List
   | SearchQuickRequestReposFilterCase1List;
 export const SearchQuickRequestReposFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestReposFilter>;
+  S.Unknown as any as S.Schema<SearchQuickRequestReposFilter>;
 
 export type SearchQuickRequestPipelinesCase0Item =
   | "text-classification"
@@ -1520,7 +1519,7 @@ export type SearchQuickRequestPipelinesCase0Item =
   | "any-to-any"
   | "video-to-video"
   | "other";
-export const SearchQuickRequestPipelinesCase0Item = /*@__PURE__*/ S.String;
+export const SearchQuickRequestPipelinesCase0Item = S.String;
 
 export type SearchQuickRequestPipelinesCase0List = Array<
   SearchQuickRequestPipelinesCase0Item | (string & {})
@@ -1538,14 +1537,14 @@ export type SearchQuickRequestPipelinesCase1 =
   | string
   | SearchQuickRequestPipelinesCase1Case1List;
 export const SearchQuickRequestPipelinesCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestPipelinesCase1>;
+  S.Unknown as any as S.Schema<SearchQuickRequestPipelinesCase1>;
 
 /** Comma-separated or array of pipeline types */
 export type SearchQuickRequestPipelines =
   | SearchQuickRequestPipelinesCase0List
   | SearchQuickRequestPipelinesCase1;
 export const SearchQuickRequestPipelines =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestPipelines>;
+  S.Unknown as any as S.Schema<SearchQuickRequestPipelines>;
 
 /** Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug */
 export type SearchQuickRequestExcludeList = Array<string>;
@@ -1555,7 +1554,7 @@ export const SearchQuickRequestExcludeList = /*@__PURE__*/ S.Array(
 
 export type SearchQuickRequestIncludeInvitees = boolean | unknown;
 export const SearchQuickRequestIncludeInvitees =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestIncludeInvitees>;
+  S.Unknown as any as S.Schema<SearchQuickRequestIncludeInvitees>;
 
 export type SearchQuickRequestRepoTypeCase0 =
   | "dataset"
@@ -1563,13 +1562,13 @@ export type SearchQuickRequestRepoTypeCase0 =
   | "space"
   | "bucket"
   | "kernel";
-export const SearchQuickRequestRepoTypeCase0 = /*@__PURE__*/ S.String;
+export const SearchQuickRequestRepoTypeCase0 = S.String;
 
 export type SearchQuickRequestRepoType =
   | SearchQuickRequestRepoTypeCase0
   | string;
 export const SearchQuickRequestRepoType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestRepoType>;
+  S.Unknown as any as S.Schema<SearchQuickRequestRepoType>;
 
 export type SearchQuickRequestSpacesTagsList = Array<string>;
 export const SearchQuickRequestSpacesTagsList = /*@__PURE__*/ S.Array(

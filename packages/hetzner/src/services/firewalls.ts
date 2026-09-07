@@ -24,7 +24,7 @@ export const CreateFirewallRequestLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Traffic direction in which the rule should be applied to. Use `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs. */
 export type CreateFirewallRequestRulesItemDirection = "in" | "out";
-export const CreateFirewallRequestRulesItemDirection = /*@__PURE__*/ S.String;
+export const CreateFirewallRequestRulesItemDirection = S.String;
 
 /** List of permitted IPv4/IPv6 addresses for incoming traffic. The `direction` must be set to `in`. IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most. The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`. Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses. IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4). */
 export type CreateFirewallRequestRulesItemSourceIpsList = Array<string>;
@@ -47,7 +47,7 @@ export type CreateFirewallRequestRulesItemProtocol =
   | "icmp"
   | "esp"
   | "gre";
-export const CreateFirewallRequestRulesItemProtocol = /*@__PURE__*/ S.String;
+export const CreateFirewallRequestRulesItemProtocol = S.String;
 
 export interface CreateFirewallRequestRulesItem {
   /** Description of the rule. */
@@ -87,7 +87,7 @@ export const CreateFirewallRequestRulesList = /*@__PURE__*/ S.Array(
 
 /** Type of the resource. */
 export type CreateFirewallRequestApplyToItemType = "server" | "label_selector";
-export const CreateFirewallRequestApplyToItemType = /*@__PURE__*/ S.String;
+export const CreateFirewallRequestApplyToItemType = S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export interface CreateFirewallRequestApplyToItemServer {
@@ -174,8 +174,7 @@ export const CreateFirewallResponseFirewallLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Traffic direction in which the rule should be applied to. Use `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs. */
 export type CreateFirewallResponseFirewallRulesItemDirection = "in" | "out";
-export const CreateFirewallResponseFirewallRulesItemDirection =
-  /*@__PURE__*/ S.String;
+export const CreateFirewallResponseFirewallRulesItemDirection = S.String;
 
 /** List of permitted IPv4/IPv6 addresses for incoming traffic. The `direction` must be set to `in`. IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most. The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`. Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses. IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4). */
 export type CreateFirewallResponseFirewallRulesItemSourceIpsList =
@@ -200,8 +199,7 @@ export type CreateFirewallResponseFirewallRulesItemProtocol =
   | "icmp"
   | "esp"
   | "gre";
-export const CreateFirewallResponseFirewallRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const CreateFirewallResponseFirewallRulesItemProtocol = S.String;
 
 export interface CreateFirewallResponseFirewallRulesItem {
   /** Description of the rule. */
@@ -242,8 +240,7 @@ export const CreateFirewallResponseFirewallRulesList = /*@__PURE__*/ S.Array(
 export type CreateFirewallResponseFirewallAppliedToItemType =
   | "server"
   | "label_selector";
-export const CreateFirewallResponseFirewallAppliedToItemType =
-  /*@__PURE__*/ S.String;
+export const CreateFirewallResponseFirewallAppliedToItemType = S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type CreateFirewallResponseFirewallAppliedToItemServer =
@@ -261,7 +258,7 @@ export const CreateFirewallResponseFirewallAppliedToItemLabelSelector =
 export type CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType =
   "server";
 export const CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type CreateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer =
@@ -357,7 +354,7 @@ export type CreateFirewallResponseActionsItemStatus =
   | "running"
   | "success"
   | "error";
-export const CreateFirewallResponseActionsItemStatus = /*@__PURE__*/ S.String;
+export const CreateFirewallResponseActionsItemStatus = S.String;
 
 export interface CreateFirewallResponseActionsItemResourcesItem {
   /** ID of the Resource. */
@@ -494,8 +491,7 @@ export const GetFirewallResponseFirewallLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Traffic direction in which the rule should be applied to. Use `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs. */
 export type GetFirewallResponseFirewallRulesItemDirection = "in" | "out";
-export const GetFirewallResponseFirewallRulesItemDirection =
-  /*@__PURE__*/ S.String;
+export const GetFirewallResponseFirewallRulesItemDirection = S.String;
 
 /** List of permitted IPv4/IPv6 addresses for incoming traffic. The `direction` must be set to `in`. IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most. The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`. Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses. IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4). */
 export type GetFirewallResponseFirewallRulesItemSourceIpsList = Array<string>;
@@ -519,8 +515,7 @@ export type GetFirewallResponseFirewallRulesItemProtocol =
   | "icmp"
   | "esp"
   | "gre";
-export const GetFirewallResponseFirewallRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const GetFirewallResponseFirewallRulesItemProtocol = S.String;
 
 export interface GetFirewallResponseFirewallRulesItem {
   /** Description of the rule. */
@@ -560,8 +555,7 @@ export const GetFirewallResponseFirewallRulesList = /*@__PURE__*/ S.Array(
 export type GetFirewallResponseFirewallAppliedToItemType =
   | "server"
   | "label_selector";
-export const GetFirewallResponseFirewallAppliedToItemType =
-  /*@__PURE__*/ S.String;
+export const GetFirewallResponseFirewallAppliedToItemType = S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type GetFirewallResponseFirewallAppliedToItemServer =
@@ -579,7 +573,7 @@ export const GetFirewallResponseFirewallAppliedToItemLabelSelector =
 export type GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType =
   "server";
 export const GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type GetFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer =
@@ -690,7 +684,7 @@ export type ListFirewallsRequestSortItem =
   | "created"
   | "created:asc"
   | "created:desc";
-export const ListFirewallsRequestSortItem = /*@__PURE__*/ S.String;
+export const ListFirewallsRequestSortItem = S.String;
 
 export type ListFirewallsRequestSortList = Array<
   ListFirewallsRequestSortItem | (string & {})
@@ -735,8 +729,7 @@ export const ListFirewallsResponseFirewallsItemLabelsMap =
 
 /** Traffic direction in which the rule should be applied to. Use `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs. */
 export type ListFirewallsResponseFirewallsItemRulesItemDirection = "in" | "out";
-export const ListFirewallsResponseFirewallsItemRulesItemDirection =
-  /*@__PURE__*/ S.String;
+export const ListFirewallsResponseFirewallsItemRulesItemDirection = S.String;
 
 /** List of permitted IPv4/IPv6 addresses for incoming traffic. The `direction` must be set to `in`. IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most. The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`. Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses. IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4). */
 export type ListFirewallsResponseFirewallsItemRulesItemSourceIpsList =
@@ -761,8 +754,7 @@ export type ListFirewallsResponseFirewallsItemRulesItemProtocol =
   | "icmp"
   | "esp"
   | "gre";
-export const ListFirewallsResponseFirewallsItemRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const ListFirewallsResponseFirewallsItemRulesItemProtocol = S.String;
 
 export interface ListFirewallsResponseFirewallsItemRulesItem {
   /** Description of the rule. */
@@ -804,8 +796,7 @@ export const ListFirewallsResponseFirewallsItemRulesList =
 export type ListFirewallsResponseFirewallsItemAppliedToItemType =
   | "server"
   | "label_selector";
-export const ListFirewallsResponseFirewallsItemAppliedToItemType =
-  /*@__PURE__*/ S.String;
+export const ListFirewallsResponseFirewallsItemAppliedToItemType = S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type ListFirewallsResponseFirewallsItemAppliedToItemServer =
@@ -823,7 +814,7 @@ export const ListFirewallsResponseFirewallsItemAppliedToItemLabelSelector =
 export type ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItemType =
   "server";
 export const ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type ListFirewallsResponseFirewallsItemAppliedToItemAppliedToResourcesItemServer =
@@ -1011,8 +1002,7 @@ export const UpdateFirewallResponseFirewallLabelsMap = /*@__PURE__*/ S.Record(
 
 /** Traffic direction in which the rule should be applied to. Use `source_ips` for direction `in` and `destination_ips` for direction `out` to specify IPs. */
 export type UpdateFirewallResponseFirewallRulesItemDirection = "in" | "out";
-export const UpdateFirewallResponseFirewallRulesItemDirection =
-  /*@__PURE__*/ S.String;
+export const UpdateFirewallResponseFirewallRulesItemDirection = S.String;
 
 /** List of permitted IPv4/IPv6 addresses for incoming traffic. The `direction` must be set to `in`. IPs must be provided in [CIDR block notation](https://wikipedia.org/wiki/CIDR). You can specify 100 CIDR blocks at most. The CIDR blocks may refer to networks (with empty host bits) or single hosts. For example, a network could be defined with `10.0.1.0/24` or `2001:db8:ff00:42::/64`, and a single host with `10.0.1.1/32` or `2001:db8:ff00:42::8329/128`. Use `0.0.0.0/0` to allow any IPv4 addresses and `::/0` to allow any IPv6 addresses. IPv6 CIDRs will be transformed to their canonical form according to [RFC5952](https://datatracker.ietf.org/doc/html/rfc5952#section-4). */
 export type UpdateFirewallResponseFirewallRulesItemSourceIpsList =
@@ -1037,8 +1027,7 @@ export type UpdateFirewallResponseFirewallRulesItemProtocol =
   | "icmp"
   | "esp"
   | "gre";
-export const UpdateFirewallResponseFirewallRulesItemProtocol =
-  /*@__PURE__*/ S.String;
+export const UpdateFirewallResponseFirewallRulesItemProtocol = S.String;
 
 export interface UpdateFirewallResponseFirewallRulesItem {
   /** Description of the rule. */
@@ -1079,8 +1068,7 @@ export const UpdateFirewallResponseFirewallRulesList = /*@__PURE__*/ S.Array(
 export type UpdateFirewallResponseFirewallAppliedToItemType =
   | "server"
   | "label_selector";
-export const UpdateFirewallResponseFirewallAppliedToItemType =
-  /*@__PURE__*/ S.String;
+export const UpdateFirewallResponseFirewallAppliedToItemType = S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type UpdateFirewallResponseFirewallAppliedToItemServer =
@@ -1098,7 +1086,7 @@ export const UpdateFirewallResponseFirewallAppliedToItemLabelSelector =
 export type UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType =
   "server";
 export const UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** [Server](#tag/servers) the [Firewall](#tag/firewalls) is applied to. Only set for `type` `server`, otherwise `null`. */
 export type UpdateFirewallResponseFirewallAppliedToItemAppliedToResourcesItemServer =

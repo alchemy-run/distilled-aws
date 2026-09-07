@@ -219,7 +219,7 @@ export type CheckCompatibilityRequestSchemaTypeEnum =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const CheckCompatibilityRequestSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const CheckCompatibilityRequestSchemaTypeEnum = S.String;
 
 /** Request for CheckCompatibility. */
 export interface CheckCompatibilityRequest {
@@ -338,7 +338,7 @@ export type ClusterStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "UPDATING";
-export const ClusterStateEnum = /*@__PURE__*/ S.String;
+export const ClusterStateEnum = S.String;
 
 /** A capacity configuration of a Kafka cluster. */
 export interface CapacityConfig {
@@ -380,7 +380,7 @@ export type RebalanceConfigModeEnum =
   | "MODE_UNSPECIFIED"
   | "NO_REBALANCE"
   | "AUTO_REBALANCE_ON_SCALE_UP";
-export const RebalanceConfigModeEnum = /*@__PURE__*/ S.String;
+export const RebalanceConfigModeEnum = S.String;
 
 /** Defines rebalancing behavior of a Kafka cluster. */
 export interface RebalanceConfig {
@@ -753,7 +753,7 @@ export type ConnectClusterStateEnum =
   | "ACTIVE"
   | "DELETING"
   | "DETACHED";
-export const ConnectClusterStateEnum = /*@__PURE__*/ S.String;
+export const ConnectClusterStateEnum = S.String;
 
 /** The configuration of a Virtual Private Cloud (VPC) network that can access the Kafka Connect cluster. */
 export interface ConnectNetworkConfig {
@@ -904,7 +904,7 @@ export type ConnectorStateEnum =
   | "FAILED"
   | "RESTARTING"
   | "STOPPED";
-export const ConnectorStateEnum = /*@__PURE__*/ S.String;
+export const ConnectorStateEnum = S.String;
 
 /** A Kafka Connect connector in a given ConnectCluster. */
 export interface Connector {
@@ -1008,7 +1008,7 @@ export type CreateVersionRequestSchemaTypeEnum =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const CreateVersionRequestSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const CreateVersionRequestSchemaTypeEnum = S.String;
 
 /** Request for CreateVersion. */
 export interface CreateVersionRequest {
@@ -1282,7 +1282,7 @@ export type SchemaConfigCompatibilityEnum =
   | "FORWARD_TRANSITIVE"
   | "FULL"
   | "FULL_TRANSITIVE";
-export const SchemaConfigCompatibilityEnum = /*@__PURE__*/ S.String;
+export const SchemaConfigCompatibilityEnum = S.String;
 
 /** SchemaConfig represents configuration for a schema registry or a specific subject. */
 export interface SchemaConfig {
@@ -1340,7 +1340,7 @@ export const DeleteProjectsLocationsSchemaRegistriesContextsModeRequest =
   }) as any as S.Schema<DeleteProjectsLocationsSchemaRegistriesContextsModeRequest>;
 
 export type SchemaModeModeEnum = "NONE" | "READONLY" | "READWRITE" | "IMPORT";
-export const SchemaModeModeEnum = /*@__PURE__*/ S.String;
+export const SchemaModeModeEnum = S.String;
 
 /** SchemaMode represents the mode of a schema registry or a specific subject. Four modes are supported: * NONE: deprecated. This was the default mode for a subject, but now the default is unset (which means use the global schema registry setting) * READONLY: The schema registry is in read-only mode. * READWRITE: The schema registry is in read-write mode, which allows limited write operations on the schema. * IMPORT: The schema registry is in import mode, which allows more editing operations on the schema for data importing purposes. */
 export interface SchemaMode {
@@ -1525,7 +1525,7 @@ export type GetProjectsLocationsClustersViewEnum =
   | "CLUSTER_VIEW_UNSPECIFIED"
   | "CLUSTER_VIEW_BASIC"
   | "CLUSTER_VIEW_FULL";
-export const GetProjectsLocationsClustersViewEnum = /*@__PURE__*/ S.String;
+export const GetProjectsLocationsClustersViewEnum = S.String;
 
 export interface GetProjectsLocationsClustersRequest {
   /** Required. The name of the cluster whose configuration to return. */
@@ -1863,7 +1863,7 @@ export type Managedkafka_SchemaSchemaTypeEnum =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const Managedkafka_SchemaSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const Managedkafka_SchemaSchemaTypeEnum = S.String;
 
 /** Schema for a Kafka message. */
 export interface Managedkafka_Schema {
@@ -1912,7 +1912,7 @@ export type SchemaVersionSchemaTypeEnum =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const SchemaVersionSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const SchemaVersionSchemaTypeEnum = S.String;
 
 /** Version of a schema. */
 export interface SchemaVersion {
@@ -2248,8 +2248,7 @@ export type ListProjectsLocationsClustersConsumerGroupsViewEnum =
   | "CONSUMER_GROUP_VIEW_UNSPECIFIED"
   | "CONSUMER_GROUP_VIEW_BASIC"
   | "CONSUMER_GROUP_VIEW_FULL";
-export const ListProjectsLocationsClustersConsumerGroupsViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsClustersConsumerGroupsViewEnum = S.String;
 
 export interface ListProjectsLocationsClustersConsumerGroupsRequest {
   /** Optional. Specifies the view (BASIC or FULL) of the ConsumerGroup resource to be returned in the response. Defaults to FULL view. */
@@ -2511,8 +2510,7 @@ export type ListProjectsLocationsSchemaRegistriesViewEnum =
   | "SCHEMA_REGISTRY_VIEW_UNSPECIFIED"
   | "SCHEMA_REGISTRY_VIEW_BASIC"
   | "SCHEMA_REGISTRY_VIEW_FULL";
-export const ListProjectsLocationsSchemaRegistriesViewEnum =
-  /*@__PURE__*/ S.String;
+export const ListProjectsLocationsSchemaRegistriesViewEnum = S.String;
 
 export interface ListProjectsLocationsSchemaRegistriesRequest {
   /** Required. The parent whose schema registry instances are to be listed. Structured like: `projects/{project}/locations/{location}` */
@@ -2856,7 +2854,7 @@ export type LookupVersionRequestSchemaTypeEnum =
   | "AVRO"
   | "JSON"
   | "PROTOBUF";
-export const LookupVersionRequestSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const LookupVersionRequestSchemaTypeEnum = S.String;
 
 /** Request for LookupVersion. */
 export interface LookupVersionRequest {
@@ -3266,8 +3264,7 @@ export type UpdateSchemaConfigRequestCompatibilityEnum =
   | "FORWARD_TRANSITIVE"
   | "FULL"
   | "FULL_TRANSITIVE";
-export const UpdateSchemaConfigRequestCompatibilityEnum =
-  /*@__PURE__*/ S.String;
+export const UpdateSchemaConfigRequestCompatibilityEnum = S.String;
 
 /** Request for updating schema config. On a SchemaSubject-level SchemaConfig, an unset field will be removed from the SchemaConfig. */
 export interface UpdateSchemaConfigRequest {
@@ -3334,7 +3331,7 @@ export type UpdateSchemaModeRequestModeEnum =
   | "READONLY"
   | "READWRITE"
   | "IMPORT";
-export const UpdateSchemaModeRequestModeEnum = /*@__PURE__*/ S.String;
+export const UpdateSchemaModeRequestModeEnum = S.String;
 
 /** Request for updating schema registry or subject mode. */
 export interface UpdateSchemaModeRequest {

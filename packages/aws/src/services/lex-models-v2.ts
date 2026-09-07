@@ -190,7 +190,7 @@ export type ErrorCode =
   | "RESOURCE_ALREADY_EXISTS"
   | "INTERNAL_SERVER_FAILURE"
   | (string & {});
-export const ErrorCode = /*@__PURE__*/ S.String;
+export const ErrorCode = S.String;
 
 export interface FailedCustomVocabularyItem {
   itemId?: string;
@@ -397,7 +397,7 @@ export type BotLocaleStatus =
   | "Importing"
   | "Processing"
   | (string & {});
-export const BotLocaleStatus = /*@__PURE__*/ S.String;
+export const BotLocaleStatus = S.String;
 
 export interface BuildBotLocaleResponse {
   botId?: string;
@@ -438,7 +438,7 @@ export const TagMap = /*@__PURE__*/ S.Record(
   S.String.pipe(S.optional),
 );
 export type BotType = "Bot" | "BotNetwork" | (string & {});
-export const BotType = /*@__PURE__*/ S.String;
+export const BotType = S.String;
 
 export type BotAliasId = string;
 export type BotAliasName = string;
@@ -516,7 +516,7 @@ export type BotStatus =
   | "Importing"
   | "Updating"
   | (string & {});
-export const BotStatus = /*@__PURE__*/ S.String;
+export const BotStatus = S.String;
 
 export interface CreateBotResponse {
   botId?: string;
@@ -725,7 +725,7 @@ export type BotAliasStatus =
   | "Deleting"
   | "Failed"
   | (string & {});
-export const BotAliasStatus = /*@__PURE__*/ S.String;
+export const BotAliasStatus = S.String;
 
 export interface CreateBotAliasResponse {
   botAliasId?: string;
@@ -768,7 +768,7 @@ export type VoiceEngine =
   | "long-form"
   | "generative"
   | (string & {});
-export const VoiceEngine = /*@__PURE__*/ S.String;
+export const VoiceEngine = S.String;
 
 export type VoiceId = string;
 export interface VoiceSettings {
@@ -805,7 +805,7 @@ export type AudioFillerType =
   | "TYPING_KINETIC_KEYS"
   | "TYPING_QUIET_QWERTY"
   | (string & {});
-export const AudioFillerType = /*@__PURE__*/ S.String;
+export const AudioFillerType = S.String;
 
 export type AudioFillerDelayInMilliseconds = number;
 export type AudioFillerDurationInMilliseconds = number;
@@ -833,7 +833,7 @@ export type SpeechModelPreference =
   | "Neural"
   | "Deepgram"
   | (string & {});
-export const SpeechModelPreference = /*@__PURE__*/ S.String;
+export const SpeechModelPreference = S.String;
 
 export type SecretsManagerSecretArn = string;
 export type DeepgramModelId = string;
@@ -879,7 +879,7 @@ export const BedrockGuardrailConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "BedrockGuardrailConfiguration",
 }) as any as S.Schema<BedrockGuardrailConfiguration>;
 export type BedrockTraceStatus = "ENABLED" | "DISABLED" | (string & {});
-export const BedrockTraceStatus = /*@__PURE__*/ S.String;
+export const BedrockTraceStatus = S.String;
 
 export type BedrockModelCustomPrompt = string;
 export interface BedrockModelSpecification {
@@ -912,7 +912,7 @@ export const SlotResolutionImprovementSpecification = /*@__PURE__*/ S.suspend(
   identifier: "SlotResolutionImprovementSpecification",
 }) as any as S.Schema<SlotResolutionImprovementSpecification>;
 export type AssistedNluMode = "Primary" | "Fallback" | (string & {});
-export const AssistedNluMode = /*@__PURE__*/ S.String;
+export const AssistedNluMode = S.String;
 
 export type MaxDisambiguationIntents = number;
 export type CustomDisambiguationMessage = string;
@@ -1014,7 +1014,7 @@ export type SpeechDetectionSensitivity =
   | "HighNoiseTolerance"
   | "MaximumNoiseTolerance"
   | (string & {});
-export const SpeechDetectionSensitivity = /*@__PURE__*/ S.String;
+export const SpeechDetectionSensitivity = S.String;
 
 export interface CreateBotLocaleRequest {
   botId: string;
@@ -1125,7 +1125,7 @@ export type BotReplicaStatus =
   | "Deleting"
   | "Failed"
   | (string & {});
-export const BotReplicaStatus = /*@__PURE__*/ S.String;
+export const BotReplicaStatus = S.String;
 
 export interface CreateBotReplicaResponse {
   botId?: string;
@@ -1267,7 +1267,7 @@ export const ExportResourceSpecification = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExportResourceSpecification",
 }) as any as S.Schema<ExportResourceSpecification>;
 export type ImportExportFileFormat = "LexJson" | "TSV" | "CSV" | (string & {});
-export const ImportExportFileFormat = /*@__PURE__*/ S.String;
+export const ImportExportFileFormat = S.String;
 
 export type ImportExportFilePassword = string | redacted.Redacted<string>;
 export interface CreateExportRequest {
@@ -1299,7 +1299,7 @@ export type ExportStatus =
   | "Failed"
   | "Deleting"
   | (string & {});
-export const ExportStatus = /*@__PURE__*/ S.String;
+export const ExportStatus = S.String;
 
 export interface CreateExportResponse {
   exportId?: string;
@@ -1442,7 +1442,7 @@ export type DialogActionType =
   | "CloseIntent"
   | "EndConversation"
   | (string & {});
-export const DialogActionType = /*@__PURE__*/ S.String;
+export const DialogActionType = S.String;
 
 export interface DialogAction {
   type: DialogActionType;
@@ -1457,7 +1457,7 @@ export const DialogAction = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DialogAction" }) as any as S.Schema<DialogAction>;
 export type SlotShape = "Scalar" | "List" | (string & {});
-export const SlotShape = /*@__PURE__*/ S.String;
+export const SlotShape = S.String;
 
 export type NonEmptyString = string;
 export interface SlotValue {
@@ -1672,7 +1672,7 @@ export const FulfillmentCodeHookSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FulfillmentCodeHookSettings>;
 export type PromptMaxRetries = number;
 export type MessageSelectionStrategy = "Random" | "Ordered" | (string & {});
-export const MessageSelectionStrategy = /*@__PURE__*/ S.String;
+export const MessageSelectionStrategy = S.String;
 
 export type PromptAttempt =
   | "Initial"
@@ -1682,7 +1682,7 @@ export type PromptAttempt =
   | "Retry4"
   | "Retry5"
   | (string & {});
-export const PromptAttempt = /*@__PURE__*/ S.String;
+export const PromptAttempt = S.String;
 
 export interface AllowedInputTypes {
   allowAudioInput: boolean;
@@ -2213,7 +2213,7 @@ export const CreateResourcePolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateResourcePolicyResponse",
 }) as any as S.Schema<CreateResourcePolicyResponse>;
 export type Effect = "Allow" | "Deny" | (string & {});
-export const Effect = /*@__PURE__*/ S.String;
+export const Effect = S.String;
 
 export type ServicePrincipal = string;
 export type PrincipalArn = string;
@@ -2314,7 +2314,7 @@ export const SlotDefaultValueSpecification = /*@__PURE__*/ S.suspend(() =>
   identifier: "SlotDefaultValueSpecification",
 }) as any as S.Schema<SlotDefaultValueSpecification>;
 export type SlotConstraint = "Required" | "Optional" | (string & {});
-export const SlotConstraint = /*@__PURE__*/ S.String;
+export const SlotConstraint = S.String;
 
 export type StillWaitingResponseFrequency = number;
 export type StillWaitingResponseTimeout = number;
@@ -2378,7 +2378,7 @@ export type SlotResolutionStrategy =
   | "EnhancedFallback"
   | "Default"
   | (string & {});
-export const SlotResolutionStrategy = /*@__PURE__*/ S.String;
+export const SlotResolutionStrategy = S.String;
 
 export interface SlotResolutionSetting {
   slotResolutionStrategy: SlotResolutionStrategy;
@@ -2414,7 +2414,7 @@ export type ObfuscationSettingType =
   | "None"
   | "DefaultObfuscation"
   | (string & {});
-export const ObfuscationSettingType = /*@__PURE__*/ S.String;
+export const ObfuscationSettingType = S.String;
 
 export interface ObfuscationSetting {
   obfuscationSettingType: ObfuscationSettingType;
@@ -2580,7 +2580,7 @@ export type SlotValueResolutionStrategy =
   | "TopResolution"
   | "Concatenation"
   | (string & {});
-export const SlotValueResolutionStrategy = /*@__PURE__*/ S.String;
+export const SlotValueResolutionStrategy = S.String;
 
 export type RegexPattern = string;
 export interface SlotValueRegexFilter {
@@ -2594,7 +2594,7 @@ export const SlotValueRegexFilter = /*@__PURE__*/ S.suspend(() =>
 export type AudioRecognitionStrategy =
   | "UseSlotValuesAsCustomVocabulary"
   | (string & {});
-export const AudioRecognitionStrategy = /*@__PURE__*/ S.String;
+export const AudioRecognitionStrategy = S.String;
 
 export interface AdvancedRecognitionSetting {
   audioRecognitionStrategy?: AudioRecognitionStrategy;
@@ -3096,7 +3096,7 @@ export type CustomVocabularyStatus =
   | "Importing"
   | "Creating"
   | (string & {});
-export const CustomVocabularyStatus = /*@__PURE__*/ S.String;
+export const CustomVocabularyStatus = S.String;
 
 export interface DeleteCustomVocabularyResponse {
   botId?: string;
@@ -3166,7 +3166,7 @@ export type ImportStatus =
   | "Failed"
   | "Deleting"
   | (string & {});
-export const ImportStatus = /*@__PURE__*/ S.String;
+export const ImportStatus = S.String;
 
 export interface DeleteImportResponse {
   importId?: string;
@@ -3603,7 +3603,7 @@ export type BotAnalyzerStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const BotAnalyzerStatus = /*@__PURE__*/ S.String;
+export const BotAnalyzerStatus = S.String;
 
 export interface IssueLocation {
   botLocale?: string;
@@ -3618,7 +3618,7 @@ export const IssueLocation = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "IssueLocation" }) as any as S.Schema<IssueLocation>;
 export type Priority = "High" | "Medium" | "Low" | (string & {});
-export const Priority = /*@__PURE__*/ S.String;
+export const Priority = S.String;
 
 export interface BotAnalyzerRecommendation {
   issueLocation: IssueLocation;
@@ -3807,7 +3807,7 @@ export type BotRecommendationStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const BotRecommendationStatus = /*@__PURE__*/ S.String;
+export const BotRecommendationStatus = S.String;
 
 export type ObjectPrefix = string;
 export type ObjectPrefixes = string[];
@@ -3819,7 +3819,7 @@ export const PathFormat = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ objectPrefixes: S.optional(ObjectPrefixes) }),
 ).annotate({ identifier: "PathFormat" }) as any as S.Schema<PathFormat>;
 export type TranscriptFormat = "Lex" | (string & {});
-export const TranscriptFormat = /*@__PURE__*/ S.String;
+export const TranscriptFormat = S.String;
 
 export interface DateRangeFilter {
   startDateTime: Date;
@@ -4044,7 +4044,7 @@ export type GenerationStatus =
   | "Complete"
   | "InProgress"
   | (string & {});
-export const GenerationStatus = /*@__PURE__*/ S.String;
+export const GenerationStatus = S.String;
 
 export type GenerationInput = string;
 export interface DescribeBotResourceGenerationResponse {
@@ -4335,7 +4335,7 @@ export const TestSetImportInputLocation = /*@__PURE__*/ S.suspend(() =>
   identifier: "TestSetImportInputLocation",
 }) as any as S.Schema<TestSetImportInputLocation>;
 export type TestSetModality = "Text" | "Audio" | (string & {});
-export const TestSetModality = /*@__PURE__*/ S.String;
+export const TestSetModality = S.String;
 
 export interface TestSetImportResourceSpecification {
   testSetName: string;
@@ -4385,7 +4385,7 @@ export type MergeStrategy =
   | "FailOnConflict"
   | "Append"
   | (string & {});
-export const MergeStrategy = /*@__PURE__*/ S.String;
+export const MergeStrategy = S.String;
 
 export interface DescribeImportResponse {
   importId?: string;
@@ -4706,7 +4706,7 @@ export type TestExecutionStatus =
   | "Stopping"
   | "Stopped"
   | (string & {});
-export const TestExecutionStatus = /*@__PURE__*/ S.String;
+export const TestExecutionStatus = S.String;
 
 export interface BotAliasTestExecutionTarget {
   botId: string;
@@ -4727,10 +4727,10 @@ export const TestExecutionTarget = /*@__PURE__*/ S.suspend(() =>
   identifier: "TestExecutionTarget",
 }) as any as S.Schema<TestExecutionTarget>;
 export type TestExecutionApiMode = "Streaming" | "NonStreaming" | (string & {});
-export const TestExecutionApiMode = /*@__PURE__*/ S.String;
+export const TestExecutionApiMode = S.String;
 
 export type TestExecutionModality = "Text" | "Audio" | (string & {});
-export const TestExecutionModality = /*@__PURE__*/ S.String;
+export const TestExecutionModality = S.String;
 
 export interface DescribeTestExecutionResponse {
   testExecutionId?: string;
@@ -4788,7 +4788,7 @@ export type TestSetStatus =
   | "ValidationError"
   | "Ready"
   | (string & {});
-export const TestSetStatus = /*@__PURE__*/ S.String;
+export const TestSetStatus = S.String;
 
 export interface DescribeTestSetResponse {
   testSetId?: string;
@@ -4852,7 +4852,7 @@ export type TestSetDiscrepancyReportStatus =
   | "Completed"
   | "Failed"
   | (string & {});
-export const TestSetDiscrepancyReportStatus = /*@__PURE__*/ S.String;
+export const TestSetDiscrepancyReportStatus = S.String;
 
 export interface TestSetIntentDiscrepancyItem {
   intentName: string;
@@ -4958,10 +4958,10 @@ export type TestSetGenerationStatus =
   | "Failed"
   | "Pending"
   | (string & {});
-export const TestSetGenerationStatus = /*@__PURE__*/ S.String;
+export const TestSetGenerationStatus = S.String;
 
 export type ConversationLogsInputModeFilter = "Speech" | "Text" | (string & {});
-export const ConversationLogsInputModeFilter = /*@__PURE__*/ S.String;
+export const ConversationLogsInputModeFilter = S.String;
 
 export interface ConversationLogsDataSourceFilterBy {
   startTime: Date;
@@ -5119,7 +5119,7 @@ export const GetTestExecutionArtifactsUrlResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetTestExecutionArtifactsUrlResponse",
 }) as any as S.Schema<GetTestExecutionArtifactsUrlResponse>;
 export type TimeDimension = "Hours" | "Days" | "Weeks" | (string & {});
-export const TimeDimension = /*@__PURE__*/ S.String;
+export const TimeDimension = S.String;
 
 export type TimeValue = number;
 export interface RelativeAggregationDuration {
@@ -5143,10 +5143,10 @@ export type AggregatedUtterancesSortAttribute =
   | "HitCount"
   | "MissedCount"
   | (string & {});
-export const AggregatedUtterancesSortAttribute = /*@__PURE__*/ S.String;
+export const AggregatedUtterancesSortAttribute = S.String;
 
 export type SortOrder = "Ascending" | "Descending" | (string & {});
-export const SortOrder = /*@__PURE__*/ S.String;
+export const SortOrder = S.String;
 
 export interface AggregatedUtterancesSortBy {
   attribute: AggregatedUtterancesSortAttribute;
@@ -5158,13 +5158,13 @@ export const AggregatedUtterancesSortBy = /*@__PURE__*/ S.suspend(() =>
   identifier: "AggregatedUtterancesSortBy",
 }) as any as S.Schema<AggregatedUtterancesSortBy>;
 export type AggregatedUtterancesFilterName = "Utterance" | (string & {});
-export const AggregatedUtterancesFilterName = /*@__PURE__*/ S.String;
+export const AggregatedUtterancesFilterName = S.String;
 
 export type FilterValue = string;
 export type FilterValues = string[];
 export const FilterValues = /*@__PURE__*/ S.Array(S.String);
 export type AggregatedUtterancesFilterOperator = "CO" | "EQ" | (string & {});
-export const AggregatedUtterancesFilterOperator = /*@__PURE__*/ S.String;
+export const AggregatedUtterancesFilterOperator = S.String;
 
 export interface AggregatedUtterancesFilter {
   name: AggregatedUtterancesFilterName;
@@ -5383,7 +5383,7 @@ export type BotAliasReplicationStatus =
   | "Deleting"
   | "Failed"
   | (string & {});
-export const BotAliasReplicationStatus = /*@__PURE__*/ S.String;
+export const BotAliasReplicationStatus = S.String;
 
 export interface BotAliasReplicaSummary {
   botAliasId?: string;
@@ -5497,7 +5497,7 @@ export const ListBotAnalyzerHistoryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBotAnalyzerHistoryResponse",
 }) as any as S.Schema<ListBotAnalyzerHistoryResponse>;
 export type BotLocaleSortAttribute = "BotLocaleName" | (string & {});
-export const BotLocaleSortAttribute = /*@__PURE__*/ S.String;
+export const BotLocaleSortAttribute = S.String;
 
 export interface BotLocaleSortBy {
   attribute: BotLocaleSortAttribute;
@@ -5509,10 +5509,10 @@ export const BotLocaleSortBy = /*@__PURE__*/ S.suspend(() =>
   identifier: "BotLocaleSortBy",
 }) as any as S.Schema<BotLocaleSortBy>;
 export type BotLocaleFilterName = "BotLocaleName" | (string & {});
-export const BotLocaleFilterName = /*@__PURE__*/ S.String;
+export const BotLocaleFilterName = S.String;
 
 export type BotLocaleFilterOperator = "CO" | "EQ" | (string & {});
-export const BotLocaleFilterOperator = /*@__PURE__*/ S.String;
+export const BotLocaleFilterOperator = S.String;
 
 export interface BotLocaleFilter {
   name: BotLocaleFilterName;
@@ -5731,7 +5731,7 @@ export type GenerationSortByAttribute =
   | "creationStartTime"
   | "lastUpdatedTime"
   | (string & {});
-export const GenerationSortByAttribute = /*@__PURE__*/ S.String;
+export const GenerationSortByAttribute = S.String;
 
 export interface GenerationSortBy {
   attribute: GenerationSortByAttribute;
@@ -5815,7 +5815,7 @@ export const ListBotResourceGenerationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBotResourceGenerationsResponse",
 }) as any as S.Schema<ListBotResourceGenerationsResponse>;
 export type BotSortAttribute = "BotName" | (string & {});
-export const BotSortAttribute = /*@__PURE__*/ S.String;
+export const BotSortAttribute = S.String;
 
 export interface BotSortBy {
   attribute: BotSortAttribute;
@@ -5825,10 +5825,10 @@ export const BotSortBy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ attribute: BotSortAttribute, order: SortOrder }),
 ).annotate({ identifier: "BotSortBy" }) as any as S.Schema<BotSortBy>;
 export type BotFilterName = "BotName" | "BotType" | (string & {});
-export const BotFilterName = /*@__PURE__*/ S.String;
+export const BotFilterName = S.String;
 
 export type BotFilterOperator = "CO" | "EQ" | "NE" | (string & {});
-export const BotFilterOperator = /*@__PURE__*/ S.String;
+export const BotFilterOperator = S.String;
 
 export interface BotFilter {
   name: BotFilterName;
@@ -5906,7 +5906,7 @@ export const ListBotsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBotsResponse",
 }) as any as S.Schema<ListBotsResponse>;
 export type BotVersionReplicaSortAttribute = "BotVersion" | (string & {});
-export const BotVersionReplicaSortAttribute = /*@__PURE__*/ S.String;
+export const BotVersionReplicaSortAttribute = S.String;
 
 export interface BotVersionReplicaSortBy {
   attribute: BotVersionReplicaSortAttribute;
@@ -5953,7 +5953,7 @@ export type BotVersionReplicationStatus =
   | "Deleting"
   | "Failed"
   | (string & {});
-export const BotVersionReplicationStatus = /*@__PURE__*/ S.String;
+export const BotVersionReplicationStatus = S.String;
 
 export interface BotVersionReplicaSummary {
   botVersion?: string;
@@ -5996,7 +5996,7 @@ export const ListBotVersionReplicasResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBotVersionReplicasResponse",
 }) as any as S.Schema<ListBotVersionReplicasResponse>;
 export type BotVersionSortAttribute = "BotVersion" | (string & {});
-export const BotVersionSortAttribute = /*@__PURE__*/ S.String;
+export const BotVersionSortAttribute = S.String;
 
 export interface BotVersionSortBy {
   attribute: BotVersionSortAttribute;
@@ -6069,7 +6069,7 @@ export const ListBotVersionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBotVersionsResponse",
 }) as any as S.Schema<ListBotVersionsResponse>;
 export type BuiltInIntentSortAttribute = "IntentSignature" | (string & {});
-export const BuiltInIntentSortAttribute = /*@__PURE__*/ S.String;
+export const BuiltInIntentSortAttribute = S.String;
 
 export interface BuiltInIntentSortBy {
   attribute: BuiltInIntentSortAttribute;
@@ -6136,7 +6136,7 @@ export const ListBuiltInIntentsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBuiltInIntentsResponse",
 }) as any as S.Schema<ListBuiltInIntentsResponse>;
 export type BuiltInSlotTypeSortAttribute = "SlotTypeSignature" | (string & {});
-export const BuiltInSlotTypeSortAttribute = /*@__PURE__*/ S.String;
+export const BuiltInSlotTypeSortAttribute = S.String;
 
 export interface BuiltInSlotTypeSortBy {
   attribute: BuiltInSlotTypeSortAttribute;
@@ -6251,7 +6251,7 @@ export const ListCustomVocabularyItemsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCustomVocabularyItemsResponse",
 }) as any as S.Schema<ListCustomVocabularyItemsResponse>;
 export type ExportSortAttribute = "LastUpdatedDateTime" | (string & {});
-export const ExportSortAttribute = /*@__PURE__*/ S.String;
+export const ExportSortAttribute = S.String;
 
 export interface ExportSortBy {
   attribute: ExportSortAttribute;
@@ -6261,10 +6261,10 @@ export const ExportSortBy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ attribute: ExportSortAttribute, order: SortOrder }),
 ).annotate({ identifier: "ExportSortBy" }) as any as S.Schema<ExportSortBy>;
 export type ExportFilterName = "ExportResourceType" | (string & {});
-export const ExportFilterName = /*@__PURE__*/ S.String;
+export const ExportFilterName = S.String;
 
 export type ExportFilterOperator = "CO" | "EQ" | (string & {});
-export const ExportFilterOperator = /*@__PURE__*/ S.String;
+export const ExportFilterOperator = S.String;
 
 export interface ExportFilter {
   name: ExportFilterName;
@@ -6354,7 +6354,7 @@ export const ListExportsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListExportsResponse",
 }) as any as S.Schema<ListExportsResponse>;
 export type ImportSortAttribute = "LastUpdatedDateTime" | (string & {});
-export const ImportSortAttribute = /*@__PURE__*/ S.String;
+export const ImportSortAttribute = S.String;
 
 export interface ImportSortBy {
   attribute: ImportSortAttribute;
@@ -6364,10 +6364,10 @@ export const ImportSortBy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ attribute: ImportSortAttribute, order: SortOrder }),
 ).annotate({ identifier: "ImportSortBy" }) as any as S.Schema<ImportSortBy>;
 export type ImportFilterName = "ImportResourceType" | (string & {});
-export const ImportFilterName = /*@__PURE__*/ S.String;
+export const ImportFilterName = S.String;
 
 export type ImportFilterOperator = "CO" | "EQ" | (string & {});
-export const ImportFilterOperator = /*@__PURE__*/ S.String;
+export const ImportFilterOperator = S.String;
 
 export interface ImportFilter {
   name: ImportFilterName;
@@ -6420,7 +6420,7 @@ export type ImportResourceType =
   | "CustomVocabulary"
   | "TestSet"
   | (string & {});
-export const ImportResourceType = /*@__PURE__*/ S.String;
+export const ImportResourceType = S.String;
 
 export interface ImportSummary {
   importId?: string;
@@ -6475,13 +6475,13 @@ export type AnalyticsIntentMetricName =
   | "Switched"
   | "Dropped"
   | (string & {});
-export const AnalyticsIntentMetricName = /*@__PURE__*/ S.String;
+export const AnalyticsIntentMetricName = S.String;
 
 export type AnalyticsMetricStatistic = "Sum" | "Avg" | "Max" | (string & {});
-export const AnalyticsMetricStatistic = /*@__PURE__*/ S.String;
+export const AnalyticsMetricStatistic = S.String;
 
 export type AnalyticsSortOrder = "Ascending" | "Descending" | (string & {});
-export const AnalyticsSortOrder = /*@__PURE__*/ S.String;
+export const AnalyticsSortOrder = S.String;
 
 export interface AnalyticsIntentMetric {
   name: AnalyticsIntentMetricName;
@@ -6505,10 +6505,10 @@ export type AnalyticsBinByName =
   | "ConversationStartTime"
   | "UtteranceTimestamp"
   | (string & {});
-export const AnalyticsBinByName = /*@__PURE__*/ S.String;
+export const AnalyticsBinByName = S.String;
 
 export type AnalyticsInterval = "OneHour" | "OneDay" | (string & {});
-export const AnalyticsInterval = /*@__PURE__*/ S.String;
+export const AnalyticsInterval = S.String;
 
 export interface AnalyticsBinBySpecification {
   name: AnalyticsBinByName;
@@ -6533,7 +6533,7 @@ export type AnalyticsIntentField =
   | "IntentEndState"
   | "IntentLevel"
   | (string & {});
-export const AnalyticsIntentField = /*@__PURE__*/ S.String;
+export const AnalyticsIntentField = S.String;
 
 export interface AnalyticsIntentGroupBySpecification {
   name: AnalyticsIntentField;
@@ -6558,10 +6558,10 @@ export type AnalyticsIntentFilterName =
   | "IntentName"
   | "IntentEndState"
   | (string & {});
-export const AnalyticsIntentFilterName = /*@__PURE__*/ S.String;
+export const AnalyticsIntentFilterName = S.String;
 
 export type AnalyticsFilterOperator = "EQ" | "GT" | "LT" | (string & {});
-export const AnalyticsFilterOperator = /*@__PURE__*/ S.String;
+export const AnalyticsFilterOperator = S.String;
 
 export type AnalyticsFilterValue = string;
 export type AnalyticsFilterValues = string[];
@@ -6710,7 +6710,7 @@ export type AnalyticsCommonFilterName =
   | "Modality"
   | "Channel"
   | (string & {});
-export const AnalyticsCommonFilterName = /*@__PURE__*/ S.String;
+export const AnalyticsCommonFilterName = S.String;
 
 export interface AnalyticsPathFilter {
   name: AnalyticsCommonFilterName;
@@ -6758,7 +6758,7 @@ export const ListIntentPathsRequest = /*@__PURE__*/ S.suspend(() =>
 export type AnalyticsNodeCount = number;
 export type AnalyticsNodeLevel = number;
 export type AnalyticsNodeType = "Inner" | "Exit" | (string & {});
-export const AnalyticsNodeType = /*@__PURE__*/ S.String;
+export const AnalyticsNodeType = S.String;
 
 export interface AnalyticsIntentNodeSummary {
   intentName?: string;
@@ -6794,7 +6794,7 @@ export type IntentSortAttribute =
   | "IntentName"
   | "LastUpdatedDateTime"
   | (string & {});
-export const IntentSortAttribute = /*@__PURE__*/ S.String;
+export const IntentSortAttribute = S.String;
 
 export interface IntentSortBy {
   attribute: IntentSortAttribute;
@@ -6804,10 +6804,10 @@ export const IntentSortBy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ attribute: IntentSortAttribute, order: SortOrder }),
 ).annotate({ identifier: "IntentSortBy" }) as any as S.Schema<IntentSortBy>;
 export type IntentFilterName = "IntentName" | (string & {});
-export const IntentFilterName = /*@__PURE__*/ S.String;
+export const IntentFilterName = S.String;
 
 export type IntentFilterOperator = "CO" | "EQ" | (string & {});
-export const IntentFilterOperator = /*@__PURE__*/ S.String;
+export const IntentFilterOperator = S.String;
 
 export interface IntentFilter {
   name: IntentFilterName;
@@ -6908,7 +6908,7 @@ export type AnalyticsIntentStageMetricName =
   | "Dropped"
   | "Retry"
   | (string & {});
-export const AnalyticsIntentStageMetricName = /*@__PURE__*/ S.String;
+export const AnalyticsIntentStageMetricName = S.String;
 
 export interface AnalyticsIntentStageMetric {
   name: AnalyticsIntentStageMetricName;
@@ -6932,7 +6932,7 @@ export type AnalyticsIntentStageField =
   | "IntentStageName"
   | "SwitchedToIntent"
   | (string & {});
-export const AnalyticsIntentStageField = /*@__PURE__*/ S.String;
+export const AnalyticsIntentStageField = S.String;
 
 export interface AnalyticsIntentStageGroupBySpecification {
   name: AnalyticsIntentStageField;
@@ -6958,7 +6958,7 @@ export type AnalyticsIntentStageFilterName =
   | "IntentName"
   | "IntentStageName"
   | (string & {});
-export const AnalyticsIntentStageFilterName = /*@__PURE__*/ S.String;
+export const AnalyticsIntentStageFilterName = S.String;
 
 export interface AnalyticsIntentStageFilter {
   name: AnalyticsIntentStageFilterName;
@@ -7159,7 +7159,7 @@ export type AnalyticsSessionSortByName =
   | "NumberOfTurns"
   | "Duration"
   | (string & {});
-export const AnalyticsSessionSortByName = /*@__PURE__*/ S.String;
+export const AnalyticsSessionSortByName = S.String;
 
 export interface SessionDataSortBy {
   name: AnalyticsSessionSortByName;
@@ -7182,7 +7182,7 @@ export type AnalyticsSessionFilterName =
   | "OriginatingRequestId"
   | "IntentPath"
   | (string & {});
-export const AnalyticsSessionFilterName = /*@__PURE__*/ S.String;
+export const AnalyticsSessionFilterName = S.String;
 
 export interface AnalyticsSessionFilter {
   name: AnalyticsSessionFilterName;
@@ -7241,7 +7241,7 @@ export type ConversationEndState =
   | "Failure"
   | "Dropped"
   | (string & {});
-export const ConversationEndState = /*@__PURE__*/ S.String;
+export const ConversationEndState = S.String;
 
 export type AnalyticsModality =
   | "Speech"
@@ -7249,7 +7249,7 @@ export type AnalyticsModality =
   | "DTMF"
   | "MultiMode"
   | (string & {});
-export const AnalyticsModality = /*@__PURE__*/ S.String;
+export const AnalyticsModality = S.String;
 
 export interface InvokedIntentSample {
   intentName?: string;
@@ -7326,7 +7326,7 @@ export type AnalyticsSessionMetricName =
   | "TurnsPerConversation"
   | "Concurrency"
   | (string & {});
-export const AnalyticsSessionMetricName = /*@__PURE__*/ S.String;
+export const AnalyticsSessionMetricName = S.String;
 
 export interface AnalyticsSessionMetric {
   name: AnalyticsSessionMetricName;
@@ -7350,7 +7350,7 @@ export type AnalyticsSessionField =
   | "ConversationEndState"
   | "LocaleId"
   | (string & {});
-export const AnalyticsSessionField = /*@__PURE__*/ S.String;
+export const AnalyticsSessionField = S.String;
 
 export interface AnalyticsSessionGroupBySpecification {
   name: AnalyticsSessionField;
@@ -7470,7 +7470,7 @@ export type SlotSortAttribute =
   | "SlotName"
   | "LastUpdatedDateTime"
   | (string & {});
-export const SlotSortAttribute = /*@__PURE__*/ S.String;
+export const SlotSortAttribute = S.String;
 
 export interface SlotSortBy {
   attribute: SlotSortAttribute;
@@ -7480,10 +7480,10 @@ export const SlotSortBy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({ attribute: SlotSortAttribute, order: SortOrder }),
 ).annotate({ identifier: "SlotSortBy" }) as any as S.Schema<SlotSortBy>;
 export type SlotFilterName = "SlotName" | (string & {});
-export const SlotFilterName = /*@__PURE__*/ S.String;
+export const SlotFilterName = S.String;
 
 export type SlotFilterOperator = "CO" | "EQ" | (string & {});
-export const SlotFilterOperator = /*@__PURE__*/ S.String;
+export const SlotFilterOperator = S.String;
 
 export interface SlotFilter {
   name: SlotFilterName;
@@ -7583,7 +7583,7 @@ export type SlotTypeSortAttribute =
   | "SlotTypeName"
   | "LastUpdatedDateTime"
   | (string & {});
-export const SlotTypeSortAttribute = /*@__PURE__*/ S.String;
+export const SlotTypeSortAttribute = S.String;
 
 export interface SlotTypeSortBy {
   attribute: SlotTypeSortAttribute;
@@ -7596,10 +7596,10 @@ export type SlotTypeFilterName =
   | "SlotTypeName"
   | "ExternalSourceType"
   | (string & {});
-export const SlotTypeFilterName = /*@__PURE__*/ S.String;
+export const SlotTypeFilterName = S.String;
 
 export type SlotTypeFilterOperator = "CO" | "EQ" | (string & {});
-export const SlotTypeFilterOperator = /*@__PURE__*/ S.String;
+export const SlotTypeFilterOperator = S.String;
 
 export interface SlotTypeFilter {
   name: SlotTypeFilterName;
@@ -7655,7 +7655,7 @@ export type SlotTypeCategory =
   | "ExternalGrammar"
   | "Composite"
   | (string & {});
-export const SlotTypeCategory = /*@__PURE__*/ S.String;
+export const SlotTypeCategory = S.String;
 
 export interface SlotTypeSummary {
   slotTypeId?: string;
@@ -7731,14 +7731,14 @@ export type TestResultTypeFilter =
   | "SlotResolutionTestResults"
   | "UtteranceLevelResults"
   | (string & {});
-export const TestResultTypeFilter = /*@__PURE__*/ S.String;
+export const TestResultTypeFilter = S.String;
 
 export type TestResultMatchStatus =
   | "Matched"
   | "Mismatched"
   | "ExecutionError"
   | (string & {});
-export const TestResultMatchStatus = /*@__PURE__*/ S.String;
+export const TestResultMatchStatus = S.String;
 
 export interface ConversationLevelTestResultsFilterBy {
   endToEndResult?: TestResultMatchStatus;
@@ -8309,7 +8309,7 @@ export type TestExecutionSortAttribute =
   | "TestSetName"
   | "CreationDateTime"
   | (string & {});
-export const TestExecutionSortAttribute = /*@__PURE__*/ S.String;
+export const TestExecutionSortAttribute = S.String;
 
 export interface TestExecutionSortBy {
   attribute: TestExecutionSortAttribute;
@@ -8478,7 +8478,7 @@ export type TestSetSortAttribute =
   | "TestSetName"
   | "LastUpdatedDateTime"
   | (string & {});
-export const TestSetSortAttribute = /*@__PURE__*/ S.String;
+export const TestSetSortAttribute = S.String;
 
 export interface TestSetSortBy {
   attribute: TestSetSortAttribute;
@@ -8555,7 +8555,7 @@ export const ListTestSetsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTestSetsResponse",
 }) as any as S.Schema<ListTestSetsResponse>;
 export type AnalyticsUtteranceSortByName = "UtteranceTimestamp" | (string & {});
-export const AnalyticsUtteranceSortByName = /*@__PURE__*/ S.String;
+export const AnalyticsUtteranceSortByName = S.String;
 
 export interface UtteranceDataSortBy {
   name: AnalyticsUtteranceSortByName;
@@ -8577,7 +8577,7 @@ export type AnalyticsUtteranceFilterName =
   | "UtteranceState"
   | "UtteranceText"
   | (string & {});
-export const AnalyticsUtteranceFilterName = /*@__PURE__*/ S.String;
+export const AnalyticsUtteranceFilterName = S.String;
 
 export interface AnalyticsUtteranceFilter {
   name: AnalyticsUtteranceFilterName;
@@ -8637,7 +8637,7 @@ export type IntentState =
   | "Waiting"
   | "FulfillmentInProgress"
   | (string & {});
-export const IntentState = /*@__PURE__*/ S.String;
+export const IntentState = S.String;
 
 export type UtteranceContentType =
   | "PlainText"
@@ -8645,7 +8645,7 @@ export type UtteranceContentType =
   | "SSML"
   | "ImageResponseCard"
   | (string & {});
-export const UtteranceContentType = /*@__PURE__*/ S.String;
+export const UtteranceContentType = S.String;
 
 export interface UtteranceBotResponse {
   content?: string;
@@ -8746,7 +8746,7 @@ export type AnalyticsUtteranceMetricName =
   | "Detected"
   | "UtteranceTimestamp"
   | (string & {});
-export const AnalyticsUtteranceMetricName = /*@__PURE__*/ S.String;
+export const AnalyticsUtteranceMetricName = S.String;
 
 export interface AnalyticsUtteranceMetric {
   name: AnalyticsUtteranceMetricName;
@@ -8770,7 +8770,7 @@ export type AnalyticsUtteranceField =
   | "UtteranceText"
   | "UtteranceState"
   | (string & {});
-export const AnalyticsUtteranceField = /*@__PURE__*/ S.String;
+export const AnalyticsUtteranceField = S.String;
 
 export interface AnalyticsUtteranceGroupBySpecification {
   name: AnalyticsUtteranceField;
@@ -8786,7 +8786,7 @@ export const AnalyticsUtteranceGroupByList = /*@__PURE__*/ S.Array(
   AnalyticsUtteranceGroupBySpecification,
 );
 export type AnalyticsUtteranceAttributeName = "LastUsedIntent" | (string & {});
-export const AnalyticsUtteranceAttributeName = /*@__PURE__*/ S.String;
+export const AnalyticsUtteranceAttributeName = S.String;
 
 export interface AnalyticsUtteranceAttribute {
   name: AnalyticsUtteranceAttributeName;
@@ -8922,13 +8922,13 @@ export const ListUtteranceMetricsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUtteranceMetricsResponse",
 }) as any as S.Schema<ListUtteranceMetricsResponse>;
 export type SearchOrder = "Ascending" | "Descending" | (string & {});
-export const SearchOrder = /*@__PURE__*/ S.String;
+export const SearchOrder = S.String;
 
 export type AssociatedTranscriptFilterName =
   | "IntentId"
   | "SlotTypeId"
   | (string & {});
-export const AssociatedTranscriptFilterName = /*@__PURE__*/ S.String;
+export const AssociatedTranscriptFilterName = S.String;
 
 export interface AssociatedTranscriptFilter {
   name: AssociatedTranscriptFilterName;
@@ -9015,7 +9015,7 @@ export const SearchAssociatedTranscriptsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchAssociatedTranscriptsResponse",
 }) as any as S.Schema<SearchAssociatedTranscriptsResponse>;
 export type AnalysisScope = "BotLocale" | (string & {});
-export const AnalysisScope = /*@__PURE__*/ S.String;
+export const AnalysisScope = S.String;
 
 export interface StartBotAnalyzerRequest {
   botId: string;

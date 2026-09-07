@@ -63,7 +63,7 @@ export type ConnectConnectorCreateDataCase0ServerConfigJwksKeysItemUse =
   | "sig"
   | "enc";
 export const ConnectConnectorCreateDataCase0ServerConfigJwksKeysItemUse =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Operations permitted for this key. */
 export type ConnectConnectorCreateDataCase0ServerConfigJwksKeysItemKeyOpsList =
@@ -651,8 +651,7 @@ export const ConnectConnectorCreateDataCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** Which subject the connector issues tokens for. Defaults to \"app\" (connector-level keys). \"user\" connectors store no connector-level values; each user supplies their own key during authorization. */
 export type ConnectConnectorCreateDataCase1SubjectType = "app" | "user";
-export const ConnectConnectorCreateDataCase1SubjectType =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateDataCase1SubjectType = S.String;
 
 export interface ConnectConnectorCreateDataCase1ValuesItem {
   /** API key value. */
@@ -711,7 +710,7 @@ export type ConnectConnectorCreateDataCase2OwnerType =
   | "organization"
   | "User"
   | "Organization";
-export const ConnectConnectorCreateDataCase2OwnerType = /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateDataCase2OwnerType = S.String;
 
 /** GitHub App owner. */
 export interface ConnectConnectorCreateDataCase2Owner {
@@ -1072,8 +1071,7 @@ export const ConnectConnectorCreateDataCase7SlashCommandsList =
 export type ConnectConnectorCreateDataCase7ShortcutsItemType =
   | "global"
   | "message";
-export const ConnectConnectorCreateDataCase7ShortcutsItemType =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateDataCase7ShortcutsItemType = S.String;
 
 export interface ConnectConnectorCreateDataCase7ShortcutsItem {
   /** Where Slack exposes the shortcut. */
@@ -1257,7 +1255,7 @@ export type ConnectConnectorCreateData =
   | ConnectConnectorCreateDataCase10
   | ConnectConnectorCreateDataCase11Map;
 export const ConnectConnectorCreateData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorCreateData>;
+  S.Unknown as any as S.Schema<ConnectConnectorCreateData>;
 
 /** Values for the selected connection method's template fields. Requires connectionMethod. */
 export type CreateConnectorRequestParamsMap = {
@@ -1272,15 +1270,14 @@ export type CreateConnectorRequestEnvironmentsItemCase0 =
   | "development"
   | "preview"
   | "production";
-export const CreateConnectorRequestEnvironmentsItemCase0 =
-  /*@__PURE__*/ S.String;
+export const CreateConnectorRequestEnvironmentsItemCase0 = S.String;
 
 /** A built-in environment name or the stable env_* ID of a custom environment. */
 export type CreateConnectorRequestEnvironmentsItem =
   | CreateConnectorRequestEnvironmentsItemCase0
   | string;
 export const CreateConnectorRequestEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConnectorRequestEnvironmentsItem>;
+  S.Unknown as any as S.Schema<CreateConnectorRequestEnvironmentsItem>;
 
 /** Environments for the project connection. Requires projectId. Use one or more built-in environment names or stable custom environment IDs that belong to the project. Duplicate values are accepted and removed. */
 export type CreateConnectorRequestEnvironmentsList =
@@ -1349,7 +1346,7 @@ export type CreateConnectorRequestTriggerDestination =
   | CreateConnectorRequestTriggerDestinationCase1
   | CreateConnectorRequestTriggerDestinationCase2;
 export const CreateConnectorRequestTriggerDestination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConnectorRequestTriggerDestination>;
+  S.Unknown as any as S.Schema<CreateConnectorRequestTriggerDestination>;
 
 /** Default trigger events for this connector. */
 export type CreateConnectorRequestEventsList = Array<string>;
@@ -1422,8 +1419,7 @@ export const CreateConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Principal kind. */
 export type ConnectConnectorCreateResultCreatedByCase0Type = "user";
-export const ConnectConnectorCreateResultCreatedByCase0Type =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateResultCreatedByCase0Type = S.String;
 
 /** Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all. */
 export interface ConnectConnectorCreateResultCreatedByCase0 {
@@ -1444,22 +1440,21 @@ export const ConnectConnectorCreateResultCreatedByCase0 =
 
 /** Principal kind. */
 export type ConnectConnectorCreateResultCreatedByCase1Type = "project";
-export const ConnectConnectorCreateResultCreatedByCase1Type =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateResultCreatedByCase1Type = S.String;
 
 export type ConnectConnectorCreateResultCreatedByCase1EnvironmentCase1 =
   | "development"
   | "preview"
   | "production";
 export const ConnectConnectorCreateResultCreatedByCase1EnvironmentCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Deployment environment of the project principal. */
 export type ConnectConnectorCreateResultCreatedByCase1Environment =
   | string
   | ConnectConnectorCreateResultCreatedByCase1EnvironmentCase1;
 export const ConnectConnectorCreateResultCreatedByCase1Environment =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorCreateResultCreatedByCase1Environment>;
+  S.Unknown as any as S.Schema<ConnectConnectorCreateResultCreatedByCase1Environment>;
 
 /** Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all. */
 export interface ConnectConnectorCreateResultCreatedByCase1 {
@@ -1486,12 +1481,11 @@ export type ConnectConnectorCreateResultCreatedBy =
   | ConnectConnectorCreateResultCreatedByCase0
   | ConnectConnectorCreateResultCreatedByCase1;
 export const ConnectConnectorCreateResultCreatedBy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorCreateResultCreatedBy>;
+  S.Unknown as any as S.Schema<ConnectConnectorCreateResultCreatedBy>;
 
 /** Principal kind. */
 export type ConnectConnectorCreateResultUpdatedByCase0Type = "user";
-export const ConnectConnectorCreateResultUpdatedByCase0Type =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateResultUpdatedByCase0Type = S.String;
 
 /** Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update. */
 export interface ConnectConnectorCreateResultUpdatedByCase0 {
@@ -1512,22 +1506,21 @@ export const ConnectConnectorCreateResultUpdatedByCase0 =
 
 /** Principal kind. */
 export type ConnectConnectorCreateResultUpdatedByCase1Type = "project";
-export const ConnectConnectorCreateResultUpdatedByCase1Type =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateResultUpdatedByCase1Type = S.String;
 
 export type ConnectConnectorCreateResultUpdatedByCase1EnvironmentCase1 =
   | "development"
   | "preview"
   | "production";
 export const ConnectConnectorCreateResultUpdatedByCase1EnvironmentCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Deployment environment of the project principal. */
 export type ConnectConnectorCreateResultUpdatedByCase1Environment =
   | string
   | ConnectConnectorCreateResultUpdatedByCase1EnvironmentCase1;
 export const ConnectConnectorCreateResultUpdatedByCase1Environment =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorCreateResultUpdatedByCase1Environment>;
+  S.Unknown as any as S.Schema<ConnectConnectorCreateResultUpdatedByCase1Environment>;
 
 /** Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update. */
 export interface ConnectConnectorCreateResultUpdatedByCase1 {
@@ -1554,11 +1547,11 @@ export type ConnectConnectorCreateResultUpdatedBy =
   | ConnectConnectorCreateResultUpdatedByCase0
   | ConnectConnectorCreateResultUpdatedByCase1;
 export const ConnectConnectorCreateResultUpdatedBy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorCreateResultUpdatedBy>;
+  S.Unknown as any as S.Schema<ConnectConnectorCreateResultUpdatedBy>;
 
 /** How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it. */
 export type ConnectConnectorCreateResultCreationMode = "managed" | "manual";
-export const ConnectConnectorCreateResultCreationMode = /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateResultCreationMode = S.String;
 
 /** Managed connector metadata exposed without leaking the manager connector or installation identifiers. */
 export interface ConnectConnectorCreateResultManaged {
@@ -1590,7 +1583,7 @@ export type ConnectConnectorCreateResultType =
   | "slack"
   | "snowflake"
   | "snowflake-wif";
-export const ConnectConnectorCreateResultType = /*@__PURE__*/ S.String;
+export const ConnectConnectorCreateResultType = S.String;
 
 /** Token subject types supported by the connector. */
 export type ConnectConnectorCreateResultSupportedSubjectTypesList =
@@ -1861,7 +1854,7 @@ export const ConnectConnectorCreateResult = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateConnectorAuthorizationRequestRequestSubjectCase0Type = "app";
 export const CreateConnectorAuthorizationRequestRequestSubjectCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateConnectorAuthorizationRequestRequestSubjectCase0 {
   type: CreateConnectorAuthorizationRequestRequestSubjectCase0Type;
@@ -1877,7 +1870,7 @@ export const CreateConnectorAuthorizationRequestRequestSubjectCase0 =
 
 export type CreateConnectorAuthorizationRequestRequestSubjectCase1Type = "user";
 export const CreateConnectorAuthorizationRequestRequestSubjectCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateConnectorAuthorizationRequestRequestSubjectCase1 {
   type: CreateConnectorAuthorizationRequestRequestSubjectCase1Type;
@@ -1898,7 +1891,7 @@ export const CreateConnectorAuthorizationRequestRequestSubjectCase1 =
 export type CreateConnectorAuthorizationRequestRequestSubjectCase2Type =
   "jwt-bearer";
 export const CreateConnectorAuthorizationRequestRequestSubjectCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type CreateConnectorAuthorizationRequestRequestSubjectCase2AdditionalClaimsMap =
   { [key: string]: unknown | undefined };
@@ -1933,7 +1926,7 @@ export const CreateConnectorAuthorizationRequestRequestSubjectCase2 =
 export type CreateConnectorAuthorizationRequestRequestSubjectCase3Type =
   "token";
 export const CreateConnectorAuthorizationRequestRequestSubjectCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface CreateConnectorAuthorizationRequestRequestSubjectCase3 {
   type: CreateConnectorAuthorizationRequestRequestSubjectCase3Type;
@@ -1968,7 +1961,7 @@ export type CreateConnectorAuthorizationRequestRequestSubject =
   | CreateConnectorAuthorizationRequestRequestSubjectCase3
   | CreateConnectorAuthorizationRequestRequestSubjectCase4;
 export const CreateConnectorAuthorizationRequestRequestSubject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateConnectorAuthorizationRequestRequestSubject>;
+  S.Unknown as any as S.Schema<CreateConnectorAuthorizationRequestRequestSubject>;
 
 export type CreateConnectorAuthorizationRequestRequestAudienceList =
   Array<string>;
@@ -2217,7 +2210,7 @@ export const GetConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Principal kind. */
 export type ConnectConnectorCreatedByCase0Type = "user";
-export const ConnectConnectorCreatedByCase0Type = /*@__PURE__*/ S.String;
+export const ConnectConnectorCreatedByCase0Type = S.String;
 
 /** Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all. */
 export interface ConnectConnectorCreatedByCase0 {
@@ -2237,21 +2230,20 @@ export const ConnectConnectorCreatedByCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** Principal kind. */
 export type ConnectConnectorCreatedByCase1Type = "project";
-export const ConnectConnectorCreatedByCase1Type = /*@__PURE__*/ S.String;
+export const ConnectConnectorCreatedByCase1Type = S.String;
 
 export type ConnectConnectorCreatedByCase1EnvironmentCase1 =
   | "development"
   | "preview"
   | "production";
-export const ConnectConnectorCreatedByCase1EnvironmentCase1 =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorCreatedByCase1EnvironmentCase1 = S.String;
 
 /** Deployment environment of the project principal. */
 export type ConnectConnectorCreatedByCase1Environment =
   | string
   | ConnectConnectorCreatedByCase1EnvironmentCase1;
 export const ConnectConnectorCreatedByCase1Environment =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorCreatedByCase1Environment>;
+  S.Unknown as any as S.Schema<ConnectConnectorCreatedByCase1Environment>;
 
 /** Principal that originally created the connector — either a Vercel user (interactive dashboard / CLI flow) or a Vercel deployment (OIDC-authenticated project, used by runtime auto-provisioning). See {@link ConnexPrincipal}. Optional: pre-existing rows from before this shape was introduced may carry no attribution at all. */
 export interface ConnectConnectorCreatedByCase1 {
@@ -2277,11 +2269,11 @@ export type ConnectConnectorCreatedBy =
   | ConnectConnectorCreatedByCase0
   | ConnectConnectorCreatedByCase1;
 export const ConnectConnectorCreatedBy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorCreatedBy>;
+  S.Unknown as any as S.Schema<ConnectConnectorCreatedBy>;
 
 /** Principal kind. */
 export type ConnectConnectorUpdatedByCase0Type = "user";
-export const ConnectConnectorUpdatedByCase0Type = /*@__PURE__*/ S.String;
+export const ConnectConnectorUpdatedByCase0Type = S.String;
 
 /** Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update. */
 export interface ConnectConnectorUpdatedByCase0 {
@@ -2301,21 +2293,20 @@ export const ConnectConnectorUpdatedByCase0 = /*@__PURE__*/ S.suspend(() =>
 
 /** Principal kind. */
 export type ConnectConnectorUpdatedByCase1Type = "project";
-export const ConnectConnectorUpdatedByCase1Type = /*@__PURE__*/ S.String;
+export const ConnectConnectorUpdatedByCase1Type = S.String;
 
 export type ConnectConnectorUpdatedByCase1EnvironmentCase1 =
   | "development"
   | "preview"
   | "production";
-export const ConnectConnectorUpdatedByCase1EnvironmentCase1 =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorUpdatedByCase1EnvironmentCase1 = S.String;
 
 /** Deployment environment of the project principal. */
 export type ConnectConnectorUpdatedByCase1Environment =
   | string
   | ConnectConnectorUpdatedByCase1EnvironmentCase1;
 export const ConnectConnectorUpdatedByCase1Environment =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorUpdatedByCase1Environment>;
+  S.Unknown as any as S.Schema<ConnectConnectorUpdatedByCase1Environment>;
 
 /** Principal that most recently mutated the connector. Same shape as {@link createdBy} but tracks the most recent updater, not the original creator. At create time the two fields point at the same principal; they diverge on the first subsequent update. */
 export interface ConnectConnectorUpdatedByCase1 {
@@ -2341,11 +2332,11 @@ export type ConnectConnectorUpdatedBy =
   | ConnectConnectorUpdatedByCase0
   | ConnectConnectorUpdatedByCase1;
 export const ConnectConnectorUpdatedBy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorUpdatedBy>;
+  S.Unknown as any as S.Schema<ConnectConnectorUpdatedBy>;
 
 /** How the connector row was originally created. New create paths stamp this explicitly; older rows may omit it. */
 export type ConnectConnectorCreationMode = "managed" | "manual";
-export const ConnectConnectorCreationMode = /*@__PURE__*/ S.String;
+export const ConnectConnectorCreationMode = S.String;
 
 /** Managed connector metadata exposed without leaking the manager connector or installation identifiers. */
 export type ConnectConnectorManaged = ConnectConnectorCreateResultManaged;
@@ -2368,7 +2359,7 @@ export type ConnectConnectorType =
   | "slack"
   | "snowflake"
   | "snowflake-wif";
-export const ConnectConnectorType = /*@__PURE__*/ S.String;
+export const ConnectConnectorType = S.String;
 
 /** Token subject types supported by the connector. */
 export type ConnectConnectorSupportedSubjectTypesList = Array<string>;
@@ -2670,14 +2661,13 @@ export type ConnectProjectConnectionEnabledEnvironmentsItemCase1 =
   | "development"
   | "preview"
   | "production";
-export const ConnectProjectConnectionEnabledEnvironmentsItemCase1 =
-  /*@__PURE__*/ S.String;
+export const ConnectProjectConnectionEnabledEnvironmentsItemCase1 = S.String;
 
 export type ConnectProjectConnectionEnabledEnvironmentsItem =
   | string
   | ConnectProjectConnectionEnabledEnvironmentsItemCase1;
 export const ConnectProjectConnectionEnabledEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectProjectConnectionEnabledEnvironmentsItem>;
+  S.Unknown as any as S.Schema<ConnectProjectConnectionEnabledEnvironmentsItem>;
 
 /** Environments where the connector is enabled for the project. */
 export type ConnectProjectConnectionEnabledEnvironmentsList =
@@ -2713,7 +2703,7 @@ export const ConnectProjectConnection = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConnectProjectConnection>;
 
 export type GetConnectorTokenRequestSubjectCase0Type = "app";
-export const GetConnectorTokenRequestSubjectCase0Type = /*@__PURE__*/ S.String;
+export const GetConnectorTokenRequestSubjectCase0Type = S.String;
 
 export interface GetConnectorTokenRequestSubjectCase0 {
   type: GetConnectorTokenRequestSubjectCase0Type;
@@ -2728,7 +2718,7 @@ export const GetConnectorTokenRequestSubjectCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetConnectorTokenRequestSubjectCase0>;
 
 export type GetConnectorTokenRequestSubjectCase1Type = "user";
-export const GetConnectorTokenRequestSubjectCase1Type = /*@__PURE__*/ S.String;
+export const GetConnectorTokenRequestSubjectCase1Type = S.String;
 
 export interface GetConnectorTokenRequestSubjectCase1 {
   type: GetConnectorTokenRequestSubjectCase1Type;
@@ -2747,7 +2737,7 @@ export const GetConnectorTokenRequestSubjectCase1 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetConnectorTokenRequestSubjectCase1>;
 
 export type GetConnectorTokenRequestSubjectCase2Type = "jwt-bearer";
-export const GetConnectorTokenRequestSubjectCase2Type = /*@__PURE__*/ S.String;
+export const GetConnectorTokenRequestSubjectCase2Type = S.String;
 
 export type GetConnectorTokenRequestSubjectCase2AdditionalClaimsMap = {
   [key: string]: unknown | undefined;
@@ -2781,7 +2771,7 @@ export const GetConnectorTokenRequestSubjectCase2 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetConnectorTokenRequestSubjectCase2>;
 
 export type GetConnectorTokenRequestSubjectCase3Type = "token";
-export const GetConnectorTokenRequestSubjectCase3Type = /*@__PURE__*/ S.String;
+export const GetConnectorTokenRequestSubjectCase3Type = S.String;
 
 export interface GetConnectorTokenRequestSubjectCase3 {
   type: GetConnectorTokenRequestSubjectCase3Type;
@@ -2809,7 +2799,7 @@ export type GetConnectorTokenRequestSubject =
   | GetConnectorTokenRequestSubjectCase3
   | CreateConnectorAuthorizationRequestRequestSubjectCase4;
 export const GetConnectorTokenRequestSubject =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetConnectorTokenRequestSubject>;
+  S.Unknown as any as S.Schema<GetConnectorTokenRequestSubject>;
 
 export type GetConnectorTokenRequestAudienceList = Array<string>;
 export const GetConnectorTokenRequestAudienceList = /*@__PURE__*/ S.Array(
@@ -3008,7 +2998,7 @@ export const ConnectConnectorProjectConnectionList = /*@__PURE__*/ S.suspend(
 
 /** Sort by name in ascending order, or by creation or update time in descending order. */
 export type ListConnectorsRequestSort = "name" | "createdAt" | "updatedAt";
-export const ListConnectorsRequestSort = /*@__PURE__*/ S.String;
+export const ListConnectorsRequestSort = S.String;
 
 export interface ListConnectorsRequest {
   /** Maximum number of connectors to return. Defaults to 20. */
@@ -3181,7 +3171,7 @@ export type ConnectTriggerDestinationInput =
   | ConnectTriggerDestinationInputCase1
   | ConnectTriggerDestinationInputCase2;
 export const ConnectTriggerDestinationInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectTriggerDestinationInput>;
+  S.Unknown as any as S.Schema<ConnectTriggerDestinationInput>;
 
 /** Complete replacement set of trigger destinations. An empty array removes all destinations. Connector get and list responses expose the saved set as triggerDestinations. */
 export type ReplaceConnectorTriggerDestinationsRequestDestinationsList =
@@ -3230,7 +3220,7 @@ export type ConnectConnectorUpdateDataCase0ServerConfigJwksKeysItemUse =
   | "sig"
   | "enc";
 export const ConnectConnectorUpdateDataCase0ServerConfigJwksKeysItemUse =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Operations permitted for this key. */
 export type ConnectConnectorUpdateDataCase0ServerConfigJwksKeysItemKeyOpsList =
@@ -3832,7 +3822,7 @@ export type ConnectConnectorUpdateDataCase1ToUpdateItemExpiresAt =
   | number
   | string;
 export const ConnectConnectorUpdateDataCase1ToUpdateItemExpiresAt =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorUpdateDataCase1ToUpdateItemExpiresAt>;
+  S.Unknown as any as S.Schema<ConnectConnectorUpdateDataCase1ToUpdateItemExpiresAt>;
 
 export interface ConnectConnectorUpdateDataCase1ToUpdateItem {
   /** Stored API key value ID. */
@@ -3890,7 +3880,7 @@ export type ConnectConnectorUpdateDataCase2OwnerType =
   | "organization"
   | "User"
   | "Organization";
-export const ConnectConnectorUpdateDataCase2OwnerType = /*@__PURE__*/ S.String;
+export const ConnectConnectorUpdateDataCase2OwnerType = S.String;
 
 /** GitHub App owner. */
 export interface ConnectConnectorUpdateDataCase2Owner {
@@ -4158,8 +4148,7 @@ export const ConnectConnectorUpdateDataCase5SlashCommandsList =
 export type ConnectConnectorUpdateDataCase5ShortcutsItemType =
   | "global"
   | "message";
-export const ConnectConnectorUpdateDataCase5ShortcutsItemType =
-  /*@__PURE__*/ S.String;
+export const ConnectConnectorUpdateDataCase5ShortcutsItemType = S.String;
 
 export interface ConnectConnectorUpdateDataCase5ShortcutsItem {
   /** Where Slack exposes the shortcut. */
@@ -4358,7 +4347,7 @@ export type ConnectConnectorUpdateData =
   | ConnectConnectorUpdateDataCase10
   | ConnectConnectorUpdateDataCase11Map;
 export const ConnectConnectorUpdateData =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConnectConnectorUpdateData>;
+  S.Unknown as any as S.Schema<ConnectConnectorUpdateData>;
 
 export interface UpdateConnectorRequest {
   /** Stable connector ID or URL-encoded team-scoped UID. Examples: `scl_abc123` or `slack%2Fmy-bot`. */
@@ -4408,7 +4397,7 @@ export const UpdateConnectorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The affected authorization scope. user means each affected user must authorize again. */
 export type ConnectReconsentScope = "user";
-export const ConnectReconsentScope = /*@__PURE__*/ S.String;
+export const ConnectReconsentScope = S.String;
 
 /** Existing authorizations no longer cover the connector's configured scopes, so they must be re-authorized. */
 export interface ConnectReconsent {
@@ -4425,7 +4414,7 @@ export const ConnectReconsent = /*@__PURE__*/ S.suspend(() =>
 
 /** done means the external service was updated. required means the Vercel update was saved, but provider-side configuration still needs attention. */
 export type ConnectServiceSyncStatus = "done" | "required";
-export const ConnectServiceSyncStatus = /*@__PURE__*/ S.String;
+export const ConnectServiceSyncStatus = S.String;
 
 /** Connector fields that caused the synchronization error. */
 export type ConnectServiceSyncErrorFieldsList = Array<string>;
@@ -4510,14 +4499,14 @@ export type UpsertConnectorProjectConnectionRequestEnvironmentsItemCase0 =
   | "preview"
   | "production";
 export const UpsertConnectorProjectConnectionRequestEnvironmentsItemCase0 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A built-in environment name or the stable env_* ID of a custom environment. */
 export type UpsertConnectorProjectConnectionRequestEnvironmentsItem =
   | UpsertConnectorProjectConnectionRequestEnvironmentsItemCase0
   | string;
 export const UpsertConnectorProjectConnectionRequestEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpsertConnectorProjectConnectionRequestEnvironmentsItem>;
+  S.Unknown as any as S.Schema<UpsertConnectorProjectConnectionRequestEnvironmentsItem>;
 
 /** One or more built-in environment names or stable custom environment IDs that belong to the project. Duplicate values are accepted and removed. */
 export type UpsertConnectorProjectConnectionRequestEnvironmentsList =

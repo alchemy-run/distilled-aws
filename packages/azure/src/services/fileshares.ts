@@ -45,8 +45,7 @@ export const CheckFileShareNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 export type CheckFileShareNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CheckFileShareNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
+export const CheckFileShareNameAvailabilityResponseReason = S.String;
 
 export interface CheckFileShareNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
@@ -80,7 +79,7 @@ export type PrivateEndpointServiceConnectionStatus =
   | "Pending"
   | "Approved"
   | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+export const PrivateEndpointServiceConnectionStatus = S.String;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
@@ -156,7 +155,7 @@ export type SystemDataCreatedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const SystemDataCreatedByType = S.String;
 
 /** The type of identity that last modified the resource. */
 export type SystemDataLastModifiedByType =
@@ -164,7 +163,7 @@ export type SystemDataLastModifiedByType =
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+export const SystemDataLastModifiedByType = S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
 export interface SystemData {
@@ -218,8 +217,7 @@ export type PrivateEndpointConnectionProvisioningState =
   | "Creating"
   | "Deleting"
   | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
+export const PrivateEndpointConnectionProvisioningState = S.String;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionProperties {
@@ -382,23 +380,23 @@ export const FileSharesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 
 /** Media Tier enum. */
 export type MediaTier = "SSD";
-export const MediaTier = /*@__PURE__*/ S.String;
+export const MediaTier = S.String;
 
 /** Redundancy enum. */
 export type Redundancy = "Local" | "Zone";
-export const Redundancy = /*@__PURE__*/ S.String;
+export const Redundancy = S.String;
 
 /** Protocol enum. */
 export type Protocol = "NFS";
-export const Protocol = /*@__PURE__*/ S.String;
+export const Protocol = S.String;
 
 /** Share root squash enum. */
 export type ShareRootSquash = "NoRootSquash" | "RootSquash" | "AllSquash";
-export const ShareRootSquash = /*@__PURE__*/ S.String;
+export const ShareRootSquash = S.String;
 
 /** State of NFS encryption in transit. */
 export type EncryptionInTransitRequired = "Enabled" | "Disabled";
-export const EncryptionInTransitRequired = /*@__PURE__*/ S.String;
+export const EncryptionInTransitRequired = S.String;
 
 /** Properties specific to the NFS protocol. */
 export interface NfsProtocolProperties {
@@ -437,7 +435,7 @@ export const PublicAccessProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** State of the public network access. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+export const PublicNetworkAccess = S.String;
 
 /** File share properties */
 export interface FileSharePropertiesInput {
@@ -536,7 +534,7 @@ export type FileShareProvisioningState =
   | "Creating"
   | "Patching"
   | "Posting";
-export const FileShareProvisioningState = /*@__PURE__*/ S.String;
+export const FileShareProvisioningState = S.String;
 
 /** The private endpoint connection resource. */
 export interface FileSharePropertiesPrivateEndpointConnectionsItem {
@@ -1489,11 +1487,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

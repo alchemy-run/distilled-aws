@@ -105,7 +105,7 @@ export type VolumeFsVersion =
   | "VOLUME_FS_VERSION_UNSPECIFIED"
   | "VOLUME_FS_VERSION_V1"
   | "VOLUME_FS_VERSION_V2";
-export const VolumeFsVersion = /*@__PURE__*/ S.String;
+export const VolumeFsVersion = S.String;
 
 export interface CreationInfo {
   /** This message is used in metadata for resource objects like Dict, Queue, Volume, etc. */
@@ -382,7 +382,7 @@ export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_CREATE_OVERWRITE_IF_EXISTS"
   | "OBJECT_CREATION_TYPE_ANONYMOUS_OWNED_BY_APP"
   | "OBJECT_CREATION_TYPE_EPHEMERAL";
-export const ObjectCreationType = /*@__PURE__*/ S.String;
+export const ObjectCreationType = S.String;
 
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(

@@ -129,8 +129,7 @@ export type GoogleCloudBillingBudgetsV1FilterCalendarPeriodEnum =
   | "MONTH"
   | "QUARTER"
   | "YEAR";
-export const GoogleCloudBillingBudgetsV1FilterCalendarPeriodEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudBillingBudgetsV1FilterCalendarPeriodEnum = S.String;
 
 export type GoogleCloudBillingBudgetsV1FilterCreditTypesTreatmentEnum =
   | "CREDIT_TYPES_TREATMENT_UNSPECIFIED"
@@ -138,7 +137,7 @@ export type GoogleCloudBillingBudgetsV1FilterCreditTypesTreatmentEnum =
   | "EXCLUDE_ALL_CREDITS"
   | "INCLUDE_SPECIFIED_CREDITS";
 export const GoogleCloudBillingBudgetsV1FilterCreditTypesTreatmentEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface GoogleTypeDate {
@@ -249,8 +248,7 @@ export type GoogleCloudBillingBudgetsV1ThresholdRuleSpendBasisEnum =
   | "BASIS_UNSPECIFIED"
   | "CURRENT_SPEND"
   | "FORECASTED_SPEND";
-export const GoogleCloudBillingBudgetsV1ThresholdRuleSpendBasisEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudBillingBudgetsV1ThresholdRuleSpendBasisEnum = S.String;
 
 /** ThresholdRule contains the definition of a threshold. Threshold rules define the triggering events used to generate a budget notification email. When a threshold is crossed (spend exceeds the specified percentages of the budget), budget alert emails are sent to the email recipients you specify in the [NotificationsRule](#notificationsrule). Threshold rules also affect the fields included in the [JSON data object](https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format) sent to a Pub/Sub topic. Threshold rules are _required_ if using email notifications. Threshold rules are _optional_ if only setting a [`pubsubTopic` NotificationsRule](#NotificationsRule), unless you want your JSON data object to include data about the thresholds you set. For more information, see [set budget threshold rules and actions](https://cloud.google.com/billing/docs/how-to/budgets#budget-actions). */
 export interface GoogleCloudBillingBudgetsV1ThresholdRule {
@@ -284,8 +282,7 @@ export type GoogleCloudBillingBudgetsV1BudgetOwnershipScopeEnum =
   | "OWNERSHIP_SCOPE_UNSPECIFIED"
   | "ALL_USERS"
   | "BILLING_ACCOUNT";
-export const GoogleCloudBillingBudgetsV1BudgetOwnershipScopeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudBillingBudgetsV1BudgetOwnershipScopeEnum = S.String;
 
 /** A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). The budget time period is configurable, with options such as month (default), quarter, year, or custom time period. */
 export interface GoogleCloudBillingBudgetsV1Budget {

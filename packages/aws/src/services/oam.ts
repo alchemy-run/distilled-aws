@@ -173,7 +173,7 @@ export type ResourceType =
   | "AWS::ApplicationSignals::Service"
   | "AWS::ApplicationSignals::ServiceLevelObjective"
   | (string & {});
-export const ResourceType = /*@__PURE__*/ S.String;
+export const ResourceType = S.String;
 
 export type ResourceTypesInput = ResourceType[];
 export const ResourceTypesInput = /*@__PURE__*/ S.Array(ResourceType);

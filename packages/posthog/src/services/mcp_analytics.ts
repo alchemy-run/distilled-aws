@@ -18,8 +18,7 @@ export type MCPAnalyticsSubmissionFeedbackCategoryEnum =
   | "bug"
   | "docs"
   | "other";
-export const MCPAnalyticsSubmissionFeedbackCategoryEnum =
-  /*@__PURE__*/ S.String;
+export const MCPAnalyticsSubmissionFeedbackCategoryEnum = S.String;
 
 export interface CreateMcpAnalyticsFeedbackRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -71,7 +70,7 @@ export const CreateMcpAnalyticsFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `feedback` - Feedback * `missing_capability` - Missing capability */
 export type MCPAnalyticsSubmissionKindEnum = "feedback" | "missing_capability";
-export const MCPAnalyticsSubmissionKindEnum = /*@__PURE__*/ S.String;
+export const MCPAnalyticsSubmissionKindEnum = S.String;
 
 export interface MCPAnalyticsSubmission {
   /** Unique identifier for this submission. */
@@ -239,7 +238,7 @@ export const GetMcpAnalyticsIntentClusterRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** * `idle` - Idle * `computing` - Computing * `error` - Error */
 export type MCPIntentClusterSnapshotStatusEnum = "idle" | "computing" | "error";
-export const MCPIntentClusterSnapshotStatusEnum = /*@__PURE__*/ S.String;
+export const MCPIntentClusterSnapshotStatusEnum = S.String;
 
 export interface MCPIntentClusterToolEntry {
   /** MCP tool name that received calls for this cluster. */
@@ -286,7 +285,7 @@ export const MCPIntentClusterJourneyPathStepsList = /*@__PURE__*/ S.Array(
 
 /** * `completed` - Completed * `error` - Error */
 export type OutcomeEnum = "completed" | "error";
-export const OutcomeEnum = /*@__PURE__*/ S.String;
+export const OutcomeEnum = S.String;
 
 export interface MCPIntentClusterJourneyPath {
   /** Ordered tool names called during the path. Length is fixed; null entries indicate the session ended before this step. */

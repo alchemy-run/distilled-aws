@@ -41,15 +41,15 @@ export class NotFound
 
 /** * `popover` - popover * `widget` - widget * `external_survey` - external survey * `api` - api */
 export type SurveyTypeEnum = "popover" | "widget" | "external_survey" | "api";
-export const SurveyTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyTypeEnum = S.String;
 
 /** * `once` - once * `recurring` - recurring * `always` - always */
 export type SurveyScheduleEnum = "once" | "recurring" | "always";
-export const SurveyScheduleEnum = /*@__PURE__*/ S.String;
+export const SurveyScheduleEnum = S.String;
 
 /** * `cohort` - cohort * `person` - person * `group` - group */
 export type PropertyGroupTypeEnum = "cohort" | "person" | "group";
-export const PropertyGroupTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyGroupTypeEnum = S.String;
 
 /** * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains * `starts_with` - starts_with * `not_starts_with` - not_starts_with * `ends_with` - ends_with * `not_ends_with` - not_ends_with * `regex` - regex * `not_regex` - not_regex * `gt` - gt * `gte` - gte * `lt` - lt * `lte` - lte */
 export type FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
@@ -67,8 +67,7 @@ export type FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
   | "gte"
   | "lt"
   | "lte";
-export const FeatureFlagFilterPropertyGenericSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyGenericSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyGenericSchema {
   /** Property key used in this feature flag condition. */
@@ -100,7 +99,7 @@ export const FeatureFlagFilterPropertyGenericSchema = /*@__PURE__*/ S.suspend(
 
 /** * `is_set` - is_set * `is_not_set` - is_not_set */
 export type ExistenceOperatorEnum = "is_set" | "is_not_set";
-export const ExistenceOperatorEnum = /*@__PURE__*/ S.String;
+export const ExistenceOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyExistsSchema {
   /** Property key used in this feature flag condition. */
@@ -135,7 +134,7 @@ export type DateOperatorEnum =
   | "is_date_exact"
   | "is_date_before"
   | "is_date_after";
-export const DateOperatorEnum = /*@__PURE__*/ S.String;
+export const DateOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyDateSchema {
   /** Property key used in this feature flag condition. */
@@ -175,8 +174,7 @@ export type FeatureFlagFilterPropertySemverSchemaOperatorEnum =
   | "semver_tilde"
   | "semver_caret"
   | "semver_wildcard";
-export const FeatureFlagFilterPropertySemverSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertySemverSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertySemverSchema {
   /** Property key used in this feature flag condition. */
@@ -211,7 +209,7 @@ export type FeatureFlagFilterPropertyMultiContainsSchemaOperatorEnum =
   | "icontains_multi"
   | "not_icontains_multi";
 export const FeatureFlagFilterPropertyMultiContainsSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** List of strings to evaluate against. */
 export type FeatureFlagFilterPropertyMultiContainsSchemaValueList =
@@ -255,15 +253,13 @@ export const FeatureFlagFilterPropertyMultiContainsSchema =
 
 /** * `cohort` - cohort */
 export type FeatureFlagFilterPropertyCohortInSchemaTypeEnum = "cohort";
-export const FeatureFlagFilterPropertyCohortInSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyCohortInSchemaTypeEnum = S.String;
 
 /** * `in` - in * `not_in` - not_in */
 export type FeatureFlagFilterPropertyCohortInSchemaOperatorEnum =
   | "in"
   | "not_in";
-export const FeatureFlagFilterPropertyCohortInSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyCohortInSchemaOperatorEnum = S.String;
 
 export interface FeatureFlagFilterPropertyCohortInSchema {
   /** Property key used in this feature flag condition. */
@@ -297,14 +293,13 @@ export const FeatureFlagFilterPropertyCohortInSchema = /*@__PURE__*/ S.suspend(
 
 /** * `flag` - flag */
 export type FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum = "flag";
-export const FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const FeatureFlagFilterPropertyFlagEvaluatesSchemaTypeEnum = S.String;
 
 /** * `flag_evaluates_to` - flag_evaluates_to */
 export type FeatureFlagFilterPropertyFlagEvaluatesSchemaOperatorEnum =
   "flag_evaluates_to";
 export const FeatureFlagFilterPropertyFlagEvaluatesSchemaOperatorEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface FeatureFlagFilterPropertyFlagEvaluatesSchema {
   /** Property key used in this feature flag condition. */
@@ -347,7 +342,7 @@ export type FeatureFlagFilterPropertySchema =
   | FeatureFlagFilterPropertyCohortInSchema
   | FeatureFlagFilterPropertyFlagEvaluatesSchema;
 export const FeatureFlagFilterPropertySchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureFlagFilterPropertySchema>;
+  S.Unknown as any as S.Schema<FeatureFlagFilterPropertySchema>;
 
 /** Property conditions for this release condition group. */
 export type FeatureFlagConditionGroupSchemaPropertiesList =
@@ -461,11 +456,11 @@ export const FeatureFlagFiltersSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** * `open` - open */
 export type SurveyOpenQuestionSchemaTypeEnum = "open";
-export const SurveyOpenQuestionSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyOpenQuestionSchemaTypeEnum = S.String;
 
 /** * `html` - html * `text` - text */
 export type DescriptionContentTypeEnum = "html" | "text";
-export const DescriptionContentTypeEnum = /*@__PURE__*/ S.String;
+export const DescriptionContentTypeEnum = S.String;
 
 export interface SurveyOpenQuestionSchema {
   /** Stable question identifier (UUID). When editing an existing question, send back its current id so its responses (keyed by $survey_response_<id>) stay attached; omit it for new questions and the server generates one. */
@@ -498,7 +493,7 @@ export const SurveyOpenQuestionSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** * `link` - link */
 export type SurveyLinkQuestionSchemaTypeEnum = "link";
-export const SurveyLinkQuestionSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyLinkQuestionSchemaTypeEnum = S.String;
 
 export interface SurveyLinkQuestionSchema {
   /** Stable question identifier (UUID). When editing an existing question, send back its current id so its responses (keyed by $survey_response_<id>) stay attached; omit it for new questions and the server generates one. */
@@ -534,15 +529,15 @@ export const SurveyLinkQuestionSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** * `rating` - rating */
 export type SurveyRatingQuestionSchemaTypeEnum = "rating";
-export const SurveyRatingQuestionSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyRatingQuestionSchemaTypeEnum = S.String;
 
 /** * `number` - number * `emoji` - emoji */
 export type SurveyRatingQuestionSchemaDisplayEnum = "number" | "emoji";
-export const SurveyRatingQuestionSchemaDisplayEnum = /*@__PURE__*/ S.String;
+export const SurveyRatingQuestionSchemaDisplayEnum = S.String;
 
 /** * `next_question` - next_question */
 export type SurveyNextQuestionBranchingTypeEnum = "next_question";
-export const SurveyNextQuestionBranchingTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyNextQuestionBranchingTypeEnum = S.String;
 
 export interface SurveyNextQuestionBranching {
   /** Continue to the next question in sequence. * `next_question` - next_question */
@@ -558,7 +553,7 @@ export const SurveyNextQuestionBranching = /*@__PURE__*/ S.suspend(() =>
 
 /** * `end` - end */
 export type SurveyEndBranchingTypeEnum = "end";
-export const SurveyEndBranchingTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyEndBranchingTypeEnum = S.String;
 
 export interface SurveyEndBranching {
   /** End the survey. * `end` - end */
@@ -574,7 +569,7 @@ export const SurveyEndBranching = /*@__PURE__*/ S.suspend(() =>
 
 /** * `specific_question` - specific_question */
 export type SurveySpecificQuestionBranchingTypeEnum = "specific_question";
-export const SurveySpecificQuestionBranchingTypeEnum = /*@__PURE__*/ S.String;
+export const SurveySpecificQuestionBranchingTypeEnum = S.String;
 
 export interface SurveySpecificQuestionBranching {
   /** Jump to a specific question index. * `specific_question` - specific_question */
@@ -593,17 +588,16 @@ export const SurveySpecificQuestionBranching = /*@__PURE__*/ S.suspend(() =>
 
 /** * `response_based` - response_based */
 export type SurveyResponseBasedBranchingTypeEnum = "response_based";
-export const SurveyResponseBasedBranchingTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyResponseBasedBranchingTypeEnum = S.String;
 
 export type SurveyResponseBasedBranchingResponseValuesValueCase1 = "end";
-export const SurveyResponseBasedBranchingResponseValuesValueCase1 =
-  /*@__PURE__*/ S.String;
+export const SurveyResponseBasedBranchingResponseValuesValueCase1 = S.String;
 
 export type SurveyResponseBasedBranchingResponseValuesValue =
   | number
   | SurveyResponseBasedBranchingResponseValuesValueCase1;
 export const SurveyResponseBasedBranchingResponseValuesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveyResponseBasedBranchingResponseValuesValue>;
+  S.Unknown as any as S.Schema<SurveyResponseBasedBranchingResponseValuesValue>;
 
 /** Response-based branching map. Values can be a question index or 'end'. */
 export type SurveyResponseBasedBranchingResponseValuesMap = {
@@ -636,7 +630,7 @@ export type SurveyBranchingSchema =
   | SurveySpecificQuestionBranching
   | SurveyResponseBasedBranching;
 export const SurveyBranchingSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveyBranchingSchema>;
+  S.Unknown as any as S.Schema<SurveyBranchingSchema>;
 
 export interface SurveyRatingQuestionSchema {
   /** Stable question identifier (UUID). When editing an existing question, send back its current id so its responses (keyed by $survey_response_<id>) stay attached; omit it for new questions and the server generates one. */
@@ -683,7 +677,7 @@ export const SurveyRatingQuestionSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** * `single_choice` - single_choice */
 export type SurveySingleChoiceQuestionSchemaTypeEnum = "single_choice";
-export const SurveySingleChoiceQuestionSchemaTypeEnum = /*@__PURE__*/ S.String;
+export const SurveySingleChoiceQuestionSchemaTypeEnum = S.String;
 
 /** Array of choice options. Choice indices (0, 1, 2, ...) are used for branching logic. */
 export type SurveySingleChoiceQuestionSchemaChoicesList = Array<string>;
@@ -734,8 +728,7 @@ export const SurveySingleChoiceQuestionSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** * `multiple_choice` - multiple_choice */
 export type SurveyMultipleChoiceQuestionSchemaTypeEnum = "multiple_choice";
-export const SurveyMultipleChoiceQuestionSchemaTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SurveyMultipleChoiceQuestionSchemaTypeEnum = S.String;
 
 /** Array of choice options. Multiple selections allowed. No branching logic supported. */
 export type SurveyMultipleChoiceQuestionSchemaChoicesList = Array<string>;
@@ -789,7 +782,7 @@ export type SurveyQuestionInputSchema =
   | SurveySingleChoiceQuestionSchema
   | SurveyMultipleChoiceQuestionSchema;
 export const SurveyQuestionInputSchema =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveyQuestionInputSchema>;
+  S.Unknown as any as S.Schema<SurveyQuestionInputSchema>;
 
 /** The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice. Basic (open-ended question) - `id`: The question ID - `type`: `open` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `branching`: Branching logic for the question. See branching types below for details. Link (a question with a link) - `id`: The question ID - `type`: `link` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `link`: The URL associated with the question. - `branching`: Branching logic for the question. See branching types below for details. Rating (a question with a rating scale) - `id`: The question ID - `type`: `rating` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `display`: Display style of the rating (`number` or `emoji`). - `scale`: The scale of the rating (`number`). - `lowerBoundLabel`: Label for the lower bound of the scale. - `upperBoundLabel`: Label for the upper bound of the scale. - `isNpsQuestion`: Whether the question is an NPS rating. - `branching`: Branching logic for the question. See branching types below for details. Multiple choice - `id`: The question ID - `type`: `single_choice` or `multiple_choice` - `question`: The text of the question. - `description`: Optional description of the question. - `descriptionContentType`: Content type of the description (`html` or `text`). - `optional`: Whether the question is optional (`boolean`). - `buttonText`: Text displayed on the submit button. - `choices`: An array of choices for the question. - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`). - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`). - `branching`: Branching logic for the question. See branching types below for details. Branching logic can be one of the following types: Next question: Proceeds to the next question ```json { "type": "next_question" } ``` End: Ends the survey, optionally displaying a confirmation message. ```json { "type": "end" } ``` Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types. ```json { "type": "response_based", "responseValues": { "responseKey": "value" } } ``` Specific question: Proceeds to a specific question by index. ```json { "type": "specific_question", "index": 2 } ``` Translations: Each question can include inline translations. - `translations`: Object mapping language codes to translated fields. - Language codes: Canonical BCP-47-ish strings (e.g., "es", "es-MX", "zh-CN"). Aliases like "english" or "default" are rejected. The survey's `base_language` (default "en") declares the language of the untranslated text and cannot also appear as a translation key. - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link` Example with translations: ```json { "id": "uuid", "type": "rating", "question": "How satisfied are you?", "lowerBoundLabel": "Not satisfied", "upperBoundLabel": "Very satisfied", "translations": { "es": { "question": "¿Qué tan satisfecho estás?", "lowerBoundLabel": "No satisfecho", "upperBoundLabel": "Muy satisfecho" }, "fr": { "question": "Dans quelle mesure êtes-vous satisfait?" } } } ``` */
 export type CreateSurveyRequestQuestionsList = Array<SurveyQuestionInputSchema>;
@@ -805,7 +798,7 @@ export type SurveyMatchTypeEnum =
   | "is_not"
   | "icontains"
   | "not_icontains";
-export const SurveyMatchTypeEnum = /*@__PURE__*/ S.String;
+export const SurveyMatchTypeEnum = S.String;
 
 export interface SurveyConditionEventValueSchema {
   /** Event name that triggers the survey. */
@@ -843,7 +836,7 @@ export const SurveyEventsConditionSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** * `Desktop` - Desktop * `Mobile` - Mobile * `Tablet` - Tablet */
 export type DeviceTypesEnum = "Desktop" | "Mobile" | "Tablet";
-export const DeviceTypesEnum = /*@__PURE__*/ S.String;
+export const DeviceTypesEnum = S.String;
 
 /** Device types that should match for this survey to be shown. */
 export type SurveyConditionsSchemaDeviceTypesList = Array<
@@ -885,7 +878,7 @@ export const SurveyConditionsSchema = /*@__PURE__*/ S.suspend(() =>
 
 /** * `button` - button * `tab` - tab * `selector` - selector */
 export type WidgetTypeEnum = "button" | "tab" | "selector";
-export const WidgetTypeEnum = /*@__PURE__*/ S.String;
+export const WidgetTypeEnum = S.String;
 
 export interface SurveyAppearanceSchema {
   backgroundColor?: string;
@@ -971,16 +964,16 @@ export const CreateSurveyRequestIterationStartDatesList = /*@__PURE__*/ S.Array(
 
 /** * `day` - day * `week` - week * `month` - month */
 export type SurveySamplingIntervalTypeEnum = "day" | "week" | "month";
-export const SurveySamplingIntervalTypeEnum = /*@__PURE__*/ S.String;
+export const SurveySamplingIntervalTypeEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type CreateSurveyRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const CreateSurveyRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSurveyRequestResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<CreateSurveyRequestResponseSamplingIntervalType>;
 
 export interface CreateSurveyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1097,25 +1090,25 @@ export const MinimalFeatureFlagFiltersMap = /*@__PURE__*/ S.Record(
 
 /** * `server` - Server * `client` - Client * `all` - All */
 export type EvaluationRuntimeEnum = "server" | "client" | "all";
-export const EvaluationRuntimeEnum = /*@__PURE__*/ S.String;
+export const EvaluationRuntimeEnum = S.String;
 
 /** Specifies where this feature flag should be evaluated * `server` - Server * `client` - Client * `all` - All */
 export type MinimalFeatureFlagEvaluationRuntime =
   | EvaluationRuntimeEnum
   | BlankEnum;
 export const MinimalFeatureFlagEvaluationRuntime =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MinimalFeatureFlagEvaluationRuntime>;
+  S.Unknown as any as S.Schema<MinimalFeatureFlagEvaluationRuntime>;
 
 /** * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type BucketingIdentifierEnum = "distinct_id" | "device_id";
-export const BucketingIdentifierEnum = /*@__PURE__*/ S.String;
+export const BucketingIdentifierEnum = S.String;
 
 /** Identifier used for bucketing users into rollout and variants * `distinct_id` - User ID (default) * `device_id` - Device ID */
 export type MinimalFeatureFlagBucketingIdentifier =
   | BucketingIdentifierEnum
   | BlankEnum;
 export const MinimalFeatureFlagBucketingIdentifier =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<MinimalFeatureFlagBucketingIdentifier>;
+  S.Unknown as any as S.Schema<MinimalFeatureFlagBucketingIdentifier>;
 
 export type MinimalFeatureFlagEvaluationContextsList = Array<string>;
 export const MinimalFeatureFlagEvaluationContextsList = /*@__PURE__*/ S.Array(
@@ -1178,11 +1171,11 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -1220,7 +1213,7 @@ export type SurveySerializerCreateUpdateOnlyOutputResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const SurveySerializerCreateUpdateOnlyOutputResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveySerializerCreateUpdateOnlyOutputResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<SurveySerializerCreateUpdateOnlyOutputResponseSamplingIntervalType>;
 
 export interface SurveySerializerCreateUpdateOnlyOutput {
   id?: string;
@@ -1353,7 +1346,7 @@ export type CreateSurveysSummaryHeadlineRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const CreateSurveysSummaryHeadlineRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateSurveysSummaryHeadlineRequestResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<CreateSurveysSummaryHeadlineRequestResponseSamplingIntervalType>;
 
 export interface CreateSurveysSummaryHeadlineRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1502,10 +1495,10 @@ export type SurveyResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const SurveyResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveyResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<SurveyResponseSamplingIntervalType>;
 
 export type SearchMatchTypeEnum = "exact" | "similar";
-export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
+export const SearchMatchTypeEnum = S.String;
 
 /** Mixin for serializers to add user access control fields */
 export interface Survey {
@@ -1846,14 +1839,14 @@ export const ListSurveysRequestIdsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListSurveysRequestIdsList>;
 
 export type ListSurveysRequestStatus = "complete" | "draft" | "running";
-export const ListSurveysRequestStatus = /*@__PURE__*/ S.String;
+export const ListSurveysRequestStatus = S.String;
 
 export type ListSurveysRequestType =
   | "api"
   | "external_survey"
   | "popover"
   | "widget";
-export const ListSurveysRequestType = /*@__PURE__*/ S.String;
+export const ListSurveysRequestType = S.String;
 
 export interface ListSurveysRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2140,7 +2133,7 @@ export type SurveysDuplicateToProjectsCreateRequestResponseSamplingIntervalType 
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const SurveysDuplicateToProjectsCreateRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveysDuplicateToProjectsCreateRequestResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<SurveysDuplicateToProjectsCreateRequestResponseSamplingIntervalType>;
 
 export interface SurveysDuplicateToProjectsCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2513,7 +2506,7 @@ export type SurveysResponsesArchiveCreateRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const SurveysResponsesArchiveCreateRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveysResponsesArchiveCreateRequestResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<SurveysResponsesArchiveCreateRequestResponseSamplingIntervalType>;
 
 export interface SurveysResponsesArchiveCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2629,7 +2622,7 @@ export type SurveysResponsesUnarchiveCreateRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const SurveysResponsesUnarchiveCreateRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SurveysResponsesUnarchiveCreateRequestResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<SurveysResponsesUnarchiveCreateRequestResponseSamplingIntervalType>;
 
 export interface SurveysResponsesUnarchiveCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2749,7 +2742,7 @@ export type UpdateSurveyRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const UpdateSurveyRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSurveyRequestResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<UpdateSurveyRequestResponseSamplingIntervalType>;
 
 export interface UpdateSurveyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2876,7 +2869,7 @@ export type UpdateSurveysPartialRequestResponseSamplingIntervalType =
   | SurveySamplingIntervalTypeEnum
   | BlankEnum;
 export const UpdateSurveysPartialRequestResponseSamplingIntervalType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateSurveysPartialRequestResponseSamplingIntervalType>;
+  S.Unknown as any as S.Schema<UpdateSurveysPartialRequestResponseSamplingIntervalType>;
 
 export interface UpdateSurveysPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

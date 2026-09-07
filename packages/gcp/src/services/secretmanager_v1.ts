@@ -247,7 +247,7 @@ export type SecretVersionStateEnum =
   | "ENABLED"
   | "DISABLED"
   | "DESTROYED";
-export const SecretVersionStateEnum = /*@__PURE__*/ S.String;
+export const SecretVersionStateEnum = S.String;
 
 /** A secret version resource in the Secret Manager API. */
 export interface SecretVersion {
@@ -418,13 +418,13 @@ export type SecretSecretTypeEnum =
   | "CERTIFICATE"
   | "OTHER_DB_CREDENTIALS"
   | "OTHER";
-export const SecretSecretTypeEnum = /*@__PURE__*/ S.String;
+export const SecretSecretTypeEnum = S.String;
 
 export type ManagedRotationStatusStateEnum =
   | "STATE_UNSPECIFIED"
   | "ACTIVE"
   | "INACTIVE";
-export const ManagedRotationStatusStateEnum = /*@__PURE__*/ S.String;
+export const ManagedRotationStatusStateEnum = S.String;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -897,7 +897,7 @@ export type AuditLogConfigLogTypeEnum =
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
-export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+export const AuditLogConfigLogTypeEnum = S.String;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(

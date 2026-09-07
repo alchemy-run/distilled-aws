@@ -193,7 +193,7 @@ export type GetProvidersAccountsViewEnum =
   | "ACCOUNT_VIEW_UNSPECIFIED"
   | "ACCOUNT_VIEW_BASIC"
   | "ACCOUNT_VIEW_FULL";
-export const GetProvidersAccountsViewEnum = /*@__PURE__*/ S.String;
+export const GetProvidersAccountsViewEnum = S.String;
 
 export interface GetProvidersAccountsRequest {
   /** Required. The name of the account to retrieve. */
@@ -220,14 +220,14 @@ export type AccountStateEnum =
   | "ACCOUNT_STATE_UNSPECIFIED"
   | "ACCOUNT_ACTIVATION_REQUESTED"
   | "ACCOUNT_ACTIVE";
-export const AccountStateEnum = /*@__PURE__*/ S.String;
+export const AccountStateEnum = S.String;
 
 export type ApprovalStateEnum =
   | "STATE_UNSPECIFIED"
   | "PENDING"
   | "APPROVED"
   | "REJECTED";
-export const ApprovalStateEnum = /*@__PURE__*/ S.String;
+export const ApprovalStateEnum = S.String;
 
 /** An approval for some action on an account. */
 export interface Approval {
@@ -324,7 +324,7 @@ export type EntitlementStateEnum =
   | "ENTITLEMENT_PENDING_PLAN_CHANGE"
   | "ENTITLEMENT_PENDING_PLAN_CHANGE_APPROVAL"
   | "ENTITLEMENT_SUSPENDED";
-export const EntitlementStateEnum = /*@__PURE__*/ S.String;
+export const EntitlementStateEnum = S.String;
 
 /** A resource using (consuming) this entitlement. */
 export interface Consumer {

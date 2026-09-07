@@ -15,7 +15,7 @@ export type { PosthogOpError, PosthogOpContext };
 export type GetManagedViewsetRequestKind =
   | "revenue_analytics"
   | "engineering_analytics";
-export const GetManagedViewsetRequestKind = /*@__PURE__*/ S.String;
+export const GetManagedViewsetRequestKind = S.String;
 
 export interface GetManagedViewsetRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -48,7 +48,7 @@ export const GetManagedViewsetResponse = /*@__PURE__*/ S.suspend(() =>
 export type UpdateManagedViewsetRequestKind =
   | "revenue_analytics"
   | "engineering_analytics";
-export const UpdateManagedViewsetRequestKind = /*@__PURE__*/ S.String;
+export const UpdateManagedViewsetRequestKind = S.String;
 
 export interface UpdateManagedViewsetRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */

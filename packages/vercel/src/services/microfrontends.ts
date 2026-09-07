@@ -173,14 +173,13 @@ export const GetMicrofrontendsConfigRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The version of the microfrontends config schema. */
 export type GetMicrofrontendsConfigResponseConfigVersion = "1";
-export const GetMicrofrontendsConfigResponseConfigVersion =
-  /*@__PURE__*/ S.String;
+export const GetMicrofrontendsConfigResponseConfigVersion = S.String;
 
 export type GetMicrofrontendsConfigResponseConfigApplicationsValueCase0DevelopmentLocal =
   | string
   | number;
 export const GetMicrofrontendsConfigResponseConfigApplicationsValueCase0DevelopmentLocal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsConfigResponseConfigApplicationsValueCase0DevelopmentLocal>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsConfigResponseConfigApplicationsValueCase0DevelopmentLocal>;
 
 /** Development configuration for the default application. */
 export interface GetMicrofrontendsConfigResponseConfigApplicationsValueCase0Development {
@@ -227,7 +226,7 @@ export type GetMicrofrontendsConfigResponseConfigApplicationsValueCase1Developme
   | string
   | number;
 export const GetMicrofrontendsConfigResponseConfigApplicationsValueCase1DevelopmentLocal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsConfigResponseConfigApplicationsValueCase1DevelopmentLocal>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsConfigResponseConfigApplicationsValueCase1DevelopmentLocal>;
 
 /** Development configuration for the child application. */
 export interface GetMicrofrontendsConfigResponseConfigApplicationsValueCase1Development {
@@ -320,7 +319,7 @@ export type GetMicrofrontendsConfigResponseConfigApplicationsValue =
   | GetMicrofrontendsConfigResponseConfigApplicationsValueCase0
   | GetMicrofrontendsConfigResponseConfigApplicationsValueCase1;
 export const GetMicrofrontendsConfigResponseConfigApplicationsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsConfigResponseConfigApplicationsValue>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsConfigResponseConfigApplicationsValue>;
 
 export type GetMicrofrontendsConfigResponseConfigApplicationsMap = {
   [key: string]:
@@ -411,14 +410,13 @@ export const GetMicrofrontendsConfigForProjectRequest = /*@__PURE__*/ S.suspend(
 
 /** The version of the microfrontends config schema. */
 export type GetMicrofrontendsConfigForProjectResponseConfigVersion = "1";
-export const GetMicrofrontendsConfigForProjectResponseConfigVersion =
-  /*@__PURE__*/ S.String;
+export const GetMicrofrontendsConfigForProjectResponseConfigVersion = S.String;
 
 export type GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase0DevelopmentLocal =
   | string
   | number;
 export const GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase0DevelopmentLocal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase0DevelopmentLocal>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase0DevelopmentLocal>;
 
 /** Development configuration for the default application. */
 export interface GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase0Development {
@@ -466,7 +464,7 @@ export type GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase
   | string
   | number;
 export const GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase1DevelopmentLocal =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase1DevelopmentLocal>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase1DevelopmentLocal>;
 
 /** Development configuration for the child application. */
 export interface GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase1Development {
@@ -560,7 +558,7 @@ export type GetMicrofrontendsConfigForProjectResponseConfigApplicationsValue =
   | GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase0
   | GetMicrofrontendsConfigForProjectResponseConfigApplicationsValueCase1;
 export const GetMicrofrontendsConfigForProjectResponseConfigApplicationsValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsConfigForProjectResponseConfigApplicationsValue>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsConfigForProjectResponseConfigApplicationsValue>;
 
 export type GetMicrofrontendsConfigForProjectResponseConfigApplicationsMap = {
   [key: string]:
@@ -667,12 +665,12 @@ export const GetMicrofrontendsInGroupRequest = /*@__PURE__*/ S.suspend(() =>
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0Type =
   "user";
 export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase0Type =
   "app";
 export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase0App {
   /** The internal ID of the Vercel App backing this principal. */
@@ -710,7 +708,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase0 =
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase1Type =
   "integration";
 export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase1Integration {
   integrationId: string;
@@ -748,7 +746,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0Via =
   | GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase0
   | GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0Via =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0Via>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0Via>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0User {
   id: string;
@@ -783,7 +781,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0 =
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase1Type =
   "app";
 export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase1App =
   GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase0App;
@@ -807,7 +805,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase1 =
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase2Type =
   "integration";
 export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase2Integration =
   GetMicrofrontendsInGroupResponseProjectsItemCreatorCase0ViaCase1Integration;
@@ -832,7 +830,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase2 =
 export type GetMicrofrontendsInGroupResponseProjectsItemCreatorCase3Type =
   "system";
 export const GetMicrofrontendsInGroupResponseProjectsItemCreatorCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemCreatorCase3 {
   type: GetMicrofrontendsInGroupResponseProjectsItemCreatorCase3Type;
@@ -852,7 +850,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemCreator =
   | GetMicrofrontendsInGroupResponseProjectsItemCreatorCase2
   | GetMicrofrontendsInGroupResponseProjectsItemCreatorCase3;
 export const GetMicrofrontendsInGroupResponseProjectsItemCreator =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemCreator>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemCreator>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemConfiguredBy =
   | "A"
@@ -860,7 +858,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemConfiguredBy =
   | "dns-01"
   | "http";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemConfiguredBy =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAliasList =
   Array<string>;
@@ -873,7 +871,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAlias
   | number
   | boolean;
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAliasAssigned =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAliasAssigned>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAliasAssigned>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAliasError {
   code: string;
@@ -903,7 +901,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentBranc
   | "equals"
   | "startsWith";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentBranchMatcherType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentBranchMatcher {
   /** The type of matching to perform */
@@ -952,14 +950,14 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentCheck
   | "skipped"
   | "succeeded";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentChecksConclusion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentChecksState =
   | "completed"
   | "registered"
   | "running";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentChecksState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentCreator {
   email: string;
@@ -1039,7 +1037,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentPlan 
   | "hobby"
   | "pro";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentReadyState =
   | "BLOCKED"
@@ -1050,19 +1048,19 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentReady
   | "QUEUED"
   | "READY";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentReadySubstate =
   | "PROMOTED"
   | "ROLLING"
   | "STAGED";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentReadySubstate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentType =
   "LAMBDAS";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeployment {
   id: string;
@@ -1182,7 +1180,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemEnvironment =
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemEnvironment =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemRedirectStatusCode =
   | 301
@@ -1190,14 +1188,14 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemRedirectStatusC
   | 307
   | 308;
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAliasItemTarget =
   | "PREVIEW"
   | "PRODUCTION"
   | "STAGING";
 export const GetMicrofrontendsInGroupResponseProjectsItemAliasItemTarget =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAliasItem {
   configuredBy?: GetMicrofrontendsInGroupResponseProjectsItemAliasItemConfiguredBy | null;
@@ -1300,13 +1298,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsIte
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsItemEnvIdCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsItemEnvId =
   | string
   | GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsItemEnvIdCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsItemEnvId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsItemEnvId>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsItemEnvId>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsItemAwsSubnetIdsList =
   Array<string>;
@@ -1372,7 +1370,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemConnectConfigurationsLi
 export type GetMicrofrontendsInGroupResponseProjectsItemCronsDefinitionsItemSource =
   "api";
 export const GetMicrofrontendsInGroupResponseProjectsItemCronsDefinitionsItemSource =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemCronsDefinitionsItem {
   /** The hostname that should be used. */
@@ -1512,7 +1510,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemExpiration =
   | GetMicrofrontendsInGroupResponseProjectsItemExpirationCase0
   | GetMicrofrontendsInGroupResponseProjectsItemExpirationCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemExpiration =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemExpiration>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemExpiration>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase0Item =
   | "development"
@@ -1521,7 +1519,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase0Item =
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase0Item =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase0List =
   Array<GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase0Item>;
@@ -1537,13 +1535,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase1 =
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemTarget =
   | GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase0List
   | GetMicrofrontendsInGroupResponseProjectsItemEnvItemTargetCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemTarget =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemEnvItemTarget>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemEnvItemTarget>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemType =
   | "encrypted"
@@ -1551,20 +1549,19 @@ export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemType =
   | "secret"
   | "sensitive"
   | "system";
-export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemType =
-  /*@__PURE__*/ S.String;
+export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemType = S.String;
 
 /** User-facing config/secret model. When set, authoritative for new code paths when the env-var-config-secret-ui flag is enabled. Legacy rows omit this field; legacy rows omit it and callers fall back to existing `type` behavior. */
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemVisibility =
   | "config"
   | "secret";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemVisibility =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase0Type =
   "redis-url";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase0 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase0Type;
@@ -1584,7 +1581,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase0
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1Type =
   "redis-rest-api-url";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1Type;
@@ -1604,7 +1601,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase2Type =
   "redis-rest-api-token";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase2 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase2Type;
@@ -1624,7 +1621,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase2
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase3Type =
   "redis-rest-api-read-only-token";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase3 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase3Type;
@@ -1644,7 +1641,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase3
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase4Type =
   "blob-read-write-token";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase4 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase4Type;
@@ -1664,7 +1661,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase4
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase5Type =
   "blob-store-id";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase5 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase5Type;
@@ -1684,7 +1681,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase5
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase6Type =
   "blob-webhook-public-key";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase6Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase6 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase6Type;
@@ -1704,7 +1701,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase6
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase7Type =
   "postgres-url";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase7Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase7 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase7Type;
@@ -1724,7 +1721,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase7
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase8Type =
   "postgres-url-non-pooling";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase8Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase8 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase8Type;
@@ -1744,7 +1741,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase8
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase9Type =
   "postgres-prisma-url";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase9Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase9 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase9Type;
@@ -1764,7 +1761,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase9
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase10Type =
   "postgres-user";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase10Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase10 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase10Type;
@@ -1784,7 +1781,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase11Type =
   "postgres-host";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase11Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase11 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase11Type;
@@ -1804,7 +1801,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase12Type =
   "postgres-password";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase12Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase12 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase12Type;
@@ -1824,7 +1821,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase13Type =
   "postgres-database";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase13Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase13 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase13Type;
@@ -1844,7 +1841,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase14Type =
   "postgres-url-no-ssl";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase14Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase14 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase14Type;
@@ -1864,7 +1861,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase15Type =
   "integration-store-secret";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase15Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase15 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase15Type;
@@ -1890,7 +1887,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase16Type =
   "flags-connection-string";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase16Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase16 {
   type: GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase16Type;
@@ -1926,12 +1923,12 @@ export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHint =
   | GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase15
   | GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHintCase16;
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHint =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHint>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemEnvItemContentHint>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemEnvItemInternalContentHintType =
   "flags-secret";
 export const GetMicrofrontendsInGroupResponseProjectsItemEnvItemInternalContentHintType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Similar to `contentHints`, but should not be exposed to the user. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemEnvItemInternalContentHint {
@@ -2042,7 +2039,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemTy
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The type of matching to perform */
 export type GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemBranchMatcherType =
@@ -2050,7 +2047,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemBr
   | "equals"
   | "startsWith";
 export const GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemBranchMatcherType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for matching git branches to this environment */
 export interface GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemBranchMatcher {
@@ -2076,7 +2073,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemDo
   | 307
   | 308;
 export const GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemDomainsItemRedirectStatusCode =
-  /*@__PURE__*/ S.Number;
+  S.Number;
 
 /** A list of verification challenges, one of which must be completed to verify the domain for use on the project. After the challenge is complete `POST /projects/:idOrName/domains/:domain/verify` to verify the domain. Possible challenges: - If `verification.type = TXT` the `verification.domain` will be checked for a TXT record matching `verification.value`. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemCustomEnvironmentsItemDomainsItemVerificationItem {
@@ -2291,8 +2288,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemFramework =
   | "vuepress"
   | "xmcp"
   | "zola";
-export const GetMicrofrontendsInGroupResponseProjectsItemFramework =
-  /*@__PURE__*/ S.String;
+export const GetMicrofrontendsInGroupResponseProjectsItemFramework = S.String;
 
 /** Service kind (Service.type). Omitted for schemas that do not define one. */
 export type GetMicrofrontendsInGroupResponseProjectsItemServicesItemServiceType =
@@ -2301,7 +2297,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemServicesItemServiceType 
   | "web"
   | "worker";
 export const GetMicrofrontendsInGroupResponseProjectsItemServicesItemServiceType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Framework slug, when the service has one (omitted otherwise). */
 export type GetMicrofrontendsInGroupResponseProjectsItemServicesItemFramework =
@@ -2380,7 +2376,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemServicesItemFramework =
   | "xmcp"
   | "zola";
 export const GetMicrofrontendsInGroupResponseProjectsItemServicesItemFramework =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemServicesItem {
   /** Service name from the deployment (Service.name). */
@@ -2531,7 +2527,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemAli
   | number
   | boolean;
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemAliasAssigned =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemAliasAssigned>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemAliasAssigned>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemAliasError =
   GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAliasError;
@@ -2551,7 +2547,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemBra
   | "equals"
   | "startsWith";
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemBranchMatcherType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemBranchMatcher {
   /** The type of matching to perform */
@@ -2588,14 +2584,14 @@ export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemChe
   | "skipped"
   | "succeeded";
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemChecksConclusion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemChecksState =
   | "completed"
   | "registered"
   | "running";
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemChecksState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemCreator =
   GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentCreator;
@@ -2659,7 +2655,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemPla
   | "hobby"
   | "pro";
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemPlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemReadyState =
   | "BLOCKED"
@@ -2670,19 +2666,19 @@ export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemRea
   | "QUEUED"
   | "READY";
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemReadySubstate =
   | "PROMOTED"
   | "ROLLING"
   | "STAGED";
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemReadySubstate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemType =
   "LAMBDAS";
 export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsItem {
   id: string;
@@ -2808,7 +2804,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLatestDeploymentsList =
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase0Type =
   "github";
 export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemLinkCase0DeployHooksItem {
   createdAt?: number;
@@ -2875,7 +2871,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase0 =
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase1Type =
   "github-limited";
 export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase1DeployHooksItem =
   GetMicrofrontendsInGroupResponseProjectsItemLinkCase0DeployHooksItem;
@@ -2926,7 +2922,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase1 =
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase2Type =
   "github-custom-host";
 export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase2Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase2DeployHooksItem =
   GetMicrofrontendsInGroupResponseProjectsItemLinkCase0DeployHooksItem;
@@ -2979,7 +2975,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase2 =
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase3Type =
   "gitlab";
 export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase3Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase3DeployHooksItem =
   GetMicrofrontendsInGroupResponseProjectsItemLinkCase0DeployHooksItem;
@@ -3034,7 +3030,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase3 =
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase4Type =
   "bitbucket";
 export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase4Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase4DeployHooksItem =
   GetMicrofrontendsInGroupResponseProjectsItemLinkCase0DeployHooksItem;
@@ -3086,7 +3082,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase4 =
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase5Type =
   "vercel";
 export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase5Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase5DeployHooksItem =
   GetMicrofrontendsInGroupResponseProjectsItemLinkCase0DeployHooksItem;
@@ -3132,7 +3128,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase5 =
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase6Type =
   "cursor-origin";
 export const GetMicrofrontendsInGroupResponseProjectsItemLinkCase6Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLinkCase6DeployHooksItem =
   GetMicrofrontendsInGroupResponseProjectsItemLinkCase0DeployHooksItem;
@@ -3191,7 +3187,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemLink =
   | GetMicrofrontendsInGroupResponseProjectsItemLinkCase5
   | GetMicrofrontendsInGroupResponseProjectsItemLinkCase6;
 export const GetMicrofrontendsInGroupResponseProjectsItemLink =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemLink>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemLink>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemBlobs {
   /** Marks the team-level, Vercel-managed default blob project (`vercel-blob-default-project`) that orphan blob stores are scoped to when connected without an explicit project. Set only by internal storage flows and immutable after creation — guards rely on it to protect the connected stores from being lost when the project is deleted or transferred. */
@@ -3318,7 +3314,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemMicrofrontends =
   | GetMicrofrontendsInGroupResponseProjectsItemMicrofrontendsCase1
   | GetMicrofrontendsInGroupResponseProjectsItemMicrofrontendsCase2;
 export const GetMicrofrontendsInGroupResponseProjectsItemMicrofrontends =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemMicrofrontends>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemMicrofrontends>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemNodeVersion =
   | "10.x"
@@ -3330,8 +3326,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemNodeVersion =
   | "22.x"
   | "24.x"
   | "8.10.x";
-export const GetMicrofrontendsInGroupResponseProjectsItemNodeVersion =
-  /*@__PURE__*/ S.String;
+export const GetMicrofrontendsInGroupResponseProjectsItemNodeVersion = S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemOptionsAllowlistPathsItem {
   value: string;
@@ -3372,7 +3367,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemPassportDeploymentType =
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const GetMicrofrontendsInGroupResponseProjectsItemPassportDeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemPassport {
   deploymentType: GetMicrofrontendsInGroupResponseProjectsItemPassportDeploymentType;
@@ -3437,7 +3432,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSandboxRegion =
   | "syd1"
   | "yul1";
 export const GetMicrofrontendsInGroupResponseProjectsItemSandboxRegion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSandboxFailoverRegionsItem =
   | "arn1"
@@ -3460,7 +3455,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSandboxFailoverRegionsIt
   | "syd1"
   | "yul1";
 export const GetMicrofrontendsInGroupResponseProjectsItemSandboxFailoverRegionsItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSandboxFailoverRegionsList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemSandboxFailoverRegionsItem>;
@@ -3500,7 +3495,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemResourceConfigFunctionDe
   | "standard"
   | "standard_legacy";
 export const GetMicrofrontendsInGroupResponseProjectsItemResourceConfigFunctionDefaultMemoryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachineType =
   | "basic"
@@ -3508,13 +3503,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachi
   | "standard"
   | "turbo";
 export const GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachineSelection =
   | "elastic"
   | "fixed";
 export const GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachineSelection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachineElasticReason =
   | "basic-floor"
@@ -3528,13 +3523,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachi
   | "short-build-duration"
   | "sustained-high-cpu";
 export const GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildMachineElasticReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildQueueConfiguration =
   | "SKIP_NAMESPACE_QUEUE"
   | "WAIT_FOR_NAMESPACE_QUEUE";
 export const GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildQueueConfiguration =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildQueue {
   configuration?: GetMicrofrontendsInGroupResponseProjectsItemResourceConfigBuildQueueConfiguration;
@@ -3658,7 +3653,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemRollingReleaseStagesLis
 export type GetMicrofrontendsInGroupResponseProjectsItemRollingReleaseGateChecksItemType =
   "error-rate-5xx";
 export const GetMicrofrontendsInGroupResponseProjectsItemRollingReleaseGateChecksItemType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Response status codes to ignore entirely — dropped from both the numerator (errors) and the denominator (total requests). Defaults to `[]` when omitted. */
 export type GetMicrofrontendsInGroupResponseProjectsItemRollingReleaseGateChecksItemExcludeStatusCodesList =
@@ -3720,7 +3715,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemRollingReleaseGateAction
   | "pause"
   | "rollback";
 export const GetMicrofrontendsInGroupResponseProjectsItemRollingReleaseGateAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Automated gating configuration. Omitted (the default) means no gating is configured, which is equivalent to `enabled: false`. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemRollingReleaseGate {
@@ -3796,7 +3791,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigFun
   | "standard"
   | "standard_legacy";
 export const GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigFunctionDefaultMemoryType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildMachineType =
   | "basic"
@@ -3804,13 +3799,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBui
   | "standard"
   | "turbo";
 export const GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildMachineType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildMachineSelection =
   | "elastic"
   | "fixed";
 export const GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildMachineSelection =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildMachineElasticReason =
   | "basic-floor"
@@ -3824,13 +3819,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBui
   | "short-build-duration"
   | "sustained-high-cpu";
 export const GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildMachineElasticReason =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildQueueConfiguration =
   | "SKIP_NAMESPACE_QUEUE"
   | "WAIT_FOR_NAMESPACE_QUEUE";
 export const GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildQueueConfiguration =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildQueue {
   configuration?: GetMicrofrontendsInGroupResponseProjectsItemDefaultResourceConfigBuildQueueConfiguration;
@@ -3931,7 +3926,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionDeploymentT
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionDeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionCve55182MigrationAppliedFrom =
   | "all"
@@ -3939,7 +3934,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionCve55182Mig
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionCve55182MigrationAppliedFrom =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionApril2026SecurityIncidentMigrationAppliedFrom =
   | "all"
@@ -3947,7 +3942,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionApril2026Se
   | "preview"
   | "prod_deployment_urls_and_all_previews";
 export const GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionApril2026SecurityIncidentMigrationAppliedFrom =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSsoProtection {
   deploymentType: GetMicrofrontendsInGroupResponseProjectsItemSsoProtectionDeploymentType;
@@ -3985,7 +3980,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueAliasAssigne
   | number
   | boolean;
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValueAliasAssigned =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTargetsValueAliasAssigned>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTargetsValueAliasAssigned>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueAliasError =
   GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentAliasError;
@@ -4005,7 +4000,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueBranchMatche
   | "equals"
   | "startsWith";
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValueBranchMatcherType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemTargetsValueBranchMatcher {
   /** The type of matching to perform */
@@ -4042,14 +4037,14 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueChecksConclu
   | "skipped"
   | "succeeded";
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValueChecksConclusion =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueChecksState =
   | "completed"
   | "registered"
   | "running";
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValueChecksState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueCreator =
   GetMicrofrontendsInGroupResponseProjectsItemAliasItemDeploymentCreator;
@@ -4114,7 +4109,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValuePlan =
   | "hobby"
   | "pro";
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValuePlan =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueReadyState =
   | "BLOCKED"
@@ -4125,19 +4120,19 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueReadyState =
   | "QUEUED"
   | "READY";
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValueReadyState =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueReadySubstate =
   | "PROMOTED"
   | "ROLLING"
   | "STAGED";
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValueReadySubstate =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemTargetsValueType =
   "LAMBDAS";
 export const GetMicrofrontendsInGroupResponseProjectsItemTargetsValueType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemTargetsValue {
   id: string;
@@ -4265,7 +4260,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTargetsMap =
 
 /** Enum containing the actions that can be performed against a resource. Group operations are included. */
 export type ACLAction = "create" | "delete" | "list" | "read" | "update";
-export const ACLAction = /*@__PURE__*/ S.String;
+export const ACLAction = S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList =
   Array<ACLAction>;
@@ -7366,13 +7361,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemLastAliasRequestJobStatu
   | "skipped"
   | "succeeded";
 export const GetMicrofrontendsInGroupResponseProjectsItemLastAliasRequestJobStatus =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemLastAliasRequestType =
   | "promote"
   | "rollback";
 export const GetMicrofrontendsInGroupResponseProjectsItemLastAliasRequestType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemLastAliasRequest {
   fromDeploymentId: string | null;
@@ -7401,7 +7396,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemLastAliasRequest =
 export type GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase0Scope =
   "integration-automation-bypass";
 export const GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase0Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase0 {
   createdAt: number;
@@ -7428,7 +7423,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCa
 export type GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase1Scope =
   "automation-bypass";
 export const GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase1Scope =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase1 {
   createdAt: number;
@@ -7458,7 +7453,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValue =
   | GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase0
   | GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValueCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValue>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassValue>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemProtectionBypassMap = {
   [key: string]:
@@ -7478,7 +7473,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0Deploymen
   | "prod_deployment_urls_and_all_previews"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0DeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0AddressesItem {
   value: string;
@@ -7506,7 +7501,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0Protectio
   | "additional"
   | "exclusive";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0ProtectionMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0 {
   deploymentType: GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0DeploymentType;
@@ -7534,7 +7529,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase1Deploymen
   | "prod_deployment_urls_and_all_previews"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase1DeploymentType =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase1 {
   deploymentType: GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase1DeploymentType;
@@ -7553,7 +7548,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTrustedIps =
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase0
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedIpsCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedIps =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedIps>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedIps>;
 
 /** System environment slugs (`production`, `preview`) and/or custom environment slugs defined on the referenced project. */
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase0SlugsList =
@@ -7566,7 +7561,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsV
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase0Preset =
   "all-custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase0Preset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source envs on the trusted project that are allowed to access `to`. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase0 {
@@ -7599,7 +7594,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsV
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase1Preset =
   "all-custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase1Preset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The source envs on the trusted project that are allowed to access `to`. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase1 {
@@ -7625,7 +7620,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsVa
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase0
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFromCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFrom =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFrom>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemFrom>;
 
 /** System environment slugs (`production`, `preview`) and/or custom environment slugs defined on the referenced project. */
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase0SlugsList =
@@ -7638,7 +7633,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsV
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase0Preset =
   "all-custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase0Preset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The target envs on the current project that may be accessed. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase0 {
@@ -7671,7 +7666,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsV
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase1Preset =
   "all-custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase1Preset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The target envs on the current project that may be accessed. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase1 {
@@ -7697,7 +7692,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsVa
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase0
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemToCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemTo>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItemTo>;
 
 /** Optional overrides for the default same-env-by-slug matching. Provide explicit rules to allow cross-env access or presets. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesProjectsValueCustomAllowItem {
@@ -7764,7 +7759,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvi
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase0Preset =
   "all-custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase0Preset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The target envs on the current project that may be accessed. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase0 {
@@ -7797,7 +7792,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvi
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase1Preset =
   "all-custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase1Preset =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** The target envs on the current project that may be accessed. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase1 {
@@ -7823,7 +7818,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvid
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase0
   | GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemToCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemTo =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemTo>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemTo>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemTrustedSourcesOidcProvidersValueItemClaimsValueList =
   Array<string>;
@@ -7920,7 +7915,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemGitProviderOptionsCreate
   | "disabled"
   | "enabled";
 export const GetMicrofrontendsInGroupResponseProjectsItemGitProviderOptionsCreateDeployments =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Configuration for consolidated git commit status reporting. When enabled, Vercel will post a single consolidated commit status instead of individual statuses for each deployment. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemGitProviderOptionsConsolidatedGitCommitStatus {
@@ -7998,13 +7993,13 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueAct
   | "rate_limit"
   | "redirect";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueRateLimitAlgo =
   | "fixed_window"
   | "token_bucket";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueRateLimitAlgo =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueRateLimitKeysList =
   Array<string>;
@@ -8019,7 +8014,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueRat
   | "log"
   | "rate_limit";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueRateLimitAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueRateLimit {
   algo: GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueRateLimitAlgo;
@@ -8071,13 +8066,13 @@ export const GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLo
 export type GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeadersCase1 =
   "*";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeadersCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeaders =
   | GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeadersCase0List
   | GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeadersCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeaders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeaders>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueLogHeaders>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValue {
   action: GetMicrofrontendsInGroupResponseProjectsItemSecurityRulesetsValueAction;
@@ -8136,7 +8131,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesVerc
   | "deny"
   | "log";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesVercelRulesetAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesVercelRuleset {
   active: boolean;
@@ -8160,7 +8155,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesTraf
   | "deny"
   | "log";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesTrafficSourcesAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesTrafficSources {
   active: boolean;
@@ -8184,7 +8179,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesBotF
   | "deny"
   | "log";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesBotFilterAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesBotFilter {
   active: boolean;
@@ -8208,7 +8203,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesAiBo
   | "deny"
   | "log";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesAiBotsAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesAiBots {
   active: boolean;
@@ -8232,7 +8227,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesOwas
   | "deny"
   | "log";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesOwaspAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecurityManagedRulesOwasp {
   active: boolean;
@@ -8287,13 +8282,13 @@ export const GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeadersCase0
 export type GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeadersCase1 =
   "*";
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeadersCase1 =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeaders =
   | GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeadersCase0List
   | GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeadersCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeaders =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeaders>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemSecurityLogHeaders>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemSecuritySecurityPlusMetadata {
   updatedAt: number;
@@ -8373,7 +8368,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemOidcTokenConfigIssuerMod
   | "global"
   | "team";
 export const GetMicrofrontendsInGroupResponseProjectsItemOidcTokenConfigIssuerMode =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemOidcTokenConfig {
   /** Whether or not to generate OpenID Connect JSON Web Tokens. */
@@ -8397,7 +8392,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourc
   | "bitbucket"
   | "github";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItemCase0Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allowlist entry for GitHub and Bitbucket, whose repos are identified by a flat `org`/`repo` (Bitbucket's workspace/owner maps to `org`, its repo slug to `repo`). Omit `repo` to match any repo in the org. Org is matched case-insensitively. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItemCase0 {
@@ -8421,7 +8416,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSour
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItemCase1Provider =
   "gitlab";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItemCase1Provider =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Allowlist entry for GitLab, which uses nested groups rather than a flat org/repo. `namespace` is the full group path (e.g. `group` or `group/subgroup`); `project` is the leaf project name. Omit `project` to match any project under the namespace. Namespace is matched case-insensitively. */
 export interface GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItemCase1 {
@@ -8446,7 +8441,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourc
   | GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItemCase0
   | GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItemCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemSourcesItem>;
@@ -8458,13 +8453,13 @@ export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSour
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Type =
   "system";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Target =
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase0 {
   type: GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase0Type;
@@ -8485,7 +8480,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSour
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase1Type =
   "custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase1 {
   type: GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase1Type;
@@ -8506,7 +8501,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourc
   | GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase0
   | GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItemCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyGitSourcesItemEnvironmentsItem>;
@@ -8551,7 +8546,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeployme
   | "rest-api"
   | "v0";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemSourcesItem =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemSourcesList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemSourcesItem>;
@@ -8563,13 +8558,13 @@ export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploym
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Type =
   "system";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Target =
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Target =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0 {
   type: GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0Type;
@@ -8590,7 +8585,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploym
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1Type =
   "custom";
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1 {
   type: GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1Type;
@@ -8611,7 +8606,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeployme
   | GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase0
   | GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItemCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicyDeploymentSourcesItemEnvironmentsItem>;
@@ -8673,14 +8668,13 @@ export const GetMicrofrontendsInGroupResponseProjectsItemDeploymentPolicy =
 export type GetMicrofrontendsInGroupResponseProjectsItemTier =
   | "advanced"
   | "critical";
-export const GetMicrofrontendsInGroupResponseProjectsItemTier =
-  /*@__PURE__*/ S.String;
+export const GetMicrofrontendsInGroupResponseProjectsItemTier = S.String;
 
 /** Billing mode. Always 'flat' for flat-rate projects. */
 export type GetMicrofrontendsInGroupResponseProjectsItemUsageStatusKind =
   "flat";
 export const GetMicrofrontendsInGroupResponseProjectsItemUsageStatusKind =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemUsageStatus {
   /** Billing mode. Always 'flat' for flat-rate projects. */
@@ -8749,7 +8743,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseHistoryList =
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockAction =
   "blocked";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlock {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockAction;
@@ -8782,7 +8776,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlock =
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase0Action =
   "blocked";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase0Action =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase0 {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase0Action;
@@ -8817,7 +8811,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase1Action =
   "unblocked";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase1Action =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase1 {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase1Action;
@@ -8848,7 +8842,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2Action =
   "route-blocked";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2Action =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase0 {
   src: string;
@@ -8870,12 +8864,12 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Type =
   "header";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Key =
   "x-vercel-ip-country";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Key =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Value {
   eq: string;
@@ -8911,7 +8905,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase1Type =
   "host";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase1Value =
   GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Value;
@@ -8938,7 +8932,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCas
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItem>;
@@ -8950,7 +8944,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1MitigateAction =
   "block_legal_cwc";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1MitigateAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1Mitigate {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1MitigateAction;
@@ -8988,7 +8982,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCas
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase0
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2Route =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2Route>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2Route>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2 {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2Action;
@@ -9024,7 +9018,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3Action =
   "route-unblocked";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3Action =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase0 =
   GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase0;
@@ -9034,12 +9028,12 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase0Type =
   "header";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase0Key =
   "x-vercel-ip-country";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase0Key =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase0Value =
   GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Value;
@@ -9067,7 +9061,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase1Type =
   "host";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase1Value =
   GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Value;
@@ -9094,7 +9088,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCas
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase0
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItemCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1HasItem>;
@@ -9106,7 +9100,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCa
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1MitigateAction =
   "block_legal_cwc";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1MitigateAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1Mitigate {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1MitigateAction;
@@ -9144,7 +9138,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCas
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase0
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3RouteCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3Route =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3Route>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3Route>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3 {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3Action;
@@ -9183,7 +9177,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItem =
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase3;
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItem>;
@@ -9198,7 +9192,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemAbuseInterstitialHistory
   | "remove-deployment-interstitial"
   | "remove-project-interstitial";
 export const GetMicrofrontendsInGroupResponseProjectsItemAbuseInterstitialHistoryItemAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemAbuseInterstitialHistoryItem {
   action: GetMicrofrontendsInGroupResponseProjectsItemAbuseInterstitialHistoryItemAction;
@@ -9267,12 +9261,12 @@ export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase0
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase0Type =
   "header";
 export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase0Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase0Key =
   "x-vercel-ip-country";
 export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase0Key =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase0Value =
   GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Value;
@@ -9300,7 +9294,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase1Type =
   "host";
 export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase1Type =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase1Value =
   GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase1HasItemCase0Value;
@@ -9327,7 +9321,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1H
   | GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase0
   | GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItemCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1HasItem>;
@@ -9339,7 +9333,7 @@ export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1MitigateAction =
   "block_legal_cwc";
 export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1MitigateAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1Mitigate {
   action: GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1MitigateAction;
@@ -9377,7 +9371,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItem =
   | GetMicrofrontendsInGroupResponseProjectsItemAbuseBlockHistoryItemCase2RouteCase0
   | GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItemCase1;
 export const GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItem>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItem>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesList =
   Array<GetMicrofrontendsInGroupResponseProjectsItemInternalRoutesItem>;
@@ -9391,21 +9385,21 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemActio
   | "cancel"
   | "delete";
 export const GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemAction =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2PreviousValue =
   | string
   | number
   | boolean;
 export const GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2PreviousValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2PreviousValue>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2PreviousValue>;
 
 export type GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2CurrentValue =
   | string
   | number
   | boolean;
 export const GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2CurrentValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2CurrentValue>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2CurrentValue>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2 {
   previousValue: GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2PreviousValue;
@@ -9430,7 +9424,7 @@ export type GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValue
   | GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValueCase2
   | boolean;
 export const GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValue>;
+  S.Unknown as any as S.Schema<GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItemValue>;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemDismissedToastsItem {
   key: string;
@@ -9472,14 +9466,14 @@ export type GetMicrofrontendsInGroupResponseProjectsItemTracingSamplingRulesItem
   | "preview"
   | "production";
 export const GetMicrofrontendsInGroupResponseProjectsItemTracingSamplingRulesItemEnv =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Which tracing destination this rule applies to. `internal` is the hidden Vercel production-tracing drain (internal delivery); `external` is any customer-configured drain. Derived from the owning drain's delivery type when project tracing is computed; absent on configs persisted before this field existed. */
 export type GetMicrofrontendsInGroupResponseProjectsItemTracingSamplingRulesItemDestination =
   | "external"
   | "internal";
 export const GetMicrofrontendsInGroupResponseProjectsItemTracingSamplingRulesItemDestination =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export interface GetMicrofrontendsInGroupResponseProjectsItemTracingSamplingRulesItem {
   rate: number;

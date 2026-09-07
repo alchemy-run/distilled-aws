@@ -490,7 +490,7 @@ export const StartDeviceAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
 export type AccessDeniedExceptionReason =
   | "KMS_AccessDeniedException"
   | (string & {});
-export const AccessDeniedExceptionReason = /*@__PURE__*/ S.String;
+export const AccessDeniedExceptionReason = S.String;
 
 export type ErrorDescription = string;
 export type InvalidRequestExceptionReason =
@@ -499,7 +499,7 @@ export type InvalidRequestExceptionReason =
   | "KMS_InvalidStateException"
   | "KMS_DisabledException"
   | (string & {});
-export const InvalidRequestExceptionReason = /*@__PURE__*/ S.String;
+export const InvalidRequestExceptionReason = S.String;
 
 export type Location = string;
 export type Region = string;

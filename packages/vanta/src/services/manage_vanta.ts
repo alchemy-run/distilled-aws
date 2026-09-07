@@ -57,7 +57,7 @@ export const AcknowledgeSlaMissVulnerabilityRemediationsRequest =
   }) as any as S.Schema<AcknowledgeSlaMissVulnerabilityRemediationsRequest>;
 
 export type ResultLineStatusSUCCESS = "SUCCESS";
-export const ResultLineStatusSUCCESS = /*@__PURE__*/ S.String;
+export const ResultLineStatusSUCCESS = S.String;
 
 export interface SuccessResponse {
   /** Id of the record */
@@ -75,7 +75,7 @@ export const SuccessResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SuccessResponse>;
 
 export type ResultLineStatusERROR = "ERROR";
-export const ResultLineStatusERROR = /*@__PURE__*/ S.String;
+export const ResultLineStatusERROR = S.String;
 
 export interface NonSuccessResponse {
   /** Id of the record */
@@ -96,8 +96,7 @@ export const NonSuccessResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NonSuccessResponse>;
 
 export type UpdateResponse = SuccessResponse | NonSuccessResponse;
-export const UpdateResponse =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateResponse>;
+export const UpdateResponse = S.Unknown as any as S.Schema<UpdateResponse>;
 
 /** List of results matching the length and order of the request */
 export type BulkResponseResultsList = Array<UpdateResponse>;
@@ -130,7 +129,7 @@ export const AddControlFromLibraryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AddControlFromLibraryRequest>;
 
 export type ControlSource = "Vanta" | "Custom";
-export const ControlSource = /*@__PURE__*/ S.String;
+export const ControlSource = S.String;
 
 /** The security domains that the control belongs to. */
 export type ControlDomainsList = Array<string>;
@@ -160,8 +159,7 @@ export const CustomFieldValueCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomFieldValueCase1List>;
 
 export type CustomFieldValue = string | CustomFieldValueCase1List;
-export const CustomFieldValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomFieldValue>;
+export const CustomFieldValue = S.Unknown as any as S.Schema<CustomFieldValue>;
 
 export interface CustomField {
   label: string;
@@ -252,7 +250,7 @@ export const AddControlToTrustCenterRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Visibility of a control category's controls on the Trust Center. `SHAREABLE` categories are only visible to accounts with a matching access grant. */
 export type TrustCenterControlVisibility = "PUBLIC" | "SHAREABLE";
-export const TrustCenterControlVisibility = /*@__PURE__*/ S.String;
+export const TrustCenterControlVisibility = S.String;
 
 /** Which controls a Trust Center displays, and whether their pass/fail status is shown. Set as the Trust Center's global default, or per category to override that default. */
 export type TrustCenterControlVisibilityMode =
@@ -260,7 +258,7 @@ export type TrustCenterControlVisibilityMode =
   | "SHOW_OK_AND_UNMAPPED"
   | "SHOW_ALL_WITHOUT_STATUS"
   | "SHOW_ALL_WITH_STATUS";
-export const TrustCenterControlVisibilityMode = /*@__PURE__*/ S.String;
+export const TrustCenterControlVisibilityMode = S.String;
 
 export interface TrustCenterControlCategory {
   /** Unique identifier for the control category. */
@@ -357,7 +355,7 @@ export type VendorAuthenticationMethod =
   | "SSO"
   | "USERNAME_PASSWORD"
   | "OTHER";
-export const VendorAuthenticationMethod = /*@__PURE__*/ S.String;
+export const VendorAuthenticationMethod = S.String;
 
 /** The vendor's authentication details. */
 export interface VendorAuthDetails {
@@ -386,7 +384,7 @@ export const VendorAuthDetails = /*@__PURE__*/ S.suspend(() =>
 
 /** The current state of a vendor: - MANAGED: The vendor is actively managed. - ARCHIVED: The vendor has been archived - IN_PROCUREMENT: The vendor is in the procurement process */
 export type VendorStatus = "MANAGED" | "ARCHIVED" | "IN_PROCUREMENT";
-export const VendorStatus = /*@__PURE__*/ S.String;
+export const VendorStatus = S.String;
 
 /** The risk level of a vendor: - CRITICAL: The vendor has a critical security risk - HIGH: The vendor has a high security risk - MEDIUM: The vendor has a medium security risk - LOW: The vendor has a low security risk - UNSCORED: The vendor has not been given a risk level */
 export type VendorRiskLevel =
@@ -395,7 +393,7 @@ export type VendorRiskLevel =
   | "LOW"
   | "MEDIUM"
   | "UNSCORED";
-export const VendorRiskLevel = /*@__PURE__*/ S.String;
+export const VendorRiskLevel = S.String;
 
 export type CountryCode =
   | "EUE"
@@ -652,7 +650,7 @@ export type CountryCode =
   | "ZAF"
   | "ZMB"
   | "ZWE";
-export const CountryCode = /*@__PURE__*/ S.String;
+export const CountryCode = S.String;
 
 export type CurrencyCode =
   | "ARS"
@@ -679,7 +677,7 @@ export type CurrencyCode =
   | "UAH"
   | "USD"
   | "ZAR";
-export const CurrencyCode = /*@__PURE__*/ S.String;
+export const CurrencyCode = S.String;
 
 export interface VendorContractAmount {
   /** The amount of the contract. */
@@ -706,7 +704,7 @@ export type VendorDecisionStatus =
   | "APPROVED"
   | "CONDITIONALLY_APPROVED"
   | "NOT_APPROVED";
-export const VendorDecisionStatus = /*@__PURE__*/ S.String;
+export const VendorDecisionStatus = S.String;
 
 /** The decision for a vendor. */
 export interface VendorDecision {
@@ -864,14 +862,14 @@ export type DocumentAndTestCategory =
   | "CSPM alert management"
   | "Vendors"
   | "Vulnerability management";
-export const DocumentAndTestCategory = /*@__PURE__*/ S.String;
+export const DocumentAndTestCategory = S.String;
 
 export type DocumentStatus =
   | "Needs document"
   | "Needs update"
   | "Not relevant"
   | "OK";
-export const DocumentStatus = /*@__PURE__*/ S.String;
+export const DocumentStatus = S.String;
 
 export interface Document {
   /** The document's unique ID. */
@@ -976,7 +974,7 @@ export type EmploymentStatus =
   | "ON_LEAVE"
   | "INACTIVE"
   | "FORMER";
-export const EmploymentStatus = /*@__PURE__*/ S.String;
+export const EmploymentStatus = S.String;
 
 export interface PersonEmployment {
   /** The person's employment status. */
@@ -1001,7 +999,7 @@ export const PersonEmployment = /*@__PURE__*/ S.suspend(() =>
 
 /** User can be active or upcoming leave period */
 export type LeaveStatus = "ACTIVE" | "UPCOMING";
-export const LeaveStatus = /*@__PURE__*/ S.String;
+export const LeaveStatus = S.String;
 
 export interface LeaveInfo {
   /** The start of the person's leave. */
@@ -1042,7 +1040,7 @@ export const PersonName = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PersonName" }) as any as S.Schema<PersonName>;
 
 export type PersonInfoSourceTypeVANTA = "VANTA";
-export const PersonInfoSourceTypeVANTA = /*@__PURE__*/ S.String;
+export const PersonInfoSourceTypeVANTA = S.String;
 
 /** The person's information comes from what is set in Vanta. */
 export interface VantaBasedPersonInfoSource {
@@ -1057,7 +1055,7 @@ export const VantaBasedPersonInfoSource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VantaBasedPersonInfoSource>;
 
 export type PersonInfoSourceTypeSCIM = "SCIM";
-export const PersonInfoSourceTypeSCIM = /*@__PURE__*/ S.String;
+export const PersonInfoSourceTypeSCIM = S.String;
 
 /** The person's information comes from SCIM. */
 export interface ScimBasedPersonInfoSource {
@@ -1072,7 +1070,7 @@ export const ScimBasedPersonInfoSource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScimBasedPersonInfoSource>;
 
 export type PersonInfoSourceTypeINTEGRATION = "INTEGRATION";
-export const PersonInfoSourceTypeINTEGRATION = /*@__PURE__*/ S.String;
+export const PersonInfoSourceTypeINTEGRATION = S.String;
 
 /** The person's information comes from an integration. */
 export interface IntegrationBasedPersonInfoSource {
@@ -1095,8 +1093,7 @@ export type PersonInfoSource =
   | VantaBasedPersonInfoSource
   | ScimBasedPersonInfoSource
   | IntegrationBasedPersonInfoSource;
-export const PersonInfoSource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonInfoSource>;
+export const PersonInfoSource = S.Unknown as any as S.Schema<PersonInfoSource>;
 
 export interface PersonSourcesEmployment {
   /** The source of the person's employment end date. */
@@ -1127,11 +1124,11 @@ export const PersonSources = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PersonSources" }) as any as S.Schema<PersonSources>;
 
 export type TaskTypeCOMPLETETRAININGS = "COMPLETE_TRAININGS";
-export const TaskTypeCOMPLETETRAININGS = /*@__PURE__*/ S.String;
+export const TaskTypeCOMPLETETRAININGS = S.String;
 
 /** The status of a task. - COMPLETE: The task has been completed. - DUE_SOON: The task is due soon. - OVERDUE: The task is overdue. - NONE: The task is not assigned. */
 export type TaskStatus = "COMPLETE" | "DUE_SOON" | "OVERDUE" | "NONE";
-export const TaskStatus = /*@__PURE__*/ S.String;
+export const TaskStatus = S.String;
 
 /** If the task is disabled, the reason and date when it was disabled. */
 export interface CompleteTrainingsTaskSummaryDisabled {
@@ -1204,7 +1201,7 @@ export const CompleteTrainingsTaskSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CompleteTrainingsTaskSummary>;
 
 export type TaskTypeACCEPTPOLICIES = "ACCEPT_POLICIES";
-export const TaskTypeACCEPTPOLICIES = /*@__PURE__*/ S.String;
+export const TaskTypeACCEPTPOLICIES = S.String;
 
 /** If the task is disabled, the reason and date when it was disabled. */
 export type AcceptPoliciesTaskSummaryDisabled =
@@ -1262,7 +1259,7 @@ export const AcceptPoliciesTaskSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AcceptPoliciesTaskSummary>;
 
 export type TaskTypeCOMPLETECUSTOMTASKS = "COMPLETE_CUSTOM_TASKS";
-export const TaskTypeCOMPLETECUSTOMTASKS = /*@__PURE__*/ S.String;
+export const TaskTypeCOMPLETECUSTOMTASKS = S.String;
 
 /** If the task is disabled, the reason and date when it was disabled. */
 export type CompleteCustomTasksTaskSummaryDisabled =
@@ -1323,7 +1320,7 @@ export const CompleteCustomTasksTaskSummary = /*@__PURE__*/ S.suspend(() =>
 
 export type TaskTypeCOMPLETECUSTOMOFFBOARDINGTASKS =
   "COMPLETE_CUSTOM_OFFBOARDING_TASKS";
-export const TaskTypeCOMPLETECUSTOMOFFBOARDINGTASKS = /*@__PURE__*/ S.String;
+export const TaskTypeCOMPLETECUSTOMOFFBOARDINGTASKS = S.String;
 
 /** If the task is disabled, the reason and date when it was disabled. */
 export type CompleteOffboardingCustomTasksTaskSummaryDisabled =
@@ -1380,7 +1377,7 @@ export const CompleteOffboardingCustomTasksTaskSummary =
   }) as any as S.Schema<CompleteOffboardingCustomTasksTaskSummary>;
 
 export type TaskTypeINSTALLDEVICEMONITORING = "INSTALL_DEVICE_MONITORING";
-export const TaskTypeINSTALLDEVICEMONITORING = /*@__PURE__*/ S.String;
+export const TaskTypeINSTALLDEVICEMONITORING = S.String;
 
 /** If the task is disabled, the reason and date when it was disabled. */
 export type InstallDeviceMonitoringTaskSummaryDisabled =
@@ -1412,7 +1409,7 @@ export const InstallDeviceMonitoringTaskSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstallDeviceMonitoringTaskSummary>;
 
 export type TaskTypeCOMPLETEBACKGROUNDCHECKS = "COMPLETE_BACKGROUND_CHECKS";
-export const TaskTypeCOMPLETEBACKGROUNDCHECKS = /*@__PURE__*/ S.String;
+export const TaskTypeCOMPLETEBACKGROUNDCHECKS = S.String;
 
 /** If the task is disabled, the reason and date when it was disabled. */
 export type CompleteBackgroundChecksTaskSummaryDisabled =
@@ -1475,7 +1472,7 @@ export type TasksSummaryStatus =
   | "OFFBOARDING_OVERDUE"
   | "OVERDUE"
   | "PAUSED";
-export const TasksSummaryStatus = /*@__PURE__*/ S.String;
+export const TasksSummaryStatus = S.String;
 
 /** The person's tasks summary, which aggregates their current status across all of their relevant tasks. */
 export interface PersonTasksSummary {
@@ -1532,7 +1529,7 @@ export type CustomerTrustProductContextIdWritable =
   | "EXTERNAL_TRUST_CENTER"
   | "DOCUMENT_SHARING"
   | "CONTROL_SHARING";
-export const CustomerTrustProductContextIdWritable = /*@__PURE__*/ S.String;
+export const CustomerTrustProductContextIdWritable = S.String;
 
 export interface AddTagCategoryProductContextRequest {
   tagCategoryId: string;
@@ -1608,7 +1605,7 @@ export type TestStatus =
   | "IN_PROGRESS"
   | "INVALID"
   | "NOT_APPLICABLE";
-export const TestStatus = /*@__PURE__*/ S.String;
+export const TestStatus = S.String;
 
 export interface DeactivatedStatusInfo {
   /** The deactivated status of the test. */
@@ -1638,7 +1635,7 @@ export type TestRemediationStatus =
   | "NEEDS_WORK"
   | "OVERDUE"
   | "PASS";
-export const TestRemediationStatus = /*@__PURE__*/ S.String;
+export const TestRemediationStatus = S.String;
 
 export interface RemediationStatusInfo {
   /** The status of the remediation. */
@@ -1820,7 +1817,7 @@ export const AddTrustCenterViewerRequestResourceIdsList = /*@__PURE__*/ S.Array(
 
 /** The access level of the viewer. FULL_ACCESS means having access to all resources on the trust center. PARTIAL_ACCESS means having access to all public resources and a select list of requestable resources. */
 export type ViewerAccessLevel = "FULL_ACCESS" | "PARTIAL_ACCESS";
-export const ViewerAccessLevel = /*@__PURE__*/ S.String;
+export const ViewerAccessLevel = S.String;
 
 export interface AddTrustCenterViewerRequest {
   slugId: string;
@@ -1914,7 +1911,7 @@ export type ViewerNdaProvider =
   | "SFDC_BYPASS"
   | "HUBSPOT_BYPASS"
   | "IRONCLAD_BYPASS";
-export const ViewerNdaProvider = /*@__PURE__*/ S.String;
+export const ViewerNdaProvider = S.String;
 
 /** NDA-related information for the viewer. */
 export interface TrustCenterViewerNdaInfo {
@@ -1940,7 +1937,7 @@ export const TrustCenterViewerNdaInfo = /*@__PURE__*/ S.suspend(() =>
 
 /** An external service that a Trust Center viewer may be associated with. */
 export type ExternalService = "SALESFORCE" | "HUBSPOT" | "IRONCLAD";
-export const ExternalService = /*@__PURE__*/ S.String;
+export const ExternalService = S.String;
 
 export interface TrustCenterViewerExternalServiceAssociationsItem {
   /** The type of object in the external service the viewer was linked to. */
@@ -2062,7 +2059,7 @@ export type CustomerTrustQuestionnaireType =
   | "SPREADSHEET"
   | "WEBSITE"
   | "DOCUMENT";
-export const CustomerTrustQuestionnaireType = /*@__PURE__*/ S.String;
+export const CustomerTrustQuestionnaireType = S.String;
 
 export type QuestionnaireStatus =
   | "APPROVED"
@@ -2085,7 +2082,7 @@ export type QuestionnaireStatus =
   | "WAITING_ON_COLUMN_APPROVAL"
   | "QUEUED_FOR_COLUMN_DETECTION"
   | "DETECTING_COLUMNS";
-export const QuestionnaireStatus = /*@__PURE__*/ S.String;
+export const QuestionnaireStatus = S.String;
 
 export interface QuestionnaireUser {
   id: string;
@@ -2131,7 +2128,7 @@ export const CustomerTrustQuestionnaireStatusLogList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomerTrustQuestionnaireStatusLogList>;
 
 export type ActorAssignmentType = "User" | "Team";
-export const ActorAssignmentType = /*@__PURE__*/ S.String;
+export const ActorAssignmentType = S.String;
 
 export interface ActorAssignment {
   type: ActorAssignmentType;
@@ -2397,7 +2394,7 @@ export const RiskScenarioCategoriesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RiskScenarioCategoriesList>;
 
 export type CIA = "Confidentiality" | "Integrity" | "Availability";
-export const CIA = /*@__PURE__*/ S.String;
+export const CIA = S.String;
 
 /** A list of the following for the type of risk documented: - Confidentiality: Risk to data stores, customer/sensitive information, etc. - Integrity: Risk to accuracy or integrity of system settings and/or data - Availability: Risk to normal service operations and critical system functionality */
 export type RiskScenarioCiaCategoriesList = Array<CIA>;
@@ -2406,7 +2403,7 @@ export const RiskScenarioCiaCategoriesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RiskScenarioCiaCategoriesList>;
 
 export type Treatment = "Mitigate" | "Transfer" | "Avoid" | "Accept";
-export const Treatment = /*@__PURE__*/ S.String;
+export const Treatment = S.String;
 
 export type CustomAttributeValueCase1List = Array<string>;
 export const CustomAttributeValueCase1List = /*@__PURE__*/ S.Array(
@@ -2415,7 +2412,7 @@ export const CustomAttributeValueCase1List = /*@__PURE__*/ S.Array(
 
 export type CustomAttributeValue = string | CustomAttributeValueCase1List;
 export const CustomAttributeValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomAttributeValue>;
+  S.Unknown as any as S.Schema<CustomAttributeValue>;
 
 export interface CustomAttribute {
   label: string;
@@ -2443,7 +2440,7 @@ export type ReviewStatus =
   | "AWAITING_SUBMISSION"
   | "PENDING_APPROVAL"
   | "REQUESTED_CHANGES";
-export const ReviewStatus = /*@__PURE__*/ S.String;
+export const ReviewStatus = S.String;
 
 /** The list of required approvers for this risk scenario. */
 export type RiskScenarioRequiredApproversList = Array<string>;
@@ -2452,7 +2449,7 @@ export const RiskScenarioRequiredApproversList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RiskScenarioRequiredApproversList>;
 
 export type RiskScenarioType = "Risk Scenario" | "Enterprise Risk";
-export const RiskScenarioType = /*@__PURE__*/ S.String;
+export const RiskScenarioType = S.String;
 
 export interface RiskScenario {
   /** The unique ID of the risk specified by the user. Used to reference and update existing risks. */
@@ -2560,7 +2557,7 @@ export const CompleteQuestionnaireRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of actor. Currently only "User" is supported. */
 export type AnswerLibraryActorAssignmentInputType = "User";
-export const AnswerLibraryActorAssignmentInputType = /*@__PURE__*/ S.String;
+export const AnswerLibraryActorAssignmentInputType = S.String;
 
 export interface AnswerLibraryActorAssignmentInput {
   /** The type of actor. Currently only "User" is supported. */
@@ -2616,11 +2613,10 @@ export const CreateAnswerLibraryEntryRequest = /*@__PURE__*/ S.suspend(() =>
 export type KnowledgeBaseAnswerLibraryEntryOutputExpirationStatus =
   | "CURRENT"
   | "EXPIRED";
-export const KnowledgeBaseAnswerLibraryEntryOutputExpirationStatus =
-  /*@__PURE__*/ S.String;
+export const KnowledgeBaseAnswerLibraryEntryOutputExpirationStatus = S.String;
 
 export type AnswerLibraryActorAssignmentType = "User" | "Team";
-export const AnswerLibraryActorAssignmentType = /*@__PURE__*/ S.String;
+export const AnswerLibraryActorAssignmentType = S.String;
 
 export interface AnswerLibraryActorAssignment {
   type: AnswerLibraryActorAssignmentType;
@@ -2726,7 +2722,7 @@ export type CreateComplianceFrameworkRequestStandard =
   | "ukCyberEssentials33"
   | "usDataPrivacy"
   | "fedrampKSI";
-export const CreateComplianceFrameworkRequestStandard = /*@__PURE__*/ S.String;
+export const CreateComplianceFrameworkRequestStandard = S.String;
 
 export interface CreateComplianceFrameworkRequest {
   slugId: string;
@@ -2814,7 +2810,7 @@ export type ControlDomain =
   | "TECHNICAL"
   | "BASIC"
   | "DERIVED";
-export const ControlDomain = /*@__PURE__*/ S.String;
+export const ControlDomain = S.String;
 
 export type FrameworkId =
   | "AU_E_8"
@@ -2853,11 +2849,11 @@ export type FrameworkId =
   | "SOX_ITGC"
   | "UK_CYBER_ESSENTIALS"
   | "US_DATA_PRIVACY";
-export const FrameworkId = /*@__PURE__*/ S.String;
+export const FrameworkId = S.String;
 
 export type FrameworkSectionFrameworkId = FrameworkId | string;
 export const FrameworkSectionFrameworkId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FrameworkSectionFrameworkId>;
+  S.Unknown as any as S.Schema<FrameworkSectionFrameworkId>;
 
 export interface FrameworkSection {
   frameworkId: FrameworkSectionFrameworkId;
@@ -2879,7 +2875,7 @@ export const CreateCustomControlRequestSectionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CreateCustomControlRequestSectionsList>;
 
 export type GdprRole = "BOTH" | "CONTROLLER" | "PROCESSOR";
-export const GdprRole = /*@__PURE__*/ S.String;
+export const GdprRole = S.String;
 
 /** The control's values for custom fields. */
 export type CreateCustomControlRequestCustomFieldsList = Array<CustomField>;
@@ -2936,7 +2932,7 @@ export const CustomerTrustAccountNDADetailsInput = /*@__PURE__*/ S.suspend(() =>
 export type CustomerTrustAccountGrantAccessOption =
   | "INCLUDE_EVERYTHING_REQUESTED"
   | "INCLUDE_ONLY_CONFIGURED";
-export const CustomerTrustAccountGrantAccessOption = /*@__PURE__*/ S.String;
+export const CustomerTrustAccountGrantAccessOption = S.String;
 
 /** Tag IDs to assign. An empty array removes all tags for the category. */
 export type TagsByCategoryInputTagIdsList = Array<string>;
@@ -3038,7 +3034,7 @@ export type CustomerTrustAccountNdaStatus =
   | "SIGNED"
   | "NOT_REQUIRED"
   | "INCOMPLETE";
-export const CustomerTrustAccountNdaStatus = /*@__PURE__*/ S.String;
+export const CustomerTrustAccountNdaStatus = S.String;
 
 export interface CustomerTrustAccountNDADetails {
   /** The status of the NDA for this account */
@@ -3175,7 +3171,7 @@ export const CreateDeletionRequestResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDeletionRequestResponse>;
 
 export type TimeSensitivity = "MOST_RECENT" | "DURING_AUDIT_WINDOW";
-export const TimeSensitivity = /*@__PURE__*/ S.String;
+export const TimeSensitivity = S.String;
 
 export type RecurrenceDuration =
   | "P0D"
@@ -3186,10 +3182,10 @@ export type RecurrenceDuration =
   | "P6M"
   | "P1Y"
   | "P2Y";
-export const RecurrenceDuration = /*@__PURE__*/ S.String;
+export const RecurrenceDuration = S.String;
 
 export type ReminderWindow = "P0D" | "P1D" | "P1W" | "P1M" | "P3M";
-export const ReminderWindow = /*@__PURE__*/ S.String;
+export const ReminderWindow = S.String;
 
 export interface CreateDocumentRequest {
   /** The document's title. */
@@ -3264,24 +3260,22 @@ export const CreateDocumentResourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateDocumentResourceRequest>;
 
 export type KnowledgeBaseDocumentResourceOutputType = "FILE";
-export const KnowledgeBaseDocumentResourceOutputType = /*@__PURE__*/ S.String;
+export const KnowledgeBaseDocumentResourceOutputType = S.String;
 
 export type KnowledgeBaseDocumentResourceOutputCustomerVisibility =
   | "PUBLIC"
   | "SHAREABLE"
   | "PRIVATE"
   | "REQUEST_ACCESS";
-export const KnowledgeBaseDocumentResourceOutputCustomerVisibility =
-  /*@__PURE__*/ S.String;
+export const KnowledgeBaseDocumentResourceOutputCustomerVisibility = S.String;
 
 export type KnowledgeBaseDocumentResourceOutputDownloadPermission =
   | "VIEW_ONLY"
   | "VIEW_AND_DOWNLOAD";
-export const KnowledgeBaseDocumentResourceOutputDownloadPermission =
-  /*@__PURE__*/ S.String;
+export const KnowledgeBaseDocumentResourceOutputDownloadPermission = S.String;
 
 export type KnowledgeBaseResourceActorAssignmentType = "User" | "Team";
-export const KnowledgeBaseResourceActorAssignmentType = /*@__PURE__*/ S.String;
+export const KnowledgeBaseResourceActorAssignmentType = S.String;
 
 export interface KnowledgeBaseResourceActorAssignment {
   type: KnowledgeBaseResourceActorAssignmentType;
@@ -3301,7 +3295,7 @@ export const KnowledgeBaseResourceActorAssignment = /*@__PURE__*/ S.suspend(
 
 /** Customer-facing expiration status used by knowledge-base API responses (answer library entries and resources). Derived from the persisted `expiresAt` field at read time. */
 export type KnowledgeBaseExpirationStatus = "CURRENT" | "EXPIRED";
-export const KnowledgeBaseExpirationStatus = /*@__PURE__*/ S.String;
+export const KnowledgeBaseExpirationStatus = S.String;
 
 export type KnowledgeBaseDocumentResourceOutputTagsList = Array<TagInput>;
 export const KnowledgeBaseDocumentResourceOutputTagsList =
@@ -3513,7 +3507,7 @@ export const UploadedLink = /*@__PURE__*/ S.suspend(() =>
 
 /** The output format for the exported questionnaire. - `"original"`: Exports in the questionnaire's native format (XLSX for spreadsheets, DOCX for documents). - `"csv"`: Exports as a CSV file, suitable for data analysis or import into other systems. */
 export type CreateQuestionnaireExportRequestFormat = "original" | "csv";
-export const CreateQuestionnaireExportRequestFormat = /*@__PURE__*/ S.String;
+export const CreateQuestionnaireExportRequestFormat = S.String;
 
 export interface CreateQuestionnaireExportRequest {
   /** Unique identifier for the questionnaire to trigger an export for. */
@@ -3624,7 +3618,7 @@ export const CreateRiskScenarioRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRiskScenarioRequest>;
 
 export type RiskScenarioControlType = "EXISTING" | "TREATMENT_PLAN";
-export const RiskScenarioControlType = /*@__PURE__*/ S.String;
+export const RiskScenarioControlType = S.String;
 
 export interface CreateRiskScenarioControlRequest {
   riskScenarioId: string;
@@ -3971,11 +3965,11 @@ export type UpdateCategory =
   | "PRIVACY"
   | "INCIDENT"
   | "ROADMAP";
-export const UpdateCategory = /*@__PURE__*/ S.String;
+export const UpdateCategory = S.String;
 
 /** Visibility of a Trust Center update. */
 export type UpdateVisibilityType = "PUBLIC" | "PRIVATE";
-export const UpdateVisibilityType = /*@__PURE__*/ S.String;
+export const UpdateVisibilityType = S.String;
 
 /** Additional one-off email addresses to notify. These are always sent regardless of `notificationTarget`. */
 export type CreateTrustCenterUpdateRequestNotifiedEmailsList = Array<string>;
@@ -3986,7 +3980,7 @@ export const CreateTrustCenterUpdateRequestNotifiedEmailsList =
 
 /** Target recipients for notifications */
 export type UpdateNotificationTarget = "ALL" | "GROUPS" | "NONE";
-export const UpdateNotificationTarget = /*@__PURE__*/ S.String;
+export const UpdateNotificationTarget = S.String;
 
 /** IDs of subscriber groups to notify. Required when `notificationTarget` is `GROUPS`. */
 export type CreateTrustCenterUpdateRequestSubscriberGroupIdsList =
@@ -4111,7 +4105,7 @@ export const CreateVendorRequestCustomFieldsList = /*@__PURE__*/ S.Array(
 
 /** The scope type: - ALL: Vendor applies to all frameworks - PARTIAL: Vendor applies to specific frameworks (requires frameworkIds) - NONE: Vendor excluded from all frameworks */
 export type VendorFrameworkScopeScopeType = "ALL" | "PARTIAL" | "NONE";
-export const VendorFrameworkScopeScopeType = /*@__PURE__*/ S.String;
+export const VendorFrameworkScopeScopeType = S.String;
 
 /** Framework IDs the vendor applies to. Required when scopeType is PARTIAL. */
 export type VendorFrameworkScopeFrameworkIdsList = Array<string>;
@@ -4209,11 +4203,11 @@ export const CreateVendorRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The status of the finding: - ACCEPT: The finding and its risk has been accepted and no follow up is required. - REMEDIATE: The finding needs to be remediated in some way. - NONE: The finding is not related to an observed risk that needs to be accepted or remediated. */
 export type FindingRiskStatus = "ACCEPT" | "REMEDIATE" | "NONE";
-export const FindingRiskStatus = /*@__PURE__*/ S.String;
+export const FindingRiskStatus = S.String;
 
 /** The current state of a finding remediation: - OPEN: The finding has not been remediated and still needs to be addressed. - CLOSED: The finding has been remediated and no further action is needed. */
 export type FindingRemediationState = "OPEN" | "CLOSED";
-export const FindingRemediationState = /*@__PURE__*/ S.String;
+export const FindingRemediationState = S.String;
 
 /** Remediation information about the finding. Will only be populated if riskStatus is set to "REMEDIATE". */
 export interface CreateVendorFindingRequestRemediation {
@@ -4306,8 +4300,7 @@ export const VendorFinding = /*@__PURE__*/ S.suspend(() =>
 
 /** The type of actor. Currently only "User" is supported. */
 export type KnowledgeBaseResourceActorAssignmentInputType = "User";
-export const KnowledgeBaseResourceActorAssignmentInputType =
-  /*@__PURE__*/ S.String;
+export const KnowledgeBaseResourceActorAssignmentInputType = S.String;
 
 export interface KnowledgeBaseResourceActorAssignmentInput {
   /** The type of actor. Currently only "User" is supported. */
@@ -4331,7 +4324,7 @@ export type KnowledgeBaseCustomerVisibility =
   | "SHAREABLE"
   | "REQUEST_ACCESS"
   | "PUBLIC";
-export const KnowledgeBaseCustomerVisibility = /*@__PURE__*/ S.String;
+export const KnowledgeBaseCustomerVisibility = S.String;
 
 /** Tags to associate with the resource. */
 export type CreateWebpageResourceRequestTagsList = Array<TagInput>;
@@ -4385,15 +4378,14 @@ export const CreateWebpageResourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateWebpageResourceRequest>;
 
 export type KnowledgeBaseWebpageResourceOutputType = "URL";
-export const KnowledgeBaseWebpageResourceOutputType = /*@__PURE__*/ S.String;
+export const KnowledgeBaseWebpageResourceOutputType = S.String;
 
 export type KnowledgeBaseWebpageResourceOutputCustomerVisibility =
   | "PUBLIC"
   | "SHAREABLE"
   | "PRIVATE"
   | "REQUEST_ACCESS";
-export const KnowledgeBaseWebpageResourceOutputCustomerVisibility =
-  /*@__PURE__*/ S.String;
+export const KnowledgeBaseWebpageResourceOutputCustomerVisibility = S.String;
 
 export type KnowledgeBaseWebpageResourceOutputTagsList = Array<TagInput>;
 export const KnowledgeBaseWebpageResourceOutputTagsList = /*@__PURE__*/ S.Array(
@@ -4443,7 +4435,7 @@ export const KnowledgeBaseWebpageResourceOutput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<KnowledgeBaseWebpageResourceOutput>;
 
 export type ActorAssignmentInputType = "User" | "Team";
-export const ActorAssignmentInputType = /*@__PURE__*/ S.String;
+export const ActorAssignmentInputType = S.String;
 
 export interface ActorAssignmentInput {
   type: ActorAssignmentInputType | (string & {});
@@ -5338,14 +5330,14 @@ export const GetAssessmentByIdRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The lifecycle status of an assessment: - NOT_STARTED: The assessment has not yet been started. - IN_PROGRESS: The assessment is underway. - COMPLETED: The assessment has been completed. */
 export type AssessmentStatus = "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED";
-export const AssessmentStatus = /*@__PURE__*/ S.String;
+export const AssessmentStatus = S.String;
 
 /** The current decision made for an assessment: - APPROVED: The assessment has been approved. - NOT_APPROVED: The assessment has been marked not approved. - CONDITIONALLY_APPROVED: The assessment has been conditionally approved. */
 export type AssessmentDecision =
   | "APPROVED"
   | "NOT_APPROVED"
   | "CONDITIONALLY_APPROVED";
-export const AssessmentDecision = /*@__PURE__*/ S.String;
+export const AssessmentDecision = S.String;
 
 /** An object containing information about the decision of the assessment. */
 export interface VendorAssessmentDecision {
@@ -5383,7 +5375,7 @@ export const AssessmentType = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "AssessmentType" }) as any as S.Schema<AssessmentType>;
 
 export type AssessmentOwnerType = "USER" | "TEAM";
-export const AssessmentOwnerType = /*@__PURE__*/ S.String;
+export const AssessmentOwnerType = S.String;
 
 export interface AssessmentOwner {
   /** Unique identifier for the owner. */
@@ -5569,7 +5561,7 @@ export const GetChatbotConversationMessagesRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetChatbotConversationMessagesRequest>;
 
 export type ChatbotMessageRole = "USER" | "ASSISTANT";
-export const ChatbotMessageRole = /*@__PURE__*/ S.String;
+export const ChatbotMessageRole = S.String;
 
 /** Resource IDs referenced by this message. */
 export type TrustCenterChatbotMessageReferencesList = Array<string>;
@@ -5745,7 +5737,7 @@ export type ControlStatus =
   | "NOT_STARTED"
   | "IN_PROGRESS"
   | "COMPLETED";
-export const ControlStatus = /*@__PURE__*/ S.String;
+export const ControlStatus = S.String;
 
 export interface ControlDetail {
   /** The control's unique ID. */
@@ -6103,7 +6095,7 @@ export const GetIssueRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIssueRequest>;
 
 export type ActorType = "USER" | "APPLICATION" | "WORKFLOW_GENERATED";
-export const ActorType = /*@__PURE__*/ S.String;
+export const ActorType = S.String;
 
 export interface Actor {
   actorType: ActorType;
@@ -6117,7 +6109,7 @@ export const Actor = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Actor" }) as any as S.Schema<Actor>;
 
 export type OwnerType = "USER" | "TEAM";
-export const OwnerType = /*@__PURE__*/ S.String;
+export const OwnerType = S.String;
 
 export interface IssueOwner {
   ownerType: OwnerType;
@@ -6141,10 +6133,10 @@ export type IssueSeverity =
   | "MEDIUM"
   | "LOW"
   | "NO_SEVERITY";
-export const IssueSeverity = /*@__PURE__*/ S.String;
+export const IssueSeverity = S.String;
 
 export type IssueStatus = "NOT_STARTED" | "IN_PROGRESS" | "CLOSED";
-export const IssueStatus = /*@__PURE__*/ S.String;
+export const IssueStatus = S.String;
 
 export type SourceType =
   | "AUDIT"
@@ -6153,7 +6145,7 @@ export type SourceType =
   | "EXTERNAL_PARTY"
   | "SELF_ASSESSMENT"
   | "OTHER";
-export const SourceType = /*@__PURE__*/ S.String;
+export const SourceType = S.String;
 
 export interface Source {
   sourceType: SourceType;
@@ -6167,7 +6159,7 @@ export const Source = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Source" }) as any as S.Schema<Source>;
 
 export type ClosedReason = "RESOLVED" | "DUPLICATE" | "ACCEPTED" | "OTHER";
-export const ClosedReason = /*@__PURE__*/ S.String;
+export const ClosedReason = S.String;
 
 export interface ClosedMetadata {
   reason: ClosedReason;
@@ -6204,7 +6196,7 @@ export const IssueCustomFieldValueCase1List = /*@__PURE__*/ S.Array(
 
 export type IssueCustomFieldValue = string | IssueCustomFieldValueCase1List;
 export const IssueCustomFieldValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<IssueCustomFieldValue>;
+  S.Unknown as any as S.Schema<IssueCustomFieldValue>;
 
 export interface IssueCustomField {
   label: string;
@@ -6226,7 +6218,7 @@ export const StandardIssueCustomFieldsList = /*@__PURE__*/ S.Array(
 
 /** Extract from T those types that are assignable to U */
 export type ExtractIssueTemplateSTANDARDISSUE = "STANDARD_ISSUE";
-export const ExtractIssueTemplateSTANDARDISSUE = /*@__PURE__*/ S.String;
+export const ExtractIssueTemplateSTANDARDISSUE = S.String;
 
 export type StandardIssueType =
   | "AREA_OF_CONCERN"
@@ -6235,7 +6227,7 @@ export type StandardIssueType =
   | "OPP_FOR_IMPROVEMENT"
   | "EXCEPTION"
   | "PROCESS_FOR_IMPROVEMENT";
-export const StandardIssueType = /*@__PURE__*/ S.String;
+export const StandardIssueType = S.String;
 
 export interface StandardIssue {
   id: string;
@@ -6319,7 +6311,7 @@ export const StandardPOAMCustomFieldsList = /*@__PURE__*/ S.Array(
 
 /** Extract from T those types that are assignable to U */
 export type ExtractIssueTemplateSTANDARDPOAM = "STANDARD_POAM";
-export const ExtractIssueTemplateSTANDARDPOAM = /*@__PURE__*/ S.String;
+export const ExtractIssueTemplateSTANDARDPOAM = S.String;
 
 export interface StandardPOAM {
   id: string;
@@ -6379,7 +6371,7 @@ export const StandardPOAM = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "StandardPOAM" }) as any as S.Schema<StandardPOAM>;
 
 export type Issue = StandardIssue | StandardPOAM;
-export const Issue = /*@__PURE__*/ S.Unknown as any as S.Schema<Issue>;
+export const Issue = S.Unknown as any as S.Schema<Issue>;
 
 export type GetIssueResponse = Issue;
 export const GetIssueResponse = /*@__PURE__*/ S.suspend(() =>
@@ -6406,7 +6398,7 @@ export type TrustKnowledgeBaseResourceOutput =
   | KnowledgeBaseDocumentResourceOutput
   | KnowledgeBaseWebpageResourceOutput;
 export const TrustKnowledgeBaseResourceOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrustKnowledgeBaseResourceOutput>;
+  S.Unknown as any as S.Schema<TrustKnowledgeBaseResourceOutput>;
 
 export type GetKnowledgeBaseResourceResponse = TrustKnowledgeBaseResourceOutput;
 export const GetKnowledgeBaseResourceResponse = /*@__PURE__*/ S.suspend(() =>
@@ -6434,7 +6426,7 @@ export const GetMonitoredComputerRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The possible outcomes of a status check. The outcome can be one of the following: FAIL: The check is failing. IN_PROGRESS: The check needs further data from the given computer in order to evaluate. The field(s) needed from a computer to calculate the ComputerStatusOutcome were null. NA: The check is not applicable for the given computer. PASS: The check is passing. */
 export type ComputerStatusOutcome = "FAIL" | "IN_PROGRESS" | "NA" | "PASS";
-export const ComputerStatusOutcome = /*@__PURE__*/ S.String;
+export const ComputerStatusOutcome = S.String;
 
 /** The a status check for a computer. Representation for screenlock, diskEncryption, passwordManager, and antivirusInstallation. */
 export interface ComputerStatus {
@@ -6449,7 +6441,7 @@ export const ComputerStatus = /*@__PURE__*/ S.suspend(() =>
 
 /** The possible types of the operating system. One of `mac_OS`, `linux`, or `windows`. */
 export type OperatingSystemType = "macOS" | "linux" | "windows";
-export const OperatingSystemType = /*@__PURE__*/ S.String;
+export const OperatingSystemType = S.String;
 
 /** The computer's operating system type and version. */
 export interface OperatingSystem {
@@ -6532,7 +6524,7 @@ export const GetPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPolicyRequest>;
 
 export type PolicyStatus = "OK" | "NEEDS_REMEDIATION";
-export const PolicyStatus = /*@__PURE__*/ S.String;
+export const PolicyStatus = S.String;
 
 export type PolicyVersionStatus =
   | "NOT_STARTED"
@@ -6541,7 +6533,7 @@ export type PolicyVersionStatus =
   | "APPROVED"
   | "RENEW_SOON"
   | "EXPIRED";
-export const PolicyVersionStatus = /*@__PURE__*/ S.String;
+export const PolicyVersionStatus = S.String;
 
 export interface PolicyLatestVersion {
   /** The status of the policy's latest version. */
@@ -6581,7 +6573,7 @@ export type PolicyLocale =
   | "SV"
   | "TR"
   | "ZH";
-export const PolicyLocale = /*@__PURE__*/ S.String;
+export const PolicyLocale = S.String;
 
 export interface PolicyDocument {
   /** The language of the policy document. */
@@ -6688,11 +6680,11 @@ export type CustomerTrustExportStatusResponseStatus =
   | "pending"
   | "completed"
   | "failed";
-export const CustomerTrustExportStatusResponseStatus = /*@__PURE__*/ S.String;
+export const CustomerTrustExportStatusResponseStatus = S.String;
 
 /** The output format of the exported file. */
 export type CustomerTrustExportStatusResponseFormat = "original" | "csv";
-export const CustomerTrustExportStatusResponseFormat = /*@__PURE__*/ S.String;
+export const CustomerTrustExportStatusResponseFormat = S.String;
 
 /** Detailed status and result of a questionnaire export. When `status` is `"completed"`, the response includes a time-limited download URL. */
 export interface CustomerTrustExportStatusResponse {
@@ -6754,7 +6746,7 @@ export type QuestionnaireResponseMultipleChoiceAnswer =
   | "NO"
   | "NOT_APPLICABLE"
   | "YES";
-export const QuestionnaireResponseMultipleChoiceAnswer = /*@__PURE__*/ S.String;
+export const QuestionnaireResponseMultipleChoiceAnswer = S.String;
 
 /** Frozen local clone of the shared `QAutoAnswer` shape, scoped to the deprecated REST `answer` field so that field's contract does not track changes to the shared answer-library type. No longer populated at runtime; removal is tracked by CTAUTO-1973. */
 export interface DeprecatedQAutoAnswerForAPI {
@@ -6780,12 +6772,12 @@ export type QuestionnaireResponseOriginType =
   | "MANUAL"
   | "ORIGINAL_QUESTIONNAIRE"
   | "RESOURCE";
-export const QuestionnaireResponseOriginType = /*@__PURE__*/ S.String;
+export const QuestionnaireResponseOriginType = S.String;
 
 /** JSON Schema v7 */
 export type JSONSchema7Definition = JSONSchema7 | boolean;
 export const JSONSchema7Definition =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JSONSchema7Definition>;
+  S.Unknown as any as S.Schema<JSONSchema7Definition>;
 
 export type JSONSchema7DefsMap = {
   [key: string]: JSONSchema7Definition | undefined;
@@ -6804,7 +6796,7 @@ export type JSONSchema7TypeName =
   | "object"
   | "array"
   | "null";
-export const JSONSchema7TypeName = /*@__PURE__*/ S.String;
+export const JSONSchema7TypeName = S.String;
 
 export type JSONSchema7TypeCase1List = Array<JSONSchema7TypeName>;
 export const JSONSchema7TypeCase1List = /*@__PURE__*/ S.Array(
@@ -6812,8 +6804,7 @@ export const JSONSchema7TypeCase1List = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<JSONSchema7TypeCase1List>;
 
 export type JSONSchema7Type = JSONSchema7TypeName | JSONSchema7TypeCase1List;
-export const JSONSchema7Type =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JSONSchema7Type>;
+export const JSONSchema7Type = S.Unknown as any as S.Schema<JSONSchema7Type>;
 
 export type JSONSchema7Object = { [key: string]: JSONSchema7Type2 | undefined };
 export const JSONSchema7Object = /*@__PURE__*/ S.Record(
@@ -6828,8 +6819,7 @@ export type JSONSchema7Type2 =
   | boolean
   | JSONSchema7Object
   | unknown;
-export const JSONSchema7Type2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JSONSchema7Type2>;
+export const JSONSchema7Type2 = S.Unknown as any as S.Schema<JSONSchema7Type2>;
 
 export type JSONSchema7EnumList = Array<JSONSchema7Type2>;
 export const JSONSchema7EnumList = /*@__PURE__*/ S.Array(
@@ -6844,8 +6834,7 @@ export const JSONSchema7ItemsCase1List = /*@__PURE__*/ S.Array(
 export type JSONSchema7Items =
   | JSONSchema7Definition
   | JSONSchema7ItemsCase1List;
-export const JSONSchema7Items =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JSONSchema7Items>;
+export const JSONSchema7Items = S.Unknown as any as S.Schema<JSONSchema7Items>;
 
 export type JSONSchema7RequiredList = Array<string>;
 export const JSONSchema7RequiredList = /*@__PURE__*/ S.Array(
@@ -6877,7 +6866,7 @@ export type JSONSchema7DependenciesValue =
   | JSONSchema7Definition
   | JSONSchema7DependenciesValueCase1List;
 export const JSONSchema7DependenciesValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<JSONSchema7DependenciesValue>;
+  S.Unknown as any as S.Schema<JSONSchema7DependenciesValue>;
 
 export type JSONSchema7DependenciesMap = {
   [key: string]: JSONSchema7DependenciesValue | undefined;
@@ -7022,8 +7011,7 @@ export type AnswerPartValue =
   | number
   | boolean
   | AnswerPartValueCase3List;
-export const AnswerPartValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AnswerPartValue>;
+export const AnswerPartValue = S.Unknown as any as S.Schema<AnswerPartValue>;
 
 /** Construct a type with a set of properties K of type T */
 export type RecordStringAnswerPartValue = {
@@ -7172,7 +7160,7 @@ export type ResourceResponseType =
   | "Queue"
   | "ServerlessFunction"
   | "StorageBucket";
-export const ResourceResponseType = /*@__PURE__*/ S.String;
+export const ResourceResponseType = S.String;
 
 export interface Resource {
   responseType: ResourceResponseType;
@@ -7751,8 +7739,7 @@ export type AnyResource =
   | Account
   | AwsAccount
   | OrganizationSubunit;
-export const AnyResource =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AnyResource>;
+export const AnyResource = S.Unknown as any as S.Schema<AnyResource>;
 
 export type GetResourceResponse = AnyResource;
 export const GetResourceResponse = /*@__PURE__*/ S.suspend(() =>
@@ -7862,7 +7849,7 @@ export const GetSecurityReviewDocumentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSecurityReviewDocumentsRequest>;
 
 export type UploadedDocumentUploadedByType = "USER" | "APPLICATION";
-export const UploadedDocumentUploadedByType = /*@__PURE__*/ S.String;
+export const UploadedDocumentUploadedByType = S.String;
 
 /** The actor who uploaded this document. It could be a user or an app. */
 export interface VendorDocumentUploadedBy {
@@ -8152,7 +8139,7 @@ export const GetTestRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetTestRequest" }) as any as S.Schema<GetTestRequest>;
 
 export type EntityStatus = "FAILING" | "DEACTIVATED";
-export const EntityStatus = /*@__PURE__*/ S.String;
+export const EntityStatus = S.String;
 
 export interface GetTestEntitiesRequest {
   testId: string;
@@ -8249,7 +8236,7 @@ export const GetTrustCenterRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Possible banner settings for the Trust Center. - CUSTOM_IMAGE: Banner is a custom uploaded image. - GRADIENT: Banner is a gradient between two colors. - MINIMAL: No banner. - VANTA: Legacy Vanta-themed banner. No longer selectable as a banner style. */
 export type BannerSetting = "CUSTOM_IMAGE" | "GRADIENT" | "MINIMAL" | "VANTA";
-export const BannerSetting = /*@__PURE__*/ S.String;
+export const BannerSetting = S.String;
 
 /** Information about the Trust Center's banner. */
 export interface TrustCenterBannerSetting {
@@ -8739,7 +8726,7 @@ export const GetVendorAssessmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The lifecycle status of a vendor assessment type: - ACTIVE: The assessment type is available for use. - ARCHIVED: The assessment type has been archived and is kept for historical reference. */
 export type VendorAssessmentTypeLifecycleStatus = "ACTIVE" | "ARCHIVED";
-export const VendorAssessmentTypeLifecycleStatus = /*@__PURE__*/ S.String;
+export const VendorAssessmentTypeLifecycleStatus = S.String;
 
 export interface VendorAssessmentType {
   /** Unique identifier for the assessment type. */
@@ -8780,14 +8767,14 @@ export const GetVulnerabilityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVulnerabilityRequest>;
 
 export type VulnerabilityType = "CONFIGURATION" | "COMMON" | "GROUPED";
-export const VulnerabilityType = /*@__PURE__*/ S.String;
+export const VulnerabilityType = S.String;
 
 export type ExternalFindingSeverityType =
   | "CRITICAL"
   | "HIGH"
   | "LOW"
   | "MEDIUM";
-export const ExternalFindingSeverityType = /*@__PURE__*/ S.String;
+export const ExternalFindingSeverityType = S.String;
 
 /** Related vulnerabilities. Only relevant to vulnerabilities of type GROUPED. */
 export type VulnerabilityRelatedVulnsList = Array<string>;
@@ -8927,7 +8914,7 @@ export type VulnerableAssetType =
   | "MANIFEST_FILE"
   | "WORKSTATION"
   | "OTHER";
-export const VulnerableAssetType = /*@__PURE__*/ S.String;
+export const VulnerableAssetType = S.String;
 
 /** Tags of the scanned container image. */
 export type VulnerableAssetScannerImageTagsList = Array<string>;
@@ -9098,7 +9085,7 @@ export const ImportIdpGroupsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImportIdpGroupsRequest>;
 
 export type ImportIdpGroupSuccessStatus = "SUCCESS";
-export const ImportIdpGroupSuccessStatus = /*@__PURE__*/ S.String;
+export const ImportIdpGroupSuccessStatus = S.String;
 
 export interface ImportIdpGroupSuccess {
   idpGroupId: string;
@@ -9116,10 +9103,10 @@ export const ImportIdpGroupSuccess = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImportIdpGroupSuccess>;
 
 export type ImportIdpGroupErrorStatus = "ERROR";
-export const ImportIdpGroupErrorStatus = /*@__PURE__*/ S.String;
+export const ImportIdpGroupErrorStatus = S.String;
 
 export type ImportIdpGroupFailureReason = "NOT_FOUND" | "IMPORT_FAILED";
-export const ImportIdpGroupFailureReason = /*@__PURE__*/ S.String;
+export const ImportIdpGroupFailureReason = S.String;
 
 export interface ImportIdpGroupError {
   idpGroupId: string;
@@ -9140,7 +9127,7 @@ export const ImportIdpGroupError = /*@__PURE__*/ S.suspend(() =>
 
 export type ImportIdpGroupResult = ImportIdpGroupSuccess | ImportIdpGroupError;
 export const ImportIdpGroupResult =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ImportIdpGroupResult>;
+  S.Unknown as any as S.Schema<ImportIdpGroupResult>;
 
 export type ImportIdpGroupsResponseResultsList = Array<ImportIdpGroupResult>;
 export const ImportIdpGroupsResponseResultsList = /*@__PURE__*/ S.Array(
@@ -9195,7 +9182,7 @@ export const ListRequestOwnerIdMatchesAnyList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListRequestOwnerIdMatchesAnyList>;
 
 export type IssueTemplate = "STANDARD_ISSUE" | "STANDARD_POAM";
-export const IssueTemplate = /*@__PURE__*/ S.String;
+export const IssueTemplate = S.String;
 
 export type ListRequestTemplateMatchesAnyList = Array<
   IssueTemplate | (string & {})
@@ -9228,11 +9215,11 @@ export type IssueSortField =
   | "lastModifiedDate"
   | "status"
   | "severity";
-export const IssueSortField = /*@__PURE__*/ S.String;
+export const IssueSortField = S.String;
 
 /** `"asc"` for ascending, `"desc"` for descending. */
 export type OrderDirection = "asc" | "desc";
-export const OrderDirection = /*@__PURE__*/ S.String;
+export const OrderDirection = S.String;
 
 export interface ListRequest {
   pageSize?: number;
@@ -9428,7 +9415,7 @@ export const PaginatedResponseKnowledgeBaseAnswerLibraryEntryOutput =
   }) as any as S.Schema<PaginatedResponseKnowledgeBaseAnswerLibraryEntryOutput>;
 
 export type QuestionnaireAssignableUserRole = "owner" | "approver";
-export const QuestionnaireAssignableUserRole = /*@__PURE__*/ S.String;
+export const QuestionnaireAssignableUserRole = S.String;
 
 export interface ListAssignableUsersRequest {
   /** Filter by role: "owner" or "approver". */
@@ -9875,7 +9862,7 @@ export const ListDiscoveredVendorAccountsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDiscoveredVendorAccountsRequest>;
 
 export type DiscoveredVendorAccountTypeUSER = "USER";
-export const DiscoveredVendorAccountTypeUSER = /*@__PURE__*/ S.String;
+export const DiscoveredVendorAccountTypeUSER = S.String;
 
 export interface DiscoveredVendorUser {
   /** The associated user's unique ID. */
@@ -9899,7 +9886,7 @@ export const DiscoveredVendorUser = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiscoveredVendorUser>;
 
 export type DiscoveredVendorAccountTypeCOMPUTER = "COMPUTER";
-export const DiscoveredVendorAccountTypeCOMPUTER = /*@__PURE__*/ S.String;
+export const DiscoveredVendorAccountTypeCOMPUTER = S.String;
 
 export interface DiscoveredVendorComputer {
   /** The associated computer's unique ID. */
@@ -9926,7 +9913,7 @@ export type DiscoveredVendorAccount =
   | DiscoveredVendorUser
   | DiscoveredVendorComputer;
 export const DiscoveredVendorAccount =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscoveredVendorAccount>;
+  S.Unknown as any as S.Schema<DiscoveredVendorAccount>;
 
 export type PaginatedResponseDiscoveredVendorAccountResultsDataList =
   Array<DiscoveredVendorAccount>;
@@ -9963,7 +9950,7 @@ export const PaginatedResponseDiscoveredVendorAccount = /*@__PURE__*/ S.suspend(
 
 /** The scope of a discovered vendor. NEEDS_REVIEW: The vendor needs review IGNORED: The vendor was ignored REJECTED: The vendor was rejected */
 export type DiscoveredVendorScope = "NEEDS_REVIEW" | "IGNORED" | "REJECTED";
-export const DiscoveredVendorScope = /*@__PURE__*/ S.String;
+export const DiscoveredVendorScope = S.String;
 
 export interface ListDiscoveredVendorsRequest {
   /** Defaults to "NEEDS_REVIEW" if not provided */
@@ -9992,7 +9979,7 @@ export type DiscoveredVendorSource =
   | "GSUITE"
   | "VENDR"
   | "OFFICE";
-export const DiscoveredVendorSource = /*@__PURE__*/ S.String;
+export const DiscoveredVendorSource = S.String;
 
 /** Determines whether or not the vendor is ignored. */
 export interface DiscoveredVendorIgnored {
@@ -10541,7 +10528,7 @@ export const PaginatedImportableIdpGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedImportableIdpGroupResponse>;
 
 export type KnowledgeBaseResourceTypeFilter = "FILE" | "URL";
-export const KnowledgeBaseResourceTypeFilter = /*@__PURE__*/ S.String;
+export const KnowledgeBaseResourceTypeFilter = S.String;
 
 export type ListKnowledgeBaseResourcesRequestTypeMatchesAnyList = Array<
   KnowledgeBaseResourceTypeFilter | (string & {})
@@ -10677,7 +10664,7 @@ export type ComputerStatusFilter =
   | "AV_NOT_INSTALLED"
   | "SCREENLOCK_NOT_CONFIGURED"
   | "LAST_CHECK_OVER_14_DAYS";
-export const ComputerStatusFilter = /*@__PURE__*/ S.String;
+export const ComputerStatusFilter = S.String;
 
 export type ListMonitoredComputersRequestComplianceStatusFilterMatchesAnyList =
   Array<ComputerStatusFilter | (string & {})>;
@@ -10754,7 +10741,7 @@ export type TaskType =
   | "COMPLETE_CUSTOM_OFFBOARDING_TASKS"
   | "INSTALL_DEVICE_MONITORING"
   | "COMPLETE_BACKGROUND_CHECKS";
-export const TaskType = /*@__PURE__*/ S.String;
+export const TaskType = S.String;
 
 export type ListPeopleRequestTaskTypeMatchesAnyList = Array<
   TaskType | (string & {})
@@ -11227,13 +11214,13 @@ export const ListRiskScenarioRequestCategoryMatchesAnyList =
   ) as any as S.Schema<ListRiskScenarioRequestCategoryMatchesAnyList>;
 
 export type UNCATEGORIZED = "Uncategorized";
-export const UNCATEGORIZED = /*@__PURE__*/ S.String;
+export const UNCATEGORIZED = S.String;
 
 export type ListRiskScenarioRequestCiaCategoryMatchesAnyItem =
   | CIA
   | UNCATEGORIZED;
 export const ListRiskScenarioRequestCiaCategoryMatchesAnyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRiskScenarioRequestCiaCategoryMatchesAnyItem>;
+  S.Unknown as any as S.Schema<ListRiskScenarioRequestCiaCategoryMatchesAnyItem>;
 
 export type ListRiskScenarioRequestCiaCategoryMatchesAnyList =
   Array<ListRiskScenarioRequestCiaCategoryMatchesAnyItem>;
@@ -11243,13 +11230,13 @@ export const ListRiskScenarioRequestCiaCategoryMatchesAnyList =
   ) as any as S.Schema<ListRiskScenarioRequestCiaCategoryMatchesAnyList>;
 
 export type NOTREATMENTTYPE = "No treatment type";
-export const NOTREATMENTTYPE = /*@__PURE__*/ S.String;
+export const NOTREATMENTTYPE = S.String;
 
 export type ListRiskScenarioRequestTreatmentTypeMatchesAnyItem =
   | Treatment
   | NOTREATMENTTYPE;
 export const ListRiskScenarioRequestTreatmentTypeMatchesAnyItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListRiskScenarioRequestTreatmentTypeMatchesAnyItem>;
+  S.Unknown as any as S.Schema<ListRiskScenarioRequestTreatmentTypeMatchesAnyItem>;
 
 export type ListRiskScenarioRequestTreatmentTypeMatchesAnyList =
   Array<ListRiskScenarioRequestTreatmentTypeMatchesAnyItem>;
@@ -11259,7 +11246,7 @@ export const ListRiskScenarioRequestTreatmentTypeMatchesAnyList =
   ) as any as S.Schema<ListRiskScenarioRequestTreatmentTypeMatchesAnyList>;
 
 export type ScoreGroup = "Very low" | "Low" | "Med" | "High" | "Critical";
-export const ScoreGroup = /*@__PURE__*/ S.String;
+export const ScoreGroup = S.String;
 
 export type ListRiskScenarioRequestInherentScoreGroupMatchesAnyList = Array<
   ScoreGroup | (string & {})
@@ -11286,7 +11273,7 @@ export const ListRiskScenarioRequestReviewStatusMatchesAnyList =
   ) as any as S.Schema<ListRiskScenarioRequestReviewStatusMatchesAnyList>;
 
 export type ListRiskScenarioRequestOrderBy = "description" | "createdAt";
-export const ListRiskScenarioRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListRiskScenarioRequestOrderBy = S.String;
 
 export interface ListRiskScenarioRequest {
   pageSize?: number;
@@ -11433,7 +11420,7 @@ export type CustomerTrustProductContextIdFilter =
   | "DOCUMENT_SHARING"
   | "CONTROL_SHARING"
   | "QUESTIONNAIRE";
-export const CustomerTrustProductContextIdFilter = /*@__PURE__*/ S.String;
+export const CustomerTrustProductContextIdFilter = S.String;
 
 export type ListTagCategoriesRequestProductContextIdsMatchesAnyList = Array<
   CustomerTrustProductContextIdFilter | (string & {})
@@ -11496,7 +11483,7 @@ export type TestCategory =
   | "SOFTWARE_DEVELOPMENT"
   | "VENDORS"
   | "VULNERABILITY_MANAGEMENT";
-export const TestCategory = /*@__PURE__*/ S.String;
+export const TestCategory = S.String;
 
 export interface ListTestsRequest {
   pageSize?: number;
@@ -11638,7 +11625,7 @@ export type ActivityEventType =
   | "RESOURCE_DOWNLOAD"
   | "RESOURCE_VIEW"
   | "VIDEO_PLAY";
-export const ActivityEventType = /*@__PURE__*/ S.String;
+export const ActivityEventType = S.String;
 
 export type ListTrustCenterActivityEventsRequestEventTypesMatchesAnyList =
   Array<ActivityEventType | (string & {})>;
@@ -11690,7 +11677,7 @@ export type TrustCenterPage =
   | "RESOURCES"
   | "SUBPROCESSORS"
   | "UPDATES";
-export const TrustCenterPage = /*@__PURE__*/ S.String;
+export const TrustCenterPage = S.String;
 
 export interface TrustCenterActivityEventDetailsCase0 {
   /** Page that was viewed. */
@@ -11740,7 +11727,7 @@ export type TrustCenterActivityEventDetails =
   | TrustCenterActivityEventDetailsCase1
   | TrustCenterActivityEventDetailsCase2;
 export const TrustCenterActivityEventDetails =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TrustCenterActivityEventDetails>;
+  S.Unknown as any as S.Schema<TrustCenterActivityEventDetails>;
 
 export interface TrustCenterActivityEvent {
   /** Unique identifier for the activity event. */
@@ -11880,7 +11867,7 @@ export const ListTrustCenterDataCollectedRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Enum representing if and how the data collected is shown on the trust center */
 export type DataCollectedStatus = "COLLECTED" | "HIDDEN" | "NOT_COLLECTED";
-export const DataCollectedStatus = /*@__PURE__*/ S.String;
+export const DataCollectedStatus = S.String;
 
 export interface TrustCenterDataCollected {
   /** Name of the data type being disclosed. */
@@ -12012,7 +11999,7 @@ export const TrustCenterAccessRequestHistoricalRequestedResourcesList =
 
 /** Enum representing the outcome states of a historical trust center access request */
 export type HistoricalAccessRequestOutcome = "APPROVED" | "DENIED";
-export const HistoricalAccessRequestOutcome = /*@__PURE__*/ S.String;
+export const HistoricalAccessRequestOutcome = S.String;
 
 export interface TrustCenterAccessRequestHistorical {
   /** Unique identifier for the access request. */
@@ -12722,7 +12709,7 @@ export const PaginatedResponseVendor = /*@__PURE__*/ S.suspend(() =>
 
 /** ExternalFindingSeverity describes the severity of an external finding (Vulnerability or Security Alert) */
 export type ExternalFindingSeverity = "CRITICAL" | "HIGH" | "LOW" | "MEDIUM";
-export const ExternalFindingSeverity = /*@__PURE__*/ S.String;
+export const ExternalFindingSeverity = S.String;
 
 export interface ListVulnerabilitiesRequest {
   pageSize?: number;
@@ -13170,8 +13157,7 @@ export type RemoveTagCategoryProductContextRequestProductContextId =
   | "EXTERNAL_TRUST_CENTER"
   | "DOCUMENT_SHARING"
   | "CONTROL_SHARING";
-export const RemoveTagCategoryProductContextRequestProductContextId =
-  /*@__PURE__*/ S.String;
+export const RemoveTagCategoryProductContextRequestProductContextId = S.String;
 
 export interface RemoveTagCategoryProductContextRequest {
   tagCategoryId: string;
@@ -13302,7 +13288,7 @@ export type CustomerTrustAccountCustomFieldFilterValue =
   | string
   | CustomerTrustAccountCustomFieldFilterValueCase1List;
 export const CustomerTrustAccountCustomFieldFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomerTrustAccountCustomFieldFilterValue>;
+  S.Unknown as any as S.Schema<CustomerTrustAccountCustomFieldFilterValue>;
 
 /** A single custom field filter condition. */
 export interface CustomerTrustAccountCustomFieldFilter {
@@ -13649,7 +13635,7 @@ export type UpdateComplianceFrameworkRequestStandard =
   | "ukCyberEssentials33"
   | "usDataPrivacy"
   | "fedrampKSI";
-export const UpdateComplianceFrameworkRequestStandard = /*@__PURE__*/ S.String;
+export const UpdateComplianceFrameworkRequestStandard = S.String;
 
 export interface UpdateComplianceFrameworkRequest {
   slugId: string;
@@ -13766,7 +13752,7 @@ export const UpdateCustomerTrustAccountRequest = /*@__PURE__*/ S.suspend(() =>
 export type KnowledgeBaseResourceDownloadPermission =
   | "VIEW_ONLY"
   | "VIEW_AND_DOWNLOAD";
-export const KnowledgeBaseResourceDownloadPermission = /*@__PURE__*/ S.String;
+export const KnowledgeBaseResourceDownloadPermission = S.String;
 
 /** Tags to associate with the resource. A non-empty array replaces the existing tag set; pass `[]` to clear all tags. */
 export type UpdateDocumentResourceRequestTagsList = Array<TagInput>;
@@ -13866,11 +13852,11 @@ export type SettableQuestionnaireStatus =
   | "WAITING_ON_ANSWERS"
   | "ON_HOLD"
   | "NO_LONGER_NEEDED";
-export const SettableQuestionnaireStatus = /*@__PURE__*/ S.String;
+export const SettableQuestionnaireStatus = S.String;
 
 /** The type of actor: "User" for an individual user, "Team" for a team. */
 export type UpdateActorAssignmentType = "User" | "Team";
-export const UpdateActorAssignmentType = /*@__PURE__*/ S.String;
+export const UpdateActorAssignmentType = S.String;
 
 /** Actor assignment for setting an owner or approver. */
 export interface UpdateActorAssignment {
@@ -14194,16 +14180,16 @@ export const UpdateRiskScenarioControlRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRiskScenarioControlRequest>;
 
 export type BannerSettingGRADIENT = "GRADIENT";
-export const BannerSettingGRADIENT = /*@__PURE__*/ S.String;
+export const BannerSettingGRADIENT = S.String;
 
 export type BannerSettingMINIMAL = "MINIMAL";
-export const BannerSettingMINIMAL = /*@__PURE__*/ S.String;
+export const BannerSettingMINIMAL = S.String;
 
 export type ApiSelectableBannerSetting =
   | BannerSettingGRADIENT
   | BannerSettingMINIMAL;
 export const ApiSelectableBannerSetting =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ApiSelectableBannerSetting>;
+  S.Unknown as any as S.Schema<ApiSelectableBannerSetting>;
 
 /** The banner configuration of the Trust Center. */
 export interface UpdateTrustCenterRequestBannerSetting {

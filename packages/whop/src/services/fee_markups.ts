@@ -56,7 +56,7 @@ export type FeeMarkupTypes =
   | "next_day_bank_withdrawal_markup"
   | "bank_wire_withdrawal_markup"
   | "digital_wallet_withdrawal_markup";
-export const FeeMarkupTypes = /*@__PURE__*/ S.String;
+export const FeeMarkupTypes = S.String;
 
 /** Custom key-value metadata to attach to this fee markup. */
 export type CreateFeeMarkupRequestMetadataMap = {

@@ -356,7 +356,7 @@ export const CreateHarvestJobRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateHarvestJobRequest",
 }) as any as S.Schema<CreateHarvestJobRequest>;
 export type Status = "IN_PROGRESS" | "SUCCEEDED" | "FAILED" | (string & {});
-export const Status = /*@__PURE__*/ S.String;
+export const Status = S.String;
 
 export interface CreateHarvestJobResponse {
   Arn?: string;
@@ -416,7 +416,7 @@ export const Authorization = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "Authorization" }) as any as S.Schema<Authorization>;
 export type CmafEncryptionMethod = "SAMPLE_AES" | "AES_CTR" | (string & {});
-export const CmafEncryptionMethod = /*@__PURE__*/ S.String;
+export const CmafEncryptionMethod = S.String;
 
 export type PresetSpeke20Audio =
   | "PRESET-AUDIO-1"
@@ -425,7 +425,7 @@ export type PresetSpeke20Audio =
   | "SHARED"
   | "UNENCRYPTED"
   | (string & {});
-export const PresetSpeke20Audio = /*@__PURE__*/ S.String;
+export const PresetSpeke20Audio = S.String;
 
 export type PresetSpeke20Video =
   | "PRESET-VIDEO-1"
@@ -439,7 +439,7 @@ export type PresetSpeke20Video =
   | "SHARED"
   | "UNENCRYPTED"
   | (string & {});
-export const PresetSpeke20Video = /*@__PURE__*/ S.String;
+export const PresetSpeke20Video = S.String;
 
 export interface EncryptionContractConfiguration {
   PresetSpeke20Audio?: PresetSpeke20Audio;
@@ -518,7 +518,7 @@ export type AdMarkers =
   | "PASSTHROUGH"
   | "DATERANGE"
   | (string & {});
-export const AdMarkers = /*@__PURE__*/ S.String;
+export const AdMarkers = S.String;
 
 export type __AdTriggersElement =
   | "SPLICE_INSERT"
@@ -530,7 +530,7 @@ export type __AdTriggersElement =
   | "PROVIDER_OVERLAY_PLACEMENT_OPPORTUNITY"
   | "DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY"
   | (string & {});
-export const __AdTriggersElement = /*@__PURE__*/ S.String;
+export const __AdTriggersElement = S.String;
 
 export type AdTriggers = __AdTriggersElement[];
 export const AdTriggers = /*@__PURE__*/ S.Array(__AdTriggersElement);
@@ -540,10 +540,10 @@ export type AdsOnDeliveryRestrictions =
   | "UNRESTRICTED"
   | "BOTH"
   | (string & {});
-export const AdsOnDeliveryRestrictions = /*@__PURE__*/ S.String;
+export const AdsOnDeliveryRestrictions = S.String;
 
 export type PlaylistType = "NONE" | "EVENT" | "VOD" | (string & {});
-export const PlaylistType = /*@__PURE__*/ S.String;
+export const PlaylistType = S.String;
 
 export interface HlsManifestCreateOrUpdateParameters {
   AdMarkers?: AdMarkers;
@@ -592,7 +592,7 @@ export type StreamOrder =
   | "VIDEO_BITRATE_ASCENDING"
   | "VIDEO_BITRATE_DESCENDING"
   | (string & {});
-export const StreamOrder = /*@__PURE__*/ S.String;
+export const StreamOrder = S.String;
 
 export interface StreamSelection {
   MaxVideoBitsPerSecond?: number;
@@ -660,10 +660,10 @@ export type ManifestLayout =
   | "COMPACT"
   | "DRM_TOP_LEVEL_COMPACT"
   | (string & {});
-export const ManifestLayout = /*@__PURE__*/ S.String;
+export const ManifestLayout = S.String;
 
 export type __PeriodTriggersElement = "ADS" | (string & {});
-export const __PeriodTriggersElement = /*@__PURE__*/ S.String;
+export const __PeriodTriggersElement = S.String;
 
 export type __listOf__PeriodTriggersElement = __PeriodTriggersElement[];
 export const __listOf__PeriodTriggersElement = /*@__PURE__*/ S.Array(
@@ -675,14 +675,14 @@ export type Profile =
   | "HYBRIDCAST"
   | "DVB_DASH_2014"
   | (string & {});
-export const Profile = /*@__PURE__*/ S.String;
+export const Profile = S.String;
 
 export type SegmentTemplateFormat =
   | "NUMBER_WITH_TIMELINE"
   | "TIME_WITH_TIMELINE"
   | "NUMBER_WITH_DURATION"
   | (string & {});
-export const SegmentTemplateFormat = /*@__PURE__*/ S.String;
+export const SegmentTemplateFormat = S.String;
 
 export type UtcTiming =
   | "NONE"
@@ -690,7 +690,7 @@ export type UtcTiming =
   | "HTTP-ISO"
   | "HTTP-XSDATE"
   | (string & {});
-export const UtcTiming = /*@__PURE__*/ S.String;
+export const UtcTiming = S.String;
 
 export interface DashPackage {
   AdTriggers?: __AdTriggersElement[];
@@ -750,7 +750,7 @@ export const DashPackage = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "DashPackage" }) as any as S.Schema<DashPackage>;
 export type EncryptionMethod = "AES_128" | "SAMPLE_AES" | (string & {});
-export const EncryptionMethod = /*@__PURE__*/ S.String;
+export const EncryptionMethod = S.String;
 
 export interface HlsEncryption {
   ConstantInitializationVector?: string;
@@ -851,7 +851,7 @@ export const MssPackage = /*@__PURE__*/ S.suspend(() =>
   ),
 ).annotate({ identifier: "MssPackage" }) as any as S.Schema<MssPackage>;
 export type Origination = "ALLOW" | "DENY" | (string & {});
-export const Origination = /*@__PURE__*/ S.String;
+export const Origination = S.String;
 
 export interface CreateOriginEndpointRequest {
   Authorization?: Authorization;

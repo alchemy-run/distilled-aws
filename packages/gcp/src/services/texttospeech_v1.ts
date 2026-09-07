@@ -271,7 +271,7 @@ export type VoiceSsmlGenderEnum =
   | "MALE"
   | "FEMALE"
   | "NEUTRAL";
-export const VoiceSsmlGenderEnum = /*@__PURE__*/ S.String;
+export const VoiceSsmlGenderEnum = S.String;
 
 /** Description of a voice supported by the TTS service. */
 export interface Voice {
@@ -320,7 +320,7 @@ export type AudioConfigAudioEncodingEnum =
   | "ALAW"
   | "PCM"
   | "M4A";
-export const AudioConfigAudioEncodingEnum = /*@__PURE__*/ S.String;
+export const AudioConfigAudioEncodingEnum = S.String;
 
 /** Description of audio data to be synthesized. */
 export interface AudioConfig {
@@ -353,7 +353,7 @@ export type VoiceSelectionParamsSsmlGenderEnum =
   | "MALE"
   | "FEMALE"
   | "NEUTRAL";
-export const VoiceSelectionParamsSsmlGenderEnum = /*@__PURE__*/ S.String;
+export const VoiceSelectionParamsSsmlGenderEnum = S.String;
 
 /** The configuration of Voice Clone feature. */
 export interface VoiceCloneParams {
@@ -372,7 +372,7 @@ export type CustomVoiceParamsReportedUsageEnum =
   | "REPORTED_USAGE_UNSPECIFIED"
   | "REALTIME"
   | "OFFLINE";
-export const CustomVoiceParamsReportedUsageEnum = /*@__PURE__*/ S.String;
+export const CustomVoiceParamsReportedUsageEnum = S.String;
 
 /** Description of the custom voice to be synthesized. */
 export interface CustomVoiceParams {
@@ -461,8 +461,7 @@ export type CustomPronunciationParamsPhoneticEncodingEnum =
   | "PHONETIC_ENCODING_X_SAMPA"
   | "PHONETIC_ENCODING_JAPANESE_YOMIGANA"
   | "PHONETIC_ENCODING_PINYIN";
-export const CustomPronunciationParamsPhoneticEncodingEnum =
-  /*@__PURE__*/ S.String;
+export const CustomPronunciationParamsPhoneticEncodingEnum = S.String;
 
 /** Pronunciation customization for a phrase. */
 export interface CustomPronunciationParams {
@@ -612,7 +611,7 @@ export type SafetySettingThresholdEnum =
   | "BLOCK_ONLY_HIGH"
   | "BLOCK_NONE"
   | "OFF";
-export const SafetySettingThresholdEnum = /*@__PURE__*/ S.String;
+export const SafetySettingThresholdEnum = S.String;
 
 export type SafetySettingCategoryEnum =
   | "HARM_CATEGORY_UNSPECIFIED"
@@ -620,7 +619,7 @@ export type SafetySettingCategoryEnum =
   | "HARM_CATEGORY_DANGEROUS_CONTENT"
   | "HARM_CATEGORY_HARASSMENT"
   | "HARM_CATEGORY_SEXUALLY_EXPLICIT";
-export const SafetySettingCategoryEnum = /*@__PURE__*/ S.String;
+export const SafetySettingCategoryEnum = S.String;
 
 /** Safety setting for a single harm category. */
 export interface SafetySetting {

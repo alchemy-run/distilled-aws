@@ -65,10 +65,10 @@ export const GetUrlNormalizationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUrlNormalizationRequest>;
 
 export type GetResponseScope = "incoming" | "both" | "none";
-export const GetResponseScope = /*@__PURE__*/ S.String;
+export const GetResponseScope = S.String;
 
 export type GetResponseType = "cloudflare" | "rfc3986";
-export const GetResponseType = /*@__PURE__*/ S.String;
+export const GetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetUrlNormalizationResponse {
@@ -87,10 +87,10 @@ export const GetUrlNormalizationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUrlNormalizationResponse>;
 
 export type UpdateRequestScope = "incoming" | "both" | "none";
-export const UpdateRequestScope = /*@__PURE__*/ S.String;
+export const UpdateRequestScope = S.String;
 
 export type UpdateRequestType = "cloudflare" | "rfc3986";
-export const UpdateRequestType = /*@__PURE__*/ S.String;
+export const UpdateRequestType = S.String;
 
 export interface PutUrlNormalizationRequest {
   /** The unique ID of the zone. */
@@ -117,10 +117,10 @@ export const PutUrlNormalizationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PutUrlNormalizationRequest>;
 
 export type UpdateResponseScope = "incoming" | "both" | "none";
-export const UpdateResponseScope = /*@__PURE__*/ S.String;
+export const UpdateResponseScope = S.String;
 
 export type UpdateResponseType = "cloudflare" | "rfc3986";
-export const UpdateResponseType = /*@__PURE__*/ S.String;
+export const UpdateResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PutUrlNormalizationResponse {

@@ -726,7 +726,7 @@ export type Readiness =
   | "UNKNOWN"
   | "NOT_AUTHORIZED"
   | (string & {});
-export const Readiness = /*@__PURE__*/ S.String;
+export const Readiness = S.String;
 
 export interface ReadinessCheckSummary {
   Readiness?: Readiness;

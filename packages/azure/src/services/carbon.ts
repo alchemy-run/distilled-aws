@@ -51,7 +51,7 @@ export type ReportTypeEnum =
   | "TopItemsSummaryReport"
   | "TopItemsMonthlySummaryReport"
   | "ItemDetailsReport";
-export const ReportTypeEnum = /*@__PURE__*/ S.String;
+export const ReportTypeEnum = S.String;
 
 /** Date range to be used with QueryParameter, it should be within 12 months between start and end date. In certain cases, start and end dates must be the same date. */
 export interface DateRange {
@@ -101,7 +101,7 @@ export const CarbonServiceQueryCarbonEmissionReportsRequestLocationListList =
 
 /** Supported carbon emission scopes to be used with QueryParameter, as defined by the GHG Protocol. At least one scope must be specified. The output will return a total of all specified scopes. */
 export type EmissionScopeEnum = "Scope1" | "Scope2" | "Scope3";
-export const EmissionScopeEnum = /*@__PURE__*/ S.String;
+export const EmissionScopeEnum = S.String;
 
 /** List of carbon emission scopes. Required. Accepts one or more values from EmissionScopeEnum (e.g., Scope1, Scope2, Scope3) in list form. The output will include the total emissions for the specified scopes. */
 export type CarbonServiceQueryCarbonEmissionReportsRequestCarbonScopeListList =
@@ -170,7 +170,7 @@ export type ResponseDataTypeEnum =
   | "ItemDetailsData"
   | "ResourceItemDetailsData"
   | "ResourceGroupItemDetailsData";
-export const ResponseDataTypeEnum = /*@__PURE__*/ S.String;
+export const ResponseDataTypeEnum = S.String;
 
 /** The basic response for different query report, all query report result will have these information */
 export interface CarbonEmissionData {
@@ -205,7 +205,7 @@ export const CarbonEmissionDataListResultValueList = /*@__PURE__*/ S.Array(
 
 /** Enum for Access Decision */
 export type AccessDecisionEnum = "Allowed" | "Denied";
-export const AccessDecisionEnum = /*@__PURE__*/ S.String;
+export const AccessDecisionEnum = S.String;
 
 /** Access Decision for each Subscription */
 export interface SubscriptionAccessDecision {
@@ -293,11 +293,11 @@ export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
 export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export const OperationOrigin = S.String;
 
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export const OperationActionType = S.String;
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
 export interface Operation {

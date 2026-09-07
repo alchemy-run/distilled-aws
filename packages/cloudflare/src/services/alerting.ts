@@ -311,7 +311,7 @@ export type PoliciesCreateRequestAlertType =
   | "universal_ssl_event_type"
   | "web_analytics_metrics_update"
   | "zone_aop_custom_certificate_expiration_type";
-export const PoliciesCreateRequestAlertType = /*@__PURE__*/ S.String;
+export const PoliciesCreateRequestAlertType = S.String;
 
 export interface PoliciesCreateRequestMechanismsEmailItem {
   /** The email address */
@@ -465,8 +465,7 @@ export type PoliciesCreateRequestFiltersIncidentImpactItem =
   | "INCIDENT_IMPACT_MINOR"
   | "INCIDENT_IMPACT_MAJOR"
   | "INCIDENT_IMPACT_CRITICAL";
-export const PoliciesCreateRequestFiltersIncidentImpactItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesCreateRequestFiltersIncidentImpactItem = S.String;
 
 export type PoliciesCreateRequestFiltersIncidentImpactList = Array<
   PoliciesCreateRequestFiltersIncidentImpactItem | (string & {})
@@ -594,8 +593,7 @@ export const PoliciesCreateRequestFiltersTargetZoneNameList =
 
 export type PoliciesCreateRequestFiltersTrafficExclusionsItem =
   "security_events";
-export const PoliciesCreateRequestFiltersTrafficExclusionsItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesCreateRequestFiltersTrafficExclusionsItem = S.String;
 
 export type PoliciesCreateRequestFiltersTrafficExclusionsList = Array<
   PoliciesCreateRequestFiltersTrafficExclusionsItem | (string & {})
@@ -1102,8 +1100,7 @@ export type DestinationsEligibleGetResultValueItemType =
   | "email"
   | "pagerduty"
   | "webhook";
-export const DestinationsEligibleGetResultValueItemType =
-  /*@__PURE__*/ S.String;
+export const DestinationsEligibleGetResultValueItemType = S.String;
 
 export interface DestinationsEligibleGetResultValueItem {
   /** Determines whether or not the account is eligible for the delivery mechanism. */
@@ -1236,7 +1233,7 @@ export type DestinationsWebhooksGetResponseType =
   | "opsgenie"
   | "slack"
   | "splunk";
-export const DestinationsWebhooksGetResponseType = /*@__PURE__*/ S.String;
+export const DestinationsWebhooksGetResponseType = S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetDestinationWebhookResponse {
@@ -1365,7 +1362,7 @@ export type PoliciesGetResponseAlertType =
   | "universal_ssl_event_type"
   | "web_analytics_metrics_update"
   | "zone_aop_custom_certificate_expiration_type";
-export const PoliciesGetResponseAlertType = /*@__PURE__*/ S.String;
+export const PoliciesGetResponseAlertType = S.String;
 
 export type PoliciesGetResponseFiltersActionsList = Array<string>;
 export const PoliciesGetResponseFiltersActionsList = /*@__PURE__*/ S.Array(
@@ -1449,8 +1446,7 @@ export type PoliciesGetResponseFiltersIncidentImpactItem =
   | "INCIDENT_IMPACT_MINOR"
   | "INCIDENT_IMPACT_MAJOR"
   | "INCIDENT_IMPACT_CRITICAL";
-export const PoliciesGetResponseFiltersIncidentImpactItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesGetResponseFiltersIncidentImpactItem = S.String;
 
 export type PoliciesGetResponseFiltersIncidentImpactList =
   Array<PoliciesGetResponseFiltersIncidentImpactItem>;
@@ -1575,8 +1571,7 @@ export const PoliciesGetResponseFiltersTargetZoneNameList =
   ) as any as S.Schema<PoliciesGetResponseFiltersTargetZoneNameList>;
 
 export type PoliciesGetResponseFiltersTrafficExclusionsItem = "security_events";
-export const PoliciesGetResponseFiltersTrafficExclusionsItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesGetResponseFiltersTrafficExclusionsItem = S.String;
 
 export type PoliciesGetResponseFiltersTrafficExclusionsList =
   Array<PoliciesGetResponseFiltersTrafficExclusionsItem>;
@@ -2156,7 +2151,7 @@ export type DestinationsWebhooksListResultItemType =
   | "opsgenie"
   | "slack"
   | "splunk";
-export const DestinationsWebhooksListResultItemType = /*@__PURE__*/ S.String;
+export const DestinationsWebhooksListResultItemType = S.String;
 
 export interface DestinationsWebhooksListResultItem {
   /** The unique identifier of a webhook */
@@ -2248,7 +2243,7 @@ export type HistoryListResultItemMechanismType =
   | "email"
   | "pagerduty"
   | "webhook";
-export const HistoryListResultItemMechanismType = /*@__PURE__*/ S.String;
+export const HistoryListResultItemMechanismType = S.String;
 
 export interface HistoryListResultItem {
   /** UUID */
@@ -2400,7 +2395,7 @@ export type PoliciesListResultItemAlertType =
   | "universal_ssl_event_type"
   | "web_analytics_metrics_update"
   | "zone_aop_custom_certificate_expiration_type";
-export const PoliciesListResultItemAlertType = /*@__PURE__*/ S.String;
+export const PoliciesListResultItemAlertType = S.String;
 
 export type PoliciesListResultItemFiltersActionsList = Array<string>;
 export const PoliciesListResultItemFiltersActionsList = /*@__PURE__*/ S.Array(
@@ -2488,8 +2483,7 @@ export type PoliciesListResultItemFiltersIncidentImpactItem =
   | "INCIDENT_IMPACT_MINOR"
   | "INCIDENT_IMPACT_MAJOR"
   | "INCIDENT_IMPACT_CRITICAL";
-export const PoliciesListResultItemFiltersIncidentImpactItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesListResultItemFiltersIncidentImpactItem = S.String;
 
 export type PoliciesListResultItemFiltersIncidentImpactList =
   Array<PoliciesListResultItemFiltersIncidentImpactItem>;
@@ -2616,8 +2610,7 @@ export const PoliciesListResultItemFiltersTargetZoneNameList =
 
 export type PoliciesListResultItemFiltersTrafficExclusionsItem =
   "security_events";
-export const PoliciesListResultItemFiltersTrafficExclusionsItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesListResultItemFiltersTrafficExclusionsItem = S.String;
 
 export type PoliciesListResultItemFiltersTrafficExclusionsList =
   Array<PoliciesListResultItemFiltersTrafficExclusionsItem>;
@@ -3203,7 +3196,7 @@ export type PoliciesUpdateRequestAlertType =
   | "universal_ssl_event_type"
   | "web_analytics_metrics_update"
   | "zone_aop_custom_certificate_expiration_type";
-export const PoliciesUpdateRequestAlertType = /*@__PURE__*/ S.String;
+export const PoliciesUpdateRequestAlertType = S.String;
 
 export type PoliciesUpdateRequestFiltersActionsList = Array<string>;
 export const PoliciesUpdateRequestFiltersActionsList = /*@__PURE__*/ S.Array(
@@ -3291,8 +3284,7 @@ export type PoliciesUpdateRequestFiltersIncidentImpactItem =
   | "INCIDENT_IMPACT_MINOR"
   | "INCIDENT_IMPACT_MAJOR"
   | "INCIDENT_IMPACT_CRITICAL";
-export const PoliciesUpdateRequestFiltersIncidentImpactItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesUpdateRequestFiltersIncidentImpactItem = S.String;
 
 export type PoliciesUpdateRequestFiltersIncidentImpactList = Array<
   PoliciesUpdateRequestFiltersIncidentImpactItem | (string & {})
@@ -3420,8 +3412,7 @@ export const PoliciesUpdateRequestFiltersTargetZoneNameList =
 
 export type PoliciesUpdateRequestFiltersTrafficExclusionsItem =
   "security_events";
-export const PoliciesUpdateRequestFiltersTrafficExclusionsItem =
-  /*@__PURE__*/ S.String;
+export const PoliciesUpdateRequestFiltersTrafficExclusionsItem = S.String;
 
 export type PoliciesUpdateRequestFiltersTrafficExclusionsList = Array<
   PoliciesUpdateRequestFiltersTrafficExclusionsItem | (string & {})

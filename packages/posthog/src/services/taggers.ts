@@ -13,7 +13,7 @@ export type { PosthogOpError, PosthogOpContext };
 
 /** * `llm` - LLM * `hog` - Hog */
 export type TaggerTypeEnum = "llm" | "hog";
-export const TaggerTypeEnum = /*@__PURE__*/ S.String;
+export const TaggerTypeEnum = S.String;
 
 export interface TagDefinition {
   /** Tag identifier */
@@ -77,8 +77,7 @@ export const HogTaggerConfig = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HogTaggerConfig>;
 
 export type TaggerConfig = LLMTaggerConfig | HogTaggerConfig;
-export const TaggerConfig =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TaggerConfig>;
+export const TaggerConfig = S.Unknown as any as S.Schema<TaggerConfig>;
 
 export type TaggerConditionPropertiesItemMap = {
   [key: string]: unknown | undefined;
@@ -130,7 +129,7 @@ export type LLMProviderEnum =
   | "together_ai"
   | "minimax"
   | "zeabur";
-export const LLMProviderEnum = /*@__PURE__*/ S.String;
+export const LLMProviderEnum = S.String;
 
 export interface TaggerModelConfigurationWrite {
   /** LLM provider to use for this tagger. * `openai` - Openai * `anthropic` - Anthropic * `gemini` - Gemini * `openrouter` - Openrouter * `fireworks` - Fireworks * `azure_openai` - Azure OpenAI * `together_ai` - Together AI * `minimax` - MiniMax * `zeabur` - Zeabur AI Hub */
@@ -228,14 +227,14 @@ export type RoleAtOrganizationEnum =
   | "sales"
   | "student"
   | "other";
-export const RoleAtOrganizationEnum = /*@__PURE__*/ S.String;
+export const RoleAtOrganizationEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type UserBasicRoleAtOrganization = RoleAtOrganizationEnum | BlankEnum;
 export const UserBasicRoleAtOrganization =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
+  S.Unknown as any as S.Schema<UserBasicRoleAtOrganization>;
 
 export interface UserBasic {
   id?: number;
@@ -433,7 +432,7 @@ export type ListTaggersRequestOrderByItem =
   | "created_at"
   | "name"
   | "updated_at";
-export const ListTaggersRequestOrderByItem = /*@__PURE__*/ S.String;
+export const ListTaggersRequestOrderByItem = S.String;
 
 export type ListTaggersRequestOrderByList = Array<
   ListTaggersRequestOrderByItem | (string & {})

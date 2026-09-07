@@ -170,13 +170,13 @@ export const CreateSolFunctionPackageInput = /*@__PURE__*/ S.suspend(() =>
 export type VnfPkgId = string;
 export type VnfPkgArn = string;
 export type OnboardingState = "CREATED" | "ONBOARDED" | "ERROR" | (string & {});
-export const OnboardingState = /*@__PURE__*/ S.String;
+export const OnboardingState = S.String;
 
 export type OperationalState = "ENABLED" | "DISABLED" | (string & {});
-export const OperationalState = /*@__PURE__*/ S.String;
+export const OperationalState = S.String;
 
 export type UsageState = "IN_USE" | "NOT_IN_USE" | (string & {});
-export const UsageState = /*@__PURE__*/ S.String;
+export const UsageState = S.String;
 
 export interface CreateSolFunctionPackageOutput {
   id: string;
@@ -267,13 +267,13 @@ export type NsdOnboardingState =
   | "ONBOARDED"
   | "ERROR"
   | (string & {});
-export const NsdOnboardingState = /*@__PURE__*/ S.String;
+export const NsdOnboardingState = S.String;
 
 export type NsdOperationalState = "ENABLED" | "DISABLED" | (string & {});
-export const NsdOperationalState = /*@__PURE__*/ S.String;
+export const NsdOperationalState = S.String;
 
 export type NsdUsageState = "IN_USE" | "NOT_IN_USE" | (string & {});
-export const NsdUsageState = /*@__PURE__*/ S.String;
+export const NsdUsageState = S.String;
 
 export interface CreateSolNetworkPackageOutput {
   id: string;
@@ -400,10 +400,10 @@ export type VnfInstantiationState =
   | "INSTANTIATED"
   | "NOT_INSTANTIATED"
   | (string & {});
-export const VnfInstantiationState = /*@__PURE__*/ S.String;
+export const VnfInstantiationState = S.String;
 
 export type VnfOperationalState = "STARTED" | "STOPPED" | (string & {});
-export const VnfOperationalState = /*@__PURE__*/ S.String;
+export const VnfOperationalState = S.String;
 
 export interface GetSolVnfcResourceInfoMetadata {
   nodeGroup?: string;
@@ -564,7 +564,7 @@ export const GetSolFunctionPackageOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSolFunctionPackageOutput",
 }) as any as S.Schema<GetSolFunctionPackageOutput>;
 export type PackageContentType = "application/zip" | (string & {});
-export const PackageContentType = /*@__PURE__*/ S.String;
+export const PackageContentType = S.String;
 
 export interface GetSolFunctionPackageContentInput {
   vnfPkgId: string;
@@ -605,7 +605,7 @@ export const GetSolFunctionPackageContentOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSolFunctionPackageContentOutput",
 }) as any as S.Schema<GetSolFunctionPackageContentOutput>;
 export type DescriptorContentType = "text/plain" | (string & {});
-export const DescriptorContentType = /*@__PURE__*/ S.String;
+export const DescriptorContentType = S.String;
 
 export interface GetSolFunctionPackageDescriptorInput {
   vnfPkgId: string;
@@ -681,7 +681,7 @@ export type NsState =
   | "UPDATE_IN_PROGRESS"
   | "TERMINATE_IN_PROGRESS"
   | (string & {});
-export const NsState = /*@__PURE__*/ S.String;
+export const NsState = S.String;
 
 export interface LcmOperationInfo {
   nsLcmOpOccId: string;
@@ -759,20 +759,20 @@ export type NsLcmOperationState =
   | "CANCELLING"
   | "CANCELLED"
   | (string & {});
-export const NsLcmOperationState = /*@__PURE__*/ S.String;
+export const NsLcmOperationState = S.String;
 
 export type LcmOperationType =
   | "INSTANTIATE"
   | "UPDATE"
   | "TERMINATE"
   | (string & {});
-export const LcmOperationType = /*@__PURE__*/ S.String;
+export const LcmOperationType = S.String;
 
 export type UpdateSolNetworkType =
   | "MODIFY_VNF_INFORMATION"
   | "UPDATE_NS"
   | (string & {});
-export const UpdateSolNetworkType = /*@__PURE__*/ S.String;
+export const UpdateSolNetworkType = S.String;
 
 export interface ProblemDetails {
   detail: string;
@@ -849,7 +849,7 @@ export type TaskStatus =
   | "SKIPPED"
   | "CANCELLED"
   | (string & {});
-export const TaskStatus = /*@__PURE__*/ S.String;
+export const TaskStatus = S.String;
 
 export interface GetSolNetworkOperationTaskDetails {
   taskName?: string;

@@ -94,11 +94,11 @@ export type FeatureRequestStatusEnum =
   | "completed"
   | "wont_fix"
   | "duplicate";
-export const FeatureRequestStatusEnum = /*@__PURE__*/ S.String;
+export const FeatureRequestStatusEnum = S.String;
 
 /** * `high` - High * `medium` - Medium * `low` - Low */
 export type FeatureRequestPriorityEnum = "high" | "medium" | "low";
-export const FeatureRequestPriorityEnum = /*@__PURE__*/ S.String;
+export const FeatureRequestPriorityEnum = S.String;
 
 export interface FeatureRequestAccount {
   /** ID of the affected Customer Analytics account. */
@@ -538,7 +538,7 @@ export type ListFeatureRequestsRequestArchiveState =
   | "active"
   | "archived"
   | "all";
-export const ListFeatureRequestsRequestArchiveState = /*@__PURE__*/ S.String;
+export const ListFeatureRequestsRequestArchiveState = S.String;
 
 export type ListFeatureRequestsRequestCreatedByIdsList = Array<number>;
 export const ListFeatureRequestsRequestCreatedByIdsList = /*@__PURE__*/ S.Array(
@@ -551,7 +551,7 @@ export type ListFeatureRequestsRequestPrioritiesItem =
   | "medium"
   | "low"
   | "none";
-export const ListFeatureRequestsRequestPrioritiesItem = /*@__PURE__*/ S.String;
+export const ListFeatureRequestsRequestPrioritiesItem = S.String;
 
 export type ListFeatureRequestsRequestPrioritiesList = Array<
   ListFeatureRequestsRequestPrioritiesItem | (string & {})
@@ -585,7 +585,7 @@ export type ListFeatureRequestsRequestRequestOrdering =
   | "-created_by"
   | "evidence_count"
   | "-evidence_count";
-export const ListFeatureRequestsRequestRequestOrdering = /*@__PURE__*/ S.String;
+export const ListFeatureRequestsRequestRequestOrdering = S.String;
 
 /** * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
 export type ListFeatureRequestsRequestStatusesItem =
@@ -594,7 +594,7 @@ export type ListFeatureRequestsRequestStatusesItem =
   | "completed"
   | "wont_fix"
   | "duplicate";
-export const ListFeatureRequestsRequestStatusesItem = /*@__PURE__*/ S.String;
+export const ListFeatureRequestsRequestStatusesItem = S.String;
 
 export type ListFeatureRequestsRequestStatusesList = Array<
   ListFeatureRequestsRequestStatusesItem | (string & {})
@@ -715,7 +715,7 @@ export type FeatureRequestHistoryChangeFieldEnum =
   | "accounts"
   | "evidence"
   | "product_areas";
-export const FeatureRequestHistoryChangeFieldEnum = /*@__PURE__*/ S.String;
+export const FeatureRequestHistoryChangeFieldEnum = S.String;
 
 export interface FeatureRequestHistoryChangeBeforeCase1 {
   id: string | null;
@@ -795,7 +795,7 @@ export type FeatureRequestHistoryChangeBefore =
   | FeatureRequestHistoryChangeBeforeCase2List
   | FeatureRequestHistoryChangeBeforeCase3;
 export const FeatureRequestHistoryChangeBefore =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureRequestHistoryChangeBefore>;
+  S.Unknown as any as S.Schema<FeatureRequestHistoryChangeBefore>;
 
 export type FeatureRequestHistoryChangeAfterCase1 =
   FeatureRequestHistoryChangeBeforeCase1;
@@ -857,7 +857,7 @@ export type FeatureRequestHistoryChangeAfter =
   | FeatureRequestHistoryChangeAfterCase2List
   | FeatureRequestHistoryChangeAfterCase3;
 export const FeatureRequestHistoryChangeAfter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<FeatureRequestHistoryChangeAfter>;
+  S.Unknown as any as S.Schema<FeatureRequestHistoryChangeAfter>;
 
 export interface FeatureRequestHistoryChange {
   /** Request field represented by this change. * `status` - Status * `priority` - Priority * `account` - Account * `accounts` - Accounts * `evidence` - Evidence * `product_areas` - Product areas */
@@ -886,7 +886,7 @@ export const FeatureRequestHistoryChangesList = /*@__PURE__*/ S.Array(
 
 /** * `manual` - Manual */
 export type FeatureRequestHistorySourceEnum = "manual";
-export const FeatureRequestHistorySourceEnum = /*@__PURE__*/ S.String;
+export const FeatureRequestHistorySourceEnum = S.String;
 
 export interface FeatureRequestHistory {
   /** Stable request history entry ID. */

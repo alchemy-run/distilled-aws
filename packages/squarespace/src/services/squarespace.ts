@@ -437,7 +437,7 @@ export type ContactAddressCountryCode =
   | "YE"
   | "ZM"
   | "ZW";
-export const ContactAddressCountryCode = /*@__PURE__*/ S.String;
+export const ContactAddressCountryCode = S.String;
 
 /** Address properties for a contact. */
 export interface ContactAddress {
@@ -647,7 +647,7 @@ export const AnyOrderCriteria = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies the possible targets for a BuyXGetYCriteria buy-side. */
 export type BuyXGetYCriteriaCriteriaAppliesTo = "PRODUCT";
-export const BuyXGetYCriteriaCriteriaAppliesTo = /*@__PURE__*/ S.String;
+export const BuyXGetYCriteriaCriteriaAppliesTo = S.String;
 
 /** Product ids the cart must contain. Required if criteriaAppliesTo=PRODUCT. */
 export type BuyXGetYCriteriaCriteriaProductIdsList = Array<string>;
@@ -657,7 +657,7 @@ export const BuyXGetYCriteriaCriteriaProductIdsList = /*@__PURE__*/ S.Array(
 
 /** Specifies the possible targets for a BuyXGetYCriteria reward-side. */
 export type BuyXGetYCriteriaRewardAppliesTo = "PRODUCT";
-export const BuyXGetYCriteriaRewardAppliesTo = /*@__PURE__*/ S.String;
+export const BuyXGetYCriteriaRewardAppliesTo = S.String;
 
 /** Product ids eligible for the reward. Required if rewardAppliesTo=PRODUCT. */
 export type BuyXGetYCriteriaRewardProductIdsList = Array<string>;
@@ -769,11 +769,11 @@ export type CreateDiscountRequestCriteria =
   | CartTotalCriteria
   | ProductCriteria;
 export const CreateDiscountRequestCriteria =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDiscountRequestCriteria>;
+  S.Unknown as any as S.Schema<CreateDiscountRequestCriteria>;
 
 /** Defines how the discount applies to payment-plan payments. */
 export type PaymentPlanOptionsType = "NONE" | "ALL_PAYMENTS";
-export const PaymentPlanOptionsType = /*@__PURE__*/ S.String;
+export const PaymentPlanOptionsType = S.String;
 
 /** Payment-plan applicability settings for this discount. When omitted from a create or update request, defaults to NONE. */
 export interface PaymentPlanOptions {
@@ -793,7 +793,7 @@ export type SubscriptionOptionsType =
   | "EXCLUDED"
   | "ALL_PAYMENTS"
   | "LIMITED_PAYMENTS";
-export const SubscriptionOptionsType = /*@__PURE__*/ S.String;
+export const SubscriptionOptionsType = S.String;
 
 /** Subscription applicability settings for this discount. When omitted from a create or update request, defaults to EXCLUDED. */
 export interface SubscriptionOptions {
@@ -862,8 +862,7 @@ export type FreeShippingTemplateAppliesToFulfillmentOptionType =
   | "SHIPPING"
   | "PICKUP"
   | "LOCAL_DELIVERY";
-export const FreeShippingTemplateAppliesToFulfillmentOptionType =
-  /*@__PURE__*/ S.String;
+export const FreeShippingTemplateAppliesToFulfillmentOptionType = S.String;
 
 /** Carrier service eligible for a free-shipping discount. */
 export type SelectedShippingOptionSelectedService =
@@ -887,7 +886,7 @@ export type SelectedShippingOptionSelectedService =
   | "USPS_PRIORITY"
   | "USPS_EXPRESS"
   | "USPS_STANDARD";
-export const SelectedShippingOptionSelectedService = /*@__PURE__*/ S.String;
+export const SelectedShippingOptionSelectedService = S.String;
 
 /** A shipping option targeted by a free-shipping discount. */
 export interface SelectedShippingOption {
@@ -954,7 +953,7 @@ export type CreateDiscountRequestTemplate =
   | FreeShippingTemplate
   | PercentageTemplate;
 export const CreateDiscountRequestTemplate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDiscountRequestTemplate>;
+  S.Unknown as any as S.Schema<CreateDiscountRequestTemplate>;
 
 /** Trigger for a discount that is automatically applied; no promo code required. */
 export type AutoTrigger = AnyOrderCriteria;
@@ -977,7 +976,7 @@ export const PromoCodeTrigger = /*@__PURE__*/ S.suspend(() =>
 
 export type CreateDiscountRequestTrigger = AnyOrderCriteria | PromoCodeTrigger;
 export const CreateDiscountRequestTrigger =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDiscountRequestTrigger>;
+  S.Unknown as any as S.Schema<CreateDiscountRequestTrigger>;
 
 export interface CreateDiscountRequest {
   criteria: CreateDiscountRequestCriteria;
@@ -1021,12 +1020,11 @@ export type DiscountCriteria =
   | BuyXGetYCriteria
   | CartTotalCriteria
   | ProductCriteria;
-export const DiscountCriteria =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountCriteria>;
+export const DiscountCriteria = S.Unknown as any as S.Schema<DiscountCriteria>;
 
 /** Defines the lifecycle status of a discount. */
 export type DiscountStatus = "ACTIVE" | "SCHEDULED" | "EXPIRED";
-export const DiscountStatus = /*@__PURE__*/ S.String;
+export const DiscountStatus = S.String;
 
 export type DiscountTemplate =
   | BuyXGetYFixedAmountTemplate
@@ -1034,12 +1032,10 @@ export type DiscountTemplate =
   | FixedAmountTemplate
   | FreeShippingTemplate
   | PercentageTemplate;
-export const DiscountTemplate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountTemplate>;
+export const DiscountTemplate = S.Unknown as any as S.Schema<DiscountTemplate>;
 
 export type DiscountTrigger = AnyOrderCriteria | PromoCodeTrigger;
-export const DiscountTrigger =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DiscountTrigger>;
+export const DiscountTrigger = S.Unknown as any as S.Schema<DiscountTrigger>;
 
 /** Discount configured for a Commerce store. */
 export interface Discount {
@@ -1155,7 +1151,7 @@ export const CreateOrderRequestDiscountLinesList = /*@__PURE__*/ S.Array(
 
 /** Current fulfillment status of the order. Value may be PENDING or FULFILLED. */
 export type OrderCreateFulfillmentStatus = "PENDING" | "FULFILLED";
-export const OrderCreateFulfillmentStatus = /*@__PURE__*/ S.String;
+export const OrderCreateFulfillmentStatus = S.String;
 
 /** Array of shipping fulfillments; up to 100 entries. Describes shipment information for the order. */
 export interface CreateOrderShipmentRequest {
@@ -1191,11 +1187,11 @@ export const CreateOrderRequestFulfillmentsList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether to deduct stock quantity for the product variant upon Order creation. Values may be DEDUCT or SKIP. Defaults to SKIP. */
 export type CreateOrderInventoryBehavior = "DEDUCT" | "SKIP";
-export const CreateOrderInventoryBehavior = /*@__PURE__*/ S.String;
+export const CreateOrderInventoryBehavior = S.String;
 
 /** Product type sold; values may be PHYSICAL_PRODUCT or CUSTOM. */
 export type OrderCreateLineItemType = "PHYSICAL_PRODUCT" | "CUSTOM";
-export const OrderCreateLineItemType = /*@__PURE__*/ S.String;
+export const OrderCreateLineItemType = S.String;
 
 /** Array of purchased line items; cannot be empty. */
 export interface CreateLineItemRequest {
@@ -1230,7 +1226,7 @@ export const CreateOrderRequestLineItemsList = /*@__PURE__*/ S.Array(
 
 /** Indicates that lineItems.unitPricePaid includes tax. Values may be EXCLUSIVE or INCLUSIVE. */
 export type TaxInterpretation = "INCLUSIVE" | "EXCLUSIVE";
-export const TaxInterpretation = /*@__PURE__*/ S.String;
+export const TaxInterpretation = S.String;
 
 /** Array of shipping line items. Describes the shipping options chosen at checkout. Currently accepts only one shipping entry. */
 export interface CreateShippingLineRequest {
@@ -1256,7 +1252,7 @@ export const CreateOrderRequestShippingLinesList = /*@__PURE__*/ S.Array(
 
 /** Indicates whether to send a fulfillment notification email to the customer. Value may be SEND or SKIP. */
 export type ShopperFulfillmentNotificationBehavior = "SEND" | "SKIP";
-export const ShopperFulfillmentNotificationBehavior = /*@__PURE__*/ S.String;
+export const ShopperFulfillmentNotificationBehavior = S.String;
 
 export interface CreateOrderRequest {
   /** Idempotency key to prevent duplicate order creation. */
@@ -1405,7 +1401,7 @@ export const OrderFormSubmissionList = /*@__PURE__*/ S.Array(
 
 /** Current fulfillment status of the order. Value may be: PENDING, FULFILLED, or CANCELED. */
 export type FulfillmentStatus = "PENDING" | "FULFILLED" | "CANCELED";
-export const FulfillmentStatus = /*@__PURE__*/ S.String;
+export const FulfillmentStatus = S.String;
 
 /** Array of shipping fulfillments; describes shipment information for the order. */
 export interface Fulfillment {
@@ -1548,7 +1544,7 @@ export type PaymentState =
   | "REFUND_PENDING"
   | "REFUND_FAILED"
   | "PARTIALLY_PAID";
-export const PaymentState = /*@__PURE__*/ S.String;
+export const PaymentState = S.String;
 
 /** Array of shipping line items; describes the shipping options chosen at checkout. */
 export interface ShippingLine {
@@ -1605,7 +1601,7 @@ export type OrderShippingOptionServiceType =
   | "USPS_ALL"
   | "USPS_ONLINE"
   | "OTHER";
-export const OrderShippingOptionServiceType = /*@__PURE__*/ S.String;
+export const OrderShippingOptionServiceType = S.String;
 
 export interface Order {
   billingAddress?: Address;
@@ -1792,7 +1788,7 @@ export const FullProductPricing = /*@__PURE__*/ S.suspend(() =>
 
 /** Unit of measurement. Supported values: `INCH`, `CENTIMETER`. */
 export type ProductDimensionsUnit = "CENTIMETER" | "INCH";
-export const ProductDimensionsUnit = /*@__PURE__*/ S.String;
+export const ProductDimensionsUnit = S.String;
 
 /** Physical dimensions of the variant. */
 export interface ProductDimensions {
@@ -1817,7 +1813,7 @@ export const ProductDimensions = /*@__PURE__*/ S.suspend(() =>
 
 /** Unit of measurement. Supported values: `KILOGRAM`, `POUND`. */
 export type ProductWeightUnit = "KILOGRAM" | "POUND";
-export const ProductWeightUnit = /*@__PURE__*/ S.String;
+export const ProductWeightUnit = S.String;
 
 /** Weight of the variant. */
 export interface ProductWeight {
@@ -1999,7 +1995,7 @@ export type CreateProductRequestBody =
   | CreatePhysicalProductRequest
   | CreateServiceProductRequest;
 export const CreateProductRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateProductRequestBody>;
+  S.Unknown as any as S.Schema<CreateProductRequestBody>;
 
 export interface CreateProductRequest {
   body: CreateProductRequestBody;
@@ -2067,7 +2063,7 @@ export const ProductV2TagsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ProductV2TagsList>;
 
 export type ProductTypeV2 = "PHYSICAL" | "SERVICE" | "GIFT_CARD" | "DIGITAL";
-export const ProductTypeV2 = /*@__PURE__*/ S.String;
+export const ProductTypeV2 = S.String;
 
 export interface ProductV2 {
   createdOn: string;
@@ -2250,8 +2246,7 @@ export type ProductVariantV2 =
   | PhysicalProductVariant
   | GiftCardProductVariant
   | ServiceProductVariant;
-export const ProductVariantV2 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductVariantV2>;
+export const ProductVariantV2 = S.Unknown as any as S.Schema<ProductVariantV2>;
 
 /** Description of the event that triggered the notification. * `order.create` - always value for OrderCreatePayload.topic ref * `order.update` - always value for OrderUpdatePayload.topic * `extension.uninstall` - always value for ExtensionUninstallPayload.topic * `contact.create` - always value for ContactCreatePayload.topic * `contact.update` - always value for ContactUpdatePayload.topic * `contact.delete` - always value for ContactDeletePayload.topic * `address.create` - always value for AddressCreatePayload.topic * `address.update` - always value for AddressUpdatePayload.topic * `address.delete` - always value for AddressDeletePayload.topic */
 export type CreateWebhookSubscriptionRequestTopicsItem =
@@ -2264,8 +2259,7 @@ export type CreateWebhookSubscriptionRequestTopicsItem =
   | "address.create"
   | "address.update"
   | "address.delete";
-export const CreateWebhookSubscriptionRequestTopicsItem =
-  /*@__PURE__*/ S.String;
+export const CreateWebhookSubscriptionRequestTopicsItem = S.String;
 
 /** List of event topics that trigger a webhook notification. */
 export type CreateWebhookSubscriptionRequestTopicsList = Array<
@@ -2303,8 +2297,7 @@ export type ExternalCreateWebhookSubscriptionResponseTopicsItem =
   | "address.create"
   | "address.update"
   | "address.delete";
-export const ExternalCreateWebhookSubscriptionResponseTopicsItem =
-  /*@__PURE__*/ S.String;
+export const ExternalCreateWebhookSubscriptionResponseTopicsItem = S.String;
 
 /** List of event topics that trigger a webhook notification. */
 export type ExternalCreateWebhookSubscriptionResponseTopicsList =
@@ -2793,7 +2786,7 @@ export type PaymentGatewayError =
   | "GATEWAY_FEE_PROCEESING_ERROR"
   | "GATEWAY_API_PERMISSION_ERROR"
   | "GATEWAY_DISCONNNECTED";
-export const PaymentGatewayError = /*@__PURE__*/ S.String;
+export const PaymentGatewayError = S.String;
 
 /** Array of properties for the payment transaction provided by the payment gateway. Properties are listed in key/value pairs. */
 export interface ExternalTransactionProperty {
@@ -3217,7 +3210,7 @@ export const FulfillmentOptionAvailableServicesList = /*@__PURE__*/ S.Array(
 
 /** Fulfillment channel for this option. */
 export type FulfillmentOptionType = "SHIPPING" | "PICKUP" | "LOCAL_DELIVERY";
-export const FulfillmentOptionType = /*@__PURE__*/ S.String;
+export const FulfillmentOptionType = S.String;
 
 /** Fulfillment option IDs and carrier services for a website. */
 export interface FulfillmentOption {
@@ -3433,7 +3426,7 @@ export const GetProductImageProcessingStatusRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetProductImageProcessingStatusRequest>;
 
 export type ImageProcessingStatus = "QUEUED" | "PROCESSING" | "READY" | "ERROR";
-export const ImageProcessingStatus = /*@__PURE__*/ S.String;
+export const ImageProcessingStatus = S.String;
 
 export interface ProductImageProcessingStatus {
   id?: string;
@@ -3714,7 +3707,7 @@ export type PaginatedProductListResponseV2ProductsItem =
   | PhysicalProduct
   | ServiceProduct;
 export const PaginatedProductListResponseV2ProductsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaginatedProductListResponseV2ProductsItem>;
+  S.Unknown as any as S.Schema<PaginatedProductListResponseV2ProductsItem>;
 
 export type PaginatedProductListResponseV2ProductsList =
   Array<PaginatedProductListResponseV2ProductsItem>;
@@ -3908,7 +3901,7 @@ export type ProductListResponseV2ProductsItem =
   | PhysicalProduct
   | ServiceProduct;
 export const ProductListResponseV2ProductsItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ProductListResponseV2ProductsItem>;
+  S.Unknown as any as S.Schema<ProductListResponseV2ProductsItem>;
 
 export type ProductListResponseV2ProductsList =
   Array<ProductListResponseV2ProductsItem>;
@@ -4014,7 +4007,7 @@ export const GetTransactionsSummariesRequestContactIdsList =
 
 /** Field to group results by, should be a contactId */
 export type GetTransactionsSummariesRequestGroupBy = "contactId";
-export const GetTransactionsSummariesRequestGroupBy = /*@__PURE__*/ S.String;
+export const GetTransactionsSummariesRequestGroupBy = S.String;
 
 export interface GetTransactionsSummariesRequest {
   contactIds: GetTransactionsSummariesRequestContactIdsList;
@@ -4182,7 +4175,7 @@ export const Location = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
 export type MeasurementStandard = "IMPERIAL" | "METRIC";
-export const MeasurementStandard = /*@__PURE__*/ S.String;
+export const MeasurementStandard = S.String;
 
 export interface WebsiteProfile {
   currency?: string;
@@ -4213,24 +4206,24 @@ export type ListDiscountsRequestSortBy =
   | "CREATED_ON"
   | "PROMO_CODE"
   | "USES_COUNT";
-export const ListDiscountsRequestSortBy = /*@__PURE__*/ S.String;
+export const ListDiscountsRequestSortBy = S.String;
 
 export type ListDiscountsRequestSortDirection = "ASCENDING" | "DESCENDING";
-export const ListDiscountsRequestSortDirection = /*@__PURE__*/ S.String;
+export const ListDiscountsRequestSortDirection = S.String;
 
 export type ListDiscountsRequestStatus =
   | "ALL"
   | "ACTIVE"
   | "EXPIRED"
   | "SCHEDULED";
-export const ListDiscountsRequestStatus = /*@__PURE__*/ S.String;
+export const ListDiscountsRequestStatus = S.String;
 
 export type ListDiscountsRequestCriteriaItem =
   | "ANY_ORDER"
   | "CART_TOTAL"
   | "PRODUCT"
   | "BUY_X_GET_Y";
-export const ListDiscountsRequestCriteriaItem = /*@__PURE__*/ S.String;
+export const ListDiscountsRequestCriteriaItem = S.String;
 
 export type ListDiscountsRequestCriteriaList = Array<
   ListDiscountsRequestCriteriaItem | (string & {})
@@ -4245,7 +4238,7 @@ export type ListDiscountsRequestTemplateItem =
   | "BUY_X_GET_Y_FIXED_AMOUNT"
   | "BUY_X_GET_Y_PERCENTAGE"
   | "FREE_SHIPPING";
-export const ListDiscountsRequestTemplateItem = /*@__PURE__*/ S.String;
+export const ListDiscountsRequestTemplateItem = S.String;
 
 export type ListDiscountsRequestTemplateList = Array<
   ListDiscountsRequestTemplateItem | (string & {})
@@ -4255,7 +4248,7 @@ export const ListDiscountsRequestTemplateList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListDiscountsRequestTemplateList>;
 
 export type ListDiscountsRequestTrigger = "AUTO" | "CODE";
-export const ListDiscountsRequestTrigger = /*@__PURE__*/ S.String;
+export const ListDiscountsRequestTrigger = S.String;
 
 export interface ListDiscountsRequest {
   /** Sort field for the result set. */
@@ -4368,7 +4361,7 @@ export const IntegerFilter = /*@__PURE__*/ S.suspend(() =>
 
 /** Direction to sort results, ASCENDING or DESCENDING */
 export type QueryContactsRequestSortDirection = "ASCENDING" | "DESCENDING";
-export const QueryContactsRequestSortDirection = /*@__PURE__*/ S.String;
+export const QueryContactsRequestSortDirection = S.String;
 
 /** Field to sort results by */
 export type QueryContactsRequestSortField =
@@ -4384,7 +4377,7 @@ export type QueryContactsRequestSortField =
   | "DONATION_COUNT"
   | "LAST_DONATION_ON"
   | "DONATION_AMOUNT";
-export const QueryContactsRequestSortField = /*@__PURE__*/ S.String;
+export const QueryContactsRequestSortField = S.String;
 
 export interface QueryContactsRequest {
   acceptsMarketingWithDate?: AcceptsMarketingWithDate;
@@ -4583,7 +4576,7 @@ export type UpdateDiscountRequestCriteria =
   | CartTotalCriteria
   | ProductCriteria;
 export const UpdateDiscountRequestCriteria =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDiscountRequestCriteria>;
+  S.Unknown as any as S.Schema<UpdateDiscountRequestCriteria>;
 
 export type UpdateDiscountRequestTemplate =
   | BuyXGetYFixedAmountTemplate
@@ -4592,11 +4585,11 @@ export type UpdateDiscountRequestTemplate =
   | FreeShippingTemplate
   | PercentageTemplate;
 export const UpdateDiscountRequestTemplate =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDiscountRequestTemplate>;
+  S.Unknown as any as S.Schema<UpdateDiscountRequestTemplate>;
 
 export type UpdateDiscountRequestTrigger = AnyOrderCriteria | PromoCodeTrigger;
 export const UpdateDiscountRequestTrigger =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDiscountRequestTrigger>;
+  S.Unknown as any as S.Schema<UpdateDiscountRequestTrigger>;
 
 export interface UpdateDiscountRequest {
   /** The discount's unique identifier. */

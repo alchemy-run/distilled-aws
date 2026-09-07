@@ -103,7 +103,7 @@ export const Size = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Size" }) as any as S.Schema<Size>;
 
 export type PopupWindowPropertiesPositionTypeEnum = "CENTER" | "COORDINATES";
-export const PopupWindowPropertiesPositionTypeEnum = /*@__PURE__*/ S.String;
+export const PopupWindowPropertiesPositionTypeEnum = S.String;
 
 /** Popup Window Properties. */
 export interface PopupWindowProperties {
@@ -146,8 +146,7 @@ export type CreativeCustomEventAdvertiserCustomEventTypeEnum =
   | "ADVERTISER_EVENT_TIMER"
   | "ADVERTISER_EVENT_EXIT"
   | "ADVERTISER_EVENT_COUNTER";
-export const CreativeCustomEventAdvertiserCustomEventTypeEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeCustomEventAdvertiserCustomEventTypeEnum = S.String;
 
 export type CreativeCustomEventTargetTypeEnum =
   | "TARGET_BLANK"
@@ -155,14 +154,14 @@ export type CreativeCustomEventTargetTypeEnum =
   | "TARGET_SELF"
   | "TARGET_PARENT"
   | "TARGET_POPUP";
-export const CreativeCustomEventTargetTypeEnum = /*@__PURE__*/ S.String;
+export const CreativeCustomEventTargetTypeEnum = S.String;
 
 export type CreativeCustomEventArtworkTypeEnum =
   | "ARTWORK_TYPE_FLASH"
   | "ARTWORK_TYPE_HTML5"
   | "ARTWORK_TYPE_MIXED"
   | "ARTWORK_TYPE_IMAGE";
-export const CreativeCustomEventArtworkTypeEnum = /*@__PURE__*/ S.String;
+export const CreativeCustomEventArtworkTypeEnum = S.String;
 
 /** Click-through URL */
 export interface CreativeClickThroughUrl {
@@ -239,7 +238,7 @@ export type CreativeAssetIdTypeEnum =
   | "HTML"
   | "HTML_IMAGE"
   | "AUDIO";
-export const CreativeAssetIdTypeEnum = /*@__PURE__*/ S.String;
+export const CreativeAssetIdTypeEnum = S.String;
 
 /** Creative Asset ID. */
 export interface CreativeAssetId {
@@ -284,8 +283,7 @@ export type CreativeAssetMetadataWarnedValidationRulesItemEnum =
   | "SVG_INVALID"
   | "CLICK_TAG_IN_RICH_MEDIA"
   | "MISSING_ENABLER_REFERENCE";
-export const CreativeAssetMetadataWarnedValidationRulesItemEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeAssetMetadataWarnedValidationRulesItemEnum = S.String;
 
 export type CreativeAssetMetadataWarnedValidationRulesItemEnumList = Array<
   CreativeAssetMetadataWarnedValidationRulesItemEnum | (string & {})
@@ -384,8 +382,7 @@ export type CreativeAssetMetadataDetectedFeaturesItemEnum =
   | "WEBGL"
   | "SVG_FILTERS"
   | "SVG_FE_IMAGE";
-export const CreativeAssetMetadataDetectedFeaturesItemEnum =
-  /*@__PURE__*/ S.String;
+export const CreativeAssetMetadataDetectedFeaturesItemEnum = S.String;
 
 export type CreativeAssetMetadataDetectedFeaturesItemEnumList = Array<
   CreativeAssetMetadataDetectedFeaturesItemEnum | (string & {})
@@ -400,7 +397,7 @@ export type DimensionValueMatchTypeEnum =
   | "BEGINS_WITH"
   | "CONTAINS"
   | "WILDCARD_EXPRESSION";
-export const DimensionValueMatchTypeEnum = /*@__PURE__*/ S.String;
+export const DimensionValueMatchTypeEnum = S.String;
 
 /** Represents a DimensionValue resource. */
 export interface DimensionValue {

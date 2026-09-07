@@ -131,7 +131,7 @@ export type VerificationErrorCodes =
   | "selfie_manipulated"
   | "selfie_unverified_other"
   | "under_supported_age";
-export const VerificationErrorCodes = /*@__PURE__*/ S.String;
+export const VerificationErrorCodes = S.String;
 
 /** A status for a verification. */
 export type VerificationStatuses =
@@ -150,7 +150,7 @@ export type VerificationStatuses =
   | "review"
   | "action_required"
   | "manual_review";
-export const VerificationStatuses = /*@__PURE__*/ S.String;
+export const VerificationStatuses = S.String;
 
 /** The latest verification for the connected account. */
 export interface PayoutAccountLatestVerification {
@@ -185,7 +185,7 @@ export type PayoutAccountCalculatedStatuses =
   | "denied"
   | "not_started"
   | "blocked_by_parent";
-export const PayoutAccountCalculatedStatuses = /*@__PURE__*/ S.String;
+export const PayoutAccountCalculatedStatuses = S.String;
 
 /** An object representing an account used for payouts. */
 export interface PayoutAccount {

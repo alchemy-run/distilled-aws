@@ -141,8 +141,7 @@ export type GoogleCloudDatacatalogV1beta1EntryIntegratedSystemEnum =
   | "INTEGRATED_SYSTEM_UNSPECIFIED"
   | "BIGQUERY"
   | "CLOUD_PUBSUB";
-export const GoogleCloudDatacatalogV1beta1EntryIntegratedSystemEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1beta1EntryIntegratedSystemEnum = S.String;
 
 /** Detailed counts on the entry's usage. Caveats: - Only BigQuery tables have usage stats - The usage stats only include BigQuery query jobs - The usage stats might be underestimated, e.g. wildcard table references are not yet counted in usage computation https://cloud.google.com/bigquery/docs/querying-wildcard-tables */
 export interface GoogleCloudDatacatalogV1beta1UsageStats {
@@ -320,8 +319,7 @@ export type GoogleCloudDatacatalogV1beta1EntryTypeEnum =
   | "MODEL"
   | "DATA_STREAM"
   | "FILESET";
-export const GoogleCloudDatacatalogV1beta1EntryTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1beta1EntryTypeEnum = S.String;
 
 export type GoogleCloudDatacatalogV1beta1BigQueryTableSpecTableSourceTypeEnum =
   | "TABLE_SOURCE_TYPE_UNSPECIFIED"
@@ -329,7 +327,7 @@ export type GoogleCloudDatacatalogV1beta1BigQueryTableSpecTableSourceTypeEnum =
   | "BIGQUERY_TABLE"
   | "BIGQUERY_MATERIALIZED_VIEW";
 export const GoogleCloudDatacatalogV1beta1BigQueryTableSpecTableSourceTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** Normal BigQuery table spec. */
 export interface GoogleCloudDatacatalogV1beta1TableSpec {
@@ -633,8 +631,7 @@ export type GoogleCloudDatacatalogV1beta1FieldTypePrimitiveTypeEnum =
   | "STRING"
   | "BOOL"
   | "TIMESTAMP";
-export const GoogleCloudDatacatalogV1beta1FieldTypePrimitiveTypeEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1beta1FieldTypePrimitiveTypeEnum = S.String;
 
 export interface GoogleCloudDatacatalogV1beta1FieldType {
   /** Represents an enum type. */
@@ -698,7 +695,7 @@ export type GoogleCloudDatacatalogV1beta1TagTemplateDataplexTransferStatusEnum =
   | "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED"
   | "MIGRATED";
 export const GoogleCloudDatacatalogV1beta1TagTemplateDataplexTransferStatusEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to Google Cloud resources. [Tag template roles](https://cloud.google.com/iam/docs/roles-permissions/datacatalog) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources. */
 export interface GoogleCloudDatacatalogV1beta1TagTemplate {
@@ -785,8 +782,7 @@ export type GoogleCloudDatacatalogV1beta1TaxonomyServiceNameEnum =
   | "MANAGING_SYSTEM_UNSPECIFIED"
   | "MANAGING_SYSTEM_DATAPLEX"
   | "MANAGING_SYSTEM_OTHER";
-export const GoogleCloudDatacatalogV1beta1TaxonomyServiceNameEnum =
-  /*@__PURE__*/ S.String;
+export const GoogleCloudDatacatalogV1beta1TaxonomyServiceNameEnum = S.String;
 
 /** The source system of the Taxonomy. */
 export interface GoogleCloudDatacatalogV1beta1TaxonomyService {
@@ -809,7 +805,7 @@ export type GoogleCloudDatacatalogV1beta1TaxonomyActivatedPolicyTypesItemEnum =
   | "POLICY_TYPE_UNSPECIFIED"
   | "FINE_GRAINED_ACCESS_CONTROL";
 export const GoogleCloudDatacatalogV1beta1TaxonomyActivatedPolicyTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1beta1TaxonomyActivatedPolicyTypesItemEnumList =
   Array<
@@ -1159,7 +1155,7 @@ export type GoogleCloudDatacatalogV1beta1SerializedTaxonomyActivatedPolicyTypesI
   | "POLICY_TYPE_UNSPECIFIED"
   | "FINE_GRAINED_ACCESS_CONTROL";
 export const GoogleCloudDatacatalogV1beta1SerializedTaxonomyActivatedPolicyTypesItemEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 export type GoogleCloudDatacatalogV1beta1SerializedTaxonomyActivatedPolicyTypesItemEnumList =
   Array<
@@ -2241,7 +2237,7 @@ export type GoogleCloudDatacatalogV1beta1SearchCatalogResultSearchResultTypeEnum
   | "TAG_TEMPLATE"
   | "ENTRY_GROUP";
 export const GoogleCloudDatacatalogV1beta1SearchCatalogResultSearchResultTypeEnum =
-  /*@__PURE__*/ S.String;
+  S.String;
 
 /** A result that appears in the response of a search request. Each result captures details of one entry that matches the search. */
 export interface GoogleCloudDatacatalogV1beta1SearchCatalogResult {

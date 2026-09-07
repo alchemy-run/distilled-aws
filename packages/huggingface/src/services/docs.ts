@@ -202,7 +202,7 @@ export type SearchDocsRequestProduct =
   | "kernels"
   | "google-cloud"
   | "xet";
-export const SearchDocsRequestProduct = /*@__PURE__*/ S.String;
+export const SearchDocsRequestProduct = S.String;
 
 export interface SearchDocsRequest {
   q: string;

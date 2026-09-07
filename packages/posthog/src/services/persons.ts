@@ -40,8 +40,7 @@ export class NotFound
   ) {}
 
 export type CreatePersonsBatchByDistinctIdsRequestFormat = "csv" | "json";
-export const CreatePersonsBatchByDistinctIdsRequestFormat =
-  /*@__PURE__*/ S.String;
+export const CreatePersonsBatchByDistinctIdsRequestFormat = S.String;
 
 export interface CreatePersonsBatchByDistinctIdsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -77,7 +76,7 @@ export const CreatePersonsBatchByDistinctIdsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreatePersonsBatchByDistinctIdsResponse>;
 
 export type CreatePersonsBatchByUuidRequestFormat = "csv" | "json";
-export const CreatePersonsBatchByUuidRequestFormat = /*@__PURE__*/ S.String;
+export const CreatePersonsBatchByUuidRequestFormat = S.String;
 
 export interface CreatePersonsBatchByUuidRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -110,7 +109,7 @@ export const CreatePersonsBatchByUuidResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreatePersonsBatchByUuidResponse>;
 
 export type CreatePersonsSplitRequestFormat = "csv" | "json";
-export const CreatePersonsSplitRequestFormat = /*@__PURE__*/ S.String;
+export const CreatePersonsSplitRequestFormat = S.String;
 
 /** List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`. */
 export type CreatePersonsSplitRequestDistinctIdsToSplitList = Array<string>;
@@ -163,7 +162,7 @@ export const PersonSplitResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PersonSplitResponse>;
 
 export type GetPersonRequestFormat = "csv" | "json";
-export const GetPersonRequestFormat = /*@__PURE__*/ S.String;
+export const GetPersonRequestFormat = S.String;
 
 export interface GetPersonRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -221,7 +220,7 @@ export const PersonRecord = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PersonRecord" }) as any as S.Schema<PersonRecord>;
 
 export type GetPersonsActivityRequestFormat = "csv" | "json";
-export const GetPersonsActivityRequestFormat = /*@__PURE__*/ S.String;
+export const GetPersonsActivityRequestFormat = S.String;
 
 export interface GetPersonsActivityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -254,7 +253,7 @@ export const GetPersonsActivityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPersonsActivityResponse>;
 
 export type GetPersonsAllActivityRequestFormat = "csv" | "json";
-export const GetPersonsAllActivityRequestFormat = /*@__PURE__*/ S.String;
+export const GetPersonsAllActivityRequestFormat = S.String;
 
 export interface GetPersonsAllActivityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -284,7 +283,7 @@ export const GetPersonsAllActivityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPersonsAllActivityResponse>;
 
 export type GetPersonsCohortRequestFormat = "csv" | "json";
-export const GetPersonsCohortRequestFormat = /*@__PURE__*/ S.String;
+export const GetPersonsCohortRequestFormat = S.String;
 
 export interface GetPersonsCohortRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -317,7 +316,7 @@ export const GetPersonsCohortResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPersonsCohortResponse>;
 
 export type GetPersonsPropertiesAtTimeRequestFormat = "csv" | "json";
-export const GetPersonsPropertiesAtTimeRequestFormat = /*@__PURE__*/ S.String;
+export const GetPersonsPropertiesAtTimeRequestFormat = S.String;
 
 export interface GetPersonsPropertiesAtTimeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -444,7 +443,7 @@ export const PersonPropertiesAtTimeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PersonPropertiesAtTimeResponse>;
 
 export type GetPersonsPropertiesTimelineRequestFormat = "csv" | "json";
-export const GetPersonsPropertiesTimelineRequestFormat = /*@__PURE__*/ S.String;
+export const GetPersonsPropertiesTimelineRequestFormat = S.String;
 
 export interface GetPersonsPropertiesTimelineRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -479,7 +478,7 @@ export const GetPersonsPropertiesTimelineResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetPersonsPropertiesTimelineResponse>;
 
 export type GetPersonsValueRequestFormat = "csv" | "json";
-export const GetPersonsValueRequestFormat = /*@__PURE__*/ S.String;
+export const GetPersonsValueRequestFormat = S.String;
 
 export interface GetPersonsValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -515,14 +514,14 @@ export const GetPersonsValueResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPersonsValueResponse>;
 
 export type ListPersonsRequestFormat = "csv" | "json";
-export const ListPersonsRequestFormat = /*@__PURE__*/ S.String;
+export const ListPersonsRequestFormat = S.String;
 
 export type PropertyGroupOperatorEnum = "AND" | "OR";
-export const PropertyGroupOperatorEnum = /*@__PURE__*/ S.String;
+export const PropertyGroupOperatorEnum = S.String;
 
 export type PropertyItemValueCase3Item = string | number;
 export const PropertyItemValueCase3Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemValueCase3Item>;
+  S.Unknown as any as S.Schema<PropertyItemValueCase3Item>;
 
 export type PropertyItemValueCase3List = Array<PropertyItemValueCase3Item>;
 export const PropertyItemValueCase3List = /*@__PURE__*/ S.Array(
@@ -536,7 +535,7 @@ export type PropertyItemValue =
   | boolean
   | PropertyItemValueCase3List;
 export const PropertyItemValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemValue>;
+  S.Unknown as any as S.Schema<PropertyItemValue>;
 
 /** * `exact` - exact * `is_not` - is_not * `icontains` - icontains * `not_icontains` - not_icontains * `starts_with` - starts_with * `not_starts_with` - not_starts_with * `ends_with` - ends_with * `not_ends_with` - not_ends_with * `regex` - regex * `not_regex` - not_regex * `gt` - gt * `lt` - lt * `gte` - gte * `lte` - lte * `is_set` - is_set * `is_not_set` - is_not_set * `is_date_exact` - is_date_exact * `is_date_after` - is_date_after * `is_date_before` - is_date_before * `in` - in * `not_in` - not_in */
 export type PropertyItemOperatorEnum =
@@ -561,14 +560,14 @@ export type PropertyItemOperatorEnum =
   | "is_date_before"
   | "in"
   | "not_in";
-export const PropertyItemOperatorEnum = /*@__PURE__*/ S.String;
+export const PropertyItemOperatorEnum = S.String;
 
 export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
+export const BlankEnum = S.String;
 
 export type PropertyItemOperator = PropertyItemOperatorEnum | BlankEnum;
 export const PropertyItemOperator =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemOperator>;
+  S.Unknown as any as S.Schema<PropertyItemOperator>;
 
 /** * `event` - event * `event_metadata` - event_metadata * `feature` - feature * `person` - person * `person_metadata` - person_metadata * `cohort` - cohort * `element` - element * `static-cohort` - static-cohort * `dynamic-cohort` - dynamic-cohort * `precalculated-cohort` - precalculated-cohort * `group` - group * `recording` - recording * `log_entry` - log_entry * `behavioral` - behavioral * `session` - session * `hogql` - hogql * `data_warehouse` - data_warehouse * `data_warehouse_person_property` - data_warehouse_person_property * `error_tracking_issue` - error_tracking_issue * `log` - log * `log_attribute` - log_attribute * `log_resource_attribute` - log_resource_attribute * `metric_attribute` - metric_attribute * `span` - span * `span_attribute` - span_attribute * `span_resource_attribute` - span_resource_attribute * `revenue_analytics` - revenue_analytics * `account_custom_property` - account_custom_property * `flag` - flag * `workflow_variable` - workflow_variable */
 export type PropertyFilterTypeEnum =
@@ -602,11 +601,10 @@ export type PropertyFilterTypeEnum =
   | "account_custom_property"
   | "flag"
   | "workflow_variable";
-export const PropertyFilterTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyFilterTypeEnum = S.String;
 
 export type PropertyItemType = PropertyFilterTypeEnum | BlankEnum;
-export const PropertyItemType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyItemType>;
+export const PropertyItemType = S.Unknown as any as S.Schema<PropertyItemType>;
 
 export interface PropertyItem {
   /** Key of the property you're filtering on. For example `email` or `$current_url` */
@@ -711,13 +709,13 @@ export const PaginatedPersonRecordList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedPersonRecordList>;
 
 export type ListPersonsDeletionStatusRequestFormat = "csv" | "json";
-export const ListPersonsDeletionStatusRequestFormat = /*@__PURE__*/ S.String;
+export const ListPersonsDeletionStatusRequestFormat = S.String;
 
 export type ListPersonsDeletionStatusRequestStatus =
   | "all"
   | "completed"
   | "pending";
-export const ListPersonsDeletionStatusRequestStatus = /*@__PURE__*/ S.String;
+export const ListPersonsDeletionStatusRequestStatus = S.String;
 
 export interface ListPersonsDeletionStatusRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -797,7 +795,7 @@ export const PaginatedAsyncDeletionStatusList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedAsyncDeletionStatusList>;
 
 export type ListPersonsEmailsRequestFormat = "csv" | "json";
-export const ListPersonsEmailsRequestFormat = /*@__PURE__*/ S.String;
+export const ListPersonsEmailsRequestFormat = S.String;
 
 export interface ListPersonsEmailsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -890,7 +888,7 @@ export const ListPersonsEmailsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPersonsEmailsResponse>;
 
 export type ListPersonsPushNotificationsRequestFormat = "csv" | "json";
-export const ListPersonsPushNotificationsRequestFormat = /*@__PURE__*/ S.String;
+export const ListPersonsPushNotificationsRequestFormat = S.String;
 
 export interface ListPersonsPushNotificationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -944,7 +942,7 @@ export const ListPersonsPushNotificationsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListPersonsPushNotificationsResponse>;
 
 export type PersonsBulkDeleteCreateRequestFormat = "csv" | "json";
-export const PersonsBulkDeleteCreateRequestFormat = /*@__PURE__*/ S.String;
+export const PersonsBulkDeleteCreateRequestFormat = S.String;
 
 /** A list of PostHog person UUIDs to delete (max 1000). */
 export type PersonsBulkDeleteCreateRequestIdsList = Array<string>;
@@ -1002,7 +1000,7 @@ export const PersonsBulkDeleteCreateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PersonsBulkDeleteCreateResponse>;
 
 export type PersonsDeletePropertyCreateRequestFormat = "csv" | "json";
-export const PersonsDeletePropertyCreateRequestFormat = /*@__PURE__*/ S.String;
+export const PersonsDeletePropertyCreateRequestFormat = S.String;
 
 export type PersonsDeletePropertyCreateRequestUnsetCase1List = Array<string>;
 export const PersonsDeletePropertyCreateRequestUnsetCase1List =
@@ -1015,7 +1013,7 @@ export type PersonsDeletePropertyCreateRequestUnset =
   | string
   | PersonsDeletePropertyCreateRequestUnsetCase1List;
 export const PersonsDeletePropertyCreateRequestUnset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonsDeletePropertyCreateRequestUnset>;
+  S.Unknown as any as S.Schema<PersonsDeletePropertyCreateRequestUnset>;
 
 export interface PersonsDeletePropertyCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1055,8 +1053,7 @@ export const PersonsDeletePropertyCreateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PersonsDeletePropertyCreateResponse>;
 
 export type PersonsResetPersonDistinctIdCreateRequestFormat = "csv" | "json";
-export const PersonsResetPersonDistinctIdCreateRequestFormat =
-  /*@__PURE__*/ S.String;
+export const PersonsResetPersonDistinctIdCreateRequestFormat = S.String;
 
 export interface PersonsResetPersonDistinctIdCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1091,7 +1088,7 @@ export const PersonsResetPersonDistinctIdCreateResponse =
   }) as any as S.Schema<PersonsResetPersonDistinctIdCreateResponse>;
 
 export type PersonsUpdatePropertyCreateRequestFormat = "csv" | "json";
-export const PersonsUpdatePropertyCreateRequestFormat = /*@__PURE__*/ S.String;
+export const PersonsUpdatePropertyCreateRequestFormat = S.String;
 
 export interface PersonsUpdatePropertyCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1132,7 +1129,7 @@ export const PersonsUpdatePropertyCreateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PersonsUpdatePropertyCreateResponse>;
 
 export type UpdatePersonRequestFormat = "csv" | "json";
-export const UpdatePersonRequestFormat = /*@__PURE__*/ S.String;
+export const UpdatePersonRequestFormat = S.String;
 
 export interface UpdatePersonRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1161,7 +1158,7 @@ export const UpdatePersonRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePersonRequest>;
 
 export type UpdatePersonsPartialRequestFormat = "csv" | "json";
-export const UpdatePersonsPartialRequestFormat = /*@__PURE__*/ S.String;
+export const UpdatePersonsPartialRequestFormat = S.String;
 
 export interface UpdatePersonsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
