@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.zendesk.api#GetSourcesByTargetRequest": {
@@ -797,7 +798,7 @@
         "smithy.api#documentation": "Update Email Settings\n\nUpdates email settings for the account.\n\n#### Allowed For\n\n* Admins\n* Agents with extensions_and_channel_management permission"
       }
     },
-    "com.zendesk.api#ShowAccountSettingsRequest": {
+    "com.zendesk.api#GetAccountSettingsRequest": {
       "type": "structure",
       "members": {
         "authenticity_token": {
@@ -1829,10 +1830,10 @@
         "smithy.api#documentation": "Zendesk Talk settings. See [Voice](#voice)"
       }
     },
-    "com.zendesk.api#ShowAccountSettings": {
+    "com.zendesk.api#GetAccountSettings": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowAccountSettingsRequest"
+        "target": "com.zendesk.api#GetAccountSettingsRequest"
       },
       "output": {
         "target": "com.zendesk.api#AccountSettingsResponse"
@@ -2234,7 +2235,7 @@
         }
       }
     },
-    "com.zendesk.api#ShowActivityRequest": {
+    "com.zendesk.api#GetActivityRequest": {
       "type": "structure",
       "members": {
         "activity_id": {
@@ -2259,10 +2260,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowActivity": {
+    "com.zendesk.api#GetActivity": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowActivityRequest"
+        "target": "com.zendesk.api#GetActivityRequest"
       },
       "output": {
         "target": "com.zendesk.api#ActivityResponse"
@@ -3180,7 +3181,7 @@
         "smithy.api#documentation": "Create Approval Request\n\nCreates an approval request for a ticket.\n\nWhen manual approval requests are turned off for the account, approval requests can still be created through this API. Approval requests created by the API have a `Sent by` value of `API`.\n\n#### Allowed For\n\n* System users (flowstate)\n* Agents"
       }
     },
-    "com.zendesk.api#ShowAttachmentRequest": {
+    "com.zendesk.api#GetAttachmentRequest": {
       "type": "structure",
       "members": {
         "attachment_id": {
@@ -3390,10 +3391,10 @@
         "smithy.api#documentation": "An array of attachment objects. Note that photo thumbnails do not have thumbnails"
       }
     },
-    "com.zendesk.api#ShowAttachment": {
+    "com.zendesk.api#GetAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowAttachmentRequest"
+        "target": "com.zendesk.api#GetAttachmentRequest"
       },
       "output": {
         "target": "com.zendesk.api#AttachmentResponse"
@@ -3708,7 +3709,7 @@
         "smithy.api#documentation": "List Audit Logs\n\n#### Allowed For\n\n* Admins on accounts that have audit log access\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n#### Filtering by multiple values\n\nTo filter by multiple values for the same field, repeat the filter parameter and append empty square brackets \"[]\" to the name of each repeated parameter. For example, to return audit logs where `action` is \"create\", \"update\", or \"destroy\":\n\n`/api/v2/audit_logs?filter[action][]=create&filter[action][]=update&filter[action][]=destroy`"
       }
     },
-    "com.zendesk.api#ShowAuditLogRequest": {
+    "com.zendesk.api#GetAuditLogRequest": {
       "type": "structure",
       "members": {
         "audit_log_id": {
@@ -3733,10 +3734,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowAuditLog": {
+    "com.zendesk.api#GetAuditLog": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowAuditLogRequest"
+        "target": "com.zendesk.api#GetAuditLogRequest"
       },
       "output": {
         "target": "com.zendesk.api#AuditLogResponse"
@@ -3871,7 +3872,7 @@
         "smithy.api#documentation": "Search Tags\n\nReturns an array of registered and recent tag names that start with the characters specified in the `name` query parameter. This includes tags where any word within the tag (separated by underscores, hyphens, spaces, or other punctuation) starts with the specified characters. You must specify at least 2 characters.\n\n#### How tag matching works\n\nWhen tags contain delimiters like underscores, hyphens, or spaces, each word is indexed separately. A tag matches if the tag itself or any word within it starts with your search term.\n\nFor example, searching for `trig` will match the tag `set_by_this_trigger` because one of its words (\"trigger\") starts with \"trig\". However, searching for `rigger` won't match this tag because neither the full tag nor any of its individual words (\"set\", \"by\", \"this\", \"trigger\") start with \"rigger\".\n\n#### Autocomplete limitations\n\nAutocomplete returns up to 15 suggestions from the most commonly used ticket tags in the last 60 days. Tags that match the prefix but aren't in that top set won't appear in the results.\n\n#### Pagination\n\n* Offset pagination only\n\nSee [Using Offset Pagination](/api-reference/introduction/pagination/#using-offset-pagination).\n\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#AutocompleteTagsPostRequest": {
+    "com.zendesk.api#PostAutocompleteTagRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3893,10 +3894,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#AutocompleteTagsPost": {
+    "com.zendesk.api#PostAutocompleteTag": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#AutocompleteTagsPostRequest"
+        "target": "com.zendesk.api#PostAutocompleteTagRequest"
       },
       "output": {
         "target": "com.zendesk.api#TagsByObjectIdResponse"
@@ -4223,7 +4224,7 @@
         "smithy.api#documentation": "Create Automation\n\nCreates an automation.\n\nNew automations must be unique and have at least one condition that is true only once or an action that nullifies at least one of the conditions. Active automations can have overlapping conditions but can't be identical.\n\nThe request must include the following conditions in the `all` array:\n\n- At least one time-based condition\n- At least one condition that checks one of the following fields: `status`, `type`, `group_id`, `assignee_id`, or `requester_id`.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowAutomationRequest": {
+    "com.zendesk.api#GetAutomationRequest": {
       "type": "structure",
       "members": {
         "automation_id": {
@@ -4239,10 +4240,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowAutomation": {
+    "com.zendesk.api#GetAutomation": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowAutomationRequest"
+        "target": "com.zendesk.api#GetAutomationRequest"
       },
       "output": {
         "target": "com.zendesk.api#AutomationResponse"
@@ -5577,7 +5578,7 @@
         "smithy.api#documentation": "List Brand Agent Memberships\n\nReturns a list of all brand agent memberships for your account.\n\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n#### Allowed For:\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowBrandAgentByIdRequest": {
+    "com.zendesk.api#GetBrandAgentByIdRequest": {
       "type": "structure",
       "members": {
         "brand_agent_id": {
@@ -5602,10 +5603,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowBrandAgentById": {
+    "com.zendesk.api#GetBrandAgentById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowBrandAgentByIdRequest"
+        "target": "com.zendesk.api#GetBrandAgentByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#BrandAgentResponse"
@@ -5619,7 +5620,7 @@
         "smithy.api#documentation": "Show Brand Agent Membership\n\nReturns a brand agent membership for your account.\n\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#DeleteBrandAgentByIdRequest": {
+    "com.zendesk.api#DeleteBrandAgentRequest": {
       "type": "structure",
       "members": {
         "brand_agent_id": {
@@ -5635,10 +5636,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#DeleteBrandAgentById": {
+    "com.zendesk.api#DeleteBrandAgent": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#DeleteBrandAgentByIdRequest"
+        "target": "com.zendesk.api#DeleteBrandAgentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6096,7 +6097,7 @@
         "smithy.api#documentation": "Create Brand\n\nCreates a brand. To attach a logo, make a follow-up request to\n`PUT /api/v2/brands/{brand_id}/logo`.\n\n#### Allowed for\n- Admins"
       }
     },
-    "com.zendesk.api#ShowBrandRequest": {
+    "com.zendesk.api#GetBrandRequest": {
       "type": "structure",
       "members": {
         "brand_id": {
@@ -6112,10 +6113,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowBrand": {
+    "com.zendesk.api#GetBrand": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowBrandRequest"
+        "target": "com.zendesk.api#GetBrandRequest"
       },
       "output": {
         "target": "com.zendesk.api#BrandResponse"
@@ -6522,7 +6523,7 @@
         "smithy.api#documentation": "List Monitored X Handles\n\n#### Allowed For\n\n* Admins\n* Agents"
       }
     },
-    "com.zendesk.api#ShowMonitoredTwitterHandleRequest": {
+    "com.zendesk.api#GetMonitoredTwitterHandleRequest": {
       "type": "structure",
       "members": {
         "monitored_twitter_handle_id": {
@@ -6547,10 +6548,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowMonitoredTwitterHandle": {
+    "com.zendesk.api#GetMonitoredTwitterHandle": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowMonitoredTwitterHandleRequest"
+        "target": "com.zendesk.api#GetMonitoredTwitterHandleRequest"
       },
       "output": {
         "target": "com.zendesk.api#TwitterChannelResponse"
@@ -8490,7 +8491,7 @@
         "smithy.api#documentation": "List Countries and Calling Codes\n\nReturns a list of all countries with their calling codes.\n\nThis endpoint is publicly accessible and does not require authentication.\n\n#### Allowed For\n\n* Anyone"
       }
     },
-    "com.zendesk.api#ShowCountryRequest": {
+    "com.zendesk.api#GetCountryRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -8506,7 +8507,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowCountryResponse": {
+    "com.zendesk.api#GetCountryResponse": {
       "type": "structure",
       "members": {
         "country": {
@@ -8517,13 +8518,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.zendesk.api#ShowCountry": {
+    "com.zendesk.api#GetCountry": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCountryRequest"
+        "target": "com.zendesk.api#GetCountryRequest"
       },
       "output": {
-        "target": "com.zendesk.api#ShowCountryResponse"
+        "target": "com.zendesk.api#GetCountryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8767,7 +8768,7 @@
         "smithy.api#documentation": "Create Custom Object\n\nCreates an object describing all the properties required to create a custom object record\n#### Allowed For\n* Admins"
       }
     },
-    "com.zendesk.api#ShowCustomObjectRequest": {
+    "com.zendesk.api#GetCustomObjectRequest": {
       "type": "structure",
       "members": {
         "custom_object_key": {
@@ -8797,10 +8798,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowCustomObject": {
+    "com.zendesk.api#GetCustomObject": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCustomObjectRequest"
+        "target": "com.zendesk.api#GetCustomObjectRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomObjectResponse"
@@ -9229,7 +9230,7 @@
         "smithy.api#documentation": "Create Access Rule\n\nCreates a new access rule for a custom object.\nAccess rules define conditions that restrict which records a role can access based on field values or relationships.\n#### Allowed For\n* Admins"
       }
     },
-    "com.zendesk.api#ShowAccessRuleRequest": {
+    "com.zendesk.api#GetAccessRuleRequest": {
       "type": "structure",
       "members": {
         "custom_object_key": {
@@ -9253,10 +9254,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowAccessRule": {
+    "com.zendesk.api#GetAccessRule": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowAccessRuleRequest"
+        "target": "com.zendesk.api#GetAccessRuleRequest"
       },
       "output": {
         "target": "com.zendesk.api#AccessRuleResponse"
@@ -10276,7 +10277,7 @@
         "smithy.api#documentation": "Create Custom Object Field\n\nCreates any of the following custom field types:\n\n* text (default when no \"type\" is specified)\n* textarea\n* checkbox\n* currency\n* date\n* integer\n* decimal\n* regexp\n* dropdown\n* lookup\n* multiselect\n* parent\n\nAdditionally, you can create a roll-up summary field by specifying an existing type (`integer`, `decimal`, or `date`) with roll-up configuration in the `properties` object. See [About roll-up summary fields](/api-reference/custom-data/custom-objects/custom_object_fields/#about-roll-up-summary-fields).\n\nSee [About custom field types](https://support.zendesk.com/hc/en-us/articles/4408838961562) in Zendesk help.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowCustomObjectFieldRequest": {
+    "com.zendesk.api#GetCustomObjectFieldRequest": {
       "type": "structure",
       "members": {
         "custom_object_key": {
@@ -10307,10 +10308,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowCustomObjectField": {
+    "com.zendesk.api#GetCustomObjectField": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCustomObjectFieldRequest"
+        "target": "com.zendesk.api#GetCustomObjectFieldRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomObjectFieldResponse"
@@ -10880,7 +10881,7 @@
         "smithy.api#documentation": "List Permission Policies\n\nReturns a list of permission policies for a custom object.\nPermission policies define what actions (create, read, update, delete) different roles can perform on custom object records.\n#### Allowed For\n* Admins"
       }
     },
-    "com.zendesk.api#ShowPermissionPolicyRequest": {
+    "com.zendesk.api#GetPermissionPolicyRequest": {
       "type": "structure",
       "members": {
         "custom_object_key": {
@@ -10913,10 +10914,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowPermissionPolicy": {
+    "com.zendesk.api#GetPermissionPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowPermissionPolicyRequest"
+        "target": "com.zendesk.api#GetPermissionPolicyRequest"
       },
       "output": {
         "target": "com.zendesk.api#PermissionPolicyResponse"
@@ -11297,7 +11298,7 @@
         "smithy.api#documentation": "Delete Custom Object Record by External Id Or Name\n\nDeletes a record with the specified external id or name. The `is_unique` property on the custom object's name field must be enabled in order to delete by name. External id and name cannot be used together in the same request.\n\nIf the record is a parent in a parent-child relationship, all associated child records are also deleted asynchronously via a background job.\n#### Allowed For\n* Agents"
       }
     },
-    "com.zendesk.api#ShowCustomObjectRecordRequest": {
+    "com.zendesk.api#GetCustomObjectRecordRequest": {
       "type": "structure",
       "members": {
         "custom_object_key": {
@@ -11321,10 +11322,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowCustomObjectRecord": {
+    "com.zendesk.api#GetCustomObjectRecord": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCustomObjectRecordRequest"
+        "target": "com.zendesk.api#GetCustomObjectRecordRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomObjectRecordResponse"
@@ -11841,7 +11842,7 @@
         "smithy.api#documentation": "Download Custom Object Record Attachment\n\nDownloads the specified attachment content. Returns a redirect to the attachment's content URL.\nAccess to malicious attachments is controlled by the `malware_access_override` setting.\n\n#### Allowed For\n* Agents"
       }
     },
-    "com.zendesk.api#AutocompleteCustomObjectRecordSearchRequestFilterDynamicValuesMap": {
+    "com.zendesk.api#SearchAutocompleteCustomObjectRecordRequestFilterDynamicValuesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11851,7 +11852,7 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#AutocompleteCustomObjectRecordSearchRequest": {
+    "com.zendesk.api#SearchAutocompleteCustomObjectRecordRequest": {
       "type": "structure",
       "members": {
         "custom_object_key": {
@@ -11905,7 +11906,7 @@
           }
         },
         "filter_dynamic_values_": {
-          "target": "com.zendesk.api#AutocompleteCustomObjectRecordSearchRequestFilterDynamicValuesMap",
+          "target": "com.zendesk.api#SearchAutocompleteCustomObjectRecordRequestFilterDynamicValuesMap",
           "traits": {
             "smithy.api#httpQuery": "filter[dynamic_values]",
             "smithy.api#documentation": "Provided values to be used with [dynamic filters](/api-reference/ticketing/lookup_relationships/lookup_relationships/#using-dynamic-filters).\n"
@@ -11937,10 +11938,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#AutocompleteCustomObjectRecordSearch": {
+    "com.zendesk.api#SearchAutocompleteCustomObjectRecord": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#AutocompleteCustomObjectRecordSearchRequest"
+        "target": "com.zendesk.api#SearchAutocompleteCustomObjectRecordRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomObjectRecordsResponse"
@@ -13860,7 +13861,7 @@
         "smithy.api#documentation": "Create Custom Role\n\n#### Availability\n\n* Accounts on the Enterprise plan or above\n\n#### Allowed for\n\n* Administrators\n* Agents with the `manage_roles` permission"
       }
     },
-    "com.zendesk.api#ShowCustomRoleByIdRequest": {
+    "com.zendesk.api#GetCustomRoleByIdRequest": {
       "type": "structure",
       "members": {
         "custom_role_id": {
@@ -13876,10 +13877,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowCustomRoleById": {
+    "com.zendesk.api#GetCustomRoleById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCustomRoleByIdRequest"
+        "target": "com.zendesk.api#GetCustomRoleByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomRoleResponse"
@@ -13926,7 +13927,7 @@
         "smithy.api#documentation": "Update Custom Role\n\n#### Availability\n\n* Accounts on the Enterprise plan or above\n\n#### Allowed for\n\n* Administrators\nAgents with the `manage_roles` permission"
       }
     },
-    "com.zendesk.api#DeleteCustomRoleByIdRequest": {
+    "com.zendesk.api#DeleteCustomRoleRequest": {
       "type": "structure",
       "members": {
         "custom_role_id": {
@@ -13942,10 +13943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#DeleteCustomRoleById": {
+    "com.zendesk.api#DeleteCustomRole": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#DeleteCustomRoleByIdRequest"
+        "target": "com.zendesk.api#DeleteCustomRoleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14314,7 +14315,7 @@
         "smithy.api#documentation": "Create Custom Ticket Status\n\nTakes a `custom_status` object that specifies the custom ticket status properties to create.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowCustomStatusRequest": {
+    "com.zendesk.api#GetCustomStatusRequest": {
       "type": "structure",
       "members": {
         "custom_status_id": {
@@ -14330,10 +14331,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowCustomStatus": {
+    "com.zendesk.api#GetCustomStatus": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCustomStatusRequest"
+        "target": "com.zendesk.api#GetCustomStatusRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomStatusResponse"
@@ -15422,7 +15423,7 @@
         "smithy.api#documentation": "List Deleted Users\n\nReturns deleted users, including permanently deleted users.\n\nIf the results contains permanently deleted users, the users' properties\nthat normally contain personal data, such as `email` and `phone`,\nare null. The `name` property is \"Permanently Deleted User\".\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowDeletedUserRequest": {
+    "com.zendesk.api#GetDeletedUserRequest": {
       "type": "structure",
       "members": {
         "deleted_user_id": {
@@ -15447,10 +15448,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowDeletedUser": {
+    "com.zendesk.api#GetDeletedUser": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowDeletedUserRequest"
+        "target": "com.zendesk.api#GetDeletedUserRequest"
       },
       "output": {
         "target": "com.zendesk.api#DeletedUserResponse"
@@ -16089,7 +16090,7 @@
         "smithy.api#documentation": "Create Item\n\nCreate a new content item, with one or more variants in the item's `variants` array. See [Specifying item variants](#specifying-item-variants).\n\nThe `default_locale_id` and variant `locale_id` values must be one of the locales the account has active. You can get the list with the [List Locales](/api-reference/ticketing/account-configuration/locales/#list-locales) endpoint.\n\n#### Allowed For\n\n* Admins, Agents"
       }
     },
-    "com.zendesk.api#ShowDynamicContentItemRequest": {
+    "com.zendesk.api#GetDynamicContentItemRequest": {
       "type": "structure",
       "members": {
         "dynamic_content_item_id": {
@@ -16105,10 +16106,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowDynamicContentItem": {
+    "com.zendesk.api#GetDynamicContentItem": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowDynamicContentItemRequest"
+        "target": "com.zendesk.api#GetDynamicContentItemRequest"
       },
       "output": {
         "target": "com.zendesk.api#DynamicContentResponse"
@@ -16338,7 +16339,7 @@
         "smithy.api#documentation": "Create Variant\n\nYou can only create one variant for each locale id. If a locale variant already exists, the request is rejected.\n\n#### Allowed For\n\n* Admins, Agents"
       }
     },
-    "com.zendesk.api#ShowDynamicContentVariantRequest": {
+    "com.zendesk.api#GetDynamicContentVariantRequest": {
       "type": "structure",
       "members": {
         "dynamic_content_item_id": {
@@ -16362,10 +16363,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowDynamicContentVariant": {
+    "com.zendesk.api#GetDynamicContentVariant": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowDynamicContentVariantRequest"
+        "target": "com.zendesk.api#GetDynamicContentVariantRequest"
       },
       "output": {
         "target": "com.zendesk.api#DynamicContentVariantResponse"
@@ -16527,7 +16528,7 @@
         "smithy.api#documentation": "Update Many Variants\n\nUpdates one or more variants. See [Update Variant](/api-reference/ticketing/ticket-management/dynamic_content_item_variants/#update-variant).\n\nYou must specify the variants by id in the body. To get the variant ids, see [List Variants](/api-reference/ticketing/ticket-management/dynamic_content_item_variants/#list-variants).\n\n#### Allowed For\n\n* Admins, Agents"
       }
     },
-    "com.zendesk.api#ShowManyDynamicContentsRequest": {
+    "com.zendesk.api#GetManyDynamicContentsRequest": {
       "type": "structure",
       "members": {
         "identifiers": {
@@ -16542,10 +16543,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyDynamicContents": {
+    "com.zendesk.api#GetManyDynamicContents": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyDynamicContentsRequest"
+        "target": "com.zendesk.api#GetManyDynamicContentsRequest"
       },
       "output": {
         "target": "com.zendesk.api#DynamicContentsResponse"
@@ -16762,7 +16763,7 @@
         "smithy.api#documentation": "List Email Notifications\n\n#### Allowed For\n\n* Agents\n\n#### Request parameters\n\n##### Filters\n\n**Important**: You must specify a `filter` query parameter to narrow the scope of the search for this endpoint.\n\n* By notification: `api/v2/email_notifications?filter[notification_id]=7824075373693`\n* By comment: `api/v2/email_notifications?filter[comment_id]=782407`\n* By ticket: `api/v2/email_notifications?filter[ticket_id]=623`\n\n##### Pagination\n\nBy default, a maximum of 100 email notifications are included per page. Use cursor-based pagination parameters (`page[after]` and `page[before]`) to navigate the records (can't be used together in the same request). See [Pagination](/api-reference/introduction/pagination/) for more details.\n\n##### Sorting\n\nBy default, email notifications are sorted by creation time (newest first). The query parameter is not supported for this endpoint."
       }
     },
-    "com.zendesk.api#ShowEmailNotificationRequest": {
+    "com.zendesk.api#GetEmailNotificationRequest": {
       "type": "structure",
       "members": {
         "notification_id": {
@@ -16787,10 +16788,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowEmailNotification": {
+    "com.zendesk.api#GetEmailNotification": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowEmailNotificationRequest"
+        "target": "com.zendesk.api#GetEmailNotificationRequest"
       },
       "output": {
         "target": "com.zendesk.api#EmailNotificationResponse"
@@ -16804,7 +16805,7 @@
         "smithy.api#documentation": "Show Email Notification\n\nShows details on an email notification. You can get the value of the `notification_id` parameter by listing the ticket's outbound emails.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowManyEmailNotificationsRequest": {
+    "com.zendesk.api#GetManyEmailNotificationsRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -16833,10 +16834,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyEmailNotifications": {
+    "com.zendesk.api#GetManyEmailNotifications": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyEmailNotificationsRequest"
+        "target": "com.zendesk.api#GetManyEmailNotificationsRequest"
       },
       "output": {
         "target": "com.zendesk.api#EmailNotificationResponse"
@@ -17224,7 +17225,7 @@
         "smithy.api#documentation": "Create End User Identity\n\nAdds an identity to an end user's profile.\n\nSupported identity types for end users:\n\n\n#### Allowed For\n\n* Verified end users"
       }
     },
-    "com.zendesk.api#ShowEndUserIdentityRequest": {
+    "com.zendesk.api#GetEndUserIdentityRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -17248,10 +17249,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowEndUserIdentity": {
+    "com.zendesk.api#GetEndUserIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowEndUserIdentityRequest"
+        "target": "com.zendesk.api#GetEndUserIdentityRequest"
       },
       "output": {
         "target": "com.zendesk.api#UserIdentityResponse"
@@ -17626,7 +17627,7 @@
         "smithy.api#documentation": "Create Membership\n\nAssigns an agent to a given group.\n\n#### Allowed For\n\n* Admins\n* Agents assigned to a custom role with permissions to manage group memberships (Enterprise only)"
       }
     },
-    "com.zendesk.api#ShowGroupMembershipByIdRequest": {
+    "com.zendesk.api#GetGroupMembershipByIdRequest": {
       "type": "structure",
       "members": {
         "group_membership_id": {
@@ -17642,10 +17643,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowGroupMembershipById": {
+    "com.zendesk.api#GetGroupMembershipById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowGroupMembershipByIdRequest"
+        "target": "com.zendesk.api#GetGroupMembershipByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#GroupMembershipResponse"
@@ -18045,7 +18046,7 @@
         "smithy.api#documentation": "Create Group SLA Policy\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowGroupSLAPolicyRequest": {
+    "com.zendesk.api#GetGroupSLAPolicyRequest": {
       "type": "structure",
       "members": {
         "group_sla_policy_id": {
@@ -18061,10 +18062,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowGroupSLAPolicy": {
+    "com.zendesk.api#GetGroupSLAPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowGroupSLAPolicyRequest"
+        "target": "com.zendesk.api#GetGroupSLAPolicyRequest"
       },
       "output": {
         "target": "com.zendesk.api#GroupSLAPolicyResponse"
@@ -18243,7 +18244,7 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#RetrieveGroupSLAPolicyFilterDefinitionItems": {
+    "com.zendesk.api#GetGroupSLAPolicyFilterDefinitionItems": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -18568,7 +18569,7 @@
         "smithy.api#documentation": "Create Group\n\n#### Allowed For\n\n* Admins\n* Agents assigned to a custom role with permissions to manage groups (Enterprise only)"
       }
     },
-    "com.zendesk.api#ShowGroupByIdRequest": {
+    "com.zendesk.api#GetGroupByIdRequest": {
       "type": "structure",
       "members": {
         "group_id": {
@@ -18591,10 +18592,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowGroupById": {
+    "com.zendesk.api#GetGroupById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowGroupByIdRequest"
+        "target": "com.zendesk.api#GetGroupByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#GroupResponse"
@@ -19218,7 +19219,7 @@
         "smithy.api#documentation": "Count Groups\n\nReturns an approximate count of groups. If the count exceeds 100,000, it is updated every 24 hours.\n\nThe `refreshed_at` property of the `count` object is a timestamp that indicates when the count was last updated.\n\n**Note**: When the count exceeds 100,000, `refreshed_at` may occasionally be null. This indicates that the count is being updated in the background, and the `value` property of the `count` object is limited to 100,000 until the update is complete.\n\n#### Allowed For\n\n* Admins\n* Agents"
       }
     },
-    "com.zendesk.api#ShowDefaultGroup": {
+    "com.zendesk.api#GetDefaultGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -19693,7 +19694,7 @@
         "smithy.api#documentation": "An object explaining how the ticket was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference)\n"
       }
     },
-    "com.zendesk.api#TicketImportRequest": {
+    "com.zendesk.api#ImportTicketRequest": {
       "type": "structure",
       "members": {
         "archive_immediately": {
@@ -19711,10 +19712,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#TicketImport": {
+    "com.zendesk.api#ImportTicket": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#TicketImportRequest"
+        "target": "com.zendesk.api#ImportTicketRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketResponseOutput"
@@ -19770,7 +19771,7 @@
         "smithy.api#documentation": "Ticket Bulk Import\n\nAccepts an array of up to 100 ticket objects.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#IncrementalSampleExportRequest": {
+    "com.zendesk.api#ExportIncrementalSampleRequest": {
       "type": "structure",
       "members": {
         "incremental_resource": {
@@ -19827,10 +19828,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#IncrementalSampleExport": {
+    "com.zendesk.api#ExportIncrementalSample": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#IncrementalSampleExportRequest"
+        "target": "com.zendesk.api#ExportIncrementalSampleRequest"
       },
       "output": {
         "target": "com.zendesk.api#TimeBasedExportIncrementalTicketsResponseOutput"
@@ -20087,7 +20088,7 @@
         "smithy.api#documentation": "Incremental Custom Object Record Export, Cursor Based\n\nReturns the custom object records that changed since the start time. This endpoint supports \ncursor-based incremental exports for custom object records.\n\nThis endpoint only supports cursor-based pagination and does not support offset-based pagination.\nCursor-based exports provide more consistent performance and response body sizes. For more information, \nsee [Cursor-based incremental exports](/documentation/ticketing/managing-tickets/using-the-incremental-export-api#cursor-based-incremental-exports) in [Using the Incremental Exports API](/documentation/ticketing/managing-tickets/using-the-incremental-export-api).\n\n#### Allowed For\n\n* Admins\n* Agents with custom object read permissions\n\n#### Rate Limiting\n\nYou can make up to 10 requests per minute to this endpoint.\n\n#### Notes\n\n- `start_time` is only required for the initial request for the pages in the record set, then `cursor` is required for all subsequent requests\n- The `start_time` must be more than 60 seconds ago\n- Deleted records will have their field values replaced with \"[DELETED]\" unless excluded via filter\n- Photo fields are excluded from incremental export responses"
       }
     },
-    "com.zendesk.api#IncrementalOrganizationExportRequest": {
+    "com.zendesk.api#ExportIncrementalOrganizationRequest": {
       "type": "structure",
       "members": {
         "start_time": {
@@ -20279,10 +20280,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#IncrementalOrganizationExport": {
+    "com.zendesk.api#ExportIncrementalOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#IncrementalOrganizationExportRequest"
+        "target": "com.zendesk.api#ExportIncrementalOrganizationRequest"
       },
       "output": {
         "target": "com.zendesk.api#ExportIncrementalOrganizationsResponse"
@@ -20467,7 +20468,7 @@
         "smithy.api#documentation": "Routing instance values"
       }
     },
-    "com.zendesk.api#IncrementalSkilBasedRoutingAttributeValuesExport": {
+    "com.zendesk.api#ExportIncrementalSkilBasedRoutingAttributeValue": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -20484,7 +20485,7 @@
         "smithy.api#documentation": "Incremental Attributes Values Export\n\nReturns a stream of changes that occurred on routing attribute values.\n\n#### Allowed For\n\n* Admins\n\n#### Parameters\n\nOptional"
       }
     },
-    "com.zendesk.api#IncrementalSkilBasedRoutingAttributesExport": {
+    "com.zendesk.api#ExportIncrementalSkilBasedRoutingAttribute": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -20501,7 +20502,7 @@
         "smithy.api#documentation": "Incremental Attributes Export\n\nReturns a stream of changes that occurred on routing attributes.\n\n#### Allowed For\n\n* Admins\n\n#### Parameters\n\nOptional"
       }
     },
-    "com.zendesk.api#IncrementalSkilBasedRoutingInstanceValuesExport": {
+    "com.zendesk.api#ExportIncrementalSkilBasedRoutingInstanceValue": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -21324,7 +21325,7 @@
         "smithy.api#documentation": "Create Asset Type\n\nCreates an asset type.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowItamAssetTypeRequest": {
+    "com.zendesk.api#GetItamAssetTypeRequest": {
       "type": "structure",
       "members": {
         "asset_type_id": {
@@ -21340,10 +21341,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowItamAssetType": {
+    "com.zendesk.api#GetItamAssetType": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowItamAssetTypeRequest"
+        "target": "com.zendesk.api#GetItamAssetTypeRequest"
       },
       "output": {
         "target": "com.zendesk.api#ItamAssetTypeResponse"
@@ -21517,7 +21518,7 @@
         "smithy.api#documentation": "Create Asset Field\n\nCreates an asset field for an individual asset type.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowItamAssetTypeFieldRequest": {
+    "com.zendesk.api#GetItamAssetTypeFieldRequest": {
       "type": "structure",
       "members": {
         "asset_type_id": {
@@ -21541,10 +21542,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowItamAssetTypeField": {
+    "com.zendesk.api#GetItamAssetTypeField": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowItamAssetTypeFieldRequest"
+        "target": "com.zendesk.api#GetItamAssetTypeFieldRequest"
       },
       "output": {
         "target": "com.zendesk.api#ItamAssetFieldResponse"
@@ -22113,7 +22114,7 @@
         "smithy.api#documentation": "Create Asset\n\nCreates an asset.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowItamAssetRequest": {
+    "com.zendesk.api#GetItamAssetRequest": {
       "type": "structure",
       "members": {
         "asset_id": {
@@ -22129,10 +22130,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowItamAsset": {
+    "com.zendesk.api#GetItamAsset": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowItamAssetRequest"
+        "target": "com.zendesk.api#GetItamAssetRequest"
       },
       "output": {
         "target": "com.zendesk.api#ItamAssetResponse"
@@ -22794,7 +22795,7 @@
         "smithy.api#documentation": "Create Asset Location\n\nCreates a location.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowItamLocationRequest": {
+    "com.zendesk.api#GetItamLocationRequest": {
       "type": "structure",
       "members": {
         "location_id": {
@@ -22810,10 +22811,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowItamLocation": {
+    "com.zendesk.api#GetItamLocation": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowItamLocationRequest"
+        "target": "com.zendesk.api#GetItamLocationRequest"
       },
       "output": {
         "target": "com.zendesk.api#ItamAssetLocationResponse"
@@ -23124,7 +23125,7 @@
         "smithy.api#documentation": "Create Asset Status\n\nCreates a status.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowItamStatusRequest": {
+    "com.zendesk.api#GetItamStatusRequest": {
       "type": "structure",
       "members": {
         "status_id": {
@@ -23140,10 +23141,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowItamStatus": {
+    "com.zendesk.api#GetItamStatus": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowItamStatusRequest"
+        "target": "com.zendesk.api#GetItamStatusRequest"
       },
       "output": {
         "target": "com.zendesk.api#ItamAssetStatusResponse"
@@ -23365,7 +23366,7 @@
         "smithy.api#documentation": "List Job Statuses\n\nShows the statuses for background jobs. Statuses are sorted first by completion date and then by creation date in descending order.\n\n#### Allowed For:\n\n* Agents\n\n#### Pagination\n\n* Cursor pagination\n\nSee [Pagination](/api-reference/introduction/pagination/)."
       }
     },
-    "com.zendesk.api#ShowJobStatusRequest": {
+    "com.zendesk.api#GetJobStatusRequest": {
       "type": "structure",
       "members": {
         "job_status_id": {
@@ -23381,10 +23382,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowJobStatus": {
+    "com.zendesk.api#GetJobStatus": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowJobStatusRequest"
+        "target": "com.zendesk.api#GetJobStatusRequest"
       },
       "output": {
         "target": "com.zendesk.api#JobStatusResponse"
@@ -23398,7 +23399,7 @@
         "smithy.api#documentation": "Show Job Status\n\nShows the status of a background job.\n\n#### Allowed For:\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowManyJobStatusesRequest": {
+    "com.zendesk.api#GetManyJobStatusesRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -23414,10 +23415,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyJobStatuses": {
+    "com.zendesk.api#GetManyJobStatuses": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyJobStatusesRequest"
+        "target": "com.zendesk.api#GetManyJobStatusesRequest"
       },
       "output": {
         "target": "com.zendesk.api#JobStatusesResponse"
@@ -23506,7 +23507,7 @@
         "smithy.api#documentation": "List Locales\n\nLists the translation locales available for the account.\n\n**Note**: You can alter the list by passing an updated `locale_ids` array to the [Update Account Settings](/api-reference/ticketing/account-configuration/account_settings/#update-account-settings) endpoint.\n\n#### Allowed For\n\n* Anyone"
       }
     },
-    "com.zendesk.api#ShowLocaleByIdRequest": {
+    "com.zendesk.api#GetLocaleByIdRequest": {
       "type": "structure",
       "members": {
         "locale_id": {
@@ -23531,10 +23532,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowLocaleById": {
+    "com.zendesk.api#GetLocaleById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowLocaleByIdRequest"
+        "target": "com.zendesk.api#GetLocaleByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#LocaleResponse"
@@ -23565,7 +23566,7 @@
         "smithy.api#documentation": "List Locales for Agent\n\nLists the translation locales that have been localized for agents on a specific account.\n\n#### Allowed For\n\n* Anyone"
       }
     },
-    "com.zendesk.api#ShowCurrentLocale": {
+    "com.zendesk.api#GetCurrentLocale": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -24064,7 +24065,7 @@
         "smithy.api#documentation": "Create Macro\n\n#### Allowed For\n* Agents"
       }
     },
-    "com.zendesk.api#ShowMacroRequest": {
+    "com.zendesk.api#GetMacroRequest": {
       "type": "structure",
       "members": {
         "macro_id": {
@@ -24089,10 +24090,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowMacro": {
+    "com.zendesk.api#GetMacro": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowMacroRequest"
+        "target": "com.zendesk.api#GetMacroRequest"
       },
       "output": {
         "target": "com.zendesk.api#MacroResponse"
@@ -24186,7 +24187,7 @@
         "smithy.api#documentation": "Delete Macro\n\n#### Allowed For\n* Agents, with restrictions applying on certain actions"
       }
     },
-    "com.zendesk.api#ShowChangesToTicketRequest": {
+    "com.zendesk.api#GetChangesToTicketRequest": {
       "type": "structure",
       "members": {
         "macro_id": {
@@ -24292,10 +24293,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowChangesToTicket": {
+    "com.zendesk.api#GetChangesToTicket": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowChangesToTicketRequest"
+        "target": "com.zendesk.api#GetChangesToTicketRequest"
       },
       "output": {
         "target": "com.zendesk.api#MacroApplyTicketResponse"
@@ -24609,7 +24610,7 @@
         "smithy.api#documentation": "Create Unassociated Macro Attachment\n\nAllows an attachment to be uploaded that can be associated with a macro at a later time.\n\n**Note:** To ensure an uploaded attachment is not lost, associate it with a macro as soon as possible. From time to time, old attachments that are not not associated with any macro are purged.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowMacroAttachmentRequest": {
+    "com.zendesk.api#GetMacroAttachmentRequest": {
       "type": "structure",
       "members": {
         "attachment_id": {
@@ -24625,10 +24626,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowMacroAttachment": {
+    "com.zendesk.api#GetMacroAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowMacroAttachmentRequest"
+        "target": "com.zendesk.api#GetMacroAttachmentRequest"
       },
       "output": {
         "target": "com.zendesk.api#MacroAttachmentResponse"
@@ -24973,7 +24974,7 @@
         "smithy.api#documentation": "List Most Used Macros\n\nReturns up to 10 most used macros for the current user.\nWhen there are no most used macros, an empty array is returned.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowDerivedMacroRequest": {
+    "com.zendesk.api#GetDerivedMacroRequest": {
       "type": "structure",
       "members": {
         "macro_id": {
@@ -24997,10 +24998,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowDerivedMacro": {
+    "com.zendesk.api#GetDerivedMacro": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowDerivedMacroRequest"
+        "target": "com.zendesk.api#GetDerivedMacroRequest"
       },
       "output": {
         "target": "com.zendesk.api#MacroResponse"
@@ -25453,7 +25454,7 @@
         "smithy.api#documentation": "Create Client\n\n#### Allowed For\n\n* Admins\n* Agents with the [Manage APIs](https://support.zendesk.com/hc/en-us/articles/4408882153882) permission\n\n#### Allowed scopes\n\nYou can optionally set a `scope` property on the client to restrict which scopes it is\npermitted to request during the OAuth authorization flow. The value is a space-separated\nstring of scope values. When set, any token request using this client must only include\nscopes from this list. If a client requests a scope not included in its allowed scopes,\nthe request fails with a `400 Bad Request` response and an `invalid_scope` error. If\n`scope` is omitted, no scope restrictions are applied to the client.\n\nFor the full list of valid scope values, see [Scopes](/api-reference/ticketing/oauth/grant_type_tokens/#scope)."
       }
     },
-    "com.zendesk.api#ShowClientRequest": {
+    "com.zendesk.api#GetClientRequest": {
       "type": "structure",
       "members": {
         "oauth_client_id": {
@@ -25469,10 +25470,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowClient": {
+    "com.zendesk.api#GetClient": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowClientRequest"
+        "target": "com.zendesk.api#GetClientRequest"
       },
       "output": {
         "target": "com.zendesk.api#OauthClientResponse"
@@ -25712,7 +25713,7 @@
         "smithy.api#documentation": "List Global OAuth Clients\n\nReturns all the global OAuth clients that users on your account have authorized.\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n#### Allowed For\n\n* Admins\n* Agents with the [Manage APIs](https://support.zendesk.com/hc/en-us/articles/4408882153882) permission"
       }
     },
-    "com.zendesk.api#ShowGlobalClientRequest": {
+    "com.zendesk.api#GetGlobalClientRequest": {
       "type": "structure",
       "members": {
         "global_client_id": {
@@ -25737,10 +25738,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowGlobalClient": {
+    "com.zendesk.api#GetGlobalClient": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowGlobalClientRequest"
+        "target": "com.zendesk.api#GetGlobalClientRequest"
       },
       "output": {
         "target": "com.zendesk.api#GlobalClientResponse"
@@ -26015,7 +26016,7 @@
         "smithy.api#documentation": "List Tokens\n\nReturns the properties of the tokens for the current user. Admins can view OAuth token properties for all users using the [all](/api-reference/ticketing/oauth/oauth_tokens/#parameters) parameter. To filter the list by OAuth client, use the [client_id](/api-reference/ticketing/oauth/oauth_tokens/#parameters) parameter for a local OAuth client ID, or the [global_client_id](/api-reference/ticketing/oauth/oauth_tokens/#parameters) parameter for a global OAuth client ID. For security reasons, only the first 10 characters of each access token are included.\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowTokenRequest": {
+    "com.zendesk.api#GetTokenRequest": {
       "type": "structure",
       "members": {
         "oauth_token_id": {
@@ -26040,10 +26041,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowToken": {
+    "com.zendesk.api#GetToken": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTokenRequest"
+        "target": "com.zendesk.api#GetTokenRequest"
       },
       "output": {
         "target": "com.zendesk.api#OAuthTokenResponse"
@@ -26090,7 +26091,7 @@
         "smithy.api#documentation": "Revoke Token\n\n#### Allowed for\n * Admins, Agents, End Users"
       }
     },
-    "com.zendesk.api#ShowCurrentToken": {
+    "com.zendesk.api#GetCurrentToken": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -26382,7 +26383,7 @@
         "smithy.api#documentation": "Create Organization Field\n\nCreates any of the following custom field types:\n\n* text (default when no \"type\" is specified)\n* textarea\n* checkbox\n* date\n* integer\n* decimal\n* regexp\n* dropdown\n* lookup\n* multiselect\n\nSee [About custom field types](https://support.zendesk.com/hc/en-us/articles/4408838961562) in Zendesk help.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowOrganizationFieldRequest": {
+    "com.zendesk.api#GetOrganizationFieldRequest": {
       "type": "structure",
       "members": {
         "organization_field_id": {
@@ -26398,10 +26399,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowOrganizationField": {
+    "com.zendesk.api#GetOrganizationField": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowOrganizationFieldRequest"
+        "target": "com.zendesk.api#GetOrganizationFieldRequest"
       },
       "output": {
         "target": "com.zendesk.api#OrganizationFieldResponse"
@@ -26710,7 +26711,7 @@
         "smithy.api#documentation": "Create Membership\n\nAssigns a user to a given organization. Returns an error with status 422 if the user is already assigned to the organization.\n\n#### Allowed For\n\n* Admins\n* Agents when creating a new organization membership for an end user"
       }
     },
-    "com.zendesk.api#ShowOrganizationMembershipByIdRequest": {
+    "com.zendesk.api#GetOrganizationMembershipByIdRequest": {
       "type": "structure",
       "members": {
         "organization_membership_id": {
@@ -26726,10 +26727,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowOrganizationMembershipById": {
+    "com.zendesk.api#GetOrganizationMembershipById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowOrganizationMembershipByIdRequest"
+        "target": "com.zendesk.api#GetOrganizationMembershipByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#OrganizationMembershipResponse"
@@ -26832,7 +26833,7 @@
         "smithy.api#documentation": "Bulk Delete Memberships\n\nImmediately removes a user from an organization and schedules a job to unassign all working tickets currently assigned to the user and organization combination. The `organization_id` of the unassigned tickets is set to null.\n\n#### Response\n\nThis endpoint returns a `job_status` [JSON object](/api-reference/ticketing/ticket-management/job_statuses/#json-format) and queues a background job to do the work. Use the [Show Job Status](/api-reference/ticketing/ticket-management/job_statuses/#show-job-status) endpoint to check for the job's completion. Only a certain number of jobs can be queued or running at the same time. See [Job limit](/api-reference/introduction/rate-limits/#job-limit) for more information.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowOrganizationMergeRequest": {
+    "com.zendesk.api#GetOrganizationMergeRequest": {
       "type": "structure",
       "members": {
         "organization_merge_id": {
@@ -26923,10 +26924,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowOrganizationMerge": {
+    "com.zendesk.api#GetOrganizationMerge": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowOrganizationMergeRequest"
+        "target": "com.zendesk.api#GetOrganizationMergeRequest"
       },
       "output": {
         "target": "com.zendesk.api#OrganizationMergeResponse"
@@ -27085,7 +27086,7 @@
         "smithy.api#documentation": "Create Organization Subscription\n\n#### Allowed For:\n\n* Agents\n* End users\n\nEnd users can only subscribe to shared organizations in which they're members."
       }
     },
-    "com.zendesk.api#ShowOrganizationSubscriptionRequest": {
+    "com.zendesk.api#GetOrganizationSubscriptionRequest": {
       "type": "structure",
       "members": {
         "organization_subscription_id": {
@@ -27101,10 +27102,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowOrganizationSubscription": {
+    "com.zendesk.api#GetOrganizationSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowOrganizationSubscriptionRequest"
+        "target": "com.zendesk.api#GetOrganizationSubscriptionRequest"
       },
       "output": {
         "target": "com.zendesk.api#OrganizationSubscriptionResponse"
@@ -27446,7 +27447,7 @@
         "smithy.api#documentation": "Create Organization\n\nYou must provide a unique `name` for each organization. Normally\nthe system doesn't allow records to be created with identical names.\nHowever, a race condition can occur if you make two or more identical\nPOSTs very close to each other, causing the records to have identical\norganization names.\n\n**Note**: Leading and trailing whitespace in `name` is automatically trimmed before validation. This means that names differing only by whitespace are treated as duplicates. For example, \"API Company\" and \"API Company \" are considered the same name.\n\n#### Allowed For\n\n* Admins\n* Agents assigned to a custom role with permissions to manage organizations (Enterprise only)"
       }
     },
-    "com.zendesk.api#ShowOrganizationRequest": {
+    "com.zendesk.api#GetOrganizationRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -27483,10 +27484,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowOrganization": {
+    "com.zendesk.api#GetOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowOrganizationRequest"
+        "target": "com.zendesk.api#GetOrganizationRequest"
       },
       "output": {
         "target": "com.zendesk.api#OrganizationResponse"
@@ -28857,7 +28858,7 @@
         "smithy.api#documentation": "Search Organizations\n\nReturns an array of organizations matching the criteria. You may search by an organization's `external_id` or `name`, but not both:\n\n#### Searching by `external_id`\n\nIf you set the `external_id` value of an organization to associate it to an external record, you can use it to search for the organization.\n\nFor an organization to be returned, its `external_id` must exactly match the value provided (case insensitive).\n\n#### Searching by `name`\n\nFor an organization to be returned, its `name` must exactly match the value provided (case insensitive).\n\n#### Allowed For:\n\n* Admins\n* Agents assigned to a custom role with permissions to add or modify organizations (Enterprise only)\n\nSee [Creating custom agent roles](https://support.zendesk.com/hc/en-us/articles/4408882153882#topic_cxn_hig_bd) in Zendesk help."
       }
     },
-    "com.zendesk.api#ShowManyOrganizationsRequest": {
+    "com.zendesk.api#GetManyOrganizationsRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -28879,10 +28880,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyOrganizations": {
+    "com.zendesk.api#GetManyOrganizations": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyOrganizationsRequest"
+        "target": "com.zendesk.api#GetManyOrganizationsRequest"
       },
       "output": {
         "target": "com.zendesk.api#OrganizationsResponse"
@@ -29410,7 +29411,7 @@
         "smithy.api#documentation": "Create Queue\n\nCreates a queue. Accepts a JSON queue definition as the request body.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowQueueByIdRequest": {
+    "com.zendesk.api#GetQueueByIdRequest": {
       "type": "structure",
       "members": {
         "queue_id": {
@@ -29426,10 +29427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowQueueById": {
+    "com.zendesk.api#GetQueueById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowQueueByIdRequest"
+        "target": "com.zendesk.api#GetQueueByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#QueueResponse"
@@ -30074,7 +30075,7 @@
         "smithy.api#documentation": "Create Support Address\n\nAdds a Zendesk or external support address to your account.\n\nTo add a Zendesk address, use the following syntax: `{local-part}@{accountname}.zendesk.com`.\nExample: 'sales-team@example.zendesk.com'. The [local-part](https://en.wikipedia.org/wiki/Email_address#Local-part) can be anything you like.\n\nTo add an external email address such as help@omniwearshop.com, the email must already exist and you must set up forwarding on your email server. The exact steps depend on your mail server. See [Forwarding incoming email to Zendesk Support](https://support.zendesk.com/hc/en-us/articles/4408836514202). After setting up forwarding, run the [Verify Support Address Forwarding](#verify-support-address-forwarding) endpoint. The address won't work in Zendesk Support until it's been verified.\n\n#### Allowed For\n\n* Admins\n* Agents with permission to manage channels and extensions. See the system permissions in [Creating custom agent roles](https://support.zendesk.com/hc/en-us/articles/4408882153882#topic_cxn_hig_bd) in Zendesk help"
       }
     },
-    "com.zendesk.api#ShowSupportAddressRequest": {
+    "com.zendesk.api#GetSupportAddressRequest": {
       "type": "structure",
       "members": {
         "support_address_id": {
@@ -30090,10 +30091,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowSupportAddress": {
+    "com.zendesk.api#GetSupportAddress": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSupportAddressRequest"
+        "target": "com.zendesk.api#GetSupportAddressRequest"
       },
       "output": {
         "target": "com.zendesk.api#SupportAddressResponse"
@@ -30852,7 +30853,7 @@
         "smithy.api#documentation": "Create Request\n\nAccepts a `request` object that sets one or more properties.\n\n#### Allowed for\n\n* End users\n* Anonymous users (rate limit of 5 requests per hour for [trial accounts](/documentation/developer-tools/getting-started/getting-a-trial-or-sponsored-account-for-development/))\n\n#### Additional properties\n\nIn addition to the writable request properties in the [JSON Format table](#json-format) above, you can set the following properties when creating a request.\n\n\n#### Creating follow-up requests\n\nOnce a ticket is closed (as distinct from solved), it can't be reopened. However, you can create a new request that references the closed ticket. To create the follow-up request, include a `via_followup_source_id` property in the `request` object that specifies the closed ticket. The parameter only works with closed tickets. It has no effect with other tickets."
       }
     },
-    "com.zendesk.api#ShowRequestRequest": {
+    "com.zendesk.api#GetRequestRequest": {
       "type": "structure",
       "members": {
         "request_id": {
@@ -30868,10 +30869,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowRequest": {
+    "com.zendesk.api#GetRequest": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowRequestRequest"
+        "target": "com.zendesk.api#GetRequestRequest"
       },
       "output": {
         "target": "com.zendesk.api#RequestResponse"
@@ -30981,7 +30982,7 @@
         "smithy.api#documentation": "Listing Comments\n\n#### Pagination\n\n- Cursor pagination (recommended)\n- Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\n#### Sorting\n\nBy default, comments are sorted by creation date in ascending order.\n\nWhen using cursor pagination, use the following parameter to change the sort order:\n\n\nWhen using offset pagination, use the following parameters to change the sort order:\n\n\n#### Allowed For\n\n* End Users"
       }
     },
-    "com.zendesk.api#ShowCommentRequest": {
+    "com.zendesk.api#GetCommentRequest": {
       "type": "structure",
       "members": {
         "request_id": {
@@ -31005,10 +31006,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowComment": {
+    "com.zendesk.api#GetComment": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCommentRequest"
+        "target": "com.zendesk.api#GetCommentRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketCommentResponse"
@@ -31308,7 +31309,7 @@
         "smithy.api#documentation": "Create Resource Collection\n\nCreates a resource collection from a provided `payload` object. The `payload` object is specified the same way as the content of a requirements.json file in a Zendesk app. See [Specifying Apps Requirements](/documentation/apps/app-developer-guide/apps_requirements/) in the Zendesk Apps framework docs.\n\nThe response includes a [job\nstatus](/api-reference/ticketing/ticket-management/job_statuses/) for creation of the specified resources.\n\n#### Allowed for\n\n* Admins"
       }
     },
-    "com.zendesk.api#RetrieveResourceCollectionRequest": {
+    "com.zendesk.api#GetResourceCollectionRequest": {
       "type": "structure",
       "members": {
         "resource_collection_id": {
@@ -31333,10 +31334,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#RetrieveResourceCollection": {
+    "com.zendesk.api#GetResourceCollection": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#RetrieveResourceCollectionRequest"
+        "target": "com.zendesk.api#GetResourceCollectionRequest"
       },
       "output": {
         "target": "com.zendesk.api#ResourceCollectionResponse"
@@ -32007,7 +32008,7 @@
         "smithy.api#documentation": "Create Attribute\n\nCreates an attribute.\n\n#### Allowed For\n\n* Admins\n* [Agents in custom role with permission to manage skills](https://support.zendesk.com/hc/en-us/articles/4408882153882)"
       }
     },
-    "com.zendesk.api#ShowAttributeRequest": {
+    "com.zendesk.api#GetAttributeRequest": {
       "type": "structure",
       "members": {
         "attribute_id": {
@@ -32023,10 +32024,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowAttribute": {
+    "com.zendesk.api#GetAttribute": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowAttributeRequest"
+        "target": "com.zendesk.api#GetAttributeRequest"
       },
       "output": {
         "target": "com.zendesk.api#SkillBasedRoutingAttributeResponse"
@@ -32181,7 +32182,7 @@
         "smithy.api#documentation": "Create Attribute Value\n\nCreates an attribute value.\n\n#### Allowed For\n\n* Admins\n* [Agents in custom role with permission to manage skills](https://support.zendesk.com/hc/en-us/articles/4408882153882)"
       }
     },
-    "com.zendesk.api#ShowAttributeValueRequest": {
+    "com.zendesk.api#GetAttributeValueRequest": {
       "type": "structure",
       "members": {
         "attribute_id": {
@@ -32205,10 +32206,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowAttributeValue": {
+    "com.zendesk.api#GetAttributeValue": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowAttributeValueRequest"
+        "target": "com.zendesk.api#GetAttributeValueRequest"
       },
       "output": {
         "target": "com.zendesk.api#SkillBasedRoutingAttributeValueResponse"
@@ -32684,7 +32685,7 @@
         "smithy.api#documentation": "List Satisfaction Ratings\n\n#### Allowed For\n* Admins\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\n#### Filters\n\n\nIf you specify an unqualified score such as `good`, the results include all the records with and without comments.\n\nExamples:\n\n* `/api/v2/satisfaction_ratings?score=bad`\n* `/api/v2/satisfaction_ratings?score=bad&start_time=1498151194`\n* `/api/v2/satisfaction_ratings?start_time=1340384793&end_time=1371920793`"
       }
     },
-    "com.zendesk.api#ShowSatisfactionRatingRequest": {
+    "com.zendesk.api#GetSatisfactionRatingRequest": {
       "type": "structure",
       "members": {
         "satisfaction_rating_id": {
@@ -32716,10 +32717,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowSatisfactionRating": {
+    "com.zendesk.api#GetSatisfactionRating": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSatisfactionRatingRequest"
+        "target": "com.zendesk.api#GetSatisfactionRatingRequest"
       },
       "output": {
         "target": "com.zendesk.api#SatisfactionRatingResponse"
@@ -32859,7 +32860,7 @@
         "smithy.api#documentation": "List Reasons for Satisfaction Rating\n\nList all reasons for an account\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowSatisfactionRatingsRequest": {
+    "com.zendesk.api#GetSatisfactionRatingsRequest": {
       "type": "structure",
       "members": {
         "satisfaction_reason_id": {
@@ -32891,10 +32892,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowSatisfactionRatings": {
+    "com.zendesk.api#GetSatisfactionRatings": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSatisfactionRatingsRequest"
+        "target": "com.zendesk.api#GetSatisfactionRatingsRequest"
       },
       "output": {
         "target": "com.zendesk.api#SatisfactionReasonResponse"
@@ -33647,7 +33648,7 @@
         "smithy.api#documentation": "Export Search Results\n\nExports a set of results. See [Query syntax](#query-syntax) for the syntax of the `query` parameter.\n\nUse this endpoint for search queries that will return more than 1000 results. The result set is ordered only by the `created_at` attribute.\n\nThe search only returns results of a single object type. The following object types are supported: ticket, organization, user, or group.\n\nYou must specify the type in the `filter[type]` parameter. Searches with type in the query string will result in an error.\n\n#### Allowed For\n\n- Agents\n\n#### Pagination\n\n- Cursor pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 1000 records per page. The number of results shown in a page is determined by the `page[size]` parameter.\n\n**Note**: You may experience a speed reduction or a timeout if you request 1000 results per page and you have many archived tickets in the results. Try reducing the number of results per page. We recommend 100 results per page.\n\nThe cursor specified by the `after_cursor` property in a response expires after one hour.\n\nFor more information on cursor-based pagination, see the following articles:\n\n- [Comparing cursor pagination and offset pagination](/documentation/developer-tools/pagination/comparing-cursor-pagination-and-offset-pagination)\n- [Paginating through lists using cursor pagination](/documentation/developer-tools/pagination/paginating-through-lists-using-cursor-pagination)\n\n#### Export Search Results Limits\n\nThis API endpoint is rate-limited to 100 requests per minute per account. The limit also counts towards the global API rate limit.\n\n#### Response Format\n\n\nThe response is similar to the response of `GET /api/v2/search?`, with a few changes:\n\n* `links` - Has the following nested properties: `prev` and `next`. These replace the `next_page` and `prev_page` links. The `prev` property is always null because backward pagination is not supported. The `next` property may include an auto-generated link to the next page of results.\n* `meta` - Has the following nested properties: `has_more` and `after_cursor`. The `has_more` property indicates whether the next page has more results. The `after_cursor` property is the cursor used to paginate to the next page. It expires after one hour.\n\nThere's no `count` property."
       }
     },
-    "com.zendesk.api#ShowSecuritySettingsRequest": {
+    "com.zendesk.api#GetSecuritySettingsRequest": {
       "type": "structure",
       "members": {
         "brand_id": {
@@ -34059,10 +34060,10 @@
         "smithy.api#documentation": "Describes IP addresses restrictions. See [IP Restrictions](#ip-restrictions)"
       }
     },
-    "com.zendesk.api#ShowSecuritySettings": {
+    "com.zendesk.api#GetSecuritySettings": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSecuritySettingsRequest"
+        "target": "com.zendesk.api#GetSecuritySettingsRequest"
       },
       "output": {
         "target": "com.zendesk.api#SecuritySettingsResponse"
@@ -34316,7 +34317,7 @@
         "smithy.api#documentation": "Create Sharing Agreement\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowSharingAgreementRequest": {
+    "com.zendesk.api#GetSharingAgreementRequest": {
       "type": "structure",
       "members": {
         "sharing_agreement_id": {
@@ -34332,10 +34333,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowSharingAgreement": {
+    "com.zendesk.api#GetSharingAgreement": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSharingAgreementRequest"
+        "target": "com.zendesk.api#GetSharingAgreementRequest"
       },
       "output": {
         "target": "com.zendesk.api#SharingAgreementResponse"
@@ -34847,7 +34848,7 @@
         "smithy.api#documentation": "Create SLA Policy\n\n#### Availability\n\n* Accounts on the Support Professional or Suite Growth plan or above\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowSLAPolicyRequest": {
+    "com.zendesk.api#GetSLAPolicyRequest": {
       "type": "structure",
       "members": {
         "sla_policy_id": {
@@ -34863,10 +34864,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowSLAPolicy": {
+    "com.zendesk.api#GetSLAPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSLAPolicyRequest"
+        "target": "com.zendesk.api#GetSLAPolicyRequest"
       },
       "output": {
         "target": "com.zendesk.api#SLAPolicyResponse"
@@ -35141,7 +35142,7 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#RetrieveSLAPolicyFilterDefinitionItems": {
+    "com.zendesk.api#GetSLAPolicyFilterDefinitionItems": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -35468,7 +35469,7 @@
         "smithy.api#documentation": "List Suspended Tickets\n\n#### Allowed For\n\n* Admins and [agents in custom roles with permission](https://support.zendesk.com/hc/en-us/articles/4408882153882#topic_cxn_hig_bd) to manage suspended tickets on Enterprise plans\n* Unrestricted agents on all other plans\n\n#### Sorting\n\nYou can sort the tickets with the `sort_by` and `sort_order` query string parameters.\n\n#### Pagination\n\n* Cursor pagination\n\nSee [Pagination](/api-reference/introduction/pagination/)."
       }
     },
-    "com.zendesk.api#ShowSuspendedTicketsRequest": {
+    "com.zendesk.api#GetSuspendedTicketsRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -35484,10 +35485,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowSuspendedTickets": {
+    "com.zendesk.api#GetSuspendedTickets": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSuspendedTicketsRequest"
+        "target": "com.zendesk.api#GetSuspendedTicketsRequest"
       },
       "output": {
         "target": "com.zendesk.api#SuspendedTicketsResponse"
@@ -36090,7 +36091,7 @@
         "smithy.api#documentation": "List Target Failures\n\nReturns the 25 most recent target failures, per target.\n\n#### Stability\n\n* Development\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowTargetFailureRequest": {
+    "com.zendesk.api#GetTargetFailureRequest": {
       "type": "structure",
       "members": {
         "target_failure_id": {
@@ -36115,10 +36116,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowTargetFailure": {
+    "com.zendesk.api#GetTargetFailure": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTargetFailureRequest"
+        "target": "com.zendesk.api#GetTargetFailureRequest"
       },
       "output": {
         "target": "com.zendesk.api#TargetFailureResponse"
@@ -36360,7 +36361,7 @@
         "smithy.api#documentation": "Create Target\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowTargetRequest": {
+    "com.zendesk.api#GetTargetRequest": {
       "type": "structure",
       "members": {
         "target_id": {
@@ -36376,10 +36377,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTarget": {
+    "com.zendesk.api#GetTarget": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTargetRequest"
+        "target": "com.zendesk.api#GetTargetRequest"
       },
       "output": {
         "target": "com.zendesk.api#TargetResponse"
@@ -36787,7 +36788,7 @@
         "smithy.api#documentation": "Create Task List Template\n\nCreates a task list template.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowTaskListTemplateRequest": {
+    "com.zendesk.api#GetTaskListTemplateRequest": {
       "type": "structure",
       "members": {
         "task_list_template_id": {
@@ -36803,10 +36804,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTaskListTemplate": {
+    "com.zendesk.api#GetTaskListTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTaskListTemplateRequest"
+        "target": "com.zendesk.api#GetTaskListTemplateRequest"
       },
       "output": {
         "target": "com.zendesk.api#TaskListTemplateResponse"
@@ -37110,7 +37111,7 @@
         "smithy.api#documentation": "Get Tasks by Task List Template Id\n\nReturns the tasks for the specified task list template.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowTaskListInstanceRequest": {
+    "com.zendesk.api#GetTaskListInstanceRequest": {
       "type": "structure",
       "members": {
         "task_list_id": {
@@ -37195,10 +37196,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowTaskListInstance": {
+    "com.zendesk.api#GetTaskListInstance": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTaskListInstanceRequest"
+        "target": "com.zendesk.api#GetTaskListInstanceRequest"
       },
       "output": {
         "target": "com.zendesk.api#TaskListInstanceResponse"
@@ -37449,7 +37450,7 @@
         "smithy.api#documentation": "Create Custom Task Item\n\nAdds a task item to the specified custom task list. The task list must be a custom task list (not created from a template). Creating a task item increments `task_count` on the parent task list.\n\n`name` is required. `description` is optional.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowTaskItemRequest": {
+    "com.zendesk.api#GetTaskItemRequest": {
       "type": "structure",
       "members": {
         "task_list_id": {
@@ -37473,10 +37474,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTaskItem": {
+    "com.zendesk.api#GetTaskItem": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTaskItemRequest"
+        "target": "com.zendesk.api#GetTaskItemRequest"
       },
       "output": {
         "target": "com.zendesk.api#TaskItemInstanceResponse"
@@ -38784,7 +38785,7 @@
         "smithy.api#documentation": "Create Ticket Field\n\nCreates any of the following custom field types:\n\n\n**Note**: Tags can't be re-used across custom ticket fields. For example, if you configure a tag for a checkbox field, you can't use that tag value for a dropdown (tagger) field option. The use of tags isn't validated and can prevent editing in the future.\n\nSee [About custom field types](https://support.zendesk.com/hc/en-us/articles/4408838961562) in the Zendesk Help Center.\n\n#### Allowed For\n\n* Admins\n\n#### Field limits\n\nWe recommend the following best practices for ticket fields limits. Creating more than these amounts can affect performance.\n\n* 400 ticket fields per account if your account doesn't have ticket forms\n* 400 ticket fields per ticket form if your account has ticket forms\n\nThe following field types have their own limits, enforced on creation:\n\n* Two `multi_lookup` fields per account. See [Creating multi-lookup relationship fields](/api-reference/ticketing/lookup_relationships/lookup_relationships/#creating-multi-lookup-relationship-fields)"
       }
     },
-    "com.zendesk.api#ShowTicketfieldRequest": {
+    "com.zendesk.api#GetTicketfieldRequest": {
       "type": "structure",
       "members": {
         "ticket_field_id": {
@@ -38807,10 +38808,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTicketfield": {
+    "com.zendesk.api#GetTicketfield": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketfieldRequest"
+        "target": "com.zendesk.api#GetTicketfieldRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketFieldResponse"
@@ -39232,7 +39233,7 @@
         "smithy.api#documentation": "Create or Update Ticket Field Option\n\nCreates or updates an option for the given drop-down ticket field.\n\nTo update an option, include the id of the option in the `custom_field_option` object. Example:\n\n`{\"custom_field_option\": {\"id\": 10002, \"name\": \"Pineapples\", ... }`\n\nIf an option exists for the given ID, the option will be updated. Otherwise, a new option will be created.\n\n#### Response\n\nReturns one of the following status codes:\n\n- 200 with `Location: /api/v2/ticket_fields/{ticket_field_id}/options` if the ticket field option already exists in the database\n- 201 with `Location: /api/v2/ticket_fields/{ticket_field_id}/options` if the ticket field option is new\n\n#### Allowed For\n\n* Admins\n\n#### Rate Limit\nYou can make 100 requests every 1 minute using this endpoint.\nThe rate limiting mechanism behaves as described in\n[Monitoring your request activity](/api-reference/ticketing/account-configuration/usage_limits/#monitoring-your-request-activity) in the API introduction.\n\n#### Field Option Limits\n\n* 2000 options per ticket field"
       }
     },
-    "com.zendesk.api#ShowTicketFieldOptionRequest": {
+    "com.zendesk.api#GetTicketFieldOptionRequest": {
       "type": "structure",
       "members": {
         "ticket_field_id": {
@@ -39256,10 +39257,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTicketFieldOption": {
+    "com.zendesk.api#GetTicketFieldOption": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketFieldOptionRequest"
+        "target": "com.zendesk.api#GetTicketFieldOptionRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomFieldOptionResponse"
@@ -39384,7 +39385,7 @@
         "smithy.api#documentation": "Reorder Ticket Fields\n\n#### Allowed For\n* Admins\n\n#### Request Parameters\n\nYou can pass in the following parameter in the payload:"
       }
     },
-    "com.zendesk.api#ShowManyTicketFieldsRequest": {
+    "com.zendesk.api#GetManyTicketFieldsRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -39459,10 +39460,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowManyTicketFields": {
+    "com.zendesk.api#GetManyTicketFields": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyTicketFieldsRequest"
+        "target": "com.zendesk.api#GetManyTicketFieldsRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketFieldsShowManyResponse"
@@ -39533,7 +39534,7 @@
         "smithy.api#documentation": "List Ticket Form Statuses\n\nFetches all of the ticket form statuses for the account.\n\nSupports filtering by ticket form ID and other criteria using query parameters.\n\n#### Allowed For\n\n* Admins\n* Agents"
       }
     },
-    "com.zendesk.api#ShowManyTicketFormStatusesRequest": {
+    "com.zendesk.api#GetManyTicketFormStatusesRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -39549,10 +39550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyTicketFormStatuses": {
+    "com.zendesk.api#GetManyTicketFormStatuses": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyTicketFormStatusesRequest"
+        "target": "com.zendesk.api#GetManyTicketFormStatusesRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketFormStatusesResponse"
@@ -39943,7 +39944,7 @@
         "smithy.api#documentation": "Create Ticket Form\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowTicketFormRequest": {
+    "com.zendesk.api#GetTicketFormRequest": {
       "type": "structure",
       "members": {
         "ticket_form_id": {
@@ -39959,10 +39960,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTicketForm": {
+    "com.zendesk.api#GetTicketForm": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketFormRequest"
+        "target": "com.zendesk.api#GetTicketFormRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketFormResponse"
@@ -40390,7 +40391,7 @@
         "smithy.api#documentation": "Reorder Ticket Forms\n\n#### Allowed For\n* Admins\n\n#### Request Parameters\n\nYou can pass in the following parameter in the payload:"
       }
     },
-    "com.zendesk.api#ShowManyTicketFormsRequest": {
+    "com.zendesk.api#GetManyTicketFormsRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -40448,10 +40449,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyTicketForms": {
+    "com.zendesk.api#GetManyTicketForms": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyTicketFormsRequest"
+        "target": "com.zendesk.api#GetManyTicketFormsRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketFormsResponse"
@@ -40712,7 +40713,7 @@
         "smithy.api#documentation": "List Ticket Metrics\n\nReturns a list of tickets with their metrics.\n\nTickets are ordered chronologically by created date, from newest to oldest.\nThe last ticket listed may not be the absolute oldest ticket in your account\ndue to ticket archiving.\n\nArchived tickets are not included in the response. See\n[About archived tickets](https://support.zendesk.com/hc/en-us/articles/4408887617050) in\nZendesk help.\n\n#### Pagination\n\n- Cursor pagination (recommended)\n- Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowTicketMetricsRequest": {
+    "com.zendesk.api#GetTicketMetricsRequest": {
       "type": "structure",
       "members": {
         "ticket_metric_id": {
@@ -40744,10 +40745,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowTicketMetrics": {
+    "com.zendesk.api#GetTicketMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketMetricsRequest"
+        "target": "com.zendesk.api#GetTicketMetricsRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketMetricsByTicketMetricIdResponse"
@@ -42173,7 +42174,7 @@
         "smithy.api#documentation": "Create Ticket"
       }
     },
-    "com.zendesk.api#ShowTicketRequest": {
+    "com.zendesk.api#GetTicketRequest": {
       "type": "structure",
       "members": {
         "ticket_id": {
@@ -42210,10 +42211,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTicket": {
+    "com.zendesk.api#GetTicket": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketRequest"
+        "target": "com.zendesk.api#GetTicketRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketResponseOutput"
@@ -42575,7 +42576,7 @@
         }
       }
     },
-    "com.zendesk.api#ShowTicketAuditRequest": {
+    "com.zendesk.api#GetTicketAuditRequest": {
       "type": "structure",
       "members": {
         "ticket_id": {
@@ -42608,10 +42609,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowTicketAudit": {
+    "com.zendesk.api#GetTicketAudit": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketAuditRequest"
+        "target": "com.zendesk.api#GetTicketAuditRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketAuditResponse"
@@ -43546,7 +43547,7 @@
         "smithy.api#documentation": "List Ticket Incidents\n\n#### Allowed For\n\n* Agents\n\n#### Pagination\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/)."
       }
     },
-    "com.zendesk.api#ShowTicketAfterChangesRequest": {
+    "com.zendesk.api#GetTicketAfterChangesRequest": {
       "type": "structure",
       "members": {
         "ticket_id": {
@@ -43577,10 +43578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTicketAfterChanges": {
+    "com.zendesk.api#GetTicketAfterChanges": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketAfterChangesRequest"
+        "target": "com.zendesk.api#GetTicketAfterChangesRequest"
       },
       "output": {
         "target": "com.zendesk.api#MacroApplyTicketResponse"
@@ -43715,7 +43716,7 @@
         "smithy.api#documentation": "Merge Tickets into Target Ticket\n\nMerges one or more tickets into the ticket with the specified id.\n\nSee [Merging tickets](https://support.zendesk.com/hc/en-us/articles/4408882445594)\nin the Support Help Center for ticket merging rules.\n\nAny attachment to the source ticket is copied to the target ticket.\n\nThis endpoint returns a `job_status` [JSON object](/api-reference/ticketing/ticket-management/job_statuses/#json-format) and queues a background job to do the work. Use the [Show Job Status](/api-reference/ticketing/ticket-management/job_statuses/#show-job-status) endpoint to check for the job's completion. Only a certain number of jobs can be queued or running at the same time. See [Job limit](/api-reference/introduction/rate-limits/#job-limit) for more information.\n\n#### Allowed For\n\n* Agents\n\nAgents in the Enterprise account must have merge permissions.\nSee [Creating custom roles and assigning agents](https://support.zendesk.com/hc/en-us/articles/4408882153882) in Zendesk help.\n\n#### Available parameters\n\nThe request takes a data object with the following properties:\n\n\n`target_comment` and `source_comment` can be used to provide a reason for the merge for recordkeeping purposes. If the source ticket has attachments, they are included in `target_comment`.\n\nComments are private and can't be modified in the following cases:\n\n  * Any of the sources or target tickets are private\n  * Any of the sources or target tickets were created through X (formerly Twitter), Facebook or the Channel framework\n\nIn any other case, comments default to private but can be modified with the comment privacy parameters."
       }
     },
-    "com.zendesk.api#ShowTicketMetricsByTicketRequest": {
+    "com.zendesk.api#GetTicketMetricsByTicketRequest": {
       "type": "structure",
       "members": {
         "ticket_id": {
@@ -43731,10 +43732,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTicketMetricsByTicket": {
+    "com.zendesk.api#GetTicketMetricsByTicket": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketMetricsByTicketRequest"
+        "target": "com.zendesk.api#GetTicketMetricsByTicketRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketMetricsByTicketMetricIdResponse"
@@ -44056,7 +44057,7 @@
         "smithy.api#documentation": "Remove Tags\n\nYou can also delete tags from multiple tickets with the\n[Update Many Tickets](/api-reference/ticketing/tickets/tickets/#update-many-tickets) endpoint.\n\nThis endpoint supports safe updates. See [Safe Update](/api-reference/ticketing/ticket-management/tags/#safe-update).\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowTaskListsForTicketRequest": {
+    "com.zendesk.api#GetTaskListsForTicketRequest": {
       "type": "structure",
       "members": {
         "ticket_id": {
@@ -44164,10 +44165,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowTaskListsForTicket": {
+    "com.zendesk.api#GetTaskListsForTicket": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTaskListsForTicketRequest"
+        "target": "com.zendesk.api#GetTaskListsForTicketRequest"
       },
       "output": {
         "target": "com.zendesk.api#TaskListByTicketIdResponse"
@@ -44387,7 +44388,7 @@
         "smithy.api#documentation": "Bulk Mark Tickets as Spam\n\nAccepts a comma-separated list of up to 100 ticket ids.\n\nThis endpoint returns a `job_status` [JSON object](/api-reference/ticketing/ticket-management/job_statuses/#json-format) and queues a background job to do the work. Use the [Show Job Status](/api-reference/ticketing/ticket-management/job_statuses/#show-job-status) endpoint to check for the job's completion. Only a certain number of jobs can be queued or running at the same time. See [Job limit](/api-reference/introduction/rate-limits/#job-limit) for more information.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowTicketByMessagingConversationIdRequest": {
+    "com.zendesk.api#GetTicketByMessagingConversationIdRequest": {
       "type": "structure",
       "members": {
         "conversation_id": {
@@ -44403,10 +44404,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTicketByMessagingConversationId": {
+    "com.zendesk.api#GetTicketByMessagingConversationId": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTicketByMessagingConversationIdRequest"
+        "target": "com.zendesk.api#GetTicketByMessagingConversationIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#TicketResponseOutput"
@@ -47189,7 +47190,7 @@
         "smithy.api#documentation": "Create Ticket Trigger Category\n\nCreates a ticket trigger category."
       }
     },
-    "com.zendesk.api#ShowTriggerCategoryByIdRequest": {
+    "com.zendesk.api#GetTriggerCategoryByIdRequest": {
       "type": "structure",
       "members": {
         "trigger_category_id": {
@@ -47205,10 +47206,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowTriggerCategoryById": {
+    "com.zendesk.api#GetTriggerCategoryById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowTriggerCategoryByIdRequest"
+        "target": "com.zendesk.api#GetTriggerCategoryByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#TriggerCategoryResponse"
@@ -48805,7 +48806,7 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowTriggerLimits": {
+    "com.zendesk.api#GetTriggerLimits": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -49422,7 +49423,7 @@
         "smithy.api#documentation": "Create User Field\n\nCreates any of the following custom field types:\n\n* text (default when no \"type\" is specified)\n* textarea\n* checkbox\n* date\n* integer\n* decimal\n* regexp\n* dropdown\n* lookup\n* multiselect\n\nSee [About custom field types](https://support.zendesk.com/hc/en-us/articles/4408838961562) in Zendesk help.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowUserFieldRequest": {
+    "com.zendesk.api#GetUserFieldRequest": {
       "type": "structure",
       "members": {
         "user_field_id": {
@@ -49438,10 +49439,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowUserField": {
+    "com.zendesk.api#GetUserField": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserFieldRequest"
+        "target": "com.zendesk.api#GetUserFieldRequest"
       },
       "output": {
         "target": "com.zendesk.api#UserFieldResponse"
@@ -49587,7 +49588,7 @@
         "smithy.api#documentation": "Create or Update a User Field Option\n\nCreates a new option or updates an existing option for the given drop-down user field.\n\nTo update an option, include the id of the option in the `custom_field_option` object. Example: `{\"custom_field_option\": {\"id\": 10002, \"name\": \"Pineapples\", ... }`. If an option exists for the given ID, the option will be updated. Otherwise, a new option will be created.\n\n#### Response\n\nReturns one of the following status codes:\n\n- 200 with `Location: /api/v2/user_fields/{user_field_id}/options` if the user field option already exists in the database\n- 201 with `Location: /api/v2/user_fields/{user_field_id}/options` if the user field option is new\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowUserFieldOptionRequest": {
+    "com.zendesk.api#GetUserFieldOptionRequest": {
       "type": "structure",
       "members": {
         "user_field_id": {
@@ -49611,10 +49612,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowUserFieldOption": {
+    "com.zendesk.api#GetUserFieldOption": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserFieldOptionRequest"
+        "target": "com.zendesk.api#GetUserFieldOptionRequest"
       },
       "output": {
         "target": "com.zendesk.api#CustomFieldOptionResponse"
@@ -49701,7 +49702,7 @@
         "smithy.api#documentation": "Reorder User Field\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowManyUserFieldsRequest": {
+    "com.zendesk.api#GetManyUserFieldsRequest": {
       "type": "structure",
       "members": {
         "keys": {
@@ -49716,10 +49717,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyUserFields": {
+    "com.zendesk.api#GetManyUserFields": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyUserFieldsRequest"
+        "target": "com.zendesk.api#GetManyUserFieldsRequest"
       },
       "output": {
         "target": "com.zendesk.api#UserFieldsResponse"
@@ -50771,7 +50772,7 @@
         "smithy.api#documentation": "Create User"
       }
     },
-    "com.zendesk.api#ShowUserRequest": {
+    "com.zendesk.api#GetUserRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -50794,10 +50795,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowUser": {
+    "com.zendesk.api#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserRequest"
+        "target": "com.zendesk.api#GetUserRequest"
       },
       "output": {
         "target": "com.zendesk.api#UserResponse"
@@ -51198,7 +51199,7 @@
         "smithy.api#documentation": "List Brand Agent Memberships By User\n\nReturns a list of all brand agent memberships for a specific user.\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n#### Allowed For:\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowUserBrandAgentByIdRequest": {
+    "com.zendesk.api#GetUserBrandAgentByIdRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -51222,10 +51223,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowUserBrandAgentById": {
+    "com.zendesk.api#GetUserBrandAgentById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserBrandAgentByIdRequest"
+        "target": "com.zendesk.api#GetUserBrandAgentByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#BrandAgentResponse"
@@ -51239,7 +51240,7 @@
         "smithy.api#documentation": "Show Brand Agent Membership By User\n\nReturns a specific brand agent membership for a user.\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowUserComplianceDeletionStatusesRequest": {
+    "com.zendesk.api#GetUserComplianceDeletionStatusesRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -51321,10 +51322,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowUserComplianceDeletionStatuses": {
+    "com.zendesk.api#GetUserComplianceDeletionStatuses": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserComplianceDeletionStatusesRequest"
+        "target": "com.zendesk.api#GetUserComplianceDeletionStatusesRequest"
       },
       "output": {
         "target": "com.zendesk.api#ComplianceDeletionStatusesResponse"
@@ -51579,7 +51580,7 @@
         "smithy.api#documentation": "Create Group Membership for User\n\nAssigns an agent to a given group.\n\n#### Allowed For\n\n* Admins\n* Agents assigned to a custom role with permissions to manage group memberships (Enterprise only)"
       }
     },
-    "com.zendesk.api#ShowUserGroupMembershipByIdRequest": {
+    "com.zendesk.api#GetUserGroupMembershipByIdRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -51603,10 +51604,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowUserGroupMembershipById": {
+    "com.zendesk.api#GetUserGroupMembershipById": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserGroupMembershipByIdRequest"
+        "target": "com.zendesk.api#GetUserGroupMembershipByIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#GroupMembershipResponse"
@@ -52053,7 +52054,7 @@
         "smithy.api#documentation": "Create Identity\n\nAdds an identity to a user's profile. An agent can add an identity to any user profile.\n\nSupported identity types:\n\n\nTo create an identity without sending out a verification email, include a `\"skip_verify_email\": true` property. The `\"skip_verify_email\": true` property does not apply when updating your own agent profile. A welcome or verification email will be sent regardless of this setting.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowUserIdentityRequest": {
+    "com.zendesk.api#GetUserIdentityRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -52077,10 +52078,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowUserIdentity": {
+    "com.zendesk.api#GetUserIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserIdentityRequest"
+        "target": "com.zendesk.api#GetUserIdentityRequest"
       },
       "output": {
         "target": "com.zendesk.api#UserIdentityResponse"
@@ -52433,7 +52434,7 @@
         "smithy.api#documentation": "Create Organization Membership for User\n\nAssigns a user to a given organization. Returns an error with status 422 if the user is already assigned to the organization.\n\n#### Allowed For\n\n* Admins\n* Agents when creating a new organization membership for an end user"
       }
     },
-    "com.zendesk.api#ShowOrganizationMembershipByUserIdRequest": {
+    "com.zendesk.api#GetOrganizationMembershipByUserIdRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -52457,10 +52458,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowOrganizationMembershipByUserId": {
+    "com.zendesk.api#GetOrganizationMembershipByUserId": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowOrganizationMembershipByUserIdRequest"
+        "target": "com.zendesk.api#GetOrganizationMembershipByUserIdRequest"
       },
       "output": {
         "target": "com.zendesk.api#OrganizationMembershipResponse"
@@ -53019,7 +53020,7 @@
         "smithy.api#documentation": "List password requirements\n\n#### Allowed For\n\n* Agents\n* End Users"
       }
     },
-    "com.zendesk.api#ShowUserRelatedRequest": {
+    "com.zendesk.api#GetUserRelatedRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -53074,10 +53075,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowUserRelated": {
+    "com.zendesk.api#GetUserRelated": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowUserRelatedRequest"
+        "target": "com.zendesk.api#GetUserRelatedRequest"
       },
       "output": {
         "target": "com.zendesk.api#UserRelatedResponse"
@@ -53204,7 +53205,7 @@
         "smithy.api#documentation": "Bulk Delete Sessions\n\nDeletes all the sessions for a user.\n\n#### Allowed For\n\n* Admins, Agents, End users"
       }
     },
-    "com.zendesk.api#ShowSessionRequest": {
+    "com.zendesk.api#GetSessionRequest": {
       "type": "structure",
       "members": {
         "user_id": {
@@ -53244,10 +53245,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowSession": {
+    "com.zendesk.api#GetSession": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowSessionRequest"
+        "target": "com.zendesk.api#GetSessionRequest"
       },
       "output": {
         "target": "com.zendesk.api#SessionResponse"
@@ -54204,7 +54205,7 @@
         "smithy.api#documentation": "Autocomplete Users\n\nReturns an array of users whose name starts with the value specified in the `name` parameter.\nIt only returns users with no foreign identities.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#AutocompleteUsersPostRequestBrandIdCase0": {
+    "com.zendesk.api#PostAutocompleteUserRequestBrandIdCase0": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -54216,11 +54217,11 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#AutocompleteUsersPostRequestBrandId": {
+    "com.zendesk.api#PostAutocompleteUserRequestBrandId": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.zendesk.api#AutocompleteUsersPostRequestBrandIdCase0"
+          "target": "com.zendesk.api#PostAutocompleteUserRequestBrandIdCase0"
         },
         "Case1": {
           "target": "smithy.api#Integer"
@@ -54230,7 +54231,7 @@
         "smithy.api#documentation": "When brand separation is enabled, scopes the autocomplete results to users\nbelonging to the specified brand. Only applicable when the account has brand separation enabled.\n\nAccepted values:\n\n* \"all\" — search all users across all brands (no brand filtering applied).\n* 0 — restrict the autocomplete results to account-scoped (brand-less) users only.\n* A numeric brand id — if the brand has user separation enabled, autocomplete\n  returns only end users belonging to that brand. Agents and admins are not included\n  in the results when filtering by a specific brand. If the brand does not have user\n  separation enabled, the request falls back to account scope (0).\n"
       }
     },
-    "com.zendesk.api#AutocompleteUsersPostRequestFilterCase0": {
+    "com.zendesk.api#PostAutocompleteUserRequestFilterCase0": {
       "type": "enum",
       "members": {
         "ASSIGNABLE": {
@@ -54248,7 +54249,7 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#AutocompleteUsersPostRequestFilterCase1": {
+    "com.zendesk.api#PostAutocompleteUserRequestFilterCase1": {
       "type": "structure",
       "members": {
         "dynamic_values": {
@@ -54257,21 +54258,21 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#AutocompleteUsersPostRequestFilter": {
+    "com.zendesk.api#PostAutocompleteUserRequestFilter": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.zendesk.api#AutocompleteUsersPostRequestFilterCase0"
+          "target": "com.zendesk.api#PostAutocompleteUserRequestFilterCase0"
         },
         "Case1": {
-          "target": "com.zendesk.api#AutocompleteUsersPostRequestFilterCase1"
+          "target": "com.zendesk.api#PostAutocompleteUserRequestFilterCase1"
         }
       },
       "traits": {
         "smithy.api#documentation": "Filter to apply (assignable, requester, or dynamic_values)"
       }
     },
-    "com.zendesk.api#AutocompleteUsersPostRequest": {
+    "com.zendesk.api#PostAutocompleteUserRequest": {
       "type": "structure",
       "members": {
         "include": {
@@ -54296,7 +54297,7 @@
           }
         },
         "brand_id": {
-          "target": "com.zendesk.api#AutocompleteUsersPostRequestBrandId",
+          "target": "com.zendesk.api#PostAutocompleteUserRequestBrandId",
           "traits": {
             "smithy.api#documentation": "When brand separation is enabled, scopes the autocomplete results to users\nbelonging to the specified brand. Only applicable when the account has brand separation enabled.\n\nAccepted values:\n\n* \"all\" — search all users across all brands (no brand filtering applied).\n* 0 — restrict the autocomplete results to account-scoped (brand-less) users only.\n* A numeric brand id — if the brand has user separation enabled, autocomplete\n  returns only end users belonging to that brand. Agents and admins are not included\n  in the results when filtering by a specific brand. If the brand does not have user\n  separation enabled, the request falls back to account scope (0).\n"
           }
@@ -54330,10 +54331,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#AutocompleteUsersPost": {
+    "com.zendesk.api#PostAutocompleteUser": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#AutocompleteUsersPostRequest"
+        "target": "com.zendesk.api#PostAutocompleteUserRequest"
       },
       "output": {
         "target": "com.zendesk.api#UsersResponse"
@@ -54645,7 +54646,7 @@
         "smithy.api#documentation": "Logout many users\n\nAccepts a comma-separated list of up to 100 user ids.\n\n#### Allowed For:\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowCurrentUserRequest": {
+    "com.zendesk.api#GetCurrentUserRequest": {
       "type": "structure",
       "members": {
         "include": {
@@ -55068,10 +55069,10 @@
       },
       "traits": {}
     },
-    "com.zendesk.api#ShowCurrentUser": {
+    "com.zendesk.api#GetCurrentUser": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowCurrentUserRequest"
+        "target": "com.zendesk.api#GetCurrentUserRequest"
       },
       "output": {
         "target": "com.zendesk.api#CurrentUserResponse"
@@ -55119,7 +55120,7 @@
         "smithy.api#documentation": "List Current User's Clients\n\nReturns the OAuth clients owned by the current user.\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n\nReturns a maximum of 100 records per page.\n\n#### Allowed For\n\n* Admins\n* Agents with the [Manage APIs](https://support.zendesk.com/hc/en-us/articles/4408882153882) permission"
       }
     },
-    "com.zendesk.api#ShowCurrentlyAuthenticatedSession": {
+    "com.zendesk.api#GetCurrentlyAuthenticatedSession": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -55327,7 +55328,7 @@
         "smithy.api#documentation": "User settings"
       }
     },
-    "com.zendesk.api#ShowCurrentUserSettings": {
+    "com.zendesk.api#GetCurrentUserSettings": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -55537,7 +55538,7 @@
         "smithy.api#documentation": "Update Current User Settings\n\nUpdates the settings for the currently authenticated user. This includes UI preferences for onboarding, tooltips, keyboard shortcuts, theme preferences, and other feature toggles.\n\nSettings are grouped into:\n- **Support**: Support UI preferences (onboarding, tooltips, shortcuts, theme)\n- **admin_center**: Admin Center UI preferences (navigation, onboarding)\n- **shared_views_order**: Optional array of view IDs for custom ordering\n- **agent_home_pinned_views**: Optional ordered array of view IDs pinned in the Agent Home sidebar (max 8)\n\nOnly the specified settings will be updated. Other settings will remain unchanged.\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#RequestUserCreateRequest": {
+    "com.zendesk.api#CreateRequestUserRequest": {
       "type": "structure",
       "members": {
         "user": {
@@ -55551,7 +55552,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#RequestUserCreateResponse": {
+    "com.zendesk.api#CreateRequestUserResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -55566,13 +55567,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.zendesk.api#RequestUserCreate": {
+    "com.zendesk.api#CreateRequestUser": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#RequestUserCreateRequest"
+        "target": "com.zendesk.api#CreateRequestUserRequest"
       },
       "output": {
-        "target": "com.zendesk.api#RequestUserCreateResponse"
+        "target": "com.zendesk.api#CreateRequestUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -55674,7 +55675,7 @@
         "smithy.api#documentation": "Search Users\n\nReturns an array of users who meet the search criteria.\n\nReturns up to 100 records per page to a maximum of 10,000 records per query. See [Using offset pagination](/api-reference/introduction/pagination/#using-offset-pagination).\n\n#### Pagination\n\n* Offset pagination only\n\nSee [Using Offset Pagination](/api-reference/introduction/pagination/#using-offset-pagination).\n\n#### Allowed For\n\n* Agents"
       }
     },
-    "com.zendesk.api#ShowManyUsersRequest": {
+    "com.zendesk.api#GetManyUsersRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -55717,10 +55718,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowManyUsers": {
+    "com.zendesk.api#GetManyUsers": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowManyUsersRequest"
+        "target": "com.zendesk.api#GetManyUsersRequest"
       },
       "output": {
         "target": "com.zendesk.api#UsersResponse"
@@ -56185,7 +56186,7 @@
         "smithy.api#documentation": "Create View\n\n#### Allowed For\n\n* Agents\n\n#### JSON Format\n\nThe JSON format consists of one property, a `view` object that lists the values to set when the view is created.\n\n**Note**: The request must include at least one condition in the `all` array that checks one of the following fields: `status`, `type`, `group_id`, `assignee_id`, or `requester_id`.\n\n\nThe `restriction` object has the following properties.\n\n\nIf `type` is \"Group\", the `ids` property is the preferred method of specifying the group id or ids.\n\n#### Example Request Body\n\n```js\n{\n  \"view\": {\n    \"title\": \"Kelly's tickets\",\n    \"raw_title\": \"{{dc.tickets_assigned_to_kelly}}\",\n    \"description\": \"Tickets that are assigned to Kelly\",\n    \"active\": true,\n    \"restriction\": {\n      \"type\": \"User\",\n      \"id\": \"213977756\"\n    },\n    \"all\": [\n      {\n        \"field\": \"status\",\n        \"operator\": \"less_than\",\n        \"value\": \"solved\"\n      },\n      {\n        \"field\": \"group_id\",\n        \"operator\": \"is\",\n        \"value\": \"24000932\"\n      },\n      {\n        \"field\": \"custom_fields_360011872073\",\n        \"operator\": \"is\",\n        \"value\": \"Canada\"\n      },\n      ...\n    ],\n    \"output\": {\n      \"columns\": [\"status\", \"requester\", \"assignee\"],\n      \"group_by\": \"assignee\",\n      \"group_order\": \"desc\",\n      \"sort_by\": \"status\",\n      \"sort_order\": \"desc\"\n    }\n  }\n}\n```\n\n#### View columns\n\nThe `output` request parameter lets you specify what columns to include in the view in the agent interface. Example: `\"output\": {\"columns\": [\"status\", \"description\", \"priority\"]}`. The following table lists possible columns for views in the agent UI and the corresponding values in the `columns` array.\n\nFor custom fields, specify the id of the custom field in the `columns` array.\n\nYou can specify a total of 10 columns to a view.\n\n\n#### View sorting\n\nYou can group and sort items in the view by adding items to the `output` parameter:"
       }
     },
-    "com.zendesk.api#ShowViewRequest": {
+    "com.zendesk.api#GetViewRequest": {
       "type": "structure",
       "members": {
         "view_id": {
@@ -56208,10 +56209,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowView": {
+    "com.zendesk.api#GetView": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowViewRequest"
+        "target": "com.zendesk.api#GetViewRequest"
       },
       "output": {
         "target": "com.zendesk.api#ViewResponse"
@@ -57421,7 +57422,7 @@
         "smithy.api#documentation": "Create Workspace\n\n#### Allowed For\n\n* Admins"
       }
     },
-    "com.zendesk.api#ShowWorkspaceRequest": {
+    "com.zendesk.api#GetWorkspaceRequest": {
       "type": "structure",
       "members": {
         "workspace_id": {
@@ -57437,7 +57438,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.zendesk.api#ShowWorkspaceResponse": {
+    "com.zendesk.api#GetWorkspaceResponse": {
       "type": "structure",
       "members": {
         "workspace": {
@@ -57448,13 +57449,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.zendesk.api#ShowWorkspace": {
+    "com.zendesk.api#GetWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.zendesk.api#ShowWorkspaceRequest"
+        "target": "com.zendesk.api#GetWorkspaceRequest"
       },
       "output": {
-        "target": "com.zendesk.api#ShowWorkspaceResponse"
+        "target": "com.zendesk.api#GetWorkspaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -57790,7 +57791,7 @@
           "target": "com.zendesk.api#UpdateAccountEmailSettings"
         },
         {
-          "target": "com.zendesk.api#ShowAccountSettings"
+          "target": "com.zendesk.api#GetAccountSettings"
         },
         {
           "target": "com.zendesk.api#UpdateAccountSettings"
@@ -57805,7 +57806,7 @@
           "target": "com.zendesk.api#ListActivities"
         },
         {
-          "target": "com.zendesk.api#ShowActivity"
+          "target": "com.zendesk.api#GetActivity"
         },
         {
           "target": "com.zendesk.api#CountActivities"
@@ -57826,7 +57827,7 @@
           "target": "com.zendesk.api#CreateApprovalRequest"
         },
         {
-          "target": "com.zendesk.api#ShowAttachment"
+          "target": "com.zendesk.api#GetAttachment"
         },
         {
           "target": "com.zendesk.api#UpdateAttachment"
@@ -57838,7 +57839,7 @@
           "target": "com.zendesk.api#ListAuditLogs"
         },
         {
-          "target": "com.zendesk.api#ShowAuditLog"
+          "target": "com.zendesk.api#GetAuditLog"
         },
         {
           "target": "com.zendesk.api#ExportAuditLogs"
@@ -57847,7 +57848,7 @@
           "target": "com.zendesk.api#AutocompleteTags"
         },
         {
-          "target": "com.zendesk.api#AutocompleteTagsPost"
+          "target": "com.zendesk.api#PostAutocompleteTag"
         },
         {
           "target": "com.zendesk.api#ListAutomations"
@@ -57856,7 +57857,7 @@
           "target": "com.zendesk.api#CreateAutomation"
         },
         {
-          "target": "com.zendesk.api#ShowAutomation"
+          "target": "com.zendesk.api#GetAutomation"
         },
         {
           "target": "com.zendesk.api#UpdateAutomation"
@@ -57889,10 +57890,10 @@
           "target": "com.zendesk.api#ListBrandAgents"
         },
         {
-          "target": "com.zendesk.api#ShowBrandAgentById"
+          "target": "com.zendesk.api#GetBrandAgentById"
         },
         {
-          "target": "com.zendesk.api#DeleteBrandAgentById"
+          "target": "com.zendesk.api#DeleteBrandAgent"
         },
         {
           "target": "com.zendesk.api#ListBrands"
@@ -57901,7 +57902,7 @@
           "target": "com.zendesk.api#CreateBrand"
         },
         {
-          "target": "com.zendesk.api#ShowBrand"
+          "target": "com.zendesk.api#GetBrand"
         },
         {
           "target": "com.zendesk.api#UpdateBrand"
@@ -57928,7 +57929,7 @@
           "target": "com.zendesk.api#ListMonitoredTwitterHandles"
         },
         {
-          "target": "com.zendesk.api#ShowMonitoredTwitterHandle"
+          "target": "com.zendesk.api#GetMonitoredTwitterHandle"
         },
         {
           "target": "com.zendesk.api#CreateTicketFromTweet"
@@ -57958,7 +57959,7 @@
           "target": "com.zendesk.api#ListCountries"
         },
         {
-          "target": "com.zendesk.api#ShowCountry"
+          "target": "com.zendesk.api#GetCountry"
         },
         {
           "target": "com.zendesk.api#ListCustomObjects"
@@ -57967,7 +57968,7 @@
           "target": "com.zendesk.api#CreateCustomObject"
         },
         {
-          "target": "com.zendesk.api#ShowCustomObject"
+          "target": "com.zendesk.api#GetCustomObject"
         },
         {
           "target": "com.zendesk.api#UpdateCustomObject"
@@ -57982,7 +57983,7 @@
           "target": "com.zendesk.api#CreateAccessRule"
         },
         {
-          "target": "com.zendesk.api#ShowAccessRule"
+          "target": "com.zendesk.api#GetAccessRule"
         },
         {
           "target": "com.zendesk.api#UpdateAccessRule"
@@ -58000,7 +58001,7 @@
           "target": "com.zendesk.api#CreateCustomObjectField"
         },
         {
-          "target": "com.zendesk.api#ShowCustomObjectField"
+          "target": "com.zendesk.api#GetCustomObjectField"
         },
         {
           "target": "com.zendesk.api#UpdateCustomObjectField"
@@ -58021,7 +58022,7 @@
           "target": "com.zendesk.api#ListPermissionPolicies"
         },
         {
-          "target": "com.zendesk.api#ShowPermissionPolicy"
+          "target": "com.zendesk.api#GetPermissionPolicy"
         },
         {
           "target": "com.zendesk.api#UpdatePermissionPolicy"
@@ -58039,7 +58040,7 @@
           "target": "com.zendesk.api#DeleteCustomObjectRecordByExternalIdOrName"
         },
         {
-          "target": "com.zendesk.api#ShowCustomObjectRecord"
+          "target": "com.zendesk.api#GetCustomObjectRecord"
         },
         {
           "target": "com.zendesk.api#UpdateCustomObjectRecord"
@@ -58063,7 +58064,7 @@
           "target": "com.zendesk.api#DownloadCustomObjectRecordAttachment"
         },
         {
-          "target": "com.zendesk.api#AutocompleteCustomObjectRecordSearch"
+          "target": "com.zendesk.api#SearchAutocompleteCustomObjectRecord"
         },
         {
           "target": "com.zendesk.api#CountCustomObjectRecords"
@@ -58117,13 +58118,13 @@
           "target": "com.zendesk.api#CreateCustomRole"
         },
         {
-          "target": "com.zendesk.api#ShowCustomRoleById"
+          "target": "com.zendesk.api#GetCustomRoleById"
         },
         {
           "target": "com.zendesk.api#UpdateCustomRoleById"
         },
         {
-          "target": "com.zendesk.api#DeleteCustomRoleById"
+          "target": "com.zendesk.api#DeleteCustomRole"
         },
         {
           "target": "com.zendesk.api#BulkUpdateDefaultCustomStatus"
@@ -58135,7 +58136,7 @@
           "target": "com.zendesk.api#CreateCustomStatus"
         },
         {
-          "target": "com.zendesk.api#ShowCustomStatus"
+          "target": "com.zendesk.api#GetCustomStatus"
         },
         {
           "target": "com.zendesk.api#UpdateCustomStatus"
@@ -58165,7 +58166,7 @@
           "target": "com.zendesk.api#ListDeletedUsers"
         },
         {
-          "target": "com.zendesk.api#ShowDeletedUser"
+          "target": "com.zendesk.api#GetDeletedUser"
         },
         {
           "target": "com.zendesk.api#PermanentlyDeleteUser"
@@ -58195,7 +58196,7 @@
           "target": "com.zendesk.api#CreateDynamicContent"
         },
         {
-          "target": "com.zendesk.api#ShowDynamicContentItem"
+          "target": "com.zendesk.api#GetDynamicContentItem"
         },
         {
           "target": "com.zendesk.api#UpdateDynamicContentItem"
@@ -58210,7 +58211,7 @@
           "target": "com.zendesk.api#CreateDynamicContentVariant"
         },
         {
-          "target": "com.zendesk.api#ShowDynamicContentVariant"
+          "target": "com.zendesk.api#GetDynamicContentVariant"
         },
         {
           "target": "com.zendesk.api#UpdateDynamicContentVariant"
@@ -58225,16 +58226,16 @@
           "target": "com.zendesk.api#UpdateManyDynamicContentVariants"
         },
         {
-          "target": "com.zendesk.api#ShowManyDynamicContents"
+          "target": "com.zendesk.api#GetManyDynamicContents"
         },
         {
           "target": "com.zendesk.api#ListEmailNotifications"
         },
         {
-          "target": "com.zendesk.api#ShowEmailNotification"
+          "target": "com.zendesk.api#GetEmailNotification"
         },
         {
-          "target": "com.zendesk.api#ShowManyEmailNotifications"
+          "target": "com.zendesk.api#GetManyEmailNotifications"
         },
         {
           "target": "com.zendesk.api#ListEndUserIdentities"
@@ -58243,7 +58244,7 @@
           "target": "com.zendesk.api#CreateEndUserIdentity"
         },
         {
-          "target": "com.zendesk.api#ShowEndUserIdentity"
+          "target": "com.zendesk.api#GetEndUserIdentity"
         },
         {
           "target": "com.zendesk.api#DeleteEndUserIdentity"
@@ -58261,7 +58262,7 @@
           "target": "com.zendesk.api#CreateGroupMembership"
         },
         {
-          "target": "com.zendesk.api#ShowGroupMembershipById"
+          "target": "com.zendesk.api#GetGroupMembershipById"
         },
         {
           "target": "com.zendesk.api#DeleteGroupMembership"
@@ -58282,7 +58283,7 @@
           "target": "com.zendesk.api#CreateGroupSLAPolicy"
         },
         {
-          "target": "com.zendesk.api#ShowGroupSLAPolicy"
+          "target": "com.zendesk.api#GetGroupSLAPolicy"
         },
         {
           "target": "com.zendesk.api#UpdateGroupSLAPolicy"
@@ -58291,7 +58292,7 @@
           "target": "com.zendesk.api#DeleteGroupSLAPolicy"
         },
         {
-          "target": "com.zendesk.api#RetrieveGroupSLAPolicyFilterDefinitionItems"
+          "target": "com.zendesk.api#GetGroupSLAPolicyFilterDefinitionItems"
         },
         {
           "target": "com.zendesk.api#ReorderGroupSLAPolicies"
@@ -58303,7 +58304,7 @@
           "target": "com.zendesk.api#CreateGroup"
         },
         {
-          "target": "com.zendesk.api#ShowGroupById"
+          "target": "com.zendesk.api#GetGroupById"
         },
         {
           "target": "com.zendesk.api#UpdateGroup"
@@ -58336,31 +58337,31 @@
           "target": "com.zendesk.api#CountGroups"
         },
         {
-          "target": "com.zendesk.api#ShowDefaultGroup"
+          "target": "com.zendesk.api#GetDefaultGroup"
         },
         {
-          "target": "com.zendesk.api#TicketImport"
+          "target": "com.zendesk.api#ImportTicket"
         },
         {
           "target": "com.zendesk.api#TicketBulkImport"
         },
         {
-          "target": "com.zendesk.api#IncrementalSampleExport"
+          "target": "com.zendesk.api#ExportIncrementalSample"
         },
         {
           "target": "com.zendesk.api#IncrementalCustomObjectRecordExportCursor"
         },
         {
-          "target": "com.zendesk.api#IncrementalOrganizationExport"
+          "target": "com.zendesk.api#ExportIncrementalOrganization"
         },
         {
-          "target": "com.zendesk.api#IncrementalSkilBasedRoutingAttributeValuesExport"
+          "target": "com.zendesk.api#ExportIncrementalSkilBasedRoutingAttributeValue"
         },
         {
-          "target": "com.zendesk.api#IncrementalSkilBasedRoutingAttributesExport"
+          "target": "com.zendesk.api#ExportIncrementalSkilBasedRoutingAttribute"
         },
         {
-          "target": "com.zendesk.api#IncrementalSkilBasedRoutingInstanceValuesExport"
+          "target": "com.zendesk.api#ExportIncrementalSkilBasedRoutingInstanceValue"
         },
         {
           "target": "com.zendesk.api#IncrementalTicketEvents"
@@ -58387,7 +58388,7 @@
           "target": "com.zendesk.api#CreateItamAssetType"
         },
         {
-          "target": "com.zendesk.api#ShowItamAssetType"
+          "target": "com.zendesk.api#GetItamAssetType"
         },
         {
           "target": "com.zendesk.api#UpdateItamAssetType"
@@ -58402,7 +58403,7 @@
           "target": "com.zendesk.api#CreateItamAssetTypeField"
         },
         {
-          "target": "com.zendesk.api#ShowItamAssetTypeField"
+          "target": "com.zendesk.api#GetItamAssetTypeField"
         },
         {
           "target": "com.zendesk.api#UpdateItamAssetTypeField"
@@ -58417,7 +58418,7 @@
           "target": "com.zendesk.api#CreateItamAsset"
         },
         {
-          "target": "com.zendesk.api#ShowItamAsset"
+          "target": "com.zendesk.api#GetItamAsset"
         },
         {
           "target": "com.zendesk.api#UpdateItamAsset"
@@ -58441,7 +58442,7 @@
           "target": "com.zendesk.api#CreateItamLocation"
         },
         {
-          "target": "com.zendesk.api#ShowItamLocation"
+          "target": "com.zendesk.api#GetItamLocation"
         },
         {
           "target": "com.zendesk.api#UpdateItamLocation"
@@ -58456,7 +58457,7 @@
           "target": "com.zendesk.api#CreateItamStatus"
         },
         {
-          "target": "com.zendesk.api#ShowItamStatus"
+          "target": "com.zendesk.api#GetItamStatus"
         },
         {
           "target": "com.zendesk.api#UpdateItamStatus"
@@ -58468,22 +58469,22 @@
           "target": "com.zendesk.api#ListJobStatuses"
         },
         {
-          "target": "com.zendesk.api#ShowJobStatus"
+          "target": "com.zendesk.api#GetJobStatus"
         },
         {
-          "target": "com.zendesk.api#ShowManyJobStatuses"
+          "target": "com.zendesk.api#GetManyJobStatuses"
         },
         {
           "target": "com.zendesk.api#ListLocales"
         },
         {
-          "target": "com.zendesk.api#ShowLocaleById"
+          "target": "com.zendesk.api#GetLocaleById"
         },
         {
           "target": "com.zendesk.api#ListLocalesForAgent"
         },
         {
-          "target": "com.zendesk.api#ShowCurrentLocale"
+          "target": "com.zendesk.api#GetCurrentLocale"
         },
         {
           "target": "com.zendesk.api#DetectBestLocale"
@@ -58498,7 +58499,7 @@
           "target": "com.zendesk.api#CreateMacro"
         },
         {
-          "target": "com.zendesk.api#ShowMacro"
+          "target": "com.zendesk.api#GetMacro"
         },
         {
           "target": "com.zendesk.api#UpdateMacro"
@@ -58507,7 +58508,7 @@
           "target": "com.zendesk.api#DeleteMacro"
         },
         {
-          "target": "com.zendesk.api#ShowChangesToTicket"
+          "target": "com.zendesk.api#GetChangesToTicket"
         },
         {
           "target": "com.zendesk.api#ListMacroAttachments"
@@ -58525,7 +58526,7 @@
           "target": "com.zendesk.api#CreateMacroAttachment"
         },
         {
-          "target": "com.zendesk.api#ShowMacroAttachment"
+          "target": "com.zendesk.api#GetMacroAttachment"
         },
         {
           "target": "com.zendesk.api#DownloadMacroAttachment"
@@ -58546,7 +58547,7 @@
           "target": "com.zendesk.api#ListMostUsedMacros"
         },
         {
-          "target": "com.zendesk.api#ShowDerivedMacro"
+          "target": "com.zendesk.api#GetDerivedMacro"
         },
         {
           "target": "com.zendesk.api#SearchMacro"
@@ -58561,7 +58562,7 @@
           "target": "com.zendesk.api#CreateOAuthClient"
         },
         {
-          "target": "com.zendesk.api#ShowClient"
+          "target": "com.zendesk.api#GetClient"
         },
         {
           "target": "com.zendesk.api#UpdateClient"
@@ -58576,7 +58577,7 @@
           "target": "com.zendesk.api#ListGlobalOAuthClients"
         },
         {
-          "target": "com.zendesk.api#ShowGlobalClient"
+          "target": "com.zendesk.api#GetGlobalClient"
         },
         {
           "target": "com.zendesk.api#GlobalOAuthClientsTokenSummary"
@@ -58585,13 +58586,13 @@
           "target": "com.zendesk.api#ListOAuthTokens"
         },
         {
-          "target": "com.zendesk.api#ShowToken"
+          "target": "com.zendesk.api#GetToken"
         },
         {
           "target": "com.zendesk.api#RevokeOAuthToken"
         },
         {
-          "target": "com.zendesk.api#ShowCurrentToken"
+          "target": "com.zendesk.api#GetCurrentToken"
         },
         {
           "target": "com.zendesk.api#RevokeCurrentOAuthToken"
@@ -58603,7 +58604,7 @@
           "target": "com.zendesk.api#CreateOrganizationField"
         },
         {
-          "target": "com.zendesk.api#ShowOrganizationField"
+          "target": "com.zendesk.api#GetOrganizationField"
         },
         {
           "target": "com.zendesk.api#UpdateOrganizationField"
@@ -58621,7 +58622,7 @@
           "target": "com.zendesk.api#CreateOrganizationMembership"
         },
         {
-          "target": "com.zendesk.api#ShowOrganizationMembershipById"
+          "target": "com.zendesk.api#GetOrganizationMembershipById"
         },
         {
           "target": "com.zendesk.api#DeleteOrganizationMembership"
@@ -58633,7 +58634,7 @@
           "target": "com.zendesk.api#DeleteManyOrganizationMemberships"
         },
         {
-          "target": "com.zendesk.api#ShowOrganizationMerge"
+          "target": "com.zendesk.api#GetOrganizationMerge"
         },
         {
           "target": "com.zendesk.api#ListOrganizationSubscriptions"
@@ -58642,7 +58643,7 @@
           "target": "com.zendesk.api#CreateOrganizationSubscription"
         },
         {
-          "target": "com.zendesk.api#ShowOrganizationSubscription"
+          "target": "com.zendesk.api#GetOrganizationSubscription"
         },
         {
           "target": "com.zendesk.api#DeleteOrganizationSubscription"
@@ -58654,7 +58655,7 @@
           "target": "com.zendesk.api#CreateOrganization"
         },
         {
-          "target": "com.zendesk.api#ShowOrganization"
+          "target": "com.zendesk.api#GetOrganization"
         },
         {
           "target": "com.zendesk.api#UpdateOrganization"
@@ -58723,7 +58724,7 @@
           "target": "com.zendesk.api#SearchOrganizations"
         },
         {
-          "target": "com.zendesk.api#ShowManyOrganizations"
+          "target": "com.zendesk.api#GetManyOrganizations"
         },
         {
           "target": "com.zendesk.api#UpdateManyOrganizations"
@@ -58744,7 +58745,7 @@
           "target": "com.zendesk.api#CreateQueue"
         },
         {
-          "target": "com.zendesk.api#ShowQueueById"
+          "target": "com.zendesk.api#GetQueueById"
         },
         {
           "target": "com.zendesk.api#UpdateQueue"
@@ -58765,7 +58766,7 @@
           "target": "com.zendesk.api#CreateSupportAddress"
         },
         {
-          "target": "com.zendesk.api#ShowSupportAddress"
+          "target": "com.zendesk.api#GetSupportAddress"
         },
         {
           "target": "com.zendesk.api#UpdateSupportAddress"
@@ -58789,7 +58790,7 @@
           "target": "com.zendesk.api#CreateRequest"
         },
         {
-          "target": "com.zendesk.api#ShowRequest"
+          "target": "com.zendesk.api#GetRequest"
         },
         {
           "target": "com.zendesk.api#UpdateRequest"
@@ -58798,7 +58799,7 @@
           "target": "com.zendesk.api#ListComments"
         },
         {
-          "target": "com.zendesk.api#ShowComment"
+          "target": "com.zendesk.api#GetComment"
         },
         {
           "target": "com.zendesk.api#ListCCDRequests"
@@ -58819,7 +58820,7 @@
           "target": "com.zendesk.api#CreateResourceCollection"
         },
         {
-          "target": "com.zendesk.api#RetrieveResourceCollection"
+          "target": "com.zendesk.api#GetResourceCollection"
         },
         {
           "target": "com.zendesk.api#UpdateResourceCollection"
@@ -58846,7 +58847,7 @@
           "target": "com.zendesk.api#CreateAttribute"
         },
         {
-          "target": "com.zendesk.api#ShowAttribute"
+          "target": "com.zendesk.api#GetAttribute"
         },
         {
           "target": "com.zendesk.api#UpdateAttribute"
@@ -58861,7 +58862,7 @@
           "target": "com.zendesk.api#CreateAttributeValue"
         },
         {
-          "target": "com.zendesk.api#ShowAttributeValue"
+          "target": "com.zendesk.api#GetAttributeValue"
         },
         {
           "target": "com.zendesk.api#UpdateAttributeValue"
@@ -58885,7 +58886,7 @@
           "target": "com.zendesk.api#ListSatisfactionRatings"
         },
         {
-          "target": "com.zendesk.api#ShowSatisfactionRating"
+          "target": "com.zendesk.api#GetSatisfactionRating"
         },
         {
           "target": "com.zendesk.api#CountSatisfactionRatings"
@@ -58894,7 +58895,7 @@
           "target": "com.zendesk.api#ListSatisfactionRatingReasons"
         },
         {
-          "target": "com.zendesk.api#ShowSatisfactionRatings"
+          "target": "com.zendesk.api#GetSatisfactionRatings"
         },
         {
           "target": "com.zendesk.api#ListSavedSearches"
@@ -58918,7 +58919,7 @@
           "target": "com.zendesk.api#ExportSearchResults"
         },
         {
-          "target": "com.zendesk.api#ShowSecuritySettings"
+          "target": "com.zendesk.api#GetSecuritySettings"
         },
         {
           "target": "com.zendesk.api#ListSessions"
@@ -58930,7 +58931,7 @@
           "target": "com.zendesk.api#CreateSharingAgreement"
         },
         {
-          "target": "com.zendesk.api#ShowSharingAgreement"
+          "target": "com.zendesk.api#GetSharingAgreement"
         },
         {
           "target": "com.zendesk.api#UpdateSharingAgreement"
@@ -58951,7 +58952,7 @@
           "target": "com.zendesk.api#CreateSLAPolicy"
         },
         {
-          "target": "com.zendesk.api#ShowSLAPolicy"
+          "target": "com.zendesk.api#GetSLAPolicy"
         },
         {
           "target": "com.zendesk.api#UpdateSLAPolicy"
@@ -58960,7 +58961,7 @@
           "target": "com.zendesk.api#DeleteSLAPolicy"
         },
         {
-          "target": "com.zendesk.api#RetrieveSLAPolicyFilterDefinitionItems"
+          "target": "com.zendesk.api#GetSLAPolicyFilterDefinitionItems"
         },
         {
           "target": "com.zendesk.api#ReorderSLAPolicies"
@@ -58969,7 +58970,7 @@
           "target": "com.zendesk.api#ListSuspendedTickets"
         },
         {
-          "target": "com.zendesk.api#ShowSuspendedTickets"
+          "target": "com.zendesk.api#GetSuspendedTickets"
         },
         {
           "target": "com.zendesk.api#DeleteSuspendedTicket"
@@ -59002,7 +59003,7 @@
           "target": "com.zendesk.api#ListTargetFailures"
         },
         {
-          "target": "com.zendesk.api#ShowTargetFailure"
+          "target": "com.zendesk.api#GetTargetFailure"
         },
         {
           "target": "com.zendesk.api#ListTargets"
@@ -59011,7 +59012,7 @@
           "target": "com.zendesk.api#CreateTarget"
         },
         {
-          "target": "com.zendesk.api#ShowTarget"
+          "target": "com.zendesk.api#GetTarget"
         },
         {
           "target": "com.zendesk.api#UpdateTarget"
@@ -59026,7 +59027,7 @@
           "target": "com.zendesk.api#CreateTaskListTemplate"
         },
         {
-          "target": "com.zendesk.api#ShowTaskListTemplate"
+          "target": "com.zendesk.api#GetTaskListTemplate"
         },
         {
           "target": "com.zendesk.api#UpdateTaskListTemplate"
@@ -59038,7 +59039,7 @@
           "target": "com.zendesk.api#GetTasksByTaskListTemplateId"
         },
         {
-          "target": "com.zendesk.api#ShowTaskListInstance"
+          "target": "com.zendesk.api#GetTaskListInstance"
         },
         {
           "target": "com.zendesk.api#UpdateCustomTaskList"
@@ -59050,7 +59051,7 @@
           "target": "com.zendesk.api#CreateCustomTaskItem"
         },
         {
-          "target": "com.zendesk.api#ShowTaskItem"
+          "target": "com.zendesk.api#GetTaskItem"
         },
         {
           "target": "com.zendesk.api#UpdateTaskItem"
@@ -59077,7 +59078,7 @@
           "target": "com.zendesk.api#CreateTicketField"
         },
         {
-          "target": "com.zendesk.api#ShowTicketfield"
+          "target": "com.zendesk.api#GetTicketfield"
         },
         {
           "target": "com.zendesk.api#UpdateTicketField"
@@ -59092,7 +59093,7 @@
           "target": "com.zendesk.api#CreateOrUpdateTicketFieldOption"
         },
         {
-          "target": "com.zendesk.api#ShowTicketFieldOption"
+          "target": "com.zendesk.api#GetTicketFieldOption"
         },
         {
           "target": "com.zendesk.api#DeleteTicketFieldOption"
@@ -59104,13 +59105,13 @@
           "target": "com.zendesk.api#ReorderTicketFields"
         },
         {
-          "target": "com.zendesk.api#ShowManyTicketFields"
+          "target": "com.zendesk.api#GetManyTicketFields"
         },
         {
           "target": "com.zendesk.api#ListTicketFormStatuses"
         },
         {
-          "target": "com.zendesk.api#ShowManyTicketFormStatuses"
+          "target": "com.zendesk.api#GetManyTicketFormStatuses"
         },
         {
           "target": "com.zendesk.api#ListTicketForms"
@@ -59119,7 +59120,7 @@
           "target": "com.zendesk.api#CreateTicketForm"
         },
         {
-          "target": "com.zendesk.api#ShowTicketForm"
+          "target": "com.zendesk.api#GetTicketForm"
         },
         {
           "target": "com.zendesk.api#UpdateTicketForm"
@@ -59152,13 +59153,13 @@
           "target": "com.zendesk.api#ReorderTicketForms"
         },
         {
-          "target": "com.zendesk.api#ShowManyTicketForms"
+          "target": "com.zendesk.api#GetManyTicketForms"
         },
         {
           "target": "com.zendesk.api#ListTicketMetrics"
         },
         {
-          "target": "com.zendesk.api#ShowTicketMetrics"
+          "target": "com.zendesk.api#GetTicketMetrics"
         },
         {
           "target": "com.zendesk.api#ListTickets"
@@ -59167,7 +59168,7 @@
           "target": "com.zendesk.api#CreateTicket"
         },
         {
-          "target": "com.zendesk.api#ShowTicket"
+          "target": "com.zendesk.api#GetTicket"
         },
         {
           "target": "com.zendesk.api#UpdateTicket"
@@ -59179,7 +59180,7 @@
           "target": "com.zendesk.api#ListAuditsForTicket"
         },
         {
-          "target": "com.zendesk.api#ShowTicketAudit"
+          "target": "com.zendesk.api#GetTicketAudit"
         },
         {
           "target": "com.zendesk.api#MakeTicketCommentPrivateFromAudits"
@@ -59218,7 +59219,7 @@
           "target": "com.zendesk.api#ListTicketIncidents"
         },
         {
-          "target": "com.zendesk.api#ShowTicketAfterChanges"
+          "target": "com.zendesk.api#GetTicketAfterChanges"
         },
         {
           "target": "com.zendesk.api#MarkTicketAsSpamAndSuspendRequester"
@@ -59227,7 +59228,7 @@
           "target": "com.zendesk.api#MergeTicketsIntoTargetTicket"
         },
         {
-          "target": "com.zendesk.api#ShowTicketMetricsByTicket"
+          "target": "com.zendesk.api#GetTicketMetricsByTicket"
         },
         {
           "target": "com.zendesk.api#TicketRelatedInformation2"
@@ -59251,7 +59252,7 @@
           "target": "com.zendesk.api#DeleteTagsTicket"
         },
         {
-          "target": "com.zendesk.api#ShowTaskListsForTicket"
+          "target": "com.zendesk.api#GetTaskListsForTicket"
         },
         {
           "target": "com.zendesk.api#CreateTaskList"
@@ -59269,7 +59270,7 @@
           "target": "com.zendesk.api#MarkManyTicketsAsSpam"
         },
         {
-          "target": "com.zendesk.api#ShowTicketByMessagingConversationId"
+          "target": "com.zendesk.api#GetTicketByMessagingConversationId"
         },
         {
           "target": "com.zendesk.api#ListRecentTickets"
@@ -59287,7 +59288,7 @@
           "target": "com.zendesk.api#CreateTriggerCategory"
         },
         {
-          "target": "com.zendesk.api#ShowTriggerCategoryById"
+          "target": "com.zendesk.api#GetTriggerCategoryById"
         },
         {
           "target": "com.zendesk.api#UpdateTriggerCategory"
@@ -59329,7 +59330,7 @@
           "target": "com.zendesk.api#DeleteManyTriggers"
         },
         {
-          "target": "com.zendesk.api#ShowTriggerLimits"
+          "target": "com.zendesk.api#GetTriggerLimits"
         },
         {
           "target": "com.zendesk.api#ReorderTriggers"
@@ -59356,7 +59357,7 @@
           "target": "com.zendesk.api#CreateUserField"
         },
         {
-          "target": "com.zendesk.api#ShowUserField"
+          "target": "com.zendesk.api#GetUserField"
         },
         {
           "target": "com.zendesk.api#UpdateUserField"
@@ -59371,7 +59372,7 @@
           "target": "com.zendesk.api#CreateOrUpdateUserFieldOption"
         },
         {
-          "target": "com.zendesk.api#ShowUserFieldOption"
+          "target": "com.zendesk.api#GetUserFieldOption"
         },
         {
           "target": "com.zendesk.api#DeleteUserFieldOption"
@@ -59380,7 +59381,7 @@
           "target": "com.zendesk.api#ReorderUserField"
         },
         {
-          "target": "com.zendesk.api#ShowManyUserFields"
+          "target": "com.zendesk.api#GetManyUserFields"
         },
         {
           "target": "com.zendesk.api#ListUsers"
@@ -59389,7 +59390,7 @@
           "target": "com.zendesk.api#CreateUser"
         },
         {
-          "target": "com.zendesk.api#ShowUser"
+          "target": "com.zendesk.api#GetUser"
         },
         {
           "target": "com.zendesk.api#UpdateUser"
@@ -59401,10 +59402,10 @@
           "target": "com.zendesk.api#ListUserBrandAgents"
         },
         {
-          "target": "com.zendesk.api#ShowUserBrandAgentById"
+          "target": "com.zendesk.api#GetUserBrandAgentById"
         },
         {
-          "target": "com.zendesk.api#ShowUserComplianceDeletionStatuses"
+          "target": "com.zendesk.api#GetUserComplianceDeletionStatuses"
         },
         {
           "target": "com.zendesk.api#GetUserEntitlementsFull"
@@ -59416,7 +59417,7 @@
           "target": "com.zendesk.api#CreateUserGroupMembership"
         },
         {
-          "target": "com.zendesk.api#ShowUserGroupMembershipById"
+          "target": "com.zendesk.api#GetUserGroupMembershipById"
         },
         {
           "target": "com.zendesk.api#DeleteUserGroupMembership"
@@ -59437,7 +59438,7 @@
           "target": "com.zendesk.api#CreateUserIdentity"
         },
         {
-          "target": "com.zendesk.api#ShowUserIdentity"
+          "target": "com.zendesk.api#GetUserIdentity"
         },
         {
           "target": "com.zendesk.api#UpdateUserIdentity"
@@ -59464,7 +59465,7 @@
           "target": "com.zendesk.api#CreateUserOrganizationMembership"
         },
         {
-          "target": "com.zendesk.api#ShowOrganizationMembershipByUserId"
+          "target": "com.zendesk.api#GetOrganizationMembershipByUserId"
         },
         {
           "target": "com.zendesk.api#DeleteUserOrganizationMembership"
@@ -59497,7 +59498,7 @@
           "target": "com.zendesk.api#GetUserPasswordRequirements"
         },
         {
-          "target": "com.zendesk.api#ShowUserRelated"
+          "target": "com.zendesk.api#GetUserRelated"
         },
         {
           "target": "com.zendesk.api#ListUserRequests"
@@ -59509,7 +59510,7 @@
           "target": "com.zendesk.api#BulkDeleteSessionsByUserId"
         },
         {
-          "target": "com.zendesk.api#ShowSession"
+          "target": "com.zendesk.api#GetSession"
         },
         {
           "target": "com.zendesk.api#DeleteSession"
@@ -59551,7 +59552,7 @@
           "target": "com.zendesk.api#AutocompleteUsers"
         },
         {
-          "target": "com.zendesk.api#AutocompleteUsersPost"
+          "target": "com.zendesk.api#PostAutocompleteUser"
         },
         {
           "target": "com.zendesk.api#CountUsers"
@@ -59572,7 +59573,7 @@
           "target": "com.zendesk.api#LogoutManyUsers"
         },
         {
-          "target": "com.zendesk.api#ShowCurrentUser"
+          "target": "com.zendesk.api#GetCurrentUser"
         },
         {
           "target": "com.zendesk.api#DeleteAuthenticatedSession"
@@ -59581,25 +59582,25 @@
           "target": "com.zendesk.api#ListCurrentUserOAuthClients"
         },
         {
-          "target": "com.zendesk.api#ShowCurrentlyAuthenticatedSession"
+          "target": "com.zendesk.api#GetCurrentlyAuthenticatedSession"
         },
         {
           "target": "com.zendesk.api#RenewCurrentSession"
         },
         {
-          "target": "com.zendesk.api#ShowCurrentUserSettings"
+          "target": "com.zendesk.api#GetCurrentUserSettings"
         },
         {
           "target": "com.zendesk.api#UpdateCurrentUserSettings"
         },
         {
-          "target": "com.zendesk.api#RequestUserCreate"
+          "target": "com.zendesk.api#CreateRequestUser"
         },
         {
           "target": "com.zendesk.api#SearchUsers"
         },
         {
-          "target": "com.zendesk.api#ShowManyUsers"
+          "target": "com.zendesk.api#GetManyUsers"
         },
         {
           "target": "com.zendesk.api#UpdateManyUsers"
@@ -59611,7 +59612,7 @@
           "target": "com.zendesk.api#CreateView"
         },
         {
-          "target": "com.zendesk.api#ShowView"
+          "target": "com.zendesk.api#GetView"
         },
         {
           "target": "com.zendesk.api#UpdateView"
@@ -59671,7 +59672,7 @@
           "target": "com.zendesk.api#CreateWorkspace"
         },
         {
-          "target": "com.zendesk.api#ShowWorkspace"
+          "target": "com.zendesk.api#GetWorkspace"
         },
         {
           "target": "com.zendesk.api#UpdateWorkspace"

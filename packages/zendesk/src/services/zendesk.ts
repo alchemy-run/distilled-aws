@@ -96,178 +96,6 @@ export const TagsByObjectIdResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TagsByObjectIdResponse",
 }) as any as S.Schema<TagsByObjectIdResponse>;
 
-export type AutocompleteCustomObjectRecordSearchRequestFilterDynamicValuesMap =
-  { [key: string]: number | undefined };
-export const AutocompleteCustomObjectRecordSearchRequestFilterDynamicValuesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Number,
-  ) as any as S.Schema<AutocompleteCustomObjectRecordSearchRequestFilterDynamicValuesMap>;
-
-export interface AutocompleteCustomObjectRecordSearchRequest {
-  /** The key of a custom object */
-  custom_object_key: string;
-  /** Part of a name of the record you are searching for */
-  name?: string;
-  /** A [pagination cursor](/documentation/api-basics/pagination/paginating-through-lists-using-cursor-pagination) that tells the endpoint which page to start on. It should be a `meta.before_cursor` value from a previous request. Note: `page[before]` and `page[after]` can't be used together in the same request. */
-  page_before_?: string;
-  /** A [pagination cursor](/documentation/api-basics/pagination/paginating-through-lists-using-cursor-pagination) that tells the endpoint which page to start on. It should be a `meta.after_cursor` value from a previous request. Note: `page[before]` and `page[after]` can't be used together in the same request. */
-  page_after_?: string;
-  /** The number of records to return in the response. You can specify up to 100 records per page. */
-  page_size_?: number;
-  /** The id of the lookup field. If the field has a relationship filter, the filter is applied to the results. Must be used with `source` param. */
-  field_id?: string;
-  /** One of "zen:user", "zen:ticket", "zen:organization", or "zen:custom_object:CUSTOM_OBJECT_KEY". Represents the object `field_id` belongs to. Must be used with field_id param. */
-  source?: string;
-  /** Provided values to be used with [dynamic filters](/api-reference/ticketing/lookup_relationships/lookup_relationships/#using-dynamic-filters). */
-  filter_dynamic_values_?: AutocompleteCustomObjectRecordSearchRequestFilterDynamicValuesMap;
-  /** The id of the requester. For use with dynamic filters. */
-  requester_id?: number;
-  /** The id of the selected assignee. For use with dynamic filters. */
-  assignee_id?: number;
-  /** The id of the organization the requester belongs to. For use with dynamic filters. */
-  organization_id?: number;
-}
-export const AutocompleteCustomObjectRecordSearchRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      custom_object_key: S.String.pipe(T.Label()),
-      name: S.optional(S.String.pipe(T.Query())),
-      page_before_: S.optional(S.String.pipe(T.Query("page[before]"))),
-      page_after_: S.optional(S.String.pipe(T.Query("page[after]"))),
-      page_size_: S.optional(S.Number.pipe(T.Query("page[size]"))),
-      field_id: S.optional(S.String.pipe(T.Query())),
-      source: S.optional(S.String.pipe(T.Query())),
-      filter_dynamic_values_: S.optional(
-        AutocompleteCustomObjectRecordSearchRequestFilterDynamicValuesMap.pipe(
-          T.Query("filter[dynamic_values]"),
-        ),
-      ),
-      requester_id: S.optional(S.Number.pipe(T.Query())),
-      assignee_id: S.optional(S.Number.pipe(T.Query())),
-      organization_id: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/custom_objects/{custom_object_key}/records/autocomplete",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "AutocompleteCustomObjectRecordSearchRequest",
-  }) as any as S.Schema<AutocompleteCustomObjectRecordSearchRequest>;
-
-export type CustomObjectRecordCustomObjectFieldsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CustomObjectRecordCustomObjectFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<CustomObjectRecordCustomObjectFieldsMap>;
-
-/** The record photo represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/). The `allows_photos` property must be set to true for the object. Record photos are publicly accessible via the photo `content_url`. */
-export type CustomObjectRecordPhotoMap = { [key: string]: unknown | undefined };
-export const CustomObjectRecordPhotoMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<CustomObjectRecordPhotoMap>;
-
-export interface CustomObjectRecord {
-  /** The time the object was created */
-  created_at?: string;
-  /** Id of a user who created the object */
-  created_by_user_id?: string;
-  custom_object_fields?: CustomObjectRecordCustomObjectFieldsMap;
-  /** A user-defined unique identifier */
-  custom_object_key?: string;
-  /** An id you can use to link custom object records to external data */
-  external_id?: string | null;
-  /** Automatically assigned upon creation */
-  id?: string;
-  /** User-defined display name for the object. If autonumbering is selected for the custom object's name field, the name isn't allowed because it's automatically generated. If uniqueness is enabled, the name must be unique. */
-  name: string;
-  /** The record photo represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/). The `allows_photos` property must be set to true for the object. Record photos are publicly accessible via the photo `content_url`. */
-  photo?: CustomObjectRecordPhotoMap | null;
-  /** The time of the last update of the object */
-  updated_at?: string;
-  /** Id of the last user who updated the object */
-  updated_by_user_id?: string;
-  /** Direct link to the specific custom object */
-  url?: string;
-}
-export const CustomObjectRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.optional(S.String),
-    created_by_user_id: S.optional(S.String),
-    custom_object_fields: S.optional(CustomObjectRecordCustomObjectFieldsMap),
-    custom_object_key: S.optional(S.String),
-    external_id: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.String),
-    name: S.String,
-    photo: S.optional(S.NullOr(CustomObjectRecordPhotoMap)),
-    updated_at: S.optional(S.String),
-    updated_by_user_id: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomObjectRecord",
-}) as any as S.Schema<CustomObjectRecord>;
-
-export type CustomObjectRecordsResponseCustomObjectRecordsList =
-  Array<CustomObjectRecord>;
-export const CustomObjectRecordsResponseCustomObjectRecordsList =
-  /*@__PURE__*/ S.Array(
-    CustomObjectRecord,
-  ) as any as S.Schema<CustomObjectRecordsResponseCustomObjectRecordsList>;
-
-export interface CustomObjectRecordsResponseLinks {
-  next: string | null;
-  prev: string | null;
-}
-export const CustomObjectRecordsResponseLinks = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    next: S.NullOr(S.String),
-    prev: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "CustomObjectRecordsResponseLinks",
-}) as any as S.Schema<CustomObjectRecordsResponseLinks>;
-
-export interface CustomObjectRecordsResponseMeta {
-  after_cursor: string | null;
-  before_cursor: string | null;
-  has_more: boolean;
-}
-export const CustomObjectRecordsResponseMeta = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    after_cursor: S.NullOr(S.String),
-    before_cursor: S.NullOr(S.String),
-    has_more: S.Boolean,
-  }),
-).annotate({
-  identifier: "CustomObjectRecordsResponseMeta",
-}) as any as S.Schema<CustomObjectRecordsResponseMeta>;
-
-export interface CustomObjectRecordsResponse {
-  /** The number of results returned for the current request */
-  count?: number;
-  custom_object_records?: CustomObjectRecordsResponseCustomObjectRecordsList;
-  links?: CustomObjectRecordsResponseLinks;
-  meta?: CustomObjectRecordsResponseMeta;
-}
-export const CustomObjectRecordsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    custom_object_records: S.optional(
-      CustomObjectRecordsResponseCustomObjectRecordsList,
-    ),
-    links: S.optional(CustomObjectRecordsResponseLinks),
-    meta: S.optional(CustomObjectRecordsResponseMeta),
-  }),
-).annotate({
-  identifier: "CustomObjectRecordsResponse",
-}) as any as S.Schema<CustomObjectRecordsResponse>;
-
 export interface AutocompleteGroupsRequest {
   /** A substring to search for group names */
   name: string;
@@ -500,23 +328,6 @@ export const AutocompleteTagsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AutocompleteTagsRequest",
 }) as any as S.Schema<AutocompleteTagsRequest>;
-
-export interface AutocompleteTagsPostRequest {
-  /** A substring of a tag to search for */
-  name?: string;
-  /** Number of records to return per page. Note: Default and maximum values vary by endpoint. Check endpoint-specific documentation for limits. */
-  per_page?: number;
-}
-export const AutocompleteTagsPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String.pipe(T.Query())),
-    per_page: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v2/autocomplete/tags", code: 200 }),
-  ),
-).annotate({
-  identifier: "AutocompleteTagsPostRequest",
-}) as any as S.Schema<AutocompleteTagsPostRequest>;
 
 export type AutocompleteUsersRequestFilter = "assignable" | "requester";
 export const AutocompleteUsersRequestFilter = /*@__PURE__*/ S.String;
@@ -846,51 +657,6 @@ export const UsersResponse = /*@__PURE__*/ S.suspend(() =>
     users: S.optional(UsersResponseUsersList),
   }),
 ).annotate({ identifier: "UsersResponse" }) as any as S.Schema<UsersResponse>;
-
-export type AutocompleteUsersPostRequestBrandIdCase0 = "all";
-export const AutocompleteUsersPostRequestBrandIdCase0 = /*@__PURE__*/ S.String;
-
-/** When brand separation is enabled, scopes the autocomplete results to users belonging to the specified brand. Only applicable when the account has brand separation enabled. Accepted values: * "all" — search all users across all brands (no brand filtering applied). * 0 — restrict the autocomplete results to account-scoped (brand-less) users only. * A numeric brand id — if the brand has user separation enabled, autocomplete returns only end users belonging to that brand. Agents and admins are not included in the results when filtering by a specific brand. If the brand does not have user separation enabled, the request falls back to account scope (0). */
-export type AutocompleteUsersPostRequestBrandId =
-  | AutocompleteUsersPostRequestBrandIdCase0
-  | number;
-export const AutocompleteUsersPostRequestBrandId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AutocompleteUsersPostRequestBrandId>;
-
-export interface AutocompleteUsersPostRequest {
-  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
-  include?: string;
-  /** Filter to apply to autocomplete results. Common values: `assignable`, `requester`. */
-  filter?: string;
-  /** Number of results to return. */
-  per_page?: number;
-  /** When brand separation is enabled, scopes the autocomplete results to users belonging to the specified brand. Only applicable when the account has brand separation enabled. Accepted values: * "all" — search all users across all brands (no brand filtering applied). * 0 — restrict the autocomplete results to account-scoped (brand-less) users only. * A numeric brand id — if the brand has user separation enabled, autocomplete returns only end users belonging to that brand. Agents and admins are not included in the results when filtering by a specific brand. If the brand does not have user separation enabled, the request falls back to account scope (0). */
-  brand_id?: AutocompleteUsersPostRequestBrandId;
-  /** Field ID for lookup relationship autocomplete */
-  field_id?: number;
-  /** The name to search for the user */
-  name?: string;
-  /** The phone number to search for the user */
-  phone?: string;
-  /** Source for lookup relationship autocomplete */
-  source?: string;
-}
-export const AutocompleteUsersPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    include: S.optional(S.String.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
-    per_page: S.optional(S.Number.pipe(T.Query())),
-    brand_id: S.optional(AutocompleteUsersPostRequestBrandId),
-    field_id: S.optional(S.Number),
-    name: S.optional(S.String),
-    phone: S.optional(S.String),
-    source: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v2/users/autocomplete", code: 200 }),
-  ),
-).annotate({
-  identifier: "AutocompleteUsersPostRequest",
-}) as any as S.Schema<AutocompleteUsersPostRequest>;
 
 export type BatchOperateTriggerCategoriesRequestJobAction = "patch";
 export const BatchOperateTriggerCategoriesRequestJobAction =
@@ -4403,6 +4169,62 @@ export const CreateCustomObjectRecordRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCustomObjectRecordRequest",
 }) as any as S.Schema<CreateCustomObjectRecordRequest>;
 
+export type CustomObjectRecordCustomObjectFieldsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CustomObjectRecordCustomObjectFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CustomObjectRecordCustomObjectFieldsMap>;
+
+/** The record photo represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/). The `allows_photos` property must be set to true for the object. Record photos are publicly accessible via the photo `content_url`. */
+export type CustomObjectRecordPhotoMap = { [key: string]: unknown | undefined };
+export const CustomObjectRecordPhotoMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CustomObjectRecordPhotoMap>;
+
+export interface CustomObjectRecord {
+  /** The time the object was created */
+  created_at?: string;
+  /** Id of a user who created the object */
+  created_by_user_id?: string;
+  custom_object_fields?: CustomObjectRecordCustomObjectFieldsMap;
+  /** A user-defined unique identifier */
+  custom_object_key?: string;
+  /** An id you can use to link custom object records to external data */
+  external_id?: string | null;
+  /** Automatically assigned upon creation */
+  id?: string;
+  /** User-defined display name for the object. If autonumbering is selected for the custom object's name field, the name isn't allowed because it's automatically generated. If uniqueness is enabled, the name must be unique. */
+  name: string;
+  /** The record photo represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/). The `allows_photos` property must be set to true for the object. Record photos are publicly accessible via the photo `content_url`. */
+  photo?: CustomObjectRecordPhotoMap | null;
+  /** The time of the last update of the object */
+  updated_at?: string;
+  /** Id of the last user who updated the object */
+  updated_by_user_id?: string;
+  /** Direct link to the specific custom object */
+  url?: string;
+}
+export const CustomObjectRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.optional(S.String),
+    created_by_user_id: S.optional(S.String),
+    custom_object_fields: S.optional(CustomObjectRecordCustomObjectFieldsMap),
+    custom_object_key: S.optional(S.String),
+    external_id: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.String),
+    name: S.String,
+    photo: S.optional(S.NullOr(CustomObjectRecordPhotoMap)),
+    updated_at: S.optional(S.String),
+    updated_by_user_id: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomObjectRecord",
+}) as any as S.Schema<CustomObjectRecord>;
+
 export interface CustomObjectRecordResponse {
   custom_object_record?: CustomObjectRecord;
 }
@@ -7528,6 +7350,26 @@ export const RequestResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RequestResponse",
 }) as any as S.Schema<RequestResponse>;
+
+export interface CreateRequestUserRequest {
+  user: UserInput;
+}
+export const CreateRequestUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: UserInput,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/v2/users/request_create", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateRequestUserRequest",
+}) as any as S.Schema<CreateRequestUserRequest>;
+
+export type CreateRequestUserResponse = string;
+export const CreateRequestUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "CreateRequestUserResponse",
+}) as any as S.Schema<CreateRequestUserResponse>;
 
 export interface CreateResourceCollectionRequest {}
 export const CreateResourceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
@@ -11078,11 +10920,11 @@ export const DeleteBrandResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteBrandResponse",
 }) as any as S.Schema<DeleteBrandResponse>;
 
-export interface DeleteBrandAgentByIdRequest {
+export interface DeleteBrandAgentRequest {
   /** The id of the brand agent */
   brand_agent_id: string;
 }
-export const DeleteBrandAgentByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteBrandAgentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     brand_agent_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -11093,15 +10935,15 @@ export const DeleteBrandAgentByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteBrandAgentByIdRequest",
-}) as any as S.Schema<DeleteBrandAgentByIdRequest>;
+  identifier: "DeleteBrandAgentRequest",
+}) as any as S.Schema<DeleteBrandAgentRequest>;
 
-export interface DeleteBrandAgentByIdResponse {}
-export const DeleteBrandAgentByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteBrandAgentResponse {}
+export const DeleteBrandAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteBrandAgentByIdResponse",
-}) as any as S.Schema<DeleteBrandAgentByIdResponse>;
+  identifier: "DeleteBrandAgentResponse",
+}) as any as S.Schema<DeleteBrandAgentResponse>;
 
 export interface DeleteBrandLogoRequest {
   /** The ID of the brand */
@@ -11296,11 +11138,11 @@ export const DeleteCustomObjectRecordByExternalIdOrNameResponse =
     identifier: "DeleteCustomObjectRecordByExternalIdOrNameResponse",
   }) as any as S.Schema<DeleteCustomObjectRecordByExternalIdOrNameResponse>;
 
-export interface DeleteCustomRoleByIdRequest {
+export interface DeleteCustomRoleRequest {
   /** The ID of the custom agent role */
   custom_role_id: number;
 }
-export const DeleteCustomRoleByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCustomRoleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     custom_role_id: S.Number.pipe(T.Label()),
   }).pipe(
@@ -11311,15 +11153,15 @@ export const DeleteCustomRoleByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteCustomRoleByIdRequest",
-}) as any as S.Schema<DeleteCustomRoleByIdRequest>;
+  identifier: "DeleteCustomRoleRequest",
+}) as any as S.Schema<DeleteCustomRoleRequest>;
 
-export interface DeleteCustomRoleByIdResponse {}
-export const DeleteCustomRoleByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCustomRoleResponse {}
+export const DeleteCustomRoleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteCustomRoleByIdResponse",
-}) as any as S.Schema<DeleteCustomRoleByIdResponse>;
+  identifier: "DeleteCustomRoleResponse",
+}) as any as S.Schema<DeleteCustomRoleResponse>;
 
 export interface DeleteCustomStatusRequest {
   /** The id of the custom status */
@@ -13031,6 +12873,274 @@ export const ExportAuditLogsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExportAuditLogsResponse",
 }) as any as S.Schema<ExportAuditLogsResponse>;
 
+export interface ExportIncrementalOrganizationRequest {
+  /** The time to start the incremental export from. Must be at least one minute in the past. Data isn't provided for the most recent minute */
+  start_time: number;
+  /** The number of records to return per page */
+  per_page?: number;
+}
+export const ExportIncrementalOrganizationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      start_time: S.Number.pipe(T.Query()),
+      per_page: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/incremental/organizations",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ExportIncrementalOrganizationRequest",
+}) as any as S.Schema<ExportIncrementalOrganizationRequest>;
+
+export type ExportIncrementalOrganizationsResponseOrganizationsList =
+  Array<OrganizationObject>;
+export const ExportIncrementalOrganizationsResponseOrganizationsList =
+  /*@__PURE__*/ S.Array(
+    OrganizationObject,
+  ) as any as S.Schema<ExportIncrementalOrganizationsResponseOrganizationsList>;
+
+export interface ExportIncrementalOrganizationsResponse {
+  count?: number;
+  end_of_stream?: boolean;
+  end_time?: number;
+  next_page?: string | null;
+  organizations?: ExportIncrementalOrganizationsResponseOrganizationsList;
+}
+export const ExportIncrementalOrganizationsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      count: S.optional(S.Number),
+      end_of_stream: S.optional(S.Boolean),
+      end_time: S.optional(S.Number),
+      next_page: S.optional(S.NullOr(S.String)),
+      organizations: S.optional(
+        ExportIncrementalOrganizationsResponseOrganizationsList,
+      ),
+    }),
+).annotate({
+  identifier: "ExportIncrementalOrganizationsResponse",
+}) as any as S.Schema<ExportIncrementalOrganizationsResponse>;
+
+export interface ExportIncrementalSampleRequest {
+  /** The resource requested for incremental sample export */
+  incremental_resource: string;
+  /** The time to start the incremental export from. Must be at least one minute in the past. Data isn't provided for the most recent minute */
+  start_time: number;
+}
+export const ExportIncrementalSampleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    incremental_resource: S.String.pipe(T.Label()),
+    start_time: S.Number.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/incremental/{incremental_resource}/sample",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ExportIncrementalSampleRequest",
+}) as any as S.Schema<ExportIncrementalSampleRequest>;
+
+export type TimeBasedExportIncrementalTicketsResponseOutputTicketsList =
+  Array<TicketObjectOutput>;
+export const TimeBasedExportIncrementalTicketsResponseOutputTicketsList =
+  /*@__PURE__*/ S.Array(
+    TicketObjectOutput,
+  ) as any as S.Schema<TimeBasedExportIncrementalTicketsResponseOutputTicketsList>;
+
+/** See [Tickets](/api-reference/ticketing/tickets/tickets/) for a detailed example. */
+export interface TimeBasedExportIncrementalTicketsResponseOutput {
+  count?: number;
+  end_of_stream?: boolean;
+  end_time?: number;
+  next_page?: string | null;
+  tickets?: TimeBasedExportIncrementalTicketsResponseOutputTicketsList;
+}
+export const TimeBasedExportIncrementalTicketsResponseOutput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      count: S.optional(S.Number),
+      end_of_stream: S.optional(S.Boolean),
+      end_time: S.optional(S.Number),
+      next_page: S.optional(S.NullOr(S.String)),
+      tickets: S.optional(
+        TimeBasedExportIncrementalTicketsResponseOutputTicketsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "TimeBasedExportIncrementalTicketsResponseOutput",
+  }) as any as S.Schema<TimeBasedExportIncrementalTicketsResponseOutput>;
+
+export interface ExportIncrementalSkilBasedRoutingAttributeRequest {}
+export const ExportIncrementalSkilBasedRoutingAttributeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/incremental/routing/attributes",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportIncrementalSkilBasedRoutingAttributeRequest",
+  }) as any as S.Schema<ExportIncrementalSkilBasedRoutingAttributeRequest>;
+
+export interface IncrementalSkillBasedRoutingAttributeValue {
+  /** Id of the associated attribute */
+  attribute_id?: string;
+  /** Automatically assigned when an attribute value is created */
+  id?: string;
+  /** The name of the attribute value */
+  name?: string;
+  /** The time the attribute value was created, updated, or deleted */
+  time?: string;
+  /** One of "create", "update", or "delete" */
+  type?: string;
+}
+export const IncrementalSkillBasedRoutingAttributeValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      attribute_id: S.optional(S.String),
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      time: S.optional(S.String),
+      type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "IncrementalSkillBasedRoutingAttributeValue",
+  }) as any as S.Schema<IncrementalSkillBasedRoutingAttributeValue>;
+
+/** Routing attribute values */
+export type IncrementalSkillBasedRoutingAttributeValuesList =
+  Array<IncrementalSkillBasedRoutingAttributeValue>;
+export const IncrementalSkillBasedRoutingAttributeValuesList =
+  /*@__PURE__*/ S.Array(
+    IncrementalSkillBasedRoutingAttributeValue,
+  ) as any as S.Schema<IncrementalSkillBasedRoutingAttributeValuesList>;
+
+export interface IncrementalSkillBasedRoutingAttribute {
+  /** Automatically assigned when an attribute is created */
+  id?: string;
+  /** The name of the attribute */
+  name?: string;
+  /** The time the attribute was created, updated, or deleted */
+  time?: string;
+  /** One of "create", "update", or "delete" */
+  type?: string;
+}
+export const IncrementalSkillBasedRoutingAttribute = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      time: S.optional(S.String),
+      type: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "IncrementalSkillBasedRoutingAttribute",
+}) as any as S.Schema<IncrementalSkillBasedRoutingAttribute>;
+
+/** Routing attributes */
+export type IncrementalSkillBasedRoutingAttributesList =
+  Array<IncrementalSkillBasedRoutingAttribute>;
+export const IncrementalSkillBasedRoutingAttributesList = /*@__PURE__*/ S.Array(
+  IncrementalSkillBasedRoutingAttribute,
+) as any as S.Schema<IncrementalSkillBasedRoutingAttributesList>;
+
+export interface IncrementalSkillBasedRoutingInstanceValue {
+  /** Id of the associated attribute value */
+  attribute_value_id?: string;
+  /** Automatically assigned when an instance value is created */
+  id?: string;
+  /** Id of the associated agent or ticket */
+  instance_id?: string;
+  /** The time the instance value was created or deleted */
+  time?: string;
+  /** One of "associate_agent", "unassociate_agent", "associate_ticket", or "unassociate_ticket" */
+  type?: string;
+}
+export const IncrementalSkillBasedRoutingInstanceValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      attribute_value_id: S.optional(S.String),
+      id: S.optional(S.String),
+      instance_id: S.optional(S.String),
+      time: S.optional(S.String),
+      type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "IncrementalSkillBasedRoutingInstanceValue",
+  }) as any as S.Schema<IncrementalSkillBasedRoutingInstanceValue>;
+
+/** Routing instance values */
+export type IncrementalSkillBasedRoutingInstanceValuesList =
+  Array<IncrementalSkillBasedRoutingInstanceValue>;
+export const IncrementalSkillBasedRoutingInstanceValuesList =
+  /*@__PURE__*/ S.Array(
+    IncrementalSkillBasedRoutingInstanceValue,
+  ) as any as S.Schema<IncrementalSkillBasedRoutingInstanceValuesList>;
+
+export interface IncrementalSkillBasedRouting {
+  /** Routing attribute values */
+  attribute_values?: IncrementalSkillBasedRoutingAttributeValuesList;
+  /** Routing attributes */
+  attributes?: IncrementalSkillBasedRoutingAttributesList;
+  /** The number of results returned for the current request */
+  count?: number;
+  /** The most recent resource creation time present in this result set in Unix epoch time */
+  end_time?: number;
+  /** Routing instance values */
+  instance_values?: IncrementalSkillBasedRoutingInstanceValuesList;
+  /** The URL that should be called to get the next set of results */
+  next_page?: string;
+}
+export const IncrementalSkillBasedRouting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attribute_values: S.optional(
+      IncrementalSkillBasedRoutingAttributeValuesList,
+    ),
+    attributes: S.optional(IncrementalSkillBasedRoutingAttributesList),
+    count: S.optional(S.Number),
+    end_time: S.optional(S.Number),
+    instance_values: S.optional(IncrementalSkillBasedRoutingInstanceValuesList),
+    next_page: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncrementalSkillBasedRouting",
+}) as any as S.Schema<IncrementalSkillBasedRouting>;
+
+export interface ExportIncrementalSkilBasedRoutingAttributeValueRequest {}
+export const ExportIncrementalSkilBasedRoutingAttributeValueRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/incremental/routing/attribute_values",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportIncrementalSkilBasedRoutingAttributeValueRequest",
+  }) as any as S.Schema<ExportIncrementalSkilBasedRoutingAttributeValueRequest>;
+
+export interface ExportIncrementalSkilBasedRoutingInstanceValueRequest {}
+export const ExportIncrementalSkilBasedRoutingInstanceValueRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/incremental/routing/instance_values",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportIncrementalSkilBasedRoutingInstanceValueRequest",
+  }) as any as S.Schema<ExportIncrementalSkilBasedRoutingInstanceValueRequest>;
+
 export interface ExportSearchResultsRequest {
   /** The search query. See [Query basics](#query-basics) above. For details on the query syntax, see the [Zendesk Support search reference](https://support.zendesk.com/hc/en-us/articles/4408886879258) */
   query: string;
@@ -13427,6 +13537,61 @@ export const FilteredSearchCustomObjectRecordsRequest = /*@__PURE__*/ S.suspend(
   identifier: "FilteredSearchCustomObjectRecordsRequest",
 }) as any as S.Schema<FilteredSearchCustomObjectRecordsRequest>;
 
+export type CustomObjectRecordsResponseCustomObjectRecordsList =
+  Array<CustomObjectRecord>;
+export const CustomObjectRecordsResponseCustomObjectRecordsList =
+  /*@__PURE__*/ S.Array(
+    CustomObjectRecord,
+  ) as any as S.Schema<CustomObjectRecordsResponseCustomObjectRecordsList>;
+
+export interface CustomObjectRecordsResponseLinks {
+  next: string | null;
+  prev: string | null;
+}
+export const CustomObjectRecordsResponseLinks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next: S.NullOr(S.String),
+    prev: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CustomObjectRecordsResponseLinks",
+}) as any as S.Schema<CustomObjectRecordsResponseLinks>;
+
+export interface CustomObjectRecordsResponseMeta {
+  after_cursor: string | null;
+  before_cursor: string | null;
+  has_more: boolean;
+}
+export const CustomObjectRecordsResponseMeta = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    after_cursor: S.NullOr(S.String),
+    before_cursor: S.NullOr(S.String),
+    has_more: S.Boolean,
+  }),
+).annotate({
+  identifier: "CustomObjectRecordsResponseMeta",
+}) as any as S.Schema<CustomObjectRecordsResponseMeta>;
+
+export interface CustomObjectRecordsResponse {
+  /** The number of results returned for the current request */
+  count?: number;
+  custom_object_records?: CustomObjectRecordsResponseCustomObjectRecordsList;
+  links?: CustomObjectRecordsResponseLinks;
+  meta?: CustomObjectRecordsResponseMeta;
+}
+export const CustomObjectRecordsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    custom_object_records: S.optional(
+      CustomObjectRecordsResponseCustomObjectRecordsList,
+    ),
+    links: S.optional(CustomObjectRecordsResponseLinks),
+    meta: S.optional(CustomObjectRecordsResponseMeta),
+  }),
+).annotate({
+  identifier: "CustomObjectRecordsResponse",
+}) as any as S.Schema<CustomObjectRecordsResponse>;
+
 export type ItamAssetFilteredSearchConditionFieldKeyValueCase2Item =
   | string
   | number;
@@ -13591,6 +13756,27 @@ export const ItamAssetsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ItamAssetsResponse",
 }) as any as S.Schema<ItamAssetsResponse>;
 
+export interface GetAccessRuleRequest {
+  /** The key of a custom object */
+  custom_object_key: string;
+  /** The access rule ID */
+  id: string;
+}
+export const GetAccessRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_object_key: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/custom_objects/{custom_object_key}/access_rules/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAccessRuleRequest",
+}) as any as S.Schema<GetAccessRuleRequest>;
+
 export interface GetAccountEmailSettingsRequest {}
 export const GetAccountEmailSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -13680,6 +13866,2059 @@ export const EmailSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailSettingsResponse",
 }) as any as S.Schema<EmailSettingsResponse>;
 
+export interface GetAccountSettingsRequest {
+  /** Legacy CSRF token. Ignored by API. */
+  authenticity_token?: string;
+}
+export const GetAccountSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authenticity_token: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/account/settings", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetAccountSettingsRequest",
+}) as any as S.Schema<GetAccountSettingsRequest>;
+
+/** The active features for an account. See [Active Features](#active-features) */
+export interface AccountSettingsActiveFeaturesObject {
+  agent_forwarding?: boolean;
+  allow_ccs?: boolean;
+  allow_email_template_customization?: boolean;
+  automatic_answers?: boolean;
+  bcc_archiving?: boolean;
+  benchmark_opt_out?: boolean;
+  business_hours?: boolean;
+  chat?: boolean;
+  chat_about_my_ticket?: boolean;
+  csat_reason_code?: boolean;
+  custom_dkim_domain?: boolean;
+  customer_context_as_default?: boolean;
+  customer_satisfaction?: boolean;
+  customer_satisfaction_survey?: boolean;
+  dynamic_contents?: boolean;
+  explore?: boolean;
+  explore_on_support_ent_plan?: boolean;
+  explore_on_support_pro_plan?: boolean;
+  facebook?: boolean;
+  facebook_login?: boolean;
+  fallback_composer?: boolean;
+  forum_analytics?: boolean;
+  good_data_and_explore?: boolean;
+  google_login?: boolean;
+  is_abusive?: boolean;
+  light_agents?: boolean;
+  markdown?: boolean;
+  on_hold_status?: boolean;
+  organization_access_enabled?: boolean;
+  rich_content_in_emails?: boolean;
+  sandbox?: boolean;
+  satisfaction_prediction?: boolean;
+  suspended_ticket_notification?: boolean;
+  ticket_forms?: boolean;
+  ticket_tagging?: boolean;
+  topic_suggestion?: boolean;
+  twitter?: boolean;
+  twitter_login?: boolean;
+  user_org_fields?: boolean;
+  user_tagging?: boolean;
+  voice?: boolean;
+}
+export const AccountSettingsActiveFeaturesObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agent_forwarding: S.optional(S.Boolean),
+    allow_ccs: S.optional(S.Boolean),
+    allow_email_template_customization: S.optional(S.Boolean),
+    automatic_answers: S.optional(S.Boolean),
+    bcc_archiving: S.optional(S.Boolean),
+    benchmark_opt_out: S.optional(S.Boolean),
+    business_hours: S.optional(S.Boolean),
+    chat: S.optional(S.Boolean),
+    chat_about_my_ticket: S.optional(S.Boolean),
+    csat_reason_code: S.optional(S.Boolean),
+    custom_dkim_domain: S.optional(S.Boolean),
+    customer_context_as_default: S.optional(S.Boolean),
+    customer_satisfaction: S.optional(S.Boolean),
+    customer_satisfaction_survey: S.optional(S.Boolean),
+    dynamic_contents: S.optional(S.Boolean),
+    explore: S.optional(S.Boolean),
+    explore_on_support_ent_plan: S.optional(S.Boolean),
+    explore_on_support_pro_plan: S.optional(S.Boolean),
+    facebook: S.optional(S.Boolean),
+    facebook_login: S.optional(S.Boolean),
+    fallback_composer: S.optional(S.Boolean),
+    forum_analytics: S.optional(S.Boolean),
+    good_data_and_explore: S.optional(S.Boolean),
+    google_login: S.optional(S.Boolean),
+    is_abusive: S.optional(S.Boolean),
+    light_agents: S.optional(S.Boolean),
+    markdown: S.optional(S.Boolean),
+    on_hold_status: S.optional(S.Boolean),
+    organization_access_enabled: S.optional(S.Boolean),
+    rich_content_in_emails: S.optional(S.Boolean),
+    sandbox: S.optional(S.Boolean),
+    satisfaction_prediction: S.optional(S.Boolean),
+    suspended_ticket_notification: S.optional(S.Boolean),
+    ticket_forms: S.optional(S.Boolean),
+    ticket_tagging: S.optional(S.Boolean),
+    topic_suggestion: S.optional(S.Boolean),
+    twitter: S.optional(S.Boolean),
+    twitter_login: S.optional(S.Boolean),
+    user_org_fields: S.optional(S.Boolean),
+    user_tagging: S.optional(S.Boolean),
+    voice: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsActiveFeaturesObject",
+}) as any as S.Schema<AccountSettingsActiveFeaturesObject>;
+
+/** Configuration for the agent workspace. See [Agents](#agents) */
+export interface AccountSettingsAgentObject {
+  agent_home?: boolean;
+  agent_workspace?: boolean;
+  aw_self_serve_migration_enabled?: boolean;
+  focus_mode?: boolean;
+  idle_timeout_enabled?: boolean;
+  unified_agent_statuses?: boolean;
+}
+export const AccountSettingsAgentObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agent_home: S.optional(S.Boolean),
+    agent_workspace: S.optional(S.Boolean),
+    aw_self_serve_migration_enabled: S.optional(S.Boolean),
+    focus_mode: S.optional(S.Boolean),
+    idle_timeout_enabled: S.optional(S.Boolean),
+    unified_agent_statuses: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsAgentObject",
+}) as any as S.Schema<AccountSettingsAgentObject>;
+
+/** API configuration options. See [API](#api) */
+export interface AccountSettingsApiObject {
+  accepted_api_agreement?: boolean;
+  api_password_access_end_users?: boolean;
+  api_token_access?: string;
+}
+export const AccountSettingsApiObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accepted_api_agreement: S.optional(S.Boolean),
+    api_password_access_end_users: S.optional(S.Boolean),
+    api_token_access: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsApiObject",
+}) as any as S.Schema<AccountSettingsApiObject>;
+
+/** Apps configuration options. See [Apps](#apps) */
+export interface AccountSettingsAppsObject {
+  create_private?: boolean;
+  create_public?: boolean;
+  use?: boolean;
+}
+export const AccountSettingsAppsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    create_private: S.optional(S.Boolean),
+    create_public: S.optional(S.Boolean),
+    use: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsAppsObject",
+}) as any as S.Schema<AccountSettingsAppsObject>;
+
+/** Billing configuration options. See [Billing](#billing) */
+export interface AccountSettingsBillingObject {
+  backend?: string;
+}
+export const AccountSettingsBillingObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backend: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsBillingObject",
+}) as any as S.Schema<AccountSettingsBillingObject>;
+
+/** Branding settings. See [Branding](#branding) */
+export interface AccountSettingsBrandingObject {
+  favicon_url?: string | null;
+  header_color?: string;
+  header_logo_url?: string | null;
+  page_background_color?: string;
+  tab_background_color?: string;
+  text_color?: string;
+}
+export const AccountSettingsBrandingObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    favicon_url: S.optional(S.NullOr(S.String)),
+    header_color: S.optional(S.String),
+    header_logo_url: S.optional(S.NullOr(S.String)),
+    page_background_color: S.optional(S.String),
+    tab_background_color: S.optional(S.String),
+    text_color: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsBrandingObject",
+}) as any as S.Schema<AccountSettingsBrandingObject>;
+
+/** Brand settings. See [Brands](#brands) */
+export interface AccountSettingsBrandsObject {
+  default_brand_id?: number;
+  end_user_across_brand_requests?: boolean;
+  /** Controls how end users are associated with brands when upgraded to agents. */
+  end_user_upgrade_brand_association_behavior?: string;
+  /** Controls how new agents are associated with brands. Determines the default brand assignment for newly created agents. */
+  new_agent_brand_association_behavior?: string;
+  require_brand_on_new_tickets?: boolean;
+}
+export const AccountSettingsBrandsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    default_brand_id: S.optional(S.Number),
+    end_user_across_brand_requests: S.optional(S.Boolean),
+    end_user_upgrade_brand_association_behavior: S.optional(S.String),
+    new_agent_brand_association_behavior: S.optional(S.String),
+    require_brand_on_new_tickets: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsBrandsObject",
+}) as any as S.Schema<AccountSettingsBrandsObject>;
+
+export interface AccountSettingsCdnObjectHostsItem {
+  name?: string;
+  url?: string;
+}
+export const AccountSettingsCdnObjectHostsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsCdnObjectHostsItem",
+}) as any as S.Schema<AccountSettingsCdnObjectHostsItem>;
+
+export type AccountSettingsCdnObjectHostsList =
+  Array<AccountSettingsCdnObjectHostsItem>;
+export const AccountSettingsCdnObjectHostsList = /*@__PURE__*/ S.Array(
+  AccountSettingsCdnObjectHostsItem,
+) as any as S.Schema<AccountSettingsCdnObjectHostsList>;
+
+/** CDN settings */
+export interface AccountSettingsCdnObject {
+  cdn_provider?: string;
+  fallback_cdn_provider?: string;
+  hosts?: AccountSettingsCdnObjectHostsList;
+}
+export const AccountSettingsCdnObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cdn_provider: S.optional(S.String),
+    fallback_cdn_provider: S.optional(S.String),
+    hosts: S.optional(AccountSettingsCdnObjectHostsList),
+  }),
+).annotate({
+  identifier: "AccountSettingsCdnObject",
+}) as any as S.Schema<AccountSettingsCdnObject>;
+
+/** Zendesk Chat settings. See [Chat](#chat) */
+export interface AccountSettingsChatObject {
+  available?: boolean;
+  enabled?: boolean;
+  integrated?: boolean;
+  maximum_request_count?: number;
+  welcome_message?: string;
+}
+export const AccountSettingsChatObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    available: S.optional(S.Boolean),
+    enabled: S.optional(S.Boolean),
+    integrated: S.optional(S.Boolean),
+    maximum_request_count: S.optional(S.Number),
+    welcome_message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsChatObject",
+}) as any as S.Schema<AccountSettingsChatObject>;
+
+/** Cross Sell settings */
+export interface AccountSettingsCrossSellObject {
+  show_chat_tooltip?: boolean;
+  xsell_source?: string | null;
+}
+export const AccountSettingsCrossSellObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    show_chat_tooltip: S.optional(S.Boolean),
+    xsell_source: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "AccountSettingsCrossSellObject",
+}) as any as S.Schema<AccountSettingsCrossSellObject>;
+
+/** End user device settings. See [Device Metadata](#device-metadata) */
+export interface AccountSettingsDeviceObject {
+  enabled?: boolean;
+  hide_ip?: boolean;
+  hide_location?: boolean;
+}
+export const AccountSettingsDeviceObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    hide_ip: S.optional(S.Boolean),
+    hide_location: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsDeviceObject",
+}) as any as S.Schema<AccountSettingsDeviceObject>;
+
+/** Google Apps configuration. See [G Suite](#g-suite) */
+export interface AccountSettingsGoogleAppsObject {
+  has_google_apps?: boolean;
+  has_google_apps_admin?: boolean;
+}
+export const AccountSettingsGoogleAppsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    has_google_apps: S.optional(S.Boolean),
+    has_google_apps_admin: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsGoogleAppsObject",
+}) as any as S.Schema<AccountSettingsGoogleAppsObject>;
+
+/** Group configuration */
+export interface AccountSettingsGroupObject {
+  check_group_name_uniqueness?: boolean;
+}
+export const AccountSettingsGroupObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    check_group_name_uniqueness: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsGroupObject",
+}) as any as S.Schema<AccountSettingsGroupObject>;
+
+/** Account's knowledge management and search capabilities. See [Knowledge](#knowledge) */
+export interface AccountSettingsKnowledgeObject {
+  default_search_filters_brands?: string;
+  default_search_filters_categories?: string;
+  default_search_filters_external_content_sources?: string;
+  default_search_filters_locales?: string;
+  default_search_filters_sections?: string;
+  generative_answers?: boolean;
+  require_article_templates?: boolean;
+  search_articles?: boolean;
+  search_community_posts?: boolean;
+  search_external_content?: boolean;
+}
+export const AccountSettingsKnowledgeObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    default_search_filters_brands: S.optional(S.String),
+    default_search_filters_categories: S.optional(S.String),
+    default_search_filters_external_content_sources: S.optional(S.String),
+    default_search_filters_locales: S.optional(S.String),
+    default_search_filters_sections: S.optional(S.String),
+    generative_answers: S.optional(S.Boolean),
+    require_article_templates: S.optional(S.Boolean),
+    search_articles: S.optional(S.Boolean),
+    search_community_posts: S.optional(S.Boolean),
+    search_external_content: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsKnowledgeObject",
+}) as any as S.Schema<AccountSettingsKnowledgeObject>;
+
+/** Account limits configuration. See [Limits](#limits) */
+export interface AccountSettingsLimitsObject {
+  attachment_size?: number;
+}
+export const AccountSettingsLimitsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachment_size: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AccountSettingsLimitsObject",
+}) as any as S.Schema<AccountSettingsLimitsObject>;
+
+export type AccountSettingsLocalizationObjectLocaleIdsList = Array<number>;
+export const AccountSettingsLocalizationObjectLocaleIdsList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<AccountSettingsLocalizationObjectLocaleIdsList>;
+
+/** Internationalization configuration settings. See [Localization](#localization) */
+export interface AccountSettingsLocalizationObject {
+  locale_ids?: AccountSettingsLocalizationObjectLocaleIdsList;
+}
+export const AccountSettingsLocalizationObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    locale_ids: S.optional(AccountSettingsLocalizationObjectLocaleIdsList),
+  }),
+).annotate({
+  identifier: "AccountSettingsLocalizationObject",
+}) as any as S.Schema<AccountSettingsLocalizationObject>;
+
+/** Support UI settings. See [Lotus](#lotus) */
+export interface AccountSettingsLotusObject {
+  pod_id?: number;
+  prefer_lotus?: boolean;
+  reporting?: boolean;
+}
+export const AccountSettingsLotusObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pod_id: S.optional(S.Number),
+    prefer_lotus: S.optional(S.Boolean),
+    reporting: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsLotusObject",
+}) as any as S.Schema<AccountSettingsLotusObject>;
+
+export interface AccountSettingsMessageInactivityObjectDefaultLocalizedMessages {
+  /** The first pre-solved message */
+  pre_solved_message_1?: string;
+  /** The second pre-solved message */
+  pre_solved_message_2?: string;
+  /** The solved message */
+  solved_message?: string;
+}
+export const AccountSettingsMessageInactivityObjectDefaultLocalizedMessages =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      pre_solved_message_1: S.optional(S.String),
+      pre_solved_message_2: S.optional(S.String),
+      solved_message: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "AccountSettingsMessageInactivityObjectDefaultLocalizedMessages",
+  }) as any as S.Schema<AccountSettingsMessageInactivityObjectDefaultLocalizedMessages>;
+
+/** Array of strings, tags added to ticket with each reminder. Can be empty */
+export type AccountSettingsMessageInactivityObjectRemindersItemTagsList =
+  Array<string>;
+export const AccountSettingsMessageInactivityObjectRemindersItemTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AccountSettingsMessageInactivityObjectRemindersItemTagsList>;
+
+export interface AccountSettingsMessageInactivityObjectRemindersItem {
+  /** Mandatory message for the reminder */
+  message: string;
+  /** Array of strings, tags added to ticket with each reminder. Can be empty */
+  tags?: AccountSettingsMessageInactivityObjectRemindersItemTagsList;
+  /** Ticket status id, available and mandatory for the 2nd and 3rd reminders, if the reminder is configured. The field can be null to indicate no status change */
+  ticket_status_id?: number | null;
+  /** Reminder timeout in seconds, available and mandatory for the 2nd and 3rd reminders, if the reminder is configured */
+  timeout?: number | null;
+}
+export const AccountSettingsMessageInactivityObjectRemindersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      message: S.String,
+      tags: S.optional(
+        AccountSettingsMessageInactivityObjectRemindersItemTagsList,
+      ),
+      ticket_status_id: S.optional(S.NullOr(S.Number)),
+      timeout: S.optional(S.NullOr(S.Number)),
+    }),
+  ).annotate({
+    identifier: "AccountSettingsMessageInactivityObjectRemindersItem",
+  }) as any as S.Schema<AccountSettingsMessageInactivityObjectRemindersItem>;
+
+export type AccountSettingsMessageInactivityObjectRemindersList =
+  Array<AccountSettingsMessageInactivityObjectRemindersItem>;
+export const AccountSettingsMessageInactivityObjectRemindersList =
+  /*@__PURE__*/ S.Array(
+    AccountSettingsMessageInactivityObjectRemindersItem,
+  ) as any as S.Schema<AccountSettingsMessageInactivityObjectRemindersList>;
+
+/** Auto-release capacity settings. See [Messaging inactivity](#messaging-inactivity) */
+export interface AccountSettingsMessageInactivityObject {
+  default_localized_messages?: AccountSettingsMessageInactivityObjectDefaultLocalizedMessages;
+  /** Whether the messaging inactivity feature is enabled */
+  enabled?: boolean;
+  /** Whether messaging session should end with the final reminder */
+  end_session?: boolean;
+  reminders?: AccountSettingsMessageInactivityObjectRemindersList;
+  /** Ticket status id to apply on the ticket when it is marked as inactive */
+  ticket_status_id?: number;
+  /** Timeout in minutes after which the ticket will be marked as inactive */
+  timeout?: number;
+}
+export const AccountSettingsMessageInactivityObject = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      default_localized_messages: S.optional(
+        AccountSettingsMessageInactivityObjectDefaultLocalizedMessages,
+      ),
+      enabled: S.optional(S.Boolean),
+      end_session: S.optional(S.Boolean),
+      reminders: S.optional(
+        AccountSettingsMessageInactivityObjectRemindersList,
+      ),
+      ticket_status_id: S.optional(S.Number),
+      timeout: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "AccountSettingsMessageInactivityObject",
+}) as any as S.Schema<AccountSettingsMessageInactivityObject>;
+
+/** Account metrics settings. See [Metrics](#metrics) */
+export interface AccountSettingsMetricsObject {
+  account_size?: string;
+}
+export const AccountSettingsMetricsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_size: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsMetricsObject",
+}) as any as S.Schema<AccountSettingsMetricsObject>;
+
+/** Onboarding settings */
+export interface AccountSettingsOnboardingObject {
+  checklist_onboarding_version?: number;
+  onboarding_segments?: string | null;
+  product_sign_up?: string | null;
+}
+export const AccountSettingsOnboardingObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    checklist_onboarding_version: S.optional(S.Number),
+    onboarding_segments: S.optional(S.NullOr(S.String)),
+    product_sign_up: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "AccountSettingsOnboardingObject",
+}) as any as S.Schema<AccountSettingsOnboardingObject>;
+
+/** Configuration for routing. See [Routing](#routing) */
+export interface AccountSettingsRoutingObject {
+  autorouting_tag?: string;
+  enabled?: boolean;
+  max_email_capacity?: number;
+  max_messaging_capacity?: number;
+  reassignment_messaging_enabled?: boolean;
+  reassignment_messaging_timeout?: number;
+  reassignment_talk_timeout?: number;
+}
+export const AccountSettingsRoutingObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autorouting_tag: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+    max_email_capacity: S.optional(S.Number),
+    max_messaging_capacity: S.optional(S.Number),
+    reassignment_messaging_enabled: S.optional(S.Boolean),
+    reassignment_messaging_timeout: S.optional(S.Number),
+    reassignment_talk_timeout: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AccountSettingsRoutingObject",
+}) as any as S.Schema<AccountSettingsRoutingObject>;
+
+export type AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap>;
+
+export type AccountSettingsRuleObjectSkillBasedFilteredViewsList =
+  Array<AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap>;
+export const AccountSettingsRuleObjectSkillBasedFilteredViewsList =
+  /*@__PURE__*/ S.Array(
+    AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap,
+  ) as any as S.Schema<AccountSettingsRuleObjectSkillBasedFilteredViewsList>;
+
+/** Rules settings for triggers, macros, views, and automations. See [Rules](#rules) */
+export interface AccountSettingsRuleObject {
+  macro_most_used?: boolean;
+  macro_order?: string;
+  skill_based_filtered_views?: AccountSettingsRuleObjectSkillBasedFilteredViewsList;
+  using_skill_based_routing?: boolean;
+}
+export const AccountSettingsRuleObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    macro_most_used: S.optional(S.Boolean),
+    macro_order: S.optional(S.String),
+    skill_based_filtered_views: S.optional(
+      AccountSettingsRuleObjectSkillBasedFilteredViewsList,
+    ),
+    using_skill_based_routing: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsRuleObject",
+}) as any as S.Schema<AccountSettingsRuleObject>;
+
+/** Side conversations settings */
+export interface AccountSettingsSideConversationsObject {
+  email_channel?: boolean;
+  msteams_channel?: boolean;
+  show_in_context_panel?: boolean;
+  slack_channel?: boolean;
+  tickets_channel?: boolean;
+}
+export const AccountSettingsSideConversationsObject = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      email_channel: S.optional(S.Boolean),
+      msteams_channel: S.optional(S.Boolean),
+      show_in_context_panel: S.optional(S.Boolean),
+      slack_channel: S.optional(S.Boolean),
+      tickets_channel: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "AccountSettingsSideConversationsObject",
+}) as any as S.Schema<AccountSettingsSideConversationsObject>;
+
+/** Account statistics settings. See [Statistics](#statistics) */
+export interface AccountSettingsStatisticsObject {
+  forum?: boolean;
+  rule_usage?: boolean;
+  search?: boolean;
+}
+export const AccountSettingsStatisticsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    forum: S.optional(S.Boolean),
+    rule_usage: S.optional(S.Boolean),
+    search: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsStatisticsObject",
+}) as any as S.Schema<AccountSettingsStatisticsObject>;
+
+/** Ticket form settings. See [Ticket Form](#ticket-form) */
+export interface AccountSettingsTicketFormObject {
+  raw_ticket_forms_instructions?: string;
+  ticket_forms_instructions?: string;
+}
+export const AccountSettingsTicketFormObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw_ticket_forms_instructions: S.optional(S.String),
+    ticket_forms_instructions: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsTicketFormObject",
+}) as any as S.Schema<AccountSettingsTicketFormObject>;
+
+/** Ticket settings. See [Tickets](#tickets) */
+export interface AccountSettingsTicketObject {
+  accepted_new_collaboration_tos?: boolean;
+  agent_collision?: boolean;
+  agent_invitation_enabled?: boolean;
+  agent_ticket_deletion?: boolean;
+  allow_group_reset?: boolean;
+  assign_default_organization?: boolean;
+  assign_tickets_upon_solve?: boolean;
+  auto_translation_enabled?: boolean;
+  auto_updated_ccs_followers_rules?: boolean;
+  chat_sla_enablement?: boolean;
+  collaboration?: boolean;
+  comments_public_by_default?: boolean;
+  default_solved_ticket_reassignment_strategy?: string;
+  default_to_draft_mode?: boolean;
+  email_attachments?: boolean;
+  email_redact_attachments_when_placeholders_disallow?: boolean;
+  emoji_autocompletion?: boolean;
+  follower_and_email_cc_collaborations?: boolean;
+  has_color_text?: boolean;
+  is_first_comment_private_enabled?: boolean;
+  light_agent_email_ccs_allowed?: boolean;
+  list_empty_views?: boolean;
+  list_newest_comments_first?: boolean;
+  markdown_ticket_comments?: boolean;
+  maximum_personal_views_to_list?: number;
+  modern_ticket_reassignment?: boolean;
+  private_attachments?: boolean;
+  rich_text_comments?: boolean;
+  show_modern_ticket_reassignment?: boolean;
+  status_hold?: boolean;
+  tagging?: boolean;
+  using_skill_based_routing?: boolean;
+}
+export const AccountSettingsTicketObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accepted_new_collaboration_tos: S.optional(S.Boolean),
+    agent_collision: S.optional(S.Boolean),
+    agent_invitation_enabled: S.optional(S.Boolean),
+    agent_ticket_deletion: S.optional(S.Boolean),
+    allow_group_reset: S.optional(S.Boolean),
+    assign_default_organization: S.optional(S.Boolean),
+    assign_tickets_upon_solve: S.optional(S.Boolean),
+    auto_translation_enabled: S.optional(S.Boolean),
+    auto_updated_ccs_followers_rules: S.optional(S.Boolean),
+    chat_sla_enablement: S.optional(S.Boolean),
+    collaboration: S.optional(S.Boolean),
+    comments_public_by_default: S.optional(S.Boolean),
+    default_solved_ticket_reassignment_strategy: S.optional(S.String),
+    default_to_draft_mode: S.optional(S.Boolean),
+    email_attachments: S.optional(S.Boolean),
+    email_redact_attachments_when_placeholders_disallow: S.optional(S.Boolean),
+    emoji_autocompletion: S.optional(S.Boolean),
+    follower_and_email_cc_collaborations: S.optional(S.Boolean),
+    has_color_text: S.optional(S.Boolean),
+    is_first_comment_private_enabled: S.optional(S.Boolean),
+    light_agent_email_ccs_allowed: S.optional(S.Boolean),
+    list_empty_views: S.optional(S.Boolean),
+    list_newest_comments_first: S.optional(S.Boolean),
+    markdown_ticket_comments: S.optional(S.Boolean),
+    maximum_personal_views_to_list: S.optional(S.Number),
+    modern_ticket_reassignment: S.optional(S.Boolean),
+    private_attachments: S.optional(S.Boolean),
+    rich_text_comments: S.optional(S.Boolean),
+    show_modern_ticket_reassignment: S.optional(S.Boolean),
+    status_hold: S.optional(S.Boolean),
+    tagging: S.optional(S.Boolean),
+    using_skill_based_routing: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsTicketObject",
+}) as any as S.Schema<AccountSettingsTicketObject>;
+
+/** X (formerly Twitter) settings. See [X](#x-formerly-twitter) */
+export interface AccountSettingsTwitterObject {
+  shorten_url?: string;
+}
+export const AccountSettingsTwitterObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    shorten_url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountSettingsTwitterObject",
+}) as any as S.Schema<AccountSettingsTwitterObject>;
+
+/** User settings. See [Users](#users) */
+export interface AccountSettingsUserObject {
+  agent_created_welcome_emails?: boolean;
+  end_user_phone_number_validation?: boolean;
+  have_gravatars_enabled?: boolean;
+  language_selection?: boolean;
+  multiple_organizations?: boolean;
+  tagging?: boolean;
+  time_zone_selection?: boolean;
+}
+export const AccountSettingsUserObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agent_created_welcome_emails: S.optional(S.Boolean),
+    end_user_phone_number_validation: S.optional(S.Boolean),
+    have_gravatars_enabled: S.optional(S.Boolean),
+    language_selection: S.optional(S.Boolean),
+    multiple_organizations: S.optional(S.Boolean),
+    tagging: S.optional(S.Boolean),
+    time_zone_selection: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsUserObject",
+}) as any as S.Schema<AccountSettingsUserObject>;
+
+/** Zendesk Talk settings. See [Voice](#voice) */
+export interface AccountSettingsVoiceObject {
+  agent_confirmation_when_forwarding?: boolean;
+  agent_wrap_up_after_calls?: boolean;
+  enabled?: boolean;
+  logging?: boolean;
+  maximum_queue_size?: number;
+  maximum_queue_wait_time?: number;
+  only_during_business_hours?: boolean;
+  outbound_enabled?: boolean;
+  recordings_public?: boolean;
+  uk_mobile_forwarding?: boolean;
+}
+export const AccountSettingsVoiceObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agent_confirmation_when_forwarding: S.optional(S.Boolean),
+    agent_wrap_up_after_calls: S.optional(S.Boolean),
+    enabled: S.optional(S.Boolean),
+    logging: S.optional(S.Boolean),
+    maximum_queue_size: S.optional(S.Number),
+    maximum_queue_wait_time: S.optional(S.Number),
+    only_during_business_hours: S.optional(S.Boolean),
+    outbound_enabled: S.optional(S.Boolean),
+    recordings_public: S.optional(S.Boolean),
+    uk_mobile_forwarding: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountSettingsVoiceObject",
+}) as any as S.Schema<AccountSettingsVoiceObject>;
+
+export interface AccountSettingsObject {
+  active_features?: AccountSettingsActiveFeaturesObject;
+  agents?: AccountSettingsAgentObject;
+  api?: AccountSettingsApiObject;
+  apps?: AccountSettingsAppsObject;
+  billing?: AccountSettingsBillingObject;
+  branding?: AccountSettingsBrandingObject;
+  brands?: AccountSettingsBrandsObject;
+  cdn?: AccountSettingsCdnObject;
+  chat?: AccountSettingsChatObject;
+  cross_sell?: AccountSettingsCrossSellObject;
+  device_metadata?: AccountSettingsDeviceObject;
+  email?: AccountSettingsEmailObject;
+  google_apps?: AccountSettingsGoogleAppsObject;
+  groups?: AccountSettingsGroupObject;
+  knowledge?: AccountSettingsKnowledgeObject;
+  limits?: AccountSettingsLimitsObject;
+  localization?: AccountSettingsLocalizationObject;
+  lotus?: AccountSettingsLotusObject;
+  messaging_inactivity?: AccountSettingsMessageInactivityObject;
+  metrics?: AccountSettingsMetricsObject;
+  onboarding?: AccountSettingsOnboardingObject;
+  routing?: AccountSettingsRoutingObject;
+  rule?: AccountSettingsRuleObject;
+  side_conversations?: AccountSettingsSideConversationsObject;
+  statistics?: AccountSettingsStatisticsObject;
+  ticket_form?: AccountSettingsTicketFormObject;
+  tickets?: AccountSettingsTicketObject;
+  twitter?: AccountSettingsTwitterObject;
+  user?: AccountSettingsUserObject;
+  voice?: AccountSettingsVoiceObject;
+}
+export const AccountSettingsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active_features: S.optional(AccountSettingsActiveFeaturesObject),
+    agents: S.optional(AccountSettingsAgentObject),
+    api: S.optional(AccountSettingsApiObject),
+    apps: S.optional(AccountSettingsAppsObject),
+    billing: S.optional(AccountSettingsBillingObject),
+    branding: S.optional(AccountSettingsBrandingObject),
+    brands: S.optional(AccountSettingsBrandsObject),
+    cdn: S.optional(AccountSettingsCdnObject),
+    chat: S.optional(AccountSettingsChatObject),
+    cross_sell: S.optional(AccountSettingsCrossSellObject),
+    device_metadata: S.optional(AccountSettingsDeviceObject),
+    email: S.optional(AccountSettingsEmailObject),
+    google_apps: S.optional(AccountSettingsGoogleAppsObject),
+    groups: S.optional(AccountSettingsGroupObject),
+    knowledge: S.optional(AccountSettingsKnowledgeObject),
+    limits: S.optional(AccountSettingsLimitsObject),
+    localization: S.optional(AccountSettingsLocalizationObject),
+    lotus: S.optional(AccountSettingsLotusObject),
+    messaging_inactivity: S.optional(AccountSettingsMessageInactivityObject),
+    metrics: S.optional(AccountSettingsMetricsObject),
+    onboarding: S.optional(AccountSettingsOnboardingObject),
+    routing: S.optional(AccountSettingsRoutingObject),
+    rule: S.optional(AccountSettingsRuleObject),
+    side_conversations: S.optional(AccountSettingsSideConversationsObject),
+    statistics: S.optional(AccountSettingsStatisticsObject),
+    ticket_form: S.optional(AccountSettingsTicketFormObject),
+    tickets: S.optional(AccountSettingsTicketObject),
+    twitter: S.optional(AccountSettingsTwitterObject),
+    user: S.optional(AccountSettingsUserObject),
+    voice: S.optional(AccountSettingsVoiceObject),
+  }),
+).annotate({
+  identifier: "AccountSettingsObject",
+}) as any as S.Schema<AccountSettingsObject>;
+
+export interface AccountSettingsResponse {
+  settings?: AccountSettingsObject;
+}
+export const AccountSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    settings: S.optional(AccountSettingsObject),
+  }),
+).annotate({
+  identifier: "AccountSettingsResponse",
+}) as any as S.Schema<AccountSettingsResponse>;
+
+export interface GetActivityRequest {
+  /** The activity ID */
+  activity_id: number;
+}
+export const GetActivityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activity_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/activities/{activity_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetActivityRequest",
+}) as any as S.Schema<GetActivityRequest>;
+
+/** The content of the activity. Can be a ticket, comment, or change. */
+export type ActivityObjectObjectMap = { [key: string]: unknown | undefined };
+export const ActivityObjectObjectMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ActivityObjectObjectMap>;
+
+/** The target of the activity, a ticket. */
+export type ActivityObjectTargetMap = { [key: string]: unknown | undefined };
+export const ActivityObjectTargetMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ActivityObjectTargetMap>;
+
+export interface ActivityObject {
+  /** The full user record of the user responsible for the ticket activity. See [Users](/api-reference/ticketing/users/users/) */
+  actor?: UserObject;
+  /** The id of the user responsible for the ticket activity. An `actor_id` of "-1" is a Zendesk system user, such as an automations action. */
+  actor_id?: number;
+  /** When the record was created */
+  created_at?: string;
+  /** Automatically assigned on creation */
+  id?: number;
+  /** The content of the activity. Can be a ticket, comment, or change. */
+  object?: ActivityObjectObjectMap;
+  /** The target of the activity, a ticket. */
+  target?: ActivityObjectTargetMap;
+  /** Description of the activity */
+  title?: string;
+  /** When the record was last updated */
+  updated_at?: string;
+  /** The API url of the activity */
+  url?: string;
+  /** The full user record of the agent making the request. See [Users](/api-reference/ticketing/users/users/) */
+  user?: UserObject;
+  /** The id of the agent making the request */
+  user_id?: number;
+  /** The type of activity. Can be "tickets.assignment", "tickets.comment", or "tickets.priority_increase" */
+  verb?: string;
+}
+export const ActivityObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actor: S.optional(UserObject),
+    actor_id: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    id: S.optional(S.Number),
+    object: S.optional(ActivityObjectObjectMap),
+    target: S.optional(ActivityObjectTargetMap),
+    title: S.optional(S.String),
+    updated_at: S.optional(S.String),
+    url: S.optional(S.String),
+    user: S.optional(UserObject),
+    user_id: S.optional(S.Number),
+    verb: S.optional(S.String),
+  }),
+).annotate({ identifier: "ActivityObject" }) as any as S.Schema<ActivityObject>;
+
+export interface ActivityResponse {
+  activity?: ActivityObject;
+}
+export const ActivityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activity: S.optional(ActivityObject),
+  }),
+).annotate({
+  identifier: "ActivityResponse",
+}) as any as S.Schema<ActivityResponse>;
+
+export interface GetAttachmentRequest {
+  /** The ID of the attachment */
+  attachment_id: number;
+}
+export const GetAttachmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachment_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/attachments/{attachment_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAttachmentRequest",
+}) as any as S.Schema<GetAttachmentRequest>;
+
+export interface AttachmentResponse {
+  attachment?: AttachmentObject;
+}
+export const AttachmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachment: S.optional(AttachmentObject),
+  }),
+).annotate({
+  identifier: "AttachmentResponse",
+}) as any as S.Schema<AttachmentResponse>;
+
+export interface GetAttributeRequest {
+  /** The ID of the skill-based routing attribute */
+  attribute_id: string;
+}
+export const GetAttributeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attribute_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/routing/attributes/{attribute_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAttributeRequest",
+}) as any as S.Schema<GetAttributeRequest>;
+
+export interface GetAttributeValueRequest {
+  /** The ID of the skill-based routing attribute */
+  attribute_id: string;
+  /** The ID of the skill-based routing attribute value */
+  attribute_value_id: string;
+}
+export const GetAttributeValueRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attribute_id: S.String.pipe(T.Label()),
+    attribute_value_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/routing/attributes/{attribute_id}/values/{attribute_value_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAttributeValueRequest",
+}) as any as S.Schema<GetAttributeValueRequest>;
+
+export interface GetAuditLogRequest {
+  /** The ID of the audit log */
+  audit_log_id: number;
+}
+export const GetAuditLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    audit_log_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/audit_logs/{audit_log_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAuditLogRequest",
+}) as any as S.Schema<GetAuditLogRequest>;
+
+export interface AuditLogObject {
+  /** Type of change made. Possible values are "create", "destroy", "exported", "login", and "update" */
+  action?: string;
+  /** Localized string of action field */
+  action_label?: string;
+  /** id of the user or system that initiated the change */
+  actor_id?: number;
+  /** Name of the user or system that initiated the change */
+  actor_name?: string;
+  /** The description of the change that occurred */
+  change_description?: string;
+  /** The time the audit got created */
+  created_at?: string;
+  /** The id automatically assigned upon creation */
+  id?: number;
+  /** The IP address of the user doing the audit */
+  ip_address?: string;
+  /** The id of the item being audited */
+  source_id?: number;
+  /** The name of the item being audited */
+  source_label?: string;
+  /** Item type being audited. Typically describes the system where the change was initiated. Possible values vary based on your account's Zendesk products and activity. Common values include "apitoken", "rule", "ticket", "user", and "zendesk/app_market/app". The "rule" value is used for [automations](https://support.zendesk.com/hc/en-us/articles/4408832701850), [macros](https://support.zendesk.com/hc/en-us/articles/4408844187034), [triggers](https://support.zendesk.com/hc/en-us/articles/4408822236058), [views](https://support.zendesk.com/hc/en-us/articles/4408888828570), and other automated business rules */
+  source_type?: string;
+  /** The URL to access the audit log */
+  url?: string;
+}
+export const AuditLogObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: S.optional(S.String),
+    action_label: S.optional(S.String),
+    actor_id: S.optional(S.Number),
+    actor_name: S.optional(S.String),
+    change_description: S.optional(S.String),
+    created_at: S.optional(S.String),
+    id: S.optional(S.Number),
+    ip_address: S.optional(S.String),
+    source_id: S.optional(S.Number),
+    source_label: S.optional(S.String),
+    source_type: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({ identifier: "AuditLogObject" }) as any as S.Schema<AuditLogObject>;
+
+export interface AuditLogResponse {
+  audit_log?: AuditLogObject;
+}
+export const AuditLogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    audit_log: S.optional(AuditLogObject),
+  }),
+).annotate({
+  identifier: "AuditLogResponse",
+}) as any as S.Schema<AuditLogResponse>;
+
+export interface GetAutomationRequest {
+  /** The ID of the automation */
+  automation_id: number;
+}
+export const GetAutomationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    automation_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/automations/{automation_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAutomationRequest",
+}) as any as S.Schema<GetAutomationRequest>;
+
+export interface GetBrandRequest {
+  /** The ID of the brand */
+  brand_id: number;
+}
+export const GetBrandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/brands/{brand_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBrandRequest",
+}) as any as S.Schema<GetBrandRequest>;
+
+export interface GetBrandAgentByIdRequest {
+  /** The id of the brand agent */
+  brand_agent_id: string;
+}
+export const GetBrandAgentByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand_agent_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/brand_agents/{brand_agent_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBrandAgentByIdRequest",
+}) as any as S.Schema<GetBrandAgentByIdRequest>;
+
+export interface BrandAgentObject {
+  /** The id of a brand */
+  brand_id: number;
+  /** The time the brand membership was created */
+  created_at?: string;
+  /** Automatically assigned upon creation */
+  id?: string;
+  /** The time of the last update of the brand membership */
+  updated_at?: string;
+  /** The API url of this record */
+  url?: string;
+  /** The id of an agent */
+  user_id: number;
+}
+export const BrandAgentObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand_id: S.Number,
+    created_at: S.optional(S.String),
+    id: S.optional(S.String),
+    updated_at: S.optional(S.String),
+    url: S.optional(S.String),
+    user_id: S.Number,
+  }),
+).annotate({
+  identifier: "BrandAgentObject",
+}) as any as S.Schema<BrandAgentObject>;
+
+export interface BrandAgentResponse {
+  brand_agent?: BrandAgentObject;
+}
+export const BrandAgentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand_agent: S.optional(BrandAgentObject),
+  }),
+).annotate({
+  identifier: "BrandAgentResponse",
+}) as any as S.Schema<BrandAgentResponse>;
+
+export interface GetChangesToTicketRequest {
+  /** The ID of the macro */
+  macro_id: number;
+  /** If true, normalizes the newline formatting of the macro's comment to more closely match the formatting produced by the ticket comment editor */
+  normalize_comment?: boolean;
+}
+export const GetChangesToTicketRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    macro_id: S.Number.pipe(T.Label()),
+    normalize_comment: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/macros/{macro_id}/apply",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetChangesToTicketRequest",
+}) as any as S.Schema<GetChangesToTicketRequest>;
+
+export type MacroApplyTicketResponseResultTicketCommentScopedBodyItemList =
+  Array<string>;
+export const MacroApplyTicketResponseResultTicketCommentScopedBodyItemList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MacroApplyTicketResponseResultTicketCommentScopedBodyItemList>;
+
+export type MacroApplyTicketResponseResultTicketCommentScopedBodyList =
+  Array<MacroApplyTicketResponseResultTicketCommentScopedBodyItemList>;
+export const MacroApplyTicketResponseResultTicketCommentScopedBodyList =
+  /*@__PURE__*/ S.Array(
+    MacroApplyTicketResponseResultTicketCommentScopedBodyItemList,
+  ) as any as S.Schema<MacroApplyTicketResponseResultTicketCommentScopedBodyList>;
+
+export interface MacroApplyTicketResponseResultTicketComment {
+  body?: string;
+  public?: boolean;
+  scoped_body?: MacroApplyTicketResponseResultTicketCommentScopedBodyList;
+}
+export const MacroApplyTicketResponseResultTicketComment =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      body: S.optional(S.String),
+      public: S.optional(S.Boolean),
+      scoped_body: S.optional(
+        MacroApplyTicketResponseResultTicketCommentScopedBodyList,
+      ),
+    }),
+  ).annotate({
+    identifier: "MacroApplyTicketResponseResultTicketComment",
+  }) as any as S.Schema<MacroApplyTicketResponseResultTicketComment>;
+
+export type MacroApplyTicketResponseResultTicketFields =
+  RequestObjectCustomFieldsItem;
+export const MacroApplyTicketResponseResultTicketFields =
+  RequestObjectCustomFieldsItem;
+
+export interface MacroApplyTicketResponseResultTicket {
+  assignee_id?: number;
+  comment?: MacroApplyTicketResponseResultTicketComment;
+  fields?: RequestObjectCustomFieldsItem;
+  group_id?: number;
+  id?: number;
+  url?: string;
+}
+export const MacroApplyTicketResponseResultTicket = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      assignee_id: S.optional(S.Number),
+      comment: S.optional(MacroApplyTicketResponseResultTicketComment),
+      fields: S.optional(RequestObjectCustomFieldsItem),
+      group_id: S.optional(S.Number),
+      id: S.optional(S.Number),
+      url: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "MacroApplyTicketResponseResultTicket",
+}) as any as S.Schema<MacroApplyTicketResponseResultTicket>;
+
+export interface MacroApplyTicketResponseResult {
+  ticket?: MacroApplyTicketResponseResultTicket;
+}
+export const MacroApplyTicketResponseResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket: S.optional(MacroApplyTicketResponseResultTicket),
+  }),
+).annotate({
+  identifier: "MacroApplyTicketResponseResult",
+}) as any as S.Schema<MacroApplyTicketResponseResult>;
+
+export interface MacroApplyTicketResponse {
+  result?: MacroApplyTicketResponseResult;
+}
+export const MacroApplyTicketResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: S.optional(MacroApplyTicketResponseResult),
+  }),
+).annotate({
+  identifier: "MacroApplyTicketResponse",
+}) as any as S.Schema<MacroApplyTicketResponse>;
+
+export interface GetClientRequest {
+  /** The ID of the OAuth client */
+  oauth_client_id: number;
+}
+export const GetClientRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    oauth_client_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/oauth/clients/{oauth_client_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetClientRequest",
+}) as any as S.Schema<GetClientRequest>;
+
+export interface GetCommentRequest {
+  /** The ID of the request */
+  request_id: number;
+  /** The ID of the ticket comment */
+  ticket_comment_id: number;
+}
+export const GetCommentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    request_id: S.Number.pipe(T.Label()),
+    ticket_comment_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/requests/{request_id}/comments/{ticket_comment_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCommentRequest",
+}) as any as S.Schema<GetCommentRequest>;
+
+export interface TicketCommentResponse {
+  comment?: TicketCommentObject;
+}
+export const TicketCommentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comment: S.optional(TicketCommentObject),
+  }),
+).annotate({
+  identifier: "TicketCommentResponse",
+}) as any as S.Schema<TicketCommentResponse>;
+
+export interface GetCountryRequest {
+  /** The ID of the country */
+  id: number;
+}
+export const GetCountryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/countries/{id}.json", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCountryRequest",
+}) as any as S.Schema<GetCountryRequest>;
+
+export interface CountryObject {
+  /** International calling code */
+  calling_code?: string;
+  /** ISO country code */
+  code: string;
+  /** Unique identifier for the country */
+  id: number;
+  /** Country name */
+  name: string;
+  /** Geographic region */
+  region?: string;
+}
+export const CountryObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    calling_code: S.optional(S.String),
+    code: S.String,
+    id: S.Number,
+    name: S.String,
+    region: S.optional(S.String),
+  }),
+).annotate({ identifier: "CountryObject" }) as any as S.Schema<CountryObject>;
+
+export interface GetCountryResponse {
+  country?: CountryObject;
+}
+export const GetCountryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    country: S.optional(CountryObject),
+  }),
+).annotate({
+  identifier: "GetCountryResponse",
+}) as any as S.Schema<GetCountryResponse>;
+
+export interface GetCurrentLocaleRequest {}
+export const GetCurrentLocaleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/locales/current", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCurrentLocaleRequest",
+}) as any as S.Schema<GetCurrentLocaleRequest>;
+
+export interface GetCurrentlyAuthenticatedSessionRequest {}
+export const GetCurrentlyAuthenticatedSessionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({}).pipe(
+      T.Http({ method: "GET", uri: "/api/v2/users/me/session", code: 200 }),
+    ),
+).annotate({
+  identifier: "GetCurrentlyAuthenticatedSessionRequest",
+}) as any as S.Schema<GetCurrentlyAuthenticatedSessionRequest>;
+
+export interface SessionObject {
+  /** When the session was created */
+  authenticated_at?: string | null;
+  /** Automatically assigned when the session is created */
+  id: number;
+  /** The last approximate time this session was seen. This does not update on every request. */
+  last_seen_at?: string | null;
+  /** The API URL of this session */
+  url?: string | null;
+  /** The id of the user */
+  user_id?: number | null;
+}
+export const SessionObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authenticated_at: S.optional(S.NullOr(S.String)),
+    id: S.Number,
+    last_seen_at: S.optional(S.NullOr(S.String)),
+    url: S.optional(S.NullOr(S.String)),
+    user_id: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({ identifier: "SessionObject" }) as any as S.Schema<SessionObject>;
+
+export type SessionResponseSessionList = Array<SessionObject>;
+export const SessionResponseSessionList = /*@__PURE__*/ S.Array(
+  SessionObject,
+) as any as S.Schema<SessionResponseSessionList>;
+
+export interface SessionResponse {
+  session?: SessionResponseSessionList;
+}
+export const SessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    session: S.optional(SessionResponseSessionList),
+  }),
+).annotate({
+  identifier: "SessionResponse",
+}) as any as S.Schema<SessionResponse>;
+
+export interface GetCurrentTokenRequest {}
+export const GetCurrentTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/oauth/tokens/current", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCurrentTokenRequest",
+}) as any as S.Schema<GetCurrentTokenRequest>;
+
+/** An array of the valid scopes for this token. See [Scopes](#scopes) below */
+export type OauthTokenObjectScopesList = Array<string>;
+export const OauthTokenObjectScopesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<OauthTokenObjectScopesList>;
+
+export interface OauthTokenObject {
+  /** The id of the client this token belongs to */
+  client_id?: number;
+  /** The time the token was created */
+  created_at?: string;
+  /** The time the token will expire */
+  expires_at?: string;
+  /** Automatically assigned upon creation */
+  id?: number;
+  /** The refresh token, if generated */
+  refresh_token?: string | Redacted.Redacted<string>;
+  /** The time the refresh token will expire */
+  refresh_token_expires_at?: string;
+  /** An array of the valid scopes for this token. See [Scopes](#scopes) below */
+  scopes?: OauthTokenObjectScopesList;
+  /** The access token */
+  token?: string;
+  /** The API url of this record */
+  url?: string;
+  /** The latest time this token was used for authentication */
+  used_at?: string;
+  /** The id of the user this token authenticates as */
+  user_id?: number;
+}
+export const OauthTokenObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    client_id: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    expires_at: S.optional(S.String),
+    id: S.optional(S.Number),
+    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    refresh_token_expires_at: S.optional(S.String),
+    scopes: S.optional(OauthTokenObjectScopesList),
+    token: S.optional(S.String),
+    url: S.optional(S.String),
+    used_at: S.optional(S.String),
+    user_id: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "OauthTokenObject",
+}) as any as S.Schema<OauthTokenObject>;
+
+export interface OAuthTokenResponse {
+  token?: OauthTokenObject;
+}
+export const OAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.optional(OauthTokenObject),
+  }),
+).annotate({
+  identifier: "OAuthTokenResponse",
+}) as any as S.Schema<OAuthTokenResponse>;
+
+export interface GetCurrentUserRequest {
+  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
+  include?: string;
+}
+export const GetCurrentUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    include: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v2/users/me", code: 200 })),
+).annotate({
+  identifier: "GetCurrentUserRequest",
+}) as any as S.Schema<GetCurrentUserRequest>;
+
+/** PUT or POST requests only. Assigns agent or agents to a brand. For more information, see [Agent brand ids](#agent-brand-ids) */
+export type CurrentUserResponseUserAgentBrandIdsList = Array<number>;
+export const CurrentUserResponseUserAgentBrandIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CurrentUserResponseUserAgentBrandIdsList>;
+
+/** The user's profile picture represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/) object */
+export type CurrentUserResponseUserPhotoMap = {
+  [key: string]: unknown | undefined;
+};
+export const CurrentUserResponseUserPhotoMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CurrentUserResponseUserPhotoMap>;
+
+/** The separation scope. "account" means account-level access; "brand" means access limited to a specific brand. */
+export type CurrentUserResponseUserSeparationScope = "account" | "brand";
+export const CurrentUserResponseUserSeparationScope = /*@__PURE__*/ S.String;
+
+/** The brand separation scope for the user. Only present when the account has brand separation enabled. For end users, indicates whether they are scoped to the full account or a specific brand. Staff users (agents and admins) always have `scope: "account"`. */
+export interface CurrentUserResponseUserSeparation {
+  /** The id of the brand the user is scoped to. Only present when "scope" is "brand". */
+  brand_id?: number;
+  /** The separation scope. "account" means account-level access; "brand" means access limited to a specific brand. */
+  scope: CurrentUserResponseUserSeparationScope;
+}
+export const CurrentUserResponseUserSeparation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand_id: S.optional(S.Number),
+    scope: CurrentUserResponseUserSeparationScope,
+  }),
+).annotate({
+  identifier: "CurrentUserResponseUserSeparation",
+}) as any as S.Schema<CurrentUserResponseUserSeparation>;
+
+export type CurrentUserResponseUserSuspensionDetailsChannelsItem =
+  | "all"
+  | "messaging";
+export const CurrentUserResponseUserSuspensionDetailsChannelsItem =
+  /*@__PURE__*/ S.String;
+
+/** Channels on which the user is suspended. `["all"]` means suspended across every channel. If "all" is present, it must be the only element */
+export type CurrentUserResponseUserSuspensionDetailsChannelsList =
+  Array<CurrentUserResponseUserSuspensionDetailsChannelsItem>;
+export const CurrentUserResponseUserSuspensionDetailsChannelsList =
+  /*@__PURE__*/ S.Array(
+    CurrentUserResponseUserSuspensionDetailsChannelsItem,
+  ) as any as S.Schema<CurrentUserResponseUserSuspensionDetailsChannelsList>;
+
+/** Channel-level suspension state for the user. The value is null if the user has no active channel-level suspension */
+export interface CurrentUserResponseUserSuspensionDetails {
+  /** Channels on which the user is suspended. `["all"]` means suspended across every channel. If "all" is present, it must be the only element */
+  channels: CurrentUserResponseUserSuspensionDetailsChannelsList;
+}
+export const CurrentUserResponseUserSuspensionDetails = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      channels: CurrentUserResponseUserSuspensionDetailsChannelsList,
+    }),
+).annotate({
+  identifier: "CurrentUserResponseUserSuspensionDetails",
+}) as any as S.Schema<CurrentUserResponseUserSuspensionDetails>;
+
+/** The user's tags. Only present if your account has user tagging enabled */
+export type CurrentUserResponseUserTagsList = Array<string>;
+export const CurrentUserResponseUserTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CurrentUserResponseUserTagsList>;
+
+/** Values of custom fields in the user's profile. See [User Fields](#user-fields) */
+export type CurrentUserResponseUserUserFieldsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CurrentUserResponseUserUserFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CurrentUserResponseUserUserFieldsMap>;
+
+export interface CurrentUserResponseUser {
+  /** false if the user has been deleted */
+  active?: boolean;
+  /** PUT or POST requests only. Assigns agent or agents to a brand. For more information, see [Agent brand ids](#agent-brand-ids) */
+  agent_brand_ids?: CurrentUserResponseUserAgentBrandIdsList;
+  /** An alias displayed to end users */
+  alias?: string;
+  /** Whether or not the user is a chat-only agent */
+  chat_only?: boolean;
+  /** The time the user was created */
+  created_at?: string;
+  /** A custom role if the user is an agent on the Enterprise plan or above */
+  custom_role_id?: number | null;
+  /** The id of the user's default group */
+  default_group_id?: number;
+  /** Any details you want to store about the user, such as an address */
+  details?: string;
+  /** The user's primary email address. *Writeable on create only. On update, a secondary email is added. See [Email Address](#email-address) */
+  email?: string;
+  /** A unique identifier from another system. The API treats the id as case insensitive. Example: "ian1" and "IAN1" are the same value. */
+  external_id?: string | null;
+  /** The time zone for the user */
+  iana_time_zone?: string;
+  /** Automatically assigned when the user is created */
+  id?: number;
+  /** Last time the user signed in to Zendesk Support or made an API request using an API token */
+  last_login_at?: string;
+  /** The user's locale. A BCP-47 compliant tag for the locale. If both "locale" and "locale_id" are present on create or update, "locale_id" is ignored and only "locale" is used. */
+  locale?: string;
+  /** The user's language identifier */
+  locale_id?: number;
+  /** Designates whether the user has forum moderation capabilities */
+  moderator?: boolean;
+  /** The user's name */
+  name?: string;
+  /** Any notes you want to store about the user */
+  notes?: string;
+  /** true if the user can only create private comments */
+  only_private_comments?: boolean;
+  /** The id of the user's organization. If the user has more than one [organization memberships](/api-reference/ticketing/organizations/organization_memberships/), the id of the user's default organization. If updating, see [Organization ID](#organization-id) */
+  organization_id?: number | null;
+  /** The user's primary phone number. See [Phone Number](#phone-number) below */
+  phone?: string | null;
+  /** The user's profile picture represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/) object */
+  photo?: CurrentUserResponseUserPhotoMap | null;
+  /** A URL pointing to the user's profile picture. */
+  remote_photo_url?: string;
+  /** This parameter is inert and has no effect. It may be deprecated in the future. Previously, this parameter determined whether a user could access a CSV report in a legacy Guide dashboard. This dashboard has been removed. See [Announcing Guide legacy reporting upgrade to Explore](https://support.zendesk.com/hc/en-us/articles/4762263171610-Announcing-Guide-legacy-reporting-upgrade-to-Explore-) */
+  report_csv?: boolean;
+  /** If the agent has any restrictions; false for admins and unrestricted agents, true for other agents */
+  restricted_agent?: boolean;
+  /** The user's role. Possible values are "end-user", "agent", or "admin" */
+  role?: string;
+  /** The user's role id. 0 for a custom agent, 1 for a light agent, 2 for a chat agent, 3 for a chat agent added to the Support account as a contributor ([Chat Phase 4](https://support.zendesk.com/hc/en-us/articles/4408836197658#topic_p1h_sx4_pgb)), 4 for an admin, and 5 for a billing admin */
+  role_type?: number | null;
+  /** The brand separation scope for the user. Only present when the account has brand separation enabled. For end users, indicates whether they are scoped to the full account or a specific brand. Staff users (agents and admins) always have `scope: "account"`. */
+  separation?: CurrentUserResponseUserSeparation;
+  /** If the user is shared from a different Zendesk Support instance. Shared users can be added to organizations but cannot be modified through update requests. Any attempt to update a shared user results in a 403 Forbidden error. Ticket sharing accounts only */
+  shared?: boolean;
+  /** If the user is a shared agent from a different Zendesk Support instance. Ticket sharing accounts only */
+  shared_agent?: boolean;
+  /** Whether the `phone` number is shared or not. See [Phone Number](#phone-number) below */
+  shared_phone_number?: boolean | null;
+  /** The user's signature. Only agents and admins can have signatures */
+  signature?: string;
+  /** If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal */
+  suspended?: boolean;
+  /** Channel-level suspension state for the user. The value is null if the user has no active channel-level suspension */
+  suspension_details?: CurrentUserResponseUserSuspensionDetails | null;
+  /** The user's tags. Only present if your account has user tagging enabled */
+  tags?: CurrentUserResponseUserTagsList;
+  /** Specifies which tickets the user has access to. Possible values are: "organization", "groups", "assigned", "requested", null. "groups" and "assigned" are valid only for agents. If you pass an invalid value to an end user (for example, "groups"), they will be assigned to "requested", regardless of their previous access */
+  ticket_restriction?: string | null;
+  /** The user's time zone. See [Time Zone](#time-zone) */
+  time_zone?: string;
+  /** If two factor authentication is enabled */
+  two_factor_auth_enabled?: boolean | null;
+  /** The time the user was last updated */
+  updated_at?: string;
+  /** The user's API url */
+  url?: string;
+  /** Values of custom fields in the user's profile. See [User Fields](#user-fields) */
+  user_fields?: CurrentUserResponseUserUserFieldsMap;
+  /** Any of the user's identities is verified. See [User Identities](/api-reference/ticketing/users/user_identities) */
+  verified?: boolean;
+  /** CSRF token required by some Zendesk APIs. */
+  authenticity_token?: string;
+}
+export const CurrentUserResponseUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    agent_brand_ids: S.optional(CurrentUserResponseUserAgentBrandIdsList),
+    alias: S.optional(S.String),
+    chat_only: S.optional(S.Boolean),
+    created_at: S.optional(S.String),
+    custom_role_id: S.optional(S.NullOr(S.Number)),
+    default_group_id: S.optional(S.Number),
+    details: S.optional(S.String),
+    email: S.optional(S.String),
+    external_id: S.optional(S.NullOr(S.String)),
+    iana_time_zone: S.optional(S.String),
+    id: S.optional(S.Number),
+    last_login_at: S.optional(S.String),
+    locale: S.optional(S.String),
+    locale_id: S.optional(S.Number),
+    moderator: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    notes: S.optional(S.String),
+    only_private_comments: S.optional(S.Boolean),
+    organization_id: S.optional(S.NullOr(S.Number)),
+    phone: S.optional(S.NullOr(S.String)),
+    photo: S.optional(S.NullOr(CurrentUserResponseUserPhotoMap)),
+    remote_photo_url: S.optional(S.String),
+    report_csv: S.optional(S.Boolean),
+    restricted_agent: S.optional(S.Boolean),
+    role: S.optional(S.String),
+    role_type: S.optional(S.NullOr(S.Number)),
+    separation: S.optional(CurrentUserResponseUserSeparation),
+    shared: S.optional(S.Boolean),
+    shared_agent: S.optional(S.Boolean),
+    shared_phone_number: S.optional(S.NullOr(S.Boolean)),
+    signature: S.optional(S.String),
+    suspended: S.optional(S.Boolean),
+    suspension_details: S.optional(
+      S.NullOr(CurrentUserResponseUserSuspensionDetails),
+    ),
+    tags: S.optional(CurrentUserResponseUserTagsList),
+    ticket_restriction: S.optional(S.NullOr(S.String)),
+    time_zone: S.optional(S.String),
+    two_factor_auth_enabled: S.optional(S.NullOr(S.Boolean)),
+    updated_at: S.optional(S.String),
+    url: S.optional(S.String),
+    user_fields: S.optional(CurrentUserResponseUserUserFieldsMap),
+    verified: S.optional(S.Boolean),
+    authenticity_token: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CurrentUserResponseUser",
+}) as any as S.Schema<CurrentUserResponseUser>;
+
+export interface CurrentUserResponse {
+  user?: CurrentUserResponseUser;
+}
+export const CurrentUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(CurrentUserResponseUser),
+  }),
+).annotate({
+  identifier: "CurrentUserResponse",
+}) as any as S.Schema<CurrentUserResponse>;
+
+export interface GetCurrentUserSettingsRequest {}
+export const GetCurrentUserSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/users/me/settings", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCurrentUserSettingsRequest",
+}) as any as S.Schema<GetCurrentUserSettingsRequest>;
+
+/** Admin Center UI settings */
+export interface UserSettingsResponseSettingsAdminCenter {
+  has_admin_center_side_nav_open?: boolean;
+}
+export const UserSettingsResponseSettingsAdminCenter = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      has_admin_center_side_nav_open: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "UserSettingsResponseSettingsAdminCenter",
+}) as any as S.Schema<UserSettingsResponseSettingsAdminCenter>;
+
+/** Ordered list of view IDs pinned in the Agent Home sidebar (max 8) */
+export type UserSettingsResponseSettingsAgentHomePinnedViewsList =
+  Array<number>;
+export const UserSettingsResponseSettingsAgentHomePinnedViewsList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<UserSettingsResponseSettingsAgentHomePinnedViewsList>;
+
+/** Agent workspace theme preference (0=light, 1=dark, 2=system) */
+export type UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference =
+  | "0"
+  | "1"
+  | "2";
+export const UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference =
+  /*@__PURE__*/ S.String;
+
+/** Theme preference for conversation panel (0=light, 1=dark, 2=system) */
+export type UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
+  | "0"
+  | "1"
+  | "2";
+export const UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
+  /*@__PURE__*/ S.String;
+
+/** Lotus UI settings for onboarding, tooltips, and feature preferences */
+export interface UserSettingsResponseSettingsLotus {
+  /** Agent workspace theme preference (0=light, 1=dark, 2=system) */
+  agent_workspace_theme_preference?: UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference;
+  /** Theme preference for conversation panel (0=light, 1=dark, 2=system) */
+  agent_workspace_theme_preference_for_conversation_panel?: UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel;
+  keyboard_shortcuts_enabled?: boolean;
+  macro_shortcuts_enabled?: boolean;
+  show_onboarding_tooltips?: boolean;
+  /** Whether user is eligible for 2FA */
+  two_factor_authentication?: boolean;
+}
+export const UserSettingsResponseSettingsLotus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agent_workspace_theme_preference: S.optional(
+      UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference,
+    ),
+    agent_workspace_theme_preference_for_conversation_panel: S.optional(
+      UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel,
+    ),
+    keyboard_shortcuts_enabled: S.optional(S.Boolean),
+    macro_shortcuts_enabled: S.optional(S.Boolean),
+    show_onboarding_tooltips: S.optional(S.Boolean),
+    two_factor_authentication: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "UserSettingsResponseSettingsLotus",
+}) as any as S.Schema<UserSettingsResponseSettingsLotus>;
+
+/** Order of shared views (array of view IDs) */
+export type UserSettingsResponseSettingsSharedViewsOrderList = Array<number>;
+export const UserSettingsResponseSettingsSharedViewsOrderList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<UserSettingsResponseSettingsSharedViewsOrderList>;
+
+/** User settings */
+export interface UserSettingsResponseSettings {
+  /** Admin Center UI settings */
+  admin_center?: UserSettingsResponseSettingsAdminCenter;
+  /** Ordered list of view IDs pinned in the Agent Home sidebar (max 8) */
+  agent_home_pinned_views?: UserSettingsResponseSettingsAgentHomePinnedViewsList | null;
+  /** Lotus UI settings for onboarding, tooltips, and feature preferences */
+  lotus?: UserSettingsResponseSettingsLotus;
+  /** Order of shared views (array of view IDs) */
+  shared_views_order?: UserSettingsResponseSettingsSharedViewsOrderList | null;
+}
+export const UserSettingsResponseSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    admin_center: S.optional(UserSettingsResponseSettingsAdminCenter),
+    agent_home_pinned_views: S.optional(
+      S.NullOr(UserSettingsResponseSettingsAgentHomePinnedViewsList),
+    ),
+    lotus: S.optional(UserSettingsResponseSettingsLotus),
+    shared_views_order: S.optional(
+      S.NullOr(UserSettingsResponseSettingsSharedViewsOrderList),
+    ),
+  }),
+).annotate({
+  identifier: "UserSettingsResponseSettings",
+}) as any as S.Schema<UserSettingsResponseSettings>;
+
+export interface UserSettingsResponse {
+  /** User settings */
+  settings?: UserSettingsResponseSettings;
+}
+export const UserSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    settings: S.optional(UserSettingsResponseSettings),
+  }),
+).annotate({
+  identifier: "UserSettingsResponse",
+}) as any as S.Schema<UserSettingsResponse>;
+
+export interface GetCustomObjectRequest {
+  /** The key of a custom object */
+  custom_object_key: string;
+  /** Include permission metadata in the response */
+  include_permissions_metadata?: boolean;
+  /** Include UI path in the response */
+  include_ui_path?: boolean;
+}
+export const GetCustomObjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_object_key: S.String.pipe(T.Label()),
+    include_permissions_metadata: S.optional(S.Boolean.pipe(T.Query())),
+    include_ui_path: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/custom_objects/{custom_object_key}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCustomObjectRequest",
+}) as any as S.Schema<GetCustomObjectRequest>;
+
+export interface GetCustomObjectFieldRequest {
+  /** The key of a custom object */
+  custom_object_key: string;
+  /** The key or id of a custom object field */
+  custom_object_field_key_or_id: string;
+  /** If true, returns standard fields in addition to custom fields. */
+  include_standard_fields?: boolean;
+}
+export const GetCustomObjectFieldRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_object_key: S.String.pipe(T.Label()),
+    custom_object_field_key_or_id: S.String.pipe(T.Label()),
+    include_standard_fields: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/custom_objects/{custom_object_key}/fields/{custom_object_field_key_or_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCustomObjectFieldRequest",
+}) as any as S.Schema<GetCustomObjectFieldRequest>;
+
+export interface GetCustomObjectRecordRequest {
+  /** The key of a custom object */
+  custom_object_key: string;
+  /** The id of a custom object record */
+  custom_object_record_id: string;
+}
+export const GetCustomObjectRecordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_object_key: S.String.pipe(T.Label()),
+    custom_object_record_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/custom_objects/{custom_object_key}/records/{custom_object_record_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCustomObjectRecordRequest",
+}) as any as S.Schema<GetCustomObjectRecordRequest>;
+
+export interface GetCustomRoleByIdRequest {
+  /** The ID of the custom agent role */
+  custom_role_id: number;
+}
+export const GetCustomRoleByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_role_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/custom_roles/{custom_role_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCustomRoleByIdRequest",
+}) as any as S.Schema<GetCustomRoleByIdRequest>;
+
+export interface GetCustomStatusRequest {
+  /** The id of the custom status */
+  custom_status_id: number;
+}
+export const GetCustomStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_status_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/custom_statuses/{custom_status_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCustomStatusRequest",
+}) as any as S.Schema<GetCustomStatusRequest>;
+
+export interface GetDefaultGroupRequest {}
+export const GetDefaultGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/groups/default", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetDefaultGroupRequest",
+}) as any as S.Schema<GetDefaultGroupRequest>;
+
+export interface GetDeletedUserRequest {
+  /** The ID of the deleted user */
+  deleted_user_id: number;
+}
+export const GetDeletedUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deleted_user_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/deleted_users/{deleted_user_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDeletedUserRequest",
+}) as any as S.Schema<GetDeletedUserRequest>;
+
+export type DeletedUserObjectSeparationScope = "account" | "brand";
+export const DeletedUserObjectSeparationScope = /*@__PURE__*/ S.String;
+
+/** Brand separation information for the deleted user */
+export interface DeletedUserObjectSeparation {
+  brand_id?: number;
+  scope?: DeletedUserObjectSeparationScope;
+}
+export const DeletedUserObjectSeparation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand_id: S.optional(S.Number),
+    scope: S.optional(DeletedUserObjectSeparationScope),
+  }),
+).annotate({
+  identifier: "DeletedUserObjectSeparation",
+}) as any as S.Schema<DeletedUserObjectSeparation>;
+
+export interface DeletedUserObject {
+  active: boolean;
+  created_at: string;
+  email: string;
+  id: number;
+  locale: string;
+  locale_id: number;
+  name: string;
+  organization_id: number;
+  phone: string | null;
+  photo: unknown | null;
+  role: string;
+  /** Brand separation information for the deleted user */
+  separation?: DeletedUserObjectSeparation | null;
+  shared_phone_number: string | null;
+  time_zone: string;
+  updated_at: string;
+  url: string;
+}
+export const DeletedUserObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.Boolean,
+    created_at: S.String,
+    email: S.String,
+    id: S.Number,
+    locale: S.String,
+    locale_id: S.Number,
+    name: S.String,
+    organization_id: S.Number,
+    phone: S.NullOr(S.String),
+    photo: S.NullOr(S.Unknown),
+    role: S.String,
+    separation: S.optional(S.NullOr(DeletedUserObjectSeparation)),
+    shared_phone_number: S.NullOr(S.String),
+    time_zone: S.String,
+    updated_at: S.String,
+    url: S.String,
+  }),
+).annotate({
+  identifier: "DeletedUserObject",
+}) as any as S.Schema<DeletedUserObject>;
+
+export interface DeletedUserResponse {
+  deleted_user?: DeletedUserObject;
+}
+export const DeletedUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deleted_user: S.optional(DeletedUserObject),
+  }),
+).annotate({
+  identifier: "DeletedUserResponse",
+}) as any as S.Schema<DeletedUserResponse>;
+
 export interface GetDeletionScheduleRequest {
   /** The id of the deletion schedule */
   deletion_schedule_id: number;
@@ -13709,6 +15948,962 @@ export const GetDeletionScheduleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDeletionScheduleResponse",
 }) as any as S.Schema<GetDeletionScheduleResponse>;
 
+export interface GetDerivedMacroRequest {
+  /** The ID of the macro to replicate */
+  macro_id: number;
+  /** The ID of the ticket from which to build a macro replica */
+  ticket_id: number;
+}
+export const GetDerivedMacroRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    macro_id: S.Number.pipe(T.Query()),
+    ticket_id: S.Number.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v2/macros/new", code: 200 })),
+).annotate({
+  identifier: "GetDerivedMacroRequest",
+}) as any as S.Schema<GetDerivedMacroRequest>;
+
+export interface MacroResponse {
+  macro?: MacroObject;
+}
+export const MacroResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    macro: S.optional(MacroObject),
+  }),
+).annotate({ identifier: "MacroResponse" }) as any as S.Schema<MacroResponse>;
+
+export interface GetDynamicContentItemRequest {
+  /** The ID of the dynamic content item */
+  dynamic_content_item_id: number;
+}
+export const GetDynamicContentItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dynamic_content_item_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/dynamic_content/items/{dynamic_content_item_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDynamicContentItemRequest",
+}) as any as S.Schema<GetDynamicContentItemRequest>;
+
+export interface GetDynamicContentVariantRequest {
+  /** The ID of the dynamic content item */
+  dynamic_content_item_id: number;
+  /** The ID of the variant */
+  dynamic_content_variant_id: number;
+}
+export const GetDynamicContentVariantRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dynamic_content_item_id: S.Number.pipe(T.Label()),
+    dynamic_content_variant_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/dynamic_content/items/{dynamic_content_item_id}/variants/{dynamic_content_variant_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDynamicContentVariantRequest",
+}) as any as S.Schema<GetDynamicContentVariantRequest>;
+
+export interface GetEmailNotificationRequest {
+  /** The id of the email notification */
+  notification_id: number;
+}
+export const GetEmailNotificationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    notification_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/email_notifications/{notification_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEmailNotificationRequest",
+}) as any as S.Schema<GetEmailNotificationRequest>;
+
+/** Details about the delivery status */
+export interface RecipientObjectDeliveryStatus {
+  /** The delivery status code (SMTP code and DSN code) */
+  code?: string;
+  /** The delivery status id */
+  id?: number;
+  /** The delivery status description */
+  message?: string;
+  /** The delivery status type (key) */
+  name?: string;
+}
+export const RecipientObjectDeliveryStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    id: S.optional(S.Number),
+    message: S.optional(S.String),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RecipientObjectDeliveryStatus",
+}) as any as S.Schema<RecipientObjectDeliveryStatus>;
+
+export interface RecipientObject {
+  /** Details about the delivery status */
+  delivery_status?: RecipientObjectDeliveryStatus;
+  /** The recipient's email address */
+  email_address?: string;
+  /** The recipient's user id */
+  user_id?: number;
+}
+export const RecipientObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    delivery_status: S.optional(RecipientObjectDeliveryStatus),
+    email_address: S.optional(S.String),
+    user_id: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RecipientObject",
+}) as any as S.Schema<RecipientObject>;
+
+/** The list of recipients associated to this email notification */
+export type EmailNotificationObjectRecipientsList = Array<RecipientObject>;
+export const EmailNotificationObjectRecipientsList = /*@__PURE__*/ S.Array(
+  RecipientObject,
+) as any as S.Schema<EmailNotificationObjectRecipientsList>;
+
+export interface EmailNotificationObject {
+  /** The comment ID associated to this email notification */
+  comment_id?: number;
+  /** When this email notification was created */
+  created_at?: string;
+  /** The email ID of this email notification */
+  email_id?: string;
+  /** The value of the Message-Id header of the email */
+  message_id?: string;
+  /** The notification id of this email notification */
+  notification_id?: number;
+  /** The list of recipients associated to this email notification */
+  recipients?: EmailNotificationObjectRecipientsList;
+  /** The ticket ID associated to this email notification */
+  ticket_id?: number;
+  /** When this email notification was last updated */
+  updated_at?: string;
+  /** The API url of this email notification */
+  url?: string;
+}
+export const EmailNotificationObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comment_id: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    email_id: S.optional(S.String),
+    message_id: S.optional(S.String),
+    notification_id: S.optional(S.Number),
+    recipients: S.optional(EmailNotificationObjectRecipientsList),
+    ticket_id: S.optional(S.Number),
+    updated_at: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EmailNotificationObject",
+}) as any as S.Schema<EmailNotificationObject>;
+
+export interface EmailNotificationResponse {
+  email_notification?: EmailNotificationObject;
+}
+export const EmailNotificationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email_notification: S.optional(EmailNotificationObject),
+  }),
+).annotate({
+  identifier: "EmailNotificationResponse",
+}) as any as S.Schema<EmailNotificationResponse>;
+
+export interface GetEndUserIdentityRequest {
+  /** The id of the user */
+  user_id: number;
+  /** The ID of the user identity */
+  user_identity_id: number;
+}
+export const GetEndUserIdentityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+    user_identity_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/end_users/{user_id}/identities/{user_identity_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEndUserIdentityRequest",
+}) as any as S.Schema<GetEndUserIdentityRequest>;
+
+export interface GetGlobalClientRequest {
+  /** The ID of the Global OAuth client */
+  global_client_id: number;
+}
+export const GetGlobalClientRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    global_client_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/oauth/global_clients/{global_client_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetGlobalClientRequest",
+}) as any as S.Schema<GetGlobalClientRequest>;
+
+export interface GlobalClientObject {
+  /** The company that users are asked to approve access to */
+  company?: string;
+  /** A short description of the client */
+  description?: string;
+  /** Automatically assigned when the client is created */
+  id?: number;
+  /** The unique identifier for the client */
+  identifier?: string;
+  /** The kind of client, public or confidential */
+  kind?: string;
+  /** The API logo url of this record */
+  logo_url?: string;
+  /** The name of the client */
+  name?: string;
+}
+export const GlobalClientObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    company: S.optional(S.String),
+    description: S.optional(S.String),
+    id: S.optional(S.Number),
+    identifier: S.optional(S.String),
+    kind: S.optional(S.String),
+    logo_url: S.optional(S.String),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GlobalClientObject",
+}) as any as S.Schema<GlobalClientObject>;
+
+export interface GlobalClientResponse {
+  global_client?: GlobalClientObject;
+}
+export const GlobalClientResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    global_client: S.optional(GlobalClientObject),
+  }),
+).annotate({
+  identifier: "GlobalClientResponse",
+}) as any as S.Schema<GlobalClientResponse>;
+
+export interface GetGroupByIdRequest {
+  /** The ID of the group */
+  group_id: number;
+  /** Sideloads to include in the response. Accepts a comma-separated list of values. */
+  include?: string;
+}
+export const GetGroupByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group_id: S.Number.pipe(T.Label()),
+    include: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/groups/{group_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetGroupByIdRequest",
+}) as any as S.Schema<GetGroupByIdRequest>;
+
+export interface GetGroupMembershipByIdRequest {
+  /** The ID of the group membership */
+  group_membership_id: number;
+}
+export const GetGroupMembershipByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group_membership_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/group_memberships/{group_membership_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupMembershipByIdRequest",
+}) as any as S.Schema<GetGroupMembershipByIdRequest>;
+
+export interface GetGroupSLAPolicyRequest {
+  /** The id of the Group SLA policy */
+  group_sla_policy_id: number;
+}
+export const GetGroupSLAPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group_sla_policy_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/group_slas/policies/{group_sla_policy_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupSLAPolicyRequest",
+}) as any as S.Schema<GetGroupSLAPolicyRequest>;
+
+export interface GetGroupSLAPolicyFilterDefinitionItemsRequest {}
+export const GetGroupSLAPolicyFilterDefinitionItemsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/group_slas/policies/definitions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetGroupSLAPolicyFilterDefinitionItemsRequest",
+  }) as any as S.Schema<GetGroupSLAPolicyFilterDefinitionItemsRequest>;
+
+export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem {
+  title?: string;
+  value?: string;
+}
+export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      title: S.optional(S.String),
+      value: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem",
+  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
+
+export type GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
+  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
+export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
+  /*@__PURE__*/ S.Array(
+    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem,
+  ) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList>;
+
+export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem {
+  title?: string;
+  value?: number | null;
+}
+export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      title: S.optional(S.String),
+      value: S.optional(S.NullOr(S.Number)),
+    }),
+  ).annotate({
+    identifier:
+      "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem",
+  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
+
+export type GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
+  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
+export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
+  /*@__PURE__*/ S.Array(
+    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem,
+  ) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList>;
+
+export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues {
+  list?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList;
+  type?: string;
+}
+export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      list: S.optional(
+        GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList,
+      ),
+      type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues",
+  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues>;
+
+export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem {
+  group?: string;
+  operators?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList;
+  title?: string;
+  value?: string;
+  values?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues;
+}
+export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      group: S.optional(S.String),
+      operators: S.optional(
+        GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList,
+      ),
+      title: S.optional(S.String),
+      value: S.optional(S.String),
+      values: S.optional(
+        GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues,
+      ),
+    }),
+  ).annotate({
+    identifier: "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem",
+  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
+
+export type GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList =
+  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
+export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList =
+  /*@__PURE__*/ S.Array(
+    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem,
+  ) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList>;
+
+export interface GroupSLAPolicyFilterDefinitionResponseDefinitions {
+  all?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList;
+}
+export const GroupSLAPolicyFilterDefinitionResponseDefinitions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      all: S.optional(GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList),
+    }),
+  ).annotate({
+    identifier: "GroupSLAPolicyFilterDefinitionResponseDefinitions",
+  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitions>;
+
+export interface GroupSLAPolicyFilterDefinitionResponse {
+  definitions?: GroupSLAPolicyFilterDefinitionResponseDefinitions;
+}
+export const GroupSLAPolicyFilterDefinitionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      definitions: S.optional(
+        GroupSLAPolicyFilterDefinitionResponseDefinitions,
+      ),
+    }),
+).annotate({
+  identifier: "GroupSLAPolicyFilterDefinitionResponse",
+}) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponse>;
+
+export interface GetItamAssetRequest {
+  /** The id of the asset */
+  asset_id: string;
+}
+export const GetItamAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    asset_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/it_asset_management/assets/{asset_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetItamAssetRequest",
+}) as any as S.Schema<GetItamAssetRequest>;
+
+export interface GetItamAssetTypeRequest {
+  /** The id of the asset type */
+  asset_type_id: string;
+}
+export const GetItamAssetTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    asset_type_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/it_asset_management/asset_types/{asset_type_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetItamAssetTypeRequest",
+}) as any as S.Schema<GetItamAssetTypeRequest>;
+
+export interface GetItamAssetTypeFieldRequest {
+  /** The id of the asset type */
+  asset_type_id: string;
+  /** The id of the asset field */
+  asset_type_field_id: string;
+}
+export const GetItamAssetTypeFieldRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    asset_type_id: S.String.pipe(T.Label()),
+    asset_type_field_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/it_asset_management/asset_types/{asset_type_id}/fields/{asset_type_field_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetItamAssetTypeFieldRequest",
+}) as any as S.Schema<GetItamAssetTypeFieldRequest>;
+
+export interface GetItamLocationRequest {
+  /** The id of the location */
+  location_id: string;
+}
+export const GetItamLocationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/it_asset_management/locations/{location_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetItamLocationRequest",
+}) as any as S.Schema<GetItamLocationRequest>;
+
+export interface GetItamStatusRequest {
+  /** The id of the asset status */
+  status_id: string;
+}
+export const GetItamStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/it_asset_management/statuses/{status_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetItamStatusRequest",
+}) as any as S.Schema<GetItamStatusRequest>;
+
+export interface GetJobStatusRequest {
+  /** the Id of the Job status */
+  job_status_id: string;
+}
+export const GetJobStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    job_status_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/job_statuses/{job_status_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetJobStatusRequest",
+}) as any as S.Schema<GetJobStatusRequest>;
+
+export interface GetLocaleByIdRequest {
+  /** The ID or the [BCP-47 code](https://en.wikipedia.org/wiki/IETF_language_tag) of the locale. Examples: es-419, en-us, pr-br */
+  locale_id: string;
+}
+export const GetLocaleByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    locale_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/locales/{locale_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetLocaleByIdRequest",
+}) as any as S.Schema<GetLocaleByIdRequest>;
+
+export interface GetMacroRequest {
+  /** The ID of the macro */
+  macro_id: number;
+}
+export const GetMacroRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    macro_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/macros/{macro_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetMacroRequest",
+}) as any as S.Schema<GetMacroRequest>;
+
+export interface GetMacroAttachmentRequest {
+  /** The ID of the attachment */
+  attachment_id: number;
+}
+export const GetMacroAttachmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachment_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/macros/attachments/{attachment_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetMacroAttachmentRequest",
+}) as any as S.Schema<GetMacroAttachmentRequest>;
+
+export interface GetManyDynamicContentsRequest {
+  /** Identifiers for the dynamic contents */
+  identifiers?: string;
+}
+export const GetManyDynamicContentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    identifiers: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/dynamic_content/items/show_many",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetManyDynamicContentsRequest",
+}) as any as S.Schema<GetManyDynamicContentsRequest>;
+
+export type DynamicContentsResponseItemsList = Array<DynamicContentObject>;
+export const DynamicContentsResponseItemsList = /*@__PURE__*/ S.Array(
+  DynamicContentObject,
+) as any as S.Schema<DynamicContentsResponseItemsList>;
+
+export interface DynamicContentsResponse {
+  items?: DynamicContentsResponseItemsList;
+}
+export const DynamicContentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(DynamicContentsResponseItemsList),
+  }),
+).annotate({
+  identifier: "DynamicContentsResponse",
+}) as any as S.Schema<DynamicContentsResponse>;
+
+export interface GetManyEmailNotificationsRequest {
+  /** Comma-separated list of notification ids. One of ids, comment_ids, or ticket_ids is required. */
+  ids?: string;
+  /** Comma-separated list of comment ids. One of ids, comment_ids, or ticket_ids is required. */
+  comment_ids?: string;
+  /** Comma-separated list of ticket ids. One of ids, comment_ids, or ticket_ids is required. */
+  ticket_ids?: string;
+}
+export const GetManyEmailNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.optional(S.String.pipe(T.Query())),
+    comment_ids: S.optional(S.String.pipe(T.Query())),
+    ticket_ids: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/email_notifications/show_many",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetManyEmailNotificationsRequest",
+}) as any as S.Schema<GetManyEmailNotificationsRequest>;
+
+export interface GetManyJobStatusesRequest {
+  /** Comma-separated list of job status ids. */
+  ids: string;
+}
+export const GetManyJobStatusesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/job_statuses/show_many", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetManyJobStatusesRequest",
+}) as any as S.Schema<GetManyJobStatusesRequest>;
+
+export type JobStatusesResponseJobStatusesList = Array<JobStatusObject>;
+export const JobStatusesResponseJobStatusesList = /*@__PURE__*/ S.Array(
+  JobStatusObject,
+) as any as S.Schema<JobStatusesResponseJobStatusesList>;
+
+export interface JobStatusesResponse {
+  job_statuses: JobStatusesResponseJobStatusesList;
+}
+export const JobStatusesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    job_statuses: JobStatusesResponseJobStatusesList,
+  }),
+).annotate({
+  identifier: "JobStatusesResponse",
+}) as any as S.Schema<JobStatusesResponse>;
+
+export interface GetManyOrganizationsRequest {
+  /** A list of organization ids */
+  ids?: string;
+  /** A list of external ids */
+  external_ids?: string;
+}
+export const GetManyOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.optional(S.String.pipe(T.Query())),
+    external_ids: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/organizations/show_many",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetManyOrganizationsRequest",
+}) as any as S.Schema<GetManyOrganizationsRequest>;
+
+export interface GetManyTicketFieldsRequest {
+  /** Comma-separated list of ticket field IDs to retrieve. Up to 100 values accepted. Either `ids` or `keys` can be used, but not both. */
+  ids?: string;
+  /** Comma-separated list of ticket field keys to retrieve. Up to 100 values accepted. Use field keys like 'priority', 'status', 'subject' instead of numeric IDs. Either `ids` or `keys` can be used, but not both. */
+  keys?: string;
+  /** If true, includes creator information in the response. */
+  creator?: boolean;
+  /** If true, excludes sub-selection options from dropdown fields in the response. */
+  exclude_sub_selection_options?: boolean;
+}
+export const GetManyTicketFieldsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.optional(S.String.pipe(T.Query())),
+    keys: S.optional(S.String.pipe(T.Query())),
+    creator: S.optional(S.Boolean.pipe(T.Query())),
+    exclude_sub_selection_options: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/ticket_fields/show_many",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetManyTicketFieldsRequest",
+}) as any as S.Schema<GetManyTicketFieldsRequest>;
+
+export type TicketFieldsShowManyResponseTicketFieldsList =
+  Array<TicketFieldObject>;
+export const TicketFieldsShowManyResponseTicketFieldsList =
+  /*@__PURE__*/ S.Array(
+    TicketFieldObject,
+  ) as any as S.Schema<TicketFieldsShowManyResponseTicketFieldsList>;
+
+export interface TicketFieldsShowManyResponse {
+  /** Total count when not using cursor pagination */
+  count?: number;
+  /** URL or cursor to the next page when paginated; null otherwise */
+  next_page?: string | null;
+  /** URL or cursor to the previous page when paginated; null otherwise */
+  previous_page?: string | null;
+  ticket_fields: TicketFieldsShowManyResponseTicketFieldsList;
+}
+export const TicketFieldsShowManyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next_page: S.optional(S.NullOr(S.String)),
+    previous_page: S.optional(S.NullOr(S.String)),
+    ticket_fields: TicketFieldsShowManyResponseTicketFieldsList,
+  }),
+).annotate({
+  identifier: "TicketFieldsShowManyResponse",
+}) as any as S.Schema<TicketFieldsShowManyResponse>;
+
+export interface GetManyTicketFormsRequest {
+  /** IDs of the ticket forms to be shown */
+  ids: string;
+  /** When true, includes `has_more` indicator in the cursor pagination response meta. Only valid with cursor pagination (page[size], page[after], page[before]). */
+  include_boundary_indicators?: boolean;
+  /** When true, includes cursor values for each item in the cursor pagination response. Only valid with cursor pagination (page[size], page[after], page[before]). */
+  include_item_cursors?: boolean;
+  /** true returns active ticket forms; false returns inactive ticket forms. If not present, returns both */
+  active?: boolean;
+  /** true returns ticket forms where `end_user_visible`; false returns ticket forms that are not end-user visible. If not present, returns both */
+  end_user_visible?: boolean;
+  /** true returns the default ticket form when the criteria defined by the parameters results in a set without active and end-user visible ticket forms */
+  fallback_to_default?: boolean;
+  /** true returns the ticket forms of the brand specified by the url's subdomain */
+  associated_to_brand?: boolean;
+}
+export const GetManyTicketFormsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.String.pipe(T.Query()),
+    include_boundary_indicators: S.optional(S.Boolean.pipe(T.Query())),
+    include_item_cursors: S.optional(S.Boolean.pipe(T.Query())),
+    active: S.optional(S.Boolean.pipe(T.Query())),
+    end_user_visible: S.optional(S.Boolean.pipe(T.Query())),
+    fallback_to_default: S.optional(S.Boolean.pipe(T.Query())),
+    associated_to_brand: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/ticket_forms/show_many", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetManyTicketFormsRequest",
+}) as any as S.Schema<GetManyTicketFormsRequest>;
+
+export type TicketFormsResponseTicketFormsList = Array<TicketFormObject>;
+export const TicketFormsResponseTicketFormsList = /*@__PURE__*/ S.Array(
+  TicketFormObject,
+) as any as S.Schema<TicketFormsResponseTicketFormsList>;
+
+export interface TicketFormsResponse {
+  ticket_forms?: TicketFormsResponseTicketFormsList;
+}
+export const TicketFormsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_forms: S.optional(TicketFormsResponseTicketFormsList),
+  }),
+).annotate({
+  identifier: "TicketFormsResponse",
+}) as any as S.Schema<TicketFormsResponse>;
+
+export interface GetManyTicketFormStatusesRequest {
+  /** Ticket form status ids to retrieve records for */
+  ids: string;
+}
+export const GetManyTicketFormStatusesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/ticket_form_statuses/show_many",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetManyTicketFormStatusesRequest",
+}) as any as S.Schema<GetManyTicketFormStatusesRequest>;
+
+export interface GetManyUserFieldsRequest {
+  /** Comma-separated list of user field keys to retrieve. */
+  keys?: string;
+}
+export const GetManyUserFieldsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keys: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/user_fields/show_many", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetManyUserFieldsRequest",
+}) as any as S.Schema<GetManyUserFieldsRequest>;
+
+export type UserFieldsResponseUserFieldsList = Array<UserFieldObject>;
+export const UserFieldsResponseUserFieldsList = /*@__PURE__*/ S.Array(
+  UserFieldObject,
+) as any as S.Schema<UserFieldsResponseUserFieldsList>;
+
+export interface UserFieldsResponse {
+  /** Total count of records retrieved */
+  count?: number;
+  /** URL of the next page */
+  next_page?: string | null;
+  /** URL of the previous page */
+  previous_page?: string | null;
+  user_fields: UserFieldsResponseUserFieldsList;
+}
+export const UserFieldsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next_page: S.optional(S.NullOr(S.String)),
+    previous_page: S.optional(S.NullOr(S.String)),
+    user_fields: UserFieldsResponseUserFieldsList,
+  }),
+).annotate({
+  identifier: "UserFieldsResponse",
+}) as any as S.Schema<UserFieldsResponse>;
+
+export interface GetManyUsersRequest {
+  /** Accepts a comma-separated list of up to 100 user ids. */
+  ids?: string;
+  /** Accepts a comma-separated list of up to 100 external ids. */
+  external_ids?: string;
+  /** If true, returns inactive or deleted users. */
+  include_deleted?: boolean;
+  /** When brand separation is enabled and `external_ids` is provided, scopes the lookup to users belonging to the specified brand. Only applicable when the account has brand separation enabled. Omitting `brand_id` always uses account scope (0), regardless of account or Agent Workspace defaults. Accepted values when used with `external_ids`: * 0 — restrict the lookup to account-scoped (brand-less) users only. * A numeric brand id — if the brand has user separation enabled, return only users belonging to that brand; account-scoped agents and admins are excluded. If the brand does not have user separation enabled, the request resolves to account scope (0), including account-scoped agents and end users. * "all" — invalid for `show_many` lookups. When `ids` is provided instead of `external_ids`, numeric brand scopes are accepted but filtering is not applied because user IDs are globally unique. `brand_id=all` is rejected consistently with the other many-user endpoints. */
+  brand_id?: number;
+  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
+  include?: string;
+}
+export const GetManyUsersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: S.optional(S.String.pipe(T.Query())),
+    external_ids: S.optional(S.String.pipe(T.Query())),
+    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
+    brand_id: S.optional(S.Number.pipe(T.Query())),
+    include: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v2/users/show_many", code: 200 })),
+).annotate({
+  identifier: "GetManyUsersRequest",
+}) as any as S.Schema<GetManyUsersRequest>;
+
+export interface GetMonitoredTwitterHandleRequest {
+  /** The ID of the custom agent role */
+  monitored_twitter_handle_id: number;
+}
+export const GetMonitoredTwitterHandleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    monitored_twitter_handle_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/channels/twitter/monitored_twitter_handles/{monitored_twitter_handle_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetMonitoredTwitterHandleRequest",
+}) as any as S.Schema<GetMonitoredTwitterHandleRequest>;
+
+export interface TwitterChannelObject {
+  /** If replies are allowed for this handle */
+  allow_reply?: boolean;
+  /** The profile image url of the handle */
+  avatar_url?: string;
+  /** What brand the handle is associated with */
+  brand_id?: number;
+  /** If replies are allowed for this handle */
+  can_reply?: boolean;
+  /** The time the handle was created */
+  created_at?: string;
+  /** Automatically assigned upon creation */
+  id: number;
+  /** The profile name of the handle */
+  name?: string;
+  /** The X handle */
+  screen_name: string;
+  /** The country's code */
+  twitter_user_id: number;
+  /** The time of the last update of the handle */
+  updated_at?: string;
+}
+export const TwitterChannelObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allow_reply: S.optional(S.Boolean),
+    avatar_url: S.optional(S.String),
+    brand_id: S.optional(S.Number),
+    can_reply: S.optional(S.Boolean),
+    created_at: S.optional(S.String),
+    id: S.Number,
+    name: S.optional(S.String),
+    screen_name: S.String,
+    twitter_user_id: S.Number,
+    updated_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TwitterChannelObject",
+}) as any as S.Schema<TwitterChannelObject>;
+
+export interface TwitterChannelResponse {
+  monitored_twitter_handle?: TwitterChannelObject;
+}
+export const TwitterChannelResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    monitored_twitter_handle: S.optional(TwitterChannelObject),
+  }),
+).annotate({
+  identifier: "TwitterChannelResponse",
+}) as any as S.Schema<TwitterChannelResponse>;
+
 export interface GetObjectTriggerRequest {
   /** The key of a custom object */
   custom_object_key: string;
@@ -13729,6 +16924,225 @@ export const GetObjectTriggerRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetObjectTriggerRequest",
 }) as any as S.Schema<GetObjectTriggerRequest>;
+
+export interface GetOrganizationRequest {
+  /** The ID of an organization */
+  organization_id: number;
+  /** Include additional related data. Supported values: `lookup_relationship_fields`. */
+  include?: string;
+  /** When true, includes `has_more` indicator in the cursor pagination response meta. Only valid with cursor pagination (page[size], page[after], page[before]). */
+  include_boundary_indicators?: boolean;
+  /** When true, includes cursor values for each item in the cursor pagination response. Only valid with cursor pagination (page[size], page[after], page[before]). */
+  include_item_cursors?: boolean;
+}
+export const GetOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.Number.pipe(T.Label()),
+    include: S.optional(S.String.pipe(T.Query())),
+    include_boundary_indicators: S.optional(S.Boolean.pipe(T.Query())),
+    include_item_cursors: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/organizations/{organization_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationRequest",
+}) as any as S.Schema<GetOrganizationRequest>;
+
+export interface GetOrganizationFieldRequest {
+  /** The ID or key of the organization field */
+  organization_field_id: string;
+}
+export const GetOrganizationFieldRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_field_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/organization_fields/{organization_field_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationFieldRequest",
+}) as any as S.Schema<GetOrganizationFieldRequest>;
+
+export interface GetOrganizationMembershipByIdRequest {
+  /** The ID of the organization membership */
+  organization_membership_id: number;
+}
+export const GetOrganizationMembershipByIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      organization_membership_id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/organization_memberships/{organization_membership_id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetOrganizationMembershipByIdRequest",
+}) as any as S.Schema<GetOrganizationMembershipByIdRequest>;
+
+export interface GetOrganizationMembershipByUserIdRequest {
+  /** The id of the user */
+  user_id: number;
+  /** The ID of the organization membership */
+  organization_membership_id: number;
+}
+export const GetOrganizationMembershipByUserIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      user_id: S.Number.pipe(T.Label()),
+      organization_membership_id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetOrganizationMembershipByUserIdRequest",
+}) as any as S.Schema<GetOrganizationMembershipByUserIdRequest>;
+
+export interface GetOrganizationMergeRequest {
+  /** The ID of the organization merge */
+  organization_merge_id: string;
+}
+export const GetOrganizationMergeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_merge_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/organization_merges/{organization_merge_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationMergeRequest",
+}) as any as S.Schema<GetOrganizationMergeRequest>;
+
+export interface GetOrganizationSubscriptionRequest {
+  /** The ID of the organization subscription */
+  organization_subscription_id: number;
+}
+export const GetOrganizationSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_subscription_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/organization_subscriptions/{organization_subscription_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationSubscriptionRequest",
+}) as any as S.Schema<GetOrganizationSubscriptionRequest>;
+
+export interface GetPermissionPolicyRequest {
+  /** The key of a custom object */
+  custom_object_key: string;
+  /** The permission policy ID. Use `custom-role-{custom_role_id}` for custom roles or `end-user` for the end user system role. */
+  id: string;
+}
+export const GetPermissionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    custom_object_key: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/custom_objects/{custom_object_key}/permission_policies/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPermissionPolicyRequest",
+}) as any as S.Schema<GetPermissionPolicyRequest>;
+
+export interface PermissionAction {
+  /** Whether this action is allowed for the role */
+  allowed?: boolean;
+  /** Optional access rule ID that further restricts this permission. Use null when no rule applies. */
+  rule_id?: number | null;
+}
+export const PermissionAction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowed: S.optional(S.Boolean),
+    rule_id: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "PermissionAction",
+}) as any as S.Schema<PermissionAction>;
+
+/** Permission settings for different record operations */
+export interface PermissionPolicyRecords {
+  create?: PermissionAction;
+  delete?: PermissionAction;
+  read?: PermissionAction;
+  update?: PermissionAction;
+}
+export const PermissionPolicyRecords = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    create: S.optional(PermissionAction),
+    delete: S.optional(PermissionAction),
+    read: S.optional(PermissionAction),
+    update: S.optional(PermissionAction),
+  }),
+).annotate({
+  identifier: "PermissionPolicyRecords",
+}) as any as S.Schema<PermissionPolicyRecords>;
+
+export interface PermissionPolicy {
+  /** The policy ID (e.g., 'custom-role-123' or 'end-user') */
+  id?: string;
+  /** Permission settings for different record operations */
+  records?: PermissionPolicyRecords;
+  /** The name of the role this policy applies to */
+  role_name?: string;
+}
+export const PermissionPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    records: S.optional(PermissionPolicyRecords),
+    role_name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PermissionPolicy",
+}) as any as S.Schema<PermissionPolicy>;
+
+export interface PermissionPolicyResponse {
+  policy?: PermissionPolicy;
+}
+export const PermissionPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policy: S.optional(PermissionPolicy),
+  }),
+).annotate({
+  identifier: "PermissionPolicyResponse",
+}) as any as S.Schema<PermissionPolicyResponse>;
+
+export interface GetQueueByIdRequest {
+  /** The id of the omnichannel routing queue */
+  queue_id: string;
+}
+export const GetQueueByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    queue_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/queues/{queue_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetQueueByIdRequest",
+}) as any as S.Schema<GetQueueByIdRequest>;
 
 export interface GetRelationshipFilterDefinitionsRequest {
   /** The target type for which you would like to see filter definitions. The options are "zen:user", "zen:ticket", "zen:organization", and "zen:custom_object:CUSTOM_OBJECT_KEY" */
@@ -13897,6 +17311,677 @@ export const RelationshipFilterDefinitionResponse = /*@__PURE__*/ S.suspend(
   identifier: "RelationshipFilterDefinitionResponse",
 }) as any as S.Schema<RelationshipFilterDefinitionResponse>;
 
+export interface GetRequestRequest {
+  /** The ID of the request */
+  request_id: number;
+}
+export const GetRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    request_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/requests/{request_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetRequestRequest",
+}) as any as S.Schema<GetRequestRequest>;
+
+export interface GetResourceCollectionRequest {
+  /** The id of the resource collection */
+  resource_collection_id: number;
+}
+export const GetResourceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resource_collection_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/resource_collections/{resource_collection_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetResourceCollectionRequest",
+}) as any as S.Schema<GetResourceCollectionRequest>;
+
+export interface ResourceCollectionObjectResourcesItem {
+  deleted?: boolean;
+  identifier?: string;
+  resource_id?: number;
+  type?: string;
+}
+export const ResourceCollectionObjectResourcesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      deleted: S.optional(S.Boolean),
+      identifier: S.optional(S.String),
+      resource_id: S.optional(S.Number),
+      type: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ResourceCollectionObjectResourcesItem",
+}) as any as S.Schema<ResourceCollectionObjectResourcesItem>;
+
+/** Array of resource metadata objects. See [Resource objects](#resource-objects) */
+export type ResourceCollectionObjectResourcesList =
+  Array<ResourceCollectionObjectResourcesItem>;
+export const ResourceCollectionObjectResourcesList = /*@__PURE__*/ S.Array(
+  ResourceCollectionObjectResourcesItem,
+) as any as S.Schema<ResourceCollectionObjectResourcesList>;
+
+export interface ResourceCollectionObject {
+  /** When the resource collection was created */
+  created_at?: string;
+  /** id for the resource collection. Automatically assigned upon creation */
+  id?: number;
+  /** Array of resource metadata objects. See [Resource objects](#resource-objects) */
+  resources?: ResourceCollectionObjectResourcesList;
+  /** Last time the resource collection was updated */
+  updated_at?: string;
+}
+export const ResourceCollectionObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.optional(S.String),
+    id: S.optional(S.Number),
+    resources: S.optional(ResourceCollectionObjectResourcesList),
+    updated_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceCollectionObject",
+}) as any as S.Schema<ResourceCollectionObject>;
+
+export interface ResourceCollectionResponse {
+  resource_collection?: ResourceCollectionObject;
+}
+export const ResourceCollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resource_collection: S.optional(ResourceCollectionObject),
+  }),
+).annotate({
+  identifier: "ResourceCollectionResponse",
+}) as any as S.Schema<ResourceCollectionResponse>;
+
+export interface GetSatisfactionRatingRequest {
+  /** The id of the satisfaction rating to retrieve */
+  satisfaction_rating_id: number;
+}
+export const GetSatisfactionRatingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    satisfaction_rating_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/satisfaction_ratings/{satisfaction_rating_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSatisfactionRatingRequest",
+}) as any as S.Schema<GetSatisfactionRatingRequest>;
+
+export interface GetSatisfactionRatingsRequest {
+  /** The id of the satisfaction rating reason */
+  satisfaction_reason_id: number;
+}
+export const GetSatisfactionRatingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    satisfaction_reason_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/satisfaction_reasons/{satisfaction_reason_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSatisfactionRatingsRequest",
+}) as any as S.Schema<GetSatisfactionRatingsRequest>;
+
+export interface SatisfactionReasonObject {
+  /** The time the reason was created */
+  created_at?: string;
+  /** The time the reason was deleted */
+  deleted_at?: string;
+  /** Automatically assigned upon creation */
+  id?: number;
+  /** The dynamic content placeholder, if present, or the current "value", if not. See [Dynamic Content Items](/api-reference/ticketing/ticket-management/dynamic_content/) */
+  raw_value?: string;
+  /** An account-level code for referencing the reason. Custom reasons are assigned an auto-incrementing integer (non-system reason codes begin at 1000). See [Reason codes](#reason-codes) */
+  reason_code?: number;
+  /** The time the reason was updated */
+  updated_at?: string;
+  /** API URL for the resource */
+  url?: string;
+  /** Translated value of the reason in the account locale */
+  value: string;
+}
+export const SatisfactionReasonObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.optional(S.String),
+    deleted_at: S.optional(S.String),
+    id: S.optional(S.Number),
+    raw_value: S.optional(S.String),
+    reason_code: S.optional(S.Number),
+    updated_at: S.optional(S.String),
+    url: S.optional(S.String),
+    value: S.String,
+  }),
+).annotate({
+  identifier: "SatisfactionReasonObject",
+}) as any as S.Schema<SatisfactionReasonObject>;
+
+export type SatisfactionReasonResponseReasonList =
+  Array<SatisfactionReasonObject>;
+export const SatisfactionReasonResponseReasonList = /*@__PURE__*/ S.Array(
+  SatisfactionReasonObject,
+) as any as S.Schema<SatisfactionReasonResponseReasonList>;
+
+export interface SatisfactionReasonResponse {
+  reason?: SatisfactionReasonResponseReasonList;
+}
+export const SatisfactionReasonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reason: S.optional(SatisfactionReasonResponseReasonList),
+  }),
+).annotate({
+  identifier: "SatisfactionReasonResponse",
+}) as any as S.Schema<SatisfactionReasonResponse>;
+
+export interface GetSecuritySettingsRequest {
+  /** When brand separation is enabled, scopes the security settings to the specified brand. */
+  brand_id?: number;
+}
+export const GetSecuritySettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand_id: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/security_settings", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSecuritySettingsRequest",
+}) as any as S.Schema<GetSecuritySettingsRequest>;
+
+/** Describes how long the account can be assumed */
+export type SecuritySettingsObjectAssumptionDuration =
+  | "off"
+  | "day"
+  | "week"
+  | "month"
+  | "year"
+  | "always";
+export const SecuritySettingsObjectAssumptionDuration = /*@__PURE__*/ S.String;
+
+export type SecuritySettingsObjectAuthenticationAgentSecurityPolicyName =
+  | "low"
+  | "medium"
+  | "high"
+  | "recommended"
+  | "custom";
+export const SecuritySettingsObjectAuthenticationAgentSecurityPolicyName =
+  /*@__PURE__*/ S.String;
+
+export interface SecuritySettingsObjectAuthenticationAgentPassword {
+  disallow_local_part_from_email?: boolean;
+  failed_attempts_allowed?: number;
+  is_available?: boolean;
+  max_sequence?: number | null;
+  password_complexity?: number;
+  password_duration?: number | null;
+  password_history_length?: number | null;
+  /** If must include letters in mixed case */
+  password_in_mixed_case?: boolean;
+  password_length?: number;
+}
+export const SecuritySettingsObjectAuthenticationAgentPassword =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      disallow_local_part_from_email: S.optional(S.Boolean),
+      failed_attempts_allowed: S.optional(S.Number),
+      is_available: S.optional(S.Boolean),
+      max_sequence: S.optional(S.NullOr(S.Number)),
+      password_complexity: S.optional(S.Number),
+      password_duration: S.optional(S.NullOr(S.Number)),
+      password_history_length: S.optional(S.NullOr(S.Number)),
+      password_in_mixed_case: S.optional(S.Boolean),
+      password_length: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "SecuritySettingsObjectAuthenticationAgentPassword",
+  }) as any as S.Schema<SecuritySettingsObjectAuthenticationAgentPassword>;
+
+export interface SecuritySettingsObjectAuthenticationAgent {
+  enforce_sso?: boolean;
+  google_login?: boolean;
+  office_365_login?: boolean;
+  primary_external_auth?: string | null;
+  remote_login?: boolean;
+  security_policy_id?: number;
+  security_policy_name?: SecuritySettingsObjectAuthenticationAgentSecurityPolicyName;
+  sso_auto_redirect?: boolean;
+  two_factor_enforce?: boolean;
+  zendesk_login?: boolean;
+  office_365_allowed_tids?: string;
+  office_365_enforce_tid?: boolean;
+  password?: SecuritySettingsObjectAuthenticationAgentPassword;
+  remote_bypass?: number;
+}
+export const SecuritySettingsObjectAuthenticationAgent =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enforce_sso: S.optional(S.Boolean),
+      google_login: S.optional(S.Boolean),
+      office_365_login: S.optional(S.Boolean),
+      primary_external_auth: S.optional(S.NullOr(S.String)),
+      remote_login: S.optional(S.Boolean),
+      security_policy_id: S.optional(S.Number),
+      security_policy_name: S.optional(
+        SecuritySettingsObjectAuthenticationAgentSecurityPolicyName,
+      ),
+      sso_auto_redirect: S.optional(S.Boolean),
+      two_factor_enforce: S.optional(S.Boolean),
+      zendesk_login: S.optional(S.Boolean),
+      office_365_allowed_tids: S.optional(S.String),
+      office_365_enforce_tid: S.optional(S.Boolean),
+      password: S.optional(SecuritySettingsObjectAuthenticationAgentPassword),
+      remote_bypass: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "SecuritySettingsObjectAuthenticationAgent",
+  }) as any as S.Schema<SecuritySettingsObjectAuthenticationAgent>;
+
+export type SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName =
+  | "low"
+  | "medium"
+  | "high"
+  | "recommended"
+  | "custom";
+export const SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName =
+  /*@__PURE__*/ S.String;
+
+export interface SecuritySettingsObjectAuthenticationEndUser {
+  enforce_sso?: boolean;
+  google_login?: boolean;
+  office_365_login?: boolean;
+  primary_external_auth?: string | null;
+  remote_login?: boolean;
+  security_policy_id?: number;
+  security_policy_name?: SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName;
+  sso_auto_redirect?: boolean;
+  two_factor_enforce?: boolean;
+  zendesk_login?: boolean;
+  facebook_login?: boolean;
+}
+export const SecuritySettingsObjectAuthenticationEndUser =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enforce_sso: S.optional(S.Boolean),
+      google_login: S.optional(S.Boolean),
+      office_365_login: S.optional(S.Boolean),
+      primary_external_auth: S.optional(S.NullOr(S.String)),
+      remote_login: S.optional(S.Boolean),
+      security_policy_id: S.optional(S.Number),
+      security_policy_name: S.optional(
+        SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName,
+      ),
+      sso_auto_redirect: S.optional(S.Boolean),
+      two_factor_enforce: S.optional(S.Boolean),
+      zendesk_login: S.optional(S.Boolean),
+      facebook_login: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "SecuritySettingsObjectAuthenticationEndUser",
+  }) as any as S.Schema<SecuritySettingsObjectAuthenticationEndUser>;
+
+/** Describes how users authenticate. See [Authentication](#authentication) */
+export interface SecuritySettingsObjectAuthentication {
+  agent?: SecuritySettingsObjectAuthenticationAgent;
+  end_user?: SecuritySettingsObjectAuthenticationEndUser;
+}
+export const SecuritySettingsObjectAuthentication = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      agent: S.optional(SecuritySettingsObjectAuthenticationAgent),
+      end_user: S.optional(SecuritySettingsObjectAuthenticationEndUser),
+    }),
+).annotate({
+  identifier: "SecuritySettingsObjectAuthentication",
+}) as any as S.Schema<SecuritySettingsObjectAuthentication>;
+
+/** Describes IP addresses restrictions. See [IP Restrictions](#ip-restrictions) */
+export interface SecuritySettingsObjectIp {
+  enable_agent_ip_restrictions?: boolean;
+  ip_ranges?: string;
+  ip_restriction_enabled?: boolean;
+}
+export const SecuritySettingsObjectIp = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enable_agent_ip_restrictions: S.optional(S.Boolean),
+    ip_ranges: S.optional(S.String),
+    ip_restriction_enabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SecuritySettingsObjectIp",
+}) as any as S.Schema<SecuritySettingsObjectIp>;
+
+export interface SecuritySettingsObject {
+  /** If administrators are allowed to set passwords for users. When disabled, administrators can only reset passwords */
+  admins_can_set_user_passwords?: boolean;
+  /** The period of inactivity in minutes, before a team member is automatically signed out */
+  agent_session_timeout?: number;
+  /** If account assumption is enabled */
+  assumable?: boolean;
+  /** Indicates if an account is always assumable, based on account type (e.g. always true for a trial account) */
+  assumable_account_type?: boolean;
+  /** Describes how long the account can be assumed */
+  assumption_duration?: SecuritySettingsObjectAssumptionDuration;
+  /** The time when assumption option expires */
+  assumption_expiration?: string | null;
+  /** Describes how users authenticate. See [Authentication](#authentication) */
+  authentication?: SecuritySettingsObjectAuthentication;
+  /** If Content Security Policy blocking is enabled */
+  csp_blocking_enabled?: boolean;
+  /** If a notification is sent on password change for admins, agents and end users */
+  email_agent_when_sensitive_fields_changed?: boolean;
+  /** The period of inactivity in minutes, before an end user is automatically signed out */
+  end_user_session_timeout?: number;
+  /** Describes IP addresses restrictions. See [IP Restrictions](#ip-restrictions) */
+  ip?: SecuritySettingsObjectIp;
+  /** The maximum session duration, which is the maximum amount of time in minutes a team member can stay signed in. The session will expire after this duration or the inactivity timeout */
+  maximum_session_duration?: number;
+  /** If maximum session duration for team members is enabled */
+  maximum_session_duration_enabled?: boolean;
+  /** If admins and agents can use the Zendesk Support mobile app */
+  mobile_app_access?: boolean;
+  /** The period of inactivity in minutes, before a mobile app user gets signed out */
+  mobile_app_session_timeout?: number;
+  /** The time when the two-factor authentication setting was last updated */
+  two_factor_last_update?: string;
+}
+export const SecuritySettingsObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    admins_can_set_user_passwords: S.optional(S.Boolean),
+    agent_session_timeout: S.optional(S.Number),
+    assumable: S.optional(S.Boolean),
+    assumable_account_type: S.optional(S.Boolean),
+    assumption_duration: S.optional(SecuritySettingsObjectAssumptionDuration),
+    assumption_expiration: S.optional(S.NullOr(S.String)),
+    authentication: S.optional(SecuritySettingsObjectAuthentication),
+    csp_blocking_enabled: S.optional(S.Boolean),
+    email_agent_when_sensitive_fields_changed: S.optional(S.Boolean),
+    end_user_session_timeout: S.optional(S.Number),
+    ip: S.optional(SecuritySettingsObjectIp),
+    maximum_session_duration: S.optional(S.Number),
+    maximum_session_duration_enabled: S.optional(S.Boolean),
+    mobile_app_access: S.optional(S.Boolean),
+    mobile_app_session_timeout: S.optional(S.Number),
+    two_factor_last_update: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SecuritySettingsObject",
+}) as any as S.Schema<SecuritySettingsObject>;
+
+export interface SecuritySettingsResponse {
+  security_settings?: SecuritySettingsObject;
+}
+export const SecuritySettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    security_settings: S.optional(SecuritySettingsObject),
+  }),
+).annotate({
+  identifier: "SecuritySettingsResponse",
+}) as any as S.Schema<SecuritySettingsResponse>;
+
+export interface GetSessionRequest {
+  /** The id of the user */
+  user_id: number;
+  /** The ID of the session */
+  session_id: number;
+}
+export const GetSessionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+    session_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/users/{user_id}/sessions/{session_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSessionRequest",
+}) as any as S.Schema<GetSessionRequest>;
+
+export interface GetSharingAgreementRequest {
+  /** The ID of the sharing agreement */
+  sharing_agreement_id: number;
+}
+export const GetSharingAgreementRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sharing_agreement_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/sharing_agreements/{sharing_agreement_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSharingAgreementRequest",
+}) as any as S.Schema<GetSharingAgreementRequest>;
+
+export interface GetSLAPolicyRequest {
+  /** The ID of the SLA Policy */
+  sla_policy_id: number;
+}
+export const GetSLAPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sla_policy_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/slas/policies/{sla_policy_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSLAPolicyRequest",
+}) as any as S.Schema<GetSLAPolicyRequest>;
+
+export interface GetSLAPolicyFilterDefinitionItemsRequest {}
+export const GetSLAPolicyFilterDefinitionItemsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/slas/policies/definitions",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetSLAPolicyFilterDefinitionItemsRequest",
+}) as any as S.Schema<GetSLAPolicyFilterDefinitionItemsRequest>;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem =
+  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem =
+  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
+  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
+  /*@__PURE__*/ S.Array(
+    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem,
+  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList>;
+
+export interface SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem {
+  title?: string;
+  value?: string | null;
+}
+export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      title: S.optional(S.String),
+      value: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier:
+      "SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem",
+  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
+  Array<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
+  /*@__PURE__*/ S.Array(
+    SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem,
+  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList>;
+
+export interface SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues {
+  list?: SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList;
+  type?: string;
+}
+export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      list: S.optional(
+        SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList,
+      ),
+      type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues",
+  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues>;
+
+export interface SLAPolicyFilterDefinitionResponseDefinitionsAllItem {
+  group?: string;
+  operators?: SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList;
+  target?: string | null;
+  title?: string;
+  value?: string;
+  values?: SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues;
+}
+export const SLAPolicyFilterDefinitionResponseDefinitionsAllItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      group: S.optional(S.String),
+      operators: S.optional(
+        SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList,
+      ),
+      target: S.optional(S.NullOr(S.String)),
+      title: S.optional(S.String),
+      value: S.optional(S.String),
+      values: S.optional(
+        SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues,
+      ),
+    }),
+  ).annotate({
+    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAllItem",
+  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAllList =
+  Array<SLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAllList =
+  /*@__PURE__*/ S.Array(
+    SLAPolicyFilterDefinitionResponseDefinitionsAllItem,
+  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllList>;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsItem =
+  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsItem =
+  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList =
+  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList =
+  /*@__PURE__*/ S.Array(
+    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem,
+  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList>;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListItem =
+  SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListItem =
+  SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList =
+  Array<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList =
+  /*@__PURE__*/ S.Array(
+    SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem,
+  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList>;
+
+export interface SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues {
+  list?: SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList;
+  type?: string;
+}
+export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      list: S.optional(
+        SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList,
+      ),
+      type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues",
+  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues>;
+
+export interface SLAPolicyFilterDefinitionResponseDefinitionsAnyItem {
+  group?: string;
+  operators?: SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList;
+  target?: string | null;
+  title?: string;
+  value?: string;
+  values?: SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues;
+}
+export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      group: S.optional(S.String),
+      operators: S.optional(
+        SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList,
+      ),
+      target: S.optional(S.NullOr(S.String)),
+      title: S.optional(S.String),
+      value: S.optional(S.String),
+      values: S.optional(
+        SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues,
+      ),
+    }),
+  ).annotate({
+    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAnyItem",
+  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItem>;
+
+export type SLAPolicyFilterDefinitionResponseDefinitionsAnyList =
+  Array<SLAPolicyFilterDefinitionResponseDefinitionsAnyItem>;
+export const SLAPolicyFilterDefinitionResponseDefinitionsAnyList =
+  /*@__PURE__*/ S.Array(
+    SLAPolicyFilterDefinitionResponseDefinitionsAnyItem,
+  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyList>;
+
+export interface SLAPolicyFilterDefinitionResponseDefinitions {
+  all?: SLAPolicyFilterDefinitionResponseDefinitionsAllList;
+  any?: SLAPolicyFilterDefinitionResponseDefinitionsAnyList;
+}
+export const SLAPolicyFilterDefinitionResponseDefinitions =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      all: S.optional(SLAPolicyFilterDefinitionResponseDefinitionsAllList),
+      any: S.optional(SLAPolicyFilterDefinitionResponseDefinitionsAnyList),
+    }),
+  ).annotate({
+    identifier: "SLAPolicyFilterDefinitionResponseDefinitions",
+  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitions>;
+
+export interface SLAPolicyFilterDefinitionResponse {
+  definitions?: SLAPolicyFilterDefinitionResponseDefinitions;
+}
+export const SLAPolicyFilterDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    definitions: S.optional(SLAPolicyFilterDefinitionResponseDefinitions),
+  }),
+).annotate({
+  identifier: "SLAPolicyFilterDefinitionResponse",
+}) as any as S.Schema<SLAPolicyFilterDefinitionResponse>;
+
 export interface GetSourcesByTargetRequest {
   /** The type of object the relationship field is targeting. The options are "zen:user", "zen:ticket", "zen:organization", and "zen:custom_object:CUSTOM_OBJECT_KEY" */
   target_type: string;
@@ -13930,6 +18015,343 @@ export const GetSourcesByTargetResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSourcesByTargetResponse",
 }) as any as S.Schema<GetSourcesByTargetResponse>;
+
+export interface GetSupportAddressRequest {
+  /** The ID of the support address */
+  support_address_id: number;
+}
+export const GetSupportAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    support_address_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/recipient_addresses/{support_address_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSupportAddressRequest",
+}) as any as S.Schema<GetSupportAddressRequest>;
+
+export interface GetSuspendedTicketsRequest {
+  /** id of the suspended ticket */
+  id: number;
+}
+export const GetSuspendedTicketsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/suspended_tickets/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSuspendedTicketsRequest",
+}) as any as S.Schema<GetSuspendedTicketsRequest>;
+
+/** The attachments, if any associated to this suspended ticket. See [Attachments](/api-reference/ticketing/tickets/ticket-attachments/) */
+export type SuspendedTicketObjectAttachmentsList = Array<AttachmentObject>;
+export const SuspendedTicketObjectAttachmentsList = /*@__PURE__*/ S.Array(
+  AttachmentObject,
+) as any as S.Schema<SuspendedTicketObjectAttachmentsList>;
+
+export interface AuthorObject {
+  /** The author email */
+  email?: string;
+  /** The author id */
+  id?: number;
+  /** The author name */
+  name?: string;
+}
+export const AuthorObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.optional(S.String),
+    id: S.optional(S.Number),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "AuthorObject" }) as any as S.Schema<AuthorObject>;
+
+/** The error messages if any associated to this suspended ticket */
+export type SuspendedTicketObjectErrorMessagesList = Array<unknown>;
+export const SuspendedTicketObjectErrorMessagesList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<SuspendedTicketObjectErrorMessagesList>;
+
+export interface SuspendedTicketObject {
+  /** The attachments, if any associated to this suspended ticket. See [Attachments](/api-reference/ticketing/tickets/ticket-attachments/) */
+  attachments?: SuspendedTicketObjectAttachmentsList | null;
+  /** The author id (if available), name and email */
+  author?: AuthorObject;
+  /** The id of the brand this ticket is associated with. Only applicable for Enterprise accounts */
+  brand_id?: number;
+  /** Why the ticket was suspended */
+  cause?: string;
+  /** The ID of the cause */
+  cause_id?: number;
+  /** The content that was flagged */
+  content?: string;
+  /** Sanitized HTML content when the suspended ticket was created from rich content. Omitted for plain-text suspended tickets. */
+  content_html?: string;
+  /** The ticket ID this suspended email is associated with, if available */
+  created_at?: string;
+  /** The error messages if any associated to this suspended ticket */
+  error_messages?: SuspendedTicketObjectErrorMessagesList | null;
+  /** Automatically assigned */
+  id?: number;
+  /** The ID of the email, if available */
+  message_id?: string;
+  /** The original recipient e-mail address of the ticket */
+  recipient?: string;
+  /** The value of the subject field for this ticket */
+  subject?: string;
+  /** The ticket ID this suspended email is associated with, if available */
+  ticket_id?: number;
+  /** When the ticket was assigned */
+  updated_at?: string;
+  /** The API url of this ticket */
+  url?: string;
+  via?: ViaObject;
+}
+export const SuspendedTicketObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachments: S.optional(S.NullOr(SuspendedTicketObjectAttachmentsList)),
+    author: S.optional(AuthorObject),
+    brand_id: S.optional(S.Number),
+    cause: S.optional(S.String),
+    cause_id: S.optional(S.Number),
+    content: S.optional(S.String),
+    content_html: S.optional(S.String),
+    created_at: S.optional(S.String),
+    error_messages: S.optional(
+      S.NullOr(SuspendedTicketObjectErrorMessagesList),
+    ),
+    id: S.optional(S.Number),
+    message_id: S.optional(S.String),
+    recipient: S.optional(S.String),
+    subject: S.optional(S.String),
+    ticket_id: S.optional(S.Number),
+    updated_at: S.optional(S.String),
+    url: S.optional(S.String),
+    via: S.optional(ViaObject),
+  }),
+).annotate({
+  identifier: "SuspendedTicketObject",
+}) as any as S.Schema<SuspendedTicketObject>;
+
+export type SuspendedTicketsResponseSuspendedTicketsList =
+  Array<SuspendedTicketObject>;
+export const SuspendedTicketsResponseSuspendedTicketsList =
+  /*@__PURE__*/ S.Array(
+    SuspendedTicketObject,
+  ) as any as S.Schema<SuspendedTicketsResponseSuspendedTicketsList>;
+
+export interface SuspendedTicketsResponse {
+  suspended_tickets?: SuspendedTicketsResponseSuspendedTicketsList;
+}
+export const SuspendedTicketsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    suspended_tickets: S.optional(SuspendedTicketsResponseSuspendedTicketsList),
+  }),
+).annotate({
+  identifier: "SuspendedTicketsResponse",
+}) as any as S.Schema<SuspendedTicketsResponse>;
+
+export interface GetTargetRequest {
+  /** The ID of the target */
+  target_id: number;
+}
+export const GetTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    target_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/targets/{target_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetTargetRequest",
+}) as any as S.Schema<GetTargetRequest>;
+
+export interface GetTargetFailureRequest {
+  /** The ID of the target failure */
+  target_failure_id: number;
+}
+export const GetTargetFailureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    target_failure_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/target_failures/{target_failure_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTargetFailureRequest",
+}) as any as S.Schema<GetTargetFailureRequest>;
+
+export interface TargetFailureObject {
+  /** Number of times the target failed consecutively */
+  consecutive_failure_count?: number;
+  /** Time of the failure */
+  created_at?: string;
+  /** The ID of the target failure */
+  id?: number;
+  /** The raw message of the target request */
+  raw_request?: string;
+  /** The raw response of the failure */
+  raw_response?: string;
+  /** HTTP status code of the target failure */
+  status_code?: number;
+  /** Name of the target failure */
+  target_name?: string;
+  /** The API url of the failure record */
+  url?: string;
+}
+export const TargetFailureObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    consecutive_failure_count: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    id: S.optional(S.Number),
+    raw_request: S.optional(S.String),
+    raw_response: S.optional(S.String),
+    status_code: S.optional(S.Number),
+    target_name: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TargetFailureObject",
+}) as any as S.Schema<TargetFailureObject>;
+
+export interface TargetFailureResponse {
+  target_failure?: TargetFailureObject;
+}
+export const TargetFailureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    target_failure: S.optional(TargetFailureObject),
+  }),
+).annotate({
+  identifier: "TargetFailureResponse",
+}) as any as S.Schema<TargetFailureResponse>;
+
+export interface GetTaskItemRequest {
+  /** The id of the task list */
+  task_list_id: string;
+  /** The id of the task item */
+  task_item_id: string;
+}
+export const GetTaskItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_list_id: S.String.pipe(T.Label()),
+    task_item_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/task_lists/{task_list_id}/task_items/{task_item_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTaskItemRequest",
+}) as any as S.Schema<GetTaskItemRequest>;
+
+export interface GetTaskListInstanceRequest {
+  /** The id of the task list */
+  task_list_id: string;
+}
+export const GetTaskListInstanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_list_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/task_lists/{task_list_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTaskListInstanceRequest",
+}) as any as S.Schema<GetTaskListInstanceRequest>;
+
+export interface TaskListInstanceObject {
+  /** The time the task list was created */
+  created_at?: string;
+  /** The description of the task list */
+  description?: string;
+  /** The id automatically assigned to the task list when it is created */
+  id?: string;
+  /** If true, all tasks in the task list have been completed */
+  is_completed?: boolean;
+  /** Whether the task list is required. If true, the ticket can't be solved until all tasks are complete. */
+  is_required?: boolean;
+  /** The name of the task list */
+  name?: string;
+  /** The number of tasks in the task list */
+  task_count?: number;
+  /** The id of the ticket associated with the task list */
+  ticket_id?: string;
+  /** The time the task list was last updated */
+  updated_at?: string;
+}
+export const TaskListInstanceObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.optional(S.String),
+    description: S.optional(S.String),
+    id: S.optional(S.String),
+    is_completed: S.optional(S.Boolean),
+    is_required: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    task_count: S.optional(S.Number),
+    ticket_id: S.optional(S.String),
+    updated_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskListInstanceObject",
+}) as any as S.Schema<TaskListInstanceObject>;
+
+export interface TaskListInstanceResponse {
+  task_list?: TaskListInstanceObject;
+}
+export const TaskListInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_list: S.optional(TaskListInstanceObject),
+  }),
+).annotate({
+  identifier: "TaskListInstanceResponse",
+}) as any as S.Schema<TaskListInstanceResponse>;
+
+export interface GetTaskListsForTicketRequest {
+  /** The ID of the ticket */
+  ticket_id: number;
+}
+export const GetTaskListsForTicketRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/tickets/{ticket_id}/task_lists",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTaskListsForTicketRequest",
+}) as any as S.Schema<GetTaskListsForTicketRequest>;
+
+export interface GetTaskListTemplateRequest {
+  /** The id of the task list template */
+  task_list_template_id: string;
+}
+export const GetTaskListTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_list_template_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/task_list_templates/{task_list_template_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTaskListTemplateRequest",
+}) as any as S.Schema<GetTaskListTemplateRequest>;
 
 export interface GetTasksByTaskListTemplateIdRequest {
   /** The id of the task list template */
@@ -13970,6 +18392,369 @@ export const TasksByTaskListTemplateIdResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksByTaskListTemplateIdResponse",
 }) as any as S.Schema<TasksByTaskListTemplateIdResponse>;
+
+export interface GetTicketRequest {
+  /** The ID of the ticket */
+  ticket_id: number;
+  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/tickets/tickets/#sideloading). */
+  include?: string;
+  /** When true, returns a reduced ticket payload (omits null custom fields). */
+  reduced_payload_size?: boolean;
+  /** When true, removes duplicate custom field entries from the response. */
+  remove_duplicate_fields?: boolean;
+}
+export const GetTicketRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_id: S.Number.pipe(T.Label()),
+    include: S.optional(S.String.pipe(T.Query())),
+    reduced_payload_size: S.optional(S.Boolean.pipe(T.Query())),
+    remove_duplicate_fields: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/tickets/{ticket_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetTicketRequest",
+}) as any as S.Schema<GetTicketRequest>;
+
+export interface GetTicketAfterChangesRequest {
+  /** The ID of the ticket */
+  ticket_id: number;
+  /** The ID of the macro */
+  macro_id: number;
+  /** If true, normalizes the newline formatting of the macro's comment to more closely match the formatting produced by the ticket comment editor */
+  normalize_comment?: boolean;
+}
+export const GetTicketAfterChangesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_id: S.Number.pipe(T.Label()),
+    macro_id: S.Number.pipe(T.Label()),
+    normalize_comment: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/tickets/{ticket_id}/macros/{macro_id}/apply",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTicketAfterChangesRequest",
+}) as any as S.Schema<GetTicketAfterChangesRequest>;
+
+export interface GetTicketAuditRequest {
+  /** The ID of the ticket */
+  ticket_id: number;
+  /** The ID of the ticket audit */
+  ticket_audit_id: number;
+}
+export const GetTicketAuditRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_id: S.Number.pipe(T.Label()),
+    ticket_audit_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/tickets/{ticket_id}/audits/{ticket_audit_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTicketAuditRequest",
+}) as any as S.Schema<GetTicketAuditRequest>;
+
+export type TicketAuditObjectEventsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const TicketAuditObjectEventsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<TicketAuditObjectEventsItemMap>;
+
+/** An array of the events that happened in this audit. See the [Ticket Audit events reference](/documentation/ticketing/reference-guides/ticket-audit-events-reference) */
+export type TicketAuditObjectEventsList = Array<TicketAuditObjectEventsItemMap>;
+export const TicketAuditObjectEventsList = /*@__PURE__*/ S.Array(
+  TicketAuditObjectEventsItemMap,
+) as any as S.Schema<TicketAuditObjectEventsList>;
+
+/** Metadata for the audit, custom and system data */
+export type TicketAuditObjectMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const TicketAuditObjectMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<TicketAuditObjectMetadataMap>;
+
+export interface TicketAuditObject {
+  /** The user who created the audit */
+  author_id?: number;
+  /** The time the audit was created */
+  created_at?: string;
+  /** An array of the events that happened in this audit. See the [Ticket Audit events reference](/documentation/ticketing/reference-guides/ticket-audit-events-reference) */
+  events?: TicketAuditObjectEventsList;
+  /** Automatically assigned when creating audits */
+  id?: number;
+  /** Metadata for the audit, custom and system data */
+  metadata?: TicketAuditObjectMetadataMap;
+  /** The ID of the associated ticket */
+  ticket_id?: number;
+  via?: TicketAuditViaObject;
+}
+export const TicketAuditObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    author_id: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    events: S.optional(TicketAuditObjectEventsList),
+    id: S.optional(S.Number),
+    metadata: S.optional(TicketAuditObjectMetadataMap),
+    ticket_id: S.optional(S.Number),
+    via: S.optional(TicketAuditViaObject),
+  }),
+).annotate({
+  identifier: "TicketAuditObject",
+}) as any as S.Schema<TicketAuditObject>;
+
+export interface TicketAuditResponse {
+  audit?: TicketAuditObject;
+}
+export const TicketAuditResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    audit: S.optional(TicketAuditObject),
+  }),
+).annotate({
+  identifier: "TicketAuditResponse",
+}) as any as S.Schema<TicketAuditResponse>;
+
+export interface GetTicketByMessagingConversationIdRequest {
+  /** The id of the Sunshine Conversations conversation. */
+  conversation_id: string;
+}
+export const GetTicketByMessagingConversationIdRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      conversation_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/tickets/messaging/conversations/{conversation_id}/ticket",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetTicketByMessagingConversationIdRequest",
+  }) as any as S.Schema<GetTicketByMessagingConversationIdRequest>;
+
+export interface GetTicketfieldRequest {
+  /** The ID of the ticket field */
+  ticket_field_id: number;
+  /** If true, displays the `creator_user_id` and `creator_app_name` properties. If the ticket field is created by an app, `creator_app_name` is the name of the app and `creator_user_id` is `-1`. If the ticket field is not created by an app, then `creator_app_name` is null */
+  creator?: boolean;
+}
+export const GetTicketfieldRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_field_id: S.Number.pipe(T.Label()),
+    creator: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/ticket_fields/{ticket_field_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTicketfieldRequest",
+}) as any as S.Schema<GetTicketfieldRequest>;
+
+export interface GetTicketFieldOptionRequest {
+  /** The ID of the ticket field */
+  ticket_field_id: number;
+  /** The ID of the ticket field option */
+  ticket_field_option_id: number;
+}
+export const GetTicketFieldOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_field_id: S.Number.pipe(T.Label()),
+    ticket_field_option_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTicketFieldOptionRequest",
+}) as any as S.Schema<GetTicketFieldOptionRequest>;
+
+export interface GetTicketFormRequest {
+  /** The ID of the ticket form */
+  ticket_form_id: number;
+}
+export const GetTicketFormRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_form_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/ticket_forms/{ticket_form_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTicketFormRequest",
+}) as any as S.Schema<GetTicketFormRequest>;
+
+export interface GetTicketMetricsRequest {
+  /** The id of the ticket metric to retrieve */
+  ticket_metric_id: string;
+}
+export const GetTicketMetricsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_metric_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/ticket_metrics/{ticket_metric_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTicketMetricsRequest",
+}) as any as S.Schema<GetTicketMetricsRequest>;
+
+export interface TicketMetricTimeObject {
+  /** Time in business hours */
+  business?: number;
+  /** Time in calendar hours */
+  calendar?: number;
+}
+export const TicketMetricTimeObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    business: S.optional(S.Number),
+    calendar: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TicketMetricTimeObject",
+}) as any as S.Schema<TicketMetricTimeObject>;
+
+export interface TicketMetricObject {
+  /** Number of minutes the agent spent waiting during calendar and business hours */
+  agent_wait_time_in_minutes?: TicketMetricTimeObject;
+  /** When the ticket was assigned */
+  assigned_at?: string;
+  /** Number of assignees the ticket had */
+  assignee_stations?: number;
+  /** When the assignee last updated the ticket */
+  assignee_updated_at?: string;
+  /** When the record was created */
+  created_at?: string;
+  /** The date and time the ticket's custom status was last updated */
+  custom_status_updated_at?: string;
+  /** Number of minutes to the first resolution time during calendar and business hours */
+  first_resolution_time_in_minutes?: TicketMetricTimeObject;
+  /** Number of minutes to the full resolution during calendar and business hours */
+  full_resolution_time_in_minutes?: TicketMetricTimeObject;
+  /** Number of groups the ticket passed through */
+  group_stations?: number;
+  /** Automatically assigned when the client is created */
+  id?: number;
+  /** When the ticket was initially assigned */
+  initially_assigned_at?: string;
+  /** When the latest comment was added */
+  latest_comment_added_at?: string;
+  /** Number of minutes on hold */
+  on_hold_time_in_minutes?: TicketMetricTimeObject;
+  /** Total number of times the ticket was reopened */
+  reopens?: number;
+  /** The number of public replies added to a ticket by an agent */
+  replies?: number;
+  /** Number of minutes to the first reply during calendar and business hours */
+  reply_time_in_minutes?: TicketMetricTimeObject;
+  /** Number of seconds to the first reply during calendar hours, only available for Messaging tickets */
+  reply_time_in_seconds?: TicketMetricTimeObject;
+  /** When the requester last updated the ticket */
+  requester_updated_at?: string;
+  /** Number of minutes the requester spent waiting during calendar and business hours */
+  requester_wait_time_in_minutes?: TicketMetricTimeObject;
+  /** When the ticket was solved */
+  solved_at?: string;
+  /** When the status of the ticket was last updated */
+  status_updated_at?: string;
+  /** Id of the associated ticket */
+  ticket_id?: number;
+  /** When the record was last updated */
+  updated_at?: string;
+  /** The API url of the ticket metric */
+  url?: string;
+}
+export const TicketMetricObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agent_wait_time_in_minutes: S.optional(TicketMetricTimeObject),
+    assigned_at: S.optional(S.String),
+    assignee_stations: S.optional(S.Number),
+    assignee_updated_at: S.optional(S.String),
+    created_at: S.optional(S.String),
+    custom_status_updated_at: S.optional(S.String),
+    first_resolution_time_in_minutes: S.optional(TicketMetricTimeObject),
+    full_resolution_time_in_minutes: S.optional(TicketMetricTimeObject),
+    group_stations: S.optional(S.Number),
+    id: S.optional(S.Number),
+    initially_assigned_at: S.optional(S.String),
+    latest_comment_added_at: S.optional(S.String),
+    on_hold_time_in_minutes: S.optional(TicketMetricTimeObject),
+    reopens: S.optional(S.Number),
+    replies: S.optional(S.Number),
+    reply_time_in_minutes: S.optional(TicketMetricTimeObject),
+    reply_time_in_seconds: S.optional(TicketMetricTimeObject),
+    requester_updated_at: S.optional(S.String),
+    requester_wait_time_in_minutes: S.optional(TicketMetricTimeObject),
+    solved_at: S.optional(S.String),
+    status_updated_at: S.optional(S.String),
+    ticket_id: S.optional(S.Number),
+    updated_at: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TicketMetricObject",
+}) as any as S.Schema<TicketMetricObject>;
+
+export type TicketMetricsByTicketMetricIdResponseTicketMetricList =
+  Array<TicketMetricObject>;
+export const TicketMetricsByTicketMetricIdResponseTicketMetricList =
+  /*@__PURE__*/ S.Array(
+    TicketMetricObject,
+  ) as any as S.Schema<TicketMetricsByTicketMetricIdResponseTicketMetricList>;
+
+export interface TicketMetricsByTicketMetricIdResponse {
+  ticket_metric?: TicketMetricsByTicketMetricIdResponseTicketMetricList;
+}
+export const TicketMetricsByTicketMetricIdResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      ticket_metric: S.optional(
+        TicketMetricsByTicketMetricIdResponseTicketMetricList,
+      ),
+    }),
+).annotate({
+  identifier: "TicketMetricsByTicketMetricIdResponse",
+}) as any as S.Schema<TicketMetricsByTicketMetricIdResponse>;
+
+export interface GetTicketMetricsByTicketRequest {
+  /** The ID of the ticket */
+  ticket_id: number;
+}
+export const GetTicketMetricsByTicketRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ticket_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/tickets/{ticket_id}/metrics",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTicketMetricsByTicketRequest",
+}) as any as S.Schema<GetTicketMetricsByTicketRequest>;
 
 export interface GettingTwicketStatusRequest {
   /** The ID of the comment */
@@ -14028,6 +18813,24 @@ export const TwitterChannelTwicketStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TwitterChannelTwicketStatusResponse",
 }) as any as S.Schema<TwitterChannelTwicketStatusResponse>;
 
+export interface GetTokenRequest {
+  /** The ID of the OAuth token */
+  oauth_token_id: number;
+}
+export const GetTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    oauth_token_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/oauth/tokens/{oauth_token_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTokenRequest",
+}) as any as S.Schema<GetTokenRequest>;
+
 export interface GetTriggerRequest {
   /** The ID of the trigger */
   trigger_id: number;
@@ -14041,6 +18844,145 @@ export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetTriggerRequest",
 }) as any as S.Schema<GetTriggerRequest>;
+
+export interface GetTriggerCategoryByIdRequest {
+  /** The id of the ticket trigger category to retrieve */
+  trigger_category_id: string;
+}
+export const GetTriggerCategoryByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trigger_category_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/trigger_categories/{trigger_category_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTriggerCategoryByIdRequest",
+}) as any as S.Schema<GetTriggerCategoryByIdRequest>;
+
+export interface GetTriggerLimitsRequest {}
+export const GetTriggerLimitsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/v2/triggers/limits", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetTriggerLimitsRequest",
+}) as any as S.Schema<GetTriggerLimitsRequest>;
+
+export interface TriggerLimitsResponse {
+  /** The number of active ticket triggers on the account */
+  count?: number;
+  /** The maximum number of active ticket triggers allowed on the account's plan */
+  limit?: number;
+}
+export const TriggerLimitsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    limit: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TriggerLimitsResponse",
+}) as any as S.Schema<TriggerLimitsResponse>;
+
+export interface GetUserRequest {
+  /** The id of the user */
+  user_id: number;
+  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
+  include?: string;
+}
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+    include: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v2/users/{user_id}", code: 200 })),
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
+
+export interface GetUserBrandAgentByIdRequest {
+  /** The id of the user */
+  user_id: number;
+  /** The id of the brand agent */
+  brand_agent_id: string;
+}
+export const GetUserBrandAgentByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+    brand_agent_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/users/{user_id}/brand_agents/{brand_agent_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserBrandAgentByIdRequest",
+}) as any as S.Schema<GetUserBrandAgentByIdRequest>;
+
+export interface GetUserComplianceDeletionStatusesRequest {
+  /** The id of the user */
+  user_id: number;
+  /** Area of compliance */
+  application?: string;
+}
+export const GetUserComplianceDeletionStatusesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      user_id: S.Number.pipe(T.Label()),
+      application: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/users/{user_id}/compliance_deletion_statuses",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetUserComplianceDeletionStatusesRequest",
+}) as any as S.Schema<GetUserComplianceDeletionStatusesRequest>;
+
+export interface ComplianceDeletionStatusObject {
+  account_subdomain: string;
+  action: string;
+  application: string;
+  created_at: string;
+  executer_id: number | null;
+  user_id: number;
+}
+export const ComplianceDeletionStatusObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_subdomain: S.String,
+    action: S.String,
+    application: S.String,
+    created_at: S.String,
+    executer_id: S.NullOr(S.Number),
+    user_id: S.Number,
+  }),
+).annotate({
+  identifier: "ComplianceDeletionStatusObject",
+}) as any as S.Schema<ComplianceDeletionStatusObject>;
+
+export type ComplianceDeletionStatusesResponseComplianceDeletionStatusesList =
+  Array<ComplianceDeletionStatusObject>;
+export const ComplianceDeletionStatusesResponseComplianceDeletionStatusesList =
+  /*@__PURE__*/ S.Array(
+    ComplianceDeletionStatusObject,
+  ) as any as S.Schema<ComplianceDeletionStatusesResponseComplianceDeletionStatusesList>;
+
+export interface ComplianceDeletionStatusesResponse {
+  compliance_deletion_statuses?: ComplianceDeletionStatusesResponseComplianceDeletionStatusesList;
+}
+export const ComplianceDeletionStatusesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    compliance_deletion_statuses: S.optional(
+      ComplianceDeletionStatusesResponseComplianceDeletionStatusesList,
+    ),
+  }),
+).annotate({
+  identifier: "ComplianceDeletionStatusesResponse",
+}) as any as S.Schema<ComplianceDeletionStatusesResponse>;
 
 export interface GetUserEntitlementsFullRequest {
   /** The id of the user */
@@ -14106,6 +19048,87 @@ export const UserEntitlementsFullResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserEntitlementsFullResponse",
 }) as any as S.Schema<UserEntitlementsFullResponse>;
 
+export interface GetUserFieldRequest {
+  /** The ID or key of the user field */
+  user_field_id: string;
+}
+export const GetUserFieldRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_field_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/user_fields/{user_field_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserFieldRequest",
+}) as any as S.Schema<GetUserFieldRequest>;
+
+export interface GetUserFieldOptionRequest {
+  /** The ID or key of the user field */
+  user_field_id: string;
+  /** The ID of the user field option */
+  user_field_option_id: number;
+}
+export const GetUserFieldOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_field_id: S.String.pipe(T.Label()),
+    user_field_option_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserFieldOptionRequest",
+}) as any as S.Schema<GetUserFieldOptionRequest>;
+
+export interface GetUserGroupMembershipByIdRequest {
+  /** The id of the user */
+  user_id: number;
+  /** The ID of the group membership */
+  group_membership_id: number;
+}
+export const GetUserGroupMembershipByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+    group_membership_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/users/{user_id}/group_memberships/{group_membership_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserGroupMembershipByIdRequest",
+}) as any as S.Schema<GetUserGroupMembershipByIdRequest>;
+
+export interface GetUserIdentityRequest {
+  /** The id of the user */
+  user_id: number;
+  /** The ID of the user identity */
+  user_identity_id: number;
+}
+export const GetUserIdentityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+    user_identity_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/users/{user_id}/identities/{user_identity_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserIdentityRequest",
+}) as any as S.Schema<GetUserIdentityRequest>;
+
 export interface GetUserPasswordRequirementsRequest {
   /** The id of the user */
   user_id: number;
@@ -14140,6 +19163,69 @@ export const UserPasswordRequirementsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UserPasswordRequirementsResponse",
 }) as any as S.Schema<UserPasswordRequirementsResponse>;
+
+export interface GetUserRelatedRequest {
+  /** The id of the user */
+  user_id: number;
+}
+export const GetUserRelatedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/users/{user_id}/related",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserRelatedRequest",
+}) as any as S.Schema<GetUserRelatedRequest>;
+
+export interface UserRelatedObject {
+  /** Count of assigned tickets */
+  assigned_tickets?: number;
+  /** Count of collaborated tickets */
+  ccd_tickets?: number;
+  /** Count of organization subscriptions */
+  organization_subscriptions?: number;
+  /** Count of requested tickets */
+  requested_tickets?: number;
+}
+export const UserRelatedObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    assigned_tickets: S.optional(S.Number),
+    ccd_tickets: S.optional(S.Number),
+    organization_subscriptions: S.optional(S.Number),
+    requested_tickets: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "UserRelatedObject",
+}) as any as S.Schema<UserRelatedObject>;
+
+export interface UserRelatedResponse {
+  user_related?: UserRelatedObject;
+}
+export const UserRelatedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_related: S.optional(UserRelatedObject),
+  }),
+).annotate({
+  identifier: "UserRelatedResponse",
+}) as any as S.Schema<UserRelatedResponse>;
+
+export interface GetViewRequest {
+  /** The ID of the view, or one of the string aliases `"incoming"`, `"my"`, or `"my_groups"`. */
+  view_id: string;
+  /** A comma-separated list of sideloads to include in the response. */
+  include?: string;
+}
+export const GetViewRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    view_id: S.String.pipe(T.Label()),
+    include: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v2/views/{view_id}", code: 200 })),
+).annotate({ identifier: "GetViewRequest" }) as any as S.Schema<GetViewRequest>;
 
 export interface GetViewCountRequest {
   /** The ID of the view, or one of the string aliases `"incoming"`, `"my"`, or `"my_groups"`. */
@@ -14222,6 +19308,35 @@ export const ViewCountsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ViewCountsResponse",
 }) as any as S.Schema<ViewCountsResponse>;
+
+export interface GetWorkspaceRequest {
+  /** The id of the workspace */
+  workspace_id: number;
+}
+export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspace_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v2/workspaces/{workspace_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceRequest",
+}) as any as S.Schema<GetWorkspaceRequest>;
+
+export interface GetWorkspaceResponse {
+  workspace?: WorkspaceObject;
+}
+export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspace: S.optional(WorkspaceObject),
+  }),
+).annotate({
+  identifier: "GetWorkspaceResponse",
+}) as any as S.Schema<GetWorkspaceResponse>;
 
 export interface GlobalOAuthClientsTokenSummaryRequest {
   /** The id of the global OAuth client */
@@ -14370,6 +19485,267 @@ export const GroupMembershipsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GroupMembershipsResponse",
 }) as any as S.Schema<GroupMembershipsResponse>;
+
+/** Users to add as cc's when creating a ticket. See [Setting Collaborators](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-collaborators) */
+export type TicketImportInputInputCollaboratorsList = Array<CollaboratorObject>;
+export const TicketImportInputInputCollaboratorsList = /*@__PURE__*/ S.Array(
+  CollaboratorObject,
+) as any as S.Schema<TicketImportInputInputCollaboratorsList>;
+
+/** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
+export type TicketImportInputInputCommentUploadsList = Array<string>;
+export const TicketImportInputInputCommentUploadsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TicketImportInputInputCommentUploadsList>;
+
+export interface TicketImportInputInputComment {
+  /** The comment string value */
+  value?: string;
+  /** Internal flag for adding short URLs to the comment */
+  add_short_url?: boolean;
+  /** The id of the comment author. If null or omitted on create, defaults to the authenticated user. See [Author id](#author-id) */
+  author_id?: number | null;
+  /** The comment string. See [Bodies](#bodies) */
+  body?: string;
+  /** Internal channel back identifier for the comment */
+  channel_back?: string;
+  /** Internal channel source identifier for the comment */
+  channel_source_id?: string | null;
+  /** The comment formatted as HTML. See [Bodies](#bodies) */
+  html_body?: string;
+  /** true if a public comment; false if an internal note. The initial value set on ticket creation persists for any additional comment unless you change it */
+  public?: boolean;
+  /** The locale code to translate the comment body to. */
+  translate_to?: string | null;
+  /** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
+  uploads?: TicketImportInputInputCommentUploadsList;
+  via?: AttachmentObjectInput;
+}
+export const TicketImportInputInputComment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    add_short_url: S.optional(S.Boolean),
+    author_id: S.optional(S.NullOr(S.Number)),
+    body: S.optional(S.String),
+    channel_back: S.optional(S.String),
+    channel_source_id: S.optional(S.NullOr(S.String)),
+    html_body: S.optional(S.String),
+    public: S.optional(S.Boolean),
+    translate_to: S.optional(S.NullOr(S.String)),
+    uploads: S.optional(TicketImportInputInputCommentUploadsList),
+    via: S.optional(AttachmentObjectInput),
+  }),
+).annotate({
+  identifier: "TicketImportInputInputComment",
+}) as any as S.Schema<TicketImportInputInputComment>;
+
+/** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
+export type TicketImportInputInputCommentsItemUploadsList = Array<string>;
+export const TicketImportInputInputCommentsItemUploadsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TicketImportInputInputCommentsItemUploadsList>;
+
+export interface TicketImportInputInputCommentsItem {
+  /** The comment string value */
+  value?: string;
+  /** Internal flag for adding short URLs to the comment */
+  add_short_url?: boolean;
+  /** The id of the comment author. If null or omitted on create, defaults to the authenticated user. See [Author id](#author-id) */
+  author_id?: number | null;
+  /** The comment string. See [Bodies](#bodies) */
+  body?: string;
+  /** Internal channel back identifier for the comment */
+  channel_back?: string;
+  /** Internal channel source identifier for the comment */
+  channel_source_id?: string | null;
+  /** The comment formatted as HTML. See [Bodies](#bodies) */
+  html_body?: string;
+  /** true if a public comment; false if an internal note. The initial value set on ticket creation persists for any additional comment unless you change it */
+  public?: boolean;
+  /** The locale code to translate the comment body to. */
+  translate_to?: string | null;
+  /** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
+  uploads?: TicketImportInputInputCommentsItemUploadsList;
+  via?: AttachmentObjectInput;
+}
+export const TicketImportInputInputCommentsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    add_short_url: S.optional(S.Boolean),
+    author_id: S.optional(S.NullOr(S.Number)),
+    body: S.optional(S.String),
+    channel_back: S.optional(S.String),
+    channel_source_id: S.optional(S.NullOr(S.String)),
+    html_body: S.optional(S.String),
+    public: S.optional(S.Boolean),
+    translate_to: S.optional(S.NullOr(S.String)),
+    uploads: S.optional(TicketImportInputInputCommentsItemUploadsList),
+    via: S.optional(AttachmentObjectInput),
+  }),
+).annotate({
+  identifier: "TicketImportInputInputCommentsItem",
+}) as any as S.Schema<TicketImportInputInputCommentsItem>;
+
+/** The conversation between requesters, collaborators, and agents */
+export type TicketImportInputInputCommentsList =
+  Array<TicketImportInputInputCommentsItem>;
+export const TicketImportInputInputCommentsList = /*@__PURE__*/ S.Array(
+  TicketImportInputInputCommentsItem,
+) as any as S.Schema<TicketImportInputInputCommentsList>;
+
+/** Custom field values to set on the ticket. Each entry specifies a field ID and its value. */
+export type TicketImportInputInputCustomFieldsList =
+  Array<TicketFieldValueInput>;
+export const TicketImportInputInputCustomFieldsList = /*@__PURE__*/ S.Array(
+  TicketFieldValueInput,
+) as any as S.Schema<TicketImportInputInputCustomFieldsList>;
+
+/** An array of objects that represent agent or end users email CCs to add or delete from the ticket. See [Setting email CCs](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-email-ccs) */
+export type TicketImportInputInputEmailCcsList = Array<EmailCCObject>;
+export const TicketImportInputInputEmailCcsList = /*@__PURE__*/ S.Array(
+  EmailCCObject,
+) as any as S.Schema<TicketImportInputInputEmailCcsList>;
+
+/** An array of objects that represent agent followers to add or delete from the ticket. See [Setting followers](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-followers) */
+export type TicketImportInputInputFollowersList = Array<FollowerObject>;
+export const TicketImportInputInputFollowersList = /*@__PURE__*/ S.Array(
+  FollowerObject,
+) as any as S.Schema<TicketImportInputInputFollowersList>;
+
+/** The urgency with which the ticket should be addressed. */
+export type TicketPriorityEnum = "urgent" | "high" | "normal" | "low";
+export const TicketPriorityEnum = /*@__PURE__*/ S.String;
+
+/** The state of the ticket */
+export type TicketImportInputInputStatus =
+  | "new"
+  | "open"
+  | "pending"
+  | "hold"
+  | "solved"
+  | "closed";
+export const TicketImportInputInputStatus = /*@__PURE__*/ S.String;
+
+/** The array of tags applied to this ticket */
+export type TicketImportInputInputTagsList = Array<string>;
+export const TicketImportInputInputTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TicketImportInputInputTagsList>;
+
+/** For some channels a source object gives more information about how or why the ticket or event was created */
+export type TicketImportInputInputViaSourceMap = {
+  [key: string]: unknown | undefined;
+};
+export const TicketImportInputInputViaSourceMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<TicketImportInputInputViaSourceMap>;
+
+/** An object explaining how the ticket was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference) */
+export interface TicketImportInputInputVia {
+  /** This tells you how the ticket or event was created */
+  channel?: string;
+  /** For some channels a source object gives more information about how or why the ticket or event was created */
+  source?: TicketImportInputInputViaSourceMap;
+}
+export const TicketImportInputInputVia = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    channel: S.optional(S.String),
+    source: S.optional(TicketImportInputInputViaSourceMap),
+  }),
+).annotate({
+  identifier: "TicketImportInputInputVia",
+}) as any as S.Schema<TicketImportInputInputVia>;
+
+export interface TicketImportInputInput {
+  /** The agent currently assigned to the ticket */
+  assignee_id?: number;
+  /** The id of the brand this ticket is associated with. If not specified, the ticket is assigned to the default brand */
+  brand_id?: number | null;
+  /** Users to add as cc's when creating a ticket. See [Setting Collaborators](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-collaborators) */
+  collaborators?: TicketImportInputInputCollaboratorsList;
+  comment?: TicketImportInputInputComment;
+  /** The conversation between requesters, collaborators, and agents */
+  comments?: TicketImportInputInputCommentsList;
+  /** The time the ticket was created (for historical imports) */
+  created_at?: string;
+  /** Custom field values to set on the ticket. Each entry specifies a field ID and its value. */
+  custom_fields?: TicketImportInputInputCustomFieldsList;
+  /** The custom ticket status id of the ticket */
+  custom_status_id?: number;
+  /** Read-only first comment on the ticket. When [creating a ticket](#create-ticket), use `comment` to set the description. See [Description and first comment](#description-and-first-comment) */
+  description?: string;
+  /** An array of objects that represent agent or end users email CCs to add or delete from the ticket. See [Setting email CCs](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-email-ccs) */
+  email_ccs?: TicketImportInputInputEmailCcsList | null;
+  /** An id you can use to link Zendesk Support tickets to local records */
+  external_id?: string;
+  /** An array of objects that represent agent followers to add or delete from the ticket. See [Setting followers](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-followers) */
+  followers?: TicketImportInputInputFollowersList;
+  /** The group this ticket is assigned to */
+  group_id?: number;
+  priority?: TicketPriorityEnum | (string & {});
+  /** The original recipient e-mail address of the ticket */
+  recipient?: string;
+  /** The user who requested this ticket */
+  requester_id?: number;
+  /** The time the ticket was solved (for historical imports) */
+  solved_at?: string;
+  /** The state of the ticket */
+  status?: TicketImportInputInputStatus | (string & {});
+  /** The value of the subject field for this ticket */
+  subject?: string;
+  /** The array of tags applied to this ticket */
+  tags?: TicketImportInputInputTagsList;
+  /** The time the ticket was last updated (for historical imports) */
+  updated_at?: string;
+  /** An object explaining how the ticket was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference) */
+  via?: TicketImportInputInputVia;
+}
+export const TicketImportInputInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    assignee_id: S.optional(S.Number),
+    brand_id: S.optional(S.NullOr(S.Number)),
+    collaborators: S.optional(TicketImportInputInputCollaboratorsList),
+    comment: S.optional(TicketImportInputInputComment),
+    comments: S.optional(TicketImportInputInputCommentsList),
+    created_at: S.optional(S.String),
+    custom_fields: S.optional(TicketImportInputInputCustomFieldsList),
+    custom_status_id: S.optional(S.Number),
+    description: S.optional(S.String),
+    email_ccs: S.optional(S.NullOr(TicketImportInputInputEmailCcsList)),
+    external_id: S.optional(S.String),
+    followers: S.optional(TicketImportInputInputFollowersList),
+    group_id: S.optional(S.Number),
+    priority: S.optional(TicketPriorityEnum),
+    recipient: S.optional(S.String),
+    requester_id: S.optional(S.Number),
+    solved_at: S.optional(S.String),
+    status: S.optional(TicketImportInputInputStatus),
+    subject: S.optional(S.String),
+    tags: S.optional(TicketImportInputInputTagsList),
+    updated_at: S.optional(S.String),
+    via: S.optional(TicketImportInputInputVia),
+  }),
+).annotate({
+  identifier: "TicketImportInputInput",
+}) as any as S.Schema<TicketImportInputInput>;
+
+export interface ImportTicketRequest {
+  /** If `true`, any ticket created with a `closed` status bypasses the normal ticket lifecycle and will be created directly in your ticket archive */
+  archive_immediately?: boolean;
+  ticket?: TicketImportInputInput;
+}
+export const ImportTicketRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    archive_immediately: S.optional(S.Boolean.pipe(T.Query())),
+    ticket: S.optional(TicketImportInputInput),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/v2/imports/tickets", code: 200 }),
+  ),
+).annotate({
+  identifier: "ImportTicketRequest",
+}) as any as S.Schema<ImportTicketRequest>;
 
 export interface IncrementalCustomObjectRecordExportCursorRequest {
   /** The key identifier for the custom object */
@@ -14526,274 +19902,6 @@ export const IncrementalCustomObjectRecordsResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "IncrementalCustomObjectRecordsResponse",
 }) as any as S.Schema<IncrementalCustomObjectRecordsResponse>;
-
-export interface IncrementalOrganizationExportRequest {
-  /** The time to start the incremental export from. Must be at least one minute in the past. Data isn't provided for the most recent minute */
-  start_time: number;
-  /** The number of records to return per page */
-  per_page?: number;
-}
-export const IncrementalOrganizationExportRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      start_time: S.Number.pipe(T.Query()),
-      per_page: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/incremental/organizations",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IncrementalOrganizationExportRequest",
-}) as any as S.Schema<IncrementalOrganizationExportRequest>;
-
-export type ExportIncrementalOrganizationsResponseOrganizationsList =
-  Array<OrganizationObject>;
-export const ExportIncrementalOrganizationsResponseOrganizationsList =
-  /*@__PURE__*/ S.Array(
-    OrganizationObject,
-  ) as any as S.Schema<ExportIncrementalOrganizationsResponseOrganizationsList>;
-
-export interface ExportIncrementalOrganizationsResponse {
-  count?: number;
-  end_of_stream?: boolean;
-  end_time?: number;
-  next_page?: string | null;
-  organizations?: ExportIncrementalOrganizationsResponseOrganizationsList;
-}
-export const ExportIncrementalOrganizationsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      count: S.optional(S.Number),
-      end_of_stream: S.optional(S.Boolean),
-      end_time: S.optional(S.Number),
-      next_page: S.optional(S.NullOr(S.String)),
-      organizations: S.optional(
-        ExportIncrementalOrganizationsResponseOrganizationsList,
-      ),
-    }),
-).annotate({
-  identifier: "ExportIncrementalOrganizationsResponse",
-}) as any as S.Schema<ExportIncrementalOrganizationsResponse>;
-
-export interface IncrementalSampleExportRequest {
-  /** The resource requested for incremental sample export */
-  incremental_resource: string;
-  /** The time to start the incremental export from. Must be at least one minute in the past. Data isn't provided for the most recent minute */
-  start_time: number;
-}
-export const IncrementalSampleExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    incremental_resource: S.String.pipe(T.Label()),
-    start_time: S.Number.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/incremental/{incremental_resource}/sample",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "IncrementalSampleExportRequest",
-}) as any as S.Schema<IncrementalSampleExportRequest>;
-
-export type TimeBasedExportIncrementalTicketsResponseOutputTicketsList =
-  Array<TicketObjectOutput>;
-export const TimeBasedExportIncrementalTicketsResponseOutputTicketsList =
-  /*@__PURE__*/ S.Array(
-    TicketObjectOutput,
-  ) as any as S.Schema<TimeBasedExportIncrementalTicketsResponseOutputTicketsList>;
-
-/** See [Tickets](/api-reference/ticketing/tickets/tickets/) for a detailed example. */
-export interface TimeBasedExportIncrementalTicketsResponseOutput {
-  count?: number;
-  end_of_stream?: boolean;
-  end_time?: number;
-  next_page?: string | null;
-  tickets?: TimeBasedExportIncrementalTicketsResponseOutputTicketsList;
-}
-export const TimeBasedExportIncrementalTicketsResponseOutput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      count: S.optional(S.Number),
-      end_of_stream: S.optional(S.Boolean),
-      end_time: S.optional(S.Number),
-      next_page: S.optional(S.NullOr(S.String)),
-      tickets: S.optional(
-        TimeBasedExportIncrementalTicketsResponseOutputTicketsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "TimeBasedExportIncrementalTicketsResponseOutput",
-  }) as any as S.Schema<TimeBasedExportIncrementalTicketsResponseOutput>;
-
-export interface IncrementalSkilBasedRoutingAttributesExportRequest {}
-export const IncrementalSkilBasedRoutingAttributesExportRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/incremental/routing/attributes",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IncrementalSkilBasedRoutingAttributesExportRequest",
-  }) as any as S.Schema<IncrementalSkilBasedRoutingAttributesExportRequest>;
-
-export interface IncrementalSkillBasedRoutingAttributeValue {
-  /** Id of the associated attribute */
-  attribute_id?: string;
-  /** Automatically assigned when an attribute value is created */
-  id?: string;
-  /** The name of the attribute value */
-  name?: string;
-  /** The time the attribute value was created, updated, or deleted */
-  time?: string;
-  /** One of "create", "update", or "delete" */
-  type?: string;
-}
-export const IncrementalSkillBasedRoutingAttributeValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      attribute_id: S.optional(S.String),
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      time: S.optional(S.String),
-      type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "IncrementalSkillBasedRoutingAttributeValue",
-  }) as any as S.Schema<IncrementalSkillBasedRoutingAttributeValue>;
-
-/** Routing attribute values */
-export type IncrementalSkillBasedRoutingAttributeValuesList =
-  Array<IncrementalSkillBasedRoutingAttributeValue>;
-export const IncrementalSkillBasedRoutingAttributeValuesList =
-  /*@__PURE__*/ S.Array(
-    IncrementalSkillBasedRoutingAttributeValue,
-  ) as any as S.Schema<IncrementalSkillBasedRoutingAttributeValuesList>;
-
-export interface IncrementalSkillBasedRoutingAttribute {
-  /** Automatically assigned when an attribute is created */
-  id?: string;
-  /** The name of the attribute */
-  name?: string;
-  /** The time the attribute was created, updated, or deleted */
-  time?: string;
-  /** One of "create", "update", or "delete" */
-  type?: string;
-}
-export const IncrementalSkillBasedRoutingAttribute = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      time: S.optional(S.String),
-      type: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "IncrementalSkillBasedRoutingAttribute",
-}) as any as S.Schema<IncrementalSkillBasedRoutingAttribute>;
-
-/** Routing attributes */
-export type IncrementalSkillBasedRoutingAttributesList =
-  Array<IncrementalSkillBasedRoutingAttribute>;
-export const IncrementalSkillBasedRoutingAttributesList = /*@__PURE__*/ S.Array(
-  IncrementalSkillBasedRoutingAttribute,
-) as any as S.Schema<IncrementalSkillBasedRoutingAttributesList>;
-
-export interface IncrementalSkillBasedRoutingInstanceValue {
-  /** Id of the associated attribute value */
-  attribute_value_id?: string;
-  /** Automatically assigned when an instance value is created */
-  id?: string;
-  /** Id of the associated agent or ticket */
-  instance_id?: string;
-  /** The time the instance value was created or deleted */
-  time?: string;
-  /** One of "associate_agent", "unassociate_agent", "associate_ticket", or "unassociate_ticket" */
-  type?: string;
-}
-export const IncrementalSkillBasedRoutingInstanceValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      attribute_value_id: S.optional(S.String),
-      id: S.optional(S.String),
-      instance_id: S.optional(S.String),
-      time: S.optional(S.String),
-      type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "IncrementalSkillBasedRoutingInstanceValue",
-  }) as any as S.Schema<IncrementalSkillBasedRoutingInstanceValue>;
-
-/** Routing instance values */
-export type IncrementalSkillBasedRoutingInstanceValuesList =
-  Array<IncrementalSkillBasedRoutingInstanceValue>;
-export const IncrementalSkillBasedRoutingInstanceValuesList =
-  /*@__PURE__*/ S.Array(
-    IncrementalSkillBasedRoutingInstanceValue,
-  ) as any as S.Schema<IncrementalSkillBasedRoutingInstanceValuesList>;
-
-export interface IncrementalSkillBasedRouting {
-  /** Routing attribute values */
-  attribute_values?: IncrementalSkillBasedRoutingAttributeValuesList;
-  /** Routing attributes */
-  attributes?: IncrementalSkillBasedRoutingAttributesList;
-  /** The number of results returned for the current request */
-  count?: number;
-  /** The most recent resource creation time present in this result set in Unix epoch time */
-  end_time?: number;
-  /** Routing instance values */
-  instance_values?: IncrementalSkillBasedRoutingInstanceValuesList;
-  /** The URL that should be called to get the next set of results */
-  next_page?: string;
-}
-export const IncrementalSkillBasedRouting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attribute_values: S.optional(
-      IncrementalSkillBasedRoutingAttributeValuesList,
-    ),
-    attributes: S.optional(IncrementalSkillBasedRoutingAttributesList),
-    count: S.optional(S.Number),
-    end_time: S.optional(S.Number),
-    instance_values: S.optional(IncrementalSkillBasedRoutingInstanceValuesList),
-    next_page: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncrementalSkillBasedRouting",
-}) as any as S.Schema<IncrementalSkillBasedRouting>;
-
-export interface IncrementalSkilBasedRoutingAttributeValuesExportRequest {}
-export const IncrementalSkilBasedRoutingAttributeValuesExportRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/incremental/routing/attribute_values",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IncrementalSkilBasedRoutingAttributeValuesExportRequest",
-  }) as any as S.Schema<IncrementalSkilBasedRoutingAttributeValuesExportRequest>;
-
-export interface IncrementalSkilBasedRoutingInstanceValuesExportRequest {}
-export const IncrementalSkilBasedRoutingInstanceValuesExportRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/incremental/routing/instance_values",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IncrementalSkilBasedRoutingInstanceValuesExportRequest",
-  }) as any as S.Schema<IncrementalSkilBasedRoutingInstanceValuesExportRequest>;
 
 export interface IncrementalTicketEventsRequest {
   /** The time to start the incremental export from. Must be at least one minute in the past. Data isn't provided for the most recent minute */
@@ -15640,63 +20748,6 @@ export const ListActivitiesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListActivitiesRequest",
 }) as any as S.Schema<ListActivitiesRequest>;
 
-/** The content of the activity. Can be a ticket, comment, or change. */
-export type ActivityObjectObjectMap = { [key: string]: unknown | undefined };
-export const ActivityObjectObjectMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ActivityObjectObjectMap>;
-
-/** The target of the activity, a ticket. */
-export type ActivityObjectTargetMap = { [key: string]: unknown | undefined };
-export const ActivityObjectTargetMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ActivityObjectTargetMap>;
-
-export interface ActivityObject {
-  /** The full user record of the user responsible for the ticket activity. See [Users](/api-reference/ticketing/users/users/) */
-  actor?: UserObject;
-  /** The id of the user responsible for the ticket activity. An `actor_id` of "-1" is a Zendesk system user, such as an automations action. */
-  actor_id?: number;
-  /** When the record was created */
-  created_at?: string;
-  /** Automatically assigned on creation */
-  id?: number;
-  /** The content of the activity. Can be a ticket, comment, or change. */
-  object?: ActivityObjectObjectMap;
-  /** The target of the activity, a ticket. */
-  target?: ActivityObjectTargetMap;
-  /** Description of the activity */
-  title?: string;
-  /** When the record was last updated */
-  updated_at?: string;
-  /** The API url of the activity */
-  url?: string;
-  /** The full user record of the agent making the request. See [Users](/api-reference/ticketing/users/users/) */
-  user?: UserObject;
-  /** The id of the agent making the request */
-  user_id?: number;
-  /** The type of activity. Can be "tickets.assignment", "tickets.comment", or "tickets.priority_increase" */
-  verb?: string;
-}
-export const ActivityObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actor: S.optional(UserObject),
-    actor_id: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    id: S.optional(S.Number),
-    object: S.optional(ActivityObjectObjectMap),
-    target: S.optional(ActivityObjectTargetMap),
-    title: S.optional(S.String),
-    updated_at: S.optional(S.String),
-    url: S.optional(S.String),
-    user: S.optional(UserObject),
-    user_id: S.optional(S.Number),
-    verb: S.optional(S.String),
-  }),
-).annotate({ identifier: "ActivityObject" }) as any as S.Schema<ActivityObject>;
-
 export type ActivitiesResponseActivitiesList = Array<ActivityObject>;
 export const ActivitiesResponseActivitiesList = /*@__PURE__*/ S.Array(
   ActivityObject,
@@ -16329,49 +21380,6 @@ export const ListAuditLogsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAuditLogsRequest",
 }) as any as S.Schema<ListAuditLogsRequest>;
 
-export interface AuditLogObject {
-  /** Type of change made. Possible values are "create", "destroy", "exported", "login", and "update" */
-  action?: string;
-  /** Localized string of action field */
-  action_label?: string;
-  /** id of the user or system that initiated the change */
-  actor_id?: number;
-  /** Name of the user or system that initiated the change */
-  actor_name?: string;
-  /** The description of the change that occurred */
-  change_description?: string;
-  /** The time the audit got created */
-  created_at?: string;
-  /** The id automatically assigned upon creation */
-  id?: number;
-  /** The IP address of the user doing the audit */
-  ip_address?: string;
-  /** The id of the item being audited */
-  source_id?: number;
-  /** The name of the item being audited */
-  source_label?: string;
-  /** Item type being audited. Typically describes the system where the change was initiated. Possible values vary based on your account's Zendesk products and activity. Common values include "apitoken", "rule", "ticket", "user", and "zendesk/app_market/app". The "rule" value is used for [automations](https://support.zendesk.com/hc/en-us/articles/4408832701850), [macros](https://support.zendesk.com/hc/en-us/articles/4408844187034), [triggers](https://support.zendesk.com/hc/en-us/articles/4408822236058), [views](https://support.zendesk.com/hc/en-us/articles/4408888828570), and other automated business rules */
-  source_type?: string;
-  /** The URL to access the audit log */
-  url?: string;
-}
-export const AuditLogObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: S.optional(S.String),
-    action_label: S.optional(S.String),
-    actor_id: S.optional(S.Number),
-    actor_name: S.optional(S.String),
-    change_description: S.optional(S.String),
-    created_at: S.optional(S.String),
-    id: S.optional(S.Number),
-    ip_address: S.optional(S.String),
-    source_id: S.optional(S.Number),
-    source_label: S.optional(S.String),
-    source_type: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({ identifier: "AuditLogObject" }) as any as S.Schema<AuditLogObject>;
-
 export type AuditLogsResponseAuditLogsList = Array<AuditLogObject>;
 export const AuditLogsResponseAuditLogsList = /*@__PURE__*/ S.Array(
   AuditLogObject,
@@ -16448,58 +21456,6 @@ export const ListAuditsForTicketRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListAuditsForTicketRequest",
 }) as any as S.Schema<ListAuditsForTicketRequest>;
-
-export type TicketAuditObjectEventsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const TicketAuditObjectEventsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<TicketAuditObjectEventsItemMap>;
-
-/** An array of the events that happened in this audit. See the [Ticket Audit events reference](/documentation/ticketing/reference-guides/ticket-audit-events-reference) */
-export type TicketAuditObjectEventsList = Array<TicketAuditObjectEventsItemMap>;
-export const TicketAuditObjectEventsList = /*@__PURE__*/ S.Array(
-  TicketAuditObjectEventsItemMap,
-) as any as S.Schema<TicketAuditObjectEventsList>;
-
-/** Metadata for the audit, custom and system data */
-export type TicketAuditObjectMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const TicketAuditObjectMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<TicketAuditObjectMetadataMap>;
-
-export interface TicketAuditObject {
-  /** The user who created the audit */
-  author_id?: number;
-  /** The time the audit was created */
-  created_at?: string;
-  /** An array of the events that happened in this audit. See the [Ticket Audit events reference](/documentation/ticketing/reference-guides/ticket-audit-events-reference) */
-  events?: TicketAuditObjectEventsList;
-  /** Automatically assigned when creating audits */
-  id?: number;
-  /** Metadata for the audit, custom and system data */
-  metadata?: TicketAuditObjectMetadataMap;
-  /** The ID of the associated ticket */
-  ticket_id?: number;
-  via?: TicketAuditViaObject;
-}
-export const TicketAuditObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    author_id: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    events: S.optional(TicketAuditObjectEventsList),
-    id: S.optional(S.Number),
-    metadata: S.optional(TicketAuditObjectMetadataMap),
-    ticket_id: S.optional(S.Number),
-    via: S.optional(TicketAuditViaObject),
-  }),
-).annotate({
-  identifier: "TicketAuditObject",
-}) as any as S.Schema<TicketAuditObject>;
 
 export type TicketAuditsResponseNoneCursorAuditsList = Array<TicketAuditObject>;
 export const TicketAuditsResponseNoneCursorAuditsList = /*@__PURE__*/ S.Array(
@@ -16752,33 +21708,6 @@ export const ListBrandAgentsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListBrandAgentsRequest",
 }) as any as S.Schema<ListBrandAgentsRequest>;
-
-export interface BrandAgentObject {
-  /** The id of a brand */
-  brand_id: number;
-  /** The time the brand membership was created */
-  created_at?: string;
-  /** Automatically assigned upon creation */
-  id?: string;
-  /** The time of the last update of the brand membership */
-  updated_at?: string;
-  /** The API url of this record */
-  url?: string;
-  /** The id of an agent */
-  user_id: number;
-}
-export const BrandAgentObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand_id: S.Number,
-    created_at: S.optional(S.String),
-    id: S.optional(S.String),
-    updated_at: S.optional(S.String),
-    url: S.optional(S.String),
-    user_id: S.Number,
-  }),
-).annotate({
-  identifier: "BrandAgentObject",
-}) as any as S.Schema<BrandAgentObject>;
 
 export type BrandAgentsResponseBrandAgentsList = Array<BrandAgentObject>;
 export const BrandAgentsResponseBrandAgentsList = /*@__PURE__*/ S.Array(
@@ -17122,28 +22051,6 @@ export const ListCountriesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListCountriesRequest",
 }) as any as S.Schema<ListCountriesRequest>;
-
-export interface CountryObject {
-  /** International calling code */
-  calling_code?: string;
-  /** ISO country code */
-  code: string;
-  /** Unique identifier for the country */
-  id: number;
-  /** Country name */
-  name: string;
-  /** Geographic region */
-  region?: string;
-}
-export const CountryObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    calling_code: S.optional(S.String),
-    code: S.String,
-    id: S.Number,
-    name: S.String,
-    region: S.optional(S.String),
-  }),
-).annotate({ identifier: "CountryObject" }) as any as S.Schema<CountryObject>;
 
 export type ListCountriesResponseCountriesList = Array<CountryObject>;
 export const ListCountriesResponseCountriesList = /*@__PURE__*/ S.Array(
@@ -17531,65 +22438,6 @@ export const ListDeletedUsersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDeletedUsersRequest",
 }) as any as S.Schema<ListDeletedUsersRequest>;
 
-export type DeletedUserObjectSeparationScope = "account" | "brand";
-export const DeletedUserObjectSeparationScope = /*@__PURE__*/ S.String;
-
-/** Brand separation information for the deleted user */
-export interface DeletedUserObjectSeparation {
-  brand_id?: number;
-  scope?: DeletedUserObjectSeparationScope;
-}
-export const DeletedUserObjectSeparation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand_id: S.optional(S.Number),
-    scope: S.optional(DeletedUserObjectSeparationScope),
-  }),
-).annotate({
-  identifier: "DeletedUserObjectSeparation",
-}) as any as S.Schema<DeletedUserObjectSeparation>;
-
-export interface DeletedUserObject {
-  active: boolean;
-  created_at: string;
-  email: string;
-  id: number;
-  locale: string;
-  locale_id: number;
-  name: string;
-  organization_id: number;
-  phone: string | null;
-  photo: unknown | null;
-  role: string;
-  /** Brand separation information for the deleted user */
-  separation?: DeletedUserObjectSeparation | null;
-  shared_phone_number: string | null;
-  time_zone: string;
-  updated_at: string;
-  url: string;
-}
-export const DeletedUserObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.Boolean,
-    created_at: S.String,
-    email: S.String,
-    id: S.Number,
-    locale: S.String,
-    locale_id: S.Number,
-    name: S.String,
-    organization_id: S.Number,
-    phone: S.NullOr(S.String),
-    photo: S.NullOr(S.Unknown),
-    role: S.String,
-    separation: S.optional(S.NullOr(DeletedUserObjectSeparation)),
-    shared_phone_number: S.NullOr(S.String),
-    time_zone: S.String,
-    updated_at: S.String,
-    url: S.String,
-  }),
-).annotate({
-  identifier: "DeletedUserObject",
-}) as any as S.Schema<DeletedUserObject>;
-
 export type DeletedUsersResponseDeletedUsersList = Array<DeletedUserObject>;
 export const DeletedUsersResponseDeletedUsersList = /*@__PURE__*/ S.Array(
   DeletedUserObject,
@@ -17667,22 +22515,6 @@ export const ListDynamicContentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDynamicContentsRequest",
 }) as any as S.Schema<ListDynamicContentsRequest>;
 
-export type DynamicContentsResponseItemsList = Array<DynamicContentObject>;
-export const DynamicContentsResponseItemsList = /*@__PURE__*/ S.Array(
-  DynamicContentObject,
-) as any as S.Schema<DynamicContentsResponseItemsList>;
-
-export interface DynamicContentsResponse {
-  items?: DynamicContentsResponseItemsList;
-}
-export const DynamicContentsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(DynamicContentsResponseItemsList),
-  }),
-).annotate({
-  identifier: "DynamicContentsResponse",
-}) as any as S.Schema<DynamicContentsResponse>;
-
 export interface ListEmailNotificationsRequestFilter {
   comment_id?: number;
   notification_id?: number;
@@ -17717,88 +22549,6 @@ export const ListEmailNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListEmailNotificationsRequest",
 }) as any as S.Schema<ListEmailNotificationsRequest>;
-
-/** Details about the delivery status */
-export interface RecipientObjectDeliveryStatus {
-  /** The delivery status code (SMTP code and DSN code) */
-  code?: string;
-  /** The delivery status id */
-  id?: number;
-  /** The delivery status description */
-  message?: string;
-  /** The delivery status type (key) */
-  name?: string;
-}
-export const RecipientObjectDeliveryStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    id: S.optional(S.Number),
-    message: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RecipientObjectDeliveryStatus",
-}) as any as S.Schema<RecipientObjectDeliveryStatus>;
-
-export interface RecipientObject {
-  /** Details about the delivery status */
-  delivery_status?: RecipientObjectDeliveryStatus;
-  /** The recipient's email address */
-  email_address?: string;
-  /** The recipient's user id */
-  user_id?: number;
-}
-export const RecipientObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    delivery_status: S.optional(RecipientObjectDeliveryStatus),
-    email_address: S.optional(S.String),
-    user_id: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "RecipientObject",
-}) as any as S.Schema<RecipientObject>;
-
-/** The list of recipients associated to this email notification */
-export type EmailNotificationObjectRecipientsList = Array<RecipientObject>;
-export const EmailNotificationObjectRecipientsList = /*@__PURE__*/ S.Array(
-  RecipientObject,
-) as any as S.Schema<EmailNotificationObjectRecipientsList>;
-
-export interface EmailNotificationObject {
-  /** The comment ID associated to this email notification */
-  comment_id?: number;
-  /** When this email notification was created */
-  created_at?: string;
-  /** The email ID of this email notification */
-  email_id?: string;
-  /** The value of the Message-Id header of the email */
-  message_id?: string;
-  /** The notification id of this email notification */
-  notification_id?: number;
-  /** The list of recipients associated to this email notification */
-  recipients?: EmailNotificationObjectRecipientsList;
-  /** The ticket ID associated to this email notification */
-  ticket_id?: number;
-  /** When this email notification was last updated */
-  updated_at?: string;
-  /** The API url of this email notification */
-  url?: string;
-}
-export const EmailNotificationObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comment_id: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    email_id: S.optional(S.String),
-    message_id: S.optional(S.String),
-    notification_id: S.optional(S.Number),
-    recipients: S.optional(EmailNotificationObjectRecipientsList),
-    ticket_id: S.optional(S.Number),
-    updated_at: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EmailNotificationObject",
-}) as any as S.Schema<EmailNotificationObject>;
 
 export type EmailNotificationsResponseEmailNotificationsList =
   Array<EmailNotificationObject>;
@@ -17881,36 +22631,6 @@ export const ListGlobalOAuthClientsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListGlobalOAuthClientsRequest",
 }) as any as S.Schema<ListGlobalOAuthClientsRequest>;
-
-export interface GlobalClientObject {
-  /** The company that users are asked to approve access to */
-  company?: string;
-  /** A short description of the client */
-  description?: string;
-  /** Automatically assigned when the client is created */
-  id?: number;
-  /** The unique identifier for the client */
-  identifier?: string;
-  /** The kind of client, public or confidential */
-  kind?: string;
-  /** The API logo url of this record */
-  logo_url?: string;
-  /** The name of the client */
-  name?: string;
-}
-export const GlobalClientObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    company: S.optional(S.String),
-    description: S.optional(S.String),
-    id: S.optional(S.Number),
-    identifier: S.optional(S.String),
-    kind: S.optional(S.String),
-    logo_url: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GlobalClientObject",
-}) as any as S.Schema<GlobalClientObject>;
 
 export type GlobalClientsResponseGlobalClientsList = Array<GlobalClientObject>;
 export const GlobalClientsResponseGlobalClientsList = /*@__PURE__*/ S.Array(
@@ -18261,22 +22981,6 @@ export const ListJobStatusesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListJobStatusesRequest",
 }) as any as S.Schema<ListJobStatusesRequest>;
-
-export type JobStatusesResponseJobStatusesList = Array<JobStatusObject>;
-export const JobStatusesResponseJobStatusesList = /*@__PURE__*/ S.Array(
-  JobStatusObject,
-) as any as S.Schema<JobStatusesResponseJobStatusesList>;
-
-export interface JobStatusesResponse {
-  job_statuses: JobStatusesResponseJobStatusesList;
-}
-export const JobStatusesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    job_statuses: JobStatusesResponseJobStatusesList,
-  }),
-).annotate({
-  identifier: "JobStatusesResponse",
-}) as any as S.Schema<JobStatusesResponse>;
 
 export interface ListLocalesRequest {}
 export const ListLocalesRequest = /*@__PURE__*/ S.suspend(() =>
@@ -18661,45 +23365,6 @@ export const ListMonitoredTwitterHandlesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListMonitoredTwitterHandlesRequest",
 }) as any as S.Schema<ListMonitoredTwitterHandlesRequest>;
 
-export interface TwitterChannelObject {
-  /** If replies are allowed for this handle */
-  allow_reply?: boolean;
-  /** The profile image url of the handle */
-  avatar_url?: string;
-  /** What brand the handle is associated with */
-  brand_id?: number;
-  /** If replies are allowed for this handle */
-  can_reply?: boolean;
-  /** The time the handle was created */
-  created_at?: string;
-  /** Automatically assigned upon creation */
-  id: number;
-  /** The profile name of the handle */
-  name?: string;
-  /** The X handle */
-  screen_name: string;
-  /** The country's code */
-  twitter_user_id: number;
-  /** The time of the last update of the handle */
-  updated_at?: string;
-}
-export const TwitterChannelObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allow_reply: S.optional(S.Boolean),
-    avatar_url: S.optional(S.String),
-    brand_id: S.optional(S.Number),
-    can_reply: S.optional(S.Boolean),
-    created_at: S.optional(S.String),
-    id: S.Number,
-    name: S.optional(S.String),
-    screen_name: S.String,
-    twitter_user_id: S.Number,
-    updated_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TwitterChannelObject",
-}) as any as S.Schema<TwitterChannelObject>;
-
 export type TwitterChannelsResponseMonitoredTwitterHandlesList =
   Array<TwitterChannelObject>;
 export const TwitterChannelsResponseMonitoredTwitterHandlesList =
@@ -18826,54 +23491,6 @@ export const ListOAuthTokensRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListOAuthTokensRequest",
 }) as any as S.Schema<ListOAuthTokensRequest>;
-
-/** An array of the valid scopes for this token. See [Scopes](#scopes) below */
-export type OauthTokenObjectScopesList = Array<string>;
-export const OauthTokenObjectScopesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<OauthTokenObjectScopesList>;
-
-export interface OauthTokenObject {
-  /** The id of the client this token belongs to */
-  client_id?: number;
-  /** The time the token was created */
-  created_at?: string;
-  /** The time the token will expire */
-  expires_at?: string;
-  /** Automatically assigned upon creation */
-  id?: number;
-  /** The refresh token, if generated */
-  refresh_token?: string | Redacted.Redacted<string>;
-  /** The time the refresh token will expire */
-  refresh_token_expires_at?: string;
-  /** An array of the valid scopes for this token. See [Scopes](#scopes) below */
-  scopes?: OauthTokenObjectScopesList;
-  /** The access token */
-  token?: string;
-  /** The API url of this record */
-  url?: string;
-  /** The latest time this token was used for authentication */
-  used_at?: string;
-  /** The id of the user this token authenticates as */
-  user_id?: number;
-}
-export const OauthTokenObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    client_id: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    expires_at: S.optional(S.String),
-    id: S.optional(S.Number),
-    refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    refresh_token_expires_at: S.optional(S.String),
-    scopes: S.optional(OauthTokenObjectScopesList),
-    token: S.optional(S.String),
-    url: S.optional(S.String),
-    used_at: S.optional(S.String),
-    user_id: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "OauthTokenObject",
-}) as any as S.Schema<OauthTokenObject>;
 
 export type OAuthTokensResponseTokensList = Array<OauthTokenObject>;
 export const OAuthTokensResponseTokensList = /*@__PURE__*/ S.Array(
@@ -19643,57 +24260,6 @@ export const ListPermissionPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPermissionPoliciesRequest",
 }) as any as S.Schema<ListPermissionPoliciesRequest>;
 
-export interface PermissionAction {
-  /** Whether this action is allowed for the role */
-  allowed?: boolean;
-  /** Optional access rule ID that further restricts this permission. Use null when no rule applies. */
-  rule_id?: number | null;
-}
-export const PermissionAction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowed: S.optional(S.Boolean),
-    rule_id: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "PermissionAction",
-}) as any as S.Schema<PermissionAction>;
-
-/** Permission settings for different record operations */
-export interface PermissionPolicyRecords {
-  create?: PermissionAction;
-  delete?: PermissionAction;
-  read?: PermissionAction;
-  update?: PermissionAction;
-}
-export const PermissionPolicyRecords = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    create: S.optional(PermissionAction),
-    delete: S.optional(PermissionAction),
-    read: S.optional(PermissionAction),
-    update: S.optional(PermissionAction),
-  }),
-).annotate({
-  identifier: "PermissionPolicyRecords",
-}) as any as S.Schema<PermissionPolicyRecords>;
-
-export interface PermissionPolicy {
-  /** The policy ID (e.g., 'custom-role-123' or 'end-user') */
-  id?: string;
-  /** Permission settings for different record operations */
-  records?: PermissionPolicyRecords;
-  /** The name of the role this policy applies to */
-  role_name?: string;
-}
-export const PermissionPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    records: S.optional(PermissionPolicyRecords),
-    role_name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PermissionPolicy",
-}) as any as S.Schema<PermissionPolicy>;
-
 export type PermissionPoliciesResponsePoliciesList = Array<PermissionPolicy>;
 export const PermissionPoliciesResponsePoliciesList = /*@__PURE__*/ S.Array(
   PermissionPolicy,
@@ -20088,52 +24654,6 @@ export const ListResourceCollectionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListResourceCollectionsRequest",
 }) as any as S.Schema<ListResourceCollectionsRequest>;
 
-export interface ResourceCollectionObjectResourcesItem {
-  deleted?: boolean;
-  identifier?: string;
-  resource_id?: number;
-  type?: string;
-}
-export const ResourceCollectionObjectResourcesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      deleted: S.optional(S.Boolean),
-      identifier: S.optional(S.String),
-      resource_id: S.optional(S.Number),
-      type: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ResourceCollectionObjectResourcesItem",
-}) as any as S.Schema<ResourceCollectionObjectResourcesItem>;
-
-/** Array of resource metadata objects. See [Resource objects](#resource-objects) */
-export type ResourceCollectionObjectResourcesList =
-  Array<ResourceCollectionObjectResourcesItem>;
-export const ResourceCollectionObjectResourcesList = /*@__PURE__*/ S.Array(
-  ResourceCollectionObjectResourcesItem,
-) as any as S.Schema<ResourceCollectionObjectResourcesList>;
-
-export interface ResourceCollectionObject {
-  /** When the resource collection was created */
-  created_at?: string;
-  /** id for the resource collection. Automatically assigned upon creation */
-  id?: number;
-  /** Array of resource metadata objects. See [Resource objects](#resource-objects) */
-  resources?: ResourceCollectionObjectResourcesList;
-  /** Last time the resource collection was updated */
-  updated_at?: string;
-}
-export const ResourceCollectionObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.optional(S.String),
-    id: S.optional(S.Number),
-    resources: S.optional(ResourceCollectionObjectResourcesList),
-    updated_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceCollectionObject",
-}) as any as S.Schema<ResourceCollectionObject>;
-
 export type ResourceCollectionsResponseResourceCollectionsList =
   Array<ResourceCollectionObject>;
 export const ResourceCollectionsResponseResourceCollectionsList =
@@ -20265,39 +24785,6 @@ export const ListSatisfactionRatingReasonsRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ListSatisfactionRatingReasonsRequest",
 }) as any as S.Schema<ListSatisfactionRatingReasonsRequest>;
-
-export interface SatisfactionReasonObject {
-  /** The time the reason was created */
-  created_at?: string;
-  /** The time the reason was deleted */
-  deleted_at?: string;
-  /** Automatically assigned upon creation */
-  id?: number;
-  /** The dynamic content placeholder, if present, or the current "value", if not. See [Dynamic Content Items](/api-reference/ticketing/ticket-management/dynamic_content/) */
-  raw_value?: string;
-  /** An account-level code for referencing the reason. Custom reasons are assigned an auto-incrementing integer (non-system reason codes begin at 1000). See [Reason codes](#reason-codes) */
-  reason_code?: number;
-  /** The time the reason was updated */
-  updated_at?: string;
-  /** API URL for the resource */
-  url?: string;
-  /** Translated value of the reason in the account locale */
-  value: string;
-}
-export const SatisfactionReasonObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.optional(S.String),
-    deleted_at: S.optional(S.String),
-    id: S.optional(S.Number),
-    raw_value: S.optional(S.String),
-    reason_code: S.optional(S.Number),
-    updated_at: S.optional(S.String),
-    url: S.optional(S.String),
-    value: S.String,
-  }),
-).annotate({
-  identifier: "SatisfactionReasonObject",
-}) as any as S.Schema<SatisfactionReasonObject>;
 
 export type SatisfactionReasonsResponseReasonsList =
   Array<SatisfactionReasonObject>;
@@ -20459,28 +24946,6 @@ export const ListSessionsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListSessionsRequest",
 }) as any as S.Schema<ListSessionsRequest>;
-
-export interface SessionObject {
-  /** When the session was created */
-  authenticated_at?: string | null;
-  /** Automatically assigned when the session is created */
-  id: number;
-  /** The last approximate time this session was seen. This does not update on every request. */
-  last_seen_at?: string | null;
-  /** The API URL of this session */
-  url?: string | null;
-  /** The id of the user */
-  user_id?: number | null;
-}
-export const SessionObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authenticated_at: S.optional(S.NullOr(S.String)),
-    id: S.Number,
-    last_seen_at: S.optional(S.NullOr(S.String)),
-    url: S.optional(S.NullOr(S.String)),
-    user_id: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({ identifier: "SessionObject" }) as any as S.Schema<SessionObject>;
 
 export type SessionsResponseSessionsList = Array<SessionObject>;
 export const SessionsResponseSessionsList = /*@__PURE__*/ S.Array(
@@ -20724,113 +25189,6 @@ export const ListSuspendedTicketsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSuspendedTicketsRequest",
 }) as any as S.Schema<ListSuspendedTicketsRequest>;
 
-/** The attachments, if any associated to this suspended ticket. See [Attachments](/api-reference/ticketing/tickets/ticket-attachments/) */
-export type SuspendedTicketObjectAttachmentsList = Array<AttachmentObject>;
-export const SuspendedTicketObjectAttachmentsList = /*@__PURE__*/ S.Array(
-  AttachmentObject,
-) as any as S.Schema<SuspendedTicketObjectAttachmentsList>;
-
-export interface AuthorObject {
-  /** The author email */
-  email?: string;
-  /** The author id */
-  id?: number;
-  /** The author name */
-  name?: string;
-}
-export const AuthorObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.optional(S.String),
-    id: S.optional(S.Number),
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "AuthorObject" }) as any as S.Schema<AuthorObject>;
-
-/** The error messages if any associated to this suspended ticket */
-export type SuspendedTicketObjectErrorMessagesList = Array<unknown>;
-export const SuspendedTicketObjectErrorMessagesList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<SuspendedTicketObjectErrorMessagesList>;
-
-export interface SuspendedTicketObject {
-  /** The attachments, if any associated to this suspended ticket. See [Attachments](/api-reference/ticketing/tickets/ticket-attachments/) */
-  attachments?: SuspendedTicketObjectAttachmentsList | null;
-  /** The author id (if available), name and email */
-  author?: AuthorObject;
-  /** The id of the brand this ticket is associated with. Only applicable for Enterprise accounts */
-  brand_id?: number;
-  /** Why the ticket was suspended */
-  cause?: string;
-  /** The ID of the cause */
-  cause_id?: number;
-  /** The content that was flagged */
-  content?: string;
-  /** Sanitized HTML content when the suspended ticket was created from rich content. Omitted for plain-text suspended tickets. */
-  content_html?: string;
-  /** The ticket ID this suspended email is associated with, if available */
-  created_at?: string;
-  /** The error messages if any associated to this suspended ticket */
-  error_messages?: SuspendedTicketObjectErrorMessagesList | null;
-  /** Automatically assigned */
-  id?: number;
-  /** The ID of the email, if available */
-  message_id?: string;
-  /** The original recipient e-mail address of the ticket */
-  recipient?: string;
-  /** The value of the subject field for this ticket */
-  subject?: string;
-  /** The ticket ID this suspended email is associated with, if available */
-  ticket_id?: number;
-  /** When the ticket was assigned */
-  updated_at?: string;
-  /** The API url of this ticket */
-  url?: string;
-  via?: ViaObject;
-}
-export const SuspendedTicketObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachments: S.optional(S.NullOr(SuspendedTicketObjectAttachmentsList)),
-    author: S.optional(AuthorObject),
-    brand_id: S.optional(S.Number),
-    cause: S.optional(S.String),
-    cause_id: S.optional(S.Number),
-    content: S.optional(S.String),
-    content_html: S.optional(S.String),
-    created_at: S.optional(S.String),
-    error_messages: S.optional(
-      S.NullOr(SuspendedTicketObjectErrorMessagesList),
-    ),
-    id: S.optional(S.Number),
-    message_id: S.optional(S.String),
-    recipient: S.optional(S.String),
-    subject: S.optional(S.String),
-    ticket_id: S.optional(S.Number),
-    updated_at: S.optional(S.String),
-    url: S.optional(S.String),
-    via: S.optional(ViaObject),
-  }),
-).annotate({
-  identifier: "SuspendedTicketObject",
-}) as any as S.Schema<SuspendedTicketObject>;
-
-export type SuspendedTicketsResponseSuspendedTicketsList =
-  Array<SuspendedTicketObject>;
-export const SuspendedTicketsResponseSuspendedTicketsList =
-  /*@__PURE__*/ S.Array(
-    SuspendedTicketObject,
-  ) as any as S.Schema<SuspendedTicketsResponseSuspendedTicketsList>;
-
-export interface SuspendedTicketsResponse {
-  suspended_tickets?: SuspendedTicketsResponseSuspendedTicketsList;
-}
-export const SuspendedTicketsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    suspended_tickets: S.optional(SuspendedTicketsResponseSuspendedTicketsList),
-  }),
-).annotate({
-  identifier: "SuspendedTicketsResponse",
-}) as any as S.Schema<SuspendedTicketsResponse>;
-
 /** Cursor pagination parameters (JSON:API style) */
 export type ListTagsRequestPageCase1 =
   DynamicContentListVariantsRequestPageCase1;
@@ -20907,39 +25265,6 @@ export const ListTargetFailuresRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListTargetFailuresRequest",
 }) as any as S.Schema<ListTargetFailuresRequest>;
-
-export interface TargetFailureObject {
-  /** Number of times the target failed consecutively */
-  consecutive_failure_count?: number;
-  /** Time of the failure */
-  created_at?: string;
-  /** The ID of the target failure */
-  id?: number;
-  /** The raw message of the target request */
-  raw_request?: string;
-  /** The raw response of the failure */
-  raw_response?: string;
-  /** HTTP status code of the target failure */
-  status_code?: number;
-  /** Name of the target failure */
-  target_name?: string;
-  /** The API url of the failure record */
-  url?: string;
-}
-export const TargetFailureObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    consecutive_failure_count: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    id: S.optional(S.Number),
-    raw_request: S.optional(S.String),
-    raw_response: S.optional(S.String),
-    status_code: S.optional(S.Number),
-    target_name: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TargetFailureObject",
-}) as any as S.Schema<TargetFailureObject>;
 
 export type TargetFailuresResponseTargetFailuresList =
   Array<TargetFailureObject>;
@@ -21449,22 +25774,6 @@ export const ListTicketFormsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTicketFormsRequest",
 }) as any as S.Schema<ListTicketFormsRequest>;
 
-export type TicketFormsResponseTicketFormsList = Array<TicketFormObject>;
-export const TicketFormsResponseTicketFormsList = /*@__PURE__*/ S.Array(
-  TicketFormObject,
-) as any as S.Schema<TicketFormsResponseTicketFormsList>;
-
-export interface TicketFormsResponse {
-  ticket_forms?: TicketFormsResponseTicketFormsList;
-}
-export const TicketFormsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_forms: S.optional(TicketFormsResponseTicketFormsList),
-  }),
-).annotate({
-  identifier: "TicketFormsResponse",
-}) as any as S.Schema<TicketFormsResponse>;
-
 export interface ListTicketFormStatusesRequestFilter {
   /** Filter by custom status ID (comma-separated) */
   custom_status_id?: string;
@@ -21597,102 +25906,6 @@ export const ListTicketMetricsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListTicketMetricsRequest",
 }) as any as S.Schema<ListTicketMetricsRequest>;
-
-export interface TicketMetricTimeObject {
-  /** Time in business hours */
-  business?: number;
-  /** Time in calendar hours */
-  calendar?: number;
-}
-export const TicketMetricTimeObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    business: S.optional(S.Number),
-    calendar: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "TicketMetricTimeObject",
-}) as any as S.Schema<TicketMetricTimeObject>;
-
-export interface TicketMetricObject {
-  /** Number of minutes the agent spent waiting during calendar and business hours */
-  agent_wait_time_in_minutes?: TicketMetricTimeObject;
-  /** When the ticket was assigned */
-  assigned_at?: string;
-  /** Number of assignees the ticket had */
-  assignee_stations?: number;
-  /** When the assignee last updated the ticket */
-  assignee_updated_at?: string;
-  /** When the record was created */
-  created_at?: string;
-  /** The date and time the ticket's custom status was last updated */
-  custom_status_updated_at?: string;
-  /** Number of minutes to the first resolution time during calendar and business hours */
-  first_resolution_time_in_minutes?: TicketMetricTimeObject;
-  /** Number of minutes to the full resolution during calendar and business hours */
-  full_resolution_time_in_minutes?: TicketMetricTimeObject;
-  /** Number of groups the ticket passed through */
-  group_stations?: number;
-  /** Automatically assigned when the client is created */
-  id?: number;
-  /** When the ticket was initially assigned */
-  initially_assigned_at?: string;
-  /** When the latest comment was added */
-  latest_comment_added_at?: string;
-  /** Number of minutes on hold */
-  on_hold_time_in_minutes?: TicketMetricTimeObject;
-  /** Total number of times the ticket was reopened */
-  reopens?: number;
-  /** The number of public replies added to a ticket by an agent */
-  replies?: number;
-  /** Number of minutes to the first reply during calendar and business hours */
-  reply_time_in_minutes?: TicketMetricTimeObject;
-  /** Number of seconds to the first reply during calendar hours, only available for Messaging tickets */
-  reply_time_in_seconds?: TicketMetricTimeObject;
-  /** When the requester last updated the ticket */
-  requester_updated_at?: string;
-  /** Number of minutes the requester spent waiting during calendar and business hours */
-  requester_wait_time_in_minutes?: TicketMetricTimeObject;
-  /** When the ticket was solved */
-  solved_at?: string;
-  /** When the status of the ticket was last updated */
-  status_updated_at?: string;
-  /** Id of the associated ticket */
-  ticket_id?: number;
-  /** When the record was last updated */
-  updated_at?: string;
-  /** The API url of the ticket metric */
-  url?: string;
-}
-export const TicketMetricObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agent_wait_time_in_minutes: S.optional(TicketMetricTimeObject),
-    assigned_at: S.optional(S.String),
-    assignee_stations: S.optional(S.Number),
-    assignee_updated_at: S.optional(S.String),
-    created_at: S.optional(S.String),
-    custom_status_updated_at: S.optional(S.String),
-    first_resolution_time_in_minutes: S.optional(TicketMetricTimeObject),
-    full_resolution_time_in_minutes: S.optional(TicketMetricTimeObject),
-    group_stations: S.optional(S.Number),
-    id: S.optional(S.Number),
-    initially_assigned_at: S.optional(S.String),
-    latest_comment_added_at: S.optional(S.String),
-    on_hold_time_in_minutes: S.optional(TicketMetricTimeObject),
-    reopens: S.optional(S.Number),
-    replies: S.optional(S.Number),
-    reply_time_in_minutes: S.optional(TicketMetricTimeObject),
-    reply_time_in_seconds: S.optional(TicketMetricTimeObject),
-    requester_updated_at: S.optional(S.String),
-    requester_wait_time_in_minutes: S.optional(TicketMetricTimeObject),
-    solved_at: S.optional(S.String),
-    status_updated_at: S.optional(S.String),
-    ticket_id: S.optional(S.Number),
-    updated_at: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TicketMetricObject",
-}) as any as S.Schema<TicketMetricObject>;
 
 export type TicketMetricsResponseTicketMetricsList = Array<TicketMetricObject>;
 export const TicketMetricsResponseTicketMetricsList = /*@__PURE__*/ S.Array(
@@ -22505,31 +26718,6 @@ export const ListUserFieldsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListUserFieldsRequest",
 }) as any as S.Schema<ListUserFieldsRequest>;
-
-export type UserFieldsResponseUserFieldsList = Array<UserFieldObject>;
-export const UserFieldsResponseUserFieldsList = /*@__PURE__*/ S.Array(
-  UserFieldObject,
-) as any as S.Schema<UserFieldsResponseUserFieldsList>;
-
-export interface UserFieldsResponse {
-  /** Total count of records retrieved */
-  count?: number;
-  /** URL of the next page */
-  next_page?: string | null;
-  /** URL of the previous page */
-  previous_page?: string | null;
-  user_fields: UserFieldsResponseUserFieldsList;
-}
-export const UserFieldsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next_page: S.optional(S.NullOr(S.String)),
-    previous_page: S.optional(S.NullOr(S.String)),
-    user_fields: UserFieldsResponseUserFieldsList,
-  }),
-).annotate({
-  identifier: "UserFieldsResponse",
-}) as any as S.Schema<UserFieldsResponse>;
 
 export type ListUserFollowedTicketsRequestSortBy =
   | "id"
@@ -23602,16 +27790,67 @@ export const PermanentlyDeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PermanentlyDeleteUserRequest",
 }) as any as S.Schema<PermanentlyDeleteUserRequest>;
 
-export interface DeletedUserResponse {
-  deleted_user?: DeletedUserObject;
+export interface PostAutocompleteTagRequest {
+  /** A substring of a tag to search for */
+  name?: string;
+  /** Number of records to return per page. Note: Default and maximum values vary by endpoint. Check endpoint-specific documentation for limits. */
+  per_page?: number;
 }
-export const DeletedUserResponse = /*@__PURE__*/ S.suspend(() =>
+export const PostAutocompleteTagRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    deleted_user: S.optional(DeletedUserObject),
-  }),
+    name: S.optional(S.String.pipe(T.Query())),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/v2/autocomplete/tags", code: 200 }),
+  ),
 ).annotate({
-  identifier: "DeletedUserResponse",
-}) as any as S.Schema<DeletedUserResponse>;
+  identifier: "PostAutocompleteTagRequest",
+}) as any as S.Schema<PostAutocompleteTagRequest>;
+
+export type PostAutocompleteUserRequestBrandIdCase0 = "all";
+export const PostAutocompleteUserRequestBrandIdCase0 = /*@__PURE__*/ S.String;
+
+/** When brand separation is enabled, scopes the autocomplete results to users belonging to the specified brand. Only applicable when the account has brand separation enabled. Accepted values: * "all" — search all users across all brands (no brand filtering applied). * 0 — restrict the autocomplete results to account-scoped (brand-less) users only. * A numeric brand id — if the brand has user separation enabled, autocomplete returns only end users belonging to that brand. Agents and admins are not included in the results when filtering by a specific brand. If the brand does not have user separation enabled, the request falls back to account scope (0). */
+export type PostAutocompleteUserRequestBrandId =
+  | PostAutocompleteUserRequestBrandIdCase0
+  | number;
+export const PostAutocompleteUserRequestBrandId =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PostAutocompleteUserRequestBrandId>;
+
+export interface PostAutocompleteUserRequest {
+  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
+  include?: string;
+  /** Filter to apply to autocomplete results. Common values: `assignable`, `requester`. */
+  filter?: string;
+  /** Number of results to return. */
+  per_page?: number;
+  /** When brand separation is enabled, scopes the autocomplete results to users belonging to the specified brand. Only applicable when the account has brand separation enabled. Accepted values: * "all" — search all users across all brands (no brand filtering applied). * 0 — restrict the autocomplete results to account-scoped (brand-less) users only. * A numeric brand id — if the brand has user separation enabled, autocomplete returns only end users belonging to that brand. Agents and admins are not included in the results when filtering by a specific brand. If the brand does not have user separation enabled, the request falls back to account scope (0). */
+  brand_id?: PostAutocompleteUserRequestBrandId;
+  /** Field ID for lookup relationship autocomplete */
+  field_id?: number;
+  /** The name to search for the user */
+  name?: string;
+  /** The phone number to search for the user */
+  phone?: string;
+  /** Source for lookup relationship autocomplete */
+  source?: string;
+}
+export const PostAutocompleteUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    include: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+    brand_id: S.optional(PostAutocompleteUserRequestBrandId),
+    field_id: S.optional(S.Number),
+    name: S.optional(S.String),
+    phone: S.optional(S.String),
+    source: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/v2/users/autocomplete", code: 200 }),
+  ),
+).annotate({
+  identifier: "PostAutocompleteUserRequest",
+}) as any as S.Schema<PostAutocompleteUserRequest>;
 
 export interface PreviewCountRequest {}
 export const PreviewCountRequest = /*@__PURE__*/ S.suspend(() =>
@@ -24006,17 +28245,6 @@ export const RedactCommentAttachmentRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RedactCommentAttachmentRequest",
 }) as any as S.Schema<RedactCommentAttachmentRequest>;
 
-export interface AttachmentResponse {
-  attachment?: AttachmentObject;
-}
-export const AttachmentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachment: S.optional(AttachmentObject),
-  }),
-).annotate({
-  identifier: "AttachmentResponse",
-}) as any as S.Schema<AttachmentResponse>;
-
 export interface RedactStringInCommentRequest {
   /** The ID of the ticket */
   ticket_id: number;
@@ -24037,17 +28265,6 @@ export const RedactStringInCommentRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RedactStringInCommentRequest",
 }) as any as S.Schema<RedactStringInCommentRequest>;
-
-export interface TicketCommentResponse {
-  comment?: TicketCommentObject;
-}
-export const TicketCommentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comment: S.optional(TicketCommentObject),
-  }),
-).annotate({
-  identifier: "TicketCommentResponse",
-}) as any as S.Schema<TicketCommentResponse>;
 
 export interface RedactTicketCommentInAgentWorkspaceRequest {
   /** The ID of the ticket comment */
@@ -24352,26 +28569,6 @@ export const RequestEndUserVerificationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RequestEndUserVerificationResponse",
 }) as any as S.Schema<RequestEndUserVerificationResponse>;
 
-export interface RequestUserCreateRequest {
-  user: UserInput;
-}
-export const RequestUserCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user: UserInput,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v2/users/request_create", code: 200 }),
-  ),
-).annotate({
-  identifier: "RequestUserCreateRequest",
-}) as any as S.Schema<RequestUserCreateRequest>;
-
-export type RequestUserCreateResponse = string;
-export const RequestUserCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "RequestUserCreateResponse",
-}) as any as S.Schema<RequestUserCreateResponse>;
-
 export interface RequestUserVerificationRequest {
   /** The id of the user */
   user_id: number;
@@ -24428,362 +28625,6 @@ export const RestoreDeletedTicketResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestoreDeletedTicketResponse",
 }) as any as S.Schema<RestoreDeletedTicketResponse>;
 
-export interface RetrieveGroupSLAPolicyFilterDefinitionItemsRequest {}
-export const RetrieveGroupSLAPolicyFilterDefinitionItemsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/group_slas/policies/definitions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RetrieveGroupSLAPolicyFilterDefinitionItemsRequest",
-  }) as any as S.Schema<RetrieveGroupSLAPolicyFilterDefinitionItemsRequest>;
-
-export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem {
-  title?: string;
-  value?: string;
-}
-export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      title: S.optional(S.String),
-      value: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem",
-  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
-
-export type GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
-  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
-export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
-  /*@__PURE__*/ S.Array(
-    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem,
-  ) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList>;
-
-export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem {
-  title?: string;
-  value?: number | null;
-}
-export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      title: S.optional(S.String),
-      value: S.optional(S.NullOr(S.Number)),
-    }),
-  ).annotate({
-    identifier:
-      "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem",
-  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
-
-export type GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
-  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
-export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
-  /*@__PURE__*/ S.Array(
-    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem,
-  ) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList>;
-
-export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues {
-  list?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList;
-  type?: string;
-}
-export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      list: S.optional(
-        GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList,
-      ),
-      type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues",
-  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues>;
-
-export interface GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem {
-  group?: string;
-  operators?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList;
-  title?: string;
-  value?: string;
-  values?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues;
-}
-export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      group: S.optional(S.String),
-      operators: S.optional(
-        GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList,
-      ),
-      title: S.optional(S.String),
-      value: S.optional(S.String),
-      values: S.optional(
-        GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemValues,
-      ),
-    }),
-  ).annotate({
-    identifier: "GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem",
-  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
-
-export type GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList =
-  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
-export const GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList =
-  /*@__PURE__*/ S.Array(
-    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItem,
-  ) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList>;
-
-export interface GroupSLAPolicyFilterDefinitionResponseDefinitions {
-  all?: GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList;
-}
-export const GroupSLAPolicyFilterDefinitionResponseDefinitions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      all: S.optional(GroupSLAPolicyFilterDefinitionResponseDefinitionsAllList),
-    }),
-  ).annotate({
-    identifier: "GroupSLAPolicyFilterDefinitionResponseDefinitions",
-  }) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponseDefinitions>;
-
-export interface GroupSLAPolicyFilterDefinitionResponse {
-  definitions?: GroupSLAPolicyFilterDefinitionResponseDefinitions;
-}
-export const GroupSLAPolicyFilterDefinitionResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      definitions: S.optional(
-        GroupSLAPolicyFilterDefinitionResponseDefinitions,
-      ),
-    }),
-).annotate({
-  identifier: "GroupSLAPolicyFilterDefinitionResponse",
-}) as any as S.Schema<GroupSLAPolicyFilterDefinitionResponse>;
-
-export interface RetrieveResourceCollectionRequest {
-  /** The id of the resource collection */
-  resource_collection_id: number;
-}
-export const RetrieveResourceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resource_collection_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/resource_collections/{resource_collection_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveResourceCollectionRequest",
-}) as any as S.Schema<RetrieveResourceCollectionRequest>;
-
-export interface ResourceCollectionResponse {
-  resource_collection?: ResourceCollectionObject;
-}
-export const ResourceCollectionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resource_collection: S.optional(ResourceCollectionObject),
-  }),
-).annotate({
-  identifier: "ResourceCollectionResponse",
-}) as any as S.Schema<ResourceCollectionResponse>;
-
-export interface RetrieveSLAPolicyFilterDefinitionItemsRequest {}
-export const RetrieveSLAPolicyFilterDefinitionItemsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/slas/policies/definitions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RetrieveSLAPolicyFilterDefinitionItemsRequest",
-  }) as any as S.Schema<RetrieveSLAPolicyFilterDefinitionItemsRequest>;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem =
-  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem =
-  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
-  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList =
-  /*@__PURE__*/ S.Array(
-    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem,
-  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList>;
-
-export interface SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem {
-  title?: string;
-  value?: string | null;
-}
-export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      title: S.optional(S.String),
-      value: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier:
-      "SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem",
-  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
-  Array<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList =
-  /*@__PURE__*/ S.Array(
-    SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem,
-  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList>;
-
-export interface SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues {
-  list?: SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList;
-  type?: string;
-}
-export const SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      list: S.optional(
-        SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListList,
-      ),
-      type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues",
-  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues>;
-
-export interface SLAPolicyFilterDefinitionResponseDefinitionsAllItem {
-  group?: string;
-  operators?: SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList;
-  target?: string | null;
-  title?: string;
-  value?: string;
-  values?: SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues;
-}
-export const SLAPolicyFilterDefinitionResponseDefinitionsAllItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      group: S.optional(S.String),
-      operators: S.optional(
-        SLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsList,
-      ),
-      target: S.optional(S.NullOr(S.String)),
-      title: S.optional(S.String),
-      value: S.optional(S.String),
-      values: S.optional(
-        SLAPolicyFilterDefinitionResponseDefinitionsAllItemValues,
-      ),
-    }),
-  ).annotate({
-    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAllItem",
-  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAllList =
-  Array<SLAPolicyFilterDefinitionResponseDefinitionsAllItem>;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAllList =
-  /*@__PURE__*/ S.Array(
-    SLAPolicyFilterDefinitionResponseDefinitionsAllItem,
-  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAllList>;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsItem =
-  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsItem =
-  GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList =
-  Array<GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem>;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList =
-  /*@__PURE__*/ S.Array(
-    GroupSLAPolicyFilterDefinitionResponseDefinitionsAllItemOperatorsItem,
-  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList>;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListItem =
-  SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListItem =
-  SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList =
-  Array<SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem>;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList =
-  /*@__PURE__*/ S.Array(
-    SLAPolicyFilterDefinitionResponseDefinitionsAllItemValuesListItem,
-  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList>;
-
-export interface SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues {
-  list?: SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList;
-  type?: string;
-}
-export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      list: S.optional(
-        SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValuesListList,
-      ),
-      type: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues",
-  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues>;
-
-export interface SLAPolicyFilterDefinitionResponseDefinitionsAnyItem {
-  group?: string;
-  operators?: SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList;
-  target?: string | null;
-  title?: string;
-  value?: string;
-  values?: SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues;
-}
-export const SLAPolicyFilterDefinitionResponseDefinitionsAnyItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      group: S.optional(S.String),
-      operators: S.optional(
-        SLAPolicyFilterDefinitionResponseDefinitionsAnyItemOperatorsList,
-      ),
-      target: S.optional(S.NullOr(S.String)),
-      title: S.optional(S.String),
-      value: S.optional(S.String),
-      values: S.optional(
-        SLAPolicyFilterDefinitionResponseDefinitionsAnyItemValues,
-      ),
-    }),
-  ).annotate({
-    identifier: "SLAPolicyFilterDefinitionResponseDefinitionsAnyItem",
-  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyItem>;
-
-export type SLAPolicyFilterDefinitionResponseDefinitionsAnyList =
-  Array<SLAPolicyFilterDefinitionResponseDefinitionsAnyItem>;
-export const SLAPolicyFilterDefinitionResponseDefinitionsAnyList =
-  /*@__PURE__*/ S.Array(
-    SLAPolicyFilterDefinitionResponseDefinitionsAnyItem,
-  ) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitionsAnyList>;
-
-export interface SLAPolicyFilterDefinitionResponseDefinitions {
-  all?: SLAPolicyFilterDefinitionResponseDefinitionsAllList;
-  any?: SLAPolicyFilterDefinitionResponseDefinitionsAnyList;
-}
-export const SLAPolicyFilterDefinitionResponseDefinitions =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      all: S.optional(SLAPolicyFilterDefinitionResponseDefinitionsAllList),
-      any: S.optional(SLAPolicyFilterDefinitionResponseDefinitionsAnyList),
-    }),
-  ).annotate({
-    identifier: "SLAPolicyFilterDefinitionResponseDefinitions",
-  }) as any as S.Schema<SLAPolicyFilterDefinitionResponseDefinitions>;
-
-export interface SLAPolicyFilterDefinitionResponse {
-  definitions?: SLAPolicyFilterDefinitionResponseDefinitions;
-}
-export const SLAPolicyFilterDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    definitions: S.optional(SLAPolicyFilterDefinitionResponseDefinitions),
-  }),
-).annotate({
-  identifier: "SLAPolicyFilterDefinitionResponse",
-}) as any as S.Schema<SLAPolicyFilterDefinitionResponse>;
-
 export interface RevokeCurrentOAuthTokenRequest {}
 export const RevokeCurrentOAuthTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -24828,6 +28669,67 @@ export const RevokeOAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RevokeOAuthTokenResponse",
 }) as any as S.Schema<RevokeOAuthTokenResponse>;
+
+export type SearchAutocompleteCustomObjectRecordRequestFilterDynamicValuesMap =
+  { [key: string]: number | undefined };
+export const SearchAutocompleteCustomObjectRecordRequestFilterDynamicValuesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Number,
+  ) as any as S.Schema<SearchAutocompleteCustomObjectRecordRequestFilterDynamicValuesMap>;
+
+export interface SearchAutocompleteCustomObjectRecordRequest {
+  /** The key of a custom object */
+  custom_object_key: string;
+  /** Part of a name of the record you are searching for */
+  name?: string;
+  /** A [pagination cursor](/documentation/api-basics/pagination/paginating-through-lists-using-cursor-pagination) that tells the endpoint which page to start on. It should be a `meta.before_cursor` value from a previous request. Note: `page[before]` and `page[after]` can't be used together in the same request. */
+  page_before_?: string;
+  /** A [pagination cursor](/documentation/api-basics/pagination/paginating-through-lists-using-cursor-pagination) that tells the endpoint which page to start on. It should be a `meta.after_cursor` value from a previous request. Note: `page[before]` and `page[after]` can't be used together in the same request. */
+  page_after_?: string;
+  /** The number of records to return in the response. You can specify up to 100 records per page. */
+  page_size_?: number;
+  /** The id of the lookup field. If the field has a relationship filter, the filter is applied to the results. Must be used with `source` param. */
+  field_id?: string;
+  /** One of "zen:user", "zen:ticket", "zen:organization", or "zen:custom_object:CUSTOM_OBJECT_KEY". Represents the object `field_id` belongs to. Must be used with field_id param. */
+  source?: string;
+  /** Provided values to be used with [dynamic filters](/api-reference/ticketing/lookup_relationships/lookup_relationships/#using-dynamic-filters). */
+  filter_dynamic_values_?: SearchAutocompleteCustomObjectRecordRequestFilterDynamicValuesMap;
+  /** The id of the requester. For use with dynamic filters. */
+  requester_id?: number;
+  /** The id of the selected assignee. For use with dynamic filters. */
+  assignee_id?: number;
+  /** The id of the organization the requester belongs to. For use with dynamic filters. */
+  organization_id?: number;
+}
+export const SearchAutocompleteCustomObjectRecordRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      custom_object_key: S.String.pipe(T.Label()),
+      name: S.optional(S.String.pipe(T.Query())),
+      page_before_: S.optional(S.String.pipe(T.Query("page[before]"))),
+      page_after_: S.optional(S.String.pipe(T.Query("page[after]"))),
+      page_size_: S.optional(S.Number.pipe(T.Query("page[size]"))),
+      field_id: S.optional(S.String.pipe(T.Query())),
+      source: S.optional(S.String.pipe(T.Query())),
+      filter_dynamic_values_: S.optional(
+        SearchAutocompleteCustomObjectRecordRequestFilterDynamicValuesMap.pipe(
+          T.Query("filter[dynamic_values]"),
+        ),
+      ),
+      requester_id: S.optional(S.Number.pipe(T.Query())),
+      assignee_id: S.optional(S.Number.pipe(T.Query())),
+      organization_id: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/v2/custom_objects/{custom_object_key}/records/autocomplete",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "SearchAutocompleteCustomObjectRecordRequest",
+  }) as any as S.Schema<SearchAutocompleteCustomObjectRecordRequest>;
 
 export interface SearchAutomationsRequest {
   /** Query string used to find all automations with matching title */
@@ -25295,3651 +29197,6 @@ export const SetUserTagsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SetUserTagsRequest",
 }) as any as S.Schema<SetUserTagsRequest>;
 
-export interface ShowAccessRuleRequest {
-  /** The key of a custom object */
-  custom_object_key: string;
-  /** The access rule ID */
-  id: string;
-}
-export const ShowAccessRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_object_key: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/custom_objects/{custom_object_key}/access_rules/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowAccessRuleRequest",
-}) as any as S.Schema<ShowAccessRuleRequest>;
-
-export interface ShowAccountSettingsRequest {
-  /** Legacy CSRF token. Ignored by API. */
-  authenticity_token?: string;
-}
-export const ShowAccountSettingsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authenticity_token: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/account/settings", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowAccountSettingsRequest",
-}) as any as S.Schema<ShowAccountSettingsRequest>;
-
-/** The active features for an account. See [Active Features](#active-features) */
-export interface AccountSettingsActiveFeaturesObject {
-  agent_forwarding?: boolean;
-  allow_ccs?: boolean;
-  allow_email_template_customization?: boolean;
-  automatic_answers?: boolean;
-  bcc_archiving?: boolean;
-  benchmark_opt_out?: boolean;
-  business_hours?: boolean;
-  chat?: boolean;
-  chat_about_my_ticket?: boolean;
-  csat_reason_code?: boolean;
-  custom_dkim_domain?: boolean;
-  customer_context_as_default?: boolean;
-  customer_satisfaction?: boolean;
-  customer_satisfaction_survey?: boolean;
-  dynamic_contents?: boolean;
-  explore?: boolean;
-  explore_on_support_ent_plan?: boolean;
-  explore_on_support_pro_plan?: boolean;
-  facebook?: boolean;
-  facebook_login?: boolean;
-  fallback_composer?: boolean;
-  forum_analytics?: boolean;
-  good_data_and_explore?: boolean;
-  google_login?: boolean;
-  is_abusive?: boolean;
-  light_agents?: boolean;
-  markdown?: boolean;
-  on_hold_status?: boolean;
-  organization_access_enabled?: boolean;
-  rich_content_in_emails?: boolean;
-  sandbox?: boolean;
-  satisfaction_prediction?: boolean;
-  suspended_ticket_notification?: boolean;
-  ticket_forms?: boolean;
-  ticket_tagging?: boolean;
-  topic_suggestion?: boolean;
-  twitter?: boolean;
-  twitter_login?: boolean;
-  user_org_fields?: boolean;
-  user_tagging?: boolean;
-  voice?: boolean;
-}
-export const AccountSettingsActiveFeaturesObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agent_forwarding: S.optional(S.Boolean),
-    allow_ccs: S.optional(S.Boolean),
-    allow_email_template_customization: S.optional(S.Boolean),
-    automatic_answers: S.optional(S.Boolean),
-    bcc_archiving: S.optional(S.Boolean),
-    benchmark_opt_out: S.optional(S.Boolean),
-    business_hours: S.optional(S.Boolean),
-    chat: S.optional(S.Boolean),
-    chat_about_my_ticket: S.optional(S.Boolean),
-    csat_reason_code: S.optional(S.Boolean),
-    custom_dkim_domain: S.optional(S.Boolean),
-    customer_context_as_default: S.optional(S.Boolean),
-    customer_satisfaction: S.optional(S.Boolean),
-    customer_satisfaction_survey: S.optional(S.Boolean),
-    dynamic_contents: S.optional(S.Boolean),
-    explore: S.optional(S.Boolean),
-    explore_on_support_ent_plan: S.optional(S.Boolean),
-    explore_on_support_pro_plan: S.optional(S.Boolean),
-    facebook: S.optional(S.Boolean),
-    facebook_login: S.optional(S.Boolean),
-    fallback_composer: S.optional(S.Boolean),
-    forum_analytics: S.optional(S.Boolean),
-    good_data_and_explore: S.optional(S.Boolean),
-    google_login: S.optional(S.Boolean),
-    is_abusive: S.optional(S.Boolean),
-    light_agents: S.optional(S.Boolean),
-    markdown: S.optional(S.Boolean),
-    on_hold_status: S.optional(S.Boolean),
-    organization_access_enabled: S.optional(S.Boolean),
-    rich_content_in_emails: S.optional(S.Boolean),
-    sandbox: S.optional(S.Boolean),
-    satisfaction_prediction: S.optional(S.Boolean),
-    suspended_ticket_notification: S.optional(S.Boolean),
-    ticket_forms: S.optional(S.Boolean),
-    ticket_tagging: S.optional(S.Boolean),
-    topic_suggestion: S.optional(S.Boolean),
-    twitter: S.optional(S.Boolean),
-    twitter_login: S.optional(S.Boolean),
-    user_org_fields: S.optional(S.Boolean),
-    user_tagging: S.optional(S.Boolean),
-    voice: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsActiveFeaturesObject",
-}) as any as S.Schema<AccountSettingsActiveFeaturesObject>;
-
-/** Configuration for the agent workspace. See [Agents](#agents) */
-export interface AccountSettingsAgentObject {
-  agent_home?: boolean;
-  agent_workspace?: boolean;
-  aw_self_serve_migration_enabled?: boolean;
-  focus_mode?: boolean;
-  idle_timeout_enabled?: boolean;
-  unified_agent_statuses?: boolean;
-}
-export const AccountSettingsAgentObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agent_home: S.optional(S.Boolean),
-    agent_workspace: S.optional(S.Boolean),
-    aw_self_serve_migration_enabled: S.optional(S.Boolean),
-    focus_mode: S.optional(S.Boolean),
-    idle_timeout_enabled: S.optional(S.Boolean),
-    unified_agent_statuses: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsAgentObject",
-}) as any as S.Schema<AccountSettingsAgentObject>;
-
-/** API configuration options. See [API](#api) */
-export interface AccountSettingsApiObject {
-  accepted_api_agreement?: boolean;
-  api_password_access_end_users?: boolean;
-  api_token_access?: string;
-}
-export const AccountSettingsApiObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accepted_api_agreement: S.optional(S.Boolean),
-    api_password_access_end_users: S.optional(S.Boolean),
-    api_token_access: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsApiObject",
-}) as any as S.Schema<AccountSettingsApiObject>;
-
-/** Apps configuration options. See [Apps](#apps) */
-export interface AccountSettingsAppsObject {
-  create_private?: boolean;
-  create_public?: boolean;
-  use?: boolean;
-}
-export const AccountSettingsAppsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    create_private: S.optional(S.Boolean),
-    create_public: S.optional(S.Boolean),
-    use: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsAppsObject",
-}) as any as S.Schema<AccountSettingsAppsObject>;
-
-/** Billing configuration options. See [Billing](#billing) */
-export interface AccountSettingsBillingObject {
-  backend?: string;
-}
-export const AccountSettingsBillingObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    backend: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsBillingObject",
-}) as any as S.Schema<AccountSettingsBillingObject>;
-
-/** Branding settings. See [Branding](#branding) */
-export interface AccountSettingsBrandingObject {
-  favicon_url?: string | null;
-  header_color?: string;
-  header_logo_url?: string | null;
-  page_background_color?: string;
-  tab_background_color?: string;
-  text_color?: string;
-}
-export const AccountSettingsBrandingObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    favicon_url: S.optional(S.NullOr(S.String)),
-    header_color: S.optional(S.String),
-    header_logo_url: S.optional(S.NullOr(S.String)),
-    page_background_color: S.optional(S.String),
-    tab_background_color: S.optional(S.String),
-    text_color: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsBrandingObject",
-}) as any as S.Schema<AccountSettingsBrandingObject>;
-
-/** Brand settings. See [Brands](#brands) */
-export interface AccountSettingsBrandsObject {
-  default_brand_id?: number;
-  end_user_across_brand_requests?: boolean;
-  /** Controls how end users are associated with brands when upgraded to agents. */
-  end_user_upgrade_brand_association_behavior?: string;
-  /** Controls how new agents are associated with brands. Determines the default brand assignment for newly created agents. */
-  new_agent_brand_association_behavior?: string;
-  require_brand_on_new_tickets?: boolean;
-}
-export const AccountSettingsBrandsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    default_brand_id: S.optional(S.Number),
-    end_user_across_brand_requests: S.optional(S.Boolean),
-    end_user_upgrade_brand_association_behavior: S.optional(S.String),
-    new_agent_brand_association_behavior: S.optional(S.String),
-    require_brand_on_new_tickets: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsBrandsObject",
-}) as any as S.Schema<AccountSettingsBrandsObject>;
-
-export interface AccountSettingsCdnObjectHostsItem {
-  name?: string;
-  url?: string;
-}
-export const AccountSettingsCdnObjectHostsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsCdnObjectHostsItem",
-}) as any as S.Schema<AccountSettingsCdnObjectHostsItem>;
-
-export type AccountSettingsCdnObjectHostsList =
-  Array<AccountSettingsCdnObjectHostsItem>;
-export const AccountSettingsCdnObjectHostsList = /*@__PURE__*/ S.Array(
-  AccountSettingsCdnObjectHostsItem,
-) as any as S.Schema<AccountSettingsCdnObjectHostsList>;
-
-/** CDN settings */
-export interface AccountSettingsCdnObject {
-  cdn_provider?: string;
-  fallback_cdn_provider?: string;
-  hosts?: AccountSettingsCdnObjectHostsList;
-}
-export const AccountSettingsCdnObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cdn_provider: S.optional(S.String),
-    fallback_cdn_provider: S.optional(S.String),
-    hosts: S.optional(AccountSettingsCdnObjectHostsList),
-  }),
-).annotate({
-  identifier: "AccountSettingsCdnObject",
-}) as any as S.Schema<AccountSettingsCdnObject>;
-
-/** Zendesk Chat settings. See [Chat](#chat) */
-export interface AccountSettingsChatObject {
-  available?: boolean;
-  enabled?: boolean;
-  integrated?: boolean;
-  maximum_request_count?: number;
-  welcome_message?: string;
-}
-export const AccountSettingsChatObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    available: S.optional(S.Boolean),
-    enabled: S.optional(S.Boolean),
-    integrated: S.optional(S.Boolean),
-    maximum_request_count: S.optional(S.Number),
-    welcome_message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsChatObject",
-}) as any as S.Schema<AccountSettingsChatObject>;
-
-/** Cross Sell settings */
-export interface AccountSettingsCrossSellObject {
-  show_chat_tooltip?: boolean;
-  xsell_source?: string | null;
-}
-export const AccountSettingsCrossSellObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    show_chat_tooltip: S.optional(S.Boolean),
-    xsell_source: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "AccountSettingsCrossSellObject",
-}) as any as S.Schema<AccountSettingsCrossSellObject>;
-
-/** End user device settings. See [Device Metadata](#device-metadata) */
-export interface AccountSettingsDeviceObject {
-  enabled?: boolean;
-  hide_ip?: boolean;
-  hide_location?: boolean;
-}
-export const AccountSettingsDeviceObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    hide_ip: S.optional(S.Boolean),
-    hide_location: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsDeviceObject",
-}) as any as S.Schema<AccountSettingsDeviceObject>;
-
-/** Google Apps configuration. See [G Suite](#g-suite) */
-export interface AccountSettingsGoogleAppsObject {
-  has_google_apps?: boolean;
-  has_google_apps_admin?: boolean;
-}
-export const AccountSettingsGoogleAppsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    has_google_apps: S.optional(S.Boolean),
-    has_google_apps_admin: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsGoogleAppsObject",
-}) as any as S.Schema<AccountSettingsGoogleAppsObject>;
-
-/** Group configuration */
-export interface AccountSettingsGroupObject {
-  check_group_name_uniqueness?: boolean;
-}
-export const AccountSettingsGroupObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    check_group_name_uniqueness: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsGroupObject",
-}) as any as S.Schema<AccountSettingsGroupObject>;
-
-/** Account's knowledge management and search capabilities. See [Knowledge](#knowledge) */
-export interface AccountSettingsKnowledgeObject {
-  default_search_filters_brands?: string;
-  default_search_filters_categories?: string;
-  default_search_filters_external_content_sources?: string;
-  default_search_filters_locales?: string;
-  default_search_filters_sections?: string;
-  generative_answers?: boolean;
-  require_article_templates?: boolean;
-  search_articles?: boolean;
-  search_community_posts?: boolean;
-  search_external_content?: boolean;
-}
-export const AccountSettingsKnowledgeObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    default_search_filters_brands: S.optional(S.String),
-    default_search_filters_categories: S.optional(S.String),
-    default_search_filters_external_content_sources: S.optional(S.String),
-    default_search_filters_locales: S.optional(S.String),
-    default_search_filters_sections: S.optional(S.String),
-    generative_answers: S.optional(S.Boolean),
-    require_article_templates: S.optional(S.Boolean),
-    search_articles: S.optional(S.Boolean),
-    search_community_posts: S.optional(S.Boolean),
-    search_external_content: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsKnowledgeObject",
-}) as any as S.Schema<AccountSettingsKnowledgeObject>;
-
-/** Account limits configuration. See [Limits](#limits) */
-export interface AccountSettingsLimitsObject {
-  attachment_size?: number;
-}
-export const AccountSettingsLimitsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachment_size: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AccountSettingsLimitsObject",
-}) as any as S.Schema<AccountSettingsLimitsObject>;
-
-export type AccountSettingsLocalizationObjectLocaleIdsList = Array<number>;
-export const AccountSettingsLocalizationObjectLocaleIdsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<AccountSettingsLocalizationObjectLocaleIdsList>;
-
-/** Internationalization configuration settings. See [Localization](#localization) */
-export interface AccountSettingsLocalizationObject {
-  locale_ids?: AccountSettingsLocalizationObjectLocaleIdsList;
-}
-export const AccountSettingsLocalizationObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    locale_ids: S.optional(AccountSettingsLocalizationObjectLocaleIdsList),
-  }),
-).annotate({
-  identifier: "AccountSettingsLocalizationObject",
-}) as any as S.Schema<AccountSettingsLocalizationObject>;
-
-/** Support UI settings. See [Lotus](#lotus) */
-export interface AccountSettingsLotusObject {
-  pod_id?: number;
-  prefer_lotus?: boolean;
-  reporting?: boolean;
-}
-export const AccountSettingsLotusObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pod_id: S.optional(S.Number),
-    prefer_lotus: S.optional(S.Boolean),
-    reporting: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsLotusObject",
-}) as any as S.Schema<AccountSettingsLotusObject>;
-
-export interface AccountSettingsMessageInactivityObjectDefaultLocalizedMessages {
-  /** The first pre-solved message */
-  pre_solved_message_1?: string;
-  /** The second pre-solved message */
-  pre_solved_message_2?: string;
-  /** The solved message */
-  solved_message?: string;
-}
-export const AccountSettingsMessageInactivityObjectDefaultLocalizedMessages =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      pre_solved_message_1: S.optional(S.String),
-      pre_solved_message_2: S.optional(S.String),
-      solved_message: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "AccountSettingsMessageInactivityObjectDefaultLocalizedMessages",
-  }) as any as S.Schema<AccountSettingsMessageInactivityObjectDefaultLocalizedMessages>;
-
-/** Array of strings, tags added to ticket with each reminder. Can be empty */
-export type AccountSettingsMessageInactivityObjectRemindersItemTagsList =
-  Array<string>;
-export const AccountSettingsMessageInactivityObjectRemindersItemTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AccountSettingsMessageInactivityObjectRemindersItemTagsList>;
-
-export interface AccountSettingsMessageInactivityObjectRemindersItem {
-  /** Mandatory message for the reminder */
-  message: string;
-  /** Array of strings, tags added to ticket with each reminder. Can be empty */
-  tags?: AccountSettingsMessageInactivityObjectRemindersItemTagsList;
-  /** Ticket status id, available and mandatory for the 2nd and 3rd reminders, if the reminder is configured. The field can be null to indicate no status change */
-  ticket_status_id?: number | null;
-  /** Reminder timeout in seconds, available and mandatory for the 2nd and 3rd reminders, if the reminder is configured */
-  timeout?: number | null;
-}
-export const AccountSettingsMessageInactivityObjectRemindersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      message: S.String,
-      tags: S.optional(
-        AccountSettingsMessageInactivityObjectRemindersItemTagsList,
-      ),
-      ticket_status_id: S.optional(S.NullOr(S.Number)),
-      timeout: S.optional(S.NullOr(S.Number)),
-    }),
-  ).annotate({
-    identifier: "AccountSettingsMessageInactivityObjectRemindersItem",
-  }) as any as S.Schema<AccountSettingsMessageInactivityObjectRemindersItem>;
-
-export type AccountSettingsMessageInactivityObjectRemindersList =
-  Array<AccountSettingsMessageInactivityObjectRemindersItem>;
-export const AccountSettingsMessageInactivityObjectRemindersList =
-  /*@__PURE__*/ S.Array(
-    AccountSettingsMessageInactivityObjectRemindersItem,
-  ) as any as S.Schema<AccountSettingsMessageInactivityObjectRemindersList>;
-
-/** Auto-release capacity settings. See [Messaging inactivity](#messaging-inactivity) */
-export interface AccountSettingsMessageInactivityObject {
-  default_localized_messages?: AccountSettingsMessageInactivityObjectDefaultLocalizedMessages;
-  /** Whether the messaging inactivity feature is enabled */
-  enabled?: boolean;
-  /** Whether messaging session should end with the final reminder */
-  end_session?: boolean;
-  reminders?: AccountSettingsMessageInactivityObjectRemindersList;
-  /** Ticket status id to apply on the ticket when it is marked as inactive */
-  ticket_status_id?: number;
-  /** Timeout in minutes after which the ticket will be marked as inactive */
-  timeout?: number;
-}
-export const AccountSettingsMessageInactivityObject = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      default_localized_messages: S.optional(
-        AccountSettingsMessageInactivityObjectDefaultLocalizedMessages,
-      ),
-      enabled: S.optional(S.Boolean),
-      end_session: S.optional(S.Boolean),
-      reminders: S.optional(
-        AccountSettingsMessageInactivityObjectRemindersList,
-      ),
-      ticket_status_id: S.optional(S.Number),
-      timeout: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "AccountSettingsMessageInactivityObject",
-}) as any as S.Schema<AccountSettingsMessageInactivityObject>;
-
-/** Account metrics settings. See [Metrics](#metrics) */
-export interface AccountSettingsMetricsObject {
-  account_size?: string;
-}
-export const AccountSettingsMetricsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_size: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsMetricsObject",
-}) as any as S.Schema<AccountSettingsMetricsObject>;
-
-/** Onboarding settings */
-export interface AccountSettingsOnboardingObject {
-  checklist_onboarding_version?: number;
-  onboarding_segments?: string | null;
-  product_sign_up?: string | null;
-}
-export const AccountSettingsOnboardingObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    checklist_onboarding_version: S.optional(S.Number),
-    onboarding_segments: S.optional(S.NullOr(S.String)),
-    product_sign_up: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "AccountSettingsOnboardingObject",
-}) as any as S.Schema<AccountSettingsOnboardingObject>;
-
-/** Configuration for routing. See [Routing](#routing) */
-export interface AccountSettingsRoutingObject {
-  autorouting_tag?: string;
-  enabled?: boolean;
-  max_email_capacity?: number;
-  max_messaging_capacity?: number;
-  reassignment_messaging_enabled?: boolean;
-  reassignment_messaging_timeout?: number;
-  reassignment_talk_timeout?: number;
-}
-export const AccountSettingsRoutingObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autorouting_tag: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    max_email_capacity: S.optional(S.Number),
-    max_messaging_capacity: S.optional(S.Number),
-    reassignment_messaging_enabled: S.optional(S.Boolean),
-    reassignment_messaging_timeout: S.optional(S.Number),
-    reassignment_talk_timeout: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AccountSettingsRoutingObject",
-}) as any as S.Schema<AccountSettingsRoutingObject>;
-
-export type AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap>;
-
-export type AccountSettingsRuleObjectSkillBasedFilteredViewsList =
-  Array<AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap>;
-export const AccountSettingsRuleObjectSkillBasedFilteredViewsList =
-  /*@__PURE__*/ S.Array(
-    AccountSettingsRuleObjectSkillBasedFilteredViewsItemMap,
-  ) as any as S.Schema<AccountSettingsRuleObjectSkillBasedFilteredViewsList>;
-
-/** Rules settings for triggers, macros, views, and automations. See [Rules](#rules) */
-export interface AccountSettingsRuleObject {
-  macro_most_used?: boolean;
-  macro_order?: string;
-  skill_based_filtered_views?: AccountSettingsRuleObjectSkillBasedFilteredViewsList;
-  using_skill_based_routing?: boolean;
-}
-export const AccountSettingsRuleObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    macro_most_used: S.optional(S.Boolean),
-    macro_order: S.optional(S.String),
-    skill_based_filtered_views: S.optional(
-      AccountSettingsRuleObjectSkillBasedFilteredViewsList,
-    ),
-    using_skill_based_routing: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsRuleObject",
-}) as any as S.Schema<AccountSettingsRuleObject>;
-
-/** Side conversations settings */
-export interface AccountSettingsSideConversationsObject {
-  email_channel?: boolean;
-  msteams_channel?: boolean;
-  show_in_context_panel?: boolean;
-  slack_channel?: boolean;
-  tickets_channel?: boolean;
-}
-export const AccountSettingsSideConversationsObject = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      email_channel: S.optional(S.Boolean),
-      msteams_channel: S.optional(S.Boolean),
-      show_in_context_panel: S.optional(S.Boolean),
-      slack_channel: S.optional(S.Boolean),
-      tickets_channel: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "AccountSettingsSideConversationsObject",
-}) as any as S.Schema<AccountSettingsSideConversationsObject>;
-
-/** Account statistics settings. See [Statistics](#statistics) */
-export interface AccountSettingsStatisticsObject {
-  forum?: boolean;
-  rule_usage?: boolean;
-  search?: boolean;
-}
-export const AccountSettingsStatisticsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    forum: S.optional(S.Boolean),
-    rule_usage: S.optional(S.Boolean),
-    search: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsStatisticsObject",
-}) as any as S.Schema<AccountSettingsStatisticsObject>;
-
-/** Ticket form settings. See [Ticket Form](#ticket-form) */
-export interface AccountSettingsTicketFormObject {
-  raw_ticket_forms_instructions?: string;
-  ticket_forms_instructions?: string;
-}
-export const AccountSettingsTicketFormObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw_ticket_forms_instructions: S.optional(S.String),
-    ticket_forms_instructions: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsTicketFormObject",
-}) as any as S.Schema<AccountSettingsTicketFormObject>;
-
-/** Ticket settings. See [Tickets](#tickets) */
-export interface AccountSettingsTicketObject {
-  accepted_new_collaboration_tos?: boolean;
-  agent_collision?: boolean;
-  agent_invitation_enabled?: boolean;
-  agent_ticket_deletion?: boolean;
-  allow_group_reset?: boolean;
-  assign_default_organization?: boolean;
-  assign_tickets_upon_solve?: boolean;
-  auto_translation_enabled?: boolean;
-  auto_updated_ccs_followers_rules?: boolean;
-  chat_sla_enablement?: boolean;
-  collaboration?: boolean;
-  comments_public_by_default?: boolean;
-  default_solved_ticket_reassignment_strategy?: string;
-  default_to_draft_mode?: boolean;
-  email_attachments?: boolean;
-  email_redact_attachments_when_placeholders_disallow?: boolean;
-  emoji_autocompletion?: boolean;
-  follower_and_email_cc_collaborations?: boolean;
-  has_color_text?: boolean;
-  is_first_comment_private_enabled?: boolean;
-  light_agent_email_ccs_allowed?: boolean;
-  list_empty_views?: boolean;
-  list_newest_comments_first?: boolean;
-  markdown_ticket_comments?: boolean;
-  maximum_personal_views_to_list?: number;
-  modern_ticket_reassignment?: boolean;
-  private_attachments?: boolean;
-  rich_text_comments?: boolean;
-  show_modern_ticket_reassignment?: boolean;
-  status_hold?: boolean;
-  tagging?: boolean;
-  using_skill_based_routing?: boolean;
-}
-export const AccountSettingsTicketObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accepted_new_collaboration_tos: S.optional(S.Boolean),
-    agent_collision: S.optional(S.Boolean),
-    agent_invitation_enabled: S.optional(S.Boolean),
-    agent_ticket_deletion: S.optional(S.Boolean),
-    allow_group_reset: S.optional(S.Boolean),
-    assign_default_organization: S.optional(S.Boolean),
-    assign_tickets_upon_solve: S.optional(S.Boolean),
-    auto_translation_enabled: S.optional(S.Boolean),
-    auto_updated_ccs_followers_rules: S.optional(S.Boolean),
-    chat_sla_enablement: S.optional(S.Boolean),
-    collaboration: S.optional(S.Boolean),
-    comments_public_by_default: S.optional(S.Boolean),
-    default_solved_ticket_reassignment_strategy: S.optional(S.String),
-    default_to_draft_mode: S.optional(S.Boolean),
-    email_attachments: S.optional(S.Boolean),
-    email_redact_attachments_when_placeholders_disallow: S.optional(S.Boolean),
-    emoji_autocompletion: S.optional(S.Boolean),
-    follower_and_email_cc_collaborations: S.optional(S.Boolean),
-    has_color_text: S.optional(S.Boolean),
-    is_first_comment_private_enabled: S.optional(S.Boolean),
-    light_agent_email_ccs_allowed: S.optional(S.Boolean),
-    list_empty_views: S.optional(S.Boolean),
-    list_newest_comments_first: S.optional(S.Boolean),
-    markdown_ticket_comments: S.optional(S.Boolean),
-    maximum_personal_views_to_list: S.optional(S.Number),
-    modern_ticket_reassignment: S.optional(S.Boolean),
-    private_attachments: S.optional(S.Boolean),
-    rich_text_comments: S.optional(S.Boolean),
-    show_modern_ticket_reassignment: S.optional(S.Boolean),
-    status_hold: S.optional(S.Boolean),
-    tagging: S.optional(S.Boolean),
-    using_skill_based_routing: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsTicketObject",
-}) as any as S.Schema<AccountSettingsTicketObject>;
-
-/** X (formerly Twitter) settings. See [X](#x-formerly-twitter) */
-export interface AccountSettingsTwitterObject {
-  shorten_url?: string;
-}
-export const AccountSettingsTwitterObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    shorten_url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountSettingsTwitterObject",
-}) as any as S.Schema<AccountSettingsTwitterObject>;
-
-/** User settings. See [Users](#users) */
-export interface AccountSettingsUserObject {
-  agent_created_welcome_emails?: boolean;
-  end_user_phone_number_validation?: boolean;
-  have_gravatars_enabled?: boolean;
-  language_selection?: boolean;
-  multiple_organizations?: boolean;
-  tagging?: boolean;
-  time_zone_selection?: boolean;
-}
-export const AccountSettingsUserObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agent_created_welcome_emails: S.optional(S.Boolean),
-    end_user_phone_number_validation: S.optional(S.Boolean),
-    have_gravatars_enabled: S.optional(S.Boolean),
-    language_selection: S.optional(S.Boolean),
-    multiple_organizations: S.optional(S.Boolean),
-    tagging: S.optional(S.Boolean),
-    time_zone_selection: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsUserObject",
-}) as any as S.Schema<AccountSettingsUserObject>;
-
-/** Zendesk Talk settings. See [Voice](#voice) */
-export interface AccountSettingsVoiceObject {
-  agent_confirmation_when_forwarding?: boolean;
-  agent_wrap_up_after_calls?: boolean;
-  enabled?: boolean;
-  logging?: boolean;
-  maximum_queue_size?: number;
-  maximum_queue_wait_time?: number;
-  only_during_business_hours?: boolean;
-  outbound_enabled?: boolean;
-  recordings_public?: boolean;
-  uk_mobile_forwarding?: boolean;
-}
-export const AccountSettingsVoiceObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agent_confirmation_when_forwarding: S.optional(S.Boolean),
-    agent_wrap_up_after_calls: S.optional(S.Boolean),
-    enabled: S.optional(S.Boolean),
-    logging: S.optional(S.Boolean),
-    maximum_queue_size: S.optional(S.Number),
-    maximum_queue_wait_time: S.optional(S.Number),
-    only_during_business_hours: S.optional(S.Boolean),
-    outbound_enabled: S.optional(S.Boolean),
-    recordings_public: S.optional(S.Boolean),
-    uk_mobile_forwarding: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountSettingsVoiceObject",
-}) as any as S.Schema<AccountSettingsVoiceObject>;
-
-export interface AccountSettingsObject {
-  active_features?: AccountSettingsActiveFeaturesObject;
-  agents?: AccountSettingsAgentObject;
-  api?: AccountSettingsApiObject;
-  apps?: AccountSettingsAppsObject;
-  billing?: AccountSettingsBillingObject;
-  branding?: AccountSettingsBrandingObject;
-  brands?: AccountSettingsBrandsObject;
-  cdn?: AccountSettingsCdnObject;
-  chat?: AccountSettingsChatObject;
-  cross_sell?: AccountSettingsCrossSellObject;
-  device_metadata?: AccountSettingsDeviceObject;
-  email?: AccountSettingsEmailObject;
-  google_apps?: AccountSettingsGoogleAppsObject;
-  groups?: AccountSettingsGroupObject;
-  knowledge?: AccountSettingsKnowledgeObject;
-  limits?: AccountSettingsLimitsObject;
-  localization?: AccountSettingsLocalizationObject;
-  lotus?: AccountSettingsLotusObject;
-  messaging_inactivity?: AccountSettingsMessageInactivityObject;
-  metrics?: AccountSettingsMetricsObject;
-  onboarding?: AccountSettingsOnboardingObject;
-  routing?: AccountSettingsRoutingObject;
-  rule?: AccountSettingsRuleObject;
-  side_conversations?: AccountSettingsSideConversationsObject;
-  statistics?: AccountSettingsStatisticsObject;
-  ticket_form?: AccountSettingsTicketFormObject;
-  tickets?: AccountSettingsTicketObject;
-  twitter?: AccountSettingsTwitterObject;
-  user?: AccountSettingsUserObject;
-  voice?: AccountSettingsVoiceObject;
-}
-export const AccountSettingsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active_features: S.optional(AccountSettingsActiveFeaturesObject),
-    agents: S.optional(AccountSettingsAgentObject),
-    api: S.optional(AccountSettingsApiObject),
-    apps: S.optional(AccountSettingsAppsObject),
-    billing: S.optional(AccountSettingsBillingObject),
-    branding: S.optional(AccountSettingsBrandingObject),
-    brands: S.optional(AccountSettingsBrandsObject),
-    cdn: S.optional(AccountSettingsCdnObject),
-    chat: S.optional(AccountSettingsChatObject),
-    cross_sell: S.optional(AccountSettingsCrossSellObject),
-    device_metadata: S.optional(AccountSettingsDeviceObject),
-    email: S.optional(AccountSettingsEmailObject),
-    google_apps: S.optional(AccountSettingsGoogleAppsObject),
-    groups: S.optional(AccountSettingsGroupObject),
-    knowledge: S.optional(AccountSettingsKnowledgeObject),
-    limits: S.optional(AccountSettingsLimitsObject),
-    localization: S.optional(AccountSettingsLocalizationObject),
-    lotus: S.optional(AccountSettingsLotusObject),
-    messaging_inactivity: S.optional(AccountSettingsMessageInactivityObject),
-    metrics: S.optional(AccountSettingsMetricsObject),
-    onboarding: S.optional(AccountSettingsOnboardingObject),
-    routing: S.optional(AccountSettingsRoutingObject),
-    rule: S.optional(AccountSettingsRuleObject),
-    side_conversations: S.optional(AccountSettingsSideConversationsObject),
-    statistics: S.optional(AccountSettingsStatisticsObject),
-    ticket_form: S.optional(AccountSettingsTicketFormObject),
-    tickets: S.optional(AccountSettingsTicketObject),
-    twitter: S.optional(AccountSettingsTwitterObject),
-    user: S.optional(AccountSettingsUserObject),
-    voice: S.optional(AccountSettingsVoiceObject),
-  }),
-).annotate({
-  identifier: "AccountSettingsObject",
-}) as any as S.Schema<AccountSettingsObject>;
-
-export interface AccountSettingsResponse {
-  settings?: AccountSettingsObject;
-}
-export const AccountSettingsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    settings: S.optional(AccountSettingsObject),
-  }),
-).annotate({
-  identifier: "AccountSettingsResponse",
-}) as any as S.Schema<AccountSettingsResponse>;
-
-export interface ShowActivityRequest {
-  /** The activity ID */
-  activity_id: number;
-}
-export const ShowActivityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activity_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/activities/{activity_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowActivityRequest",
-}) as any as S.Schema<ShowActivityRequest>;
-
-export interface ActivityResponse {
-  activity?: ActivityObject;
-}
-export const ActivityResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activity: S.optional(ActivityObject),
-  }),
-).annotate({
-  identifier: "ActivityResponse",
-}) as any as S.Schema<ActivityResponse>;
-
-export interface ShowAttachmentRequest {
-  /** The ID of the attachment */
-  attachment_id: number;
-}
-export const ShowAttachmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachment_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/attachments/{attachment_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowAttachmentRequest",
-}) as any as S.Schema<ShowAttachmentRequest>;
-
-export interface ShowAttributeRequest {
-  /** The ID of the skill-based routing attribute */
-  attribute_id: string;
-}
-export const ShowAttributeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attribute_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/routing/attributes/{attribute_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowAttributeRequest",
-}) as any as S.Schema<ShowAttributeRequest>;
-
-export interface ShowAttributeValueRequest {
-  /** The ID of the skill-based routing attribute */
-  attribute_id: string;
-  /** The ID of the skill-based routing attribute value */
-  attribute_value_id: string;
-}
-export const ShowAttributeValueRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attribute_id: S.String.pipe(T.Label()),
-    attribute_value_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/routing/attributes/{attribute_id}/values/{attribute_value_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowAttributeValueRequest",
-}) as any as S.Schema<ShowAttributeValueRequest>;
-
-export interface ShowAuditLogRequest {
-  /** The ID of the audit log */
-  audit_log_id: number;
-}
-export const ShowAuditLogRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    audit_log_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/audit_logs/{audit_log_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowAuditLogRequest",
-}) as any as S.Schema<ShowAuditLogRequest>;
-
-export interface AuditLogResponse {
-  audit_log?: AuditLogObject;
-}
-export const AuditLogResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    audit_log: S.optional(AuditLogObject),
-  }),
-).annotate({
-  identifier: "AuditLogResponse",
-}) as any as S.Schema<AuditLogResponse>;
-
-export interface ShowAutomationRequest {
-  /** The ID of the automation */
-  automation_id: number;
-}
-export const ShowAutomationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    automation_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/automations/{automation_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowAutomationRequest",
-}) as any as S.Schema<ShowAutomationRequest>;
-
-export interface ShowBrandRequest {
-  /** The ID of the brand */
-  brand_id: number;
-}
-export const ShowBrandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/brands/{brand_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowBrandRequest",
-}) as any as S.Schema<ShowBrandRequest>;
-
-export interface ShowBrandAgentByIdRequest {
-  /** The id of the brand agent */
-  brand_agent_id: string;
-}
-export const ShowBrandAgentByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand_agent_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/brand_agents/{brand_agent_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowBrandAgentByIdRequest",
-}) as any as S.Schema<ShowBrandAgentByIdRequest>;
-
-export interface BrandAgentResponse {
-  brand_agent?: BrandAgentObject;
-}
-export const BrandAgentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand_agent: S.optional(BrandAgentObject),
-  }),
-).annotate({
-  identifier: "BrandAgentResponse",
-}) as any as S.Schema<BrandAgentResponse>;
-
-export interface ShowChangesToTicketRequest {
-  /** The ID of the macro */
-  macro_id: number;
-  /** If true, normalizes the newline formatting of the macro's comment to more closely match the formatting produced by the ticket comment editor */
-  normalize_comment?: boolean;
-}
-export const ShowChangesToTicketRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    macro_id: S.Number.pipe(T.Label()),
-    normalize_comment: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/macros/{macro_id}/apply",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowChangesToTicketRequest",
-}) as any as S.Schema<ShowChangesToTicketRequest>;
-
-export type MacroApplyTicketResponseResultTicketCommentScopedBodyItemList =
-  Array<string>;
-export const MacroApplyTicketResponseResultTicketCommentScopedBodyItemList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MacroApplyTicketResponseResultTicketCommentScopedBodyItemList>;
-
-export type MacroApplyTicketResponseResultTicketCommentScopedBodyList =
-  Array<MacroApplyTicketResponseResultTicketCommentScopedBodyItemList>;
-export const MacroApplyTicketResponseResultTicketCommentScopedBodyList =
-  /*@__PURE__*/ S.Array(
-    MacroApplyTicketResponseResultTicketCommentScopedBodyItemList,
-  ) as any as S.Schema<MacroApplyTicketResponseResultTicketCommentScopedBodyList>;
-
-export interface MacroApplyTicketResponseResultTicketComment {
-  body?: string;
-  public?: boolean;
-  scoped_body?: MacroApplyTicketResponseResultTicketCommentScopedBodyList;
-}
-export const MacroApplyTicketResponseResultTicketComment =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      body: S.optional(S.String),
-      public: S.optional(S.Boolean),
-      scoped_body: S.optional(
-        MacroApplyTicketResponseResultTicketCommentScopedBodyList,
-      ),
-    }),
-  ).annotate({
-    identifier: "MacroApplyTicketResponseResultTicketComment",
-  }) as any as S.Schema<MacroApplyTicketResponseResultTicketComment>;
-
-export type MacroApplyTicketResponseResultTicketFields =
-  RequestObjectCustomFieldsItem;
-export const MacroApplyTicketResponseResultTicketFields =
-  RequestObjectCustomFieldsItem;
-
-export interface MacroApplyTicketResponseResultTicket {
-  assignee_id?: number;
-  comment?: MacroApplyTicketResponseResultTicketComment;
-  fields?: RequestObjectCustomFieldsItem;
-  group_id?: number;
-  id?: number;
-  url?: string;
-}
-export const MacroApplyTicketResponseResultTicket = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      assignee_id: S.optional(S.Number),
-      comment: S.optional(MacroApplyTicketResponseResultTicketComment),
-      fields: S.optional(RequestObjectCustomFieldsItem),
-      group_id: S.optional(S.Number),
-      id: S.optional(S.Number),
-      url: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "MacroApplyTicketResponseResultTicket",
-}) as any as S.Schema<MacroApplyTicketResponseResultTicket>;
-
-export interface MacroApplyTicketResponseResult {
-  ticket?: MacroApplyTicketResponseResultTicket;
-}
-export const MacroApplyTicketResponseResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket: S.optional(MacroApplyTicketResponseResultTicket),
-  }),
-).annotate({
-  identifier: "MacroApplyTicketResponseResult",
-}) as any as S.Schema<MacroApplyTicketResponseResult>;
-
-export interface MacroApplyTicketResponse {
-  result?: MacroApplyTicketResponseResult;
-}
-export const MacroApplyTicketResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: S.optional(MacroApplyTicketResponseResult),
-  }),
-).annotate({
-  identifier: "MacroApplyTicketResponse",
-}) as any as S.Schema<MacroApplyTicketResponse>;
-
-export interface ShowClientRequest {
-  /** The ID of the OAuth client */
-  oauth_client_id: number;
-}
-export const ShowClientRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oauth_client_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/oauth/clients/{oauth_client_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowClientRequest",
-}) as any as S.Schema<ShowClientRequest>;
-
-export interface ShowCommentRequest {
-  /** The ID of the request */
-  request_id: number;
-  /** The ID of the ticket comment */
-  ticket_comment_id: number;
-}
-export const ShowCommentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    request_id: S.Number.pipe(T.Label()),
-    ticket_comment_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/requests/{request_id}/comments/{ticket_comment_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowCommentRequest",
-}) as any as S.Schema<ShowCommentRequest>;
-
-export interface ShowCountryRequest {
-  /** The ID of the country */
-  id: number;
-}
-export const ShowCountryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/countries/{id}.json", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowCountryRequest",
-}) as any as S.Schema<ShowCountryRequest>;
-
-export interface ShowCountryResponse {
-  country?: CountryObject;
-}
-export const ShowCountryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    country: S.optional(CountryObject),
-  }),
-).annotate({
-  identifier: "ShowCountryResponse",
-}) as any as S.Schema<ShowCountryResponse>;
-
-export interface ShowCurrentLocaleRequest {}
-export const ShowCurrentLocaleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/locales/current", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowCurrentLocaleRequest",
-}) as any as S.Schema<ShowCurrentLocaleRequest>;
-
-export interface ShowCurrentlyAuthenticatedSessionRequest {}
-export const ShowCurrentlyAuthenticatedSessionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({ method: "GET", uri: "/api/v2/users/me/session", code: 200 }),
-    ),
-).annotate({
-  identifier: "ShowCurrentlyAuthenticatedSessionRequest",
-}) as any as S.Schema<ShowCurrentlyAuthenticatedSessionRequest>;
-
-export type SessionResponseSessionList = Array<SessionObject>;
-export const SessionResponseSessionList = /*@__PURE__*/ S.Array(
-  SessionObject,
-) as any as S.Schema<SessionResponseSessionList>;
-
-export interface SessionResponse {
-  session?: SessionResponseSessionList;
-}
-export const SessionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    session: S.optional(SessionResponseSessionList),
-  }),
-).annotate({
-  identifier: "SessionResponse",
-}) as any as S.Schema<SessionResponse>;
-
-export interface ShowCurrentTokenRequest {}
-export const ShowCurrentTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/oauth/tokens/current", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowCurrentTokenRequest",
-}) as any as S.Schema<ShowCurrentTokenRequest>;
-
-export interface OAuthTokenResponse {
-  token?: OauthTokenObject;
-}
-export const OAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.optional(OauthTokenObject),
-  }),
-).annotate({
-  identifier: "OAuthTokenResponse",
-}) as any as S.Schema<OAuthTokenResponse>;
-
-export interface ShowCurrentUserRequest {
-  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
-  include?: string;
-}
-export const ShowCurrentUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    include: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v2/users/me", code: 200 })),
-).annotate({
-  identifier: "ShowCurrentUserRequest",
-}) as any as S.Schema<ShowCurrentUserRequest>;
-
-/** PUT or POST requests only. Assigns agent or agents to a brand. For more information, see [Agent brand ids](#agent-brand-ids) */
-export type CurrentUserResponseUserAgentBrandIdsList = Array<number>;
-export const CurrentUserResponseUserAgentBrandIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CurrentUserResponseUserAgentBrandIdsList>;
-
-/** The user's profile picture represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/) object */
-export type CurrentUserResponseUserPhotoMap = {
-  [key: string]: unknown | undefined;
-};
-export const CurrentUserResponseUserPhotoMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<CurrentUserResponseUserPhotoMap>;
-
-/** The separation scope. "account" means account-level access; "brand" means access limited to a specific brand. */
-export type CurrentUserResponseUserSeparationScope = "account" | "brand";
-export const CurrentUserResponseUserSeparationScope = /*@__PURE__*/ S.String;
-
-/** The brand separation scope for the user. Only present when the account has brand separation enabled. For end users, indicates whether they are scoped to the full account or a specific brand. Staff users (agents and admins) always have `scope: "account"`. */
-export interface CurrentUserResponseUserSeparation {
-  /** The id of the brand the user is scoped to. Only present when "scope" is "brand". */
-  brand_id?: number;
-  /** The separation scope. "account" means account-level access; "brand" means access limited to a specific brand. */
-  scope: CurrentUserResponseUserSeparationScope;
-}
-export const CurrentUserResponseUserSeparation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand_id: S.optional(S.Number),
-    scope: CurrentUserResponseUserSeparationScope,
-  }),
-).annotate({
-  identifier: "CurrentUserResponseUserSeparation",
-}) as any as S.Schema<CurrentUserResponseUserSeparation>;
-
-export type CurrentUserResponseUserSuspensionDetailsChannelsItem =
-  | "all"
-  | "messaging";
-export const CurrentUserResponseUserSuspensionDetailsChannelsItem =
-  /*@__PURE__*/ S.String;
-
-/** Channels on which the user is suspended. `["all"]` means suspended across every channel. If "all" is present, it must be the only element */
-export type CurrentUserResponseUserSuspensionDetailsChannelsList =
-  Array<CurrentUserResponseUserSuspensionDetailsChannelsItem>;
-export const CurrentUserResponseUserSuspensionDetailsChannelsList =
-  /*@__PURE__*/ S.Array(
-    CurrentUserResponseUserSuspensionDetailsChannelsItem,
-  ) as any as S.Schema<CurrentUserResponseUserSuspensionDetailsChannelsList>;
-
-/** Channel-level suspension state for the user. The value is null if the user has no active channel-level suspension */
-export interface CurrentUserResponseUserSuspensionDetails {
-  /** Channels on which the user is suspended. `["all"]` means suspended across every channel. If "all" is present, it must be the only element */
-  channels: CurrentUserResponseUserSuspensionDetailsChannelsList;
-}
-export const CurrentUserResponseUserSuspensionDetails = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      channels: CurrentUserResponseUserSuspensionDetailsChannelsList,
-    }),
-).annotate({
-  identifier: "CurrentUserResponseUserSuspensionDetails",
-}) as any as S.Schema<CurrentUserResponseUserSuspensionDetails>;
-
-/** The user's tags. Only present if your account has user tagging enabled */
-export type CurrentUserResponseUserTagsList = Array<string>;
-export const CurrentUserResponseUserTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CurrentUserResponseUserTagsList>;
-
-/** Values of custom fields in the user's profile. See [User Fields](#user-fields) */
-export type CurrentUserResponseUserUserFieldsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CurrentUserResponseUserUserFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<CurrentUserResponseUserUserFieldsMap>;
-
-export interface CurrentUserResponseUser {
-  /** false if the user has been deleted */
-  active?: boolean;
-  /** PUT or POST requests only. Assigns agent or agents to a brand. For more information, see [Agent brand ids](#agent-brand-ids) */
-  agent_brand_ids?: CurrentUserResponseUserAgentBrandIdsList;
-  /** An alias displayed to end users */
-  alias?: string;
-  /** Whether or not the user is a chat-only agent */
-  chat_only?: boolean;
-  /** The time the user was created */
-  created_at?: string;
-  /** A custom role if the user is an agent on the Enterprise plan or above */
-  custom_role_id?: number | null;
-  /** The id of the user's default group */
-  default_group_id?: number;
-  /** Any details you want to store about the user, such as an address */
-  details?: string;
-  /** The user's primary email address. *Writeable on create only. On update, a secondary email is added. See [Email Address](#email-address) */
-  email?: string;
-  /** A unique identifier from another system. The API treats the id as case insensitive. Example: "ian1" and "IAN1" are the same value. */
-  external_id?: string | null;
-  /** The time zone for the user */
-  iana_time_zone?: string;
-  /** Automatically assigned when the user is created */
-  id?: number;
-  /** Last time the user signed in to Zendesk Support or made an API request using an API token */
-  last_login_at?: string;
-  /** The user's locale. A BCP-47 compliant tag for the locale. If both "locale" and "locale_id" are present on create or update, "locale_id" is ignored and only "locale" is used. */
-  locale?: string;
-  /** The user's language identifier */
-  locale_id?: number;
-  /** Designates whether the user has forum moderation capabilities */
-  moderator?: boolean;
-  /** The user's name */
-  name?: string;
-  /** Any notes you want to store about the user */
-  notes?: string;
-  /** true if the user can only create private comments */
-  only_private_comments?: boolean;
-  /** The id of the user's organization. If the user has more than one [organization memberships](/api-reference/ticketing/organizations/organization_memberships/), the id of the user's default organization. If updating, see [Organization ID](#organization-id) */
-  organization_id?: number | null;
-  /** The user's primary phone number. See [Phone Number](#phone-number) below */
-  phone?: string | null;
-  /** The user's profile picture represented as an [Attachment](/api-reference/ticketing/tickets/ticket-attachments/) object */
-  photo?: CurrentUserResponseUserPhotoMap | null;
-  /** A URL pointing to the user's profile picture. */
-  remote_photo_url?: string;
-  /** This parameter is inert and has no effect. It may be deprecated in the future. Previously, this parameter determined whether a user could access a CSV report in a legacy Guide dashboard. This dashboard has been removed. See [Announcing Guide legacy reporting upgrade to Explore](https://support.zendesk.com/hc/en-us/articles/4762263171610-Announcing-Guide-legacy-reporting-upgrade-to-Explore-) */
-  report_csv?: boolean;
-  /** If the agent has any restrictions; false for admins and unrestricted agents, true for other agents */
-  restricted_agent?: boolean;
-  /** The user's role. Possible values are "end-user", "agent", or "admin" */
-  role?: string;
-  /** The user's role id. 0 for a custom agent, 1 for a light agent, 2 for a chat agent, 3 for a chat agent added to the Support account as a contributor ([Chat Phase 4](https://support.zendesk.com/hc/en-us/articles/4408836197658#topic_p1h_sx4_pgb)), 4 for an admin, and 5 for a billing admin */
-  role_type?: number | null;
-  /** The brand separation scope for the user. Only present when the account has brand separation enabled. For end users, indicates whether they are scoped to the full account or a specific brand. Staff users (agents and admins) always have `scope: "account"`. */
-  separation?: CurrentUserResponseUserSeparation;
-  /** If the user is shared from a different Zendesk Support instance. Shared users can be added to organizations but cannot be modified through update requests. Any attempt to update a shared user results in a 403 Forbidden error. Ticket sharing accounts only */
-  shared?: boolean;
-  /** If the user is a shared agent from a different Zendesk Support instance. Ticket sharing accounts only */
-  shared_agent?: boolean;
-  /** Whether the `phone` number is shared or not. See [Phone Number](#phone-number) below */
-  shared_phone_number?: boolean | null;
-  /** The user's signature. Only agents and admins can have signatures */
-  signature?: string;
-  /** If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal */
-  suspended?: boolean;
-  /** Channel-level suspension state for the user. The value is null if the user has no active channel-level suspension */
-  suspension_details?: CurrentUserResponseUserSuspensionDetails | null;
-  /** The user's tags. Only present if your account has user tagging enabled */
-  tags?: CurrentUserResponseUserTagsList;
-  /** Specifies which tickets the user has access to. Possible values are: "organization", "groups", "assigned", "requested", null. "groups" and "assigned" are valid only for agents. If you pass an invalid value to an end user (for example, "groups"), they will be assigned to "requested", regardless of their previous access */
-  ticket_restriction?: string | null;
-  /** The user's time zone. See [Time Zone](#time-zone) */
-  time_zone?: string;
-  /** If two factor authentication is enabled */
-  two_factor_auth_enabled?: boolean | null;
-  /** The time the user was last updated */
-  updated_at?: string;
-  /** The user's API url */
-  url?: string;
-  /** Values of custom fields in the user's profile. See [User Fields](#user-fields) */
-  user_fields?: CurrentUserResponseUserUserFieldsMap;
-  /** Any of the user's identities is verified. See [User Identities](/api-reference/ticketing/users/user_identities) */
-  verified?: boolean;
-  /** CSRF token required by some Zendesk APIs. */
-  authenticity_token?: string;
-}
-export const CurrentUserResponseUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    agent_brand_ids: S.optional(CurrentUserResponseUserAgentBrandIdsList),
-    alias: S.optional(S.String),
-    chat_only: S.optional(S.Boolean),
-    created_at: S.optional(S.String),
-    custom_role_id: S.optional(S.NullOr(S.Number)),
-    default_group_id: S.optional(S.Number),
-    details: S.optional(S.String),
-    email: S.optional(S.String),
-    external_id: S.optional(S.NullOr(S.String)),
-    iana_time_zone: S.optional(S.String),
-    id: S.optional(S.Number),
-    last_login_at: S.optional(S.String),
-    locale: S.optional(S.String),
-    locale_id: S.optional(S.Number),
-    moderator: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    notes: S.optional(S.String),
-    only_private_comments: S.optional(S.Boolean),
-    organization_id: S.optional(S.NullOr(S.Number)),
-    phone: S.optional(S.NullOr(S.String)),
-    photo: S.optional(S.NullOr(CurrentUserResponseUserPhotoMap)),
-    remote_photo_url: S.optional(S.String),
-    report_csv: S.optional(S.Boolean),
-    restricted_agent: S.optional(S.Boolean),
-    role: S.optional(S.String),
-    role_type: S.optional(S.NullOr(S.Number)),
-    separation: S.optional(CurrentUserResponseUserSeparation),
-    shared: S.optional(S.Boolean),
-    shared_agent: S.optional(S.Boolean),
-    shared_phone_number: S.optional(S.NullOr(S.Boolean)),
-    signature: S.optional(S.String),
-    suspended: S.optional(S.Boolean),
-    suspension_details: S.optional(
-      S.NullOr(CurrentUserResponseUserSuspensionDetails),
-    ),
-    tags: S.optional(CurrentUserResponseUserTagsList),
-    ticket_restriction: S.optional(S.NullOr(S.String)),
-    time_zone: S.optional(S.String),
-    two_factor_auth_enabled: S.optional(S.NullOr(S.Boolean)),
-    updated_at: S.optional(S.String),
-    url: S.optional(S.String),
-    user_fields: S.optional(CurrentUserResponseUserUserFieldsMap),
-    verified: S.optional(S.Boolean),
-    authenticity_token: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CurrentUserResponseUser",
-}) as any as S.Schema<CurrentUserResponseUser>;
-
-export interface CurrentUserResponse {
-  user?: CurrentUserResponseUser;
-}
-export const CurrentUserResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user: S.optional(CurrentUserResponseUser),
-  }),
-).annotate({
-  identifier: "CurrentUserResponse",
-}) as any as S.Schema<CurrentUserResponse>;
-
-export interface ShowCurrentUserSettingsRequest {}
-export const ShowCurrentUserSettingsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/users/me/settings", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowCurrentUserSettingsRequest",
-}) as any as S.Schema<ShowCurrentUserSettingsRequest>;
-
-/** Admin Center UI settings */
-export interface UserSettingsResponseSettingsAdminCenter {
-  has_admin_center_side_nav_open?: boolean;
-}
-export const UserSettingsResponseSettingsAdminCenter = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      has_admin_center_side_nav_open: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "UserSettingsResponseSettingsAdminCenter",
-}) as any as S.Schema<UserSettingsResponseSettingsAdminCenter>;
-
-/** Ordered list of view IDs pinned in the Agent Home sidebar (max 8) */
-export type UserSettingsResponseSettingsAgentHomePinnedViewsList =
-  Array<number>;
-export const UserSettingsResponseSettingsAgentHomePinnedViewsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<UserSettingsResponseSettingsAgentHomePinnedViewsList>;
-
-/** Agent workspace theme preference (0=light, 1=dark, 2=system) */
-export type UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference =
-  | "0"
-  | "1"
-  | "2";
-export const UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference =
-  /*@__PURE__*/ S.String;
-
-/** Theme preference for conversation panel (0=light, 1=dark, 2=system) */
-export type UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
-  | "0"
-  | "1"
-  | "2";
-export const UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel =
-  /*@__PURE__*/ S.String;
-
-/** Lotus UI settings for onboarding, tooltips, and feature preferences */
-export interface UserSettingsResponseSettingsLotus {
-  /** Agent workspace theme preference (0=light, 1=dark, 2=system) */
-  agent_workspace_theme_preference?: UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference;
-  /** Theme preference for conversation panel (0=light, 1=dark, 2=system) */
-  agent_workspace_theme_preference_for_conversation_panel?: UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel;
-  keyboard_shortcuts_enabled?: boolean;
-  macro_shortcuts_enabled?: boolean;
-  show_onboarding_tooltips?: boolean;
-  /** Whether user is eligible for 2FA */
-  two_factor_authentication?: boolean;
-}
-export const UserSettingsResponseSettingsLotus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agent_workspace_theme_preference: S.optional(
-      UserSettingsResponseSettingsLotusAgentWorkspaceThemePreference,
-    ),
-    agent_workspace_theme_preference_for_conversation_panel: S.optional(
-      UserSettingsResponseSettingsLotusAgentWorkspaceThemePreferenceForConversationPanel,
-    ),
-    keyboard_shortcuts_enabled: S.optional(S.Boolean),
-    macro_shortcuts_enabled: S.optional(S.Boolean),
-    show_onboarding_tooltips: S.optional(S.Boolean),
-    two_factor_authentication: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "UserSettingsResponseSettingsLotus",
-}) as any as S.Schema<UserSettingsResponseSettingsLotus>;
-
-/** Order of shared views (array of view IDs) */
-export type UserSettingsResponseSettingsSharedViewsOrderList = Array<number>;
-export const UserSettingsResponseSettingsSharedViewsOrderList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<UserSettingsResponseSettingsSharedViewsOrderList>;
-
-/** User settings */
-export interface UserSettingsResponseSettings {
-  /** Admin Center UI settings */
-  admin_center?: UserSettingsResponseSettingsAdminCenter;
-  /** Ordered list of view IDs pinned in the Agent Home sidebar (max 8) */
-  agent_home_pinned_views?: UserSettingsResponseSettingsAgentHomePinnedViewsList | null;
-  /** Lotus UI settings for onboarding, tooltips, and feature preferences */
-  lotus?: UserSettingsResponseSettingsLotus;
-  /** Order of shared views (array of view IDs) */
-  shared_views_order?: UserSettingsResponseSettingsSharedViewsOrderList | null;
-}
-export const UserSettingsResponseSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    admin_center: S.optional(UserSettingsResponseSettingsAdminCenter),
-    agent_home_pinned_views: S.optional(
-      S.NullOr(UserSettingsResponseSettingsAgentHomePinnedViewsList),
-    ),
-    lotus: S.optional(UserSettingsResponseSettingsLotus),
-    shared_views_order: S.optional(
-      S.NullOr(UserSettingsResponseSettingsSharedViewsOrderList),
-    ),
-  }),
-).annotate({
-  identifier: "UserSettingsResponseSettings",
-}) as any as S.Schema<UserSettingsResponseSettings>;
-
-export interface UserSettingsResponse {
-  /** User settings */
-  settings?: UserSettingsResponseSettings;
-}
-export const UserSettingsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    settings: S.optional(UserSettingsResponseSettings),
-  }),
-).annotate({
-  identifier: "UserSettingsResponse",
-}) as any as S.Schema<UserSettingsResponse>;
-
-export interface ShowCustomObjectRequest {
-  /** The key of a custom object */
-  custom_object_key: string;
-  /** Include permission metadata in the response */
-  include_permissions_metadata?: boolean;
-  /** Include UI path in the response */
-  include_ui_path?: boolean;
-}
-export const ShowCustomObjectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_object_key: S.String.pipe(T.Label()),
-    include_permissions_metadata: S.optional(S.Boolean.pipe(T.Query())),
-    include_ui_path: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/custom_objects/{custom_object_key}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowCustomObjectRequest",
-}) as any as S.Schema<ShowCustomObjectRequest>;
-
-export interface ShowCustomObjectFieldRequest {
-  /** The key of a custom object */
-  custom_object_key: string;
-  /** The key or id of a custom object field */
-  custom_object_field_key_or_id: string;
-  /** If true, returns standard fields in addition to custom fields. */
-  include_standard_fields?: boolean;
-}
-export const ShowCustomObjectFieldRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_object_key: S.String.pipe(T.Label()),
-    custom_object_field_key_or_id: S.String.pipe(T.Label()),
-    include_standard_fields: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/custom_objects/{custom_object_key}/fields/{custom_object_field_key_or_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowCustomObjectFieldRequest",
-}) as any as S.Schema<ShowCustomObjectFieldRequest>;
-
-export interface ShowCustomObjectRecordRequest {
-  /** The key of a custom object */
-  custom_object_key: string;
-  /** The id of a custom object record */
-  custom_object_record_id: string;
-}
-export const ShowCustomObjectRecordRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_object_key: S.String.pipe(T.Label()),
-    custom_object_record_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/custom_objects/{custom_object_key}/records/{custom_object_record_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowCustomObjectRecordRequest",
-}) as any as S.Schema<ShowCustomObjectRecordRequest>;
-
-export interface ShowCustomRoleByIdRequest {
-  /** The ID of the custom agent role */
-  custom_role_id: number;
-}
-export const ShowCustomRoleByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_role_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/custom_roles/{custom_role_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowCustomRoleByIdRequest",
-}) as any as S.Schema<ShowCustomRoleByIdRequest>;
-
-export interface ShowCustomStatusRequest {
-  /** The id of the custom status */
-  custom_status_id: number;
-}
-export const ShowCustomStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_status_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/custom_statuses/{custom_status_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowCustomStatusRequest",
-}) as any as S.Schema<ShowCustomStatusRequest>;
-
-export interface ShowDefaultGroupRequest {}
-export const ShowDefaultGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/groups/default", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowDefaultGroupRequest",
-}) as any as S.Schema<ShowDefaultGroupRequest>;
-
-export interface ShowDeletedUserRequest {
-  /** The ID of the deleted user */
-  deleted_user_id: number;
-}
-export const ShowDeletedUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deleted_user_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/deleted_users/{deleted_user_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowDeletedUserRequest",
-}) as any as S.Schema<ShowDeletedUserRequest>;
-
-export interface ShowDerivedMacroRequest {
-  /** The ID of the macro to replicate */
-  macro_id: number;
-  /** The ID of the ticket from which to build a macro replica */
-  ticket_id: number;
-}
-export const ShowDerivedMacroRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    macro_id: S.Number.pipe(T.Query()),
-    ticket_id: S.Number.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v2/macros/new", code: 200 })),
-).annotate({
-  identifier: "ShowDerivedMacroRequest",
-}) as any as S.Schema<ShowDerivedMacroRequest>;
-
-export interface MacroResponse {
-  macro?: MacroObject;
-}
-export const MacroResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    macro: S.optional(MacroObject),
-  }),
-).annotate({ identifier: "MacroResponse" }) as any as S.Schema<MacroResponse>;
-
-export interface ShowDynamicContentItemRequest {
-  /** The ID of the dynamic content item */
-  dynamic_content_item_id: number;
-}
-export const ShowDynamicContentItemRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dynamic_content_item_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/dynamic_content/items/{dynamic_content_item_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowDynamicContentItemRequest",
-}) as any as S.Schema<ShowDynamicContentItemRequest>;
-
-export interface ShowDynamicContentVariantRequest {
-  /** The ID of the dynamic content item */
-  dynamic_content_item_id: number;
-  /** The ID of the variant */
-  dynamic_content_variant_id: number;
-}
-export const ShowDynamicContentVariantRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dynamic_content_item_id: S.Number.pipe(T.Label()),
-    dynamic_content_variant_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/dynamic_content/items/{dynamic_content_item_id}/variants/{dynamic_content_variant_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowDynamicContentVariantRequest",
-}) as any as S.Schema<ShowDynamicContentVariantRequest>;
-
-export interface ShowEmailNotificationRequest {
-  /** The id of the email notification */
-  notification_id: number;
-}
-export const ShowEmailNotificationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    notification_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/email_notifications/{notification_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowEmailNotificationRequest",
-}) as any as S.Schema<ShowEmailNotificationRequest>;
-
-export interface EmailNotificationResponse {
-  email_notification?: EmailNotificationObject;
-}
-export const EmailNotificationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email_notification: S.optional(EmailNotificationObject),
-  }),
-).annotate({
-  identifier: "EmailNotificationResponse",
-}) as any as S.Schema<EmailNotificationResponse>;
-
-export interface ShowEndUserIdentityRequest {
-  /** The id of the user */
-  user_id: number;
-  /** The ID of the user identity */
-  user_identity_id: number;
-}
-export const ShowEndUserIdentityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-    user_identity_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/end_users/{user_id}/identities/{user_identity_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowEndUserIdentityRequest",
-}) as any as S.Schema<ShowEndUserIdentityRequest>;
-
-export interface ShowGlobalClientRequest {
-  /** The ID of the Global OAuth client */
-  global_client_id: number;
-}
-export const ShowGlobalClientRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    global_client_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/oauth/global_clients/{global_client_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowGlobalClientRequest",
-}) as any as S.Schema<ShowGlobalClientRequest>;
-
-export interface GlobalClientResponse {
-  global_client?: GlobalClientObject;
-}
-export const GlobalClientResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    global_client: S.optional(GlobalClientObject),
-  }),
-).annotate({
-  identifier: "GlobalClientResponse",
-}) as any as S.Schema<GlobalClientResponse>;
-
-export interface ShowGroupByIdRequest {
-  /** The ID of the group */
-  group_id: number;
-  /** Sideloads to include in the response. Accepts a comma-separated list of values. */
-  include?: string;
-}
-export const ShowGroupByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group_id: S.Number.pipe(T.Label()),
-    include: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/groups/{group_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowGroupByIdRequest",
-}) as any as S.Schema<ShowGroupByIdRequest>;
-
-export interface ShowGroupMembershipByIdRequest {
-  /** The ID of the group membership */
-  group_membership_id: number;
-}
-export const ShowGroupMembershipByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group_membership_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/group_memberships/{group_membership_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowGroupMembershipByIdRequest",
-}) as any as S.Schema<ShowGroupMembershipByIdRequest>;
-
-export interface ShowGroupSLAPolicyRequest {
-  /** The id of the Group SLA policy */
-  group_sla_policy_id: number;
-}
-export const ShowGroupSLAPolicyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group_sla_policy_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/group_slas/policies/{group_sla_policy_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowGroupSLAPolicyRequest",
-}) as any as S.Schema<ShowGroupSLAPolicyRequest>;
-
-export interface ShowItamAssetRequest {
-  /** The id of the asset */
-  asset_id: string;
-}
-export const ShowItamAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    asset_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/it_asset_management/assets/{asset_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowItamAssetRequest",
-}) as any as S.Schema<ShowItamAssetRequest>;
-
-export interface ShowItamAssetTypeRequest {
-  /** The id of the asset type */
-  asset_type_id: string;
-}
-export const ShowItamAssetTypeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    asset_type_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/it_asset_management/asset_types/{asset_type_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowItamAssetTypeRequest",
-}) as any as S.Schema<ShowItamAssetTypeRequest>;
-
-export interface ShowItamAssetTypeFieldRequest {
-  /** The id of the asset type */
-  asset_type_id: string;
-  /** The id of the asset field */
-  asset_type_field_id: string;
-}
-export const ShowItamAssetTypeFieldRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    asset_type_id: S.String.pipe(T.Label()),
-    asset_type_field_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/it_asset_management/asset_types/{asset_type_id}/fields/{asset_type_field_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowItamAssetTypeFieldRequest",
-}) as any as S.Schema<ShowItamAssetTypeFieldRequest>;
-
-export interface ShowItamLocationRequest {
-  /** The id of the location */
-  location_id: string;
-}
-export const ShowItamLocationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    location_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/it_asset_management/locations/{location_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowItamLocationRequest",
-}) as any as S.Schema<ShowItamLocationRequest>;
-
-export interface ShowItamStatusRequest {
-  /** The id of the asset status */
-  status_id: string;
-}
-export const ShowItamStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/it_asset_management/statuses/{status_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowItamStatusRequest",
-}) as any as S.Schema<ShowItamStatusRequest>;
-
-export interface ShowJobStatusRequest {
-  /** the Id of the Job status */
-  job_status_id: string;
-}
-export const ShowJobStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    job_status_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/job_statuses/{job_status_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowJobStatusRequest",
-}) as any as S.Schema<ShowJobStatusRequest>;
-
-export interface ShowLocaleByIdRequest {
-  /** The ID or the [BCP-47 code](https://en.wikipedia.org/wiki/IETF_language_tag) of the locale. Examples: es-419, en-us, pr-br */
-  locale_id: string;
-}
-export const ShowLocaleByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    locale_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/locales/{locale_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowLocaleByIdRequest",
-}) as any as S.Schema<ShowLocaleByIdRequest>;
-
-export interface ShowMacroRequest {
-  /** The ID of the macro */
-  macro_id: number;
-}
-export const ShowMacroRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    macro_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/macros/{macro_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowMacroRequest",
-}) as any as S.Schema<ShowMacroRequest>;
-
-export interface ShowMacroAttachmentRequest {
-  /** The ID of the attachment */
-  attachment_id: number;
-}
-export const ShowMacroAttachmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachment_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/macros/attachments/{attachment_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowMacroAttachmentRequest",
-}) as any as S.Schema<ShowMacroAttachmentRequest>;
-
-export interface ShowManyDynamicContentsRequest {
-  /** Identifiers for the dynamic contents */
-  identifiers?: string;
-}
-export const ShowManyDynamicContentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    identifiers: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/dynamic_content/items/show_many",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowManyDynamicContentsRequest",
-}) as any as S.Schema<ShowManyDynamicContentsRequest>;
-
-export interface ShowManyEmailNotificationsRequest {
-  /** Comma-separated list of notification ids. One of ids, comment_ids, or ticket_ids is required. */
-  ids?: string;
-  /** Comma-separated list of comment ids. One of ids, comment_ids, or ticket_ids is required. */
-  comment_ids?: string;
-  /** Comma-separated list of ticket ids. One of ids, comment_ids, or ticket_ids is required. */
-  ticket_ids?: string;
-}
-export const ShowManyEmailNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.optional(S.String.pipe(T.Query())),
-    comment_ids: S.optional(S.String.pipe(T.Query())),
-    ticket_ids: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/email_notifications/show_many",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowManyEmailNotificationsRequest",
-}) as any as S.Schema<ShowManyEmailNotificationsRequest>;
-
-export interface ShowManyJobStatusesRequest {
-  /** Comma-separated list of job status ids. */
-  ids: string;
-}
-export const ShowManyJobStatusesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/job_statuses/show_many", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowManyJobStatusesRequest",
-}) as any as S.Schema<ShowManyJobStatusesRequest>;
-
-export interface ShowManyOrganizationsRequest {
-  /** A list of organization ids */
-  ids?: string;
-  /** A list of external ids */
-  external_ids?: string;
-}
-export const ShowManyOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.optional(S.String.pipe(T.Query())),
-    external_ids: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/organizations/show_many",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowManyOrganizationsRequest",
-}) as any as S.Schema<ShowManyOrganizationsRequest>;
-
-export interface ShowManyTicketFieldsRequest {
-  /** Comma-separated list of ticket field IDs to retrieve. Up to 100 values accepted. Either `ids` or `keys` can be used, but not both. */
-  ids?: string;
-  /** Comma-separated list of ticket field keys to retrieve. Up to 100 values accepted. Use field keys like 'priority', 'status', 'subject' instead of numeric IDs. Either `ids` or `keys` can be used, but not both. */
-  keys?: string;
-  /** If true, includes creator information in the response. */
-  creator?: boolean;
-  /** If true, excludes sub-selection options from dropdown fields in the response. */
-  exclude_sub_selection_options?: boolean;
-}
-export const ShowManyTicketFieldsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.optional(S.String.pipe(T.Query())),
-    keys: S.optional(S.String.pipe(T.Query())),
-    creator: S.optional(S.Boolean.pipe(T.Query())),
-    exclude_sub_selection_options: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/ticket_fields/show_many",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowManyTicketFieldsRequest",
-}) as any as S.Schema<ShowManyTicketFieldsRequest>;
-
-export type TicketFieldsShowManyResponseTicketFieldsList =
-  Array<TicketFieldObject>;
-export const TicketFieldsShowManyResponseTicketFieldsList =
-  /*@__PURE__*/ S.Array(
-    TicketFieldObject,
-  ) as any as S.Schema<TicketFieldsShowManyResponseTicketFieldsList>;
-
-export interface TicketFieldsShowManyResponse {
-  /** Total count when not using cursor pagination */
-  count?: number;
-  /** URL or cursor to the next page when paginated; null otherwise */
-  next_page?: string | null;
-  /** URL or cursor to the previous page when paginated; null otherwise */
-  previous_page?: string | null;
-  ticket_fields: TicketFieldsShowManyResponseTicketFieldsList;
-}
-export const TicketFieldsShowManyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next_page: S.optional(S.NullOr(S.String)),
-    previous_page: S.optional(S.NullOr(S.String)),
-    ticket_fields: TicketFieldsShowManyResponseTicketFieldsList,
-  }),
-).annotate({
-  identifier: "TicketFieldsShowManyResponse",
-}) as any as S.Schema<TicketFieldsShowManyResponse>;
-
-export interface ShowManyTicketFormsRequest {
-  /** IDs of the ticket forms to be shown */
-  ids: string;
-  /** When true, includes `has_more` indicator in the cursor pagination response meta. Only valid with cursor pagination (page[size], page[after], page[before]). */
-  include_boundary_indicators?: boolean;
-  /** When true, includes cursor values for each item in the cursor pagination response. Only valid with cursor pagination (page[size], page[after], page[before]). */
-  include_item_cursors?: boolean;
-  /** true returns active ticket forms; false returns inactive ticket forms. If not present, returns both */
-  active?: boolean;
-  /** true returns ticket forms where `end_user_visible`; false returns ticket forms that are not end-user visible. If not present, returns both */
-  end_user_visible?: boolean;
-  /** true returns the default ticket form when the criteria defined by the parameters results in a set without active and end-user visible ticket forms */
-  fallback_to_default?: boolean;
-  /** true returns the ticket forms of the brand specified by the url's subdomain */
-  associated_to_brand?: boolean;
-}
-export const ShowManyTicketFormsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.String.pipe(T.Query()),
-    include_boundary_indicators: S.optional(S.Boolean.pipe(T.Query())),
-    include_item_cursors: S.optional(S.Boolean.pipe(T.Query())),
-    active: S.optional(S.Boolean.pipe(T.Query())),
-    end_user_visible: S.optional(S.Boolean.pipe(T.Query())),
-    fallback_to_default: S.optional(S.Boolean.pipe(T.Query())),
-    associated_to_brand: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/ticket_forms/show_many", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowManyTicketFormsRequest",
-}) as any as S.Schema<ShowManyTicketFormsRequest>;
-
-export interface ShowManyTicketFormStatusesRequest {
-  /** Ticket form status ids to retrieve records for */
-  ids: string;
-}
-export const ShowManyTicketFormStatusesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/ticket_form_statuses/show_many",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowManyTicketFormStatusesRequest",
-}) as any as S.Schema<ShowManyTicketFormStatusesRequest>;
-
-export interface ShowManyUserFieldsRequest {
-  /** Comma-separated list of user field keys to retrieve. */
-  keys?: string;
-}
-export const ShowManyUserFieldsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keys: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/user_fields/show_many", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowManyUserFieldsRequest",
-}) as any as S.Schema<ShowManyUserFieldsRequest>;
-
-export interface ShowManyUsersRequest {
-  /** Accepts a comma-separated list of up to 100 user ids. */
-  ids?: string;
-  /** Accepts a comma-separated list of up to 100 external ids. */
-  external_ids?: string;
-  /** If true, returns inactive or deleted users. */
-  include_deleted?: boolean;
-  /** When brand separation is enabled and `external_ids` is provided, scopes the lookup to users belonging to the specified brand. Only applicable when the account has brand separation enabled. Omitting `brand_id` always uses account scope (0), regardless of account or Agent Workspace defaults. Accepted values when used with `external_ids`: * 0 — restrict the lookup to account-scoped (brand-less) users only. * A numeric brand id — if the brand has user separation enabled, return only users belonging to that brand; account-scoped agents and admins are excluded. If the brand does not have user separation enabled, the request resolves to account scope (0), including account-scoped agents and end users. * "all" — invalid for `show_many` lookups. When `ids` is provided instead of `external_ids`, numeric brand scopes are accepted but filtering is not applied because user IDs are globally unique. `brand_id=all` is rejected consistently with the other many-user endpoints. */
-  brand_id?: number;
-  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
-  include?: string;
-}
-export const ShowManyUsersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: S.optional(S.String.pipe(T.Query())),
-    external_ids: S.optional(S.String.pipe(T.Query())),
-    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
-    brand_id: S.optional(S.Number.pipe(T.Query())),
-    include: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v2/users/show_many", code: 200 })),
-).annotate({
-  identifier: "ShowManyUsersRequest",
-}) as any as S.Schema<ShowManyUsersRequest>;
-
-export interface ShowMonitoredTwitterHandleRequest {
-  /** The ID of the custom agent role */
-  monitored_twitter_handle_id: number;
-}
-export const ShowMonitoredTwitterHandleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    monitored_twitter_handle_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/channels/twitter/monitored_twitter_handles/{monitored_twitter_handle_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowMonitoredTwitterHandleRequest",
-}) as any as S.Schema<ShowMonitoredTwitterHandleRequest>;
-
-export interface TwitterChannelResponse {
-  monitored_twitter_handle?: TwitterChannelObject;
-}
-export const TwitterChannelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    monitored_twitter_handle: S.optional(TwitterChannelObject),
-  }),
-).annotate({
-  identifier: "TwitterChannelResponse",
-}) as any as S.Schema<TwitterChannelResponse>;
-
-export interface ShowOrganizationRequest {
-  /** The ID of an organization */
-  organization_id: number;
-  /** Include additional related data. Supported values: `lookup_relationship_fields`. */
-  include?: string;
-  /** When true, includes `has_more` indicator in the cursor pagination response meta. Only valid with cursor pagination (page[size], page[after], page[before]). */
-  include_boundary_indicators?: boolean;
-  /** When true, includes cursor values for each item in the cursor pagination response. Only valid with cursor pagination (page[size], page[after], page[before]). */
-  include_item_cursors?: boolean;
-}
-export const ShowOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.Number.pipe(T.Label()),
-    include: S.optional(S.String.pipe(T.Query())),
-    include_boundary_indicators: S.optional(S.Boolean.pipe(T.Query())),
-    include_item_cursors: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/organizations/{organization_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowOrganizationRequest",
-}) as any as S.Schema<ShowOrganizationRequest>;
-
-export interface ShowOrganizationFieldRequest {
-  /** The ID or key of the organization field */
-  organization_field_id: string;
-}
-export const ShowOrganizationFieldRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_field_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/organization_fields/{organization_field_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowOrganizationFieldRequest",
-}) as any as S.Schema<ShowOrganizationFieldRequest>;
-
-export interface ShowOrganizationMembershipByIdRequest {
-  /** The ID of the organization membership */
-  organization_membership_id: number;
-}
-export const ShowOrganizationMembershipByIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      organization_membership_id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/organization_memberships/{organization_membership_id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ShowOrganizationMembershipByIdRequest",
-}) as any as S.Schema<ShowOrganizationMembershipByIdRequest>;
-
-export interface ShowOrganizationMembershipByUserIdRequest {
-  /** The id of the user */
-  user_id: number;
-  /** The ID of the organization membership */
-  organization_membership_id: number;
-}
-export const ShowOrganizationMembershipByUserIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      user_id: S.Number.pipe(T.Label()),
-      organization_membership_id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ShowOrganizationMembershipByUserIdRequest",
-  }) as any as S.Schema<ShowOrganizationMembershipByUserIdRequest>;
-
-export interface ShowOrganizationMergeRequest {
-  /** The ID of the organization merge */
-  organization_merge_id: string;
-}
-export const ShowOrganizationMergeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_merge_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/organization_merges/{organization_merge_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowOrganizationMergeRequest",
-}) as any as S.Schema<ShowOrganizationMergeRequest>;
-
-export interface ShowOrganizationSubscriptionRequest {
-  /** The ID of the organization subscription */
-  organization_subscription_id: number;
-}
-export const ShowOrganizationSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_subscription_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/organization_subscriptions/{organization_subscription_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowOrganizationSubscriptionRequest",
-}) as any as S.Schema<ShowOrganizationSubscriptionRequest>;
-
-export interface ShowPermissionPolicyRequest {
-  /** The key of a custom object */
-  custom_object_key: string;
-  /** The permission policy ID. Use `custom-role-{custom_role_id}` for custom roles or `end-user` for the end user system role. */
-  id: string;
-}
-export const ShowPermissionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_object_key: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/custom_objects/{custom_object_key}/permission_policies/{id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowPermissionPolicyRequest",
-}) as any as S.Schema<ShowPermissionPolicyRequest>;
-
-export interface PermissionPolicyResponse {
-  policy?: PermissionPolicy;
-}
-export const PermissionPolicyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policy: S.optional(PermissionPolicy),
-  }),
-).annotate({
-  identifier: "PermissionPolicyResponse",
-}) as any as S.Schema<PermissionPolicyResponse>;
-
-export interface ShowQueueByIdRequest {
-  /** The id of the omnichannel routing queue */
-  queue_id: string;
-}
-export const ShowQueueByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    queue_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/queues/{queue_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowQueueByIdRequest",
-}) as any as S.Schema<ShowQueueByIdRequest>;
-
-export interface ShowRequestRequest {
-  /** The ID of the request */
-  request_id: number;
-}
-export const ShowRequestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    request_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/requests/{request_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowRequestRequest",
-}) as any as S.Schema<ShowRequestRequest>;
-
-export interface ShowSatisfactionRatingRequest {
-  /** The id of the satisfaction rating to retrieve */
-  satisfaction_rating_id: number;
-}
-export const ShowSatisfactionRatingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    satisfaction_rating_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/satisfaction_ratings/{satisfaction_rating_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowSatisfactionRatingRequest",
-}) as any as S.Schema<ShowSatisfactionRatingRequest>;
-
-export interface ShowSatisfactionRatingsRequest {
-  /** The id of the satisfaction rating reason */
-  satisfaction_reason_id: number;
-}
-export const ShowSatisfactionRatingsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    satisfaction_reason_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/satisfaction_reasons/{satisfaction_reason_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowSatisfactionRatingsRequest",
-}) as any as S.Schema<ShowSatisfactionRatingsRequest>;
-
-export type SatisfactionReasonResponseReasonList =
-  Array<SatisfactionReasonObject>;
-export const SatisfactionReasonResponseReasonList = /*@__PURE__*/ S.Array(
-  SatisfactionReasonObject,
-) as any as S.Schema<SatisfactionReasonResponseReasonList>;
-
-export interface SatisfactionReasonResponse {
-  reason?: SatisfactionReasonResponseReasonList;
-}
-export const SatisfactionReasonResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reason: S.optional(SatisfactionReasonResponseReasonList),
-  }),
-).annotate({
-  identifier: "SatisfactionReasonResponse",
-}) as any as S.Schema<SatisfactionReasonResponse>;
-
-export interface ShowSecuritySettingsRequest {
-  /** When brand separation is enabled, scopes the security settings to the specified brand. */
-  brand_id?: number;
-}
-export const ShowSecuritySettingsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand_id: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/security_settings", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowSecuritySettingsRequest",
-}) as any as S.Schema<ShowSecuritySettingsRequest>;
-
-/** Describes how long the account can be assumed */
-export type SecuritySettingsObjectAssumptionDuration =
-  | "off"
-  | "day"
-  | "week"
-  | "month"
-  | "year"
-  | "always";
-export const SecuritySettingsObjectAssumptionDuration = /*@__PURE__*/ S.String;
-
-export type SecuritySettingsObjectAuthenticationAgentSecurityPolicyName =
-  | "low"
-  | "medium"
-  | "high"
-  | "recommended"
-  | "custom";
-export const SecuritySettingsObjectAuthenticationAgentSecurityPolicyName =
-  /*@__PURE__*/ S.String;
-
-export interface SecuritySettingsObjectAuthenticationAgentPassword {
-  disallow_local_part_from_email?: boolean;
-  failed_attempts_allowed?: number;
-  is_available?: boolean;
-  max_sequence?: number | null;
-  password_complexity?: number;
-  password_duration?: number | null;
-  password_history_length?: number | null;
-  /** If must include letters in mixed case */
-  password_in_mixed_case?: boolean;
-  password_length?: number;
-}
-export const SecuritySettingsObjectAuthenticationAgentPassword =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      disallow_local_part_from_email: S.optional(S.Boolean),
-      failed_attempts_allowed: S.optional(S.Number),
-      is_available: S.optional(S.Boolean),
-      max_sequence: S.optional(S.NullOr(S.Number)),
-      password_complexity: S.optional(S.Number),
-      password_duration: S.optional(S.NullOr(S.Number)),
-      password_history_length: S.optional(S.NullOr(S.Number)),
-      password_in_mixed_case: S.optional(S.Boolean),
-      password_length: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "SecuritySettingsObjectAuthenticationAgentPassword",
-  }) as any as S.Schema<SecuritySettingsObjectAuthenticationAgentPassword>;
-
-export interface SecuritySettingsObjectAuthenticationAgent {
-  enforce_sso?: boolean;
-  google_login?: boolean;
-  office_365_login?: boolean;
-  primary_external_auth?: string | null;
-  remote_login?: boolean;
-  security_policy_id?: number;
-  security_policy_name?: SecuritySettingsObjectAuthenticationAgentSecurityPolicyName;
-  sso_auto_redirect?: boolean;
-  two_factor_enforce?: boolean;
-  zendesk_login?: boolean;
-  office_365_allowed_tids?: string;
-  office_365_enforce_tid?: boolean;
-  password?: SecuritySettingsObjectAuthenticationAgentPassword;
-  remote_bypass?: number;
-}
-export const SecuritySettingsObjectAuthenticationAgent =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enforce_sso: S.optional(S.Boolean),
-      google_login: S.optional(S.Boolean),
-      office_365_login: S.optional(S.Boolean),
-      primary_external_auth: S.optional(S.NullOr(S.String)),
-      remote_login: S.optional(S.Boolean),
-      security_policy_id: S.optional(S.Number),
-      security_policy_name: S.optional(
-        SecuritySettingsObjectAuthenticationAgentSecurityPolicyName,
-      ),
-      sso_auto_redirect: S.optional(S.Boolean),
-      two_factor_enforce: S.optional(S.Boolean),
-      zendesk_login: S.optional(S.Boolean),
-      office_365_allowed_tids: S.optional(S.String),
-      office_365_enforce_tid: S.optional(S.Boolean),
-      password: S.optional(SecuritySettingsObjectAuthenticationAgentPassword),
-      remote_bypass: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "SecuritySettingsObjectAuthenticationAgent",
-  }) as any as S.Schema<SecuritySettingsObjectAuthenticationAgent>;
-
-export type SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName =
-  | "low"
-  | "medium"
-  | "high"
-  | "recommended"
-  | "custom";
-export const SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName =
-  /*@__PURE__*/ S.String;
-
-export interface SecuritySettingsObjectAuthenticationEndUser {
-  enforce_sso?: boolean;
-  google_login?: boolean;
-  office_365_login?: boolean;
-  primary_external_auth?: string | null;
-  remote_login?: boolean;
-  security_policy_id?: number;
-  security_policy_name?: SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName;
-  sso_auto_redirect?: boolean;
-  two_factor_enforce?: boolean;
-  zendesk_login?: boolean;
-  facebook_login?: boolean;
-}
-export const SecuritySettingsObjectAuthenticationEndUser =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enforce_sso: S.optional(S.Boolean),
-      google_login: S.optional(S.Boolean),
-      office_365_login: S.optional(S.Boolean),
-      primary_external_auth: S.optional(S.NullOr(S.String)),
-      remote_login: S.optional(S.Boolean),
-      security_policy_id: S.optional(S.Number),
-      security_policy_name: S.optional(
-        SecuritySettingsObjectAuthenticationEndUserSecurityPolicyName,
-      ),
-      sso_auto_redirect: S.optional(S.Boolean),
-      two_factor_enforce: S.optional(S.Boolean),
-      zendesk_login: S.optional(S.Boolean),
-      facebook_login: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "SecuritySettingsObjectAuthenticationEndUser",
-  }) as any as S.Schema<SecuritySettingsObjectAuthenticationEndUser>;
-
-/** Describes how users authenticate. See [Authentication](#authentication) */
-export interface SecuritySettingsObjectAuthentication {
-  agent?: SecuritySettingsObjectAuthenticationAgent;
-  end_user?: SecuritySettingsObjectAuthenticationEndUser;
-}
-export const SecuritySettingsObjectAuthentication = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      agent: S.optional(SecuritySettingsObjectAuthenticationAgent),
-      end_user: S.optional(SecuritySettingsObjectAuthenticationEndUser),
-    }),
-).annotate({
-  identifier: "SecuritySettingsObjectAuthentication",
-}) as any as S.Schema<SecuritySettingsObjectAuthentication>;
-
-/** Describes IP addresses restrictions. See [IP Restrictions](#ip-restrictions) */
-export interface SecuritySettingsObjectIp {
-  enable_agent_ip_restrictions?: boolean;
-  ip_ranges?: string;
-  ip_restriction_enabled?: boolean;
-}
-export const SecuritySettingsObjectIp = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enable_agent_ip_restrictions: S.optional(S.Boolean),
-    ip_ranges: S.optional(S.String),
-    ip_restriction_enabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "SecuritySettingsObjectIp",
-}) as any as S.Schema<SecuritySettingsObjectIp>;
-
-export interface SecuritySettingsObject {
-  /** If administrators are allowed to set passwords for users. When disabled, administrators can only reset passwords */
-  admins_can_set_user_passwords?: boolean;
-  /** The period of inactivity in minutes, before a team member is automatically signed out */
-  agent_session_timeout?: number;
-  /** If account assumption is enabled */
-  assumable?: boolean;
-  /** Indicates if an account is always assumable, based on account type (e.g. always true for a trial account) */
-  assumable_account_type?: boolean;
-  /** Describes how long the account can be assumed */
-  assumption_duration?: SecuritySettingsObjectAssumptionDuration;
-  /** The time when assumption option expires */
-  assumption_expiration?: string | null;
-  /** Describes how users authenticate. See [Authentication](#authentication) */
-  authentication?: SecuritySettingsObjectAuthentication;
-  /** If Content Security Policy blocking is enabled */
-  csp_blocking_enabled?: boolean;
-  /** If a notification is sent on password change for admins, agents and end users */
-  email_agent_when_sensitive_fields_changed?: boolean;
-  /** The period of inactivity in minutes, before an end user is automatically signed out */
-  end_user_session_timeout?: number;
-  /** Describes IP addresses restrictions. See [IP Restrictions](#ip-restrictions) */
-  ip?: SecuritySettingsObjectIp;
-  /** The maximum session duration, which is the maximum amount of time in minutes a team member can stay signed in. The session will expire after this duration or the inactivity timeout */
-  maximum_session_duration?: number;
-  /** If maximum session duration for team members is enabled */
-  maximum_session_duration_enabled?: boolean;
-  /** If admins and agents can use the Zendesk Support mobile app */
-  mobile_app_access?: boolean;
-  /** The period of inactivity in minutes, before a mobile app user gets signed out */
-  mobile_app_session_timeout?: number;
-  /** The time when the two-factor authentication setting was last updated */
-  two_factor_last_update?: string;
-}
-export const SecuritySettingsObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    admins_can_set_user_passwords: S.optional(S.Boolean),
-    agent_session_timeout: S.optional(S.Number),
-    assumable: S.optional(S.Boolean),
-    assumable_account_type: S.optional(S.Boolean),
-    assumption_duration: S.optional(SecuritySettingsObjectAssumptionDuration),
-    assumption_expiration: S.optional(S.NullOr(S.String)),
-    authentication: S.optional(SecuritySettingsObjectAuthentication),
-    csp_blocking_enabled: S.optional(S.Boolean),
-    email_agent_when_sensitive_fields_changed: S.optional(S.Boolean),
-    end_user_session_timeout: S.optional(S.Number),
-    ip: S.optional(SecuritySettingsObjectIp),
-    maximum_session_duration: S.optional(S.Number),
-    maximum_session_duration_enabled: S.optional(S.Boolean),
-    mobile_app_access: S.optional(S.Boolean),
-    mobile_app_session_timeout: S.optional(S.Number),
-    two_factor_last_update: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecuritySettingsObject",
-}) as any as S.Schema<SecuritySettingsObject>;
-
-export interface SecuritySettingsResponse {
-  security_settings?: SecuritySettingsObject;
-}
-export const SecuritySettingsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    security_settings: S.optional(SecuritySettingsObject),
-  }),
-).annotate({
-  identifier: "SecuritySettingsResponse",
-}) as any as S.Schema<SecuritySettingsResponse>;
-
-export interface ShowSessionRequest {
-  /** The id of the user */
-  user_id: number;
-  /** The ID of the session */
-  session_id: number;
-}
-export const ShowSessionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-    session_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/users/{user_id}/sessions/{session_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowSessionRequest",
-}) as any as S.Schema<ShowSessionRequest>;
-
-export interface ShowSharingAgreementRequest {
-  /** The ID of the sharing agreement */
-  sharing_agreement_id: number;
-}
-export const ShowSharingAgreementRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sharing_agreement_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/sharing_agreements/{sharing_agreement_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowSharingAgreementRequest",
-}) as any as S.Schema<ShowSharingAgreementRequest>;
-
-export interface ShowSLAPolicyRequest {
-  /** The ID of the SLA Policy */
-  sla_policy_id: number;
-}
-export const ShowSLAPolicyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sla_policy_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/slas/policies/{sla_policy_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowSLAPolicyRequest",
-}) as any as S.Schema<ShowSLAPolicyRequest>;
-
-export interface ShowSupportAddressRequest {
-  /** The ID of the support address */
-  support_address_id: number;
-}
-export const ShowSupportAddressRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    support_address_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/recipient_addresses/{support_address_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowSupportAddressRequest",
-}) as any as S.Schema<ShowSupportAddressRequest>;
-
-export interface ShowSuspendedTicketsRequest {
-  /** id of the suspended ticket */
-  id: number;
-}
-export const ShowSuspendedTicketsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/suspended_tickets/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowSuspendedTicketsRequest",
-}) as any as S.Schema<ShowSuspendedTicketsRequest>;
-
-export interface ShowTargetRequest {
-  /** The ID of the target */
-  target_id: number;
-}
-export const ShowTargetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    target_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/targets/{target_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowTargetRequest",
-}) as any as S.Schema<ShowTargetRequest>;
-
-export interface ShowTargetFailureRequest {
-  /** The ID of the target failure */
-  target_failure_id: number;
-}
-export const ShowTargetFailureRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    target_failure_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/target_failures/{target_failure_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTargetFailureRequest",
-}) as any as S.Schema<ShowTargetFailureRequest>;
-
-export interface TargetFailureResponse {
-  target_failure?: TargetFailureObject;
-}
-export const TargetFailureResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    target_failure: S.optional(TargetFailureObject),
-  }),
-).annotate({
-  identifier: "TargetFailureResponse",
-}) as any as S.Schema<TargetFailureResponse>;
-
-export interface ShowTaskItemRequest {
-  /** The id of the task list */
-  task_list_id: string;
-  /** The id of the task item */
-  task_item_id: string;
-}
-export const ShowTaskItemRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_list_id: S.String.pipe(T.Label()),
-    task_item_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/task_lists/{task_list_id}/task_items/{task_item_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTaskItemRequest",
-}) as any as S.Schema<ShowTaskItemRequest>;
-
-export interface ShowTaskListInstanceRequest {
-  /** The id of the task list */
-  task_list_id: string;
-}
-export const ShowTaskListInstanceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_list_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/task_lists/{task_list_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTaskListInstanceRequest",
-}) as any as S.Schema<ShowTaskListInstanceRequest>;
-
-export interface TaskListInstanceObject {
-  /** The time the task list was created */
-  created_at?: string;
-  /** The description of the task list */
-  description?: string;
-  /** The id automatically assigned to the task list when it is created */
-  id?: string;
-  /** If true, all tasks in the task list have been completed */
-  is_completed?: boolean;
-  /** Whether the task list is required. If true, the ticket can't be solved until all tasks are complete. */
-  is_required?: boolean;
-  /** The name of the task list */
-  name?: string;
-  /** The number of tasks in the task list */
-  task_count?: number;
-  /** The id of the ticket associated with the task list */
-  ticket_id?: string;
-  /** The time the task list was last updated */
-  updated_at?: string;
-}
-export const TaskListInstanceObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.optional(S.String),
-    description: S.optional(S.String),
-    id: S.optional(S.String),
-    is_completed: S.optional(S.Boolean),
-    is_required: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    task_count: S.optional(S.Number),
-    ticket_id: S.optional(S.String),
-    updated_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskListInstanceObject",
-}) as any as S.Schema<TaskListInstanceObject>;
-
-export interface TaskListInstanceResponse {
-  task_list?: TaskListInstanceObject;
-}
-export const TaskListInstanceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_list: S.optional(TaskListInstanceObject),
-  }),
-).annotate({
-  identifier: "TaskListInstanceResponse",
-}) as any as S.Schema<TaskListInstanceResponse>;
-
-export interface ShowTaskListsForTicketRequest {
-  /** The ID of the ticket */
-  ticket_id: number;
-}
-export const ShowTaskListsForTicketRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/tickets/{ticket_id}/task_lists",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTaskListsForTicketRequest",
-}) as any as S.Schema<ShowTaskListsForTicketRequest>;
-
-export interface ShowTaskListTemplateRequest {
-  /** The id of the task list template */
-  task_list_template_id: string;
-}
-export const ShowTaskListTemplateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_list_template_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/task_list_templates/{task_list_template_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTaskListTemplateRequest",
-}) as any as S.Schema<ShowTaskListTemplateRequest>;
-
-export interface ShowTicketRequest {
-  /** The ID of the ticket */
-  ticket_id: number;
-  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/tickets/tickets/#sideloading). */
-  include?: string;
-  /** When true, returns a reduced ticket payload (omits null custom fields). */
-  reduced_payload_size?: boolean;
-  /** When true, removes duplicate custom field entries from the response. */
-  remove_duplicate_fields?: boolean;
-}
-export const ShowTicketRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_id: S.Number.pipe(T.Label()),
-    include: S.optional(S.String.pipe(T.Query())),
-    reduced_payload_size: S.optional(S.Boolean.pipe(T.Query())),
-    remove_duplicate_fields: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/tickets/{ticket_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowTicketRequest",
-}) as any as S.Schema<ShowTicketRequest>;
-
-export interface ShowTicketAfterChangesRequest {
-  /** The ID of the ticket */
-  ticket_id: number;
-  /** The ID of the macro */
-  macro_id: number;
-  /** If true, normalizes the newline formatting of the macro's comment to more closely match the formatting produced by the ticket comment editor */
-  normalize_comment?: boolean;
-}
-export const ShowTicketAfterChangesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_id: S.Number.pipe(T.Label()),
-    macro_id: S.Number.pipe(T.Label()),
-    normalize_comment: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/tickets/{ticket_id}/macros/{macro_id}/apply",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTicketAfterChangesRequest",
-}) as any as S.Schema<ShowTicketAfterChangesRequest>;
-
-export interface ShowTicketAuditRequest {
-  /** The ID of the ticket */
-  ticket_id: number;
-  /** The ID of the ticket audit */
-  ticket_audit_id: number;
-}
-export const ShowTicketAuditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_id: S.Number.pipe(T.Label()),
-    ticket_audit_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/tickets/{ticket_id}/audits/{ticket_audit_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTicketAuditRequest",
-}) as any as S.Schema<ShowTicketAuditRequest>;
-
-export interface TicketAuditResponse {
-  audit?: TicketAuditObject;
-}
-export const TicketAuditResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    audit: S.optional(TicketAuditObject),
-  }),
-).annotate({
-  identifier: "TicketAuditResponse",
-}) as any as S.Schema<TicketAuditResponse>;
-
-export interface ShowTicketByMessagingConversationIdRequest {
-  /** The id of the Sunshine Conversations conversation. */
-  conversation_id: string;
-}
-export const ShowTicketByMessagingConversationIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      conversation_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/tickets/messaging/conversations/{conversation_id}/ticket",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ShowTicketByMessagingConversationIdRequest",
-  }) as any as S.Schema<ShowTicketByMessagingConversationIdRequest>;
-
-export interface ShowTicketfieldRequest {
-  /** The ID of the ticket field */
-  ticket_field_id: number;
-  /** If true, displays the `creator_user_id` and `creator_app_name` properties. If the ticket field is created by an app, `creator_app_name` is the name of the app and `creator_user_id` is `-1`. If the ticket field is not created by an app, then `creator_app_name` is null */
-  creator?: boolean;
-}
-export const ShowTicketfieldRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_field_id: S.Number.pipe(T.Label()),
-    creator: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/ticket_fields/{ticket_field_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTicketfieldRequest",
-}) as any as S.Schema<ShowTicketfieldRequest>;
-
-export interface ShowTicketFieldOptionRequest {
-  /** The ID of the ticket field */
-  ticket_field_id: number;
-  /** The ID of the ticket field option */
-  ticket_field_option_id: number;
-}
-export const ShowTicketFieldOptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_field_id: S.Number.pipe(T.Label()),
-    ticket_field_option_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTicketFieldOptionRequest",
-}) as any as S.Schema<ShowTicketFieldOptionRequest>;
-
-export interface ShowTicketFormRequest {
-  /** The ID of the ticket form */
-  ticket_form_id: number;
-}
-export const ShowTicketFormRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_form_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/ticket_forms/{ticket_form_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTicketFormRequest",
-}) as any as S.Schema<ShowTicketFormRequest>;
-
-export interface ShowTicketMetricsRequest {
-  /** The id of the ticket metric to retrieve */
-  ticket_metric_id: string;
-}
-export const ShowTicketMetricsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_metric_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/ticket_metrics/{ticket_metric_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTicketMetricsRequest",
-}) as any as S.Schema<ShowTicketMetricsRequest>;
-
-export type TicketMetricsByTicketMetricIdResponseTicketMetricList =
-  Array<TicketMetricObject>;
-export const TicketMetricsByTicketMetricIdResponseTicketMetricList =
-  /*@__PURE__*/ S.Array(
-    TicketMetricObject,
-  ) as any as S.Schema<TicketMetricsByTicketMetricIdResponseTicketMetricList>;
-
-export interface TicketMetricsByTicketMetricIdResponse {
-  ticket_metric?: TicketMetricsByTicketMetricIdResponseTicketMetricList;
-}
-export const TicketMetricsByTicketMetricIdResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      ticket_metric: S.optional(
-        TicketMetricsByTicketMetricIdResponseTicketMetricList,
-      ),
-    }),
-).annotate({
-  identifier: "TicketMetricsByTicketMetricIdResponse",
-}) as any as S.Schema<TicketMetricsByTicketMetricIdResponse>;
-
-export interface ShowTicketMetricsByTicketRequest {
-  /** The ID of the ticket */
-  ticket_id: number;
-}
-export const ShowTicketMetricsByTicketRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ticket_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/tickets/{ticket_id}/metrics",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTicketMetricsByTicketRequest",
-}) as any as S.Schema<ShowTicketMetricsByTicketRequest>;
-
-export interface ShowTokenRequest {
-  /** The ID of the OAuth token */
-  oauth_token_id: number;
-}
-export const ShowTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oauth_token_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/oauth/tokens/{oauth_token_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTokenRequest",
-}) as any as S.Schema<ShowTokenRequest>;
-
-export interface ShowTriggerCategoryByIdRequest {
-  /** The id of the ticket trigger category to retrieve */
-  trigger_category_id: string;
-}
-export const ShowTriggerCategoryByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trigger_category_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/trigger_categories/{trigger_category_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowTriggerCategoryByIdRequest",
-}) as any as S.Schema<ShowTriggerCategoryByIdRequest>;
-
-export interface ShowTriggerLimitsRequest {}
-export const ShowTriggerLimitsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/api/v2/triggers/limits", code: 200 }),
-  ),
-).annotate({
-  identifier: "ShowTriggerLimitsRequest",
-}) as any as S.Schema<ShowTriggerLimitsRequest>;
-
-export interface TriggerLimitsResponse {
-  /** The number of active ticket triggers on the account */
-  count?: number;
-  /** The maximum number of active ticket triggers allowed on the account's plan */
-  limit?: number;
-}
-export const TriggerLimitsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    limit: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "TriggerLimitsResponse",
-}) as any as S.Schema<TriggerLimitsResponse>;
-
-export interface ShowUserRequest {
-  /** The id of the user */
-  user_id: number;
-  /** Sideloads to include in the response. Accepts a comma-separated list of values. See [Sideloading](/api-reference/ticketing/users/users/#sideloading). */
-  include?: string;
-}
-export const ShowUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-    include: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v2/users/{user_id}", code: 200 })),
-).annotate({
-  identifier: "ShowUserRequest",
-}) as any as S.Schema<ShowUserRequest>;
-
-export interface ShowUserBrandAgentByIdRequest {
-  /** The id of the user */
-  user_id: number;
-  /** The id of the brand agent */
-  brand_agent_id: string;
-}
-export const ShowUserBrandAgentByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-    brand_agent_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/users/{user_id}/brand_agents/{brand_agent_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowUserBrandAgentByIdRequest",
-}) as any as S.Schema<ShowUserBrandAgentByIdRequest>;
-
-export interface ShowUserComplianceDeletionStatusesRequest {
-  /** The id of the user */
-  user_id: number;
-  /** Area of compliance */
-  application?: string;
-}
-export const ShowUserComplianceDeletionStatusesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      user_id: S.Number.pipe(T.Label()),
-      application: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/v2/users/{user_id}/compliance_deletion_statuses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ShowUserComplianceDeletionStatusesRequest",
-  }) as any as S.Schema<ShowUserComplianceDeletionStatusesRequest>;
-
-export interface ComplianceDeletionStatusObject {
-  account_subdomain: string;
-  action: string;
-  application: string;
-  created_at: string;
-  executer_id: number | null;
-  user_id: number;
-}
-export const ComplianceDeletionStatusObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_subdomain: S.String,
-    action: S.String,
-    application: S.String,
-    created_at: S.String,
-    executer_id: S.NullOr(S.Number),
-    user_id: S.Number,
-  }),
-).annotate({
-  identifier: "ComplianceDeletionStatusObject",
-}) as any as S.Schema<ComplianceDeletionStatusObject>;
-
-export type ComplianceDeletionStatusesResponseComplianceDeletionStatusesList =
-  Array<ComplianceDeletionStatusObject>;
-export const ComplianceDeletionStatusesResponseComplianceDeletionStatusesList =
-  /*@__PURE__*/ S.Array(
-    ComplianceDeletionStatusObject,
-  ) as any as S.Schema<ComplianceDeletionStatusesResponseComplianceDeletionStatusesList>;
-
-export interface ComplianceDeletionStatusesResponse {
-  compliance_deletion_statuses?: ComplianceDeletionStatusesResponseComplianceDeletionStatusesList;
-}
-export const ComplianceDeletionStatusesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    compliance_deletion_statuses: S.optional(
-      ComplianceDeletionStatusesResponseComplianceDeletionStatusesList,
-    ),
-  }),
-).annotate({
-  identifier: "ComplianceDeletionStatusesResponse",
-}) as any as S.Schema<ComplianceDeletionStatusesResponse>;
-
-export interface ShowUserFieldRequest {
-  /** The ID or key of the user field */
-  user_field_id: string;
-}
-export const ShowUserFieldRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_field_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/user_fields/{user_field_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowUserFieldRequest",
-}) as any as S.Schema<ShowUserFieldRequest>;
-
-export interface ShowUserFieldOptionRequest {
-  /** The ID or key of the user field */
-  user_field_id: string;
-  /** The ID of the user field option */
-  user_field_option_id: number;
-}
-export const ShowUserFieldOptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_field_id: S.String.pipe(T.Label()),
-    user_field_option_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowUserFieldOptionRequest",
-}) as any as S.Schema<ShowUserFieldOptionRequest>;
-
-export interface ShowUserGroupMembershipByIdRequest {
-  /** The id of the user */
-  user_id: number;
-  /** The ID of the group membership */
-  group_membership_id: number;
-}
-export const ShowUserGroupMembershipByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-    group_membership_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/users/{user_id}/group_memberships/{group_membership_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowUserGroupMembershipByIdRequest",
-}) as any as S.Schema<ShowUserGroupMembershipByIdRequest>;
-
-export interface ShowUserIdentityRequest {
-  /** The id of the user */
-  user_id: number;
-  /** The ID of the user identity */
-  user_identity_id: number;
-}
-export const ShowUserIdentityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-    user_identity_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/users/{user_id}/identities/{user_identity_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowUserIdentityRequest",
-}) as any as S.Schema<ShowUserIdentityRequest>;
-
-export interface ShowUserRelatedRequest {
-  /** The id of the user */
-  user_id: number;
-}
-export const ShowUserRelatedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/users/{user_id}/related",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowUserRelatedRequest",
-}) as any as S.Schema<ShowUserRelatedRequest>;
-
-export interface UserRelatedObject {
-  /** Count of assigned tickets */
-  assigned_tickets?: number;
-  /** Count of collaborated tickets */
-  ccd_tickets?: number;
-  /** Count of organization subscriptions */
-  organization_subscriptions?: number;
-  /** Count of requested tickets */
-  requested_tickets?: number;
-}
-export const UserRelatedObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    assigned_tickets: S.optional(S.Number),
-    ccd_tickets: S.optional(S.Number),
-    organization_subscriptions: S.optional(S.Number),
-    requested_tickets: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "UserRelatedObject",
-}) as any as S.Schema<UserRelatedObject>;
-
-export interface UserRelatedResponse {
-  user_related?: UserRelatedObject;
-}
-export const UserRelatedResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_related: S.optional(UserRelatedObject),
-  }),
-).annotate({
-  identifier: "UserRelatedResponse",
-}) as any as S.Schema<UserRelatedResponse>;
-
-export interface ShowViewRequest {
-  /** The ID of the view, or one of the string aliases `"incoming"`, `"my"`, or `"my_groups"`. */
-  view_id: string;
-  /** A comma-separated list of sideloads to include in the response. */
-  include?: string;
-}
-export const ShowViewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    view_id: S.String.pipe(T.Label()),
-    include: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v2/views/{view_id}", code: 200 })),
-).annotate({
-  identifier: "ShowViewRequest",
-}) as any as S.Schema<ShowViewRequest>;
-
-export interface ShowWorkspaceRequest {
-  /** The id of the workspace */
-  workspace_id: number;
-}
-export const ShowWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workspace_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/v2/workspaces/{workspace_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShowWorkspaceRequest",
-}) as any as S.Schema<ShowWorkspaceRequest>;
-
-export interface ShowWorkspaceResponse {
-  workspace?: WorkspaceObject;
-}
-export const ShowWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workspace: S.optional(WorkspaceObject),
-  }),
-).annotate({
-  identifier: "ShowWorkspaceResponse",
-}) as any as S.Schema<ShowWorkspaceResponse>;
-
 export interface SuspendedTicketsAttachmentsRequest {}
 export const SuspendedTicketsAttachmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -28988,251 +29245,6 @@ export const SuspendedTicketsAttachmentsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SuspendedTicketsAttachmentsResponse",
 }) as any as S.Schema<SuspendedTicketsAttachmentsResponse>;
 
-/** Users to add as cc's when creating a ticket. See [Setting Collaborators](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-collaborators) */
-export type TicketImportInputInputCollaboratorsList = Array<CollaboratorObject>;
-export const TicketImportInputInputCollaboratorsList = /*@__PURE__*/ S.Array(
-  CollaboratorObject,
-) as any as S.Schema<TicketImportInputInputCollaboratorsList>;
-
-/** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
-export type TicketImportInputInputCommentUploadsList = Array<string>;
-export const TicketImportInputInputCommentUploadsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TicketImportInputInputCommentUploadsList>;
-
-export interface TicketImportInputInputComment {
-  /** The comment string value */
-  value?: string;
-  /** Internal flag for adding short URLs to the comment */
-  add_short_url?: boolean;
-  /** The id of the comment author. If null or omitted on create, defaults to the authenticated user. See [Author id](#author-id) */
-  author_id?: number | null;
-  /** The comment string. See [Bodies](#bodies) */
-  body?: string;
-  /** Internal channel back identifier for the comment */
-  channel_back?: string;
-  /** Internal channel source identifier for the comment */
-  channel_source_id?: string | null;
-  /** The comment formatted as HTML. See [Bodies](#bodies) */
-  html_body?: string;
-  /** true if a public comment; false if an internal note. The initial value set on ticket creation persists for any additional comment unless you change it */
-  public?: boolean;
-  /** The locale code to translate the comment body to. */
-  translate_to?: string | null;
-  /** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
-  uploads?: TicketImportInputInputCommentUploadsList;
-  via?: AttachmentObjectInput;
-}
-export const TicketImportInputInputComment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    add_short_url: S.optional(S.Boolean),
-    author_id: S.optional(S.NullOr(S.Number)),
-    body: S.optional(S.String),
-    channel_back: S.optional(S.String),
-    channel_source_id: S.optional(S.NullOr(S.String)),
-    html_body: S.optional(S.String),
-    public: S.optional(S.Boolean),
-    translate_to: S.optional(S.NullOr(S.String)),
-    uploads: S.optional(TicketImportInputInputCommentUploadsList),
-    via: S.optional(AttachmentObjectInput),
-  }),
-).annotate({
-  identifier: "TicketImportInputInputComment",
-}) as any as S.Schema<TicketImportInputInputComment>;
-
-/** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
-export type TicketImportInputInputCommentsItemUploadsList = Array<string>;
-export const TicketImportInputInputCommentsItemUploadsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TicketImportInputInputCommentsItemUploadsList>;
-
-export interface TicketImportInputInputCommentsItem {
-  /** The comment string value */
-  value?: string;
-  /** Internal flag for adding short URLs to the comment */
-  add_short_url?: boolean;
-  /** The id of the comment author. If null or omitted on create, defaults to the authenticated user. See [Author id](#author-id) */
-  author_id?: number | null;
-  /** The comment string. See [Bodies](#bodies) */
-  body?: string;
-  /** Internal channel back identifier for the comment */
-  channel_back?: string;
-  /** Internal channel source identifier for the comment */
-  channel_source_id?: string | null;
-  /** The comment formatted as HTML. See [Bodies](#bodies) */
-  html_body?: string;
-  /** true if a public comment; false if an internal note. The initial value set on ticket creation persists for any additional comment unless you change it */
-  public?: boolean;
-  /** The locale code to translate the comment body to. */
-  translate_to?: string | null;
-  /** List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets */
-  uploads?: TicketImportInputInputCommentsItemUploadsList;
-  via?: AttachmentObjectInput;
-}
-export const TicketImportInputInputCommentsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    add_short_url: S.optional(S.Boolean),
-    author_id: S.optional(S.NullOr(S.Number)),
-    body: S.optional(S.String),
-    channel_back: S.optional(S.String),
-    channel_source_id: S.optional(S.NullOr(S.String)),
-    html_body: S.optional(S.String),
-    public: S.optional(S.Boolean),
-    translate_to: S.optional(S.NullOr(S.String)),
-    uploads: S.optional(TicketImportInputInputCommentsItemUploadsList),
-    via: S.optional(AttachmentObjectInput),
-  }),
-).annotate({
-  identifier: "TicketImportInputInputCommentsItem",
-}) as any as S.Schema<TicketImportInputInputCommentsItem>;
-
-/** The conversation between requesters, collaborators, and agents */
-export type TicketImportInputInputCommentsList =
-  Array<TicketImportInputInputCommentsItem>;
-export const TicketImportInputInputCommentsList = /*@__PURE__*/ S.Array(
-  TicketImportInputInputCommentsItem,
-) as any as S.Schema<TicketImportInputInputCommentsList>;
-
-/** Custom field values to set on the ticket. Each entry specifies a field ID and its value. */
-export type TicketImportInputInputCustomFieldsList =
-  Array<TicketFieldValueInput>;
-export const TicketImportInputInputCustomFieldsList = /*@__PURE__*/ S.Array(
-  TicketFieldValueInput,
-) as any as S.Schema<TicketImportInputInputCustomFieldsList>;
-
-/** An array of objects that represent agent or end users email CCs to add or delete from the ticket. See [Setting email CCs](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-email-ccs) */
-export type TicketImportInputInputEmailCcsList = Array<EmailCCObject>;
-export const TicketImportInputInputEmailCcsList = /*@__PURE__*/ S.Array(
-  EmailCCObject,
-) as any as S.Schema<TicketImportInputInputEmailCcsList>;
-
-/** An array of objects that represent agent followers to add or delete from the ticket. See [Setting followers](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-followers) */
-export type TicketImportInputInputFollowersList = Array<FollowerObject>;
-export const TicketImportInputInputFollowersList = /*@__PURE__*/ S.Array(
-  FollowerObject,
-) as any as S.Schema<TicketImportInputInputFollowersList>;
-
-/** The urgency with which the ticket should be addressed. */
-export type TicketPriorityEnum = "urgent" | "high" | "normal" | "low";
-export const TicketPriorityEnum = /*@__PURE__*/ S.String;
-
-/** The state of the ticket */
-export type TicketImportInputInputStatus =
-  | "new"
-  | "open"
-  | "pending"
-  | "hold"
-  | "solved"
-  | "closed";
-export const TicketImportInputInputStatus = /*@__PURE__*/ S.String;
-
-/** The array of tags applied to this ticket */
-export type TicketImportInputInputTagsList = Array<string>;
-export const TicketImportInputInputTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TicketImportInputInputTagsList>;
-
-/** For some channels a source object gives more information about how or why the ticket or event was created */
-export type TicketImportInputInputViaSourceMap = {
-  [key: string]: unknown | undefined;
-};
-export const TicketImportInputInputViaSourceMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<TicketImportInputInputViaSourceMap>;
-
-/** An object explaining how the ticket was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference) */
-export interface TicketImportInputInputVia {
-  /** This tells you how the ticket or event was created */
-  channel?: string;
-  /** For some channels a source object gives more information about how or why the ticket or event was created */
-  source?: TicketImportInputInputViaSourceMap;
-}
-export const TicketImportInputInputVia = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    channel: S.optional(S.String),
-    source: S.optional(TicketImportInputInputViaSourceMap),
-  }),
-).annotate({
-  identifier: "TicketImportInputInputVia",
-}) as any as S.Schema<TicketImportInputInputVia>;
-
-export interface TicketImportInputInput {
-  /** The agent currently assigned to the ticket */
-  assignee_id?: number;
-  /** The id of the brand this ticket is associated with. If not specified, the ticket is assigned to the default brand */
-  brand_id?: number | null;
-  /** Users to add as cc's when creating a ticket. See [Setting Collaborators](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-collaborators) */
-  collaborators?: TicketImportInputInputCollaboratorsList;
-  comment?: TicketImportInputInputComment;
-  /** The conversation between requesters, collaborators, and agents */
-  comments?: TicketImportInputInputCommentsList;
-  /** The time the ticket was created (for historical imports) */
-  created_at?: string;
-  /** Custom field values to set on the ticket. Each entry specifies a field ID and its value. */
-  custom_fields?: TicketImportInputInputCustomFieldsList;
-  /** The custom ticket status id of the ticket */
-  custom_status_id?: number;
-  /** Read-only first comment on the ticket. When [creating a ticket](#create-ticket), use `comment` to set the description. See [Description and first comment](#description-and-first-comment) */
-  description?: string;
-  /** An array of objects that represent agent or end users email CCs to add or delete from the ticket. See [Setting email CCs](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-email-ccs) */
-  email_ccs?: TicketImportInputInputEmailCcsList | null;
-  /** An id you can use to link Zendesk Support tickets to local records */
-  external_id?: string;
-  /** An array of objects that represent agent followers to add or delete from the ticket. See [Setting followers](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-followers) */
-  followers?: TicketImportInputInputFollowersList;
-  /** The group this ticket is assigned to */
-  group_id?: number;
-  priority?: TicketPriorityEnum | (string & {});
-  /** The original recipient e-mail address of the ticket */
-  recipient?: string;
-  /** The user who requested this ticket */
-  requester_id?: number;
-  /** The time the ticket was solved (for historical imports) */
-  solved_at?: string;
-  /** The state of the ticket */
-  status?: TicketImportInputInputStatus | (string & {});
-  /** The value of the subject field for this ticket */
-  subject?: string;
-  /** The array of tags applied to this ticket */
-  tags?: TicketImportInputInputTagsList;
-  /** The time the ticket was last updated (for historical imports) */
-  updated_at?: string;
-  /** An object explaining how the ticket was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference) */
-  via?: TicketImportInputInputVia;
-}
-export const TicketImportInputInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    assignee_id: S.optional(S.Number),
-    brand_id: S.optional(S.NullOr(S.Number)),
-    collaborators: S.optional(TicketImportInputInputCollaboratorsList),
-    comment: S.optional(TicketImportInputInputComment),
-    comments: S.optional(TicketImportInputInputCommentsList),
-    created_at: S.optional(S.String),
-    custom_fields: S.optional(TicketImportInputInputCustomFieldsList),
-    custom_status_id: S.optional(S.Number),
-    description: S.optional(S.String),
-    email_ccs: S.optional(S.NullOr(TicketImportInputInputEmailCcsList)),
-    external_id: S.optional(S.String),
-    followers: S.optional(TicketImportInputInputFollowersList),
-    group_id: S.optional(S.Number),
-    priority: S.optional(TicketPriorityEnum),
-    recipient: S.optional(S.String),
-    requester_id: S.optional(S.Number),
-    solved_at: S.optional(S.String),
-    status: S.optional(TicketImportInputInputStatus),
-    subject: S.optional(S.String),
-    tags: S.optional(TicketImportInputInputTagsList),
-    updated_at: S.optional(S.String),
-    via: S.optional(TicketImportInputInputVia),
-  }),
-).annotate({
-  identifier: "TicketImportInputInput",
-}) as any as S.Schema<TicketImportInputInput>;
-
 export type TicketBulkImportRequestTicketsList = Array<TicketImportInputInput>;
 export const TicketBulkImportRequestTicketsList = /*@__PURE__*/ S.Array(
   TicketImportInputInput,
@@ -29275,22 +29287,6 @@ export const TicketFormTicketFormStatusesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TicketFormTicketFormStatusesRequest",
 }) as any as S.Schema<TicketFormTicketFormStatusesRequest>;
-
-export interface TicketImportRequest {
-  /** If `true`, any ticket created with a `closed` status bypasses the normal ticket lifecycle and will be created directly in your ticket archive */
-  archive_immediately?: boolean;
-  ticket?: TicketImportInputInput;
-}
-export const TicketImportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    archive_immediately: S.optional(S.Boolean.pipe(T.Query())),
-    ticket: S.optional(TicketImportInputInput),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v2/imports/tickets", code: 200 }),
-  ),
-).annotate({
-  identifier: "TicketImportRequest",
-}) as any as S.Schema<TicketImportRequest>;
 
 export interface TicketRelatedInformationRequest {
   /** The ID of the ticket */
@@ -32788,21 +32784,6 @@ export const addOrganizationTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AutocompleteCustomObjectRecordSearchError = ZendeskOpError;
-/** Autocomplete Custom Object Record Search Retrieves an array of custom object records that have a field value that matches the value specified in the `name` parameter. If the object has a parent field with `cascade_permissions_enabled`, the request must be made in the context of a cascade parent field using the `field_id` and `source` parameters. #### Pagination * [Cursor pagination](/api-reference/introduction/pagination/#cursor-pagination) only. * Returns the first 10,000 records sorted by relevancy with page limits. #### Allowed For * Agents */
-export const autocompleteCustomObjectRecordSearch: API.OperationMethod<
-  AutocompleteCustomObjectRecordSearchRequest,
-  CustomObjectRecordsResponse,
-  AutocompleteCustomObjectRecordSearchError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutocompleteCustomObjectRecordSearchRequest,
-  output: CustomObjectRecordsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AutocompleteGroupsError = ZendeskOpError;
 /** Autocomplete Groups Returns an array of groups whose name starts with the value specified in the `name` parameter. #### Allowed For * Admins * Agents */
 export const autocompleteGroups: API.OperationMethod<
@@ -32863,21 +32844,6 @@ export const autocompleteTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AutocompleteTagsPostError = ZendeskOpError;
-/** Search Tags by Request Body Returns an array of registered and recent tag names that start with the characters specified in the `name` parameter. This includes tags where any word within the tag (separated by underscores, hyphens, spaces, or other punctuation) starts with the specified characters. You must specify at least 2 characters. This endpoint accepts the same parameters as the [GET method](#search-tags) but they are specified in the request body instead of the query string. #### How tag matching works When tags contain delimiters like underscores, hyphens, or spaces, each word is indexed separately. A tag matches if the tag itself or any word within it starts with your search term. For example, searching for `trig` will match the tag `set_by_this_trigger` because one of its words ("trigger") starts with "trig". However, searching for `rigger` won't match this tag because neither the full tag nor any of its individual words ("set", "by", "this", "trigger") start with "rigger". #### Autocomplete limitations Autocomplete returns up to 15 suggestions from the most commonly used ticket tags in the last 60 days. Tags that match the prefix but aren't in that top set won't appear in the results. #### Allowed For * Agents */
-export const autocompleteTagsPost: API.OperationMethod<
-  AutocompleteTagsPostRequest,
-  TagsByObjectIdResponse,
-  AutocompleteTagsPostError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutocompleteTagsPostRequest,
-  output: TagsByObjectIdResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AutocompleteUsersError = BadRequest | ZendeskOpError;
 /** Autocomplete Users Returns an array of users whose name starts with the value specified in the `name` parameter. It only returns users with no foreign identities. #### Allowed For * Agents */
 export const autocompleteUsers: API.OperationMethod<
@@ -32887,21 +32853,6 @@ export const autocompleteUsers: API.OperationMethod<
   ZendeskOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: AutocompleteUsersRequest,
-  output: UsersResponse,
-  errors: [BadRequest, UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutocompleteUsersPostError = BadRequest | ZendeskOpError;
-/** Autocomplete Users by Request Body Returns an array of users whose name starts with the value specified in the `name` property in the request body. It only returns users with no foreign identities. This endpoint accepts the same parameters as the [GET method](#autocomplete-users-by-query-string) but they are specified in the request body instead of the query string. #### Allowed For * Agents */
-export const autocompleteUsersPost: API.OperationMethod<
-  AutocompleteUsersPostRequest,
-  UsersResponse,
-  AutocompleteUsersPostError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutocompleteUsersPostRequest,
   output: UsersResponse,
   errors: [BadRequest, UnknownZendeskError],
   protocol: ZendeskProtocol,
@@ -34157,6 +34108,21 @@ export const createRequest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateRequestUserError = ZendeskOpError;
+/** Request User Create Sends the owner a reminder email to update their subscription so more agents can be created. #### Allowed For * Agents */
+export const createRequestUser: API.OperationMethod<
+  CreateRequestUserRequest,
+  CreateRequestUserResponse,
+  CreateRequestUserError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRequestUserRequest,
+  output: CreateRequestUserResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateResourceCollectionError = ZendeskOpError;
 /** Create Resource Collection Creates a resource collection from a provided `payload` object. The `payload` object is specified the same way as the content of a requirements.json file in a Zendesk app. See [Specifying Apps Requirements](/documentation/apps/app-developer-guide/apps_requirements/) in the Zendesk Apps framework docs. The response includes a [job status](/api-reference/ticketing/ticket-management/job_statuses/) for creation of the specified resources. #### Allowed for * Admins */
 export const createResourceCollection: API.OperationMethod<
@@ -34770,16 +34736,16 @@ export const deleteBrand: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteBrandAgentByIdError = ZendeskOpError;
+export type DeleteBrandAgentError = ZendeskOpError;
 /** Delete Brand Agent Membership Deletes a brand agent membership. #### Allowed For * Admins */
-export const deleteBrandAgentById: API.OperationMethod<
-  DeleteBrandAgentByIdRequest,
-  DeleteBrandAgentByIdResponse,
-  DeleteBrandAgentByIdError,
+export const deleteBrandAgent: API.OperationMethod<
+  DeleteBrandAgentRequest,
+  DeleteBrandAgentResponse,
+  DeleteBrandAgentError,
   ZendeskOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBrandAgentByIdRequest,
-  output: DeleteBrandAgentByIdResponse,
+  input: DeleteBrandAgentRequest,
+  output: DeleteBrandAgentResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -34892,16 +34858,16 @@ export const deleteCustomObjectRecordByExternalIdOrName: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteCustomRoleByIdError = ZendeskOpError;
+export type DeleteCustomRoleError = ZendeskOpError;
 /** Delete Custom Role #### Availability * Accounts on the Enterprise plan or above #### Allowed for * Administrators * Agents with the `manage_roles` permission */
-export const deleteCustomRoleById: API.OperationMethod<
-  DeleteCustomRoleByIdRequest,
-  DeleteCustomRoleByIdResponse,
-  DeleteCustomRoleByIdError,
+export const deleteCustomRole: API.OperationMethod<
+  DeleteCustomRoleRequest,
+  DeleteCustomRoleResponse,
+  DeleteCustomRoleError,
   ZendeskOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCustomRoleByIdRequest,
-  output: DeleteCustomRoleByIdResponse,
+  input: DeleteCustomRoleRequest,
+  output: DeleteCustomRoleResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -35888,6 +35854,83 @@ export const exportAuditLogs: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ExportIncrementalOrganizationError = ZendeskOpError;
+/** Incremental Organization Export #### Allowed For * Admins #### Sideloading See [Organizations sideloads](/documentation/ticketing/using-the-zendesk-api/side_loading/#supported-endpoints). */
+export const exportIncrementalOrganization: API.OperationMethod<
+  ExportIncrementalOrganizationRequest,
+  ExportIncrementalOrganizationsResponse,
+  ExportIncrementalOrganizationError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportIncrementalOrganizationRequest,
+  output: ExportIncrementalOrganizationsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportIncrementalSampleError = ZendeskOpError;
+/** Incremental Sample Export Use this endpoint to test the incremental export format. It's more strict in terms of rate limiting, at 10 requests per 20 minutes instead of 10 requests per minute. It also returns only up to 50 results per request. Otherwise, it's identical to the above APIs. Use the `incremental_resource` parameter to specify the resource. Possible values are "tickets", "ticket_events", "users", or "organizations". #### Allowed For * Admins */
+export const exportIncrementalSample: API.OperationMethod<
+  ExportIncrementalSampleRequest,
+  TimeBasedExportIncrementalTicketsResponseOutput,
+  ExportIncrementalSampleError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportIncrementalSampleRequest,
+  output: TimeBasedExportIncrementalTicketsResponseOutput,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportIncrementalSkilBasedRoutingAttributeError = ZendeskOpError;
+/** Incremental Attributes Export Returns a stream of changes that occurred on routing attributes. #### Allowed For * Admins #### Parameters Optional */
+export const exportIncrementalSkilBasedRoutingAttribute: API.OperationMethod<
+  ExportIncrementalSkilBasedRoutingAttributeRequest,
+  IncrementalSkillBasedRouting,
+  ExportIncrementalSkilBasedRoutingAttributeError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportIncrementalSkilBasedRoutingAttributeRequest,
+  output: IncrementalSkillBasedRouting,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportIncrementalSkilBasedRoutingAttributeValueError =
+  ZendeskOpError;
+/** Incremental Attributes Values Export Returns a stream of changes that occurred on routing attribute values. #### Allowed For * Admins #### Parameters Optional */
+export const exportIncrementalSkilBasedRoutingAttributeValue: API.OperationMethod<
+  ExportIncrementalSkilBasedRoutingAttributeValueRequest,
+  IncrementalSkillBasedRouting,
+  ExportIncrementalSkilBasedRoutingAttributeValueError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportIncrementalSkilBasedRoutingAttributeValueRequest,
+  output: IncrementalSkillBasedRouting,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportIncrementalSkilBasedRoutingInstanceValueError =
+  ZendeskOpError;
+/** Incremental Instance Values Export Returns a stream of changes that occurred on routing instance values. Changes are grouped by `attribute_value_id`, with associate type events listed alongside unassociate type events based on the unassociate event’s timestamp. #### Allowed For * Admins #### Parameters Optional */
+export const exportIncrementalSkilBasedRoutingInstanceValue: API.OperationMethod<
+  ExportIncrementalSkilBasedRoutingInstanceValueRequest,
+  IncrementalSkillBasedRouting,
+  ExportIncrementalSkilBasedRoutingInstanceValueError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportIncrementalSkilBasedRoutingInstanceValueRequest,
+  output: IncrementalSkillBasedRouting,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ExportSearchResultsError = ZendeskOpError;
 /** Export Search Results Exports a set of results. See [Query syntax](#query-syntax) for the syntax of the `query` parameter. Use this endpoint for search queries that will return more than 1000 results. The result set is ordered only by the `created_at` attribute. The search only returns results of a single object type. The following object types are supported: ticket, organization, user, or group. You must specify the type in the `filter[type]` parameter. Searches with type in the query string will result in an error. #### Allowed For - Agents #### Pagination - Cursor pagination See [Pagination](/api-reference/introduction/pagination/). Returns a maximum of 1000 records per page. The number of results shown in a page is determined by the `page[size]` parameter. **Note**: You may experience a speed reduction or a timeout if you request 1000 results per page and you have many archived tickets in the results. Try reducing the number of results per page. We recommend 100 results per page. The cursor specified by the `after_cursor` property in a response expires after one hour. For more information on cursor-based pagination, see the following articles: - [Comparing cursor pagination and offset pagination](/documentation/developer-tools/pagination/comparing-cursor-pagination-and-offset-pagination) - [Paginating through lists using cursor pagination](/documentation/developer-tools/pagination/paginating-through-lists-using-cursor-pagination) #### Export Search Results Limits This API endpoint is rate-limited to 100 requests per minute per account. The limit also counts towards the global API rate limit. #### Response Format The response is similar to the response of `GET /api/v2/search?`, with a few changes: * `links` - Has the following nested properties: `prev` and `next`. These replace the `next_page` and `prev_page` links. The `prev` property is always null because backward pagination is not supported. The `next` property may include an auto-generated link to the next page of results. * `meta` - Has the following nested properties: `has_more` and `after_cursor`. The `has_more` property indicates whether the next page has more results. The `after_cursor` property is the cursor used to paginate to the next page. It expires after one hour. There's no `count` property. */
 export const exportSearchResults: API.OperationMethod<
@@ -35963,6 +36006,21 @@ export const filteredSearchItamAssets: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAccessRuleError = ZendeskOpError;
+/** Show Access Rule Returns a specific access rule for a custom object. #### Allowed For * Admins */
+export const getAccessRule: API.OperationMethod<
+  GetAccessRuleRequest,
+  AccessRuleResponse,
+  GetAccessRuleError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccessRuleRequest,
+  output: AccessRuleResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetAccountEmailSettingsError = ZendeskOpError;
 /** Show Email Settings Returns the email settings for the account. #### Allowed For * Admins * Agents with extensions_and_channel_management permission */
 export const getAccountEmailSettings: API.OperationMethod<
@@ -35973,6 +36031,381 @@ export const getAccountEmailSettings: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetAccountEmailSettingsRequest,
   output: EmailSettingsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountSettingsError = ZendeskOpError;
+/** Show Settings Shows the settings that are available for the account. #### Allowed For * Agents */
+export const getAccountSettings: API.OperationMethod<
+  GetAccountSettingsRequest,
+  AccountSettingsResponse,
+  GetAccountSettingsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountSettingsRequest,
+  output: AccountSettingsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetActivityError = ZendeskOpError;
+/** Show Activity Lists a specific activity. #### Allowed For * Agents */
+export const getActivity: API.OperationMethod<
+  GetActivityRequest,
+  ActivityResponse,
+  GetActivityError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetActivityRequest,
+  output: ActivityResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAttachmentError = ZendeskOpError;
+/** Show Attachment Shows attachment details. You can get the value of the `attachment_id` parameter by listing the ticket's comments. See [List Comments](/api-reference/ticketing/tickets/ticket_comments/#list-comments). Each comment in the list has an `attachments` list that specifies an `id` for each attachment. #### Allowed for * Agents */
+export const getAttachment: API.OperationMethod<
+  GetAttachmentRequest,
+  AttachmentResponse,
+  GetAttachmentError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAttachmentRequest,
+  output: AttachmentResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAttributeError = ZendeskOpError;
+/** Show Attribute Returns an attribute. #### Allowed For * Agents * Light agents and contributors */
+export const getAttribute: API.OperationMethod<
+  GetAttributeRequest,
+  SkillBasedRoutingAttributeResponse,
+  GetAttributeError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAttributeRequest,
+  output: SkillBasedRoutingAttributeResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAttributeValueError = ZendeskOpError;
+/** Show Attribute Value Returns an attribute value. #### Allowed For * Agents * Light agents and contributors */
+export const getAttributeValue: API.OperationMethod<
+  GetAttributeValueRequest,
+  SkillBasedRoutingAttributeValueResponse,
+  GetAttributeValueError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAttributeValueRequest,
+  output: SkillBasedRoutingAttributeValueResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAuditLogError = ZendeskOpError;
+/** Show Audit Log #### Allowed For * Admins on accounts that have audit-log access */
+export const getAuditLog: API.OperationMethod<
+  GetAuditLogRequest,
+  AuditLogResponse,
+  GetAuditLogError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAuditLogRequest,
+  output: AuditLogResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAutomationError = ZendeskOpError;
+/** Show Automation #### Allowed For * Agents */
+export const getAutomation: API.OperationMethod<
+  GetAutomationRequest,
+  AutomationResponse,
+  GetAutomationError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAutomationRequest,
+  output: AutomationResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBrandError = ZendeskOpError;
+/** Show a Brand Returns a brand for your account. #### Allowed for * Admins, Agents */
+export const getBrand: API.OperationMethod<
+  GetBrandRequest,
+  BrandResponse,
+  GetBrandError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBrandRequest,
+  output: BrandResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBrandAgentByIdError = ZendeskOpError;
+/** Show Brand Agent Membership Returns a brand agent membership for your account. #### Allowed For * Admins */
+export const getBrandAgentById: API.OperationMethod<
+  GetBrandAgentByIdRequest,
+  BrandAgentResponse,
+  GetBrandAgentByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBrandAgentByIdRequest,
+  output: BrandAgentResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetChangesToTicketError = ZendeskOpError;
+/** Show Changes to Ticket Returns the changes the macro would make to a ticket. It doesn't actually change a ticket. You can use the response data in a subsequent API call to the [Tickets](/api-reference/ticketing/tickets/tickets/) endpoint to update the ticket. The response includes only the ticket fields that would be changed by the macro. To get the full ticket object after the macro is applied, see [Show Ticket After Changes](#show-ticket-after-changes). #### Allowed For * Agents */
+export const getChangesToTicket: API.OperationMethod<
+  GetChangesToTicketRequest,
+  MacroApplyTicketResponse,
+  GetChangesToTicketError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetChangesToTicketRequest,
+  output: MacroApplyTicketResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClientError = ZendeskOpError;
+/** Show Client #### Allowed for * Admins * Agents with the [Manage APIs](https://support.zendesk.com/hc/en-us/articles/4408882153882) permission */
+export const getClient: API.OperationMethod<
+  GetClientRequest,
+  OauthClientResponse,
+  GetClientError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClientRequest,
+  output: OauthClientResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCommentError = ZendeskOpError;
+/** Getting Comments #### Allowed For * End Users */
+export const getComment: API.OperationMethod<
+  GetCommentRequest,
+  TicketCommentResponse,
+  GetCommentError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCommentRequest,
+  output: TicketCommentResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCountryError = ZendeskOpError;
+/** Show Country Returns details for a specific country by ID. This endpoint is publicly accessible and does not require authentication. #### Allowed For * Anyone */
+export const getCountry: API.OperationMethod<
+  GetCountryRequest,
+  GetCountryResponse,
+  GetCountryError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCountryRequest,
+  output: GetCountryResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurrentLocaleError = ZendeskOpError;
+/** Show Current Locale This works like [Show Locale](#show-locale), but instead of taking a locale id as an argument, it renders the locale of the user performing the request. #### Allowed For * Anyone */
+export const getCurrentLocale: API.OperationMethod<
+  GetCurrentLocaleRequest,
+  LocaleResponse,
+  GetCurrentLocaleError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurrentLocaleRequest,
+  output: LocaleResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurrentlyAuthenticatedSessionError = ZendeskOpError;
+/** Show the Currently Authenticated Session #### Allowed For * Admins, Agents, End users */
+export const getCurrentlyAuthenticatedSession: API.OperationMethod<
+  GetCurrentlyAuthenticatedSessionRequest,
+  SessionResponse,
+  GetCurrentlyAuthenticatedSessionError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurrentlyAuthenticatedSessionRequest,
+  output: SessionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurrentTokenError = ZendeskOpError;
+/** Show Current Token Returns the properties of the current token. Include an `Authorization: Bearer` header with the full token to get its associated properties. For security reasons, only the first 10 characters of the access token are included. #### Allowed for * Admins, Agents, End Users */
+export const getCurrentToken: API.OperationMethod<
+  GetCurrentTokenRequest,
+  OAuthTokenResponse,
+  GetCurrentTokenError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurrentTokenRequest,
+  output: OAuthTokenResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurrentUserError = ZendeskOpError;
+/** Show Self The endpoint returns [user information](/api-reference/ticketing/users/users/) and an `authenticity_token`. #### Allowed For * Anonymous users #### Authenticity Token Zendesk API calls made by end users from a Zendesk help center must include `authenticity_token` in the `X-CSRF-Token` HTTP header. This helps prevent [cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) attacks. For an example using an authenticity token, see the AJAX request in the [Upgrading from Templating API v1](https://developer.zendesk.com/documentation/help_center/help-center-templates/v1#jquery) documentation. */
+export const getCurrentUser: API.OperationMethod<
+  GetCurrentUserRequest,
+  CurrentUserResponse,
+  GetCurrentUserError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurrentUserRequest,
+  output: CurrentUserResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurrentUserSettingsError = ZendeskOpError;
+/** Show Current User Settings Returns the settings for the currently authenticated user. This includes UI preferences for onboarding, tooltips, keyboard shortcuts, theme preferences, and other feature toggles. #### Allowed For * Agents */
+export const getCurrentUserSettings: API.OperationMethod<
+  GetCurrentUserSettingsRequest,
+  UserSettingsResponse,
+  GetCurrentUserSettingsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurrentUserSettingsRequest,
+  output: UserSettingsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomObjectError = ZendeskOpError;
+/** Show Custom Object Returns an object with the specified key #### Allowed For * Agents */
+export const getCustomObject: API.OperationMethod<
+  GetCustomObjectRequest,
+  CustomObjectResponse,
+  GetCustomObjectError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomObjectRequest,
+  output: CustomObjectResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomObjectFieldError = ZendeskOpError;
+/** Show Custom Object Field Returns a custom field for a specific object using a provided key or id of the field. #### Allowed For * Agents */
+export const getCustomObjectField: API.OperationMethod<
+  GetCustomObjectFieldRequest,
+  CustomObjectFieldResponse,
+  GetCustomObjectFieldError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomObjectFieldRequest,
+  output: CustomObjectFieldResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomObjectRecordError = ZendeskOpError;
+/** Show Custom Object Record Returns a custom record for a specific object using a provided id. #### Allowed For * Agents */
+export const getCustomObjectRecord: API.OperationMethod<
+  GetCustomObjectRecordRequest,
+  CustomObjectRecordResponse,
+  GetCustomObjectRecordError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomObjectRecordRequest,
+  output: CustomObjectRecordResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomRoleByIdError = ZendeskOpError;
+/** Show Custom Role #### Availability * Accounts on the Enterprise plan or above #### Allowed for * Administrators * Agents with the `manage_roles` permission */
+export const getCustomRoleById: API.OperationMethod<
+  GetCustomRoleByIdRequest,
+  CustomRoleResponse,
+  GetCustomRoleByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomRoleByIdRequest,
+  output: CustomRoleResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomStatusError = ZendeskOpError;
+/** Show Custom Ticket Status Returns the custom ticket status object. #### Allowed For * End Users */
+export const getCustomStatus: API.OperationMethod<
+  GetCustomStatusRequest,
+  CustomStatusResponse,
+  GetCustomStatusError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomStatusRequest,
+  output: CustomStatusResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDefaultGroupError = ZendeskOpError;
+/** Show Default Group #### Allowed For * Admins * Agents */
+export const getDefaultGroup: API.OperationMethod<
+  GetDefaultGroupRequest,
+  GroupResponse,
+  GetDefaultGroupError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDefaultGroupRequest,
+  output: GroupResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeletedUserError = ZendeskOpError;
+/** Show Deleted User Returns users that have been deleted but not permanently yet. See [Permanently Delete User](#permanently-delete-user). #### Allowed For: * Agents */
+export const getDeletedUser: API.OperationMethod<
+  GetDeletedUserRequest,
+  DeletedUserResponse,
+  GetDeletedUserError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeletedUserRequest,
+  output: DeletedUserResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -35993,6 +36426,441 @@ export const getDeletionSchedule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetDerivedMacroError = ZendeskOpError;
+/** Show Macro Replica Returns an unpersisted macro representation derived from a ticket or macro. The endpoint takes one of the following query parameters: `macro_id` or `ticket_id`. If you include both, `macro_id` is used. #### Allowed For * Agents */
+export const getDerivedMacro: API.OperationMethod<
+  GetDerivedMacroRequest,
+  MacroResponse,
+  GetDerivedMacroError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDerivedMacroRequest,
+  output: MacroResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDynamicContentItemError = ZendeskOpError;
+/** Show Item #### Allowed For * Admins, Agents */
+export const getDynamicContentItem: API.OperationMethod<
+  GetDynamicContentItemRequest,
+  DynamicContentResponse,
+  GetDynamicContentItemError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDynamicContentItemRequest,
+  output: DynamicContentResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDynamicContentVariantError = ZendeskOpError;
+/** Show Variant #### Allowed For * Admins, Agents */
+export const getDynamicContentVariant: API.OperationMethod<
+  GetDynamicContentVariantRequest,
+  DynamicContentVariantResponse,
+  GetDynamicContentVariantError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDynamicContentVariantRequest,
+  output: DynamicContentVariantResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmailNotificationError = ZendeskOpError;
+/** Show Email Notification Shows details on an email notification. You can get the value of the `notification_id` parameter by listing the ticket's outbound emails. #### Allowed For * Agents */
+export const getEmailNotification: API.OperationMethod<
+  GetEmailNotificationRequest,
+  EmailNotificationResponse,
+  GetEmailNotificationError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEmailNotificationRequest,
+  output: EmailNotificationResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEndUserIdentityError = ZendeskOpError;
+/** Show End User Identity Shows the identity with the given id for a given end user. End users can only view email or phone number identity. #### Allowed For * Verified end users */
+export const getEndUserIdentity: API.OperationMethod<
+  GetEndUserIdentityRequest,
+  UserIdentityResponse,
+  GetEndUserIdentityError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEndUserIdentityRequest,
+  output: UserIdentityResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGlobalClientError = ZendeskOpError;
+/** Show Global OAuth Client Returns the global OAuth client associated with the ID sent on the request. #### Allowed for * Admins * Agents with the [Manage APIs](https://support.zendesk.com/hc/en-us/articles/4408882153882) permission */
+export const getGlobalClient: API.OperationMethod<
+  GetGlobalClientRequest,
+  GlobalClientResponse,
+  GetGlobalClientError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGlobalClientRequest,
+  output: GlobalClientResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupByIdError = ZendeskOpError;
+/** Show Group #### Allowed For * Admins * Agents */
+export const getGroupById: API.OperationMethod<
+  GetGroupByIdRequest,
+  GroupResponse,
+  GetGroupByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupByIdRequest,
+  output: GroupResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupMembershipByIdError = ZendeskOpError;
+/** Show Membership The 'id' is the group membership id, not a group id. #### Allowed For * Agents */
+export const getGroupMembershipById: API.OperationMethod<
+  GetGroupMembershipByIdRequest,
+  GroupMembershipResponse,
+  GetGroupMembershipByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupMembershipByIdRequest,
+  output: GroupMembershipResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupSLAPolicyError = ZendeskOpError;
+/** Show Group SLA Policy #### Allowed For * Admins */
+export const getGroupSLAPolicy: API.OperationMethod<
+  GetGroupSLAPolicyRequest,
+  GroupSLAPolicyResponse,
+  GetGroupSLAPolicyError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupSLAPolicyRequest,
+  output: GroupSLAPolicyResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupSLAPolicyFilterDefinitionItemsError = ZendeskOpError;
+/** Retrieve Supported Filter Definition Items #### Allowed For * Admins */
+export const getGroupSLAPolicyFilterDefinitionItems: API.OperationMethod<
+  GetGroupSLAPolicyFilterDefinitionItemsRequest,
+  GroupSLAPolicyFilterDefinitionResponse,
+  GetGroupSLAPolicyFilterDefinitionItemsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupSLAPolicyFilterDefinitionItemsRequest,
+  output: GroupSLAPolicyFilterDefinitionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetItamAssetError = ZendeskOpError;
+/** Show Asset Returns the asset with the specified id. #### Allowed For * Agents */
+export const getItamAsset: API.OperationMethod<
+  GetItamAssetRequest,
+  ItamAssetResponse,
+  GetItamAssetError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetItamAssetRequest,
+  output: ItamAssetResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetItamAssetTypeError = ZendeskOpError;
+/** Show Asset Type Returns an asset type with the specified id. #### Allowed For * Agents */
+export const getItamAssetType: API.OperationMethod<
+  GetItamAssetTypeRequest,
+  ItamAssetTypeResponse,
+  GetItamAssetTypeError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetItamAssetTypeRequest,
+  output: ItamAssetTypeResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetItamAssetTypeFieldError = ZendeskOpError;
+/** Show Asset Field Returns an asset field with the specified id. #### Allowed For * Agents */
+export const getItamAssetTypeField: API.OperationMethod<
+  GetItamAssetTypeFieldRequest,
+  ItamAssetFieldResponse,
+  GetItamAssetTypeFieldError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetItamAssetTypeFieldRequest,
+  output: ItamAssetFieldResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetItamLocationError = ZendeskOpError;
+/** Show Asset Location Returns the location with the specified id. #### Allowed For * Agents */
+export const getItamLocation: API.OperationMethod<
+  GetItamLocationRequest,
+  ItamAssetLocationResponse,
+  GetItamLocationError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetItamLocationRequest,
+  output: ItamAssetLocationResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetItamStatusError = ZendeskOpError;
+/** Show Asset Status Returns the status with the specified id. #### Allowed For * Agents */
+export const getItamStatus: API.OperationMethod<
+  GetItamStatusRequest,
+  ItamAssetStatusResponse,
+  GetItamStatusError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetItamStatusRequest,
+  output: ItamAssetStatusResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetJobStatusError = ZendeskOpError;
+/** Show Job Status Shows the status of a background job. #### Allowed For: * Agents */
+export const getJobStatus: API.OperationMethod<
+  GetJobStatusRequest,
+  JobStatusResponse,
+  GetJobStatusError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetJobStatusRequest,
+  output: JobStatusResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLocaleByIdError = ZendeskOpError;
+/** Show Locale #### Allowed For * Anyone */
+export const getLocaleById: API.OperationMethod<
+  GetLocaleByIdRequest,
+  LocaleResponse,
+  GetLocaleByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLocaleByIdRequest,
+  output: LocaleResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMacroError = ZendeskOpError;
+/** Show Macro #### Allowed For * Agents */
+export const getMacro: API.OperationMethod<
+  GetMacroRequest,
+  MacroResponse,
+  GetMacroError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMacroRequest,
+  output: MacroResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMacroAttachmentError = ZendeskOpError;
+/** Show Macro Attachment Shows the properties of the specified macro attachment. #### Allowed For * Agents */
+export const getMacroAttachment: API.OperationMethod<
+  GetMacroAttachmentRequest,
+  MacroAttachmentResponse,
+  GetMacroAttachmentError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMacroAttachmentRequest,
+  output: MacroAttachmentResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyDynamicContentsError = ZendeskOpError;
+/** Show Many Items #### Stability * Development #### Allowed For * Admins, Agents */
+export const getManyDynamicContents: API.OperationMethod<
+  GetManyDynamicContentsRequest,
+  DynamicContentsResponse,
+  GetManyDynamicContentsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyDynamicContentsRequest,
+  output: DynamicContentsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyEmailNotificationsError = ZendeskOpError;
+/** Show Many Email Notifications Shows details of many email notifications. Allows you to query by providing a list of notifications, comments, or tickets IDs. #### Allowed For * Agents #### Filters * By notification: `?ids=8433702508541,8433348111869` * By comment: `?comment_ids=8433348111741,8433544226045,8433702508413` * By ticket: `?ticket_ids=730,723` */
+export const getManyEmailNotifications: API.OperationMethod<
+  GetManyEmailNotificationsRequest,
+  EmailNotificationResponse,
+  GetManyEmailNotificationsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyEmailNotificationsRequest,
+  output: EmailNotificationResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyJobStatusesError = ZendeskOpError;
+/** Show Many Job Statuses Accepts a comma-separated list of job status ids. #### Allowed For: * Agents */
+export const getManyJobStatuses: API.OperationMethod<
+  GetManyJobStatusesRequest,
+  JobStatusesResponse,
+  GetManyJobStatusesError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyJobStatusesRequest,
+  output: JobStatusesResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyOrganizationsError = ZendeskOpError;
+/** Show Many Organizations Accepts a comma-separated list of up to 100 organization ids or external ids. #### Allowed For * Admins * Agents */
+export const getManyOrganizations: API.OperationMethod<
+  GetManyOrganizationsRequest,
+  OrganizationsResponse,
+  GetManyOrganizationsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyOrganizationsRequest,
+  output: OrganizationsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyTicketFieldsError = ZendeskOpError;
+/** Show Many Ticket Fields Returns multiple ticket fields in a single request. Provide either: - `ids` — a comma-separated list of ticket field IDs, or - `keys` — a comma-separated list of ticket field keys Up to 100 values are accepted. The response payload matches the List Ticket Fields [response format](/api-reference/ticketing/tickets/ticket_fields/#example-responses). #### Sideloads The following sideloads are supported: #### Allowed For * Anyone */
+export const getManyTicketFields: API.OperationMethod<
+  GetManyTicketFieldsRequest,
+  TicketFieldsShowManyResponse,
+  GetManyTicketFieldsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyTicketFieldsRequest,
+  output: TicketFieldsShowManyResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyTicketFormsError = ZendeskOpError;
+/** Show Many Ticket Forms Takes an `ids` query parameter that accepts a comma-separated list of up to 100 ticket form ids. This endpoint is used primarily by the [mobile SDK](/documentation/classic-web-widget-sdks/) and the [Web Widget](/api-reference/widget/introduction/). #### Allowed For * Anyone */
+export const getManyTicketForms: API.OperationMethod<
+  GetManyTicketFormsRequest,
+  TicketFormsResponse,
+  GetManyTicketFormsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyTicketFormsRequest,
+  output: TicketFormsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyTicketFormStatusesError = ZendeskOpError;
+/** Show Many Ticket Form Statuses Fetches all of the ticket form statuses specified by a comma separated list of ids. #### Allowed For * Anyone */
+export const getManyTicketFormStatuses: API.OperationMethod<
+  GetManyTicketFormStatusesRequest,
+  TicketFormStatusesResponse,
+  GetManyTicketFormStatusesError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyTicketFormStatusesRequest,
+  output: TicketFormStatusesResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyUserFieldsError = ZendeskOpError;
+/** Show Many User Fields Returns multiple user fields by their keys. #### Allowed For * Agents */
+export const getManyUserFields: API.OperationMethod<
+  GetManyUserFieldsRequest,
+  UserFieldsResponse,
+  GetManyUserFieldsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyUserFieldsRequest,
+  output: UserFieldsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManyUsersError = BadRequest | ZendeskOpError;
+/** Show Many Users Accepts a comma-separated list of up to 100 user ids or external ids. #### Allowed For: * Agents */
+export const getManyUsers: API.OperationMethod<
+  GetManyUsersRequest,
+  UsersResponse,
+  GetManyUsersError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManyUsersRequest,
+  output: UsersResponse,
+  errors: [BadRequest, UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMonitoredTwitterHandleError = ZendeskOpError;
+/** Show Monitored X Handle #### Allowed For * Admins * Agents */
+export const getMonitoredTwitterHandle: API.OperationMethod<
+  GetMonitoredTwitterHandleRequest,
+  TwitterChannelResponse,
+  GetMonitoredTwitterHandleError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMonitoredTwitterHandleRequest,
+  output: TwitterChannelResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetObjectTriggerError = ZendeskOpError;
 /** Show Object Trigger Returns details of a specific object trigger. #### Allowed For * Agents */
 export const getObjectTrigger: API.OperationMethod<
@@ -36003,6 +36871,126 @@ export const getObjectTrigger: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetObjectTriggerRequest,
   output: ObjectTriggerResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationError = ZendeskOpError;
+/** Show Organization #### Allowed For * Admins * Agents */
+export const getOrganization: API.OperationMethod<
+  GetOrganizationRequest,
+  OrganizationResponse,
+  GetOrganizationError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationRequest,
+  output: OrganizationResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationFieldError = ZendeskOpError;
+/** Show Organization Field #### Allowed for * Agents */
+export const getOrganizationField: API.OperationMethod<
+  GetOrganizationFieldRequest,
+  OrganizationFieldResponse,
+  GetOrganizationFieldError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationFieldRequest,
+  output: OrganizationFieldResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationMembershipByIdError = ZendeskOpError;
+/** Show Membership #### Allowed for * Agents */
+export const getOrganizationMembershipById: API.OperationMethod<
+  GetOrganizationMembershipByIdRequest,
+  OrganizationMembershipResponse,
+  GetOrganizationMembershipByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationMembershipByIdRequest,
+  output: OrganizationMembershipResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationMembershipByUserIdError = ZendeskOpError;
+/** Show Organization Membership by User #### Allowed for * Agents */
+export const getOrganizationMembershipByUserId: API.OperationMethod<
+  GetOrganizationMembershipByUserIdRequest,
+  OrganizationMembershipResponse,
+  GetOrganizationMembershipByUserIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationMembershipByUserIdRequest,
+  output: OrganizationMembershipResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationMergeError = ZendeskOpError;
+/** Show Organization Merge Retrieves the details of a specific organization merge operation. This endpoint is useful for obtaining the status and outcome of a merge that was previously initiated. It provides information such as the winning and losing organization IDs, the status of the merge, and the associated URLs. This endpoint can be used to determine if a merge is still in progress, has completed successfully, or has encountered an error. #### Allowed For * Admins */
+export const getOrganizationMerge: API.OperationMethod<
+  GetOrganizationMergeRequest,
+  OrganizationMergeResponse,
+  GetOrganizationMergeError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationMergeRequest,
+  output: OrganizationMergeResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationSubscriptionError = ZendeskOpError;
+/** Show Organization Subscription #### Allowed For: * Agents * End users For end users, the response will only list the subscriptions created by the requesting end user. */
+export const getOrganizationSubscription: API.OperationMethod<
+  GetOrganizationSubscriptionRequest,
+  OrganizationSubscriptionResponse,
+  GetOrganizationSubscriptionError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationSubscriptionRequest,
+  output: OrganizationSubscriptionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPermissionPolicyError = ZendeskOpError;
+/** Show Permission Policy Returns a permission policy for a specific role on a custom object. The policy ID can be: - `custom-role-{custom_role_id}` for custom roles - `end-user` for the end user system role #### Allowed For * Admins */
+export const getPermissionPolicy: API.OperationMethod<
+  GetPermissionPolicyRequest,
+  PermissionPolicyResponse,
+  GetPermissionPolicyError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPermissionPolicyRequest,
+  output: PermissionPolicyResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQueueByIdError = ZendeskOpError;
+/** Show Queue Returns a queue for the given queue id. #### Allowed For * Agents */
+export const getQueueById: API.OperationMethod<
+  GetQueueByIdRequest,
+  QueueResponse,
+  GetQueueByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQueueByIdRequest,
+  output: QueueResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -36023,6 +37011,141 @@ export const getRelationshipFilterDefinitions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetRequestError = ZendeskOpError;
+/** Show Request #### Sideloads The following sideloads are supported: #### Allowed For * End Users */
+export const getRequest: API.OperationMethod<
+  GetRequestRequest,
+  RequestResponse,
+  GetRequestError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRequestRequest,
+  output: RequestResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetResourceCollectionError = ZendeskOpError;
+/** Show Resource Collection Retrieves details for a specified resource collection. #### Allowed for * Admins */
+export const getResourceCollection: API.OperationMethod<
+  GetResourceCollectionRequest,
+  ResourceCollectionResponse,
+  GetResourceCollectionError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetResourceCollectionRequest,
+  output: ResourceCollectionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSatisfactionRatingError = ZendeskOpError;
+/** Show Satisfaction Rating Returns a specific satisfaction rating. You can get the id from the [List Satisfaction Ratings](#list-satisfaction-ratings) endpoint. #### Allowed For * Admins */
+export const getSatisfactionRating: API.OperationMethod<
+  GetSatisfactionRatingRequest,
+  SatisfactionRatingResponse,
+  GetSatisfactionRatingError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSatisfactionRatingRequest,
+  output: SatisfactionRatingResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSatisfactionRatingsError = ZendeskOpError;
+/** Show Reason for Satisfaction Rating #### Allowed For * Admins */
+export const getSatisfactionRatings: API.OperationMethod<
+  GetSatisfactionRatingsRequest,
+  SatisfactionReasonResponse,
+  GetSatisfactionRatingsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSatisfactionRatingsRequest,
+  output: SatisfactionReasonResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSecuritySettingsError = ZendeskOpError;
+/** Show Security Settings #### Allowed For * Admins */
+export const getSecuritySettings: API.OperationMethod<
+  GetSecuritySettingsRequest,
+  SecuritySettingsResponse,
+  GetSecuritySettingsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSecuritySettingsRequest,
+  output: SecuritySettingsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSessionError = ZendeskOpError;
+/** Show Session #### Allowed For * Admins, Agents, End users */
+export const getSession: API.OperationMethod<
+  GetSessionRequest,
+  SessionResponse,
+  GetSessionError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSessionRequest,
+  output: SessionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSharingAgreementError = ZendeskOpError;
+/** Show a Sharing Agreement Returns a sharing agreement for your account. #### Allowed For * Agents */
+export const getSharingAgreement: API.OperationMethod<
+  GetSharingAgreementRequest,
+  SharingAgreementResponse,
+  GetSharingAgreementError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSharingAgreementRequest,
+  output: SharingAgreementResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSLAPolicyError = ZendeskOpError;
+/** Show SLA Policy #### Availability * Accounts on the Support Professional or Suite Growth plan or above #### Allowed For * Admins */
+export const getSLAPolicy: API.OperationMethod<
+  GetSLAPolicyRequest,
+  SLAPolicyResponse,
+  GetSLAPolicyError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSLAPolicyRequest,
+  output: SLAPolicyResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSLAPolicyFilterDefinitionItemsError = ZendeskOpError;
+/** Retrieve Supported Filter Definition Items #### Availability * Accounts on the Support Professional or Suite Growth plan or above #### Allowed For * Admins */
+export const getSLAPolicyFilterDefinitionItems: API.OperationMethod<
+  GetSLAPolicyFilterDefinitionItemsRequest,
+  SLAPolicyFilterDefinitionResponse,
+  GetSLAPolicyFilterDefinitionItemsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSLAPolicyFilterDefinitionItemsRequest,
+  output: SLAPolicyFilterDefinitionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSourcesByTargetError = ZendeskOpError;
 /** Get sources by target Returns a list of source objects whose values are populated with the id of a related target object. For example, if you have a lookup field called "Success Manager" on a ticket, this endpoint can answer the question, "What tickets (sources) is this user (found by `target_type` and `target_id`) assigned as the 'Success Manager' (field referenced by `field_id`)?" This endpoint also resolves [multi-lookup fields](/api-reference/ticketing/lookup_relationships/lookup_relationships/#about-multi-lookup-relationship-fields). Pass the multi-lookup field's id as `field_id` and "zen:ticket" as `source_type` to list the tickets that reference a target record through the field. Multi-lookup reverse lookups are resolved through search, so tickets the requesting agent can't view are excluded. #### Allowed For * Agents #### Pagination * Cursor pagination (recommended) * Offset pagination For a multi-lookup `field_id`, only cursor pagination applies. Offset pagination parameters are ignored and the response uses cursor pagination. See [Pagination](/api-reference/introduction/pagination/). */
 export const getSourcesByTarget: API.OperationMethod<
@@ -36033,6 +37156,126 @@ export const getSourcesByTarget: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetSourcesByTargetRequest,
   output: GetSourcesByTargetResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSupportAddressError = ZendeskOpError;
+/** Show Support Address #### Allowed For * Admins * Agents */
+export const getSupportAddress: API.OperationMethod<
+  GetSupportAddressRequest,
+  SupportAddressResponse,
+  GetSupportAddressError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSupportAddressRequest,
+  output: SupportAddressResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSuspendedTicketsError = ZendeskOpError;
+/** Show Suspended Ticket #### Allowed For * Admins and [agents in custom roles with permission](https://support.zendesk.com/hc/en-us/articles/4408882153882#topic_cxn_hig_bd) to manage suspended tickets on Enterprise plans * Unrestricted agents on all other plans */
+export const getSuspendedTickets: API.OperationMethod<
+  GetSuspendedTicketsRequest,
+  SuspendedTicketsResponse,
+  GetSuspendedTicketsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSuspendedTicketsRequest,
+  output: SuspendedTicketsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTargetError = ZendeskOpError;
+/** Show Target #### Allowed For * Agents */
+export const getTarget: API.OperationMethod<
+  GetTargetRequest,
+  TargetResponse,
+  GetTargetError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTargetRequest,
+  output: TargetResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTargetFailureError = ZendeskOpError;
+/** Show Target Failure #### Stability * Development #### Allowed For * Admins */
+export const getTargetFailure: API.OperationMethod<
+  GetTargetFailureRequest,
+  TargetFailureResponse,
+  GetTargetFailureError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTargetFailureRequest,
+  output: TargetFailureResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTaskItemError = ZendeskOpError;
+/** Show Task Item Returns the task item with the specified id. Works for both template-based and custom task items. #### Allowed For * Agents */
+export const getTaskItem: API.OperationMethod<
+  GetTaskItemRequest,
+  TaskItemInstanceResponse,
+  GetTaskItemError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTaskItemRequest,
+  output: TaskItemInstanceResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTaskListInstanceError = ZendeskOpError;
+/** Show Task List Returns the task list with the specified id. The response includes `is_completed`, which indicates whether all task items in the list have been completed. Works for both template-based and custom task lists. #### Allowed For * Agents */
+export const getTaskListInstance: API.OperationMethod<
+  GetTaskListInstanceRequest,
+  TaskListInstanceResponse,
+  GetTaskListInstanceError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTaskListInstanceRequest,
+  output: TaskListInstanceResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTaskListsForTicketError = ZendeskOpError;
+/** Show Task Lists for Ticket Returns the task lists attached to the specified ticket. If the ticket has no task lists attached, the `task_lists` array in the response will be empty. #### Allowed For * Agents */
+export const getTaskListsForTicket: API.OperationMethod<
+  GetTaskListsForTicketRequest,
+  TaskListByTicketIdResponse,
+  GetTaskListsForTicketError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTaskListsForTicketRequest,
+  output: TaskListByTicketIdResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTaskListTemplateError = ZendeskOpError;
+/** Show Task List Template Returns the task list template with the specified id. The template's tasks aren't included in the response. #### Allowed For * Agents */
+export const getTaskListTemplate: API.OperationMethod<
+  GetTaskListTemplateRequest,
+  TaskListTemplateResponse,
+  GetTaskListTemplateError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTaskListTemplateRequest,
+  output: TaskListTemplateResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -36053,6 +37296,141 @@ export const getTasksByTaskListTemplateId: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetTicketError = ZendeskOpError;
+/** Show Ticket Returns a number of ticket properties, but doesn't include the full comment thread. The initial comment is available in the ticket's [description property](/api-reference/ticketing/tickets/tickets/#json-format). To retrieve all the ticket's comments, use [List Comments](/api-reference/ticketing/tickets/ticket_comments/#list-comments). #### Allowed For * Agents */
+export const getTicket: API.OperationMethod<
+  GetTicketRequest,
+  TicketResponseOutput,
+  GetTicketError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketRequest,
+  output: TicketResponseOutput,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketAfterChangesError = ZendeskOpError;
+/** Show Ticket After Changes Returns the full ticket object as it would be after applying the macro to the ticket. It doesn't actually change the ticket. To get only the ticket fields that would be changed by the macro, see [Show Changes to Ticket](#show-changes-to-ticket). #### Allowed For * Agents */
+export const getTicketAfterChanges: API.OperationMethod<
+  GetTicketAfterChangesRequest,
+  MacroApplyTicketResponse,
+  GetTicketAfterChangesError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketAfterChangesRequest,
+  output: MacroApplyTicketResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketAuditError = ZendeskOpError;
+/** Show Audit #### Allowed for * Agents */
+export const getTicketAudit: API.OperationMethod<
+  GetTicketAuditRequest,
+  TicketAuditResponse,
+  GetTicketAuditError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketAuditRequest,
+  output: TicketAuditResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketByMessagingConversationIdError = NotFound | ZendeskOpError;
+/** Show Ticket by Messaging Conversation ID Returns the active ticket associated with the given Sunshine Conversations conversation id. A ticket is considered active when it's open and the messaging session is still in progress. A ticket becomes inactive when any of the following occur: * The ticket is closed * An agent ends the messaging session * A trigger ends the messaging session #### Allowed For * Agents with the `view_private_content` permission */
+export const getTicketByMessagingConversationId: API.OperationMethod<
+  GetTicketByMessagingConversationIdRequest,
+  TicketResponseOutput,
+  GetTicketByMessagingConversationIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketByMessagingConversationIdRequest,
+  output: TicketResponseOutput,
+  errors: [NotFound, UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketfieldError = ZendeskOpError;
+/** Show Ticket Field #### Allowed for * Agents #### Sideloads The following sideloads are supported: */
+export const getTicketfield: API.OperationMethod<
+  GetTicketfieldRequest,
+  TicketFieldResponse,
+  GetTicketfieldError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketfieldRequest,
+  output: TicketFieldResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketFieldOptionError = ZendeskOpError;
+/** Show Ticket Field Option #### Allowed for * Agents */
+export const getTicketFieldOption: API.OperationMethod<
+  GetTicketFieldOptionRequest,
+  CustomFieldOptionResponse,
+  GetTicketFieldOptionError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketFieldOptionRequest,
+  output: CustomFieldOptionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketFormError = ZendeskOpError;
+/** Show Ticket Form #### Allowed For * Admins, Agents, and End Users */
+export const getTicketForm: API.OperationMethod<
+  GetTicketFormRequest,
+  TicketFormResponse,
+  GetTicketFormError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketFormRequest,
+  output: TicketFormResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketMetricsError = ZendeskOpError;
+/** Show Ticket Metrics Returns a specific metric, or the metrics of a specific ticket. #### Pagination - Cursor pagination (recommended) - Offset pagination See [Pagination](/api-reference/introduction/pagination/). Returns a maximum of 100 records per page. #### Allowed For * Agents */
+export const getTicketMetrics: API.OperationMethod<
+  GetTicketMetricsRequest,
+  TicketMetricsByTicketMetricIdResponse,
+  GetTicketMetricsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketMetricsRequest,
+  output: TicketMetricsByTicketMetricIdResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTicketMetricsByTicketError = ZendeskOpError;
+/** Show Ticket Metrics By Ticket Returns the metrics for a specific ticket. #### Allowed For * Agents */
+export const getTicketMetricsByTicket: API.OperationMethod<
+  GetTicketMetricsByTicketRequest,
+  TicketMetricsByTicketMetricIdResponse,
+  GetTicketMetricsByTicketError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTicketMetricsByTicketRequest,
+  output: TicketMetricsByTicketMetricIdResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GettingTwicketStatusError = ZendeskOpError;
 /** List Ticket statuses #### Allowed For * Agents */
 export const gettingTwicketStatus: API.OperationMethod<
@@ -36063,6 +37441,21 @@ export const gettingTwicketStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GettingTwicketStatusRequest,
   output: TwitterChannelTwicketStatusResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTokenError = ZendeskOpError;
+/** Show Token Returns the properties of the specified token. For security reasons, only the first 10 characters of the access token are included. In the first endpoint, `id` is a token id, not the full token. In the second endpoint, include an `Authorization: Bearer` header with the full token to get its associated properties. Example: ```sh curl https://{subdomain}.zendesk.com/api/v2/oauth/tokens/current \ -H 'Authorization: Bearer ${authToken}' \ -v -u {email_address}/token:{api_token} ``` #### Allowed for * Admins, Agents, End Users */
+export const getToken: API.OperationMethod<
+  GetTokenRequest,
+  OAuthTokenResponse,
+  GetTokenError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTokenRequest,
+  output: OAuthTokenResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -36083,6 +37476,81 @@ export const getTrigger: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetTriggerCategoryByIdError = NotFound | ZendeskOpError;
+/** Show Ticket Trigger Category Returns the ticket trigger category with the specified ID. */
+export const getTriggerCategoryById: API.OperationMethod<
+  GetTriggerCategoryByIdRequest,
+  TriggerCategoryResponse,
+  GetTriggerCategoryByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTriggerCategoryByIdRequest,
+  output: TriggerCategoryResponse,
+  errors: [NotFound, UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTriggerLimitsError = ZendeskOpError;
+/** Show Ticket Trigger Limits Returns the number of active ticket triggers on the account and the maximum number of active ticket triggers allowed on the account's plan. #### Allowed For * Agents */
+export const getTriggerLimits: API.OperationMethod<
+  GetTriggerLimitsRequest,
+  TriggerLimitsResponse,
+  GetTriggerLimitsError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTriggerLimitsRequest,
+  output: TriggerLimitsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserError = ZendeskOpError;
+/** Show User #### Allowed For * Agents */
+export const getUser: API.OperationMethod<
+  GetUserRequest,
+  UserResponse,
+  GetUserError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRequest,
+  output: UserResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserBrandAgentByIdError = ZendeskOpError;
+/** Show Brand Agent Membership By User Returns a specific brand agent membership for a user. #### Allowed For * Admins */
+export const getUserBrandAgentById: API.OperationMethod<
+  GetUserBrandAgentByIdRequest,
+  BrandAgentResponse,
+  GetUserBrandAgentByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserBrandAgentByIdRequest,
+  output: BrandAgentResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserComplianceDeletionStatusesError = ZendeskOpError;
+/** Show Compliance Deletion Statuses Returns the GDPR status for each user per area of compliance. A Zendesk area of compliance is typically a product like "support/explore" but can be more fine-grained for areas within the product lines. If the user is not in the account, the request returns a 404 status. ```http Status: 404 { "error":"RecordNotFound", "description":"Not found" } ``` #### Allowed For * Agents, with restrictions #### Pagination * Cursor pagination (recommended) * Offset pagination See [Pagination](/api-reference/introduction/pagination/). */
+export const getUserComplianceDeletionStatuses: API.OperationMethod<
+  GetUserComplianceDeletionStatusesRequest,
+  ComplianceDeletionStatusesResponse,
+  GetUserComplianceDeletionStatusesError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserComplianceDeletionStatusesRequest,
+  output: ComplianceDeletionStatusesResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetUserEntitlementsFullError = NotFound | ZendeskOpError;
 /** Get Full User Entitlements Returns the full entitlements for all Zendesk products (Explore, Voice, Knowledge, Live Chat) for the specified user. This includes the role name and active status for each product. An entitlement is only considered active if both of the following conditions apply: the user has access and the product is active on the account. #### Allowed For * Agents #### OAuth Scopes Requires one of the following OAuth scopes: `users:read` or `read` */
 export const getUserEntitlementsFull: API.OperationMethod<
@@ -36098,6 +37566,66 @@ export const getUserEntitlementsFull: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetUserFieldError = ZendeskOpError;
+/** Show User Field #### Allowed for * Agents */
+export const getUserField: API.OperationMethod<
+  GetUserFieldRequest,
+  UserFieldResponse,
+  GetUserFieldError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserFieldRequest,
+  output: UserFieldResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserFieldOptionError = ZendeskOpError;
+/** Show a User Field Option #### Allowed for * Agents */
+export const getUserFieldOption: API.OperationMethod<
+  GetUserFieldOptionRequest,
+  CustomFieldOptionResponse,
+  GetUserFieldOptionError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserFieldOptionRequest,
+  output: CustomFieldOptionResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserGroupMembershipByIdError = ZendeskOpError;
+/** Show User's Group Membership Returns a specific group membership for a user. #### Allowed For * Agents */
+export const getUserGroupMembershipById: API.OperationMethod<
+  GetUserGroupMembershipByIdRequest,
+  GroupMembershipResponse,
+  GetUserGroupMembershipByIdError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserGroupMembershipByIdRequest,
+  output: GroupMembershipResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserIdentityError = ZendeskOpError;
+/** Show Identity Shows the identity with the given id for a given user. Use the first endpoint if authenticating as an agent. Use the second if authenticating as an end user. End users can only view email or phone number identity. #### Allowed For * Agents * Verified end users */
+export const getUserIdentity: API.OperationMethod<
+  GetUserIdentityRequest,
+  UserIdentityResponse,
+  GetUserIdentityError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserIdentityRequest,
+  output: UserIdentityResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetUserPasswordRequirementsError = ZendeskOpError;
 /** List password requirements #### Allowed For * Agents * End Users */
 export const getUserPasswordRequirements: API.OperationMethod<
@@ -36108,6 +37636,36 @@ export const getUserPasswordRequirements: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetUserPasswordRequirementsRequest,
   output: UserPasswordRequirementsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserRelatedError = ZendeskOpError;
+/** Show User Related Information */
+export const getUserRelated: API.OperationMethod<
+  GetUserRelatedRequest,
+  UserRelatedResponse,
+  GetUserRelatedError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRelatedRequest,
+  output: UserRelatedResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetViewError = ZendeskOpError;
+/** Show View In addition to numeric IDs, the `view_id` path parameter accepts the string aliases `"incoming"`, `"my"`, and `"my_groups"` to retrieve the corresponding built-in views. #### Allowed For * Agents */
+export const getView: API.OperationMethod<
+  GetViewRequest,
+  ViewResponse,
+  GetViewError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetViewRequest,
+  output: ViewResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -36138,6 +37696,21 @@ export const getViewCounts: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetViewCountsRequest,
   output: ViewCountsResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceError = ZendeskOpError;
+/** Show Workspace #### Allowed For * Admins */
+export const getWorkspace: API.OperationMethod<
+  GetWorkspaceRequest,
+  GetWorkspaceResponse,
+  GetWorkspaceError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceRequest,
+  output: GetWorkspaceResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -36203,6 +37776,21 @@ export const groupMembershipSetDefault: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ImportTicketError = ZendeskOpError;
+/** Ticket Import #### Allowed For * Admins */
+export const importTicket: API.OperationMethod<
+  ImportTicketRequest,
+  TicketResponseOutput,
+  ImportTicketError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImportTicketRequest,
+  output: TicketResponseOutput,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type IncrementalCustomObjectRecordExportCursorError =
   | BadRequest
   | Forbidden
@@ -36218,83 +37806,6 @@ export const incrementalCustomObjectRecordExportCursor: API.OperationMethod<
   input: IncrementalCustomObjectRecordExportCursorRequest,
   output: IncrementalCustomObjectRecordsResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncrementalOrganizationExportError = ZendeskOpError;
-/** Incremental Organization Export #### Allowed For * Admins #### Sideloading See [Organizations sideloads](/documentation/ticketing/using-the-zendesk-api/side_loading/#supported-endpoints). */
-export const incrementalOrganizationExport: API.OperationMethod<
-  IncrementalOrganizationExportRequest,
-  ExportIncrementalOrganizationsResponse,
-  IncrementalOrganizationExportError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncrementalOrganizationExportRequest,
-  output: ExportIncrementalOrganizationsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncrementalSampleExportError = ZendeskOpError;
-/** Incremental Sample Export Use this endpoint to test the incremental export format. It's more strict in terms of rate limiting, at 10 requests per 20 minutes instead of 10 requests per minute. It also returns only up to 50 results per request. Otherwise, it's identical to the above APIs. Use the `incremental_resource` parameter to specify the resource. Possible values are "tickets", "ticket_events", "users", or "organizations". #### Allowed For * Admins */
-export const incrementalSampleExport: API.OperationMethod<
-  IncrementalSampleExportRequest,
-  TimeBasedExportIncrementalTicketsResponseOutput,
-  IncrementalSampleExportError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncrementalSampleExportRequest,
-  output: TimeBasedExportIncrementalTicketsResponseOutput,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncrementalSkilBasedRoutingAttributesExportError = ZendeskOpError;
-/** Incremental Attributes Export Returns a stream of changes that occurred on routing attributes. #### Allowed For * Admins #### Parameters Optional */
-export const incrementalSkilBasedRoutingAttributesExport: API.OperationMethod<
-  IncrementalSkilBasedRoutingAttributesExportRequest,
-  IncrementalSkillBasedRouting,
-  IncrementalSkilBasedRoutingAttributesExportError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncrementalSkilBasedRoutingAttributesExportRequest,
-  output: IncrementalSkillBasedRouting,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncrementalSkilBasedRoutingAttributeValuesExportError =
-  ZendeskOpError;
-/** Incremental Attributes Values Export Returns a stream of changes that occurred on routing attribute values. #### Allowed For * Admins #### Parameters Optional */
-export const incrementalSkilBasedRoutingAttributeValuesExport: API.OperationMethod<
-  IncrementalSkilBasedRoutingAttributeValuesExportRequest,
-  IncrementalSkillBasedRouting,
-  IncrementalSkilBasedRoutingAttributeValuesExportError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncrementalSkilBasedRoutingAttributeValuesExportRequest,
-  output: IncrementalSkillBasedRouting,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncrementalSkilBasedRoutingInstanceValuesExportError =
-  ZendeskOpError;
-/** Incremental Instance Values Export Returns a stream of changes that occurred on routing instance values. Changes are grouped by `attribute_value_id`, with associate type events listed alongside unassociate type events based on the unassociate event’s timestamp. #### Allowed For * Admins #### Parameters Optional */
-export const incrementalSkilBasedRoutingInstanceValuesExport: API.OperationMethod<
-  IncrementalSkilBasedRoutingInstanceValuesExportRequest,
-  IncrementalSkillBasedRouting,
-  IncrementalSkilBasedRoutingInstanceValuesExportError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncrementalSkilBasedRoutingInstanceValuesExportRequest,
-  output: IncrementalSkillBasedRouting,
-  errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
 }));
@@ -38984,6 +40495,36 @@ export const permanentlyDeleteUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PostAutocompleteTagError = ZendeskOpError;
+/** Search Tags by Request Body Returns an array of registered and recent tag names that start with the characters specified in the `name` parameter. This includes tags where any word within the tag (separated by underscores, hyphens, spaces, or other punctuation) starts with the specified characters. You must specify at least 2 characters. This endpoint accepts the same parameters as the [GET method](#search-tags) but they are specified in the request body instead of the query string. #### How tag matching works When tags contain delimiters like underscores, hyphens, or spaces, each word is indexed separately. A tag matches if the tag itself or any word within it starts with your search term. For example, searching for `trig` will match the tag `set_by_this_trigger` because one of its words ("trigger") starts with "trig". However, searching for `rigger` won't match this tag because neither the full tag nor any of its individual words ("set", "by", "this", "trigger") start with "rigger". #### Autocomplete limitations Autocomplete returns up to 15 suggestions from the most commonly used ticket tags in the last 60 days. Tags that match the prefix but aren't in that top set won't appear in the results. #### Allowed For * Agents */
+export const postAutocompleteTag: API.OperationMethod<
+  PostAutocompleteTagRequest,
+  TagsByObjectIdResponse,
+  PostAutocompleteTagError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostAutocompleteTagRequest,
+  output: TagsByObjectIdResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostAutocompleteUserError = BadRequest | ZendeskOpError;
+/** Autocomplete Users by Request Body Returns an array of users whose name starts with the value specified in the `name` property in the request body. It only returns users with no foreign identities. This endpoint accepts the same parameters as the [GET method](#autocomplete-users-by-query-string) but they are specified in the request body instead of the query string. #### Allowed For * Agents */
+export const postAutocompleteUser: API.OperationMethod<
+  PostAutocompleteUserRequest,
+  UsersResponse,
+  PostAutocompleteUserError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostAutocompleteUserRequest,
+  output: UsersResponse,
+  errors: [BadRequest, UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PreviewCountError = ZendeskOpError;
 /** Preview Ticket Count Returns the ticket count for a single preview. #### Allowed For * Agents */
 export const previewCount: API.OperationMethod<
@@ -39406,21 +40947,6 @@ export const requestEndUserVerification: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RequestUserCreateError = ZendeskOpError;
-/** Request User Create Sends the owner a reminder email to update their subscription so more agents can be created. #### Allowed For * Agents */
-export const requestUserCreate: API.OperationMethod<
-  RequestUserCreateRequest,
-  RequestUserCreateResponse,
-  RequestUserCreateError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestUserCreateRequest,
-  output: RequestUserCreateResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RequestUserVerificationError = ZendeskOpError;
 /** Request User Verification Sends the user a verification email with a link to verify ownership of the email address. #### Allowed For * Agents */
 export const requestUserVerification: API.OperationMethod<
@@ -39451,51 +40977,6 @@ export const restoreDeletedTicket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RetrieveGroupSLAPolicyFilterDefinitionItemsError = ZendeskOpError;
-/** Retrieve Supported Filter Definition Items #### Allowed For * Admins */
-export const retrieveGroupSLAPolicyFilterDefinitionItems: API.OperationMethod<
-  RetrieveGroupSLAPolicyFilterDefinitionItemsRequest,
-  GroupSLAPolicyFilterDefinitionResponse,
-  RetrieveGroupSLAPolicyFilterDefinitionItemsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveGroupSLAPolicyFilterDefinitionItemsRequest,
-  output: GroupSLAPolicyFilterDefinitionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveResourceCollectionError = ZendeskOpError;
-/** Show Resource Collection Retrieves details for a specified resource collection. #### Allowed for * Admins */
-export const retrieveResourceCollection: API.OperationMethod<
-  RetrieveResourceCollectionRequest,
-  ResourceCollectionResponse,
-  RetrieveResourceCollectionError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveResourceCollectionRequest,
-  output: ResourceCollectionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSLAPolicyFilterDefinitionItemsError = ZendeskOpError;
-/** Retrieve Supported Filter Definition Items #### Availability * Accounts on the Support Professional or Suite Growth plan or above #### Allowed For * Admins */
-export const retrieveSLAPolicyFilterDefinitionItems: API.OperationMethod<
-  RetrieveSLAPolicyFilterDefinitionItemsRequest,
-  SLAPolicyFilterDefinitionResponse,
-  RetrieveSLAPolicyFilterDefinitionItemsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSLAPolicyFilterDefinitionItemsRequest,
-  output: SLAPolicyFilterDefinitionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RevokeCurrentOAuthTokenError = ZendeskOpError;
 /** Revoke Current Token Revokes the current OAuth token. Include an `Authorization: Bearer` header with the full token. #### Allowed for * Admins, Agents, End Users */
 export const revokeCurrentOAuthToken: API.OperationMethod<
@@ -39521,6 +41002,21 @@ export const revokeOAuthToken: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RevokeOAuthTokenRequest,
   output: RevokeOAuthTokenResponse,
+  errors: [UnknownZendeskError],
+  protocol: ZendeskProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchAutocompleteCustomObjectRecordError = ZendeskOpError;
+/** Autocomplete Custom Object Record Search Retrieves an array of custom object records that have a field value that matches the value specified in the `name` parameter. If the object has a parent field with `cascade_permissions_enabled`, the request must be made in the context of a cascade parent field using the `field_id` and `source` parameters. #### Pagination * [Cursor pagination](/api-reference/introduction/pagination/#cursor-pagination) only. * Returns the first 10,000 records sorted by relevancy with page limits. #### Allowed For * Agents */
+export const searchAutocompleteCustomObjectRecord: API.OperationMethod<
+  SearchAutocompleteCustomObjectRecordRequest,
+  CustomObjectRecordsResponse,
+  SearchAutocompleteCustomObjectRecordError,
+  ZendeskOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchAutocompleteCustomObjectRecordRequest,
+  output: CustomObjectRecordsResponse,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
@@ -39796,1493 +41292,6 @@ export const setUserTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ShowAccessRuleError = ZendeskOpError;
-/** Show Access Rule Returns a specific access rule for a custom object. #### Allowed For * Admins */
-export const showAccessRule: API.OperationMethod<
-  ShowAccessRuleRequest,
-  AccessRuleResponse,
-  ShowAccessRuleError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowAccessRuleRequest,
-  output: AccessRuleResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowAccountSettingsError = ZendeskOpError;
-/** Show Settings Shows the settings that are available for the account. #### Allowed For * Agents */
-export const showAccountSettings: API.OperationMethod<
-  ShowAccountSettingsRequest,
-  AccountSettingsResponse,
-  ShowAccountSettingsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowAccountSettingsRequest,
-  output: AccountSettingsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowActivityError = ZendeskOpError;
-/** Show Activity Lists a specific activity. #### Allowed For * Agents */
-export const showActivity: API.OperationMethod<
-  ShowActivityRequest,
-  ActivityResponse,
-  ShowActivityError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowActivityRequest,
-  output: ActivityResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowAttachmentError = ZendeskOpError;
-/** Show Attachment Shows attachment details. You can get the value of the `attachment_id` parameter by listing the ticket's comments. See [List Comments](/api-reference/ticketing/tickets/ticket_comments/#list-comments). Each comment in the list has an `attachments` list that specifies an `id` for each attachment. #### Allowed for * Agents */
-export const showAttachment: API.OperationMethod<
-  ShowAttachmentRequest,
-  AttachmentResponse,
-  ShowAttachmentError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowAttachmentRequest,
-  output: AttachmentResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowAttributeError = ZendeskOpError;
-/** Show Attribute Returns an attribute. #### Allowed For * Agents * Light agents and contributors */
-export const showAttribute: API.OperationMethod<
-  ShowAttributeRequest,
-  SkillBasedRoutingAttributeResponse,
-  ShowAttributeError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowAttributeRequest,
-  output: SkillBasedRoutingAttributeResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowAttributeValueError = ZendeskOpError;
-/** Show Attribute Value Returns an attribute value. #### Allowed For * Agents * Light agents and contributors */
-export const showAttributeValue: API.OperationMethod<
-  ShowAttributeValueRequest,
-  SkillBasedRoutingAttributeValueResponse,
-  ShowAttributeValueError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowAttributeValueRequest,
-  output: SkillBasedRoutingAttributeValueResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowAuditLogError = ZendeskOpError;
-/** Show Audit Log #### Allowed For * Admins on accounts that have audit-log access */
-export const showAuditLog: API.OperationMethod<
-  ShowAuditLogRequest,
-  AuditLogResponse,
-  ShowAuditLogError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowAuditLogRequest,
-  output: AuditLogResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowAutomationError = ZendeskOpError;
-/** Show Automation #### Allowed For * Agents */
-export const showAutomation: API.OperationMethod<
-  ShowAutomationRequest,
-  AutomationResponse,
-  ShowAutomationError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowAutomationRequest,
-  output: AutomationResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowBrandError = ZendeskOpError;
-/** Show a Brand Returns a brand for your account. #### Allowed for * Admins, Agents */
-export const showBrand: API.OperationMethod<
-  ShowBrandRequest,
-  BrandResponse,
-  ShowBrandError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowBrandRequest,
-  output: BrandResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowBrandAgentByIdError = ZendeskOpError;
-/** Show Brand Agent Membership Returns a brand agent membership for your account. #### Allowed For * Admins */
-export const showBrandAgentById: API.OperationMethod<
-  ShowBrandAgentByIdRequest,
-  BrandAgentResponse,
-  ShowBrandAgentByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowBrandAgentByIdRequest,
-  output: BrandAgentResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowChangesToTicketError = ZendeskOpError;
-/** Show Changes to Ticket Returns the changes the macro would make to a ticket. It doesn't actually change a ticket. You can use the response data in a subsequent API call to the [Tickets](/api-reference/ticketing/tickets/tickets/) endpoint to update the ticket. The response includes only the ticket fields that would be changed by the macro. To get the full ticket object after the macro is applied, see [Show Ticket After Changes](#show-ticket-after-changes). #### Allowed For * Agents */
-export const showChangesToTicket: API.OperationMethod<
-  ShowChangesToTicketRequest,
-  MacroApplyTicketResponse,
-  ShowChangesToTicketError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowChangesToTicketRequest,
-  output: MacroApplyTicketResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowClientError = ZendeskOpError;
-/** Show Client #### Allowed for * Admins * Agents with the [Manage APIs](https://support.zendesk.com/hc/en-us/articles/4408882153882) permission */
-export const showClient: API.OperationMethod<
-  ShowClientRequest,
-  OauthClientResponse,
-  ShowClientError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowClientRequest,
-  output: OauthClientResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCommentError = ZendeskOpError;
-/** Getting Comments #### Allowed For * End Users */
-export const showComment: API.OperationMethod<
-  ShowCommentRequest,
-  TicketCommentResponse,
-  ShowCommentError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCommentRequest,
-  output: TicketCommentResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCountryError = ZendeskOpError;
-/** Show Country Returns details for a specific country by ID. This endpoint is publicly accessible and does not require authentication. #### Allowed For * Anyone */
-export const showCountry: API.OperationMethod<
-  ShowCountryRequest,
-  ShowCountryResponse,
-  ShowCountryError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCountryRequest,
-  output: ShowCountryResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCurrentLocaleError = ZendeskOpError;
-/** Show Current Locale This works like [Show Locale](#show-locale), but instead of taking a locale id as an argument, it renders the locale of the user performing the request. #### Allowed For * Anyone */
-export const showCurrentLocale: API.OperationMethod<
-  ShowCurrentLocaleRequest,
-  LocaleResponse,
-  ShowCurrentLocaleError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCurrentLocaleRequest,
-  output: LocaleResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCurrentlyAuthenticatedSessionError = ZendeskOpError;
-/** Show the Currently Authenticated Session #### Allowed For * Admins, Agents, End users */
-export const showCurrentlyAuthenticatedSession: API.OperationMethod<
-  ShowCurrentlyAuthenticatedSessionRequest,
-  SessionResponse,
-  ShowCurrentlyAuthenticatedSessionError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCurrentlyAuthenticatedSessionRequest,
-  output: SessionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCurrentTokenError = ZendeskOpError;
-/** Show Current Token Returns the properties of the current token. Include an `Authorization: Bearer` header with the full token to get its associated properties. For security reasons, only the first 10 characters of the access token are included. #### Allowed for * Admins, Agents, End Users */
-export const showCurrentToken: API.OperationMethod<
-  ShowCurrentTokenRequest,
-  OAuthTokenResponse,
-  ShowCurrentTokenError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCurrentTokenRequest,
-  output: OAuthTokenResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCurrentUserError = ZendeskOpError;
-/** Show Self The endpoint returns [user information](/api-reference/ticketing/users/users/) and an `authenticity_token`. #### Allowed For * Anonymous users #### Authenticity Token Zendesk API calls made by end users from a Zendesk help center must include `authenticity_token` in the `X-CSRF-Token` HTTP header. This helps prevent [cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) attacks. For an example using an authenticity token, see the AJAX request in the [Upgrading from Templating API v1](https://developer.zendesk.com/documentation/help_center/help-center-templates/v1#jquery) documentation. */
-export const showCurrentUser: API.OperationMethod<
-  ShowCurrentUserRequest,
-  CurrentUserResponse,
-  ShowCurrentUserError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCurrentUserRequest,
-  output: CurrentUserResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCurrentUserSettingsError = ZendeskOpError;
-/** Show Current User Settings Returns the settings for the currently authenticated user. This includes UI preferences for onboarding, tooltips, keyboard shortcuts, theme preferences, and other feature toggles. #### Allowed For * Agents */
-export const showCurrentUserSettings: API.OperationMethod<
-  ShowCurrentUserSettingsRequest,
-  UserSettingsResponse,
-  ShowCurrentUserSettingsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCurrentUserSettingsRequest,
-  output: UserSettingsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCustomObjectError = ZendeskOpError;
-/** Show Custom Object Returns an object with the specified key #### Allowed For * Agents */
-export const showCustomObject: API.OperationMethod<
-  ShowCustomObjectRequest,
-  CustomObjectResponse,
-  ShowCustomObjectError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCustomObjectRequest,
-  output: CustomObjectResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCustomObjectFieldError = ZendeskOpError;
-/** Show Custom Object Field Returns a custom field for a specific object using a provided key or id of the field. #### Allowed For * Agents */
-export const showCustomObjectField: API.OperationMethod<
-  ShowCustomObjectFieldRequest,
-  CustomObjectFieldResponse,
-  ShowCustomObjectFieldError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCustomObjectFieldRequest,
-  output: CustomObjectFieldResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCustomObjectRecordError = ZendeskOpError;
-/** Show Custom Object Record Returns a custom record for a specific object using a provided id. #### Allowed For * Agents */
-export const showCustomObjectRecord: API.OperationMethod<
-  ShowCustomObjectRecordRequest,
-  CustomObjectRecordResponse,
-  ShowCustomObjectRecordError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCustomObjectRecordRequest,
-  output: CustomObjectRecordResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCustomRoleByIdError = ZendeskOpError;
-/** Show Custom Role #### Availability * Accounts on the Enterprise plan or above #### Allowed for * Administrators * Agents with the `manage_roles` permission */
-export const showCustomRoleById: API.OperationMethod<
-  ShowCustomRoleByIdRequest,
-  CustomRoleResponse,
-  ShowCustomRoleByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCustomRoleByIdRequest,
-  output: CustomRoleResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowCustomStatusError = ZendeskOpError;
-/** Show Custom Ticket Status Returns the custom ticket status object. #### Allowed For * End Users */
-export const showCustomStatus: API.OperationMethod<
-  ShowCustomStatusRequest,
-  CustomStatusResponse,
-  ShowCustomStatusError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowCustomStatusRequest,
-  output: CustomStatusResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowDefaultGroupError = ZendeskOpError;
-/** Show Default Group #### Allowed For * Admins * Agents */
-export const showDefaultGroup: API.OperationMethod<
-  ShowDefaultGroupRequest,
-  GroupResponse,
-  ShowDefaultGroupError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowDefaultGroupRequest,
-  output: GroupResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowDeletedUserError = ZendeskOpError;
-/** Show Deleted User Returns users that have been deleted but not permanently yet. See [Permanently Delete User](#permanently-delete-user). #### Allowed For: * Agents */
-export const showDeletedUser: API.OperationMethod<
-  ShowDeletedUserRequest,
-  DeletedUserResponse,
-  ShowDeletedUserError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowDeletedUserRequest,
-  output: DeletedUserResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowDerivedMacroError = ZendeskOpError;
-/** Show Macro Replica Returns an unpersisted macro representation derived from a ticket or macro. The endpoint takes one of the following query parameters: `macro_id` or `ticket_id`. If you include both, `macro_id` is used. #### Allowed For * Agents */
-export const showDerivedMacro: API.OperationMethod<
-  ShowDerivedMacroRequest,
-  MacroResponse,
-  ShowDerivedMacroError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowDerivedMacroRequest,
-  output: MacroResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowDynamicContentItemError = ZendeskOpError;
-/** Show Item #### Allowed For * Admins, Agents */
-export const showDynamicContentItem: API.OperationMethod<
-  ShowDynamicContentItemRequest,
-  DynamicContentResponse,
-  ShowDynamicContentItemError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowDynamicContentItemRequest,
-  output: DynamicContentResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowDynamicContentVariantError = ZendeskOpError;
-/** Show Variant #### Allowed For * Admins, Agents */
-export const showDynamicContentVariant: API.OperationMethod<
-  ShowDynamicContentVariantRequest,
-  DynamicContentVariantResponse,
-  ShowDynamicContentVariantError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowDynamicContentVariantRequest,
-  output: DynamicContentVariantResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowEmailNotificationError = ZendeskOpError;
-/** Show Email Notification Shows details on an email notification. You can get the value of the `notification_id` parameter by listing the ticket's outbound emails. #### Allowed For * Agents */
-export const showEmailNotification: API.OperationMethod<
-  ShowEmailNotificationRequest,
-  EmailNotificationResponse,
-  ShowEmailNotificationError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowEmailNotificationRequest,
-  output: EmailNotificationResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowEndUserIdentityError = ZendeskOpError;
-/** Show End User Identity Shows the identity with the given id for a given end user. End users can only view email or phone number identity. #### Allowed For * Verified end users */
-export const showEndUserIdentity: API.OperationMethod<
-  ShowEndUserIdentityRequest,
-  UserIdentityResponse,
-  ShowEndUserIdentityError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowEndUserIdentityRequest,
-  output: UserIdentityResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowGlobalClientError = ZendeskOpError;
-/** Show Global OAuth Client Returns the global OAuth client associated with the ID sent on the request. #### Allowed for * Admins * Agents with the [Manage APIs](https://support.zendesk.com/hc/en-us/articles/4408882153882) permission */
-export const showGlobalClient: API.OperationMethod<
-  ShowGlobalClientRequest,
-  GlobalClientResponse,
-  ShowGlobalClientError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowGlobalClientRequest,
-  output: GlobalClientResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowGroupByIdError = ZendeskOpError;
-/** Show Group #### Allowed For * Admins * Agents */
-export const showGroupById: API.OperationMethod<
-  ShowGroupByIdRequest,
-  GroupResponse,
-  ShowGroupByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowGroupByIdRequest,
-  output: GroupResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowGroupMembershipByIdError = ZendeskOpError;
-/** Show Membership The 'id' is the group membership id, not a group id. #### Allowed For * Agents */
-export const showGroupMembershipById: API.OperationMethod<
-  ShowGroupMembershipByIdRequest,
-  GroupMembershipResponse,
-  ShowGroupMembershipByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowGroupMembershipByIdRequest,
-  output: GroupMembershipResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowGroupSLAPolicyError = ZendeskOpError;
-/** Show Group SLA Policy #### Allowed For * Admins */
-export const showGroupSLAPolicy: API.OperationMethod<
-  ShowGroupSLAPolicyRequest,
-  GroupSLAPolicyResponse,
-  ShowGroupSLAPolicyError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowGroupSLAPolicyRequest,
-  output: GroupSLAPolicyResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowItamAssetError = ZendeskOpError;
-/** Show Asset Returns the asset with the specified id. #### Allowed For * Agents */
-export const showItamAsset: API.OperationMethod<
-  ShowItamAssetRequest,
-  ItamAssetResponse,
-  ShowItamAssetError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowItamAssetRequest,
-  output: ItamAssetResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowItamAssetTypeError = ZendeskOpError;
-/** Show Asset Type Returns an asset type with the specified id. #### Allowed For * Agents */
-export const showItamAssetType: API.OperationMethod<
-  ShowItamAssetTypeRequest,
-  ItamAssetTypeResponse,
-  ShowItamAssetTypeError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowItamAssetTypeRequest,
-  output: ItamAssetTypeResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowItamAssetTypeFieldError = ZendeskOpError;
-/** Show Asset Field Returns an asset field with the specified id. #### Allowed For * Agents */
-export const showItamAssetTypeField: API.OperationMethod<
-  ShowItamAssetTypeFieldRequest,
-  ItamAssetFieldResponse,
-  ShowItamAssetTypeFieldError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowItamAssetTypeFieldRequest,
-  output: ItamAssetFieldResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowItamLocationError = ZendeskOpError;
-/** Show Asset Location Returns the location with the specified id. #### Allowed For * Agents */
-export const showItamLocation: API.OperationMethod<
-  ShowItamLocationRequest,
-  ItamAssetLocationResponse,
-  ShowItamLocationError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowItamLocationRequest,
-  output: ItamAssetLocationResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowItamStatusError = ZendeskOpError;
-/** Show Asset Status Returns the status with the specified id. #### Allowed For * Agents */
-export const showItamStatus: API.OperationMethod<
-  ShowItamStatusRequest,
-  ItamAssetStatusResponse,
-  ShowItamStatusError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowItamStatusRequest,
-  output: ItamAssetStatusResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowJobStatusError = ZendeskOpError;
-/** Show Job Status Shows the status of a background job. #### Allowed For: * Agents */
-export const showJobStatus: API.OperationMethod<
-  ShowJobStatusRequest,
-  JobStatusResponse,
-  ShowJobStatusError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowJobStatusRequest,
-  output: JobStatusResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowLocaleByIdError = ZendeskOpError;
-/** Show Locale #### Allowed For * Anyone */
-export const showLocaleById: API.OperationMethod<
-  ShowLocaleByIdRequest,
-  LocaleResponse,
-  ShowLocaleByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowLocaleByIdRequest,
-  output: LocaleResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowMacroError = ZendeskOpError;
-/** Show Macro #### Allowed For * Agents */
-export const showMacro: API.OperationMethod<
-  ShowMacroRequest,
-  MacroResponse,
-  ShowMacroError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowMacroRequest,
-  output: MacroResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowMacroAttachmentError = ZendeskOpError;
-/** Show Macro Attachment Shows the properties of the specified macro attachment. #### Allowed For * Agents */
-export const showMacroAttachment: API.OperationMethod<
-  ShowMacroAttachmentRequest,
-  MacroAttachmentResponse,
-  ShowMacroAttachmentError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowMacroAttachmentRequest,
-  output: MacroAttachmentResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyDynamicContentsError = ZendeskOpError;
-/** Show Many Items #### Stability * Development #### Allowed For * Admins, Agents */
-export const showManyDynamicContents: API.OperationMethod<
-  ShowManyDynamicContentsRequest,
-  DynamicContentsResponse,
-  ShowManyDynamicContentsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyDynamicContentsRequest,
-  output: DynamicContentsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyEmailNotificationsError = ZendeskOpError;
-/** Show Many Email Notifications Shows details of many email notifications. Allows you to query by providing a list of notifications, comments, or tickets IDs. #### Allowed For * Agents #### Filters * By notification: `?ids=8433702508541,8433348111869` * By comment: `?comment_ids=8433348111741,8433544226045,8433702508413` * By ticket: `?ticket_ids=730,723` */
-export const showManyEmailNotifications: API.OperationMethod<
-  ShowManyEmailNotificationsRequest,
-  EmailNotificationResponse,
-  ShowManyEmailNotificationsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyEmailNotificationsRequest,
-  output: EmailNotificationResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyJobStatusesError = ZendeskOpError;
-/** Show Many Job Statuses Accepts a comma-separated list of job status ids. #### Allowed For: * Agents */
-export const showManyJobStatuses: API.OperationMethod<
-  ShowManyJobStatusesRequest,
-  JobStatusesResponse,
-  ShowManyJobStatusesError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyJobStatusesRequest,
-  output: JobStatusesResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyOrganizationsError = ZendeskOpError;
-/** Show Many Organizations Accepts a comma-separated list of up to 100 organization ids or external ids. #### Allowed For * Admins * Agents */
-export const showManyOrganizations: API.OperationMethod<
-  ShowManyOrganizationsRequest,
-  OrganizationsResponse,
-  ShowManyOrganizationsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyOrganizationsRequest,
-  output: OrganizationsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyTicketFieldsError = ZendeskOpError;
-/** Show Many Ticket Fields Returns multiple ticket fields in a single request. Provide either: - `ids` — a comma-separated list of ticket field IDs, or - `keys` — a comma-separated list of ticket field keys Up to 100 values are accepted. The response payload matches the List Ticket Fields [response format](/api-reference/ticketing/tickets/ticket_fields/#example-responses). #### Sideloads The following sideloads are supported: #### Allowed For * Anyone */
-export const showManyTicketFields: API.OperationMethod<
-  ShowManyTicketFieldsRequest,
-  TicketFieldsShowManyResponse,
-  ShowManyTicketFieldsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyTicketFieldsRequest,
-  output: TicketFieldsShowManyResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyTicketFormsError = ZendeskOpError;
-/** Show Many Ticket Forms Takes an `ids` query parameter that accepts a comma-separated list of up to 100 ticket form ids. This endpoint is used primarily by the [mobile SDK](/documentation/classic-web-widget-sdks/) and the [Web Widget](/api-reference/widget/introduction/). #### Allowed For * Anyone */
-export const showManyTicketForms: API.OperationMethod<
-  ShowManyTicketFormsRequest,
-  TicketFormsResponse,
-  ShowManyTicketFormsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyTicketFormsRequest,
-  output: TicketFormsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyTicketFormStatusesError = ZendeskOpError;
-/** Show Many Ticket Form Statuses Fetches all of the ticket form statuses specified by a comma separated list of ids. #### Allowed For * Anyone */
-export const showManyTicketFormStatuses: API.OperationMethod<
-  ShowManyTicketFormStatusesRequest,
-  TicketFormStatusesResponse,
-  ShowManyTicketFormStatusesError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyTicketFormStatusesRequest,
-  output: TicketFormStatusesResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyUserFieldsError = ZendeskOpError;
-/** Show Many User Fields Returns multiple user fields by their keys. #### Allowed For * Agents */
-export const showManyUserFields: API.OperationMethod<
-  ShowManyUserFieldsRequest,
-  UserFieldsResponse,
-  ShowManyUserFieldsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyUserFieldsRequest,
-  output: UserFieldsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowManyUsersError = BadRequest | ZendeskOpError;
-/** Show Many Users Accepts a comma-separated list of up to 100 user ids or external ids. #### Allowed For: * Agents */
-export const showManyUsers: API.OperationMethod<
-  ShowManyUsersRequest,
-  UsersResponse,
-  ShowManyUsersError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowManyUsersRequest,
-  output: UsersResponse,
-  errors: [BadRequest, UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowMonitoredTwitterHandleError = ZendeskOpError;
-/** Show Monitored X Handle #### Allowed For * Admins * Agents */
-export const showMonitoredTwitterHandle: API.OperationMethod<
-  ShowMonitoredTwitterHandleRequest,
-  TwitterChannelResponse,
-  ShowMonitoredTwitterHandleError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowMonitoredTwitterHandleRequest,
-  output: TwitterChannelResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowOrganizationError = ZendeskOpError;
-/** Show Organization #### Allowed For * Admins * Agents */
-export const showOrganization: API.OperationMethod<
-  ShowOrganizationRequest,
-  OrganizationResponse,
-  ShowOrganizationError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowOrganizationRequest,
-  output: OrganizationResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowOrganizationFieldError = ZendeskOpError;
-/** Show Organization Field #### Allowed for * Agents */
-export const showOrganizationField: API.OperationMethod<
-  ShowOrganizationFieldRequest,
-  OrganizationFieldResponse,
-  ShowOrganizationFieldError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowOrganizationFieldRequest,
-  output: OrganizationFieldResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowOrganizationMembershipByIdError = ZendeskOpError;
-/** Show Membership #### Allowed for * Agents */
-export const showOrganizationMembershipById: API.OperationMethod<
-  ShowOrganizationMembershipByIdRequest,
-  OrganizationMembershipResponse,
-  ShowOrganizationMembershipByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowOrganizationMembershipByIdRequest,
-  output: OrganizationMembershipResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowOrganizationMembershipByUserIdError = ZendeskOpError;
-/** Show Organization Membership by User #### Allowed for * Agents */
-export const showOrganizationMembershipByUserId: API.OperationMethod<
-  ShowOrganizationMembershipByUserIdRequest,
-  OrganizationMembershipResponse,
-  ShowOrganizationMembershipByUserIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowOrganizationMembershipByUserIdRequest,
-  output: OrganizationMembershipResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowOrganizationMergeError = ZendeskOpError;
-/** Show Organization Merge Retrieves the details of a specific organization merge operation. This endpoint is useful for obtaining the status and outcome of a merge that was previously initiated. It provides information such as the winning and losing organization IDs, the status of the merge, and the associated URLs. This endpoint can be used to determine if a merge is still in progress, has completed successfully, or has encountered an error. #### Allowed For * Admins */
-export const showOrganizationMerge: API.OperationMethod<
-  ShowOrganizationMergeRequest,
-  OrganizationMergeResponse,
-  ShowOrganizationMergeError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowOrganizationMergeRequest,
-  output: OrganizationMergeResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowOrganizationSubscriptionError = ZendeskOpError;
-/** Show Organization Subscription #### Allowed For: * Agents * End users For end users, the response will only list the subscriptions created by the requesting end user. */
-export const showOrganizationSubscription: API.OperationMethod<
-  ShowOrganizationSubscriptionRequest,
-  OrganizationSubscriptionResponse,
-  ShowOrganizationSubscriptionError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowOrganizationSubscriptionRequest,
-  output: OrganizationSubscriptionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowPermissionPolicyError = ZendeskOpError;
-/** Show Permission Policy Returns a permission policy for a specific role on a custom object. The policy ID can be: - `custom-role-{custom_role_id}` for custom roles - `end-user` for the end user system role #### Allowed For * Admins */
-export const showPermissionPolicy: API.OperationMethod<
-  ShowPermissionPolicyRequest,
-  PermissionPolicyResponse,
-  ShowPermissionPolicyError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowPermissionPolicyRequest,
-  output: PermissionPolicyResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowQueueByIdError = ZendeskOpError;
-/** Show Queue Returns a queue for the given queue id. #### Allowed For * Agents */
-export const showQueueById: API.OperationMethod<
-  ShowQueueByIdRequest,
-  QueueResponse,
-  ShowQueueByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowQueueByIdRequest,
-  output: QueueResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowRequestError = ZendeskOpError;
-/** Show Request #### Sideloads The following sideloads are supported: #### Allowed For * End Users */
-export const showRequest: API.OperationMethod<
-  ShowRequestRequest,
-  RequestResponse,
-  ShowRequestError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowRequestRequest,
-  output: RequestResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSatisfactionRatingError = ZendeskOpError;
-/** Show Satisfaction Rating Returns a specific satisfaction rating. You can get the id from the [List Satisfaction Ratings](#list-satisfaction-ratings) endpoint. #### Allowed For * Admins */
-export const showSatisfactionRating: API.OperationMethod<
-  ShowSatisfactionRatingRequest,
-  SatisfactionRatingResponse,
-  ShowSatisfactionRatingError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSatisfactionRatingRequest,
-  output: SatisfactionRatingResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSatisfactionRatingsError = ZendeskOpError;
-/** Show Reason for Satisfaction Rating #### Allowed For * Admins */
-export const showSatisfactionRatings: API.OperationMethod<
-  ShowSatisfactionRatingsRequest,
-  SatisfactionReasonResponse,
-  ShowSatisfactionRatingsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSatisfactionRatingsRequest,
-  output: SatisfactionReasonResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSecuritySettingsError = ZendeskOpError;
-/** Show Security Settings #### Allowed For * Admins */
-export const showSecuritySettings: API.OperationMethod<
-  ShowSecuritySettingsRequest,
-  SecuritySettingsResponse,
-  ShowSecuritySettingsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSecuritySettingsRequest,
-  output: SecuritySettingsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSessionError = ZendeskOpError;
-/** Show Session #### Allowed For * Admins, Agents, End users */
-export const showSession: API.OperationMethod<
-  ShowSessionRequest,
-  SessionResponse,
-  ShowSessionError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSessionRequest,
-  output: SessionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSharingAgreementError = ZendeskOpError;
-/** Show a Sharing Agreement Returns a sharing agreement for your account. #### Allowed For * Agents */
-export const showSharingAgreement: API.OperationMethod<
-  ShowSharingAgreementRequest,
-  SharingAgreementResponse,
-  ShowSharingAgreementError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSharingAgreementRequest,
-  output: SharingAgreementResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSLAPolicyError = ZendeskOpError;
-/** Show SLA Policy #### Availability * Accounts on the Support Professional or Suite Growth plan or above #### Allowed For * Admins */
-export const showSLAPolicy: API.OperationMethod<
-  ShowSLAPolicyRequest,
-  SLAPolicyResponse,
-  ShowSLAPolicyError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSLAPolicyRequest,
-  output: SLAPolicyResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSupportAddressError = ZendeskOpError;
-/** Show Support Address #### Allowed For * Admins * Agents */
-export const showSupportAddress: API.OperationMethod<
-  ShowSupportAddressRequest,
-  SupportAddressResponse,
-  ShowSupportAddressError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSupportAddressRequest,
-  output: SupportAddressResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowSuspendedTicketsError = ZendeskOpError;
-/** Show Suspended Ticket #### Allowed For * Admins and [agents in custom roles with permission](https://support.zendesk.com/hc/en-us/articles/4408882153882#topic_cxn_hig_bd) to manage suspended tickets on Enterprise plans * Unrestricted agents on all other plans */
-export const showSuspendedTickets: API.OperationMethod<
-  ShowSuspendedTicketsRequest,
-  SuspendedTicketsResponse,
-  ShowSuspendedTicketsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowSuspendedTicketsRequest,
-  output: SuspendedTicketsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTargetError = ZendeskOpError;
-/** Show Target #### Allowed For * Agents */
-export const showTarget: API.OperationMethod<
-  ShowTargetRequest,
-  TargetResponse,
-  ShowTargetError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTargetRequest,
-  output: TargetResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTargetFailureError = ZendeskOpError;
-/** Show Target Failure #### Stability * Development #### Allowed For * Admins */
-export const showTargetFailure: API.OperationMethod<
-  ShowTargetFailureRequest,
-  TargetFailureResponse,
-  ShowTargetFailureError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTargetFailureRequest,
-  output: TargetFailureResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTaskItemError = ZendeskOpError;
-/** Show Task Item Returns the task item with the specified id. Works for both template-based and custom task items. #### Allowed For * Agents */
-export const showTaskItem: API.OperationMethod<
-  ShowTaskItemRequest,
-  TaskItemInstanceResponse,
-  ShowTaskItemError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTaskItemRequest,
-  output: TaskItemInstanceResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTaskListInstanceError = ZendeskOpError;
-/** Show Task List Returns the task list with the specified id. The response includes `is_completed`, which indicates whether all task items in the list have been completed. Works for both template-based and custom task lists. #### Allowed For * Agents */
-export const showTaskListInstance: API.OperationMethod<
-  ShowTaskListInstanceRequest,
-  TaskListInstanceResponse,
-  ShowTaskListInstanceError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTaskListInstanceRequest,
-  output: TaskListInstanceResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTaskListsForTicketError = ZendeskOpError;
-/** Show Task Lists for Ticket Returns the task lists attached to the specified ticket. If the ticket has no task lists attached, the `task_lists` array in the response will be empty. #### Allowed For * Agents */
-export const showTaskListsForTicket: API.OperationMethod<
-  ShowTaskListsForTicketRequest,
-  TaskListByTicketIdResponse,
-  ShowTaskListsForTicketError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTaskListsForTicketRequest,
-  output: TaskListByTicketIdResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTaskListTemplateError = ZendeskOpError;
-/** Show Task List Template Returns the task list template with the specified id. The template's tasks aren't included in the response. #### Allowed For * Agents */
-export const showTaskListTemplate: API.OperationMethod<
-  ShowTaskListTemplateRequest,
-  TaskListTemplateResponse,
-  ShowTaskListTemplateError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTaskListTemplateRequest,
-  output: TaskListTemplateResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketError = ZendeskOpError;
-/** Show Ticket Returns a number of ticket properties, but doesn't include the full comment thread. The initial comment is available in the ticket's [description property](/api-reference/ticketing/tickets/tickets/#json-format). To retrieve all the ticket's comments, use [List Comments](/api-reference/ticketing/tickets/ticket_comments/#list-comments). #### Allowed For * Agents */
-export const showTicket: API.OperationMethod<
-  ShowTicketRequest,
-  TicketResponseOutput,
-  ShowTicketError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketRequest,
-  output: TicketResponseOutput,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketAfterChangesError = ZendeskOpError;
-/** Show Ticket After Changes Returns the full ticket object as it would be after applying the macro to the ticket. It doesn't actually change the ticket. To get only the ticket fields that would be changed by the macro, see [Show Changes to Ticket](#show-changes-to-ticket). #### Allowed For * Agents */
-export const showTicketAfterChanges: API.OperationMethod<
-  ShowTicketAfterChangesRequest,
-  MacroApplyTicketResponse,
-  ShowTicketAfterChangesError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketAfterChangesRequest,
-  output: MacroApplyTicketResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketAuditError = ZendeskOpError;
-/** Show Audit #### Allowed for * Agents */
-export const showTicketAudit: API.OperationMethod<
-  ShowTicketAuditRequest,
-  TicketAuditResponse,
-  ShowTicketAuditError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketAuditRequest,
-  output: TicketAuditResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketByMessagingConversationIdError =
-  | NotFound
-  | ZendeskOpError;
-/** Show Ticket by Messaging Conversation ID Returns the active ticket associated with the given Sunshine Conversations conversation id. A ticket is considered active when it's open and the messaging session is still in progress. A ticket becomes inactive when any of the following occur: * The ticket is closed * An agent ends the messaging session * A trigger ends the messaging session #### Allowed For * Agents with the `view_private_content` permission */
-export const showTicketByMessagingConversationId: API.OperationMethod<
-  ShowTicketByMessagingConversationIdRequest,
-  TicketResponseOutput,
-  ShowTicketByMessagingConversationIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketByMessagingConversationIdRequest,
-  output: TicketResponseOutput,
-  errors: [NotFound, UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketfieldError = ZendeskOpError;
-/** Show Ticket Field #### Allowed for * Agents #### Sideloads The following sideloads are supported: */
-export const showTicketfield: API.OperationMethod<
-  ShowTicketfieldRequest,
-  TicketFieldResponse,
-  ShowTicketfieldError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketfieldRequest,
-  output: TicketFieldResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketFieldOptionError = ZendeskOpError;
-/** Show Ticket Field Option #### Allowed for * Agents */
-export const showTicketFieldOption: API.OperationMethod<
-  ShowTicketFieldOptionRequest,
-  CustomFieldOptionResponse,
-  ShowTicketFieldOptionError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketFieldOptionRequest,
-  output: CustomFieldOptionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketFormError = ZendeskOpError;
-/** Show Ticket Form #### Allowed For * Admins, Agents, and End Users */
-export const showTicketForm: API.OperationMethod<
-  ShowTicketFormRequest,
-  TicketFormResponse,
-  ShowTicketFormError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketFormRequest,
-  output: TicketFormResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketMetricsError = ZendeskOpError;
-/** Show Ticket Metrics Returns a specific metric, or the metrics of a specific ticket. #### Pagination - Cursor pagination (recommended) - Offset pagination See [Pagination](/api-reference/introduction/pagination/). Returns a maximum of 100 records per page. #### Allowed For * Agents */
-export const showTicketMetrics: API.OperationMethod<
-  ShowTicketMetricsRequest,
-  TicketMetricsByTicketMetricIdResponse,
-  ShowTicketMetricsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketMetricsRequest,
-  output: TicketMetricsByTicketMetricIdResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTicketMetricsByTicketError = ZendeskOpError;
-/** Show Ticket Metrics By Ticket Returns the metrics for a specific ticket. #### Allowed For * Agents */
-export const showTicketMetricsByTicket: API.OperationMethod<
-  ShowTicketMetricsByTicketRequest,
-  TicketMetricsByTicketMetricIdResponse,
-  ShowTicketMetricsByTicketError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTicketMetricsByTicketRequest,
-  output: TicketMetricsByTicketMetricIdResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTokenError = ZendeskOpError;
-/** Show Token Returns the properties of the specified token. For security reasons, only the first 10 characters of the access token are included. In the first endpoint, `id` is a token id, not the full token. In the second endpoint, include an `Authorization: Bearer` header with the full token to get its associated properties. Example: ```sh curl https://{subdomain}.zendesk.com/api/v2/oauth/tokens/current \ -H 'Authorization: Bearer ${authToken}' \ -v -u {email_address}/token:{api_token} ``` #### Allowed for * Admins, Agents, End Users */
-export const showToken: API.OperationMethod<
-  ShowTokenRequest,
-  OAuthTokenResponse,
-  ShowTokenError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTokenRequest,
-  output: OAuthTokenResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTriggerCategoryByIdError = NotFound | ZendeskOpError;
-/** Show Ticket Trigger Category Returns the ticket trigger category with the specified ID. */
-export const showTriggerCategoryById: API.OperationMethod<
-  ShowTriggerCategoryByIdRequest,
-  TriggerCategoryResponse,
-  ShowTriggerCategoryByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTriggerCategoryByIdRequest,
-  output: TriggerCategoryResponse,
-  errors: [NotFound, UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowTriggerLimitsError = ZendeskOpError;
-/** Show Ticket Trigger Limits Returns the number of active ticket triggers on the account and the maximum number of active ticket triggers allowed on the account's plan. #### Allowed For * Agents */
-export const showTriggerLimits: API.OperationMethod<
-  ShowTriggerLimitsRequest,
-  TriggerLimitsResponse,
-  ShowTriggerLimitsError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowTriggerLimitsRequest,
-  output: TriggerLimitsResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserError = ZendeskOpError;
-/** Show User #### Allowed For * Agents */
-export const showUser: API.OperationMethod<
-  ShowUserRequest,
-  UserResponse,
-  ShowUserError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserRequest,
-  output: UserResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserBrandAgentByIdError = ZendeskOpError;
-/** Show Brand Agent Membership By User Returns a specific brand agent membership for a user. #### Allowed For * Admins */
-export const showUserBrandAgentById: API.OperationMethod<
-  ShowUserBrandAgentByIdRequest,
-  BrandAgentResponse,
-  ShowUserBrandAgentByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserBrandAgentByIdRequest,
-  output: BrandAgentResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserComplianceDeletionStatusesError = ZendeskOpError;
-/** Show Compliance Deletion Statuses Returns the GDPR status for each user per area of compliance. A Zendesk area of compliance is typically a product like "support/explore" but can be more fine-grained for areas within the product lines. If the user is not in the account, the request returns a 404 status. ```http Status: 404 { "error":"RecordNotFound", "description":"Not found" } ``` #### Allowed For * Agents, with restrictions #### Pagination * Cursor pagination (recommended) * Offset pagination See [Pagination](/api-reference/introduction/pagination/). */
-export const showUserComplianceDeletionStatuses: API.OperationMethod<
-  ShowUserComplianceDeletionStatusesRequest,
-  ComplianceDeletionStatusesResponse,
-  ShowUserComplianceDeletionStatusesError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserComplianceDeletionStatusesRequest,
-  output: ComplianceDeletionStatusesResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserFieldError = ZendeskOpError;
-/** Show User Field #### Allowed for * Agents */
-export const showUserField: API.OperationMethod<
-  ShowUserFieldRequest,
-  UserFieldResponse,
-  ShowUserFieldError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserFieldRequest,
-  output: UserFieldResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserFieldOptionError = ZendeskOpError;
-/** Show a User Field Option #### Allowed for * Agents */
-export const showUserFieldOption: API.OperationMethod<
-  ShowUserFieldOptionRequest,
-  CustomFieldOptionResponse,
-  ShowUserFieldOptionError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserFieldOptionRequest,
-  output: CustomFieldOptionResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserGroupMembershipByIdError = ZendeskOpError;
-/** Show User's Group Membership Returns a specific group membership for a user. #### Allowed For * Agents */
-export const showUserGroupMembershipById: API.OperationMethod<
-  ShowUserGroupMembershipByIdRequest,
-  GroupMembershipResponse,
-  ShowUserGroupMembershipByIdError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserGroupMembershipByIdRequest,
-  output: GroupMembershipResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserIdentityError = ZendeskOpError;
-/** Show Identity Shows the identity with the given id for a given user. Use the first endpoint if authenticating as an agent. Use the second if authenticating as an end user. End users can only view email or phone number identity. #### Allowed For * Agents * Verified end users */
-export const showUserIdentity: API.OperationMethod<
-  ShowUserIdentityRequest,
-  UserIdentityResponse,
-  ShowUserIdentityError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserIdentityRequest,
-  output: UserIdentityResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowUserRelatedError = ZendeskOpError;
-/** Show User Related Information */
-export const showUserRelated: API.OperationMethod<
-  ShowUserRelatedRequest,
-  UserRelatedResponse,
-  ShowUserRelatedError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowUserRelatedRequest,
-  output: UserRelatedResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowViewError = ZendeskOpError;
-/** Show View In addition to numeric IDs, the `view_id` path parameter accepts the string aliases `"incoming"`, `"my"`, and `"my_groups"` to retrieve the corresponding built-in views. #### Allowed For * Agents */
-export const showView: API.OperationMethod<
-  ShowViewRequest,
-  ViewResponse,
-  ShowViewError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowViewRequest,
-  output: ViewResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShowWorkspaceError = ZendeskOpError;
-/** Show Workspace #### Allowed For * Admins */
-export const showWorkspace: API.OperationMethod<
-  ShowWorkspaceRequest,
-  ShowWorkspaceResponse,
-  ShowWorkspaceError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShowWorkspaceRequest,
-  output: ShowWorkspaceResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SuspendedTicketsAttachmentsError = ZendeskOpError;
 /** Suspended Ticket Attachments Makes copies of any attachments on a suspended ticket and returns them as [attachment tokens](/api-reference/ticketing/tickets/ticket-attachments/). If the ticket is manually recovered, you can include the attachment tokens on the new ticket. #### Allowed For * Admins and [agents in custom roles with permission](https://support.zendesk.com/hc/en-us/articles/4408882153882#topic_cxn_hig_bd) to manage suspended tickets on Enterprise plans * Unrestricted agents on all other plans */
 export const suspendedTicketsAttachments: API.OperationMethod<
@@ -41323,21 +41332,6 @@ export const ticketFormTicketFormStatuses: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TicketFormTicketFormStatusesRequest,
   output: TicketFormStatusesResponse,
-  errors: [UnknownZendeskError],
-  protocol: ZendeskProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TicketImportError = ZendeskOpError;
-/** Ticket Import #### Allowed For * Admins */
-export const ticketImport: API.OperationMethod<
-  TicketImportRequest,
-  TicketResponseOutput,
-  TicketImportError,
-  ZendeskOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TicketImportRequest,
-  output: TicketResponseOutput,
   errors: [UnknownZendeskError],
   protocol: ZendeskProtocol,
   retry: Retry.Retry,
