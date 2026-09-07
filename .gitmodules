@@ -128,3 +128,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-modal.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/polar/specs/spec-mirror-polar"]
+	path = packages/polar/specs/spec-mirror-polar
+	url = https://github.com/distilled-mirror/spec-mirror-polar.git
+	ignore = dirty
+	shallow = true
