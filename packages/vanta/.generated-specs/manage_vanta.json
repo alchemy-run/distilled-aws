@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vanta.manage_vanta#ListContractsRequest": {
@@ -27960,7 +27961,7 @@
         "smithy.api#documentation": "List assessment types\n\nLists the domain's assessment types. Returns both active and archived\ntypes by default; pass the `status` query parameter to filter server-side."
       }
     },
-    "com.vanta.manage_vanta#GetVendorAssessmentTypeByIdRequest": {
+    "com.vanta.manage_vanta#GetVendorAssessmentTypeRequest": {
       "type": "structure",
       "members": {
         "assessmentTypeId": {
@@ -27975,10 +27976,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.vanta.manage_vanta#GetVendorAssessmentTypeById": {
+    "com.vanta.manage_vanta#GetVendorAssessmentType": {
       "type": "operation",
       "input": {
-        "target": "com.vanta.manage_vanta#GetVendorAssessmentTypeByIdRequest"
+        "target": "com.vanta.manage_vanta#GetVendorAssessmentTypeRequest"
       },
       "output": {
         "target": "com.vanta.manage_vanta#VendorAssessmentType"
@@ -32253,7 +32254,7 @@
           "target": "com.vanta.manage_vanta#ListVendorAssessmentTypes"
         },
         {
-          "target": "com.vanta.manage_vanta#GetVendorAssessmentTypeById"
+          "target": "com.vanta.manage_vanta#GetVendorAssessmentType"
         },
         {
           "target": "com.vanta.manage_vanta#ListVendorRiskAttributes"

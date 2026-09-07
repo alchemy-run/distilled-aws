@@ -4326,6 +4326,23 @@ export const PaginatedResponseRiskSnapshot = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedResponseRiskSnapshot",
 }) as any as S.Schema<PaginatedResponseRiskSnapshot>;
 
+export interface ListShareInformationRequestRequest {
+  auditId: string;
+}
+export const ListShareInformationRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    auditId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/audits/{auditId}/share-information-request-list",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListShareInformationRequestRequest",
+}) as any as S.Schema<ListShareInformationRequestRequest>;
+
 export type AuditVendorStatus = "ACTIVE" | "ARCHIVED" | "IN_PROCUREMENT";
 export const AuditVendorStatus = /*@__PURE__*/ S.String;
 
@@ -4480,23 +4497,6 @@ export const PaginatedResponseAuditVendor = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PaginatedResponseAuditVendor",
 }) as any as S.Schema<PaginatedResponseAuditVendor>;
-
-export interface ShareInformationRequestListRequest {
-  auditId: string;
-}
-export const ShareInformationRequestListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    auditId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/audits/{auditId}/share-information-request-list",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ShareInformationRequestListRequest",
-}) as any as S.Schema<ShareInformationRequestListRequest>;
 
 export type AuditorEnabledStateTransition =
   | "ACCEPT"
@@ -5373,6 +5373,21 @@ export const listRiskSnapshots: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListShareInformationRequestError = VantaOpError;
+/** Share information request list with customer Shares the current information request list for an audit with the customer organization, making it visible in their portal. This action allows the customer to see all information requests that have been created for their audit. Only IRL audits are supported. Rate limit: 50 requests / minute. */
+export const listShareInformationRequest: API.OperationMethod<
+  ListShareInformationRequestRequest,
+  Audit,
+  ListShareInformationRequestError,
+  VantaOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareInformationRequestRequest,
+  output: Audit,
+  errors: [UnknownVantaError],
+  protocol: VantaProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVendorsError = VantaOpError;
 /** List vendors for an audit Retrieves vendor population data for an audit. This endpoint provides access to vendor records visible to auditors during an audit engagement. Supports filtering by: - `search`: Searches vendor names (case-insensitive) - `vendorStatusesMatchesAny`: Filters by vendor status (ACTIVE, ARCHIVED, IN_PROCUREMENT) - `inherentRiskMatchesAny`: Filters by inherent risk level Results are sorted by name (ascending) by default. Use `orderBy` and `orderDirection` to customize sorting. Sort parameters must remain consistent across paginated requests. Uses cursor-based pagination. To paginate: 1. Make initial request with desired `pageSize` 2. Check `results.pageInfo.hasNextPage` 3. Use `results.pageInfo.endCursor` as `pageCursor` for next request Rate limit: 10 requests / minute. */
 export const listVendors: API.OperationMethod<
@@ -5383,21 +5398,6 @@ export const listVendors: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVendorsRequest,
   output: PaginatedResponseAuditVendor,
-  errors: [UnknownVantaError],
-  protocol: VantaProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareInformationRequestListError = VantaOpError;
-/** Share information request list with customer Shares the current information request list for an audit with the customer organization, making it visible in their portal. This action allows the customer to see all information requests that have been created for their audit. Only IRL audits are supported. Rate limit: 50 requests / minute. */
-export const shareInformationRequestList: API.OperationMethod<
-  ShareInformationRequestListRequest,
-  Audit,
-  ShareInformationRequestListError,
-  VantaOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareInformationRequestListRequest,
-  output: Audit,
   errors: [UnknownVantaError],
   protocol: VantaProtocol,
   retry: Retry.Retry,

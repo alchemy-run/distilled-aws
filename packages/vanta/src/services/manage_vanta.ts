@@ -8720,10 +8720,10 @@ export const GetVendorRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVendorRequest",
 }) as any as S.Schema<GetVendorRequest>;
 
-export interface GetVendorAssessmentTypeByIdRequest {
+export interface GetVendorAssessmentTypeRequest {
   assessmentTypeId: string;
 }
-export const GetVendorAssessmentTypeByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetVendorAssessmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     assessmentTypeId: S.String.pipe(T.Label()),
   }).pipe(
@@ -8734,8 +8734,8 @@ export const GetVendorAssessmentTypeByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetVendorAssessmentTypeByIdRequest",
-}) as any as S.Schema<GetVendorAssessmentTypeByIdRequest>;
+  identifier: "GetVendorAssessmentTypeRequest",
+}) as any as S.Schema<GetVendorAssessmentTypeRequest>;
 
 /** The lifecycle status of a vendor assessment type: - ACTIVE: The assessment type is available for use. - ARCHIVED: The assessment type has been archived and is kept for historical reference. */
 export type VendorAssessmentTypeLifecycleStatus = "ACTIVE" | "ARCHIVED";
@@ -17019,15 +17019,15 @@ export const getVendor: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVendorAssessmentTypeByIdError = VantaOpError;
+export type GetVendorAssessmentTypeError = VantaOpError;
 /** Get assessment type by ID Gets an assessment type by ID. */
-export const getVendorAssessmentTypeById: API.OperationMethod<
-  GetVendorAssessmentTypeByIdRequest,
+export const getVendorAssessmentType: API.OperationMethod<
+  GetVendorAssessmentTypeRequest,
   VendorAssessmentType,
-  GetVendorAssessmentTypeByIdError,
+  GetVendorAssessmentTypeError,
   VantaOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVendorAssessmentTypeByIdRequest,
+  input: GetVendorAssessmentTypeRequest,
   output: VendorAssessmentType,
   errors: [UnknownVantaError],
   protocol: VantaProtocol,
