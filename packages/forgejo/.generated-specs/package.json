@@ -1,0 +1,1334 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.forgejo.package#ListPackagesRequestType": {
+      "type": "enum",
+      "members": {
+        "ALPINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alpine"
+          }
+        },
+        "CARGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cargo"
+          }
+        },
+        "CHEF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "chef"
+          }
+        },
+        "COMPOSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "composer"
+          }
+        },
+        "CONAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "conan"
+          }
+        },
+        "CONDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "conda"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        },
+        "CRAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cran"
+          }
+        },
+        "DEBIAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "debian"
+          }
+        },
+        "GENERIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "generic"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "go"
+          }
+        },
+        "HELM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "helm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "PUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pub"
+          }
+        },
+        "PYPI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pypi"
+          }
+        },
+        "RPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rpm"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "SWIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "swift"
+          }
+        },
+        "VAGRANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vagrant"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#ListPackagesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the packages"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        },
+        "type": {
+          "target": "com.forgejo.package#ListPackagesRequestType",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "package type filter"
+          }
+        },
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#documentation": "name filter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.package#Package": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "creator": {
+          "target": "com.forgejo.package#User"
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "com.forgejo.package#User"
+        },
+        "repository": {
+          "target": "com.forgejo.package#Repository"
+        },
+        "type": {
+          "target": "smithy.api#String"
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Package represents a package"
+      }
+    },
+    "com.forgejo.package#User": {
+      "type": "structure",
+      "members": {
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user active"
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's avatar"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's description"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "followers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "user counts"
+          }
+        },
+        "following_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's full name"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's profile page"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the user's id",
+            "smithy.api#required": {}
+          }
+        },
+        "is_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is the user an administrator"
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User locale"
+          }
+        },
+        "last_login": {
+          "target": "smithy.api#String"
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's location"
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's username",
+            "smithy.api#required": {}
+          }
+        },
+        "login_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's authentication sign-in name."
+          }
+        },
+        "prohibit_login": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user login prohibited"
+          }
+        },
+        "pronouns": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's pronouns"
+          }
+        },
+        "restricted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user restricted"
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user's Authentication Source"
+          }
+        },
+        "starred_repos_count": {
+          "target": "smithy.api#Integer"
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User visibility level option: public, limited, private"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's website"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User represents a user"
+      }
+    },
+    "com.forgejo.package#Repository": {
+      "type": "structure",
+      "members": {
+        "allow_fast_forward_only_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_merge_commits": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_explicit": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_update": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_squash_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived_at": {
+          "target": "smithy.api#String"
+        },
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "clone_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_allow_maintainer_edit": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_delete_branch_after_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_merge_style": {
+          "target": "smithy.api#String"
+        },
+        "default_update_style": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "empty": {
+          "target": "smithy.api#Boolean"
+        },
+        "external_tracker": {
+          "target": "com.forgejo.package#ExternalTracker"
+        },
+        "external_wiki": {
+          "target": "com.forgejo.package#ExternalWiki"
+        },
+        "fork": {
+          "target": "smithy.api#Boolean"
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "globally_editable_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_actions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_packages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_releases": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "is the wiki enabled"
+          }
+        },
+        "has_wiki_contents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "have wiki pages ever been created"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ignore_whitespace_conflicts": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal_tracker": {
+          "target": "com.forgejo.package#InternalTracker"
+        },
+        "language": {
+          "target": "smithy.api#String"
+        },
+        "languages_url": {
+          "target": "smithy.api#String"
+        },
+        "link": {
+          "target": "smithy.api#String"
+        },
+        "mirror": {
+          "target": "smithy.api#Boolean"
+        },
+        "mirror_interval": {
+          "target": "smithy.api#String"
+        },
+        "mirror_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "object_format_name": {
+          "target": "com.forgejo.package#RepositoryObjectFormatName",
+          "traits": {
+            "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+          }
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "open_pr_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "original_url": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "com.forgejo.package#User",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "parent": {
+          "target": "com.forgejo.package#Repository"
+        },
+        "permissions": {
+          "target": "com.forgejo.package#Permission"
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "release_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "repo_transfer": {
+          "target": "com.forgejo.package#RepoTransfer"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "ssh_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stars_count": {
+          "target": "smithy.api#Integer"
+        },
+        "template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.forgejo.package#RepositoryTopicsList"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        },
+        "wiki_branch": {
+          "target": "smithy.api#String"
+        },
+        "wiki_clone_url": {
+          "target": "smithy.api#String"
+        },
+        "wiki_ssh_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repository represents a repository"
+      }
+    },
+    "com.forgejo.package#ExternalTracker": {
+      "type": "structure",
+      "members": {
+        "external_tracker_format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker URL Format. Use the placeholders {user}, {repo} and {index} for the username, repository name and issue index."
+          }
+        },
+        "external_tracker_regexp_pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker issue regular expression"
+          }
+        },
+        "external_tracker_style": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker Number Format, either `numeric`, `alphanumeric`, or `regexp`"
+          }
+        },
+        "external_tracker_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external issue tracker."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalTracker represents settings for external tracker"
+      }
+    },
+    "com.forgejo.package#ExternalWiki": {
+      "type": "structure",
+      "members": {
+        "external_wiki_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external wiki."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalWiki represents setting for external wiki"
+      }
+    },
+    "com.forgejo.package#InternalTracker": {
+      "type": "structure",
+      "members": {
+        "allow_only_contributors_to_track_time": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Let only contributors track time (Built-in issue tracker)"
+          }
+        },
+        "enable_issue_dependencies": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable dependencies for issues and pull requests (Built-in issue tracker)"
+          }
+        },
+        "enable_time_tracker": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable time tracking (Built-in issue tracker)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "InternalTracker represents settings for internal tracker"
+      }
+    },
+    "com.forgejo.package#RepositoryObjectFormatName": {
+      "type": "enum",
+      "members": {
+        "SHA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha1"
+          }
+        },
+        "SHA256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha256"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+      }
+    },
+    "com.forgejo.package#Permission": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permission represents a set of permissions"
+      }
+    },
+    "com.forgejo.package#RepoTransfer": {
+      "type": "structure",
+      "members": {
+        "doer": {
+          "target": "com.forgejo.package#User"
+        },
+        "recipient": {
+          "target": "com.forgejo.package#User"
+        },
+        "teams": {
+          "target": "com.forgejo.package#RepoTransferTeamsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RepoTransfer represents a pending repo transfer"
+      }
+    },
+    "com.forgejo.package#Team": {
+      "type": "structure",
+      "members": {
+        "can_create_org_repo": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "includes_all_repositories": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "com.forgejo.package#Organization"
+        },
+        "permission": {
+          "target": "com.forgejo.package#TeamPermission"
+        },
+        "units": {
+          "target": "com.forgejo.package#TeamUnitsList"
+        },
+        "units_map": {
+          "target": "com.forgejo.package#TeamUnitsMapMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team represents a team in an organization"
+      }
+    },
+    "com.forgejo.package#Organization": {
+      "type": "structure",
+      "members": {
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "repo_admin_change_team_access": {
+          "target": "smithy.api#Boolean"
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "deprecated",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization represents an organization"
+      }
+    },
+    "com.forgejo.package#TeamPermission": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owner"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#TeamUnitsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#TeamUnitsMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#RepoTransferTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.package#Team"
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#RepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#ListPackagesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.package#Package"
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#ListPackagesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.package#ListPackagesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.package#ListPackages": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.package#ListPackagesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.package#ListPackagesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.package#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/packages/{owner}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets all packages of an owner"
+      }
+    },
+    "com.forgejo.package#LinkPackageRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the package"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "type of the package"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the package"
+          }
+        },
+        "repo_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repository to link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.package#LinkPackage": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.package#LinkPackageRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.package#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/packages/{owner}/{type}/{name}/-/link/{repo_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Link a package to a repository"
+      }
+    },
+    "com.forgejo.package#UnlinkPackageRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the package"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "type of the package"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the package"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.package#UnlinkPackage": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.package#UnlinkPackageRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.package#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/packages/{owner}/{type}/{name}/-/unlink",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unlink a package from a repository"
+      }
+    },
+    "com.forgejo.package#GetPackageRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the package"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "type of the package"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the package"
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "version of the package"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.package#GetPackage": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.package#GetPackageRequest"
+      },
+      "output": {
+        "target": "com.forgejo.package#Package"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.package#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/packages/{owner}/{type}/{name}/{version}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a package"
+      }
+    },
+    "com.forgejo.package#DeletePackageRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the package"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "type of the package"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the package"
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "version of the package"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.package#DeletePackage": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.package#DeletePackageRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.package#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/packages/{owner}/{type}/{name}/{version}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a package"
+      }
+    },
+    "com.forgejo.package#ListPackageFilesRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the package"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "type of the package"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the package"
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "version of the package"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.package#PackageFile": {
+      "type": "structure",
+      "members": {
+        "Size": {
+          "target": "smithy.api#Integer"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "md5": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "sha1": {
+          "target": "smithy.api#String"
+        },
+        "sha256": {
+          "target": "smithy.api#String"
+        },
+        "sha512": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PackageFile represents a package file"
+      }
+    },
+    "com.forgejo.package#ListPackageFilesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.package#PackageFile"
+      },
+      "traits": {}
+    },
+    "com.forgejo.package#ListPackageFilesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.package#ListPackageFilesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.package#ListPackageFiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.package#ListPackageFilesRequest"
+      },
+      "output": {
+        "target": "com.forgejo.package#ListPackageFilesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.package#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/packages/{owner}/{type}/{name}/{version}/files",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets all files of a package"
+      }
+    },
+    "com.forgejo.package#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.forgejo.package#ForgejoPackage": {
+      "type": "service",
+      "version": "16.0.3",
+      "operations": [
+        {
+          "target": "com.forgejo.package#ListPackages"
+        },
+        {
+          "target": "com.forgejo.package#LinkPackage"
+        },
+        {
+          "target": "com.forgejo.package#UnlinkPackage"
+        },
+        {
+          "target": "com.forgejo.package#GetPackage"
+        },
+        {
+          "target": "com.forgejo.package#DeletePackage"
+        },
+        {
+          "target": "com.forgejo.package#ListPackageFiles"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Forgejo API",
+        "smithy.api#documentation": "This documentation describes the Forgejo API."
+      }
+    }
+  }
+}

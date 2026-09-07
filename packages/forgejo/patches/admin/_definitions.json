@@ -1,0 +1,15 @@
+{
+  "description": "Mark the always-present members of the AccessToken definition as required, and its `sha1` sensitive. Forgejo's Swagger is generated from Go structs with no `required` lists at all, so a token's `id`, `name`, `token_last_eight` and `created_at` type as optional even though they are plain struct members serialized on every response. `sha1` is the generated secret, returned only by the create response and empty on every later read — it stays optional, but is flagged sensitive so the SDK hands it out Redacted.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/AccessToken/required",
+      "value": ["id", "name", "token_last_eight", "created_at"]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/AccessToken/properties/sha1/x-sensitive",
+      "value": true
+    }
+  ]
+}

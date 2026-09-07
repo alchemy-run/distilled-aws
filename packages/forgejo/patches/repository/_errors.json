@@ -1,0 +1,30 @@
+{
+  "description": "Declare the failures Forgejo's repository list endpoints produce in practice but the Swagger document leaves out. Hooks, Actions secrets and Actions variables answer 403 for a credential that cannot administer the repository, and the branch-protection list — the one repository list declared with no failure at all — answers 404 for a missing repository and 403 for one the token cannot read, exactly as its sibling single-rule endpoints declare. Undeclared, these surface as out-of-union Forbidden/NotFound errors that a caller sweeping every accessible repository cannot skip without loosening types.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1repos~1{owner}~1{repo}~1hooks/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1repos~1{owner}~1{repo}~1actions~1secrets/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1repos~1{owner}~1{repo}~1actions~1variables/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1repos~1{owner}~1{repo}~1branch_protections/get/responses/403",
+      "value": { "$ref": "#/responses/forbidden" }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1repos~1{owner}~1{repo}~1branch_protections/get/responses/404",
+      "value": { "$ref": "#/responses/notFound" }
+    }
+  ]
+}

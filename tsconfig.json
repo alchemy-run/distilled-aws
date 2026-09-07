@@ -51,6 +51,8 @@
     { "path": "./packages/vercel/tsconfig.json" },
     { "path": "./packages/vercel/tsconfig.scripts.json" },
     { "path": "./packages/workos/tsconfig.json" },
-    { "path": "./packages/workos/tsconfig.scripts.json" }
+    { "path": "./packages/workos/tsconfig.scripts.json" },
+    { "path": "./packages/forgejo/tsconfig.json" },
+    { "path": "./packages/forgejo/tsconfig.scripts.json" }
   ]
 }

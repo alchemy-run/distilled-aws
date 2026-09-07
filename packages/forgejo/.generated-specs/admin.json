@@ -1,0 +1,4677 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.forgejo.admin#GetAdminRunnersRequest": {
+      "type": "structure",
+      "members": {
+        "visible": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "visible",
+            "smithy.api#documentation": "whether to include all visible runners (true) or only those that are directly owned by the instance (false)"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#ActionRunner": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description provides optional details about this runner."
+          }
+        },
+        "ephemeral": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if runner is ephemeral runner"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID uniquely identifies this runner."
+          }
+        },
+        "labels": {
+          "target": "com.forgejo.admin#ActionRunnerLabelsList",
+          "traits": {
+            "smithy.api#documentation": "Labels is a list of labels attached to this runner."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the runner; not unique."
+          }
+        },
+        "owner_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "OwnerID is the identifier of the user or organization this runner belongs to. O if the runner is owned by a\nrepository."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "RepoID is the identifier of the repository this runner belongs to. 0 if the runner belongs to a user or\norganization."
+          }
+        },
+        "status": {
+          "target": "com.forgejo.admin#ActionRunnerStatus",
+          "traits": {
+            "smithy.api#documentation": "Status indicates whether this runner is offline, or active, for example."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID uniquely identifies this runner."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version is the self-reported version string of Forgejo Runner."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ActionRunner represents a runner"
+      }
+    },
+    "com.forgejo.admin#ActionRunnerLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels is a list of labels attached to this runner."
+      }
+    },
+    "com.forgejo.admin#ActionRunnerStatus": {
+      "type": "enum",
+      "members": {
+        "OFFLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "offline"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status indicates whether this runner is offline, or active, for example."
+      }
+    },
+    "com.forgejo.admin#GetAdminRunnersResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#ActionRunner"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#GetAdminRunnersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#GetAdminRunnersResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#GetAdminRunners": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#GetAdminRunnersRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#GetAdminRunnersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/actions/runners",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all runners, no matter whether they are global runners or scoped to an organization, user, or repository"
+      }
+    },
+    "com.forgejo.admin#RegisterAdminRunnerRequest": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the runner to register."
+          }
+        },
+        "ephemeral": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Register as ephemeral runner https://forgejo.org/docs/latest/admin/actions/security/#ephemeral-runner"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the runner to register. The name of the runner does not have to be unique.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#RegisterRunnerResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "token": {
+          "target": "smithy.api#String"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#RegisterAdminRunner": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#RegisterAdminRunnerRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#RegisterRunnerResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/actions/runners",
+          "code": 200
+        },
+        "smithy.api#documentation": "Register a new global runner"
+      }
+    },
+    "com.forgejo.admin#AdminGetActionRunJobsRequest": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "labels",
+            "smithy.api#documentation": "a comma separated list of labels to search for"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#ActionRunJob": {
+      "type": "structure",
+      "members": {
+        "attempt": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "How many times the job has been attempted including the current attempt."
+          }
+        },
+        "handle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque identifier that uniquely identifies a single attempt of a job."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Identifier of this job."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the action run job name"
+          }
+        },
+        "needs": {
+          "target": "com.forgejo.admin#ActionRunJobNeedsList",
+          "traits": {
+            "smithy.api#documentation": "the action run job needed ids"
+          }
+        },
+        "owner_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the owner id"
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the repository id"
+          }
+        },
+        "run_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the workflow run this job belongs to."
+          }
+        },
+        "runs_on": {
+          "target": "com.forgejo.admin#ActionRunJobRunsOnList",
+          "traits": {
+            "smithy.api#documentation": "the action run job labels to run on"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the action run job status"
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the action run job latest task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ActionRunJob represents a job of a run"
+      }
+    },
+    "com.forgejo.admin#ActionRunJobNeedsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "the action run job needed ids"
+      }
+    },
+    "com.forgejo.admin#ActionRunJobRunsOnList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "the action run job labels to run on"
+      }
+    },
+    "com.forgejo.admin#AdminGetActionRunJobsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#ActionRunJob"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminGetActionRunJobsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminGetActionRunJobsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminGetActionRunJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminGetActionRunJobsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminGetActionRunJobsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/actions/runners/jobs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get action run jobs"
+      }
+    },
+    "com.forgejo.admin#GetAdminRunnerRequest": {
+      "type": "structure",
+      "members": {
+        "runner_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the runner"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#GetAdminRunner": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#GetAdminRunnerRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#ActionRunner"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/actions/runners/{runner_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a particular runner, no matter whether it is a global runner or scoped to an organization, user, or repository"
+      }
+    },
+    "com.forgejo.admin#DeleteAdminRunnerRequest": {
+      "type": "structure",
+      "members": {
+        "runner_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the runner"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#DeleteAdminRunner": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#DeleteAdminRunnerRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/actions/runners/{runner_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a particular runner, no matter whether it is a global runner or scoped to an organization, user, or repository"
+      }
+    },
+    "com.forgejo.admin#ListAdminCronRequest": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#Cron": {
+      "type": "structure",
+      "members": {
+        "exec_times": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "next": {
+          "target": "smithy.api#String"
+        },
+        "prev": {
+          "target": "smithy.api#String"
+        },
+        "schedule": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cron represents a Cron task"
+      }
+    },
+    "com.forgejo.admin#ListAdminCronResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#Cron"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#ListAdminCronResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#ListAdminCronResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#ListAdminCron": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#ListAdminCronRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#ListAdminCronResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/cron",
+          "code": 200
+        },
+        "smithy.api#documentation": "List cron tasks"
+      }
+    },
+    "com.forgejo.admin#RunAdminCronRequest": {
+      "type": "structure",
+      "members": {
+        "task": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "task to run"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#RunAdminCron": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#RunAdminCronRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/cron/{task}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Run cron task"
+      }
+    },
+    "com.forgejo.admin#AdminGetAllEmailsRequest": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#Email": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "primary": {
+          "target": "smithy.api#Boolean"
+        },
+        "user_id": {
+          "target": "smithy.api#Integer"
+        },
+        "username": {
+          "target": "smithy.api#String"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Email an email address belonging to a user"
+      }
+    },
+    "com.forgejo.admin#AdminGetAllEmailsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#Email"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminGetAllEmailsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminGetAllEmailsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminGetAllEmails": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminGetAllEmailsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminGetAllEmailsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/emails",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all users' email addresses"
+      }
+    },
+    "com.forgejo.admin#AdminSearchEmailsRequest": {
+      "type": "structure",
+      "members": {
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "q",
+            "smithy.api#documentation": "keyword"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminSearchEmailsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#Email"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminSearchEmailsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminSearchEmailsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminSearchEmails": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminSearchEmailsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminSearchEmailsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/emails/search",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search users' email addresses"
+      }
+    },
+    "com.forgejo.admin#AdminListHooksRequest": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#Hook": {
+      "type": "structure",
+      "members": {
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "authorization_header": {
+          "target": "smithy.api#String"
+        },
+        "branch_filter": {
+          "target": "smithy.api#String"
+        },
+        "config": {
+          "target": "com.forgejo.admin#HookConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: use Metadata instead"
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events": {
+          "target": "com.forgejo.admin#HookEventsList"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document"
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hook a hook is a web hook when one repository changed"
+      }
+    },
+    "com.forgejo.admin#HookConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Deprecated: use Metadata instead"
+      }
+    },
+    "com.forgejo.admin#HookEventsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminListHooksResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#Hook"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminListHooksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminListHooksResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminListHooks": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminListHooksRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminListHooksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/hooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List global (system) webhooks"
+      }
+    },
+    "com.forgejo.admin#CreateHookOptionConfig": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "CreateHookOptionConfig has all config options in it\nrequired are \"content_type\" and \"url\" Required"
+      }
+    },
+    "com.forgejo.admin#AdminCreateHookRequestEventsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminCreateHookRequestType": {
+      "type": "enum",
+      "members": {
+        "FORGEJO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "forgejo"
+          }
+        },
+        "DINGTALK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dingtalk"
+          }
+        },
+        "DISCORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "discord"
+          }
+        },
+        "GITEA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gitea"
+          }
+        },
+        "GOGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gogs"
+          }
+        },
+        "MSTEAMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "msteams"
+          }
+        },
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        },
+        "TELEGRAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "telegram"
+          }
+        },
+        "FEISHU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feishu"
+          }
+        },
+        "WECHATWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wechatwork"
+          }
+        },
+        "PACKAGIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "packagist"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminCreateHookRequest": {
+      "type": "structure",
+      "members": {
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "authorization_header": {
+          "target": "smithy.api#String"
+        },
+        "branch_filter": {
+          "target": "smithy.api#String"
+        },
+        "config": {
+          "target": "com.forgejo.admin#CreateHookOptionConfig",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events": {
+          "target": "com.forgejo.admin#AdminCreateHookRequestEventsList"
+        },
+        "type": {
+          "target": "com.forgejo.admin#AdminCreateHookRequestType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminCreateHook": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreateHookRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#Hook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/hooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a hook"
+      }
+    },
+    "com.forgejo.admin#AdminGetHookRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the hook to get"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminGetHook": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminGetHookRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#Hook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/hooks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a hook"
+      }
+    },
+    "com.forgejo.admin#AdminEditHookRequestConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminEditHookRequestEventsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminEditHookRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the hook to update"
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "authorization_header": {
+          "target": "smithy.api#String"
+        },
+        "branch_filter": {
+          "target": "smithy.api#String"
+        },
+        "config": {
+          "target": "com.forgejo.admin#AdminEditHookRequestConfigMap"
+        },
+        "events": {
+          "target": "com.forgejo.admin#AdminEditHookRequestEventsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminEditHook": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminEditHookRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#Hook"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/admin/hooks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a hook"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteHookRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the hook to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteHook": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteHookRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/hooks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a hook"
+      }
+    },
+    "com.forgejo.admin#AdminGetAllOrgsRequest": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#Organization": {
+      "type": "structure",
+      "members": {
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "repo_admin_change_team_access": {
+          "target": "smithy.api#Boolean"
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "deprecated",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization represents an organization"
+      }
+    },
+    "com.forgejo.admin#AdminGetAllOrgsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#Organization"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminGetAllOrgsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminGetAllOrgsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminGetAllOrgs": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminGetAllOrgsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminGetAllOrgsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/orgs",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all organizations"
+      }
+    },
+    "com.forgejo.admin#QuotaGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#QuotaGroup"
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaGroupList represents a list of quota groups"
+      }
+    },
+    "com.forgejo.admin#QuotaGroup": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the group"
+          }
+        },
+        "rules": {
+          "target": "com.forgejo.admin#QuotaGroupRulesList",
+          "traits": {
+            "smithy.api#documentation": "Rules associated with the group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaGroup represents a quota group"
+      }
+    },
+    "com.forgejo.admin#QuotaRuleInfo": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The limit set by the rule"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the rule (only shown to admins)"
+          }
+        },
+        "subjects": {
+          "target": "com.forgejo.admin#QuotaRuleInfoSubjectsList",
+          "traits": {
+            "smithy.api#documentation": "Subjects the rule affects"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaRuleInfo contains information about a quota rule"
+      }
+    },
+    "com.forgejo.admin#QuotaRuleInfoSubjectsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Subjects the rule affects"
+      }
+    },
+    "com.forgejo.admin#QuotaGroupRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#QuotaRuleInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "Rules associated with the group"
+      }
+    },
+    "com.forgejo.admin#AdminListQuotaGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#QuotaGroupList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminListQuotaGroups": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminListQuotaGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/quota/groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the available quota groups"
+      }
+    },
+    "com.forgejo.admin#CreateQuotaRuleOptions": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The limit set by the rule"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the rule to create"
+          }
+        },
+        "subjects": {
+          "target": "com.forgejo.admin#CreateQuotaRuleOptionsSubjectsList",
+          "traits": {
+            "smithy.api#documentation": "The subjects affected by the rule"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CreateQuotaRuleOptions represents the options for creating a quota rule"
+      }
+    },
+    "com.forgejo.admin#CreateQuotaRuleOptionsSubjectsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The subjects affected by the rule"
+      }
+    },
+    "com.forgejo.admin#AdminCreateQuotaGroupRequestRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#CreateQuotaRuleOptions"
+      },
+      "traits": {
+        "smithy.api#documentation": "Rules to add to the newly created group.\nIf a rule does not exist, it will be created."
+      }
+    },
+    "com.forgejo.admin#AdminCreateQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the quota group to create"
+          }
+        },
+        "rules": {
+          "target": "com.forgejo.admin#AdminCreateQuotaGroupRequestRulesList",
+          "traits": {
+            "smithy.api#documentation": "Rules to add to the newly created group.\nIf a rule does not exist, it will be created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminCreateQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreateQuotaGroupRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#QuotaGroup"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#Conflict"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/quota/groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new quota group"
+      }
+    },
+    "com.forgejo.admin#AdminGetQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "quotagroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota group to query"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminGetQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminGetQuotaGroupRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#QuotaGroup"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/quota/groups/{quotagroup}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about the quota group"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "quotagroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota group to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteQuotaGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/quota/groups/{quotagroup}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a quota group"
+      }
+    },
+    "com.forgejo.admin#AdminAddRuleToQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "quotagroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota group to add a rule to"
+          }
+        },
+        "quotarule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the name of the quota rule to add to the group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminAddRuleToQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminAddRuleToQuotaGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#Conflict"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/admin/quota/groups/{quotagroup}/rules/{quotarule}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Adds a rule to a quota group"
+      }
+    },
+    "com.forgejo.admin#AdminRemoveRuleFromQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "quotagroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota group to remove a rule from"
+          }
+        },
+        "quotarule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the name of the quota rule to remove from the group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminRemoveRuleFromQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminRemoveRuleFromQuotaGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/quota/groups/{quotagroup}/rules/{quotarule}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a rule from a quota group"
+      }
+    },
+    "com.forgejo.admin#AdminListUsersInQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "quotagroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota group to list members of"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#User": {
+      "type": "structure",
+      "members": {
+        "active": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user active"
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's avatar"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's description"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "followers_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "user counts"
+          }
+        },
+        "following_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's full name"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the user's profile page"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the user's id",
+            "smithy.api#required": {}
+          }
+        },
+        "is_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is the user an administrator"
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User locale"
+          }
+        },
+        "last_login": {
+          "target": "smithy.api#String"
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's location"
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's username",
+            "smithy.api#required": {}
+          }
+        },
+        "login_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's authentication sign-in name."
+          }
+        },
+        "prohibit_login": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user login prohibited"
+          }
+        },
+        "pronouns": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's pronouns"
+          }
+        },
+        "restricted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is user restricted"
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user's Authentication Source"
+          }
+        },
+        "starred_repos_count": {
+          "target": "smithy.api#Integer"
+        },
+        "visibility": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User visibility level option: public, limited, private"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the user's website"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User represents a user"
+      }
+    },
+    "com.forgejo.admin#AdminListUsersInQuotaGroupResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#User"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminListUsersInQuotaGroupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminListUsersInQuotaGroupResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminListUsersInQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminListUsersInQuotaGroupRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminListUsersInQuotaGroupResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/quota/groups/{quotagroup}/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "List users in a quota group"
+      }
+    },
+    "com.forgejo.admin#AdminAddUserToQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "quotagroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota group to add the user to"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of the user to add to the quota group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminAddUserToQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminAddUserToQuotaGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#Conflict"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/admin/quota/groups/{quotagroup}/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a user to a quota group"
+      }
+    },
+    "com.forgejo.admin#AdminRemoveUserFromQuotaGroupRequest": {
+      "type": "structure",
+      "members": {
+        "quotagroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota group to remove a user from"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of the user to remove from the quota group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminRemoveUserFromQuotaGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminRemoveUserFromQuotaGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/quota/groups/{quotagroup}/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a user from a quota group"
+      }
+    },
+    "com.forgejo.admin#AdminListQuotaRulesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#QuotaRuleInfo"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminListQuotaRulesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminListQuotaRulesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminListQuotaRules": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminListQuotaRulesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/quota/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the available quota rules"
+      }
+    },
+    "com.forgejo.admin#AdminCreateQuotaRuleRequestSubjectsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The subjects affected by the rule"
+      }
+    },
+    "com.forgejo.admin#AdminCreateQuotaRuleRequest": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The limit set by the rule"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the rule to create"
+          }
+        },
+        "subjects": {
+          "target": "com.forgejo.admin#AdminCreateQuotaRuleRequestSubjectsList",
+          "traits": {
+            "smithy.api#documentation": "The subjects affected by the rule"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminCreateQuotaRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreateQuotaRuleRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#QuotaRuleInfo"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#Conflict"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/quota/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new quota rule"
+      }
+    },
+    "com.forgejo.admin#AdminGetQuotaRuleRequest": {
+      "type": "structure",
+      "members": {
+        "quotarule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota rule to query"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminGetQuotaRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminGetQuotaRuleRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#QuotaRuleInfo"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/quota/rules/{quotarule}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about a quota rule"
+      }
+    },
+    "com.forgejo.admin#AdminEditQuotaRuleRequestSubjectsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The subjects affected by the rule"
+      }
+    },
+    "com.forgejo.admin#AdminEditQuotaRuleRequest": {
+      "type": "structure",
+      "members": {
+        "quotarule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Quota rule to change"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The limit set by the rule"
+          }
+        },
+        "subjects": {
+          "target": "com.forgejo.admin#AdminEditQuotaRuleRequestSubjectsList",
+          "traits": {
+            "smithy.api#documentation": "The subjects affected by the rule"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminEditQuotaRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminEditQuotaRuleRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#QuotaRuleInfo"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/admin/quota/rules/{quotarule}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change an existing quota rule"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteQuotaRuleRequest": {
+      "type": "structure",
+      "members": {
+        "quotarule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "quota rule to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteQuotaRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteQuotaRuleRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/quota/rules/{quotarule}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a quota rule"
+      }
+    },
+    "com.forgejo.admin#ListAdminUnadoptedRequest": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "pattern",
+            "smithy.api#documentation": "pattern of repositories to search for"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#ListAdminUnadoptedResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#ListAdminUnadoptedResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#ListAdminUnadoptedResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#ListAdminUnadopted": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#ListAdminUnadoptedRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#ListAdminUnadoptedResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/unadopted",
+          "code": 200
+        },
+        "smithy.api#documentation": "List unadopted repositories"
+      }
+    },
+    "com.forgejo.admin#AdminAdoptRepositoryRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminAdoptRepository": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminAdoptRepositoryRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/unadopted/{owner}/{repo}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Adopt unadopted files as a repository"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUnadoptedRepositoryRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "owner of the repo"
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the repo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUnadoptedRepository": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteUnadoptedRepositoryRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/unadopted/{owner}/{repo}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete unadopted files"
+      }
+    },
+    "com.forgejo.admin#AdminSearchUsersRequestSort": {
+      "type": "enum",
+      "members": {
+        "OLDEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oldest"
+          }
+        },
+        "NEWEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "newest"
+          }
+        },
+        "ALPHABETICALLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alphabetically"
+          }
+        },
+        "REVERSEALPHABETICALLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reversealphabetically"
+          }
+        },
+        "RECENTUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recentupdate"
+          }
+        },
+        "LEASTUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leastupdate"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminSearchUsersRequest": {
+      "type": "structure",
+      "members": {
+        "source_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "ID of the user's login source to search for"
+          }
+        },
+        "login_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "login_name",
+            "smithy.api#documentation": "user's login name to search for"
+          }
+        },
+        "is_2fa_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "is_2fa_enabled",
+            "smithy.api#documentation": "whether or not to filter users with the 2fa enabled"
+          }
+        },
+        "sort": {
+          "target": "com.forgejo.admin#AdminSearchUsersRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "sort order of results"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminSearchUsersResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#User"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminSearchUsersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminSearchUsersResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminSearchUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminSearchUsersRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminSearchUsersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search users according filter conditions"
+      }
+    },
+    "com.forgejo.admin#AdminCreateUserRequest": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For explicitly setting the user creation timestamp. Useful when users are\nmigrated from other systems. When omitted, the user's creation timestamp\nwill be set to \"now\"."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "login_name": {
+          "target": "smithy.api#String"
+        },
+        "must_change_password": {
+          "target": "smithy.api#Boolean"
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "restricted": {
+          "target": "smithy.api#Boolean"
+        },
+        "send_notify": {
+          "target": "smithy.api#Boolean"
+        },
+        "source_id": {
+          "target": "smithy.api#Integer"
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminCreateUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreateUserRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#User"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/users",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a user account"
+      }
+    },
+    "com.forgejo.admin#AdminEditUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user to edit"
+          }
+        },
+        "active": {
+          "target": "smithy.api#Boolean"
+        },
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_create_organization": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_git_hook": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_import_local": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "hide_email": {
+          "target": "smithy.api#Boolean"
+        },
+        "location": {
+          "target": "smithy.api#String"
+        },
+        "login_name": {
+          "target": "smithy.api#String"
+        },
+        "max_repo_creation": {
+          "target": "smithy.api#Integer"
+        },
+        "must_change_password": {
+          "target": "smithy.api#Boolean"
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "prohibit_login": {
+          "target": "smithy.api#Boolean"
+        },
+        "pronouns": {
+          "target": "smithy.api#String"
+        },
+        "restricted": {
+          "target": "smithy.api#Boolean"
+        },
+        "source_id": {
+          "target": "smithy.api#Integer"
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminEditUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminEditUserRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#User"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/admin/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit an existing user"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user to delete"
+          }
+        },
+        "purge": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "purge",
+            "smithy.api#documentation": "purge the user from the system completely"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/users/{username}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete user account"
+      }
+    },
+    "com.forgejo.admin#AdminListUserEmailsRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user to get email addresses of"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminListUserEmailsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#Email"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminListUserEmailsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminListUserEmailsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminListUserEmails": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminListUserEmailsRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminListUserEmailsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/users/{username}/emails",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all email addresses for a user"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserEmailsRequestEmailsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "email addresses to delete"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserEmailsRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user to delete email addresses from"
+          }
+        },
+        "emails": {
+          "target": "com.forgejo.admin#AdminDeleteUserEmailsRequestEmailsList",
+          "traits": {
+            "smithy.api#documentation": "email addresses to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserEmails": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteUserEmailsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/users/{username}/emails",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete email addresses from a user's account"
+      }
+    },
+    "com.forgejo.admin#AdminCreatePublicKeyRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of the user"
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An armored SSH key to add",
+            "smithy.api#required": {}
+          }
+        },
+        "read_only": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Describe if the key has only read access or read/write"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the key to add",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#PublicKey": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "fingerprint": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "key_type": {
+          "target": "smithy.api#String"
+        },
+        "read_only": {
+          "target": "smithy.api#Boolean"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "user": {
+          "target": "com.forgejo.admin#User"
+        },
+        "verified": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PublicKey publickey is a user key to push code to repository"
+      }
+    },
+    "com.forgejo.admin#AdminCreatePublicKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreatePublicKeyRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#PublicKey"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/users/{username}/keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add an SSH public key to user's account"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserPublicKeyRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the key to delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserPublicKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteUserPublicKeyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/users/{username}/keys/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a public key from user's account"
+      }
+    },
+    "com.forgejo.admin#AdminGetUserQuotaRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user to query"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#QuotaInfo": {
+      "type": "structure",
+      "members": {
+        "groups": {
+          "target": "com.forgejo.admin#QuotaGroupList"
+        },
+        "used": {
+          "target": "com.forgejo.admin#QuotaUsed"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaInfo represents information about a user's quota"
+      }
+    },
+    "com.forgejo.admin#QuotaUsed": {
+      "type": "structure",
+      "members": {
+        "size": {
+          "target": "com.forgejo.admin#QuotaUsedSize"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaUsed represents the quota usage of a user"
+      }
+    },
+    "com.forgejo.admin#QuotaUsedSize": {
+      "type": "structure",
+      "members": {
+        "assets": {
+          "target": "com.forgejo.admin#QuotaUsedSizeAssets"
+        },
+        "git": {
+          "target": "com.forgejo.admin#QuotaUsedSizeGit"
+        },
+        "repos": {
+          "target": "com.forgejo.admin#QuotaUsedSizeRepos"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaUsedSize represents the size-based quota usage of a user"
+      }
+    },
+    "com.forgejo.admin#QuotaUsedSizeAssets": {
+      "type": "structure",
+      "members": {
+        "artifacts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage size used for the user's artifacts"
+          }
+        },
+        "attachments": {
+          "target": "com.forgejo.admin#QuotaUsedSizeAssetsAttachments"
+        },
+        "packages": {
+          "target": "com.forgejo.admin#QuotaUsedSizeAssetsPackages"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaUsedSizeAssets represents the size-based asset usage of a user"
+      }
+    },
+    "com.forgejo.admin#QuotaUsedSizeAssetsAttachments": {
+      "type": "structure",
+      "members": {
+        "issues": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage size used for the user's issue & comment attachments"
+          }
+        },
+        "releases": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage size used for the user's release attachments"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaUsedSizeAssetsAttachments represents the size-based attachment quota usage of a user"
+      }
+    },
+    "com.forgejo.admin#QuotaUsedSizeAssetsPackages": {
+      "type": "structure",
+      "members": {
+        "all": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage suze used for the user's packages"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaUsedSizeAssetsPackages represents the size-based package quota usage of a user"
+      }
+    },
+    "com.forgejo.admin#QuotaUsedSizeGit": {
+      "type": "structure",
+      "members": {
+        "LFS": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage size of the user's Git LFS objects"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaUsedSizeGit represents the size-based git (lfs) quota usage of a user"
+      }
+    },
+    "com.forgejo.admin#QuotaUsedSizeRepos": {
+      "type": "structure",
+      "members": {
+        "private": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage size of the user's private repositories"
+          }
+        },
+        "public": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Storage size of the user's public repositories"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "QuotaUsedSizeRepos represents the size-based repository quota usage of a user"
+      }
+    },
+    "com.forgejo.admin#AdminGetUserQuota": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminGetUserQuotaRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#QuotaInfo"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/users/{username}/quota",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the user's quota info"
+      }
+    },
+    "com.forgejo.admin#AdminSetUserQuotaGroupsRequestGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota groups the user shall have"
+      }
+    },
+    "com.forgejo.admin#AdminSetUserQuotaGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of the user to modify the quota groups from"
+          }
+        },
+        "groups": {
+          "target": "com.forgejo.admin#AdminSetUserQuotaGroupsRequestGroupsList",
+          "traits": {
+            "smithy.api#documentation": "Quota groups the user shall have",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminSetUserQuotaGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminSetUserQuotaGroupsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/users/{username}/quota/groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the user's quota groups to a given list."
+      }
+    },
+    "com.forgejo.admin#AdminRenameUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "existing username of user"
+          }
+        },
+        "new_username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New username for this user. This name cannot be in use yet by any other user.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminRenameUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminRenameUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/users/{username}/rename",
+          "code": 200
+        },
+        "smithy.api#documentation": "Rename a user"
+      }
+    },
+    "com.forgejo.admin#AdminCreateRepoRequestObjectFormatName": {
+      "type": "enum",
+      "members": {
+        "SHA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha1"
+          }
+        },
+        "SHA256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha256"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+      }
+    },
+    "com.forgejo.admin#AdminCreateRepoRequestTrustModel": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        },
+        "COLLABORATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborator"
+          }
+        },
+        "COMMITTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "committer"
+          }
+        },
+        "COLLABORATORCOMMITTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaboratorcommitter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TrustModel of the repository"
+      }
+    },
+    "com.forgejo.admin#AdminCreateRepoRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of the user. This user will own the created repository"
+          }
+        },
+        "auto_init": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository should be auto-initialized?"
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DefaultBranch of the repository (used when initializes and in template)"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the repository to create"
+          }
+        },
+        "gitignores": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gitignores to use, separated by commas"
+          }
+        },
+        "issue_labels": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label-Set to use"
+          }
+        },
+        "license": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "License to use"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the repository to create",
+            "smithy.api#required": {}
+          }
+        },
+        "object_format_name": {
+          "target": "com.forgejo.admin#AdminCreateRepoRequestObjectFormatName",
+          "traits": {
+            "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is private"
+          }
+        },
+        "readme": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Readme of the repository to create"
+          }
+        },
+        "template": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the repository is template"
+          }
+        },
+        "trust_model": {
+          "target": "com.forgejo.admin#AdminCreateRepoRequestTrustModel",
+          "traits": {
+            "smithy.api#documentation": "TrustModel of the repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#Repository": {
+      "type": "structure",
+      "members": {
+        "allow_fast_forward_only_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_merge_commits": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_explicit": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_rebase_update": {
+          "target": "smithy.api#Boolean"
+        },
+        "allow_squash_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "archived_at": {
+          "target": "smithy.api#String"
+        },
+        "avatar_url": {
+          "target": "smithy.api#String"
+        },
+        "clone_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_allow_maintainer_edit": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default_delete_branch_after_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "default_merge_style": {
+          "target": "smithy.api#String"
+        },
+        "default_update_style": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "empty": {
+          "target": "smithy.api#Boolean"
+        },
+        "external_tracker": {
+          "target": "com.forgejo.admin#ExternalTracker"
+        },
+        "external_wiki": {
+          "target": "com.forgejo.admin#ExternalWiki"
+        },
+        "fork": {
+          "target": "smithy.api#Boolean"
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "globally_editable_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_actions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_packages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_releases": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "is the wiki enabled"
+          }
+        },
+        "has_wiki_contents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "have wiki pages ever been created"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ignore_whitespace_conflicts": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal": {
+          "target": "smithy.api#Boolean"
+        },
+        "internal_tracker": {
+          "target": "com.forgejo.admin#InternalTracker"
+        },
+        "language": {
+          "target": "smithy.api#String"
+        },
+        "languages_url": {
+          "target": "smithy.api#String"
+        },
+        "link": {
+          "target": "smithy.api#String"
+        },
+        "mirror": {
+          "target": "smithy.api#Boolean"
+        },
+        "mirror_interval": {
+          "target": "smithy.api#String"
+        },
+        "mirror_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "object_format_name": {
+          "target": "com.forgejo.admin#RepositoryObjectFormatName",
+          "traits": {
+            "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+          }
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "open_pr_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "original_url": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "com.forgejo.admin#User",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "parent": {
+          "target": "com.forgejo.admin#Repository"
+        },
+        "permissions": {
+          "target": "com.forgejo.admin#Permission"
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "release_counter": {
+          "target": "smithy.api#Integer"
+        },
+        "repo_transfer": {
+          "target": "com.forgejo.admin#RepoTransfer"
+        },
+        "size": {
+          "target": "smithy.api#Integer"
+        },
+        "ssh_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stars_count": {
+          "target": "smithy.api#Integer"
+        },
+        "template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.forgejo.admin#RepositoryTopicsList"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "website": {
+          "target": "smithy.api#String"
+        },
+        "wiki_branch": {
+          "target": "smithy.api#String"
+        },
+        "wiki_clone_url": {
+          "target": "smithy.api#String"
+        },
+        "wiki_ssh_url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Repository represents a repository"
+      }
+    },
+    "com.forgejo.admin#ExternalTracker": {
+      "type": "structure",
+      "members": {
+        "external_tracker_format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker URL Format. Use the placeholders {user}, {repo} and {index} for the username, repository name and issue index."
+          }
+        },
+        "external_tracker_regexp_pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker issue regular expression"
+          }
+        },
+        "external_tracker_style": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "External Issue Tracker Number Format, either `numeric`, `alphanumeric`, or `regexp`"
+          }
+        },
+        "external_tracker_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external issue tracker."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalTracker represents settings for external tracker"
+      }
+    },
+    "com.forgejo.admin#ExternalWiki": {
+      "type": "structure",
+      "members": {
+        "external_wiki_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of external wiki."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ExternalWiki represents setting for external wiki"
+      }
+    },
+    "com.forgejo.admin#InternalTracker": {
+      "type": "structure",
+      "members": {
+        "allow_only_contributors_to_track_time": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Let only contributors track time (Built-in issue tracker)"
+          }
+        },
+        "enable_issue_dependencies": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable dependencies for issues and pull requests (Built-in issue tracker)"
+          }
+        },
+        "enable_time_tracker": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable time tracking (Built-in issue tracker)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "InternalTracker represents settings for internal tracker"
+      }
+    },
+    "com.forgejo.admin#RepositoryObjectFormatName": {
+      "type": "enum",
+      "members": {
+        "SHA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha1"
+          }
+        },
+        "SHA256": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha256"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ObjectFormatName of the underlying git repository"
+      }
+    },
+    "com.forgejo.admin#Permission": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permission represents a set of permissions"
+      }
+    },
+    "com.forgejo.admin#RepoTransfer": {
+      "type": "structure",
+      "members": {
+        "doer": {
+          "target": "com.forgejo.admin#User"
+        },
+        "recipient": {
+          "target": "com.forgejo.admin#User"
+        },
+        "teams": {
+          "target": "com.forgejo.admin#RepoTransferTeamsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RepoTransfer represents a pending repo transfer"
+      }
+    },
+    "com.forgejo.admin#Team": {
+      "type": "structure",
+      "members": {
+        "can_create_org_repo": {
+          "target": "smithy.api#Boolean"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "includes_all_repositories": {
+          "target": "smithy.api#Boolean"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "com.forgejo.admin#Organization"
+        },
+        "permission": {
+          "target": "com.forgejo.admin#TeamPermission"
+        },
+        "units": {
+          "target": "com.forgejo.admin#TeamUnitsList"
+        },
+        "units_map": {
+          "target": "com.forgejo.admin#TeamUnitsMapMap"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team represents a team in an organization"
+      }
+    },
+    "com.forgejo.admin#TeamPermission": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "owner"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#TeamUnitsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#TeamUnitsMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#RepoTransferTeamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#Team"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#RepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminCreateRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreateRepoRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#Repository"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#Conflict"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/users/{username}/repos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a repository on behalf of a user"
+      }
+    },
+    "com.forgejo.admin#AdminListUserAccessTokensRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "page number of results to return (1-based)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "page size of results"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AccessToken": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories": {
+          "target": "com.forgejo.admin#AccessTokenRepositoriesList",
+          "traits": {
+            "smithy.api#documentation": "Indicates that an access token only has access to the specified repositories.  Will be null if the access token\nis not limited to a set of specified repositories."
+          }
+        },
+        "scopes": {
+          "target": "com.forgejo.admin#AccessTokenScopesList"
+        },
+        "sha1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "token_last_eight": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#RepositoryMeta": {
+      "type": "structure",
+      "members": {
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "owner": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "RepositoryMeta basic repository information"
+      }
+    },
+    "com.forgejo.admin#AccessTokenRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#RepositoryMeta"
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates that an access token only has access to the specified repositories.  Will be null if the access token\nis not limited to a set of specified repositories."
+      }
+    },
+    "com.forgejo.admin#AccessTokenScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminListUserAccessTokensResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#AccessToken"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminListUserAccessTokensResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.forgejo.admin#AdminListUserAccessTokensResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.forgejo.admin#AdminListUserAccessTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminListUserAccessTokensRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AdminListUserAccessTokensResponse"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/admin/users/{username}/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the specified user's access tokens"
+      }
+    },
+    "com.forgejo.admin#RepoTargetOption": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of repository",
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of user or organisation that owns the repository",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminCreateUserAccessTokenRequestRepositoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.forgejo.admin#RepoTargetOption"
+      },
+      "traits": {
+        "smithy.api#documentation": "If provided and not-empty, creates an access token with access only to specified repositories."
+      }
+    },
+    "com.forgejo.admin#AdminCreateUserAccessTokenRequestScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.forgejo.admin#AdminCreateUserAccessTokenRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories": {
+          "target": "com.forgejo.admin#AdminCreateUserAccessTokenRequestRepositoriesList",
+          "traits": {
+            "smithy.api#documentation": "If provided and not-empty, creates an access token with access only to specified repositories."
+          }
+        },
+        "scopes": {
+          "target": "com.forgejo.admin#AdminCreateUserAccessTokenRequestScopesList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminCreateUserAccessToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreateUserAccessTokenRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#AccessToken"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#BadRequest"
+        },
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/users/{username}/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an access token for the specified user"
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserAccessTokenRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of user"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "token to be deleted, identified by ID and if not available by name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminDeleteUserAccessToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminDeleteUserAccessTokenRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#NotFound"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/admin/users/{username}/tokens/{token}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an access token for the specified user"
+      }
+    },
+    "com.forgejo.admin#AdminCreateOrgRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "LIMITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "limited"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "possible values are `public` (default), `limited` or `private`"
+      }
+    },
+    "com.forgejo.admin#AdminCreateOrgRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "username of the user that will own the created organization"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "full_name": {
+          "target": "smithy.api#String"
+        },
+        "location": {
+          "target": "smithy.api#String"
+        },
+        "repo_admin_change_team_access": {
+          "target": "smithy.api#Boolean"
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "com.forgejo.admin#AdminCreateOrgRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "possible values are `public` (default), `limited` or `private`"
+          }
+        },
+        "website": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.forgejo.admin#AdminCreateOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.forgejo.admin#AdminCreateOrgRequest"
+      },
+      "output": {
+        "target": "com.forgejo.admin#Organization"
+      },
+      "errors": [
+        {
+          "target": "com.forgejo.admin#Forbidden"
+        },
+        {
+          "target": "com.forgejo.admin#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/admin/users/{owner}/orgs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an organization"
+      }
+    },
+    "com.forgejo.admin#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.forgejo.admin#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.forgejo.admin#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.forgejo.admin#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.forgejo.admin#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.forgejo.admin#ForgejoAdmin": {
+      "type": "service",
+      "version": "16.0.3",
+      "operations": [
+        {
+          "target": "com.forgejo.admin#GetAdminRunners"
+        },
+        {
+          "target": "com.forgejo.admin#RegisterAdminRunner"
+        },
+        {
+          "target": "com.forgejo.admin#AdminGetActionRunJobs"
+        },
+        {
+          "target": "com.forgejo.admin#GetAdminRunner"
+        },
+        {
+          "target": "com.forgejo.admin#DeleteAdminRunner"
+        },
+        {
+          "target": "com.forgejo.admin#ListAdminCron"
+        },
+        {
+          "target": "com.forgejo.admin#RunAdminCron"
+        },
+        {
+          "target": "com.forgejo.admin#AdminGetAllEmails"
+        },
+        {
+          "target": "com.forgejo.admin#AdminSearchEmails"
+        },
+        {
+          "target": "com.forgejo.admin#AdminListHooks"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreateHook"
+        },
+        {
+          "target": "com.forgejo.admin#AdminGetHook"
+        },
+        {
+          "target": "com.forgejo.admin#AdminEditHook"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteHook"
+        },
+        {
+          "target": "com.forgejo.admin#AdminGetAllOrgs"
+        },
+        {
+          "target": "com.forgejo.admin#AdminListQuotaGroups"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreateQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminGetQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminAddRuleToQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminRemoveRuleFromQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminListUsersInQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminAddUserToQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminRemoveUserFromQuotaGroup"
+        },
+        {
+          "target": "com.forgejo.admin#AdminListQuotaRules"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreateQuotaRule"
+        },
+        {
+          "target": "com.forgejo.admin#AdminGetQuotaRule"
+        },
+        {
+          "target": "com.forgejo.admin#AdminEditQuotaRule"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteQuotaRule"
+        },
+        {
+          "target": "com.forgejo.admin#ListAdminUnadopted"
+        },
+        {
+          "target": "com.forgejo.admin#AdminAdoptRepository"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteUnadoptedRepository"
+        },
+        {
+          "target": "com.forgejo.admin#AdminSearchUsers"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreateUser"
+        },
+        {
+          "target": "com.forgejo.admin#AdminEditUser"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteUser"
+        },
+        {
+          "target": "com.forgejo.admin#AdminListUserEmails"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteUserEmails"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreatePublicKey"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteUserPublicKey"
+        },
+        {
+          "target": "com.forgejo.admin#AdminGetUserQuota"
+        },
+        {
+          "target": "com.forgejo.admin#AdminSetUserQuotaGroups"
+        },
+        {
+          "target": "com.forgejo.admin#AdminRenameUser"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreateRepo"
+        },
+        {
+          "target": "com.forgejo.admin#AdminListUserAccessTokens"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreateUserAccessToken"
+        },
+        {
+          "target": "com.forgejo.admin#AdminDeleteUserAccessToken"
+        },
+        {
+          "target": "com.forgejo.admin#AdminCreateOrg"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Forgejo API",
+        "smithy.api#documentation": "This documentation describes the Forgejo API."
+      }
+    }
+  }
+}

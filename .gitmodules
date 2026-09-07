@@ -84,3 +84,8 @@
 	path = packages/discord/specs/discord-api-spec
 	url = https://github.com/discord/discord-api-spec.git
 	ignore = dirty
+[submodule "packages/forgejo/specs/spec-mirror-forgejo"]
+	path = packages/forgejo/specs/spec-mirror-forgejo
+	url = https://github.com/distilled-mirror/spec-mirror-forgejo.git
+	ignore = dirty
+	shallow = true
