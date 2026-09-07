@@ -435,6 +435,12 @@
     },
     {
       "path": "./packages/modrinth/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/spacetimedb/tsconfig.json"
+    },
+    {
+      "path": "./packages/spacetimedb/tsconfig.scripts.json"
     }
   ]
 }

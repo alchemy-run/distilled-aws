@@ -353,3 +353,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-modrinth.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/spacetimedb/specs/spec-mirror-spacetimedb"]
+	path = packages/spacetimedb/specs/spec-mirror-spacetimedb
+	url = https://github.com/distilled-mirror/spec-mirror-spacetimedb.git
+	ignore = dirty
+	shallow = true
