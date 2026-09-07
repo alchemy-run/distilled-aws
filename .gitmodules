@@ -208,3 +208,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-archil.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/argocd/specs/spec-mirror-argocd"]
+	path = packages/argocd/specs/spec-mirror-argocd
+	url = https://github.com/distilled-mirror/spec-mirror-argocd.git
+	ignore = dirty
+	shallow = true

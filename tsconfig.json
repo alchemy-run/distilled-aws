@@ -261,6 +261,12 @@
     },
     {
       "path": "./packages/archil/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/argocd/tsconfig.json"
+    },
+    {
+      "path": "./packages/argocd/tsconfig.scripts.json"
     }
   ]
 }
