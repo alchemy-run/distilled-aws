@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modrinth.api#SearchProjectsRequestIndex": {
@@ -1883,7 +1884,7 @@
         "smithy.api#documentation": "Get multiple projects"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestCategoriesList": {
+    "com.modrinth.api#UpdateProjectsRequestCategoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1892,7 +1893,7 @@
         "smithy.api#documentation": "Set all of the categories to the categories specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestAddCategoriesList": {
+    "com.modrinth.api#UpdateProjectsRequestAddCategoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1901,7 +1902,7 @@
         "smithy.api#documentation": "Add all of the categories specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestRemoveCategoriesList": {
+    "com.modrinth.api#UpdateProjectsRequestRemoveCategoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1910,7 +1911,7 @@
         "smithy.api#documentation": "Remove all of the categories specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestAdditionalCategoriesList": {
+    "com.modrinth.api#UpdateProjectsRequestAdditionalCategoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1919,7 +1920,7 @@
         "smithy.api#documentation": "Set all of the additional categories to the categories specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestAddAdditionalCategoriesList": {
+    "com.modrinth.api#UpdateProjectsRequestAddAdditionalCategoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1928,7 +1929,7 @@
         "smithy.api#documentation": "Add all of the additional categories specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestRemoveAdditionalCategoriesList": {
+    "com.modrinth.api#UpdateProjectsRequestRemoveAdditionalCategoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1937,7 +1938,7 @@
         "smithy.api#documentation": "Remove all of the additional categories specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestDonationUrlsList": {
+    "com.modrinth.api#UpdateProjectsRequestDonationUrlsList": {
       "type": "list",
       "member": {
         "target": "com.modrinth.api#ProjectDonationURL"
@@ -1946,7 +1947,7 @@
         "smithy.api#documentation": "Set all of the donation links to the donation links specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestAddDonationUrlsList": {
+    "com.modrinth.api#UpdateProjectsRequestAddDonationUrlsList": {
       "type": "list",
       "member": {
         "target": "com.modrinth.api#ProjectDonationURL"
@@ -1955,7 +1956,7 @@
         "smithy.api#documentation": "Add all of the donation links specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequestRemoveDonationUrlsList": {
+    "com.modrinth.api#UpdateProjectsRequestRemoveDonationUrlsList": {
       "type": "list",
       "member": {
         "target": "com.modrinth.api#ProjectDonationURL"
@@ -1964,7 +1965,7 @@
         "smithy.api#documentation": "Remove all of the donation links specified here"
       }
     },
-    "com.modrinth.api#PatchProjectsRequest": {
+    "com.modrinth.api#UpdateProjectsRequest": {
       "type": "structure",
       "members": {
         "ids": {
@@ -1976,55 +1977,55 @@
           }
         },
         "categories": {
-          "target": "com.modrinth.api#PatchProjectsRequestCategoriesList",
+          "target": "com.modrinth.api#UpdateProjectsRequestCategoriesList",
           "traits": {
             "smithy.api#documentation": "Set all of the categories to the categories specified here"
           }
         },
         "add_categories": {
-          "target": "com.modrinth.api#PatchProjectsRequestAddCategoriesList",
+          "target": "com.modrinth.api#UpdateProjectsRequestAddCategoriesList",
           "traits": {
             "smithy.api#documentation": "Add all of the categories specified here"
           }
         },
         "remove_categories": {
-          "target": "com.modrinth.api#PatchProjectsRequestRemoveCategoriesList",
+          "target": "com.modrinth.api#UpdateProjectsRequestRemoveCategoriesList",
           "traits": {
             "smithy.api#documentation": "Remove all of the categories specified here"
           }
         },
         "additional_categories": {
-          "target": "com.modrinth.api#PatchProjectsRequestAdditionalCategoriesList",
+          "target": "com.modrinth.api#UpdateProjectsRequestAdditionalCategoriesList",
           "traits": {
             "smithy.api#documentation": "Set all of the additional categories to the categories specified here"
           }
         },
         "add_additional_categories": {
-          "target": "com.modrinth.api#PatchProjectsRequestAddAdditionalCategoriesList",
+          "target": "com.modrinth.api#UpdateProjectsRequestAddAdditionalCategoriesList",
           "traits": {
             "smithy.api#documentation": "Add all of the additional categories specified here"
           }
         },
         "remove_additional_categories": {
-          "target": "com.modrinth.api#PatchProjectsRequestRemoveAdditionalCategoriesList",
+          "target": "com.modrinth.api#UpdateProjectsRequestRemoveAdditionalCategoriesList",
           "traits": {
             "smithy.api#documentation": "Remove all of the additional categories specified here"
           }
         },
         "donation_urls": {
-          "target": "com.modrinth.api#PatchProjectsRequestDonationUrlsList",
+          "target": "com.modrinth.api#UpdateProjectsRequestDonationUrlsList",
           "traits": {
             "smithy.api#documentation": "Set all of the donation links to the donation links specified here"
           }
         },
         "add_donation_urls": {
-          "target": "com.modrinth.api#PatchProjectsRequestAddDonationUrlsList",
+          "target": "com.modrinth.api#UpdateProjectsRequestAddDonationUrlsList",
           "traits": {
             "smithy.api#documentation": "Add all of the donation links specified here"
           }
         },
         "remove_donation_urls": {
-          "target": "com.modrinth.api#PatchProjectsRequestRemoveDonationUrlsList",
+          "target": "com.modrinth.api#UpdateProjectsRequestRemoveDonationUrlsList",
           "traits": {
             "smithy.api#documentation": "Remove all of the donation links specified here"
           }
@@ -2062,10 +2063,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modrinth.api#PatchProjects": {
+    "com.modrinth.api#UpdateProjects": {
       "type": "operation",
       "input": {
-        "target": "com.modrinth.api#PatchProjectsRequest"
+        "target": "com.modrinth.api#UpdateProjectsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10086,18 +10087,18 @@
       },
       "traits": {}
     },
-    "com.modrinth.api#CategoryListResponseBodyList": {
+    "com.modrinth.api#ListCategoryResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.modrinth.api#CategoryTag"
       },
       "traits": {}
     },
-    "com.modrinth.api#CategoryListResponse": {
+    "com.modrinth.api#ListCategoryResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.modrinth.api#CategoryListResponseBodyList",
+          "target": "com.modrinth.api#ListCategoryResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10108,13 +10109,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modrinth.api#CategoryList": {
+    "com.modrinth.api#ListCategory": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modrinth.api#CategoryListResponse"
+        "target": "com.modrinth.api#ListCategoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10161,18 +10162,18 @@
         "smithy.api#documentation": "The project types that this loader is applicable to"
       }
     },
-    "com.modrinth.api#LoaderListResponseBodyList": {
+    "com.modrinth.api#ListLoaderResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.modrinth.api#LoaderTag"
       },
       "traits": {}
     },
-    "com.modrinth.api#LoaderListResponse": {
+    "com.modrinth.api#ListLoaderResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.modrinth.api#LoaderListResponseBodyList",
+          "target": "com.modrinth.api#ListLoaderResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10183,13 +10184,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modrinth.api#LoaderList": {
+    "com.modrinth.api#ListLoader": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modrinth.api#LoaderListResponse"
+        "target": "com.modrinth.api#ListLoaderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10266,18 +10267,18 @@
         "smithy.api#documentation": "The type of the game version"
       }
     },
-    "com.modrinth.api#VersionListResponseBodyList": {
+    "com.modrinth.api#ListVersionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.modrinth.api#GameVersionTag"
       },
       "traits": {}
     },
-    "com.modrinth.api#VersionListResponse": {
+    "com.modrinth.api#ListVersionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.modrinth.api#VersionListResponseBodyList",
+          "target": "com.modrinth.api#ListVersionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10288,13 +10289,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modrinth.api#VersionList": {
+    "com.modrinth.api#ListVersion": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modrinth.api#VersionListResponse"
+        "target": "com.modrinth.api#ListVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10377,18 +10378,18 @@
       },
       "traits": {}
     },
-    "com.modrinth.api#DonationPlatformListResponseBodyList": {
+    "com.modrinth.api#ListDonationPlatformResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.modrinth.api#DonationPlatformTag"
       },
       "traits": {}
     },
-    "com.modrinth.api#DonationPlatformListResponse": {
+    "com.modrinth.api#ListDonationPlatformResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.modrinth.api#DonationPlatformListResponseBodyList",
+          "target": "com.modrinth.api#ListDonationPlatformResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10399,13 +10400,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modrinth.api#DonationPlatformList": {
+    "com.modrinth.api#ListDonationPlatform": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modrinth.api#DonationPlatformListResponse"
+        "target": "com.modrinth.api#ListDonationPlatformResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10416,18 +10417,18 @@
         "smithy.api#documentation": "Get a list of donation platforms\n\nGets an array of donation platforms and information about them"
       }
     },
-    "com.modrinth.api#ReportTypeListResponseBodyList": {
+    "com.modrinth.api#ListReportTypeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.modrinth.api#ReportTypeListResponse": {
+    "com.modrinth.api#ListReportTypeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.modrinth.api#ReportTypeListResponseBodyList",
+          "target": "com.modrinth.api#ListReportTypeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10438,13 +10439,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modrinth.api#ReportTypeList": {
+    "com.modrinth.api#ListReportType": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modrinth.api#ReportTypeListResponse"
+        "target": "com.modrinth.api#ListReportTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10455,18 +10456,18 @@
         "smithy.api#documentation": "Get a list of report types\n\nGets an array of valid report types"
       }
     },
-    "com.modrinth.api#ProjectTypeListResponseBodyList": {
+    "com.modrinth.api#ListProjectTypeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.modrinth.api#ProjectTypeListResponse": {
+    "com.modrinth.api#ListProjectTypeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.modrinth.api#ProjectTypeListResponseBodyList",
+          "target": "com.modrinth.api#ListProjectTypeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10477,13 +10478,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modrinth.api#ProjectTypeList": {
+    "com.modrinth.api#ListProjectType": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modrinth.api#ProjectTypeListResponse"
+        "target": "com.modrinth.api#ListProjectTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10494,18 +10495,18 @@
         "smithy.api#documentation": "Get a list of project types\n\nGets an array of valid project types"
       }
     },
-    "com.modrinth.api#SideTypeListResponseBodyList": {
+    "com.modrinth.api#ListSideTypeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.modrinth.api#SideTypeListResponse": {
+    "com.modrinth.api#ListSideTypeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.modrinth.api#SideTypeListResponseBodyList",
+          "target": "com.modrinth.api#ListSideTypeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10516,13 +10517,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modrinth.api#SideTypeList": {
+    "com.modrinth.api#ListSideType": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modrinth.api#SideTypeListResponse"
+        "target": "com.modrinth.api#ListSideTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10728,7 +10729,7 @@
           "target": "com.modrinth.api#GetProjects"
         },
         {
-          "target": "com.modrinth.api#PatchProjects"
+          "target": "com.modrinth.api#UpdateProjects"
         },
         {
           "target": "com.modrinth.api#RandomProjects"
@@ -10911,28 +10912,28 @@
           "target": "com.modrinth.api#TransferTeamOwnership"
         },
         {
-          "target": "com.modrinth.api#CategoryList"
+          "target": "com.modrinth.api#ListCategory"
         },
         {
-          "target": "com.modrinth.api#LoaderList"
+          "target": "com.modrinth.api#ListLoader"
         },
         {
-          "target": "com.modrinth.api#VersionList"
+          "target": "com.modrinth.api#ListVersion"
         },
         {
           "target": "com.modrinth.api#LicenseText"
         },
         {
-          "target": "com.modrinth.api#DonationPlatformList"
+          "target": "com.modrinth.api#ListDonationPlatform"
         },
         {
-          "target": "com.modrinth.api#ReportTypeList"
+          "target": "com.modrinth.api#ListReportType"
         },
         {
-          "target": "com.modrinth.api#ProjectTypeList"
+          "target": "com.modrinth.api#ListProjectType"
         },
         {
-          "target": "com.modrinth.api#SideTypeList"
+          "target": "com.modrinth.api#ListSideType"
         },
         {
           "target": "com.modrinth.api#ForgeUpdates2"
