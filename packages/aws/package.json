@@ -96,6 +96,7 @@
     "build": "tsc -b",
     "fmt": "oxfmt --write src",
     "lint": "oxlint --fix src",
+    "test": "bun test test",
     "check": "tsc && oxlint src && oxfmt --check src",
     "generate": "bun run scripts/generate.ts",
     "specs:fetch": "git submodule update --force --init --depth=1 specs/spec-mirror-aws",

@@ -38,6 +38,15 @@ const EXPIRE_WINDOW_MS = 5 * 60 * 1000;
 
 const REFRESH_MESSAGE = `To refresh this SSO session run 'aws sso login' with the corresponding profile.`;
 
+export const getSsoCredentialCacheName = (
+  session: string,
+  account: string,
+  role: string,
+) =>
+  createHash("sha1")
+    .update(JSON.stringify([session, account, role]))
+    .digest("hex");
+
 export const Default = Effect.serviceOption(Auth).pipe(
   Effect.map(Option.getOrUndefined),
   Effect.flatMap((c) => (c ? Effect.succeed(c) : makeAuthService())),
@@ -162,15 +171,25 @@ export const makeAuthService = () =>
 
       // Both SSO formats cache the access token under sha1 of the cache key: the
       // `sso_session` name (modern) or the `sso_start_url` (legacy inline format).
+      // Role credentials need a separate identity because one SSO session can
+      // authorize multiple account/role pairs.
       const ssoCacheKey = profile.sso_session ?? profile.sso_start_url;
       if (ssoCacheKey) {
-        const hasher = createHash("sha1");
-        const cacheName = hasher.update(ssoCacheKey).digest("hex");
-        const ssoTokenFilepath = path.join(cachePath, `${cacheName}.json`);
+        const tokenCacheName = createHash("sha1")
+          .update(ssoCacheKey)
+          .digest("hex");
+        const credentialCacheName = getSsoCredentialCacheName(
+          ssoCacheKey,
+          profile.sso_account_id!,
+          profile.sso_role_name!,
+        );
+        const ssoTokenFilepath = path.join(cachePath, `${tokenCacheName}.json`);
         const cachedCredsFilePath = path.join(
           cachePath,
-          `${cacheName}.credentials.json`,
+          `${credentialCacheName}.credentials.json`,
         );
+
+        // The old session-only credentials file is intentionally ignored.
 
         // `Effect.try` so a `JSON.parse` throw on an empty/partial file
         // (a brief race window when another process is rewriting the
