@@ -39,6 +39,7 @@ export const repositoryName = (specRepo: SpecRepo) =>
 
 export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "adyen" },
+  { package: "apache-superset" },
   { package: "auth0" },
   { package: "aws" },
   { package: "axiom" },
